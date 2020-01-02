@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="fluffychat"
+        android:label="FluffyChat"
         android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
