@@ -20,8 +20,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-  flutter_responsive_screen: ^1.0.0
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
@@ -46,7 +44,7 @@ dev_dependencies:
     sdk: flutter
 
   flutter_launcher_icons: "^0.7.3"
-
+  pedantic: ^1.5.0
 
 flutter_icons:
   android: "launcher_icon"

@@ -1,0 +1,11 @@
+include: package:pedantic/analysis_options.yaml
+
+linter:
+  rules:
+  #  - camel_case_types
+
+analyzer:
+  errors:
+    todo: ignore
+  exclude:
+    - lib/generated_plugin_registrant.dart

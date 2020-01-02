@@ -113,13 +113,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.7.4"
-  flutter_responsive_screen:
-    dependency: "direct main"
-    description:
-      name: flutter_responsive_screen
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0"
   flutter_speed_dial:
     dependency: "direct main"
     description:
@@ -215,7 +208,7 @@ packages:
     source: hosted
     version: "1.5.1"
   pedantic:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: pedantic
       url: "https://pub.dartlang.org"
