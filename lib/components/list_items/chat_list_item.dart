@@ -22,16 +22,17 @@ class ChatListItem extends StatelessWidget {
         title: Text(room.displayname),
         subtitle: MessageContent(room.lastEvent, textOnly: true),
         onTap: () {
-          if (activeChat)
+          if (activeChat) {
             Navigator.pushReplacement(
               context,
               AppRoute.defaultRoute(context, Chat(room.id)),
             );
-          else
+          } else {
             Navigator.push(
               context,
               AppRoute.defaultRoute(context, Chat(room.id)),
             );
+          }
         },
         onLongPress: () {},
         trailing: Container(

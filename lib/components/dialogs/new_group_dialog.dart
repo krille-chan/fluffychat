@@ -14,11 +14,12 @@ class NewGroupDialog extends StatelessWidget {
       matrix.client.createRoom(params: params),
     );
     Navigator.of(context).pop();
-    if (roomID != null)
-      Navigator.push(
+    if (roomID != null) {
+      await Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => Chat(roomID)),
       );
+    }
   }
 
   @override

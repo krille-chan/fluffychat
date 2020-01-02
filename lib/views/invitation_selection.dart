@@ -20,8 +20,9 @@ class InvitationSelection extends StatelessWidget {
       List<User> roomUsers = client.rooms[i].getParticipants();
       for (int j = 0; j < roomUsers.length; j++) {
         if (userMap[roomUsers[j].id] != true &&
-            participants.indexWhere((u) => u.id == roomUsers[j].id) == -1)
+            participants.indexWhere((u) => u.id == roomUsers[j].id) == -1) {
           contacts.add(roomUsers[j]);
+        }
         userMap[roomUsers[j].id] = true;
       }
     }
@@ -32,12 +33,13 @@ class InvitationSelection extends StatelessWidget {
     final success = await Matrix.of(context).tryRequestWithLoadingDialog(
       room.invite(id),
     );
-    if (success != false)
+    if (success != false) {
       Toast.show(
         "Contact has been invited to the group.",
         context,
         duration: Toast.LENGTH_LONG,
       );
+    }
   }
 
   @override
@@ -53,10 +55,11 @@ class InvitationSelection extends StatelessWidget {
           body: FutureBuilder<List<User>>(
             future: getContacts(context),
             builder: (BuildContext context, snapshot) {
-              if (!snapshot.hasData)
+              if (!snapshot.hasData) {
                 return Center(
                   child: CircularProgressIndicator(),
                 );
+              }
               List<User> contacts = snapshot.data;
               return ListView.builder(
                 itemCount: contacts.length,

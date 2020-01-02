@@ -15,23 +15,23 @@ class ParticipantListItem extends StatelessWidget {
     final MatrixState matrix = Matrix.of(context);
     switch (action) {
       case "ban":
-        matrix.tryRequestWithLoadingDialog(user.ban());
+        await matrix.tryRequestWithLoadingDialog(user.ban());
         break;
       case "unban":
-        matrix.tryRequestWithLoadingDialog(user.unban());
+        await matrix.tryRequestWithLoadingDialog(user.unban());
         break;
       case "kick":
-        matrix.tryRequestWithLoadingDialog(user.kick());
+        await matrix.tryRequestWithLoadingDialog(user.kick());
         break;
       case "admin":
-        matrix.tryRequestWithLoadingDialog(user.setPower(100));
+        await matrix.tryRequestWithLoadingDialog(user.setPower(100));
         break;
       case "user":
-        matrix.tryRequestWithLoadingDialog(user.setPower(100));
+        await matrix.tryRequestWithLoadingDialog(user.setPower(100));
         break;
       case "message":
         final String roomId = await user.startDirectChat();
-        Navigator.of(context).pushAndRemoveUntil(
+        await Navigator.of(context).pushAndRemoveUntil(
             AppRoute.defaultRoute(
               context,
               Chat(roomId),
@@ -55,30 +55,35 @@ class ParticipantListItem extends StatelessWidget {
     List<PopupMenuEntry<String>> items = <PopupMenuEntry<String>>[];
     if (user.canChangePowerLevel &&
         user.room.ownPowerLevel == 100 &&
-        user.powerLevel != 100)
+        user.powerLevel != 100) {
       items.add(
         PopupMenuItem(child: Text("Make an admin"), value: "admin"),
       );
-    if (user.canChangePowerLevel && user.powerLevel != 0)
+    }
+    if (user.canChangePowerLevel && user.powerLevel != 0) {
       items.add(
         PopupMenuItem(child: Text("Revoke all permissions"), value: "user"),
       );
-    if (user.canKick)
+    }
+    if (user.canKick) {
       items.add(
         PopupMenuItem(child: Text("Kick from group"), value: "kick"),
       );
-    if (user.canBan && user.membership != Membership.ban)
+    }
+    if (user.canBan && user.membership != Membership.ban) {
       items.add(
         PopupMenuItem(child: Text("Ban from group"), value: "ban"),
       );
-    else if (user.canBan && user.membership == Membership.ban)
+    } else if (user.canBan && user.membership == Membership.ban) {
       items.add(
         PopupMenuItem(child: Text("Remove exile"), value: "unban"),
       );
-    if (user.id != Matrix.of(context).client.userID)
+    }
+    if (user.id != Matrix.of(context).client.userID) {
       items.add(
         PopupMenuItem(child: Text("Send a message"), value: "message"),
       );
+    }
     return PopupMenuButton(
       onSelected: (action) => participantAction(context, action),
       itemBuilder: (c) => items,

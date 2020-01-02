@@ -18,11 +18,12 @@ class NewPrivateChatDialog extends StatelessWidget {
         await matrix.tryRequestWithLoadingDialog(user.startDirectChat());
     Navigator.of(context).pop();
 
-    if (roomID != null)
-      Navigator.push(
+    if (roomID != null) {
+      await Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => Chat(roomID)),
       );
+    }
   }
 
   @override

@@ -53,9 +53,10 @@ class Store extends StoreAPI {
         onCreate: (Database db, int version) async {
       await createTables(db);
     }, onUpgrade: (Database db, int oldVersion, int newVersion) async {
-      if (client.debug)
+      if (client.debug) {
         print(
             "[Store] Migrate databse from version $oldVersion to $newVersion");
+      }
       if (oldVersion != newVersion) {
         schemes.forEach((String name, String scheme) async {
           if (name != "Clients") await db.execute("DROP TABLE IF EXISTS $name");
@@ -84,10 +85,12 @@ class Store extends StoreAPI {
             ? null
             : clientList["prev_batch"],
       );
-      if (client.debug)
+      if (client.debug) {
         print("[Store] Restore client credentials of ${client.userID}");
-    } else
+      }
+    } else {
       client.onLoginStateChanged.add(LoginState.loggedOut);
+    }
   }
 
   Future<void> createTables(Database db) async {
@@ -155,11 +158,11 @@ class Store extends StoreAPI {
   Future<void> storeRoomUpdate(RoomUpdate roomUpdate) {
     if (txn == null) return null;
     // Insert the chat into the database if not exists
-    if (roomUpdate.membership != Membership.leave)
+    if (roomUpdate.membership != Membership.leave) {
       txn.rawInsert(
           "INSERT OR IGNORE INTO Rooms " + "VALUES(?, ?, 0, 0, '', 0, 0, '') ",
           [roomUpdate.id, roomUpdate.membership.toString().split('.').last]);
-    else {
+    } else {
       txn.rawDelete("DELETE FROM Rooms WHERE room_id=? ", [roomUpdate.id]);
       return null;
     }
@@ -202,17 +205,18 @@ class Store extends StoreAPI {
   /// [transaction].
   Future<void> storeUserEventUpdate(UserUpdate userUpdate) {
     if (txn == null) return null;
-    if (userUpdate.type == "account_data")
+    if (userUpdate.type == "account_data") {
       txn.rawInsert("INSERT OR REPLACE INTO AccountData VALUES(?, ?)", [
         userUpdate.eventType,
         json.encode(userUpdate.content["content"]),
       ]);
-    else if (userUpdate.type == "presence")
+    } else if (userUpdate.type == "presence") {
       txn.rawInsert("INSERT OR REPLACE INTO Presences VALUES(?, ?, ?)", [
         userUpdate.eventType,
         userUpdate.content["sender"],
         json.encode(userUpdate.content["content"]),
       ]);
+    }
     return null;
   }
 
@@ -272,14 +276,14 @@ class Store extends StoreAPI {
       // Save the event in the database
       if ((status == 1 || status == -1) &&
           eventContent["unsigned"] is Map<String, dynamic> &&
-          eventContent["unsigned"]["transaction_id"] is String)
+          eventContent["unsigned"]["transaction_id"] is String) {
         txn.rawUpdate(
             "UPDATE Events SET status=?, event_id=? WHERE event_id=?", [
           status,
           eventContent["event_id"],
           eventContent["unsigned"]["transaction_id"]
         ]);
-      else
+      } else {
         txn.rawInsert(
             "INSERT OR REPLACE INTO Events VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             [
@@ -294,13 +298,15 @@ class Store extends StoreAPI {
               eventContent["state_key"],
               status
             ]);
+      }
 
       // Is there a transaction id? Then delete the event with this id.
       if (status != -1 &&
           eventUpdate.content.containsKey("unsigned") &&
-          eventUpdate.content["unsigned"]["transaction_id"] is String)
+          eventUpdate.content["unsigned"]["transaction_id"] is String) {
         txn.rawDelete("DELETE FROM Events WHERE event_id=?",
             [eventUpdate.content["unsigned"]["transaction_id"]]);
+      }
     }
 
     if (type == "history") return null;
@@ -321,12 +327,13 @@ class Store extends StoreAPI {
             eventContent["type"],
             json.encode(eventContent["content"]),
           ]);
-    } else
+    } else {
       txn.rawInsert("INSERT OR REPLACE INTO RoomAccountData VALUES(?, ?, ?)", [
         eventContent["type"],
         chatId,
         json.encode(eventContent["content"]),
       ]);
+    }
 
     return null;
   }
@@ -347,8 +354,9 @@ class Store extends StoreAPI {
         "SELECT * FROM RoomStates WHERE state_key LIKE '@%:%' AND state_key!=? AND room_id!=? GROUP BY state_key ORDER BY state_key",
         [client.userID, exceptRoomID]);
     List<User> userList = [];
-    for (int i = 0; i < res.length; i++)
+    for (int i = 0; i < res.length; i++) {
       userList.add(Event.fromJson(res[i], Room(id: "", client: client)).asUser);
+    }
     return userList;
   }
 
@@ -382,8 +390,9 @@ class Store extends StoreAPI {
 
     List<Event> eventList = [];
 
-    for (num i = 0; i < eventRes.length; i++)
+    for (num i = 0; i < eventRes.length; i++) {
       eventList.add(Event.fromJson(eventRes[i], room));
+    }
 
     return eventList;
   }
@@ -444,7 +453,7 @@ class Store extends StoreAPI {
     List<Map<String, dynamic>> res = await _db.rawQuery(
         "SELECT * FROM Events WHERE event_id=? AND room_id=?",
         [eventID, room.id]);
-    if (res.length == 0) return null;
+    if (res.isEmpty) return null;
     return Event.fromJson(res[0], room);
   }
 
@@ -452,9 +461,10 @@ class Store extends StoreAPI {
     Map<String, AccountData> newAccountData = {};
     List<Map<String, dynamic>> rawAccountData =
         await _db.rawQuery("SELECT * FROM AccountData");
-    for (int i = 0; i < rawAccountData.length; i++)
+    for (int i = 0; i < rawAccountData.length; i++) {
       newAccountData[rawAccountData[i]["type"]] =
           AccountData.fromJson(rawAccountData[i]);
+    }
     return newAccountData;
   }
 
@@ -502,7 +512,7 @@ class Store extends StoreAPI {
     assert(roomId != "");
     List<Map<String, dynamic>> res = await _db
         .rawQuery("SELECT * FROM NotificationsCache WHERE chat_id=?", [roomId]);
-    if (res.length == 0) return null;
+    if (res.isEmpty) return null;
     return res;
   }
 

@@ -14,7 +14,7 @@ class MessageContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final int maxLines = textOnly ? 1 : null;
-    if (textOnly)
+    if (textOnly) {
       return Text(
         event.getBody(),
         style: TextStyle(
@@ -23,6 +23,7 @@ class MessageContent extends StatelessWidget {
         ),
         maxLines: maxLines,
       );
+    }
     switch (event.type) {
       case EventTypes.Audio:
       case EventTypes.Image:

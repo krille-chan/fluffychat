@@ -1,13 +1,19 @@
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'components/matrix.dart';
 import 'views/chat_list.dart';
 import 'views/login.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(statusBarColor: Colors.white),
+  );
+  runApp(App());
+}
 
-class MyApp extends StatelessWidget {
+class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Matrix(
@@ -41,12 +47,13 @@ class MyApp extends StatelessWidget {
           builder: (BuildContext context) => StreamBuilder<LoginState>(
             stream: Matrix.of(context).client.onLoginStateChanged.stream,
             builder: (context, snapshot) {
-              if (!snapshot.hasData)
+              if (!snapshot.hasData) {
                 return Scaffold(
                   body: Center(
                     child: CircularProgressIndicator(),
                   ),
                 );
+              }
               if (Matrix.of(context).client.isLogged()) return ChatListView();
               return LoginPage();
             },

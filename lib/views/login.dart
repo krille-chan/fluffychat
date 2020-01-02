@@ -35,13 +35,15 @@ class _LoginPageState extends State<LoginPage> {
     }
     serverError = null;
 
-    if (usernameController.text.isEmpty || passwordController.text.isEmpty)
+    if (usernameController.text.isEmpty || passwordController.text.isEmpty) {
       return;
+    }
 
     String homeserver = serverController.text;
     if (homeserver.isEmpty) homeserver = defaultHomeserver;
-    if (!homeserver.startsWith("https://"))
+    if (!homeserver.startsWith("https://")) {
       homeserver = "https://" + homeserver;
+    }
 
     try {
       matrix.showLoadingDialog(context);
@@ -64,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
       setState(() => passwordError = exception.toString());
       return matrix.hideLoadingDialog();
     }
-    Matrix.of(context).saveAccount();
+    await Matrix.of(context).saveAccount();
     matrix.hideLoadingDialog();
   }
 

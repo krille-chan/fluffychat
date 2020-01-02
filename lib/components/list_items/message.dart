@@ -31,13 +31,14 @@ class Message extends StatelessWidget {
       color = event.status == -1 ? Colors.redAccent : Color(0xFF5625BA);
     }
     List<PopupMenuEntry<String>> popupMenuList = [];
-    if (event.canRedact && !event.redacted && event.status > 1)
+    if (event.canRedact && !event.redacted && event.status > 1) {
       popupMenuList.add(
         const PopupMenuItem<String>(
           value: "remove",
           child: Text('Remove message'),
         ),
       );
+    }
     if (ownMessage && event.status == -1) {
       popupMenuList.add(
         const PopupMenuItem<String>(
@@ -59,16 +60,16 @@ class Message extends StatelessWidget {
           onSelected: (String choice) async {
             switch (choice) {
               case "remove":
-                showDialog(
+                await showDialog(
                   context: context,
                   builder: (BuildContext context) => RedactMessageDialog(event),
                 );
                 break;
               case "resend":
-                event.sendAgain();
+                await event.sendAgain();
                 break;
               case "delete":
-                event.remove();
+                await event.remove();
                 break;
             }
           },
@@ -113,10 +114,11 @@ class Message extends StatelessWidget {
         ),
       ),
     ];
-    if (ownMessage)
+    if (ownMessage) {
       rowChildren.add(Avatar(event.sender.avatarUrl));
-    else
+    } else {
       rowChildren.insert(0, Avatar(event.sender.avatarUrl));
+    }
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(

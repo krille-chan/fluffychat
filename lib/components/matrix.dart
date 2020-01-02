@@ -80,7 +80,7 @@ class MatrixState extends State<Matrix> {
 
     final LocalStorage storage = LocalStorage('LocalStorage');
     await storage.ready;
-    storage.deleteItem(widget.clientName);
+    await storage.deleteItem(widget.clientName);
   }
 
   BuildContext _loadingDialogContext;
@@ -128,10 +128,11 @@ class MatrixState extends State<Matrix> {
   void initState() {
     if (widget.client == null) {
       client = Client(widget.clientName, debug: false);
-      if (!kIsWeb)
+      if (!kIsWeb) {
         client.store = Store(client);
-      else
+      } else {
         loadAccount();
+      }
     } else {
       client = widget.client;
     }

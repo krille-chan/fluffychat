@@ -23,11 +23,13 @@ class AdaptivePageLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OrientationBuilder(builder: (context, orientation) {
-      if (orientation == Orientation.portrait ||
-          columnMode(context)) if (primaryPage == FocusPage.FIRST)
-        return firstScaffold;
-      else
-        return secondScaffold;
+      if (orientation == Orientation.portrait || columnMode(context)) {
+        if (primaryPage == FocusPage.FIRST) {
+          return firstScaffold;
+        } else {
+          return secondScaffold;
+        }
+      }
       return Row(
         children: <Widget>[
           Container(

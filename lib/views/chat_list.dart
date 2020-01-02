@@ -39,8 +39,9 @@ class _ChatListState extends State<ChatList> {
 
   Future<bool> waitForFirstSync(BuildContext context) async {
     Client client = Matrix.of(context).client;
-    if (client.prevBatch?.isEmpty ?? true)
+    if (client.prevBatch?.isEmpty ?? true) {
       await client.onFirstSync.stream.first;
+    }
     sub ??= client.onSync.stream.listen((s) => setState(() => null));
     return true;
   }
@@ -121,10 +122,11 @@ class _ChatListState extends State<ChatList> {
                 activeChat: widget.activeChat == rooms[i].id,
               ),
             );
-          } else
+          } else {
             return Center(
               child: CircularProgressIndicator(),
             );
+          }
         },
       ),
     );

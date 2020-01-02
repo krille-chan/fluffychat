@@ -26,18 +26,17 @@ class _ChatState extends State<Chat> {
 
   Timeline timeline;
 
-  final ScrollController _scrollController = new ScrollController();
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
     _scrollController.addListener(() async {
       if (_scrollController.position.pixels ==
-          _scrollController.position.maxScrollExtent) {
-        if (timeline.events.length > 0 &&
-            timeline.events[timeline.events.length - 1].type !=
-                EventTypes.RoomCreate) {
-          await timeline.requestHistory(historyCount: 100);
-        }
+              _scrollController.position.maxScrollExtent &&
+          timeline.events.isNotEmpty &&
+          timeline.events[timeline.events.length - 1].type !=
+              EventTypes.RoomCreate) {
+        await timeline.requestHistory(historyCount: 100);
       }
     });
 
@@ -71,7 +70,7 @@ class _ChatState extends State<Chat> {
     }
     File file = await FilePicker.getFile();
     if (file == null) return;
-    Matrix.of(context).tryRequestWithLoadingDialog(
+    await Matrix.of(context).tryRequestWithLoadingDialog(
       room.sendFileEvent(
         MatrixFile(bytes: await file.readAsBytes(), path: file.path),
       ),
@@ -88,7 +87,7 @@ class _ChatState extends State<Chat> {
         maxWidth: 1600,
         maxHeight: 1600);
     if (file == null) return;
-    Matrix.of(context).tryRequestWithLoadingDialog(
+    await Matrix.of(context).tryRequestWithLoadingDialog(
       room.sendImageEvent(
         MatrixFile(bytes: await file.readAsBytes(), path: file.path),
       ),
@@ -105,7 +104,7 @@ class _ChatState extends State<Chat> {
         maxWidth: 1600,
         maxHeight: 1600);
     if (file == null) return;
-    Matrix.of(context).tryRequestWithLoadingDialog(
+    await Matrix.of(context).tryRequestWithLoadingDialog(
       room.sendImageEvent(
         MatrixFile(bytes: await file.readAsBytes(), path: file.path),
       ),
@@ -136,15 +135,17 @@ class _ChatState extends State<Chat> {
                 child: FutureBuilder<bool>(
                   future: getTimeline(),
                   builder: (BuildContext context, snapshot) {
-                    if (!snapshot.hasData)
+                    if (!snapshot.hasData) {
                       return Center(
                         child: CircularProgressIndicator(),
                       );
+                    }
                     if (room.notificationCount != null &&
                         room.notificationCount > 0 &&
                         timeline != null &&
-                        timeline.events.length > 0)
+                        timeline.events.isNotEmpty) {
                       room.sendReadReceipt(timeline.events[0].eventId);
+                    }
                     return ListView.builder(
                       reverse: true,
                       itemCount: timeline.events.length,
@@ -175,10 +176,11 @@ class _ChatState extends State<Chat> {
                         : PopupMenuButton<String>(
                             icon: Icon(Icons.add),
                             onSelected: (String choice) async {
-                              if (choice == "file")
+                              if (choice == "file") {
                                 sendFileAction(context);
-                              else if (choice == "image")
+                              } else if (choice == "image") {
                                 sendImageAction(context);
+                              }
                               if (choice == "camera") openCameraAction(context);
                             },
                             itemBuilder: (BuildContext context) =>

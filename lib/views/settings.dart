@@ -33,7 +33,7 @@ class _SettingsState extends State<Settings> {
   dynamic profile;
   void logoutAction(BuildContext context) async {
     MatrixState matrix = Matrix.of(context);
-    Navigator.of(context).pushAndRemoveUntil(
+    await Navigator.of(context).pushAndRemoveUntil(
         AppRoute.defaultRoute(context, LoginPage()), (r) => false);
     await matrix.tryRequestWithLoadingDialog(matrix.client.logout());
     matrix.clean();
@@ -49,7 +49,7 @@ class _SettingsState extends State<Settings> {
         data: {"displayname": displayname},
       ),
     );
-    if (success != null && success.length == 0) {
+    if (success != null && success.isEmpty) {
       Toast.show(
         "Displayname has been changed",
         context,
@@ -79,7 +79,7 @@ class _SettingsState extends State<Settings> {
         ),
       ),
     );
-    if (success != null && success.length == 0) {
+    if (success != null && success.isEmpty) {
       Toast.show(
         "Avatar has been changed",
         context,

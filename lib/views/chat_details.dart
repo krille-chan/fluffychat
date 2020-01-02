@@ -31,7 +31,7 @@ class _ChatDetailsState extends State<ChatDetails> {
         await matrix.tryRequestWithLoadingDialog(
       widget.room.setName(displayname),
     );
-    if (success != null && success.length == 0) {
+    if (success != null && success.isEmpty) {
       Toast.show(
         "Displayname has been changed",
         context,
@@ -57,7 +57,7 @@ class _ChatDetailsState extends State<ChatDetails> {
         ),
       ),
     );
-    if (success != null && success.length == 0) {
+    if (success != null && success.isEmpty) {
       Toast.show(
         "Avatar has been changed",
         context,
