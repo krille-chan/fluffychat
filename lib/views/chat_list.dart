@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/dialogs/new_group_dialog.dart';
@@ -33,24 +35,19 @@ class ChatList extends StatefulWidget {
 }
 
 class _ChatListState extends State<ChatList> {
-  RoomList roomList;
+  StreamSubscription sub;
 
-  Future<List<Room>> getRooms(BuildContext context) async {
+  Future<bool> waitForFirstSync(BuildContext context) async {
     Client client = Matrix.of(context).client;
-    if (roomList != null) return roomList.rooms;
     if (client.prevBatch?.isEmpty ?? true)
-      await client.connection.onFirstSync.stream.first;
-    roomList = client.getRoomList(onUpdate: () {
-      setState(() {});
-    });
-    return roomList.rooms;
+      await client.onFirstSync.stream.first;
+    sub ??= client.onSync.stream.listen((s) => setState(() => null));
+    return true;
   }
 
   @override
   void dispose() {
-    roomList?.eventSub?.cancel();
-    roomList?.firstSyncSub?.cancel();
-    roomList?.roomSub?.cancel();
+    sub?.cancel();
     super.dispose();
   }
 
@@ -112,11 +109,11 @@ class _ChatListState extends State<ChatList> {
           ),
         ],
       ),
-      body: FutureBuilder<List<Room>>(
-        future: getRooms(context),
+      body: FutureBuilder<bool>(
+        future: waitForFirstSync(context),
         builder: (BuildContext context, snapshot) {
           if (snapshot.hasData) {
-            List<Room> rooms = snapshot.data;
+            List<Room> rooms = Matrix.of(context).client.rooms;
             return ListView.builder(
               itemCount: rooms.length,
               itemBuilder: (BuildContext context, int i) => ChatListItem(

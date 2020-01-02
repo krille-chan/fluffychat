@@ -39,8 +39,7 @@ class MyApp extends StatelessWidget {
         ),
         home: Builder(
           builder: (BuildContext context) => StreamBuilder<LoginState>(
-            stream:
-                Matrix.of(context).client.connection.onLoginStateChanged.stream,
+            stream: Matrix.of(context).client.onLoginStateChanged.stream,
             builder: (context, snapshot) {
               if (!snapshot.hasData)
                 return Scaffold(

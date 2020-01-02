@@ -43,7 +43,7 @@ class _SettingsState extends State<Settings> {
     final MatrixState matrix = Matrix.of(context);
     final Map<String, dynamic> success =
         await matrix.tryRequestWithLoadingDialog(
-      matrix.client.connection.jsonRequest(
+      matrix.client.jsonRequest(
         type: HTTPType.PUT,
         action: "/client/r0/profile/${matrix.client.userID}/displayname",
         data: {"displayname": displayname},

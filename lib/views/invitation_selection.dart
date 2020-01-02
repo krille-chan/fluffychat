@@ -16,8 +16,8 @@ class InvitationSelection extends StatelessWidget {
     List<User> participants = await room.requestParticipants();
     List<User> contacts = [];
     Map<String, bool> userMap = {};
-    for (int i = 0; i < client.roomList.rooms.length; i++) {
-      List<User> roomUsers = client.roomList.rooms[i].getParticipants();
+    for (int i = 0; i < client.rooms.length; i++) {
+      List<User> roomUsers = client.rooms[i].getParticipants();
       for (int j = 0; j < roomUsers.length; j++) {
         if (userMap[roomUsers[j].id] != true &&
             participants.indexWhere((u) => u.id == roomUsers[j].id) == -1)

@@ -38,12 +38,12 @@ class MatrixState extends State<Matrix> {
 
     final credentialsStr = storage.getItem(widget.clientName);
     if (credentialsStr == null || credentialsStr.isEmpty) {
-      client.connection.onLoginStateChanged.add(LoginState.loggedOut);
+      client.onLoginStateChanged.add(LoginState.loggedOut);
       return;
     }
     print("[Matrix] Restoring account credentials");
     final Map<String, dynamic> credentials = json.decode(credentialsStr);
-    client.connection.connect(
+    client.connect(
       newDeviceID: credentials["deviceID"],
       newDeviceName: credentials["deviceName"],
       newHomeserver: credentials["homeserver"],

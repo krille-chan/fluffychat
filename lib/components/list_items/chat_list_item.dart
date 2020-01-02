@@ -1,5 +1,6 @@
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/message_content.dart';
+import 'package:fluffychat/utils/ChatTime.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/views/chat.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +39,7 @@ class ChatListItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
-              Text(room.timeCreated.toEventTimeString()),
+              Text(ChatTime(room.timeCreated).toEventTimeString()),
               room.notificationCount > 0
                   ? Container(
                       width: 20,

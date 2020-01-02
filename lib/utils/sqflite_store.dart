@@ -72,7 +72,7 @@ class Store extends StoreAPI {
         .rawQuery("SELECT * FROM Clients WHERE client=?", [client.clientName]);
     if (list.length == 1) {
       var clientList = list[0];
-      client.connection.connect(
+      client.connect(
         newToken: clientList["token"],
         newHomeserver: clientList["homeserver"],
         newUserID: clientList["matrix_id"],
@@ -87,7 +87,7 @@ class Store extends StoreAPI {
       if (client.debug)
         print("[Store] Restore client credentials of ${client.userID}");
     } else
-      client.connection.onLoginStateChanged.add(LoginState.loggedOut);
+      client.onLoginStateChanged.add(LoginState.loggedOut);
   }
 
   Future<void> createTables(Database db) async {
@@ -337,7 +337,7 @@ class Store extends StoreAPI {
         "SELECT * FROM RoomStates WHERE state_key=? AND room_id=?",
         [matrixID, room.id]);
     if (res.length != 1) return null;
-    return RoomState.fromJson(res[0], room).asUser;
+    return Event.fromJson(res[0], room).asUser;
   }
 
   /// Loads all Users in the database to provide a contact list
@@ -348,8 +348,7 @@ class Store extends StoreAPI {
         [client.userID, exceptRoomID]);
     List<User> userList = [];
     for (int i = 0; i < res.length; i++)
-      userList
-          .add(RoomState.fromJson(res[i], Room(id: "", client: client)).asUser);
+      userList.add(Event.fromJson(res[i], Room(id: "", client: client)).asUser);
     return userList;
   }
 
@@ -365,7 +364,7 @@ class Store extends StoreAPI {
     List<User> participants = [];
 
     for (num i = 0; i < res.length; i++) {
-      participants.add(RoomState.fromJson(res[i], room).asUser);
+      participants.add(Event.fromJson(res[i], room).asUser);
     }
 
     return participants;

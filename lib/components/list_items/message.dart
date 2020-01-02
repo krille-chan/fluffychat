@@ -2,6 +2,7 @@ import 'package:bubble/bubble.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/dialogs/redact_message_dialog.dart';
 import 'package:fluffychat/components/message_content.dart';
+import 'package:fluffychat/utils/ChatTime.dart';
 import 'package:flutter/material.dart';
 
 import '../avatar.dart';
@@ -96,7 +97,7 @@ class Message extends StatelessWidget {
                       ),
                       SizedBox(width: 4),
                       Text(
-                        event.time.toEventTimeString(),
+                        ChatTime(event.time).toEventTimeString(),
                         style: TextStyle(color: textColor, fontSize: 12),
                       ),
                     ],
