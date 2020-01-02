@@ -57,7 +57,7 @@ class Store extends StoreAPI {
         print(
             "[Store] Migrate databse from version $oldVersion to $newVersion");
       if (oldVersion != newVersion) {
-        await schemes.forEach((String name, String scheme) async {
+        schemes.forEach((String name, String scheme) async {
           if (name != "Clients") await db.execute("DROP TABLE IF EXISTS $name");
         });
         await createTables(db);
@@ -91,7 +91,7 @@ class Store extends StoreAPI {
   }
 
   Future<void> createTables(Database db) async {
-    await schemes.forEach((String name, String scheme) async {
+    schemes.forEach((String name, String scheme) async {
       await db.execute(scheme);
     });
   }
@@ -123,7 +123,7 @@ class Store extends StoreAPI {
   Future<void> clear() async {
     await _db
         .rawDelete("DELETE FROM Clients WHERE client=?", [client.clientName]);
-    await schemes.forEach((String name, String scheme) async {
+    schemes.forEach((String name, String scheme) async {
       if (name != "Clients") await _db.rawDelete("DELETE FROM $name");
     });
     return;
@@ -252,12 +252,12 @@ class Store extends StoreAPI {
     if (txn == null) return null;
     Map<String, dynamic> eventContent = eventUpdate.content;
     String type = eventUpdate.type;
-    String chat_id = eventUpdate.roomID;
+    String chatId = eventUpdate.roomID;
 
     // Get the state_key for m.room.member events
-    String state_key = "";
+    String stateKey = "";
     if (eventContent["state_key"] is String) {
-      state_key = eventContent["state_key"];
+      stateKey = eventContent["state_key"];
     }
 
     if (eventUpdate.eventType == "m.room.redaction") {
@@ -284,7 +284,7 @@ class Store extends StoreAPI {
             "INSERT OR REPLACE INTO Events VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             [
               eventContent["event_id"],
-              chat_id,
+              chatId,
               eventContent["origin_server_ts"],
               eventContent["sender"],
               eventContent["type"],
@@ -312,10 +312,10 @@ class Store extends StoreAPI {
           "INSERT OR REPLACE INTO RoomStates VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)",
           [
             eventContent["event_id"] ?? now,
-            chat_id,
+            chatId,
             eventContent["origin_server_ts"] ?? now,
             eventContent["sender"],
-            state_key,
+            stateKey,
             json.encode(eventContent["unsigned"] ?? ""),
             json.encode(eventContent["prev_content"] ?? ""),
             eventContent["type"],
@@ -324,7 +324,7 @@ class Store extends StoreAPI {
     } else
       txn.rawInsert("INSERT OR REPLACE INTO RoomAccountData VALUES(?, ?, ?)", [
         eventContent["type"],
-        chat_id,
+        chatId,
         json.encode(eventContent["content"]),
       ]);
 
@@ -461,12 +461,15 @@ class Store extends StoreAPI {
 
   Future<Map<String, Presence>> getPresences() async {
     Map<String, Presence> newPresences = {};
-    // TODO: Fix the json parsing of presences
-    /*List<Map<String, dynamic>> rawPresences =
+    List<Map<String, dynamic>> rawPresences =
         await _db.rawQuery("SELECT * FROM Presences");
-    for (int i = 0; i < rawPresences.length; i++)
-      newPresences[rawPresences[i]["type"]] =
-          Presence.fromJson(rawPresences[i]);*/
+    for (int i = 0; i < rawPresences.length; i++) {
+      Map<String, dynamic> rawPresence = {
+        "sender": rawPresences[i]["sender"],
+        "content": json.decode(rawPresences[i]["content"]),
+      };
+      newPresences[rawPresences[i]["type"]] = Presence.fromJson(rawPresence);
+    }
     return newPresences;
   }
 
@@ -483,13 +486,12 @@ class Store extends StoreAPI {
     return;
   }
 
-  Future addNotification(String roomID, String event_id, int uniqueID) async {
+  Future addNotification(String roomID, String eventId, int uniqueID) async {
     assert(roomID != "");
-    assert(event_id != "");
-    assert(uniqueID != "");
+    assert(eventId != "");
     await _db.rawInsert(
         "INSERT OR REPLACE INTO NotificationsCache(id, chat_id, event_id) VALUES (?, ?, ?)",
-        [uniqueID, roomID, event_id]);
+        [uniqueID, roomID, eventId]);
     // Make sure we got the same unique ID everywhere
     await _db.rawUpdate("UPDATE NotificationsCache SET id=? WHERE chat_id=?",
         [uniqueID, roomID]);
@@ -497,10 +499,10 @@ class Store extends StoreAPI {
   }
 
   Future<List<Map<String, dynamic>>> getNotificationByRoom(
-      String room_id) async {
-    assert(room_id != "");
-    List<Map<String, dynamic>> res = await _db.rawQuery(
-        "SELECT * FROM NotificationsCache WHERE chat_id=?", [room_id]);
+      String roomId) async {
+    assert(roomId != "");
+    List<Map<String, dynamic>> res = await _db
+        .rawQuery("SELECT * FROM NotificationsCache WHERE chat_id=?", [roomId]);
     if (res.length == 0) return null;
     return res;
   }
