@@ -19,7 +19,10 @@ class ChatListItem extends StatelessWidget {
       color: activeChat ? Color(0xFFE8E8E8) : Colors.white,
       child: ListTile(
         leading: Avatar(room.avatar),
-        title: Text(room.displayname),
+        title: Text(
+          room.displayname,
+          maxLines: 1,
+        ),
         subtitle: MessageContent(room.lastEvent, textOnly: true),
         onTap: () {
           if (activeChat) {

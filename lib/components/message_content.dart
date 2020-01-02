@@ -65,6 +65,153 @@ class MessageContent extends StatelessWidget {
             decoration: event.redacted ? TextDecoration.lineThrough : null,
           ),
         );
+      case EventTypes.RoomCreate:
+        return Text(
+          "${event.sender.calcDisplayname()} has created the chat",
+          maxLines: maxLines,
+          style: TextStyle(
+            color: textColor,
+          ),
+        );
+      case EventTypes.RoomAvatar:
+        return Text(
+          "${event.sender.calcDisplayname()} has changed the chat avatar",
+          maxLines: maxLines,
+          style: TextStyle(
+            color: textColor,
+          ),
+        );
+      case EventTypes.RoomName:
+        return Text(
+          "${event.sender.calcDisplayname()} has changed the chat name to '${event.content['name']}'",
+          maxLines: maxLines,
+          style: TextStyle(
+            color: textColor,
+          ),
+        );
+      case EventTypes.RoomMember: // Display what has changed
+        String text = "Failed to parse member event";
+        // Has the membership changed?
+        final String newMembership = event.content["membership"] ?? "";
+        final String oldMembership =
+            event.unsigned["prev_content"] is Map<String, dynamic>
+                ? event.unsigned["prev_content"]["membership"] ?? ""
+                : "";
+        if (newMembership != oldMembership) {
+          if (oldMembership == "invite" && newMembership == "join") {
+            text =
+                "${event.stateKeyUser.calcDisplayname()} has accepted the invitation";
+          } else if (oldMembership == "leave" && newMembership == "join") {
+            text =
+                "${event.stateKeyUser.calcDisplayname()} has joined the chat";
+          } else if (oldMembership == "join" && newMembership == "ban") {
+            text =
+                "${event.sender.calcDisplayname()} has kicked and banned ${event.stateKeyUser.calcDisplayname()}";
+          } else if (oldMembership == "join" &&
+              newMembership == "leave" &&
+              event.stateKey != event.senderId) {
+            text =
+                "${event.sender.calcDisplayname()} has kicked ${event.stateKeyUser.calcDisplayname()}";
+          } else if (oldMembership == "join" &&
+              newMembership == "leave" &&
+              event.stateKey == event.senderId) {
+            text = "${event.stateKeyUser.calcDisplayname()} has left the room";
+          } else if (oldMembership == "invite" && newMembership == "ban") {
+            text =
+                "${event.sender.calcDisplayname()} has banned ${event.stateKeyUser.calcDisplayname()}";
+          } else if (oldMembership == "leave" && newMembership == "ban") {
+            text =
+                "${event.sender.calcDisplayname()} has banned ${event.stateKeyUser.calcDisplayname()}";
+          } else if (oldMembership == "ban" && newMembership == "leave") {
+            text =
+                "${event.sender.calcDisplayname()} has unbanned ${event.stateKeyUser.calcDisplayname()}";
+          } else if (newMembership == "invite") {
+            text =
+                "${event.sender.calcDisplayname()} has invited ${event.stateKeyUser.calcDisplayname()}";
+          } else if (newMembership == "join") {
+            text = "${event.stateKeyUser.calcDisplayname()} has joined";
+          }
+        } else if (newMembership == "join") {
+          final String newAvatar = event.content["avatar_url"] ?? "";
+          final String oldAvatar =
+              event.unsigned["prev_content"] is Map<String, dynamic>
+                  ? event.unsigned["prev_content"]["avatar_url"] ?? ""
+                  : "";
+
+          final String newDisplayname = event.content["displayname"] ?? "";
+          final String oldDisplayname =
+              event.unsigned["prev_content"] is Map<String, dynamic>
+                  ? event.unsigned["prev_content"]["displayname"] ?? ""
+                  : "";
+
+          // Has the user avatar changed?
+          if (newAvatar != oldAvatar) {
+            text =
+                "${event.stateKeyUser.calcDisplayname()} has changed the profile avatar";
+          }
+          // Has the user avatar changed?
+          else if (newDisplayname != oldDisplayname) {
+            text =
+                "${event.stateKeyUser.calcDisplayname()} has changed the displayname to '$newDisplayname'";
+          }
+        }
+
+        return Text(
+          text,
+          maxLines: maxLines,
+          style: TextStyle(
+            color: textColor,
+          ),
+        );
+      case EventTypes.RoomTopic:
+        return Text(
+          "${event.sender.calcDisplayname()} has changed the chat topic to '${event.content['topic']}'",
+          maxLines: maxLines,
+          style: TextStyle(
+            color: textColor,
+          ),
+        );
+      case EventTypes.RoomPowerLevels:
+        return Text(
+          "${event.sender.calcDisplayname()} has changed the power levels of the chat",
+          maxLines: maxLines,
+          style: TextStyle(
+            color: textColor,
+          ),
+        );
+      case EventTypes.HistoryVisibility:
+        return Text(
+          "${event.sender.calcDisplayname()} has changed the history visibility of the chat to '${event.content['history_visibility']}'",
+          maxLines: maxLines,
+          style: TextStyle(
+            color: textColor,
+          ),
+        );
+      case EventTypes.RoomJoinRules:
+        return Text(
+          "${event.sender.calcDisplayname()} has changed the join rules of the chat to '${event.content['join_rule']}'",
+          maxLines: maxLines,
+          style: TextStyle(
+            color: textColor,
+          ),
+        );
+      case EventTypes.RoomCanonicalAlias:
+        if (event.content['canonical_alias']?.isEmpty ?? true) {
+          return Text(
+            "${event.sender.calcDisplayname()} has removed the canonical alias.",
+            maxLines: maxLines,
+            style: TextStyle(
+              color: textColor,
+            ),
+          );
+        }
+        return Text(
+          "${event.sender.calcDisplayname()} has changed the canonical alias to: ${event.content['canonical_alias']}",
+          maxLines: maxLines,
+          style: TextStyle(
+            color: textColor,
+          ),
+        );
       default:
         return Text(
           "${event.sender.calcDisplayname()} sent a ${event.typeKey} event",
