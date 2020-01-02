@@ -35,7 +35,9 @@ class ChatList extends StatefulWidget {
 }
 
 class _ChatListState extends State<ChatList> {
+  bool searchMode = false;
   StreamSubscription sub;
+  final TextEditingController searchController = TextEditingController();
 
   Future<bool> waitForFirstSync(BuildContext context) async {
     Client client = Matrix.of(context).client;
@@ -47,8 +49,19 @@ class _ChatListState extends State<ChatList> {
   }
 
   @override
+  void initState() {
+    searchController.addListener(
+      () => setState(() => null),
+    );
+    super.initState();
+  }
+
+  @override
   void dispose() {
     sub?.cancel();
+    searchController.removeListener(
+      () => setState(() => null),
+    );
     super.dispose();
   }
 
@@ -56,34 +69,53 @@ class _ChatListState extends State<ChatList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          "Conversations",
-        ),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {},
-          ),
-          PopupMenuButton(
-            onSelected: (String choice) {
-              switch (choice) {
-                case "settings":
-                  Navigator.of(context).push(
-                    AppRoute.defaultRoute(
-                      context,
-                      SettingsView(),
-                    ),
-                  );
-              }
-            },
-            itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-              const PopupMenuItem<String>(
-                value: "settings",
-                child: Text('Settings'),
+        title: searchMode
+            ? TextField(
+                autofocus: true,
+                autocorrect: false,
+                controller: searchController,
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: "Search for a chat",
+                ),
+              )
+            : Text(
+                "FluffyChat",
               ),
-            ],
-          ),
-        ],
+        leading: searchMode
+            ? IconButton(
+                icon: Icon(Icons.arrow_back),
+                onPressed: () => setState(() => searchMode = false),
+              )
+            : null,
+        actions: searchMode
+            ? null
+            : <Widget>[
+                IconButton(
+                  icon: Icon(Icons.search),
+                  onPressed: () => setState(() => searchMode = true),
+                ),
+                PopupMenuButton(
+                  onSelected: (String choice) {
+                    switch (choice) {
+                      case "settings":
+                        Navigator.of(context).push(
+                          AppRoute.defaultRoute(
+                            context,
+                            SettingsView(),
+                          ),
+                        );
+                    }
+                  },
+                  itemBuilder: (BuildContext context) =>
+                      <PopupMenuEntry<String>>[
+                    const PopupMenuItem<String>(
+                      value: "settings",
+                      child: Text('Settings'),
+                    ),
+                  ],
+                ),
+              ],
       ),
       floatingActionButton: SpeedDial(
         child: Icon(Icons.add),
@@ -100,7 +132,7 @@ class _ChatListState extends State<ChatList> {
             ),
           ),
           SpeedDialChild(
-            child: Icon(Icons.chat_bubble_outline),
+            child: Icon(Icons.person_add),
             backgroundColor: Colors.green,
             label: 'New private chat',
             labelStyle: TextStyle(fontSize: 18.0),
@@ -114,7 +146,29 @@ class _ChatListState extends State<ChatList> {
         future: waitForFirstSync(context),
         builder: (BuildContext context, snapshot) {
           if (snapshot.hasData) {
-            List<Room> rooms = Matrix.of(context).client.rooms;
+            List<Room> rooms = List<Room>.from(Matrix.of(context).client.rooms);
+            rooms.removeWhere((Room room) =>
+                searchMode &&
+                !room.displayname
+                    .toLowerCase()
+                    .contains(searchController.text.toLowerCase() ?? ""));
+            if (rooms.isEmpty) {
+              return Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Icon(
+                      searchMode ? Icons.search : Icons.add,
+                      size: 80,
+                      color: Colors.grey,
+                    ),
+                    Text(searchMode
+                        ? "No rooms found..."
+                        : "Start your first chat :-)"),
+                  ],
+                ),
+              );
+            }
             return ListView.builder(
               itemCount: rooms.length,
               itemBuilder: (BuildContext context, int i) => ChatListItem(
