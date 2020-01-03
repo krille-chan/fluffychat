@@ -1,6 +1,6 @@
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/message_content.dart';
-import 'package:fluffychat/utils/ChatTime.dart';
+import 'package:fluffychat/utils/chat_time.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/views/chat.dart';
 import 'package:flutter/material.dart';

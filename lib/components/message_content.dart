@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:bubble/bubble.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:famedlysdk/famedlysdk.dart';
@@ -19,8 +17,19 @@ class MessageContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final int maxLines = textOnly ? 1 : null;
+
     switch (event.type) {
       case EventTypes.Image:
+        if (textOnly) {
+          return Text(
+            "${event.sender.calcDisplayname()} has sent an image",
+            maxLines: maxLines,
+            style: TextStyle(
+              color: textColor,
+              decoration: event.redacted ? TextDecoration.lineThrough : null,
+            ),
+          );
+        }
         final int size = 400;
         final String src = MxContent(event.content["url"]).getThumbnail(
           Matrix.of(context).client,
@@ -30,7 +39,7 @@ class MessageContent extends StatelessWidget {
         );
         return Bubble(
           padding: BubbleEdges.all(0),
-          radius: Radius.circular(50),
+          radius: Radius.circular(10),
           elevation: 0,
           child: InkWell(
             onTap: () => launch(
@@ -70,8 +79,12 @@ class MessageContent extends StatelessWidget {
       case EventTypes.Text:
       case EventTypes.Reply:
       case EventTypes.Notice:
+        String senderPrefix = event.senderId == Matrix.of(context).client.userID
+            ? "You: "
+            : "${event.sender.calcDisplayname()}: ";
         return Text(
-          event.getBody(),
+          senderPrefix + event.getBody(),
+          maxLines: maxLines,
           style: TextStyle(
             color: textColor,
             decoration: event.redacted ? TextDecoration.lineThrough : null,

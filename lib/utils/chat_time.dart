@@ -56,24 +56,24 @@ class ChatTime {
     } else if (sameWeek) {
       switch (dateTime.weekday) {
         case 1:
-          return "Montag";
+          return "Monday";
         case 2:
-          return "Dienstag";
+          return "Tuesday";
         case 3:
-          return "Mittwoch";
+          return "Wednesday";
         case 4:
           return "Donnerstag";
         case 5:
-          return "Freitag";
+          return "Thursday";
         case 6:
-          return "Samstag";
+          return "Saturday";
         case 7:
-          return "Sonntag";
+          return "Sunday";
       }
     } else if (sameYear) {
-      return "${_z(dateTime.day)}.${_z(dateTime.month)}";
+      return "${dateTime.month.toString().padLeft(2, '0')}-${dateTime.day.toString().padLeft(2, '0')}";
     }
-    return "${_z(dateTime.day)}.${_z(dateTime.month)}.${_z(dateTime.year)}";
+    return "${dateTime.year.toString()}-${dateTime.month.toString().padLeft(2, '0')}-${dateTime.day.toString().padLeft(2, '0')}";
   }
 
   /// Returns the milliseconds since the Unix epoch.
@@ -111,7 +111,7 @@ class ChatTime {
 
   /// Returns a simple time String.
   String toTimeString() {
-    return "${_z(dateTime.hour)}:${_z(dateTime.minute)}";
+    return "${_z(dateTime.hour % 12)}:${_z(dateTime.minute)} ${dateTime.hour > 11 ? 'pm' : 'am'}";
   }
 
   /// If the ChatTime is today, this returns [toTimeString()], if not it also
