@@ -32,7 +32,7 @@ class _SettingsState extends State<Settings> {
   void logoutAction(BuildContext context) async {
     await Navigator.of(context).pop();
     MatrixState matrix = Matrix.of(context);
-    await matrix.tryRequestWithLoadingDialog(matrix.client.logout());
+    await matrix.tryRequestWithErrorToast(matrix.client.logout());
     matrix.clean();
   }
 

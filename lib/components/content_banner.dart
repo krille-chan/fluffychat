@@ -31,7 +31,7 @@ class ContentBanner extends StatelessWidget {
     );
     return Container(
       height: 200,
-      color: Color(0xFFF8F8F8),
+      color: Theme.of(context).secondaryHeaderColor,
       child: !loading
           ? mxContent.mxc?.isNotEmpty ?? false
               ? kIsWeb

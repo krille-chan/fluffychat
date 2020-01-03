@@ -122,7 +122,9 @@ class _ChatDetailsState extends State<ChatDetails> {
                     Row(
                       children: <Widget>[
                         Expanded(
-                          child: Container(height: 8, color: Color(0xFFF8F8F8)),
+                          child: Container(
+                              height: 8,
+                              color: Theme.of(context).secondaryHeaderColor),
                         ),
                         SizedBox(width: 8),
                         Text(
@@ -133,7 +135,9 @@ class _ChatDetailsState extends State<ChatDetails> {
                         ),
                         SizedBox(width: 8),
                         Expanded(
-                          child: Container(height: 8, color: Color(0xFFF8F8F8)),
+                          child: Container(
+                              height: 8,
+                              color: Theme.of(context).secondaryHeaderColor),
                         ),
                       ],
                     ),

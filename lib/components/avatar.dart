@@ -30,7 +30,7 @@ class Avatar extends StatelessWidget {
                   src,
                 )
           : null,
-      backgroundColor: Color(0xFFF8F8F8),
+      backgroundColor: Theme.of(context).secondaryHeaderColor,
       child: mxContent.mxc.isEmpty
           ? Text("@", style: TextStyle(color: Colors.blueGrey))
           : null,

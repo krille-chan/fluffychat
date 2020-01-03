@@ -21,14 +21,16 @@ class Message extends StatelessWidget {
     Client client = Matrix.of(context).client;
     final bool ownMessage = event.senderId == client.userID;
     Alignment alignment = ownMessage ? Alignment.topRight : Alignment.topLeft;
-    Color color = Color(0xFFF8F8F8);
+    Color color = Theme.of(context).secondaryHeaderColor;
     BubbleNip nip = ownMessage ? BubbleNip.rightBottom : BubbleNip.leftBottom;
     final Color textColor = ownMessage ? Colors.white : Colors.black;
     MainAxisAlignment rowMainAxisAlignment =
         ownMessage ? MainAxisAlignment.end : MainAxisAlignment.start;
 
     if (ownMessage) {
-      color = event.status == -1 ? Colors.redAccent : Color(0xFF5625BA);
+      color = event.status == -1
+          ? Colors.redAccent
+          : Theme.of(context).primaryColor;
     }
     List<PopupMenuEntry<String>> popupMenuList = [];
     if (event.canRedact && !event.redacted && event.status > 1) {

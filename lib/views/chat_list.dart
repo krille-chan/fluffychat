@@ -19,7 +19,8 @@ class ChatListView extends StatelessWidget {
       firstScaffold: ChatList(),
       secondScaffold: Scaffold(
         body: Center(
-          child: Icon(Icons.chat, size: 100, color: Color(0xFF5625BA)),
+          child: Icon(Icons.chat,
+              size: 100, color: Theme.of(context).primaryColor),
         ),
       ),
     );
@@ -119,7 +120,7 @@ class _ChatListState extends State<ChatList> {
       ),
       floatingActionButton: SpeedDial(
         child: Icon(Icons.add),
-        backgroundColor: Color(0xFF5625BA),
+        backgroundColor: Theme.of(context).primaryColor,
         children: [
           SpeedDialChild(
             child: Icon(Icons.people_outline),

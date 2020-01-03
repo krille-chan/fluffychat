@@ -125,7 +125,7 @@ class _LoginPageState extends State<LoginPage> {
                   end: Alignment.topRight,
                   colors: <Color>[
                     Colors.blue,
-                    Color(0xFF5625BA),
+                    Theme.of(context).primaryColor,
                   ],
                 ),
               ),

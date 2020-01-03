@@ -12,11 +12,14 @@ class StateMessage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Bubble(
-        color: Color(0xFFF8F8F8),
-        elevation: 0,
-        alignment: Alignment.center,
-        child: MessageContent(event),
+      child: Opacity(
+        opacity: 0.66,
+        child: Bubble(
+          color: Colors.black,
+          elevation: 0,
+          alignment: Alignment.center,
+          child: MessageContent(event, textColor: Colors.white),
+        ),
       ),
     );
   }

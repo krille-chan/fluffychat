@@ -50,7 +50,7 @@ class ChatListItem extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: room.highlightCount > 0
                           ? Colors.red
-                          : Color(0xFF5625BA),
+                          : Theme.of(context).primaryColor,
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Center(
@@ -91,7 +91,7 @@ class ChatListItem extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: room.highlightCount > 0
                             ? Colors.red
-                            : Color(0xFF5625BA),
+                            : Theme.of(context).primaryColor,
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Center(

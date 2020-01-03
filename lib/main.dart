@@ -24,6 +24,7 @@ class App extends StatelessWidget {
           brightness: Brightness.light,
           primaryColor: Color(0xFF5625BA),
           backgroundColor: Colors.white,
+          secondaryHeaderColor: Color(0xFFF2F2F2),
           scaffoldBackgroundColor: Colors.white,
           dialogTheme: DialogTheme(
             shape: RoundedRectangleBorder(

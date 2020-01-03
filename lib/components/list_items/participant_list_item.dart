@@ -97,7 +97,7 @@ class ParticipantListItem extends StatelessWidget {
                     padding: EdgeInsets.all(4),
                     margin: EdgeInsets.symmetric(horizontal: 8),
                     decoration: BoxDecoration(
-                      color: Color(0xFFF8F8F8),
+                      color: Theme.of(context).secondaryHeaderColor,
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Center(child: Text(permissionBatch)),
@@ -108,7 +108,7 @@ class ParticipantListItem extends StatelessWidget {
                     padding: EdgeInsets.all(4),
                     margin: EdgeInsets.symmetric(horizontal: 8),
                     decoration: BoxDecoration(
-                      color: Color(0xFFF8F8F8),
+                      color: Theme.of(context).secondaryHeaderColor,
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child:
