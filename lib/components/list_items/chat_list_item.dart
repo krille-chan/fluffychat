@@ -25,9 +25,16 @@ class ChatListItem extends StatelessWidget {
               child: Text(
                 room.displayname,
                 maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
-            Text(ChatTime(room.timeCreated).toEventTimeString()),
+            SizedBox(width: 16),
+            Text(
+              ChatTime(room.timeCreated).toEventTimeString(),
+              style: TextStyle(
+                color: Color(0xFF555555),
+              ),
+            ),
           ],
         ),
         subtitle: Row(
