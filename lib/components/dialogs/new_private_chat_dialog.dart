@@ -6,12 +6,17 @@ import '../matrix.dart';
 
 class NewPrivateChatDialog extends StatelessWidget {
   final TextEditingController controller = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   void submitAction(BuildContext context) async {
     if (controller.text.isEmpty) return;
+    if (!_formKey.currentState.validate()) return;
     final MatrixState matrix = Matrix.of(context);
+
+    if ("@" + controller.text.trim() == matrix.client.userID) return;
+
     final User user = User(
-      "@" + controller.text,
+      "@" + controller.text.trim(),
       room: Room(id: "", client: matrix.client),
     );
     final String roomID =
@@ -33,17 +38,38 @@ class NewPrivateChatDialog extends StatelessWidget {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          TextField(
-            controller: controller,
-            autofocus: true,
-            autocorrect: false,
-            textInputAction: TextInputAction.go,
-            onSubmitted: (s) => submitAction(context),
-            decoration: InputDecoration(
+          Form(
+            key: _formKey,
+            child: TextFormField(
+              controller: controller,
+              autofocus: true,
+              autocorrect: false,
+              textInputAction: TextInputAction.go,
+              onFieldSubmitted: (s) => submitAction(context),
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter a matrix identifier';
+                }
+                final MatrixState matrix = Matrix.of(context);
+                String mxid = "@" + controller.text.trim();
+                if (mxid == matrix.client.userID) {
+                  return "You cannot invite yourself";
+                }
+                if(!mxid.contains("@")) {
+                  return "Make sure the identifier is valid";
+                }
+                if(!mxid.contains(":")) {
+                  return "Make sure the identifier is valid";
+                }
+                return null;
+              },
+              decoration: InputDecoration(
                 labelText: "Enter a username",
                 icon: Icon(Icons.account_circle),
                 prefixText: "@",
-                hintText: "username:homeserver"),
+                hintText: "username:homeserver",
+              ),
+            ),
           ),
           SizedBox(height: 16),
           Text(
