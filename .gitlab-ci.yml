@@ -36,7 +36,7 @@ build_android_fdroid:
     - cd android && echo "keyPassword=${FDROID_KEY_PASS}" >> key.properties && cd ..
     - cd android && echo "keyAlias=key" >> key.properties && cd ..
     - cd android && echo "storeFile=../key.jks" >> key.properties && cd ..
-    - cd android/app && echo $GOOGLE_SERVICES >> google-services.json && ls && cd ../..
+    - cd android/app && echo $GOOGLE_SERVICES >> google-services.json && cat google-services.json && cd ../..
     - flutter build apk --release
   artifacts:
     when: on_success
