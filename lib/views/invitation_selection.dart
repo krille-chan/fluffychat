@@ -26,6 +26,10 @@ class InvitationSelection extends StatelessWidget {
         userMap[roomUsers[j].id] = true;
       }
     }
+    contacts.sort((a, b) => a
+        .calcDisplayname()
+        .toLowerCase()
+        .compareTo(b.calcDisplayname().toLowerCase()));
     return contacts;
   }
 

@@ -4,9 +4,7 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/content_banner.dart';
 import 'package:fluffychat/components/matrix.dart';
-import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/views/chat_list.dart';
-import 'package:fluffychat/views/login.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -32,9 +30,8 @@ class _SettingsState extends State<Settings> {
   Future<dynamic> profileFuture;
   dynamic profile;
   void logoutAction(BuildContext context) async {
+    await Navigator.of(context).pop();
     MatrixState matrix = Matrix.of(context);
-    await Navigator.of(context).pushAndRemoveUntil(
-        AppRoute.defaultRoute(context, LoginPage()), (r) => false);
     await matrix.tryRequestWithLoadingDialog(matrix.client.logout());
     matrix.clean();
   }

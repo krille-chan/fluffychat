@@ -21,6 +21,7 @@ class App extends StatelessWidget {
       child: MaterialApp(
         title: 'FluffyWeb',
         theme: ThemeData(
+          brightness: Brightness.light,
           primaryColor: Color(0xFF5625BA),
           backgroundColor: Colors.white,
           scaffoldBackgroundColor: Colors.white,
@@ -35,6 +36,7 @@ class App extends StatelessWidget {
             ),
           ),
           appBarTheme: AppBarTheme(
+            brightness: Brightness.light,
             color: Colors.white,
             elevation: 1,
             textTheme: TextTheme(
