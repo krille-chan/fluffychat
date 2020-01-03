@@ -19,8 +19,7 @@ class ChatListView extends StatelessWidget {
       firstScaffold: ChatList(),
       secondScaffold: Scaffold(
         body: Center(
-          child: Icon(Icons.chat,
-              size: 100, color: Theme.of(context).primaryColor),
+          child: Image.asset("assets/logo.png", width: 100, height: 100),
         ),
       ),
     );
