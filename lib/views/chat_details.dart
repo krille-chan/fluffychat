@@ -141,16 +141,18 @@ class _ChatDetailsState extends State<ChatDetails> {
                         ),
                       ],
                     ),
-                    ListTile(
-                      title: Text("Invite contact"),
-                      leading: Icon(Icons.add),
-                      onTap: () => Navigator.of(context).push(
-                        AppRoute.defaultRoute(
-                          context,
-                          InvitationSelection(widget.room),
-                        ),
-                      ),
-                    ),
+                    widget.room.canInvite
+                        ? ListTile(
+                            title: Text("Invite contact"),
+                            leading: Icon(Icons.add),
+                            onTap: () => Navigator.of(context).push(
+                              AppRoute.defaultRoute(
+                                context,
+                                InvitationSelection(widget.room),
+                              ),
+                            ),
+                          )
+                        : Container(),
                   ],
                 )
               : i < members.length + 1
