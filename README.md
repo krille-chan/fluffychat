@@ -4,6 +4,8 @@ Chat with your friends.
 
 [Install using F-Droid](https://mtrnord.gitlab.io/fluffychat-flutter-fdroid/fdroid/repo/)
 
+Community: [#fluffychat:matrix.org](https://matrix.to/#/#fluffychat:matrix.org)
+
 ## How to build
 
 1. [Install flutter](https://flutter.dev)
