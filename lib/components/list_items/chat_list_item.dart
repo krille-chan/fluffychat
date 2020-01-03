@@ -19,11 +19,50 @@ class ChatListItem extends StatelessWidget {
       color: activeChat ? Color(0xFFE8E8E8) : Colors.white,
       child: ListTile(
         leading: Avatar(room.avatar),
-        title: Text(
-          room.displayname,
-          maxLines: 1,
+        title: Row(
+          children: <Widget>[
+            Expanded(
+              child: Text(
+                room.displayname,
+                maxLines: 1,
+              ),
+            ),
+            Text(ChatTime(room.timeCreated).toEventTimeString()),
+          ],
         ),
-        subtitle: MessageContent(room.lastEvent, textOnly: true),
+        subtitle: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Expanded(child: MessageContent(room.lastEvent, textOnly: true)),
+            SizedBox(width: 8),
+            room.pushRuleState == PushRuleState.notify
+                ? Container()
+                : Icon(
+                    Icons.notifications_off,
+                    color: Colors.grey,
+                    size: 20,
+                  ),
+            room.notificationCount > 0
+                ? Container(
+                    width: 20,
+                    height: 20,
+                    margin: EdgeInsets.only(top: 3),
+                    decoration: BoxDecoration(
+                      color: room.highlightCount > 0
+                          ? Colors.red
+                          : Color(0xFF5625BA),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Center(
+                      child: Text(
+                        room.notificationCount.toString(),
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  )
+                : Text(" "),
+          ],
+        ),
         onTap: () {
           if (activeChat) {
             Navigator.pushReplacement(
@@ -38,7 +77,7 @@ class ChatListItem extends StatelessWidget {
           }
         },
         onLongPress: () {},
-        trailing: Container(
+        /*trailing: Container(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -65,7 +104,7 @@ class ChatListItem extends StatelessWidget {
                   : Text(" "),
             ],
           ),
-        ),
+        ),*/
       ),
     );
   }

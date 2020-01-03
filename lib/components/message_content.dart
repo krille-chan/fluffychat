@@ -1,4 +1,9 @@
+import 'dart:math';
+
+import 'package:bubble/bubble.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -14,19 +19,36 @@ class MessageContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final int maxLines = textOnly ? 1 : null;
-    if (textOnly) {
-      return Text(
-        event.getBody(),
-        style: TextStyle(
-          color: textColor,
-          decoration: event.redacted ? TextDecoration.lineThrough : null,
-        ),
-        maxLines: maxLines,
-      );
-    }
     switch (event.type) {
-      case EventTypes.Audio:
       case EventTypes.Image:
+        final int size = 400;
+        final String src = MxContent(event.content["url"]).getThumbnail(
+          Matrix.of(context).client,
+          width: size * MediaQuery.of(context).devicePixelRatio,
+          height: size * MediaQuery.of(context).devicePixelRatio,
+          method: ThumbnailMethod.scale,
+        );
+        return Bubble(
+          padding: BubbleEdges.all(0),
+          radius: Radius.circular(50),
+          elevation: 0,
+          child: InkWell(
+            onTap: () => launch(
+              MxContent(event.content["url"])
+                  .getDownloadLink(Matrix.of(context).client),
+            ),
+            child: kIsWeb
+                ? Image.network(
+                    src,
+                    width: size.toDouble(),
+                  )
+                : CachedNetworkImage(
+                    imageUrl: src,
+                    width: size.toDouble(),
+                  ),
+          ),
+        );
+      case EventTypes.Audio:
       case EventTypes.File:
       case EventTypes.Video:
         return Container(
