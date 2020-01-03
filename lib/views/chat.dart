@@ -214,7 +214,8 @@ class _ChatState extends State<Chat> {
                     SizedBox(width: 8),
                     Expanded(
                         child: TextField(
-                      maxLines: kIsWeb ? 1 : 8,
+                      minLines: 1,
+                      maxLines: kIsWeb ? 1 : null,
                       keyboardType:
                           kIsWeb ? TextInputType.text : TextInputType.multiline,
                       onSubmitted: (t) => send(),
