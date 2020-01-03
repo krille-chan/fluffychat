@@ -19,7 +19,7 @@ code_analyze:
 
 build_web:
   stage: coverage
-  image: cirrusci/flutter:beta
+  image: cirrusci/flutter:master
   script:
     - flutter config --enable-web
     - flutter build web --release
