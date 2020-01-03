@@ -38,6 +38,7 @@ dependencies:
   url_launcher: ^5.4.1
   sqflite: ^1.2.0
   cached_network_image: ^2.0.0
+  firebase_messaging: ^6.0.9
 
 dev_dependencies:
   flutter_test:

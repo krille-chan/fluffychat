@@ -1,4 +1,7 @@
+import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/utils/sqflite_store.dart';
 import 'package:flutter/foundation.dart';
@@ -30,6 +33,8 @@ class Matrix extends StatefulWidget {
 class MatrixState extends State<Matrix> {
   Client client;
   BuildContext context;
+
+  FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 
   /// Used to load the old account if there is no store available.
   void loadAccount() async {
@@ -124,10 +129,50 @@ class MatrixState extends State<Matrix> {
 
   hideLoadingDialog() => Navigator.of(_loadingDialogContext)?.pop();
 
+  StreamSubscription onSetupFirebase;
+
+  void setupFirebase(LoginState login) {
+    if (login != LoginState.logged) return;
+    if (Platform.isIOS) iOS_Permission();
+
+    _firebaseMessaging.getToken().then((token) {
+      print("Der token ist: $token");
+      client.setPushers(
+        token,
+        "http",
+        "chat.fluffy.fluffychat",
+        "FluffyChat",
+        client.deviceName,
+        "en",
+        "https://janian.de:7023/",
+        append: false,
+        format: "event_id_only",
+      );
+    });
+
+    _firebaseMessaging.configure(
+      onResume: (Map<String, dynamic> message) async {
+        print('on resume $message');
+      },
+      onLaunch: (Map<String, dynamic> message) async {
+        print('on launch $message');
+      },
+    );
+  }
+
+  void iOS_Permission() {
+    _firebaseMessaging.requestNotificationPermissions(
+        IosNotificationSettings(sound: true, badge: true, alert: true));
+    _firebaseMessaging.onIosSettingsRegistered
+        .listen((IosNotificationSettings settings) {
+      print("Settings registered: $settings");
+    });
+  }
+
   @override
   void initState() {
     if (widget.client == null) {
-      client = Client(widget.clientName, debug: false);
+      client = Client(widget.clientName, debug: true);
       if (!kIsWeb) {
         client.store = Store(client);
       } else {
@@ -136,7 +181,14 @@ class MatrixState extends State<Matrix> {
     } else {
       client = widget.client;
     }
+    onSetupFirebase ??= client.onLoginStateChanged.stream.listen(setupFirebase);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    onSetupFirebase?.cancel();
+    super.dispose();
   }
 
   @override

@@ -9,6 +9,7 @@
 .history
 .svn/
 lib/generated_plugin_registrant.dart
+google-services.json
 
 # IntelliJ related
 *.iml
