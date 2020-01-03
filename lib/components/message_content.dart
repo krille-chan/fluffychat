@@ -79,9 +79,11 @@ class MessageContent extends StatelessWidget {
       case EventTypes.Text:
       case EventTypes.Reply:
       case EventTypes.Notice:
-        String senderPrefix = event.senderId == Matrix.of(context).client.userID
-            ? "You: "
-            : "${event.sender.calcDisplayname()}: ";
+        final String senderPrefix = textOnly
+            ? event.senderId == Matrix.of(context).client.userID
+                ? "You: "
+                : "${event.sender.calcDisplayname()}: "
+            : "";
         return Text(
           senderPrefix + event.getBody(),
           maxLines: maxLines,

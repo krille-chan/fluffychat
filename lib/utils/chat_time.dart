@@ -62,9 +62,9 @@ class ChatTime {
         case 3:
           return "Wednesday";
         case 4:
-          return "Donnerstag";
-        case 5:
           return "Thursday";
+        case 5:
+          return "Friday";
         case 6:
           return "Saturday";
         case 7:
