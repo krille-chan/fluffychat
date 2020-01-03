@@ -89,6 +89,7 @@ class _ChatListState extends State<ChatList> {
                 onPressed: () => setState(() => searchMode = false),
               )
             : null,
+        automaticallyImplyLeading: false,
         actions: searchMode
             ? null
             : <Widget>[
