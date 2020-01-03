@@ -28,9 +28,14 @@ build_web:
       - build/web/
 
 
-build_android:
+build_android_fdroid:
   stage: coverage
   script:
+    - cd android && echo $FDROID_KEY | base64 --decode --ignore-garbage > key.jks && cd ..
+    - cd android && echo "storePassword=${FDROID_KEY_PASS}" >> key.properties && cd ..
+    - cd android && echo "keyPassword=${FDROID_KEY_PASS}" >> key.properties && cd ..
+    - cd android && echo "keyAlias=key" >> key.properties && cd ..
+    - cd android && echo "storeFile=../key.jks" >> key.properties && cd ..
     - flutter build apk --release
   artifacts:
     when: on_success
