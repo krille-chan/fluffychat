@@ -13,7 +13,7 @@ class StateMessage extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Opacity(
-        opacity: 0.66,
+        opacity: 0.5,
         child: Bubble(
           color: Colors.black,
           elevation: 0,

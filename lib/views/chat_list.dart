@@ -170,7 +170,9 @@ class _ChatListState extends State<ChatList> {
                 ),
               );
             }
-            return ListView.builder(
+            return ListView.separated(
+              separatorBuilder: (BuildContext context, int i) =>
+                  Divider(indent: 70, height: 1),
               itemCount: rooms.length,
               itemBuilder: (BuildContext context, int i) => ChatListItem(
                 rooms[i],
