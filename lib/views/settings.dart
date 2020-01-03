@@ -30,7 +30,7 @@ class _SettingsState extends State<Settings> {
   Future<dynamic> profileFuture;
   dynamic profile;
   void logoutAction(BuildContext context) async {
-    await Navigator.of(context).pop();
+    await Navigator.of(context).popUntil((r) => r.isFirst);
     MatrixState matrix = Matrix.of(context);
     await matrix.tryRequestWithErrorToast(matrix.client.logout());
     matrix.clean();
