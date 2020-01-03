@@ -87,6 +87,7 @@ class MessageContent extends StatelessWidget {
         return Text(
           senderPrefix + event.getBody(),
           maxLines: maxLines,
+          overflow: textOnly ? TextOverflow.ellipsis : null,
           style: TextStyle(
             color: textColor,
             decoration: event.redacted ? TextDecoration.lineThrough : null,
@@ -96,6 +97,7 @@ class MessageContent extends StatelessWidget {
         return Text(
           "* " + event.getBody(),
           maxLines: maxLines,
+          overflow: textOnly ? TextOverflow.ellipsis : null,
           style: TextStyle(
             color: textColor,
             fontStyle: FontStyle.italic,
@@ -106,6 +108,7 @@ class MessageContent extends StatelessWidget {
         return Text(
           "${event.sender.calcDisplayname()} has created the chat",
           maxLines: maxLines,
+          overflow: textOnly ? TextOverflow.ellipsis : null,
           style: TextStyle(
             color: textColor,
           ),
@@ -114,6 +117,7 @@ class MessageContent extends StatelessWidget {
         return Text(
           "${event.sender.calcDisplayname()} has changed the chat avatar",
           maxLines: maxLines,
+          overflow: textOnly ? TextOverflow.ellipsis : null,
           style: TextStyle(
             color: textColor,
           ),
@@ -122,6 +126,7 @@ class MessageContent extends StatelessWidget {
         return Text(
           "${event.sender.calcDisplayname()} has changed the chat name to '${event.content['name']}'",
           maxLines: maxLines,
+          overflow: textOnly ? TextOverflow.ellipsis : null,
           style: TextStyle(
             color: textColor,
           ),
@@ -196,6 +201,7 @@ class MessageContent extends StatelessWidget {
         return Text(
           text,
           maxLines: maxLines,
+          overflow: textOnly ? TextOverflow.ellipsis : null,
           style: TextStyle(
             color: textColor,
           ),
@@ -204,6 +210,7 @@ class MessageContent extends StatelessWidget {
         return Text(
           "${event.sender.calcDisplayname()} has changed the chat topic to '${event.content['topic']}'",
           maxLines: maxLines,
+          overflow: textOnly ? TextOverflow.ellipsis : null,
           style: TextStyle(
             color: textColor,
           ),
@@ -212,6 +219,7 @@ class MessageContent extends StatelessWidget {
         return Text(
           "${event.sender.calcDisplayname()} has changed the power levels of the chat",
           maxLines: maxLines,
+          overflow: textOnly ? TextOverflow.ellipsis : null,
           style: TextStyle(
             color: textColor,
           ),
@@ -220,6 +228,7 @@ class MessageContent extends StatelessWidget {
         return Text(
           "${event.sender.calcDisplayname()} has changed the history visibility of the chat to '${event.content['history_visibility']}'",
           maxLines: maxLines,
+          overflow: textOnly ? TextOverflow.ellipsis : null,
           style: TextStyle(
             color: textColor,
           ),
@@ -228,6 +237,7 @@ class MessageContent extends StatelessWidget {
         return Text(
           "${event.sender.calcDisplayname()} has changed the join rules of the chat to '${event.content['join_rule']}'",
           maxLines: maxLines,
+          overflow: textOnly ? TextOverflow.ellipsis : null,
           style: TextStyle(
             color: textColor,
           ),
@@ -245,6 +255,7 @@ class MessageContent extends StatelessWidget {
         return Text(
           "${event.sender.calcDisplayname()} has changed the canonical alias to: ${event.content['canonical_alias']}",
           maxLines: maxLines,
+          overflow: textOnly ? TextOverflow.ellipsis : null,
           style: TextStyle(
             color: textColor,
           ),
@@ -253,6 +264,7 @@ class MessageContent extends StatelessWidget {
         return Text(
           "${event.sender.calcDisplayname()} sent a ${event.typeKey} event",
           maxLines: maxLines,
+          overflow: textOnly ? TextOverflow.ellipsis : null,
           style: TextStyle(
             color: textColor,
             decoration: event.redacted ? TextDecoration.lineThrough : null,

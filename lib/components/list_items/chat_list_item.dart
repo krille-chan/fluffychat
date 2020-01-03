@@ -33,6 +33,7 @@ class ChatListItem extends StatelessWidget {
               ChatTime(room.timeCreated).toEventTimeString(),
               style: TextStyle(
                 color: Color(0xFF555555),
+                fontSize: 13,
               ),
             ),
           ],
@@ -47,13 +48,12 @@ class ChatListItem extends StatelessWidget {
                 : Icon(
                     Icons.notifications_off,
                     color: Colors.grey,
-                    size: 20,
+                    size: 16,
                   ),
             room.notificationCount > 0
                 ? Container(
-                    width: 20,
+                    padding: EdgeInsets.symmetric(horizontal: 5),
                     height: 20,
-                    margin: EdgeInsets.only(top: 3),
                     decoration: BoxDecoration(
                       color: room.highlightCount > 0
                           ? Colors.red
