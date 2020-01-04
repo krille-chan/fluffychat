@@ -9,6 +9,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:toast/toast.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingsView extends StatelessWidget {
   @override
@@ -67,8 +68,7 @@ class _SettingsState extends State<Settings> {
         maxHeight: 1600);
     if (tempFile == null) return;
     final MatrixState matrix = Matrix.of(context);
-    final Map<String, dynamic> success =
-        await matrix.tryRequestWithLoadingDialog(
+    final success = await matrix.tryRequestWithLoadingDialog(
       matrix.client.setAvatar(
         MatrixFile(
           bytes: await tempFile.readAsBytes(),
@@ -76,7 +76,8 @@ class _SettingsState extends State<Settings> {
         ),
       ),
     );
-    if (success != null && success.isEmpty) {
+    print(success);
+    if (success != false) {
       Toast.show(
         "Avatar has been changed",
         context,
@@ -105,15 +106,24 @@ class _SettingsState extends State<Settings> {
             defaultIcon: Icons.account_circle,
             loading: profile == null,
           ),
+          ListTile(
+            title: Text(
+              "Profile",
+              style: TextStyle(
+                color: Theme.of(context).primaryColor,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
           kIsWeb
               ? Container()
               : ListTile(
                   title: Text("Upload avatar"),
-                  trailing: Icon(Icons.file_upload),
+                  leading: Icon(Icons.camera),
                   onTap: () => setAvatarAction(context),
                 ),
           ListTile(
-            trailing: Icon(Icons.edit),
+            leading: Icon(Icons.edit),
             title: TextField(
               readOnly: profile == null,
               textInputAction: TextInputAction.done,
@@ -127,7 +137,40 @@ class _SettingsState extends State<Settings> {
             ),
           ),
           ListTile(
-            trailing: Icon(Icons.exit_to_app),
+            title: Text(
+              "About",
+              style: TextStyle(
+                color: Theme.of(context).primaryColor,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          ListTile(
+              leading: Icon(Icons.help),
+              title: Text("Help"),
+              onTap: () => launch(
+                  "https://gitlab.com/ChristianPauly/fluffychat-flutter/issues")),
+          ListTile(
+              leading: Icon(Icons.link),
+              title: Text("License"),
+              onTap: () => launch(
+                  "https://gitlab.com/ChristianPauly/fluffychat-flutter/raw/master/LICENSE")),
+          ListTile(
+              leading: Icon(Icons.code),
+              title: Text("Source code"),
+              onTap: () => launch(
+                  "https://gitlab.com/ChristianPauly/fluffychat-flutter")),
+          ListTile(
+            title: Text(
+              "Logout",
+              style: TextStyle(
+                color: Theme.of(context).primaryColor,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          ListTile(
+            leading: Icon(Icons.exit_to_app),
             title: Text("Logout"),
             onTap: () => logoutAction(context),
           ),
