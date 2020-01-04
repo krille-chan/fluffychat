@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:famedlysdk/famedlysdk.dart';
@@ -27,11 +28,10 @@ class _ChatDetailsState extends State<ChatDetails> {
   List<User> members;
   void setDisplaynameAction(BuildContext context, String displayname) async {
     final MatrixState matrix = Matrix.of(context);
-    final Map<String, dynamic> success =
-        await matrix.tryRequestWithLoadingDialog(
+    final success = await matrix.tryRequestWithLoadingDialog(
       widget.room.setName(displayname),
     );
-    if (success != null && success.isEmpty) {
+    if (success != false) {
       Toast.show(
         "Displayname has been changed",
         context,
@@ -48,8 +48,7 @@ class _ChatDetailsState extends State<ChatDetails> {
         maxHeight: 1600);
     if (tempFile == null) return;
     final MatrixState matrix = Matrix.of(context);
-    final Map<String, dynamic> success =
-        await matrix.tryRequestWithLoadingDialog(
+    final success = await matrix.tryRequestWithLoadingDialog(
       widget.room.setAvatar(
         MatrixFile(
           bytes: await tempFile.readAsBytes(),
@@ -57,7 +56,7 @@ class _ChatDetailsState extends State<ChatDetails> {
         ),
       ),
     );
-    if (success != null && success.isEmpty) {
+    if (success != false) {
       Toast.show(
         "Avatar has been changed",
         context,
@@ -72,13 +71,22 @@ class _ChatDetailsState extends State<ChatDetails> {
     if (participants != null) setState(() => members = participants);
   }
 
+  StreamSubscription onUpdate;
+
+  @override
+  void dispose() {
+    onUpdate?.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     members ??= widget.room.getParticipants();
     final int actualMembersCount =
         widget.room.mInvitedMemberCount + widget.room.mJoinedMemberCount;
     final bool canRequestMoreMembers = members.length < actualMembersCount;
-    widget.room.onUpdate = () => setState(() => members = null);
+    this.onUpdate ??= widget.room.onUpdate.stream
+        .listen((id) => setState(() => members = null));
     return AdaptivePageLayout(
       primaryPage: FocusPage.SECOND,
       firstScaffold: ChatList(

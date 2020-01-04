@@ -17,9 +17,9 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Matrix(
-      clientName: "FluffyWeb",
+      clientName: "FluffyChat",
       child: MaterialApp(
-        title: 'FluffyWeb',
+        title: 'FluffyChat',
         theme: ThemeData(
           brightness: Brightness.light,
           primaryColor: Color(0xFF5625BA),

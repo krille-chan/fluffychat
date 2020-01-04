@@ -131,24 +131,29 @@ class MatrixState extends State<Matrix> {
 
   StreamSubscription onSetupFirebase;
 
-  void setupFirebase(LoginState login) {
+  void setupFirebase(LoginState login) async {
     if (login != LoginState.logged) return;
     if (Platform.isIOS) iOS_Permission();
 
-    _firebaseMessaging.getToken().then((token) {
-      print("Der token ist: $token");
-      client.setPushers(
-        token,
-        "http",
-        "chat.fluffy.fluffychat",
-        "FluffyChat",
-        client.deviceName,
-        "en",
-        "https://janian.de:7023/",
-        append: false,
-        format: "event_id_only",
+    final String token = await _firebaseMessaging.getToken();
+    if (token?.isEmpty ?? true) {
+      return Toast.show(
+        "Push notifications disabled.",
+        context,
+        duration: Toast.LENGTH_LONG,
       );
-    });
+    }
+    await client.setPushers(
+      token,
+      "http",
+      "chat.fluffy.fluffychat",
+      widget.clientName,
+      client.deviceName,
+      "en",
+      "https://janian.de:7023/",
+      append: false,
+      format: "event_id_only",
+    );
 
     _firebaseMessaging.configure(
       onResume: (Map<String, dynamic> message) async {
@@ -172,7 +177,7 @@ class MatrixState extends State<Matrix> {
   @override
   void initState() {
     if (widget.client == null) {
-      client = Client(widget.clientName, debug: true);
+      client = Client(widget.clientName, debug: false);
       if (!kIsWeb) {
         client.store = Store(client);
       } else {
