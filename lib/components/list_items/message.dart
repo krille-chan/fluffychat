@@ -16,7 +16,9 @@ class Message extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (event.typeKey != "m.room.message") return StateMessage(event);
+    if (![EventTypes.Message, EventTypes.Sticker].contains(event.type)) {
+      return StateMessage(event);
+    }
 
     Client client = Matrix.of(context).client;
     final bool ownMessage = event.senderId == client.userID;
