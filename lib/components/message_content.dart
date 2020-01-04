@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:link_text/link_text.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'matrix.dart';
@@ -85,11 +86,20 @@ class MessageContent extends StatelessWidget {
                     ? "You: "
                     : "${event.sender.calcDisplayname()}: "
                 : "";
-        return Text(
-          senderPrefix + event.getBody(),
-          maxLines: maxLines,
-          overflow: textOnly ? TextOverflow.ellipsis : null,
-          style: TextStyle(
+        if (textOnly) {
+          return Text(
+            senderPrefix + event.getBody(),
+            maxLines: maxLines,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              color: textColor,
+              decoration: event.redacted ? TextDecoration.lineThrough : null,
+            ),
+          );
+        }
+        return LinkText(
+          text: senderPrefix + event.getBody(),
+          textStyle: TextStyle(
             color: textColor,
             decoration: event.redacted ? TextDecoration.lineThrough : null,
           ),
