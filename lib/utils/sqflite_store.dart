@@ -413,6 +413,7 @@ class Store extends StoreAPI {
         states: getStatesFromRoomId(res[i]["room_id"]),
         roomAccountData: getAccountDataFromRoomId(res[i]["room_id"]),
       );
+      roomList.add(room);
     }
     return roomList;
   }
