@@ -172,6 +172,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.4.0"
+  link_text:
+    dependency: "direct main"
+    description:
+      name: link_text
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.1"
   localstorage:
     dependency: "direct main"
     description:
