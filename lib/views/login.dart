@@ -19,6 +19,7 @@ class _LoginPageState extends State<LoginPage> {
   String usernameError;
   String passwordError;
   String serverError;
+  bool loading = false;
 
   void login(BuildContext context) async {
     MatrixState matrix = Matrix.of(context);
@@ -46,28 +47,28 @@ class _LoginPageState extends State<LoginPage> {
     }
 
     try {
-      matrix.showLoadingDialog(context);
+      setState(() => loading = true);
       if (!await matrix.client.checkServer(homeserver)) {
         setState(() => serverError = "Homeserver is not compatible.");
 
-        return matrix.hideLoadingDialog();
+        return setState(() => loading = false);
       }
     } catch (exception) {
       setState(() => serverError = "Connection attempt failed!");
-      return matrix.hideLoadingDialog();
+      return setState(() => loading = false);
     }
     try {
       await matrix.client
           .login(usernameController.text, passwordController.text);
     } on MatrixException catch (exception) {
       setState(() => passwordError = exception.errorMessage);
-      return matrix.hideLoadingDialog();
+      return setState(() => loading = false);
     } catch (exception) {
       setState(() => passwordError = exception.toString());
-      return matrix.hideLoadingDialog();
+      return setState(() => loading = false);
     }
     await Matrix.of(context).saveAccount();
-    matrix.hideLoadingDialog();
+    setState(() => loading = false);
   }
 
   @override
@@ -130,12 +131,14 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               child: RawMaterialButton(
-                onPressed: () => login(context),
+                onPressed: () => loading ? null : login(context),
                 splashColor: Colors.grey,
-                child: Text(
-                  "Login",
-                  style: TextStyle(color: Colors.white, fontSize: 20.0),
-                ),
+                child: loading
+                    ? CircularProgressIndicator()
+                    : Text(
+                        "Login",
+                        style: TextStyle(color: Colors.white, fontSize: 20.0),
+                      ),
               ),
             ),
           ),
