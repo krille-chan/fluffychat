@@ -253,7 +253,7 @@ class Store extends StoreAPI {
   /// Stores an EventUpdate object in the database. Must be called inside of
   /// [transaction].
   Future<void> storeEventUpdate(EventUpdate eventUpdate) {
-    if (txn == null) return null;
+    if (txn == null || eventUpdate.type == "ephemeral") return null;
     Map<String, dynamic> eventContent = eventUpdate.content;
     String type = eventUpdate.type;
     String chatId = eventUpdate.roomID;
@@ -327,7 +327,7 @@ class Store extends StoreAPI {
             eventContent["type"],
             json.encode(eventContent["content"]),
           ]);
-    } else {
+    } else if (type == "account_data") {
       txn.rawInsert("INSERT OR REPLACE INTO RoomAccountData VALUES(?, ?, ?)", [
         eventContent["type"],
         chatId,
