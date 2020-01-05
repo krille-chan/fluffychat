@@ -10,6 +10,7 @@ class StateMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (event.type == EventTypes.Redaction) return Container();
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Opacity(

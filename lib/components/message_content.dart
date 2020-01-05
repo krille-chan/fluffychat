@@ -36,7 +36,7 @@ class MessageContent extends StatelessWidget {
           case MessageTypes.Sticker:
             if (textOnly) {
               return Text(
-                "${event.sender.calcDisplayname()} has sent an image",
+                "${event.sender.calcDisplayname()} sent a picture",
                 maxLines: maxLines,
                 style: TextStyle(
                   color: textColor,
@@ -75,6 +75,17 @@ class MessageContent extends StatelessWidget {
           case MessageTypes.Audio:
           case MessageTypes.File:
           case MessageTypes.Video:
+            if (textOnly) {
+              return Text(
+                "${event.sender.calcDisplayname()} sent a file",
+                maxLines: maxLines,
+                style: TextStyle(
+                  color: textColor,
+                  decoration:
+                      event.redacted ? TextDecoration.lineThrough : null,
+                ),
+              );
+            }
             return Container(
               width: 200,
               child: RaisedButton(

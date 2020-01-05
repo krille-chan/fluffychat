@@ -103,7 +103,9 @@ class Message extends StatelessWidget {
                       SizedBox(width: 4),
                       Text(
                         ChatTime(event.time).toEventTimeString(),
-                        style: TextStyle(color: textColor, fontSize: 12),
+                        style: TextStyle(
+                          color: textColor.withAlpha(200),
+                        ),
                       ),
                     ],
                   ),
