@@ -7,6 +7,7 @@ import 'package:fluffychat/components/dialogs/new_private_chat_dialog.dart';
 import 'package:fluffychat/components/list_items/chat_list_item.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/utils/app_route.dart';
+import 'package:fluffychat/views/archive.dart';
 import 'package:fluffychat/views/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -100,16 +101,31 @@ class _ChatListState extends State<ChatList> {
                   onSelected: (String choice) {
                     switch (choice) {
                       case "settings":
-                        Navigator.of(context).push(
+                        Navigator.of(context).pushAndRemoveUntil(
                           AppRoute.defaultRoute(
                             context,
                             SettingsView(),
                           ),
+                          (r) => r.isFirst,
                         );
+                        break;
+                      case "archive":
+                        Navigator.of(context).pushAndRemoveUntil(
+                          AppRoute.defaultRoute(
+                            context,
+                            Archive(),
+                          ),
+                          (r) => r.isFirst,
+                        );
+                        break;
                     }
                   },
                   itemBuilder: (BuildContext context) =>
                       <PopupMenuEntry<String>>[
+                    const PopupMenuItem<String>(
+                      value: "archive",
+                      child: Text('Archive'),
+                    ),
                     const PopupMenuItem<String>(
                       value: "settings",
                       child: Text('Settings'),

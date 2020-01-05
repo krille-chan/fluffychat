@@ -81,6 +81,11 @@ class _ChatDetailsState extends State<ChatDetails> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.room == null) {
+      return Center(
+        child: Text("You are no longer participating in this chat"),
+      );
+    }
     members ??= widget.room.getParticipants();
     final int actualMembersCount =
         widget.room.mInvitedMemberCount + widget.room.mJoinedMemberCount;
@@ -127,28 +132,17 @@ class _ChatDetailsState extends State<ChatDetails> {
                             ),
                           )
                         : Container(),
-                    Row(
-                      children: <Widget>[
-                        Expanded(
-                          child: Container(
-                              height: 8,
-                              color: Theme.of(context).secondaryHeaderColor),
+                    ListTile(
+                      title: Text(
+                        "$actualMembersCount participant" +
+                            (actualMembersCount > 1 ? "s:" : ":"),
+                        style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontWeight: FontWeight.bold,
                         ),
-                        SizedBox(width: 8),
-                        Text(
-                          "$actualMembersCount participant(s)",
-                          style: TextStyle(
-                            fontSize: 15,
-                          ),
-                        ),
-                        SizedBox(width: 8),
-                        Expanded(
-                          child: Container(
-                              height: 8,
-                              color: Theme.of(context).secondaryHeaderColor),
-                        ),
-                      ],
+                      ),
                     ),
+                    Divider(height: 1),
                     widget.room.canInvite
                         ? ListTile(
                             title: Text("Invite contact"),

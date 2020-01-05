@@ -49,7 +49,7 @@ class Store extends StoreAPI {
   _init() async {
     var databasePath = await getDatabasesPath();
     String path = p.join(databasePath, "FluffyMatrix.db");
-    _db = await openDatabase(path, version: 14,
+    _db = await openDatabase(path, version: 15,
         onCreate: (Database db, int version) async {
       await createTables(db);
     }, onUpgrade: (Database db, int oldVersion, int newVersion) async {
@@ -311,7 +311,7 @@ class Store extends StoreAPI {
 
     if (type == "history") return null;
 
-    if (eventUpdate.content["event_id"] != null ||
+    if (type != "account_data" && eventUpdate.content["event_id"] != null ||
         eventUpdate.content["state_key"] != null) {
       final String now = DateTime.now().millisecondsSinceEpoch.toString();
       txn.rawInsert(
@@ -578,7 +578,7 @@ class Store extends StoreAPI {
 
     /// The database scheme for room states.
     'RoomAccountData': 'CREATE TABLE IF NOT EXISTS RoomAccountData(' +
-        'type TEXT PRIMARY KEY, ' +
+        'type TEXT, ' +
         'room_id TEXT, ' +
         'content TEXT, ' +
         'UNIQUE(type,room_id))',

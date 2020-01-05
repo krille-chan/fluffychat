@@ -23,7 +23,10 @@ class RedactMessageDialog extends StatelessWidget {
           onPressed: () => Navigator.of(context).pop(),
         ),
         FlatButton(
-          child: Text("Remove".toUpperCase()),
+          child: Text(
+            "Remove".toUpperCase(),
+            style: TextStyle(color: Colors.red),
+          ),
           onPressed: () => removeAction(context),
         ),
       ],
