@@ -53,10 +53,7 @@ class Store extends StoreAPI {
         onCreate: (Database db, int version) async {
       await createTables(db);
     }, onUpgrade: (Database db, int oldVersion, int newVersion) async {
-      if (client.debug) {
-        print(
-            "[Store] Migrate databse from version $oldVersion to $newVersion");
-      }
+      print("[Store] Migrate databse from version $oldVersion to $newVersion");
       if (oldVersion != newVersion) {
         schemes.forEach((String name, String scheme) async {
           if (name != "Clients") await db.execute("DROP TABLE IF EXISTS $name");
@@ -73,6 +70,7 @@ class Store extends StoreAPI {
         .rawQuery("SELECT * FROM Clients WHERE client=?", [client.clientName]);
     if (list.length == 1) {
       var clientList = list[0];
+      print("[Store] Previous batch: '${clientList["prev_batch"].toString()}'");
       client.connect(
         newToken: clientList["token"],
         newHomeserver: clientList["homeserver"],
@@ -132,19 +130,19 @@ class Store extends StoreAPI {
     return;
   }
 
-  Future<void> transaction(Future<void> queries()) async {
+  Future<void> transaction(Function queries) async {
     return _db.transaction((txnObj) async {
-      txn = txnObj;
-      await queries();
+      txn = txnObj.batch();
+      queries();
+      await txn.commit(noResult: true);
     });
   }
 
   /// Will be automatically called on every synchronisation. Must be called inside of
   //  /// [transaction].
-  Future<void> storePrevBatch(dynamic sync) {
+  void storePrevBatch(String prevBatch) {
     txn.rawUpdate("UPDATE Clients SET prev_batch=? WHERE client=?",
-        [client.prevBatch, client.clientName]);
-    return null;
+        [prevBatch, client.clientName]);
   }
 
   Future<void> storeRoomPrevBatch(Room room) async {
