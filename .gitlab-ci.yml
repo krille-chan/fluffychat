@@ -19,9 +19,11 @@ test:
 
 build_web:
   stage: coverage
-  image: cirrusci/flutter:beta
+  image: cirrusci/flutter:latest-web
   script:
     - flutter config --enable-web
+    - flutter pub get
+    - flutter clean
     - flutter build web --release
   artifacts:
     paths:
