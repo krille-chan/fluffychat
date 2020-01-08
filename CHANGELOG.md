@@ -1,4 +1,4 @@
-# Version 0.2.3 - 2020-01-XX
+# Version 0.2.3 - 2020-01-08
 ### New features
 - Added changelog
 - Added copy button
