@@ -81,6 +81,7 @@ class Message extends StatelessWidget {
     List<Widget> rowChildren = [
       Expanded(
         child: PopupMenuButton(
+          tooltip: "Tap to show menu",
           onSelected: (String choice) async {
             switch (choice) {
               case "remove":
