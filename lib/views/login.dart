@@ -2,7 +2,10 @@ import 'dart:math';
 
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/matrix.dart';
+import 'package:fluffychat/utils/app_route.dart';
 import 'package:flutter/material.dart';
+
+import 'chat_list.dart';
 
 const String defaultHomeserver = "https://matrix.org";
 
@@ -47,6 +50,7 @@ class _LoginPageState extends State<LoginPage> {
     }
 
     try {
+      print("[Login] Check server...");
       setState(() => loading = true);
       if (!await matrix.client.checkServer(homeserver)) {
         setState(() => serverError = "Homeserver is not compatible.");
@@ -58,6 +62,7 @@ class _LoginPageState extends State<LoginPage> {
       return setState(() => loading = false);
     }
     try {
+      print("[Login] Try to login...");
       await matrix.client
           .login(usernameController.text, passwordController.text);
     } on MatrixException catch (exception) {
@@ -67,8 +72,21 @@ class _LoginPageState extends State<LoginPage> {
       setState(() => passwordError = exception.toString());
       return setState(() => loading = false);
     }
+    try {
+      print("[Login] Setup Firebase...");
+      await matrix.setupFirebase();
+    } catch (exception) {
+      print("[Login] Failed to setup Firebase. Logout now...");
+      await matrix.client.logout();
+      matrix.clean();
+      setState(() => passwordError = exception.toString());
+      return setState(() => loading = false);
+    }
+    print("[Login] Store account and go to ChatListView");
     await Matrix.of(context).saveAccount();
     setState(() => loading = false);
+    await Navigator.of(context).pushAndRemoveUntil(
+        AppRoute.defaultRoute(context, ChatListView()), (r) => false);
   }
 
   @override
