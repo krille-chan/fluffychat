@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/utils/app_route.dart';
+import 'package:fluffychat/utils/room_name_calculator.dart';
 import 'package:fluffychat/utils/sqflite_store.dart';
 import 'package:fluffychat/views/chat.dart';
 import 'package:flutter/foundation.dart';
@@ -283,7 +284,7 @@ class MatrixState extends State<Matrix> {
 
           // The person object for the android message style notification
           final person = Person(
-            name: room.displayname,
+            name: RoomNameCalculator(room).name,
             icon: room.avatar.mxc.isEmpty
                 ? null
                 : await downloadAndSaveContent(
@@ -318,7 +319,7 @@ class MatrixState extends State<Matrix> {
           var platformChannelSpecifics = NotificationDetails(
               androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
           await _flutterLocalNotificationsPlugin.show(
-              0, room.displayname, body, platformChannelSpecifics,
+              0, RoomNameCalculator(room).name, body, platformChannelSpecifics,
               payload: roomId);
         } catch (exception) {
           print("[Push] Error while processing notification: " +
