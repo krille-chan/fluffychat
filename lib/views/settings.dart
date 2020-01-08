@@ -156,6 +156,11 @@ class _SettingsState extends State<Settings> {
               onTap: () => launch(
                   "https://gitlab.com/ChristianPauly/fluffychat-flutter/issues")),
           ListTile(
+              leading: Icon(Icons.list),
+              title: Text("Changelog"),
+              onTap: () => launch(
+                  "https://gitlab.com/ChristianPauly/fluffychat-flutter/blob/master/CHANGELOG.md")),
+          ListTile(
               leading: Icon(Icons.link),
               title: Text("License"),
               onTap: () => launch(
