@@ -3,10 +3,14 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/utils/sqflite_store.dart';
+import 'package:fluffychat/views/chat.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:localstorage/localstorage.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:toast/toast.dart';
 
 class Matrix extends StatefulWidget {
@@ -35,6 +39,10 @@ class MatrixState extends State<Matrix> {
   BuildContext context;
 
   FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+  FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
+
+  String activeRoomId;
 
   /// Used to load the old account if there is no store available.
   void loadAccount() async {
@@ -129,10 +137,28 @@ class MatrixState extends State<Matrix> {
 
   hideLoadingDialog() => Navigator.of(_loadingDialogContext)?.pop();
 
-  StreamSubscription onSetupFirebase;
+  Future<String> downloadAndSaveContent(MxContent content,
+      {int width, int height, ThumbnailMethod method}) async {
+    final bool thumbnail = width == null && height == null ? false : true;
+    final String tempDirectory = (await getTemporaryDirectory()).path;
+    final String prefix = thumbnail ? "thumbnail" : "";
+    File file = File('$tempDirectory/${prefix}_${content.mxc.split("/").last}');
 
-  void setupFirebase(LoginState login) async {
-    if (login != LoginState.logged) return;
+    if (!file.existsSync()) {
+      final url = thumbnail
+          ? content.getThumbnail(client,
+              width: width, height: height, method: method)
+          : content.getDownloadLink(client);
+      var request = await HttpClient().getUrl(Uri.parse(url));
+      var response = await request.close();
+      var bytes = await consolidateHttpClientResponseBytes(response);
+      await file.writeAsBytes(bytes);
+    }
+
+    return file.path;
+  }
+
+  Future<void> setupFirebase() async {
     if (Platform.isIOS) iOS_Permission();
 
     final String token = await _firebaseMessaging.getToken();
@@ -155,14 +181,157 @@ class MatrixState extends State<Matrix> {
       format: "event_id_only",
     );
 
+    Function goToRoom = (dynamic message) async {
+      try {
+        String roomId;
+        if (message is String) {
+          roomId = message;
+        } else if (message is Map) {
+          roomId = message["data"]["room_id"];
+        }
+        if (roomId?.isEmpty ?? true) throw ("Bad roomId");
+        await Navigator.of(context).pushAndRemoveUntil(
+            AppRoute.defaultRoute(
+              context,
+              Chat(roomId),
+            ),
+            (r) => r.isFirst);
+      } catch (_) {
+        Toast.show("Failed to open chat...", context);
+        print(_);
+      }
+    };
+
+    // initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
+    var initializationSettingsAndroid =
+        AndroidInitializationSettings('notifications_icon');
+    var initializationSettingsIOS =
+        IOSInitializationSettings(onDidReceiveLocalNotification: (i, a, b, c) {
+      print("onDidReceiveLocalNotification: $i $a $b $c");
+      return null;
+    });
+    var initializationSettings = InitializationSettings(
+        initializationSettingsAndroid, initializationSettingsIOS);
+    await _flutterLocalNotificationsPlugin.initialize(initializationSettings,
+        onSelectNotification: goToRoom);
+
     _firebaseMessaging.configure(
-      onResume: (Map<String, dynamic> message) async {
-        print('on resume $message');
+      onMessage: (Map<String, dynamic> message) async {
+        try {
+          final String roomId = message["data"]["room_id"];
+          final String eventId = message["data"]["event_id"];
+          final int unread = json.decode(message["data"]["counts"])["unread"];
+          if ((roomId?.isEmpty ?? true) ||
+              (eventId?.isEmpty ?? true) ||
+              unread == 0) {
+            await _flutterLocalNotificationsPlugin.cancelAll();
+            return null;
+          }
+          if (activeRoomId == roomId) return null;
+
+          // Get the room
+          Room room = client.getRoomById(roomId);
+          if (room == null) {
+            await client.onRoomUpdate.stream
+                .where((u) => u.id == roomId)
+                .first
+                .timeout(Duration(seconds: 10));
+            room = client.getRoomById(roomId);
+            if (room == null) return null;
+          }
+
+          // Get the event
+          Event event = await client.store.getEventById(eventId, room);
+          if (event == null) {
+            final EventUpdate eventUpdate = await client.onEvent.stream
+                .where((u) => u.content["event_id"] == eventId)
+                .first
+                .timeout(Duration(seconds: 10));
+            event = Event.fromJson(eventUpdate.content, room);
+            if (room == null) return null;
+          }
+
+          // Count all unread events
+          int unreadEvents = 0;
+          client.rooms
+              .forEach((Room room) => unreadEvents += room.notificationCount);
+
+          // Calculate title
+          final String title = unread > 1
+              ? "$unreadEvents unread messages in $unread chats"
+              : "$unreadEvents unread messages";
+
+          // Calculate the body
+          String body;
+          switch (event.messageType) {
+            case MessageTypes.Image:
+              body = "${event.sender.calcDisplayname()} sent a picture";
+              break;
+            case MessageTypes.File:
+              body = "${event.sender.calcDisplayname()} sent a file";
+              break;
+            case MessageTypes.Audio:
+              body = "${event.sender.calcDisplayname()} sent an audio";
+              break;
+            case MessageTypes.Video:
+              body = "${event.sender.calcDisplayname()} sent a video";
+              break;
+            default:
+              body = "${event.sender.calcDisplayname()}: ${event.getBody()}";
+              break;
+          }
+
+          // The person object for the android message style notification
+          final person = Person(
+            name: room.displayname,
+            icon: room.avatar.mxc.isEmpty
+                ? null
+                : await downloadAndSaveContent(
+                    room.avatar,
+                    width: 126,
+                    height: 126,
+                  ),
+            iconSource: IconSource.FilePath,
+          );
+
+          // Show notification
+          var androidPlatformChannelSpecifics = AndroidNotificationDetails(
+              'fluffychat_push',
+              'FluffyChat push channel',
+              'Push notifications for FluffyChat',
+              style: AndroidNotificationStyle.Messaging,
+              styleInformation: MessagingStyleInformation(
+                person,
+                conversationTitle: title,
+                messages: [
+                  Message(
+                    body,
+                    event.time,
+                    person,
+                  )
+                ],
+              ),
+              importance: Importance.Max,
+              priority: Priority.High,
+              ticker: 'New message in FluffyChat');
+          var iOSPlatformChannelSpecifics = IOSNotificationDetails();
+          var platformChannelSpecifics = NotificationDetails(
+              androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
+          await _flutterLocalNotificationsPlugin.show(
+              0, room.displayname, body, platformChannelSpecifics,
+              payload: roomId);
+        } catch (exception) {
+          print("[Push] Error while processing notification: " +
+              exception.toString());
+        }
+        return null;
       },
-      onLaunch: (Map<String, dynamic> message) async {
-        print('on launch $message');
-      },
+      onResume: goToRoom,
+      // Currently fires unexpectetly... https://github.com/FirebaseExtended/flutterfire/issues/1060
+      //onLaunch: goToRoom,
     );
+    print("[Push] Firebase initialized");
+    return;
   }
 
   void iOS_Permission() {
@@ -174,25 +343,31 @@ class MatrixState extends State<Matrix> {
     });
   }
 
+  void _initWithStore() async {
+    Future<LoginState> initLoginState = client.onLoginStateChanged.stream.first;
+    client.store = Store(client);
+    if (await initLoginState == LoginState.logged) {
+      await setupFirebase();
+    }
+  }
+
   @override
   void initState() {
     if (widget.client == null) {
       client = Client(widget.clientName, debug: false);
       if (!kIsWeb) {
-        client.store = Store(client);
+        _initWithStore();
       } else {
         loadAccount();
       }
     } else {
       client = widget.client;
     }
-    onSetupFirebase ??= client.onLoginStateChanged.stream.listen(setupFirebase);
     super.initState();
   }
 
   @override
   void dispose() {
-    onSetupFirebase?.cancel();
     super.dispose();
   }
 
