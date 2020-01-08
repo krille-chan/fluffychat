@@ -4,6 +4,7 @@ import 'package:fluffychat/components/dialogs/redact_message_dialog.dart';
 import 'package:fluffychat/components/message_content.dart';
 import 'package:fluffychat/utils/chat_time.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../avatar.dart';
 import '../matrix.dart';
@@ -43,6 +44,25 @@ class Message extends StatelessWidget {
         ),
       );
     }
+
+    if (!event.redacted &&
+        [
+          MessageTypes.Text,
+          MessageTypes.Reply,
+          MessageTypes.Location,
+          MessageTypes.Notice,
+          MessageTypes.Emote,
+          MessageTypes.None,
+        ].contains(event.messageType) &&
+        event.getBody().isNotEmpty) {
+      popupMenuList.add(
+        const PopupMenuItem<String>(
+          value: "copy",
+          child: Text('Copy'),
+        ),
+      );
+    }
+
     if (ownMessage && event.status == -1) {
       popupMenuList.add(
         const PopupMenuItem<String>(
@@ -74,6 +94,9 @@ class Message extends StatelessWidget {
                 break;
               case "delete":
                 await event.remove();
+                break;
+              case "copy":
+                await Clipboard.setData(ClipboardData(text: event.getBody()));
                 break;
             }
           },

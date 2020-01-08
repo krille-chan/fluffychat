@@ -114,9 +114,12 @@ class MessageContent extends StatelessWidget {
                         ? "You: "
                         : "${event.sender.calcDisplayname()}: "
                     : "";
+            final String body = event.redacted
+                ? "Redacted by ${event.redactedBecause.sender.calcDisplayname()}"
+                : senderPrefix + event.getBody();
             if (textOnly) {
               return Text(
-                senderPrefix + event.getBody(),
+                body,
                 maxLines: maxLines,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
@@ -127,7 +130,7 @@ class MessageContent extends StatelessWidget {
               );
             }
             return LinkText(
-              text: senderPrefix + event.getBody(),
+              text: body,
               textStyle: TextStyle(
                 color: textColor,
                 decoration: event.redacted ? TextDecoration.lineThrough : null,
