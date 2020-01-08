@@ -8,6 +8,7 @@ import 'package:fluffychat/components/content_banner.dart';
 import 'package:fluffychat/components/list_items/participant_list_item.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/utils/app_route.dart';
+import 'package:fluffychat/utils/room_name_calculator.dart';
 import 'package:fluffychat/views/chat_list.dart';
 import 'package:fluffychat/views/invitation_selection.dart';
 import 'package:flutter/foundation.dart';
@@ -99,7 +100,7 @@ class _ChatDetailsState extends State<ChatDetails> {
       ),
       secondScaffold: Scaffold(
         appBar: AppBar(
-          title: Text(widget.room.displayname),
+          title: Text(RoomNameCalculator(widget.room).name),
           actions: <Widget>[ChatSettingsPopupMenu(widget.room, false)],
         ),
         body: ListView.builder(
@@ -127,7 +128,8 @@ class _ChatDetailsState extends State<ChatDetails> {
                                 border: InputBorder.none,
                                 labelText: "Edit group name",
                                 labelStyle: TextStyle(color: Colors.black),
-                                hintText: (widget.room.displayname),
+                                hintText:
+                                    (RoomNameCalculator(widget.room).name),
                               ),
                             ),
                           )

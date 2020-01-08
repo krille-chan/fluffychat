@@ -2,3 +2,5 @@
 ### New features
 - Added changelog
 - Added copy button
+### Fixes
+- Groups without name now have a "Group with" prefix

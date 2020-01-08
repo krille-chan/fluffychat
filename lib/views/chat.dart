@@ -7,6 +7,7 @@ import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/chat_settings_popup_menu.dart';
 import 'package:fluffychat/components/list_items/message.dart';
 import 'package:fluffychat/components/matrix.dart';
+import 'package:fluffychat/utils/room_name_calculator.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -183,7 +184,7 @@ class _ChatState extends State<Chat> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(room.displayname),
+              Text(RoomNameCalculator(room).name),
               AnimatedContainer(
                 duration: Duration(milliseconds: 500),
                 height: typingText.isEmpty ? 0 : 20,
