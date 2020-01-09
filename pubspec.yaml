@@ -14,7 +14,7 @@ description: Chat with your friends.
 version: 0.2.3+13
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.6.0 <3.0.0"
 
 dependencies:
   flutter:

@@ -1,6 +1,6 @@
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/message_content.dart';
-import 'package:fluffychat/utils/chat_time.dart';
+import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/utils/room_name_calculator.dart';
 import 'package:fluffychat/views/chat.dart';
@@ -93,7 +93,7 @@ class ChatListItem extends StatelessWidget {
             ),
             SizedBox(width: 16),
             Text(
-              ChatTime(room.timeCreated).toEventTimeString(),
+              room.timeCreated.localizedTimeShort(context),
               style: TextStyle(
                 color: Color(0xFF555555),
                 fontSize: 13,
