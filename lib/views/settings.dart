@@ -6,7 +6,7 @@ import 'package:fluffychat/components/content_banner.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/views/chat_list.dart';
-import 'package:fluffychat/views/login.dart';
+import 'package:fluffychat/views/sign_up.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -37,7 +37,7 @@ class _SettingsState extends State<Settings> {
     await matrix.tryRequestWithLoadingDialog(matrix.client.logout());
     matrix.clean();
     await Navigator.of(context).pushAndRemoveUntil(
-        AppRoute.defaultRoute(context, LoginPage()), (r) => false);
+        AppRoute.defaultRoute(context, SignUp()), (r) => false);
   }
 
   void setDisplaynameAction(BuildContext context, String displayname) async {

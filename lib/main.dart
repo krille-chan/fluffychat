@@ -1,10 +1,10 @@
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/views/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'components/matrix.dart';
 import 'views/chat_list.dart';
-import 'views/login.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -58,7 +58,7 @@ class App extends StatelessWidget {
                 );
               }
               if (Matrix.of(context).client.isLogged()) return ChatListView();
-              return LoginPage();
+              return SignUp();
             },
           ),
         ),
