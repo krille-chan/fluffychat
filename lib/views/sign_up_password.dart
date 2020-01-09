@@ -58,15 +58,6 @@ class _SignUpPasswordState extends State<SignUpPassword> {
               "session": response["session"],
             });
             break;
-          } else if (stages[i] == "m.login.recaptcha") {
-            print("[Sign Up] Process m.login.recaptcha stage");
-            final String publicKey = response["params"]["public_key"];
-
-            _signUpAction(context, auth: {
-              "type": stages[i],
-              "session": response["session"],
-            });
-            break;
           }
         }
       }
