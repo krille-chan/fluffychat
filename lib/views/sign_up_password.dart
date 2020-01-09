@@ -5,6 +5,7 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:flutter/material.dart';
+import 'package:toast/toast.dart';
 
 import 'chat_list.dart';
 
@@ -35,32 +36,16 @@ class _SignUpPasswordState extends State<SignUpPassword> {
       return;
     }
 
+    Map<String, dynamic> response;
+
     try {
       print("[Sign Up] Create account...");
-      final Map<String, dynamic> response = await matrix.client.register(
+      response = await matrix.client.register(
         username: widget.username,
         password: passwordController.text,
         initialDeviceDisplayName: matrix.widget.clientName,
         auth: auth,
       );
-      if (response.containsKey("user_id") &&
-          response.containsKey("access_token") &&
-          response.containsKey("device_id")) {
-        await Navigator.of(context).pushAndRemoveUntil(
-            AppRoute.defaultRoute(context, ChatListView()), (r) => false);
-      } else if (response.containsKey("flows")) {
-        final List<String> stages = response["flows"]["stages"];
-        for (int i = 0; i < stages.length;) {
-          if (stages[i] == "m.login.dummy") {
-            print("[Sign Up] Process m.login.dummy stage");
-            _signUpAction(context, auth: {
-              "type": stages[i],
-              "session": response["session"],
-            });
-            break;
-          }
-        }
-      }
     } on MatrixException catch (exception) {
       setState(() => passwordError = exception.errorMessage);
       return setState(() => loading = false);
@@ -69,6 +54,45 @@ class _SignUpPasswordState extends State<SignUpPassword> {
       setState(() => passwordError = exception.toString());
       return setState(() => loading = false);
     }
+
+    if (response.containsKey("user_id") &&
+        response.containsKey("access_token") &&
+        response.containsKey("device_id")) {
+      try {
+        await matrix.client.jsonRequest(
+          type: HTTPType.PUT,
+          action: "/client/r0/profile/${matrix.client.userID}/displayname",
+          data: {"displayname": widget.displayname},
+        );
+      } catch (exception) {
+        Toast.show("Could not set displayname", context, duration: 5);
+      }
+      try {
+        await matrix.client.setAvatar(
+          MatrixFile(
+            bytes: await widget.avatar.readAsBytes(),
+            path: widget.avatar.path,
+          ),
+        );
+      } catch (exception) {
+        Toast.show("Could not set profile picture", context, duration: 5);
+      }
+      await Navigator.of(context).pushAndRemoveUntil(
+          AppRoute.defaultRoute(context, ChatListView()), (r) => false);
+    } else if (response.containsKey("flows")) {
+      final List<String> stages = response["flows"]["stages"];
+      for (int i = 0; i < stages.length;) {
+        if (stages[i] == "m.login.dummy") {
+          print("[Sign Up] Process m.login.dummy stage");
+          _signUpAction(context, auth: {
+            "type": stages[i],
+            "session": response["session"],
+          });
+          break;
+        }
+      }
+    }
+
     setState(() => loading = false);
   }
 
