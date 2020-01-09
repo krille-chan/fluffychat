@@ -321,7 +321,7 @@ class _ChatState extends State<Chat> {
                             padding: const EdgeInsets.symmetric(vertical: 8.0),
                             child: TextField(
                               minLines: 1,
-                              maxLines: kIsWeb ? 1 : null,
+                              maxLines: kIsWeb ? 1 : 8,
                               keyboardType: kIsWeb
                                   ? TextInputType.text
                                   : TextInputType.multiline,
