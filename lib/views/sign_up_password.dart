@@ -36,67 +36,64 @@ class _SignUpPasswordState extends State<SignUpPassword> {
       return;
     }
 
-    Map<String, dynamic> response;
-
     try {
       print("[Sign Up] Create account...");
-      response = await matrix.client.register(
+      Future<LoginState> waitForLogin =
+          matrix.client.onLoginStateChanged.stream.first;
+      await matrix.client.register(
         username: widget.username,
         password: passwordController.text,
         initialDeviceDisplayName: matrix.widget.clientName,
         auth: auth,
       );
+      await waitForLogin;
     } on MatrixException catch (exception) {
-      setState(() => passwordError = exception.errorMessage);
-      return setState(() => loading = false);
+      if (exception.requireAdditionalAuthentication) {
+        print(exception.raw);
+
+        if (exception.authenticationFlows.indexWhere((a) =>
+                a.stages.length == 1 && a.stages.first == "m.login.dummy") !=
+            -1) {
+          _signUpAction(context, auth: {
+            "type": "m.login.dummy",
+            "session": exception.session,
+          });
+        } else {
+          setState(() => passwordError =
+              "The server requires unsupported authentication flows");
+          setState(() => loading = false);
+          return;
+        }
+      } else {
+        setState(() => passwordError = exception.errorMessage);
+        return setState(() => loading = false);
+      }
     } catch (exception) {
       print(exception);
       setState(() => passwordError = exception.toString());
       return setState(() => loading = false);
     }
-
-    if (response.containsKey("user_id") &&
-        response.containsKey("access_token") &&
-        response.containsKey("device_id")) {
-      try {
-        await matrix.client.jsonRequest(
-          type: HTTPType.PUT,
-          action: "/client/r0/profile/${matrix.client.userID}/displayname",
-          data: {"displayname": widget.displayname},
-        );
-      } catch (exception) {
-        Toast.show("Could not set displayname", context, duration: 5);
-      }
-      try {
-        await matrix.client.setAvatar(
-          MatrixFile(
-            bytes: await widget.avatar.readAsBytes(),
-            path: widget.avatar.path,
-          ),
-        );
-      } catch (exception) {
-        Toast.show("Could not set profile picture", context, duration: 5);
-      }
-      await Navigator.of(context).pushAndRemoveUntil(
-          AppRoute.defaultRoute(context, ChatListView()), (r) => false);
-    } else if (response.containsKey("flows")) {
-      final List stages = response["flows"][0]["stages"];
-      for (int i = 0; i < stages.length; i++) {
-        print("Check stage $i: ${stages[i]}");
-        if (stages[i] == "m.login.dummy") {
-          print("[Sign Up] Process m.login.dummy stage");
-          _signUpAction(context, auth: {
-            "type": stages[i],
-            "session": response["session"],
-          });
-          return;
-        }
-      }
-      setState(() => passwordError =
-          "The server requires unsupported authentication flows");
-      setState(() => loading = false);
-      return;
+    try {
+      await matrix.client.jsonRequest(
+        type: HTTPType.PUT,
+        action: "/client/r0/profile/${matrix.client.userID}/displayname",
+        data: {"displayname": widget.displayname},
+      );
+    } catch (exception) {
+      Toast.show("Could not set displayname", context, duration: 5);
     }
+    try {
+      await matrix.client.setAvatar(
+        MatrixFile(
+          bytes: await widget.avatar.readAsBytes(),
+          path: widget.avatar.path,
+        ),
+      );
+    } catch (exception) {
+      Toast.show("Could not set profile picture", context, duration: 5);
+    }
+    await Navigator.of(context).pushAndRemoveUntil(
+        AppRoute.defaultRoute(context, ChatListView()), (r) => false);
 
     setState(() => loading = false);
   }
