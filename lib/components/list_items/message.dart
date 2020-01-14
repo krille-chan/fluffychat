@@ -54,7 +54,7 @@ class Message extends StatelessWidget {
           MessageTypes.Emote,
           MessageTypes.None,
         ].contains(event.messageType) &&
-        event.getBody().isNotEmpty) {
+        event.body.isNotEmpty) {
       popupMenuList.add(
         const PopupMenuItem<String>(
           value: "copy",
@@ -97,7 +97,7 @@ class Message extends StatelessWidget {
                 await event.remove();
                 break;
               case "copy":
-                await Clipboard.setData(ClipboardData(text: event.getBody()));
+                await Clipboard.setData(ClipboardData(text: event.body));
                 break;
             }
           },

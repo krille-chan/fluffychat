@@ -92,7 +92,7 @@ class MessageContent extends StatelessWidget {
               child: RaisedButton(
                 color: Colors.blueGrey,
                 child: Text(
-                  "Download ${event.getBody()}",
+                  "Download ${event.body}",
                   overflow: TextOverflow.fade,
                   softWrap: false,
                   maxLines: 1,
@@ -116,7 +116,7 @@ class MessageContent extends StatelessWidget {
                     : "";
             final String body = event.redacted
                 ? "Redacted by ${event.redactedBecause.sender.calcDisplayname()}"
-                : senderPrefix + event.getBody();
+                : senderPrefix + event.body;
             if (textOnly) {
               return Text(
                 body,
@@ -140,7 +140,7 @@ class MessageContent extends StatelessWidget {
           case MessageTypes.Emote:
             if (textOnly) {
               return Text(
-                "* " + event.getBody(),
+                "* " + event.body,
                 maxLines: maxLines,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
@@ -152,7 +152,7 @@ class MessageContent extends StatelessWidget {
               );
             }
             return LinkText(
-              text: "* " + event.getBody(),
+              text: "* " + event.body,
               textStyle: TextStyle(
                 color: textColor,
                 fontStyle: FontStyle.italic,
