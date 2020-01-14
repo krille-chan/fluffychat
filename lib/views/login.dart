@@ -42,7 +42,7 @@ class _LoginState extends State<Login> {
     }
 
     String homeserver = serverController.text;
-    if (homeserver.isEmpty) homeserver = defaultHomeserver;
+    if (homeserver.isEmpty) homeserver = "matrix-client.matrix.org";
     if (!homeserver.startsWith("https://")) {
       homeserver = "https://" + homeserver;
     }
