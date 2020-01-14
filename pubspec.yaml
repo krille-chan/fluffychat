@@ -36,6 +36,7 @@ dependencies:
   image_picker: ^0.6.2+3
   flutter_speed_dial: ^1.2.5
   url_launcher: ^5.4.1
+  url_launcher_web: ^0.1.0
   sqflite: ^1.2.0
   cached_network_image: ^2.0.0
   firebase_messaging: ^6.0.9

@@ -278,7 +278,7 @@ class MatrixState extends State<Matrix> {
               body = "${event.sender.calcDisplayname()} sent a video";
               break;
             default:
-              body = "${event.sender.calcDisplayname()}: ${event.getBody()}";
+              body = "${event.sender.calcDisplayname()}: ${event.body}";
               break;
           }
 
