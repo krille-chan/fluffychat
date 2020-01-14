@@ -43,6 +43,7 @@ dependencies:
   flutter_local_notifications: ^0.9.1+2
   link_text: ^0.1.1
   path_provider: ^1.5.1
+  webview_flutter: ^0.3.19+4
 
 dev_dependencies:
   flutter_test:

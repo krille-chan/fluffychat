@@ -7,8 +7,6 @@ import 'package:flutter/material.dart';
 
 import 'chat_list.dart';
 
-const String defaultHomeserver = "https://matrix.org";
-
 class Login extends StatefulWidget {
   @override
   _LoginState createState() => _LoginState();
@@ -18,7 +16,7 @@ class _LoginState extends State<Login> {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController serverController =
-      TextEditingController(text: "matrix.org");
+      TextEditingController(text: "matrix-client.matrix.org");
   String usernameError;
   String passwordError;
   String serverError;
@@ -98,7 +96,7 @@ class _LoginState extends State<Login> {
           controller: serverController,
           decoration: InputDecoration(
               icon: Icon(Icons.domain),
-              hintText: "matrix.org",
+              hintText: "matrix-client.matrix.org",
               errorText: serverError,
               errorMaxLines: 1,
               prefixText: "https://",

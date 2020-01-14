@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/utils/app_route.dart';
+import 'package:fluffychat/views/auth_web_view.dart';
 import 'package:flutter/material.dart';
 import 'package:toast/toast.dart';
 
@@ -23,6 +24,7 @@ class _SignUpPasswordState extends State<SignUpPassword> {
   String passwordError;
   bool loading = false;
   bool showPassword = true;
+  int currentStage = 0;
 
   void _signUpAction(BuildContext context, {Map<String, dynamic> auth}) async {
     MatrixState matrix = Matrix.of(context);
@@ -38,8 +40,14 @@ class _SignUpPasswordState extends State<SignUpPassword> {
 
     try {
       print("[Sign Up] Create account...");
+      setState(() => loading = true);
       Future<LoginState> waitForLogin =
           matrix.client.onLoginStateChanged.stream.first;
+      if (auth == null) {
+        currentStage = 0;
+      } else {
+        currentStage++;
+      }
       await matrix.client.register(
         username: widget.username,
         password: passwordController.text,
@@ -51,17 +59,28 @@ class _SignUpPasswordState extends State<SignUpPassword> {
       if (exception.requireAdditionalAuthentication) {
         print(exception.raw);
 
-        if (exception.authenticationFlows.indexWhere((a) =>
-                a.stages.length == 1 && a.stages.first == "m.login.dummy") !=
-            -1) {
+        final List<String> stages = exception.authenticationFlows
+            .firstWhere((a) => !a.stages.contains("m.login.email.identity"))
+            .stages;
+
+        if (stages[currentStage] == "m.login.dummy") {
           _signUpAction(context, auth: {
-            "type": "m.login.dummy",
+            "type": stages[currentStage],
             "session": exception.session,
           });
         } else {
-          setState(() => passwordError =
-              "The server requires unsupported authentication flows");
-          setState(() => loading = false);
+          await Navigator.of(context).push(
+            AppRoute.defaultRoute(
+              context,
+              AuthWebView(
+                stages[currentStage],
+                exception.session,
+                () => _signUpAction(context, auth: {
+                  "session": exception.session,
+                }),
+              ),
+            ),
+          );
           return;
         }
       } else {
@@ -92,9 +111,10 @@ class _SignUpPasswordState extends State<SignUpPassword> {
     } catch (exception) {
       Toast.show("Could not set profile picture", context, duration: 5);
     }
-    await Navigator.of(context).pushAndRemoveUntil(
-        AppRoute.defaultRoute(context, ChatListView()), (r) => false);
-
+    if (matrix.client.isLogged()) {
+      await Navigator.of(context).pushAndRemoveUntil(
+          AppRoute.defaultRoute(context, ChatListView()), (r) => false);
+    }
     setState(() => loading = false);
   }
 

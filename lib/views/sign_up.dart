@@ -18,7 +18,7 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController serverController =
-      TextEditingController(text: "matrix.org");
+      TextEditingController(text: "matrix-client.matrix.org");
   String usernameError;
   String serverError;
   bool loading = false;
@@ -97,7 +97,7 @@ class _SignUpState extends State<SignUp> {
           controller: serverController,
           decoration: InputDecoration(
               icon: Icon(Icons.domain),
-              hintText: "matrix.org",
+              hintText: "matrix-client.matrix.org",
               errorText: serverError,
               errorMaxLines: 1,
               prefixText: "https://",
