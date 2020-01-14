@@ -80,17 +80,22 @@ class _SignUpPasswordState extends State<SignUpPassword> {
       await Navigator.of(context).pushAndRemoveUntil(
           AppRoute.defaultRoute(context, ChatListView()), (r) => false);
     } else if (response.containsKey("flows")) {
-      final List<String> stages = response["flows"]["stages"];
-      for (int i = 0; i < stages.length;) {
+      final List stages = response["flows"][0]["stages"];
+      for (int i = 0; i < stages.length; i++) {
+        print("Check stage $i: ${stages[i]}");
         if (stages[i] == "m.login.dummy") {
           print("[Sign Up] Process m.login.dummy stage");
           _signUpAction(context, auth: {
             "type": stages[i],
             "session": response["session"],
           });
-          break;
+          return;
         }
       }
+      setState(() => passwordError =
+          "The server requires unsupported authentication flows");
+      setState(() => loading = false);
+      return;
     }
 
     setState(() => loading = false);
