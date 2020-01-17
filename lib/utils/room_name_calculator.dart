@@ -6,8 +6,8 @@ class RoomNameCalculator {
   const RoomNameCalculator(this.room);
 
   String get name {
-    if (room.name.isEmpty &&
-        room.canonicalAlias.isEmpty &&
+    if ((room.name?.isEmpty ?? true) &&
+        (room.canonicalAlias?.isEmpty ?? true) &&
         !room.isDirectChat) {
       return "Group with ${room.displayname}";
     }
