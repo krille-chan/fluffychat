@@ -2,7 +2,9 @@ import 'package:bubble/bubble.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/dialogs/redact_message_dialog.dart';
 import 'package:fluffychat/components/message_content.dart';
+import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
+import 'package:fluffychat/views/content_web_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -26,8 +28,10 @@ class Message extends StatelessWidget {
     final bool ownMessage = event.senderId == client.userID;
     Alignment alignment = ownMessage ? Alignment.topRight : Alignment.topLeft;
     Color color = Theme.of(context).secondaryHeaderColor;
-    final bool sameSender =
-        nextEvent != null ? nextEvent.sender.id == event.sender.id : false;
+    final bool sameSender = nextEvent != null &&
+            [EventTypes.Message, EventTypes.Sticker].contains(nextEvent.type)
+        ? nextEvent.sender.id == event.sender.id
+        : false;
     BubbleNip nip = sameSender
         ? BubbleNip.no
         : ownMessage ? BubbleNip.rightBottom : BubbleNip.leftBottom;
@@ -151,8 +155,17 @@ class Message extends StatelessWidget {
         ),
       ),
     ];
-    final Widget avatarOrSizedBox =
-        sameSender ? SizedBox(width: 40) : Avatar(event.sender.avatarUrl);
+    final Widget avatarOrSizedBox = sameSender
+        ? SizedBox(width: 40)
+        : Avatar(
+            event.sender.avatarUrl,
+            onTap: () => Navigator.of(context).push(
+              AppRoute.defaultRoute(
+                context,
+                ContentWebView(event.sender.avatarUrl),
+              ),
+            ),
+          );
     if (ownMessage) {
       rowChildren.add(avatarOrSizedBox);
     } else {

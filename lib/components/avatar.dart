@@ -8,8 +8,10 @@ import 'matrix.dart';
 class Avatar extends StatelessWidget {
   final MxContent mxContent;
   final double size;
+  final Function onTap;
 
-  const Avatar(this.mxContent, {this.size = 40, Key key}) : super(key: key);
+  const Avatar(this.mxContent, {this.size = 40, this.onTap, Key key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,21 +21,24 @@ class Avatar extends StatelessWidget {
       height: size * MediaQuery.of(context).devicePixelRatio,
       method: ThumbnailMethod.scale,
     );
-    return CircleAvatar(
-      radius: size / 2,
-      backgroundImage: mxContent.mxc?.isNotEmpty ?? false
-          ? kIsWeb
-              ? NetworkImage(
-                  src,
-                )
-              : CachedNetworkImageProvider(
-                  src,
-                )
-          : null,
-      backgroundColor: Theme.of(context).secondaryHeaderColor,
-      child: mxContent.mxc.isEmpty
-          ? Text("@", style: TextStyle(color: Colors.blueGrey))
-          : null,
+    return InkWell(
+      onTap: onTap,
+      child: CircleAvatar(
+        radius: size / 2,
+        backgroundImage: mxContent.mxc?.isNotEmpty ?? false
+            ? kIsWeb
+                ? NetworkImage(
+                    src,
+                  )
+                : CachedNetworkImageProvider(
+                    src,
+                  )
+            : null,
+        backgroundColor: Theme.of(context).secondaryHeaderColor,
+        child: mxContent.mxc.isEmpty
+            ? Text("@", style: TextStyle(color: Colors.blueGrey))
+            : null,
+      ),
     );
   }
 }

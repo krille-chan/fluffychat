@@ -1,6 +1,8 @@
 import 'package:bubble/bubble.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/utils/app_route.dart';
+import 'package:fluffychat/views/content_web_view.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:link_text/link_text.dart';
@@ -58,9 +60,11 @@ class MessageContent extends StatelessWidget {
               radius: Radius.circular(10),
               elevation: 0,
               child: InkWell(
-                onTap: () => launch(
-                  MxContent(event.content["url"])
-                      .getDownloadLink(Matrix.of(context).client),
+                onTap: () => Navigator.of(context).push(
+                  AppRoute.defaultRoute(
+                    context,
+                    ContentWebView(MxContent(event.content["url"])),
+                  ),
                 ),
                 child: kIsWeb
                     ? Image.network(
@@ -74,8 +78,78 @@ class MessageContent extends StatelessWidget {
               ),
             );
           case MessageTypes.Audio:
-          case MessageTypes.File:
+            if (textOnly) {
+              return Text(
+                "${event.sender.calcDisplayname()} sent an audio message",
+                maxLines: maxLines,
+                style: TextStyle(
+                  color: textColor,
+                  decoration:
+                      event.redacted ? TextDecoration.lineThrough : null,
+                ),
+              );
+            }
+            return Container(
+              width: 200,
+              child: RaisedButton(
+                color: Colors.blueGrey,
+                child: Row(
+                  children: <Widget>[
+                    Icon(Icons.play_arrow, color: Colors.white),
+                    Text(
+                      "Play ${event.body}",
+                      overflow: TextOverflow.fade,
+                      softWrap: false,
+                      maxLines: 1,
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ],
+                ),
+                onPressed: () => Navigator.of(context).push(
+                  AppRoute.defaultRoute(
+                    context,
+                    ContentWebView(MxContent(event.content["url"])),
+                  ),
+                ),
+              ),
+            );
           case MessageTypes.Video:
+            if (textOnly) {
+              return Text(
+                "${event.sender.calcDisplayname()} sent a video message",
+                maxLines: maxLines,
+                style: TextStyle(
+                  color: textColor,
+                  decoration:
+                      event.redacted ? TextDecoration.lineThrough : null,
+                ),
+              );
+            }
+            return Container(
+              width: 200,
+              child: RaisedButton(
+                color: Colors.blueGrey,
+                child: Row(
+                  children: <Widget>[
+                    Icon(Icons.play_arrow, color: Colors.white),
+                    Text(
+                      "Play ${event.body}",
+                      overflow: TextOverflow.fade,
+                      softWrap: false,
+                      maxLines: 1,
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ],
+                ),
+                onPressed: () => Navigator.of(context).push(
+                  AppRoute.defaultRoute(
+                    context,
+                    ContentWebView(MxContent(event.content["url"])),
+                  ),
+                ),
+              ),
+            );
+          case MessageTypes.File:
             if (textOnly) {
               return Text(
                 "${event.sender.calcDisplayname()} sent a file",
@@ -96,6 +170,7 @@ class MessageContent extends StatelessWidget {
                   overflow: TextOverflow.fade,
                   softWrap: false,
                   maxLines: 1,
+                  style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () => launch(
                   MxContent(event.content["url"])
