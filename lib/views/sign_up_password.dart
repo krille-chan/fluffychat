@@ -24,7 +24,6 @@ class _SignUpPasswordState extends State<SignUpPassword> {
   String passwordError;
   bool loading = false;
   bool showPassword = true;
-  int currentStage = 0;
 
   void _signUpAction(BuildContext context, {Map<String, dynamic> auth}) async {
     MatrixState matrix = Matrix.of(context);
@@ -43,11 +42,6 @@ class _SignUpPasswordState extends State<SignUpPassword> {
       setState(() => loading = true);
       Future<LoginState> waitForLogin =
           matrix.client.onLoginStateChanged.stream.first;
-      if (auth == null) {
-        currentStage = 0;
-      } else {
-        currentStage++;
-      }
       await matrix.client.register(
         username: widget.username,
         password: passwordController.text,
@@ -63,9 +57,16 @@ class _SignUpPasswordState extends State<SignUpPassword> {
             .firstWhere((a) => !a.stages.contains("m.login.email.identity"))
             .stages;
 
-        if (stages[currentStage] == "m.login.dummy") {
+        final String currentStage =
+            exception.completedAuthenticationFlows == null
+                ? stages.first
+                : stages.firstWhere((stage) =>
+                    !exception.completedAuthenticationFlows.contains(stage) ??
+                    true);
+
+        if (currentStage == "m.login.dummy") {
           _signUpAction(context, auth: {
-            "type": stages[currentStage],
+            "type": currentStage,
             "session": exception.session,
           });
         } else {
@@ -73,7 +74,7 @@ class _SignUpPasswordState extends State<SignUpPassword> {
             AppRoute.defaultRoute(
               context,
               AuthWebView(
-                stages[currentStage],
+                currentStage,
                 exception.session,
                 () => _signUpAction(context, auth: {
                   "session": exception.session,
