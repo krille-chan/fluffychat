@@ -294,7 +294,11 @@ class _ChatState extends State<Chat> {
                                     const PopupMenuItem<String>(
                                       value: "file",
                                       child: ListTile(
-                                        leading: Icon(Icons.attach_file),
+                                        leading: CircleAvatar(
+                                          backgroundColor: Colors.green,
+                                          foregroundColor: Colors.white,
+                                          child: Icon(Icons.attachment),
+                                        ),
                                         title: Text('Send file'),
                                         contentPadding: EdgeInsets.all(0),
                                       ),
@@ -302,7 +306,11 @@ class _ChatState extends State<Chat> {
                                     const PopupMenuItem<String>(
                                       value: "image",
                                       child: ListTile(
-                                        leading: Icon(Icons.image),
+                                        leading: CircleAvatar(
+                                          backgroundColor: Colors.blue,
+                                          foregroundColor: Colors.white,
+                                          child: Icon(Icons.image),
+                                        ),
                                         title: Text('Send image'),
                                         contentPadding: EdgeInsets.all(0),
                                       ),
@@ -310,7 +318,11 @@ class _ChatState extends State<Chat> {
                                     const PopupMenuItem<String>(
                                       value: "camera",
                                       child: ListTile(
-                                        leading: Icon(Icons.camera),
+                                        leading: CircleAvatar(
+                                          backgroundColor: Colors.purple,
+                                          foregroundColor: Colors.white,
+                                          child: Icon(Icons.camera),
+                                        ),
                                         title: Text('Open camera'),
                                         contentPadding: EdgeInsets.all(0),
                                       ),
@@ -320,7 +332,7 @@ class _ChatState extends State<Chat> {
                           SizedBox(width: 8),
                           Expanded(
                               child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            padding: const EdgeInsets.symmetric(vertical: 4.0),
                             child: TextField(
                               minLines: 1,
                               maxLines: kIsWeb ? 1 : 8,
