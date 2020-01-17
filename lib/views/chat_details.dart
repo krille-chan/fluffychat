@@ -113,7 +113,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                     Divider(height: 1),
                     widget.room.canSendEvent("m.room.avatar") && !kIsWeb
                         ? ListTile(
-                            title: Text("Set group avatar"),
+                            title: Text("Upload group avatar"),
                             leading: Icon(Icons.camera),
                             onTap: () => setAvatarAction(context),
                           )

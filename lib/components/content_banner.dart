@@ -32,12 +32,14 @@ class ContentBanner extends StatelessWidget {
       method: ThumbnailMethod.scale,
     );
     return InkWell(
-      onTap: () => Navigator.of(context).push(
-        AppRoute.defaultRoute(
-          context,
-          ContentWebView(mxContent),
-        ),
-      ),
+      onTap: () => mxContent.mxc?.isNotEmpty ?? false
+          ? Navigator.of(context).push(
+              AppRoute.defaultRoute(
+                context,
+                ContentWebView(mxContent),
+              ),
+            )
+          : null,
       child: Container(
         height: 200,
         color: Theme.of(context).secondaryHeaderColor,
