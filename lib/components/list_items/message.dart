@@ -12,8 +12,9 @@ import 'state_message.dart';
 
 class Message extends StatelessWidget {
   final Event event;
+  final Event nextEvent;
 
-  const Message(this.event);
+  const Message(this.event, {this.nextEvent});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,11 @@ class Message extends StatelessWidget {
     final bool ownMessage = event.senderId == client.userID;
     Alignment alignment = ownMessage ? Alignment.topRight : Alignment.topLeft;
     Color color = Theme.of(context).secondaryHeaderColor;
-    BubbleNip nip = ownMessage ? BubbleNip.rightBottom : BubbleNip.leftBottom;
+    final bool sameSender =
+        nextEvent != null ? nextEvent.sender.id == event.sender.id : false;
+    BubbleNip nip = sameSender
+        ? BubbleNip.no
+        : ownMessage ? BubbleNip.rightBottom : BubbleNip.leftBottom;
     final Color textColor = ownMessage ? Colors.white : Colors.black;
     MainAxisAlignment rowMainAxisAlignment =
         ownMessage ? MainAxisAlignment.end : MainAxisAlignment.start;
@@ -120,7 +125,9 @@ class Message extends StatelessWidget {
                       Text(
                         ownMessage ? "You" : event.sender.calcDisplayname(),
                         style: TextStyle(
-                          color: textColor,
+                          color: ownMessage
+                              ? textColor
+                              : Theme.of(context).primaryColor,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -128,7 +135,7 @@ class Message extends StatelessWidget {
                       Text(
                         event.time.localizedTime(context),
                         style: TextStyle(
-                          color: textColor.withAlpha(200),
+                          color: textColor.withAlpha(180),
                         ),
                       ),
                     ],
@@ -144,13 +151,17 @@ class Message extends StatelessWidget {
         ),
       ),
     ];
+    final Widget avatarOrSizedBox =
+        sameSender ? SizedBox(width: 40) : Avatar(event.sender.avatarUrl);
     if (ownMessage) {
-      rowChildren.add(Avatar(event.sender.avatarUrl));
+      rowChildren.add(avatarOrSizedBox);
     } else {
-      rowChildren.insert(0, Avatar(event.sender.avatarUrl));
+      rowChildren.insert(0, avatarOrSizedBox);
     }
+
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: EdgeInsets.only(
+          left: 8.0, right: 8.0, bottom: sameSender ? 4.0 : 12.0),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
         mainAxisAlignment: rowMainAxisAlignment,

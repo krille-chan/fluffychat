@@ -110,23 +110,24 @@ class _ChatDetailsState extends State<ChatDetails> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     ContentBanner(widget.room.avatar),
+                    Divider(height: 1),
                     widget.room.canSendEvent("m.room.avatar") && !kIsWeb
                         ? ListTile(
-                            title: Text("Edit group avatar"),
-                            trailing: Icon(Icons.file_upload),
+                            title: Text("Set group avatar"),
+                            leading: Icon(Icons.camera),
                             onTap: () => setAvatarAction(context),
                           )
                         : Container(),
                     widget.room.canSendEvent("m.room.name")
                         ? ListTile(
-                            trailing: Icon(Icons.edit),
+                            leading: Icon(Icons.edit),
                             title: TextField(
                               textInputAction: TextInputAction.done,
                               onSubmitted: (s) =>
                                   setDisplaynameAction(context, s),
                               decoration: InputDecoration(
                                 border: InputBorder.none,
-                                labelText: "Edit group name",
+                                labelText: "Set group name",
                                 labelStyle: TextStyle(color: Colors.black),
                                 hintText:
                                     (RoomNameCalculator(widget.room).name),
@@ -148,7 +149,11 @@ class _ChatDetailsState extends State<ChatDetails> {
                     widget.room.canInvite
                         ? ListTile(
                             title: Text("Invite contact"),
-                            leading: Icon(Icons.add),
+                            leading: CircleAvatar(
+                              child: Icon(Icons.add),
+                              backgroundColor: Theme.of(context).primaryColor,
+                              foregroundColor: Colors.white,
+                            ),
                             onTap: () => Navigator.of(context).push(
                               AppRoute.defaultRoute(
                                 context,

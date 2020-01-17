@@ -252,7 +252,9 @@ class _ChatState extends State<Chat> {
                               ),
                               padding: EdgeInsets.all(8),
                             )
-                          : Message(timeline.events[i - 1]),
+                          : Message(timeline.events[i - 1],
+                              nextEvent:
+                                  i >= 2 ? timeline.events[i - 2] : null),
                     );
                   },
                 ),
