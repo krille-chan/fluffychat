@@ -72,6 +72,15 @@ class Message extends StatelessWidget {
       );
     }
 
+    if (!event.redacted) {
+      popupMenuList.add(
+        const PopupMenuItem<String>(
+          value: "forward",
+          child: Text('Forward'),
+        ),
+      );
+    }
+
     if (ownMessage && event.status == -1) {
       popupMenuList.add(
         const PopupMenuItem<String>(
@@ -107,6 +116,10 @@ class Message extends StatelessWidget {
                 break;
               case "copy":
                 await Clipboard.setData(ClipboardData(text: event.body));
+                break;
+              case "forward":
+                Matrix.of(context).shareContent = event.content;
+                Navigator.of(context).popUntil((r) => r.isFirst);
                 break;
             }
           },

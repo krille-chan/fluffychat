@@ -6,6 +6,7 @@ import 'package:fluffychat/utils/room_name_calculator.dart';
 import 'package:fluffychat/views/chat.dart';
 import 'package:flutter/material.dart';
 import 'package:toast/toast.dart';
+import 'package:pedantic/pedantic.dart';
 
 import '../avatar.dart';
 import '../matrix.dart';
@@ -67,6 +68,10 @@ class ChatListItem extends StatelessWidget {
       }
 
       if (room.membership == Membership.join) {
+        if (Matrix.of(context).shareContent != null) {
+          unawaited(room.sendEvent(Matrix.of(context).shareContent));
+          Matrix.of(context).shareContent = null;
+        }
         await Navigator.pushAndRemoveUntil(
           context,
           AppRoute.defaultRoute(context, Chat(room.id)),

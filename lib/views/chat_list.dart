@@ -12,6 +12,8 @@ import 'package:fluffychat/views/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
+enum SelectMode { normal, multi_select, share }
+
 class ChatListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -39,6 +41,7 @@ class _ChatListState extends State<ChatList> {
   bool searchMode = false;
   StreamSubscription sub;
   final TextEditingController searchController = TextEditingController();
+  SelectMode selectMode = SelectMode.normal;
 
   Future<bool> waitForFirstSync(BuildContext context) async {
     Client client = Matrix.of(context).client;
@@ -68,6 +71,11 @@ class _ChatListState extends State<ChatList> {
 
   @override
   Widget build(BuildContext context) {
+    if (Matrix.of(context).shareContent != null) {
+      selectMode = SelectMode.share;
+    } else if (selectMode == SelectMode.share) {
+      setState(() => selectMode = SelectMode.normal);
+    }
     return Scaffold(
       appBar: AppBar(
         title: searchMode
@@ -81,7 +89,7 @@ class _ChatListState extends State<ChatList> {
                 ),
               )
             : Text(
-                "FluffyChat",
+                selectMode == SelectMode.share ? "Share" : "FluffyChat",
               ),
         leading: searchMode
             ? IconButton(
@@ -97,41 +105,50 @@ class _ChatListState extends State<ChatList> {
                   icon: Icon(Icons.search),
                   onPressed: () => setState(() => searchMode = true),
                 ),
-                PopupMenuButton(
-                  onSelected: (String choice) {
-                    switch (choice) {
-                      case "settings":
-                        Navigator.of(context).pushAndRemoveUntil(
-                          AppRoute.defaultRoute(
-                            context,
-                            SettingsView(),
-                          ),
-                          (r) => r.isFirst,
-                        );
-                        break;
-                      case "archive":
-                        Navigator.of(context).pushAndRemoveUntil(
-                          AppRoute.defaultRoute(
-                            context,
-                            Archive(),
-                          ),
-                          (r) => r.isFirst,
-                        );
-                        break;
-                    }
-                  },
-                  itemBuilder: (BuildContext context) =>
-                      <PopupMenuEntry<String>>[
-                    const PopupMenuItem<String>(
-                      value: "archive",
-                      child: Text('Archive'),
-                    ),
-                    const PopupMenuItem<String>(
-                      value: "settings",
-                      child: Text('Settings'),
-                    ),
-                  ],
-                ),
+                if (selectMode == SelectMode.share)
+                  IconButton(
+                    icon: Icon(Icons.close),
+                    onPressed: () {
+                      Matrix.of(context).shareContent = null;
+                      setState(() => selectMode = SelectMode.normal);
+                    },
+                  ),
+                if (selectMode == SelectMode.normal)
+                  PopupMenuButton(
+                    onSelected: (String choice) {
+                      switch (choice) {
+                        case "settings":
+                          Navigator.of(context).pushAndRemoveUntil(
+                            AppRoute.defaultRoute(
+                              context,
+                              SettingsView(),
+                            ),
+                            (r) => r.isFirst,
+                          );
+                          break;
+                        case "archive":
+                          Navigator.of(context).pushAndRemoveUntil(
+                            AppRoute.defaultRoute(
+                              context,
+                              Archive(),
+                            ),
+                            (r) => r.isFirst,
+                          );
+                          break;
+                      }
+                    },
+                    itemBuilder: (BuildContext context) =>
+                        <PopupMenuEntry<String>>[
+                      const PopupMenuItem<String>(
+                        value: "archive",
+                        child: Text('Archive'),
+                      ),
+                      const PopupMenuItem<String>(
+                        value: "settings",
+                        child: Text('Settings'),
+                      ),
+                    ],
+                  ),
               ],
       ),
       floatingActionButton: SpeedDial(

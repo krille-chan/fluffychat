@@ -42,6 +42,7 @@ class MatrixState extends State<Matrix> {
   FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
   FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
+  Map<String, dynamic> shareContent;
 
   String activeRoomId;
 
