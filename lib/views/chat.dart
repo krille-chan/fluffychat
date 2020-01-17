@@ -88,7 +88,7 @@ class _ChatState extends State<Chat> {
     super.dispose();
   }
 
-  final TextEditingController sendController = TextEditingController();
+  TextEditingController sendController = TextEditingController();
 
   void send() {
     if (sendController.text.isEmpty) return;
