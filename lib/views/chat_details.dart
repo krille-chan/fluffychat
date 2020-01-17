@@ -14,6 +14,7 @@ import 'package:fluffychat/views/invitation_selection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:link_text/link_text.dart';
 import 'package:toast/toast.dart';
 
 class ChatDetails extends StatefulWidget {
@@ -27,6 +28,7 @@ class ChatDetails extends StatefulWidget {
 
 class _ChatDetailsState extends State<ChatDetails> {
   List<User> members;
+  bool topicEditMode = false;
   void setDisplaynameAction(BuildContext context, String displayname) async {
     final MatrixState matrix = Matrix.of(context);
     final success = await matrix.tryRequestWithLoadingDialog(
@@ -35,6 +37,21 @@ class _ChatDetailsState extends State<ChatDetails> {
     if (success != false) {
       Toast.show(
         "Displayname has been changed",
+        context,
+        duration: Toast.LENGTH_LONG,
+      );
+    }
+  }
+
+  void setTopicAction(BuildContext context, String displayname) async {
+    setState(() => topicEditMode = false);
+    final MatrixState matrix = Matrix.of(context);
+    final success = await matrix.tryRequestWithLoadingDialog(
+      widget.room.setDescription(displayname),
+    );
+    if (success != false) {
+      Toast.show(
+        "Group description has been changed",
         context,
         duration: Toast.LENGTH_LONG,
       );
@@ -111,30 +128,63 @@ class _ChatDetailsState extends State<ChatDetails> {
                   children: <Widget>[
                     ContentBanner(widget.room.avatar),
                     Divider(height: 1),
-                    widget.room.canSendEvent("m.room.avatar") && !kIsWeb
+                    if (widget.room.canSendEvent("m.room.avatar") && !kIsWeb)
+                      ListTile(
+                        title: Text("Upload group avatar"),
+                        leading: Icon(Icons.camera),
+                        onTap: () => setAvatarAction(context),
+                      ),
+                    if (widget.room.canSendEvent("m.room.name"))
+                      ListTile(
+                        leading: Icon(Icons.edit),
+                        title: TextField(
+                          textInputAction: TextInputAction.done,
+                          onSubmitted: (s) => setDisplaynameAction(context, s),
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            labelText: "Set group name",
+                            labelStyle: TextStyle(color: Colors.black),
+                            hintText: (RoomNameCalculator(widget.room).name),
+                          ),
+                        ),
+                      ),
+                    topicEditMode
                         ? ListTile(
-                            title: Text("Upload group avatar"),
-                            leading: Icon(Icons.camera),
-                            onTap: () => setAvatarAction(context),
-                          )
-                        : Container(),
-                    widget.room.canSendEvent("m.room.name")
-                        ? ListTile(
-                            leading: Icon(Icons.edit),
                             title: TextField(
                               textInputAction: TextInputAction.done,
-                              onSubmitted: (s) =>
-                                  setDisplaynameAction(context, s),
+                              onSubmitted: (s) => setTopicAction(context, s),
+                              autofocus: true,
+                              minLines: 1,
+                              maxLines: 4,
                               decoration: InputDecoration(
                                 border: InputBorder.none,
-                                labelText: "Set group name",
-                                labelStyle: TextStyle(color: Colors.black),
-                                hintText:
-                                    (RoomNameCalculator(widget.room).name),
+                                labelText: "Group description:",
+                                labelStyle: TextStyle(
+                                    color: Theme.of(context).primaryColor,
+                                    fontWeight: FontWeight.bold),
+                                hintText: widget.room.topic ??
+                                    "Set group description",
                               ),
                             ),
                           )
-                        : Container(),
+                        : ListTile(
+                            title: Text("Group description:",
+                                style: TextStyle(
+                                    color: Theme.of(context).primaryColor,
+                                    fontWeight: FontWeight.bold)),
+                            subtitle: LinkText(
+                              text: widget.room.topic?.isEmpty ?? true
+                                  ? "Add a group description"
+                                  : widget.room.topic,
+                              textStyle: TextStyle(
+                                fontSize: 14,
+                                color: Colors.black,
+                              ),
+                            ),
+                            onTap: widget.room.canSendEvent("m.room.topic")
+                                ? () => setState(() => topicEditMode = true)
+                                : null,
+                          ),
                     ListTile(
                       title: Text(
                         "$actualMembersCount participant" +
