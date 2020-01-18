@@ -1,5 +1,7 @@
 # Version 0.4.0 - 2020-MM-DD
 ### New features
+- Avatars with name letters
+- Calc username colors
 ### Fixes
 
 # Version 0.3.0 - 2020-01-17

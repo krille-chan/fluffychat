@@ -214,7 +214,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                         : Container(),
                   ],
                 )
-              : i < members.length + 1 && false
+              : i < members.length + 1
                   ? ParticipantListItem(members[i - 1])
                   : ListTile(
                       title: Text(

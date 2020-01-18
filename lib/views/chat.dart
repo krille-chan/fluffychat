@@ -164,7 +164,10 @@ class _ChatState extends State<Chat> {
     typingUsers.removeWhere((User u) => u.id == client.userID);
 
     if (typingUsers.length == 1) {
-      typingText = "${typingUsers.first.calcDisplayname()} is typing...";
+      typingText = "is typing...";
+      if (typingUsers.first.id != room.directChatMatrixID) {
+        typingText = typingUsers.first.calcDisplayname() + " " + typingText;
+      }
     } else if (typingUsers.length == 2) {
       typingText =
           "${typingUsers.first.calcDisplayname()} and ${typingUsers[1].calcDisplayname()} are typing...";
