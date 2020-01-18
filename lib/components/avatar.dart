@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/utils/string_color.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -7,10 +8,11 @@ import 'matrix.dart';
 
 class Avatar extends StatelessWidget {
   final MxContent mxContent;
+  final String name;
   final double size;
   final Function onTap;
 
-  const Avatar(this.mxContent, {this.size = 40, this.onTap, Key key})
+  const Avatar(this.mxContent, this.name, {this.size = 40, this.onTap, Key key})
       : super(key: key);
 
   @override
@@ -21,6 +23,12 @@ class Avatar extends StatelessWidget {
       height: size * MediaQuery.of(context).devicePixelRatio,
       method: ThumbnailMethod.scale,
     );
+    String fallbackLetters = "@";
+    if ((name?.length ?? 0) >= 2) {
+      fallbackLetters = name.substring(0, 2);
+    } else if ((name?.length ?? 0) == 1) {
+      fallbackLetters = name;
+    }
     return InkWell(
       onTap: onTap,
       child: CircleAvatar(
@@ -34,9 +42,9 @@ class Avatar extends StatelessWidget {
                     src,
                   )
             : null,
-        backgroundColor: Theme.of(context).secondaryHeaderColor,
+        backgroundColor: name?.color ?? Theme.of(context).secondaryHeaderColor,
         child: mxContent.mxc.isEmpty
-            ? Text("@", style: TextStyle(color: Colors.blueGrey))
+            ? Text(fallbackLetters, style: TextStyle(color: Colors.white))
             : null,
       ),
     );

@@ -68,7 +68,10 @@ class InvitationSelection extends StatelessWidget {
               return ListView.builder(
                 itemCount: contacts.length,
                 itemBuilder: (BuildContext context, int i) => ListTile(
-                  leading: Avatar(contacts[i].avatarUrl),
+                  leading: Avatar(
+                    contacts[i].avatarUrl,
+                    contacts[i].calcDisplayname(),
+                  ),
                   title: Text(contacts[i].calcDisplayname()),
                   subtitle: Text(contacts[i].id),
                   onTap: () => inviteAction(context, contacts[i].id),

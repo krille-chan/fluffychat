@@ -4,6 +4,7 @@ import 'package:fluffychat/components/dialogs/redact_message_dialog.dart';
 import 'package:fluffychat/components/message_content.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
+import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/views/content_web_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -144,7 +145,7 @@ class Message extends StatelessWidget {
                         style: TextStyle(
                           color: ownMessage
                               ? textColor
-                              : Theme.of(context).primaryColor,
+                              : event.sender.calcDisplayname().color,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -172,6 +173,7 @@ class Message extends StatelessWidget {
         ? SizedBox(width: 40)
         : Avatar(
             event.sender.avatarUrl,
+            event.sender.calcDisplayname(),
             onTap: () => Navigator.of(context).push(
               AppRoute.defaultRoute(
                 context,
@@ -187,7 +189,7 @@ class Message extends StatelessWidget {
 
     return Padding(
       padding: EdgeInsets.only(
-          left: 8.0, right: 8.0, bottom: sameSender ? 4.0 : 12.0),
+          left: 8.0, right: 8.0, bottom: sameSender ? 4.0 : 8.0),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
         mainAxisAlignment: rowMainAxisAlignment,

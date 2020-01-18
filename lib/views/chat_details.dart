@@ -214,12 +214,18 @@ class _ChatDetailsState extends State<ChatDetails> {
                         : Container(),
                   ],
                 )
-              : i < members.length + 1
+              : i < members.length + 1 && false
                   ? ParticipantListItem(members[i - 1])
                   : ListTile(
                       title: Text(
                           "Load more ${actualMembersCount - members.length} participants"),
-                      leading: Icon(Icons.refresh),
+                      leading: CircleAvatar(
+                        backgroundColor: Colors.white,
+                        child: Icon(
+                          Icons.refresh,
+                          color: Colors.grey,
+                        ),
+                      ),
                       onTap: () => requestMoreMembersAction(context),
                     ),
         ),

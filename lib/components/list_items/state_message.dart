@@ -12,7 +12,11 @@ class StateMessage extends StatelessWidget {
   Widget build(BuildContext context) {
     if (event.type == EventTypes.Redaction) return Container();
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.only(
+        left: 8.0,
+        right: 8.0,
+        bottom: 8.0,
+      ),
       child: Opacity(
         opacity: 0.5,
         child: Bubble(

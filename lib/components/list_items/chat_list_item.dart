@@ -86,7 +86,7 @@ class ChatListItem extends StatelessWidget {
     return Material(
       color: activeChat ? Color(0xFFE8E8E8) : Colors.white,
       child: ListTile(
-        leading: Avatar(room.avatar),
+        leading: Avatar(room.avatar, room.displayname),
         title: Row(
           children: <Widget>[
             Expanded(
