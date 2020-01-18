@@ -1,4 +1,8 @@
-# Version 0.3.0 - 2020-MM-DD
+# Version 0.4.0 - 2020-MM-DD
+### New features
+### Fixes
+
+# Version 0.3.0 - 2020-01-17
 ### New features
 - Improved design
 - Implement signing up (Still needs a matrix.org fix)
