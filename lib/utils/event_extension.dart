@@ -59,6 +59,12 @@ extension LocalizedBody on Event {
         if (newMembership != oldMembership) {
           if (oldMembership == "invite" && newMembership == "join") {
             text = "$targetName has accepted the invitation";
+          } else if (oldMembership == "invite" && newMembership == "leave") {
+            if (this.stateKey == this.senderId) {
+              text = "$targetName has rejected the invitation";
+            } else {
+              text = "$senderName has withdrawn the invitation for $targetName";
+            }
           } else if (oldMembership == "leave" && newMembership == "join") {
             text = "$targetName has joined the chat";
           } else if (oldMembership == "join" && newMembership == "ban") {
