@@ -7,10 +7,12 @@ import 'package:fluffychat/components/dialogs/new_private_chat_dialog.dart';
 import 'package:fluffychat/components/list_items/chat_list_item.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/utils/app_route.dart';
+import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/views/archive.dart';
 import 'package:fluffychat/views/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 
 enum SelectMode { normal, multi_select, share }
 
@@ -57,7 +59,31 @@ class _ChatListState extends State<ChatList> {
     searchController.addListener(
       () => setState(() => null),
     );
+    getSharedData();
     super.initState();
+  }
+
+  StreamSubscription _intentDataStreamSubscription;
+
+  void processSharedText(String text) {
+    if (text.startsWith("https://matrix.to/#/")) {
+      UrlLauncher(context, text).openMatrixToUrl();
+    } else {
+      setState(() => Matrix.of(context).shareContent = {
+            "msgtype": "m.text",
+            "body": text,
+          });
+    }
+  }
+
+  void getSharedData() {
+    // For sharing or opening urls/text coming from outside the app while the app is in the memory
+    _intentDataStreamSubscription = ReceiveSharingIntent.getTextStream()
+        .listen(processSharedText, onError: (err) {
+      print("getLinkStream error: $err");
+    });
+    // For sharing or opening urls/text coming from outside the app while the app is closed
+    ReceiveSharingIntent.getInitialText().then(processSharedText);
   }
 
   @override
@@ -66,6 +92,7 @@ class _ChatListState extends State<ChatList> {
     searchController.removeListener(
       () => setState(() => null),
     );
+    _intentDataStreamSubscription?.cancel();
     super.dispose();
   }
 

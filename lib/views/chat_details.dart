@@ -13,9 +13,9 @@ import 'package:fluffychat/utils/room_state_enums_extensions.dart';
 import 'package:fluffychat/views/chat_list.dart';
 import 'package:fluffychat/views/invitation_selection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:link_text/link_text.dart';
-import 'package:share/share.dart';
 import 'package:toast/toast.dart';
 
 class ChatDetails extends StatefulWidget {
@@ -157,8 +157,13 @@ class _ChatDetailsState extends State<ChatDetails> {
             if (widget.room.canonicalAlias?.isNotEmpty ?? false)
               IconButton(
                 icon: Icon(Icons.share),
-                onPressed: () => Share.share(
-                    "https://matrix.to/#/${widget.room.canonicalAlias}"),
+                onPressed: () {
+                  Clipboard.setData(
+                    ClipboardData(text: widget.room.canonicalAlias),
+                  );
+                  Toast.show("Invitation link copied to clipboard", context,
+                      duration: 5);
+                },
               ),
             ChatSettingsPopupMenu(widget.room, false)
           ],
@@ -209,6 +214,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                               text: widget.room.topic?.isEmpty ?? true
                                   ? "Add a group description"
                                   : widget.room.topic,
+                              linkStyle: TextStyle(color: Colors.blueAccent),
                               textStyle: TextStyle(
                                 fontSize: 14,
                                 color: Colors.black,
