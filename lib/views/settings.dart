@@ -91,7 +91,7 @@ class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     final Client client = Matrix.of(context).client;
-    profileFuture ??= client.getProfileFromUserId(client.userID);
+    profileFuture ??= client.ownProfile;
     profileFuture.then((p) {
       if (mounted) setState(() => profile = p);
     });

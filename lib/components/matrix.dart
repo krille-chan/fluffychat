@@ -344,7 +344,7 @@ class MatrixState extends State<Matrix> {
   @override
   void initState() {
     if (widget.client == null) {
-      client = Client(widget.clientName, debug: true);
+      client = Client(widget.clientName, debug: false);
       if (!kIsWeb) {
         _initWithStore();
       } else {
