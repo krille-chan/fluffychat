@@ -214,11 +214,8 @@ extension LocalizedBody on Event {
 
     // Hide quotes
     if (hideQuotes) {
-      print("+++ Hide quites +++");
       List<String> lines = localizedBody.split("\n");
-      print("Lines with quotes: ${lines.length}");
       lines.removeWhere((s) => s.startsWith("> "));
-      print("Lines without quotes: ${lines.length}");
       localizedBody = lines.join("\n");
     }
 

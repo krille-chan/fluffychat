@@ -1,12 +1,27 @@
+import 'dart:async';
+
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/components/avatar.dart';
 import 'package:fluffychat/views/chat.dart';
 import 'package:flutter/material.dart';
+import 'package:share/share.dart';
 
 import '../matrix.dart';
 
-class NewPrivateChatDialog extends StatelessWidget {
-  final TextEditingController controller = TextEditingController();
+class NewPrivateChatDialog extends StatefulWidget {
+  @override
+  _NewPrivateChatDialogState createState() => _NewPrivateChatDialogState();
+}
+
+class _NewPrivateChatDialogState extends State<NewPrivateChatDialog> {
+  TextEditingController controller = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  bool loading = false;
+  String currentSearchTerm;
+  Map<String, dynamic> foundProfile;
+  Timer coolDown;
+  bool get correctMxId =>
+      foundProfile != null && foundProfile["user_id"] == "@$currentSearchTerm";
 
   void submitAction(BuildContext context) async {
     if (controller.text.isEmpty) return;
@@ -31,12 +46,53 @@ class NewPrivateChatDialog extends StatelessWidget {
     }
   }
 
+  void searchUserWithCoolDown(BuildContext context, String text) async {
+    coolDown?.cancel();
+    coolDown = Timer(
+      Duration(seconds: 1),
+      () => searchUser(context, text),
+    );
+  }
+
+  void searchUser(BuildContext context, String text) async {
+    if (text.isEmpty) {
+      setState(() {
+        foundProfile = null;
+      });
+    }
+    currentSearchTerm = text;
+    if (currentSearchTerm.isEmpty) return;
+    if (loading) return;
+    setState(() => loading = true);
+    final MatrixState matrix = Matrix.of(context);
+    final response = await matrix.tryRequestWithErrorToast(
+      matrix.client.jsonRequest(
+          type: HTTPType.POST,
+          action: "/client/r0/user_directory/search",
+          data: {
+            "search_term": text,
+            "limit": 1,
+          }),
+    );
+    print(response);
+    setState(() => loading = false);
+    if (response == false ||
+        !(response is Map) ||
+        (response["results"]?.isEmpty ?? true)) return;
+    print("Set...");
+    setState(() {
+      foundProfile = response["results"].first;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    final String defaultDomain = Matrix.of(context).client.userID.split(":")[1];
     return AlertDialog(
       title: Text("New private chat"),
       content: Column(
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Form(
             key: _formKey,
@@ -44,6 +100,7 @@ class NewPrivateChatDialog extends StatelessWidget {
               controller: controller,
               autofocus: true,
               autocorrect: false,
+              onChanged: (String text) => searchUserWithCoolDown(context, text),
               textInputAction: TextInputAction.go,
               onFieldSubmitted: (s) => submitAction(context),
               validator: (value) {
@@ -55,30 +112,84 @@ class NewPrivateChatDialog extends StatelessWidget {
                 if (mxid == matrix.client.userID) {
                   return "You cannot invite yourself";
                 }
-                if(!mxid.contains("@")) {
+                if (!mxid.contains("@")) {
                   return "Make sure the identifier is valid";
                 }
-                if(!mxid.contains(":")) {
+                if (!mxid.contains(":")) {
                   return "Make sure the identifier is valid";
                 }
                 return null;
               },
               decoration: InputDecoration(
                 labelText: "Enter a username",
-                icon: Icon(Icons.account_circle),
+                icon: loading
+                    ? Container(
+                        width: 24,
+                        height: 24,
+                        child: CircularProgressIndicator(strokeWidth: 1),
+                      )
+                    : correctMxId
+                        ? Avatar(
+                            MxContent(foundProfile["avatar_url"] ?? ""),
+                            foundProfile["display_name"] ??
+                                foundProfile["user_id"],
+                            size: 24,
+                          )
+                        : Icon(Icons.account_circle),
                 prefixText: "@",
-                hintText: "username:homeserver",
+                hintText: "username:$defaultDomain",
               ),
             ),
           ),
-          SizedBox(height: 16),
-          Text(
-            "Your username is ${Matrix.of(context).client.userID}",
-            style: TextStyle(
-              color: Colors.blueGrey,
-              fontSize: 12,
+          if (foundProfile != null && !correctMxId)
+            ListTile(
+              onTap: () {
+                setState(() {
+                  controller.text =
+                      currentSearchTerm = foundProfile["user_id"].substring(1);
+                });
+              },
+              leading: Avatar(
+                MxContent(foundProfile["avatar_url"] ?? ""),
+                foundProfile["display_name"] ?? foundProfile["user_id"],
+                //size: 24,
+              ),
+              contentPadding: EdgeInsets.all(0),
+              title: Text(
+                foundProfile["display_name"] ??
+                    foundProfile["user_id"].split(":").first.substring(1),
+                style: TextStyle(),
+                maxLines: 1,
+              ),
+              subtitle: Text(
+                foundProfile["user_id"],
+                maxLines: 1,
+                style: TextStyle(
+                  fontSize: 12,
+                ),
+              ),
             ),
-          ),
+          if (foundProfile == null || correctMxId)
+            ListTile(
+              trailing: Icon(
+                Icons.share,
+                size: 16,
+              ),
+              contentPadding: EdgeInsets.all(0),
+              onTap: () => Share.share(
+                  "https://matrix.to/#/${Matrix.of(context).client.userID}"),
+              title: Text(
+                "Your own username:",
+                style: TextStyle(
+                  color: Colors.blueGrey,
+                  fontSize: 12,
+                ),
+              ),
+              subtitle: Text(
+                Matrix.of(context).client.userID,
+              ),
+            ),
+          Divider(height: 1),
         ],
       ),
       actions: <Widget>[
