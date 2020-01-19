@@ -1,8 +1,8 @@
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/components/message_content.dart';
+import 'package:fluffychat/utils/event_extension.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/app_route.dart';
-import 'package:fluffychat/utils/room_name_calculator.dart';
+import 'package:fluffychat/utils/room_extension.dart';
 import 'package:fluffychat/views/chat.dart';
 import 'package:flutter/material.dart';
 import 'package:toast/toast.dart';
@@ -91,7 +91,7 @@ class ChatListItem extends StatelessWidget {
           children: <Widget>[
             Expanded(
               child: Text(
-                RoomNameCalculator(room).name,
+                room.getLocalizedDisplayname(context),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -117,9 +117,16 @@ class ChatListItem extends StatelessWidget {
                         color: Theme.of(context).primaryColor,
                       ),
                     )
-                  : MessageContent(
-                      room.lastEvent,
-                      textOnly: true,
+                  : Text(
+                      room.lastEvent.getLocalizedBody(context,
+                          withSenderNamePrefix: true, hideQuotes: true),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        decoration: room.lastEvent.redacted
+                            ? TextDecoration.lineThrough
+                            : null,
+                      ),
                     ),
             ),
             SizedBox(width: 8),

@@ -27,7 +27,7 @@ dependencies:
   famedlysdk:
     git:
       url: https://gitlab.com/famedly/famedlysdk.git
-      ref: c8633111e5f016cc3dd95f644a4e8767be5559f6
+      ref: 2545995bbe96a1d96fe176ab666f4dd03d591aa6
 
   localstorage: ^3.0.1+4
   bubble: ^1.1.9+1
@@ -44,6 +44,7 @@ dependencies:
   link_text: ^0.1.1
   path_provider: ^1.5.1
   webview_flutter: ^0.3.19+4
+  share: ^0.6.3+5
 
 dev_dependencies:
   flutter_test:

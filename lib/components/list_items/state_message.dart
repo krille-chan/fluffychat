@@ -1,8 +1,8 @@
 import 'package:bubble/bubble.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:flutter/material.dart';
-
-import '../message_content.dart';
+import 'package:fluffychat/utils/event_extension.dart';
+import 'package:link_text/link_text.dart';
 
 class StateMessage extends StatelessWidget {
   final Event event;
@@ -23,7 +23,13 @@ class StateMessage extends StatelessWidget {
           color: Colors.black,
           elevation: 0,
           alignment: Alignment.center,
-          child: MessageContent(event, textColor: Colors.white),
+          child: LinkText(
+            text: event.getLocalizedBody(context),
+            textStyle: TextStyle(
+              color: Colors.white,
+              decoration: event.redacted ? TextDecoration.lineThrough : null,
+            ),
+          ),
         ),
       ),
     );

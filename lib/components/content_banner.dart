@@ -12,11 +12,13 @@ class ContentBanner extends StatelessWidget {
   final double height;
   final IconData defaultIcon;
   final bool loading;
+  final Function onEdit;
 
   const ContentBanner(this.mxContent,
       {this.height = 400,
       this.defaultIcon = Icons.people_outline,
       this.loading = false,
+      this.onEdit,
       Key key})
       : super(key: key);
 
@@ -42,25 +44,46 @@ class ContentBanner extends StatelessWidget {
           : null,
       child: Container(
         height: 200,
-        color: Theme.of(context).secondaryHeaderColor,
-        child: !loading
-            ? mxContent.mxc?.isNotEmpty ?? false
-                ? kIsWeb
-                    ? Image.network(
-                        src,
-                        height: 200,
-                        fit: BoxFit.cover,
-                      )
-                    : CachedNetworkImage(
-                        imageUrl: src,
-                        height: 200,
-                        fit: BoxFit.cover,
-                        placeholder: (c, s) =>
-                            Center(child: CircularProgressIndicator()),
-                        errorWidget: (c, s, o) => Icon(Icons.error, size: 200),
-                      )
-                : Icon(defaultIcon, size: 200)
-            : Icon(defaultIcon, size: 200),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: Theme.of(context).secondaryHeaderColor,
+        ),
+        child: Stack(
+          children: <Widget>[
+            Positioned(
+              left: 0,
+              right: 0,
+              top: 0,
+              bottom: 0,
+              child: !loading
+                  ? mxContent.mxc?.isNotEmpty ?? false
+                      ? kIsWeb
+                          ? Image.network(
+                              src,
+                              height: 200,
+                              fit: BoxFit.cover,
+                            )
+                          : CachedNetworkImage(
+                              imageUrl: src,
+                              height: 200,
+                              fit: BoxFit.cover,
+                            )
+                      : Icon(defaultIcon, size: 200)
+                  : Icon(defaultIcon, size: 200),
+            ),
+            if (this.onEdit != null)
+              Container(
+                margin: EdgeInsets.all(8),
+                alignment: Alignment.bottomRight,
+                child: FloatingActionButton(
+                  mini: true,
+                  backgroundColor: Theme.of(context).primaryColor,
+                  child: Icon(Icons.file_upload),
+                  onPressed: onEdit,
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }

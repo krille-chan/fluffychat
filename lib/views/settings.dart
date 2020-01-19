@@ -7,7 +7,6 @@ import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/views/chat_list.dart';
 import 'package:fluffychat/views/sign_up.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:toast/toast.dart';
@@ -44,11 +43,7 @@ class _SettingsState extends State<Settings> {
     final MatrixState matrix = Matrix.of(context);
     final Map<String, dynamic> success =
         await matrix.tryRequestWithLoadingDialog(
-      matrix.client.jsonRequest(
-        type: HTTPType.PUT,
-        action: "/client/r0/profile/${matrix.client.userID}/displayname",
-        data: {"displayname": displayname},
-      ),
+      matrix.client.setDisplayname(displayname),
     );
     if (success != null && success.isEmpty) {
       Toast.show(
@@ -110,23 +105,8 @@ class _SettingsState extends State<Settings> {
             profile?.avatarUrl ?? MxContent(""),
             defaultIcon: Icons.account_circle,
             loading: profile == null,
+            onEdit: () => setAvatarAction(context),
           ),
-          ListTile(
-            title: Text(
-              "Profile",
-              style: TextStyle(
-                color: Theme.of(context).primaryColor,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          kIsWeb
-              ? Container()
-              : ListTile(
-                  title: Text("Upload avatar"),
-                  leading: Icon(Icons.camera),
-                  onTap: () => setAvatarAction(context),
-                ),
           ListTile(
             leading: Icon(Icons.edit),
             title: TextField(
@@ -141,6 +121,7 @@ class _SettingsState extends State<Settings> {
               ),
             ),
           ),
+          Divider(thickness: 8),
           ListTile(
             title: Text(
               "About",
@@ -170,6 +151,7 @@ class _SettingsState extends State<Settings> {
               title: Text("Source code"),
               onTap: () => launch(
                   "https://gitlab.com/ChristianPauly/fluffychat-flutter")),
+          Divider(thickness: 8),
           ListTile(
             title: Text(
               "Logout",

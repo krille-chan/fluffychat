@@ -4,7 +4,8 @@ import 'dart:io';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/utils/app_route.dart';
-import 'package:fluffychat/utils/room_name_calculator.dart';
+import 'package:fluffychat/utils/event_extension.dart';
+import 'package:fluffychat/utils/room_extension.dart';
 import 'package:fluffychat/utils/sqflite_store.dart';
 import 'package:fluffychat/views/chat.dart';
 import 'package:flutter/foundation.dart';
@@ -264,28 +265,12 @@ class MatrixState extends State<Matrix> {
               : "$unreadEvents unread messages";
 
           // Calculate the body
-          String body;
-          switch (event.messageType) {
-            case MessageTypes.Image:
-              body = "${event.sender.calcDisplayname()} sent a picture";
-              break;
-            case MessageTypes.File:
-              body = "${event.sender.calcDisplayname()} sent a file";
-              break;
-            case MessageTypes.Audio:
-              body = "${event.sender.calcDisplayname()} sent an audio";
-              break;
-            case MessageTypes.Video:
-              body = "${event.sender.calcDisplayname()} sent a video";
-              break;
-            default:
-              body = "${event.sender.calcDisplayname()}: ${event.body}";
-              break;
-          }
+          final String body = event.getLocalizedBody(context,
+              withSenderNamePrefix: true, hideQuotes: true);
 
           // The person object for the android message style notification
           final person = Person(
-            name: RoomNameCalculator(room).name,
+            name: room.getLocalizedDisplayname(context),
             icon: room.avatar.mxc.isEmpty
                 ? null
                 : await downloadAndSaveContent(
@@ -320,7 +305,10 @@ class MatrixState extends State<Matrix> {
           var platformChannelSpecifics = NotificationDetails(
               androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
           await _flutterLocalNotificationsPlugin.show(
-              0, RoomNameCalculator(room).name, body, platformChannelSpecifics,
+              0,
+              room.getLocalizedDisplayname(context),
+              body,
+              platformChannelSpecifics,
               payload: roomId);
         } catch (exception) {
           print("[Push] Error while processing notification: " +
@@ -356,7 +344,7 @@ class MatrixState extends State<Matrix> {
   @override
   void initState() {
     if (widget.client == null) {
-      client = Client(widget.clientName, debug: false);
+      client = Client(widget.clientName, debug: true);
       if (!kIsWeb) {
         _initWithStore();
       } else {

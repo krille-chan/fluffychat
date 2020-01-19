@@ -7,7 +7,7 @@ import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/chat_settings_popup_menu.dart';
 import 'package:fluffychat/components/list_items/message.dart';
 import 'package:fluffychat/components/matrix.dart';
-import 'package:fluffychat/utils/room_name_calculator.dart';
+import 'package:fluffychat/utils/room_extension.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -187,7 +187,7 @@ class _ChatState extends State<Chat> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(RoomNameCalculator(room).name),
+              Text(room.getLocalizedDisplayname(context)),
               AnimatedContainer(
                 duration: Duration(milliseconds: 500),
                 height: typingText.isEmpty ? 0 : 20,
@@ -237,14 +237,14 @@ class _ChatState extends State<Chat> {
                       controller: _scrollController,
                       itemBuilder: (BuildContext context, int i) => i == 0
                           ? AnimatedContainer(
-                              height: seenByText.isEmpty ? 0 : 36,
+                              height: seenByText.isEmpty ? 0 : 24,
                               duration: seenByText.isEmpty
                                   ? Duration(milliseconds: 0)
                                   : Duration(milliseconds: 500),
                               alignment: timeline.events.first.senderId ==
                                       client.userID
-                                  ? Alignment.centerRight
-                                  : Alignment.centerLeft,
+                                  ? Alignment.topRight
+                                  : Alignment.topLeft,
                               child: Text(
                                 seenByText,
                                 maxLines: 1,
@@ -253,7 +253,11 @@ class _ChatState extends State<Chat> {
                                   color: Theme.of(context).primaryColor,
                                 ),
                               ),
-                              padding: EdgeInsets.all(8),
+                              padding: EdgeInsets.only(
+                                left: 8,
+                                right: 8,
+                                bottom: 8,
+                              ),
                             )
                           : Message(timeline.events[i - 1],
                               nextEvent:

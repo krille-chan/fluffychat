@@ -82,8 +82,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: c8633111e5f016cc3dd95f644a4e8767be5559f6
-      resolved-ref: c8633111e5f016cc3dd95f644a4e8767be5559f6
+      ref: "2545995bbe96a1d96fe176ab666f4dd03d591aa6"
+      resolved-ref: "2545995bbe96a1d96fe176ab666f4dd03d591aa6"
       url: "https://gitlab.com/famedly/famedlysdk.git"
     source: git
     version: "0.0.1"
@@ -263,6 +263,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.5"
+  share:
+    dependency: "direct main"
+    description:
+      name: share
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.6.3+5"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -402,5 +409,5 @@ packages:
     source: hosted
     version: "2.2.0"
 sdks:
-  dart: ">=2.6.0 <3.0.0"
+  dart: ">=2.7.0 <3.0.0"
   flutter: ">=1.12.13+hotfix.5 <2.0.0"
