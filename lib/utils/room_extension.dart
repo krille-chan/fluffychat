@@ -5,7 +5,8 @@ extension LocalizedRoomDisplayname on Room {
   String getLocalizedDisplayname(BuildContext context) {
     if ((this.name?.isEmpty ?? true) &&
         (this.canonicalAlias?.isEmpty ?? true) &&
-        !this.isDirectChat) {
+        !this.isDirectChat &&
+        this.mHeroes.isNotEmpty) {
       return "Group with ${this.displayname}";
     }
     return this.displayname;
