@@ -397,7 +397,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Group is public": "Gruppe ist öffentlich",
+  "Group is public": "Öffentliche Gruppe",
   "@Group is public": {
     "type": "text",
     "placeholders": {}

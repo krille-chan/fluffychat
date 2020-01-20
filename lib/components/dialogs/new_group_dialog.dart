@@ -62,7 +62,6 @@ class _NewGroupDialogState extends State<NewGroupDialog> {
           TextField(
             controller: controller,
             autocorrect: false,
-            autofocus: true,
             textInputAction: TextInputAction.go,
             onSubmitted: (s) => submitAction(context),
             decoration: InputDecoration(

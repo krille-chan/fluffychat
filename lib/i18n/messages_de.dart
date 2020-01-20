@@ -175,7 +175,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Group" : MessageLookupByLibrary.simpleMessage("Gruppe"),
     "Group description" : MessageLookupByLibrary.simpleMessage("Gruppenbeschreibung"),
     "Group description has been changed" : MessageLookupByLibrary.simpleMessage("Gruppenbeschreibung wurde geändert"),
-    "Group is public" : MessageLookupByLibrary.simpleMessage("Gruppe ist öffentlich"),
+    "Group is public" : MessageLookupByLibrary.simpleMessage("Öffentliche Gruppe"),
     "Guests are forbidden" : MessageLookupByLibrary.simpleMessage("Gäste sind verboten"),
     "Guests can join" : MessageLookupByLibrary.simpleMessage("Gäste dürfen beitreten"),
     "Help" : MessageLookupByLibrary.simpleMessage("Hilfe"),
