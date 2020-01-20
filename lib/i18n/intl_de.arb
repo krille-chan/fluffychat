@@ -1,0 +1,9 @@
+{
+  "@@last_modified": "2020-01-20T09:30:07.159333",
+  "title": "FluffyChat",
+  "@title": {
+    "description": "Title for the application",
+    "type": "text",
+    "placeholders": {}
+  }
+}

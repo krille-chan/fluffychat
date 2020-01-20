@@ -2,6 +2,7 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/views/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'components/matrix.dart';
 import 'views/chat_list.dart';
@@ -46,6 +47,15 @@ class App extends StatelessWidget {
             iconTheme: IconThemeData(color: Colors.black),
           ),
         ),
+        localizationsDelegates: [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: [
+          const Locale('en'), // English
+          const Locale('de'), // German
+        ],
         home: Builder(
           builder: (BuildContext context) => FutureBuilder<LoginState>(
             future: Matrix.of(context).client.onLoginStateChanged.stream.first,

@@ -1,0 +1,79 @@
+{
+  "@@last_modified": "2020-01-20T09:50:21.386565",
+  "Close": "Close",
+  "@Close": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Confirm": "Confirm",
+  "@Confirm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Create": "Create",
+  "@Create": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Create new group": "Create new group",
+  "@Create new group": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Enter a group name": "Enter a group name",
+  "@Enter a group name": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Enter a username": "Enter a username",
+  "@Enter a username": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Group is public": "Group is public",
+  "@Group is public": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Make sure the identifier is valid": "Make sure the identifier is valid",
+  "@Make sure the identifier is valid": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "New private chat": "New private chat",
+  "@New private chat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "(Optional) Group name": "(Optional) Group name",
+  "@(Optional) Group name": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Please enter a matrix identifier": "Please enter a matrix identifier",
+  "@Please enter a matrix identifier": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "title": "FluffyChat",
+  "@title": {
+    "description": "Title for the application",
+    "type": "text",
+    "placeholders": {}
+  },
+  "Username": "Username",
+  "@Username": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "You cannot invite yourself": "You cannot invite yourself",
+  "@You cannot invite yourself": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Your own username": "Your own username",
+  "@Your own username": {
+    "type": "text",
+    "placeholders": {}
+  }
+}

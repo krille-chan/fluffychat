@@ -1,3 +1,4 @@
+import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/views/chat.dart';
 import 'package:fluffychat/views/invitation_selection.dart';
 import 'package:flutter/material.dart';
@@ -54,7 +55,7 @@ class _NewGroupDialogState extends State<NewGroupDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text("Create new group"),
+      title: Text(I18n.of(context).createNewGroup),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
@@ -65,12 +66,12 @@ class _NewGroupDialogState extends State<NewGroupDialog> {
             textInputAction: TextInputAction.go,
             onSubmitted: (s) => submitAction(context),
             decoration: InputDecoration(
-                labelText: "(Optional) Group name",
+                labelText: I18n.of(context).optionalGroupName,
                 icon: Icon(Icons.people),
-                hintText: "Enter a group name"),
+                hintText: I18n.of(context).enterAGroupName),
           ),
           SwitchListTile(
-            title: Text("Group is public"),
+            title: Text(I18n.of(context).groupIsPublic),
             value: publicGroup,
             onChanged: (bool b) => setState(() => publicGroup = b),
           ),
@@ -78,14 +79,14 @@ class _NewGroupDialogState extends State<NewGroupDialog> {
       ),
       actions: <Widget>[
         FlatButton(
-          child: Text("Close".toUpperCase(),
+          child: Text(I18n.of(context).close.toUpperCase(),
               style: TextStyle(color: Colors.blueGrey)),
           onPressed: () {
             Navigator.of(context).pop();
           },
         ),
         FlatButton(
-          child: Text("Create".toUpperCase()),
+          child: Text(I18n.of(context).create.toUpperCase()),
           onPressed: () => submitAction(context),
         ),
       ],

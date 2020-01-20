@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/avatar.dart';
+import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/views/chat.dart';
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
@@ -74,12 +75,10 @@ class _NewPrivateChatDialogState extends State<NewPrivateChatDialog> {
             "limit": 1,
           }),
     );
-    print(response);
     setState(() => loading = false);
     if (response == false ||
         !(response is Map) ||
         (response["results"]?.isEmpty ?? true)) return;
-    print("Set...");
     setState(() {
       foundProfile = response["results"].first;
     });
@@ -89,7 +88,7 @@ class _NewPrivateChatDialogState extends State<NewPrivateChatDialog> {
   Widget build(BuildContext context) {
     final String defaultDomain = Matrix.of(context).client.userID.split(":")[1];
     return AlertDialog(
-      title: Text("New private chat"),
+      title: Text(I18n.of(context).newPrivateChat),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -105,23 +104,23 @@ class _NewPrivateChatDialogState extends State<NewPrivateChatDialog> {
               onFieldSubmitted: (s) => submitAction(context),
               validator: (value) {
                 if (value.isEmpty) {
-                  return 'Please enter a matrix identifier';
+                  return I18n.of(context).pleaseEnterAMatrixIdentifier;
                 }
                 final MatrixState matrix = Matrix.of(context);
                 String mxid = "@" + controller.text.trim();
                 if (mxid == matrix.client.userID) {
-                  return "You cannot invite yourself";
+                  return I18n.of(context).youCannotInviteYourself;
                 }
                 if (!mxid.contains("@")) {
-                  return "Make sure the identifier is valid";
+                  return I18n.of(context).makeSureTheIdentifierIsValid;
                 }
                 if (!mxid.contains(":")) {
-                  return "Make sure the identifier is valid";
+                  return I18n.of(context).makeSureTheIdentifierIsValid;
                 }
                 return null;
               },
               decoration: InputDecoration(
-                labelText: "Enter a username",
+                labelText: I18n.of(context).enterAUsername,
                 icon: loading
                     ? Container(
                         width: 24,
@@ -137,7 +136,8 @@ class _NewPrivateChatDialogState extends State<NewPrivateChatDialog> {
                           )
                         : Icon(Icons.account_circle),
                 prefixText: "@",
-                hintText: "username:$defaultDomain",
+                hintText:
+                    "${I18n.of(context).username.toLowerCase()}:$defaultDomain",
               ),
             ),
           ),
@@ -179,7 +179,7 @@ class _NewPrivateChatDialogState extends State<NewPrivateChatDialog> {
               onTap: () => Share.share(
                   "https://matrix.to/#/${Matrix.of(context).client.userID}"),
               title: Text(
-                "Your own username:",
+                "${I18n.of(context).yourOwnUsername}:",
                 style: TextStyle(
                   color: Colors.blueGrey,
                   fontSize: 12,
@@ -194,14 +194,14 @@ class _NewPrivateChatDialogState extends State<NewPrivateChatDialog> {
       ),
       actions: <Widget>[
         FlatButton(
-          child: Text("Close".toUpperCase(),
+          child: Text(I18n.of(context).close.toUpperCase(),
               style: TextStyle(color: Colors.blueGrey)),
           onPressed: () {
             Navigator.of(context).pop();
           },
         ),
         FlatButton(
-          child: Text("Continue".toUpperCase()),
+          child: Text(I18n.of(context).confirm.toUpperCase()),
           onPressed: () => submitAction(context),
         ),
       ],
