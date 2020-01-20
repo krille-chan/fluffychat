@@ -280,7 +280,7 @@
       "username": {}
     }
   },
-  "Create new group": "Create new group",
+  "Create new group": "Neue Gruppe",
   "@Create new group": {
     "type": "text",
     "placeholders": {}

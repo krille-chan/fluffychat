@@ -157,7 +157,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Could not set displayname" : MessageLookupByLibrary.simpleMessage("Anzeigename konnte nicht gesetzt werden"),
     "Create" : MessageLookupByLibrary.simpleMessage("Create"),
     "Create account now" : MessageLookupByLibrary.simpleMessage("Account jetzt erstellen"),
-    "Create new group" : MessageLookupByLibrary.simpleMessage("Create new group"),
+    "Create new group" : MessageLookupByLibrary.simpleMessage("Neue Gruppe"),
     "Delete" : MessageLookupByLibrary.simpleMessage("Löschen"),
     "Delete message" : MessageLookupByLibrary.simpleMessage("Nachricht löschen"),
     "Discard picture" : MessageLookupByLibrary.simpleMessage("Bild verwerfen"),
