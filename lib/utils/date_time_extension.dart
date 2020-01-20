@@ -1,15 +1,8 @@
+import 'package:fluffychat/i18n/i18n.dart';
 import 'package:flutter/material.dart';
 
 /// Provides extra functionality for formatting the time.
 extension DateTimeExtension on DateTime {
-  @Deprecated('Use [millisecondsSinceEpoch] instead.')
-  num toTimeStamp() => this.millisecondsSinceEpoch;
-
-  @deprecated
-  String toTimeString() => localizedTimeOfDay(null);
-  @deprecated
-  String toEventTimeString() => localizedTime(null);
-
   operator <(DateTime other) {
     return this.millisecondsSinceEpoch < other.millisecondsSinceEpoch;
   }
@@ -41,7 +34,8 @@ extension DateTimeExtension on DateTime {
   /// Returns a simple time String.
   /// TODO: Add localization
   String localizedTimeOfDay(BuildContext context) {
-    return "${_z(this.hour % 12)}:${_z(this.minute)} ${this.hour > 11 ? 'pm' : 'am'}";
+    return I18n.of(context).timeOfDay(_z(this.hour % 12), _z(this.hour),
+        _z(this.minute), this.hour > 11 ? 'pm' : 'am');
   }
 
   /// Returns [localizedTimeOfDay()] if the ChatTime is today, the name of the week
@@ -63,24 +57,29 @@ extension DateTimeExtension on DateTime {
     } else if (sameWeek) {
       switch (this.weekday) {
         case 1:
-          return "Monday";
+          return I18n.of(context).monday;
         case 2:
-          return "Tuesday";
+          return I18n.of(context).tuesday;
         case 3:
-          return "Wednesday";
+          return I18n.of(context).wednesday;
         case 4:
-          return "Thursday";
+          return I18n.of(context).thursday;
         case 5:
-          return "Friday";
+          return I18n.of(context).friday;
         case 6:
-          return "Saturday";
+          return I18n.of(context).saturday;
         case 7:
-          return "Sunday";
+          return I18n.of(context).sunday;
       }
     } else if (sameYear) {
-      return "${this.month.toString().padLeft(2, '0')}-${this.day.toString().padLeft(2, '0')}";
+      return I18n.of(context).dateWithoutYear(
+          this.month.toString().padLeft(2, '0'),
+          this.day.toString().padLeft(2, '0'));
     }
-    return "${this.year.toString()}-${this.month.toString().padLeft(2, '0')}-${this.day.toString().padLeft(2, '0')}";
+    return I18n.of(context).dateWithYear(
+        this.year.toString(),
+        this.month.toString().padLeft(2, '0'),
+        this.day.toString().padLeft(2, '0'));
   }
 
   /// If the DateTime is today, this returns [localizedTimeOfDay()], if not it also
@@ -94,7 +93,8 @@ extension DateTimeExtension on DateTime {
     bool sameDay = sameYear && now.month == this.month && now.day == this.day;
 
     if (sameDay) return localizedTimeOfDay(context);
-    return "${localizedTimeShort(context)}, ${localizedTimeOfDay(context)}";
+    return I18n.of(context).dateAndTimeOfDay(
+        localizedTimeShort(context), localizedTimeOfDay(context));
   }
 
   static String _z(int i) => i < 10 ? "0${i.toString()}" : i.toString();

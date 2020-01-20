@@ -6,6 +6,7 @@ import 'package:fluffychat/components/dialogs/new_group_dialog.dart';
 import 'package:fluffychat/components/dialogs/new_private_chat_dialog.dart';
 import 'package:fluffychat/components/list_items/chat_list_item.dart';
 import 'package:fluffychat/components/matrix.dart';
+import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/views/archive.dart';
@@ -112,11 +113,13 @@ class _ChatListState extends State<ChatList> {
                 controller: searchController,
                 decoration: InputDecoration(
                   border: InputBorder.none,
-                  hintText: "Search for a chat",
+                  hintText: I18n.of(context).searchForAChat,
                 ),
               )
             : Text(
-                selectMode == SelectMode.share ? "Share" : "FluffyChat",
+                selectMode == SelectMode.share
+                    ? I18n.of(context).share
+                    : I18n.of(context).fluffychat,
               ),
         leading: searchMode
             ? IconButton(
@@ -166,13 +169,13 @@ class _ChatListState extends State<ChatList> {
                     },
                     itemBuilder: (BuildContext context) =>
                         <PopupMenuEntry<String>>[
-                      const PopupMenuItem<String>(
+                      PopupMenuItem<String>(
                         value: "archive",
-                        child: Text('Archive'),
+                        child: Text(I18n.of(context).archive),
                       ),
-                      const PopupMenuItem<String>(
+                      PopupMenuItem<String>(
                         value: "settings",
-                        child: Text('Settings'),
+                        child: Text(I18n.of(context).settings),
                       ),
                     ],
                   ),
@@ -185,7 +188,7 @@ class _ChatListState extends State<ChatList> {
           SpeedDialChild(
             child: Icon(Icons.people_outline),
             backgroundColor: Colors.blue,
-            label: 'Create new group',
+            label: I18n.of(context).createNewGroup,
             labelStyle: TextStyle(fontSize: 18.0),
             onTap: () => showDialog(
               context: context,
@@ -195,7 +198,7 @@ class _ChatListState extends State<ChatList> {
           SpeedDialChild(
             child: Icon(Icons.person_add),
             backgroundColor: Colors.green,
-            label: 'New private chat',
+            label: I18n.of(context).newPrivateChat,
             labelStyle: TextStyle(fontSize: 18.0),
             onTap: () => showDialog(
                 context: context,
@@ -224,8 +227,8 @@ class _ChatListState extends State<ChatList> {
                       color: Colors.grey,
                     ),
                     Text(searchMode
-                        ? "No rooms found..."
-                        : "Start your first chat :-)"),
+                        ? I18n.of(context).noRoomsFound
+                        : I18n.of(context).startYourFirstChat),
                   ],
                 ),
               );

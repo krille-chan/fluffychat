@@ -7,6 +7,7 @@ import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/chat_settings_popup_menu.dart';
 import 'package:fluffychat/components/list_items/message.dart';
 import 'package:fluffychat/components/matrix.dart';
+import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/utils/room_extension.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -61,13 +62,16 @@ class _ChatState extends State<Chat> {
           r.user.id == room.client.userID ||
           r.user.id == timeline.events.first.senderId);
       if (lastReceipts.length == 1) {
-        seenByText = "Seen by ${lastReceipts.first.user.calcDisplayname()}";
+        seenByText = I18n.of(context)
+            .seenByUser(lastReceipts.first.user.calcDisplayname());
       } else if (lastReceipts.length == 2) {
-        seenByText =
-            "Seen by ${lastReceipts.first.user.calcDisplayname()} and ${lastReceipts[1].user.calcDisplayname()}";
+        seenByText = seenByText = I18n.of(context).seenByUserAndUser(
+            lastReceipts.first.user.calcDisplayname(),
+            lastReceipts[1].user.calcDisplayname());
       } else if (lastReceipts.length > 2) {
-        seenByText =
-            "Seen by ${lastReceipts.first.user.calcDisplayname()} and ${lastReceipts.length - 1} others";
+        seenByText = I18n.of(context).seenByUserAndCountOthers(
+            lastReceipts.first.user.calcDisplayname(),
+            (lastReceipts.length - 1).toString());
       }
     }
     setState(() {
@@ -98,7 +102,7 @@ class _ChatState extends State<Chat> {
 
   void sendFileAction(BuildContext context) async {
     if (kIsWeb) {
-      return Toast.show("Not supported in web", context);
+      return Toast.show(I18n.of(context).notSupportedInWeb, context);
     }
     File file = await FilePicker.getFile();
     if (file == null) return;
@@ -111,7 +115,7 @@ class _ChatState extends State<Chat> {
 
   void sendImageAction(BuildContext context) async {
     if (kIsWeb) {
-      return Toast.show("Not supported in web", context);
+      return Toast.show(I18n.of(context).notSupportedInWeb, context);
     }
     File file = await ImagePicker.pickImage(
         source: ImageSource.gallery,
@@ -128,7 +132,7 @@ class _ChatState extends State<Chat> {
 
   void openCameraAction(BuildContext context) async {
     if (kIsWeb) {
-      return Toast.show("Not supported in web", context);
+      return Toast.show(I18n.of(context).notSupportedInWeb, context);
     }
     File file = await ImagePicker.pickImage(
         source: ImageSource.camera,
@@ -149,8 +153,13 @@ class _ChatState extends State<Chat> {
     Client client = matrix.client;
     room ??= client.getRoomById(widget.id);
     if (room == null) {
-      return Center(
-        child: Text("You are no longer participating in this chat"),
+      return Scaffold(
+        appBar: AppBar(
+          title: Text(I18n.of(context).oopsSomethingWentWrong),
+        ),
+        body: Center(
+          child: Text(I18n.of(context).youAreNoLongerParticipatingInThisChat),
+        ),
       );
     }
     matrix.activeRoomId = widget.id;
@@ -164,16 +173,19 @@ class _ChatState extends State<Chat> {
     typingUsers.removeWhere((User u) => u.id == client.userID);
 
     if (typingUsers.length == 1) {
-      typingText = "is typing...";
+      typingText = I18n.of(context).isTyping;
       if (typingUsers.first.id != room.directChatMatrixID) {
-        typingText = typingUsers.first.calcDisplayname() + " " + typingText;
+        typingText =
+            I18n.of(context).userIsTyping(typingUsers.first.calcDisplayname());
       }
     } else if (typingUsers.length == 2) {
-      typingText =
-          "${typingUsers.first.calcDisplayname()} and ${typingUsers[1].calcDisplayname()} are typing...";
+      typingText = I18n.of(context).userAndUserAreTyping(
+          typingUsers.first.calcDisplayname(),
+          typingUsers[1].calcDisplayname());
     } else if (typingUsers.length > 2) {
-      typingText =
-          "${typingUsers.first.calcDisplayname()} and ${typingUsers.length - 1} others are typing...";
+      typingText = I18n.of(context).userAndOthersAreTyping(
+          typingUsers.first.calcDisplayname(),
+          (typingUsers.length - 1).toString());
     }
 
     return AdaptivePageLayout(
@@ -298,7 +310,7 @@ class _ChatState extends State<Chat> {
                                   },
                                   itemBuilder: (BuildContext context) =>
                                       <PopupMenuEntry<String>>[
-                                    const PopupMenuItem<String>(
+                                    PopupMenuItem<String>(
                                       value: "file",
                                       child: ListTile(
                                         leading: CircleAvatar(
@@ -306,11 +318,11 @@ class _ChatState extends State<Chat> {
                                           foregroundColor: Colors.white,
                                           child: Icon(Icons.attachment),
                                         ),
-                                        title: Text('Send file'),
+                                        title: Text(I18n.of(context).sendFile),
                                         contentPadding: EdgeInsets.all(0),
                                       ),
                                     ),
-                                    const PopupMenuItem<String>(
+                                    PopupMenuItem<String>(
                                       value: "image",
                                       child: ListTile(
                                         leading: CircleAvatar(
@@ -318,11 +330,11 @@ class _ChatState extends State<Chat> {
                                           foregroundColor: Colors.white,
                                           child: Icon(Icons.image),
                                         ),
-                                        title: Text('Send image'),
+                                        title: Text(I18n.of(context).sendImage),
                                         contentPadding: EdgeInsets.all(0),
                                       ),
                                     ),
-                                    const PopupMenuItem<String>(
+                                    PopupMenuItem<String>(
                                       value: "camera",
                                       child: ListTile(
                                         leading: CircleAvatar(
@@ -330,7 +342,8 @@ class _ChatState extends State<Chat> {
                                           foregroundColor: Colors.white,
                                           child: Icon(Icons.camera),
                                         ),
-                                        title: Text('Open camera'),
+                                        title:
+                                            Text(I18n.of(context).openCamera),
                                         contentPadding: EdgeInsets.all(0),
                                       ),
                                     ),
@@ -349,7 +362,7 @@ class _ChatState extends State<Chat> {
                               onSubmitted: (t) => send(),
                               controller: sendController,
                               decoration: InputDecoration(
-                                hintText: "Write a message...",
+                                hintText: I18n.of(context).writeAMessage,
                                 border: InputBorder.none,
                               ),
                               onChanged: (String text) {

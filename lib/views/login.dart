@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/matrix.dart';
+import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:flutter/material.dart';
 
@@ -26,12 +27,12 @@ class _LoginState extends State<Login> {
   void login(BuildContext context) async {
     MatrixState matrix = Matrix.of(context);
     if (usernameController.text.isEmpty) {
-      setState(() => usernameError = "Please enter your username.");
+      setState(() => usernameError = I18n.of(context).pleaseEnterYourUsername);
     } else {
       setState(() => usernameError = null);
     }
     if (passwordController.text.isEmpty) {
-      setState(() => passwordError = "Please enter your password.");
+      setState(() => passwordError = I18n.of(context).pleaseEnterYourPassword);
     } else {
       setState(() => passwordError = null);
     }
@@ -51,12 +52,13 @@ class _LoginState extends State<Login> {
       print("[Login] Check server...");
       setState(() => loading = true);
       if (!await matrix.client.checkServer(homeserver)) {
-        setState(() => serverError = "Homeserver is not compatible.");
+        setState(
+            () => serverError = I18n.of(context).homeserverIsNotCompatible);
 
         return setState(() => loading = false);
       }
     } catch (exception) {
-      setState(() => serverError = "Connection attempt failed!");
+      setState(() => serverError = I18n.of(context).connectionAttemptFailed);
       return setState(() => loading = false);
     }
     try {
@@ -93,6 +95,7 @@ class _LoginState extends State<Login> {
     return Scaffold(
       appBar: AppBar(
         title: TextField(
+          autocorrect: false,
           controller: serverController,
           decoration: InputDecoration(
               icon: Icon(Icons.domain),
@@ -125,11 +128,13 @@ class _LoginState extends State<Login> {
               child: Icon(Icons.account_box),
             ),
             title: TextField(
+              autocorrect: false,
               controller: usernameController,
               decoration: InputDecoration(
-                  hintText: "@username:domain",
+                  hintText:
+                      "@${I18n.of(context).username.toLowerCase()}:domain",
                   errorText: usernameError,
-                  labelText: "Username"),
+                  labelText: I18n.of(context).username),
             ),
           ),
           ListTile(
@@ -138,6 +143,7 @@ class _LoginState extends State<Login> {
               child: Icon(Icons.lock),
             ),
             title: TextField(
+              autocorrect: false,
               controller: passwordController,
               obscureText: !showPassword,
               onSubmitted: (t) => login(context),
@@ -150,7 +156,7 @@ class _LoginState extends State<Login> {
                     onPressed: () =>
                         setState(() => showPassword = !showPassword),
                   ),
-                  labelText: "Password"),
+                  labelText: I18n.of(context).password),
             ),
           ),
           SizedBox(height: 20),
@@ -165,7 +171,7 @@ class _LoginState extends State<Login> {
               child: loading
                   ? CircularProgressIndicator()
                   : Text(
-                      "Login",
+                      I18n.of(context).login,
                       style: TextStyle(color: Colors.white, fontSize: 16),
                     ),
               onPressed: () => loading ? null : login(context),

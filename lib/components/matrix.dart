@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/utils/event_extension.dart';
 import 'package:fluffychat/utils/room_extension.dart';
@@ -131,7 +132,7 @@ class MatrixState extends State<Matrix> {
           children: <Widget>[
             CircularProgressIndicator(),
             SizedBox(width: 16),
-            Text("Loading... Please wait"),
+            Text(I18n.of(context).loadingPleaseWait),
           ],
         ),
       ),
@@ -167,9 +168,9 @@ class MatrixState extends State<Matrix> {
     final String token = await _firebaseMessaging.getToken();
     if (token?.isEmpty ?? true) {
       return Toast.show(
-        "Push notifications disabled.",
+        I18n.of(context).noGoogleServicesWarning,
         context,
-        duration: Toast.LENGTH_LONG,
+        duration: 10,
       );
     }
     await client.setPushers(
@@ -261,8 +262,9 @@ class MatrixState extends State<Matrix> {
 
           // Calculate title
           final String title = unread > 1
-              ? "$unreadEvents unread messages in $unread chats"
-              : "$unreadEvents unread messages";
+              ? I18n.of(context).unreadMessagesInChats(
+                  unreadEvents.toString(), unread.toString())
+              : I18n.of(context).unreadMessages(unreadEvents.toString());
 
           // Calculate the body
           final String body = event.getLocalizedBody(context,
@@ -300,7 +302,7 @@ class MatrixState extends State<Matrix> {
               ),
               importance: Importance.Max,
               priority: Priority.High,
-              ticker: 'New message in FluffyChat');
+              ticker: I18n.of(context).newMessageInFluffyChat);
           var iOSPlatformChannelSpecifics = IOSNotificationDetails();
           var platformChannelSpecifics = NotificationDetails(
               androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);

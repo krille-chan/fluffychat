@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/views/chat_details.dart';
 import 'package:fluffychat/views/chat_list.dart';
@@ -39,25 +40,25 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
         );
     List<PopupMenuEntry<String>> items = <PopupMenuEntry<String>>[
       widget.room.pushRuleState == PushRuleState.notify
-          ? const PopupMenuItem<String>(
+          ? PopupMenuItem<String>(
               value: "mute",
-              child: Text('Mute chat'),
+              child: Text(I18n.of(context).muteChat),
             )
-          : const PopupMenuItem<String>(
+          : PopupMenuItem<String>(
               value: "unmute",
-              child: Text('Unmute chat'),
+              child: Text(I18n.of(context).unmuteChat),
             ),
-      const PopupMenuItem<String>(
+      PopupMenuItem<String>(
         value: "leave",
-        child: Text('Leave'),
+        child: Text(I18n.of(context).leave),
       ),
     ];
     if (widget.displayChatDetails) {
       items.insert(
         0,
-        const PopupMenuItem<String>(
+        PopupMenuItem<String>(
           value: "details",
-          child: Text('Chat details'),
+          child: Text(I18n.of(context).chatDetails),
         ),
       );
     }

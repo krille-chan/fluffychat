@@ -1,4 +1,5 @@
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/views/chat.dart';
 import 'package:flutter/material.dart';
@@ -43,45 +44,50 @@ class ParticipantListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const Map<Membership, String> membershipBatch = {
+    Map<Membership, String> membershipBatch = {
       Membership.join: "",
-      Membership.ban: "Banned",
-      Membership.invite: "Invited",
-      Membership.leave: "Left",
+      Membership.ban: I18n.of(context).banned,
+      Membership.invite: I18n.of(context).invited,
+      Membership.leave: I18n.of(context).leftTheChat,
     };
     final String permissionBatch = user.powerLevel == 100
-        ? "Admin"
-        : user.powerLevel >= 50 ? "Moderator" : "";
+        ? I18n.of(context).admin
+        : user.powerLevel >= 50 ? I18n.of(context).moderator : "";
     List<PopupMenuEntry<String>> items = <PopupMenuEntry<String>>[];
     if (user.canChangePowerLevel &&
         user.room.ownPowerLevel == 100 &&
         user.powerLevel != 100) {
       items.add(
-        PopupMenuItem(child: Text("Make an admin"), value: "admin"),
+        PopupMenuItem(
+            child: Text(I18n.of(context).makeAnAdmin), value: "admin"),
       );
     }
     if (user.canChangePowerLevel && user.powerLevel != 0) {
       items.add(
-        PopupMenuItem(child: Text("Revoke all permissions"), value: "user"),
+        PopupMenuItem(
+            child: Text(I18n.of(context).revokeAllPermissions), value: "user"),
       );
     }
     if (user.canKick) {
       items.add(
-        PopupMenuItem(child: Text("Kick from group"), value: "kick"),
+        PopupMenuItem(
+            child: Text(I18n.of(context).kickFromChat), value: "kick"),
       );
     }
     if (user.canBan && user.membership != Membership.ban) {
       items.add(
-        PopupMenuItem(child: Text("Ban from group"), value: "ban"),
+        PopupMenuItem(child: Text(I18n.of(context).banFromChat), value: "ban"),
       );
     } else if (user.canBan && user.membership == Membership.ban) {
       items.add(
-        PopupMenuItem(child: Text("Remove exile"), value: "unban"),
+        PopupMenuItem(
+            child: Text(I18n.of(context).removeExile), value: "unban"),
       );
     }
     if (user.id != Matrix.of(context).client.userID) {
       items.add(
-        PopupMenuItem(child: Text("Send a message"), value: "message"),
+        PopupMenuItem(
+            child: Text(I18n.of(context).sendAMessage), value: "message"),
       );
     }
     return PopupMenuButton(

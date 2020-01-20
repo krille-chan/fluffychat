@@ -4,6 +4,7 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/content_banner.dart';
 import 'package:fluffychat/components/matrix.dart';
+import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/views/chat_list.dart';
 import 'package:fluffychat/views/sign_up.dart';
@@ -47,7 +48,7 @@ class _SettingsState extends State<Settings> {
     );
     if (success != null && success.isEmpty) {
       Toast.show(
-        "Displayname has been changed",
+        I18n.of(context).displaynameHasBeenChanged,
         context,
         duration: Toast.LENGTH_LONG,
       );
@@ -77,7 +78,7 @@ class _SettingsState extends State<Settings> {
     print(success);
     if (success != false) {
       Toast.show(
-        "Avatar has been changed",
+        I18n.of(context).avatarHasBeenChanged,
         context,
         duration: Toast.LENGTH_LONG,
       );
@@ -97,7 +98,7 @@ class _SettingsState extends State<Settings> {
     });
     return Scaffold(
       appBar: AppBar(
-        title: Text("Settings"),
+        title: Text(I18n.of(context).settings),
       ),
       body: ListView(
         children: <Widget>[
@@ -115,7 +116,7 @@ class _SettingsState extends State<Settings> {
               onSubmitted: (s) => setDisplaynameAction(context, s),
               decoration: InputDecoration(
                 border: InputBorder.none,
-                labelText: "Edit displayname",
+                labelText: I18n.of(context).editDisplayname,
                 labelStyle: TextStyle(color: Colors.black),
                 hintText: (profile?.displayname ?? ""),
               ),
@@ -124,7 +125,7 @@ class _SettingsState extends State<Settings> {
           Divider(thickness: 8),
           ListTile(
             title: Text(
-              "About",
+              I18n.of(context).about,
               style: TextStyle(
                 color: Theme.of(context).primaryColor,
                 fontWeight: FontWeight.bold,
@@ -132,29 +133,38 @@ class _SettingsState extends State<Settings> {
             ),
           ),
           ListTile(
-              leading: Icon(Icons.help),
-              title: Text("Help"),
-              onTap: () => launch(
-                  "https://gitlab.com/ChristianPauly/fluffychat-flutter/issues")),
+            leading: Icon(Icons.sentiment_very_satisfied),
+            title: Text(I18n.of(context).donate),
+            onTap: () => launch("https://ko-fi.com/krille"),
+          ),
           ListTile(
-              leading: Icon(Icons.list),
-              title: Text("Changelog"),
-              onTap: () => launch(
-                  "https://gitlab.com/ChristianPauly/fluffychat-flutter/blob/master/CHANGELOG.md")),
+            leading: Icon(Icons.help),
+            title: Text(I18n.of(context).help),
+            onTap: () => launch(
+                "https://gitlab.com/ChristianPauly/fluffychat-flutter/issues"),
+          ),
           ListTile(
-              leading: Icon(Icons.link),
-              title: Text("License"),
-              onTap: () => launch(
-                  "https://gitlab.com/ChristianPauly/fluffychat-flutter/raw/master/LICENSE")),
+            leading: Icon(Icons.list),
+            title: Text(I18n.of(context).changelog),
+            onTap: () => launch(
+                "https://gitlab.com/ChristianPauly/fluffychat-flutter/blob/master/CHANGELOG.md"),
+          ),
           ListTile(
-              leading: Icon(Icons.code),
-              title: Text("Source code"),
-              onTap: () => launch(
-                  "https://gitlab.com/ChristianPauly/fluffychat-flutter")),
+            leading: Icon(Icons.link),
+            title: Text(I18n.of(context).license),
+            onTap: () => launch(
+                "https://gitlab.com/ChristianPauly/fluffychat-flutter/raw/master/LICENSE"),
+          ),
+          ListTile(
+            leading: Icon(Icons.code),
+            title: Text(I18n.of(context).sourceCode),
+            onTap: () =>
+                launch("https://gitlab.com/ChristianPauly/fluffychat-flutter"),
+          ),
           Divider(thickness: 8),
           ListTile(
             title: Text(
-              "Logout",
+              I18n.of(context).logout,
               style: TextStyle(
                 color: Theme.of(context).primaryColor,
                 fontWeight: FontWeight.bold,
@@ -163,7 +173,7 @@ class _SettingsState extends State<Settings> {
           ),
           ListTile(
             leading: Icon(Icons.exit_to_app),
-            title: Text("Logout"),
+            title: Text(I18n.of(context).logout),
             onTap: () => logoutAction(context),
           ),
         ],

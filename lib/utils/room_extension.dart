@@ -1,4 +1,5 @@
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/i18n/i18n.dart';
 import 'package:flutter/material.dart';
 
 extension LocalizedRoomDisplayname on Room {
@@ -7,7 +8,7 @@ extension LocalizedRoomDisplayname on Room {
         (this.canonicalAlias?.isEmpty ?? true) &&
         !this.isDirectChat &&
         this.mHeroes.isNotEmpty) {
-      return "Group with ${this.displayname}";
+      return I18n.of(context).groupWith(this.displayname);
     }
     return this.displayname;
   }

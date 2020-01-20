@@ -2,6 +2,7 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/avatar.dart';
 import 'package:fluffychat/components/matrix.dart';
+import 'package:fluffychat/i18n/i18n.dart';
 import 'package:flutter/material.dart';
 import 'package:toast/toast.dart';
 
@@ -39,7 +40,7 @@ class InvitationSelection extends StatelessWidget {
     );
     if (success != false) {
       Toast.show(
-        "Contact has been invited to the group.",
+        I18n.of(context).contactHasBeenInvitedToTheGroup,
         context,
         duration: Toast.LENGTH_LONG,
       );
@@ -48,13 +49,14 @@ class InvitationSelection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String groupName = room.name?.isEmpty ?? false ? "group" : room.name;
+    final String groupName =
+        room.name?.isEmpty ?? false ? I18n.of(context).group : room.name;
     return AdaptivePageLayout(
       primaryPage: FocusPage.SECOND,
       firstScaffold: ChatList(activeChat: room.id),
       secondScaffold: Scaffold(
           appBar: AppBar(
-            title: Text("Invite contact to $groupName"),
+            title: Text(I18n.of(context).inviteContactToGroup(groupName)),
           ),
           body: FutureBuilder<List<User>>(
             future: getContacts(context),

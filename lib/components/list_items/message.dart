@@ -2,6 +2,7 @@ import 'package:bubble/bubble.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/dialogs/redact_message_dialog.dart';
 import 'package:fluffychat/components/message_content.dart';
+import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/string_color.dart';
@@ -48,9 +49,9 @@ class Message extends StatelessWidget {
     List<PopupMenuEntry<String>> popupMenuList = [];
     if (event.canRedact && !event.redacted && event.status > 1) {
       popupMenuList.add(
-        const PopupMenuItem<String>(
+        PopupMenuItem<String>(
           value: "remove",
-          child: Text('Remove message'),
+          child: Text(I18n.of(context).removeMessage),
         ),
       );
     }
@@ -75,24 +76,24 @@ class Message extends StatelessWidget {
 
     if (!event.redacted) {
       popupMenuList.add(
-        const PopupMenuItem<String>(
+        PopupMenuItem<String>(
           value: "forward",
-          child: Text('Forward'),
+          child: Text(I18n.of(context).forward),
         ),
       );
     }
 
     if (ownMessage && event.status == -1) {
       popupMenuList.add(
-        const PopupMenuItem<String>(
+        PopupMenuItem<String>(
           value: "resend",
-          child: Text('Send again'),
+          child: Text(I18n.of(context).tryToSendAgain),
         ),
       );
       popupMenuList.add(
-        const PopupMenuItem<String>(
+        PopupMenuItem<String>(
           value: "delete",
-          child: Text('Delete message'),
+          child: Text(I18n.of(context).deleteMessage),
         ),
       );
     }
@@ -100,7 +101,7 @@ class Message extends StatelessWidget {
     List<Widget> rowChildren = [
       Expanded(
         child: PopupMenuButton(
-          tooltip: "Tap to show menu",
+          tooltip: I18n.of(context).tapToShowMenu,
           onSelected: (String choice) async {
             switch (choice) {
               case "remove":
@@ -141,7 +142,9 @@ class Message extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Text(
-                        ownMessage ? "You" : event.sender.calcDisplayname(),
+                        ownMessage
+                            ? I18n.of(context).you
+                            : event.sender.calcDisplayname(),
                         style: TextStyle(
                           color: ownMessage
                               ? textColor

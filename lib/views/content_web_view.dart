@@ -1,5 +1,6 @@
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/matrix.dart';
+import 'package:fluffychat/i18n/i18n.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -16,7 +17,7 @@ class ContentWebView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Content viewer",
+          I18n.of(context).contentViewer,
         ),
         actions: <Widget>[
           IconButton(

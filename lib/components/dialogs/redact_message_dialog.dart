@@ -1,4 +1,5 @@
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/i18n/i18n.dart';
 import 'package:flutter/material.dart';
 
 import '../matrix.dart';
@@ -15,7 +16,7 @@ class RedactMessageDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text("Message will be removed for all participants"),
+      title: Text(I18n.of(context).messageWillBeRemovedWarning),
       actions: <Widget>[
         FlatButton(
           child: Text("Close".toUpperCase(),
@@ -24,7 +25,7 @@ class RedactMessageDialog extends StatelessWidget {
         ),
         FlatButton(
           child: Text(
-            "Remove".toUpperCase(),
+            I18n.of(context).remove.toUpperCase(),
             style: TextStyle(color: Colors.red),
           ),
           onPressed: () => removeAction(context),

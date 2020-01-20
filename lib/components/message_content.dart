@@ -1,6 +1,7 @@
 import 'package:bubble/bubble.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/utils/event_extension.dart';
 import 'package:fluffychat/views/content_web_view.dart';
@@ -63,7 +64,7 @@ class MessageContent extends StatelessWidget {
                   children: <Widget>[
                     Icon(Icons.play_arrow, color: Colors.white),
                     Text(
-                      "Play ${event.body}",
+                      I18n.of(context).play(event.body),
                       overflow: TextOverflow.fade,
                       softWrap: false,
                       maxLines: 1,
@@ -88,7 +89,7 @@ class MessageContent extends StatelessWidget {
                   children: <Widget>[
                     Icon(Icons.play_arrow, color: Colors.white),
                     Text(
-                      "Play ${event.body}",
+                      I18n.of(context).play(event.body),
                       overflow: TextOverflow.fade,
                       softWrap: false,
                       maxLines: 1,
@@ -110,7 +111,7 @@ class MessageContent extends StatelessWidget {
               child: RaisedButton(
                 color: Colors.blueGrey,
                 child: Text(
-                  "Download ${event.body}",
+                  I18n.of(context).download(event.body),
                   overflow: TextOverflow.fade,
                   softWrap: false,
                   maxLines: 1,
@@ -144,7 +145,8 @@ class MessageContent extends StatelessWidget {
         );
       default:
         return Text(
-          "${event.sender.calcDisplayname()} sent a ${event.typeKey} event",
+          I18n.of(context).userSentUnknownEvent(
+              event.sender.calcDisplayname(), event.typeKey),
           style: TextStyle(
             color: textColor,
             decoration: event.redacted ? TextDecoration.lineThrough : null,

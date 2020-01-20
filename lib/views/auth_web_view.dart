@@ -1,4 +1,5 @@
 import 'package:fluffychat/components/matrix.dart';
+import 'package:fluffychat/i18n/i18n.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -16,7 +17,7 @@ class AuthWebView extends StatelessWidget {
     print(url);
     return Scaffold(
       appBar: AppBar(
-        title: Text("Authentication"),
+        title: Text(I18n.of(context).authentication),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {

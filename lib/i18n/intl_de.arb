@@ -1,8 +1,1011 @@
 {
-  "@@last_modified": "2020-01-20T09:30:07.159333",
+  "@@last_modified": "2020-01-20T12:59:40.796070",
+  "About": "Über",
+  "@About": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "acceptedTheInvitation": "{username} hat die Einladung akzeptiert",
+  "@acceptedTheInvitation": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "activatedEndToEndEncryption": "{username} hat Ende-zu-Ende Verschlüsselung aktiviert",
+  "@activatedEndToEndEncryption": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "Add a group description": "Eine Beschreibung für die Gruppe hinzufügen",
+  "@Add a group description": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Admin": "Admin",
+  "@Admin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "alias": "Alias",
+  "@alias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Already have an account?": "Hast du schon einen Account?",
+  "@Already have an account?": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Anyone can join": "Jeder darf beitreten",
+  "@Anyone can join": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Archive": "Archiv",
+  "@Archive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Archived Room": "Archivierter Raum",
+  "@Archived Room": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Are guest users allowed to join": "Dürfen Gast-Benutzer beitreten",
+  "@Are guest users allowed to join": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Authentication": "Authentifizierung",
+  "@Authentication": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Avatar has been changed": "Avatar wurde geändert",
+  "@Avatar has been changed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Ban from chat": "Aus dem Chat verbannen",
+  "@Ban from chat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Banned": "Banned",
+  "@Banned": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bannedUser": "{username} hat {targetName} verbannt",
+  "@bannedUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "changedTheChatAvatar": "{username} hat den Chat-Avatar geändert",
+  "@changedTheChatAvatar": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheChatNameTo": "{username} hat den Chat-Namen geändert zu: '{chatname}'",
+  "@changedTheChatNameTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "chatname": {}
+    }
+  },
+  "changedTheChatDescriptionTo": "{username} hat die Beschreibung vom Chat geändert zu: '{description}'",
+  "@changedTheChatDescriptionTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "description": {}
+    }
+  },
+  "changedTheChatPermissions": "{username} hat die Berechtigungen vom Chat geändert",
+  "@changedTheChatPermissions": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheDisplaynameTo": "{username} hat den Nicknamen geändert zu: {displayname}",
+  "@changedTheDisplaynameTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "displayname": {}
+    }
+  },
+  "changedTheGuestAccessRules": "{username} hat Gast-Zugangsregeln geändert",
+  "@changedTheGuestAccessRules": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheGuestAccessRulesTo": "{username} hat Gast-Zugangsregeln geändert zu: {rules}",
+  "@changedTheGuestAccessRulesTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "rules": {}
+    }
+  },
+  "changedTheHistoryVisibility": "{username} hat die Sichtbarkeit des Chat-Verlaufs geändert",
+  "@changedTheHistoryVisibility": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheHistoryVisibilityTo": "{username} hat die Sichtbarkeit des Chat-Verlaufs geändert zu: {rules}",
+  "@changedTheHistoryVisibilityTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "rules": {}
+    }
+  },
+  "changedTheJoinRules": "{username} hat die Zugangsregeln geändert",
+  "@changedTheJoinRules": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheJoinRulesTo": "{username} hat die Zugangsregeln geändert zu: {joinRules}",
+  "@changedTheJoinRulesTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "joinRules": {}
+    }
+  },
+  "changedTheProfileAvatar": "{username} hat das Profilbild geändert",
+  "@changedTheProfileAvatar": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheRoomAliases": "{username} hat die Raum-Aliase geändert",
+  "@changedTheRoomAliases": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheRoomInvitationLink": "{username} hat den Einladungslink geändert",
+  "@changedTheRoomInvitationLink": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "Changelog": "Changelog",
+  "@Changelog": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Change the name of the group": "Gruppenname ändern",
+  "@Change the name of the group": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Chat details": "Gruppeninfo",
+  "@Chat details": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Choose a username": "Wähle einen Benutzernamen",
+  "@Choose a username": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Close": "Schließen",
+  "@Close": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Confirm": "Bestätigen",
+  "@Confirm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Connection attempt failed": "Verbindungsversuch fehlgeschlagen",
+  "@Connection attempt failed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Contact has been invited to the group": "Kontakt wurde in die Gruppe eingeladen",
+  "@Contact has been invited to the group": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Content viewer": "Content Viewer",
+  "@Content viewer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Copied to clipboard": "Wurde in die Zwischenablage kopiert",
+  "@Copied to clipboard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Could not decrypt message": "Nachricht konnte nicht entschlüsselt werden",
+  "@Could not decrypt message": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Could not set avatar": "Profilbild konnte nicht gesetzt werden",
+  "@Could not set avatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Could not set displayname": "Anzeigename konnte nicht gesetzt werden",
+  "@Could not set displayname": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "countParticipants": "{count} Teilnehmer",
+  "@countParticipants": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "Create": "Create",
+  "@Create": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Create account now": "Account jetzt erstellen",
+  "@Create account now": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createdTheChat": "{username} hat den Chat erstellt",
+  "@createdTheChat": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "Create new group": "Create new group",
+  "@Create new group": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dateAndTimeOfDay": "{date}, {timeOfDay}",
+  "@dateAndTimeOfDay": {
+    "type": "text",
+    "placeholders": {
+      "date": {},
+      "timeOfDay": {}
+    }
+  },
+  "dateWithoutYear": "{day}.{month}",
+  "@dateWithoutYear": {
+    "type": "text",
+    "placeholders": {
+      "month": {},
+      "day": {}
+    }
+  },
+  "dateWithYear": "{day}.{month}.{year}",
+  "@dateWithYear": {
+    "type": "text",
+    "placeholders": {
+      "year": {},
+      "month": {},
+      "day": {}
+    }
+  },
+  "Delete": "Löschen",
+  "@Delete": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Delete message": "Nachricht löschen",
+  "@Delete message": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Discard picture": "Bild verwerfen",
+  "@Discard picture": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Displayname has been changed": "Anzeigename wurde geändert",
+  "@Displayname has been changed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "download": "Download {fileName}",
+  "@download": {
+    "type": "text",
+    "placeholders": {
+      "fileName": {}
+    }
+  },
+  "Edit displayname": "Anzeigename ändern",
+  "@Edit displayname": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Empty chat": "Leerer Chat",
+  "@Empty chat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Enter a group name": "Gib einen Gruppennamen ein",
+  "@Enter a group name": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Enter a username": "Gib einen Benutzernamen ein",
+  "@Enter a username": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "FluffyChat": "FluffyChat",
+  "@FluffyChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Forward": "Weiterleiten",
+  "@Forward": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Friday": "Freitag",
+  "@Friday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "From joining": "Ab dem Beitritt",
+  "@From joining": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "From the invitation": "Ab der Einladung",
+  "@From the invitation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Group": "Gruppe",
+  "@Group": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Group description": "Gruppenbeschreibung",
+  "@Group description": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Group description has been changed": "Gruppenbeschreibung wurde geändert",
+  "@Group description has been changed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Group is public": "Gruppe ist öffentlich",
+  "@Group is public": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groupWith": "Gruppe mit {displayname}",
+  "@groupWith": {
+    "type": "text",
+    "placeholders": {
+      "displayname": {}
+    }
+  },
+  "Guests are forbidden": "Gäste sind verboten",
+  "@Guests are forbidden": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Guests can join": "Gäste dürfen beitreten",
+  "@Guests can join": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hasWithdrawnTheInvitationFor": "{username} hat die Einladung für {targetName} zurückgezogen",
+  "@hasWithdrawnTheInvitationFor": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "Help": "Hilfe",
+  "@Help": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Homeserver is not compatible": "Homeserver ist nicht kompatibel",
+  "@Homeserver is not compatible": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Invite contact": "Kontakt einladen",
+  "@Invite contact": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteContactToGroup": "Kontakt zu {groupName} einladen",
+  "@inviteContactToGroup": {
+    "type": "text",
+    "placeholders": {
+      "groupName": {}
+    }
+  },
+  "Invited": "Eingeladen",
+  "@Invited": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invitedUser": "{username} hat {targetName} eingeladen",
+  "@invitedUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "Invited users only": "Nur eingeladene Benutzer",
+  "@Invited users only": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "is typing...": "schreibt...",
+  "@is typing...": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "joinedTheChat": "{username} ist dem Chat beigetreten",
+  "@joinedTheChat": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "kicked": "{username} hat {targetName} hinausgeworfen",
+  "@kicked": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "kickedAndBanned": "{username} hat {targetName} hinausgeworfen und verbannt",
+  "@kickedAndBanned": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "Kick from chat": "Aus dem Chat hinauswerfen",
+  "@Kick from chat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Leave": "Verlassen",
+  "@Leave": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Left the chat": "Hat den Chat verlassen",
+  "@Left the chat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Logout": "Logout",
+  "@Logout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userLeftTheChat": "{username} hat den Chat verlassen",
+  "@userLeftTheChat": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "License": "Lizenz",
+  "@License": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Loading... Please wait": "Lade ... Bitte warten",
+  "@Loading... Please wait": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loadCountMoreParticipants": "{count} weitere Teilnehmer laden",
+  "@loadCountMoreParticipants": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "Login": "Login",
+  "@Login": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Make an admin": "Zum Admin ernennen",
+  "@Make an admin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Make sure the identifier is valid": "Gib bitte einen richtigen Benutzernamen ein",
+  "@Make sure the identifier is valid": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Message will be removed for all participants": "Nachricht wird für alle Teilnehmer entfernt",
+  "@Message will be removed for all participants": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Moderator": "Moderator",
+  "@Moderator": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Monday": "Montag",
+  "@Monday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Mute chat": "Stummschalten",
+  "@Mute chat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "New message in FluffyChat": "Neue Nachricht in FluffyChat",
+  "@New message in FluffyChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "New private chat": "Neuer privater Chat",
+  "@New private chat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": "Es sieht so aus als hättest du keine Google Dienste auf deinem Gerät. Das ist eine gute Entscheidung für deine Privatsphäre. Um Push Benachrichtigungen in FluffyChat zu erhalten, empfehlen wir die Verwendung von microG: https://microg.org/",
+  "@It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "No rooms found...": "Keine Räume gefunden ...",
+  "@No rooms found...": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Not supported in web": "Wird in der Web-Version nicht unterstützt",
+  "@Not supported in web": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Oops something went wrong...": "Hoppla! Da ist etwas schief gelaufen ...",
+  "@Oops something went wrong...": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Open camera": "Kamera öffnen",
+  "@Open camera": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "(Optional) Group name": "(Optional) Name für die Gruppe",
+  "@(Optional) Group name": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Password": "Passwort",
+  "@Password": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "play": "Play {fileName}",
+  "@play": {
+    "type": "text",
+    "placeholders": {
+      "fileName": {}
+    }
+  },
+  "Please choose a username": "Bitte wähle einen Benutzernamen",
+  "@Please choose a username": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Please enter a matrix identifier": "Bitte eine Matrix ID eingeben",
+  "@Please enter a matrix identifier": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Please enter your password": "Bitte dein Passwort eingeben",
+  "@Please enter your password": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Please enter your username": "Bitte deinen Benutzernamen eingeben",
+  "@Please enter your username": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Rejoin": "Wieder beitreten",
+  "@Rejoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "redactedAnEvent": "{username} hat ein Event enternt",
+  "@redactedAnEvent": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "rejectedTheInvitation": "{username} hat die Einladung abgelehnt",
+  "@rejectedTheInvitation": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "removedBy": "Entfernt von {username}",
+  "@removedBy": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "Remove exile": "Verbannung aufheben",
+  "@Remove exile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Revoke all permissions": "Alle Berechtigungen zurücknehmen",
+  "@Revoke all permissions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Remove": "Entfernen",
+  "@Remove": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Remove message": "Nachricht entfernen",
+  "@Remove message": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Saturday": "Samstag",
+  "@Saturday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Share": "Teilen",
+  "@Share": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sharedTheLocation": "{username} hat den Standort geteilt",
+  "@sharedTheLocation": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "Search for a chat": "Durchsuche die Chats",
+  "@Search for a chat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Secure your account with a password": "Sichere deinen Account mit einem Passwort ab",
+  "@Secure your account with a password": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "seenByUser": "Gelesen von {username}",
+  "@seenByUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "seenByUserAndUser": "Gelesen von {username} und {username2}",
+  "@seenByUserAndUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "username2": {}
+    }
+  },
+  "seenByUserAndCountOthers": "Gelesen von {username} und {count} anderen",
+  "@seenByUserAndCountOthers": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "count": {}
+    }
+  },
+  "Send a message": "Nachricht schreiben",
+  "@Send a message": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Send file": "Datei senden",
+  "@Send file": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Send image": "Bild senden",
+  "@Send image": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sentAFile": "{username} hat eine Datei gesendet",
+  "@sentAFile": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "sentAnAudio": "{username} hat eine Audio-Datei gesendet",
+  "@sentAnAudio": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "sentAPicture": "{username} hat ein Bild gesendet",
+  "@sentAPicture": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "sentASticker": "{username} hat einen Sticker gesendet",
+  "@sentASticker": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "sentAVideo": "{username} hat ein Video gesendet",
+  "@sentAVideo": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "Set a profile picture": "Ein Profilbild festlegen",
+  "@Set a profile picture": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Set group description": "Gruppenbeschreibung festlegen",
+  "@Set group description": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Set invitation link": "Einladungslink festlegen",
+  "@Set invitation link": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Settings": "Einstellungen",
+  "@Settings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sign up": "Registrieren",
+  "@Sign up": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Source code": "Quellcode",
+  "@Source code": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Start your first chat :-)": "Starte deinen ersten Chat :-)",
+  "@Start your first chat :-)": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Sunday": "Sonntag",
+  "@Sunday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Donate": "Spenden",
+  "@Donate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Tap to show menu": "Tippen, um das Menü anzuzeigen",
+  "@Tap to show menu": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "This room has been archived.": "Dieser Raum wurde archiviert.",
+  "@This room has been archived.": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Thursday": "Donnerstag",
+  "@Thursday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeOfDay": "{hours24}:{minutes}",
+  "@timeOfDay": {
+    "type": "text",
+    "placeholders": {
+      "hours12": {},
+      "hours24": {},
+      "minutes": {},
+      "suffix": {}
+    }
+  },
   "title": "FluffyChat",
   "@title": {
     "description": "Title for the application",
+    "type": "text",
+    "placeholders": {}
+  },
+  "Try to send again": "Nochmal versuchen zu senden",
+  "@Try to send again": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Tuesday": "Tuesday",
+  "@Tuesday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unbannedUser": "{username} hat die Verbannung von {targetName} aufgehoben",
+  "@unbannedUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "Unmute chat": "Nicht mehr stummschalten",
+  "@Unmute chat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknownEvent": "Unbekanntes Event '{type}'",
+  "@unknownEvent": {
+    "type": "text",
+    "placeholders": {
+      "type": {}
+    }
+  },
+  "unreadMessages": "{unreadEvents} ungelesene Nachrichten",
+  "@unreadMessages": {
+    "type": "text",
+    "placeholders": {
+      "unreadEvents": {}
+    }
+  },
+  "unreadMessagesInChats": "{unreadEvents} ungelesene Nachrichten in {unreadChats} Chats",
+  "@unreadMessagesInChats": {
+    "type": "text",
+    "placeholders": {
+      "unreadEvents": {},
+      "unreadChats": {}
+    }
+  },
+  "userAndOthersAreTyping": "{username} und {count} andere schreiben ...",
+  "@userAndOthersAreTyping": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "count": {}
+    }
+  },
+  "userAndUserAreTyping": "{username} und {username2} schreiben ...",
+  "@userAndUserAreTyping": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "username2": {}
+    }
+  },
+  "Username": "Benutzername",
+  "@Username": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userIsTyping": "{username} schreibt ...",
+  "@userIsTyping": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "userSentUnknownEvent": "{username} hat {type} Event gesendet",
+  "@userSentUnknownEvent": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "type": {}
+    }
+  },
+  "Visible for all participants": "Sichtbar für alle Teilnehmer",
+  "@Visible for all participants": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Visible for everyone": "Für jeden sichtbar",
+  "@Visible for everyone": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Visibility of the chat history": "Sichtbarkeit des Chat-Verlaufs",
+  "@Visibility of the chat history": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Wednesday": "Mittwoch",
+  "@Wednesday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Who is allowed to join this group": "Wer darf der Gruppe beitreten",
+  "@Who is allowed to join this group": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Write a message...": "Schreibe eine Nachricht ...",
+  "@Write a message...": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "You": "Du",
+  "@You": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "You are invited to this chat": "Du wurdest eingeladen in diesen Chat",
+  "@You are invited to this chat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "You are no longer participating in this chat": "Du bist kein Teilnehmer mehr in diesem Chat",
+  "@You are no longer participating in this chat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "You cannot invite yourself": "Du kannst dich nicht selbst einladen",
+  "@You cannot invite yourself": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "You have been banned from this chat": "Du wurdest aus dem Chat verbannt",
+  "@You have been banned from this chat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Your own username": "Dein eigener Benutzername",
+  "@Your own username": {
     "type": "text",
     "placeholders": {}
   }

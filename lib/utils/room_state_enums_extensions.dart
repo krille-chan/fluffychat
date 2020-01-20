@@ -1,17 +1,18 @@
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/i18n/i18n.dart';
 import 'package:flutter/material.dart';
 
 extension HistoryVisibilityDisplayString on HistoryVisibility {
   String getLocalizedString(BuildContext context) {
     switch (this) {
       case HistoryVisibility.invited:
-        return "From the invitation";
+        return I18n.of(context).fromTheInvitation;
       case HistoryVisibility.joined:
-        return "From joining";
+        return I18n.of(context).fromJoining;
       case HistoryVisibility.shared:
-        return "Visible for all participants";
+        return I18n.of(context).visibleForAllParticipants;
       case HistoryVisibility.world_readable:
-        return "Visible for everyone";
+        return I18n.of(context).visibleForEveryone;
       default:
         return this.toString().replaceAll("HistoryVisibility.", "");
     }
@@ -22,9 +23,9 @@ extension GuestAccessDisplayString on GuestAccess {
   String getLocalizedString(BuildContext context) {
     switch (this) {
       case GuestAccess.can_join:
-        return "Guests can join";
+        return I18n.of(context).guestsCanJoin;
       case GuestAccess.forbidden:
-        return "Guests are forbidden";
+        return I18n.of(context).guestsAreForbidden;
       default:
         return this.toString().replaceAll("GuestAccess.", "");
     }
@@ -35,9 +36,9 @@ extension JoinRulesDisplayString on JoinRules {
   String getLocalizedString(BuildContext context) {
     switch (this) {
       case JoinRules.public:
-        return "Anyone can join";
+        return I18n.of(context).anyoneCanJoin;
       case JoinRules.invite:
-        return "Invited users only";
+        return I18n.of(context).invitedUsersOnly;
       default:
         return this.toString().replaceAll("JoinRules.", "");
     }

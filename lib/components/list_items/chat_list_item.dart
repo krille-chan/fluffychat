@@ -1,4 +1,5 @@
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/utils/event_extension.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/app_route.dart';
@@ -27,7 +28,8 @@ class ChatListItem extends StatelessWidget {
       }
 
       if (room.membership == Membership.ban) {
-        Toast.show("You have been banned from this chat", context, duration: 5);
+        Toast.show(I18n.of(context).youHaveBeenBannedFromThisChat, context,
+            duration: 5);
         return;
       }
 
@@ -35,16 +37,16 @@ class ChatListItem extends StatelessWidget {
         await showDialog(
           context: context,
           builder: (BuildContext context) => AlertDialog(
-            title: Text("Archived Room"),
-            content: Text("This room has been archived."),
+            title: Text(I18n.of(context).archivedRoom),
+            content: Text(I18n.of(context).thisRoomHasBeenArchived),
             actions: <Widget>[
               FlatButton(
-                child: Text("Close".toUpperCase(),
+                child: Text(I18n.of(context).close.toUpperCase(),
                     style: TextStyle(color: Colors.blueGrey)),
                 onPressed: () => Navigator.of(context).pop(),
               ),
               FlatButton(
-                child: Text("Forget".toUpperCase(),
+                child: Text(I18n.of(context).delete.toUpperCase(),
                     style: TextStyle(color: Colors.red)),
                 onPressed: () async {
                   await Matrix.of(context)
@@ -54,7 +56,7 @@ class ChatListItem extends StatelessWidget {
                 },
               ),
               FlatButton(
-                child: Text("Rejoin".toUpperCase(),
+                child: Text(I18n.of(context).rejoin.toUpperCase(),
                     style: TextStyle(color: Colors.blue)),
                 onPressed: () async {
                   await Matrix.of(context)
@@ -112,7 +114,7 @@ class ChatListItem extends StatelessWidget {
             Expanded(
               child: room.membership == Membership.invite
                   ? Text(
-                      "You are invited to this chat",
+                      I18n.of(context).youAreInvitedToThisChat,
                       style: TextStyle(
                         color: Theme.of(context).primaryColor,
                       ),
