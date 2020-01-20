@@ -1,5 +1,14 @@
-# Version 0.4.0 - 2020-MM-DD
+# Version 0.5.0 - 2020-01-20
 ### New features
+- Localizations
+- Enhanced group settings
+- Username search
+### Fixes
+- Minor bug fixes
+
+# Version 0.4.0 - 2020-01-18
+### New features
+- Registration
 - Avatars with name letters
 - Calc username colors
 ### Fixes
