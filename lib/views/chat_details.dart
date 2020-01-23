@@ -13,6 +13,7 @@ import 'package:fluffychat/utils/room_extension.dart';
 import 'package:fluffychat/utils/room_state_enums_extensions.dart';
 import 'package:fluffychat/views/chat_list.dart';
 import 'package:fluffychat/views/invitation_selection.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
@@ -181,9 +182,10 @@ class _ChatDetailsState extends State<ChatDetails> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     ContentBanner(widget.room.avatar,
-                        onEdit: widget.room.canSendEvent("m.room.avatar")
-                            ? () => setAvatarAction(context)
-                            : null),
+                        onEdit:
+                            widget.room.canSendEvent("m.room.avatar") && !kIsWeb
+                                ? () => setAvatarAction(context)
+                                : null),
                     Divider(height: 1),
                     topicEditMode
                         ? ListTile(

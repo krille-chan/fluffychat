@@ -7,7 +7,7 @@ extension LocalizedRoomDisplayname on Room {
     if ((this.name?.isEmpty ?? true) &&
         (this.canonicalAlias?.isEmpty ?? true) &&
         !this.isDirectChat &&
-        this.mHeroes.isNotEmpty) {
+        (this.mHeroes != null && this.mHeroes.isNotEmpty)) {
       return I18n.of(context).groupWith(this.displayname);
     }
     return this.displayname;

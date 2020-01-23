@@ -346,10 +346,12 @@ class MatrixState extends State<Matrix> {
   @override
   void initState() {
     if (widget.client == null) {
+      print("[Matrix] Init matrix client");
       client = Client(widget.clientName, debug: false);
       if (!kIsWeb) {
         _initWithStore();
       } else {
+        print("[Web] Web platform detected - Store disabled!");
         loadAccount();
       }
     } else {

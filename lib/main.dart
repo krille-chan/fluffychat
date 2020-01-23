@@ -20,46 +20,46 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return Matrix(
       clientName: "FluffyChat",
-      child: MaterialApp(
-        title: 'FluffyChat',
-        theme: ThemeData(
-          brightness: Brightness.light,
-          primaryColor: Color(0xFF5625BA),
-          backgroundColor: Colors.white,
-          secondaryHeaderColor: Color(0xFFF0F0F0),
-          scaffoldBackgroundColor: Colors.white,
-          dialogTheme: DialogTheme(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8.0),
-            ),
-          ),
-          popupMenuTheme: PopupMenuThemeData(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8.0),
-            ),
-          ),
-          appBarTheme: AppBarTheme(
+      child: Builder(
+        builder: (BuildContext context) => MaterialApp(
+          title: 'FluffyChat',
+          theme: ThemeData(
             brightness: Brightness.light,
-            color: Colors.white,
-            elevation: 1,
-            textTheme: TextTheme(
-              title: TextStyle(color: Colors.black),
+            primaryColor: Color(0xFF5625BA),
+            backgroundColor: Colors.white,
+            secondaryHeaderColor: Color(0xFFF0F0F0),
+            scaffoldBackgroundColor: Colors.white,
+            dialogTheme: DialogTheme(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0),
+              ),
             ),
-            iconTheme: IconThemeData(color: Colors.black),
+            popupMenuTheme: PopupMenuThemeData(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+            ),
+            appBarTheme: AppBarTheme(
+              brightness: Brightness.light,
+              color: Colors.white,
+              elevation: 1,
+              textTheme: TextTheme(
+                title: TextStyle(color: Colors.black),
+              ),
+              iconTheme: IconThemeData(color: Colors.black),
+            ),
           ),
-        ),
-        localizationsDelegates: [
-          AppLocalizationsDelegate(),
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: [
-          const Locale('en'), // English
-          const Locale('de'), // German
-        ],
-        home: Builder(
-          builder: (BuildContext context) => FutureBuilder<LoginState>(
+          localizationsDelegates: [
+            AppLocalizationsDelegate(),
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: [
+            const Locale('en'), // English
+            const Locale('de'), // German
+          ],
+          home: FutureBuilder<LoginState>(
             future: Matrix.of(context).client.onLoginStateChanged.stream.first,
             builder: (context, snapshot) {
               if (!snapshot.hasData) {

@@ -8,6 +8,7 @@ import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/views/chat_list.dart';
 import 'package:fluffychat/views/sign_up.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:toast/toast.dart';
@@ -106,7 +107,7 @@ class _SettingsState extends State<Settings> {
             profile?.avatarUrl ?? MxContent(""),
             defaultIcon: Icons.account_circle,
             loading: profile == null,
-            onEdit: () => setAvatarAction(context),
+            onEdit: kIsWeb ? null : () => setAvatarAction(context),
           ),
           ListTile(
             leading: Icon(Icons.edit),

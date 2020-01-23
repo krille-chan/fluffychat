@@ -4,6 +4,7 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/utils/app_route.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'chat_list.dart';
@@ -73,16 +74,19 @@ class _LoginState extends State<Login> {
       setState(() => passwordError = exception.toString());
       return setState(() => loading = false);
     }
-    try {
-      print("[Login] Setup Firebase...");
-      await matrix.setupFirebase();
-    } catch (exception) {
-      print("[Login] Failed to setup Firebase. Logout now...");
-      await matrix.client.logout();
-      matrix.clean();
-      setState(() => passwordError = exception.toString());
-      return setState(() => loading = false);
+    if (!kIsWeb) {
+      try {
+        print("[Login] Setup Firebase...");
+        await matrix.setupFirebase();
+      } catch (exception) {
+        print("[Login] Failed to setup Firebase. Logout now...");
+        await matrix.client.logout();
+        matrix.clean();
+        setState(() => passwordError = exception.toString());
+        return setState(() => loading = false);
+      }
     }
+
     print("[Login] Store account and go to ChatListView");
     await Matrix.of(context).saveAccount();
     setState(() => loading = false);
