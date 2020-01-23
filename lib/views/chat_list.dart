@@ -11,6 +11,7 @@ import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/views/archive.dart';
 import 'package:fluffychat/views/settings.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
@@ -51,7 +52,8 @@ class _ChatListState extends State<ChatList> {
     if (client.prevBatch?.isEmpty ?? true) {
       await client.onFirstSync.stream.first;
     }
-    sub ??= client.onSync.stream.listen((s) => setState(() => null));
+    sub ??= client.onSync.stream
+        .listen((s) => mounted ? setState(() => null) : null);
     return true;
   }
 
@@ -60,13 +62,16 @@ class _ChatListState extends State<ChatList> {
     searchController.addListener(
       () => setState(() => null),
     );
-    getSharedData();
+    if (kIsWeb) {
+      getSharedData();
+    }
     super.initState();
   }
 
   StreamSubscription _intentDataStreamSubscription;
 
   void processSharedText(String text) {
+    if (text?.isEmpty ?? true) return;
     if (text.startsWith("https://matrix.to/#/")) {
       UrlLauncher(context, text).openMatrixToUrl();
     } else {

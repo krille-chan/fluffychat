@@ -20,6 +20,7 @@ class Chat extends StatefulWidget {
   final String id;
 
   const Chat(this.id, {Key key}) : super(key: key);
+
   @override
   _ChatState createState() => _ChatState();
 }
@@ -55,6 +56,8 @@ class _ChatState extends State<Chat> {
   }
 
   void updateView() {
+    if (!mounted) return;
+
     String seenByText = "";
     if (timeline.events.isNotEmpty) {
       List lastReceipts = List.from(timeline.events.first.receipts);
@@ -74,9 +77,11 @@ class _ChatState extends State<Chat> {
             (lastReceipts.length - 1).toString());
       }
     }
-    setState(() {
-      this.seenByText = seenByText;
-    });
+    if (timeline != null) {
+      setState(() {
+        this.seenByText = seenByText;
+      });
+    }
   }
 
   Future<bool> getTimeline() async {
@@ -88,6 +93,7 @@ class _ChatState extends State<Chat> {
   @override
   void dispose() {
     timeline?.sub?.cancel();
+    timeline = null;
     matrix.activeRoomId = "";
     super.dispose();
   }
@@ -243,38 +249,42 @@ class _ChatState extends State<Chat> {
                         timeline.events.isNotEmpty) {
                       room.sendReadReceipt(timeline.events[0].eventId);
                     }
+
+                    if (timeline.events.isEmpty) return Container();
+
                     return ListView.builder(
-                      reverse: true,
-                      itemCount: timeline.events.length + 1,
-                      controller: _scrollController,
-                      itemBuilder: (BuildContext context, int i) => i == 0
-                          ? AnimatedContainer(
-                              height: seenByText.isEmpty ? 0 : 24,
-                              duration: seenByText.isEmpty
-                                  ? Duration(milliseconds: 0)
-                                  : Duration(milliseconds: 500),
-                              alignment: timeline.events.first.senderId ==
-                                      client.userID
-                                  ? Alignment.topRight
-                                  : Alignment.topLeft,
-                              child: Text(
-                                seenByText,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  color: Theme.of(context).primaryColor,
-                                ),
-                              ),
-                              padding: EdgeInsets.only(
-                                left: 8,
-                                right: 8,
-                                bottom: 8,
-                              ),
-                            )
-                          : Message(timeline.events[i - 1],
-                              nextEvent:
-                                  i >= 2 ? timeline.events[i - 2] : null),
-                    );
+                        reverse: true,
+                        itemCount: timeline.events.length + 1,
+                        controller: _scrollController,
+                        itemBuilder: (BuildContext context, int i) {
+                          return i == 0
+                              ? AnimatedContainer(
+                                  height: seenByText.isEmpty ? 0 : 24,
+                                  duration: seenByText.isEmpty
+                                      ? Duration(milliseconds: 0)
+                                      : Duration(milliseconds: 500),
+                                  alignment: timeline.events.first.senderId ==
+                                          client.userID
+                                      ? Alignment.topRight
+                                      : Alignment.topLeft,
+                                  child: Text(
+                                    seenByText,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                      color: Theme.of(context).primaryColor,
+                                    ),
+                                  ),
+                                  padding: EdgeInsets.only(
+                                    left: 8,
+                                    right: 8,
+                                    bottom: 8,
+                                  ),
+                                )
+                              : Message(timeline.events[i - 1],
+                                  nextEvent:
+                                      i >= 2 ? timeline.events[i - 2] : null);
+                        });
                   },
                 ),
               ),
