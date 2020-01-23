@@ -126,7 +126,8 @@ class Message extends StatelessWidget {
             }
           },
           itemBuilder: (BuildContext context) => popupMenuList,
-          child: Opacity(
+          child: AnimatedOpacity(
+            duration: Duration(milliseconds: 500),
             opacity: event.status == 0 ? 0.5 : 1,
             child: Bubble(
               elevation: 0,
