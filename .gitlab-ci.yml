@@ -19,7 +19,7 @@ test:
 
 build_web:
   stage: coverage
-  image: cirrusci/flutter:latest-web
+  image: cirrusci/flutter:stable-web
   script:
     - flutter config --enable-web
     - flutter pub get
