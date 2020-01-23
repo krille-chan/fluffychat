@@ -19,12 +19,15 @@ test:
 
 build_web:
   stage: coverage
-  image: cirrusci/flutter:stable-web
+  image: cirrusci/flutter:beta-web
   script:
+    - flutter channel beta
+    - flutter upgrade
+    - flutter doctor --verbose
     - flutter config --enable-web
     - flutter pub get
     - flutter clean
-    - flutter build web --release
+    - flutter build web --release --verbose
   artifacts:
     paths:
       - build/web/
