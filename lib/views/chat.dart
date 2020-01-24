@@ -36,6 +36,8 @@ class _ChatState extends State<Chat> {
 
   final ScrollController _scrollController = ScrollController();
 
+  FocusNode inputFocus = FocusNode();
+
   Timer typingCoolDown;
   Timer typingTimeout;
   bool currentlyTyping = false;
@@ -369,7 +371,11 @@ class _ChatState extends State<Chat> {
                               keyboardType: kIsWeb
                                   ? TextInputType.text
                                   : TextInputType.multiline,
-                              onSubmitted: (t) => send(),
+                              onSubmitted: (String text) {
+                                send();
+                                FocusScope.of(context).requestFocus(inputFocus);
+                              },
+                              focusNode: inputFocus,
                               controller: sendController,
                               decoration: InputDecoration(
                                 hintText: I18n.of(context).writeAMessage,
