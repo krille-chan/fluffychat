@@ -13,6 +13,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:toast/toast.dart';
+import 'package:pedantic/pedantic.dart';
 
 import 'chat_list.dart';
 
@@ -90,7 +91,7 @@ class _ChatState extends State<Chat> {
     if (timeline == null) {
       timeline = await room.getTimeline(onUpdate: updateView);
       if (timeline.events.isNotEmpty) {
-        room.sendReadReceipt(timeline.events.first.eventId);
+        unawaited(room.sendReadReceipt(timeline.events.first.eventId));
       }
     }
     updateView();
