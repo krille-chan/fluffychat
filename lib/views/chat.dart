@@ -87,7 +87,12 @@ class _ChatState extends State<Chat> {
   }
 
   Future<bool> getTimeline() async {
-    timeline ??= await room.getTimeline(onUpdate: updateView);
+    if (timeline == null) {
+      timeline = await room.getTimeline(onUpdate: updateView);
+      if (timeline.events.isNotEmpty) {
+        room.sendReadReceipt(timeline.events.first.eventId);
+      }
+    }
     updateView();
     return true;
   }
@@ -249,7 +254,7 @@ class _ChatState extends State<Chat> {
                         room.notificationCount > 0 &&
                         timeline != null &&
                         timeline.events.isNotEmpty) {
-                      room.sendReadReceipt(timeline.events[0].eventId);
+                      room.sendReadReceipt(timeline.events.first.eventId);
                     }
 
                     if (timeline.events.isEmpty) return Container();
