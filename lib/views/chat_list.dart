@@ -85,9 +85,7 @@ class _ChatListState extends State<ChatList> {
   void getSharedData() {
     // For sharing or opening urls/text coming from outside the app while the app is in the memory
     _intentDataStreamSubscription = ReceiveSharingIntent.getTextStream()
-        .listen(processSharedText, onError: (err) {
-      print("getLinkStream error: $err");
-    });
+        .listen(processSharedText, onError: (err) {});
     // For sharing or opening urls/text coming from outside the app while the app is closed
     ReceiveSharingIntent.getInitialText().then(processSharedText);
   }

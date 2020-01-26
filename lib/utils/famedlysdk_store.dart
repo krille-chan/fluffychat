@@ -1,94 +1,158 @@
-/*
- * Copyright (c) 2019 Zender & Kurtz GbR.
- *
- * Authors:
- *   Christian Pauly <krille@famedly.com>
- *   Marcel Radzio <mtrnord@famedly.com>
- *
- * This file is part of famedlysdk_store_sqflite.
- *
- * famedlysdk_store_sqflite is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * famedlysdk_store_sqflite is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with famedlysdk_store_sqflite.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-library famedlysdk_store_sqflite;
-
-import 'dart:async';
 import 'dart:convert';
-import 'dart:core';
 
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:localstorage/localstorage.dart';
+import 'dart:async';
+import 'dart:core';
 import 'package:path/path.dart' as p;
 import 'package:sqflite/sqflite.dart';
 
-/// Responsible to store all data persistent and to query objects from the
-/// database.
 class Store extends StoreAPI {
   final Client client;
+  final LocalStorage storage;
+  final FlutterSecureStorage secureStorage;
 
-  Store(this.client) {
+  Store(this.client)
+      : storage = !kIsWeb ? null : LocalStorage('LocalStorage'),
+        secureStorage = kIsWeb ? null : FlutterSecureStorage() {
     _init();
   }
 
+  Future<dynamic> getItem(String key) async {
+    if (kIsWeb) {
+      await storage.ready;
+      return await storage.getItem(key);
+    }
+    return await secureStorage.read(key: key);
+  }
+
+  Future<void> setItem(String key, String value) async {
+    if (kIsWeb) {
+      await storage.ready;
+      return await storage.setItem(key, value);
+    }
+    return await secureStorage.write(key: key, value: value);
+  }
+
+  _init() async {
+    final credentialsStr = await getItem(client.clientName);
+
+    if (credentialsStr == null || credentialsStr.isEmpty) {
+      client.onLoginStateChanged.add(LoginState.loggedOut);
+      return;
+    }
+    debugPrint("[Matrix] Restoring account credentials");
+    final Map<String, dynamic> credentials = json.decode(credentialsStr);
+    client.connect(
+      newDeviceID: credentials["deviceID"],
+      newDeviceName: credentials["deviceName"],
+      newHomeserver: credentials["homeserver"],
+      newLazyLoadMembers: credentials["lazyLoadMembers"],
+      newMatrixVersions: List<String>.from(credentials["matrixVersions"]),
+      newToken: credentials["token"],
+      newUserID: credentials["userID"],
+      newPrevBatch: kIsWeb
+          ? null
+          : (credentials["prev_batch"]?.isEmpty ?? true)
+              ? null
+              : credentials["prev_batch"],
+    );
+  }
+
+  Future<void> storeClient() async {
+    final Map<String, dynamic> credentials = {
+      "deviceID": client.deviceID,
+      "deviceName": client.deviceName,
+      "homeserver": client.homeserver,
+      "lazyLoadMembers": client.lazyLoadMembers,
+      "matrixVersions": client.matrixVersions,
+      "token": client.accessToken,
+      "userID": client.userID,
+    };
+    await setItem(client.clientName, json.encode(credentials));
+    return;
+  }
+
+  Future<void> clear() => kIsWeb ? storage.clear() : secureStorage.deleteAll();
+}
+
+/// Responsible to store all data persistent and to query objects from the
+/// database.
+class ExtendedStore extends Store implements ExtendedStoreAPI {
+  @override
+  final bool extended = true;
+
+  ExtendedStore(Client client) : super(client);
+
   Database _db;
+  var txn;
 
   /// SQLite database for all persistent data. It is recommended to extend this
   /// SDK instead of writing direct queries to the database.
   //Database get db => _db;
 
+  @override
   _init() async {
+    // Open the database and migrate if necessary.
     var databasePath = await getDatabasesPath();
     String path = p.join(databasePath, "FluffyMatrix.db");
-    _db = await openDatabase(path, version: 15,
+    _db = await openDatabase(path, version: 16,
         onCreate: (Database db, int version) async {
       await createTables(db);
     }, onUpgrade: (Database db, int oldVersion, int newVersion) async {
-      print("[Store] Migrate databse from version $oldVersion to $newVersion");
+      debugPrint(
+          "[Store] Migrate database from version $oldVersion to $newVersion");
       if (oldVersion != newVersion) {
-        schemes.forEach((String name, String scheme) async {
-          if (name != "Clients") await db.execute("DROP TABLE IF EXISTS $name");
-        });
-        await createTables(db);
-        await db.rawUpdate("UPDATE Clients SET prev_batch='' WHERE client=?",
-            [client.clientName]);
+        // Look for an old entry in an old clients library
+        List<Map> list = [];
+        try {
+          list = await db.rawQuery(
+              "SELECT * FROM Clients WHERE client=?", [client.clientName]);
+        } on DatabaseException catch (_) {} catch (_) {
+          rethrow;
+        }
+
+        if (list.length == 1) {
+          debugPrint("[Store] Found old client from deprecated store");
+          var clientList = list[0];
+          _db = db;
+          client.connect(
+            newToken: clientList["token"],
+            newHomeserver: clientList["homeserver"],
+            newUserID: clientList["matrix_id"],
+            newDeviceID: clientList["device_id"],
+            newDeviceName: clientList["device_name"],
+            newLazyLoadMembers: clientList["lazy_load_members"] == 1,
+            newMatrixVersions:
+                clientList["matrix_versions"].toString().split(","),
+            newPrevBatch: null,
+          );
+          await db.execute("DROP TABLE IF EXISTS Clients");
+          if (client.debug) {
+            debugPrint(
+                "[Store] Restore client credentials from deprecated database of ${client.userID}");
+          }
+          schemes.forEach((String name, String scheme) async {
+            await db.execute("DROP TABLE IF EXISTS $name");
+          });
+          await createTables(db);
+        }
+      } else {
+        client.onLoginStateChanged.add(LoginState.loggedOut);
       }
     });
 
+    // Mark all pending events as failed.
     await _db.rawUpdate("UPDATE Events SET status=-1 WHERE status=0");
+    super._init();
+  }
 
-    List<Map> list = await _db
-        .rawQuery("SELECT * FROM Clients WHERE client=?", [client.clientName]);
-    if (list.length == 1) {
-      var clientList = list[0];
-      print("[Store] Previous batch: '${clientList["prev_batch"].toString()}'");
-      client.connect(
-        newToken: clientList["token"],
-        newHomeserver: clientList["homeserver"],
-        newUserID: clientList["matrix_id"],
-        newDeviceID: clientList["device_id"],
-        newDeviceName: clientList["device_name"],
-        newLazyLoadMembers: clientList["lazy_load_members"] == 1,
-        newMatrixVersions: clientList["matrix_versions"].toString().split(","),
-        newPrevBatch: clientList["prev_batch"].toString().isEmpty
-            ? null
-            : clientList["prev_batch"],
-      );
-      if (client.debug) {
-        print("[Store] Restore client credentials of ${client.userID}");
-      }
-    } else {
-      client.onLoginStateChanged.add(LoginState.loggedOut);
-    }
+  Future<void> setRoomPrevBatch(String roomId, String prevBatch) async {
+    await txn.rawUpdate(
+        "UPDATE Rooms SET prev_batch=? WHERE room_id=?", [roomId, prevBatch]);
+    return;
   }
 
   Future<void> createTables(Database db) async {
@@ -97,36 +161,12 @@ class Store extends StoreAPI {
     });
   }
 
-  Future<String> queryPrevBatch() async {
-    List<Map> list = await txn.rawQuery(
-        "SELECT prev_batch FROM Clients WHERE client=?", [client.clientName]);
-    return list[0]["prev_batch"];
-  }
-
-  /// Will be automatically called when the client is logged in successfully.
-  Future<void> storeClient() async {
-    await _db
-        .rawInsert('INSERT OR IGNORE INTO Clients VALUES(?,?,?,?,?,?,?,?,?)', [
-      client.clientName,
-      client.accessToken,
-      client.homeserver,
-      client.userID,
-      client.deviceID,
-      client.deviceName,
-      client.prevBatch,
-      client.matrixVersions.join(","),
-      client.lazyLoadMembers,
-    ]);
-    return;
-  }
-
   /// Clears all tables from the database.
   Future<void> clear() async {
-    await _db
-        .rawDelete("DELETE FROM Clients WHERE client=?", [client.clientName]);
     schemes.forEach((String name, String scheme) async {
-      if (name != "Clients") await _db.rawDelete("DELETE FROM $name");
+      await _db.rawDelete("DELETE FROM $name");
     });
+    await super.clear();
     return;
   }
 
@@ -138,11 +178,13 @@ class Store extends StoreAPI {
     });
   }
 
-  /// Will be automatically called on every synchronisation. Must be called inside of
-  //  /// [transaction].
-  void storePrevBatch(String prevBatch) {
-    txn.rawUpdate("UPDATE Clients SET prev_batch=? WHERE client=?",
-        [prevBatch, client.clientName]);
+  /// Will be automatically called on every synchronisation.
+  Future<void> storePrevBatch(String prevBatch) async {
+    final credentialsStr = await getItem(client.clientName);
+    if (credentialsStr == null) return;
+    final Map<String, dynamic> credentials = json.decode(credentialsStr);
+    credentials["prev_batch"] = prevBatch;
+    await setItem(client.clientName, json.encode(credentials));
   }
 
   Future<void> storeRoomPrevBatch(Room room) async {
@@ -345,37 +387,6 @@ class Store extends StoreAPI {
     return Event.fromJson(res[0], room).asUser;
   }
 
-  /// Loads all Users in the database to provide a contact list
-  /// except users who are in the Room with the ID [exceptRoomID].
-  Future<List<User>> loadContacts({String exceptRoomID = ""}) async {
-    List<Map<String, dynamic>> res = await _db.rawQuery(
-        "SELECT * FROM RoomStates WHERE state_key LIKE '@%:%' AND state_key!=? AND room_id!=? GROUP BY state_key ORDER BY state_key",
-        [client.userID, exceptRoomID]);
-    List<User> userList = [];
-    for (int i = 0; i < res.length; i++) {
-      userList.add(Event.fromJson(res[i], Room(id: "", client: client)).asUser);
-    }
-    return userList;
-  }
-
-  /// Returns all users of a room by a given [roomID].
-  Future<List<User>> loadParticipants(Room room) async {
-    List<Map<String, dynamic>> res = await _db.rawQuery(
-        "SELECT * " +
-            " FROM RoomStates " +
-            " WHERE room_id=? " +
-            " AND type='m.room.member'",
-        [room.id]);
-
-    List<User> participants = [];
-
-    for (num i = 0; i < res.length; i++) {
-      participants.add(Event.fromJson(res[i], room).asUser);
-    }
-
-    return participants;
-  }
-
   /// Returns a list of events for the given room and sets all participants.
   Future<List<Event>> getEventList(Room room) async {
     List<Map<String, dynamic>> eventRes = await _db.rawQuery(
@@ -414,17 +425,6 @@ class Store extends StoreAPI {
       roomList.add(room);
     }
     return roomList;
-  }
-
-  /// Returns a room without events and participants.
-  @deprecated
-  Future<Room> getRoomById(String id) async {
-    List<Map<String, dynamic>> res =
-        await _db.rawQuery("SELECT * FROM Rooms WHERE room_id=?", [id]);
-    if (res.length != 1) return null;
-    return Room.getRoomFromTableRow(res[0], client,
-        roomAccountData: getAccountDataFromRoomId(id),
-        states: getStatesFromRoomId(id));
   }
 
   Future<List<Map<String, dynamic>>> getStatesFromRoomId(String id) async {
@@ -487,48 +487,7 @@ class Store extends StoreAPI {
     return;
   }
 
-  Future forgetNotification(String roomID) async {
-    assert(roomID != "");
-    await _db
-        .rawDelete("DELETE FROM NotificationsCache WHERE chat_id=?", [roomID]);
-    return;
-  }
-
-  Future addNotification(String roomID, String eventId, int uniqueID) async {
-    assert(roomID != "");
-    assert(eventId != "");
-    await _db.rawInsert(
-        "INSERT OR REPLACE INTO NotificationsCache(id, chat_id, event_id) VALUES (?, ?, ?)",
-        [uniqueID, roomID, eventId]);
-    // Make sure we got the same unique ID everywhere
-    await _db.rawUpdate("UPDATE NotificationsCache SET id=? WHERE chat_id=?",
-        [uniqueID, roomID]);
-    return;
-  }
-
-  Future<List<Map<String, dynamic>>> getNotificationByRoom(
-      String roomId) async {
-    assert(roomId != "");
-    List<Map<String, dynamic>> res = await _db
-        .rawQuery("SELECT * FROM NotificationsCache WHERE chat_id=?", [roomId]);
-    if (res.isEmpty) return null;
-    return res;
-  }
-
   static final Map<String, String> schemes = {
-    /// The database scheme for the Client class.
-    "Clients": 'CREATE TABLE IF NOT EXISTS Clients(' +
-        'client TEXT PRIMARY KEY, ' +
-        'token TEXT, ' +
-        'homeserver TEXT, ' +
-        'matrix_id TEXT, ' +
-        'device_id TEXT, ' +
-        'device_name TEXT, ' +
-        'prev_batch TEXT, ' +
-        'matrix_versions TEXT, ' +
-        'lazy_load_members INTEGER, ' +
-        'UNIQUE(client))',
-
     /// The database scheme for the Room class.
     'Rooms': 'CREATE TABLE IF NOT EXISTS Rooms(' +
         'room_id TEXT PRIMARY KEY, ' +
@@ -587,12 +546,5 @@ class Store extends StoreAPI {
         'sender TEXT, ' +
         'content TEXT, ' +
         'UNIQUE(sender))',
-
-    /// The database scheme for the NotificationsCache class.
-    "NotificationsCache": 'CREATE TABLE IF NOT EXISTS NotificationsCache(' +
-        'id int, ' +
-        'chat_id TEXT, ' + // The chat id
-        'event_id TEXT, ' + // The matrix id of the Event
-        'UNIQUE(event_id))',
   };
 }

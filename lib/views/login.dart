@@ -50,7 +50,6 @@ class _LoginState extends State<Login> {
     }
 
     try {
-      print("[Login] Check server...");
       setState(() => loading = true);
       if (!await matrix.client.checkServer(homeserver)) {
         setState(
@@ -63,7 +62,6 @@ class _LoginState extends State<Login> {
       return setState(() => loading = false);
     }
     try {
-      print("[Login] Try to login...");
       await matrix.client.login(
           usernameController.text, passwordController.text,
           initialDeviceDisplayName: matrix.widget.clientName);
@@ -76,19 +74,14 @@ class _LoginState extends State<Login> {
     }
     if (!kIsWeb) {
       try {
-        print("[Login] Setup Firebase...");
         await matrix.setupFirebase();
       } catch (exception) {
-        print("[Login] Failed to setup Firebase. Logout now...");
         await matrix.client.logout();
         matrix.clean();
         setState(() => passwordError = exception.toString());
         return setState(() => loading = false);
       }
     }
-
-    print("[Login] Store account and go to ChatListView");
-    await Matrix.of(context).saveAccount();
     setState(() => loading = false);
     await Navigator.of(context).pushAndRemoveUntil(
         AppRoute.defaultRoute(context, ChatListView()), (r) => false);

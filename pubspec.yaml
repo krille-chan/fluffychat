@@ -27,7 +27,7 @@ dependencies:
   famedlysdk:
     git:
       url: https://gitlab.com/famedly/famedlysdk.git
-      ref: bc2ca9749cfcc0506c59f97f4ae4987f0e84fbf4
+      ref: 1ff04785c0fb7db986c8a7b33396bf06301f1a14
 
   localstorage: ^3.0.1+4
   bubble: ^1.1.9+1
@@ -46,6 +46,7 @@ dependencies:
   webview_flutter: ^0.3.19+4
   share: ^0.6.3+5
   receive_sharing_intent: ^1.3.2
+  flutter_secure_storage: ^3.3.1+1
 
   intl: ^0.16.0
   intl_translation: ^0.17.9

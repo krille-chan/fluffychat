@@ -6,8 +6,8 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/utils/event_extension.dart';
+import 'package:fluffychat/utils/famedlysdk_store.dart';
 import 'package:fluffychat/utils/room_extension.dart';
-import 'package:fluffychat/utils/sqflite_store.dart';
 import 'package:fluffychat/views/chat.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -48,52 +48,8 @@ class MatrixState extends State<Matrix> {
 
   String activeRoomId;
 
-  /// Used to load the old account if there is no store available.
-  void loadAccount() async {
-    final LocalStorage storage = LocalStorage('LocalStorage');
-    await storage.ready;
-
-    final credentialsStr = storage.getItem(widget.clientName);
-    if (credentialsStr == null || credentialsStr.isEmpty) {
-      client.onLoginStateChanged.add(LoginState.loggedOut);
-      return;
-    }
-    print("[Matrix] Restoring account credentials");
-    final Map<String, dynamic> credentials = json.decode(credentialsStr);
-    client.connect(
-      newDeviceID: credentials["deviceID"],
-      newDeviceName: credentials["deviceName"],
-      newHomeserver: credentials["homeserver"],
-      newLazyLoadMembers: credentials["lazyLoadMembers"],
-      //newMatrixVersions: credentials["matrixVersions"], // FIXME: wrong List type
-      newToken: credentials["token"],
-      newUserID: credentials["userID"],
-    );
-  }
-
-  /// Used to save the current account persistently if there is no store available.
-  Future<void> saveAccount() async {
-    if (!kIsWeb) return;
-    print("[Matrix] Save account credentials in crypted preferences");
-    final Map<String, dynamic> credentials = {
-      "deviceID": client.deviceID,
-      "deviceName": client.deviceName,
-      "homeserver": client.homeserver,
-      "lazyLoadMembers": client.lazyLoadMembers,
-      "matrixVersions": client.matrixVersions,
-      "token": client.accessToken,
-      "userID": client.userID,
-    };
-
-    final LocalStorage storage = LocalStorage('LocalStorage');
-    await storage.ready;
-    await storage.setItem(widget.clientName, json.encode(credentials));
-    return;
-  }
-
   void clean() async {
     if (!kIsWeb) return;
-    print("Clear session...");
 
     final LocalStorage storage = LocalStorage('LocalStorage');
     await storage.ready;
@@ -202,7 +158,7 @@ class MatrixState extends State<Matrix> {
             (r) => r.isFirst);
       } catch (_) {
         Toast.show("Failed to open chat...", context);
-        print(_);
+        debugPrint(_);
       }
     };
 
@@ -211,7 +167,6 @@ class MatrixState extends State<Matrix> {
         AndroidInitializationSettings('notifications_icon');
     var initializationSettingsIOS =
         IOSInitializationSettings(onDidReceiveLocalNotification: (i, a, b, c) {
-      print("onDidReceiveLocalNotification: $i $a $b $c");
       return null;
     });
     var initializationSettings = InitializationSettings(
@@ -313,7 +268,7 @@ class MatrixState extends State<Matrix> {
               platformChannelSpecifics,
               payload: roomId);
         } catch (exception) {
-          print("[Push] Error while processing notification: " +
+          debugPrint("[Push] Error while processing notification: " +
               exception.toString());
         }
         return null;
@@ -322,7 +277,7 @@ class MatrixState extends State<Matrix> {
       // Currently fires unexpectetly... https://github.com/FirebaseExtended/flutterfire/issues/1060
       //onLaunch: goToRoom,
     );
-    print("[Push] Firebase initialized");
+    debugPrint("[Push] Firebase initialized");
     return;
   }
 
@@ -331,13 +286,15 @@ class MatrixState extends State<Matrix> {
         IosNotificationSettings(sound: true, badge: true, alert: true));
     _firebaseMessaging.onIosSettingsRegistered
         .listen((IosNotificationSettings settings) {
-      print("Settings registered: $settings");
+      debugPrint("Settings registered: $settings");
     });
   }
 
   void _initWithStore() async {
     Future<LoginState> initLoginState = client.onLoginStateChanged.stream.first;
-    client.store = Store(client);
+    client.storeAPI = kIsWeb ? Store(client) : ExtendedStore(client);
+    debugPrint(
+        "[Store] Store is extended: ${client.storeAPI.extended.toString()}");
     if (await initLoginState == LoginState.logged) {
       await setupFirebase();
     }
@@ -346,14 +303,9 @@ class MatrixState extends State<Matrix> {
   @override
   void initState() {
     if (widget.client == null) {
-      print("[Matrix] Init matrix client");
+      debugPrint("[Matrix] Init matrix client");
       client = Client(widget.clientName, debug: false);
-      if (!kIsWeb) {
-        _initWithStore();
-      } else {
-        print("[Web] Web platform detected - Store disabled!");
-        loadAccount();
-      }
+      _initWithStore();
     } else {
       client = widget.client;
     }

@@ -11,7 +11,6 @@ class UrlLauncher {
   const UrlLauncher(this.context, this.url);
 
   void launchUrl() {
-    print("Open url: $url");
     if (url.startsWith("https://matrix.to/#/")) {
       return openMatrixToUrl();
     }
@@ -22,7 +21,6 @@ class UrlLauncher {
     final matrix = Matrix.of(context);
     final String identifier = url.replaceAll("https://matrix.to/#/", "");
     if (identifier.substring(0, 1) == "#") {
-      print("Join room ${Uri.encodeFull(identifier)}");
       final response = await matrix.tryRequestWithLoadingDialog(
         matrix.client.joinRoomById(
           Uri.encodeComponent(identifier),
@@ -35,7 +33,6 @@ class UrlLauncher {
         (r) => r.isFirst,
       );
     } else if (identifier.substring(0, 1) == "@") {
-      print("Start chat with user $identifier");
       final User user = User(
         identifier,
         room: Room(id: "", client: matrix.client),
