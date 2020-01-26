@@ -13,7 +13,6 @@ class ContentWebView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final String url = content.getDownloadLink(Matrix.of(context).client);
-    print(url);
     return Scaffold(
       appBar: AppBar(
         title: Text(

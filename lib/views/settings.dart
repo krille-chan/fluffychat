@@ -76,7 +76,6 @@ class _SettingsState extends State<Settings> {
         ),
       ),
     );
-    print(success);
     if (success != false) {
       Toast.show(
         I18n.of(context).avatarHasBeenChanged,

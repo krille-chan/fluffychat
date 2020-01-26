@@ -39,7 +39,6 @@ class _SignUpPasswordState extends State<SignUpPassword> {
     }
 
     try {
-      print("[Sign Up] Create account...");
       setState(() => loading = true);
       Future<LoginState> waitForLogin =
           matrix.client.onLoginStateChanged.stream.first;
@@ -52,8 +51,6 @@ class _SignUpPasswordState extends State<SignUpPassword> {
       await waitForLogin;
     } on MatrixException catch (exception) {
       if (exception.requireAdditionalAuthentication) {
-        print(exception.raw);
-
         final List<String> stages = exception.authenticationFlows
             .firstWhere((a) => !a.stages.contains("m.login.email.identity"))
             .stages;
@@ -90,7 +87,7 @@ class _SignUpPasswordState extends State<SignUpPassword> {
         return setState(() => loading = false);
       }
     } catch (exception) {
-      print(exception);
+      debugPrint(exception);
       setState(() => passwordError = exception.toString());
       return setState(() => loading = false);
     }

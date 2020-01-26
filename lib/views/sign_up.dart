@@ -58,7 +58,6 @@ class _SignUpState extends State<SignUp> {
     }
 
     try {
-      print("[Sign Up] Check server...");
       setState(() => loading = true);
       if (!await matrix.client.checkServer(homeserver)) {
         setState(
@@ -72,7 +71,6 @@ class _SignUpState extends State<SignUp> {
     }
 
     try {
-      print("[Sign Up] Check if username is available...");
       await matrix.client.usernameAvailable(preferredUsername);
     } on MatrixException catch (exception) {
       setState(() => usernameError = exception.errorMessage);

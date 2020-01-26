@@ -110,8 +110,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "2545995bbe96a1d96fe176ab666f4dd03d591aa6"
-      resolved-ref: "2545995bbe96a1d96fe176ab666f4dd03d591aa6"
+      ref: "1ff04785c0fb7db986c8a7b33396bf06301f1a14"
+      resolved-ref: "1ff04785c0fb7db986c8a7b33396bf06301f1a14"
       url: "https://gitlab.com/famedly/famedlysdk.git"
     source: git
     version: "0.0.1"
@@ -160,6 +160,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_secure_storage:
+    dependency: "direct main"
+    description:
+      name: flutter_secure_storage
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.3.1+1"
   flutter_speed_dial:
     dependency: "direct main"
     description:
