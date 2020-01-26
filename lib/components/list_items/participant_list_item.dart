@@ -28,7 +28,7 @@ class ParticipantListItem extends StatelessWidget {
         await matrix.tryRequestWithLoadingDialog(user.setPower(100));
         break;
       case "user":
-        await matrix.tryRequestWithLoadingDialog(user.setPower(100));
+        await matrix.tryRequestWithLoadingDialog(user.setPower(0));
         break;
       case "message":
         final String roomId = await user.startDirectChat();
