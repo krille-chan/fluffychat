@@ -44,7 +44,9 @@ class App extends StatelessWidget {
               color: Colors.white,
               elevation: 1,
               textTheme: TextTheme(
-                title: TextStyle(color: Colors.black),
+                title: TextStyle(
+                  color: Colors.black,
+                ),
               ),
               iconTheme: IconThemeData(color: Colors.black),
             ),

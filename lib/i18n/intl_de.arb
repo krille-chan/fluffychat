@@ -241,6 +241,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "Copy": "Kopieren",
+  "@Copy": {
+    "type": "text",
+    "placeholders": {}
+  },
   "Could not decrypt message": "Nachricht konnte nicht entschlüsselt werden",
   "@Could not decrypt message": {
     "type": "text",

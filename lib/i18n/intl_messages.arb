@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-01-20T13:24:15.803218",
+  "@@last_modified": "2020-01-27T11:02:06.464591",
   "About": "About",
   "@About": {
     "type": "text",
@@ -238,6 +238,11 @@
   },
   "Copied to clipboard": "Copied to clipboard",
   "@Copied to clipboard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Copy": "Copy",
+  "@Copy": {
     "type": "text",
     "placeholders": {}
   },

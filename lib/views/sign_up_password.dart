@@ -92,11 +92,7 @@ class _SignUpPasswordState extends State<SignUpPassword> {
       return setState(() => loading = false);
     }
     try {
-      await matrix.client.jsonRequest(
-        type: HTTPType.PUT,
-        action: "/client/r0/profile/${matrix.client.userID}/displayname",
-        data: {"displayname": widget.displayname},
-      );
+      await matrix.client.setDisplayname(widget.displayname);
     } catch (exception) {
       Toast.show(I18n.of(context).couldNotSetDisplayname, context, duration: 5);
     }
