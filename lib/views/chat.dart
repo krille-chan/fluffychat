@@ -17,16 +17,34 @@ import 'package:pedantic/pedantic.dart';
 
 import 'chat_list.dart';
 
-class Chat extends StatefulWidget {
+class ChatView extends StatelessWidget {
   final String id;
 
-  const Chat(this.id, {Key key}) : super(key: key);
+  const ChatView(this.id, {Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return AdaptivePageLayout(
+      primaryPage: FocusPage.SECOND,
+      firstScaffold: ChatList(
+        activeChat: id,
+      ),
+      secondScaffold: _Chat(id),
+    );
+  }
+}
+
+class _Chat extends StatefulWidget {
+  final String id;
+
+  const _Chat(this.id, {Key key}) : super(key: key);
 
   @override
   _ChatState createState() => _ChatState();
 }
 
-class _ChatState extends State<Chat> {
+class _ChatState extends State<_Chat> {
   Room room;
 
   Timeline timeline;
@@ -202,224 +220,217 @@ class _ChatState extends State<Chat> {
           (typingUsers.length - 1).toString());
     }
 
-    return AdaptivePageLayout(
-      primaryPage: FocusPage.SECOND,
-      firstScaffold: ChatList(
-        activeChat: widget.id,
-      ),
-      secondScaffold: Scaffold(
-        appBar: AppBar(
-          title: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(room.getLocalizedDisplayname(context)),
-              AnimatedContainer(
-                duration: Duration(milliseconds: 500),
-                height: typingText.isEmpty ? 0 : 20,
-                child: Row(
-                  children: <Widget>[
-                    typingText.isEmpty
-                        ? Container()
-                        : Icon(Icons.edit,
-                            color: Theme.of(context).primaryColor, size: 10),
-                    SizedBox(width: 4),
-                    Text(
-                      typingText,
-                      style: TextStyle(
-                        color: Theme.of(context).primaryColor,
-                        fontStyle: FontStyle.italic,
-                      ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(room.getLocalizedDisplayname(context)),
+            AnimatedContainer(
+              duration: Duration(milliseconds: 500),
+              height: typingText.isEmpty ? 0 : 20,
+              child: Row(
+                children: <Widget>[
+                  typingText.isEmpty
+                      ? Container()
+                      : Icon(Icons.edit,
+                          color: Theme.of(context).primaryColor, size: 10),
+                  SizedBox(width: 4),
+                  Text(
+                    typingText,
+                    style: TextStyle(
+                      color: Theme.of(context).primaryColor,
+                      fontStyle: FontStyle.italic,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          ),
-          actions: <Widget>[ChatSettingsPopupMenu(room, !room.isDirectChat)],
+            ),
+          ],
         ),
-        body: SafeArea(
-          child: Column(
-            children: <Widget>[
-              Expanded(
-                child: FutureBuilder<bool>(
-                  future: getTimeline(),
-                  builder: (BuildContext context, snapshot) {
-                    if (!snapshot.hasData) {
-                      return Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
+        actions: <Widget>[ChatSettingsPopupMenu(room, !room.isDirectChat)],
+      ),
+      body: SafeArea(
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              child: FutureBuilder<bool>(
+                future: getTimeline(),
+                builder: (BuildContext context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
 
-                    if (room.notificationCount != null &&
-                        room.notificationCount > 0 &&
-                        timeline != null &&
-                        timeline.events.isNotEmpty) {
-                      room.sendReadReceipt(timeline.events.first.eventId);
-                    }
+                  if (room.notificationCount != null &&
+                      room.notificationCount > 0 &&
+                      timeline != null &&
+                      timeline.events.isNotEmpty) {
+                    room.sendReadReceipt(timeline.events.first.eventId);
+                  }
 
-                    if (timeline.events.isEmpty) return Container();
+                  if (timeline.events.isEmpty) return Container();
 
-                    return ListView.builder(
-                        reverse: true,
-                        itemCount: timeline.events.length + 1,
-                        controller: _scrollController,
-                        itemBuilder: (BuildContext context, int i) {
-                          return i == 0
-                              ? AnimatedContainer(
-                                  height: seenByText.isEmpty ? 0 : 24,
-                                  duration: seenByText.isEmpty
-                                      ? Duration(milliseconds: 0)
-                                      : Duration(milliseconds: 500),
-                                  alignment: timeline.events.first.senderId ==
-                                          client.userID
-                                      ? Alignment.topRight
-                                      : Alignment.topLeft,
-                                  child: Text(
-                                    seenByText,
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                      color: Theme.of(context).primaryColor,
-                                    ),
+                  return ListView.builder(
+                      reverse: true,
+                      itemCount: timeline.events.length + 1,
+                      controller: _scrollController,
+                      itemBuilder: (BuildContext context, int i) {
+                        return i == 0
+                            ? AnimatedContainer(
+                                height: seenByText.isEmpty ? 0 : 24,
+                                duration: seenByText.isEmpty
+                                    ? Duration(milliseconds: 0)
+                                    : Duration(milliseconds: 500),
+                                alignment: timeline.events.first.senderId ==
+                                        client.userID
+                                    ? Alignment.topRight
+                                    : Alignment.topLeft,
+                                child: Text(
+                                  seenByText,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                    color: Theme.of(context).primaryColor,
                                   ),
-                                  padding: EdgeInsets.only(
-                                    left: 8,
-                                    right: 8,
-                                    bottom: 8,
-                                  ),
-                                )
-                              : Message(timeline.events[i - 1],
-                                  nextEvent:
-                                      i >= 2 ? timeline.events[i - 2] : null);
-                        });
-                  },
-                ),
-              ),
-              room.canSendDefaultMessages && room.membership == Membership.join
-                  ? Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.2),
-                            spreadRadius: 1,
-                            blurRadius: 2,
-                            offset: Offset(0, -1), // changes position of shadow
-                          ),
-                        ],
-                      ),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          kIsWeb
-                              ? Container()
-                              : PopupMenuButton<String>(
-                                  icon: Icon(Icons.add),
-                                  onSelected: (String choice) async {
-                                    if (choice == "file") {
-                                      sendFileAction(context);
-                                    } else if (choice == "image") {
-                                      sendImageAction(context);
-                                    }
-                                    if (choice == "camera") {
-                                      openCameraAction(context);
-                                    }
-                                  },
-                                  itemBuilder: (BuildContext context) =>
-                                      <PopupMenuEntry<String>>[
-                                    PopupMenuItem<String>(
-                                      value: "file",
-                                      child: ListTile(
-                                        leading: CircleAvatar(
-                                          backgroundColor: Colors.green,
-                                          foregroundColor: Colors.white,
-                                          child: Icon(Icons.attachment),
-                                        ),
-                                        title: Text(I18n.of(context).sendFile),
-                                        contentPadding: EdgeInsets.all(0),
-                                      ),
-                                    ),
-                                    PopupMenuItem<String>(
-                                      value: "image",
-                                      child: ListTile(
-                                        leading: CircleAvatar(
-                                          backgroundColor: Colors.blue,
-                                          foregroundColor: Colors.white,
-                                          child: Icon(Icons.image),
-                                        ),
-                                        title: Text(I18n.of(context).sendImage),
-                                        contentPadding: EdgeInsets.all(0),
-                                      ),
-                                    ),
-                                    PopupMenuItem<String>(
-                                      value: "camera",
-                                      child: ListTile(
-                                        leading: CircleAvatar(
-                                          backgroundColor: Colors.purple,
-                                          foregroundColor: Colors.white,
-                                          child: Icon(Icons.camera),
-                                        ),
-                                        title:
-                                            Text(I18n.of(context).openCamera),
-                                        contentPadding: EdgeInsets.all(0),
-                                      ),
-                                    ),
-                                  ],
                                 ),
-                          SizedBox(width: 8),
-                          Expanded(
-                              child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 4.0),
-                            child: TextField(
-                              minLines: 1,
-                              maxLines: kIsWeb ? 1 : 8,
-                              keyboardType: kIsWeb
-                                  ? TextInputType.text
-                                  : TextInputType.multiline,
-                              onSubmitted: (String text) {
-                                send();
-                                FocusScope.of(context).requestFocus(inputFocus);
-                              },
-                              focusNode: inputFocus,
-                              controller: sendController,
-                              decoration: InputDecoration(
-                                hintText: I18n.of(context).writeAMessage,
-                                border: InputBorder.none,
+                                padding: EdgeInsets.only(
+                                  left: 8,
+                                  right: 8,
+                                  bottom: 8,
+                                ),
+                              )
+                            : Message(timeline.events[i - 1],
+                                nextEvent:
+                                    i >= 2 ? timeline.events[i - 2] : null);
+                      });
+                },
+              ),
+            ),
+            room.canSendDefaultMessages && room.membership == Membership.join
+                ? Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.2),
+                          spreadRadius: 1,
+                          blurRadius: 2,
+                          offset: Offset(0, -1), // changes position of shadow
+                        ),
+                      ],
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        kIsWeb
+                            ? Container()
+                            : PopupMenuButton<String>(
+                                icon: Icon(Icons.add),
+                                onSelected: (String choice) async {
+                                  if (choice == "file") {
+                                    sendFileAction(context);
+                                  } else if (choice == "image") {
+                                    sendImageAction(context);
+                                  }
+                                  if (choice == "camera") {
+                                    openCameraAction(context);
+                                  }
+                                },
+                                itemBuilder: (BuildContext context) =>
+                                    <PopupMenuEntry<String>>[
+                                  PopupMenuItem<String>(
+                                    value: "file",
+                                    child: ListTile(
+                                      leading: CircleAvatar(
+                                        backgroundColor: Colors.green,
+                                        foregroundColor: Colors.white,
+                                        child: Icon(Icons.attachment),
+                                      ),
+                                      title: Text(I18n.of(context).sendFile),
+                                      contentPadding: EdgeInsets.all(0),
+                                    ),
+                                  ),
+                                  PopupMenuItem<String>(
+                                    value: "image",
+                                    child: ListTile(
+                                      leading: CircleAvatar(
+                                        backgroundColor: Colors.blue,
+                                        foregroundColor: Colors.white,
+                                        child: Icon(Icons.image),
+                                      ),
+                                      title: Text(I18n.of(context).sendImage),
+                                      contentPadding: EdgeInsets.all(0),
+                                    ),
+                                  ),
+                                  PopupMenuItem<String>(
+                                    value: "camera",
+                                    child: ListTile(
+                                      leading: CircleAvatar(
+                                        backgroundColor: Colors.purple,
+                                        foregroundColor: Colors.white,
+                                        child: Icon(Icons.camera),
+                                      ),
+                                      title: Text(I18n.of(context).openCamera),
+                                      contentPadding: EdgeInsets.all(0),
+                                    ),
+                                  ),
+                                ],
                               ),
-                              onChanged: (String text) {
-                                this.typingCoolDown?.cancel();
-                                this.typingCoolDown =
-                                    Timer(Duration(seconds: 2), () {
-                                  this.typingCoolDown = null;
-                                  this.currentlyTyping = false;
-                                  room.sendTypingInfo(false);
-                                });
-                                this.typingTimeout ??=
-                                    Timer(Duration(seconds: 30), () {
-                                  this.typingTimeout = null;
-                                  this.currentlyTyping = false;
-                                });
-                                if (!this.currentlyTyping) {
-                                  this.currentlyTyping = true;
-                                  room.sendTypingInfo(true,
-                                      timeout:
-                                          Duration(seconds: 30).inMilliseconds);
-                                }
-                              },
+                        SizedBox(width: 8),
+                        Expanded(
+                            child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 4.0),
+                          child: TextField(
+                            minLines: 1,
+                            maxLines: kIsWeb ? 1 : 8,
+                            keyboardType: kIsWeb
+                                ? TextInputType.text
+                                : TextInputType.multiline,
+                            onSubmitted: (String text) {
+                              send();
+                              FocusScope.of(context).requestFocus(inputFocus);
+                            },
+                            focusNode: inputFocus,
+                            controller: sendController,
+                            decoration: InputDecoration(
+                              hintText: I18n.of(context).writeAMessage,
+                              border: InputBorder.none,
                             ),
-                          )),
-                          SizedBox(width: 8),
-                          IconButton(
-                            icon: Icon(Icons.send),
-                            onPressed: () => send(),
+                            onChanged: (String text) {
+                              this.typingCoolDown?.cancel();
+                              this.typingCoolDown =
+                                  Timer(Duration(seconds: 2), () {
+                                this.typingCoolDown = null;
+                                this.currentlyTyping = false;
+                                room.sendTypingInfo(false);
+                              });
+                              this.typingTimeout ??=
+                                  Timer(Duration(seconds: 30), () {
+                                this.typingTimeout = null;
+                                this.currentlyTyping = false;
+                              });
+                              if (!this.currentlyTyping) {
+                                this.currentlyTyping = true;
+                                room.sendTypingInfo(true,
+                                    timeout:
+                                        Duration(seconds: 30).inMilliseconds);
+                              }
+                            },
                           ),
-                        ],
-                      ),
-                    )
-                  : Container(),
-            ],
-          ),
+                        )),
+                        SizedBox(width: 8),
+                        IconButton(
+                          icon: Icon(Icons.send),
+                          onPressed: () => send(),
+                        ),
+                      ],
+                    ),
+                  )
+                : Container(),
+          ],
         ),
       ),
     );

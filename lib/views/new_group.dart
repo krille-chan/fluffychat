@@ -1,17 +1,30 @@
+import 'package:fluffychat/components/adaptive_page_layout.dart';
+import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/i18n/i18n.dart';
-import 'package:fluffychat/views/chat.dart';
-import 'package:fluffychat/views/invitation_selection.dart';
 import 'package:flutter/material.dart';
 import 'package:pedantic/pedantic.dart';
 
-import '../matrix.dart';
+import 'chat.dart';
+import 'chat_list.dart';
+import 'invitation_selection.dart';
 
-class NewGroupDialog extends StatefulWidget {
+class NewGroupView extends StatelessWidget {
   @override
-  _NewGroupDialogState createState() => _NewGroupDialogState();
+  Widget build(BuildContext context) {
+    return AdaptivePageLayout(
+      primaryPage: FocusPage.SECOND,
+      firstScaffold: ChatList(),
+      secondScaffold: _NewGroup(),
+    );
+  }
 }
 
-class _NewGroupDialogState extends State<NewGroupDialog> {
+class _NewGroup extends StatefulWidget {
+  @override
+  _NewGroupState createState() => _NewGroupState();
+}
+
+class _NewGroupState extends State<_NewGroup> {
   TextEditingController controller = TextEditingController();
   bool publicGroup = false;
 
@@ -54,20 +67,28 @@ class _NewGroupDialogState extends State<NewGroupDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      title: Text(I18n.of(context).createNewGroup),
-      content: Column(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(I18n.of(context).createNewGroup),
+        elevation: 0,
+      ),
+      body: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          TextField(
-            controller: controller,
-            autocorrect: false,
-            textInputAction: TextInputAction.go,
-            onSubmitted: (s) => submitAction(context),
-            decoration: InputDecoration(
-                labelText: I18n.of(context).optionalGroupName,
-                icon: Icon(Icons.people),
-                hintText: I18n.of(context).enterAGroupName),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: TextField(
+              controller: controller,
+              autofocus: true,
+              autocorrect: false,
+              textInputAction: TextInputAction.go,
+              onSubmitted: (s) => submitAction(context),
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: I18n.of(context).optionalGroupName,
+                  prefixIcon: Icon(Icons.people),
+                  hintText: I18n.of(context).enterAGroupName),
+            ),
           ),
           SwitchListTile(
             title: Text(I18n.of(context).groupIsPublic),
@@ -76,19 +97,11 @@ class _NewGroupDialogState extends State<NewGroupDialog> {
           ),
         ],
       ),
-      actions: <Widget>[
-        FlatButton(
-          child: Text(I18n.of(context).close.toUpperCase(),
-              style: TextStyle(color: Colors.blueGrey)),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-        FlatButton(
-          child: Text(I18n.of(context).create.toUpperCase()),
-          onPressed: () => submitAction(context),
-        ),
-      ],
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Theme.of(context).primaryColor,
+        onPressed: () => submitAction(context),
+        child: Icon(Icons.arrow_forward),
+      ),
     );
   }
 }

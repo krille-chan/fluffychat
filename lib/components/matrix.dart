@@ -153,7 +153,7 @@ class MatrixState extends State<Matrix> {
         await Navigator.of(context).pushAndRemoveUntil(
             AppRoute.defaultRoute(
               context,
-              Chat(roomId),
+              ChatView(roomId),
             ),
             (r) => r.isFirst);
       } catch (_) {

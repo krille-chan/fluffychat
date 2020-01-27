@@ -2,14 +2,14 @@ import 'dart:async';
 
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
-import 'package:fluffychat/components/dialogs/new_group_dialog.dart';
-import 'package:fluffychat/components/dialogs/new_private_chat_dialog.dart';
 import 'package:fluffychat/components/list_items/chat_list_item.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/views/archive.dart';
+import 'package:fluffychat/views/new_group.dart';
+import 'package:fluffychat/views/new_private_chat.dart';
 import 'package:fluffychat/views/settings.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -193,19 +193,18 @@ class _ChatListState extends State<ChatList> {
             backgroundColor: Colors.blue,
             label: I18n.of(context).createNewGroup,
             labelStyle: TextStyle(fontSize: 18.0),
-            onTap: () => showDialog(
-              context: context,
-              builder: (BuildContext innerContext) => NewGroupDialog(),
-            ),
+            onTap: () => Navigator.of(context).pushAndRemoveUntil(
+                AppRoute.defaultRoute(context, NewGroupView()),
+                (r) => r.isFirst),
           ),
           SpeedDialChild(
             child: Icon(Icons.person_add),
             backgroundColor: Colors.green,
             label: I18n.of(context).newPrivateChat,
             labelStyle: TextStyle(fontSize: 18.0),
-            onTap: () => showDialog(
-                context: context,
-                builder: (BuildContext innerContext) => NewPrivateChatDialog()),
+            onTap: () => Navigator.of(context).pushAndRemoveUntil(
+                AppRoute.defaultRoute(context, NewPrivateChatView()),
+                (r) => r.isFirst),
           ),
         ],
       ),

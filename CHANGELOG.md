@@ -1,3 +1,10 @@
+# Version 0.5.1 - 2020-MM-DD
+### New features
+- Refactoring under the hood
+### Fixes
+- Fixed the bug that when revoking permissions for a user makes the user an admin
+- Fixed the Kick user when user has already left the group
+
 # Version 0.5.0 - 2020-01-20
 ### New features
 - Localizations

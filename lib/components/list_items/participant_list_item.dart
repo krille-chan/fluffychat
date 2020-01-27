@@ -35,7 +35,7 @@ class ParticipantListItem extends StatelessWidget {
         await Navigator.of(context).pushAndRemoveUntil(
             AppRoute.defaultRoute(
               context,
-              Chat(roomId),
+              ChatView(roomId),
             ),
             (Route r) => r.isFirst);
         break;

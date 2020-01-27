@@ -29,7 +29,7 @@ class UrlLauncher {
       if (response == false) return;
       await Navigator.pushAndRemoveUntil(
         context,
-        AppRoute.defaultRoute(context, Chat(response["room_id"])),
+        AppRoute.defaultRoute(context, ChatView(response["room_id"])),
         (r) => r.isFirst,
       );
     } else if (identifier.substring(0, 1) == "@") {
@@ -44,7 +44,7 @@ class UrlLauncher {
       if (roomID != null) {
         await Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Chat(roomID)),
+          MaterialPageRoute(builder: (context) => ChatView(roomID)),
         );
       }
     }

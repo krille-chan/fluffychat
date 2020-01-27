@@ -76,7 +76,7 @@ class ChatListItem extends StatelessWidget {
         }
         await Navigator.pushAndRemoveUntil(
           context,
-          AppRoute.defaultRoute(context, Chat(room.id)),
+          AppRoute.defaultRoute(context, ChatView(room.id)),
           (r) => r.isFirst,
         );
       }

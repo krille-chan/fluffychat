@@ -42,7 +42,7 @@ class _NewPrivateChatDialogState extends State<NewPrivateChatDialog> {
     if (roomID != null) {
       await Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => Chat(roomID)),
+        MaterialPageRoute(builder: (context) => ChatView(roomID)),
       );
     }
   }
