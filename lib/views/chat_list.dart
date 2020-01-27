@@ -224,7 +224,7 @@ class _ChatListState extends State<ChatList> {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Icon(
-                      searchMode ? Icons.search : Icons.add,
+                      searchMode ? Icons.search : Icons.chat_bubble_outline,
                       size: 80,
                       color: Colors.grey,
                     ),
