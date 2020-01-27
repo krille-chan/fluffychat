@@ -215,7 +215,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                                     child: Icon(Icons.edit),
                                   )
                                 : null,
-                            title: Text("Group description:",
+                            title: Text("${I18n.of(context).groupDescription}:",
                                 style: TextStyle(
                                     color: Theme.of(context).primaryColor,
                                     fontWeight: FontWeight.bold)),

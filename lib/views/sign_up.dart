@@ -107,18 +107,20 @@ class _SignUpState extends State<SignUp> {
       ),
       body: ListView(
           padding: EdgeInsets.symmetric(
-              vertical: 16,
               horizontal:
-                  max((MediaQuery.of(context).size.width - 600) / 2, 16)),
+                  max((MediaQuery.of(context).size.width - 600) / 2, 0)),
           children: <Widget>[
             Image.asset("assets/fluffychat-banner.png"),
             ListTile(
               leading: CircleAvatar(
                 backgroundImage: avatar == null ? null : FileImage(avatar),
                 backgroundColor: avatar == null
-                    ? Colors.green
+                    ? Colors.white
                     : Theme.of(context).secondaryHeaderColor,
-                child: avatar == null ? Icon(Icons.camera_alt) : null,
+                child: avatar == null
+                    ? Icon(Icons.camera_alt,
+                        color: Theme.of(context).primaryColor)
+                    : null,
               ),
               trailing: avatar == null
                   ? null
@@ -135,8 +137,11 @@ class _SignUpState extends State<SignUp> {
             ),
             ListTile(
               leading: CircleAvatar(
-                backgroundColor: Colors.blue,
-                child: Icon(Icons.account_box),
+                backgroundColor: Colors.white,
+                child: Icon(
+                  Icons.account_circle,
+                  color: Theme.of(context).primaryColor,
+                ),
               ),
               title: TextField(
                 autocorrect: false,
@@ -151,16 +156,17 @@ class _SignUpState extends State<SignUp> {
             SizedBox(height: 20),
             Container(
               height: 50,
+              padding: EdgeInsets.symmetric(horizontal: 12),
               child: RaisedButton(
                 elevation: 7,
                 color: Theme.of(context).primaryColor,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50),
+                  borderRadius: BorderRadius.circular(6),
                 ),
                 child: loading
                     ? CircularProgressIndicator()
                     : Text(
-                        I18n.of(context).signUp,
+                        I18n.of(context).signUp.toUpperCase(),
                         style: TextStyle(color: Colors.white, fontSize: 16),
                       ),
                 onPressed: () => signUpAction(context),
@@ -173,6 +179,7 @@ class _SignUpState extends State<SignUp> {
                   style: TextStyle(
                     decoration: TextDecoration.underline,
                     color: Colors.blue,
+                    fontSize: 16,
                   ),
                 ),
                 onPressed: () => Navigator.of(context).push(

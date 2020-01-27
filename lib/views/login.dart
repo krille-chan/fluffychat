@@ -105,8 +105,7 @@ class _LoginState extends State<Login> {
       ),
       body: ListView(
         padding: EdgeInsets.symmetric(
-            vertical: 16,
-            horizontal: max((MediaQuery.of(context).size.width - 600) / 2, 16)),
+            horizontal: max((MediaQuery.of(context).size.width - 600) / 2, 0)),
         children: <Widget>[
           Container(
             height: 150,
@@ -114,15 +113,15 @@ class _LoginState extends State<Login> {
             child: Center(
               child: Icon(
                 Icons.vpn_key,
-                color: Theme.of(context).primaryColor,
-                size: 40,
+                size: 60,
               ),
             ),
           ),
           ListTile(
             leading: CircleAvatar(
-              backgroundColor: Colors.blue,
-              child: Icon(Icons.account_box),
+              backgroundColor: Colors.white,
+              child: Icon(Icons.account_box,
+                  color: Theme.of(context).primaryColor),
             ),
             title: TextField(
               autocorrect: false,
@@ -136,8 +135,8 @@ class _LoginState extends State<Login> {
           ),
           ListTile(
             leading: CircleAvatar(
-              backgroundColor: Colors.yellow,
-              child: Icon(Icons.lock),
+              backgroundColor: Colors.white,
+              child: Icon(Icons.lock, color: Theme.of(context).primaryColor),
             ),
             title: TextField(
               autocorrect: false,
@@ -159,16 +158,17 @@ class _LoginState extends State<Login> {
           SizedBox(height: 20),
           Container(
             height: 50,
+            padding: EdgeInsets.symmetric(horizontal: 12),
             child: RaisedButton(
               elevation: 7,
               color: Theme.of(context).primaryColor,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(50),
+                borderRadius: BorderRadius.circular(6),
               ),
               child: loading
                   ? CircularProgressIndicator()
                   : Text(
-                      I18n.of(context).login,
+                      I18n.of(context).login.toUpperCase(),
                       style: TextStyle(color: Colors.white, fontSize: 16),
                     ),
               onPressed: () => loading ? null : login(context),

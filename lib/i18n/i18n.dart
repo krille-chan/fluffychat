@@ -200,6 +200,8 @@ class I18n {
 
   String get copiedToClipboard => Intl.message("Copied to clipboard");
 
+  String get copy => Intl.message("Copy");
+
   String get couldNotDecryptMessage =>
       Intl.message("Could not decrypt message");
 

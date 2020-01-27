@@ -67,9 +67,9 @@ class Message extends StatelessWidget {
         ].contains(event.messageType) &&
         event.body.isNotEmpty) {
       popupMenuList.add(
-        const PopupMenuItem<String>(
+        PopupMenuItem<String>(
           value: "copy",
-          child: Text('Copy'),
+          child: Text(I18n.of(context).copy),
         ),
       );
     }

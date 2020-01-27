@@ -125,8 +125,7 @@ class _SignUpPasswordState extends State<SignUpPassword> {
       ),
       body: ListView(
         padding: EdgeInsets.symmetric(
-            vertical: 16,
-            horizontal: max((MediaQuery.of(context).size.width - 600) / 2, 16)),
+            horizontal: max((MediaQuery.of(context).size.width - 600) / 2, 0)),
         children: <Widget>[
           Container(
             height: 150,
@@ -141,8 +140,8 @@ class _SignUpPasswordState extends State<SignUpPassword> {
           ),
           ListTile(
             leading: CircleAvatar(
-              backgroundColor: Colors.yellow,
-              child: Icon(Icons.lock),
+              backgroundColor: Colors.white,
+              child: Icon(Icons.lock, color: Theme.of(context).primaryColor),
             ),
             title: TextField(
               controller: passwordController,
@@ -165,16 +164,17 @@ class _SignUpPasswordState extends State<SignUpPassword> {
           SizedBox(height: 20),
           Container(
             height: 50,
+            padding: EdgeInsets.symmetric(horizontal: 12),
             child: RaisedButton(
               elevation: 7,
               color: Theme.of(context).primaryColor,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(50),
+                borderRadius: BorderRadius.circular(6),
               ),
               child: loading
                   ? CircularProgressIndicator()
                   : Text(
-                      I18n.of(context).createAccountNow,
+                      I18n.of(context).createAccountNow.toUpperCase(),
                       style: TextStyle(color: Colors.white, fontSize: 16),
                     ),
               onPressed: () => loading ? null : _signUpAction(context),

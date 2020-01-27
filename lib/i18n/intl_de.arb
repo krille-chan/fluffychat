@@ -886,7 +886,7 @@
       "targetName": {}
     }
   },
-  "Unmute chat": "Nicht mehr stummschalten",
+  "Unmute chat": "Stumm aus",
   "@Unmute chat": {
     "type": "text",
     "placeholders": {}
