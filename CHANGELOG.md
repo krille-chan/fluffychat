@@ -12,6 +12,7 @@
 - Username search
 ### Fixes
 - Minor bug fixes
+- Invite to direct chat
 
 # Version 0.4.0 - 2020-01-18
 ### New features
