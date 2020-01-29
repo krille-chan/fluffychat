@@ -91,25 +91,27 @@ class _SignUpPasswordState extends State<SignUpPassword> {
       setState(() => passwordError = exception.toString());
       return setState(() => loading = false);
     }
+    await matrix.client.onLoginStateChanged.stream
+        .firstWhere((l) => l == LoginState.logged);
     try {
       await matrix.client.setDisplayname(widget.displayname);
     } catch (exception) {
       Toast.show(I18n.of(context).couldNotSetDisplayname, context, duration: 5);
     }
-    try {
-      await matrix.client.setAvatar(
-        MatrixFile(
-          bytes: await widget.avatar.readAsBytes(),
-          path: widget.avatar.path,
-        ),
-      );
-    } catch (exception) {
-      Toast.show(I18n.of(context).couldNotSetAvatar, context, duration: 5);
+    if (widget.avatar != null) {
+      try {
+        await matrix.client.setAvatar(
+          MatrixFile(
+            bytes: await widget.avatar.readAsBytes(),
+            path: widget.avatar.path,
+          ),
+        );
+      } catch (exception) {
+        Toast.show(I18n.of(context).couldNotSetAvatar, context, duration: 5);
+      }
     }
-    if (matrix.client.isLogged()) {
-      await Navigator.of(context).pushAndRemoveUntil(
-          AppRoute.defaultRoute(context, ChatListView()), (r) => false);
-    }
+    await Navigator.of(context).pushAndRemoveUntil(
+        AppRoute.defaultRoute(context, ChatListView()), (r) => false);
     setState(() => loading = false);
   }
 
