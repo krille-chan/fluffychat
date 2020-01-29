@@ -1,5 +1,12 @@
-# Version 0.5.1 - 2020-MM-DD
-### New features
+# Version 0.5.2 - 2020-01-29
+### Changes
+- New default homeserver: tchncs.de
+### Fixes
+- Translation fixed
+- Parsing of m.room.aliases events
+
+# Version 0.5.1 - 2020-01-28
+### Changes
 - Refactoring under the hood
 ### Fixes
 - Fixed the bug that when revoking permissions for a user makes the user an admin

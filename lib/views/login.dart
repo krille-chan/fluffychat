@@ -18,7 +18,7 @@ class _LoginState extends State<Login> {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController serverController =
-      TextEditingController(text: "matrix-client.matrix.org");
+      TextEditingController(text: "tchncs.de");
   String usernameError;
   String passwordError;
   String serverError;
