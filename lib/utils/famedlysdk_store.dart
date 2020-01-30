@@ -15,7 +15,7 @@ class Store extends StoreAPI {
   final FlutterSecureStorage secureStorage;
 
   Store(this.client)
-      : storage = !kIsWeb ? null : LocalStorage('LocalStorage'),
+      : storage = LocalStorage('LocalStorage'),
         secureStorage = kIsWeb ? null : FlutterSecureStorage() {
     _init();
   }
@@ -351,8 +351,8 @@ class ExtendedStore extends Store implements ExtendedStoreAPI {
 
     if (type == "history") return null;
 
-    if (type != "account_data" && eventUpdate.content["event_id"] != null ||
-        eventUpdate.content["state_key"] != null) {
+    if (type != "account_data" &&
+        eventUpdate.content.containsKey("state_key")) {
       final String now = DateTime.now().millisecondsSinceEpoch.toString();
       txn.rawInsert(
           "INSERT OR REPLACE INTO RoomStates VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)",
