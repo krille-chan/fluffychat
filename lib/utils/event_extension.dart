@@ -162,7 +162,9 @@ extension LocalizedBody on Event {
         break;
       case EventTypes.Encryption:
         localizedBody =
-            I18n.of(context).activatedEndToEndEncryption(senderName);
+            I18n.of(context).activatedEndToEndEncryption(senderName) +
+                ". " +
+                I18n.of(context).needPantalaimonWarning;
         break;
       case EventTypes.Encrypted:
         localizedBody = I18n.of(context).couldNotDecryptMessage;

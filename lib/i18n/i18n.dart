@@ -265,6 +265,14 @@ class I18n {
 
   String get emptyChat => Intl.message("Empty chat");
 
+  String get enableEncryptionWarning => Intl.message(
+      "You won't be able to disable the encryption anymore. Are you sure?");
+
+  String get encryptionAlgorithm => Intl.message("Encryption algorithm");
+
+  String get end2endEncryptionSettings =>
+      Intl.message("End-to-end encryption settings");
+
   String get enterAGroupName => Intl.message("Enter a group name");
 
   String get enterAUsername => Intl.message("Enter a username");
@@ -388,6 +396,9 @@ class I18n {
 
   String get muteChat => Intl.message('Mute chat');
 
+  String get needPantalaimonWarning => Intl.message(
+      "Please be aware that you need Pantalaimon to use end-to-end encryption for now.");
+
   String get newMessageInFluffyChat =>
       Intl.message('New message in FluffyChat');
 
@@ -395,6 +406,8 @@ class I18n {
 
   String get noGoogleServicesWarning => Intl.message(
       "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/");
+
+  String get none => Intl.message("None");
 
   String get noRoomsFound => Intl.message("No rooms found...");
 
@@ -406,6 +419,9 @@ class I18n {
   String get openCamera => Intl.message('Open camera');
 
   String get optionalGroupName => Intl.message("(Optional) Group name");
+
+  String get participatingUserDevices =>
+      Intl.message("Participating user devices");
 
   String get password => Intl.message("Password");
 
@@ -636,6 +652,8 @@ class I18n {
       Intl.message("Who is allowed to join this group");
 
   String get writeAMessage => Intl.message("Write a message...");
+
+  String get yes => Intl.message("Yes");
 
   String get you => Intl.message("You");
 

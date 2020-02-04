@@ -36,6 +36,24 @@ class Store extends StoreAPI {
     return await secureStorage.write(key: key, value: value);
   }
 
+  Future<Map<String, DeviceKeysList>> getUserDeviceKeys() async {
+    final deviceKeysListString = await getItem(_UserDeviceKeysKey);
+    if (deviceKeysListString == null) return {};
+    Map<String, dynamic> rawUserDeviceKeys = json.decode(deviceKeysListString);
+    Map<String, DeviceKeysList> userDeviceKeys = {};
+    for (final entry in rawUserDeviceKeys.entries) {
+      userDeviceKeys[entry.key] = DeviceKeysList.fromJson(entry.value);
+    }
+    return userDeviceKeys;
+  }
+
+  Future<void> storeUserDeviceKeys(
+      Map<String, DeviceKeysList> userDeviceKeys) async {
+    await setItem(_UserDeviceKeysKey, json.encode(userDeviceKeys));
+  }
+
+  String get _UserDeviceKeysKey => "${client.clientName}.user_device_keys";
+
   _init() async {
     final credentialsStr = await getItem(client.clientName);
 

@@ -8,7 +8,9 @@ import 'package:fluffychat/components/chat_settings_popup_menu.dart';
 import 'package:fluffychat/components/list_items/message.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/i18n/i18n.dart';
+import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/utils/room_extension.dart';
+import 'package:fluffychat/views/chat_encryption_settings.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -422,6 +424,17 @@ class _ChatState extends State<_Chat> {
                           ),
                         )),
                         SizedBox(width: 8),
+                        if (sendController.text.isEmpty)
+                          IconButton(
+                            icon: Icon(
+                                room.encrypted ? Icons.lock : Icons.lock_open),
+                            onPressed: () => Navigator.of(context).push(
+                              AppRoute.defaultRoute(
+                                context,
+                                ChatEncryptionSettingsView(widget.id),
+                              ),
+                            ),
+                          ),
                         IconButton(
                           icon: Icon(Icons.send),
                           onPressed: () => send(),

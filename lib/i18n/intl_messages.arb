@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-01-27T11:02:06.464591",
+  "@@last_modified": "2020-02-04T14:02:33.828211",
   "About": "About",
   "@About": {
     "type": "text",
@@ -352,6 +352,21 @@
     "type": "text",
     "placeholders": {}
   },
+  "You won't be able to disable the encryption anymore. Are you sure?": "You won't be able to disable the encryption anymore. Are you sure?",
+  "@You won't be able to disable the encryption anymore. Are you sure?": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Encryption algorithm": "Encryption algorithm",
+  "@Encryption algorithm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "End-to-end encryption settings": "End-to-end encryption settings",
+  "@End-to-end encryption settings": {
+    "type": "text",
+    "placeholders": {}
+  },
   "Enter a group name": "Enter a group name",
   "@Enter a group name": {
     "type": "text",
@@ -579,6 +594,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "Please be aware that you need Pantalaimon to use end-to-end encryption for now.": "Please be aware that you need Pantalaimon to use end-to-end encryption for now.",
+  "@Please be aware that you need Pantalaimon to use end-to-end encryption for now.": {
+    "type": "text",
+    "placeholders": {}
+  },
   "New message in FluffyChat": "New message in FluffyChat",
   "@New message in FluffyChat": {
     "type": "text",
@@ -591,6 +611,11 @@
   },
   "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/",
   "@It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "None": "None",
+  "@None": {
     "type": "text",
     "placeholders": {}
   },
@@ -616,6 +641,11 @@
   },
   "(Optional) Group name": "(Optional) Group name",
   "@(Optional) Group name": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Participating user devices": "Participating user devices",
+  "@Participating user devices": {
     "type": "text",
     "placeholders": {}
   },
@@ -981,6 +1011,11 @@
   },
   "Write a message...": "Write a message...",
   "@Write a message...": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Yes": "Yes",
+  "@Yes": {
     "type": "text",
     "placeholders": {}
   },

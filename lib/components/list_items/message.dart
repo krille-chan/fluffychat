@@ -1,6 +1,6 @@
 import 'package:bubble/bubble.dart';
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/components/dialogs/redact_message_dialog.dart';
+import 'package:fluffychat/components/dialogs/confirm_dialog.dart';
 import 'package:fluffychat/components/message_content.dart';
 import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/utils/app_route.dart';
@@ -107,7 +107,12 @@ class Message extends StatelessWidget {
               case "remove":
                 await showDialog(
                   context: context,
-                  builder: (BuildContext context) => RedactMessageDialog(event),
+                  builder: (BuildContext context) => ConfirmDialog(
+                      I18n.of(context).messageWillBeRemovedWarning,
+                      I18n.of(context).remove, (context) {
+                    Matrix.of(context)
+                        .tryRequestWithLoadingDialog(event.redact());
+                  }),
                 );
                 break;
               case "resend":

@@ -110,8 +110,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "103eb6734b3c37ffbd124142473bd0080e814f59"
-      resolved-ref: "103eb6734b3c37ffbd124142473bd0080e814f59"
+      ref: "166b1a9464843cd17e86d9330ac8782d6081f46b"
+      resolved-ref: "166b1a9464843cd17e86d9330ac8782d6081f46b"
       url: "https://gitlab.com/famedly/famedlysdk.git"
     source: git
     version: "0.0.1"
@@ -247,13 +247,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.1+1"
-  json_annotation:
-    dependency: transitive
-    description:
-      name: json_annotation
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.4.0"
   link_text:
     dependency: "direct main"
     description:

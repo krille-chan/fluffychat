@@ -352,6 +352,21 @@
     "type": "text",
     "placeholders": {}
   },
+  "You won't be able to disable the encryption anymore. Are you sure?": "Du wirst die Verschlüsselung nicht mehr ausstellen können. Bist Du sicher?",
+  "@You won't be able to disable the encryption anymore. Are you sure?": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Encryption algorithm": "Verschlüsselungsalgorithmus",
+  "@Encryption algorithm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "End-to-end encryption settings": "Ende-zu-Ende-Verschlüsselung",
+  "@End-to-end encryption settings": {
+    "type": "text",
+    "placeholders": {}
+  },
   "Enter a group name": "Gib einen Gruppennamen ein",
   "@Enter a group name": {
     "type": "text",
@@ -579,6 +594,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "Please be aware that you need Pantalaimon to use end-to-end encryption for now.": "Bitte beachte, dass du Pantalaimon brauchst, um Ende-zu-Ende-Verschlüsselung benutzen zu können.",
+  "@Please be aware that you need Pantalaimon to use end-to-end encryption for now.": {
+    "type": "text",
+    "placeholders": {}
+  },
   "New message in FluffyChat": "Neue Nachricht in FluffyChat",
   "@New message in FluffyChat": {
     "type": "text",
@@ -591,6 +611,11 @@
   },
   "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": "Es sieht so aus als hättest du keine Google Dienste auf deinem Gerät. Das ist eine gute Entscheidung für deine Privatsphäre. Um Push Benachrichtigungen in FluffyChat zu erhalten, empfehlen wir die Verwendung von microG: https://microg.org/",
   "@It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "None": "Keiner",
+  "@None": {
     "type": "text",
     "placeholders": {}
   },
@@ -616,6 +641,11 @@
   },
   "(Optional) Group name": "(Optional) Name für die Gruppe",
   "@(Optional) Group name": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Participating user devices": "Teilnehmende Geräte",
+  "@Participating user devices": {
     "type": "text",
     "placeholders": {}
   },
@@ -981,6 +1011,11 @@
   },
   "Write a message...": "Schreibe eine Nachricht ...",
   "@Write a message...": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Yes": "Ja",
+  "@Yes": {
     "type": "text",
     "placeholders": {}
   },
