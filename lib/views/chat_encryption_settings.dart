@@ -50,7 +50,6 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
   Widget build(BuildContext context) {
     room ??= Matrix.of(context).client.getRoomById(widget.id);
     roomUpdate ??= room.onUpdate.stream.listen((s) => setState(() => null));
-    print(Matrix.of(context).client.userDeviceKeys.length);
 
     return Scaffold(
       appBar: AppBar(

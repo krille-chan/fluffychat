@@ -57,6 +57,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  canonical_json:
+    dependency: transitive
+    description:
+      name: canonical_json
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   charcode:
     dependency: transitive
     description:
@@ -110,8 +117,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "6a6ca40e96712d2ad3638fec7ec3ec5b17eaedca"
-      resolved-ref: "6a6ca40e96712d2ad3638fec7ec3ec5b17eaedca"
+      ref: "4bf6a4bcb60ca8877b5f2d435978e47358c20cad"
+      resolved-ref: "4bf6a4bcb60ca8877b5f2d435978e47358c20cad"
       url: "https://gitlab.com/famedly/famedlysdk.git"
     source: git
     version: "0.0.1"
@@ -448,6 +455,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.6"
+  unorm_dart:
+    dependency: transitive
+    description:
+      name: unorm_dart
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.2"
   url_launcher:
     dependency: "direct main"
     description:
