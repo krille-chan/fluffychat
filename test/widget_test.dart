@@ -7,8 +7,6 @@
 
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:fluffychat/main.dart';
-
 void main() {
   testWidgets('Test if the app starts', (WidgetTester tester) async {
     // Build our app and trigger a frame.

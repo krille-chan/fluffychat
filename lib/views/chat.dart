@@ -383,58 +383,61 @@ class _ChatState extends State<_Chat> {
                               ),
                         SizedBox(width: 8),
                         Expanded(
-                            child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 4.0),
-                          child: TextField(
-                            minLines: 1,
-                            maxLines: kIsWeb ? 1 : 8,
-                            keyboardType: kIsWeb
-                                ? TextInputType.text
-                                : TextInputType.multiline,
-                            onSubmitted: (String text) {
-                              send();
-                              FocusScope.of(context).requestFocus(inputFocus);
-                            },
-                            focusNode: inputFocus,
-                            controller: sendController,
-                            decoration: InputDecoration(
-                              hintText: I18n.of(context).writeAMessage,
-                              border: InputBorder.none,
-                            ),
-                            onChanged: (String text) {
-                              this.typingCoolDown?.cancel();
-                              this.typingCoolDown =
-                                  Timer(Duration(seconds: 2), () {
-                                this.typingCoolDown = null;
-                                this.currentlyTyping = false;
-                                room.sendTypingInfo(false);
-                              });
-                              this.typingTimeout ??=
-                                  Timer(Duration(seconds: 30), () {
-                                this.typingTimeout = null;
-                                this.currentlyTyping = false;
-                              });
-                              if (!this.currentlyTyping) {
-                                this.currentlyTyping = true;
-                                room.sendTypingInfo(true,
-                                    timeout:
-                                        Duration(seconds: 30).inMilliseconds);
-                              }
-                            },
-                          ),
-                        )),
-                        SizedBox(width: 8),
-                        if (sendController.text.isEmpty)
-                          IconButton(
-                            icon: Icon(
-                                room.encrypted ? Icons.lock : Icons.lock_open),
-                            onPressed: () => Navigator.of(context).push(
-                              AppRoute.defaultRoute(
-                                context,
-                                ChatEncryptionSettingsView(widget.id),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 4.0),
+                            child: TextField(
+                              minLines: 1,
+                              maxLines: kIsWeb ? 1 : 8,
+                              keyboardType: kIsWeb
+                                  ? TextInputType.text
+                                  : TextInputType.multiline,
+                              onSubmitted: (String text) {
+                                send();
+                                FocusScope.of(context).requestFocus(inputFocus);
+                              },
+                              focusNode: inputFocus,
+                              controller: sendController,
+                              decoration: InputDecoration(
+                                hintText: I18n.of(context).writeAMessage,
+                                border: InputBorder.none,
+                                suffixIcon: sendController.text.isEmpty
+                                    ? InkWell(
+                                        child: Icon(room.encrypted
+                                            ? Icons.lock
+                                            : Icons.lock_open),
+                                        onTap: () => Navigator.of(context).push(
+                                          AppRoute.defaultRoute(
+                                            context,
+                                            ChatEncryptionSettingsView(
+                                                widget.id),
+                                          ),
+                                        ),
+                                      )
+                                    : null,
                               ),
+                              onChanged: (String text) {
+                                this.typingCoolDown?.cancel();
+                                this.typingCoolDown =
+                                    Timer(Duration(seconds: 2), () {
+                                  this.typingCoolDown = null;
+                                  this.currentlyTyping = false;
+                                  room.sendTypingInfo(false);
+                                });
+                                this.typingTimeout ??=
+                                    Timer(Duration(seconds: 30), () {
+                                  this.typingTimeout = null;
+                                  this.currentlyTyping = false;
+                                });
+                                if (!this.currentlyTyping) {
+                                  this.currentlyTyping = true;
+                                  room.sendTypingInfo(true,
+                                      timeout:
+                                          Duration(seconds: 30).inMilliseconds);
+                                }
+                              },
                             ),
                           ),
+                        ),
                         IconButton(
                           icon: Icon(Icons.send),
                           onPressed: () => send(),
