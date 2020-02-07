@@ -5,6 +5,7 @@ import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/utils/room_extension.dart';
 import 'package:fluffychat/views/chat.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:toast/toast.dart';
 import 'package:pedantic/pedantic.dart';
@@ -99,6 +100,14 @@ class ChatListItem extends StatelessWidget {
               ),
             ),
             SizedBox(width: 16),
+            room.pushRuleState == PushRuleState.notify
+                ? Container()
+                : Icon(
+                    Icons.notifications_off,
+                    color: Colors.grey[400],
+                    size: 16,
+                  ),
+            SizedBox(width: 4),
             Text(
               room.timeCreated.localizedTimeShort(context),
               style: TextStyle(
@@ -132,13 +141,6 @@ class ChatListItem extends StatelessWidget {
                     ),
             ),
             SizedBox(width: 8),
-            room.pushRuleState == PushRuleState.notify
-                ? Container()
-                : Icon(
-                    Icons.notifications_off,
-                    color: Colors.grey,
-                    size: 16,
-                  ),
             room.notificationCount > 0
                 ? Container(
                     padding: EdgeInsets.symmetric(horizontal: 5),

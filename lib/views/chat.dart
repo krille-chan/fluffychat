@@ -253,6 +253,7 @@ class _ChatState extends State<_Chat> {
         ),
         actions: <Widget>[ChatSettingsPopupMenu(room, !room.isDirectChat)],
       ),
+      backgroundColor: Theme.of(context).secondaryHeaderColor,
       body: SafeArea(
         child: Column(
           children: <Widget>[

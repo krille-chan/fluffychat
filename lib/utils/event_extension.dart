@@ -208,7 +208,10 @@ extension LocalizedBody on Event {
     if (withSenderNamePrefix &&
         this.type == EventTypes.Message &&
         textOnlyMessageTypes.contains(this.messageType)) {
-      localizedBody = "$senderName: $localizedBody";
+      final String senderNameOrYou = this.senderId == room.client.userID
+          ? I18n.of(context).you
+          : senderName;
+      localizedBody = "$senderNameOrYou: $localizedBody";
     }
 
     // Hide quotes

@@ -21,7 +21,6 @@ class StateMessage extends StatelessWidget {
         opacity: 0.5,
         child: Bubble(
           color: Colors.black,
-          elevation: 0,
           alignment: Alignment.center,
           child: LinkText(
             text: event.getLocalizedBody(context),
