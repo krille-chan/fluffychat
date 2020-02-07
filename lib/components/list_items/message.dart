@@ -29,7 +29,7 @@ class Message extends StatelessWidget {
     Client client = Matrix.of(context).client;
     final bool ownMessage = event.senderId == client.userID;
     Alignment alignment = ownMessage ? Alignment.topRight : Alignment.topLeft;
-    Color color = Colors.white;
+    Color color = Theme.of(context).secondaryHeaderColor;
     final bool sameSender = nextEvent != null &&
             [EventTypes.Message, EventTypes.Sticker].contains(nextEvent.type)
         ? nextEvent.sender.id == event.sender.id
@@ -135,7 +135,8 @@ class Message extends StatelessWidget {
             duration: Duration(milliseconds: 500),
             opacity: event.status == 0 ? 0.5 : 1,
             child: Bubble(
-              //elevation: 0,
+              elevation: 0,
+              radius: Radius.circular(8),
               alignment: alignment,
               margin: BubbleEdges.symmetric(horizontal: 4),
               color: color,

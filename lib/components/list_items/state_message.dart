@@ -20,6 +20,7 @@ class StateMessage extends StatelessWidget {
       child: Opacity(
         opacity: 0.5,
         child: Bubble(
+          elevation: 0,
           color: Colors.black,
           alignment: Alignment.center,
           child: LinkText(
