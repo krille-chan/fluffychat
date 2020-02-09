@@ -5,14 +5,17 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/chat_settings_popup_menu.dart';
+import 'package:fluffychat/components/dialogs/confirm_dialog.dart';
 import 'package:fluffychat/components/list_items/message.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/utils/app_route.dart';
+import 'package:fluffychat/utils/event_extension.dart';
 import 'package:fluffychat/utils/room_extension.dart';
 import 'package:fluffychat/views/chat_encryption_settings.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:toast/toast.dart';
 import 'package:pedantic/pedantic.dart';
@@ -62,6 +65,12 @@ class _ChatState extends State<_Chat> {
   Timer typingCoolDown;
   Timer typingTimeout;
   bool currentlyTyping = false;
+
+  Set<Event> selectedEvents = {};
+
+  Event replyEvent;
+
+  bool get selectMode => selectedEvents.isNotEmpty;
 
   @override
   void initState() {
@@ -130,7 +139,26 @@ class _ChatState extends State<_Chat> {
 
   void send() {
     if (sendController.text.isEmpty) return;
-    room.sendTextEvent(sendController.text);
+    Map<String, dynamic> textContent = {
+      "msgtype": "m.text",
+      "body": sendController.text,
+    };
+    if (replyEvent != null) {
+      String replyText = ("<${room.client.userID}> " + replyEvent.body);
+      List<String> replyTextLines = replyText.split("\n");
+      for (int i = 0; i < replyTextLines.length; i++) {
+        replyTextLines[i] = "> " + replyTextLines[i];
+      }
+      replyText = replyTextLines.join("\n");
+      textContent["body"] = replyText + "\n\n${sendController.text}";
+      textContent["m.relates_to"] = {
+        "m.in_reply_to": {
+          "event_id": replyEvent.eventId,
+        },
+      };
+      setState(() => replyEvent = null);
+    }
+    room.sendEvent(textContent);
     sendController.text = "";
   }
 
@@ -181,6 +209,69 @@ class _ChatState extends State<_Chat> {
     );
   }
 
+  String _getSelectedEventString(BuildContext context) {
+    String copyString = "";
+    for (Event event in selectedEvents) {
+      if (copyString.isNotEmpty) copyString += "\n\n";
+      copyString += event.getLocalizedBody(context, withSenderNamePrefix: true);
+    }
+    return copyString;
+  }
+
+  void copyEventsAction(BuildContext context) {
+    Clipboard.setData(ClipboardData(text: _getSelectedEventString(context)));
+    setState(() => selectedEvents.clear());
+  }
+
+  void redactEventsAction(BuildContext context) async {
+    bool confirmed = false;
+    await showDialog(
+      context: context,
+      builder: (context) => ConfirmDialog(
+          I18n.of(context).messageWillBeRemovedWarning,
+          I18n.of(context).remove,
+          (c) => confirmed = true),
+    );
+    if (!confirmed) return;
+    for (Event event in selectedEvents) {
+      await Matrix.of(context).tryRequestWithLoadingDialog(
+          event.status > 0 ? event.redact() : event.remove());
+    }
+    setState(() => selectedEvents.clear());
+  }
+
+  bool get canRedactSelectedEvents {
+    for (Event event in selectedEvents) {
+      if (event.canRedact == false) return false;
+    }
+    return true;
+  }
+
+  void forwardEventsAction(BuildContext context) async {
+    if (selectedEvents.length == 1) {
+      Matrix.of(context).shareContent = selectedEvents.first.content;
+    } else {
+      Matrix.of(context).shareContent = {
+        "msgtype": "m.text",
+        "body": _getSelectedEventString(context),
+      };
+    }
+    setState(() => selectedEvents.clear());
+    Navigator.of(context).popUntil((r) => r.isFirst);
+  }
+
+  void sendAgainAction() {
+    selectedEvents.first.sendAgain();
+    setState(() => selectedEvents.clear());
+  }
+
+  void replyAction() {
+    setState(() {
+      replyEvent = selectedEvents.first;
+      selectedEvents.clear();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     matrix = Matrix.of(context);
@@ -224,34 +315,56 @@ class _ChatState extends State<_Chat> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(room.getLocalizedDisplayname(context)),
-            AnimatedContainer(
-              duration: Duration(milliseconds: 500),
-              height: typingText.isEmpty ? 0 : 20,
-              child: Row(
+        leading: selectMode
+            ? IconButton(
+                icon: Icon(Icons.close),
+                onPressed: () => setState(() => selectedEvents.clear()),
+              )
+            : null,
+        title: selectedEvents.isEmpty
+            ? Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  typingText.isEmpty
-                      ? Container()
-                      : Icon(Icons.edit,
-                          color: Theme.of(context).primaryColor, size: 10),
-                  SizedBox(width: 4),
-                  Text(
-                    typingText,
-                    style: TextStyle(
-                      color: Theme.of(context).primaryColor,
-                      fontStyle: FontStyle.italic,
+                  Text(room.getLocalizedDisplayname(context)),
+                  AnimatedContainer(
+                    duration: Duration(milliseconds: 500),
+                    height: typingText.isEmpty ? 0 : 20,
+                    child: Row(
+                      children: <Widget>[
+                        typingText.isEmpty
+                            ? Container()
+                            : Icon(Icons.edit,
+                                color: Theme.of(context).primaryColor,
+                                size: 10),
+                        SizedBox(width: 4),
+                        Text(
+                          typingText,
+                          style: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                            fontStyle: FontStyle.italic,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
-              ),
-            ),
-          ],
-        ),
-        actions: <Widget>[ChatSettingsPopupMenu(room, !room.isDirectChat)],
+              )
+            : Text(I18n.of(context)
+                .numberSelected(selectedEvents.length.toString())),
+        actions: selectMode
+            ? <Widget>[
+                IconButton(
+                  icon: Icon(Icons.content_copy),
+                  onPressed: () => copyEventsAction(context),
+                ),
+                if (canRedactSelectedEvents)
+                  IconButton(
+                    icon: Icon(Icons.delete),
+                    onPressed: () => redactEventsAction(context),
+                  ),
+              ]
+            : <Widget>[ChatSettingsPopupMenu(room, !room.isDirectChat)],
       ),
       body: SafeArea(
         child: Column(
@@ -305,16 +418,71 @@ class _ChatState extends State<_Chat> {
                                 ),
                               )
                             : Message(timeline.events[i - 1],
+                                onSelect: (Event event) => event.redacted
+                                    ? null
+                                    : selectedEvents.contains(event)
+                                        ? setState(
+                                            () => selectedEvents.remove(event))
+                                        : setState(
+                                            () => selectedEvents.add(event)),
+                                longPressSelect: selectedEvents.isEmpty,
+                                selected: selectedEvents
+                                    .contains(timeline.events[i - 1]),
                                 nextEvent:
                                     i >= 2 ? timeline.events[i - 2] : null);
                       });
                 },
               ),
             ),
+            AnimatedContainer(
+              duration: Duration(milliseconds: 300),
+              height: replyEvent != null ? 56 : 0,
+              child: Material(
+                color: Theme.of(context).secondaryHeaderColor,
+                child: Row(
+                  children: <Widget>[
+                    IconButton(
+                      icon: Icon(Icons.close),
+                      onPressed: () => setState(() => replyEvent = null),
+                    ),
+                    Container(
+                      width: 2,
+                      height: 36,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    SizedBox(width: 6),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            (replyEvent?.sender?.calcDisplayname() ?? "") + ":",
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                          ),
+                          Text(
+                            replyEvent?.getLocalizedBody(context,
+                                    withSenderNamePrefix: false) ??
+                                "",
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
             room.canSendDefaultMessages && room.membership == Membership.join
                 ? Container(
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Theme.of(context).backgroundColor,
                       boxShadow: [
                         BoxShadow(
                           color: Colors.grey.withOpacity(0.2),
@@ -326,123 +494,175 @@ class _ChatState extends State<_Chat> {
                     ),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        kIsWeb
-                            ? Container()
-                            : PopupMenuButton<String>(
-                                icon: Icon(Icons.add),
-                                onSelected: (String choice) async {
-                                  if (choice == "file") {
-                                    sendFileAction(context);
-                                  } else if (choice == "image") {
-                                    sendImageAction(context);
-                                  }
-                                  if (choice == "camera") {
-                                    openCameraAction(context);
-                                  }
-                                },
-                                itemBuilder: (BuildContext context) =>
-                                    <PopupMenuEntry<String>>[
-                                  PopupMenuItem<String>(
-                                    value: "file",
-                                    child: ListTile(
-                                      leading: CircleAvatar(
-                                        backgroundColor: Colors.green,
-                                        foregroundColor: Colors.white,
-                                        child: Icon(Icons.attachment),
-                                      ),
-                                      title: Text(I18n.of(context).sendFile),
-                                      contentPadding: EdgeInsets.all(0),
-                                    ),
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: selectMode
+                          ? <Widget>[
+                              Container(
+                                height: 56,
+                                child: FlatButton(
+                                  onPressed: () => forwardEventsAction(context),
+                                  child: Row(
+                                    children: <Widget>[
+                                      Icon(Icons.keyboard_arrow_left),
+                                      Text(I18n.of(context).forward),
+                                    ],
                                   ),
-                                  PopupMenuItem<String>(
-                                    value: "image",
-                                    child: ListTile(
-                                      leading: CircleAvatar(
-                                        backgroundColor: Colors.blue,
-                                        foregroundColor: Colors.white,
-                                        child: Icon(Icons.image),
-                                      ),
-                                      title: Text(I18n.of(context).sendImage),
-                                      contentPadding: EdgeInsets.all(0),
-                                    ),
-                                  ),
-                                  PopupMenuItem<String>(
-                                    value: "camera",
-                                    child: ListTile(
-                                      leading: CircleAvatar(
-                                        backgroundColor: Colors.purple,
-                                        foregroundColor: Colors.white,
-                                        child: Icon(Icons.camera),
-                                      ),
-                                      title: Text(I18n.of(context).openCamera),
-                                      contentPadding: EdgeInsets.all(0),
-                                    ),
-                                  ),
-                                ],
+                                ),
                               ),
-                        SizedBox(width: 8),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 4.0),
-                            child: TextField(
-                              minLines: 1,
-                              maxLines: kIsWeb ? 1 : 8,
-                              keyboardType: kIsWeb
-                                  ? TextInputType.text
-                                  : TextInputType.multiline,
-                              onSubmitted: (String text) {
-                                send();
-                                FocusScope.of(context).requestFocus(inputFocus);
-                              },
-                              focusNode: inputFocus,
-                              controller: sendController,
-                              decoration: InputDecoration(
-                                hintText: I18n.of(context).writeAMessage,
-                                border: InputBorder.none,
-                                suffixIcon: sendController.text.isEmpty
-                                    ? InkWell(
-                                        child: Icon(room.encrypted
-                                            ? Icons.lock
-                                            : Icons.lock_open),
-                                        onTap: () => Navigator.of(context).push(
-                                          AppRoute.defaultRoute(
-                                            context,
-                                            ChatEncryptionSettingsView(
-                                                widget.id),
+                              selectedEvents.length == 1
+                                  ? selectedEvents.first.status > 0
+                                      ? Container(
+                                          height: 56,
+                                          child: FlatButton(
+                                            onPressed: () => replyAction(),
+                                            child: Row(
+                                              children: <Widget>[
+                                                Text(I18n.of(context).reply),
+                                                Icon(
+                                                    Icons.keyboard_arrow_right),
+                                              ],
+                                            ),
+                                          ),
+                                        )
+                                      : Container(
+                                          height: 56,
+                                          child: FlatButton(
+                                            onPressed: () => sendAgainAction(),
+                                            child: Row(
+                                              children: <Widget>[
+                                                Text(I18n.of(context)
+                                                    .tryToSendAgain),
+                                                SizedBox(width: 4),
+                                                Icon(Icons.send, size: 16),
+                                              ],
+                                            ),
+                                          ),
+                                        )
+                                  : Container(),
+                            ]
+                          : <Widget>[
+                              kIsWeb
+                                  ? Container()
+                                  : PopupMenuButton<String>(
+                                      icon: Icon(Icons.add),
+                                      onSelected: (String choice) async {
+                                        if (choice == "file") {
+                                          sendFileAction(context);
+                                        } else if (choice == "image") {
+                                          sendImageAction(context);
+                                        }
+                                        if (choice == "camera") {
+                                          openCameraAction(context);
+                                        }
+                                      },
+                                      itemBuilder: (BuildContext context) =>
+                                          <PopupMenuEntry<String>>[
+                                        PopupMenuItem<String>(
+                                          value: "file",
+                                          child: ListTile(
+                                            leading: CircleAvatar(
+                                              backgroundColor: Colors.green,
+                                              foregroundColor: Colors.white,
+                                              child: Icon(Icons.attachment),
+                                            ),
+                                            title:
+                                                Text(I18n.of(context).sendFile),
+                                            contentPadding: EdgeInsets.all(0),
                                           ),
                                         ),
-                                      )
-                                    : null,
+                                        PopupMenuItem<String>(
+                                          value: "image",
+                                          child: ListTile(
+                                            leading: CircleAvatar(
+                                              backgroundColor: Colors.blue,
+                                              foregroundColor: Colors.white,
+                                              child: Icon(Icons.image),
+                                            ),
+                                            title: Text(
+                                                I18n.of(context).sendImage),
+                                            contentPadding: EdgeInsets.all(0),
+                                          ),
+                                        ),
+                                        PopupMenuItem<String>(
+                                          value: "camera",
+                                          child: ListTile(
+                                            leading: CircleAvatar(
+                                              backgroundColor: Colors.purple,
+                                              foregroundColor: Colors.white,
+                                              child: Icon(Icons.camera),
+                                            ),
+                                            title: Text(
+                                                I18n.of(context).openCamera),
+                                            contentPadding: EdgeInsets.all(0),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                              SizedBox(width: 8),
+                              Expanded(
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 4.0),
+                                  child: TextField(
+                                    minLines: 1,
+                                    maxLines: kIsWeb ? 1 : 8,
+                                    keyboardType: kIsWeb
+                                        ? TextInputType.text
+                                        : TextInputType.multiline,
+                                    onSubmitted: (String text) {
+                                      send();
+                                      FocusScope.of(context)
+                                          .requestFocus(inputFocus);
+                                    },
+                                    focusNode: inputFocus,
+                                    controller: sendController,
+                                    decoration: InputDecoration(
+                                      hintText: I18n.of(context).writeAMessage,
+                                      border: InputBorder.none,
+                                      suffixIcon: sendController.text.isEmpty
+                                          ? InkWell(
+                                              child: Icon(room.encrypted
+                                                  ? Icons.lock
+                                                  : Icons.lock_open),
+                                              onTap: () =>
+                                                  Navigator.of(context).push(
+                                                AppRoute.defaultRoute(
+                                                  context,
+                                                  ChatEncryptionSettingsView(
+                                                      widget.id),
+                                                ),
+                                              ),
+                                            )
+                                          : null,
+                                    ),
+                                    onChanged: (String text) {
+                                      this.typingCoolDown?.cancel();
+                                      this.typingCoolDown =
+                                          Timer(Duration(seconds: 2), () {
+                                        this.typingCoolDown = null;
+                                        this.currentlyTyping = false;
+                                        room.sendTypingInfo(false);
+                                      });
+                                      this.typingTimeout ??=
+                                          Timer(Duration(seconds: 30), () {
+                                        this.typingTimeout = null;
+                                        this.currentlyTyping = false;
+                                      });
+                                      if (!this.currentlyTyping) {
+                                        this.currentlyTyping = true;
+                                        room.sendTypingInfo(true,
+                                            timeout: Duration(seconds: 30)
+                                                .inMilliseconds);
+                                      }
+                                    },
+                                  ),
+                                ),
                               ),
-                              onChanged: (String text) {
-                                this.typingCoolDown?.cancel();
-                                this.typingCoolDown =
-                                    Timer(Duration(seconds: 2), () {
-                                  this.typingCoolDown = null;
-                                  this.currentlyTyping = false;
-                                  room.sendTypingInfo(false);
-                                });
-                                this.typingTimeout ??=
-                                    Timer(Duration(seconds: 30), () {
-                                  this.typingTimeout = null;
-                                  this.currentlyTyping = false;
-                                });
-                                if (!this.currentlyTyping) {
-                                  this.currentlyTyping = true;
-                                  room.sendTypingInfo(true,
-                                      timeout:
-                                          Duration(seconds: 30).inMilliseconds);
-                                }
-                              },
-                            ),
-                          ),
-                        ),
-                        IconButton(
-                          icon: Icon(Icons.send),
-                          onPressed: () => send(),
-                        ),
-                      ],
+                              IconButton(
+                                icon: Icon(Icons.send),
+                                onPressed: () => send(),
+                              ),
+                            ],
                     ),
                   )
                 : Container(),

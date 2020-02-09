@@ -17,8 +17,12 @@ import 'state_message.dart';
 class Message extends StatelessWidget {
   final Event event;
   final Event nextEvent;
+  final Function(Event) onSelect;
+  final bool longPressSelect;
+  final bool selected;
 
-  const Message(this.event, {this.nextEvent});
+  const Message(this.event,
+      {this.nextEvent, this.longPressSelect, this.onSelect, this.selected});
 
   @override
   Widget build(BuildContext context) {
@@ -100,40 +104,12 @@ class Message extends StatelessWidget {
 
     List<Widget> rowChildren = [
       Expanded(
-        child: PopupMenuButton(
-          tooltip: I18n.of(context).tapToShowMenu,
-          onSelected: (String choice) async {
-            switch (choice) {
-              case "remove":
-                await showDialog(
-                  context: context,
-                  builder: (BuildContext context) => ConfirmDialog(
-                      I18n.of(context).messageWillBeRemovedWarning,
-                      I18n.of(context).remove, (context) {
-                    Matrix.of(context)
-                        .tryRequestWithLoadingDialog(event.redact());
-                  }),
-                );
-                break;
-              case "resend":
-                await event.sendAgain();
-                break;
-              case "delete":
-                await event.remove();
-                break;
-              case "copy":
-                await Clipboard.setData(ClipboardData(text: event.body));
-                break;
-              case "forward":
-                Matrix.of(context).shareContent = event.content;
-                Navigator.of(context).popUntil((r) => r.isFirst);
-                break;
-            }
-          },
-          itemBuilder: (BuildContext context) => popupMenuList,
+        child: InkWell(
+          onTap: longPressSelect ? null : () => onSelect(event),
+          onLongPress: !longPressSelect ? null : () => onSelect(event),
           child: AnimatedOpacity(
             duration: Duration(milliseconds: 500),
-            opacity: event.status == 0 ? 0.5 : 1,
+            opacity: (event.status == 0 || event.redacted) ? 0.5 : 1,
             child: Bubble(
               elevation: 0,
               radius: Radius.circular(8),
@@ -197,7 +173,12 @@ class Message extends StatelessWidget {
       rowChildren.insert(0, avatarOrSizedBox);
     }
 
-    return Padding(
+    return AnimatedContainer(
+      duration: Duration(milliseconds: 300),
+      curve: Curves.fastOutSlowIn,
+      color: selected
+          ? Theme.of(context).primaryColor.withAlpha(100)
+          : Theme.of(context).backgroundColor,
       padding: EdgeInsets.only(
           left: 8.0, right: 8.0, bottom: sameSender ? 4.0 : 8.0),
       child: Row(

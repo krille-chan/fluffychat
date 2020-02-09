@@ -13,7 +13,7 @@ extension LocalizedBody on Event {
   };
 
   getLocalizedBody(BuildContext context,
-      {bool withSenderNamePrefix = false, hideQuotes = false}) {
+      {bool withSenderNamePrefix = false, bool hideQuotes = false}) {
     if (this.redacted) {
       return I18n.of(context)
           .removedBy(redactedBecause.sender.calcDisplayname());

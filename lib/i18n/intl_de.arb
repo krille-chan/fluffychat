@@ -629,6 +629,13 @@
     "type": "text",
     "placeholders": {}
   },
+  "numberSelected": "{number} ausgewählt",
+  "@numberSelected": {
+    "type": "text",
+    "placeholders": {
+      "number": {}
+    }
+  },
   "Oops something went wrong...": "Hoppla! Da ist etwas schief gelaufen ...",
   "@Oops something went wrong...": {
     "type": "text",
@@ -724,6 +731,11 @@
   },
   "Remove message": "Nachricht entfernen",
   "@Remove message": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Reply": "Antworten",
+  "@Reply": {
     "type": "text",
     "placeholders": {}
   },

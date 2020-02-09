@@ -1,3 +1,8 @@
+# Version 0.7.0 - 2020-02-??
+### New features
+- Select mode in chat
+- Implement replies
+
 # Version 0.6.0 - 2020-02-09
 ### New features
 - Add e2ee settings

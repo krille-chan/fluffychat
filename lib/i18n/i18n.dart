@@ -413,6 +413,9 @@ class I18n {
 
   String get notSupportedInWeb => Intl.message("Not supported in web");
 
+  String numberSelected(String number) =>
+      Intl.message("$number selected", name: "numberSelected", args: [number]);
+
   String get oopsSomethingWentWrong =>
       Intl.message("Oops something went wrong...");
 
@@ -469,6 +472,8 @@ class I18n {
   String get remove => Intl.message("Remove");
 
   String get removeMessage => Intl.message('Remove message');
+
+  String get reply => Intl.message('Reply');
 
   String get saturday => Intl.message("Saturday");
 

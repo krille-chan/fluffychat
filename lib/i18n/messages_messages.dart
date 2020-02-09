@@ -81,51 +81,53 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m30(count) => "Load ${count} more participants";
 
-  static m31(fileName) => "Play ${fileName}";
+  static m31(number) => "${number} selected";
 
-  static m32(username) => "${username} redacted an event";
+  static m32(fileName) => "Play ${fileName}";
 
-  static m33(username) => "${username} rejected the invitation";
+  static m33(username) => "${username} redacted an event";
 
-  static m34(username) => "Removed by ${username}";
+  static m34(username) => "${username} rejected the invitation";
 
-  static m35(username) => "Seen by ${username}";
+  static m35(username) => "Removed by ${username}";
 
-  static m36(username, count) => "Seen by ${username} and ${count} others";
+  static m36(username) => "Seen by ${username}";
 
-  static m37(username, username2) => "Seen by ${username} and ${username2}";
+  static m37(username, count) => "Seen by ${username} and ${count} others";
 
-  static m38(username) => "${username} sent a file";
+  static m38(username, username2) => "Seen by ${username} and ${username2}";
 
-  static m39(username) => "${username} sent a picture";
+  static m39(username) => "${username} sent a file";
 
-  static m40(username) => "${username} sent a sticker";
+  static m40(username) => "${username} sent a picture";
 
-  static m41(username) => "${username} sent a video";
+  static m41(username) => "${username} sent a sticker";
 
-  static m42(username) => "${username} sent an audio";
+  static m42(username) => "${username} sent a video";
 
-  static m43(username) => "${username} shared the location";
+  static m43(username) => "${username} sent an audio";
 
-  static m44(hours12, hours24, minutes, suffix) => "${hours12}:${minutes} ${suffix}";
+  static m44(username) => "${username} shared the location";
 
-  static m45(username, targetName) => "${username} unbanned ${targetName}";
+  static m45(hours12, hours24, minutes, suffix) => "${hours12}:${minutes} ${suffix}";
 
-  static m46(type) => "Unknown event \'${type}\'";
+  static m46(username, targetName) => "${username} unbanned ${targetName}";
 
-  static m47(unreadEvents) => "${unreadEvents} unread messages";
+  static m47(type) => "Unknown event \'${type}\'";
 
-  static m48(unreadEvents, unreadChats) => "${unreadEvents} unread messages in ${unreadChats} chats";
+  static m48(unreadEvents) => "${unreadEvents} unread messages";
 
-  static m49(username, count) => "${username} and ${count} others are typing...";
+  static m49(unreadEvents, unreadChats) => "${unreadEvents} unread messages in ${unreadChats} chats";
 
-  static m50(username, username2) => "${username} and ${username2} are typing...";
+  static m50(username, count) => "${username} and ${count} others are typing...";
 
-  static m51(username) => "${username} is typing...";
+  static m51(username, username2) => "${username} and ${username2} are typing...";
 
-  static m52(username) => "${username} left the chat";
+  static m52(username) => "${username} is typing...";
 
-  static m53(username, type) => "${username} sent a ${type} event";
+  static m53(username) => "${username} left the chat";
+
+  static m54(username, type) => "${username} sent a ${type} event";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
@@ -218,6 +220,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Remove" : MessageLookupByLibrary.simpleMessage("Remove"),
     "Remove exile" : MessageLookupByLibrary.simpleMessage("Remove exile"),
     "Remove message" : MessageLookupByLibrary.simpleMessage("Remove message"),
+    "Reply" : MessageLookupByLibrary.simpleMessage("Reply"),
     "Revoke all permissions" : MessageLookupByLibrary.simpleMessage("Revoke all permissions"),
     "Saturday" : MessageLookupByLibrary.simpleMessage("Saturday"),
     "Search for a chat" : MessageLookupByLibrary.simpleMessage("Search for a chat"),
@@ -288,29 +291,30 @@ class MessageLookup extends MessageLookupByLibrary {
     "kicked" : m28,
     "kickedAndBanned" : m29,
     "loadCountMoreParticipants" : m30,
-    "play" : m31,
-    "redactedAnEvent" : m32,
-    "rejectedTheInvitation" : m33,
-    "removedBy" : m34,
-    "seenByUser" : m35,
-    "seenByUserAndCountOthers" : m36,
-    "seenByUserAndUser" : m37,
-    "sentAFile" : m38,
-    "sentAPicture" : m39,
-    "sentASticker" : m40,
-    "sentAVideo" : m41,
-    "sentAnAudio" : m42,
-    "sharedTheLocation" : m43,
-    "timeOfDay" : m44,
+    "numberSelected" : m31,
+    "play" : m32,
+    "redactedAnEvent" : m33,
+    "rejectedTheInvitation" : m34,
+    "removedBy" : m35,
+    "seenByUser" : m36,
+    "seenByUserAndCountOthers" : m37,
+    "seenByUserAndUser" : m38,
+    "sentAFile" : m39,
+    "sentAPicture" : m40,
+    "sentASticker" : m41,
+    "sentAVideo" : m42,
+    "sentAnAudio" : m43,
+    "sharedTheLocation" : m44,
+    "timeOfDay" : m45,
     "title" : MessageLookupByLibrary.simpleMessage("FluffyChat"),
-    "unbannedUser" : m45,
-    "unknownEvent" : m46,
-    "unreadMessages" : m47,
-    "unreadMessagesInChats" : m48,
-    "userAndOthersAreTyping" : m49,
-    "userAndUserAreTyping" : m50,
-    "userIsTyping" : m51,
-    "userLeftTheChat" : m52,
-    "userSentUnknownEvent" : m53
+    "unbannedUser" : m46,
+    "unknownEvent" : m47,
+    "unreadMessages" : m48,
+    "unreadMessagesInChats" : m49,
+    "userAndOthersAreTyping" : m50,
+    "userAndUserAreTyping" : m51,
+    "userIsTyping" : m52,
+    "userLeftTheChat" : m53,
+    "userSentUnknownEvent" : m54
   };
 }

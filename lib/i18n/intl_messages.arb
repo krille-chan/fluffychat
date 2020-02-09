@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-02-04T14:02:33.828211",
+  "@@last_modified": "2020-02-09T15:11:56.012667",
   "About": "About",
   "@About": {
     "type": "text",
@@ -629,6 +629,13 @@
     "type": "text",
     "placeholders": {}
   },
+  "numberSelected": "{number} selected",
+  "@numberSelected": {
+    "type": "text",
+    "placeholders": {
+      "number": {}
+    }
+  },
   "Oops something went wrong...": "Oops something went wrong...",
   "@Oops something went wrong...": {
     "type": "text",
@@ -724,6 +731,11 @@
   },
   "Remove message": "Remove message",
   "@Remove message": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Reply": "Reply",
+  "@Reply": {
     "type": "text",
     "placeholders": {}
   },
