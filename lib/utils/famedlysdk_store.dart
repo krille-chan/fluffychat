@@ -369,8 +369,7 @@ class ExtendedStore extends Store implements ExtendedStoreAPI {
 
     if (type == "history") return null;
 
-    if (type != "account_data" &&
-        eventUpdate.content.containsKey("state_key")) {
+    if (type != "account_data") {
       final String now = DateTime.now().millisecondsSinceEpoch.toString();
       txn.rawInsert(
           "INSERT OR REPLACE INTO RoomStates VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)",
