@@ -1,6 +1,9 @@
-# Version 0.6.0 - 2020-02-??
+# Version 0.6.0 - 2020-02-09
 ### New features
 - Add e2ee settings
+- Minor design improvements
+### Fixes
+- Minor bugs fixed
 
 # Version 0.5.2 - 2020-01-29
 ### Changes
