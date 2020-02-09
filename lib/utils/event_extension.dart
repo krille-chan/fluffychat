@@ -12,7 +12,7 @@ extension LocalizedBody on Event {
     MessageTypes.None,
   };
 
-  getLocalizedBody(BuildContext context,
+  String getLocalizedBody(BuildContext context,
       {bool withSenderNamePrefix = false, bool hideQuotes = false}) {
     if (this.redacted) {
       return I18n.of(context)
@@ -204,6 +204,13 @@ extension LocalizedBody on Event {
         localizedBody = I18n.of(context).unknownEvent(this.typeKey);
     }
 
+    // Hide quotes
+    if (hideQuotes) {
+      List<String> lines = localizedBody.split("\n");
+      lines.removeWhere((s) => s.startsWith("> ") || s.isEmpty);
+      localizedBody = lines.join("\n");
+    }
+
     // Add the sender name prefix
     if (withSenderNamePrefix &&
         this.type == EventTypes.Message &&
@@ -212,13 +219,6 @@ extension LocalizedBody on Event {
           ? I18n.of(context).you
           : senderName;
       localizedBody = "$senderNameOrYou: $localizedBody";
-    }
-
-    // Hide quotes
-    if (hideQuotes) {
-      List<String> lines = localizedBody.split("\n");
-      lines.removeWhere((s) => s.startsWith("> "));
-      localizedBody = lines.join("\n");
     }
 
     return localizedBody;

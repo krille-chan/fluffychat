@@ -44,7 +44,7 @@ class App extends StatelessWidget {
             appBarTheme: AppBarTheme(
               brightness: Brightness.light,
               color: Colors.white,
-              elevation: 1,
+              //elevation: 1,
               textTheme: TextTheme(
                 title: TextStyle(
                   color: Colors.black,
