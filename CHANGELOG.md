@@ -2,6 +2,7 @@
 ### New features
 - Select mode in chat
 - Implement replies
+- Add scroll down button in chat
 
 # Version 0.6.0 - 2020-02-09
 ### New features

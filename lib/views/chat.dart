@@ -70,6 +70,8 @@ class _ChatState extends State<_Chat> {
 
   Event replyEvent;
 
+  bool showScrollDownButton = false;
+
   bool get selectMode => selectedEvents.isNotEmpty;
 
   @override
@@ -81,6 +83,13 @@ class _ChatState extends State<_Chat> {
           timeline.events[timeline.events.length - 1].type !=
               EventTypes.RoomCreate) {
         await timeline.requestHistory(historyCount: 100);
+      }
+      if (_scrollController.position.pixels > 0 &&
+          showScrollDownButton == false) {
+        setState(() => showScrollDownButton = true);
+      } else if (_scrollController.position.pixels == 0 &&
+          showScrollDownButton == true) {
+        setState(() => showScrollDownButton = false);
       }
     });
 
@@ -366,6 +375,18 @@ class _ChatState extends State<_Chat> {
               ]
             : <Widget>[ChatSettingsPopupMenu(room, !room.isDirectChat)],
       ),
+      floatingActionButton: showScrollDownButton
+          ? Padding(
+              padding: const EdgeInsets.only(bottom: 56.0),
+              child: FloatingActionButton(
+                child: Icon(Icons.arrow_downward,
+                    color: Theme.of(context).primaryColor),
+                onPressed: () => _scrollController.jumpTo(0),
+                backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                mini: true,
+              ),
+            )
+          : null,
       body: SafeArea(
         child: Column(
           children: <Widget>[
