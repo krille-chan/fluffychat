@@ -82,6 +82,8 @@ flutter:
   assets:
     - assets/fluffychat-banner.png
     - assets/logo.png
+    - assets/private_chat_wallpaper.png
+    - assets/new_group_wallpaper.png
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -228,6 +228,10 @@ class _NewPrivateChatState extends State<_NewPrivateChat> {
               ),
             ),
           Divider(height: 1),
+          if (foundProfiles.isEmpty || correctMxId)
+            Expanded(
+              child: Image.asset("assets/private_chat_wallpaper.png"),
+            ),
         ],
       ),
       floatingActionButton: FloatingActionButton(

@@ -95,6 +95,9 @@ class _NewGroupState extends State<_NewGroup> {
             value: publicGroup,
             onChanged: (bool b) => setState(() => publicGroup = b),
           ),
+          Expanded(
+            child: Image.asset("assets/new_group_wallpaper.png"),
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
