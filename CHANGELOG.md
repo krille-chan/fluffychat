@@ -1,4 +1,4 @@
-# Version 0.7.0 - 2020-02-??
+# Version 0.7.0 - 2020-02-10
 ### New features
 - Select mode in chat
 - Implement replies
