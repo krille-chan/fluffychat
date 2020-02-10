@@ -71,63 +71,65 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m25(groupName) => "Invite contact to ${groupName}";
 
-  static m26(username, targetName) => "${username} invited ${targetName}";
+  static m26(username, link) => "${username} invited you to FluffyChat. \n1. Install FluffyChat: http://fluffy.chat \n2. Sign up or sign in \n3. Open the invite link: ${link}";
 
-  static m27(username) => "${username} joined the chat";
+  static m27(username, targetName) => "${username} invited ${targetName}";
 
-  static m28(username, targetName) => "${username} kicked ${targetName}";
+  static m28(username) => "${username} joined the chat";
 
-  static m29(username, targetName) => "${username} kicked and banned ${targetName}";
+  static m29(username, targetName) => "${username} kicked ${targetName}";
 
-  static m30(count) => "Load ${count} more participants";
+  static m30(username, targetName) => "${username} kicked and banned ${targetName}";
 
-  static m31(number) => "${number} selected";
+  static m31(count) => "Load ${count} more participants";
 
-  static m32(fileName) => "Play ${fileName}";
+  static m32(number) => "${number} selected";
 
-  static m33(username) => "${username} redacted an event";
+  static m33(fileName) => "Play ${fileName}";
 
-  static m34(username) => "${username} rejected the invitation";
+  static m34(username) => "${username} redacted an event";
 
-  static m35(username) => "Removed by ${username}";
+  static m35(username) => "${username} rejected the invitation";
 
-  static m36(username) => "Seen by ${username}";
+  static m36(username) => "Removed by ${username}";
 
-  static m37(username, count) => "Seen by ${username} and ${count} others";
+  static m37(username) => "Seen by ${username}";
 
-  static m38(username, username2) => "Seen by ${username} and ${username2}";
+  static m38(username, count) => "Seen by ${username} and ${count} others";
 
-  static m39(username) => "${username} sent a file";
+  static m39(username, username2) => "Seen by ${username} and ${username2}";
 
-  static m40(username) => "${username} sent a picture";
+  static m40(username) => "${username} sent a file";
 
-  static m41(username) => "${username} sent a sticker";
+  static m41(username) => "${username} sent a picture";
 
-  static m42(username) => "${username} sent a video";
+  static m42(username) => "${username} sent a sticker";
 
-  static m43(username) => "${username} sent an audio";
+  static m43(username) => "${username} sent a video";
 
-  static m44(username) => "${username} shared the location";
+  static m44(username) => "${username} sent an audio";
 
-  static m45(hours12, hours24, minutes, suffix) => "${hours12}:${minutes} ${suffix}";
+  static m45(username) => "${username} shared the location";
 
-  static m46(username, targetName) => "${username} unbanned ${targetName}";
+  static m46(hours12, hours24, minutes, suffix) => "${hours12}:${minutes} ${suffix}";
 
-  static m47(type) => "Unknown event \'${type}\'";
+  static m47(username, targetName) => "${username} unbanned ${targetName}";
 
-  static m48(unreadEvents) => "${unreadEvents} unread messages";
+  static m48(type) => "Unknown event \'${type}\'";
 
-  static m49(unreadEvents, unreadChats) => "${unreadEvents} unread messages in ${unreadChats} chats";
+  static m49(unreadEvents) => "${unreadEvents} unread messages";
 
-  static m50(username, count) => "${username} and ${count} others are typing...";
+  static m50(unreadEvents, unreadChats) => "${unreadEvents} unread messages in ${unreadChats} chats";
 
-  static m51(username, username2) => "${username} and ${username2} are typing...";
+  static m51(username, count) => "${username} and ${count} others are typing...";
 
-  static m52(username) => "${username} is typing...";
+  static m52(username, username2) => "${username} and ${username2} are typing...";
 
-  static m53(username) => "${username} left the chat";
+  static m53(username) => "${username} is typing...";
 
-  static m54(username, type) => "${username} sent a ${type} event";
+  static m54(username) => "${username} left the chat";
+
+  static m55(username, type) => "${username} sent a ${type} event";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
@@ -285,36 +287,37 @@ class MessageLookup extends MessageLookupByLibrary {
     "groupWith" : m23,
     "hasWithdrawnTheInvitationFor" : m24,
     "inviteContactToGroup" : m25,
-    "invitedUser" : m26,
+    "inviteText" : m26,
+    "invitedUser" : m27,
     "is typing..." : MessageLookupByLibrary.simpleMessage("is typing..."),
-    "joinedTheChat" : m27,
-    "kicked" : m28,
-    "kickedAndBanned" : m29,
-    "loadCountMoreParticipants" : m30,
-    "numberSelected" : m31,
-    "play" : m32,
-    "redactedAnEvent" : m33,
-    "rejectedTheInvitation" : m34,
-    "removedBy" : m35,
-    "seenByUser" : m36,
-    "seenByUserAndCountOthers" : m37,
-    "seenByUserAndUser" : m38,
-    "sentAFile" : m39,
-    "sentAPicture" : m40,
-    "sentASticker" : m41,
-    "sentAVideo" : m42,
-    "sentAnAudio" : m43,
-    "sharedTheLocation" : m44,
-    "timeOfDay" : m45,
+    "joinedTheChat" : m28,
+    "kicked" : m29,
+    "kickedAndBanned" : m30,
+    "loadCountMoreParticipants" : m31,
+    "numberSelected" : m32,
+    "play" : m33,
+    "redactedAnEvent" : m34,
+    "rejectedTheInvitation" : m35,
+    "removedBy" : m36,
+    "seenByUser" : m37,
+    "seenByUserAndCountOthers" : m38,
+    "seenByUserAndUser" : m39,
+    "sentAFile" : m40,
+    "sentAPicture" : m41,
+    "sentASticker" : m42,
+    "sentAVideo" : m43,
+    "sentAnAudio" : m44,
+    "sharedTheLocation" : m45,
+    "timeOfDay" : m46,
     "title" : MessageLookupByLibrary.simpleMessage("FluffyChat"),
-    "unbannedUser" : m46,
-    "unknownEvent" : m47,
-    "unreadMessages" : m48,
-    "unreadMessagesInChats" : m49,
-    "userAndOthersAreTyping" : m50,
-    "userAndUserAreTyping" : m51,
-    "userIsTyping" : m52,
-    "userLeftTheChat" : m53,
-    "userSentUnknownEvent" : m54
+    "unbannedUser" : m47,
+    "unknownEvent" : m48,
+    "unreadMessages" : m49,
+    "unreadMessagesInChats" : m50,
+    "userAndOthersAreTyping" : m51,
+    "userAndUserAreTyping" : m52,
+    "userIsTyping" : m53,
+    "userLeftTheChat" : m54,
+    "userSentUnknownEvent" : m55
   };
 }

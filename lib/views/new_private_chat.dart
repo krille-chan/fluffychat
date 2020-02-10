@@ -211,8 +211,9 @@ class _NewPrivateChatState extends State<_NewPrivateChat> {
                 Icons.share,
                 size: 16,
               ),
-              onTap: () => Share.share(
-                  "https://matrix.to/#/${Matrix.of(context).client.userID}"),
+              onTap: () => Share.share(I18n.of(context).inviteText(
+                  Matrix.of(context).client.userID,
+                  "https://matrix.to/#/${Matrix.of(context).client.userID}")),
               title: Text(
                 "${I18n.of(context).yourOwnUsername}:",
                 style: TextStyle(

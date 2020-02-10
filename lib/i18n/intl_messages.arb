@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-02-09T15:11:56.012667",
+  "@@last_modified": "2020-02-10T18:38:37.519607",
   "About": "About",
   "@About": {
     "type": "text",
@@ -473,6 +473,14 @@
   "@Invited": {
     "type": "text",
     "placeholders": {}
+  },
+  "inviteText": "{username} invited you to FluffyChat. \n1. Install FluffyChat: http://fluffy.chat \n2. Sign up or sign in \n3. Open the invite link: {link}",
+  "@inviteText": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "link": {}
+    }
   },
   "invitedUser": "{username} invited {targetName}",
   "@invitedUser": {

@@ -328,6 +328,12 @@ class I18n {
 
   String get invited => Intl.message("Invited");
 
+  String inviteText(String username, String link) => Intl.message(
+        "$username invited you to FluffyChat. \n1. Install FluffyChat: http://fluffy.chat \n2. Sign up or sign in \n3. Open the invite link: $link",
+        name: "inviteText",
+        args: [username, link],
+      );
+
   String invitedUser(String username, String targetName) => Intl.message(
         "$username invited $targetName",
         name: "invitedUser",
