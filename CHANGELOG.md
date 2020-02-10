@@ -1,3 +1,9 @@
+# Version 0.7.2 - 2020-02-10
+### Changed
+- Invite link text
+### Fixed
+- Replies on replies fixed
+
 # Version 0.7.1 - 2020-02-10
 ### Fixed
 - Replies with correct sender id
