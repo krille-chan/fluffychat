@@ -104,7 +104,7 @@ class _NewPrivateChatState extends State<_NewPrivateChat> {
 
   @override
   Widget build(BuildContext context) {
-    final String defaultDomain = Matrix.of(context).client.userID.split(":")[1];
+    final String defaultDomain = Matrix.of(context).client.userID.domain;
     return Scaffold(
       appBar: AppBar(
         title: Text(I18n.of(context).newPrivateChat),
@@ -190,7 +190,7 @@ class _NewPrivateChatState extends State<_NewPrivateChat> {
                     ),
                     title: Text(
                       foundProfile["display_name"] ??
-                          foundProfile["user_id"].split(":").first.substring(1),
+                          foundProfile["user_id"].localpart,
                       style: TextStyle(),
                       maxLines: 1,
                     ),

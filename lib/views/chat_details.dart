@@ -47,7 +47,7 @@ class _ChatDetailsState extends State<ChatDetails> {
   }
 
   void setCanonicalAliasAction(context, s) async {
-    final String domain = widget.room.client.userID.split(":")[1];
+    final String domain = widget.room.client.userID.domain;
     final String canonicalAlias = "%23" + s + "%3A" + domain;
     final Event aliasEvent = widget.room.getState("m.room.aliases", domain);
     final List aliases =
@@ -282,7 +282,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                                     ?.replaceAll("#", "") ??
                                 I18n.of(context).alias,
                             prefixText: "#",
-                            suffixText: widget.room.client.userID.split(":")[1],
+                            suffixText: widget.room.client.userID.domain,
                           ),
                         ),
                       ),
