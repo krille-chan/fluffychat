@@ -13,8 +13,10 @@ import 'package:fluffychat/views/new_private_chat.dart';
 import 'package:fluffychat/views/settings.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'package:receive_sharing_intent/receive_sharing_intent.dart';
+import 'package:toast/toast.dart';
+import 'package:uni_links/uni_links.dart';
 
 enum SelectMode { normal, multi_select, share }
 
@@ -62,32 +64,31 @@ class _ChatListState extends State<ChatList> {
     searchController.addListener(
       () => setState(() => null),
     );
-    if (kIsWeb) {
-      getSharedData();
-    }
+    initUniLinks();
     super.initState();
   }
 
   StreamSubscription _intentDataStreamSubscription;
 
-  void processSharedText(String text) {
-    if (text?.isEmpty ?? true) return;
-    if (text.startsWith("https://matrix.to/#/")) {
-      UrlLauncher(context, text).openMatrixToUrl();
-    } else {
-      setState(() => Matrix.of(context).shareContent = {
-            "msgtype": "m.text",
-            "body": text,
-          });
-    }
-  }
+  StreamSubscription _onUniLinksub;
 
-  void getSharedData() {
-    // For sharing or opening urls/text coming from outside the app while the app is in the memory
-    _intentDataStreamSubscription = ReceiveSharingIntent.getTextStream()
-        .listen(processSharedText, onError: (err) {});
-    // For sharing or opening urls/text coming from outside the app while the app is closed
-    ReceiveSharingIntent.getInitialText().then(processSharedText);
+  Future<void> initUniLinks() async {
+    if (kIsWeb) return;
+    _onUniLinksub ??= getLinksStream().listen(
+      (String initialLink) {
+        try {
+          if (initialLink?.isEmpty ?? true) return;
+          if (initialLink.startsWith("https://matrix.to/#/")) {
+            UrlLauncher(context, initialLink).openMatrixToUrl();
+          }
+        } on PlatformException {
+          debugPrint("initUniLinks failed during platform exception");
+        }
+      },
+      onError: (error) => Toast.show(
+          I18n.of(context).oopsSomethingWentWrong + " " + error.toString(), context,
+          duration: 5),
+    );
   }
 
   @override
@@ -97,6 +98,7 @@ class _ChatListState extends State<ChatList> {
       () => setState(() => null),
     );
     _intentDataStreamSubscription?.cancel();
+    _onUniLinksub?.cancel();
     super.dispose();
   }
 
