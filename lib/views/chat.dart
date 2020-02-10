@@ -153,7 +153,7 @@ class _ChatState extends State<_Chat> {
       "body": sendController.text,
     };
     if (replyEvent != null) {
-      String replyText = ("<${room.client.userID}> " + replyEvent.body);
+      String replyText = ("<${replyEvent.senderId}> " + replyEvent.body);
       List<String> replyTextLines = replyText.split("\n");
       for (int i = 0; i < replyTextLines.length; i++) {
         replyTextLines[i] = "> " + replyTextLines[i];

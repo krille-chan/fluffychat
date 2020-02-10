@@ -1,3 +1,7 @@
+# Version 0.7.1 - 2020-02-10
+### Fixed
+- Replies with correct sender id
+
 # Version 0.7.0 - 2020-02-10
 ### New features
 - Select mode in chat
