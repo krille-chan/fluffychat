@@ -8,6 +8,7 @@ import 'package:fluffychat/components/chat_settings_popup_menu.dart';
 import 'package:fluffychat/components/dialogs/confirm_dialog.dart';
 import 'package:fluffychat/components/list_items/message.dart';
 import 'package:fluffychat/components/matrix.dart';
+import 'package:fluffychat/components/reply_content.dart';
 import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/utils/event_extension.dart';
@@ -148,32 +149,11 @@ class _ChatState extends State<_Chat> {
 
   void send() {
     if (sendController.text.isEmpty) return;
-    Map<String, dynamic> textContent = {
-      "msgtype": "m.text",
-      "body": sendController.text,
-    };
+    room.sendTextEvent(sendController.text, inReplyTo: replyEvent);
+    sendController.text = "";
     if (replyEvent != null) {
-      String replyText = "<${replyEvent.senderId}> " +
-          replyEvent.getLocalizedBody(
-            context,
-            withSenderNamePrefix: false,
-            hideQuotes: true,
-          );
-      List<String> replyTextLines = replyText.split("\n");
-      for (int i = 0; i < replyTextLines.length; i++) {
-        replyTextLines[i] = "> " + replyTextLines[i];
-      }
-      replyText = replyTextLines.join("\n");
-      textContent["body"] = replyText + "\n\n${sendController.text}";
-      textContent["m.relates_to"] = {
-        "m.in_reply_to": {
-          "event_id": replyEvent.eventId,
-        },
-      };
       setState(() => replyEvent = null);
     }
-    room.sendEvent(textContent);
-    sendController.text = "";
   }
 
   void sendFileAction(BuildContext context) async {
@@ -454,6 +434,7 @@ class _ChatState extends State<_Chat> {
                                 longPressSelect: selectedEvents.isEmpty,
                                 selected: selectedEvents
                                     .contains(timeline.events[i - 1]),
+                                timeline: timeline,
                                 nextEvent:
                                     i >= 2 ? timeline.events[i - 2] : null);
                       });
@@ -471,35 +452,8 @@ class _ChatState extends State<_Chat> {
                       icon: Icon(Icons.close),
                       onPressed: () => setState(() => replyEvent = null),
                     ),
-                    Container(
-                      width: 2,
-                      height: 36,
-                      color: Theme.of(context).primaryColor,
-                    ),
-                    SizedBox(width: 6),
                     Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
-                            (replyEvent?.sender?.calcDisplayname() ?? "") + ":",
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Theme.of(context).primaryColor,
-                            ),
-                          ),
-                          Text(
-                            replyEvent?.getLocalizedBody(context,
-                                    withSenderNamePrefix: false) ??
-                                "",
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                          ),
-                        ],
-                      ),
+                      child: ReplyContent(replyEvent),
                     ),
                   ],
                 ),

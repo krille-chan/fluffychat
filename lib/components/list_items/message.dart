@@ -1,6 +1,7 @@
 import 'package:bubble/bubble.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/message_content.dart';
+import 'package:fluffychat/components/reply_content.dart';
 import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
@@ -18,9 +19,14 @@ class Message extends StatelessWidget {
   final Function(Event) onSelect;
   final bool longPressSelect;
   final bool selected;
+  final Timeline timeline;
 
   const Message(this.event,
-      {this.nextEvent, this.longPressSelect, this.onSelect, this.selected});
+      {this.nextEvent,
+      this.longPressSelect,
+      this.onSelect,
+      this.selected,
+      this.timeline});
 
   @override
   Widget build(BuildContext context) {
@@ -88,6 +94,30 @@ class Message extends StatelessWidget {
                     ),
                   ],
                 ),
+                if (event.isReply)
+                  FutureBuilder<Event>(
+                    future: timeline.getEventById(event.content['m.relates_to']
+                        ['m.in_reply_to']['event_id']),
+                    builder: (BuildContext context, snapshot) {
+                      final Event replyEvent = snapshot.hasData
+                          ? snapshot.data
+                          : Event(
+                              eventId: event.content['m.relates_to']
+                                  ['m.in_reply_to']['event_id'],
+                              content: {"msgtype": "m.text", "body": "..."},
+                              senderId: event.senderId,
+                              typeKey: "m.room.message",
+                              room: event.room,
+                              roomId: event.roomId,
+                              status: 1,
+                              time: DateTime.now(),
+                            );
+                      return Container(
+                        margin: EdgeInsets.symmetric(vertical: 4.0),
+                        child: ReplyContent(replyEvent, lightText: ownMessage),
+                      );
+                    },
+                  ),
                 MessageContent(
                   event,
                   textColor: textColor,
