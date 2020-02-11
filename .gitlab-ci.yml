@@ -33,7 +33,7 @@ build_web:
       - build/web/
 
 
-build_android_fdroid:
+build_android_apk:
   stage: coverage
   script:
     - cd android && echo $FDROID_KEY | base64 --decode --ignore-garbage > key.jks && cd ..
@@ -47,6 +47,24 @@ build_android_fdroid:
     when: on_success
     paths:
       - build/app/outputs/apk/release/app-release.apk
+  only:
+    - master
+
+
+build_android_appbundle:
+  stage: coverage
+  script:
+    - cd android && echo $FDROID_KEY | base64 --decode --ignore-garbage > key.jks && cd ..
+    - cd android && echo "storePassword=${FDROID_KEY_PASS}" >> key.properties && cd ..
+    - cd android && echo "keyPassword=${FDROID_KEY_PASS}" >> key.properties && cd ..
+    - cd android && echo "keyAlias=key" >> key.properties && cd ..
+    - cd android && echo "storeFile=../key.jks" >> key.properties && cd ..
+    - cd android/app && echo $GOOGLE_SERVICES >> google-services.json && cd ../..
+    - flutter build appbundle --target-platform android-arm,android-arm64,android-x64
+  artifacts:
+    when: on_success
+    paths:
+      - build/app/outputs/bundle/release/app-release.aab
   only:
     - master
 
