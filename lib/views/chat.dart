@@ -17,6 +17,7 @@ import 'package:fluffychat/views/chat_encryption_settings.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:toast/toast.dart';
 import 'package:pedantic/pedantic.dart';
@@ -75,6 +76,16 @@ class _ChatState extends State<_Chat> {
 
   bool get selectMode => selectedEvents.isNotEmpty;
 
+  bool _loadingHistory = false;
+
+  final int _loadHistoryCount = 100;
+
+  void requestHistory() async {
+    setState(() => this._loadingHistory = true);
+    await timeline.requestHistory(historyCount: _loadHistoryCount);
+    setState(() => this._loadingHistory = false);
+  }
+
   @override
   void initState() {
     _scrollController.addListener(() async {
@@ -83,7 +94,7 @@ class _ChatState extends State<_Chat> {
           timeline.events.isNotEmpty &&
           timeline.events[timeline.events.length - 1].type !=
               EventTypes.RoomCreate) {
-        await timeline.requestHistory(historyCount: 100);
+        requestHistory();
       }
       if (_scrollController.position.pixels > 0 &&
           showScrollDownButton == false) {
@@ -131,6 +142,9 @@ class _ChatState extends State<_Chat> {
       timeline = await room.getTimeline(onUpdate: updateView);
       if (timeline.events.isNotEmpty) {
         unawaited(room.sendReadReceipt(timeline.events.first.eventId));
+      }
+      if (timeline.events.length < _loadHistoryCount) {
+        this.requestHistory();
       }
     }
     updateView();
@@ -330,13 +344,14 @@ class _ChatState extends State<_Chat> {
                             ? Container()
                             : Icon(Icons.edit,
                                 color: Theme.of(context).primaryColor,
-                                size: 10),
+                                size: 13),
                         SizedBox(width: 4),
                         Text(
                           typingText,
                           style: TextStyle(
                             color: Theme.of(context).primaryColor,
                             fontStyle: FontStyle.italic,
+                            fontSize: 16,
                           ),
                         ),
                       ],
@@ -372,282 +387,325 @@ class _ChatState extends State<_Chat> {
               ),
             )
           : null,
-      body: SafeArea(
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              child: FutureBuilder<bool>(
-                future: getTimeline(),
-                builder: (BuildContext context, snapshot) {
-                  if (!snapshot.hasData) {
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-
-                  if (room.notificationCount != null &&
-                      room.notificationCount > 0 &&
-                      timeline != null &&
-                      timeline.events.isNotEmpty) {
-                    room.sendReadReceipt(timeline.events.first.eventId);
-                  }
-
-                  if (timeline.events.isEmpty) return Container();
-
-                  return ListView.builder(
-                      reverse: true,
-                      itemCount: timeline.events.length + 1,
-                      controller: _scrollController,
-                      itemBuilder: (BuildContext context, int i) {
-                        return i == 0
-                            ? AnimatedContainer(
-                                height: seenByText.isEmpty ? 0 : 24,
-                                duration: seenByText.isEmpty
-                                    ? Duration(milliseconds: 0)
-                                    : Duration(milliseconds: 500),
-                                alignment: timeline.events.first.senderId ==
-                                        client.userID
-                                    ? Alignment.topRight
-                                    : Alignment.topLeft,
-                                child: Text(
-                                  seenByText,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                    color: Theme.of(context).primaryColor,
-                                  ),
-                                ),
-                                padding: EdgeInsets.only(
-                                  left: 8,
-                                  right: 8,
-                                  bottom: 8,
-                                ),
-                              )
-                            : Message(timeline.events[i - 1],
-                                onSelect: (Event event) => event.redacted
-                                    ? null
-                                    : selectedEvents.contains(event)
-                                        ? setState(
-                                            () => selectedEvents.remove(event))
-                                        : setState(
-                                            () => selectedEvents.add(event)),
-                                longPressSelect: selectedEvents.isEmpty,
-                                selected: selectedEvents
-                                    .contains(timeline.events[i - 1]),
-                                timeline: timeline,
-                                nextEvent:
-                                    i >= 2 ? timeline.events[i - 2] : null);
-                      });
-                },
-              ),
+      body: Stack(
+        children: <Widget>[
+          if (!kIsWeb)
+            SvgPicture.asset(
+              "assets/chat.svg",
+              height: double.infinity,
+              color: Theme.of(context).primaryColor.withOpacity(0.2),
             ),
-            AnimatedContainer(
-              duration: Duration(milliseconds: 300),
-              height: replyEvent != null ? 56 : 0,
-              child: Material(
-                color: Theme.of(context).secondaryHeaderColor,
-                child: Row(
-                  children: <Widget>[
-                    IconButton(
-                      icon: Icon(Icons.close),
-                      onPressed: () => setState(() => replyEvent = null),
+          SafeArea(
+            child: Column(
+              children: <Widget>[
+                Material(
+                  elevation: 1,
+                  color: Theme.of(context).scaffoldBackgroundColor,
+                  child: AnimatedContainer(
+                    duration: Duration(milliseconds: 300),
+                    height: _loadingHistory ? 40 : 0,
+                    child: Center(
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          Container(
+                            height: 20,
+                            width: 20,
+                            child: CircularProgressIndicator(strokeWidth: 2),
+                          ),
+                          SizedBox(width: 8),
+                          Text(I18n.of(context).loadingPleaseWait),
+                        ],
+                      ),
                     ),
-                    Expanded(
-                      child: ReplyContent(replyEvent),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-            ),
-            room.canSendDefaultMessages && room.membership == Membership.join
-                ? Container(
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).backgroundColor,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.2),
-                          spreadRadius: 1,
-                          blurRadius: 2,
-                          offset: Offset(0, -1), // changes position of shadow
+                Expanded(
+                  child: FutureBuilder<bool>(
+                    future: getTimeline(),
+                    builder: (BuildContext context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+
+                      if (room.notificationCount != null &&
+                          room.notificationCount > 0 &&
+                          timeline != null &&
+                          timeline.events.isNotEmpty) {
+                        room.sendReadReceipt(timeline.events.first.eventId);
+                      }
+
+                      if (timeline.events.isEmpty) return Container();
+
+                      return ListView.builder(
+                          reverse: true,
+                          itemCount: timeline.events.length + 1,
+                          controller: _scrollController,
+                          itemBuilder: (BuildContext context, int i) {
+                            return i == 0
+                                ? AnimatedContainer(
+                                    height: seenByText.isEmpty ? 0 : 24,
+                                    duration: seenByText.isEmpty
+                                        ? Duration(milliseconds: 0)
+                                        : Duration(milliseconds: 500),
+                                    alignment: timeline.events.first.senderId ==
+                                            client.userID
+                                        ? Alignment.topRight
+                                        : Alignment.topLeft,
+                                    child: Text(
+                                      seenByText,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                        color: Theme.of(context).primaryColor,
+                                      ),
+                                    ),
+                                    padding: EdgeInsets.only(
+                                      left: 8,
+                                      right: 8,
+                                      bottom: 8,
+                                    ),
+                                  )
+                                : Message(timeline.events[i - 1],
+                                    onSelect: (Event event) => event.redacted
+                                        ? null
+                                        : selectedEvents.contains(event)
+                                            ? setState(() =>
+                                                selectedEvents.remove(event))
+                                            : setState(() =>
+                                                selectedEvents.add(event)),
+                                    longPressSelect: selectedEvents.isEmpty,
+                                    selected: selectedEvents
+                                        .contains(timeline.events[i - 1]),
+                                    timeline: timeline,
+                                    nextEvent:
+                                        i >= 2 ? timeline.events[i - 2] : null);
+                          });
+                    },
+                  ),
+                ),
+                AnimatedContainer(
+                  duration: Duration(milliseconds: 300),
+                  height: replyEvent != null ? 56 : 0,
+                  child: Material(
+                    color: Theme.of(context).secondaryHeaderColor,
+                    child: Row(
+                      children: <Widget>[
+                        IconButton(
+                          icon: Icon(Icons.close),
+                          onPressed: () => setState(() => replyEvent = null),
+                        ),
+                        Expanded(
+                          child: ReplyContent(replyEvent),
                         ),
                       ],
                     ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: selectMode
-                          ? <Widget>[
-                              Container(
-                                height: 56,
-                                child: FlatButton(
-                                  onPressed: () => forwardEventsAction(context),
-                                  child: Row(
-                                    children: <Widget>[
-                                      Icon(Icons.keyboard_arrow_left),
-                                      Text(I18n.of(context).forward),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              selectedEvents.length == 1
-                                  ? selectedEvents.first.status > 0
-                                      ? Container(
-                                          height: 56,
-                                          child: FlatButton(
-                                            onPressed: () => replyAction(),
-                                            child: Row(
-                                              children: <Widget>[
-                                                Text(I18n.of(context).reply),
-                                                Icon(
-                                                    Icons.keyboard_arrow_right),
-                                              ],
-                                            ),
-                                          ),
-                                        )
-                                      : Container(
-                                          height: 56,
-                                          child: FlatButton(
-                                            onPressed: () => sendAgainAction(),
-                                            child: Row(
-                                              children: <Widget>[
-                                                Text(I18n.of(context)
-                                                    .tryToSendAgain),
-                                                SizedBox(width: 4),
-                                                Icon(Icons.send, size: 16),
-                                              ],
-                                            ),
-                                          ),
-                                        )
-                                  : Container(),
-                            ]
-                          : <Widget>[
-                              kIsWeb
-                                  ? Container()
-                                  : PopupMenuButton<String>(
-                                      icon: Icon(Icons.add),
-                                      onSelected: (String choice) async {
-                                        if (choice == "file") {
-                                          sendFileAction(context);
-                                        } else if (choice == "image") {
-                                          sendImageAction(context);
-                                        }
-                                        if (choice == "camera") {
-                                          openCameraAction(context);
-                                        }
-                                      },
-                                      itemBuilder: (BuildContext context) =>
-                                          <PopupMenuEntry<String>>[
-                                        PopupMenuItem<String>(
-                                          value: "file",
-                                          child: ListTile(
-                                            leading: CircleAvatar(
-                                              backgroundColor: Colors.green,
-                                              foregroundColor: Colors.white,
-                                              child: Icon(Icons.attachment),
-                                            ),
-                                            title:
-                                                Text(I18n.of(context).sendFile),
-                                            contentPadding: EdgeInsets.all(0),
-                                          ),
-                                        ),
-                                        PopupMenuItem<String>(
-                                          value: "image",
-                                          child: ListTile(
-                                            leading: CircleAvatar(
-                                              backgroundColor: Colors.blue,
-                                              foregroundColor: Colors.white,
-                                              child: Icon(Icons.image),
-                                            ),
-                                            title: Text(
-                                                I18n.of(context).sendImage),
-                                            contentPadding: EdgeInsets.all(0),
-                                          ),
-                                        ),
-                                        PopupMenuItem<String>(
-                                          value: "camera",
-                                          child: ListTile(
-                                            leading: CircleAvatar(
-                                              backgroundColor: Colors.purple,
-                                              foregroundColor: Colors.white,
-                                              child: Icon(Icons.camera),
-                                            ),
-                                            title: Text(
-                                                I18n.of(context).openCamera),
-                                            contentPadding: EdgeInsets.all(0),
-                                          ),
-                                        ),
-                                      ],
+                  ),
+                ),
+                room.canSendDefaultMessages &&
+                        room.membership == Membership.join
+                    ? Container(
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).backgroundColor,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.2),
+                              spreadRadius: 1,
+                              blurRadius: 2,
+                              offset:
+                                  Offset(0, -1), // changes position of shadow
+                            ),
+                          ],
+                        ),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: selectMode
+                              ? <Widget>[
+                                  Container(
+                                    height: 56,
+                                    child: FlatButton(
+                                      onPressed: () =>
+                                          forwardEventsAction(context),
+                                      child: Row(
+                                        children: <Widget>[
+                                          Icon(Icons.keyboard_arrow_left),
+                                          Text(I18n.of(context).forward),
+                                        ],
+                                      ),
                                     ),
-                              SizedBox(width: 8),
-                              Expanded(
-                                child: Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 4.0),
-                                  child: TextField(
-                                    minLines: 1,
-                                    maxLines: kIsWeb ? 1 : 8,
-                                    keyboardType: kIsWeb
-                                        ? TextInputType.text
-                                        : TextInputType.multiline,
-                                    onSubmitted: (String text) {
-                                      send();
-                                      FocusScope.of(context)
-                                          .requestFocus(inputFocus);
-                                    },
-                                    focusNode: inputFocus,
-                                    controller: sendController,
-                                    decoration: InputDecoration(
-                                      hintText: I18n.of(context).writeAMessage,
-                                      border: InputBorder.none,
-                                      suffixIcon: sendController.text.isEmpty
-                                          ? InkWell(
-                                              child: Icon(room.encrypted
-                                                  ? Icons.lock
-                                                  : Icons.lock_open),
-                                              onTap: () =>
-                                                  Navigator.of(context).push(
-                                                AppRoute.defaultRoute(
-                                                  context,
-                                                  ChatEncryptionSettingsView(
-                                                      widget.id),
+                                  ),
+                                  selectedEvents.length == 1
+                                      ? selectedEvents.first.status > 0
+                                          ? Container(
+                                              height: 56,
+                                              child: FlatButton(
+                                                onPressed: () => replyAction(),
+                                                child: Row(
+                                                  children: <Widget>[
+                                                    Text(
+                                                        I18n.of(context).reply),
+                                                    Icon(Icons
+                                                        .keyboard_arrow_right),
+                                                  ],
                                                 ),
                                               ),
                                             )
-                                          : null,
+                                          : Container(
+                                              height: 56,
+                                              child: FlatButton(
+                                                onPressed: () =>
+                                                    sendAgainAction(),
+                                                child: Row(
+                                                  children: <Widget>[
+                                                    Text(I18n.of(context)
+                                                        .tryToSendAgain),
+                                                    SizedBox(width: 4),
+                                                    Icon(Icons.send, size: 16),
+                                                  ],
+                                                ),
+                                              ),
+                                            )
+                                      : Container(),
+                                ]
+                              : <Widget>[
+                                  kIsWeb
+                                      ? Container()
+                                      : PopupMenuButton<String>(
+                                          icon: Icon(Icons.add),
+                                          onSelected: (String choice) async {
+                                            if (choice == "file") {
+                                              sendFileAction(context);
+                                            } else if (choice == "image") {
+                                              sendImageAction(context);
+                                            }
+                                            if (choice == "camera") {
+                                              openCameraAction(context);
+                                            }
+                                          },
+                                          itemBuilder: (BuildContext context) =>
+                                              <PopupMenuEntry<String>>[
+                                            PopupMenuItem<String>(
+                                              value: "file",
+                                              child: ListTile(
+                                                leading: CircleAvatar(
+                                                  backgroundColor: Colors.green,
+                                                  foregroundColor: Colors.white,
+                                                  child: Icon(Icons.attachment),
+                                                ),
+                                                title: Text(
+                                                    I18n.of(context).sendFile),
+                                                contentPadding:
+                                                    EdgeInsets.all(0),
+                                              ),
+                                            ),
+                                            PopupMenuItem<String>(
+                                              value: "image",
+                                              child: ListTile(
+                                                leading: CircleAvatar(
+                                                  backgroundColor: Colors.blue,
+                                                  foregroundColor: Colors.white,
+                                                  child: Icon(Icons.image),
+                                                ),
+                                                title: Text(
+                                                    I18n.of(context).sendImage),
+                                                contentPadding:
+                                                    EdgeInsets.all(0),
+                                              ),
+                                            ),
+                                            PopupMenuItem<String>(
+                                              value: "camera",
+                                              child: ListTile(
+                                                leading: CircleAvatar(
+                                                  backgroundColor:
+                                                      Colors.purple,
+                                                  foregroundColor: Colors.white,
+                                                  child: Icon(Icons.camera),
+                                                ),
+                                                title: Text(I18n.of(context)
+                                                    .openCamera),
+                                                contentPadding:
+                                                    EdgeInsets.all(0),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 4.0),
+                                      child: TextField(
+                                        minLines: 1,
+                                        maxLines: kIsWeb ? 1 : 8,
+                                        keyboardType: kIsWeb
+                                            ? TextInputType.text
+                                            : TextInputType.multiline,
+                                        onSubmitted: (String text) {
+                                          send();
+                                          FocusScope.of(context)
+                                              .requestFocus(inputFocus);
+                                        },
+                                        focusNode: inputFocus,
+                                        controller: sendController,
+                                        decoration: InputDecoration(
+                                          hintText:
+                                              I18n.of(context).writeAMessage,
+                                          border: InputBorder.none,
+                                          prefixIcon:
+                                              sendController.text.isEmpty
+                                                  ? InkWell(
+                                                      child: Icon(room.encrypted
+                                                          ? Icons.lock
+                                                          : Icons.lock_open),
+                                                      onTap: () =>
+                                                          Navigator.of(context)
+                                                              .push(
+                                                        AppRoute.defaultRoute(
+                                                          context,
+                                                          ChatEncryptionSettingsView(
+                                                              widget.id),
+                                                        ),
+                                                      ),
+                                                    )
+                                                  : null,
+                                        ),
+                                        onChanged: (String text) {
+                                          this.typingCoolDown?.cancel();
+                                          this.typingCoolDown =
+                                              Timer(Duration(seconds: 2), () {
+                                            this.typingCoolDown = null;
+                                            this.currentlyTyping = false;
+                                            room.sendTypingInfo(false);
+                                          });
+                                          this.typingTimeout ??=
+                                              Timer(Duration(seconds: 30), () {
+                                            this.typingTimeout = null;
+                                            this.currentlyTyping = false;
+                                          });
+                                          if (!this.currentlyTyping) {
+                                            this.currentlyTyping = true;
+                                            room.sendTypingInfo(true,
+                                                timeout: Duration(seconds: 30)
+                                                    .inMilliseconds);
+                                          }
+                                        },
+                                      ),
                                     ),
-                                    onChanged: (String text) {
-                                      this.typingCoolDown?.cancel();
-                                      this.typingCoolDown =
-                                          Timer(Duration(seconds: 2), () {
-                                        this.typingCoolDown = null;
-                                        this.currentlyTyping = false;
-                                        room.sendTypingInfo(false);
-                                      });
-                                      this.typingTimeout ??=
-                                          Timer(Duration(seconds: 30), () {
-                                        this.typingTimeout = null;
-                                        this.currentlyTyping = false;
-                                      });
-                                      if (!this.currentlyTyping) {
-                                        this.currentlyTyping = true;
-                                        room.sendTypingInfo(true,
-                                            timeout: Duration(seconds: 30)
-                                                .inMilliseconds);
-                                      }
-                                    },
                                   ),
-                                ),
-                              ),
-                              IconButton(
-                                icon: Icon(Icons.send),
-                                onPressed: () => send(),
-                              ),
-                            ],
-                    ),
-                  )
-                : Container(),
-          ],
-        ),
+                                  IconButton(
+                                    icon: Icon(Icons.send),
+                                    onPressed: () => send(),
+                                  ),
+                                ],
+                        ),
+                      )
+                    : Container(),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -48,6 +48,7 @@ class App extends StatelessWidget {
               textTheme: TextTheme(
                 title: TextStyle(
                   color: Colors.black,
+                  fontSize: 20,
                 ),
               ),
               iconTheme: IconThemeData(color: Colors.black),

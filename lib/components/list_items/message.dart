@@ -156,12 +156,14 @@ class Message extends StatelessWidget {
         color: selected
             ? Theme.of(context).primaryColor.withAlpha(100)
             : Theme.of(context).primaryColor.withAlpha(0),
-        padding: EdgeInsets.only(
-            left: 8.0, right: 8.0, bottom: sameSender ? 4.0 : 8.0),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          mainAxisAlignment: rowMainAxisAlignment,
-          children: rowChildren,
+        child: Padding(
+          padding: EdgeInsets.only(
+              left: 8.0, right: 8.0, bottom: sameSender ? 4.0 : 8.0),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: rowMainAxisAlignment,
+            children: rowChildren,
+          ),
         ),
       ),
     );
