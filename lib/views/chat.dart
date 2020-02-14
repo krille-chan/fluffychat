@@ -81,9 +81,11 @@ class _ChatState extends State<_Chat> {
   final int _loadHistoryCount = 100;
 
   void requestHistory() async {
-    setState(() => this._loadingHistory = true);
-    await timeline.requestHistory(historyCount: _loadHistoryCount);
-    setState(() => this._loadingHistory = false);
+    if (timeline.events.last.type != EventTypes.RoomCreate) {
+      setState(() => this._loadingHistory = true);
+      await timeline.requestHistory(historyCount: _loadHistoryCount);
+      setState(() => this._loadingHistory = false);
+    }
   }
 
   @override
