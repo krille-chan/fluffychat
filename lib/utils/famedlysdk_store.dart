@@ -445,7 +445,8 @@ class ExtendedStore extends Store implements ExtendedStoreAPI {
   }
 
   Future<List<Map<String, dynamic>>> getStatesFromRoomId(String id) async {
-    return _db.rawQuery("SELECT * FROM RoomStates WHERE room_id=?", [id]);
+    return _db.rawQuery(
+        "SELECT * FROM RoomStates WHERE room_id=? AND type IS NOT NULL", [id]);
   }
 
   Future<List<Map<String, dynamic>>> getAccountDataFromRoomId(String id) async {
