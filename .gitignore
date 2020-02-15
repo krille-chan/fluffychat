@@ -11,6 +11,9 @@
 lib/generated_plugin_registrant.dart
 google-services.json
 
+# libolm package
+/assets/js/package/*
+
 # IntelliJ related
 *.iml
 *.ipr
