@@ -21,6 +21,9 @@ build_web:
   stage: coverage
   image: cirrusci/flutter:beta-web
   script:
+    - rm -r assets/js/package
+    - cd assets/js/ && curl -O 'https://packages.matrix.org/npm/olm/olm-3.1.4.tgz' && cd ../../
+    - cd assets/js/ && tar xaf olm-3.1.4.tgz && cd ../../
     - flutter channel beta
     - flutter upgrade
     - flutter doctor --verbose
