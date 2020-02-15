@@ -76,6 +76,7 @@ class Store extends StoreAPI {
           : (credentials["prev_batch"]?.isEmpty ?? true)
               ? null
               : credentials["prev_batch"],
+      newOlmAccount: credentials["olmAccount"],
     );
   }
 
@@ -88,6 +89,7 @@ class Store extends StoreAPI {
       "matrixVersions": client.matrixVersions,
       "token": client.accessToken,
       "userID": client.userID,
+      "olmAccount": client.pickledOlmAccount,
     };
     await setItem(client.clientName, json.encode(credentials));
     return;
