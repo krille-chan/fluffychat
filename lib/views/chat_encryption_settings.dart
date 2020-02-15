@@ -84,9 +84,18 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
           ListTile(
             trailing: Icon(Icons.info),
             subtitle: Text(
-              I18n.of(context).needPantalaimonWarning,
+              Matrix.of(context).encryptionEnabled
+                  ? I18n.of(context).warningEncryptionInBeta
+                  : I18n.of(context).needPantalaimonWarning,
             ),
           ),
+          if (room.encrypted)
+            ListTile(
+              title: Text("Outbound MegOlm session ID:"),
+              subtitle: Text(
+                  room.outboundGroupSession?.session_id()?.beautified ??
+                      "None"),
+            ),
           Divider(height: 1),
           if (room.encrypted)
             ListTile(

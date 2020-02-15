@@ -6,6 +6,7 @@ import 'package:fluffychat/components/content_banner.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/utils/app_route.dart';
+import 'package:fluffychat/views/app_info.dart';
 import 'package:fluffychat/views/chat_list.dart';
 import 'package:fluffychat/views/sign_up.dart';
 import 'package:flutter/foundation.dart';
@@ -129,6 +130,16 @@ class _SettingsState extends State<Settings> {
               style: TextStyle(
                 color: Theme.of(context).primaryColor,
                 fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          ListTile(
+            leading: Icon(Icons.info),
+            title: Text(I18n.of(context).fluffychat),
+            onTap: () => Navigator.of(context).push(
+              AppRoute.defaultRoute(
+                context,
+                AppInfoView(),
               ),
             ),
           ),

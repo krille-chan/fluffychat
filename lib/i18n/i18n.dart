@@ -657,6 +657,9 @@ class I18n {
   String get visibilityOfTheChatHistory =>
       Intl.message("Visibility of the chat history");
 
+  String get warningEncryptionInBeta => Intl.message(
+      "End to end encryption is currently in Beta! Use at your own risk!");
+
   String get wednesday => Intl.message("Wednesday");
 
   String get whoIsAllowedToJoinThisGroup =>
