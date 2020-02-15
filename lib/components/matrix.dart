@@ -97,11 +97,6 @@ class MatrixState extends State<Matrix> {
 
   hideLoadingDialog() => Navigator.of(_loadingDialogContext)?.pop();
 
-  bool get encryptionEnabled =>
-      client.userDeviceKeys.containsKey(client.userID) &&
-      client.userDeviceKeys[client.userID].deviceKeys
-          .containsKey(client.deviceID);
-
   Future<String> downloadAndSaveContent(MxContent content,
       {int width, int height, ThumbnailMethod method}) async {
     final bool thumbnail = width == null && height == null ? false : true;

@@ -64,7 +64,7 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
                 color: room.encrypted ? Colors.green : Colors.red),
             onTap: () {
               if (room.encrypted) return;
-              if (!Matrix.of(context).encryptionEnabled) {
+              if (!room.client.encryptionEnabled) {
                 Toast.show(I18n.of(context).needPantalaimonWarning, context,
                     duration: 8);
                 return;
@@ -84,7 +84,7 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
           ListTile(
             trailing: Icon(Icons.info),
             subtitle: Text(
-              Matrix.of(context).encryptionEnabled
+              room.client.encryptionEnabled
                   ? I18n.of(context).warningEncryptionInBeta
                   : I18n.of(context).needPantalaimonWarning,
             ),
