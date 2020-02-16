@@ -203,11 +203,8 @@ class _ChatDetailsState extends State<ChatDetails> {
               ],
               title: Text(widget.room.getLocalizedDisplayname(context),
                   style: TextStyle(
-                      color: Theme.of(context)
-                          .appBarTheme
-                          .textTheme
-                          .headline6
-                          .color)),
+                      color:
+                          Theme.of(context).appBarTheme.textTheme.title.color)),
               backgroundColor: Theme.of(context).appBarTheme.color,
               flexibleSpace: FlexibleSpaceBar(
                 background: ContentBanner(widget.room.avatar,
