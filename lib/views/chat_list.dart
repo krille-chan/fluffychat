@@ -1,22 +1,24 @@
 import 'dart:async';
 
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/components/adaptive_page_layout.dart';
-import 'package:fluffychat/components/list_items/chat_list_item.dart';
-import 'package:fluffychat/components/matrix.dart';
-import 'package:fluffychat/i18n/i18n.dart';
-import 'package:fluffychat/utils/app_route.dart';
-import 'package:fluffychat/utils/url_launcher.dart';
-import 'package:fluffychat/views/archive.dart';
-import 'package:fluffychat/views/new_group.dart';
-import 'package:fluffychat/views/new_private_chat.dart';
-import 'package:fluffychat/views/settings.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:toast/toast.dart';
 import 'package:uni_links/uni_links.dart';
+
+import '../components/ThemeSwitcher.dart';
+import '../components/adaptive_page_layout.dart';
+import '../components/list_items/chat_list_item.dart';
+import '../components/matrix.dart';
+import '../i18n/i18n.dart';
+import '../utils/app_route.dart';
+import '../utils/url_launcher.dart';
+import 'archive.dart';
+import 'new_group.dart';
+import 'new_private_chat.dart';
+import 'settings.dart';
 
 enum SelectMode { normal, share }
 
@@ -39,6 +41,7 @@ class ChatList extends StatefulWidget {
   final String activeChat;
 
   const ChatList({this.activeChat, Key key}) : super(key: key);
+
   @override
   _ChatListState createState() => _ChatListState();
 }
@@ -189,13 +192,15 @@ class _ChatListState extends State<ChatList> {
       ),
       floatingActionButton: SpeedDial(
         child: Icon(Icons.add),
+        overlayColor: blackWhiteColor(context),
         backgroundColor: Theme.of(context).primaryColor,
         children: [
           SpeedDialChild(
             child: Icon(Icons.people_outline),
             backgroundColor: Colors.blue,
             label: I18n.of(context).createNewGroup,
-            labelStyle: TextStyle(fontSize: 18.0),
+            labelStyle:
+                TextStyle(fontSize: 18.0, color: blackWhiteColor(context)),
             onTap: () => Navigator.of(context).pushAndRemoveUntil(
                 AppRoute.defaultRoute(context, NewGroupView()),
                 (r) => r.isFirst),
@@ -204,7 +209,11 @@ class _ChatListState extends State<ChatList> {
             child: Icon(Icons.person_add),
             backgroundColor: Colors.green,
             label: I18n.of(context).newPrivateChat,
-            labelStyle: TextStyle(fontSize: 18.0),
+            labelStyle: TextStyle(
+                fontSize: 18.0,
+                color: Theme.of(context).brightness == Brightness.light
+                    ? Colors.white
+                    : Colors.black),
             onTap: () => Navigator.of(context).pushAndRemoveUntil(
                 AppRoute.defaultRoute(context, NewPrivateChatView()),
                 (r) => r.isFirst),

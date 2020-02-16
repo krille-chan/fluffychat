@@ -1,18 +1,19 @@
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
-import 'package:fluffychat/i18n/i18n.dart';
-import 'package:fluffychat/utils/event_extension.dart';
-import 'package:fluffychat/utils/date_time_extension.dart';
-import 'package:fluffychat/utils/app_route.dart';
-import 'package:fluffychat/utils/room_extension.dart';
 import 'package:fluffychat/views/chat.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:toast/toast.dart';
 import 'package:pedantic/pedantic.dart';
+import 'package:toast/toast.dart';
 
+import '../../i18n/i18n.dart';
+import '../../utils/app_route.dart';
+import '../../utils/date_time_extension.dart';
+import '../../utils/event_extension.dart';
+import '../../utils/room_extension.dart';
+import '../../views/chat.dart';
+import '../ThemeSwitcher.dart';
 import '../avatar.dart';
+import '../dialogs/simple_dialogs.dart';
 import '../matrix.dart';
 
 class ChatListItem extends StatelessWidget {
@@ -133,7 +134,7 @@ class ChatListItem extends StatelessWidget {
         onWillDismiss: (actionType) => archiveAction(context),
       ),
       child: Material(
-        color: activeChat ? Color(0xFFE8E8E8) : Colors.white,
+        color: chatListItemColor(context, activeChat),
         child: ListTile(
           leading: Avatar(room.avatar, room.displayname),
           title: Row(

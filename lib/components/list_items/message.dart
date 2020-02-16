@@ -44,7 +44,11 @@ class Message extends StatelessWidget {
     BubbleNip nip = sameSender
         ? BubbleNip.no
         : ownMessage ? BubbleNip.rightBottom : BubbleNip.leftBottom;
-    final Color textColor = ownMessage ? Colors.white : Colors.black;
+    final Color textColor = ownMessage
+        ? Colors.white
+        : Theme.of(context).brightness == Brightness.dark
+            ? Colors.white
+            : Colors.black;
     MainAxisAlignment rowMainAxisAlignment =
         ownMessage ? MainAxisAlignment.end : MainAxisAlignment.start;
 

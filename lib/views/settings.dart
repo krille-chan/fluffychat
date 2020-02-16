@@ -1,19 +1,21 @@
 import 'dart:io';
 
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/components/adaptive_page_layout.dart';
-import 'package:fluffychat/components/content_banner.dart';
-import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
-import 'package:fluffychat/components/matrix.dart';
-import 'package:fluffychat/i18n/i18n.dart';
-import 'package:fluffychat/utils/app_route.dart';
-import 'package:fluffychat/views/app_info.dart';
-import 'package:fluffychat/views/chat_list.dart';
-import 'package:fluffychat/views/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:toast/toast.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import 'app_info.dart';
+import 'chat_list.dart';
+import 'settings_themes.dart';
+import 'sign_up.dart';
+import '../components/dialogs/simple_dialogs.dart';
+import '../components/adaptive_page_layout.dart';
+import '../components/content_banner.dart';
+import '../components/matrix.dart';
+import '../i18n/i18n.dart';
+import '../utils/app_route.dart';
 
 class SettingsView extends StatelessWidget {
   @override
@@ -34,6 +36,7 @@ class Settings extends StatefulWidget {
 class _SettingsState extends State<Settings> {
   Future<dynamic> profileFuture;
   dynamic profile;
+
   void logoutAction(BuildContext context) async {
     if (await SimpleDialogs(context).askConfirmation() == false) {
       return;
@@ -140,6 +143,17 @@ class _SettingsState extends State<Settings> {
               subtitle: Text(profile?.displayname ?? client.userID.localpart),
               onTap: () => setDisplaynameAction(context),
             ),
+            ListTile(
+              trailing: Icon(Icons.color_lens),
+              title: Text(I18n.of(context).changeTheme),
+              onTap: () async => await Navigator.of(context).push(
+                AppRoute.defaultRoute(
+                  context,
+                  ThemesSettingsView(),
+                ),
+              ),
+            ),
+            Divider(thickness: 1),
             ListTile(
               trailing: Icon(Icons.exit_to_app),
               title: Text(I18n.of(context).logout),

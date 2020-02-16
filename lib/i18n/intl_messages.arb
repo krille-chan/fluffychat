@@ -892,6 +892,31 @@
     "type": "text",
     "placeholders": {}
   },
+  "Change your style": "Change your style",
+  "@Change your style": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "System": "System",
+  "@System": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Light": "Light",
+  "@Light": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Dark": "Dark",
+  "@Dark": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Use Amoled compatible colors?": "Use Amoled compatible colors?",
+  "@Use Amoled compatible colors?": {
+    "type": "text",
+    "placeholders": {}
+  },
   "Source code": "Source code",
   "@Source code": {
     "type": "text",

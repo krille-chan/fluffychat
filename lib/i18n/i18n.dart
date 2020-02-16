@@ -569,6 +569,16 @@ class I18n {
 
   String get signUp => Intl.message("Sign up");
 
+  String get changeTheme => Intl.message("Change your style");
+
+  String get systemTheme => Intl.message("System");
+
+  String get lightTheme => Intl.message("Light");
+
+  String get darkTheme => Intl.message("Dark");
+
+  String get useAmoledTheme => Intl.message("Use Amoled compatible colors?");
+
   String get sourceCode => Intl.message("Source code");
 
   String get startYourFirstChat => Intl.message("Start your first chat :-)");
