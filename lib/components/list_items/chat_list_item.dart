@@ -52,10 +52,8 @@ class ChatListItem extends StatelessWidget {
                 child: Text(I18n.of(context).delete.toUpperCase(),
                     style: TextStyle(color: Colors.red)),
                 onPressed: () async {
-                  await Matrix.of(context)
-                      .tryRequestWithLoadingDialog(room.forget());
+                  await archiveAction(context);
                   await Navigator.of(context).pop();
-                  if (this.onForget != null) this.onForget();
                 },
               ),
               FlatButton(
