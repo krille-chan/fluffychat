@@ -1,20 +1,22 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'package:firebase_messaging/firebase_messaging.dart';
+
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/i18n/i18n.dart';
-import 'package:fluffychat/utils/app_route.dart';
-import 'package:fluffychat/utils/event_extension.dart';
-import 'package:fluffychat/utils/famedlysdk_store.dart';
-import 'package:fluffychat/utils/room_extension.dart';
-import 'package:fluffychat/views/chat.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:toast/toast.dart';
+
+import '../i18n/i18n.dart';
+import '../utils/app_route.dart';
+import '../utils/event_extension.dart';
+import '../utils/famedlysdk_store.dart';
+import '../utils/room_extension.dart';
+import '../views/chat.dart';
 
 class Matrix extends StatefulWidget {
   final Widget child;
@@ -295,7 +297,7 @@ class MatrixState extends State<Matrix> {
     client.storeAPI = kIsWeb ? Store(client) : ExtendedStore(client);
     debugPrint(
         "[Store] Store is extended: ${client.storeAPI.extended.toString()}");
-    if (await initLoginState == LoginState.logged) {
+    if (await initLoginState == LoginState.logged && !kIsWeb) {
       await setupFirebase();
     }
   }

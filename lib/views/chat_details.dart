@@ -237,7 +237,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                           linkStyle: TextStyle(color: Colors.blueAccent),
                           textStyle: TextStyle(
                             fontSize: 14,
-                            color: Colors.black,
+                            color: Theme.of(context).accentColor,
                           ),
                         ),
                         onTap: widget.room.canSendEvent("m.room.topic")

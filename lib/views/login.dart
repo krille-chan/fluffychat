@@ -120,7 +120,6 @@ class _LoginState extends State<Login> {
           ),
           ListTile(
             leading: CircleAvatar(
-              backgroundColor: Colors.white,
               child: Icon(Icons.account_box,
                   color: Theme.of(context).primaryColor),
             ),
@@ -137,7 +136,9 @@ class _LoginState extends State<Login> {
           ),
           ListTile(
             leading: CircleAvatar(
-              backgroundColor: Colors.white,
+              backgroundColor: Theme.of(context).brightness == Brightness.dark
+                  ? Color(0xff121212)
+                  : Colors.white,
               child: Icon(Icons.lock, color: Theme.of(context).primaryColor),
             ),
             title: TextField(

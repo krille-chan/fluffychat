@@ -97,12 +97,13 @@ class _SignUpState extends State<SignUp> {
           autocorrect: false,
           controller: serverController,
           decoration: InputDecoration(
-              icon: Icon(Icons.domain),
-              hintText: "matrix-client.matrix.org",
-              errorText: serverError,
-              errorMaxLines: 1,
-              prefixText: "https://",
-              labelText: serverError == null ? "Homeserver" : serverError),
+            icon: Icon(Icons.domain),
+            hintText: "matrix-client.matrix.org",
+            errorText: serverError,
+            errorMaxLines: 1,
+            prefixText: "https://",
+            labelText: serverError == null ? "Homeserver" : serverError,
+          ),
         ),
       ),
       body: ListView(
@@ -115,7 +116,7 @@ class _SignUpState extends State<SignUp> {
               leading: CircleAvatar(
                 backgroundImage: avatar == null ? null : FileImage(avatar),
                 backgroundColor: avatar == null
-                    ? Colors.white
+                    ? Theme.of(context).brightness == Brightness.dark ? Color(0xff121212) : Colors.white
                     : Theme.of(context).secondaryHeaderColor,
                 child: avatar == null
                     ? Icon(Icons.camera_alt,
@@ -137,7 +138,7 @@ class _SignUpState extends State<SignUp> {
             ),
             ListTile(
               leading: CircleAvatar(
-                backgroundColor: Colors.white,
+                backgroundColor: Theme.of(context).brightness == Brightness.dark ? Color(0xff121212) : Colors.white,
                 child: Icon(
                   Icons.account_circle,
                   color: Theme.of(context).primaryColor,

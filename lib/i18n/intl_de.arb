@@ -892,6 +892,31 @@
     "type": "text",
     "placeholders": {}
   },
+  "Change your style": "Change your style",
+  "@Change your style": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "System": "System",
+  "@System": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Light": "Hell",
+  "@Light": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Dark": "Dunkel",
+  "@Dark": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Use Amoled compatible colors?": "Amoled optimierte Farben verwenden?",
+  "@Use Amoled compatible colors?": {
+    "type": "text",
+    "placeholders": {}
+  },
   "Source code": "Quellcode",
   "@Source code": {
     "type": "text",
