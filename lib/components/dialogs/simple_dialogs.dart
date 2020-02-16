@@ -12,6 +12,8 @@ class SimpleDialogs {
     String cancelText,
     String hintText,
     String labelText,
+    String prefixText,
+    String suffixText,
     bool multiLine = false,
   }) async {
     final TextEditingController controller = TextEditingController();
@@ -19,7 +21,7 @@ class SimpleDialogs {
     await showDialog(
       context: context,
       builder: (c) => AlertDialog(
-        title: Text(I18n.of(context).enterAUsername ?? titleText),
+        title: Text(titleText ?? I18n.of(context).enterAUsername),
         content: TextField(
           controller: controller,
           autofocus: true,
@@ -27,9 +29,14 @@ class SimpleDialogs {
             input = s;
             Navigator.of(context).pop();
           },
+          minLines: multiLine ? 3 : 1,
+          maxLines: multiLine ? 3 : 1,
+          textInputAction: multiLine ? TextInputAction.newline : null,
           decoration: InputDecoration(
             hintText: hintText,
             labelText: labelText,
+            prefixText: prefixText,
+            suffixText: suffixText,
             border: OutlineInputBorder(),
           ),
         ),

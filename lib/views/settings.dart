@@ -10,7 +10,6 @@ import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/views/app_info.dart';
 import 'package:fluffychat/views/chat_list.dart';
 import 'package:fluffychat/views/sign_up.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:toast/toast.dart';

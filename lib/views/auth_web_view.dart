@@ -32,7 +32,6 @@ class AuthWebView extends StatelessWidget {
             child: WebView(
               initialUrl: url,
               javascriptMode: JavascriptMode.unrestricted,
-              onPageStarted: (s) => print("onPageStarted: " + s),
             ),
           ),
         ],
