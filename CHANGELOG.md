@@ -1,3 +1,7 @@
+# Version 0.8.1 - 2020-02-16
+### New features
+- Dark mode
+
 # Version 0.8.0 - 2020-02-16
 ### New features
 - Image Viewer
