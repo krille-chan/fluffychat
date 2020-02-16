@@ -1,4 +1,5 @@
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/views/chat.dart';
@@ -16,19 +17,34 @@ class ParticipantListItem extends StatelessWidget {
     final MatrixState matrix = Matrix.of(context);
     switch (action) {
       case "ban":
-        await matrix.tryRequestWithLoadingDialog(user.ban());
+        if (await SimpleDialogs(context).askConfirmation()) {
+          await matrix.tryRequestWithLoadingDialog(user.ban());
+        }
         break;
       case "unban":
-        await matrix.tryRequestWithLoadingDialog(user.unban());
+        if (await SimpleDialogs(context).askConfirmation()) {
+          await matrix.tryRequestWithLoadingDialog(user.unban());
+        }
         break;
       case "kick":
-        await matrix.tryRequestWithLoadingDialog(user.kick());
+        if (await SimpleDialogs(context).askConfirmation()) {
+          await matrix.tryRequestWithLoadingDialog(user.kick());
+        }
         break;
       case "admin":
-        await matrix.tryRequestWithLoadingDialog(user.setPower(100));
+        if (await SimpleDialogs(context).askConfirmation()) {
+          await matrix.tryRequestWithLoadingDialog(user.setPower(100));
+        }
+        break;
+      case "moderator":
+        if (await SimpleDialogs(context).askConfirmation()) {
+          await matrix.tryRequestWithLoadingDialog(user.setPower(50));
+        }
         break;
       case "user":
-        await matrix.tryRequestWithLoadingDialog(user.setPower(0));
+        if (await SimpleDialogs(context).askConfirmation()) {
+          await matrix.tryRequestWithLoadingDialog(user.setPower(0));
+        }
         break;
       case "message":
         final String roomId = await user.startDirectChat();
@@ -54,12 +70,27 @@ class ParticipantListItem extends StatelessWidget {
         ? I18n.of(context).admin
         : user.powerLevel >= 50 ? I18n.of(context).moderator : "";
     List<PopupMenuEntry<String>> items = <PopupMenuEntry<String>>[];
+
+    if (user.id != Matrix.of(context).client.userID) {
+      items.add(
+        PopupMenuItem(
+            child: Text(I18n.of(context).sendAMessage), value: "message"),
+      );
+    }
     if (user.canChangePowerLevel &&
         user.room.ownPowerLevel == 100 &&
         user.powerLevel != 100) {
       items.add(
         PopupMenuItem(
             child: Text(I18n.of(context).makeAnAdmin), value: "admin"),
+      );
+    }
+    if (user.canChangePowerLevel &&
+        user.room.ownPowerLevel >= 50 &&
+        user.powerLevel != 50) {
+      items.add(
+        PopupMenuItem(
+            child: Text(I18n.of(context).makeAModerator), value: "moderator"),
       );
     }
     if (user.canChangePowerLevel && user.powerLevel != 0) {
@@ -82,12 +113,6 @@ class ParticipantListItem extends StatelessWidget {
       items.add(
         PopupMenuItem(
             child: Text(I18n.of(context).removeExile), value: "unban"),
-      );
-    }
-    if (user.id != Matrix.of(context).client.userID) {
-      items.add(
-        PopupMenuItem(
-            child: Text(I18n.of(context).sendAMessage), value: "message"),
       );
     }
     return PopupMenuButton(

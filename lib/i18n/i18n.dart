@@ -394,6 +394,8 @@ class I18n {
 
   String get login => Intl.message("Login");
 
+  String get makeAModerator => Intl.message("Make a moderator");
+
   String get makeAnAdmin => Intl.message("Make an admin");
 
   String get makeSureTheIdentifierIsValid =>
