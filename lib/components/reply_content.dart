@@ -43,7 +43,7 @@ class ReplyContent extends StatelessWidget {
                 style: TextStyle(
                     color: lightText
                         ? Colors.white
-                        : Theme.of(context).textTheme.bodyText1.color),
+                        : Theme.of(context).textTheme.body1.color),
               ),
             ],
           ),
