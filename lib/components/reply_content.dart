@@ -40,8 +40,10 @@ class ReplyContent extends StatelessWidget {
                     "",
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
-                style:
-                    TextStyle(color: lightText ? Colors.white : Colors.black),
+                style: TextStyle(
+                    color: lightText
+                        ? Colors.white
+                        : Theme.of(context).textTheme.bodyText1.color),
               ),
             ],
           ),
