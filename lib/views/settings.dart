@@ -103,95 +103,108 @@ class _SettingsState extends State<Settings> {
       if (mounted) setState(() => profile = p);
     });
     return Scaffold(
-      appBar: AppBar(
-        title: Text(I18n.of(context).settings),
-      ),
-      body: ListView(
-        children: <Widget>[
-          ContentBanner(
-            profile?.avatarUrl ?? MxContent(""),
-            defaultIcon: Icons.account_circle,
-            loading: profile == null,
-            onEdit: kIsWeb ? null : () => setAvatarAction(context),
-          ),
-          ListTile(
-            title: Text(
-              I18n.of(context).account,
-              style: TextStyle(
-                color: Theme.of(context).primaryColor,
-                fontWeight: FontWeight.bold,
+      body: NestedScrollView(
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) =>
+            <Widget>[
+          SliverAppBar(
+            expandedHeight: 300.0,
+            floating: true,
+            pinned: true,
+            backgroundColor: Theme.of(context).appBarTheme.color,
+            flexibleSpace: FlexibleSpaceBar(
+              title: Text(I18n.of(context).settings,
+                  style: TextStyle(color: Colors.black)),
+              background: ContentBanner(
+                profile?.avatarUrl ?? MxContent(""),
+                height: 300,
+                defaultIcon: Icons.account_circle,
+                loading: profile == null,
+                onEdit: () => setAvatarAction(context),
               ),
             ),
-          ),
-          ListTile(
-            trailing: Icon(Icons.edit),
-            title: Text(I18n.of(context).editDisplayname),
-            subtitle: Text(profile?.displayname ?? client.userID.localpart),
-            onTap: () => setDisplaynameAction(context),
-          ),
-          ListTile(
-            trailing: Icon(Icons.exit_to_app),
-            title: Text(I18n.of(context).logout),
-            onTap: () => logoutAction(context),
-          ),
-          Divider(thickness: 1),
-          ListTile(
-            title: Text(
-              I18n.of(context).about,
-              style: TextStyle(
-                color: Theme.of(context).primaryColor,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          ListTile(
-            title: Container(
-              alignment: Alignment.centerLeft,
-              child: Image.asset("assets/kofi.png", width: 200),
-            ),
-            onTap: () => launch("https://ko-fi.com/V7V315112"),
-          ),
-          ListTile(
-            leading: Icon(Icons.donut_large),
-            title: Text("Liberapay " + I18n.of(context).donate),
-            onTap: () =>
-                launch("https://liberapay.com/KrilleChritzelius/donate"),
-          ),
-          ListTile(
-            leading: Icon(Icons.help),
-            title: Text(I18n.of(context).help),
-            onTap: () => launch(
-                "https://gitlab.com/ChristianPauly/fluffychat-flutter/issues"),
-          ),
-          ListTile(
-            leading: Icon(Icons.account_circle),
-            title: Text(I18n.of(context).accountInformations),
-            onTap: () => Navigator.of(context).push(
-              AppRoute.defaultRoute(
-                context,
-                AppInfoView(),
-              ),
-            ),
-          ),
-          ListTile(
-            leading: Icon(Icons.list),
-            title: Text(I18n.of(context).changelog),
-            onTap: () => launch(
-                "https://gitlab.com/ChristianPauly/fluffychat-flutter/blob/master/CHANGELOG.md"),
-          ),
-          ListTile(
-            leading: Icon(Icons.link),
-            title: Text(I18n.of(context).license),
-            onTap: () => launch(
-                "https://gitlab.com/ChristianPauly/fluffychat-flutter/raw/master/LICENSE"),
-          ),
-          ListTile(
-            leading: Icon(Icons.code),
-            title: Text(I18n.of(context).sourceCode),
-            onTap: () =>
-                launch("https://gitlab.com/ChristianPauly/fluffychat-flutter"),
           ),
         ],
+        body: ListView(
+          children: <Widget>[
+            ListTile(
+              title: Text(
+                I18n.of(context).account,
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            ListTile(
+              trailing: Icon(Icons.edit),
+              title: Text(I18n.of(context).editDisplayname),
+              subtitle: Text(profile?.displayname ?? client.userID.localpart),
+              onTap: () => setDisplaynameAction(context),
+            ),
+            ListTile(
+              trailing: Icon(Icons.exit_to_app),
+              title: Text(I18n.of(context).logout),
+              onTap: () => logoutAction(context),
+            ),
+            Divider(thickness: 1),
+            ListTile(
+              title: Text(
+                I18n.of(context).about,
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            ListTile(
+              title: Container(
+                alignment: Alignment.centerLeft,
+                child: Image.asset("assets/kofi.png", width: 200),
+              ),
+              onTap: () => launch("https://ko-fi.com/V7V315112"),
+            ),
+            ListTile(
+              leading: Icon(Icons.donut_large),
+              title: Text("Liberapay " + I18n.of(context).donate),
+              onTap: () =>
+                  launch("https://liberapay.com/KrilleChritzelius/donate"),
+            ),
+            ListTile(
+              leading: Icon(Icons.help),
+              title: Text(I18n.of(context).help),
+              onTap: () => launch(
+                  "https://gitlab.com/ChristianPauly/fluffychat-flutter/issues"),
+            ),
+            ListTile(
+              leading: Icon(Icons.account_circle),
+              title: Text(I18n.of(context).accountInformations),
+              onTap: () => Navigator.of(context).push(
+                AppRoute.defaultRoute(
+                  context,
+                  AppInfoView(),
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.list),
+              title: Text(I18n.of(context).changelog),
+              onTap: () => launch(
+                  "https://gitlab.com/ChristianPauly/fluffychat-flutter/blob/master/CHANGELOG.md"),
+            ),
+            ListTile(
+              leading: Icon(Icons.link),
+              title: Text(I18n.of(context).license),
+              onTap: () => launch(
+                  "https://gitlab.com/ChristianPauly/fluffychat-flutter/raw/master/LICENSE"),
+            ),
+            ListTile(
+              leading: Icon(Icons.code),
+              title: Text(I18n.of(context).sourceCode),
+              onTap: () => launch(
+                  "https://gitlab.com/ChristianPauly/fluffychat-flutter"),
+            ),
+          ],
+        ),
       ),
     );
   }

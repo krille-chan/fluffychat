@@ -43,7 +43,7 @@ class ContentBanner extends StatelessWidget {
             )
           : null,
       child: Container(
-        height: 200,
+        height: 300,
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: Theme.of(context).secondaryHeaderColor,
@@ -55,21 +55,24 @@ class ContentBanner extends StatelessWidget {
               right: 0,
               top: 0,
               bottom: 0,
-              child: !loading
-                  ? mxContent.mxc?.isNotEmpty ?? false
-                      ? kIsWeb
-                          ? Image.network(
-                              src,
-                              height: 200,
-                              fit: BoxFit.cover,
-                            )
-                          : CachedNetworkImage(
-                              imageUrl: src,
-                              height: 200,
-                              fit: BoxFit.cover,
-                            )
-                      : Icon(defaultIcon, size: 200)
-                  : Icon(defaultIcon, size: 200),
+              child: Opacity(
+                opacity: 0.75,
+                child: !loading
+                    ? mxContent.mxc?.isNotEmpty ?? false
+                        ? kIsWeb
+                            ? Image.network(
+                                src,
+                                height: 300,
+                                fit: BoxFit.cover,
+                              )
+                            : CachedNetworkImage(
+                                imageUrl: src,
+                                height: 300,
+                                fit: BoxFit.cover,
+                              )
+                        : Icon(defaultIcon, size: 300)
+                    : Icon(defaultIcon, size: 300),
+              ),
             ),
             if (this.onEdit != null)
               Container(
