@@ -600,7 +600,7 @@ class _ChatState extends State<_Chat> {
                                                   backgroundColor:
                                                       Colors.purple,
                                                   foregroundColor: Colors.white,
-                                                  child: Icon(Icons.camera),
+                                                  child: Icon(Icons.camera_alt),
                                                 ),
                                                 title: Text(I18n.of(context)
                                                     .openCamera),

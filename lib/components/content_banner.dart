@@ -75,7 +75,7 @@ class ContentBanner extends StatelessWidget {
                 child: FloatingActionButton(
                   mini: true,
                   backgroundColor: Theme.of(context).primaryColor,
-                  child: Icon(Icons.file_upload),
+                  child: Icon(Icons.camera_alt),
                   onPressed: onEdit,
                 ),
               ),
