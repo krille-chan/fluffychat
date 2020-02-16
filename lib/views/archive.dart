@@ -36,7 +36,7 @@ class _ArchiveState extends State<Archive> {
                 itemCount: archive.length,
                 itemBuilder: (BuildContext context, int i) => ChatListItem(
                     archive[i],
-                    onForget: () => setState(() => archive = null)),
+                    onForget: () => setState(() => archive.removeAt(i))),
               );
             }
           },

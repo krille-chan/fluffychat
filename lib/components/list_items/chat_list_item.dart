@@ -88,6 +88,14 @@ class ChatListItem extends StatelessWidget {
 
   Future<bool> archiveAction(BuildContext context) async {
     {
+      if ([Membership.leave, Membership.ban].contains(room.membership)) {
+        final success =
+            await Matrix.of(context).tryRequestWithLoadingDialog(room.forget());
+        if (success != false) {
+          if (this.onForget != null) this.onForget();
+        }
+        return success;
+      }
       final bool confirmed = await SimpleDialogs(context).askConfirmation();
       if (!confirmed) {
         return false;
@@ -111,6 +119,13 @@ class ChatListItem extends StatelessWidget {
             caption: I18n.of(context).leave,
             color: Colors.red,
             icon: Icons.archive,
+            onTap: () => archiveAction(context),
+          ),
+        if ([Membership.leave, Membership.ban].contains(room.membership))
+          IconSlideAction(
+            caption: I18n.of(context).delete,
+            color: Colors.red,
+            icon: Icons.delete_forever,
             onTap: () => archiveAction(context),
           ),
       ],
