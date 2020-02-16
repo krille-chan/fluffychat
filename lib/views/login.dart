@@ -44,7 +44,7 @@ class _LoginState extends State<Login> {
     }
 
     String homeserver = serverController.text;
-    if (homeserver.isEmpty) homeserver = "matrix-client.matrix.org";
+    if (homeserver.isEmpty) homeserver = "tchncs.de";
     if (!homeserver.startsWith("https://")) {
       homeserver = "https://" + homeserver;
     }
@@ -91,6 +91,7 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: loading ? Container() : null,
         title: TextField(
           autocorrect: false,
           controller: serverController,
@@ -124,6 +125,7 @@ class _LoginState extends State<Login> {
                   color: Theme.of(context).primaryColor),
             ),
             title: TextField(
+              readOnly: loading,
               autocorrect: false,
               controller: usernameController,
               decoration: InputDecoration(
@@ -139,6 +141,7 @@ class _LoginState extends State<Login> {
               child: Icon(Icons.lock, color: Theme.of(context).primaryColor),
             ),
             title: TextField(
+              readOnly: loading,
               autocorrect: false,
               controller: passwordController,
               obscureText: !showPassword,

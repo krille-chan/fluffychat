@@ -52,7 +52,7 @@ class _SignUpState extends State<SignUp> {
         usernameController.text.toLowerCase().replaceAll(" ", "-");
 
     String homeserver = serverController.text;
-    if (homeserver.isEmpty) homeserver = "matrix-client.matrix.org";
+    if (homeserver.isEmpty) homeserver = "tchncs.de";
     if (!homeserver.startsWith("https://")) {
       homeserver = "https://" + homeserver;
     }
