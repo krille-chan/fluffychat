@@ -193,10 +193,12 @@ class _ChatListState extends State<ChatList> {
       floatingActionButton: SpeedDial(
         child: Icon(Icons.add),
         overlayColor: blackWhiteColor(context),
+        foregroundColor: Colors.white,
         backgroundColor: Theme.of(context).primaryColor,
         children: [
           SpeedDialChild(
             child: Icon(Icons.people_outline),
+            foregroundColor: Colors.white,
             backgroundColor: Colors.blue,
             label: I18n.of(context).createNewGroup,
             labelStyle:
@@ -207,6 +209,7 @@ class _ChatListState extends State<ChatList> {
           ),
           SpeedDialChild(
             child: Icon(Icons.person_add),
+            foregroundColor: Colors.white,
             backgroundColor: Colors.green,
             label: I18n.of(context).newPrivateChat,
             labelStyle: TextStyle(

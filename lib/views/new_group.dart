@@ -101,6 +101,7 @@ class _NewGroupState extends State<_NewGroup> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        foregroundColor: Colors.white,
         backgroundColor: Theme.of(context).primaryColor,
         onPressed: () => submitAction(context),
         child: Icon(Icons.arrow_forward),
