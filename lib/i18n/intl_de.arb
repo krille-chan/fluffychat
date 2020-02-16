@@ -69,6 +69,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "Are you sure?": "Bist Du sicher?",
+  "@Are you sure?": {
+    "type": "text",
+    "placeholders": {}
+  },
   "Authentication": "Authentifizierung",
   "@Authentication": {
     "type": "text",

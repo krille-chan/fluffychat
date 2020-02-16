@@ -144,6 +144,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Archive" : MessageLookupByLibrary.simpleMessage("Archiv"),
     "Archived Room" : MessageLookupByLibrary.simpleMessage("Archivierter Raum"),
     "Are guest users allowed to join" : MessageLookupByLibrary.simpleMessage("Dürfen Gast-Benutzer beitreten"),
+    "Are you sure?" : MessageLookupByLibrary.simpleMessage("Bist Du sicher?"),
     "Authentication" : MessageLookupByLibrary.simpleMessage("Authentifizierung"),
     "Avatar has been changed" : MessageLookupByLibrary.simpleMessage("Avatar wurde geändert"),
     "Ban from chat" : MessageLookupByLibrary.simpleMessage("Aus dem Chat verbannen"),
