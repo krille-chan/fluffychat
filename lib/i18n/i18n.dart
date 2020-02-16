@@ -51,6 +51,10 @@ class I18n {
         args: [username],
       );
 
+  String get account => Intl.message("Account");
+
+  String get accountInformations => Intl.message("Account informations");
+
   String activatedEndToEndEncryption(String username) => Intl.message(
         "$username activated end to end encryption",
         name: "activatedEndToEndEncryption",

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/content_banner.dart';
+import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/utils/app_route.dart';
@@ -35,6 +36,9 @@ class _SettingsState extends State<Settings> {
   Future<dynamic> profileFuture;
   dynamic profile;
   void logoutAction(BuildContext context) async {
+    if (await SimpleDialogs(context).askConfirmation() == false) {
+      return;
+    }
     MatrixState matrix = Matrix.of(context);
     await matrix.tryRequestWithLoadingDialog(matrix.client.logout());
     matrix.clean();
@@ -42,18 +46,19 @@ class _SettingsState extends State<Settings> {
         AppRoute.defaultRoute(context, SignUp()), (r) => false);
   }
 
-  void setDisplaynameAction(BuildContext context, String displayname) async {
+  void setDisplaynameAction(BuildContext context) async {
+    final String displayname = await SimpleDialogs(context).enterText(
+      titleText: I18n.of(context).editDisplayname,
+      hintText:
+          profile?.displayname ?? Matrix.of(context).client.userID.localpart,
+      labelText: I18n.of(context).enterAUsername,
+    );
+    if (displayname == null) return;
     final MatrixState matrix = Matrix.of(context);
-    final Map<String, dynamic> success =
-        await matrix.tryRequestWithLoadingDialog(
+    final success = await matrix.tryRequestWithLoadingDialog(
       matrix.client.setDisplayname(displayname),
     );
-    if (success != null && success.isEmpty) {
-      Toast.show(
-        I18n.of(context).displaynameHasBeenChanged,
-        context,
-        duration: Toast.LENGTH_LONG,
-      );
+    if (success != false) {
       setState(() {
         profileFuture = null;
         profile = null;
@@ -110,20 +115,26 @@ class _SettingsState extends State<Settings> {
             onEdit: kIsWeb ? null : () => setAvatarAction(context),
           ),
           ListTile(
-            leading: Icon(Icons.edit),
-            title: TextField(
-              readOnly: profile == null,
-              textInputAction: TextInputAction.done,
-              onSubmitted: (s) => setDisplaynameAction(context, s),
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                labelText: I18n.of(context).editDisplayname,
-                labelStyle: TextStyle(color: Colors.black),
-                hintText: (profile?.displayname ?? ""),
+            title: Text(
+              I18n.of(context).account,
+              style: TextStyle(
+                color: Theme.of(context).primaryColor,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),
-          Divider(thickness: 8),
+          ListTile(
+            trailing: Icon(Icons.edit),
+            title: Text(I18n.of(context).editDisplayname),
+            subtitle: Text(profile?.displayname ?? client.userID.localpart),
+            onTap: () => setDisplaynameAction(context),
+          ),
+          ListTile(
+            trailing: Icon(Icons.exit_to_app),
+            title: Text(I18n.of(context).logout),
+            onTap: () => logoutAction(context),
+          ),
+          Divider(thickness: 1),
           ListTile(
             title: Text(
               I18n.of(context).about,
@@ -134,25 +145,33 @@ class _SettingsState extends State<Settings> {
             ),
           ),
           ListTile(
-            leading: Icon(Icons.info),
-            title: Text(I18n.of(context).fluffychat),
-            onTap: () => Navigator.of(context).push(
-              AppRoute.defaultRoute(
-                context,
-                AppInfoView(),
-              ),
+            title: Container(
+              alignment: Alignment.centerLeft,
+              child: Image.asset("assets/kofi.png", width: 200),
             ),
+            onTap: () => launch("https://ko-fi.com/V7V315112"),
           ),
           ListTile(
-            leading: Icon(Icons.sentiment_very_satisfied),
-            title: Text(I18n.of(context).donate),
-            onTap: () => launch("https://ko-fi.com/krille"),
+            leading: Icon(Icons.donut_large),
+            title: Text("Liberapay " + I18n.of(context).donate),
+            onTap: () =>
+                launch("https://liberapay.com/KrilleChritzelius/donate"),
           ),
           ListTile(
             leading: Icon(Icons.help),
             title: Text(I18n.of(context).help),
             onTap: () => launch(
                 "https://gitlab.com/ChristianPauly/fluffychat-flutter/issues"),
+          ),
+          ListTile(
+            leading: Icon(Icons.account_circle),
+            title: Text(I18n.of(context).accountInformations),
+            onTap: () => Navigator.of(context).push(
+              AppRoute.defaultRoute(
+                context,
+                AppInfoView(),
+              ),
+            ),
           ),
           ListTile(
             leading: Icon(Icons.list),
@@ -171,21 +190,6 @@ class _SettingsState extends State<Settings> {
             title: Text(I18n.of(context).sourceCode),
             onTap: () =>
                 launch("https://gitlab.com/ChristianPauly/fluffychat-flutter"),
-          ),
-          Divider(thickness: 8),
-          ListTile(
-            title: Text(
-              I18n.of(context).logout,
-              style: TextStyle(
-                color: Theme.of(context).primaryColor,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          ListTile(
-            leading: Icon(Icons.exit_to_app),
-            title: Text(I18n.of(context).logout),
-            onTap: () => logoutAction(context),
           ),
         ],
       ),
