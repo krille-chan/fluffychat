@@ -18,25 +18,24 @@ class AuthWebView extends StatelessWidget {
       appBar: AppBar(
         title: Text(I18n.of(context).authentication),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: Icon(Icons.close),
           onPressed: () {
             Navigator.of(context).pop();
-            Navigator.of(context).pop();
+            onAuthDone();
           },
         ),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.check),
-            onPressed: () {
-              Navigator.of(context).pop();
-              onAuthDone();
-            },
-          )
-        ],
       ),
-      body: WebView(
-        initialUrl: url,
-        javascriptMode: JavascriptMode.unrestricted,
+      body: Column(
+        children: <Widget>[
+          LinearProgressIndicator(),
+          Expanded(
+            child: WebView(
+              initialUrl: url,
+              javascriptMode: JavascriptMode.unrestricted,
+              onPageStarted: (s) => print("onPageStarted: " + s),
+            ),
+          ),
+        ],
       ),
     );
   }
