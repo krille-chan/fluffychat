@@ -37,18 +37,23 @@ class SimpleDialogs {
             labelText: labelText,
             prefixText: prefixText,
             suffixText: suffixText,
+            prefixStyle: TextStyle(color: Theme.of(context).primaryColor),
+            suffixStyle: TextStyle(color: Theme.of(context).primaryColor),
             border: OutlineInputBorder(),
           ),
         ),
         actions: <Widget>[
           FlatButton(
-            child: Text(cancelText ?? I18n.of(context).close.toUpperCase(),
+            child: Text(
+                cancelText?.toUpperCase() ??
+                    I18n.of(context).close.toUpperCase(),
                 style: TextStyle(color: Colors.blueGrey)),
             onPressed: () => Navigator.of(context).pop(),
           ),
           FlatButton(
             child: Text(
-              confirmText ?? I18n.of(context).confirm.toUpperCase(),
+              confirmText?.toUpperCase() ??
+                  I18n.of(context).confirm.toUpperCase(),
             ),
             onPressed: () {
               input = controller.text;
@@ -70,16 +75,19 @@ class SimpleDialogs {
     await showDialog(
       context: context,
       builder: (c) => AlertDialog(
-        title: Text(I18n.of(context).areYouSure ?? titleText),
+        title: Text(titleText ?? I18n.of(context).areYouSure),
         actions: <Widget>[
           FlatButton(
-            child: Text(cancelText ?? I18n.of(context).close.toUpperCase(),
+            child: Text(
+                cancelText?.toUpperCase() ??
+                    I18n.of(context).close.toUpperCase(),
                 style: TextStyle(color: Colors.blueGrey)),
             onPressed: () => Navigator.of(context).pop(),
           ),
           FlatButton(
             child: Text(
-              confirmText ?? I18n.of(context).confirm.toUpperCase(),
+              confirmText?.toUpperCase() ??
+                  I18n.of(context).confirm.toUpperCase(),
             ),
             onPressed: () {
               confirmed = true;

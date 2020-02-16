@@ -58,7 +58,7 @@ class _ChatDetailsState extends State<ChatDetails> {
       labelText: I18n.of(context).setInvitationLink,
       hintText: I18n.of(context).alias.toLowerCase(),
       prefixText: "#",
-      suffixText: widget.room.client.userID.domain,
+      suffixText: ":" + widget.room.client.userID.domain,
     );
     if (s == null) return;
     final String domain = widget.room.client.userID.domain;

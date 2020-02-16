@@ -5,7 +5,7 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/chat_settings_popup_menu.dart';
-import 'package:fluffychat/components/dialogs/confirm_dialog.dart';
+import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/list_items/message.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/components/reply_content.dart';
@@ -234,13 +234,9 @@ class _ChatState extends State<_Chat> {
   }
 
   void redactEventsAction(BuildContext context) async {
-    bool confirmed = false;
-    await showDialog(
-      context: context,
-      builder: (context) => ConfirmDialog(
-          I18n.of(context).messageWillBeRemovedWarning,
-          I18n.of(context).remove,
-          (c) => confirmed = true),
+    bool confirmed = await SimpleDialogs(context).askConfirmation(
+      titleText: I18n.of(context).messageWillBeRemovedWarning,
+      confirmText: I18n.of(context).remove,
     );
     if (!confirmed) return;
     for (Event event in selectedEvents) {
@@ -280,6 +276,7 @@ class _ChatState extends State<_Chat> {
       replyEvent = selectedEvents.first;
       selectedEvents.clear();
     });
+    inputFocus.requestFocus();
   }
 
   @override
@@ -400,28 +397,7 @@ class _ChatState extends State<_Chat> {
           SafeArea(
             child: Column(
               children: <Widget>[
-                Material(
-                  elevation: 1,
-                  color: Theme.of(context).scaffoldBackgroundColor,
-                  child: AnimatedContainer(
-                    duration: Duration(milliseconds: 300),
-                    height: _loadingHistory ? 40 : 0,
-                    child: Center(
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          Container(
-                            height: 20,
-                            width: 20,
-                            child: CircularProgressIndicator(strokeWidth: 2),
-                          ),
-                          SizedBox(width: 8),
-                          Text(I18n.of(context).loadingPleaseWait),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
+                if (_loadingHistory) LinearProgressIndicator(),
                 Expanded(
                   child: FutureBuilder<bool>(
                     future: getTimeline(),

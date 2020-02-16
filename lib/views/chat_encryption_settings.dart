@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
-import 'package:fluffychat/components/dialogs/confirm_dialog.dart';
+import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/utils/beautify_string_extension.dart';
 import 'package:fluffychat/i18n/i18n.dart';
@@ -62,23 +62,21 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
             subtitle: Text(room.encryptionAlgorithm ?? I18n.of(context).none),
             trailing: Icon(room.encrypted ? Icons.lock : Icons.lock_open,
                 color: room.encrypted ? Colors.green : Colors.red),
-            onTap: () {
+            onTap: () async {
               if (room.encrypted) return;
               if (!room.client.encryptionEnabled) {
                 Toast.show(I18n.of(context).needPantalaimonWarning, context,
                     duration: 8);
                 return;
               }
-              showDialog(
-                context: context,
-                builder: (BuildContext context) => ConfirmDialog(
-                  I18n.of(context).enableEncryptionWarning,
-                  I18n.of(context).yes,
-                  (context) => Matrix.of(context).tryRequestWithLoadingDialog(
-                    room.enableEncryption(),
-                  ),
-                ),
-              );
+              if (await SimpleDialogs(context).askConfirmation(
+                      titleText: I18n.of(context).enableEncryptionWarning,
+                      confirmText: I18n.of(context).yes) ==
+                  true) {
+                await Matrix.of(context).tryRequestWithLoadingDialog(
+                  room.enableEncryption(),
+                );
+              }
             },
           ),
           ListTile(

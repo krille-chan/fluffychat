@@ -7,6 +7,7 @@ import 'package:fluffychat/views/chat_details.dart';
 import 'package:fluffychat/views/chat_list.dart';
 import 'package:flutter/material.dart';
 
+import 'dialogs/simple_dialogs.dart';
 import 'matrix.dart';
 
 class ChatSettingsPopupMenu extends StatefulWidget {
@@ -66,11 +67,16 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
       onSelected: (String choice) async {
         switch (choice) {
           case "leave":
-            await Matrix.of(context)
-                .tryRequestWithLoadingDialog(widget.room.leave());
-            await Navigator.of(context).pushAndRemoveUntil(
-                AppRoute.defaultRoute(context, ChatListView()),
-                (Route r) => false);
+            bool confirmed = await SimpleDialogs(context).askConfirmation();
+            if (confirmed) {
+              final success = await Matrix.of(context)
+                  .tryRequestWithLoadingDialog(widget.room.leave());
+              if (success != false) {
+                await Navigator.of(context).pushAndRemoveUntil(
+                    AppRoute.defaultRoute(context, ChatListView()),
+                    (Route r) => false);
+              }
+            }
             break;
           case "mute":
             await Matrix.of(context).tryRequestWithLoadingDialog(
