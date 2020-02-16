@@ -114,8 +114,15 @@ class _SettingsState extends State<Settings> {
             pinned: true,
             backgroundColor: Theme.of(context).appBarTheme.color,
             flexibleSpace: FlexibleSpaceBar(
-              title: Text(I18n.of(context).settings,
-                  style: TextStyle(color: Colors.black)),
+              title: Text(
+                I18n.of(context).settings,
+                style: TextStyle(
+                    color: Theme.of(context)
+                        .appBarTheme
+                        .textTheme
+                        .headline6
+                        .color),
+              ),
               background: ContentBanner(
                 profile?.avatarUrl ?? MxContent(""),
                 height: 300,

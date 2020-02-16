@@ -11,7 +11,7 @@ import '../../utils/date_time_extension.dart';
 import '../../utils/event_extension.dart';
 import '../../utils/room_extension.dart';
 import '../../views/chat.dart';
-import '../ThemeSwitcher.dart';
+import '../theme_switcher.dart';
 import '../avatar.dart';
 import '../dialogs/simple_dialogs.dart';
 import '../matrix.dart';

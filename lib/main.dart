@@ -5,7 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'i18n/i18n.dart';
 import 'views/sign_up.dart';
-import 'components/ThemeSwitcher.dart';
+import 'components/theme_switcher.dart';
 import 'components/matrix.dart';
 import 'views/chat_list.dart';
 

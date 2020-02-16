@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../components/ThemeSwitcher.dart';
+import '../components/theme_switcher.dart';
 import '../components/adaptive_page_layout.dart';
 import '../components/matrix.dart';
 import '../i18n/i18n.dart';
@@ -82,7 +82,7 @@ class ThemesSettingsState extends State<ThemesSettings> {
               });
             },
           ),
-          Divider(thickness: 8),
+          Divider(thickness: 1),
           ListTile(
             title: Text(
               I18n.of(context).useAmoledTheme,

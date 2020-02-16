@@ -202,7 +202,12 @@ class _ChatDetailsState extends State<ChatDetails> {
                 ChatSettingsPopupMenu(widget.room, false)
               ],
               title: Text(widget.room.getLocalizedDisplayname(context),
-                  style: TextStyle(color: Colors.black)),
+                  style: TextStyle(
+                      color: Theme.of(context)
+                          .appBarTheme
+                          .textTheme
+                          .headline6
+                          .color)),
               backgroundColor: Theme.of(context).appBarTheme.color,
               flexibleSpace: FlexibleSpaceBar(
                 background: ContentBanner(widget.room.avatar,
@@ -221,7 +226,8 @@ class _ChatDetailsState extends State<ChatDetails> {
                       ListTile(
                         leading: widget.room.canSendEvent("m.room.topic")
                             ? CircleAvatar(
-                                backgroundColor: Colors.white,
+                                backgroundColor:
+                                    Theme.of(context).scaffoldBackgroundColor,
                                 foregroundColor: Colors.grey,
                                 child: Icon(Icons.edit),
                               )
@@ -257,7 +263,8 @@ class _ChatDetailsState extends State<ChatDetails> {
                       if (widget.room.canSendEvent("m.room.name"))
                         ListTile(
                           leading: CircleAvatar(
-                            backgroundColor: Colors.white,
+                            backgroundColor:
+                                Theme.of(context).scaffoldBackgroundColor,
                             foregroundColor: Colors.grey,
                             child: Icon(Icons.people),
                           ),
@@ -270,7 +277,8 @@ class _ChatDetailsState extends State<ChatDetails> {
                           widget.room.joinRules == JoinRules.public)
                         ListTile(
                           leading: CircleAvatar(
-                            backgroundColor: Colors.white,
+                            backgroundColor:
+                                Theme.of(context).scaffoldBackgroundColor,
                             foregroundColor: Colors.grey,
                             child: Icon(Icons.link),
                           ),
@@ -284,7 +292,8 @@ class _ChatDetailsState extends State<ChatDetails> {
                       PopupMenuButton(
                         child: ListTile(
                           leading: CircleAvatar(
-                              backgroundColor: Colors.white,
+                              backgroundColor:
+                                  Theme.of(context).scaffoldBackgroundColor,
                               foregroundColor: Colors.grey,
                               child: Icon(Icons.public)),
                           title: Text(
@@ -316,7 +325,8 @@ class _ChatDetailsState extends State<ChatDetails> {
                       PopupMenuButton(
                         child: ListTile(
                           leading: CircleAvatar(
-                            backgroundColor: Colors.white,
+                            backgroundColor:
+                                Theme.of(context).scaffoldBackgroundColor,
                             foregroundColor: Colors.grey,
                             child: Icon(Icons.visibility),
                           ),
@@ -363,7 +373,8 @@ class _ChatDetailsState extends State<ChatDetails> {
                         PopupMenuButton(
                           child: ListTile(
                             leading: CircleAvatar(
-                              backgroundColor: Colors.white,
+                              backgroundColor:
+                                  Theme.of(context).scaffoldBackgroundColor,
                               foregroundColor: Colors.grey,
                               child: Icon(Icons.info_outline),
                             ),
@@ -436,7 +447,8 @@ class _ChatDetailsState extends State<ChatDetails> {
                         title: Text(I18n.of(context).loadCountMoreParticipants(
                             (actualMembersCount - members.length).toString())),
                         leading: CircleAvatar(
-                          backgroundColor: Colors.white,
+                          backgroundColor:
+                              Theme.of(context).scaffoldBackgroundColor,
                           child: Icon(
                             Icons.refresh,
                             color: Colors.grey,

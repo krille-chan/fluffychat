@@ -38,7 +38,7 @@ class AdaptivePageLayout extends StatelessWidget {
           ),
           Container(
             width: 1,
-            color: Color(0xFFE8E8E8),
+            color: Theme.of(context).secondaryHeaderColor, //Color(0xFFE8E8E8),
           ),
           Expanded(
             child: Container(

@@ -1,7 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
-import '../utils/famedlysdk_store.dart';
 import 'matrix.dart';
 
 enum Themes {
@@ -49,6 +47,16 @@ final ThemeData darkTheme = ThemeData.dark().copyWith(
   scaffoldBackgroundColor: Color(0xff121212),
   accentColor: Color(0xFFF5B4D2),
   secondaryHeaderColor: Color(0xff1D1D1D),
+  dialogTheme: DialogTheme(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(8.0),
+    ),
+  ),
+  popupMenuTheme: PopupMenuThemeData(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(8.0),
+    ),
+  ),
   appBarTheme: AppBarTheme(
     brightness: Brightness.dark,
     color: Color(0xff1D1D1D),
@@ -70,6 +78,16 @@ final ThemeData amoledTheme = ThemeData.dark().copyWith(
   scaffoldBackgroundColor: Colors.black,
   accentColor: Color(0xFFF5B4D2),
   secondaryHeaderColor: Color(0xff1D1D1D),
+  dialogTheme: DialogTheme(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(8.0),
+    ),
+  ),
+  popupMenuTheme: PopupMenuThemeData(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(8.0),
+    ),
+  ),
   appBarTheme: AppBarTheme(
     brightness: Brightness.dark,
     color: Color(0xff1D1D1D),
@@ -141,25 +159,15 @@ class ThemeSwitcherWidgetState extends State<ThemeSwitcherWidget> {
   BuildContext context;
 
   Future loadSelection(MatrixState matrix) async {
-    if (kIsWeb) {
-      Store store = matrix.client.storeAPI;
-      String item = await store.getItem("theme") ?? "light";
-      selectedTheme =
-          Themes.values.firstWhere((e) => e.toString() == 'Themes.' + item);
+    String item = await matrix.client.storeAPI.getItem("theme") ?? "light";
+    selectedTheme =
+        Themes.values.firstWhere((e) => e.toString() == 'Themes.' + item);
 
-      amoledEnabled =
-          (await store.getItem("amoled_enabled") ?? "false").toLowerCase() ==
-              'true';
-    } else {
-      ExtendedStore store = matrix.client.storeAPI;
-      String item = await store.getItem("theme") ?? "light";
-      selectedTheme =
-          Themes.values.firstWhere((e) => e.toString() == 'Themes.' + item);
+    amoledEnabled =
+        (await matrix.client.storeAPI.getItem("amoled_enabled") ?? "false")
+                .toLowerCase() ==
+            'true';
 
-      amoledEnabled =
-          (await store.getItem("amoled_enabled") ?? "false").toLowerCase() ==
-              'true';
-    }
     switchTheme(matrix, selectedTheme, amoledEnabled);
     return;
   }
@@ -205,23 +213,12 @@ class ThemeSwitcherWidgetState extends State<ThemeSwitcherWidget> {
   }
 
   Future saveThemeValue(MatrixState matrix, Themes value) async {
-    if (kIsWeb) {
-      Store store = matrix.client.storeAPI;
-      await store.setItem("theme", value.toString().split('.').last);
-    } else {
-      ExtendedStore store = matrix.client.storeAPI;
-      await store.setItem("theme", value.toString().split('.').last);
-    }
+    await matrix.client.storeAPI
+        .setItem("theme", value.toString().split('.').last);
   }
 
   Future saveAmoledEnabledValue(MatrixState matrix, bool value) async {
-    if (kIsWeb) {
-      Store store = matrix.client.storeAPI;
-      await store.setItem("amoled_enabled", value.toString());
-    } else {
-      ExtendedStore store = matrix.client.storeAPI;
-      await store.setItem("amoled_enabled", value.toString());
-    }
+    await matrix.client.storeAPI.setItem("amoled_enabled", value.toString());
   }
 
   void setup() async {

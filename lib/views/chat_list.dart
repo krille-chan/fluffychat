@@ -8,7 +8,7 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:toast/toast.dart';
 import 'package:uni_links/uni_links.dart';
 
-import '../components/ThemeSwitcher.dart';
+import '../components/theme_switcher.dart';
 import '../components/adaptive_page_layout.dart';
 import '../components/list_items/chat_list_item.dart';
 import '../components/matrix.dart';
