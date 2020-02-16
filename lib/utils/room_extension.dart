@@ -10,6 +10,12 @@ extension LocalizedRoomDisplayname on Room {
         (this.mHeroes != null && this.mHeroes.isNotEmpty)) {
       return I18n.of(context).groupWith(this.displayname);
     }
+    if ((this.name?.isEmpty ?? true) &&
+        (this.canonicalAlias?.isEmpty ?? true) &&
+        !this.isDirectChat &&
+        (this.mHeroes?.isEmpty ?? true)) {
+      return I18n.of(context).emptyChat;
+    }
     return this.displayname;
   }
 }
