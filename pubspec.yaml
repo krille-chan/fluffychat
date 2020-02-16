@@ -50,6 +50,7 @@ dependencies:
   universal_html: ^1.1.12
   uni_links: ^0.2.0
   flutter_svg: ^0.17.1
+  flutter_slidable: ^0.5.4
 
   intl: ^0.16.0
   intl_translation: ^0.17.9

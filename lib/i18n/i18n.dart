@@ -74,6 +74,8 @@ class I18n {
   String get areGuestsAllowedToJoin =>
       Intl.message("Are guest users allowed to join");
 
+  String get areYouSure => Intl.message("Are you sure?");
+
   String get authentication => Intl.message("Authentication");
 
   String get avatarHasBeenChanged => Intl.message("Avatar has been changed");

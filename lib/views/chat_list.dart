@@ -18,7 +18,7 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:toast/toast.dart';
 import 'package:uni_links/uni_links.dart';
 
-enum SelectMode { normal, multi_select, share }
+enum SelectMode { normal, share }
 
 class ChatListView extends StatelessWidget {
   @override
@@ -86,7 +86,8 @@ class _ChatListState extends State<ChatList> {
         }
       },
       onError: (error) => Toast.show(
-          I18n.of(context).oopsSomethingWentWrong + " " + error.toString(), context,
+          I18n.of(context).oopsSomethingWentWrong + " " + error.toString(),
+          context,
           duration: 5),
     );
   }
