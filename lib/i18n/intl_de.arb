@@ -12,6 +12,16 @@
       "username": {}
     }
   },
+  "Account": "Konto",
+  "@Account": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Account informations": "Kontoinformationen",
+  "@Account informations": {
+    "type": "text",
+    "placeholders": {}
+  },
   "activatedEndToEndEncryption": "{username} hat Ende-zu-Ende Verschlüsselung aktiviert",
   "@activatedEndToEndEncryption": {
     "type": "text",
@@ -577,6 +587,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "Make a moderator": "Zum Moderator ernennen",
+  "@Make a moderator": {
+    "type": "text",
+    "placeholders": {}
+  },
   "Make sure the identifier is valid": "Gib bitte einen richtigen Benutzernamen ein",
   "@Make sure the identifier is valid": {
     "type": "text",
@@ -1021,6 +1036,11 @@
   },
   "Wednesday": "Mittwoch",
   "@Wednesday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "End to end encryption is currently in Beta! Use at your own risk!": "Ende-zu-Ende-Verschlüsselung ist im Beta-Status. Benutzung auf eigene Gefahr!",
+  "@End to end encryption is currently in Beta! Use at your own risk!": {
     "type": "text",
     "placeholders": {}
   },

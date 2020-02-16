@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-02-10T18:38:37.519607",
+  "@@last_modified": "2020-02-16T12:36:34.703154",
   "About": "About",
   "@About": {
     "type": "text",
@@ -11,6 +11,16 @@
     "placeholders": {
       "username": {}
     }
+  },
+  "Account": "Account",
+  "@Account": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Account informations": "Account informations",
+  "@Account informations": {
+    "type": "text",
+    "placeholders": {}
   },
   "activatedEndToEndEncryption": "{username} activated end to end encryption",
   "@activatedEndToEndEncryption": {
@@ -56,6 +66,11 @@
   },
   "Are guest users allowed to join": "Are guest users allowed to join",
   "@Are guest users allowed to join": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Are you sure?": "Are you sure?",
+  "@Are you sure?": {
     "type": "text",
     "placeholders": {}
   },
@@ -572,6 +587,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "Make a moderator": "Make a moderator",
+  "@Make a moderator": {
+    "type": "text",
+    "placeholders": {}
+  },
   "Make an admin": "Make an admin",
   "@Make an admin": {
     "type": "text",
@@ -1016,6 +1036,11 @@
   },
   "Visibility of the chat history": "Visibility of the chat history",
   "@Visibility of the chat history": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "End to end encryption is currently in Beta! Use at your own risk!": "End to end encryption is currently in Beta! Use at your own risk!",
+  "@End to end encryption is currently in Beta! Use at your own risk!": {
     "type": "text",
     "placeholders": {}
   },
