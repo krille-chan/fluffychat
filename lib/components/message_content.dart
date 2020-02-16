@@ -5,6 +5,7 @@ import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/utils/event_extension.dart';
 import 'package:fluffychat/views/content_web_view.dart';
+import 'package:fluffychat/views/image_viewer.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:link_text/link_text.dart';
@@ -27,7 +28,8 @@ class MessageContent extends StatelessWidget {
           case MessageTypes.Image:
           case MessageTypes.Sticker:
             final int size = 400;
-            final String src = MxContent(event.content["url"]).getThumbnail(
+            final MxContent content = MxContent(event.content["url"]);
+            final String src = content.getThumbnail(
               Matrix.of(context).client,
               width: size * MediaQuery.of(context).devicePixelRatio,
               height: size * MediaQuery.of(context).devicePixelRatio,
@@ -38,21 +40,23 @@ class MessageContent extends StatelessWidget {
               radius: Radius.circular(10),
               elevation: 0,
               child: InkWell(
-                onTap: () => Navigator.of(context).push(
-                  AppRoute.defaultRoute(
-                    context,
-                    ContentWebView(MxContent(event.content["url"])),
-                  ),
+                onTap: () => ImageViewer.show(context, content),
+                child: Container(
+                  height: size.toDouble(),
+                  width: size.toDouble(),
+                  child: kIsWeb
+                      ? Image.network(
+                          src,
+                          fit: BoxFit.cover,
+                        )
+                      : CachedNetworkImage(
+                          imageUrl: src,
+                          fit: BoxFit.cover,
+                          placeholder: (c, s) => Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        ),
                 ),
-                child: kIsWeb
-                    ? Image.network(
-                        src,
-                        width: size.toDouble(),
-                      )
-                    : CachedNetworkImage(
-                        imageUrl: src,
-                        width: size.toDouble(),
-                      ),
               ),
             );
           case MessageTypes.Audio:

@@ -3,10 +3,9 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/message_content.dart';
 import 'package:fluffychat/components/reply_content.dart';
 import 'package:fluffychat/i18n/i18n.dart';
-import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/string_color.dart';
-import 'package:fluffychat/views/content_web_view.dart';
+import 'package:fluffychat/views/image_viewer.dart';
 import 'package:flutter/material.dart';
 
 import '../avatar.dart';
@@ -133,12 +132,7 @@ class Message extends StatelessWidget {
         : Avatar(
             event.sender.avatarUrl,
             event.sender.calcDisplayname(),
-            onTap: () => Navigator.of(context).push(
-              AppRoute.defaultRoute(
-                context,
-                ContentWebView(event.sender.avatarUrl),
-              ),
-            ),
+            onTap: () => ImageViewer.show(context, event.sender.avatarUrl),
           );
     if (ownMessage) {
       rowChildren.add(avatarOrSizedBox);

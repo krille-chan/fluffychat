@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/utils/app_route.dart';
-import 'package:fluffychat/views/content_web_view.dart';
+import 'package:fluffychat/views/image_viewer.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -35,12 +34,7 @@ class ContentBanner extends StatelessWidget {
     );
     return InkWell(
       onTap: () => mxContent.mxc?.isNotEmpty ?? false
-          ? Navigator.of(context).push(
-              AppRoute.defaultRoute(
-                context,
-                ContentWebView(mxContent),
-              ),
-            )
+          ? ImageViewer.show(context, mxContent)
           : null,
       child: Container(
         height: 300,
