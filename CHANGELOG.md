@@ -1,3 +1,9 @@
+# Version 0.8.0 - 2020-02-16
+### New features
+- Image Viewer
+- Improved UX design
+- Experimental End-to-end encryption in the web version
+
 # Version 0.7.2 - 2020-02-10
 ### Changed
 - Invite link text
