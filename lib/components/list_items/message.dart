@@ -99,8 +99,7 @@ class Message extends StatelessWidget {
                 ),
                 if (event.isReply)
                   FutureBuilder<Event>(
-                    future: timeline.getEventById(event.content['m.relates_to']
-                        ['m.in_reply_to']['event_id']),
+                    future: event.getReplyEvent(timeline),
                     builder: (BuildContext context, snapshot) {
                       final Event replyEvent = snapshot.hasData
                           ? snapshot.data
