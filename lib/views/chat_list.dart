@@ -202,7 +202,7 @@ class _ChatListState extends State<ChatList> {
             backgroundColor: Colors.blue,
             label: I18n.of(context).createNewGroup,
             labelStyle:
-                TextStyle(fontSize: 18.0, color: blackWhiteColor(context)),
+                TextStyle(fontSize: 18.0, color: Colors.black),
             onTap: () => Navigator.of(context).pushAndRemoveUntil(
                 AppRoute.defaultRoute(context, NewGroupView()),
                 (r) => r.isFirst),
@@ -214,9 +214,7 @@ class _ChatListState extends State<ChatList> {
             label: I18n.of(context).newPrivateChat,
             labelStyle: TextStyle(
                 fontSize: 18.0,
-                color: Theme.of(context).brightness == Brightness.light
-                    ? Colors.white
-                    : Colors.black),
+                color: Colors.black),
             onTap: () => Navigator.of(context).pushAndRemoveUntil(
                 AppRoute.defaultRoute(context, NewPrivateChatView()),
                 (r) => r.isFirst),
