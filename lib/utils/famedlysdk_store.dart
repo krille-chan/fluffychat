@@ -33,7 +33,11 @@ class Store extends StoreAPI {
       await storage.ready;
       return await storage.setItem(key, value);
     }
-    return await secureStorage.write(key: key, value: value);
+    if (value == null) {
+      return await secureStorage.delete(key: key);
+    } else {
+      return await secureStorage.write(key: key, value: value);
+    }
   }
 
   Future<Map<String, DeviceKeysList>> getUserDeviceKeys() async {
