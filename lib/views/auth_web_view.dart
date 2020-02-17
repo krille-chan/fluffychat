@@ -1,6 +1,8 @@
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/i18n/i18n.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class AuthWebView extends StatelessWidget {
@@ -14,6 +16,7 @@ class AuthWebView extends StatelessWidget {
   Widget build(BuildContext context) {
     final String url = Matrix.of(context).client.homeserver +
         "/_matrix/client/r0/auth/$authType/fallback/web?session=$session";
+    if (kIsWeb) launch(url);
     return Scaffold(
       appBar: AppBar(
         title: Text(I18n.of(context).authentication),
@@ -29,10 +32,12 @@ class AuthWebView extends StatelessWidget {
         children: <Widget>[
           LinearProgressIndicator(),
           Expanded(
-            child: WebView(
-              initialUrl: url,
-              javascriptMode: JavascriptMode.unrestricted,
-            ),
+            child: kIsWeb
+                ? Center(child: Icon(Icons.link))
+                : WebView(
+                    initialUrl: url,
+                    javascriptMode: JavascriptMode.unrestricted,
+                  ),
           ),
         ],
       ),
