@@ -1,3 +1,7 @@
+# Version 0.8.2 - 2020-02-17
+### Fixes
+- SpeedDial labels not visible in light mode
+
 # Version 0.8.1 - 2020-02-16
 ### New features
 - Dark mode
