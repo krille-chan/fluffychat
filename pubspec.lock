@@ -124,8 +124,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: d6e59370668c697a97fefea32c0cdedfb235203b
-      resolved-ref: d6e59370668c697a97fefea32c0cdedfb235203b
+      ref: "083dd8eb295f0c6624e78d54f2ffeaa30de5de41"
+      resolved-ref: "083dd8eb295f0c6624e78d54f2ffeaa30de5de41"
       url: "https://gitlab.com/famedly/famedlysdk.git"
     source: git
     version: "0.0.1"
@@ -274,7 +274,7 @@ packages:
       name: intl
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.16.0"
+    version: "0.16.1"
   intl_translation:
     dependency: "direct main"
     description:

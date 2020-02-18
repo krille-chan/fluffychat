@@ -193,6 +193,10 @@ extension LocalizedBody on Event {
           case MessageTypes.Emote:
             localizedBody = "* $body";
             break;
+          case MessageTypes.BadEncrypted:
+            localizedBody =
+                I18n.of(context).couldNotDecryptMessage + ": " + body;
+            break;
           case MessageTypes.Text:
           case MessageTypes.Notice:
           case MessageTypes.None:
