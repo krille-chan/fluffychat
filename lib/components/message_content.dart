@@ -128,18 +128,6 @@ class MessageContent extends StatelessWidget {
               ),
             );
           case MessageTypes.BadEncrypted:
-            return Row(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Icon(Icons.lock),
-                Text(
-                  event.getLocalizedBody(context),
-                  style: TextStyle(
-                    color: textColor,
-                  ),
-                ),
-              ],
-            );
           case MessageTypes.Text:
           case MessageTypes.Reply:
           case MessageTypes.Location:
