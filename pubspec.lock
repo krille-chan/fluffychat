@@ -124,8 +124,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "083dd8eb295f0c6624e78d54f2ffeaa30de5de41"
-      resolved-ref: "083dd8eb295f0c6624e78d54f2ffeaa30de5de41"
+      ref: "6dd3b879b6cfcf1c7da9dedfa62626237afa6d9a"
+      resolved-ref: "6dd3b879b6cfcf1c7da9dedfa62626237afa6d9a"
       url: "https://gitlab.com/famedly/famedlysdk.git"
     source: git
     version: "0.0.1"
@@ -377,8 +377,8 @@ packages:
     dependency: transitive
     description:
       path: "."
-      ref: "09eb49dbdb1ad9ed71c6bf74562250ecd3d4198b"
-      resolved-ref: "09eb49dbdb1ad9ed71c6bf74562250ecd3d4198b"
+      ref: "307dc133867eb5bf80d4f5c7412e58621dfca3cf"
+      resolved-ref: "307dc133867eb5bf80d4f5c7412e58621dfca3cf"
       url: "https://gitlab.com/famedly/libraries/dart-olm.git"
     source: git
     version: "0.0.0"

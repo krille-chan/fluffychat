@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/views/settings_devices.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:toast/toast.dart';
@@ -156,7 +157,16 @@ class _SettingsState extends State<Settings> {
                 ),
               ),
             ),
-            Divider(thickness: 1),
+            ListTile(
+              trailing: Icon(Icons.devices_other),
+              title: Text(I18n.of(context).devices),
+              onTap: () async => await Navigator.of(context).push(
+                AppRoute.defaultRoute(
+                  context,
+                  DevicesSettingsView(),
+                ),
+              ),
+            ),
             ListTile(
               trailing: Icon(Icons.exit_to_app),
               title: Text(I18n.of(context).logout),

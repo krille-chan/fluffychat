@@ -14,6 +14,7 @@ class SimpleDialogs {
     String labelText,
     String prefixText,
     String suffixText,
+    bool password = false,
     bool multiLine = false,
   }) async {
     final TextEditingController controller = TextEditingController();
@@ -31,6 +32,7 @@ class SimpleDialogs {
           },
           minLines: multiLine ? 3 : 1,
           maxLines: multiLine ? 3 : 1,
+          obscureText: password,
           textInputAction: multiLine ? TextInputAction.newline : null,
           decoration: InputDecoration(
             hintText: hintText,

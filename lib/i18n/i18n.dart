@@ -256,6 +256,8 @@ class I18n {
 
   String get deleteMessage => Intl.message("Delete message");
 
+  String get devices => Intl.message("Devices");
+
   String get discardPicture => Intl.message("Discard picture");
 
   String get displaynameHasBeenChanged =>
@@ -324,6 +326,8 @@ class I18n {
   String get homeserverIsNotCompatible =>
       Intl.message("Homeserver is not compatible");
 
+  String get id => Intl.message("ID");
+
   String get inviteContact => Intl.message("Invite contact");
 
   String inviteContactToGroup(String groupName) => Intl.message(
@@ -381,6 +385,8 @@ class I18n {
         name: "userLeftTheChat",
         args: [username],
       );
+
+  String get lastSeenIp => Intl.message("Last seen IP");
 
   String get license => Intl.message("License");
 
@@ -473,11 +479,15 @@ class I18n {
         args: [username],
       );
 
+  String get removeAllOtherDevices => Intl.message("Remove all other devices");
+
   String removedBy(String username) => Intl.message(
         "Removed by $username",
         name: "removedBy",
         args: [username],
       );
+
+  String get removeDevice => Intl.message("Remove device");
 
   String get removeExile => Intl.message("Remove exile");
 
@@ -620,6 +630,8 @@ class I18n {
       );
 
   String get unmuteChat => Intl.message('Unmute chat');
+
+  String get unknownDevice => Intl.message("Unknown device");
 
   String unknownEvent(String type) => Intl.message(
         "Unknown event '$type'",

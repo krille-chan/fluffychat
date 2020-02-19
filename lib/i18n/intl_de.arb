@@ -340,6 +340,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "Devices": "Geräte",
+  "@Devices": {
+    "type": "text",
+    "placeholders": {}
+  },
   "Discard picture": "Bild verwerfen",
   "@Discard picture": {
     "type": "text",
@@ -472,6 +477,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "ID": "ID",
+  "@ID": {
+    "type": "text",
+    "placeholders": {}
+  },
   "Invite contact": "Kontakt einladen",
   "@Invite contact": {
     "type": "text",
@@ -564,6 +574,11 @@
     "placeholders": {
       "username": {}
     }
+  },
+  "Last seen IP": "Zuletzt bekannte IP",
+  "@Last seen IP": {
+    "type": "text",
+    "placeholders": {}
   },
   "License": "Lizenz",
   "@License": {
@@ -735,12 +750,22 @@
       "username": {}
     }
   },
+  "Remove all other devices": "Alle anderen Geräte entfernen",
+  "@Remove all other devices": {
+    "type": "text",
+    "placeholders": {}
+  },
   "removedBy": "Entfernt von {username}",
   "@removedBy": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
+  },
+  "Remove device": "Gerät entfernen",
+  "@Remove device": {
+    "type": "text",
+    "placeholders": {}
   },
   "Remove exile": "Verbannung aufheben",
   "@Remove exile": {
@@ -988,6 +1013,11 @@
   },
   "Unmute chat": "Stumm aus",
   "@Unmute chat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Unknown device": "Unbekanntes Gerät",
+  "@Unknown device": {
     "type": "text",
     "placeholders": {}
   },

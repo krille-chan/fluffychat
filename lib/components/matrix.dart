@@ -60,16 +60,30 @@ class MatrixState extends State<Matrix> {
 
   BuildContext _loadingDialogContext;
 
-  Future<dynamic> tryRequestWithLoadingDialog(Future<dynamic> request) async {
+  Future<dynamic> tryRequestWithLoadingDialog(Future<dynamic> request,
+      {Function(MatrixException) onAdditionalAuth}) async {
     showLoadingDialog(context);
-    final dynamic = await tryRequestWithErrorToast(request);
+    final dynamic = await tryRequestWithErrorToast(request,
+        onAdditionalAuth: onAdditionalAuth);
     hideLoadingDialog();
     return dynamic;
   }
 
-  Future<dynamic> tryRequestWithErrorToast(Future<dynamic> request) async {
+  Future<dynamic> tryRequestWithErrorToast(Future<dynamic> request,
+      {Function(MatrixException) onAdditionalAuth}) async {
     try {
       return await request;
+    } on MatrixException catch (exception) {
+      if (exception.requireAdditionalAuthentication &&
+          onAdditionalAuth != null) {
+        return await tryRequestWithErrorToast(onAdditionalAuth(exception));
+      } else {
+        Toast.show(
+          exception.errorMessage,
+          context,
+          duration: Toast.LENGTH_LONG,
+        );
+      }
     } catch (exception) {
       Toast.show(
         exception.toString(),
@@ -301,6 +315,17 @@ class MatrixState extends State<Matrix> {
       await setupFirebase();
     }
   }
+
+  Map<String, dynamic> getAuthByPassword(String password, String session) => {
+        "type": "m.login.password",
+        "identifier": {
+          "type": "m.id.user",
+          "user": client.userID,
+        },
+        "user": client.userID,
+        "password": password,
+        "session": session,
+      };
 
   @override
   void initState() {

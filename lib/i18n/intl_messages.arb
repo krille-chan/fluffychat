@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-02-16T12:36:34.703154",
+  "@@last_modified": "2020-02-19T16:20:13.752724",
   "About": "About",
   "@About": {
     "type": "text",
@@ -340,6 +340,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "Devices": "Devices",
+  "@Devices": {
+    "type": "text",
+    "placeholders": {}
+  },
   "Discard picture": "Discard picture",
   "@Discard picture": {
     "type": "text",
@@ -472,6 +477,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "ID": "ID",
+  "@ID": {
+    "type": "text",
+    "placeholders": {}
+  },
   "Invite contact": "Invite contact",
   "@Invite contact": {
     "type": "text",
@@ -564,6 +574,11 @@
     "placeholders": {
       "username": {}
     }
+  },
+  "Last seen IP": "Last seen IP",
+  "@Last seen IP": {
+    "type": "text",
+    "placeholders": {}
   },
   "License": "License",
   "@License": {
@@ -735,12 +750,22 @@
       "username": {}
     }
   },
+  "Remove all other devices": "Remove all other devices",
+  "@Remove all other devices": {
+    "type": "text",
+    "placeholders": {}
+  },
   "removedBy": "Removed by {username}",
   "@removedBy": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
+  },
+  "Remove device": "Remove device",
+  "@Remove device": {
+    "type": "text",
+    "placeholders": {}
   },
   "Remove exile": "Remove exile",
   "@Remove exile": {
@@ -988,6 +1013,11 @@
   },
   "Unmute chat": "Unmute chat",
   "@Unmute chat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Unknown device": "Unknown device",
+  "@Unknown device": {
     "type": "text",
     "placeholders": {}
   },
