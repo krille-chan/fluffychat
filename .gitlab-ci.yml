@@ -1,6 +1,9 @@
 image: 
   name: registry.gitlab.com/famedly/container/flutter-dockerimages:stable
 
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
 stages:
 - coverage
 - publish
