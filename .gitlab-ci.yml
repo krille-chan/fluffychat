@@ -1,5 +1,5 @@
 image: 
-  name: cirrusci/flutter
+  name: registry.gitlab.com/famedly/container/flutter-dockerimages:stable
 
 stages:
 - coverage
@@ -19,16 +19,14 @@ test:
 
 build_web:
   stage: coverage
-  image: cirrusci/flutter:beta-web
+  image: registry.gitlab.com/famedly/container/flutter-dockerimages:beta
   script:
+    - sudo apt update
+    - sudo apt install curl -y
     - rm -r assets/js/package
     - cd assets/js/ && curl -O 'https://janian.de/index.php/s/ZKpQi4xFkGWPMHQ/download' && cd ../../
     - cd assets/js/ && mv download olm.tar.gz && cd ../../
     - cd assets/js/ && tar xaf olm.tar.gz && cd ../../
-    - flutter channel beta
-    - flutter upgrade
-    - flutter doctor --verbose
-    - flutter config --enable-web
     - flutter pub get
     - flutter clean
     - flutter build web --release --verbose

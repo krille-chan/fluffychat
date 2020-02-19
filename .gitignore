@@ -44,3 +44,4 @@ lib/generated_plugin_registrant.dart
 
 /key.jks
 /android/key.properties
+**/android/app/.cxx
