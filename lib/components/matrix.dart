@@ -239,7 +239,7 @@ class MatrixState extends State<Matrix> {
 
           // Calculate the body
           final String body = event.getLocalizedBody(context,
-              withSenderNamePrefix: true, hideQuotes: true);
+              withSenderNamePrefix: true, hideReply: true);
 
           // The person object for the android message style notification
           final person = Person(

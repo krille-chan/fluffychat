@@ -36,7 +36,7 @@ class ReplyContent extends StatelessWidget {
               ),
               Text(
                 replyEvent?.getLocalizedBody(context,
-                        withSenderNamePrefix: false, hideQuotes: true) ??
+                        withSenderNamePrefix: false, hideReply: true) ??
                     "",
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
