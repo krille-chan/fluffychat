@@ -135,7 +135,7 @@ class MessageContent extends StatelessWidget {
           case MessageTypes.Notice:
           case MessageTypes.Emote:
             return LinkText(
-              text: event.getLocalizedBody(context, hideQuotes: true),
+              text: event.getLocalizedBody(context, hideReply: true),
               textStyle: TextStyle(
                 color: textColor,
                 decoration: event.redacted ? TextDecoration.lineThrough : null,

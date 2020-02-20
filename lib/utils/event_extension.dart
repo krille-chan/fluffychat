@@ -13,7 +13,7 @@ extension LocalizedBody on Event {
   };
 
   String getLocalizedBody(BuildContext context,
-      {bool withSenderNamePrefix = false, bool hideQuotes = false}) {
+      {bool withSenderNamePrefix = false, bool hideReply = false}) {
     if (this.redacted) {
       return I18n.of(context)
           .removedBy(redactedBecause.sender.calcDisplayname());
@@ -209,11 +209,9 @@ extension LocalizedBody on Event {
         localizedBody = I18n.of(context).unknownEvent(this.typeKey);
     }
 
-    // Hide quotes
-    if (hideQuotes) {
-      List<String> lines = localizedBody.split("\n");
-      lines.removeWhere((s) => s.startsWith("> ") || s.isEmpty);
-      localizedBody = lines.join("\n");
+    // Hide reply fallback
+    if (hideReply) {
+      localizedBody = localizedBody.replaceFirst(RegExp(r'^>( \*)? <@[a-zA-Z0-9-.=_\/]+:[^>]+>[^\n]+\r?\n(> [^\n]+\r?\n)*\r?\n'), "");
     }
 
     // Add the sender name prefix
