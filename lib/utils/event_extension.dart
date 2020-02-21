@@ -168,8 +168,6 @@ extension LocalizedBody on Event {
         }
         break;
       case EventTypes.Encrypted:
-        localizedBody = I18n.of(context).couldNotDecryptMessage;
-        break;
       case EventTypes.Message:
         switch (this.messageType) {
           case MessageTypes.Image:
@@ -211,7 +209,10 @@ extension LocalizedBody on Event {
 
     // Hide reply fallback
     if (hideReply) {
-      localizedBody = localizedBody.replaceFirst(RegExp(r'^>( \*)? <@[a-zA-Z0-9-.=_\/]+:[^>]+>[^\n]+\r?\n(> [^\n]+\r?\n)*\r?\n'), "");
+      localizedBody = localizedBody.replaceFirst(
+          RegExp(
+              r'^>( \*)? <@[a-zA-Z0-9-.=_\/]+:[^>]+>[^\n]+\r?\n(> [^\n]+\r?\n)*\r?\n'),
+          "");
     }
 
     // Add the sender name prefix

@@ -29,7 +29,8 @@ class Message extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (![EventTypes.Message, EventTypes.Sticker].contains(event.type)) {
+    if (![EventTypes.Message, EventTypes.Sticker, EventTypes.Encrypted]
+        .contains(event.type)) {
       return StateMessage(event);
     }
 

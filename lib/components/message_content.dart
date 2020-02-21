@@ -23,6 +23,7 @@ class MessageContent extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (event.type) {
       case EventTypes.Message:
+      case EventTypes.Encrypted:
       case EventTypes.Sticker:
         switch (event.messageType) {
           case MessageTypes.Image:
@@ -134,6 +135,7 @@ class MessageContent extends StatelessWidget {
           case MessageTypes.None:
           case MessageTypes.Notice:
           case MessageTypes.Emote:
+          default:
             return LinkText(
               text: event.getLocalizedBody(context, hideReply: true),
               textStyle: TextStyle(
@@ -142,12 +144,7 @@ class MessageContent extends StatelessWidget {
               ),
             );
         }
-        return Text(
-          event.getLocalizedBody(context),
-          style: TextStyle(
-            color: textColor,
-          ),
-        );
+        break;
       default:
         return Text(
           I18n.of(context).userSentUnknownEvent(
