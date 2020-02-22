@@ -188,6 +188,9 @@ class I18n {
   String get changeTheNameOfTheGroup =>
       Intl.message("Change the name of the group");
 
+  String get channelCorruptedDecryptError =>
+      Intl.message("The encryption has been corrupted");
+
   String get chatDetails => Intl.message('Chat details');
 
   String get chooseAUsername => Intl.message("Choose a username");
@@ -256,6 +259,10 @@ class I18n {
 
   String get deleteMessage => Intl.message("Delete message");
 
+  String get deny => Intl.message("Deny");
+
+  String get device => Intl.message("Device");
+
   String get devices => Intl.message("Devices");
 
   String get discardPicture => Intl.message("Discard picture");
@@ -277,6 +284,8 @@ class I18n {
       "You won't be able to disable the encryption anymore. Are you sure?");
 
   String get encryptionAlgorithm => Intl.message("Encryption algorithm");
+
+  String get encryptionNotEnabled => Intl.message("Encryption is not enabled");
 
   String get end2endEncryptionSettings =>
       Intl.message("End-to-end encryption settings");
@@ -327,6 +336,8 @@ class I18n {
       Intl.message("Homeserver is not compatible");
 
   String get id => Intl.message("ID");
+
+  String get identity => Intl.message("Identity");
 
   String get inviteContact => Intl.message("Invite contact");
 
@@ -429,6 +440,8 @@ class I18n {
 
   String get none => Intl.message("None");
 
+  String get noPermission => Intl.message("No permission");
+
   String get noRoomsFound => Intl.message("No rooms found...");
 
   String get notSupportedInWeb => Intl.message("Not supported in web");
@@ -498,6 +511,11 @@ class I18n {
   String get removeMessage => Intl.message('Remove message');
 
   String get reply => Intl.message('Reply');
+
+  String get requestPermission => Intl.message('Request permission');
+
+  String get requestToReadOlderMessages =>
+      Intl.message("Request to read older messages");
 
   String get saturday => Intl.message("Saturday");
 
@@ -633,6 +651,9 @@ class I18n {
 
   String get unknownDevice => Intl.message("Unknown device");
 
+  String get unknownEncryptionAlgorithm =>
+      Intl.message("Unknown encryption algorithm");
+
   String unknownEvent(String type) => Intl.message(
         "Unknown event '$type'",
         name: "unknownEvent",
@@ -678,6 +699,8 @@ class I18n {
         name: "userSentUnknownEvent",
         args: [username, type],
       );
+
+  String get verify => Intl.message("Verify");
 
   String get visibleForAllParticipants =>
       Intl.message("Visible for all participants");

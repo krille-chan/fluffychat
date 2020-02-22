@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-02-19T16:20:13.752724",
+  "@@last_modified": "2020-02-22T08:18:47.225173",
   "About": "About",
   "@About": {
     "type": "text",
@@ -216,6 +216,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "The encryption has been corrupted": "The encryption has been corrupted",
+  "@The encryption has been corrupted": {
+    "type": "text",
+    "placeholders": {}
+  },
   "Chat details": "Chat details",
   "@Chat details": {
     "type": "text",
@@ -340,6 +345,16 @@
     "type": "text",
     "placeholders": {}
   },
+  "Deny": "Deny",
+  "@Deny": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Device": "Device",
+  "@Device": {
+    "type": "text",
+    "placeholders": {}
+  },
   "Devices": "Devices",
   "@Devices": {
     "type": "text",
@@ -379,6 +394,11 @@
   },
   "Encryption algorithm": "Encryption algorithm",
   "@Encryption algorithm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Encryption is not enabled": "Encryption is not enabled",
+  "@Encryption is not enabled": {
     "type": "text",
     "placeholders": {}
   },
@@ -479,6 +499,11 @@
   },
   "ID": "ID",
   "@ID": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Identity": "Identity",
+  "@Identity": {
     "type": "text",
     "placeholders": {}
   },
@@ -662,6 +687,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "No permission": "No permission",
+  "@No permission": {
+    "type": "text",
+    "placeholders": {}
+  },
   "No rooms found...": "No rooms found...",
   "@No rooms found...": {
     "type": "text",
@@ -789,6 +819,16 @@
   },
   "Reply": "Reply",
   "@Reply": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Request permission": "Request permission",
+  "@Request permission": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Request to read older messages": "Request to read older messages",
+  "@Request to read older messages": {
     "type": "text",
     "placeholders": {}
   },
@@ -1021,6 +1061,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "Unknown encryption algorithm": "Unknown encryption algorithm",
+  "@Unknown encryption algorithm": {
+    "type": "text",
+    "placeholders": {}
+  },
   "unknownEvent": "Unknown event '{type}'",
   "@unknownEvent": {
     "type": "text",
@@ -1078,6 +1123,11 @@
       "username": {},
       "type": {}
     }
+  },
+  "Verify": "Verify",
+  "@Verify": {
+    "type": "text",
+    "placeholders": {}
   },
   "Visible for all participants": "Visible for all participants",
   "@Visible for all participants": {

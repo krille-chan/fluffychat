@@ -192,8 +192,28 @@ extension LocalizedBody on Event {
             localizedBody = "* $body";
             break;
           case MessageTypes.BadEncrypted:
-            localizedBody =
-                "🔒 " + I18n.of(context).couldNotDecryptMessage + ": " + body;
+            String errorText;
+            switch (body) {
+              case DecryptError.CHANNEL_CORRUPTED:
+                errorText = I18n.of(context).channelCorruptedDecryptError + ".";
+                break;
+              case DecryptError.NOT_ENABLED:
+                errorText = I18n.of(context).encryptionNotEnabled + ".";
+                break;
+              case DecryptError.UNKNOWN_ALGORITHM:
+                errorText = I18n.of(context).unknownEncryptionAlgorithm + ".";
+                break;
+              case DecryptError.UNKNOWN_SESSION:
+                errorText = I18n.of(context).noPermission + ".";
+                break;
+              default:
+                errorText = body;
+                break;
+            }
+            localizedBody = "🔒 " +
+                I18n.of(context).couldNotDecryptMessage +
+                ": " +
+                errorText;
             break;
           case MessageTypes.Text:
           case MessageTypes.Notice:

@@ -155,7 +155,7 @@ class _ChatState extends State<_Chat> {
 
   @override
   void dispose() {
-    timeline?.sub?.cancel();
+    timeline?.cancelSubscriptions();
     timeline = null;
     matrix.activeRoomId = "";
     super.dispose();

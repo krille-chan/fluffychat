@@ -216,6 +216,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "The encryption has been corrupted": "Die Verschlüsselung wurde korrumpiert",
+  "@The encryption has been corrupted": {
+    "type": "text",
+    "placeholders": {}
+  },
   "Chat details": "Gruppeninfo",
   "@Chat details": {
     "type": "text",
@@ -340,6 +345,16 @@
     "type": "text",
     "placeholders": {}
   },
+  "Deny": "Ablehnen",
+  "@Deny": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Device": "Gerät",
+  "@Device": {
+    "type": "text",
+    "placeholders": {}
+  },
   "Devices": "Geräte",
   "@Devices": {
     "type": "text",
@@ -379,6 +394,11 @@
   },
   "Encryption algorithm": "Verschlüsselungsalgorithmus",
   "@Encryption algorithm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Encryption is not enabled": "Verschlüsselung ist nicht aktiviert",
+  "@Encryption is not enabled": {
     "type": "text",
     "placeholders": {}
   },
@@ -479,6 +499,11 @@
   },
   "ID": "ID",
   "@ID": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Identity": "Identität",
+  "@Identity": {
     "type": "text",
     "placeholders": {}
   },
@@ -662,6 +687,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "No permission": "Keine Berechtigung",
+  "@No permission": {
+    "type": "text",
+    "placeholders": {}
+  },
   "No rooms found...": "Keine Räume gefunden ...",
   "@No rooms found...": {
     "type": "text",
@@ -789,6 +819,16 @@
   },
   "Reply": "Antworten",
   "@Reply": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Request permission": "Berechtigung anfragen",
+  "@Request permission": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Request to read older messages": "Anfrage um ältere Nachrichten zu lesen",
+  "@Request to read older messages": {
     "type": "text",
     "placeholders": {}
   },
@@ -1021,6 +1061,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "Unknown encryption algorithm": "Unbekannter Verschlüsselungsalgorithmus",
+  "@Unknown encryption algorithm": {
+    "type": "text",
+    "placeholders": {}
+  },
   "unknownEvent": "Unbekanntes Event '{type}'",
   "@unknownEvent": {
     "type": "text",
@@ -1078,6 +1123,11 @@
       "username": {},
       "type": {}
     }
+  },
+  "Verify": "Bestätigen",
+  "@Verify": {
+    "type": "text",
+    "placeholders": {}
   },
   "Visible for all participants": "Sichtbar für alle Teilnehmer",
   "@Visible for all participants": {

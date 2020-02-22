@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -13,6 +14,7 @@ import 'package:toast/toast.dart';
 
 import '../i18n/i18n.dart';
 import '../utils/app_route.dart';
+import '../utils/beautify_string_extension.dart';
 import '../utils/event_extension.dart';
 import '../utils/famedlysdk_store.dart';
 import '../utils/room_extension.dart';
@@ -327,11 +329,27 @@ class MatrixState extends State<Matrix> {
         "session": session,
       };
 
+  StreamSubscription onRoomKeyRequestSub;
+
   @override
   void initState() {
     if (widget.client == null) {
       debugPrint("[Matrix] Init matrix client");
       client = Client(widget.clientName, debug: false);
+      onRoomKeyRequestSub ??=
+          client.onRoomKeyRequest.stream.listen((RoomKeyRequest request) async {
+        final Room room = request.room;
+        final User sender = room.getUserByMXIDSync(request.sender);
+        if (await SimpleDialogs(context).askConfirmation(
+          titleText: I18n.of(context).requestToReadOlderMessages,
+          contentText:
+              "${sender.id}\n\n${I18n.of(context).device}:\n${request.requestingDevice.deviceId}\n\n${I18n.of(context).identity}:\n${request.requestingDevice.curve25519Key.beautified}",
+          confirmText: I18n.of(context).verify,
+          cancelText: I18n.of(context).deny,
+        )) {
+          await request.forwardKey();
+        }
+      });
       _initWithStore();
     } else {
       client = widget.client;
@@ -341,6 +359,7 @@ class MatrixState extends State<Matrix> {
 
   @override
   void dispose() {
+    onRoomKeyRequestSub?.cancel();
     super.dispose();
   }
 

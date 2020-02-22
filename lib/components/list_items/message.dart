@@ -125,6 +125,14 @@ class Message extends StatelessWidget {
                   event,
                   textColor: textColor,
                 ),
+                if (event.type == EventTypes.Encrypted &&
+                    event.messageType == MessageTypes.BadEncrypted &&
+                    event.content["body"] == DecryptError.UNKNOWN_SESSION)
+                  RaisedButton(
+                    child: Text(I18n.of(context).requestPermission),
+                    onPressed: () => Matrix.of(context)
+                        .tryRequestWithLoadingDialog(event.requestKey()),
+                  ),
               ],
             ),
           ),

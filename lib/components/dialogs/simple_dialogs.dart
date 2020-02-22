@@ -70,6 +70,7 @@ class SimpleDialogs {
 
   Future<bool> askConfirmation({
     String titleText,
+    String contentText,
     String confirmText,
     String cancelText,
   }) async {
@@ -78,6 +79,7 @@ class SimpleDialogs {
       context: context,
       builder: (c) => AlertDialog(
         title: Text(titleText ?? I18n.of(context).areYouSure),
+        content: contentText != null ? Text(contentText) : null,
         actions: <Widget>[
           FlatButton(
             child: Text(
