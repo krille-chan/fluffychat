@@ -6,6 +6,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/chat_settings_popup_menu.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
+import 'package:fluffychat/components/encryption_button.dart';
 import 'package:fluffychat/components/list_items/message.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/components/reply_content.dart';
@@ -79,6 +80,8 @@ class _ChatState extends State<_Chat> {
   bool _loadingHistory = false;
 
   final int _loadHistoryCount = 100;
+
+  String inputText = "";
 
   void requestHistory() async {
     if (timeline.events.last.type != EventTypes.RoomCreate) {
@@ -550,108 +553,63 @@ class _ChatState extends State<_Chat> {
                                       : Container(),
                                 ]
                               : <Widget>[
-                                  kIsWeb
-                                      ? Container()
-                                      : PopupMenuButton<String>(
-                                          icon: Icon(Icons.add),
-                                          onSelected: (String choice) async {
-                                            if (choice == "file") {
-                                              sendFileAction(context);
-                                            } else if (choice == "image") {
-                                              sendImageAction(context);
-                                            }
-                                            if (choice == "camera") {
-                                              openCameraAction(context);
-                                            }
-                                          },
-                                          itemBuilder: (BuildContext context) =>
-                                              <PopupMenuEntry<String>>[
-                                            PopupMenuItem<String>(
-                                              value: "file",
-                                              child: ListTile(
-                                                leading: CircleAvatar(
-                                                  backgroundColor: Colors.green,
-                                                  foregroundColor: Colors.white,
-                                                  child: Icon(Icons.attachment),
-                                                ),
-                                                title: Text(
-                                                    I18n.of(context).sendFile),
-                                                contentPadding:
-                                                    EdgeInsets.all(0),
-                                              ),
-                                            ),
-                                            PopupMenuItem<String>(
-                                              value: "image",
-                                              child: ListTile(
-                                                leading: CircleAvatar(
-                                                  backgroundColor: Colors.blue,
-                                                  foregroundColor: Colors.white,
-                                                  child: Icon(Icons.image),
-                                                ),
-                                                title: Text(
-                                                    I18n.of(context).sendImage),
-                                                contentPadding:
-                                                    EdgeInsets.all(0),
-                                              ),
-                                            ),
-                                            PopupMenuItem<String>(
-                                              value: "camera",
-                                              child: ListTile(
-                                                leading: CircleAvatar(
-                                                  backgroundColor:
-                                                      Colors.purple,
-                                                  foregroundColor: Colors.white,
-                                                  child: Icon(Icons.camera_alt),
-                                                ),
-                                                title: Text(I18n.of(context)
-                                                    .openCamera),
-                                                contentPadding:
-                                                    EdgeInsets.all(0),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                  FutureBuilder<List<DeviceKeys>>(
-                                      future: room.getUserDeviceKeys(),
-                                      builder:
-                                          (BuildContext context, snapshot) {
-                                        Color color;
-                                        if (room.encrypted &&
-                                            snapshot.hasData) {
-                                          final List<DeviceKeys>
-                                              deviceKeysList = snapshot.data;
-                                          color = Colors.orange;
-                                          if (deviceKeysList.indexWhere(
-                                                  (DeviceKeys deviceKeys) =>
-                                                      deviceKeys.verified ==
-                                                          false &&
-                                                      deviceKeys.blocked ==
-                                                          false) ==
-                                              -1) {
-                                            color = Colors.green[700];
-                                          }
-                                        } else if (!room.encrypted &&
-                                            room.joinRules !=
-                                                JoinRules.public) {
-                                          color = Colors.red;
+                                  if (!kIsWeb && inputText.isEmpty)
+                                    PopupMenuButton<String>(
+                                      icon: Icon(Icons.add),
+                                      onSelected: (String choice) async {
+                                        if (choice == "file") {
+                                          sendFileAction(context);
+                                        } else if (choice == "image") {
+                                          sendImageAction(context);
                                         }
-                                        return IconButton(
-                                          icon: Icon(
-                                              room.encrypted
-                                                  ? Icons.lock
-                                                  : Icons.lock_open,
-                                              size: 20,
-                                              color: color),
-                                          onPressed: () =>
-                                              Navigator.of(context).push(
-                                            AppRoute.defaultRoute(
-                                              context,
-                                              ChatEncryptionSettingsView(
-                                                  widget.id),
+                                        if (choice == "camera") {
+                                          openCameraAction(context);
+                                        }
+                                      },
+                                      itemBuilder: (BuildContext context) =>
+                                          <PopupMenuEntry<String>>[
+                                        PopupMenuItem<String>(
+                                          value: "file",
+                                          child: ListTile(
+                                            leading: CircleAvatar(
+                                              backgroundColor: Colors.green,
+                                              foregroundColor: Colors.white,
+                                              child: Icon(Icons.attachment),
                                             ),
+                                            title:
+                                                Text(I18n.of(context).sendFile),
+                                            contentPadding: EdgeInsets.all(0),
                                           ),
-                                        );
-                                      }),
+                                        ),
+                                        PopupMenuItem<String>(
+                                          value: "image",
+                                          child: ListTile(
+                                            leading: CircleAvatar(
+                                              backgroundColor: Colors.blue,
+                                              foregroundColor: Colors.white,
+                                              child: Icon(Icons.image),
+                                            ),
+                                            title: Text(
+                                                I18n.of(context).sendImage),
+                                            contentPadding: EdgeInsets.all(0),
+                                          ),
+                                        ),
+                                        PopupMenuItem<String>(
+                                          value: "camera",
+                                          child: ListTile(
+                                            leading: CircleAvatar(
+                                              backgroundColor: Colors.purple,
+                                              foregroundColor: Colors.white,
+                                              child: Icon(Icons.camera_alt),
+                                            ),
+                                            title: Text(
+                                                I18n.of(context).openCamera),
+                                            contentPadding: EdgeInsets.all(0),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  EncryptionButton(room),
                                   Expanded(
                                     child: Padding(
                                       padding: const EdgeInsets.symmetric(
@@ -693,6 +651,7 @@ class _ChatState extends State<_Chat> {
                                                 timeout: Duration(seconds: 30)
                                                     .inMilliseconds);
                                           }
+                                          setState(() => inputText = text);
                                         },
                                       ),
                                     ),
