@@ -611,6 +611,47 @@ class _ChatState extends State<_Chat> {
                                             ),
                                           ],
                                         ),
+                                  FutureBuilder<List<DeviceKeys>>(
+                                      future: room.getUserDeviceKeys(),
+                                      builder:
+                                          (BuildContext context, snapshot) {
+                                        Color color;
+                                        if (room.encrypted &&
+                                            snapshot.hasData) {
+                                          final List<DeviceKeys>
+                                              deviceKeysList = snapshot.data;
+                                          color = Colors.orange;
+                                          if (deviceKeysList.indexWhere(
+                                                  (DeviceKeys deviceKeys) =>
+                                                      deviceKeys.verified ==
+                                                          false &&
+                                                      deviceKeys.blocked ==
+                                                          false) ==
+                                              -1) {
+                                            color = Colors.green[700];
+                                          }
+                                        } else if (!room.encrypted &&
+                                            room.joinRules !=
+                                                JoinRules.public) {
+                                          color = Colors.red;
+                                        }
+                                        return IconButton(
+                                          icon: Icon(
+                                              room.encrypted
+                                                  ? Icons.lock
+                                                  : Icons.lock_open,
+                                              size: 20,
+                                              color: color),
+                                          onPressed: () =>
+                                              Navigator.of(context).push(
+                                            AppRoute.defaultRoute(
+                                              context,
+                                              ChatEncryptionSettingsView(
+                                                  widget.id),
+                                            ),
+                                          ),
+                                        );
+                                      }),
                                   Expanded(
                                     child: Padding(
                                       padding: const EdgeInsets.symmetric(
@@ -632,23 +673,6 @@ class _ChatState extends State<_Chat> {
                                           hintText:
                                               I18n.of(context).writeAMessage,
                                           border: InputBorder.none,
-                                          prefixIcon:
-                                              sendController.text.isEmpty
-                                                  ? InkWell(
-                                                      child: Icon(room.encrypted
-                                                          ? Icons.lock
-                                                          : Icons.lock_open),
-                                                      onTap: () =>
-                                                          Navigator.of(context)
-                                                              .push(
-                                                        AppRoute.defaultRoute(
-                                                          context,
-                                                          ChatEncryptionSettingsView(
-                                                              widget.id),
-                                                        ),
-                                                      ),
-                                                    )
-                                                  : null,
                                         ),
                                         onChanged: (String text) {
                                           this.typingCoolDown?.cancel();
