@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-02-22T08:18:47.225173",
+  "@@last_modified": "2020-02-22T20:02:42.757437",
   "About": "About",
   "@About": {
     "type": "text",
@@ -213,6 +213,11 @@
   },
   "Change the name of the group": "Change the name of the group",
   "@Change the name of the group": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Change the server": "Change the server",
+  "@Change the server": {
     "type": "text",
     "placeholders": {}
   },
@@ -758,6 +763,11 @@
   },
   "Please enter your username": "Please enter your username",
   "@Please enter your username": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Public Rooms": "Public Rooms",
+  "@Public Rooms": {
     "type": "text",
     "placeholders": {}
   },

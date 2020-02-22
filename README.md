@@ -48,7 +48,7 @@ flutter pub run intl_translation:extract_to_arb --output-dir=lib/i18n lib/i18n/i
 
 4. Update the translations with this command:
 ```
-flutter pub pub run intl_translation:generate_from_arb --output-dir=lib/i18n --no-use-deferred-loading lib/i18n/I18n.dart lib/i18n/intl_*.arb
+flutter pub pub run intl_translation:generate_from_arb --output-dir=lib/i18n --no-use-deferred-loading lib/i18n/i18n.dart lib/i18n/intl_*.arb
 ```
 
 5. Make sure your language is in `supportedLocales` in `/lib/main.dart`.

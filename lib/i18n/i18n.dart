@@ -188,6 +188,8 @@ class I18n {
   String get changeTheNameOfTheGroup =>
       Intl.message("Change the name of the group");
 
+  String get changeTheServer => Intl.message("Change the server");
+
   String get channelCorruptedDecryptError =>
       Intl.message("The encryption has been corrupted");
 
@@ -477,6 +479,8 @@ class I18n {
 
   String get pleaseEnterYourUsername =>
       Intl.message("Please enter your username");
+
+  String get publicRooms => Intl.message("Public Rooms");
 
   String get rejoin => Intl.message("Rejoin");
 

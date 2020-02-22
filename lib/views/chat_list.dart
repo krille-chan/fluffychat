@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/components/list_items/public_room_list_item.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,6 +9,7 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:toast/toast.dart';
 import 'package:uni_links/uni_links.dart';
 
+import '../components/dialogs/simple_dialogs.dart';
 import '../components/theme_switcher.dart';
 import '../components/adaptive_page_layout.dart';
 import '../components/list_items/chat_list_item.dart';
@@ -51,6 +53,10 @@ class _ChatListState extends State<ChatList> {
   StreamSubscription sub;
   final TextEditingController searchController = TextEditingController();
   SelectMode selectMode = SelectMode.normal;
+  Timer coolDown;
+  PublicRoomsResponse publicRoomsResponse;
+  bool loadingPublicRooms = false;
+  String searchServer;
 
   Future<bool> waitForFirstSync(BuildContext context) async {
     Client client = Matrix.of(context).client;
@@ -64,9 +70,38 @@ class _ChatListState extends State<ChatList> {
 
   @override
   void initState() {
-    searchController.addListener(
-      () => setState(() => null),
-    );
+    searchController.addListener(() {
+      coolDown?.cancel();
+      coolDown = Timer(Duration(seconds: 1), () async {
+        setState(() => loadingPublicRooms = true);
+        final newPublicRoomsResponse =
+            await Matrix.of(context).tryRequestWithErrorToast(
+          Matrix.of(context).client.requestPublicRooms(
+                limit: 30,
+                includeAllNetworks: true,
+                genericSearchTerm: searchController.text,
+                server: searchServer,
+              ),
+        );
+        setState(() {
+          loadingPublicRooms = false;
+          if (newPublicRoomsResponse != false) {
+            publicRoomsResponse = newPublicRoomsResponse;
+            if (searchController.text.isNotEmpty &&
+                searchController.text.isValidMatrixId &&
+                searchController.text.sigil == "#") {
+              publicRoomsResponse.publicRooms.add(
+                PublicRoomEntry(
+                    aliases: [searchController.text],
+                    name: searchController.text,
+                    roomId: searchController.text),
+              );
+            }
+          }
+        });
+      });
+      setState(() => null);
+    });
     initUniLinks();
     super.initState();
   }
@@ -133,12 +168,38 @@ class _ChatListState extends State<ChatList> {
         leading: searchMode
             ? IconButton(
                 icon: Icon(Icons.arrow_back),
-                onPressed: () => setState(() => searchMode = false),
+                onPressed: () => setState(() {
+                  publicRoomsResponse = null;
+                  loadingPublicRooms = false;
+                  searchMode = false;
+                }),
               )
             : null,
         automaticallyImplyLeading: false,
         actions: searchMode
-            ? null
+            ? <Widget>[
+                if (loadingPublicRooms)
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: Center(
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    ),
+                  ),
+                IconButton(
+                  icon: Icon(Icons.domain),
+                  onPressed: () async {
+                    final String newSearchServer = await SimpleDialogs(context)
+                        .enterText(
+                            titleText: I18n.of(context).changeTheServer,
+                            labelText: I18n.of(context).changeTheServer,
+                            hintText: Matrix.of(context).client.userID.domain,
+                            prefixText: "https://");
+                    if (newSearchServer?.isNotEmpty ?? false) {
+                      searchServer = newSearchServer;
+                    }
+                  },
+                )
+              ]
             : <Widget>[
                 IconButton(
                   icon: Icon(Icons.search),
@@ -201,8 +262,7 @@ class _ChatListState extends State<ChatList> {
             foregroundColor: Colors.white,
             backgroundColor: Colors.blue,
             label: I18n.of(context).createNewGroup,
-            labelStyle:
-                TextStyle(fontSize: 18.0, color: Colors.black),
+            labelStyle: TextStyle(fontSize: 18.0, color: Colors.black),
             onTap: () => Navigator.of(context).pushAndRemoveUntil(
                 AppRoute.defaultRoute(context, NewGroupView()),
                 (r) => r.isFirst),
@@ -212,9 +272,7 @@ class _ChatListState extends State<ChatList> {
             foregroundColor: Colors.white,
             backgroundColor: Colors.green,
             label: I18n.of(context).newPrivateChat,
-            labelStyle: TextStyle(
-                fontSize: 18.0,
-                color: Colors.black),
+            labelStyle: TextStyle(fontSize: 18.0, color: Colors.black),
             onTap: () => Navigator.of(context).pushAndRemoveUntil(
                 AppRoute.defaultRoute(context, NewPrivateChatView()),
                 (r) => r.isFirst),
@@ -231,7 +289,7 @@ class _ChatListState extends State<ChatList> {
                 !room.displayname
                     .toLowerCase()
                     .contains(searchController.text.toLowerCase() ?? ""));
-            if (rooms.isEmpty) {
+            if (rooms.isEmpty && (!searchMode || publicRoomsResponse == null)) {
               return Center(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -248,14 +306,27 @@ class _ChatListState extends State<ChatList> {
                 ),
               );
             }
+            final int publicRoomsCount =
+                (publicRoomsResponse?.publicRooms?.length ?? 0);
+            final int totalCount = rooms.length + publicRoomsCount;
             return ListView.separated(
               separatorBuilder: (BuildContext context, int i) =>
-                  Divider(indent: 70, height: 1),
-              itemCount: rooms.length,
-              itemBuilder: (BuildContext context, int i) => ChatListItem(
-                rooms[i],
-                activeChat: widget.activeChat == rooms[i].id,
-              ),
+                  i == totalCount - publicRoomsCount - 1
+                      ? Material(
+                          elevation: 2,
+                          child: ListTile(
+                            title: Text("Public Rooms:"),
+                          ),
+                        )
+                      : Divider(indent: 70, height: 1),
+              itemCount: totalCount,
+              itemBuilder: (BuildContext context, int i) => i < rooms.length
+                  ? ChatListItem(
+                      rooms[i],
+                      activeChat: widget.activeChat == rooms[i].id,
+                    )
+                  : PublicRoomListItem(
+                      publicRoomsResponse.publicRooms[i - rooms.length]),
             );
           } else {
             return Center(

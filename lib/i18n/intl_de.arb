@@ -216,6 +216,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "Change the server": "Ändere den Server",
+  "@Change the server": {
+    "type": "text",
+    "placeholders": {}
+  },
   "The encryption has been corrupted": "Die Verschlüsselung wurde korrumpiert",
   "@The encryption has been corrupted": {
     "type": "text",
@@ -758,6 +763,11 @@
   },
   "Please enter your username": "Bitte deinen Benutzernamen eingeben",
   "@Please enter your username": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Public Rooms": "Öffentliche Räume",
+  "@Public Rooms": {
     "type": "text",
     "placeholders": {}
   },
