@@ -171,6 +171,8 @@ class _ChatState extends State<_Chat> {
     if (replyEvent != null) {
       setState(() => replyEvent = null);
     }
+
+    setState(() => inputText = "");
   }
 
   void sendFileAction(BuildContext context) async {
@@ -622,8 +624,6 @@ class _ChatState extends State<_Chat> {
                                           send();
                                           FocusScope.of(context)
                                               .requestFocus(inputFocus);
-                                          setState(() =>
-                                              inputText = sendController.text);
                                         },
                                         focusNode: inputFocus,
                                         controller: sendController,
