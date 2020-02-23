@@ -92,9 +92,11 @@ class _ChatListState extends State<ChatList> {
                 searchController.text.sigil == "#") {
               publicRoomsResponse.publicRooms.add(
                 PublicRoomEntry(
-                    aliases: [searchController.text],
-                    name: searchController.text,
-                    roomId: searchController.text),
+                  aliases: [searchController.text],
+                  name: searchController.text,
+                  roomId: searchController.text,
+                  client: Matrix.of(context).client,
+                ),
               );
             }
           }
