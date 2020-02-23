@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/utils/app_route.dart';
