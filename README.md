@@ -2,13 +2,15 @@
 
 <p align="center">
 <a target="new" href="https://play.google.com/store/apps/details?id=chat.fluffy.fluffychat">
-  <img width="200px" src="https://christianpauly.gitlab.io/fluffychat-website/assets/images/google-play-badge.png" />
+  <img height="66px" src="https://christianpauly.gitlab.io/fluffychat-website/assets/images/google-play-badge.png" />
   </a>
   <a target="new" href="https://mtrnord.gitlab.io/fluffychat-flutter-fdroid/fdroid/repo/">
-  <img width="200px" src="https://christianpauly.gitlab.io/fluffychat-website/assets/images/fdroid_button.png " />
+  <img height="66px" src="https://christianpauly.gitlab.io/fluffychat-website/assets/images/fdroid_button.png " />
   </a>
   <br>
-  <a href="https://christianpauly.gitlab.io/fluffychat-flutter" target="new">Open FluffyChat in the browser</a> - <a href="https://matrix.to/#/#fluffychat:matrix.org" target="new">Join the community</a> - <a href="https://metalhead.club/@krille" target="new">Follow me on Mastodon</a> - <a href="https://hosted.weblate.org/projects/fluffychat/" target="new">Translate FluffyChat</a> - <a href="https://gitlab.com/ChristianPauly/fluffychat-website" target="new">Translate the website</a> - <a href="https://christianpauly.gitlab.io/fluffychat-website/faq.html" target="new">FAQ</a> - <a href="https://christianpauly.gitlab.io/fluffychat-website/" target="new">Website</a>
+  <a href="https://christianpauly.gitlab.io/fluffychat-flutter" target="new">Open FluffyChat in the browser</a>
+  <br>
+  <a href="https://matrix.to/#/#fluffychat:matrix.org" target="new">Join the community</a> - <a href="https://metalhead.club/@krille" target="new">Follow me on Mastodon</a> - <a href="https://gitlab.com/ChristianPauly/fluffychat-website" target="new">Translate the website</a> - <a href="https://christianpauly.gitlab.io/fluffychat-website/faq.html" target="new">FAQ</a> - <a href="https://christianpauly.gitlab.io/fluffychat-website/" target="new">Website</a>
  </p>
 <br>
 <br>
@@ -16,7 +18,6 @@
 # Features
  * Single and group chats
  * Send images and files
- * ContentHub integration
  * Offline chat history
  * Push Notifications
  * Account settings
@@ -26,13 +27,10 @@
  * Edit chat settings and permissions
  * Kick, ban and unban users
  * Display and edit chat topics
- * Change chat&user avatars
+ * Change chat & user avatars
  * Archived chats
- * Display communities
- * User status (presences)
- * Display contacts and find contacts with their phone number or email address
  * Discover public chats on the user's homeserver
- * Registration (currently only working with ubports.chat and NOT with matrix.org due captchas)
+ * Registration
 
 ## How to build
 
