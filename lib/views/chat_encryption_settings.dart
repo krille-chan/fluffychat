@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
-import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
+import 'package:fluffychat/components/avatar.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/utils/beautify_string_extension.dart';
 import 'package:fluffychat/i18n/i18n.dart';
@@ -53,120 +53,100 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(I18n.of(context).end2endEncryptionSettings),
+        title: Text(I18n.of(context).participatingUserDevices),
       ),
       body: Column(
         children: <Widget>[
-          ListTile(
-            title: Text(I18n.of(context).encryptionAlgorithm),
-            subtitle: Text(room.encryptionAlgorithm ?? I18n.of(context).none),
-            trailing: Icon(room.encrypted ? Icons.lock : Icons.lock_open,
-                color: room.encrypted ? Colors.green : Colors.red),
-            onTap: () async {
-              if (room.encrypted) return;
-              if (!room.client.encryptionEnabled) {
-                Toast.show(I18n.of(context).needPantalaimonWarning, context,
-                    duration: 8);
-                return;
-              }
-              if (await SimpleDialogs(context).askConfirmation(
-                      titleText: I18n.of(context).enableEncryptionWarning,
-                      confirmText: I18n.of(context).yes) ==
-                  true) {
-                await Matrix.of(context).tryRequestWithLoadingDialog(
-                  room.enableEncryption(),
+          FutureBuilder<List<DeviceKeys>>(
+            future: room.getUserDeviceKeys(),
+            builder: (BuildContext context, snapshot) {
+              if (snapshot.hasError) {
+                return Center(
+                  child: Text(I18n.of(context).oopsSomethingWentWrong +
+                      ": " +
+                      snapshot.error.toString()),
                 );
               }
+              if (!snapshot.hasData) {
+                return Center(child: CircularProgressIndicator());
+              }
+              final List<DeviceKeys> deviceKeys = snapshot.data;
+              return Expanded(
+                child: ListView.separated(
+                  separatorBuilder: (BuildContext context, int i) =>
+                      Divider(height: 1),
+                  itemCount: deviceKeys.length,
+                  itemBuilder: (BuildContext context, int i) => Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      if (i == 0 ||
+                          deviceKeys[i].userId != deviceKeys[i - 1].userId)
+                        Material(
+                          child: ListTile(
+                            leading: Avatar(
+                              room
+                                  .getUserByMXIDSync(deviceKeys[i].userId)
+                                  .avatarUrl,
+                              room
+                                  .getUserByMXIDSync(deviceKeys[i].userId)
+                                  .calcDisplayname(),
+                            ),
+                            title: Text(room
+                                .getUserByMXIDSync(deviceKeys[i].userId)
+                                .calcDisplayname()),
+                            subtitle: Text(deviceKeys[i].userId),
+                          ),
+                          elevation: 2,
+                        ),
+                      CheckboxListTile(
+                        title: Text(
+                          "${deviceKeys[i].unsigned["device_display_name"] ?? I18n.of(context).unknownDevice} - ${deviceKeys[i].deviceId}",
+                          style: TextStyle(
+                              color: deviceKeys[i].blocked
+                                  ? Colors.red
+                                  : deviceKeys[i].verified
+                                      ? Colors.green
+                                      : Colors.orange),
+                        ),
+                        subtitle: Text(
+                          deviceKeys[i]
+                              .keys["ed25519:${deviceKeys[i].deviceId}"]
+                              .beautified,
+                          style: TextStyle(
+                              color: Theme.of(context).textTheme.body1.color),
+                        ),
+                        value: deviceKeys[i].verified,
+                        onChanged: (bool newVal) {
+                          if (newVal == true) {
+                            if (deviceKeys[i].blocked) {
+                              deviceKeys[i]
+                                  .setBlocked(false, Matrix.of(context).client);
+                            }
+                            deviceKeys[i]
+                                .setVerified(true, Matrix.of(context).client);
+                          } else {
+                            if (deviceKeys[i].verified) {
+                              deviceKeys[i].setVerified(
+                                  false, Matrix.of(context).client);
+                            }
+                            deviceKeys[i]
+                                .setBlocked(true, Matrix.of(context).client);
+                          }
+                          setState(() => null);
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              );
             },
           ),
+          Divider(thickness: 1, height: 1),
           ListTile(
-            trailing: Icon(Icons.info),
+            title: Text("Outbound MegOlm session ID:"),
             subtitle: Text(
-              room.client.encryptionEnabled
-                  ? I18n.of(context).warningEncryptionInBeta
-                  : I18n.of(context).needPantalaimonWarning,
-            ),
+                room.outboundGroupSession?.session_id()?.beautified ?? "None"),
           ),
-          Divider(height: 1),
-          if (room.encrypted)
-            ListTile(
-              title: Text(
-                "${I18n.of(context).participatingUserDevices}:",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          if (room.encrypted) Divider(height: 1),
-          if (room.encrypted)
-            FutureBuilder<List<DeviceKeys>>(
-              future: room.getUserDeviceKeys(),
-              builder: (BuildContext context, snapshot) {
-                if (snapshot.hasError) {
-                  return Center(
-                    child: Text(I18n.of(context).oopsSomethingWentWrong +
-                        ": " +
-                        snapshot.error.toString()),
-                  );
-                }
-                if (!snapshot.hasData) {
-                  return Center(child: CircularProgressIndicator());
-                }
-                final List<DeviceKeys> deviceKeys = snapshot.data;
-                return Expanded(
-                  child: ListView.separated(
-                    separatorBuilder: (BuildContext context, int i) =>
-                        Divider(height: 1),
-                    itemCount: deviceKeys.length,
-                    itemBuilder: (BuildContext context, int i) =>
-                        CheckboxListTile(
-                      title: Text(
-                        "${deviceKeys[i].userId} - ${deviceKeys[i].deviceId}",
-                        style: TextStyle(
-                            color: deviceKeys[i].blocked
-                                ? Colors.red
-                                : deviceKeys[i].verified
-                                    ? Colors.green
-                                    : Colors.orange),
-                      ),
-                      subtitle: Text(
-                        deviceKeys[i]
-                            .keys["ed25519:${deviceKeys[i].deviceId}"]
-                            .beautified,
-                        style: TextStyle(
-                            color: Theme.of(context).textTheme.body1.color),
-                      ),
-                      value: deviceKeys[i].verified,
-                      onChanged: (bool newVal) {
-                        if (newVal == true) {
-                          if (deviceKeys[i].blocked) {
-                            deviceKeys[i]
-                                .setBlocked(false, Matrix.of(context).client);
-                          }
-                          deviceKeys[i]
-                              .setVerified(true, Matrix.of(context).client);
-                        } else {
-                          if (deviceKeys[i].verified) {
-                            deviceKeys[i]
-                                .setVerified(false, Matrix.of(context).client);
-                          }
-                          deviceKeys[i]
-                              .setBlocked(true, Matrix.of(context).client);
-                        }
-                        setState(() => null);
-                      },
-                    ),
-                  ),
-                );
-              },
-            ),
-          if (room.encrypted)
-            ListTile(
-              title: Text("Outbound MegOlm session ID:"),
-              subtitle: Text(
-                  room.outboundGroupSession?.session_id()?.beautified ??
-                      "None"),
-            ),
         ],
       ),
     );

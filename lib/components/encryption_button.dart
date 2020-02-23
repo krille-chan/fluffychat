@@ -1,10 +1,13 @@
 import 'dart:async';
 
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/views/chat_encryption_settings.dart';
 import 'package:flutter/material.dart';
+import 'package:toast/toast.dart';
 
+import 'dialogs/simple_dialogs.dart';
 import 'matrix.dart';
 
 class EncryptionButton extends StatefulWidget {
@@ -16,6 +19,36 @@ class EncryptionButton extends StatefulWidget {
 
 class _EncryptionButtonState extends State<EncryptionButton> {
   StreamSubscription _onSyncSub;
+
+  void _enableEncryptionAction() async {
+    if (widget.room.encrypted) {
+      Toast.show(I18n.of(context).warningEncryptionInBeta, context,
+          duration: 5);
+      await Navigator.of(context).push(
+        AppRoute.defaultRoute(
+          context,
+          ChatEncryptionSettingsView(widget.room.id),
+        ),
+      );
+      return;
+    }
+    if (!widget.room.client.encryptionEnabled) {
+      Toast.show(I18n.of(context).needPantalaimonWarning, context, duration: 8);
+      return;
+    }
+    if (await SimpleDialogs(context).askConfirmation(
+          titleText: I18n.of(context).enableEncryptionWarning,
+          contentText: widget.room.client.encryptionEnabled
+              ? I18n.of(context).warningEncryptionInBeta
+              : I18n.of(context).needPantalaimonWarning,
+          confirmText: I18n.of(context).yes,
+        ) ==
+        true) {
+      await Matrix.of(context).tryRequestWithLoadingDialog(
+        widget.room.enableEncryption(),
+      );
+    }
+  }
 
   @override
   void dispose() {
@@ -50,12 +83,7 @@ class _EncryptionButtonState extends State<EncryptionButton> {
           return IconButton(
             icon: Icon(widget.room.encrypted ? Icons.lock : Icons.lock_open,
                 size: 20, color: color),
-            onPressed: () => Navigator.of(context).push(
-              AppRoute.defaultRoute(
-                context,
-                ChatEncryptionSettingsView(widget.room.id),
-              ),
-            ),
+            onPressed: _enableEncryptionAction,
           );
         });
   }
