@@ -8,7 +8,6 @@ import 'package:fluffychat/utils/beautify_string_extension.dart';
 import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/views/chat_list.dart';
 import 'package:flutter/material.dart';
-import 'package:toast/toast.dart';
 
 class ChatEncryptionSettingsView extends StatelessWidget {
   final String id;
