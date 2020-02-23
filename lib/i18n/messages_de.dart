@@ -151,7 +151,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Banned" : MessageLookupByLibrary.simpleMessage("Banned"),
     "Change the name of the group" : MessageLookupByLibrary.simpleMessage("Gruppenname ändern"),
     "Change the server" : MessageLookupByLibrary.simpleMessage("Ändere den Server"),
-    "Change your style" : MessageLookupByLibrary.simpleMessage("Change your style"),
+    "Change your style" : MessageLookupByLibrary.simpleMessage("Ändere Deinen Style"),
     "Changelog" : MessageLookupByLibrary.simpleMessage("Changelog"),
     "Chat details" : MessageLookupByLibrary.simpleMessage("Gruppeninfo"),
     "Choose a username" : MessageLookupByLibrary.simpleMessage("Wähle einen Benutzernamen"),

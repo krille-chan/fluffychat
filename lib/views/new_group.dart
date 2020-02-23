@@ -1,6 +1,7 @@
 import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/i18n/i18n.dart';
+import 'package:fluffychat/utils/app_route.dart';
 import 'package:flutter/material.dart';
 import 'package:pedantic/pedantic.dart';
 
@@ -47,11 +48,11 @@ class _NewGroupState extends State<_NewGroup> {
     Navigator.of(context).pop();
     if (roomID != null) {
       unawaited(
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) {
-            return ChatView(roomID);
-          }),
+        Navigator.of(context).push(
+          AppRoute.defaultRoute(
+            context,
+            ChatView(roomID),
+          ),
         ),
       );
       await Navigator.push(

@@ -123,7 +123,7 @@ class _InvitationSelectionState extends State<InvitationSelection> {
           appBar: AppBar(
             title: Text(I18n.of(context).inviteContact),
             bottom: PreferredSize(
-              preferredSize: Size.fromHeight(68),
+              preferredSize: Size.fromHeight(92),
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: TextField(

@@ -24,7 +24,7 @@ class AppInfo extends StatelessWidget {
     Client client = Matrix.of(context).client;
     return Scaffold(
       appBar: AppBar(
-        title: Text("About FluffyChat"),
+        title: Text(I18n.of(context).accountInformations),
       ),
       body: ListView(
         children: <Widget>[

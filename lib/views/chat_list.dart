@@ -315,7 +315,7 @@ class _ChatListState extends State<ChatList> {
                       ? Material(
                           elevation: 2,
                           child: ListTile(
-                            title: Text("Public Rooms:"),
+                            title: Text(I18n.of(context).publicRooms),
                           ),
                         )
                       : Divider(indent: 70, height: 1),

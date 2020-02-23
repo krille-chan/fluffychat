@@ -230,9 +230,7 @@ extension LocalizedBody on Event {
     // Hide reply fallback
     if (hideReply) {
       localizedBody = localizedBody.replaceFirst(
-          RegExp(
-              r'^>( \*)? <@[a-zA-Z0-9-.=_\/]+:[^>]+>[^\n]+\r?\n(> [^\n]+\r?\n)*\r?\n'),
-          "");
+          RegExp(r'^>( \*)? <[^>]+>[^\n\r]+\r?\n(> [^\n]*\r?\n)*\r?\n'), "");
     }
 
     // Add the sender name prefix

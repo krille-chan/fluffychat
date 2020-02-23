@@ -2,9 +2,7 @@ import 'package:bubble/bubble.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/i18n/i18n.dart';
-import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/utils/event_extension.dart';
-import 'package:fluffychat/views/content_web_view.dart';
 import 'package:fluffychat/views/image_viewer.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -77,12 +75,8 @@ class MessageContent extends StatelessWidget {
                     ),
                   ],
                 ),
-                onPressed: () => Navigator.of(context).push(
-                  AppRoute.defaultRoute(
-                    context,
-                    ContentWebView(MxContent(event.content["url"])),
-                  ),
-                ),
+                onPressed: () => launch(MxContent(event.content["url"])
+                    .getDownloadLink(event.room.client)),
               ),
             );
           case MessageTypes.Video:
@@ -102,11 +96,9 @@ class MessageContent extends StatelessWidget {
                     ),
                   ],
                 ),
-                onPressed: () => Navigator.of(context).push(
-                  AppRoute.defaultRoute(
-                    context,
-                    ContentWebView(MxContent(event.content["url"])),
-                  ),
+                onPressed: () => launch(
+                  MxContent(event.content["url"])
+                      .getDownloadLink(event.room.client),
                 ),
               ),
             );

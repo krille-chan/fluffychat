@@ -419,7 +419,6 @@ class _ChatDetailsState extends State<ChatDetails> {
                           ),
                         ),
                       ),
-                      Divider(height: 1),
                       widget.room.canInvite
                           ? ListTile(
                               title: Text(I18n.of(context).inviteContact),
