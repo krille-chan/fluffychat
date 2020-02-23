@@ -37,7 +37,7 @@ class ImageViewer extends StatelessWidget {
       ),
       body: PhotoView(
         loadingBuilder: (c, i) => Center(child: CircularProgressIndicator()),
-        imageProvider: CachedNetworkImageProvider(
+        imageProvider: NetworkImage(
           url,
         ),
       ),
