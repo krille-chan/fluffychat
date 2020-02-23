@@ -8,9 +8,7 @@
   <img height="66px" src="https://christianpauly.gitlab.io/fluffychat-website/assets/images/fdroid_button.png " />
   </a>
   <br>
-  <a href="https://christianpauly.gitlab.io/fluffychat-flutter" target="new">Open FluffyChat in the browser</a>
-  <br>
-  <a href="https://matrix.to/#/#fluffychat:matrix.org" target="new">Join the community</a> - <a href="https://metalhead.club/@krille" target="new">Follow me on Mastodon</a> - <a href="https://gitlab.com/ChristianPauly/fluffychat-website" target="new">Translate the website</a> - <a href="https://christianpauly.gitlab.io/fluffychat-website/faq.html" target="new">FAQ</a> - <a href="https://christianpauly.gitlab.io/fluffychat-website/" target="new">Website</a>
+  <a href="https://christianpauly.gitlab.io/fluffychat-flutter" target="new">Open FluffyChat in the browser</a> - <a href="https://matrix.to/#/#fluffychat:matrix.org" target="new">Join the community</a> - <a href="https://metalhead.club/@krille" target="new">Follow me on Mastodon</a> - <a href="https://gitlab.com/ChristianPauly/fluffychat-website" target="new">Translate the website</a> - <a href="https://christianpauly.gitlab.io/fluffychat-website/faq.html" target="new">FAQ</a> - <a href="https://christianpauly.gitlab.io/fluffychat-website/" target="new">Website</a>
  </p>
 <br>
 <br>
