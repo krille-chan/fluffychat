@@ -23,6 +23,7 @@ class ImageViewer extends StatelessWidget {
   Widget build(BuildContext context) {
     final String url = mxContent.getDownloadLink(Matrix.of(context).client);
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
         brightness: Brightness.dark,
         backgroundColor: Colors.black,
