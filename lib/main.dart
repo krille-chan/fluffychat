@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -18,10 +19,11 @@ void main() {
 }
 
 class App extends StatelessWidget {
+  final String platform = kIsWeb ? "Web" : Platform.operatingSystem;
   @override
   Widget build(BuildContext context) {
     return Matrix(
-      clientName: "FluffyChat ${Platform.operatingSystem}",
+      clientName: "FluffyChat $platform",
       child: Builder(
         builder: (BuildContext context) => ThemeSwitcherWidget(
           child: Builder(
