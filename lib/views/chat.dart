@@ -396,7 +396,7 @@ class _ChatState extends State<_Chat> {
             SvgPicture.asset(
               "assets/chat.svg",
               height: double.infinity,
-              color: Theme.of(context).primaryColor.withOpacity(0.1),
+              color: Theme.of(context).primaryColor.withOpacity(0.05),
             ),
           SafeArea(
             child: Column(
