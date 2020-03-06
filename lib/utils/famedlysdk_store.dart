@@ -23,7 +23,11 @@ class Store extends StoreAPI {
   Future<dynamic> getItem(String key) async {
     if (kIsWeb) {
       await storage.ready;
-      return await storage.getItem(key);
+      try {
+        return await storage.getItem(key);
+      } catch (_) {
+        return null;
+      }
     }
     return await secureStorage.read(key: key);
   }
