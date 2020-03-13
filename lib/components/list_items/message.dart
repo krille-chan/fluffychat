@@ -46,7 +46,7 @@ class Message extends StatelessWidget {
     BubbleNip nip = sameSender
         ? BubbleNip.no
         : ownMessage ? BubbleNip.rightBottom : BubbleNip.leftBottom;
-    final Color textColor = ownMessage
+    Color textColor = ownMessage
         ? Colors.white
         : Theme.of(context).brightness == Brightness.dark
             ? Colors.white
@@ -54,7 +54,10 @@ class Message extends StatelessWidget {
     MainAxisAlignment rowMainAxisAlignment =
         ownMessage ? MainAxisAlignment.end : MainAxisAlignment.start;
 
-    if (ownMessage) {
+    if (event.messageType == MessageTypes.Image) {
+      color = Theme.of(context).scaffoldBackgroundColor.withOpacity(0.66);
+      textColor = Theme.of(context).textTheme.body1.color;
+    } else if (ownMessage) {
       color = event.status == -1
           ? Colors.redAccent
           : Theme.of(context).primaryColor;
