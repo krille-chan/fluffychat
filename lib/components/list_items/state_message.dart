@@ -18,13 +18,13 @@ class StateMessage extends StatelessWidget {
       ),
       child: Bubble(
         elevation: 0,
-        color: Theme.of(context).backgroundColor.withOpacity(0.5),
+        color: Theme.of(context).backgroundColor.withOpacity(0.66),
         alignment: Alignment.center,
         child: Text(
           event.getLocalizedBody(context),
           textAlign: TextAlign.center,
           style: TextStyle(
-            color: Theme.of(context).primaryColor,
+            color: Theme.of(context).textTheme.body1.color,
             decoration: event.redacted ? TextDecoration.lineThrough : null,
           ),
         ),
