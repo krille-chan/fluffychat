@@ -272,11 +272,7 @@ class I18n {
   String get displaynameHasBeenChanged =>
       Intl.message("Displayname has been changed");
 
-  String download(String fileName) => Intl.message(
-        "Download $fileName",
-        name: "download",
-        args: [fileName],
-      );
+  String get downloadFile => Intl.message("Download file");
 
   String get editDisplayname => Intl.message("Edit displayname");
 
@@ -295,6 +291,10 @@ class I18n {
   String get enterAGroupName => Intl.message("Enter a group name");
 
   String get enterAUsername => Intl.message("Enter a username");
+
+  String get fileName => Intl.message("File name");
+
+  String get fileSize => Intl.message("File size");
 
   String get fluffychat => Intl.message("FluffyChat");
 

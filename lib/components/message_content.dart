@@ -59,65 +59,45 @@ class MessageContent extends StatelessWidget {
               ),
             );
           case MessageTypes.Audio:
-            return Container(
-              width: 200,
-              child: RaisedButton(
-                color: Colors.blueGrey,
-                child: Row(
-                  children: <Widget>[
-                    Icon(Icons.play_arrow, color: Colors.white),
-                    Text(
-                      I18n.of(context).play(event.body),
-                      overflow: TextOverflow.fade,
-                      softWrap: false,
-                      maxLines: 1,
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ],
-                ),
-                onPressed: () => launch(MxContent(event.content["url"])
-                    .getDownloadLink(event.room.client)),
-              ),
-            );
           case MessageTypes.Video:
-            return Container(
-              width: 200,
-              child: RaisedButton(
-                color: Colors.blueGrey,
-                child: Row(
-                  children: <Widget>[
-                    Icon(Icons.play_arrow, color: Colors.white),
-                    Text(
-                      I18n.of(context).play(event.body),
-                      overflow: TextOverflow.fade,
-                      softWrap: false,
-                      maxLines: 1,
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ],
-                ),
-                onPressed: () => launch(
-                  MxContent(event.content["url"])
-                      .getDownloadLink(event.room.client),
-                ),
-              ),
-            );
           case MessageTypes.File:
             return Container(
-              width: 200,
-              child: RaisedButton(
-                color: Colors.blueGrey,
-                child: Text(
-                  I18n.of(context).download(event.body),
-                  overflow: TextOverflow.fade,
-                  softWrap: false,
-                  maxLines: 1,
-                  style: TextStyle(color: Colors.white),
-                ),
-                onPressed: () => launch(
-                  MxContent(event.content["url"])
-                      .getDownloadLink(Matrix.of(context).client),
-                ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  RaisedButton(
+                    color: Colors.blueGrey,
+                    child: Text(
+                      I18n.of(context).downloadFile,
+                      overflow: TextOverflow.fade,
+                      softWrap: false,
+                      maxLines: 1,
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    onPressed: () => launch(
+                      MxContent(event.content["url"])
+                          .getDownloadLink(event.room.client),
+                    ),
+                  ),
+                  if (event.sizeString != null)
+                    Text(
+                      event.sizeString,
+                      style: TextStyle(
+                        color: textColor,
+                        fontStyle: FontStyle.italic,
+                      ),
+                    ),
+                  Text(
+                    (event.content.containsKey("filename")
+                        ? event.content["filename"]
+                        : event.body),
+                    style: TextStyle(
+                      color: textColor,
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
+                ],
               ),
             );
           case MessageTypes.BadEncrypted:

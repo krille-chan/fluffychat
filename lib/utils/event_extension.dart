@@ -260,4 +260,22 @@ extension LocalizedBody on Event {
         return Icons.done;
     }
   }
+
+  String get sizeString {
+    if (content["info"] is Map<String, dynamic> &&
+        content["info"].containsKey("size")) {
+      num size = content["info"]["size"];
+      if (size < 1000000) {
+        size = size / 1000;
+        return "${size.toString()}kb";
+      } else if (size < 1000000000) {
+        size = size / 1000000;
+        return "${size.toString()}mb";
+      } else {
+        size = size / 1000000000;
+        return "${size.toString()}gb";
+      }
+    } else
+      return null;
+  }
 }
