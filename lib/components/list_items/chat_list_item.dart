@@ -139,14 +139,12 @@ class ChatListItem extends StatelessWidget {
           leading: Avatar(room.avatar, room.displayname),
           title: Row(
             children: <Widget>[
-              Expanded(
-                child: Text(
-                  room.getLocalizedDisplayname(context),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
+              Text(
+                room.getLocalizedDisplayname(context),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
-              SizedBox(width: 16),
+              SizedBox(width: 4),
               room.pushRuleState == PushRuleState.notify
                   ? Container()
                   : Icon(
@@ -154,7 +152,7 @@ class ChatListItem extends StatelessWidget {
                       color: Colors.grey[400],
                       size: 16,
                     ),
-              SizedBox(width: 4),
+              Spacer(),
               Text(
                 room.timeCreated.localizedTimeShort(context),
                 style: TextStyle(
