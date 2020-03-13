@@ -80,23 +80,24 @@ class MessageContent extends StatelessWidget {
                           .getDownloadLink(event.room.client),
                     ),
                   ),
-                  if (event.sizeString != null)
-                    Text(
-                      event.sizeString,
-                      style: TextStyle(
-                        color: textColor,
-                        fontStyle: FontStyle.italic,
-                      ),
-                    ),
                   Text(
-                    (event.content.containsKey("filename")
-                        ? event.content["filename"]
-                        : event.body),
+                    "- " +
+                        (event.content.containsKey("filename")
+                            ? event.content["filename"]
+                            : event.body),
                     style: TextStyle(
                       color: textColor,
-                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
+                  if (event.sizeString != null)
+                    Text(
+                      "- " + event.sizeString,
+                      style: TextStyle(
+                        color: textColor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                 ],
               ),
             );
