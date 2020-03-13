@@ -62,83 +62,79 @@ class Message extends StatelessWidget {
 
     List<Widget> rowChildren = [
       Expanded(
-        child: AnimatedOpacity(
-          duration: Duration(milliseconds: 500),
-          opacity: (event.status == 0 || event.redacted) ? 0.5 : 1,
-          child: Bubble(
-            elevation: 0,
-            radius: Radius.circular(8),
-            alignment: alignment,
-            margin: BubbleEdges.symmetric(horizontal: 4),
-            color: color,
-            nip: nip,
-            child: Stack(
-              children: <Widget>[
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    if (event.isReply)
-                      FutureBuilder<Event>(
-                        future: event.getReplyEvent(timeline),
-                        builder: (BuildContext context, snapshot) {
-                          final Event replyEvent = snapshot.hasData
-                              ? snapshot.data
-                              : Event(
-                                  eventId: event.content['m.relates_to']
-                                      ['m.in_reply_to']['event_id'],
-                                  content: {"msgtype": "m.text", "body": "..."},
-                                  senderId: event.senderId,
-                                  typeKey: "m.room.message",
-                                  room: event.room,
-                                  roomId: event.roomId,
-                                  status: 1,
-                                  time: DateTime.now(),
-                                );
-                          return Container(
-                            margin: EdgeInsets.symmetric(vertical: 4.0),
-                            child:
-                                ReplyContent(replyEvent, lightText: ownMessage),
-                          );
-                        },
-                      ),
-                    MessageContent(
-                      event,
-                      textColor: textColor,
+        child: Bubble(
+          elevation: 0,
+          radius: Radius.circular(8),
+          alignment: alignment,
+          margin: BubbleEdges.symmetric(horizontal: 4),
+          color: color,
+          nip: nip,
+          child: Stack(
+            children: <Widget>[
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  if (event.isReply)
+                    FutureBuilder<Event>(
+                      future: event.getReplyEvent(timeline),
+                      builder: (BuildContext context, snapshot) {
+                        final Event replyEvent = snapshot.hasData
+                            ? snapshot.data
+                            : Event(
+                                eventId: event.content['m.relates_to']
+                                    ['m.in_reply_to']['event_id'],
+                                content: {"msgtype": "m.text", "body": "..."},
+                                senderId: event.senderId,
+                                typeKey: "m.room.message",
+                                room: event.room,
+                                roomId: event.roomId,
+                                status: 1,
+                                time: DateTime.now(),
+                              );
+                        return Container(
+                          margin: EdgeInsets.symmetric(vertical: 4.0),
+                          child:
+                              ReplyContent(replyEvent, lightText: ownMessage),
+                        );
+                      },
                     ),
-                    if (event.type == EventTypes.Encrypted &&
-                        event.messageType == MessageTypes.BadEncrypted &&
-                        event.content["body"] == DecryptError.UNKNOWN_SESSION)
-                      RaisedButton(
-                        color: color.withAlpha(100),
-                        child: Text(
-                          I18n.of(context).requestPermission,
-                          style: TextStyle(color: textColor),
-                        ),
-                        onPressed: () => Matrix.of(context)
-                            .tryRequestWithLoadingDialog(event.requestKey()),
+                  MessageContent(
+                    event,
+                    textColor: textColor,
+                  ),
+                  if (event.type == EventTypes.Encrypted &&
+                      event.messageType == MessageTypes.BadEncrypted &&
+                      event.content["body"] == DecryptError.UNKNOWN_SESSION)
+                    RaisedButton(
+                      color: color.withAlpha(100),
+                      child: Text(
+                        I18n.of(context).requestPermission,
+                        style: TextStyle(color: textColor),
                       ),
-                    SizedBox(height: 4),
-                    _MetaRow(
-                      event,
-                      ownMessage,
-                      textColor,
-                      invisible: true,
+                      onPressed: () => Matrix.of(context)
+                          .tryRequestWithLoadingDialog(event.requestKey()),
                     ),
-                  ],
-                ),
-                Positioned(
-                  bottom: 0,
-                  right: ownMessage ? 0 : null,
-                  left: !ownMessage ? 0 : null,
-                  child: _MetaRow(
+                  SizedBox(height: 4),
+                  _MetaRow(
                     event,
                     ownMessage,
                     textColor,
+                    invisible: true,
                   ),
+                ],
+              ),
+              Positioned(
+                bottom: 0,
+                right: ownMessage ? 0 : null,
+                left: !ownMessage ? 0 : null,
+                child: _MetaRow(
+                  event,
+                  ownMessage,
+                  textColor,
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
