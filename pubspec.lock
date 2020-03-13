@@ -124,8 +124,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "7c7f2a3dd80b4c40c1e3c106f75a0af985a2221b"
-      resolved-ref: "7c7f2a3dd80b4c40c1e3c106f75a0af985a2221b"
+      ref: eb84c2a0856af99527f00697cbed4eb67a47887d
+      resolved-ref: eb84c2a0856af99527f00697cbed4eb67a47887d
       url: "https://gitlab.com/famedly/famedlysdk.git"
     source: git
     version: "0.0.1"
@@ -274,7 +274,7 @@ packages:
       name: intl
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.16.1"
+    version: "0.16.0"
   intl_translation:
     dependency: "direct main"
     description:
@@ -377,8 +377,8 @@ packages:
     dependency: transitive
     description:
       path: "."
-      ref: "307dc133867eb5bf80d4f5c7412e58621dfca3cf"
-      resolved-ref: "307dc133867eb5bf80d4f5c7412e58621dfca3cf"
+      ref: bbc7ce10a52be5d5c10d2eb6c3591aade71356e2
+      resolved-ref: bbc7ce10a52be5d5c10d2eb6c3591aade71356e2
       url: "https://gitlab.com/famedly/libraries/dart-olm.git"
     source: git
     version: "0.0.0"

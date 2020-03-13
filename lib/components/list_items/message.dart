@@ -4,6 +4,7 @@ import 'package:fluffychat/components/message_content.dart';
 import 'package:fluffychat/components/reply_content.dart';
 import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
+import 'package:fluffychat/utils/event_extension.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/views/image_viewer.dart';
 import 'package:flutter/material.dart';
@@ -71,72 +72,71 @@ class Message extends StatelessWidget {
             margin: BubbleEdges.symmetric(horizontal: 4),
             color: color,
             nip: nip,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: Stack(
               children: <Widget>[
-                Row(
+                Column(
                   mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(
-                      ownMessage
-                          ? I18n.of(context).you
-                          : event.sender.calcDisplayname(),
-                      style: TextStyle(
-                        color: ownMessage
-                            ? textColor
-                            : event.sender.calcDisplayname().color,
-                        fontWeight: FontWeight.bold,
+                    if (event.isReply)
+                      FutureBuilder<Event>(
+                        future: event.getReplyEvent(timeline),
+                        builder: (BuildContext context, snapshot) {
+                          final Event replyEvent = snapshot.hasData
+                              ? snapshot.data
+                              : Event(
+                                  eventId: event.content['m.relates_to']
+                                      ['m.in_reply_to']['event_id'],
+                                  content: {"msgtype": "m.text", "body": "..."},
+                                  senderId: event.senderId,
+                                  typeKey: "m.room.message",
+                                  room: event.room,
+                                  roomId: event.roomId,
+                                  status: 1,
+                                  time: DateTime.now(),
+                                );
+                          return Container(
+                            margin: EdgeInsets.symmetric(vertical: 4.0),
+                            child:
+                                ReplyContent(replyEvent, lightText: ownMessage),
+                          );
+                        },
                       ),
+                    MessageContent(
+                      event,
+                      textColor: textColor,
                     ),
-                    SizedBox(width: 4),
-                    Text(
-                      event.time.localizedTime(context),
-                      style: TextStyle(
-                        color: textColor.withAlpha(180),
+                    if (event.type == EventTypes.Encrypted &&
+                        event.messageType == MessageTypes.BadEncrypted &&
+                        event.content["body"] == DecryptError.UNKNOWN_SESSION)
+                      RaisedButton(
+                        color: color.withAlpha(100),
+                        child: Text(
+                          I18n.of(context).requestPermission,
+                          style: TextStyle(color: textColor),
+                        ),
+                        onPressed: () => Matrix.of(context)
+                            .tryRequestWithLoadingDialog(event.requestKey()),
                       ),
+                    SizedBox(height: 4),
+                    _MetaRow(
+                      event,
+                      ownMessage,
+                      textColor,
+                      invisible: true,
                     ),
                   ],
                 ),
-                if (event.isReply)
-                  FutureBuilder<Event>(
-                    future: event.getReplyEvent(timeline),
-                    builder: (BuildContext context, snapshot) {
-                      final Event replyEvent = snapshot.hasData
-                          ? snapshot.data
-                          : Event(
-                              eventId: event.content['m.relates_to']
-                                  ['m.in_reply_to']['event_id'],
-                              content: {"msgtype": "m.text", "body": "..."},
-                              senderId: event.senderId,
-                              typeKey: "m.room.message",
-                              room: event.room,
-                              roomId: event.roomId,
-                              status: 1,
-                              time: DateTime.now(),
-                            );
-                      return Container(
-                        margin: EdgeInsets.symmetric(vertical: 4.0),
-                        child: ReplyContent(replyEvent, lightText: ownMessage),
-                      );
-                    },
+                Positioned(
+                  bottom: 0,
+                  right: ownMessage ? 0 : null,
+                  left: !ownMessage ? 0 : null,
+                  child: _MetaRow(
+                    event,
+                    ownMessage,
+                    textColor,
                   ),
-                MessageContent(
-                  event,
-                  textColor: textColor,
                 ),
-                if (event.type == EventTypes.Encrypted &&
-                    event.messageType == MessageTypes.BadEncrypted &&
-                    event.content["body"] == DecryptError.UNKNOWN_SESSION)
-                  RaisedButton(
-                    color: color.withAlpha(100),
-                    child: Text(
-                      I18n.of(context).requestPermission,
-                      style: TextStyle(color: textColor),
-                    ),
-                    onPressed: () => Matrix.of(context)
-                        .tryRequestWithLoadingDialog(event.requestKey()),
-                  ),
               ],
             ),
           ),
@@ -176,6 +176,53 @@ class Message extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _MetaRow extends StatelessWidget {
+  final Event event;
+  final bool invisible;
+  final bool ownMessage;
+  final Color color;
+
+  const _MetaRow(this.event, this.ownMessage, this.color,
+      {this.invisible = false, Key key})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final String displayname = event.sender.calcDisplayname();
+    final bool showDisplayname =
+        !ownMessage && event.senderId != event.room.directChatMatrixID;
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        if (showDisplayname)
+          Text(
+            displayname,
+            style: TextStyle(
+              fontSize: 11,
+              fontWeight: FontWeight.bold,
+              color: invisible ? Colors.transparent : displayname.color,
+            ),
+          ),
+        if (showDisplayname) SizedBox(width: 4),
+        Text(
+          event.time.localizedTime(context),
+          style: TextStyle(
+            color: invisible ? Colors.transparent : color,
+            fontSize: 11,
+          ),
+        ),
+        if (ownMessage) SizedBox(width: 2),
+        if (ownMessage)
+          Icon(
+            event.statusIcon,
+            size: 12,
+            color: invisible ? Colors.transparent : color,
+          ),
+      ],
     );
   }
 }

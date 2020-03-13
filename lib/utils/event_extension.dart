@@ -245,4 +245,19 @@ extension LocalizedBody on Event {
 
     return localizedBody;
   }
+
+  IconData get statusIcon {
+    switch (this.status) {
+      case -1:
+        return Icons.error_outline;
+      case 0:
+        return Icons.timer;
+      case 1:
+        return Icons.done;
+      case 2:
+        return Icons.done_all;
+      default:
+        return Icons.done;
+    }
+  }
 }

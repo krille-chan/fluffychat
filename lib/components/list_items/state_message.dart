@@ -17,18 +17,16 @@ class StateMessage extends StatelessWidget {
         right: 8.0,
         bottom: 8.0,
       ),
-      child: Opacity(
-        opacity: 0.5,
-        child: Bubble(
-          elevation: 0,
-          color: Colors.black,
-          alignment: Alignment.center,
-          child: LinkText(
-            text: event.getLocalizedBody(context),
-            textStyle: TextStyle(
-              color: Colors.white,
-              decoration: event.redacted ? TextDecoration.lineThrough : null,
-            ),
+      child: Bubble(
+        elevation: 0,
+        color: Theme.of(context).backgroundColor.withOpacity(0.5),
+        alignment: Alignment.center,
+        child: LinkText(
+          text: event.getLocalizedBody(context),
+          textAlign: TextAlign.center,
+          textStyle: TextStyle(
+            color: Theme.of(context).primaryColor,
+            decoration: event.redacted ? TextDecoration.lineThrough : null,
           ),
         ),
       ),
