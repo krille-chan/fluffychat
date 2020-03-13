@@ -140,7 +140,7 @@ class Message extends StatelessWidget {
       ),
     ];
     final Widget avatarOrSizedBox = sameSender
-        ? SizedBox(width: 40)
+        ? SizedBox(width: Avatar.defaultSize)
         : Avatar(
             event.sender.avatarUrl,
             event.sender.calcDisplayname(),

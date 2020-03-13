@@ -11,9 +11,15 @@ class Avatar extends StatelessWidget {
   final String name;
   final double size;
   final Function onTap;
+  static const double defaultSize = 44;
 
-  const Avatar(this.mxContent, this.name, {this.size = 40, this.onTap, Key key})
-      : super(key: key);
+  const Avatar(
+    this.mxContent,
+    this.name, {
+    this.size = defaultSize,
+    this.onTap,
+    Key key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
