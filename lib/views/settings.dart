@@ -194,19 +194,6 @@ class _SettingsState extends State<Settings> {
               ),
             ),
             ListTile(
-              title: Container(
-                alignment: Alignment.centerLeft,
-                child: Image.asset("assets/kofi.png", width: 200),
-              ),
-              onTap: () => launch("https://ko-fi.com/V7V315112"),
-            ),
-            ListTile(
-              leading: Icon(Icons.local_atm),
-              title: Text("Liberapay " + I18n.of(context).donate),
-              onTap: () =>
-                  launch("https://liberapay.com/KrilleChritzelius/donate"),
-            ),
-            ListTile(
               leading: Icon(Icons.help),
               title: Text(I18n.of(context).help),
               onTap: () => launch(

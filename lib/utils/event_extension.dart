@@ -275,7 +275,8 @@ extension LocalizedBody on Event {
         size = size / 1000000000;
         return "${size.toString()}gb";
       }
-    } else
+    } else {
       return null;
+    }
   }
 }
