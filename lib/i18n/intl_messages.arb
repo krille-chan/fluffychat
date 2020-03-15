@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-02-22T20:02:42.757437",
+  "@@last_modified": "2020-03-15T12:01:07.169209",
   "About": "About",
   "@About": {
     "type": "text",
@@ -101,6 +101,11 @@
       "username": {},
       "targetName": {}
     }
+  },
+  "Cancel": "Cancel",
+  "@Cancel": {
+    "type": "text",
+    "placeholders": {}
   },
   "changedTheChatAvatar": "{username} changed the chat avatar",
   "@changedTheChatAvatar": {
@@ -375,12 +380,10 @@
     "type": "text",
     "placeholders": {}
   },
-  "download": "Download {fileName}",
-  "@download": {
+  "Download file": "Download file",
+  "@Download file": {
     "type": "text",
-    "placeholders": {
-      "fileName": {}
-    }
+    "placeholders": {}
   },
   "Edit displayname": "Edit displayname",
   "@Edit displayname": {
@@ -419,6 +422,16 @@
   },
   "Enter a username": "Enter a username",
   "@Enter a username": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "File name": "File name",
+  "@File name": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "File size": "File size",
+  "@File size": {
     "type": "text",
     "placeholders": {}
   },
@@ -776,6 +789,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "Recording": "Recording",
+  "@Recording": {
+    "type": "text",
+    "placeholders": {}
+  },
   "redactedAnEvent": "{username} redacted an event",
   "@redactedAnEvent": {
     "type": "text",
@@ -891,6 +909,11 @@
       "username": {},
       "count": {}
     }
+  },
+  "Send": "Send",
+  "@Send": {
+    "type": "text",
+    "placeholders": {}
   },
   "Send a message": "Send a message",
   "@Send a message": {
@@ -1151,6 +1174,11 @@
   },
   "Visibility of the chat history": "Visibility of the chat history",
   "@Visibility of the chat history": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Voice message": "Voice message",
+  "@Voice message": {
     "type": "text",
     "placeholders": {}
   },

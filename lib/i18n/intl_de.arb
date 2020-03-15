@@ -102,6 +102,11 @@
       "targetName": {}
     }
   },
+  "Cancel": "Abbrechen",
+  "@Cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
   "changedTheChatAvatar": "{username} hat den Chat-Avatar geändert",
   "@changedTheChatAvatar": {
     "type": "text",
@@ -375,12 +380,10 @@
     "type": "text",
     "placeholders": {}
   },
-  "download": "Download {fileName}",
-  "@download": {
+  "Download file": "Datei herunterladen",
+  "@Download file": {
     "type": "text",
-    "placeholders": {
-      "fileName": {}
-    }
+    "placeholders": {}
   },
   "Edit displayname": "Anzeigename ändern",
   "@Edit displayname": {
@@ -424,6 +427,16 @@
   },
   "FluffyChat": "FluffyChat",
   "@FluffyChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "File name": "Dateiname",
+  "@File name": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "File size": "Dateigröße",
+  "@File size": {
     "type": "text",
     "placeholders": {}
   },
@@ -783,6 +796,11 @@
       "username": {}
     }
   },
+  "Recording": "Aufnahme",
+  "@Recording": {
+    "type": "text",
+    "placeholders": {}
+  },
   "rejectedTheInvitation": "{username} hat die Einladung abgelehnt",
   "@rejectedTheInvitation": {
     "type": "text",
@@ -894,6 +912,11 @@
   },
   "Send a message": "Nachricht schreiben",
   "@Send a message": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Send": "Senden",
+  "@Send": {
     "type": "text",
     "placeholders": {}
   },
@@ -1156,6 +1179,11 @@
   },
   "Wednesday": "Mittwoch",
   "@Wednesday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Voice message": "Sprachnachricht",
+  "@Voice message": {
     "type": "text",
     "placeholders": {}
   },
