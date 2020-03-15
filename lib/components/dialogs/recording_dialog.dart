@@ -20,15 +20,21 @@ class _RecordingDialogState extends State<RecordingDialog> {
 
   StreamSubscription _recorderSubscription;
 
+  bool error = false;
+
   void startRecording() async {
-    await flutterSound.startRecorder(
-      codec: t_CODEC.CODEC_AAC,
-    );
-    _recorderSubscription = flutterSound.onRecorderStateChanged.listen((e) {
-      DateTime date =
-          DateTime.fromMillisecondsSinceEpoch(e.currentPosition.toInt());
-      setState(() => time = DateFormat('mm:ss:SS', 'en_US').format(date));
-    });
+    try {
+      await flutterSound.startRecorder(
+        codec: t_CODEC.CODEC_AAC,
+      );
+      _recorderSubscription = flutterSound.onRecorderStateChanged.listen((e) {
+        DateTime date =
+            DateTime.fromMillisecondsSinceEpoch(e.currentPosition.toInt());
+        setState(() => time = DateFormat('mm:ss:SS', 'en_US').format(date));
+      });
+    } catch (e) {
+      error = true;
+    }
   }
 
   @override
@@ -46,6 +52,11 @@ class _RecordingDialogState extends State<RecordingDialog> {
 
   @override
   Widget build(BuildContext context) {
+    if (error) {
+      Timer(Duration(seconds: 1), () {
+        Navigator.of(context).pop();
+      });
+    }
     return AlertDialog(
       content: Row(
         children: <Widget>[
