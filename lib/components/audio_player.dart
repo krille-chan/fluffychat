@@ -14,6 +14,8 @@ class AudioPlayer extends StatefulWidget {
   final Color color;
   final MxContent content;
 
+  static String currentMxc;
+
   const AudioPlayer(this.content, {this.color = Colors.black, Key key})
       : super(key: key);
 
@@ -36,8 +38,6 @@ class _AudioPlayerState extends State<AudioPlayer> {
   String statusText = "00:00";
   double currentPosition = 0;
   double maxPosition = 0;
-
-  static String currentMxc;
 
   @override
   void dispose() {
@@ -63,13 +63,13 @@ class _AudioPlayerState extends State<AudioPlayer> {
   }
 
   _playAction() async {
-    if (currentMxc != widget.content.mxc) {
-      if (currentMxc != null) {
+    if (AudioPlayer.currentMxc != widget.content.mxc) {
+      if (AudioPlayer.currentMxc != null) {
         if (flutterSound.audioState != t_AUDIO_STATE.IS_STOPPED) {
           await flutterSound.stopPlayer();
         }
-        currentMxc = widget.content.mxc;
       }
+      AudioPlayer.currentMxc = widget.content.mxc;
     }
     switch (flutterSound.audioState) {
       case t_AUDIO_STATE.IS_PLAYING:
@@ -86,7 +86,7 @@ class _AudioPlayerState extends State<AudioPlayer> {
           codec: t_CODEC.CODEC_AAC,
         );
         soundSubscription ??= flutterSound.onPlayerStateChanged.listen((e) {
-          if (currentMxc != widget.content.mxc) {
+          if (AudioPlayer.currentMxc != widget.content.mxc) {
             soundSubscription?.cancel()?.then((f) => soundSubscription = null);
             this.setState(() {
               currentPosition = 0;
