@@ -63,10 +63,14 @@ class _AudioPlayerState extends State<AudioPlayer> {
   }
 
   _playAction() async {
+    print("Current mxc: ${AudioPlayer.currentMxc}");
     if (AudioPlayer.currentMxc != widget.content.mxc) {
       if (AudioPlayer.currentMxc != null) {
+        print("Current mxc is wrong!");
+        print("Current audioState: ${flutterSound.audioState}");
         if (flutterSound.audioState != t_AUDIO_STATE.IS_STOPPED) {
           await flutterSound.stopPlayer();
+          setState(() => null);
         }
       }
       AudioPlayer.currentMxc = widget.content.mxc;
@@ -81,6 +85,7 @@ class _AudioPlayerState extends State<AudioPlayer> {
       case t_AUDIO_STATE.IS_RECORDING:
         break;
       case t_AUDIO_STATE.IS_STOPPED:
+        print("start Player From Buffer");
         await flutterSound.startPlayerFromBuffer(
           audioFile,
           codec: t_CODEC.CODEC_AAC,
@@ -92,6 +97,7 @@ class _AudioPlayerState extends State<AudioPlayer> {
               currentPosition = 0;
               statusText = "00:00";
             });
+            AudioPlayer.currentMxc = null;
           } else if (e != null) {
             DateTime date =
                 DateTime.fromMillisecondsSinceEpoch(e.currentPosition.toInt());
