@@ -1,3 +1,17 @@
+# Version 0.10.0 - 2020-03-??
+### New features
+- Voice messages
+- New message bubble design
+
+# Version 0.9.0 - 2020-03-13
+### New features
+- Improved design
+- End2End encryption for normal messages (not yet files)
+- Key sharing
+- Device keys verification UI
+### Fixes
+- Minor bug fixes
+
 # Version 0.8.2 - 2020-02-17
 ### Fixes
 - SpeedDial labels not visible in light mode

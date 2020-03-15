@@ -1,6 +1,7 @@
 import 'package:bubble/bubble.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/components/audio_player.dart';
 import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/utils/event_extension.dart';
 import 'package:fluffychat/views/image_viewer.dart';
@@ -59,6 +60,10 @@ class MessageContent extends StatelessWidget {
               ),
             );
           case MessageTypes.Audio:
+            return AudioPlayer(
+              MxContent(event.content["url"]),
+              color: textColor,
+            );
           case MessageTypes.Video:
           case MessageTypes.File:
             return Container(

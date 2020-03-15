@@ -52,6 +52,7 @@ dependencies:
   flutter_svg: ^0.17.1
   flutter_slidable: ^0.5.4
   photo_view: ^0.9.2
+  flutter_sound: ^2.1.1
 
   intl: ^0.16.0
   intl_translation: ^0.17.9

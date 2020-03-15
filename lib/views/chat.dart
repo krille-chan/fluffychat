@@ -5,6 +5,7 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/chat_settings_popup_menu.dart';
+import 'package:fluffychat/components/dialogs/recording_dialog.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/encryption_button.dart';
 import 'package:fluffychat/components/list_items/message.dart';
@@ -218,6 +219,22 @@ class _ChatState extends State<_Chat> {
     await matrix.tryRequestWithLoadingDialog(
       room.sendImageEvent(
         MatrixFile(bytes: await file.readAsBytes(), path: file.path),
+      ),
+    );
+  }
+
+  void voiceMessageAction(BuildContext context) async {
+    String result;
+    await showDialog(
+        context: context,
+        builder: (context) => RecordingDialog(
+              onFinished: (r) => result = r,
+            ));
+    if (result == null) return;
+    final File audioFile = File(result);
+    await Matrix.of(context).tryRequestWithLoadingDialog(
+      room.sendAudioEvent(
+        MatrixFile(bytes: audioFile.readAsBytesSync(), path: audioFile.path),
       ),
     );
   }
@@ -565,6 +582,9 @@ class _ChatState extends State<_Chat> {
                                         if (choice == "camera") {
                                           openCameraAction(context);
                                         }
+                                        if (choice == "voice") {
+                                          voiceMessageAction(context);
+                                        }
                                       },
                                       itemBuilder: (BuildContext context) =>
                                           <PopupMenuEntry<String>>[
@@ -604,6 +624,19 @@ class _ChatState extends State<_Chat> {
                                             ),
                                             title: Text(
                                                 I18n.of(context).openCamera),
+                                            contentPadding: EdgeInsets.all(0),
+                                          ),
+                                        ),
+                                        PopupMenuItem<String>(
+                                          value: "voice",
+                                          child: ListTile(
+                                            leading: CircleAvatar(
+                                              backgroundColor: Colors.red,
+                                              foregroundColor: Colors.white,
+                                              child: Icon(Icons.mic),
+                                            ),
+                                            title: Text(
+                                                I18n.of(context).voiceMessage),
                                             contentPadding: EdgeInsets.all(0),
                                           ),
                                         ),
@@ -656,10 +689,17 @@ class _ChatState extends State<_Chat> {
                                       ),
                                     ),
                                   ),
-                                  IconButton(
-                                    icon: Icon(Icons.send),
-                                    onPressed: () => send(),
-                                  ),
+                                  if (!kIsWeb && inputText.isEmpty)
+                                    IconButton(
+                                      icon: Icon(Icons.mic),
+                                      onPressed: () =>
+                                          voiceMessageAction(context),
+                                    ),
+                                  if (kIsWeb || inputText.isNotEmpty)
+                                    IconButton(
+                                      icon: Icon(Icons.send),
+                                      onPressed: () => send(),
+                                    ),
                                 ],
                         ),
                       )

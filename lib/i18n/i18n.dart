@@ -94,6 +94,8 @@ class I18n {
         args: [username, targetName],
       );
 
+  String get cancel => Intl.message("Cancel");
+
   String changedTheChatAvatar(String username) => Intl.message(
         "$username changed the chat avatar",
         name: "changedTheChatAvatar",
@@ -484,6 +486,8 @@ class I18n {
 
   String get rejoin => Intl.message("Rejoin");
 
+  String get recording => Intl.message("Recording");
+
   String redactedAnEvent(String username) => Intl.message(
         "$username redacted an event",
         name: "redactedAnEvent",
@@ -554,6 +558,8 @@ class I18n {
         name: "seenByUserAndCountOthers",
         args: [username, count],
       );
+
+  String get send => Intl.message("Send");
 
   String get sendAMessage => Intl.message("Send a message");
 
@@ -713,6 +719,8 @@ class I18n {
 
   String get visibilityOfTheChatHistory =>
       Intl.message("Visibility of the chat history");
+
+  String get voiceMessage => Intl.message("Voice message");
 
   String get warningEncryptionInBeta => Intl.message(
       "End to end encryption is currently in Beta! Use at your own risk!");
