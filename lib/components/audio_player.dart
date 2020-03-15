@@ -102,9 +102,9 @@ class _AudioPlayerState extends State<AudioPlayer> {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Container(
-          width: 40,
+          width: 30,
           child: status == AudioPlayerStatus.DOWNLOADING
-              ? CircularProgressIndicator()
+              ? CircularProgressIndicator(strokeWidth: 2)
               : IconButton(
                   icon: Icon(
                     flutterSound.audioState == t_AUDIO_STATE.IS_PLAYING
@@ -121,12 +121,14 @@ class _AudioPlayerState extends State<AudioPlayer> {
                   },
                 ),
         ),
-        Slider(
-          value: currentPosition,
-          onChanged: (double position) =>
-              flutterSound.seekToPlayer(position.toInt()),
-          max: status == AudioPlayerStatus.DOWNLOADED ? maxPosition : 0,
-          min: 0,
+        Expanded(
+          child: Slider(
+            value: currentPosition,
+            onChanged: (double position) =>
+                flutterSound.seekToPlayer(position.toInt()),
+            max: status == AudioPlayerStatus.DOWNLOADED ? maxPosition : 0,
+            min: 0,
+          ),
         ),
         Text(
           statusText,
