@@ -37,6 +37,8 @@ class _AudioPlayerState extends State<AudioPlayer> {
   double currentPosition = 0;
   double maxPosition = 0;
 
+  static String currentMxc;
+
   @override
   void dispose() {
     if (flutterSound.audioState == t_AUDIO_STATE.IS_PLAYING) {
@@ -61,6 +63,14 @@ class _AudioPlayerState extends State<AudioPlayer> {
   }
 
   _playAction() async {
+    if (currentMxc != widget.content.mxc) {
+      if (currentMxc != null) {
+        if (flutterSound.audioState != t_AUDIO_STATE.IS_STOPPED) {
+          await flutterSound.stopPlayer();
+        }
+        currentMxc = widget.content.mxc;
+      }
+    }
     switch (flutterSound.audioState) {
       case t_AUDIO_STATE.IS_PLAYING:
         await flutterSound.pausePlayer();
@@ -76,7 +86,13 @@ class _AudioPlayerState extends State<AudioPlayer> {
           codec: t_CODEC.CODEC_AAC,
         );
         soundSubscription ??= flutterSound.onPlayerStateChanged.listen((e) {
-          if (e != null) {
+          if (currentMxc != widget.content.mxc) {
+            soundSubscription?.cancel()?.then((f) => soundSubscription = null);
+            this.setState(() {
+              currentPosition = 0;
+              statusText = "00:00";
+            });
+          } else if (e != null) {
             DateTime date =
                 DateTime.fromMillisecondsSinceEpoch(e.currentPosition.toInt());
             String txt = DateFormat('mm:ss', 'en_US').format(date);
