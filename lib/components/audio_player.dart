@@ -12,11 +12,11 @@ import 'matrix.dart';
 
 class AudioPlayer extends StatefulWidget {
   final Color color;
-  final MxContent content;
+  final Event event;
 
-  static String currentMxc;
+  static String currentId;
 
-  const AudioPlayer(this.content, {this.color = Colors.black, Key key})
+  const AudioPlayer(this.event, {this.color = Colors.black, Key key})
       : super(key: key);
 
   @override
@@ -51,26 +51,24 @@ class _AudioPlayerState extends State<AudioPlayer> {
   _downloadAction() async {
     if (status != AudioPlayerStatus.NOT_DOWNLOADED) return;
     setState(() => status = AudioPlayerStatus.DOWNLOADING);
-    String url = widget.content.getDownloadLink(Matrix.of(context).client);
-    var request = await httpClient.getUrl(Uri.parse(url));
-    var response = await request.close();
-    var bytes = await consolidateHttpClientResponseBytes(response);
+    final matrixFile = await Matrix.of(context)
+        .tryRequestWithErrorToast(widget.event.downloadAndDecryptAttachment());
     setState(() {
-      audioFile = bytes;
+      audioFile = matrixFile.bytes;
       status = AudioPlayerStatus.DOWNLOADED;
     });
     _playAction();
   }
 
   _playAction() async {
-    if (AudioPlayer.currentMxc != widget.content.mxc) {
-      if (AudioPlayer.currentMxc != null) {
+    if (AudioPlayer.currentId != widget.event.eventId) {
+      if (AudioPlayer.currentId != null) {
         if (flutterSound.audioState != t_AUDIO_STATE.IS_STOPPED) {
           await flutterSound.stopPlayer();
           setState(() => null);
         }
       }
-      AudioPlayer.currentMxc = widget.content.mxc;
+      AudioPlayer.currentId = widget.event.eventId;
     }
     switch (flutterSound.audioState) {
       case t_AUDIO_STATE.IS_PLAYING:
@@ -87,13 +85,13 @@ class _AudioPlayerState extends State<AudioPlayer> {
           codec: t_CODEC.CODEC_AAC,
         );
         soundSubscription ??= flutterSound.onPlayerStateChanged.listen((e) {
-          if (AudioPlayer.currentMxc != widget.content.mxc) {
+          if (AudioPlayer.currentId != widget.event.eventId) {
             soundSubscription?.cancel()?.then((f) => soundSubscription = null);
             this.setState(() {
               currentPosition = 0;
               statusText = "00:00";
             });
-            AudioPlayer.currentMxc = null;
+            AudioPlayer.currentId = null;
           } else if (e != null) {
             DateTime date =
                 DateTime.fromMillisecondsSinceEpoch(e.currentPosition.toInt());

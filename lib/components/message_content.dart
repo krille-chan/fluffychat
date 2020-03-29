@@ -1,18 +1,13 @@
-import 'dart:io';
-
 import 'package:bubble/bubble.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/audio_player.dart';
 import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/utils/event_extension.dart';
-import 'package:fluffychat/views/image_viewer.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:link_text/link_text.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:open_file/open_file.dart';
+import 'package:fluffychat/utils/matrix_file_extension.dart';
 
 import 'matrix.dart';
 
@@ -24,58 +19,47 @@ class MessageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var messageType = event.messageType;
-    if (event.room.encrypted &&
-        [
-          MessageTypes.Image,
-          MessageTypes.Sticker,
-          MessageTypes.Audio,
-          MessageTypes.Video,
-        ].contains(messageType)) {
-      messageType = MessageTypes.File;
-    }
     switch (event.type) {
       case EventTypes.Message:
       case EventTypes.Encrypted:
       case EventTypes.Sticker:
-        switch (messageType) {
+        switch (event.messageType) {
           case MessageTypes.Image:
           case MessageTypes.Sticker:
             final int size = 400;
-            final MxContent content = MxContent(event.content["url"]);
-            final String src = content.getThumbnail(
-              Matrix.of(context).client,
-              width: size * MediaQuery.of(context).devicePixelRatio,
-              height: size * MediaQuery.of(context).devicePixelRatio,
-              method: ThumbnailMethod.scale,
-            );
             return Bubble(
               padding: BubbleEdges.all(0),
               radius: Radius.circular(10),
               elevation: 0,
-              child: InkWell(
-                onTap: () => ImageViewer.show(context, content),
-                child: Container(
-                  height: size.toDouble(),
-                  width: size.toDouble(),
-                  child: kIsWeb
-                      ? Image.network(
-                          src,
-                          fit: BoxFit.cover,
-                        )
-                      : CachedNetworkImage(
-                          imageUrl: src,
-                          fit: BoxFit.cover,
-                          placeholder: (c, s) => Center(
-                            child: CircularProgressIndicator(),
-                          ),
+              child: Container(
+                height: size.toDouble(),
+                width: size.toDouble(),
+                child: FutureBuilder<MatrixFile>(
+                  future: event.downloadAndDecryptAttachment(),
+                  builder: (BuildContext context, snapshot) {
+                    if (snapshot.hasError) {
+                      return Center(
+                        child: Text(
+                          snapshot.error.toString(),
                         ),
+                      );
+                    }
+                    if (snapshot.hasData) {
+                      return InkWell(
+                        onTap: () => snapshot.data.open(),
+                        child: Image.memory(snapshot.data.bytes),
+                      );
+                    }
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  },
                 ),
               ),
             );
           case MessageTypes.Audio:
             return AudioPlayer(
-              MxContent(event.content["url"]),
+              event,
               color: textColor,
             );
           case MessageTypes.Video:
@@ -110,16 +94,11 @@ class MessageContent extends StatelessWidget {
                           );
                           return;
                         }
-                        final matrixFile = await Matrix.of(context)
+                        final MatrixFile matrixFile = await Matrix.of(context)
                             .tryRequestWithLoadingDialog(
                           event.downloadAndDecryptAttachment(),
                         );
-                        Directory tempDir = await getTemporaryDirectory();
-                        final file = File(tempDir.path +
-                            "/" +
-                            matrixFile.path.split("/").last);
-                        file.writeAsBytesSync(matrixFile.bytes);
-                        await OpenFile.open(file.path);
+                        matrixFile.open();
                       }),
                   Text(
                     "- " +
