@@ -16,6 +16,9 @@ final ThemeData lightTheme = ThemeData(
   backgroundColor: Colors.white,
   secondaryHeaderColor: Color(0xFFECECF2),
   scaffoldBackgroundColor: Colors.white,
+  snackBarTheme: SnackBarThemeData(
+    behavior: kIsWeb ? SnackBarBehavior.floating : SnackBarBehavior.fixed,
+  ),
   dialogTheme: DialogTheme(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(8.0),
@@ -47,6 +50,9 @@ final ThemeData darkTheme = ThemeData.dark().copyWith(
   scaffoldBackgroundColor: Color(0xff121212),
   accentColor: Color(0xFFF5B4D2),
   secondaryHeaderColor: Color(0xff1D1D1D),
+  snackBarTheme: SnackBarThemeData(
+    behavior: kIsWeb ? SnackBarBehavior.floating : SnackBarBehavior.fixed,
+  ),
   dialogTheme: DialogTheme(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(8.0),
@@ -78,6 +84,9 @@ final ThemeData amoledTheme = ThemeData.dark().copyWith(
   scaffoldBackgroundColor: Colors.black,
   accentColor: Color(0xFFF5B4D2),
   secondaryHeaderColor: Color(0xff1D1D1D),
+  snackBarTheme: SnackBarThemeData(
+    behavior: kIsWeb ? SnackBarBehavior.floating : SnackBarBehavior.fixed,
+  ),
   dialogTheme: DialogTheme(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(8.0),

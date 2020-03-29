@@ -19,7 +19,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:link_text/link_text.dart';
-import 'package:toast/toast.dart';
 
 class ChatDetails extends StatefulWidget {
   final Room room;
@@ -44,10 +43,12 @@ class _ChatDetailsState extends State<ChatDetails> {
       widget.room.setName(displayname),
     );
     if (success != false) {
-      Toast.show(
-        I18n.of(context).displaynameHasBeenChanged,
-        context,
-        duration: Toast.LENGTH_LONG,
+      Scaffold.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            I18n.of(context).displaynameHasBeenChanged,
+          ),
+        ),
       );
     }
   }
@@ -109,10 +110,12 @@ class _ChatDetailsState extends State<ChatDetails> {
       widget.room.setDescription(displayname),
     );
     if (success != false) {
-      Toast.show(
-        I18n.of(context).groupDescriptionHasBeenChanged,
-        context,
-        duration: Toast.LENGTH_LONG,
+      Scaffold.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            I18n.of(context).groupDescriptionHasBeenChanged,
+          ),
+        ),
       );
     }
   }
@@ -134,10 +137,12 @@ class _ChatDetailsState extends State<ChatDetails> {
       ),
     );
     if (success != false) {
-      Toast.show(
-        I18n.of(context).avatarHasBeenChanged,
-        context,
-        duration: Toast.LENGTH_LONG,
+      Scaffold.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            I18n.of(context).avatarHasBeenChanged,
+          ),
+        ),
       );
     }
   }
@@ -195,8 +200,13 @@ class _ChatDetailsState extends State<ChatDetails> {
                       Clipboard.setData(
                         ClipboardData(text: widget.room.canonicalAlias),
                       );
-                      Toast.show(I18n.of(context).copiedToClipboard, context,
-                          duration: 5);
+                      Scaffold.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            I18n.of(context).copiedToClipboard,
+                          ),
+                        ),
+                      );
                     },
                   ),
                 ChatSettingsPopupMenu(widget.room, false)

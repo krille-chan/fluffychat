@@ -10,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:toast/toast.dart';
 
 import '../i18n/i18n.dart';
 import '../utils/app_route.dart';
@@ -80,17 +79,21 @@ class MatrixState extends State<Matrix> {
           onAdditionalAuth != null) {
         return await tryRequestWithErrorToast(onAdditionalAuth(exception));
       } else {
-        Toast.show(
-          exception.errorMessage,
-          context,
-          duration: Toast.LENGTH_LONG,
+        Scaffold.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              exception.errorMessage,
+            ),
+          ),
         );
       }
     } catch (exception) {
-      Toast.show(
-        exception.toString(),
-        context,
-        duration: Toast.LENGTH_LONG,
+      Scaffold.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            exception.toString(),
+          ),
+        ),
       );
       return false;
     }
@@ -141,10 +144,12 @@ class MatrixState extends State<Matrix> {
 
     final String token = await _firebaseMessaging.getToken();
     if (token?.isEmpty ?? true) {
-      return Toast.show(
-        I18n.of(context).noGoogleServicesWarning,
-        context,
-        duration: 10,
+      return Scaffold.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            I18n.of(context).noGoogleServicesWarning,
+          ),
+        ),
       );
     }
     await client.setPushers(
@@ -175,7 +180,13 @@ class MatrixState extends State<Matrix> {
             ),
             (r) => r.isFirst);
       } catch (_) {
-        Toast.show("Failed to open chat...", context);
+        Scaffold.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              "Failed to open chat...",
+            ),
+          ),
+        );
         debugPrint(_);
       }
     };

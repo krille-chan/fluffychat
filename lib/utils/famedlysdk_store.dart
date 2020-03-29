@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:flutter/foundation.dart';
@@ -29,7 +30,11 @@ class Store extends StoreAPI {
         return null;
       }
     }
-    return await secureStorage.read(key: key);
+    try {
+      return await secureStorage.read(key: key);
+    } catch (_) {
+      return null;
+    }
   }
 
   Future<void> setItem(String key, String value) async {
@@ -71,12 +76,18 @@ class Store extends StoreAPI {
     }
     debugPrint("[Matrix] Restoring account credentials");
     final Map<String, dynamic> credentials = json.decode(credentialsStr);
+    if (credentials["homeserver"] == null ||
+        credentials["token"] == null ||
+        credentials["userID"] == null) {
+      client.onLoginStateChanged.add(LoginState.loggedOut);
+      return;
+    }
     client.connect(
       newDeviceID: credentials["deviceID"],
       newDeviceName: credentials["deviceName"],
       newHomeserver: credentials["homeserver"],
       newLazyLoadMembers: credentials["lazyLoadMembers"],
-      newMatrixVersions: List<String>.from(credentials["matrixVersions"]),
+      newMatrixVersions: List<String>.from(credentials["matrixVersions"] ?? []),
       newToken: credentials["token"],
       newUserID: credentials["userID"],
       newPrevBatch: kIsWeb
@@ -109,6 +120,10 @@ class Store extends StoreAPI {
 /// Responsible to store all data persistent and to query objects from the
 /// database.
 class ExtendedStore extends Store implements ExtendedStoreAPI {
+  /// The maximum time that files are allowed to stay in the
+  /// store. By default this is are 30 days.
+  static const int MAX_FILE_STORING_TIME = 1 * 30 * 24 * 60 * 60 * 1000;
+
   @override
   final bool extended = true;
 
@@ -126,21 +141,29 @@ class ExtendedStore extends Store implements ExtendedStoreAPI {
     // Open the database and migrate if necessary.
     var databasePath = await getDatabasesPath();
     String path = p.join(databasePath, "FluffyMatrix.db");
-    _db = await openDatabase(path, version: 16,
+    _db = await openDatabase(path, version: 20,
         onCreate: (Database db, int version) async {
       await createTables(db);
     }, onUpgrade: (Database db, int oldVersion, int newVersion) async {
       debugPrint(
           "[Store] Migrate database from version $oldVersion to $newVersion");
-      if (oldVersion != newVersion) {
+      if (oldVersion >= 18 && newVersion <= 20) {
+        await createTables(db);
+      } else if (oldVersion != newVersion) {
         // Look for an old entry in an old clients library
         List<Map> list = [];
         try {
           list = await db.rawQuery(
               "SELECT * FROM Clients WHERE client=?", [client.clientName]);
-        } on DatabaseException catch (_) {} catch (_) {
-          rethrow;
+        } catch (_) {
+          list = [];
         }
+        client.prevBatch = null;
+        await this.storePrevBatch(null);
+        schemes.forEach((String name, String scheme) async {
+          await db.execute("DROP TABLE IF EXISTS $name");
+        });
+        await createTables(db);
 
         if (list.length == 1) {
           debugPrint("[Store] Found old client from deprecated store");
@@ -158,22 +181,26 @@ class ExtendedStore extends Store implements ExtendedStoreAPI {
             newPrevBatch: null,
           );
           await db.execute("DROP TABLE IF EXISTS Clients");
-          if (client.debug) {
-            debugPrint(
-                "[Store] Restore client credentials from deprecated database of ${client.userID}");
-          }
-          schemes.forEach((String name, String scheme) async {
-            await db.execute("DROP TABLE IF EXISTS $name");
-          });
-          await createTables(db);
+          debugPrint(
+              "[Store] Restore client credentials from deprecated database of ${client.userID}");
         }
       } else {
         client.onLoginStateChanged.add(LoginState.loggedOut);
       }
+      return;
     });
 
     // Mark all pending events as failed.
     await _db.rawUpdate("UPDATE Events SET status=-1 WHERE status=0");
+
+    // Delete all stored files which are older than [MAX_FILE_STORING_TIME]
+    final int currentDeadline = DateTime.now().millisecondsSinceEpoch -
+        ExtendedStore.MAX_FILE_STORING_TIME;
+    await _db.rawDelete(
+      "DELETE From Files WHERE saved_at<?",
+      [currentDeadline],
+    );
+
     super._init();
   }
 
@@ -515,6 +542,23 @@ class ExtendedStore extends Store implements ExtendedStoreAPI {
     return;
   }
 
+  Future<void> storeFile(Uint8List bytes, String mxcUri) async {
+    await _db.rawInsert(
+      "INSERT OR REPLACE INTO Files VALUES(?, ?, ?)",
+      [mxcUri, bytes, DateTime.now().millisecondsSinceEpoch],
+    );
+    return;
+  }
+
+  Future<Uint8List> getFile(String mxcUri) async {
+    List<Map<String, dynamic>> res = await _db.rawQuery(
+      "SELECT * FROM Files WHERE mxc_uri=?",
+      [mxcUri],
+    );
+    if (res.isEmpty) return null;
+    return res.first["bytes"];
+  }
+
   static final Map<String, String> schemes = {
     /// The database scheme for the Room class.
     'Rooms': 'CREATE TABLE IF NOT EXISTS Rooms(' +
@@ -574,5 +618,12 @@ class ExtendedStore extends Store implements ExtendedStoreAPI {
         'sender TEXT, ' +
         'content TEXT, ' +
         'UNIQUE(sender))',
+
+    /// The database scheme for room states.
+    'Files': 'CREATE TABLE IF NOT EXISTS Files(' +
+        'mxc_uri TEXT PRIMARY KEY, ' +
+        'bytes BLOB, ' +
+        'saved_at INTEGER, ' +
+        'UNIQUE(mxc_uri))',
   };
 }

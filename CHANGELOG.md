@@ -2,6 +2,12 @@
 ### New features
 - Voice messages
 - New message bubble design
+### Changes:
+- Use SnackBars instead of Toasts
+### Fixes:
+- Minor fixes in the SDK
+- Loading dialog when sending files is displayed too long
+- Fixed device settings list
 
 # Version 0.9.0 - 2020-03-13
 ### New features

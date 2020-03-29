@@ -6,7 +6,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'package:toast/toast.dart';
 import 'package:uni_links/uni_links.dart';
 
 import '../components/dialogs/simple_dialogs.dart';
@@ -125,10 +124,13 @@ class _ChatListState extends State<ChatList> {
           debugPrint("initUniLinks failed during platform exception");
         }
       },
-      onError: (error) => Toast.show(
-          I18n.of(context).oopsSomethingWentWrong + " " + error.toString(),
-          context,
-          duration: 5),
+      onError: (error) => Scaffold.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            I18n.of(context).oopsSomethingWentWrong + " " + error.toString(),
+          ),
+        ),
+      ),
     );
   }
 

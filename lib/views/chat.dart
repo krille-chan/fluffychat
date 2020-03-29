@@ -19,7 +19,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:toast/toast.dart';
 import 'package:pedantic/pedantic.dart';
 
 import 'chat_list.dart';
@@ -178,7 +177,14 @@ class _ChatState extends State<_Chat> {
 
   void sendFileAction(BuildContext context) async {
     if (kIsWeb) {
-      return Toast.show(I18n.of(context).notSupportedInWeb, context);
+      Scaffold.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            I18n.of(context).notSupportedInWeb,
+          ),
+        ),
+      );
+      return;
     }
     File file = await FilePicker.getFile();
     if (file == null) return;
@@ -191,7 +197,14 @@ class _ChatState extends State<_Chat> {
 
   void sendImageAction(BuildContext context) async {
     if (kIsWeb) {
-      return Toast.show(I18n.of(context).notSupportedInWeb, context);
+      Scaffold.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            I18n.of(context).notSupportedInWeb,
+          ),
+        ),
+      );
+      return;
     }
     File file = await ImagePicker.pickImage(
         source: ImageSource.gallery,
@@ -208,7 +221,14 @@ class _ChatState extends State<_Chat> {
 
   void openCameraAction(BuildContext context) async {
     if (kIsWeb) {
-      return Toast.show(I18n.of(context).notSupportedInWeb, context);
+      Scaffold.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            I18n.of(context).notSupportedInWeb,
+          ),
+        ),
+      );
+      return;
     }
     File file = await ImagePicker.pickImage(
         source: ImageSource.camera,

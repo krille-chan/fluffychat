@@ -11,7 +11,7 @@ description: Chat with your friends.
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 0.9.0+28
+version: 0.10.0+29
 
 environment:
   sdk: ">=2.6.0 <3.0.0"
@@ -27,11 +27,10 @@ dependencies:
   famedlysdk:
     git:
       url: https://gitlab.com/famedly/famedlysdk.git
-      ref: eb84c2a0856af99527f00697cbed4eb67a47887d
+      ref: eb66ec79d431c73d5d752cb237b94da56b92f10f
 
   localstorage: ^3.0.1+4
   bubble: ^1.1.9+1
-  toast: ^0.1.5
   file_picker: ^1.4.3+2
   image_picker: ^0.6.2+3
   flutter_speed_dial: ^1.2.5
@@ -53,6 +52,7 @@ dependencies:
   flutter_slidable: ^0.5.4
   photo_view: ^0.9.2
   flutter_sound: ^2.1.1
+  open_file: ^3.0.1
 
   intl: ^0.16.0
   intl_translation: ^0.17.9

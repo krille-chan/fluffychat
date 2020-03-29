@@ -5,7 +5,6 @@ import 'package:fluffychat/components/settings_themes.dart';
 import 'package:fluffychat/views/settings_devices.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:toast/toast.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'app_info.dart';
@@ -86,11 +85,6 @@ class _SettingsState extends State<Settings> {
       ),
     );
     if (success != false) {
-      Toast.show(
-        I18n.of(context).avatarHasBeenChanged,
-        context,
-        duration: Toast.LENGTH_LONG,
-      );
       setState(() {
         profileFuture = null;
         profile = null;
@@ -194,25 +188,19 @@ class _SettingsState extends State<Settings> {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.help),
+              trailing: Icon(Icons.help),
               title: Text(I18n.of(context).help),
               onTap: () => launch(
                   "https://gitlab.com/ChristianPauly/fluffychat-flutter/issues"),
             ),
             ListTile(
-              leading: Icon(Icons.list),
-              title: Text(I18n.of(context).changelog),
-              onTap: () => launch(
-                  "https://gitlab.com/ChristianPauly/fluffychat-flutter/blob/master/CHANGELOG.md"),
-            ),
-            ListTile(
-              leading: Icon(Icons.link),
+              trailing: Icon(Icons.link),
               title: Text(I18n.of(context).license),
               onTap: () => launch(
                   "https://gitlab.com/ChristianPauly/fluffychat-flutter/raw/master/LICENSE"),
             ),
             ListTile(
-              leading: Icon(Icons.code),
+              trailing: Icon(Icons.code),
               title: Text(I18n.of(context).sourceCode),
               onTap: () => launch(
                   "https://gitlab.com/ChristianPauly/fluffychat-flutter"),

@@ -87,6 +87,7 @@ class DevicesSettingsState extends State<DevicesSettings> {
           UserDevice thisDevice =
               devices.firstWhere(isOwnDevice, orElse: () => null);
           devices.removeWhere(isOwnDevice);
+          devices.sort((a, b) => b.lastSeenTs.compareTo(a.lastSeenTs));
           return Column(
             children: <Widget>[
               if (thisDevice != null)
@@ -159,9 +160,15 @@ class UserDeviceListItem extends StatelessWidget {
         contentPadding: EdgeInsets.all(16.0),
         title: Row(
           children: <Widget>[
-            Text((userDevice.displayName?.isNotEmpty ?? false)
-                ? userDevice.displayName
-                : I18n.of(context).unknownDevice),
+            Expanded(
+              child: Text(
+                (userDevice.displayName?.isNotEmpty ?? false)
+                    ? userDevice.displayName
+                    : I18n.of(context).unknownDevice,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
             Spacer(),
             Text(userDevice.lastSeenTs.localizedTimeShort(context)),
           ],

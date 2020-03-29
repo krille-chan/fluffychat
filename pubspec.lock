@@ -124,8 +124,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: eb84c2a0856af99527f00697cbed4eb67a47887d
-      resolved-ref: eb84c2a0856af99527f00697cbed4eb67a47887d
+      ref: eb66ec79d431c73d5d752cb237b94da56b92f10f
+      resolved-ref: eb66ec79d431c73d5d752cb237b94da56b92f10f
       url: "https://gitlab.com/famedly/famedlysdk.git"
     source: git
     version: "0.0.1"
@@ -331,6 +331,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.12.6"
+  matrix_file_e2ee:
+    dependency: transitive
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: b043fcc29031979dc65e5b08e10ebb9b8d2fae30
+      url: "https://gitlab.com/famedly/libraries/matrix_file_e2ee.git"
+    source: git
+    version: "1.0.2"
   meta:
     dependency: transitive
     description:
@@ -384,11 +393,18 @@ packages:
     dependency: transitive
     description:
       path: "."
-      ref: bbc7ce10a52be5d5c10d2eb6c3591aade71356e2
-      resolved-ref: bbc7ce10a52be5d5c10d2eb6c3591aade71356e2
+      ref: "1.x.y"
+      resolved-ref: "79868b06b3ea156f90b73abafb3bbf3ac4114cc6"
       url: "https://gitlab.com/famedly/libraries/dart-olm.git"
     source: git
-    version: "0.0.0"
+    version: "1.0.0"
+  open_file:
+    dependency: "direct main"
+    description:
+      name: open_file
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.1"
   package_config:
     dependency: transitive
     description:
@@ -466,6 +482,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.1"
+  pointycastle:
+    dependency: transitive
+    description:
+      name: pointycastle
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
   pool:
     dependency: transitive
     description:
@@ -611,13 +634,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.15"
-  toast:
-    dependency: "direct main"
-    description:
-      name: toast
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.5"
   typed_data:
     dependency: transitive
     description:

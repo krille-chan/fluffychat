@@ -3,7 +3,6 @@ import 'package:fluffychat/views/chat.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:pedantic/pedantic.dart';
-import 'package:toast/toast.dart';
 
 import '../../i18n/i18n.dart';
 import '../../utils/app_route.dart';
@@ -32,8 +31,13 @@ class ChatListItem extends StatelessWidget {
       }
 
       if (room.membership == Membership.ban) {
-        Toast.show(I18n.of(context).youHaveBeenBannedFromThisChat, context,
-            duration: 5);
+        Scaffold.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              I18n.of(context).youHaveBeenBannedFromThisChat,
+            ),
+          ),
+        );
         return;
       }
 
@@ -139,19 +143,26 @@ class ChatListItem extends StatelessWidget {
           leading: Avatar(room.avatar, room.displayname),
           title: Row(
             children: <Widget>[
-              Text(
-                room.getLocalizedDisplayname(context),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-              SizedBox(width: 4),
-              room.pushRuleState == PushRuleState.notify
-                  ? Container()
-                  : Icon(
-                      Icons.notifications_off,
-                      color: Colors.grey[400],
-                      size: 16,
+              Expanded(
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Text(
+                      room.getLocalizedDisplayname(context),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
+                    SizedBox(width: 4),
+                    room.pushRuleState == PushRuleState.notify
+                        ? Container()
+                        : Icon(
+                            Icons.notifications_off,
+                            color: Colors.grey[400],
+                            size: 16,
+                          ),
+                  ],
+                ),
+              ),
               Spacer(),
               Text(
                 room.timeCreated.localizedTimeShort(context),

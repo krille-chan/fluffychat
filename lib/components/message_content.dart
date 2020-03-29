@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bubble/bubble.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:famedlysdk/famedlysdk.dart';
@@ -8,7 +10,9 @@ import 'package:fluffychat/views/image_viewer.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:link_text/link_text.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:open_file/open_file.dart';
 
 import 'matrix.dart';
 
@@ -20,11 +24,21 @@ class MessageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var messageType = event.messageType;
+    if (event.room.encrypted &&
+        [
+          MessageTypes.Image,
+          MessageTypes.Sticker,
+          MessageTypes.Audio,
+          MessageTypes.Video,
+        ].contains(messageType)) {
+      messageType = MessageTypes.File;
+    }
     switch (event.type) {
       case EventTypes.Message:
       case EventTypes.Encrypted:
       case EventTypes.Sticker:
-        switch (event.messageType) {
+        switch (messageType) {
           case MessageTypes.Image:
           case MessageTypes.Sticker:
             final int size = 400;
@@ -72,19 +86,41 @@ class MessageContent extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   RaisedButton(
-                    color: Colors.blueGrey,
-                    child: Text(
-                      I18n.of(context).downloadFile,
-                      overflow: TextOverflow.fade,
-                      softWrap: false,
-                      maxLines: 1,
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    onPressed: () => launch(
-                      MxContent(event.content["url"])
-                          .getDownloadLink(event.room.client),
-                    ),
-                  ),
+                      color: Colors.blueGrey,
+                      child: Text(
+                        I18n.of(context).downloadFile,
+                        overflow: TextOverflow.fade,
+                        softWrap: false,
+                        maxLines: 1,
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      onPressed: () async {
+                        if (kIsWeb) {
+                          if (event.room.encrypted) {
+                            Scaffold.of(context).showSnackBar(
+                              SnackBar(
+                                content:
+                                    Text(I18n.of(context).notSupportedInWeb),
+                              ),
+                            );
+                          }
+                          await launch(
+                            MxContent(event.content["url"])
+                                .getDownloadLink(event.room.client),
+                          );
+                          return;
+                        }
+                        final matrixFile = await Matrix.of(context)
+                            .tryRequestWithLoadingDialog(
+                          event.downloadAndDecryptAttachment(),
+                        );
+                        Directory tempDir = await getTemporaryDirectory();
+                        final file = File(tempDir.path +
+                            "/" +
+                            matrixFile.path.split("/").last);
+                        file.writeAsBytesSync(matrixFile.bytes);
+                        await OpenFile.open(file.path);
+                      }),
                   Text(
                     "- " +
                         (event.content.containsKey("filename")
