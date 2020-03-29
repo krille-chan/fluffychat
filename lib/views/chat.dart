@@ -85,7 +85,7 @@ class _ChatState extends State<_Chat> {
     if (timeline.events.last.type != EventTypes.RoomCreate) {
       setState(() => this._loadingHistory = true);
       await timeline.requestHistory(historyCount: _loadHistoryCount);
-      setState(() => this._loadingHistory = false);
+      if (mounted) setState(() => this._loadingHistory = false);
     }
   }
 

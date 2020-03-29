@@ -72,7 +72,7 @@ class _EncryptionButtonState extends State<EncryptionButton> {
         .stream
         .listen((s) => setState(() => null));
     return FutureBuilder<List<DeviceKeys>>(
-        future: widget.room.getUserDeviceKeys(),
+        future: widget.room.encrypted ? widget.room.getUserDeviceKeys() : null,
         builder: (BuildContext context, snapshot) {
           Color color;
           if (widget.room.encrypted && snapshot.hasData) {

@@ -1,4 +1,9 @@
-# Version 0.10.0 - 2020-03-??
+# Version 0.10.1 - 2020-03-29
+### Fixes:
+- Fix a lazy loading bug
+- Improve app icon
+
+# Version 0.10.0 - 2020-03-29
 ### New features
 - Voice messages
 - New message bubble design
