@@ -535,20 +535,16 @@ class _ChatState extends State<_Chat> {
                     ),
                   ),
                 ),
+                Divider(
+                  height: 1,
+                  color: Theme.of(context).secondaryHeaderColor,
+                  thickness: 1,
+                ),
                 room.canSendDefaultMessages &&
                         room.membership == Membership.join
                     ? Container(
                         decoration: BoxDecoration(
                           color: Theme.of(context).backgroundColor,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.2),
-                              spreadRadius: 1,
-                              blurRadius: 2,
-                              offset:
-                                  Offset(0, -1), // changes position of shadow
-                            ),
-                          ],
                         ),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
