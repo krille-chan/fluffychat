@@ -169,7 +169,6 @@ class UserDeviceListItem extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            Spacer(),
             Text(userDevice.lastSeenTs.localizedTimeShort(context)),
           ],
         ),

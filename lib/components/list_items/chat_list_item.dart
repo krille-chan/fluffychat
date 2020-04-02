@@ -163,7 +163,6 @@ class ChatListItem extends StatelessWidget {
                   ],
                 ),
               ),
-              Spacer(),
               Text(
                 room.timeCreated.localizedTimeShort(context),
                 style: TextStyle(
