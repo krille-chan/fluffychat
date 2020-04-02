@@ -27,10 +27,14 @@ class _InvitationSelectionState extends State<InvitationSelection> {
   Future<List<User>> getContacts(BuildContext context) async {
     final Client client = Matrix.of(context).client;
     List<User> participants = await widget.room.requestParticipants();
+    participants.removeWhere(
+      (u) => ![Membership.join, Membership.invite].contains(u.membership),
+    );
     List<User> contacts = [];
     Map<String, bool> userMap = {};
     for (int i = 0; i < client.rooms.length; i++) {
       List<User> roomUsers = client.rooms[i].getParticipants();
+
       for (int j = 0; j < roomUsers.length; j++) {
         if (userMap[roomUsers[j].id] != true &&
             participants.indexWhere((u) => u.id == roomUsers[j].id) == -1) {
@@ -39,10 +43,11 @@ class _InvitationSelectionState extends State<InvitationSelection> {
         userMap[roomUsers[j].id] = true;
       }
     }
-    contacts.sort((a, b) => a
-        .calcDisplayname()
-        .toLowerCase()
-        .compareTo(b.calcDisplayname().toLowerCase()));
+    contacts.sort(
+      (a, b) => a.calcDisplayname().toLowerCase().compareTo(
+            b.calcDisplayname().toLowerCase(),
+          ),
+    );
     return contacts;
   }
 

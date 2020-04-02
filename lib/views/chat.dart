@@ -67,7 +67,7 @@ class _ChatState extends State<_Chat> {
   Timer typingTimeout;
   bool currentlyTyping = false;
 
-  Set<Event> selectedEvents = {};
+  List<Event> selectedEvents = [];
 
   Event replyEvent;
 
@@ -261,6 +261,9 @@ class _ChatState extends State<_Chat> {
 
   String _getSelectedEventString(BuildContext context) {
     String copyString = "";
+    if (selectedEvents.length == 1) {
+      return selectedEvents.first.getLocalizedBody(context);
+    }
     for (Event event in selectedEvents) {
       if (copyString.isNotEmpty) copyString += "\n\n";
       copyString += event.getLocalizedBody(context, withSenderNamePrefix: true);
@@ -488,13 +491,22 @@ class _ChatState extends State<_Chat> {
                                     ),
                                   )
                                 : Message(timeline.events[i - 1],
-                                    onSelect: (Event event) => event.redacted
-                                        ? null
-                                        : selectedEvents.contains(event)
-                                            ? setState(() =>
-                                                selectedEvents.remove(event))
-                                            : setState(() =>
-                                                selectedEvents.add(event)),
+                                    onSelect: (Event event) {
+                                    if (!event.redacted) {
+                                      if (selectedEvents.contains(event)) {
+                                        setState(
+                                          () => selectedEvents.remove(event),
+                                        );
+                                      } else {
+                                        setState(
+                                          () => selectedEvents.add(event),
+                                        );
+                                      }
+                                      selectedEvents.sort(
+                                        (a, b) => a.time.compareTo(b.time),
+                                      );
+                                    }
+                                  },
                                     longPressSelect: selectedEvents.isEmpty,
                                     selected: selectedEvents
                                         .contains(timeline.events[i - 1]),

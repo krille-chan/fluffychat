@@ -1,3 +1,7 @@
+# Version 0.11.0 - 2020-04-02
+### Fixes:
+- Minor bugfixes
+
 # Version 0.10.1 - 2020-03-29
 ### Fixes:
 - Fix a lazy loading bug

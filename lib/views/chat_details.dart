@@ -174,6 +174,7 @@ class _ChatDetailsState extends State<ChatDetails> {
       );
     }
     members ??= widget.room.getParticipants();
+    members.removeWhere((u) => u.membership == Membership.leave);
     final int actualMembersCount =
         widget.room.mInvitedMemberCount + widget.room.mJoinedMemberCount;
     final bool canRequestMoreMembers = members.length < actualMembersCount;
