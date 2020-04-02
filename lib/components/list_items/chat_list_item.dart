@@ -77,7 +77,16 @@ class ChatListItem extends StatelessWidget {
 
       if (room.membership == Membership.join) {
         if (Matrix.of(context).shareContent != null) {
-          unawaited(room.sendEvent(Matrix.of(context).shareContent));
+          if (Matrix.of(context).shareContent["msgtype"] ==
+              "chat.fluffy.shared_file") {
+            await Matrix.of(context).tryRequestWithErrorToast(
+              room.sendFileEvent(
+                Matrix.of(context).shareContent["file"],
+              ),
+            );
+          } else {
+            unawaited(room.sendEvent(Matrix.of(context).shareContent));
+          }
           Matrix.of(context).shareContent = null;
         }
         await Navigator.pushAndRemoveUntil(

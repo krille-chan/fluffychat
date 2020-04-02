@@ -1,6 +1,7 @@
 import 'package:bubble/bubble.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/audio_player.dart';
+import 'package:fluffychat/components/image_bubble.dart';
 import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/utils/event_extension.dart';
 import 'package:flutter/foundation.dart';
@@ -26,37 +27,7 @@ class MessageContent extends StatelessWidget {
         switch (event.messageType) {
           case MessageTypes.Image:
           case MessageTypes.Sticker:
-            final int size = 400;
-            return Bubble(
-              padding: BubbleEdges.all(0),
-              radius: Radius.circular(10),
-              elevation: 0,
-              child: Container(
-                height: size.toDouble(),
-                width: size.toDouble(),
-                child: FutureBuilder<MatrixFile>(
-                  future: event.downloadAndDecryptAttachment(),
-                  builder: (BuildContext context, snapshot) {
-                    if (snapshot.hasError) {
-                      return Center(
-                        child: Text(
-                          snapshot.error.toString(),
-                        ),
-                      );
-                    }
-                    if (snapshot.hasData) {
-                      return InkWell(
-                        onTap: () => snapshot.data.open(),
-                        child: Image.memory(snapshot.data.bytes),
-                      );
-                    }
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  },
-                ),
-              ),
-            );
+            return ImageBubble(event);
           case MessageTypes.Audio:
             return AudioPlayer(
               event,

@@ -1,4 +1,6 @@
 # Version 0.11.0 - 2020-04-02
+### Features:
+- Share content with FluffyChat
 ### Fixes:
 - Minor bugfixes
 

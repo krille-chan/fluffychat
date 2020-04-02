@@ -41,10 +41,6 @@ class AppInfo extends StatelessWidget {
             subtitle: Text(client.matrixVersions.toString()),
           ),
           ListTile(
-            title: Text("Lazy Loading members enabled:"),
-            subtitle: Text(client.lazyLoadMembers.toString()),
-          ),
-          ListTile(
             title: Text("Device name:"),
             subtitle: Text(client.deviceName),
           ),

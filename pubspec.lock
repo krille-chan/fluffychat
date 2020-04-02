@@ -124,8 +124,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "63a5d5dba37bdf3d1106fdf6f11760bfd7d2904c"
-      resolved-ref: "63a5d5dba37bdf3d1106fdf6f11760bfd7d2904c"
+      ref: "31871235a59af16c7c163f767d7a7f8486457429"
+      resolved-ref: "31871235a59af16c7c163f767d7a7f8486457429"
       url: "https://gitlab.com/famedly/famedlysdk.git"
     source: git
     version: "0.0.1"
@@ -510,6 +510,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.5"
+  receive_sharing_intent:
+    dependency: "direct main"
+    description:
+      name: receive_sharing_intent
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.3.3"
   share:
     dependency: "direct main"
     description:
@@ -641,13 +648,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.6"
-  uni_links:
-    dependency: "direct main"
-    description:
-      name: uni_links
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.2.0"
   universal_html:
     dependency: "direct main"
     description:

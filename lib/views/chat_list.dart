@@ -1,12 +1,12 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/list_items/public_room_list_item.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'package:uni_links/uni_links.dart';
+import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 
 import '../components/dialogs/simple_dialogs.dart';
 import '../components/theme_switcher.dart';
@@ -103,35 +103,63 @@ class _ChatListState extends State<ChatList> {
       });
       setState(() => null);
     });
-    initUniLinks();
+    _initReceiveSharingINtent();
     super.initState();
   }
 
   StreamSubscription _intentDataStreamSubscription;
 
-  StreamSubscription _onUniLinksub;
+  StreamSubscription _intentFileStreamSubscription;
 
-  Future<void> initUniLinks() async {
-    if (kIsWeb) return;
-    _onUniLinksub ??= getLinksStream().listen(
-      (String initialLink) {
-        try {
-          if (initialLink?.isEmpty ?? true) return;
-          if (initialLink.startsWith("https://matrix.to/#/")) {
-            UrlLauncher(context, initialLink).openMatrixToUrl();
-          }
-        } on PlatformException {
-          debugPrint("initUniLinks failed during platform exception");
-        }
-      },
-      onError: (error) => Scaffold.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            I18n.of(context).oopsSomethingWentWrong + " " + error.toString(),
-          ),
-        ),
+  void _processIncomingSharedFiles(List<SharedMediaFile> files) {
+    if (files?.isEmpty ?? true) return;
+    if (Navigator.of(context).canPop()) {
+      Navigator.of(context).popUntil((r) => r.isFirst);
+    }
+    final File file = File(files.first.path);
+
+    Matrix.of(context).shareContent = {
+      "msgtype": "chat.fluffy.shared_file",
+      "file": MatrixFile(
+        bytes: file.readAsBytesSync(),
+        path: file.path,
       ),
-    );
+    };
+    setState(() => null);
+  }
+
+  void _processIncomingSharedText(String text) {
+    if (text == null) return;
+    if (Navigator.of(context).canPop()) {
+      Navigator.of(context).popUntil((r) => r.isFirst);
+    }
+    if (text.startsWith("https://matrix.to/#/")) {
+      UrlLauncher(context, text).openMatrixToUrl();
+      return;
+    }
+    Matrix.of(context).shareContent = {
+      "msgtype": "m.text",
+      "body": text,
+    };
+    setState(() => null);
+  }
+
+  void _initReceiveSharingINtent() {
+    if (kIsWeb) return;
+
+    // For sharing images coming from outside the app while the app is in the memory
+    _intentFileStreamSubscription = ReceiveSharingIntent.getMediaStream()
+        .listen(_processIncomingSharedFiles, onError: print);
+
+    // For sharing images coming from outside the app while the app is closed
+    ReceiveSharingIntent.getInitialMedia().then(_processIncomingSharedFiles);
+
+    // For sharing or opening urls/text coming from outside the app while the app is in the memory
+    _intentDataStreamSubscription = ReceiveSharingIntent.getTextStream()
+        .listen(_processIncomingSharedText, onError: print);
+
+    // For sharing or opening urls/text coming from outside the app while the app is closed
+    ReceiveSharingIntent.getInitialText().then(_processIncomingSharedText);
   }
 
   @override
@@ -141,7 +169,7 @@ class _ChatListState extends State<ChatList> {
       () => setState(() => null),
     );
     _intentDataStreamSubscription?.cancel();
-    _onUniLinksub?.cancel();
+    _intentFileStreamSubscription?.cancel();
     super.dispose();
   }
 

@@ -86,7 +86,6 @@ class Store extends StoreAPI {
       newDeviceID: credentials["deviceID"],
       newDeviceName: credentials["deviceName"],
       newHomeserver: credentials["homeserver"],
-      newLazyLoadMembers: credentials["lazyLoadMembers"],
       newMatrixVersions: List<String>.from(credentials["matrixVersions"] ?? []),
       newToken: credentials["token"],
       newUserID: credentials["userID"],
@@ -104,7 +103,6 @@ class Store extends StoreAPI {
       "deviceID": client.deviceID,
       "deviceName": client.deviceName,
       "homeserver": client.homeserver,
-      "lazyLoadMembers": client.lazyLoadMembers,
       "matrixVersions": client.matrixVersions,
       "token": client.accessToken,
       "userID": client.userID,
@@ -175,7 +173,6 @@ class ExtendedStore extends Store implements ExtendedStoreAPI {
             newUserID: clientList["matrix_id"],
             newDeviceID: clientList["device_id"],
             newDeviceName: clientList["device_name"],
-            newLazyLoadMembers: clientList["lazy_load_members"] == 1,
             newMatrixVersions:
                 clientList["matrix_versions"].toString().split(","),
             newPrevBatch: null,
