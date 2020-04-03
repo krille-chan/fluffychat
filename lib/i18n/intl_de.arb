@@ -221,6 +221,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "Change wallpaper": "Hintergrund ändern",
+  "@Change wallpaper": {
+    "type": "text",
+    "placeholders": {}
+  },
   "Change the server": "Ändere den Server",
   "@Change the server": {
     "type": "text",
@@ -1179,6 +1184,11 @@
   },
   "Wednesday": "Mittwoch",
   "@Wednesday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Wallpaper": "Hintergrund",
+  "@Wallpaper": {
     "type": "text",
     "placeholders": {}
   },

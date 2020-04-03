@@ -190,6 +190,8 @@ class I18n {
   String get changeTheNameOfTheGroup =>
       Intl.message("Change the name of the group");
 
+  String get changeWallpaper => Intl.message("Change wallpaper");
+
   String get changeTheServer => Intl.message("Change the server");
 
   String get channelCorruptedDecryptError =>
@@ -721,6 +723,8 @@ class I18n {
       Intl.message("Visibility of the chat history");
 
   String get voiceMessage => Intl.message("Voice message");
+
+  String get wallpaper => Intl.message("Wallpaper");
 
   String get warningEncryptionInBeta => Intl.message(
       "End to end encryption is currently in Beta! Use at your own risk!");

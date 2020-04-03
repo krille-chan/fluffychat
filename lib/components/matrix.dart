@@ -50,6 +50,7 @@ class MatrixState extends State<Matrix> {
   Map<String, dynamic> shareContent;
 
   String activeRoomId;
+  File wallpaper;
 
   void clean() async {
     if (!kIsWeb) return;
@@ -364,6 +365,14 @@ class MatrixState extends State<Matrix> {
       _initWithStore();
     } else {
       client = widget.client;
+    }
+    if (client.storeAPI != null) {
+      client.storeAPI.getItem("chat.fluffy.wallpaper").then((final path) async {
+        final file = File(path);
+        if (await file.exists()) {
+          wallpaper = file;
+        }
+      });
     }
     super.initState();
   }

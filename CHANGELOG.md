@@ -1,3 +1,7 @@
+# Version 0.12.0 - 2020-04-??
+### Features:
+- Implement custom wallpapers
+
 # Version 0.11.0 - 2020-04-02
 ### Features:
 - Share content with FluffyChat

@@ -350,7 +350,7 @@ class _ChatListState extends State<ChatList> {
                             title: Text(I18n.of(context).publicRooms),
                           ),
                         )
-                      : Divider(indent: 70, height: 1),
+                      : Container(),
               itemCount: totalCount,
               itemBuilder: (BuildContext context, int i) => i < rooms.length
                   ? ChatListItem(

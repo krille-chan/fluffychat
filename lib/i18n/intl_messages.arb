@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-03-15T12:01:07.169209",
+  "@@last_modified": "2020-04-03T20:17:02.102828",
   "About": "About",
   "@About": {
     "type": "text",
@@ -218,6 +218,11 @@
   },
   "Change the name of the group": "Change the name of the group",
   "@Change the name of the group": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Change wallpaper": "Change wallpaper",
+  "@Change wallpaper": {
     "type": "text",
     "placeholders": {}
   },
@@ -1179,6 +1184,11 @@
   },
   "Voice message": "Voice message",
   "@Voice message": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Wallpaper": "Wallpaper",
+  "@Wallpaper": {
     "type": "text",
     "placeholders": {}
   },

@@ -17,7 +17,6 @@ import 'package:fluffychat/utils/room_extension.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pedantic/pedantic.dart';
 
@@ -432,11 +431,15 @@ class _ChatState extends State<_Chat> {
           : null,
       body: Stack(
         children: <Widget>[
-          if (!kIsWeb)
-            SvgPicture.asset(
-              "assets/chat.svg",
-              height: double.infinity,
-              color: Theme.of(context).primaryColor.withOpacity(0.05),
+          if (Matrix.of(context).wallpaper != null)
+            Opacity(
+              opacity: 0.66,
+              child: Image.file(
+                Matrix.of(context).wallpaper,
+                height: double.infinity,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
             ),
           SafeArea(
             child: Column(
@@ -544,7 +547,9 @@ class _ChatState extends State<_Chat> {
                         room.membership == Membership.join
                     ? Container(
                         decoration: BoxDecoration(
-                          color: Theme.of(context).backgroundColor,
+                          color: Theme.of(context)
+                              .backgroundColor
+                              .withOpacity(0.8),
                         ),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
