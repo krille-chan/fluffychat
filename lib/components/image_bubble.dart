@@ -47,7 +47,7 @@ class _ImageBubbleState extends State<ImageBubble> {
                   _file.bytes,
                   width: size.toDouble(),
                   height: size.toDouble(),
-                  fit: BoxFit.fill,
+                  fit: BoxFit.cover,
                 ),
               );
             }
