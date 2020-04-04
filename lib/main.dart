@@ -11,6 +11,7 @@ import 'views/sign_up.dart';
 import 'components/theme_switcher.dart';
 import 'components/matrix.dart';
 import 'views/chat_list.dart';
+import 'package:universal_html/prefer_universal/html.dart' as html;
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -40,6 +41,9 @@ class App extends StatelessWidget {
                 const Locale('en'), // English
                 const Locale('de'), // German
               ],
+              locale: kIsWeb
+                  ? Locale(html.window.navigator.language.split("-").first)
+                  : null,
               home: FutureBuilder<LoginState>(
                 future:
                     Matrix.of(context).client.onLoginStateChanged.stream.first,
