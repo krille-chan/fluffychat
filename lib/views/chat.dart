@@ -373,7 +373,9 @@ class _ChatState extends State<_Chat> {
         title: selectedEvents.isEmpty
             ? Column(
                 mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: Platform.isIOS
+                    ? CrossAxisAlignment.center
+                    : CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(room.getLocalizedDisplayname(context)),
                   AnimatedContainer(
