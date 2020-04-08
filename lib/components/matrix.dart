@@ -171,7 +171,7 @@ class MatrixState extends State<Matrix> {
         if (message is String) {
           roomId = message;
         } else if (message is Map) {
-          roomId = message["data"]["room_id"];
+          roomId = (message["data"] ?? message)["room_id"];
         }
         if (roomId?.isEmpty ?? true) throw ("Bad roomId");
         await Navigator.of(context).pushAndRemoveUntil(
@@ -207,9 +207,10 @@ class MatrixState extends State<Matrix> {
     _firebaseMessaging.configure(
       onMessage: (Map<String, dynamic> message) async {
         try {
-          final String roomId = message["data"]["room_id"];
-          final String eventId = message["data"]["event_id"];
-          final int unread = json.decode(message["data"]["counts"])["unread"];
+          final data = message['data'] ?? message;
+          final String roomId = data["room_id"];
+          final String eventId = data["event_id"];
+          final int unread = json.decode(data["counts"])["unread"];
           if ((roomId?.isEmpty ?? true) ||
               (eventId?.isEmpty ?? true) ||
               unread == 0) {
