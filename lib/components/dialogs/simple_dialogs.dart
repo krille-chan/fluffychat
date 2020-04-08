@@ -26,6 +26,7 @@ class SimpleDialogs {
         content: TextField(
           controller: controller,
           autofocus: true,
+          autocorrect: false,
           onSubmitted: (s) {
             input = s;
             Navigator.of(context).pop();

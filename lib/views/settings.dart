@@ -49,6 +49,21 @@ class _SettingsState extends State<Settings> {
         AppRoute.defaultRoute(context, SignUp()), (r) => false);
   }
 
+  void setJitsiInstanceAction(BuildContext context) async {
+    var jitsi = await SimpleDialogs(context).enterText(
+      titleText: I18n.of(context).editJitsiInstance,
+      hintText: Matrix.of(context).jitsiInstance,
+      labelText: I18n.of(context).editJitsiInstance,
+    );
+    if (jitsi == null) return;
+    if (!jitsi.endsWith('/')) {
+      jitsi += '/';
+    }
+    final MatrixState matrix = Matrix.of(context);
+    await matrix.client.storeAPI.setItem('chat.fluffy.jitsi_instance', jitsi);
+    matrix.jitsiInstance = jitsi;
+  }
+
   void setDisplaynameAction(BuildContext context) async {
     final String displayname = await SimpleDialogs(context).enterText(
       titleText: I18n.of(context).editDisplayname,
@@ -204,6 +219,12 @@ class _SettingsState extends State<Settings> {
               title: Text(I18n.of(context).editDisplayname),
               subtitle: Text(profile?.displayname ?? client.userID.localpart),
               onTap: () => setDisplaynameAction(context),
+            ),
+            ListTile(
+              trailing: Icon(Icons.phone),
+              title: Text(I18n.of(context).editJitsiInstance),
+              subtitle: Text(Matrix.of(context).jitsiInstance),
+              onTap: () => setJitsiInstanceAction(context),
             ),
             ListTile(
               trailing: Icon(Icons.devices_other),

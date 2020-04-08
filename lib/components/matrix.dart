@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../i18n/i18n.dart';
 import '../utils/app_route.dart';
@@ -18,8 +19,11 @@ import '../utils/event_extension.dart';
 import '../utils/famedlysdk_store.dart';
 import '../utils/room_extension.dart';
 import '../views/chat.dart';
+import 'avatar.dart';
 
 class Matrix extends StatefulWidget {
+  static const String callNamespace = 'chat.fluffy.jitsi_call';
+
   final Widget child;
 
   final String clientName;
@@ -51,6 +55,8 @@ class MatrixState extends State<Matrix> {
 
   String activeRoomId;
   File wallpaper;
+
+  String jitsiInstance = 'https://meet.jit.si/';
 
   void clean() async {
     if (!kIsWeb) return;
@@ -343,12 +349,73 @@ class MatrixState extends State<Matrix> {
       };
 
   StreamSubscription onRoomKeyRequestSub;
+  StreamSubscription onJitsiCallSub;
+
+  void onJitsiCall(EventUpdate eventUpdate) {
+    final event = Event.fromJson(
+        eventUpdate.content, client.getRoomById(eventUpdate.roomID));
+    if (DateTime.now().millisecondsSinceEpoch -
+            event.time.millisecondsSinceEpoch >
+        1000 * 60 * 5) {
+      return;
+    }
+    final senderName = event.sender.calcDisplayname();
+    final senderAvatar = event.sender.avatarUrl;
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: ListTile(
+          contentPadding: EdgeInsets.all(0),
+          leading: Avatar(senderAvatar, senderName),
+          title: Text(
+            senderName,
+            style: TextStyle(fontSize: 18),
+          ),
+          subtitle:
+              event.room.isDirectChat ? null : Text(event.room.displayname),
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Divider(),
+            Row(
+              children: <Widget>[
+                Spacer(),
+                FloatingActionButton(
+                  backgroundColor: Colors.red,
+                  child: Icon(Icons.phone_missed),
+                  onPressed: () => Navigator.of(context).pop(),
+                ),
+                Spacer(),
+                FloatingActionButton(
+                  backgroundColor: Colors.green,
+                  child: Icon(Icons.phone),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    launch(event.body);
+                  },
+                ),
+                Spacer(),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+    return;
+  }
 
   @override
   void initState() {
     if (widget.client == null) {
       debugPrint("[Matrix] Init matrix client");
       client = Client(widget.clientName, debug: false);
+      onJitsiCallSub ??= client.onEvent.stream
+          .where((e) =>
+              e.eventType == 'm.room.message' &&
+              e.content['content']['msgtype'] == Matrix.callNamespace &&
+              e.content['sender'] != client.userID)
+          .listen(onJitsiCall);
       onRoomKeyRequestSub ??=
           client.onRoomKeyRequest.stream.listen((RoomKeyRequest request) async {
         final Room room = request.room;
@@ -368,6 +435,9 @@ class MatrixState extends State<Matrix> {
       client = widget.client;
     }
     if (client.storeAPI != null) {
+      client.storeAPI
+          .getItem("chat.fluffy.jitsi_instance")
+          .then((final instance) => jitsiInstance = instance ?? jitsiInstance);
       client.storeAPI.getItem("chat.fluffy.wallpaper").then((final path) async {
         if (path == null) return;
         final file = File(path);
@@ -382,6 +452,7 @@ class MatrixState extends State<Matrix> {
   @override
   void dispose() {
     onRoomKeyRequestSub?.cancel();
+    onJitsiCallSub?.cancel();
     super.dispose();
   }
 

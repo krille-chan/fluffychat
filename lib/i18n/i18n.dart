@@ -371,6 +371,8 @@ class I18n {
 
   String get isTyping => Intl.message("is typing...");
 
+  String get editJitsiInstance => Intl.message('Edit Jitsi instance');
+
   String joinedTheChat(String username) => Intl.message(
         "$username joined the chat",
         name: "joinedTheChat",
@@ -713,6 +715,8 @@ class I18n {
       );
 
   String get verify => Intl.message("Verify");
+
+  String get videoCall => Intl.message('Video call');
 
   String get visibleForAllParticipants =>
       Intl.message("Visible for all participants");

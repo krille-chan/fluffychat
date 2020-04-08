@@ -99,6 +99,19 @@ class MessageContent extends StatelessWidget {
           case MessageTypes.Notice:
           case MessageTypes.Emote:
           default:
+            if (event.content['msgtype'] == Matrix.callNamespace) {
+              return RaisedButton(
+                color: Theme.of(context).backgroundColor,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Icon(Icons.phone),
+                    Text(I18n.of(context).videoCall),
+                  ],
+                ),
+                onPressed: () => launch(event.body),
+              );
+            }
             return LinkText(
               text: event.getLocalizedBody(context, hideReply: true),
               textStyle: TextStyle(
