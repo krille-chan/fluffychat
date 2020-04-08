@@ -37,7 +37,7 @@ dependencies:
   url_launcher: ^5.4.1
   url_launcher_web: ^0.1.0
   sqflite: ^1.2.0
-  cached_network_image: ^2.0.0
+  flutter_advanced_networkimage: any
   firebase_messaging: ^6.0.9
   flutter_local_notifications: ^0.9.1+2
   link_text: ^0.1.1

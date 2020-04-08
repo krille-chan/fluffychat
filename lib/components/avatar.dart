@@ -1,8 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_networkimage/provider.dart';
 
 import 'matrix.dart';
 
@@ -40,13 +40,7 @@ class Avatar extends StatelessWidget {
       child: CircleAvatar(
         radius: size / 2,
         backgroundImage: mxContent.mxc?.isNotEmpty ?? false
-            ? kIsWeb
-                ? NetworkImage(
-                    src,
-                  )
-                : CachedNetworkImageProvider(
-                    src,
-                  )
+            ? AdvancedNetworkImage(src)
             : null,
         backgroundColor: mxContent.mxc.isEmpty
             ? name?.color ?? Theme.of(context).secondaryHeaderColor

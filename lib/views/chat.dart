@@ -496,7 +496,9 @@ class _ChatState extends State<_Chat> {
                                     ),
                                   )
                                 : Message(timeline.events[i - 1],
-                                    onSelect: (Event event) {
+                                    onAvatarTab: (Event event) {
+                                    sendController.text += ' ${event.senderId}';
+                                  }, onSelect: (Event event) {
                                     if (!event.redacted) {
                                       if (selectedEvents.contains(event)) {
                                         setState(

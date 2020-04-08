@@ -6,7 +6,6 @@ import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/event_extension.dart';
 import 'package:fluffychat/utils/string_color.dart';
-import 'package:fluffychat/views/image_viewer.dart';
 import 'package:flutter/material.dart';
 
 import '../avatar.dart';
@@ -17,6 +16,7 @@ class Message extends StatelessWidget {
   final Event event;
   final Event nextEvent;
   final Function(Event) onSelect;
+  final Function(Event) onAvatarTab;
   final bool longPressSelect;
   final bool selected;
   final Timeline timeline;
@@ -25,6 +25,7 @@ class Message extends StatelessWidget {
       {this.nextEvent,
       this.longPressSelect,
       this.onSelect,
+      this.onAvatarTab,
       this.selected,
       this.timeline});
 
@@ -119,11 +120,13 @@ class Message extends StatelessWidget {
                           .tryRequestWithLoadingDialog(event.requestKey()),
                     ),
                   SizedBox(height: 4),
-                  _MetaRow(
-                    event,
-                    ownMessage,
-                    textColor,
-                    invisible: true,
+                  Opacity(
+                    opacity: 0,
+                    child: _MetaRow(
+                      event,
+                      ownMessage,
+                      textColor,
+                    ),
                   ),
                 ],
               ),
@@ -147,7 +150,7 @@ class Message extends StatelessWidget {
         : Avatar(
             event.sender.avatarUrl,
             event.sender.calcDisplayname(),
-            onTap: () => ImageViewer.show(context, event.sender.avatarUrl),
+            onTap: () => onAvatarTab(event),
           );
     if (ownMessage) {
       rowChildren.add(avatarOrSizedBox);
@@ -181,12 +184,10 @@ class Message extends StatelessWidget {
 
 class _MetaRow extends StatelessWidget {
   final Event event;
-  final bool invisible;
   final bool ownMessage;
   final Color color;
 
-  const _MetaRow(this.event, this.ownMessage, this.color,
-      {this.invisible = false, Key key})
+  const _MetaRow(this.event, this.ownMessage, this.color, {Key key})
       : super(key: key);
 
   @override
@@ -203,14 +204,14 @@ class _MetaRow extends StatelessWidget {
             style: TextStyle(
               fontSize: 11,
               fontWeight: FontWeight.bold,
-              color: invisible ? Colors.transparent : displayname.color,
+              color: displayname.color,
             ),
           ),
         if (showDisplayname) SizedBox(width: 4),
         Text(
           event.time.localizedTime(context),
           style: TextStyle(
-            color: invisible ? Colors.transparent : color,
+            color: color,
             fontSize: 11,
           ),
         ),

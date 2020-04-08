@@ -1,8 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/views/image_viewer.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_networkimage/provider.dart';
 
 import 'matrix.dart';
 
@@ -32,55 +31,44 @@ class ContentBanner extends StatelessWidget {
       height: bannerSize,
       method: ThumbnailMethod.scale,
     );
-    return InkWell(
-      onTap: () => mxContent.mxc?.isNotEmpty ?? false
-          ? ImageViewer.show(context, mxContent)
-          : null,
-      child: Container(
-        height: 300,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          color: Theme.of(context).secondaryHeaderColor,
-        ),
-        child: Stack(
-          children: <Widget>[
-            Positioned(
-              left: 0,
-              right: 0,
-              top: 0,
-              bottom: 0,
-              child: Opacity(
-                opacity: 0.75,
-                child: !loading
-                    ? mxContent.mxc?.isNotEmpty ?? false
-                        ? kIsWeb
-                            ? Image.network(
-                                src,
-                                height: 300,
-                                fit: BoxFit.cover,
-                              )
-                            : CachedNetworkImage(
-                                imageUrl: src,
-                                height: 300,
-                                fit: BoxFit.cover,
-                              )
-                        : Icon(defaultIcon, size: 300)
-                    : Icon(defaultIcon, size: 300),
+    return Container(
+      height: 300,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        color: Theme.of(context).secondaryHeaderColor,
+      ),
+      child: Stack(
+        children: <Widget>[
+          Positioned(
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            child: Opacity(
+              opacity: 0.75,
+              child: !loading
+                  ? mxContent.mxc?.isNotEmpty ?? false
+                      ? Image(
+                          height: 300,
+                          fit: BoxFit.cover,
+                          image: AdvancedNetworkImage(src),
+                        )
+                      : Icon(defaultIcon, size: 300)
+                  : Icon(defaultIcon, size: 300),
+            ),
+          ),
+          if (this.onEdit != null)
+            Container(
+              margin: EdgeInsets.all(8),
+              alignment: Alignment.bottomRight,
+              child: FloatingActionButton(
+                mini: true,
+                backgroundColor: Theme.of(context).primaryColor,
+                child: Icon(Icons.camera_alt),
+                onPressed: onEdit,
               ),
             ),
-            if (this.onEdit != null)
-              Container(
-                margin: EdgeInsets.all(8),
-                alignment: Alignment.bottomRight,
-                child: FloatingActionButton(
-                  mini: true,
-                  backgroundColor: Theme.of(context).primaryColor,
-                  child: Icon(Icons.camera_alt),
-                  onPressed: onEdit,
-                ),
-              ),
-          ],
-        ),
+        ],
       ),
     );
   }
