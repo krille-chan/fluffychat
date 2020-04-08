@@ -368,6 +368,7 @@ class MatrixState extends State<Matrix> {
     }
     if (client.storeAPI != null) {
       client.storeAPI.getItem("chat.fluffy.wallpaper").then((final path) async {
+        if (path == null) return;
         final file = File(path);
         if (await file.exists()) {
           wallpaper = file;
