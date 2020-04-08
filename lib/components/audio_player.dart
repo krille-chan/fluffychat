@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:famedlysdk/famedlysdk.dart';
@@ -31,8 +30,6 @@ class _AudioPlayerState extends State<AudioPlayer> {
   FlutterSound flutterSound = FlutterSound();
 
   StreamSubscription soundSubscription;
-
-  static var httpClient = HttpClient();
   Uint8List audioFile;
 
   String statusText = "00:00";

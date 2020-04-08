@@ -220,7 +220,7 @@ class _MetaRow extends StatelessWidget {
           Icon(
             event.statusIcon,
             size: 12,
-            color: invisible ? Colors.transparent : color,
+            color: color,
           ),
       ],
     );
