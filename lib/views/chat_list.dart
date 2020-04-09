@@ -125,7 +125,6 @@ class _ChatListState extends State<ChatList> {
         path: file.path,
       ),
     };
-    setState(() => null);
   }
 
   void _processIncomingSharedText(String text) {
@@ -141,7 +140,6 @@ class _ChatListState extends State<ChatList> {
       "msgtype": "m.text",
       "body": text,
     };
-    setState(() => null);
   }
 
   void _initReceiveSharingINtent() {
@@ -170,11 +168,18 @@ class _ChatListState extends State<ChatList> {
     );
     _intentDataStreamSubscription?.cancel();
     _intentFileStreamSubscription?.cancel();
+    _onShareContentChangedSub?.cancel();
     super.dispose();
   }
 
+  StreamSubscription _onShareContentChangedSub;
+
   @override
   Widget build(BuildContext context) {
+    _onShareContentChangedSub ??= Matrix.of(context)
+        .onShareContentChanged
+        .stream
+        .listen((c) => setState(() => null));
     if (Matrix.of(context).shareContent != null) {
       selectMode = SelectMode.share;
     } else if (selectMode == SelectMode.share) {

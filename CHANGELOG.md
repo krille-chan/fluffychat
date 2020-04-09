@@ -1,8 +1,10 @@
 # Version 0.12.0 - 2020-04-??
 ### Features:
 - Implement custom wallpapers
+- Use SKIA for web
 ### Fixes:
 - Fix image scaling
+- Minor bugfixes
 
 # Version 0.11.0 - 2020-04-02
 ### Features:

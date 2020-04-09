@@ -51,7 +51,16 @@ class MatrixState extends State<Matrix> {
   FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
   FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
-  Map<String, dynamic> shareContent;
+  Map<String, dynamic> get shareContent => _shareContent;
+  set shareContent(Map<String, dynamic> content) {
+    _shareContent = content;
+    onShareContentChanged.add(_shareContent);
+  }
+
+  Map<String, dynamic> _shareContent;
+
+  final StreamController<Map<String, dynamic>> onShareContentChanged =
+      StreamController.broadcast();
 
   String activeRoomId;
   File wallpaper;
