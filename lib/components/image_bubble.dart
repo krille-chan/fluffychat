@@ -13,7 +13,12 @@ class ImageBubble extends StatefulWidget {
 }
 
 class _ImageBubbleState extends State<ImageBubble> {
-  MatrixFile _file;
+  static Map<String, MatrixFile> _matrixFileMap = {};
+  MatrixFile get _file => _matrixFileMap[widget.event.eventId];
+  set _file(MatrixFile file) {
+    _matrixFileMap[widget.event.eventId] = file;
+  }
+
   dynamic _error;
 
   Future<MatrixFile> _getFile() async {

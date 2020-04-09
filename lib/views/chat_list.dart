@@ -211,7 +211,15 @@ class _ChatListState extends State<ChatList> {
                   searchMode = false;
                 }),
               )
-            : null,
+            : selectMode == SelectMode.share
+                ? IconButton(
+                    icon: Icon(Icons.close),
+                    onPressed: () {
+                      Matrix.of(context).shareContent = null;
+                      setState(() => selectMode = SelectMode.normal);
+                    },
+                  )
+                : null,
         automaticallyImplyLeading: false,
         actions: searchMode
             ? <Widget>[
@@ -242,14 +250,6 @@ class _ChatListState extends State<ChatList> {
                   icon: Icon(Icons.search),
                   onPressed: () => setState(() => searchMode = true),
                 ),
-                if (selectMode == SelectMode.share)
-                  IconButton(
-                    icon: Icon(Icons.close),
-                    onPressed: () {
-                      Matrix.of(context).shareContent = null;
-                      setState(() => selectMode = SelectMode.normal);
-                    },
-                  ),
                 if (selectMode == SelectMode.normal)
                   PopupMenuButton(
                     onSelected: (String choice) {
@@ -288,34 +288,36 @@ class _ChatListState extends State<ChatList> {
                   ),
               ],
       ),
-      floatingActionButton: SpeedDial(
-        child: Icon(Icons.add),
-        overlayColor: blackWhiteColor(context),
-        foregroundColor: Colors.white,
-        backgroundColor: Theme.of(context).primaryColor,
-        children: [
-          SpeedDialChild(
-            child: Icon(Icons.people_outline),
-            foregroundColor: Colors.white,
-            backgroundColor: Colors.blue,
-            label: I18n.of(context).createNewGroup,
-            labelStyle: TextStyle(fontSize: 18.0, color: Colors.black),
-            onTap: () => Navigator.of(context).pushAndRemoveUntil(
-                AppRoute.defaultRoute(context, NewGroupView()),
-                (r) => r.isFirst),
-          ),
-          SpeedDialChild(
-            child: Icon(Icons.person_add),
-            foregroundColor: Colors.white,
-            backgroundColor: Colors.green,
-            label: I18n.of(context).newPrivateChat,
-            labelStyle: TextStyle(fontSize: 18.0, color: Colors.black),
-            onTap: () => Navigator.of(context).pushAndRemoveUntil(
-                AppRoute.defaultRoute(context, NewPrivateChatView()),
-                (r) => r.isFirst),
-          ),
-        ],
-      ),
+      floatingActionButton: selectMode == SelectMode.share
+          ? null
+          : SpeedDial(
+              child: Icon(Icons.add),
+              overlayColor: blackWhiteColor(context),
+              foregroundColor: Colors.white,
+              backgroundColor: Theme.of(context).primaryColor,
+              children: [
+                SpeedDialChild(
+                  child: Icon(Icons.people_outline),
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.blue,
+                  label: I18n.of(context).createNewGroup,
+                  labelStyle: TextStyle(fontSize: 18.0, color: Colors.black),
+                  onTap: () => Navigator.of(context).pushAndRemoveUntil(
+                      AppRoute.defaultRoute(context, NewGroupView()),
+                      (r) => r.isFirst),
+                ),
+                SpeedDialChild(
+                  child: Icon(Icons.person_add),
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.green,
+                  label: I18n.of(context).newPrivateChat,
+                  labelStyle: TextStyle(fontSize: 18.0, color: Colors.black),
+                  onTap: () => Navigator.of(context).pushAndRemoveUntil(
+                      AppRoute.defaultRoute(context, NewPrivateChatView()),
+                      (r) => r.isFirst),
+                ),
+              ],
+            ),
       body: FutureBuilder<bool>(
         future: waitForFirstSync(context),
         builder: (BuildContext context, snapshot) {
