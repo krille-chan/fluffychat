@@ -422,6 +422,7 @@ class MatrixState extends State<Matrix> {
       client = Client(widget.clientName, debug: false);
       onJitsiCallSub ??= client.onEvent.stream
           .where((e) =>
+              e.type == 'timeline' &&
               e.eventType == 'm.room.message' &&
               e.content['content']['msgtype'] == Matrix.callNamespace &&
               e.content['sender'] != client.userID)
