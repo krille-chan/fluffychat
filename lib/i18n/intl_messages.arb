@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-04-03T20:17:02.102828",
+  "@@last_modified": "2020-04-09T10:05:25.548084",
   "About": "About",
   "@About": {
     "type": "text",
@@ -570,6 +570,11 @@
   },
   "is typing...": "is typing...",
   "@is typing...": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Edit Jitsi instance": "Edit Jitsi instance",
+  "@Edit Jitsi instance": {
     "type": "text",
     "placeholders": {}
   },
@@ -1164,6 +1169,11 @@
   },
   "Verify": "Verify",
   "@Verify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Video call": "Video call",
+  "@Video call": {
     "type": "text",
     "placeholders": {}
   },

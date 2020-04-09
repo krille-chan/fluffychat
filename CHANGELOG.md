@@ -1,6 +1,7 @@
 # Version 0.12.0 - 2020-04-??
 ### Features:
 - Implement custom wallpapers
+- Lightweight Jitsi integration for video calls
 - Use SKIA for web
 ### Fixes:
 - Fix image scaling

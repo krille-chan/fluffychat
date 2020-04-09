@@ -373,19 +373,20 @@ class MatrixState extends State<Matrix> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: ListTile(
-          contentPadding: EdgeInsets.all(0),
-          leading: Avatar(senderAvatar, senderName),
-          title: Text(
-            senderName,
-            style: TextStyle(fontSize: 18),
-          ),
-          subtitle:
-              event.room.isDirectChat ? null : Text(event.room.displayname),
-        ),
+        title: Text(I18n.of(context).videoCall),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
+            ListTile(
+              contentPadding: EdgeInsets.all(0),
+              leading: Avatar(senderAvatar, senderName),
+              title: Text(
+                senderName,
+                style: TextStyle(fontSize: 18),
+              ),
+              subtitle:
+                  event.room.isDirectChat ? null : Text(event.room.displayname),
+            ),
             Divider(),
             Row(
               children: <Widget>[

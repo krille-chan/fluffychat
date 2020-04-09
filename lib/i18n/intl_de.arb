@@ -573,6 +573,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "Edit Jitsi instance": "Jitsi Instanz ändern",
+  "@Edit Jitsi instance": {
+    "type": "text",
+    "placeholders": {}
+  },
   "joinedTheChat": "{username} ist dem Chat beigetreten",
   "@joinedTheChat": {
     "type": "text",
@@ -1164,6 +1169,11 @@
   },
   "Verify": "Bestätigen",
   "@Verify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Video call": "Videoanruf",
+  "@Video call": {
     "type": "text",
     "placeholders": {}
   },
