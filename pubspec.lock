@@ -348,12 +348,12 @@ packages:
     source: hosted
     version: "0.9.6+3"
   mime_type:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: mime_type
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.4"
+    version: "0.2.7"
   multi_server_socket:
     dependency: transitive
     description:
