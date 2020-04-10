@@ -42,7 +42,7 @@ dependencies:
   flutter_local_notifications: ^0.9.1+2
   link_text: ^0.1.1
   path_provider: ^1.5.1
-  webview_flutter: ^0.3.19+4
+  webview_flutter: ^0.3.19+9
   share: ^0.6.3+5
   flutter_secure_storage: ^3.3.1+1
   http: ^0.12.0+4

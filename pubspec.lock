@@ -117,8 +117,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "31871235a59af16c7c163f767d7a7f8486457429"
-      resolved-ref: "31871235a59af16c7c163f767d7a7f8486457429"
+      ref: "28dee0e2e3dc2fdde64b29d0a65028b49b4c4dc7"
+      resolved-ref: "28dee0e2e3dc2fdde64b29d0a65028b49b4c4dc7"
       url: "https://gitlab.com/famedly/famedlysdk.git"
     source: git
     version: "0.0.1"
@@ -724,7 +724,7 @@ packages:
       name: webview_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.19+4"
+    version: "0.3.19+9"
   xml:
     dependency: transitive
     description:
