@@ -28,14 +28,14 @@ class _ImageBubbleState extends State<ImageBubble> {
 
   @override
   Widget build(BuildContext context) {
-    final int size = 400;
     return Bubble(
       padding: BubbleEdges.all(0),
       radius: Radius.circular(10),
+      color: Theme.of(context).secondaryHeaderColor,
       elevation: 0,
       child: Container(
-        height: size.toDouble(),
-        width: size.toDouble(),
+        height: 300,
+        width: 400,
         child: Builder(
           builder: (BuildContext context) {
             if (_error != null) {
@@ -50,8 +50,6 @@ class _ImageBubbleState extends State<ImageBubble> {
                 onTap: () => _file.open(),
                 child: Image.memory(
                   _file.bytes,
-                  width: size.toDouble(),
-                  height: size.toDouble(),
                   fit: BoxFit.cover,
                 ),
               );
