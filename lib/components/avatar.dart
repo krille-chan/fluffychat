@@ -42,7 +42,7 @@ class Avatar extends StatelessWidget {
         backgroundImage: mxContent.mxc?.isNotEmpty ?? false
             ? AdvancedNetworkImage(
                 src,
-                useDiskCache: true,
+                useDiskCache: !kIsWeb,
               )
             : null,
         backgroundColor: mxContent.mxc.isEmpty

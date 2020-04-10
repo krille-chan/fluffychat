@@ -18,7 +18,9 @@ extension MatrixFileExtension on MatrixFile {
       var element = html.document.createElement('a');
       element.setAttribute(
           'href', html.Url.createObjectUrlFromBlob(html.Blob([bytes])));
-      element.setAttribute('target', "new");
+      element.setAttribute('target', "_blank");
+      element.setAttribute('rel', "noopener");
+      element.setAttribute('download', fileName);
       element.setAttribute('type', mimeType);
       element.style.display = 'none';
       html.document.body.append(element);
