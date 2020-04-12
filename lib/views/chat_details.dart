@@ -17,6 +17,7 @@ import 'package:fluffychat/views/invitation_selection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:link_text/link_text.dart';
 
@@ -43,13 +44,7 @@ class _ChatDetailsState extends State<ChatDetails> {
       widget.room.setName(displayname),
     );
     if (success != false) {
-      Scaffold.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            I18n.of(context).displaynameHasBeenChanged,
-          ),
-        ),
-      );
+      showToast(I18n.of(context).displaynameHasBeenChanged);
     }
   }
 
@@ -110,13 +105,7 @@ class _ChatDetailsState extends State<ChatDetails> {
       widget.room.setDescription(displayname),
     );
     if (success != false) {
-      Scaffold.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            I18n.of(context).groupDescriptionHasBeenChanged,
-          ),
-        ),
-      );
+      showToast(I18n.of(context).groupDescriptionHasBeenChanged);
     }
   }
 
@@ -137,13 +126,7 @@ class _ChatDetailsState extends State<ChatDetails> {
       ),
     );
     if (success != false) {
-      Scaffold.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            I18n.of(context).avatarHasBeenChanged,
-          ),
-        ),
-      );
+      showToast(I18n.of(context).avatarHasBeenChanged);
     }
   }
 
@@ -201,13 +184,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                       Clipboard.setData(
                         ClipboardData(text: widget.room.canonicalAlias),
                       );
-                      Scaffold.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            I18n.of(context).copiedToClipboard,
-                          ),
-                        ),
-                      );
+                      showToast(I18n.of(context).copiedToClipboard);
                     },
                   ),
                 ChatSettingsPopupMenu(widget.room, false)

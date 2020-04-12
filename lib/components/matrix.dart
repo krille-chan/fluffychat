@@ -8,6 +8,7 @@ import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -95,22 +96,10 @@ class MatrixState extends State<Matrix> {
           onAdditionalAuth != null) {
         return await tryRequestWithErrorToast(onAdditionalAuth(exception));
       } else {
-        Scaffold.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              exception.errorMessage,
-            ),
-          ),
-        );
+        showToast(exception.errorMessage);
       }
     } catch (exception) {
-      Scaffold.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            exception.toString(),
-          ),
-        ),
-      );
+      showToast(exception.toString());
       return false;
     }
   }
@@ -158,15 +147,14 @@ class MatrixState extends State<Matrix> {
   Future<void> setupFirebase() async {
     if (Platform.isIOS) iOS_Permission();
 
-    final String token = await _firebaseMessaging.getToken();
+    String token;
+    try {
+      token = await _firebaseMessaging.getToken();
+    } catch (_) {
+      token = null;
+    }
     if (token?.isEmpty ?? true) {
-      return Scaffold.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            I18n.of(context).noGoogleServicesWarning,
-          ),
-        ),
-      );
+      showToast(I18n.of(context).noGoogleServicesWarning);
     }
     await client.setPushers(
       token,
@@ -196,13 +184,7 @@ class MatrixState extends State<Matrix> {
             ),
             (r) => r.isFirst);
       } catch (_) {
-        Scaffold.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              "Failed to open chat...",
-            ),
-          ),
-        );
+        showToast("Failed to open chat...");
         debugPrint(_);
       }
     };
@@ -419,7 +401,7 @@ class MatrixState extends State<Matrix> {
   void initState() {
     if (widget.client == null) {
       debugPrint("[Matrix] Init matrix client");
-      client = Client(widget.clientName, debug: false);
+      client = Client(widget.clientName, debug: true);
       onJitsiCallSub ??= client.onEvent.stream
           .where((e) =>
               e.type == 'timeline' &&

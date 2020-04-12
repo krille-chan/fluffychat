@@ -6,6 +6,7 @@ import 'package:fluffychat/components/avatar.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/i18n/i18n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 
 import 'chat_list.dart';
 
@@ -56,13 +57,7 @@ class _InvitationSelectionState extends State<InvitationSelection> {
       widget.room.invite(id),
     );
     if (success != false) {
-      Scaffold.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            I18n.of(context).contactHasBeenInvitedToTheGroup,
-          ),
-        ),
-      );
+      showToast(I18n.of(context).contactHasBeenInvitedToTheGroup);
     }
   }
 

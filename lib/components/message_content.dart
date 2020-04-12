@@ -5,6 +5,7 @@ import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/utils/event_extension.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:link_text/link_text.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:fluffychat/utils/matrix_file_extension.dart';
@@ -51,12 +52,7 @@ class MessageContent extends StatelessWidget {
                       onPressed: () async {
                         if (kIsWeb) {
                           if (event.room.encrypted) {
-                            Scaffold.of(context).showSnackBar(
-                              SnackBar(
-                                content:
-                                    Text(I18n.of(context).notSupportedInWeb),
-                              ),
-                            );
+                            showToast(I18n.of(context).notSupportedInWeb);
                           }
                           await launch(
                             MxContent(event.content["url"])

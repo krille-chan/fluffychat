@@ -7,6 +7,7 @@ import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/views/auth_web_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 
 import 'chat_list.dart';
 
@@ -95,13 +96,7 @@ class _SignUpPasswordState extends State<SignUpPassword> {
     try {
       await matrix.client.setDisplayname(widget.displayname);
     } catch (exception) {
-      Scaffold.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            I18n.of(context).couldNotSetDisplayname,
-          ),
-        ),
-      );
+      showToast(I18n.of(context).couldNotSetDisplayname);
     }
     if (widget.avatar != null) {
       try {
@@ -112,13 +107,7 @@ class _SignUpPasswordState extends State<SignUpPassword> {
           ),
         );
       } catch (exception) {
-        Scaffold.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              I18n.of(context).couldNotSetAvatar,
-            ),
-          ),
-        );
+        showToast(I18n.of(context).couldNotSetAvatar);
       }
     }
     await Navigator.of(context).pushAndRemoveUntil(

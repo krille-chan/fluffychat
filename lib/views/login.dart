@@ -104,82 +104,86 @@ class _LoginState extends State<Login> {
               labelText: serverError == null ? "Homeserver" : serverError),
         ),
       ),
-      body: ListView(
-        padding: EdgeInsets.symmetric(
-            horizontal: max((MediaQuery.of(context).size.width - 600) / 2, 0)),
-        children: <Widget>[
-          Container(
-            height: 150,
-            color: Theme.of(context).secondaryHeaderColor,
-            child: Center(
-              child: Icon(
-                Icons.vpn_key,
-                size: 60,
+      body: Builder(builder: (context) {
+        return ListView(
+          padding: EdgeInsets.symmetric(
+              horizontal:
+                  max((MediaQuery.of(context).size.width - 600) / 2, 0)),
+          children: <Widget>[
+            Container(
+              height: 150,
+              color: Theme.of(context).secondaryHeaderColor,
+              child: Center(
+                child: Icon(
+                  Icons.vpn_key,
+                  size: 60,
+                ),
               ),
             ),
-          ),
-          ListTile(
-            leading: CircleAvatar(
-              child: Icon(Icons.account_box,
-                  color: Theme.of(context).primaryColor),
-            ),
-            title: TextField(
-              readOnly: loading,
-              autocorrect: false,
-              controller: usernameController,
-              decoration: InputDecoration(
-                  hintText:
-                      "@${I18n.of(context).username.toLowerCase()}:domain",
-                  errorText: usernameError,
-                  labelText: I18n.of(context).username),
-            ),
-          ),
-          ListTile(
-            leading: CircleAvatar(
-              backgroundColor: Theme.of(context).brightness == Brightness.dark
-                  ? Color(0xff121212)
-                  : Colors.white,
-              child: Icon(Icons.lock, color: Theme.of(context).primaryColor),
-            ),
-            title: TextField(
-              readOnly: loading,
-              autocorrect: false,
-              controller: passwordController,
-              obscureText: !showPassword,
-              onSubmitted: (t) => login(context),
-              decoration: InputDecoration(
-                  hintText: "****",
-                  errorText: passwordError,
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                        showPassword ? Icons.visibility_off : Icons.visibility),
-                    onPressed: () =>
-                        setState(() => showPassword = !showPassword),
-                  ),
-                  labelText: I18n.of(context).password),
-            ),
-          ),
-          SizedBox(height: 20),
-          Container(
-            height: 50,
-            padding: EdgeInsets.symmetric(horizontal: 12),
-            child: RaisedButton(
-              elevation: 7,
-              color: Theme.of(context).primaryColor,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(6),
+            ListTile(
+              leading: CircleAvatar(
+                child: Icon(Icons.account_box,
+                    color: Theme.of(context).primaryColor),
               ),
-              child: loading
-                  ? CircularProgressIndicator()
-                  : Text(
-                      I18n.of(context).login.toUpperCase(),
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+              title: TextField(
+                readOnly: loading,
+                autocorrect: false,
+                controller: usernameController,
+                decoration: InputDecoration(
+                    hintText:
+                        "@${I18n.of(context).username.toLowerCase()}:domain",
+                    errorText: usernameError,
+                    labelText: I18n.of(context).username),
+              ),
+            ),
+            ListTile(
+              leading: CircleAvatar(
+                backgroundColor: Theme.of(context).brightness == Brightness.dark
+                    ? Color(0xff121212)
+                    : Colors.white,
+                child: Icon(Icons.lock, color: Theme.of(context).primaryColor),
+              ),
+              title: TextField(
+                readOnly: loading,
+                autocorrect: false,
+                controller: passwordController,
+                obscureText: !showPassword,
+                onSubmitted: (t) => login(context),
+                decoration: InputDecoration(
+                    hintText: "****",
+                    errorText: passwordError,
+                    suffixIcon: IconButton(
+                      icon: Icon(showPassword
+                          ? Icons.visibility_off
+                          : Icons.visibility),
+                      onPressed: () =>
+                          setState(() => showPassword = !showPassword),
                     ),
-              onPressed: () => loading ? null : login(context),
+                    labelText: I18n.of(context).password),
+              ),
             ),
-          ),
-        ],
-      ),
+            SizedBox(height: 20),
+            Container(
+              height: 50,
+              padding: EdgeInsets.symmetric(horizontal: 12),
+              child: RaisedButton(
+                elevation: 7,
+                color: Theme.of(context).primaryColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: loading
+                    ? CircularProgressIndicator()
+                    : Text(
+                        I18n.of(context).login.toUpperCase(),
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
+                onPressed: () => loading ? null : login(context),
+              ),
+            ),
+          ],
+        );
+      }),
     );
   }
 }

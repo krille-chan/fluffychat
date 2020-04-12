@@ -5,6 +5,7 @@ import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/views/chat_encryption_settings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 
 import 'dialogs/simple_dialogs.dart';
 import 'matrix.dart';
@@ -21,11 +22,7 @@ class _EncryptionButtonState extends State<EncryptionButton> {
 
   void _enableEncryptionAction() async {
     if (widget.room.encrypted) {
-      Scaffold.of(context).showSnackBar(
-        SnackBar(
-          content: Text(I18n.of(context).warningEncryptionInBeta),
-        ),
-      );
+      showToast(I18n.of(context).warningEncryptionInBeta);
       await Navigator.of(context).push(
         AppRoute.defaultRoute(
           context,
@@ -35,13 +32,7 @@ class _EncryptionButtonState extends State<EncryptionButton> {
       return;
     }
     if (!widget.room.client.encryptionEnabled) {
-      Scaffold.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            I18n.of(context).needPantalaimonWarning,
-          ),
-        ),
-      );
+      showToast(I18n.of(context).needPantalaimonWarning);
       return;
     }
     if (await SimpleDialogs(context).askConfirmation(

@@ -17,6 +17,7 @@ import 'package:fluffychat/utils/room_extension.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pedantic/pedantic.dart';
 
@@ -176,13 +177,7 @@ class _ChatState extends State<_Chat> {
 
   void sendFileAction(BuildContext context) async {
     if (kIsWeb) {
-      Scaffold.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            I18n.of(context).notSupportedInWeb,
-          ),
-        ),
-      );
+      showToast(I18n.of(context).notSupportedInWeb);
       return;
     }
     File file = await FilePicker.getFile();
@@ -196,13 +191,7 @@ class _ChatState extends State<_Chat> {
 
   void sendImageAction(BuildContext context) async {
     if (kIsWeb) {
-      Scaffold.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            I18n.of(context).notSupportedInWeb,
-          ),
-        ),
-      );
+      showToast(I18n.of(context).notSupportedInWeb);
       return;
     }
     File file = await ImagePicker.pickImage(
@@ -220,13 +209,7 @@ class _ChatState extends State<_Chat> {
 
   void openCameraAction(BuildContext context) async {
     if (kIsWeb) {
-      Scaffold.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            I18n.of(context).notSupportedInWeb,
-          ),
-        ),
-      );
+      showToast(I18n.of(context).notSupportedInWeb);
       return;
     }
     File file = await ImagePicker.pickImage(
