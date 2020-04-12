@@ -102,6 +102,13 @@
       "targetName": {}
     }
   },
+  "byDefaultYouWillBeConnectedTo": "Standardmäßig wirst Du mit {Homeserver} verbunden",
+  "@byDefaultYouWillBeConnectedTo": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
   "Cancel": "Abbrechen",
   "@Cancel": {
     "type": "text",
@@ -144,6 +151,11 @@
       "username": {},
       "displayname": {}
     }
+  },
+  "Change the homeserver": "Anderen Homeserver verwenden",
+  "@Change the homeserver": {
+    "type": "text",
+    "placeholders": {}
   },
   "changedTheGuestAccessRules": "{username} hat Gast-Zugangsregeln geändert",
   "@changedTheGuestAccessRules": {
@@ -241,6 +253,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "Choose a strong password": "Wähle ein sicheres Passwort",
+  "@Choose a strong password": {
+    "type": "text",
+    "placeholders": {}
+  },
   "Choose a username": "Wähle einen Benutzernamen",
   "@Choose a username": {
     "type": "text",
@@ -253,6 +270,11 @@
   },
   "Confirm": "Bestätigen",
   "@Confirm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Connect": "Verbinden",
+  "@Connect": {
     "type": "text",
     "placeholders": {}
   },
@@ -427,6 +449,11 @@
   },
   "Enter a username": "Gib einen Benutzernamen ein",
   "@Enter a username": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Enter your homeserver": "Gib Deinen Homeserver ein",
+  "@Enter your homeserver": {
     "type": "text",
     "placeholders": {}
   },
@@ -654,6 +681,13 @@
   "@Login": {
     "type": "text",
     "placeholders": {}
+  },
+  "logInTo": "Bei {homeserver} anmelden",
+  "@logInTo": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
   },
   "Make an admin": "Zum Admin ernennen",
   "@Make an admin": {
@@ -889,11 +923,6 @@
   },
   "Search for a chat": "Durchsuche die Chats",
   "@Search for a chat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Secure your account with a password": "Sichere deinen Account mit einem Passwort ab",
-  "@Secure your account with a password": {
     "type": "text",
     "placeholders": {}
   },

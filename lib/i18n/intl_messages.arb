@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-04-09T10:05:25.548084",
+  "@@last_modified": "2020-04-12T10:36:42.980311",
   "About": "About",
   "@About": {
     "type": "text",
@@ -102,6 +102,13 @@
       "targetName": {}
     }
   },
+  "byDefaultYouWillBeConnectedTo": "By default you will be connected to {homeserver}",
+  "@byDefaultYouWillBeConnectedTo": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
   "Cancel": "Cancel",
   "@Cancel": {
     "type": "text",
@@ -144,6 +151,11 @@
       "username": {},
       "displayname": {}
     }
+  },
+  "Change the homeserver": "Change the homeserver",
+  "@Change the homeserver": {
+    "type": "text",
+    "placeholders": {}
   },
   "changedTheGuestAccessRules": "{username} changed the guest access rules",
   "@changedTheGuestAccessRules": {
@@ -241,6 +253,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "Choose a strong password": "Choose a strong password",
+  "@Choose a strong password": {
+    "type": "text",
+    "placeholders": {}
+  },
   "Choose a username": "Choose a username",
   "@Choose a username": {
     "type": "text",
@@ -253,6 +270,11 @@
   },
   "Confirm": "Confirm",
   "@Confirm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Connect": "Connect",
+  "@Connect": {
     "type": "text",
     "placeholders": {}
   },
@@ -427,6 +449,11 @@
   },
   "Enter a username": "Enter a username",
   "@Enter a username": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Enter your homeserver": "Enter your homeserver",
+  "@Enter your homeserver": {
     "type": "text",
     "placeholders": {}
   },
@@ -654,6 +681,13 @@
   "@Login": {
     "type": "text",
     "placeholders": {}
+  },
+  "logInTo": "Log in to {homeserver}",
+  "@logInTo": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
   },
   "Make a moderator": "Make a moderator",
   "@Make a moderator": {
@@ -889,11 +923,6 @@
   },
   "Search for a chat": "Search for a chat",
   "@Search for a chat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Secure your account with a password": "Secure your account with a password",
-  "@Secure your account with a password": {
     "type": "text",
     "placeholders": {}
   },
