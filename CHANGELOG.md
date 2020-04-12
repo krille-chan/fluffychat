@@ -1,4 +1,10 @@
-# Version 0.12.0 - 2020-04-??
+# Version 0.12.2 - 2020-04-12
+### Fixes:
+- Fix image flickering
+- Fix login without google services
+- Fix toasts
+
+# Version 0.12.0 - 2020-04-10
 ### Features:
 - Implement custom wallpapers
 - Lightweight Jitsi integration for video calls
