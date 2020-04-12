@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-04-12T10:36:42.980311",
+  "@@last_modified": "2020-04-12T11:11:56.595233",
   "About": "About",
   "@About": {
     "type": "text",
@@ -1238,6 +1238,11 @@
   },
   "Wednesday": "Wednesday",
   "@Wednesday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Welcome to the cutest instant messenger in the matrix network.": "Welcome to the cutest instant messenger in the matrix network.",
+  "@Welcome to the cutest instant messenger in the matrix network.": {
     "type": "text",
     "placeholders": {}
   },

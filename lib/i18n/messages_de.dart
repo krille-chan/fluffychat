@@ -294,6 +294,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Voice message" : MessageLookupByLibrary.simpleMessage("Sprachnachricht"),
     "Wallpaper" : MessageLookupByLibrary.simpleMessage("Hintergrund"),
     "Wednesday" : MessageLookupByLibrary.simpleMessage("Mittwoch"),
+    "Welcome to the cutest instant messenger in the matrix network." : MessageLookupByLibrary.simpleMessage("Herzlich willkommen beim knuffigsten Instant Messenger im Matrix-Netwerk."),
     "Who is allowed to join this group" : MessageLookupByLibrary.simpleMessage("Wer darf der Gruppe beitreten"),
     "Write a message..." : MessageLookupByLibrary.simpleMessage("Schreibe eine Nachricht ..."),
     "Yes" : MessageLookupByLibrary.simpleMessage("Ja"),

@@ -752,6 +752,9 @@ class I18n {
 
   String get wednesday => Intl.message("Wednesday");
 
+  String get welcomeText => Intl.message(
+      'Welcome to the cutest instant messenger in the matrix network.');
+
   String get whoIsAllowedToJoinThisGroup =>
       Intl.message("Who is allowed to join this group");
 

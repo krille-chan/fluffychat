@@ -1241,6 +1241,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "Welcome to the cutest instant messenger in the matrix network.": "Herzlich willkommen beim knuffigsten Instant Messenger im Matrix-Netwerk.",
+  "@Welcome to the cutest instant messenger in the matrix network.": {
+    "type": "text",
+    "placeholders": {}
+  },
   "Who is allowed to join this group": "Wer darf der Gruppe beitreten",
   "@Who is allowed to join this group": {
     "type": "text",

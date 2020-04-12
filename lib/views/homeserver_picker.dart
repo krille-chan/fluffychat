@@ -45,7 +45,7 @@ class HomeserverPicker extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
-                  'Welcome to the cutest instant messaging solution for all platforms.',
+                  I18n.of(context).welcomeText,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 22,
@@ -66,7 +66,7 @@ class HomeserverPicker extends StatelessWidget {
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: Text(
-                      I18n.of(context).connect,
+                      I18n.of(context).connect.toUpperCase(),
                       style: TextStyle(color: Colors.white, fontSize: 16),
                     ),
                     onPressed: () => _checkHomeserverAction(
