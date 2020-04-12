@@ -94,6 +94,12 @@ class I18n {
         args: [username, targetName],
       );
 
+  String byDefaultYouWillBeConnectedTo(String homeserver) => Intl.message(
+        'By default you will be connected to $homeserver',
+        name: 'byDefaultYouWillBeConnectedTo',
+        args: [homeserver],
+      );
+
   String get cancel => Intl.message("Cancel");
 
   String changedTheChatAvatar(String username) => Intl.message(
@@ -127,6 +133,8 @@ class I18n {
         name: "changedTheDisplaynameTo",
         args: [username, displayname],
       );
+
+  String get changeTheHomeserver => Intl.message('Change the homeserver');
 
   String changedTheGuestAccessRules(String username) => Intl.message(
         "$username changed the guest access rules",
@@ -199,11 +207,15 @@ class I18n {
 
   String get chatDetails => Intl.message('Chat details');
 
+  String get chooseAStrongPassword => Intl.message("Choose a strong password");
+
   String get chooseAUsername => Intl.message("Choose a username");
 
   String get close => Intl.message("Close");
 
   String get confirm => Intl.message("Confirm");
+
+  String get connect => Intl.message('Connect');
 
   String get connectionAttemptFailed =>
       Intl.message("Connection attempt failed");
@@ -295,6 +307,8 @@ class I18n {
   String get enterAGroupName => Intl.message("Enter a group name");
 
   String get enterAUsername => Intl.message("Enter a username");
+
+  String get enterYourHomeserver => Intl.message('Enter your homeserver');
 
   String get fileName => Intl.message("File name");
 
@@ -419,6 +433,12 @@ class I18n {
 
   String get login => Intl.message("Login");
 
+  String logInTo(String homeserver) => Intl.message(
+        'Log in to $homeserver',
+        name: 'logInTo',
+        args: [homeserver],
+      );
+
   String get makeAModerator => Intl.message("Make a moderator");
 
   String get makeAnAdmin => Intl.message("Make an admin");
@@ -540,9 +560,6 @@ class I18n {
       );
 
   String get searchForAChat => Intl.message("Search for a chat");
-
-  String get secureYourAccountWithAPassword =>
-      Intl.message("Secure your account with a password");
 
   String seenByUser(String username) => Intl.message(
         "Seen by $username",

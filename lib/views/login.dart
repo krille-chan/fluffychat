@@ -17,11 +17,8 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController serverController =
-      TextEditingController(text: "tchncs.de");
   String usernameError;
   String passwordError;
-  String serverError;
   bool loading = false;
   bool showPassword = false;
 
@@ -37,30 +34,12 @@ class _LoginState extends State<Login> {
     } else {
       setState(() => passwordError = null);
     }
-    serverError = null;
 
     if (usernameController.text.isEmpty || passwordController.text.isEmpty) {
       return;
     }
 
-    String homeserver = serverController.text;
-    if (homeserver.isEmpty) homeserver = "tchncs.de";
-    if (!homeserver.startsWith("https://")) {
-      homeserver = "https://" + homeserver;
-    }
-
-    try {
-      setState(() => loading = true);
-      if (!await matrix.client.checkServer(homeserver)) {
-        setState(
-            () => serverError = I18n.of(context).homeserverIsNotCompatible);
-
-        return setState(() => loading = false);
-      }
-    } catch (exception) {
-      setState(() => serverError = I18n.of(context).connectionAttemptFailed);
-      return setState(() => loading = false);
-    }
+    setState(() => loading = true);
     try {
       await matrix.client.login(
           usernameController.text, passwordController.text,
@@ -92,16 +71,12 @@ class _LoginState extends State<Login> {
     return Scaffold(
       appBar: AppBar(
         leading: loading ? Container() : null,
-        title: TextField(
-          autocorrect: false,
-          controller: serverController,
-          decoration: InputDecoration(
-              icon: Icon(Icons.domain),
-              hintText: "matrix-client.matrix.org",
-              errorText: serverError,
-              errorMaxLines: 1,
-              prefixText: "https://",
-              labelText: serverError == null ? "Homeserver" : serverError),
+        elevation: 0,
+        title: Text(
+          I18n.of(context).logInTo(Matrix.of(context)
+              .client
+              .homeserver
+              .replaceFirst('https://', '')),
         ),
       ),
       body: Builder(builder: (context) {
@@ -110,16 +85,6 @@ class _LoginState extends State<Login> {
               horizontal:
                   max((MediaQuery.of(context).size.width - 600) / 2, 0)),
           children: <Widget>[
-            Container(
-              height: 150,
-              color: Theme.of(context).secondaryHeaderColor,
-              child: Center(
-                child: Icon(
-                  Icons.vpn_key,
-                  size: 60,
-                ),
-              ),
-            ),
             ListTile(
               leading: CircleAvatar(
                 child: Icon(Icons.account_box,
@@ -128,6 +93,7 @@ class _LoginState extends State<Login> {
               title: TextField(
                 readOnly: loading,
                 autocorrect: false,
+                autofocus: true,
                 controller: usernameController,
                 decoration: InputDecoration(
                     hintText:
@@ -163,22 +129,25 @@ class _LoginState extends State<Login> {
               ),
             ),
             SizedBox(height: 20),
-            Container(
-              height: 50,
-              padding: EdgeInsets.symmetric(horizontal: 12),
-              child: RaisedButton(
-                elevation: 7,
-                color: Theme.of(context).primaryColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(6),
+            Hero(
+              tag: 'loginButton',
+              child: Container(
+                height: 50,
+                padding: EdgeInsets.symmetric(horizontal: 12),
+                child: RaisedButton(
+                  elevation: 7,
+                  color: Theme.of(context).primaryColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  child: loading
+                      ? CircularProgressIndicator()
+                      : Text(
+                          I18n.of(context).login.toUpperCase(),
+                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        ),
+                  onPressed: () => loading ? null : login(context),
                 ),
-                child: loading
-                    ? CircularProgressIndicator()
-                    : Text(
-                        I18n.of(context).login.toUpperCase(),
-                        style: TextStyle(color: Colors.white, fontSize: 16),
-                      ),
-                onPressed: () => loading ? null : login(context),
               ),
             ),
           ],

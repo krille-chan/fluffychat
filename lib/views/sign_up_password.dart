@@ -119,23 +119,16 @@ class _SignUpPasswordState extends State<SignUpPassword> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(I18n.of(context).secureYourAccountWithAPassword),
+        elevation: 0,
+        leading: loading ? Container() : null,
+        title: Text(
+          I18n.of(context).chooseAStrongPassword,
+        ),
       ),
       body: ListView(
         padding: EdgeInsets.symmetric(
             horizontal: max((MediaQuery.of(context).size.width - 600) / 2, 0)),
         children: <Widget>[
-          Container(
-            height: 150,
-            color: Theme.of(context).secondaryHeaderColor,
-            child: Center(
-              child: Icon(
-                Icons.vpn_key,
-                color: Theme.of(context).primaryColor,
-                size: 40,
-              ),
-            ),
-          ),
           ListTile(
             leading: CircleAvatar(
               backgroundColor: Colors.white,
@@ -160,22 +153,25 @@ class _SignUpPasswordState extends State<SignUpPassword> {
             ),
           ),
           SizedBox(height: 20),
-          Container(
-            height: 50,
-            padding: EdgeInsets.symmetric(horizontal: 12),
-            child: RaisedButton(
-              elevation: 7,
-              color: Theme.of(context).primaryColor,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(6),
+          Hero(
+            tag: 'loginButton',
+            child: Container(
+              height: 50,
+              padding: EdgeInsets.symmetric(horizontal: 12),
+              child: RaisedButton(
+                elevation: 7,
+                color: Theme.of(context).primaryColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: loading
+                    ? CircularProgressIndicator()
+                    : Text(
+                        I18n.of(context).createAccountNow.toUpperCase(),
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
+                onPressed: () => loading ? null : _signUpAction(context),
               ),
-              child: loading
-                  ? CircularProgressIndicator()
-                  : Text(
-                      I18n.of(context).createAccountNow.toUpperCase(),
-                      style: TextStyle(color: Colors.white, fontSize: 16),
-                    ),
-              onPressed: () => loading ? null : _signUpAction(context),
             ),
           ),
         ],

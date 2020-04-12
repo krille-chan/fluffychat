@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/views/homeserver_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,7 +9,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 
 import 'i18n/i18n.dart';
-import 'views/sign_up.dart';
 import 'components/theme_switcher.dart';
 import 'components/matrix.dart';
 import 'views/chat_list.dart';
@@ -63,7 +63,7 @@ class App extends StatelessWidget {
                     if (Matrix.of(context).client.isLogged()) {
                       return ChatListView();
                     }
-                    return SignUp();
+                    return HomeserverPicker();
                   },
                 ),
               ),

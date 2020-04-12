@@ -1,5 +1,8 @@
 # Version 0.12.2 - 2020-04-12
-### Fixes:
+### Changes:
+- New set homeserver UX
+### Fixed
+- Fix toasts when switching views
 - Fix image flickering
 - Fix login without google services
 - Fix toasts
@@ -65,7 +68,6 @@
 - Replies on replies fixed
 
 # Version 0.7.1 - 2020-02-10
-### Fixed
 - Replies with correct sender id
 
 # Version 0.7.0 - 2020-02-10

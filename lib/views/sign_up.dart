@@ -18,10 +18,7 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   final TextEditingController usernameController = TextEditingController();
-  final TextEditingController serverController =
-      TextEditingController(text: "tchncs.de");
   String usernameError;
-  String serverError;
   bool loading = false;
   File avatar;
 
@@ -42,33 +39,14 @@ class _SignUpState extends State<SignUp> {
     } else {
       setState(() => usernameError = null);
     }
-    serverError = null;
 
     if (usernameController.text.isEmpty) {
       return;
     }
+    setState(() => loading = true);
 
     final String preferredUsername =
         usernameController.text.toLowerCase().replaceAll(" ", "-");
-
-    String homeserver = serverController.text;
-    if (homeserver.isEmpty) homeserver = "tchncs.de";
-    if (!homeserver.startsWith("https://")) {
-      homeserver = "https://" + homeserver;
-    }
-
-    try {
-      setState(() => loading = true);
-      if (!await matrix.client.checkServer(homeserver)) {
-        setState(
-            () => serverError = I18n.of(context).homeserverIsNotCompatible);
-
-        return setState(() => loading = false);
-      }
-    } catch (exception) {
-      setState(() => serverError = I18n.of(context).connectionAttemptFailed);
-      return setState(() => loading = false);
-    }
 
     try {
       await matrix.client.usernameAvailable(preferredUsername);
@@ -81,8 +59,7 @@ class _SignUpState extends State<SignUp> {
     }
     setState(() => loading = false);
     await Navigator.of(context).push(
-      AppRoute.defaultRoute(
-        context,
+      AppRoute(
         SignUpPassword(preferredUsername,
             avatar: avatar, displayname: usernameController.text),
       ),
@@ -93,17 +70,10 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: TextField(
-          autocorrect: false,
-          controller: serverController,
-          decoration: InputDecoration(
-            icon: Icon(Icons.domain),
-            hintText: "matrix-client.matrix.org",
-            errorText: serverError,
-            errorMaxLines: 1,
-            prefixText: "https://",
-            labelText: serverError == null ? "Homeserver" : serverError,
-          ),
+        elevation: 0,
+        leading: loading ? Container() : null,
+        title: Text(
+          Matrix.of(context).client.homeserver.replaceFirst('https://', ''),
         ),
       ),
       body: ListView(
@@ -111,12 +81,17 @@ class _SignUpState extends State<SignUp> {
               horizontal:
                   max((MediaQuery.of(context).size.width - 600) / 2, 0)),
           children: <Widget>[
-            Image.asset("assets/fluffychat-banner.png"),
+            Hero(
+              tag: 'loginBanner',
+              child: Image.asset("assets/fluffychat-banner.png"),
+            ),
             ListTile(
               leading: CircleAvatar(
                 backgroundImage: avatar == null ? null : FileImage(avatar),
                 backgroundColor: avatar == null
-                    ? Theme.of(context).brightness == Brightness.dark ? Color(0xff121212) : Colors.white
+                    ? Theme.of(context).brightness == Brightness.dark
+                        ? Color(0xff121212)
+                        : Colors.white
                     : Theme.of(context).secondaryHeaderColor,
                 child: avatar == null
                     ? Icon(Icons.camera_alt,
@@ -138,7 +113,9 @@ class _SignUpState extends State<SignUp> {
             ),
             ListTile(
               leading: CircleAvatar(
-                backgroundColor: Theme.of(context).brightness == Brightness.dark ? Color(0xff121212) : Colors.white,
+                backgroundColor: Theme.of(context).brightness == Brightness.dark
+                    ? Color(0xff121212)
+                    : Colors.white,
                 child: Icon(
                   Icons.account_circle,
                   color: Theme.of(context).primaryColor,
@@ -155,22 +132,25 @@ class _SignUpState extends State<SignUp> {
               ),
             ),
             SizedBox(height: 20),
-            Container(
-              height: 50,
-              padding: EdgeInsets.symmetric(horizontal: 12),
-              child: RaisedButton(
-                elevation: 7,
-                color: Theme.of(context).primaryColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(6),
+            Hero(
+              tag: 'loginButton',
+              child: Container(
+                height: 50,
+                padding: EdgeInsets.symmetric(horizontal: 12),
+                child: RaisedButton(
+                  elevation: 7,
+                  color: Theme.of(context).primaryColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  child: loading
+                      ? CircularProgressIndicator()
+                      : Text(
+                          I18n.of(context).signUp.toUpperCase(),
+                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        ),
+                  onPressed: () => loading ? null : signUpAction(context),
                 ),
-                child: loading
-                    ? CircularProgressIndicator()
-                    : Text(
-                        I18n.of(context).signUp.toUpperCase(),
-                        style: TextStyle(color: Colors.white, fontSize: 16),
-                      ),
-                onPressed: () => signUpAction(context),
               ),
             ),
             Center(
@@ -184,10 +164,7 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
                 onPressed: () => Navigator.of(context).push(
-                  AppRoute.defaultRoute(
-                    context,
-                    Login(),
-                  ),
+                  AppRoute(Login()),
                 ),
               ),
             ),
