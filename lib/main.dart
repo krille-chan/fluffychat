@@ -30,6 +30,7 @@ class App extends StatelessWidget {
         builder: (BuildContext context) => ThemeSwitcherWidget(
           child: Builder(
             builder: (BuildContext context) => StyledToast(
+              duration: Duration(seconds: 5),
               child: MaterialApp(
                 title: 'FluffyChat',
                 theme: ThemeSwitcherWidget.of(context).themeData,

@@ -155,7 +155,11 @@ class MatrixState extends State<Matrix> {
       token = null;
     }
     if (token?.isEmpty ?? true) {
-      showToast(I18n.of(context).noGoogleServicesWarning);
+      showToast(
+        I18n.of(context).noGoogleServicesWarning,
+        duration: Duration(seconds: 15),
+      );
+      return;
     }
     await client.setPushers(
       token,

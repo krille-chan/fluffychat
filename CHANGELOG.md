@@ -1,3 +1,7 @@
+# Version 0.12.4 - 2020-04-17
+### Fixed
+- Login without google services
+
 # Version 0.12.2 - 2020-04-12
 ### Changes:
 - New set homeserver UX
