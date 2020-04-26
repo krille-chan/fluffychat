@@ -229,88 +229,98 @@ class _ChatListState extends State<ChatList> {
       setState(() => selectMode = SelectMode.normal);
     }
     return Scaffold(
-      drawer: Drawer(
-        child: SafeArea(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              ListTile(
-                leading: Icon(Icons.edit),
-                title: Text(I18n.of(context).setStatus),
-                onTap: () => _setStatus(context),
-              ),
-              Divider(height: 1),
-              ListTile(
-                leading: Icon(Icons.people_outline),
-                title: Text(I18n.of(context).createNewGroup),
-                onTap: () => _drawerTapAction(NewGroupView()),
-              ),
-              ListTile(
-                leading: Icon(Icons.person_add),
-                title: Text(I18n.of(context).newPrivateChat),
-                onTap: () => _drawerTapAction(NewPrivateChatView()),
-              ),
-              Divider(height: 1),
-              ListTile(
-                leading: Icon(Icons.archive),
-                title: Text(I18n.of(context).archive),
-                onTap: () => _drawerTapAction(
-                  Archive(),
+      drawer: selectMode == SelectMode.share
+          ? null
+          : Drawer(
+              child: SafeArea(
+                child: ListView(
+                  padding: EdgeInsets.zero,
+                  children: <Widget>[
+                    ListTile(
+                      leading: Icon(Icons.edit),
+                      title: Text(I18n.of(context).setStatus),
+                      onTap: () => _setStatus(context),
+                    ),
+                    Divider(height: 1),
+                    ListTile(
+                      leading: Icon(Icons.people_outline),
+                      title: Text(I18n.of(context).createNewGroup),
+                      onTap: () => _drawerTapAction(NewGroupView()),
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.person_add),
+                      title: Text(I18n.of(context).newPrivateChat),
+                      onTap: () => _drawerTapAction(NewPrivateChatView()),
+                    ),
+                    Divider(height: 1),
+                    ListTile(
+                      leading: Icon(Icons.archive),
+                      title: Text(I18n.of(context).archive),
+                      onTap: () => _drawerTapAction(
+                        Archive(),
+                      ),
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.settings),
+                      title: Text(I18n.of(context).settings),
+                      onTap: () => _drawerTapAction(
+                        SettingsView(),
+                      ),
+                    ),
+                    Divider(height: 1),
+                    ListTile(
+                      leading: Icon(Icons.share),
+                      title: Text(I18n.of(context).inviteContact),
+                      onTap: () {
+                        Navigator.of(context).pop();
+                        Share.share(I18n.of(context).inviteText(
+                            Matrix.of(context).client.userID,
+                            "https://matrix.to/#/${Matrix.of(context).client.userID}"));
+                      },
+                    ),
+                  ],
                 ),
               ),
-              ListTile(
-                leading: Icon(Icons.settings),
-                title: Text(I18n.of(context).settings),
-                onTap: () => _drawerTapAction(
-                  SettingsView(),
-                ),
-              ),
-              Divider(height: 1),
-              ListTile(
-                leading: Icon(Icons.share),
-                title: Text(I18n.of(context).inviteContact),
-                onTap: () {
-                  Navigator.of(context).pop();
-                  Share.share(I18n.of(context).inviteText(
-                      Matrix.of(context).client.userID,
-                      "https://matrix.to/#/${Matrix.of(context).client.userID}"));
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
+            ),
       appBar: AppBar(
+        leading: selectMode != SelectMode.share
+            ? null
+            : IconButton(
+                icon: Icon(Icons.close),
+                onPressed: () => Matrix.of(context).shareContent = null,
+              ),
         elevation: Matrix.of(context).client.statusList.isEmpty ? null : 0,
         titleSpacing: 0,
-        title: Container(
-          padding: EdgeInsets.all(8),
-          height: 42,
-          margin: EdgeInsets.only(right: 8),
-          decoration: BoxDecoration(
-            color: Theme.of(context).secondaryHeaderColor,
-            borderRadius: BorderRadius.circular(90),
-          ),
-          child: TextField(
-            autocorrect: false,
-            controller: searchController,
-            decoration: InputDecoration(
-              suffixIcon: loadingPublicRooms
-                  ? Container(
-                      alignment: Alignment.centerRight,
-                      child: Container(
-                        width: 20,
-                        height: 20,
-                        child: CircularProgressIndicator(),
-                      ),
-                    )
-                  : Icon(Icons.search),
-              contentPadding: EdgeInsets.all(9),
-              border: InputBorder.none,
-              hintText: I18n.of(context).searchForAChat,
-            ),
-          ),
-        ),
+        title: selectMode == SelectMode.share
+            ? Text(I18n.of(context).share)
+            : Container(
+                padding: EdgeInsets.all(8),
+                height: 42,
+                margin: EdgeInsets.only(right: 8),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).secondaryHeaderColor,
+                  borderRadius: BorderRadius.circular(90),
+                ),
+                child: TextField(
+                  autocorrect: false,
+                  controller: searchController,
+                  decoration: InputDecoration(
+                    suffixIcon: loadingPublicRooms
+                        ? Container(
+                            alignment: Alignment.centerRight,
+                            child: Container(
+                              width: 20,
+                              height: 20,
+                              child: CircularProgressIndicator(),
+                            ),
+                          )
+                        : Icon(Icons.search),
+                    contentPadding: EdgeInsets.all(9),
+                    border: InputBorder.none,
+                    hintText: I18n.of(context).searchForAChat,
+                  ),
+                ),
+              ),
         bottom: Matrix.of(context).client.statusList.isEmpty
             ? null
             : PreferredSize(
@@ -327,8 +337,8 @@ class _ChatListState extends State<ChatList> {
                 ),
               ),
       ),
-      floatingActionButton: AdaptivePageLayout.columnMode(context) &&
-              selectMode == SelectMode.share
+      floatingActionButton: (AdaptivePageLayout.columnMode(context) ||
+              selectMode == SelectMode.share)
           ? null
           : SpeedDial(
               child: Icon(Icons.add),

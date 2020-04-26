@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 
 extension PresenceExtension on Presence {
   bool get isStatus =>
-      (statusMsg?.isNotEmpty ?? false) ||
-      this.displayname != null ||
-      this.avatarUrl != null;
+      (statusMsg?.isNotEmpty ?? false) || this.displayname != null;
 
   String getLocalizedStatusMessage(BuildContext context) {
     if (!isStatus) return null;
