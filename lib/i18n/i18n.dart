@@ -624,6 +624,8 @@ class I18n {
 
   String get setInvitationLink => Intl.message("Set invitation link");
 
+  String get setStatus => Intl.message('Set status');
+
   String get settings => Intl.message("Settings");
 
   String get signUp => Intl.message("Sign up");
@@ -631,6 +633,8 @@ class I18n {
   String get changeTheme => Intl.message("Change your style");
 
   String get systemTheme => Intl.message("System");
+
+  String get statusExampleMessage => Intl.message("How are you today?");
 
   String get lightTheme => Intl.message("Light");
 
