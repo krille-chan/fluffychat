@@ -281,11 +281,12 @@ class _ChatListState extends State<ChatList> {
         ),
       ),
       appBar: AppBar(
-        elevation: 0,
-        titleSpacing: 6,
+        elevation: Matrix.of(context).client.statusList.isEmpty ? null : 0,
+        titleSpacing: 0,
         title: Container(
           padding: EdgeInsets.all(8),
           height: 42,
+          margin: EdgeInsets.only(right: 8),
           decoration: BoxDecoration(
             color: Theme.of(context).secondaryHeaderColor,
             borderRadius: BorderRadius.circular(90),
@@ -296,9 +297,12 @@ class _ChatListState extends State<ChatList> {
             decoration: InputDecoration(
               suffixIcon: loadingPublicRooms
                   ? Container(
-                      width: 20,
-                      height: 20,
-                      child: CircularProgressIndicator(),
+                      alignment: Alignment.centerRight,
+                      child: Container(
+                        width: 20,
+                        height: 20,
+                        child: CircularProgressIndicator(),
+                      ),
                     )
                   : Icon(Icons.search),
               contentPadding: EdgeInsets.all(9),
