@@ -289,7 +289,6 @@ class _ChatListState extends State<ChatList> {
                 icon: Icon(Icons.close),
                 onPressed: () => Matrix.of(context).shareContent = null,
               ),
-        elevation: Matrix.of(context).client.statusList.isEmpty ? null : 0,
         titleSpacing: 0,
         title: selectMode == SelectMode.share
             ? Text(I18n.of(context).share)
@@ -318,21 +317,6 @@ class _ChatListState extends State<ChatList> {
                     contentPadding: EdgeInsets.all(9),
                     border: InputBorder.none,
                     hintText: I18n.of(context).searchForAChat,
-                  ),
-                ),
-              ),
-        bottom: Matrix.of(context).client.statusList.isEmpty
-            ? null
-            : PreferredSize(
-                preferredSize: Size.fromHeight(89),
-                child: Container(
-                  height: 81,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: Matrix.of(context).client.statusList.length,
-                    itemBuilder: (BuildContext context, int i) =>
-                        PresenceListItem(
-                            Matrix.of(context).client.statusList[i]),
                   ),
                 ),
               ),
@@ -368,76 +352,82 @@ class _ChatListState extends State<ChatList> {
                 ),
               ],
             ),
-      body: Column(
-        children: <Widget>[
-          Divider(
-            height: 1,
-            color: Theme.of(context).secondaryHeaderColor,
-          ),
-          Expanded(
-            child: FutureBuilder<bool>(
-              future: waitForFirstSync(context),
-              builder: (BuildContext context, snapshot) {
-                if (snapshot.hasData) {
-                  List<Room> rooms =
-                      List<Room>.from(Matrix.of(context).client.rooms);
-                  rooms.removeWhere((Room room) =>
-                      searchMode &&
-                      !room.displayname
-                          .toLowerCase()
-                          .contains(searchController.text.toLowerCase() ?? ""));
-                  if (rooms.isEmpty &&
-                      (!searchMode || publicRoomsResponse == null)) {
-                    return Center(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          Icon(
-                            searchMode
-                                ? Icons.search
-                                : Icons.chat_bubble_outline,
-                            size: 80,
-                            color: Colors.grey,
-                          ),
-                          Text(searchMode
-                              ? I18n.of(context).noRoomsFound
-                              : I18n.of(context).startYourFirstChat),
-                        ],
-                      ),
-                    );
-                  }
-                  final int publicRoomsCount =
-                      (publicRoomsResponse?.publicRooms?.length ?? 0);
-                  final int totalCount = rooms.length + publicRoomsCount;
-                  return ListView.separated(
-                    separatorBuilder: (BuildContext context, int i) =>
-                        i == totalCount - publicRoomsCount - 1
-                            ? Material(
-                                elevation: 2,
-                                child: ListTile(
-                                  title: Text(I18n.of(context).publicRooms),
-                                ),
-                              )
-                            : Container(),
-                    itemCount: totalCount,
-                    itemBuilder: (BuildContext context, int i) => i <
-                            rooms.length
-                        ? ChatListItem(
-                            rooms[i],
-                            activeChat: widget.activeChat == rooms[i].id,
+      body: FutureBuilder<bool>(
+        future: waitForFirstSync(context),
+        builder: (BuildContext context, snapshot) {
+          if (snapshot.hasData) {
+            List<Room> rooms = List<Room>.from(Matrix.of(context).client.rooms);
+            rooms.removeWhere((Room room) =>
+                searchMode &&
+                !room.displayname
+                    .toLowerCase()
+                    .contains(searchController.text.toLowerCase() ?? ""));
+            if (rooms.isEmpty && (!searchMode || publicRoomsResponse == null)) {
+              return Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Icon(
+                      searchMode ? Icons.search : Icons.chat_bubble_outline,
+                      size: 80,
+                      color: Colors.grey,
+                    ),
+                    Text(searchMode
+                        ? I18n.of(context).noRoomsFound
+                        : I18n.of(context).startYourFirstChat),
+                  ],
+                ),
+              );
+            }
+            final int publicRoomsCount =
+                (publicRoomsResponse?.publicRooms?.length ?? 0);
+            final int totalCount = rooms.length + publicRoomsCount;
+            return ListView.separated(
+                separatorBuilder: (BuildContext context, int i) =>
+                    i == totalCount - publicRoomsCount - 1
+                        ? Material(
+                            elevation: 2,
+                            child: ListTile(
+                              title: Text(I18n.of(context).publicRooms),
+                            ),
                           )
-                        : PublicRoomListItem(
-                            publicRoomsResponse.publicRooms[i - rooms.length]),
-                  );
-                } else {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-              },
-            ),
-          ),
-        ],
+                        : Container(),
+                itemCount: totalCount + 1,
+                itemBuilder: (BuildContext context, int i) {
+                  if (i == 0) {
+                    return Matrix.of(context).client.statusList.isEmpty
+                        ? Container()
+                        : PreferredSize(
+                            preferredSize: Size.fromHeight(89),
+                            child: Container(
+                              height: 81,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount:
+                                    Matrix.of(context).client.statusList.length,
+                                itemBuilder: (BuildContext context, int i) =>
+                                    PresenceListItem(Matrix.of(context)
+                                        .client
+                                        .statusList[i]),
+                              ),
+                            ),
+                          );
+                  }
+                  i--;
+                  return i < rooms.length
+                      ? ChatListItem(
+                          rooms[i],
+                          activeChat: widget.activeChat == rooms[i].id,
+                        )
+                      : PublicRoomListItem(
+                          publicRoomsResponse.publicRooms[i - rooms.length]);
+                });
+          } else {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
       ),
     );
   }
