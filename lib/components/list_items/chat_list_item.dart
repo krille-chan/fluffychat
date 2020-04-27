@@ -26,7 +26,8 @@ class ChatListItem extends StatelessWidget {
   void clickAction(BuildContext context) async {
     if (!activeChat) {
       if (room.membership == Membership.invite &&
-          await Matrix.of(context).tryRequestWithLoadingDialog(room.join()) ==
+          await SimpleDialogs(context)
+                  .tryRequestWithLoadingDialog(room.join()) ==
               false) {
         return;
       }
@@ -60,7 +61,7 @@ class ChatListItem extends StatelessWidget {
                 child: Text(I18n.of(context).rejoin.toUpperCase(),
                     style: TextStyle(color: Colors.blue)),
                 onPressed: () async {
-                  await Matrix.of(context)
+                  await SimpleDialogs(context)
                       .tryRequestWithLoadingDialog(room.join());
                   await Navigator.of(context).pop();
                 },
@@ -74,7 +75,7 @@ class ChatListItem extends StatelessWidget {
         if (Matrix.of(context).shareContent != null) {
           if (Matrix.of(context).shareContent["msgtype"] ==
               "chat.fluffy.shared_file") {
-            await Matrix.of(context).tryRequestWithErrorToast(
+            await SimpleDialogs(context).tryRequestWithErrorToast(
               room.sendFileEvent(
                 Matrix.of(context).shareContent["file"],
               ),
@@ -96,8 +97,8 @@ class ChatListItem extends StatelessWidget {
   Future<bool> archiveAction(BuildContext context) async {
     {
       if ([Membership.leave, Membership.ban].contains(room.membership)) {
-        final success =
-            await Matrix.of(context).tryRequestWithLoadingDialog(room.forget());
+        final success = await SimpleDialogs(context)
+            .tryRequestWithLoadingDialog(room.forget());
         if (success != false) {
           if (this.onForget != null) this.onForget();
         }
@@ -107,8 +108,8 @@ class ChatListItem extends StatelessWidget {
       if (!confirmed) {
         return false;
       }
-      final success =
-          await Matrix.of(context).tryRequestWithLoadingDialog(room.leave());
+      final success = await SimpleDialogs(context)
+          .tryRequestWithLoadingDialog(room.leave());
       if (success == false) {
         return false;
       }

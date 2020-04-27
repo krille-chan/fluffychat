@@ -84,7 +84,7 @@ class _ChatListState extends State<ChatList> {
       coolDown = Timer(Duration(seconds: 1), () async {
         setState(() => loadingPublicRooms = true);
         final newPublicRoomsResponse =
-            await Matrix.of(context).tryRequestWithErrorToast(
+            await SimpleDialogs(context).tryRequestWithErrorToast(
           Matrix.of(context).client.requestPublicRooms(
                 limit: 30,
                 includeAllNetworks: true,
@@ -190,7 +190,7 @@ class _ChatListState extends State<ChatList> {
       hintText: I18n.of(context).statusExampleMessage,
     );
     if (status?.isEmpty ?? true) return;
-    await Matrix.of(context).tryRequestWithLoadingDialog(
+    await SimpleDialogs(context).tryRequestWithLoadingDialog(
       Matrix.of(context).client.jsonRequest(
         type: HTTPType.PUT,
         action:

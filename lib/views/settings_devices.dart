@@ -42,7 +42,7 @@ class DevicesSettingsState extends State<DevicesSettings> {
     for (UserDevice userDevice in devices) {
       deviceIds.add(userDevice.deviceId);
     }
-    final success = await matrix
+    final success = await SimpleDialogs(context)
         .tryRequestWithLoadingDialog(matrix.client.deleteDevices(deviceIds),
             onAdditionalAuth: (MatrixException exception) async {
       final String password = await SimpleDialogs(context).enterText(

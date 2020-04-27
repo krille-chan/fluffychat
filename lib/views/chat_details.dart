@@ -7,7 +7,6 @@ import 'package:fluffychat/components/chat_settings_popup_menu.dart';
 import 'package:fluffychat/components/content_banner.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/list_items/participant_list_item.dart';
-import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/utils/room_extension.dart';
@@ -39,8 +38,7 @@ class _ChatDetailsState extends State<ChatDetails> {
       hintText: widget.room.getLocalizedDisplayname(context),
     );
     if (displayname == null) return;
-    final MatrixState matrix = Matrix.of(context);
-    final success = await matrix.tryRequestWithLoadingDialog(
+    final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
       widget.room.setName(displayname),
     );
     if (success != false) {
@@ -65,14 +63,15 @@ class _ChatDetailsState extends State<ChatDetails> {
     if (aliases.indexWhere((s) => s == canonicalAlias) == -1) {
       List<String> newAliases = List.from(aliases);
       newAliases.add(canonicalAlias);
-      final response = await Matrix.of(context).tryRequestWithLoadingDialog(
+      final response = await SimpleDialogs(context).tryRequestWithLoadingDialog(
         widget.room.client.jsonRequest(
           type: HTTPType.GET,
           action: "/client/r0/directory/room/$canonicalAlias",
         ),
       );
       if (response == false) {
-        final success = await Matrix.of(context).tryRequestWithLoadingDialog(
+        final success =
+            await SimpleDialogs(context).tryRequestWithLoadingDialog(
           widget.room.client.jsonRequest(
               type: HTTPType.PUT,
               action: "/client/r0/directory/room/$canonicalAlias",
@@ -81,7 +80,7 @@ class _ChatDetailsState extends State<ChatDetails> {
         if (success == false) return;
       }
     }
-    await Matrix.of(context).tryRequestWithLoadingDialog(
+    await SimpleDialogs(context).tryRequestWithLoadingDialog(
       widget.room.client.jsonRequest(
           type: HTTPType.PUT,
           action:
@@ -100,8 +99,7 @@ class _ChatDetailsState extends State<ChatDetails> {
       multiLine: true,
     );
     if (displayname == null) return;
-    final MatrixState matrix = Matrix.of(context);
-    final success = await matrix.tryRequestWithLoadingDialog(
+    final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
       widget.room.setDescription(displayname),
     );
     if (success != false) {
@@ -116,8 +114,7 @@ class _ChatDetailsState extends State<ChatDetails> {
         maxWidth: 1600,
         maxHeight: 1600);
     if (tempFile == null) return;
-    final MatrixState matrix = Matrix.of(context);
-    final success = await matrix.tryRequestWithLoadingDialog(
+    final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
       widget.room.setAvatar(
         MatrixFile(
           bytes: await tempFile.readAsBytes(),
@@ -131,7 +128,7 @@ class _ChatDetailsState extends State<ChatDetails> {
   }
 
   void requestMoreMembersAction(BuildContext context) async {
-    final List<User> participants = await Matrix.of(context)
+    final List<User> participants = await SimpleDialogs(context)
         .tryRequestWithLoadingDialog(widget.room.requestParticipants());
     if (participants != null) setState(() => members = participants);
   }
@@ -288,7 +285,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                           ),
                         ),
                         onSelected: (JoinRules joinRule) =>
-                            Matrix.of(context).tryRequestWithLoadingDialog(
+                            SimpleDialogs(context).tryRequestWithLoadingDialog(
                           widget.room.setJoinRules(joinRule),
                         ),
                         itemBuilder: (BuildContext context) =>
@@ -323,7 +320,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                           ),
                         ),
                         onSelected: (HistoryVisibility historyVisibility) =>
-                            Matrix.of(context).tryRequestWithLoadingDialog(
+                            SimpleDialogs(context).tryRequestWithLoadingDialog(
                           widget.room.setHistoryVisibility(historyVisibility),
                         ),
                         itemBuilder: (BuildContext context) =>
@@ -371,7 +368,8 @@ class _ChatDetailsState extends State<ChatDetails> {
                             ),
                           ),
                           onSelected: (GuestAccess guestAccess) =>
-                              Matrix.of(context).tryRequestWithLoadingDialog(
+                              SimpleDialogs(context)
+                                  .tryRequestWithLoadingDialog(
                             widget.room.setGuestAccess(guestAccess),
                           ),
                           itemBuilder: (BuildContext context) =>

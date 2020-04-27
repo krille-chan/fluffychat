@@ -10,6 +10,7 @@ import 'package:link_text/link_text.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:fluffychat/utils/matrix_file_extension.dart';
 
+import 'dialogs/simple_dialogs.dart';
 import 'matrix.dart';
 
 class MessageContent extends StatelessWidget {
@@ -60,8 +61,9 @@ class MessageContent extends StatelessWidget {
                           );
                           return;
                         }
-                        final MatrixFile matrixFile = await Matrix.of(context)
-                            .tryRequestWithLoadingDialog(
+                        final MatrixFile matrixFile =
+                            await SimpleDialogs(context)
+                                .tryRequestWithLoadingDialog(
                           event.downloadAndDecryptAttachment(),
                         );
                         matrixFile.open();

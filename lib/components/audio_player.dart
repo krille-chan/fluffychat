@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:intl/intl.dart';
 
-import 'matrix.dart';
+import 'dialogs/simple_dialogs.dart';
 
 class AudioPlayer extends StatefulWidget {
   final Color color;
@@ -48,7 +48,7 @@ class _AudioPlayerState extends State<AudioPlayer> {
   _downloadAction() async {
     if (status != AudioPlayerStatus.NOT_DOWNLOADED) return;
     setState(() => status = AudioPlayerStatus.DOWNLOADING);
-    final matrixFile = await Matrix.of(context)
+    final matrixFile = await SimpleDialogs(context)
         .tryRequestWithErrorToast(widget.event.downloadAndDecryptAttachment());
     setState(() {
       audioFile = matrixFile.bytes;

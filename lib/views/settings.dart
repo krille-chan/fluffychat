@@ -43,7 +43,8 @@ class _SettingsState extends State<Settings> {
       return;
     }
     MatrixState matrix = Matrix.of(context);
-    await matrix.tryRequestWithLoadingDialog(matrix.client.logout());
+    await SimpleDialogs(context)
+        .tryRequestWithLoadingDialog(matrix.client.logout());
     matrix.clean();
     await Navigator.of(context).pushAndRemoveUntil(
         AppRoute.defaultRoute(context, HomeserverPicker()), (r) => false);
@@ -73,7 +74,7 @@ class _SettingsState extends State<Settings> {
     );
     if (displayname == null) return;
     final MatrixState matrix = Matrix.of(context);
-    final success = await matrix.tryRequestWithLoadingDialog(
+    final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
       matrix.client.setDisplayname(displayname),
     );
     if (success != false) {
@@ -92,7 +93,7 @@ class _SettingsState extends State<Settings> {
         maxHeight: 1600);
     if (tempFile == null) return;
     final MatrixState matrix = Matrix.of(context);
-    final success = await matrix.tryRequestWithLoadingDialog(
+    final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
       matrix.client.setAvatar(
         MatrixFile(
           bytes: await tempFile.readAsBytes(),

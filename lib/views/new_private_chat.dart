@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/avatar.dart';
+import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/utils/app_route.dart';
@@ -54,8 +55,8 @@ class _NewPrivateChatState extends State<_NewPrivateChat> {
       "@" + controller.text.trim(),
       room: Room(id: "", client: matrix.client),
     );
-    final String roomID =
-        await matrix.tryRequestWithLoadingDialog(user.startDirectChat());
+    final String roomID = await SimpleDialogs(context)
+        .tryRequestWithLoadingDialog(user.startDirectChat());
     Navigator.of(context).pop();
 
     if (roomID != null) {
@@ -87,7 +88,7 @@ class _NewPrivateChatState extends State<_NewPrivateChat> {
     if (loading) return;
     setState(() => loading = true);
     final MatrixState matrix = Matrix.of(context);
-    final response = await matrix.tryRequestWithErrorToast(
+    final response = await SimpleDialogs(context).tryRequestWithErrorToast(
       matrix.client.jsonRequest(
           type: HTTPType.POST,
           action: "/client/r0/user_directory/search",

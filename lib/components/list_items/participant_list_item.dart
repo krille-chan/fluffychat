@@ -14,36 +14,39 @@ class ParticipantListItem extends StatelessWidget {
   const ParticipantListItem(this.user);
 
   participantAction(BuildContext context, String action) async {
-    final MatrixState matrix = Matrix.of(context);
     switch (action) {
       case "ban":
         if (await SimpleDialogs(context).askConfirmation()) {
-          await matrix.tryRequestWithLoadingDialog(user.ban());
+          await SimpleDialogs(context).tryRequestWithLoadingDialog(user.ban());
         }
         break;
       case "unban":
         if (await SimpleDialogs(context).askConfirmation()) {
-          await matrix.tryRequestWithLoadingDialog(user.unban());
+          await SimpleDialogs(context)
+              .tryRequestWithLoadingDialog(user.unban());
         }
         break;
       case "kick":
         if (await SimpleDialogs(context).askConfirmation()) {
-          await matrix.tryRequestWithLoadingDialog(user.kick());
+          await SimpleDialogs(context).tryRequestWithLoadingDialog(user.kick());
         }
         break;
       case "admin":
         if (await SimpleDialogs(context).askConfirmation()) {
-          await matrix.tryRequestWithLoadingDialog(user.setPower(100));
+          await SimpleDialogs(context)
+              .tryRequestWithLoadingDialog(user.setPower(100));
         }
         break;
       case "moderator":
         if (await SimpleDialogs(context).askConfirmation()) {
-          await matrix.tryRequestWithLoadingDialog(user.setPower(50));
+          await SimpleDialogs(context)
+              .tryRequestWithLoadingDialog(user.setPower(50));
         }
         break;
       case "user":
         if (await SimpleDialogs(context).askConfirmation()) {
-          await matrix.tryRequestWithLoadingDialog(user.setPower(0));
+          await SimpleDialogs(context)
+              .tryRequestWithLoadingDialog(user.setPower(0));
         }
         break;
       case "message":

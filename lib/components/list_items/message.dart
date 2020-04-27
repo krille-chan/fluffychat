@@ -1,5 +1,6 @@
 import 'package:bubble/bubble.dart';
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/message_content.dart';
 import 'package:fluffychat/components/reply_content.dart';
 import 'package:fluffychat/i18n/i18n.dart';
@@ -116,7 +117,7 @@ class Message extends StatelessWidget {
                         I18n.of(context).requestPermission,
                         style: TextStyle(color: textColor),
                       ),
-                      onPressed: () => Matrix.of(context)
+                      onPressed: () => SimpleDialogs(context)
                           .tryRequestWithLoadingDialog(event.requestKey()),
                     ),
                   SizedBox(height: 4),

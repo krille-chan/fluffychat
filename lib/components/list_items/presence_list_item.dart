@@ -74,7 +74,7 @@ class PresenceListItem extends StatelessWidget {
               width: 80,
               child: Column(
                 children: <Widget>[
-                  SizedBox(height: 6),
+                  SizedBox(height: 9),
                   Avatar(avatarUrl, displayname),
                   Padding(
                     padding: const EdgeInsets.all(6.0),

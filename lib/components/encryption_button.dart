@@ -43,7 +43,7 @@ class _EncryptionButtonState extends State<EncryptionButton> {
           confirmText: I18n.of(context).yes,
         ) ==
         true) {
-      await Matrix.of(context).tryRequestWithLoadingDialog(
+      await SimpleDialogs(context).tryRequestWithLoadingDialog(
         widget.room.enableEncryption(),
       );
     }

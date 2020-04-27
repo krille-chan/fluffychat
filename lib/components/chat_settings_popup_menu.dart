@@ -33,7 +33,7 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
   void startCallAction(BuildContext context) async {
     final url =
         '${Matrix.of(context).jitsiInstance}${Uri.encodeComponent(widget.room.id.localpart)}';
-    final success = await Matrix.of(context)
+    final success = await SimpleDialogs(context)
         .tryRequestWithLoadingDialog(widget.room.sendEvent({
       'msgtype': Matrix.callNamespace,
       'body': url,
@@ -86,7 +86,7 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
           case "leave":
             bool confirmed = await SimpleDialogs(context).askConfirmation();
             if (confirmed) {
-              final success = await Matrix.of(context)
+              final success = await SimpleDialogs(context)
                   .tryRequestWithLoadingDialog(widget.room.leave());
               if (success != false) {
                 await Navigator.of(context).pushAndRemoveUntil(
@@ -96,11 +96,11 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
             }
             break;
           case "mute":
-            await Matrix.of(context).tryRequestWithLoadingDialog(
+            await SimpleDialogs(context).tryRequestWithLoadingDialog(
                 widget.room.setPushRuleState(PushRuleState.mentions_only));
             break;
           case "unmute":
-            await Matrix.of(context).tryRequestWithLoadingDialog(
+            await SimpleDialogs(context).tryRequestWithLoadingDialog(
                 widget.room.setPushRuleState(PushRuleState.notify));
             break;
           case "call":

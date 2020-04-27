@@ -1,4 +1,5 @@
 import 'package:fluffychat/components/adaptive_page_layout.dart';
+import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/utils/app_route.dart';
@@ -42,7 +43,8 @@ class _NewGroupState extends State<_NewGroup> {
       params["preset"] = "private_chat";
     }
     if (controller.text.isNotEmpty) params["name"] = controller.text;
-    final String roomID = await matrix.tryRequestWithLoadingDialog(
+    final String roomID =
+        await SimpleDialogs(context).tryRequestWithLoadingDialog(
       matrix.client.createRoom(params: params),
     );
     Navigator.of(context).pop();

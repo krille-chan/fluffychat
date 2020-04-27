@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/avatar.dart';
+import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/i18n/i18n.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +54,7 @@ class _InvitationSelectionState extends State<InvitationSelection> {
   }
 
   void inviteAction(BuildContext context, String id) async {
-    final success = await Matrix.of(context).tryRequestWithLoadingDialog(
+    final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
       widget.room.invite(id),
     );
     if (success != false) {
@@ -81,7 +82,7 @@ class _InvitationSelectionState extends State<InvitationSelection> {
     if (loading) return;
     setState(() => loading = true);
     final MatrixState matrix = Matrix.of(context);
-    final response = await matrix.tryRequestWithErrorToast(
+    final response = await SimpleDialogs(context).tryRequestWithErrorToast(
       matrix.client.jsonRequest(
           type: HTTPType.POST,
           action: "/client/r0/user_directory/search",

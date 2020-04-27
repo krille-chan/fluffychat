@@ -21,7 +21,7 @@ class HomeserverPicker extends StatelessWidget {
     if (!homeserver.startsWith('https://')) {
       homeserver = 'https://$homeserver';
     }
-    final success = await Matrix.of(context).tryRequestWithLoadingDialog(
+    final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
         Matrix.of(context).client.checkServer(homeserver));
     if (success != false) {
       await Navigator.of(context).push(AppRoute(SignUp()));

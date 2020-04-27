@@ -77,53 +77,6 @@ class MatrixState extends State<Matrix> {
     await storage.deleteItem(widget.clientName);
   }
 
-  BuildContext _loadingDialogContext;
-
-  Future<dynamic> tryRequestWithLoadingDialog(Future<dynamic> request,
-      {Function(MatrixException) onAdditionalAuth}) async {
-    showLoadingDialog(context);
-    final dynamic = await tryRequestWithErrorToast(request,
-        onAdditionalAuth: onAdditionalAuth);
-    hideLoadingDialog();
-    return dynamic;
-  }
-
-  Future<dynamic> tryRequestWithErrorToast(Future<dynamic> request,
-      {Function(MatrixException) onAdditionalAuth}) async {
-    try {
-      return await request;
-    } on MatrixException catch (exception) {
-      if (exception.requireAdditionalAuthentication &&
-          onAdditionalAuth != null) {
-        return await tryRequestWithErrorToast(onAdditionalAuth(exception));
-      } else {
-        showToast(exception.errorMessage);
-      }
-    } catch (exception) {
-      showToast(exception.toString());
-      return false;
-    }
-  }
-
-  showLoadingDialog(BuildContext context) {
-    _loadingDialogContext = context;
-    showDialog(
-      context: _loadingDialogContext,
-      barrierDismissible: false,
-      builder: (BuildContext context) => AlertDialog(
-        content: Row(
-          children: <Widget>[
-            CircularProgressIndicator(),
-            SizedBox(width: 16),
-            Text(I18n.of(context).loadingPleaseWait),
-          ],
-        ),
-      ),
-    );
-  }
-
-  hideLoadingDialog() => Navigator.of(_loadingDialogContext)?.pop();
-
   Future<String> downloadAndSaveContent(MxContent content,
       {int width, int height, ThumbnailMethod method}) async {
     final bool thumbnail = width == null && height == null ? false : true;

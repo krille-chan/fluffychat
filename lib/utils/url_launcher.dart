@@ -1,4 +1,5 @@
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/views/chat.dart';
@@ -21,7 +22,7 @@ class UrlLauncher {
     final matrix = Matrix.of(context);
     final String identifier = url.replaceAll("https://matrix.to/#/", "");
     if (identifier.substring(0, 1) == "#") {
-      final response = await matrix.tryRequestWithLoadingDialog(
+      final response = await SimpleDialogs(context).tryRequestWithLoadingDialog(
         matrix.client.joinRoomById(
           Uri.encodeComponent(identifier),
         ),
@@ -37,8 +38,8 @@ class UrlLauncher {
         identifier,
         room: Room(id: "", client: matrix.client),
       );
-      final String roomID =
-          await matrix.tryRequestWithLoadingDialog(user.startDirectChat());
+      final String roomID = await SimpleDialogs(context)
+          .tryRequestWithLoadingDialog(user.startDirectChat());
       Navigator.of(context).pop();
 
       if (roomID != null) {

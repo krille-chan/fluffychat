@@ -1,5 +1,7 @@
 import 'package:fluffychat/i18n/i18n.dart';
 import 'package:flutter/material.dart';
+import 'package:famedlysdk/famedlysdk.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 
 class SimpleDialogs {
   final BuildContext context;
@@ -22,7 +24,7 @@ class SimpleDialogs {
     await showDialog(
       context: context,
       builder: (c) => AlertDialog(
-        title: Text(titleText ?? I18n.of(context).enterAUsername),
+        title: Text(titleText ?? 'Please enter a text'),
         content: TextField(
           controller: controller,
           autofocus: true,
@@ -103,5 +105,47 @@ class SimpleDialogs {
       ),
     );
     return confirmed;
+  }
+
+  Future<dynamic> tryRequestWithLoadingDialog(Future<dynamic> request,
+      {Function(MatrixException) onAdditionalAuth}) async {
+    showLoadingDialog(context);
+    final dynamic = await tryRequestWithErrorToast(request,
+        onAdditionalAuth: onAdditionalAuth);
+    Navigator.of(context)?.pop();
+    return dynamic;
+  }
+
+  Future<dynamic> tryRequestWithErrorToast(Future<dynamic> request,
+      {Function(MatrixException) onAdditionalAuth}) async {
+    try {
+      return await request;
+    } on MatrixException catch (exception) {
+      if (exception.requireAdditionalAuthentication &&
+          onAdditionalAuth != null) {
+        return await tryRequestWithErrorToast(onAdditionalAuth(exception));
+      } else {
+        showToast(exception.errorMessage);
+      }
+    } catch (exception) {
+      showToast(exception.toString());
+      return false;
+    }
+  }
+
+  showLoadingDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) => AlertDialog(
+        content: Row(
+          children: <Widget>[
+            CircularProgressIndicator(),
+            SizedBox(width: 16),
+            Text(I18n.of(context).loadingPleaseWait),
+          ],
+        ),
+      ),
+    );
   }
 }
