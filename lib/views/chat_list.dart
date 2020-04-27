@@ -384,7 +384,7 @@ class _ChatListState extends State<ChatList> {
             final int totalCount = rooms.length + publicRoomsCount;
             return ListView.separated(
                 separatorBuilder: (BuildContext context, int i) =>
-                    i == totalCount - publicRoomsCount - 1
+                    i == totalCount - publicRoomsCount
                         ? Material(
                             elevation: 2,
                             child: ListTile(
