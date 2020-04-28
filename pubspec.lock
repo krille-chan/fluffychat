@@ -117,8 +117,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "28dee0e2e3dc2fdde64b29d0a65028b49b4c4dc7"
-      resolved-ref: "28dee0e2e3dc2fdde64b29d0a65028b49b4c4dc7"
+      ref: "1265ebf7da56440ead152bbf44502b941436dc1b"
+      resolved-ref: "1265ebf7da56440ead152bbf44502b941436dc1b"
       url: "https://gitlab.com/famedly/famedlysdk.git"
     source: git
     version: "0.0.1"

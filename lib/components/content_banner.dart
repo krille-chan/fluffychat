@@ -6,7 +6,7 @@ import 'package:flutter_advanced_networkimage/provider.dart';
 import 'matrix.dart';
 
 class ContentBanner extends StatelessWidget {
-  final MxContent mxContent;
+  final Uri mxContent;
   final double height;
   final IconData defaultIcon;
   final bool loading;
@@ -25,7 +25,7 @@ class ContentBanner extends StatelessWidget {
     final mediaQuery = MediaQuery.of(context);
     final int bannerSize =
         (mediaQuery.size.width * mediaQuery.devicePixelRatio).toInt();
-    final String src = mxContent.getThumbnail(
+    final String src = mxContent?.getThumbnail(
       Matrix.of(context).client,
       width: bannerSize,
       height: bannerSize,
@@ -47,7 +47,7 @@ class ContentBanner extends StatelessWidget {
             child: Opacity(
               opacity: 0.75,
               child: !loading
-                  ? mxContent.mxc?.isNotEmpty ?? false
+                  ? mxContent != null
                       ? Image(
                           height: 300,
                           fit: BoxFit.cover,

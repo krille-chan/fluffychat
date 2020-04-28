@@ -77,12 +77,13 @@ class MatrixState extends State<Matrix> {
     await storage.deleteItem(widget.clientName);
   }
 
-  Future<String> downloadAndSaveContent(MxContent content,
+  Future<String> downloadAndSaveContent(Uri content,
       {int width, int height, ThumbnailMethod method}) async {
     final bool thumbnail = width == null && height == null ? false : true;
     final String tempDirectory = (await getTemporaryDirectory()).path;
     final String prefix = thumbnail ? "thumbnail" : "";
-    File file = File('$tempDirectory/${prefix}_${content.mxc.split("/").last}');
+    File file =
+        File('$tempDirectory/${prefix}_${content.toString().split("/").last}');
 
     if (!file.existsSync()) {
       final url = thumbnail
@@ -214,7 +215,7 @@ class MatrixState extends State<Matrix> {
           // The person object for the android message style notification
           final person = Person(
             name: room.getLocalizedDisplayname(context),
-            icon: room.avatar.mxc.isEmpty
+            icon: room.avatar == null
                 ? null
                 : await downloadAndSaveContent(
                     room.avatar,

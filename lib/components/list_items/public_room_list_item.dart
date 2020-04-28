@@ -30,8 +30,11 @@ class PublicRoomListItem extends StatelessWidget {
     final bool hasTopic =
         publicRoomEntry.topic != null && publicRoomEntry.topic.isNotEmpty;
     return ListTile(
-      leading:
-          Avatar(MxContent(publicRoomEntry.avatarUrl), publicRoomEntry.name),
+      leading: Avatar(
+          publicRoomEntry.avatarUrl == null
+              ? null
+              : Uri.parse(publicRoomEntry.avatarUrl),
+          publicRoomEntry.name),
       title: Text(hasTopic
           ? "${publicRoomEntry.name} (${publicRoomEntry.numJoinedMembers})"
           : publicRoomEntry.name),

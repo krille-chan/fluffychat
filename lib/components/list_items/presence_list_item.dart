@@ -19,7 +19,7 @@ class PresenceListItem extends StatelessWidget {
     return FutureBuilder<Profile>(
         future: Matrix.of(context).client.getProfileFromUserId(presence.sender),
         builder: (context, snapshot) {
-          MxContent avatarUrl = MxContent('');
+          Uri avatarUrl;
           String displayname = presence.sender.localpart;
           if (snapshot.hasData) {
             avatarUrl = snapshot.data.avatarUrl;

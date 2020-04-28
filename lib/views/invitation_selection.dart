@@ -159,7 +159,9 @@ class _InvitationSelectionState extends State<InvitationSelection> {
                   itemCount: foundProfiles.length,
                   itemBuilder: (BuildContext context, int i) => ListTile(
                     leading: Avatar(
-                      MxContent(foundProfiles[i]["avatar_url"] ?? ""),
+                      foundProfiles[i]["avatar_url"] == null
+                          ? null
+                          : Uri.parse(foundProfiles[i]["avatar_url"]),
                       foundProfiles[i]["display_name"] ??
                           foundProfiles[i]["user_id"],
                     ),
