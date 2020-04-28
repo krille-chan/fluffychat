@@ -152,7 +152,7 @@ class _SettingsState extends State<Settings> {
                     color: Theme.of(context).appBarTheme.textTheme.title.color),
               ),
               background: ContentBanner(
-                profile?.avatarUrl ?? MxContent(""),
+                profile?.avatarUrl,
                 height: 300,
                 defaultIcon: Icons.account_circle,
                 loading: profile == null,

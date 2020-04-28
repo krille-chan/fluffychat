@@ -3,6 +3,8 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:flutter/material.dart';
 import 'package:fluffychat/utils/matrix_file_extension.dart';
 
+import 'dialogs/simple_dialogs.dart';
+
 class ImageBubble extends StatefulWidget {
   final Event event;
 
@@ -23,7 +25,7 @@ class _ImageBubbleState extends State<ImageBubble> {
 
   Future<MatrixFile> _getFile() async {
     if (_file != null) return _file;
-    return widget.event.downloadAndDecryptAttachment();
+    return widget.event.downloadAndDecryptAttachment(getThumbnail: true);
   }
 
   @override
@@ -47,7 +49,13 @@ class _ImageBubbleState extends State<ImageBubble> {
             }
             if (_file != null) {
               return InkWell(
-                onTap: () => _file.open(),
+                onTap: () async {
+                  final MatrixFile matrixFile =
+                      await SimpleDialogs(context).tryRequestWithLoadingDialog(
+                    widget.event.downloadAndDecryptAttachment(),
+                  );
+                  matrixFile.open();
+                },
                 child: Image.memory(
                   _file.bytes,
                   fit: BoxFit.cover,

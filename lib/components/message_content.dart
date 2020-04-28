@@ -3,9 +3,7 @@ import 'package:fluffychat/components/audio_player.dart';
 import 'package:fluffychat/components/image_bubble.dart';
 import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/utils/event_extension.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:link_text/link_text.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:fluffychat/utils/matrix_file_extension.dart';
@@ -51,16 +49,6 @@ class MessageContent extends StatelessWidget {
                         style: TextStyle(color: Colors.white),
                       ),
                       onPressed: () async {
-                        if (kIsWeb) {
-                          if (event.room.encrypted) {
-                            showToast(I18n.of(context).notSupportedInWeb);
-                          }
-                          await launch(
-                            MxContent(event.content["url"])
-                                .getDownloadLink(event.room.client),
-                          );
-                          return;
-                        }
                         final MatrixFile matrixFile =
                             await SimpleDialogs(context)
                                 .tryRequestWithLoadingDialog(

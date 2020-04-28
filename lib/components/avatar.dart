@@ -7,7 +7,7 @@ import 'package:flutter_advanced_networkimage/provider.dart';
 import 'matrix.dart';
 
 class Avatar extends StatelessWidget {
-  final MxContent mxContent;
+  final Uri mxContent;
   final String name;
   final double size;
   final Function onTap;
@@ -39,16 +39,16 @@ class Avatar extends StatelessWidget {
       onTap: onTap,
       child: CircleAvatar(
         radius: size / 2,
-        backgroundImage: mxContent.mxc?.isNotEmpty ?? false
+        backgroundImage: mxContent != null
             ? AdvancedNetworkImage(
                 src,
                 useDiskCache: !kIsWeb,
               )
             : null,
-        backgroundColor: mxContent.mxc.isEmpty
+        backgroundColor: mxContent == null
             ? name?.color ?? Theme.of(context).secondaryHeaderColor
             : Theme.of(context).secondaryHeaderColor,
-        child: mxContent.mxc.isEmpty
+        child: mxContent == null
             ? Text(fallbackLetters, style: TextStyle(color: Colors.white))
             : null,
       ),

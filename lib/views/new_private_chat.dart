@@ -158,7 +158,9 @@ class _NewPrivateChatState extends State<_NewPrivateChat> {
                           ? Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Avatar(
-                                MxContent(foundProfile["avatar_url"] ?? ""),
+                                foundProfile["avatar_url"] == null
+                                    ? null
+                                    : Uri.parse(foundProfile["avatar_url"]),
                                 foundProfile["display_name"] ??
                                     foundProfile["user_id"],
                                 size: 12,
@@ -186,7 +188,9 @@ class _NewPrivateChatState extends State<_NewPrivateChat> {
                       });
                     },
                     leading: Avatar(
-                      MxContent(foundProfile["avatar_url"] ?? ""),
+                      foundProfile["avatar_url"] == null
+                          ? null
+                          : Uri.parse(foundProfile["avatar_url"]),
                       foundProfile["display_name"] ?? foundProfile["user_id"],
                       //size: 24,
                     ),

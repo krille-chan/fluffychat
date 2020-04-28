@@ -623,4 +623,7 @@ class ExtendedStore extends Store implements ExtendedStoreAPI {
         'saved_at INTEGER, ' +
         'UNIQUE(mxc_uri))',
   };
+
+  @override
+  int get maxFileSize => 1 * 1024 * 1024;
 }
