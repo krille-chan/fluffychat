@@ -23,7 +23,7 @@ class Avatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String src = mxContent.getThumbnail(
+    final String src = mxContent?.getThumbnail(
       Matrix.of(context).client,
       width: size * MediaQuery.of(context).devicePixelRatio,
       height: size * MediaQuery.of(context).devicePixelRatio,
@@ -35,20 +35,21 @@ class Avatar extends StatelessWidget {
     } else if ((name?.length ?? 0) == 1) {
       fallbackLetters = name;
     }
+    final noPic = mxContent == null || mxContent.toString().isEmpty;
     return InkWell(
       onTap: onTap,
       child: CircleAvatar(
         radius: size / 2,
-        backgroundImage: mxContent != null
+        backgroundImage: !noPic
             ? AdvancedNetworkImage(
                 src,
                 useDiskCache: !kIsWeb,
               )
             : null,
-        backgroundColor: mxContent == null
+        backgroundColor: noPic
             ? name?.color ?? Theme.of(context).secondaryHeaderColor
             : Theme.of(context).secondaryHeaderColor,
-        child: mxContent == null
+        child: noPic
             ? Text(fallbackLetters, style: TextStyle(color: Colors.white))
             : null,
       ),
