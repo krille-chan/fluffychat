@@ -1,5 +1,5 @@
 image: 
-  name: registry.gitlab.com/famedly/container/flutter-dockerimages:stable
+  name: registry.gitlab.com/famedly/containers/flutter-dockerimages:stable
 
 variables:
   GIT_SUBMODULE_STRATEGY: recursive
@@ -22,7 +22,7 @@ test:
 
 build_web:
   stage: coverage
-  image: registry.gitlab.com/famedly/container/flutter-dockerimages:beta
+  image: registry.gitlab.com/famedly/containers/flutter-dockerimages:beta
   script:
     - sudo apt update
     - sudo apt install curl -y
