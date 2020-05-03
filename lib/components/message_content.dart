@@ -6,10 +6,8 @@ import 'package:fluffychat/utils/event_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:link_text/link_text.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:fluffychat/utils/matrix_file_extension.dart';
-
-import 'dialogs/simple_dialogs.dart';
 import 'matrix.dart';
+import 'message_download_content.dart';
 
 class MessageContent extends StatelessWidget {
   final Event event;
@@ -26,7 +24,10 @@ class MessageContent extends StatelessWidget {
         switch (event.messageType) {
           case MessageTypes.Image:
           case MessageTypes.Sticker:
-            return ImageBubble(event);
+            if (event.hasThumbnail) {
+              return ImageBubble(event);
+            }
+            return MessageDownloadContent(event, textColor);
           case MessageTypes.Audio:
             return AudioPlayer(
               event,
@@ -34,49 +35,7 @@ class MessageContent extends StatelessWidget {
             );
           case MessageTypes.Video:
           case MessageTypes.File:
-            return Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  RaisedButton(
-                      color: Colors.blueGrey,
-                      child: Text(
-                        I18n.of(context).downloadFile,
-                        overflow: TextOverflow.fade,
-                        softWrap: false,
-                        maxLines: 1,
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      onPressed: () async {
-                        final MatrixFile matrixFile =
-                            await SimpleDialogs(context)
-                                .tryRequestWithLoadingDialog(
-                          event.downloadAndDecryptAttachment(),
-                        );
-                        matrixFile.open();
-                      }),
-                  Text(
-                    "- " +
-                        (event.content.containsKey("filename")
-                            ? event.content["filename"]
-                            : event.body),
-                    style: TextStyle(
-                      color: textColor,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  if (event.sizeString != null)
-                    Text(
-                      "- " + event.sizeString,
-                      style: TextStyle(
-                        color: textColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                ],
-              ),
-            );
+            return MessageDownloadContent(event, textColor);
           case MessageTypes.BadEncrypted:
           case MessageTypes.Text:
           case MessageTypes.Reply:
