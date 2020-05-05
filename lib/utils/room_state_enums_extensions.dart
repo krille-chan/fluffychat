@@ -1,18 +1,17 @@
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/i18n/i18n.dart';
-import 'package:flutter/material.dart';
 
 extension HistoryVisibilityDisplayString on HistoryVisibility {
-  String getLocalizedString(BuildContext context) {
+  String getLocalizedString(I18n i18n) {
     switch (this) {
       case HistoryVisibility.invited:
-        return I18n.of(context).fromTheInvitation;
+        return i18n.fromTheInvitation;
       case HistoryVisibility.joined:
-        return I18n.of(context).fromJoining;
+        return i18n.fromJoining;
       case HistoryVisibility.shared:
-        return I18n.of(context).visibleForAllParticipants;
+        return i18n.visibleForAllParticipants;
       case HistoryVisibility.world_readable:
-        return I18n.of(context).visibleForEveryone;
+        return i18n.visibleForEveryone;
       default:
         return this.toString().replaceAll("HistoryVisibility.", "");
     }
@@ -20,12 +19,12 @@ extension HistoryVisibilityDisplayString on HistoryVisibility {
 }
 
 extension GuestAccessDisplayString on GuestAccess {
-  String getLocalizedString(BuildContext context) {
+  String getLocalizedString(I18n i18n) {
     switch (this) {
       case GuestAccess.can_join:
-        return I18n.of(context).guestsCanJoin;
+        return i18n.guestsCanJoin;
       case GuestAccess.forbidden:
-        return I18n.of(context).guestsAreForbidden;
+        return i18n.guestsAreForbidden;
       default:
         return this.toString().replaceAll("GuestAccess.", "");
     }
@@ -33,12 +32,12 @@ extension GuestAccessDisplayString on GuestAccess {
 }
 
 extension JoinRulesDisplayString on JoinRules {
-  String getLocalizedString(BuildContext context) {
+  String getLocalizedString(I18n i18n) {
     switch (this) {
       case JoinRules.public:
-        return I18n.of(context).anyoneCanJoin;
+        return i18n.anyoneCanJoin;
       case JoinRules.invite:
-        return I18n.of(context).invitedUsersOnly;
+        return i18n.invitedUsersOnly;
       default:
         return this.toString().replaceAll("JoinRules.", "");
     }

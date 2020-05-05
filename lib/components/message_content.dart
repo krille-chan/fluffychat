@@ -58,7 +58,7 @@ class MessageContent extends StatelessWidget {
               );
             }
             return LinkText(
-              text: event.getLocalizedBody(context, hideReply: true),
+              text: event.getLocalizedBody(I18n.of(context), hideReply: true),
               textStyle: TextStyle(
                 color: textColor,
                 decoration: event.redacted ? TextDecoration.lineThrough : null,

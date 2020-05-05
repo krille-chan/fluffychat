@@ -244,11 +244,12 @@ class _ChatState extends State<_Chat> {
   String _getSelectedEventString(BuildContext context) {
     String copyString = "";
     if (selectedEvents.length == 1) {
-      return selectedEvents.first.getLocalizedBody(context);
+      return selectedEvents.first.getLocalizedBody(I18n.of(context));
     }
     for (Event event in selectedEvents) {
       if (copyString.isNotEmpty) copyString += "\n\n";
-      copyString += event.getLocalizedBody(context, withSenderNamePrefix: true);
+      copyString +=
+          event.getLocalizedBody(I18n.of(context), withSenderNamePrefix: true);
     }
     return copyString;
   }
@@ -360,7 +361,7 @@ class _ChatState extends State<_Chat> {
                     ? CrossAxisAlignment.center
                     : CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(room.getLocalizedDisplayname(context)),
+                  Text(room.getLocalizedDisplayname(I18n.of(context))),
                   AnimatedContainer(
                     duration: Duration(milliseconds: 500),
                     height: typingText.isEmpty ? 0 : 20,

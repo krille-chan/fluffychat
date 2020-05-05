@@ -1,20 +1,19 @@
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/i18n/i18n.dart';
-import 'package:flutter/material.dart';
 
 extension LocalizedRoomDisplayname on Room {
-  String getLocalizedDisplayname(BuildContext context) {
+  String getLocalizedDisplayname(I18n i18n) {
     if ((this.name?.isEmpty ?? true) &&
         (this.canonicalAlias?.isEmpty ?? true) &&
         !this.isDirectChat &&
         (this.mHeroes != null && this.mHeroes.isNotEmpty)) {
-      return I18n.of(context).groupWith(this.displayname);
+      return i18n.groupWith(this.displayname);
     }
     if ((this.name?.isEmpty ?? true) &&
         (this.canonicalAlias?.isEmpty ?? true) &&
         !this.isDirectChat &&
         (this.mHeroes?.isEmpty ?? true)) {
-      return I18n.of(context).emptyChat;
+      return i18n.emptyChat;
     }
     return this.displayname;
   }

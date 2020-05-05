@@ -153,7 +153,7 @@ class ChatListItem extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Text(
-                      room.getLocalizedDisplayname(context),
+                      room.getLocalizedDisplayname(I18n.of(context)),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -189,7 +189,7 @@ class ChatListItem extends StatelessWidget {
                         ),
                       )
                     : Text(
-                        room.lastEvent.getLocalizedBody(context,
+                        room.lastEvent.getLocalizedBody(I18n.of(context),
                             withSenderNamePrefix: true, hideReply: true),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,

@@ -1,4 +1,5 @@
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/utils/event_extension.dart';
 import 'package:flutter/material.dart';
 
@@ -35,8 +36,11 @@ class ReplyContent extends StatelessWidget {
                 ),
               ),
               Text(
-                replyEvent?.getLocalizedBody(context,
-                        withSenderNamePrefix: false, hideReply: true) ??
+                replyEvent?.getLocalizedBody(
+                      I18n.of(context),
+                      withSenderNamePrefix: false,
+                      hideReply: true,
+                    ) ??
                     "",
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,

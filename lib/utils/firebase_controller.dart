@@ -160,21 +160,25 @@ abstract class FirebaseController {
           : i18n.unreadMessages(unreadEvents.toString());
 
       // Calculate the body
-      final String body = event.getLocalizedBody(context,
-          withSenderNamePrefix: true, hideReply: true);
+      final String body = event.getLocalizedBody(
+        i18n,
+        withSenderNamePrefix: true,
+        hideReply: true,
+      );
 
       // The person object for the android message style notification
       final person = Person(
-        name: room.getLocalizedDisplayname(context),
+        name: room.getLocalizedDisplayname(i18n),
         icon: room.avatar == null
             ? null
-            : await downloadAndSaveAvatar(
-                room.avatar,
-                client,
-                width: 126,
-                height: 126,
+            : BitmapFilePathAndroidIcon(
+                await downloadAndSaveAvatar(
+                  room.avatar,
+                  client,
+                  width: 126,
+                  height: 126,
+                ),
               ),
-        iconSource: IconSource.FilePath,
       );
 
       // Show notification
@@ -182,7 +186,6 @@ abstract class FirebaseController {
           'fluffychat_push',
           'FluffyChat push channel',
           'Push notifications for FluffyChat',
-          style: AndroidNotificationStyle.Messaging,
           styleInformation: MessagingStyleInformation(
             person,
             conversationTitle: title,
@@ -200,8 +203,8 @@ abstract class FirebaseController {
       var iOSPlatformChannelSpecifics = IOSNotificationDetails();
       var platformChannelSpecifics = NotificationDetails(
           androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
-      await _flutterLocalNotificationsPlugin.show(0,
-          room.getLocalizedDisplayname(context), body, platformChannelSpecifics,
+      await _flutterLocalNotificationsPlugin.show(
+          0, room.getLocalizedDisplayname(i18n), body, platformChannelSpecifics,
           payload: roomId);
     } catch (exception) {
       debugPrint("[Push] Error while processing notification: " +

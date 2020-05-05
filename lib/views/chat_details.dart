@@ -35,7 +35,7 @@ class _ChatDetailsState extends State<ChatDetails> {
     final String displayname = await SimpleDialogs(context).enterText(
       titleText: I18n.of(context).changeTheNameOfTheGroup,
       labelText: I18n.of(context).changeTheNameOfTheGroup,
-      hintText: widget.room.getLocalizedDisplayname(context),
+      hintText: widget.room.getLocalizedDisplayname(I18n.of(context)),
     );
     if (displayname == null) return;
     final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
@@ -186,7 +186,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                   ),
                 ChatSettingsPopupMenu(widget.room, false)
               ],
-              title: Text(widget.room.getLocalizedDisplayname(context),
+              title: Text(widget.room.getLocalizedDisplayname(I18n.of(context)),
                   style: TextStyle(
                       color:
                           Theme.of(context).appBarTheme.textTheme.title.color)),
@@ -251,8 +251,8 @@ class _ChatDetailsState extends State<ChatDetails> {
                             child: Icon(Icons.people),
                           ),
                           title: Text(I18n.of(context).changeTheNameOfTheGroup),
-                          subtitle: Text(
-                              widget.room.getLocalizedDisplayname(context)),
+                          subtitle: Text(widget.room
+                              .getLocalizedDisplayname(I18n.of(context))),
                           onTap: () => setDisplaynameAction(context),
                         ),
                       if (widget.room.canSendEvent("m.room.canonical_alias") &&
@@ -281,7 +281,8 @@ class _ChatDetailsState extends State<ChatDetails> {
                           title: Text(
                               I18n.of(context).whoIsAllowedToJoinThisGroup),
                           subtitle: Text(
-                            widget.room.joinRules.getLocalizedString(context),
+                            widget.room.joinRules
+                                .getLocalizedString(I18n.of(context)),
                           ),
                         ),
                         onSelected: (JoinRules joinRule) =>
@@ -293,14 +294,14 @@ class _ChatDetailsState extends State<ChatDetails> {
                           if (widget.room.canChangeJoinRules)
                             PopupMenuItem<JoinRules>(
                               value: JoinRules.public,
-                              child: Text(
-                                  JoinRules.public.getLocalizedString(context)),
+                              child: Text(JoinRules.public
+                                  .getLocalizedString(I18n.of(context))),
                             ),
                           if (widget.room.canChangeJoinRules)
                             PopupMenuItem<JoinRules>(
                               value: JoinRules.invite,
-                              child: Text(
-                                  JoinRules.invite.getLocalizedString(context)),
+                              child: Text(JoinRules.invite
+                                  .getLocalizedString(I18n.of(context))),
                             ),
                         ],
                       ),
@@ -316,7 +317,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                               Text(I18n.of(context).visibilityOfTheChatHistory),
                           subtitle: Text(
                             widget.room.historyVisibility
-                                .getLocalizedString(context),
+                                .getLocalizedString(I18n.of(context)),
                           ),
                         ),
                         onSelected: (HistoryVisibility historyVisibility) =>
@@ -329,25 +330,25 @@ class _ChatDetailsState extends State<ChatDetails> {
                             PopupMenuItem<HistoryVisibility>(
                               value: HistoryVisibility.invited,
                               child: Text(HistoryVisibility.invited
-                                  .getLocalizedString(context)),
+                                  .getLocalizedString(I18n.of(context))),
                             ),
                           if (widget.room.canChangeHistoryVisibility)
                             PopupMenuItem<HistoryVisibility>(
                               value: HistoryVisibility.joined,
                               child: Text(HistoryVisibility.joined
-                                  .getLocalizedString(context)),
+                                  .getLocalizedString(I18n.of(context))),
                             ),
                           if (widget.room.canChangeHistoryVisibility)
                             PopupMenuItem<HistoryVisibility>(
                               value: HistoryVisibility.shared,
                               child: Text(HistoryVisibility.shared
-                                  .getLocalizedString(context)),
+                                  .getLocalizedString(I18n.of(context))),
                             ),
                           if (widget.room.canChangeHistoryVisibility)
                             PopupMenuItem<HistoryVisibility>(
                               value: HistoryVisibility.world_readable,
                               child: Text(HistoryVisibility.world_readable
-                                  .getLocalizedString(context)),
+                                  .getLocalizedString(I18n.of(context))),
                             ),
                         ],
                       ),
@@ -364,7 +365,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                                 Text(I18n.of(context).areGuestsAllowedToJoin),
                             subtitle: Text(
                               widget.room.guestAccess
-                                  .getLocalizedString(context),
+                                  .getLocalizedString(I18n.of(context)),
                             ),
                           ),
                           onSelected: (GuestAccess guestAccess) =>
@@ -379,7 +380,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                                 value: GuestAccess.can_join,
                                 child: Text(
                                   GuestAccess.can_join
-                                      .getLocalizedString(context),
+                                      .getLocalizedString(I18n.of(context)),
                                 ),
                               ),
                             if (widget.room.canChangeGuestAccess)
@@ -387,7 +388,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                                 value: GuestAccess.forbidden,
                                 child: Text(
                                   GuestAccess.forbidden
-                                      .getLocalizedString(context),
+                                      .getLocalizedString(I18n.of(context)),
                                 ),
                               ),
                           ],

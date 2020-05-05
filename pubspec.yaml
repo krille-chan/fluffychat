@@ -39,7 +39,7 @@ dependencies:
   sqflite: ^1.2.0
   flutter_advanced_networkimage: any
   firebase_messaging: ^6.0.13
-  flutter_local_notifications: ^0.8.4
+  flutter_local_notifications: ^1.4.3
   link_text: ^0.1.1
   path_provider: ^1.5.1
   webview_flutter: ^0.3.19+9

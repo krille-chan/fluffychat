@@ -1,5 +1,6 @@
 import 'package:bubble/bubble.dart';
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/i18n/i18n.dart';
 import 'package:flutter/material.dart';
 import 'package:fluffychat/utils/event_extension.dart';
 
@@ -21,7 +22,7 @@ class StateMessage extends StatelessWidget {
         color: Theme.of(context).backgroundColor.withOpacity(0.66),
         alignment: Alignment.center,
         child: Text(
-          event.getLocalizedBody(context),
+          event.getLocalizedBody(I18n.of(context)),
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Theme.of(context).textTheme.body1.color,
