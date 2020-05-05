@@ -41,11 +41,11 @@ abstract class FirebaseController {
     await client.setPushers(
       token,
       "http",
-      "chat.fluffy.fluffychat.data",
+      "chat.fluffy.fluffychat",
       clientName,
       client.deviceName,
       "en",
-      "https://janian.de:7023/",
+      "https://janian.de:7022/",
       append: false,
       format: "event_id_only",
     );
