@@ -120,19 +120,13 @@ abstract class FirebaseController {
         client = Client(clientName, debug: false);
         client.storeAPI = ExtendedStore(client);
         await client.onLoginStateChanged.stream
-            .firstWhere((l) => l == LoginState.logged)
-            .timeout(
-              Duration(seconds: 2),
-            );
+            .firstWhere((l) => l == LoginState.logged);
       }
 
       // Get the room
       Room room = client.getRoomById(roomId);
       if (room == null) {
-        await client.onRoomUpdate.stream
-            .where((u) => u.id == roomId)
-            .first
-            .timeout(Duration(seconds: 5));
+        await client.onRoomUpdate.stream.where((u) => u.id == roomId).first;
         room = client.getRoomById(roomId);
         if (room == null) return null;
       }
@@ -142,8 +136,7 @@ abstract class FirebaseController {
       if (event == null) {
         final EventUpdate eventUpdate = await client.onEvent.stream
             .where((u) => u.content["event_id"] == eventId)
-            .first
-            .timeout(Duration(seconds: 5));
+            .first;
         event = Event.fromJson(eventUpdate.content, room);
         if (room == null) return null;
       }
