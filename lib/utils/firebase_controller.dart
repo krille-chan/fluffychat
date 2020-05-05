@@ -120,13 +120,19 @@ abstract class FirebaseController {
         client = Client(clientName, debug: false);
         client.storeAPI = ExtendedStore(client);
         await client.onLoginStateChanged.stream
-            .firstWhere((l) => l == LoginState.logged);
+            .firstWhere((l) => l == LoginState.logged)
+            .timeout(
+              Duration(seconds: 5),
+            );
       }
 
       // Get the room
       Room room = client.getRoomById(roomId);
       if (room == null) {
-        await client.onRoomUpdate.stream.where((u) => u.id == roomId).first;
+        await client.onRoomUpdate.stream
+            .where((u) => u.id == roomId)
+            .first
+            .timeout(Duration(seconds: 5));
         room = client.getRoomById(roomId);
         if (room == null) return null;
       }
@@ -136,7 +142,8 @@ abstract class FirebaseController {
       if (event == null) {
         final EventUpdate eventUpdate = await client.onEvent.stream
             .where((u) => u.content["event_id"] == eventId)
-            .first;
+            .first
+            .timeout(Duration(seconds: 5));
         event = Event.fromJson(eventUpdate.content, room);
         if (room == null) return null;
       }
@@ -202,8 +209,55 @@ abstract class FirebaseController {
     } catch (exception) {
       debugPrint("[Push] Error while processing notification: " +
           exception.toString());
+      await _showDefaultNotification(message);
     }
     return null;
+  }
+
+  static Future<dynamic> _showDefaultNotification(
+      Map<String, dynamic> message) async {
+    try {
+      FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+          FlutterLocalNotificationsPlugin();
+      // Init notifications framework
+      var initializationSettingsAndroid =
+          AndroidInitializationSettings('notifications_icon');
+      var initializationSettingsIOS = IOSInitializationSettings();
+      var initializationSettings = InitializationSettings(
+          initializationSettingsAndroid, initializationSettingsIOS);
+      await flutterLocalNotificationsPlugin.initialize(initializationSettings);
+
+      // Notification data and matrix data
+      Map<dynamic, dynamic> data = message['data'] ?? message;
+      String eventID = data["event_id"];
+      String roomID = data["room_id"];
+      final int unread = data.containsKey("counts")
+          ? json.decode(data["counts"])["unread"]
+          : 1;
+      await flutterLocalNotificationsPlugin.cancelAll();
+      if (unread == 0 || roomID == null || eventID == null) {
+        return;
+      }
+
+      // Display notification
+      var androidPlatformChannelSpecifics = AndroidNotificationDetails(
+          'fluffychat_push',
+          'FluffyChat push channel',
+          'Push notifications for FluffyChat',
+          importance: Importance.Max,
+          priority: Priority.High);
+      var iOSPlatformChannelSpecifics = IOSNotificationDetails();
+      var platformChannelSpecifics = NotificationDetails(
+          androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
+      final String title = "$unread unread chats";
+      await flutterLocalNotificationsPlugin.show(
+          1, title, 'Open app to read messages', platformChannelSpecifics,
+          payload: roomID);
+    } catch (exception) {
+      debugPrint("[Push] Error while processing background notification: " +
+          exception.toString());
+    }
+    return Future<void>.value();
   }
 
   static Future<String> downloadAndSaveAvatar(Uri content, Client client,
