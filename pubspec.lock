@@ -142,7 +142,7 @@ packages:
       name: firebase_messaging
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.0.9"
+    version: "6.0.13"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -168,7 +168,7 @@ packages:
       name: flutter_local_notifications
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.9.1+2"
+    version: "0.8.4+3"
   flutter_localizations:
     dependency: "direct main"
     description: flutter
