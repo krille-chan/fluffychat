@@ -110,14 +110,12 @@ abstract class FirebaseController {
       }
 
       // Get the client
-      print("Get client");
       Client client;
       if (context != null) {
         client = Matrix.of(context).client;
       } else {
         final platform = kIsWeb ? "Web" : Platform.operatingSystem;
         final clientName = "FluffyChat $platform";
-        print("Clientname: $clientName");
         client = Client(clientName, debug: false);
         client.storeAPI = ExtendedStore(client);
         await client.onLoginStateChanged.stream
@@ -128,25 +126,23 @@ abstract class FirebaseController {
       }
 
       // Get the room
-      print("Get room");
       Room room = client.getRoomById(roomId);
       if (room == null) {
         await client.onRoomUpdate.stream
             .where((u) => u.id == roomId)
             .first
-            .timeout(Duration(seconds: 10));
+            .timeout(Duration(seconds: 5));
         room = client.getRoomById(roomId);
         if (room == null) return null;
       }
 
       // Get the event
-      print("Get event");
       Event event = await client.store.getEventById(eventId, room);
       if (event == null) {
         final EventUpdate eventUpdate = await client.onEvent.stream
             .where((u) => u.content["event_id"] == eventId)
             .first
-            .timeout(Duration(seconds: 10));
+            .timeout(Duration(seconds: 5));
         event = Event.fromJson(eventUpdate.content, room);
         if (room == null) return null;
       }
@@ -209,6 +205,7 @@ abstract class FirebaseController {
     } catch (exception) {
       debugPrint("[Push] Error while processing notification: " +
           exception.toString());
+      return _handleOnBackgroundMessage(message);
     }
     return null;
   }
