@@ -108,6 +108,7 @@ abstract class FirebaseController {
       if (context != null && Matrix.of(context).activeRoomId == roomId) {
         return null;
       }
+      final i18n = context == null ? I18n('en') : I18n.of(context);
 
       // Get the client
       Client client;
@@ -154,9 +155,9 @@ abstract class FirebaseController {
 
       // Calculate title
       final String title = unread > 1
-          ? I18n.of(context)
-              .unreadMessagesInChats(unreadEvents.toString(), unread.toString())
-          : I18n.of(context).unreadMessages(unreadEvents.toString());
+          ? i18n.unreadMessagesInChats(
+              unreadEvents.toString(), unread.toString())
+          : i18n.unreadMessages(unreadEvents.toString());
 
       // Calculate the body
       final String body = event.getLocalizedBody(context,
@@ -195,7 +196,7 @@ abstract class FirebaseController {
           ),
           importance: Importance.Max,
           priority: Priority.High,
-          ticker: I18n.of(context).newMessageInFluffyChat);
+          ticker: i18n.newMessageInFluffyChat);
       var iOSPlatformChannelSpecifics = IOSNotificationDetails();
       var platformChannelSpecifics = NotificationDetails(
           androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
@@ -205,55 +206,8 @@ abstract class FirebaseController {
     } catch (exception) {
       debugPrint("[Push] Error while processing notification: " +
           exception.toString());
-      return _handleOnBackgroundMessage(message);
     }
     return null;
-  }
-
-  static Future<dynamic> _handleOnBackgroundMessage(
-      Map<String, dynamic> message) async {
-    try {
-      FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-          FlutterLocalNotificationsPlugin();
-      // Init notifications framework
-      var initializationSettingsAndroid =
-          AndroidInitializationSettings('notifications_icon');
-      var initializationSettingsIOS = IOSInitializationSettings();
-      var initializationSettings = InitializationSettings(
-          initializationSettingsAndroid, initializationSettingsIOS);
-      await flutterLocalNotificationsPlugin.initialize(initializationSettings);
-
-      // Notification data and matrix data
-      Map<dynamic, dynamic> data = message['data'] ?? message;
-      String eventID = data["event_id"];
-      String roomID = data["room_id"];
-      final int unread = data.containsKey("counts")
-          ? json.decode(data["counts"])["unread"]
-          : 1;
-      await flutterLocalNotificationsPlugin.cancelAll();
-      if (unread == 0 || roomID == null || eventID == null) {
-        return;
-      }
-
-      // Display notification
-      var androidPlatformChannelSpecifics = AndroidNotificationDetails(
-          'fluffychat_push',
-          'FluffyChat push channel',
-          'Push notifications for FluffyChat',
-          importance: Importance.Max,
-          priority: Priority.High);
-      var iOSPlatformChannelSpecifics = IOSNotificationDetails();
-      var platformChannelSpecifics = NotificationDetails(
-          androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
-      final String title = "$unread ungelesene Unterhaltungen";
-      await flutterLocalNotificationsPlugin.show(1, title,
-          'App öffnen, um Nachricht zu entschlüsseln', platformChannelSpecifics,
-          payload: roomID);
-    } catch (exception) {
-      debugPrint("[Push] Error while processing background notification: " +
-          exception.toString());
-    }
-    return Future<void>.value();
   }
 
   static Future<String> downloadAndSaveAvatar(Uri content, Client client,

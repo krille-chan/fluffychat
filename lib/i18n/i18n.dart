@@ -36,7 +36,6 @@ class I18n {
   }
 
   static I18n of(BuildContext context) {
-    if (context == null) return I18n('en');
     return Localizations.of<I18n>(context, I18n);
   }
 
