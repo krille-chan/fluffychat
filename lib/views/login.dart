@@ -4,6 +4,7 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/utils/app_route.dart';
+import 'package:fluffychat/utils/firebase_controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -53,7 +54,10 @@ class _LoginState extends State<Login> {
     }
     if (!kIsWeb) {
       try {
-        await matrix.setupFirebase();
+        await FirebaseController.setupFirebase(
+          matrix.client,
+          matrix.widget.clientName,
+        );
       } catch (exception) {
         await matrix.client.logout();
         matrix.clean();
