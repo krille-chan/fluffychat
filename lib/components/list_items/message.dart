@@ -58,7 +58,7 @@ class Message extends StatelessWidget {
 
     if (event.messageType == MessageTypes.Image) {
       color = Theme.of(context).scaffoldBackgroundColor.withOpacity(0.66);
-      textColor = Theme.of(context).textTheme.body1.color;
+      textColor = Theme.of(context).textTheme.bodyText2.color;
     } else if (ownMessage) {
       color = event.status == -1
           ? Colors.redAccent

@@ -80,7 +80,7 @@ class _RecordingDialogState extends State<RecordingDialog> {
           child: Text(
             I18n.of(context).cancel.toUpperCase(),
             style: TextStyle(
-              color: Theme.of(context).textTheme.body1.color.withAlpha(150),
+              color: Theme.of(context).textTheme.bodyText2.color.withAlpha(150),
             ),
           ),
           onPressed: () => Navigator.of(context).pop(),
