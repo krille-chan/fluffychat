@@ -1,6 +1,5 @@
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/i18n/i18n.dart';
-import 'package:fluffychat/utils/event_extension.dart';
 import 'package:flutter/material.dart';
 
 class ReplyContent extends StatelessWidget {

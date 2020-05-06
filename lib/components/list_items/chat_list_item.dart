@@ -8,8 +8,6 @@ import 'package:pedantic/pedantic.dart';
 import '../../i18n/i18n.dart';
 import '../../utils/app_route.dart';
 import '../../utils/date_time_extension.dart';
-import '../../utils/event_extension.dart';
-import '../../utils/room_extension.dart';
 import '../../views/chat.dart';
 import '../theme_switcher.dart';
 import '../avatar.dart';

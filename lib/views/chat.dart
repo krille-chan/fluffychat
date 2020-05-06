@@ -12,8 +12,6 @@ import 'package:fluffychat/components/list_items/message.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/components/reply_content.dart';
 import 'package:fluffychat/i18n/i18n.dart';
-import 'package:fluffychat/utils/event_extension.dart';
-import 'package:fluffychat/utils/room_extension.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

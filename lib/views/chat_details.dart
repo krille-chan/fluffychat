@@ -9,8 +9,6 @@ import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/list_items/participant_list_item.dart';
 import 'package:fluffychat/i18n/i18n.dart';
 import 'package:fluffychat/utils/app_route.dart';
-import 'package:fluffychat/utils/room_extension.dart';
-import 'package:fluffychat/utils/room_state_enums_extensions.dart';
 import 'package:fluffychat/views/chat_list.dart';
 import 'package:fluffychat/views/invitation_selection.dart';
 import 'package:flutter/foundation.dart';

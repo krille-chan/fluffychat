@@ -117,8 +117,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "1265ebf7da56440ead152bbf44502b941436dc1b"
-      resolved-ref: "1265ebf7da56440ead152bbf44502b941436dc1b"
+      ref: "73ed5ed093a1275f93adc946a605d46530cbdd39"
+      resolved-ref: "73ed5ed093a1275f93adc946a605d46530cbdd39"
       url: "https://gitlab.com/famedly/famedlysdk.git"
     source: git
     version: "0.0.1"
@@ -253,7 +253,7 @@ packages:
       name: http
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.12.0+4"
+    version: "0.12.1"
   http_multi_server:
     dependency: transitive
     description:
@@ -342,11 +342,11 @@ packages:
     dependency: transitive
     description:
       path: "."
-      ref: HEAD
-      resolved-ref: b043fcc29031979dc65e5b08e10ebb9b8d2fae30
+      ref: "1.x.y"
+      resolved-ref: "32edeff765369a7a77a0822f4b19302ca24a017b"
       url: "https://gitlab.com/famedly/libraries/matrix_file_e2ee.git"
     source: git
-    version: "1.0.2"
+    version: "1.0.3"
   meta:
     dependency: transitive
     description:
@@ -367,7 +367,7 @@ packages:
       name: mime_type
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.7"
+    version: "0.3.0"
   multi_server_socket:
     dependency: transitive
     description:

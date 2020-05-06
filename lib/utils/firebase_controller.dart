@@ -12,8 +12,6 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:famedlysdk/famedlysdk.dart';
-import '../utils/event_extension.dart';
-import '../utils/room_extension.dart';
 import 'famedlysdk_store.dart';
 
 abstract class FirebaseController {
