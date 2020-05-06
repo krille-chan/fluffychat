@@ -1,3 +1,4 @@
+import 'package:famedlysdk/famedlysdk.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'messages_all.dart';
@@ -21,7 +22,7 @@ class AppLocalizationsDelegate extends LocalizationsDelegate<I18n> {
   }
 }
 
-class I18n {
+class I18n extends MatrixLocalizations {
   I18n(this.localeName);
 
   static Future<I18n> load(Locale locale) {
@@ -229,8 +230,11 @@ class I18n {
 
   String get copy => Intl.message("Copy");
 
-  String get couldNotDecryptMessage =>
-      Intl.message("Could not decrypt message");
+  String couldNotDecryptMessage(String error) => Intl.message(
+        "Could not decrypt message: $error",
+        name: "couldNotDecryptMessage",
+        args: [error],
+      );
 
   String get couldNotSetAvatar => Intl.message("Could not set avatar");
 

@@ -2,7 +2,6 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/audio_player.dart';
 import 'package:fluffychat/components/image_bubble.dart';
 import 'package:fluffychat/i18n/i18n.dart';
-import 'package:fluffychat/utils/event_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:link_text/link_text.dart';
 import 'package:url_launcher/url_launcher.dart';
