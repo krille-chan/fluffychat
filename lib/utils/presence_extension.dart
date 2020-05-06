@@ -7,7 +7,7 @@ extension PresenceExtension on Presence {
       (statusMsg?.isNotEmpty ?? false) || this.displayname != null;
 
   String getLocalizedStatusMessage(BuildContext context) {
-    if (!isStatus) return null;
+    if (!isStatus) return '';
     if (statusMsg?.isNotEmpty ?? false) {
       return statusMsg;
     }
