@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-04-12T11:11:56.595233",
+  "@@last_modified": "2020-05-06T19:24:19.377156",
   "About": "About",
   "@About": {
     "type": "text",
@@ -303,10 +303,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "Could not decrypt message": "Could not decrypt message",
-  "@Could not decrypt message": {
+  "couldNotDecryptMessage": "Could not decrypt message: {error}",
+  "@couldNotDecryptMessage": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": {
+      "error": {}
+    }
   },
   "Could not set avatar": "Could not set avatar",
   "@Could not set avatar": {
@@ -653,6 +655,13 @@
     "type": "text",
     "placeholders": {
       "username": {}
+    }
+  },
+  "lastActiveAgo": "Last active: {localizedTimeShort}",
+  "@lastActiveAgo": {
+    "type": "text",
+    "placeholders": {
+      "localizedTimeShort": {}
     }
   },
   "Last seen IP": "Last seen IP",
@@ -1019,6 +1028,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "Set status": "Set status",
+  "@Set status": {
+    "type": "text",
+    "placeholders": {}
+  },
   "Settings": "Settings",
   "@Settings": {
     "type": "text",
@@ -1036,6 +1050,11 @@
   },
   "System": "System",
   "@System": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "How are you today?": "How are you today?",
+  "@How are you today?": {
     "type": "text",
     "placeholders": {}
   },

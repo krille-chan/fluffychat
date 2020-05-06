@@ -8,10 +8,6 @@ extension PresenceExtension on Presence {
     if (statusMsg?.isNotEmpty ?? false) {
       return statusMsg;
     }
-    if (displayname != null) {
-      return I18n.of(context)
-          .changedTheDisplaynameTo(sender.localpart, displayname);
-    }
     return I18n.of(context).lastActiveAgo(time.localizedTimeShort(context));
   }
 }

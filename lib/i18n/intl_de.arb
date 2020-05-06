@@ -303,10 +303,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "Could not decrypt message": "Nachricht konnte nicht entschlüsselt werden",
-  "@Could not decrypt message": {
+  "couldNotDecryptMessage": "Nachricht konnte nicht entschlüsselt werden: {error}",
+  "@couldNotDecryptMessage": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": {
+      "error": {}
+    }
   },
   "Could not set avatar": "Profilbild konnte nicht gesetzt werden",
   "@Could not set avatar": {
@@ -653,6 +655,13 @@
     "type": "text",
     "placeholders": {
       "username": {}
+    }
+  },
+  "lastActiveAgo": "Zuletzt aktiv: {localizedTimeShort}",
+  "@lastActiveAgo": {
+    "type": "text",
+    "placeholders": {
+      "localizedTimeShort": {}
     }
   },
   "Last seen IP": "Zuletzt bekannte IP",
@@ -1026,6 +1035,11 @@
   },
   "Sign up": "Registrieren",
   "@Sign up": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Set status": "Status ändern",
+  "@Set status": {
     "type": "text",
     "placeholders": {}
   },

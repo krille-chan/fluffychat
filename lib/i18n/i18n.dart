@@ -424,7 +424,7 @@ class I18n extends MatrixLocalizations {
       );
 
   String lastActiveAgo(String localizedTimeShort) => Intl.message(
-        "Last active: localizedTimeShort",
+        "Last active: $localizedTimeShort",
         name: "lastActiveAgo",
         args: [localizedTimeShort],
       );
