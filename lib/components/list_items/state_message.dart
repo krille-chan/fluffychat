@@ -24,7 +24,7 @@ class StateMessage extends StatelessWidget {
           event.getLocalizedBody(I18n.of(context)),
           textAlign: TextAlign.center,
           style: TextStyle(
-            color: Theme.of(context).textTheme.body1.color,
+            color: Theme.of(context).textTheme.bodyText2.color,
             decoration: event.redacted ? TextDecoration.lineThrough : null,
           ),
         ),

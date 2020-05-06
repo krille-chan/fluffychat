@@ -112,7 +112,8 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
                               .keys["ed25519:${deviceKeys[i].deviceId}"]
                               .beautified,
                           style: TextStyle(
-                              color: Theme.of(context).textTheme.body1.color),
+                              color:
+                                  Theme.of(context).textTheme.bodyText2.color),
                         ),
                         value: deviceKeys[i].verified,
                         onChanged: (bool newVal) {

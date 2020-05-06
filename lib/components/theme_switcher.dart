@@ -33,7 +33,7 @@ final ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
     color: Colors.white,
     textTheme: TextTheme(
-      title: TextStyle(
+      headline6: TextStyle(
         color: Colors.black,
         fontSize: 20,
       ),
@@ -68,7 +68,7 @@ final ThemeData darkTheme = ThemeData.dark().copyWith(
     brightness: Brightness.dark,
     color: Color(0xff1D1D1D),
     textTheme: TextTheme(
-      title: TextStyle(
+      headline6: TextStyle(
         color: Colors.white,
         fontSize: 20,
       ),
@@ -103,7 +103,7 @@ final ThemeData amoledTheme = ThemeData.dark().copyWith(
     brightness: Brightness.dark,
     color: Color(0xff1D1D1D),
     textTheme: TextTheme(
-      title: TextStyle(
+      headline6: TextStyle(
         color: Colors.white,
         fontSize: 20,
       ),

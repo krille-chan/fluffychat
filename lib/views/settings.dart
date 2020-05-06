@@ -149,7 +149,11 @@ class _SettingsState extends State<Settings> {
               title: Text(
                 I18n.of(context).settings,
                 style: TextStyle(
-                    color: Theme.of(context).appBarTheme.textTheme.title.color),
+                    color: Theme.of(context)
+                        .appBarTheme
+                        .textTheme
+                        .headline6
+                        .color),
               ),
               background: ContentBanner(
                 profile?.avatarUrl,

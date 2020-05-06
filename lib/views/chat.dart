@@ -407,7 +407,7 @@ class _ChatState extends State<_Chat> {
                 child: Icon(Icons.arrow_downward,
                     color: Theme.of(context).primaryColor),
                 onPressed: () => _scrollController.jumpTo(0),
-                foregroundColor: Theme.of(context).textTheme.body1.color,
+                foregroundColor: Theme.of(context).textTheme.bodyText2.color,
                 backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                 mini: true,
               ),
