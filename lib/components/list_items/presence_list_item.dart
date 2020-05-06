@@ -28,6 +28,7 @@ class PresenceListItem extends StatelessWidget {
     return FutureBuilder<Profile>(
         future: _requestProfile(context),
         builder: (context, snapshot) {
+          if (!snapshot.hasData) return Container();
           Uri avatarUrl;
           String displayname = presence.sender.localpart;
           if (snapshot.hasData) {
@@ -48,8 +49,7 @@ class PresenceListItem extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    if (presence.isStatus)
-                      Text(presence.getLocalizedStatusMessage(context)),
+                    Text(presence.getLocalizedStatusMessage(context)),
                     if (presence.presence != null)
                       Text(
                         presence.presence.toString().split('.').last,

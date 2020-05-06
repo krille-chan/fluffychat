@@ -423,6 +423,12 @@ class I18n extends MatrixLocalizations {
         args: [username],
       );
 
+  String lastActiveAgo(String localizedTimeShort) => Intl.message(
+        "Last active: localizedTimeShort",
+        name: "lastActiveAgo",
+        args: [localizedTimeShort],
+      );
+
   String get lastSeenIp => Intl.message("Last seen IP");
 
   String get license => Intl.message("License");
