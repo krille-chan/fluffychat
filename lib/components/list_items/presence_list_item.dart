@@ -13,14 +13,12 @@ class PresenceListItem extends StatelessWidget {
 
   const PresenceListItem(this.presence);
 
+  static Map<String, Profile> _presences = {};
+
   Future<Profile> _requestProfile(BuildContext context) async {
-    if (presence.avatarUrl != null) {
-      return Profile.fromJson({
-        'avatar_url': presence.avatarUrl.toString(),
-        'displayname': presence.displayname ?? presence.sender.localpart,
-      });
-    }
-    return Matrix.of(context).client.getProfileFromUserId(presence.sender);
+    _presences[presence.sender] ??=
+        await Matrix.of(context).client.getProfileFromUserId(presence.sender);
+    return _presences[presence.sender];
   }
 
   @override
