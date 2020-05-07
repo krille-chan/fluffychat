@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../components/theme_switcher.dart';
 import '../components/matrix.dart';
-import '../i18n/i18n.dart';
+import '../l10n/l10n.dart';
 
 class ThemesSettings extends StatefulWidget {
   @override
@@ -25,7 +25,7 @@ class ThemesSettingsState extends State<ThemesSettings> {
       children: <Widget>[
         RadioListTile<Themes>(
           title: Text(
-            I18n.of(context).systemTheme,
+            L10n.of(context).systemTheme,
           ),
           value: Themes.system,
           groupValue: _selectedTheme,
@@ -39,7 +39,7 @@ class ThemesSettingsState extends State<ThemesSettings> {
         ),
         RadioListTile<Themes>(
           title: Text(
-            I18n.of(context).lightTheme,
+            L10n.of(context).lightTheme,
           ),
           value: Themes.light,
           groupValue: _selectedTheme,
@@ -53,7 +53,7 @@ class ThemesSettingsState extends State<ThemesSettings> {
         ),
         RadioListTile<Themes>(
           title: Text(
-            I18n.of(context).darkTheme,
+            L10n.of(context).darkTheme,
           ),
           value: Themes.dark,
           groupValue: _selectedTheme,
@@ -67,7 +67,7 @@ class ThemesSettingsState extends State<ThemesSettings> {
         ),
         ListTile(
           title: Text(
-            I18n.of(context).useAmoledTheme,
+            L10n.of(context).useAmoledTheme,
           ),
           trailing: Switch(
             value: _amoledEnabled,

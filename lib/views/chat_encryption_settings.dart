@@ -5,7 +5,7 @@ import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/avatar.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/utils/beautify_string_extension.dart';
-import 'package:fluffychat/i18n/i18n.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/views/chat_list.dart';
 import 'package:flutter/material.dart';
 
@@ -52,7 +52,7 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(I18n.of(context).participatingUserDevices),
+        title: Text(L10n.of(context).participatingUserDevices),
       ),
       body: Column(
         children: <Widget>[
@@ -61,7 +61,7 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
             builder: (BuildContext context, snapshot) {
               if (snapshot.hasError) {
                 return Center(
-                  child: Text(I18n.of(context).oopsSomethingWentWrong +
+                  child: Text(L10n.of(context).oopsSomethingWentWrong +
                       ": " +
                       snapshot.error.toString()),
                 );
@@ -99,7 +99,7 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
                         ),
                       CheckboxListTile(
                         title: Text(
-                          "${deviceKeys[i].unsigned["device_display_name"] ?? I18n.of(context).unknownDevice} - ${deviceKeys[i].deviceId}",
+                          "${deviceKeys[i].unsigned["device_display_name"] ?? L10n.of(context).unknownDevice} - ${deviceKeys[i].deviceId}",
                           style: TextStyle(
                               color: deviceKeys[i].blocked
                                   ? Colors.red

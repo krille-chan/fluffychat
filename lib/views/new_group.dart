@@ -1,7 +1,7 @@
 import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/matrix.dart';
-import 'package:fluffychat/i18n/i18n.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:flutter/material.dart';
 import 'package:pedantic/pedantic.dart';
@@ -72,7 +72,7 @@ class _NewGroupState extends State<_NewGroup> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(I18n.of(context).createNewGroup),
+        title: Text(L10n.of(context).createNewGroup),
         elevation: 0,
       ),
       body: Column(
@@ -88,13 +88,13 @@ class _NewGroupState extends State<_NewGroup> {
               onSubmitted: (s) => submitAction(context),
               decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: I18n.of(context).optionalGroupName,
+                  labelText: L10n.of(context).optionalGroupName,
                   prefixIcon: Icon(Icons.people),
-                  hintText: I18n.of(context).enterAGroupName),
+                  hintText: L10n.of(context).enterAGroupName),
             ),
           ),
           SwitchListTile(
-            title: Text(I18n.of(context).groupIsPublic),
+            title: Text(L10n.of(context).groupIsPublic),
             value: publicGroup,
             onChanged: (bool b) => setState(() => publicGroup = b),
           ),

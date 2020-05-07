@@ -1,4 +1,4 @@
-import 'package:fluffychat/i18n/i18n.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 
 /// Provides extra functionality for formatting the time.
@@ -34,7 +34,7 @@ extension DateTimeExtension on DateTime {
   /// Returns a simple time String.
   /// TODO: Add localization
   String localizedTimeOfDay(BuildContext context) {
-    return I18n.of(context).timeOfDay(_z(this.hour % 12), _z(this.hour),
+    return L10n.of(context).timeOfDay(_z(this.hour % 12), _z(this.hour),
         _z(this.minute), this.hour > 11 ? 'pm' : 'am');
   }
 
@@ -57,26 +57,26 @@ extension DateTimeExtension on DateTime {
     } else if (sameWeek) {
       switch (this.weekday) {
         case 1:
-          return I18n.of(context).monday;
+          return L10n.of(context).monday;
         case 2:
-          return I18n.of(context).tuesday;
+          return L10n.of(context).tuesday;
         case 3:
-          return I18n.of(context).wednesday;
+          return L10n.of(context).wednesday;
         case 4:
-          return I18n.of(context).thursday;
+          return L10n.of(context).thursday;
         case 5:
-          return I18n.of(context).friday;
+          return L10n.of(context).friday;
         case 6:
-          return I18n.of(context).saturday;
+          return L10n.of(context).saturday;
         case 7:
-          return I18n.of(context).sunday;
+          return L10n.of(context).sunday;
       }
     } else if (sameYear) {
-      return I18n.of(context).dateWithoutYear(
+      return L10n.of(context).dateWithoutYear(
           this.month.toString().padLeft(2, '0'),
           this.day.toString().padLeft(2, '0'));
     }
-    return I18n.of(context).dateWithYear(
+    return L10n.of(context).dateWithYear(
         this.year.toString(),
         this.month.toString().padLeft(2, '0'),
         this.day.toString().padLeft(2, '0'));
@@ -93,7 +93,7 @@ extension DateTimeExtension on DateTime {
     bool sameDay = sameYear && now.month == this.month && now.day == this.day;
 
     if (sameDay) return localizedTimeOfDay(context);
-    return I18n.of(context).dateAndTimeOfDay(
+    return L10n.of(context).dateAndTimeOfDay(
         localizedTimeShort(context), localizedTimeOfDay(context));
   }
 

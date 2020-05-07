@@ -1,5 +1,5 @@
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/i18n/i18n.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 
 class ReplyContent extends StatelessWidget {
@@ -36,7 +36,7 @@ class ReplyContent extends StatelessWidget {
               ),
               Text(
                 replyEvent?.getLocalizedBody(
-                      I18n.of(context),
+                      L10n.of(context),
                       withSenderNamePrefix: false,
                       hideReply: true,
                     ) ??

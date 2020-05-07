@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:fluffychat/i18n/i18n.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:intl/intl.dart';
@@ -67,7 +67,7 @@ class _RecordingDialogState extends State<RecordingDialog> {
           SizedBox(width: 8),
           Expanded(
             child: Text(
-              "${I18n.of(context).recording}: $time",
+              "${L10n.of(context).recording}: $time",
               style: TextStyle(
                 fontSize: 18,
               ),
@@ -78,7 +78,7 @@ class _RecordingDialogState extends State<RecordingDialog> {
       actions: <Widget>[
         FlatButton(
           child: Text(
-            I18n.of(context).cancel.toUpperCase(),
+            L10n.of(context).cancel.toUpperCase(),
             style: TextStyle(
               color: Theme.of(context).textTheme.bodyText2.color.withAlpha(150),
             ),
@@ -88,7 +88,7 @@ class _RecordingDialogState extends State<RecordingDialog> {
         FlatButton(
           child: Row(
             children: <Widget>[
-              Text(I18n.of(context).send.toUpperCase()),
+              Text(L10n.of(context).send.toUpperCase()),
               SizedBox(width: 4),
               Icon(Icons.send, size: 15),
             ],

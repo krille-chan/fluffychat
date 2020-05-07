@@ -5,7 +5,7 @@ import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/avatar.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/matrix.dart';
-import 'package:fluffychat/i18n/i18n.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 
@@ -58,7 +58,7 @@ class _InvitationSelectionState extends State<InvitationSelection> {
       widget.room.invite(id),
     );
     if (success != false) {
-      showToast(I18n.of(context).contactHasBeenInvitedToTheGroup);
+      showToast(L10n.of(context).contactHasBeenInvitedToTheGroup);
     }
   }
 
@@ -116,14 +116,14 @@ class _InvitationSelectionState extends State<InvitationSelection> {
   @override
   Widget build(BuildContext context) {
     final String groupName = widget.room.name?.isEmpty ?? false
-        ? I18n.of(context).group
+        ? L10n.of(context).group
         : widget.room.name;
     return AdaptivePageLayout(
       primaryPage: FocusPage.SECOND,
       firstScaffold: ChatList(activeChat: widget.room.id),
       secondScaffold: Scaffold(
           appBar: AppBar(
-            title: Text(I18n.of(context).inviteContact),
+            title: Text(L10n.of(context).inviteContact),
             bottom: PreferredSize(
               preferredSize: Size.fromHeight(92),
               child: Padding(
@@ -139,8 +139,8 @@ class _InvitationSelectionState extends State<InvitationSelection> {
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     prefixText: "@",
-                    hintText: I18n.of(context).username,
-                    labelText: I18n.of(context).inviteContactToGroup(groupName),
+                    hintText: L10n.of(context).username,
+                    labelText: L10n.of(context).inviteContactToGroup(groupName),
                     suffixIcon: loading
                         ? Container(
                             padding: const EdgeInsets.all(8.0),

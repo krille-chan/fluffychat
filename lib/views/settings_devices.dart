@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../utils/date_time_extension.dart';
 import '../components/adaptive_page_layout.dart';
 import '../components/matrix.dart';
-import '../i18n/i18n.dart';
+import '../l10n/l10n.dart';
 import 'chat_list.dart';
 
 class DevicesSettingsView extends StatelessWidget {
@@ -46,8 +46,8 @@ class DevicesSettingsState extends State<DevicesSettings> {
         .tryRequestWithLoadingDialog(matrix.client.deleteDevices(deviceIds),
             onAdditionalAuth: (MatrixException exception) async {
       final String password = await SimpleDialogs(context).enterText(
-          titleText: I18n.of(context).pleaseEnterYourPassword,
-          labelText: I18n.of(context).pleaseEnterYourPassword,
+          titleText: L10n.of(context).pleaseEnterYourPassword,
+          labelText: L10n.of(context).pleaseEnterYourPassword,
           hintText: "******",
           password: true);
       if (password == null) return;
@@ -63,7 +63,7 @@ class DevicesSettingsState extends State<DevicesSettings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(I18n.of(context).devices)),
+      appBar: AppBar(title: Text(L10n.of(context).devices)),
       body: FutureBuilder<bool>(
         future: _loadUserDevices(context),
         builder: (BuildContext context, snapshot) {
@@ -99,7 +99,7 @@ class DevicesSettingsState extends State<DevicesSettings> {
               if (devices.isNotEmpty)
                 ListTile(
                   title: Text(
-                    I18n.of(context).removeAllOtherDevices,
+                    L10n.of(context).removeAllOtherDevices,
                     style: TextStyle(color: Colors.red),
                   ),
                   trailing: Icon(Icons.delete_outline),
@@ -152,7 +152,7 @@ class UserDeviceListItem extends StatelessWidget {
       itemBuilder: (BuildContext context) => [
         PopupMenuItem<String>(
           value: "remove",
-          child: Text(I18n.of(context).removeDevice,
+          child: Text(L10n.of(context).removeDevice,
               style: TextStyle(color: Colors.red)),
         ),
       ],
@@ -164,7 +164,7 @@ class UserDeviceListItem extends StatelessWidget {
               child: Text(
                 (userDevice.displayName?.isNotEmpty ?? false)
                     ? userDevice.displayName
-                    : I18n.of(context).unknownDevice,
+                    : L10n.of(context).unknownDevice,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -175,8 +175,8 @@ class UserDeviceListItem extends StatelessWidget {
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text("${I18n.of(context).id}: ${userDevice.deviceId}"),
-            Text("${I18n.of(context).lastSeenIp}: ${userDevice.lastSeenIp}"),
+            Text("${L10n.of(context).id}: ${userDevice.deviceId}"),
+            Text("${L10n.of(context).lastSeenIp}: ${userDevice.lastSeenIp}"),
           ],
         ),
       ),

@@ -1,6 +1,6 @@
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
-import 'package:fluffychat/i18n/i18n.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/views/chat.dart';
 import 'package:flutter/material.dart';
@@ -65,19 +65,19 @@ class ParticipantListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     Map<Membership, String> membershipBatch = {
       Membership.join: "",
-      Membership.ban: I18n.of(context).banned,
-      Membership.invite: I18n.of(context).invited,
-      Membership.leave: I18n.of(context).leftTheChat,
+      Membership.ban: L10n.of(context).banned,
+      Membership.invite: L10n.of(context).invited,
+      Membership.leave: L10n.of(context).leftTheChat,
     };
     final String permissionBatch = user.powerLevel == 100
-        ? I18n.of(context).admin
-        : user.powerLevel >= 50 ? I18n.of(context).moderator : "";
+        ? L10n.of(context).admin
+        : user.powerLevel >= 50 ? L10n.of(context).moderator : "";
     List<PopupMenuEntry<String>> items = <PopupMenuEntry<String>>[];
 
     if (user.id != Matrix.of(context).client.userID) {
       items.add(
         PopupMenuItem(
-            child: Text(I18n.of(context).sendAMessage), value: "message"),
+            child: Text(L10n.of(context).sendAMessage), value: "message"),
       );
     }
     if (user.canChangePowerLevel &&
@@ -85,7 +85,7 @@ class ParticipantListItem extends StatelessWidget {
         user.powerLevel != 100) {
       items.add(
         PopupMenuItem(
-            child: Text(I18n.of(context).makeAnAdmin), value: "admin"),
+            child: Text(L10n.of(context).makeAnAdmin), value: "admin"),
       );
     }
     if (user.canChangePowerLevel &&
@@ -93,29 +93,29 @@ class ParticipantListItem extends StatelessWidget {
         user.powerLevel != 50) {
       items.add(
         PopupMenuItem(
-            child: Text(I18n.of(context).makeAModerator), value: "moderator"),
+            child: Text(L10n.of(context).makeAModerator), value: "moderator"),
       );
     }
     if (user.canChangePowerLevel && user.powerLevel != 0) {
       items.add(
         PopupMenuItem(
-            child: Text(I18n.of(context).revokeAllPermissions), value: "user"),
+            child: Text(L10n.of(context).revokeAllPermissions), value: "user"),
       );
     }
     if (user.canKick) {
       items.add(
         PopupMenuItem(
-            child: Text(I18n.of(context).kickFromChat), value: "kick"),
+            child: Text(L10n.of(context).kickFromChat), value: "kick"),
       );
     }
     if (user.canBan && user.membership != Membership.ban) {
       items.add(
-        PopupMenuItem(child: Text(I18n.of(context).banFromChat), value: "ban"),
+        PopupMenuItem(child: Text(L10n.of(context).banFromChat), value: "ban"),
       );
     } else if (user.canBan && user.membership == Membership.ban) {
       items.add(
         PopupMenuItem(
-            child: Text(I18n.of(context).removeExile), value: "unban"),
+            child: Text(L10n.of(context).removeExile), value: "unban"),
       );
     }
     return PopupMenuButton(

@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/i18n/i18n.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/views/chat_encryption_settings.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +22,7 @@ class _EncryptionButtonState extends State<EncryptionButton> {
 
   void _enableEncryptionAction() async {
     if (widget.room.encrypted) {
-      showToast(I18n.of(context).warningEncryptionInBeta);
+      showToast(L10n.of(context).warningEncryptionInBeta);
       await Navigator.of(context).push(
         AppRoute.defaultRoute(
           context,
@@ -32,15 +32,15 @@ class _EncryptionButtonState extends State<EncryptionButton> {
       return;
     }
     if (!widget.room.client.encryptionEnabled) {
-      showToast(I18n.of(context).needPantalaimonWarning);
+      showToast(L10n.of(context).needPantalaimonWarning);
       return;
     }
     if (await SimpleDialogs(context).askConfirmation(
-          titleText: I18n.of(context).enableEncryptionWarning,
+          titleText: L10n.of(context).enableEncryptionWarning,
           contentText: widget.room.client.encryptionEnabled
-              ? I18n.of(context).warningEncryptionInBeta
-              : I18n.of(context).needPantalaimonWarning,
-          confirmText: I18n.of(context).yes,
+              ? L10n.of(context).warningEncryptionInBeta
+              : L10n.of(context).needPantalaimonWarning,
+          confirmText: L10n.of(context).yes,
         ) ==
         true) {
       await SimpleDialogs(context).tryRequestWithLoadingDialog(

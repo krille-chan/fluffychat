@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:fluffychat/components/matrix.dart';
-import 'package:fluffychat/i18n/i18n.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/views/chat.dart';
 import 'package:flutter/foundation.dart';
@@ -31,7 +31,7 @@ abstract class FirebaseController {
     }
     if (token?.isEmpty ?? true) {
       showToast(
-        I18n.of(context).noGoogleServicesWarning,
+        L10n.of(context).noGoogleServicesWarning,
         duration: Duration(seconds: 15),
       );
       return;
@@ -106,7 +106,7 @@ abstract class FirebaseController {
       if (context != null && Matrix.of(context).activeRoomId == roomId) {
         return null;
       }
-      final i18n = context == null ? I18n('en') : I18n.of(context);
+      final i18n = context == null ? L10n('en') : L10n.of(context);
 
       // Get the client
       Client client;

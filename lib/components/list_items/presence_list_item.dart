@@ -1,5 +1,5 @@
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/i18n/i18n.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/views/chat.dart';
 import 'package:flutter/material.dart';
@@ -62,7 +62,7 @@ class PresenceListItem extends StatelessWidget {
                 actions: <Widget>[
                   if (presence.sender != Matrix.of(context).client.userID)
                     FlatButton(
-                      child: Text(I18n.of(context).sendAMessage),
+                      child: Text(L10n.of(context).sendAMessage),
                       onPressed: () async {
                         final String roomId = await User(
                           presence.sender,
@@ -77,7 +77,7 @@ class PresenceListItem extends StatelessWidget {
                       },
                     ),
                   FlatButton(
-                    child: Text(I18n.of(context).close),
+                    child: Text(L10n.of(context).close),
                     onPressed: () => Navigator.of(context).pop(),
                   ),
                 ],

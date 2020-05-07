@@ -3,7 +3,7 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/message_content.dart';
 import 'package:fluffychat/components/reply_content.dart';
-import 'package:fluffychat/i18n/i18n.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/event_extension.dart';
 import 'package:fluffychat/utils/string_color.dart';
@@ -114,7 +114,7 @@ class Message extends StatelessWidget {
                     RaisedButton(
                       color: color.withAlpha(100),
                       child: Text(
-                        I18n.of(context).requestPermission,
+                        L10n.of(context).requestPermission,
                         style: TextStyle(color: textColor),
                       ),
                       onPressed: () => SimpleDialogs(context)

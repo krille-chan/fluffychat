@@ -5,7 +5,7 @@ import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/avatar.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/matrix.dart';
-import 'package:fluffychat/i18n/i18n.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
@@ -110,7 +110,7 @@ class _NewPrivateChatState extends State<_NewPrivateChat> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(I18n.of(context).newPrivateChat),
+        title: Text(L10n.of(context).newPrivateChat),
         elevation: 0,
       ),
       body: Column(
@@ -129,24 +129,24 @@ class _NewPrivateChatState extends State<_NewPrivateChat> {
                 onFieldSubmitted: (s) => submitAction(context),
                 validator: (value) {
                   if (value.isEmpty) {
-                    return I18n.of(context).pleaseEnterAMatrixIdentifier;
+                    return L10n.of(context).pleaseEnterAMatrixIdentifier;
                   }
                   final MatrixState matrix = Matrix.of(context);
                   String mxid = "@" + controller.text.trim();
                   if (mxid == matrix.client.userID) {
-                    return I18n.of(context).youCannotInviteYourself;
+                    return L10n.of(context).youCannotInviteYourself;
                   }
                   if (!mxid.contains("@")) {
-                    return I18n.of(context).makeSureTheIdentifierIsValid;
+                    return L10n.of(context).makeSureTheIdentifierIsValid;
                   }
                   if (!mxid.contains(":")) {
-                    return I18n.of(context).makeSureTheIdentifierIsValid;
+                    return L10n.of(context).makeSureTheIdentifierIsValid;
                   }
                   return null;
                 },
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: I18n.of(context).enterAUsername,
+                  labelText: L10n.of(context).enterAUsername,
                   prefixIcon: loading
                       ? Container(
                           padding: const EdgeInsets.all(8.0),
@@ -168,7 +168,7 @@ class _NewPrivateChatState extends State<_NewPrivateChat> {
                             )
                           : Icon(Icons.account_circle),
                   prefixText: "@",
-                  hintText: "${I18n.of(context).username.toLowerCase()}",
+                  hintText: "${L10n.of(context).username.toLowerCase()}",
                 ),
               ),
             ),
@@ -217,11 +217,11 @@ class _NewPrivateChatState extends State<_NewPrivateChat> {
                 Icons.share,
                 size: 16,
               ),
-              onTap: () => Share.share(I18n.of(context).inviteText(
+              onTap: () => Share.share(L10n.of(context).inviteText(
                   Matrix.of(context).client.userID,
                   "https://matrix.to/#/${Matrix.of(context).client.userID}")),
               title: Text(
-                "${I18n.of(context).yourOwnUsername}:",
+                "${L10n.of(context).yourOwnUsername}:",
                 style: TextStyle(
                   fontStyle: FontStyle.italic,
                 ),

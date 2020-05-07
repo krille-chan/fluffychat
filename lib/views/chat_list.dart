@@ -15,7 +15,7 @@ import '../components/theme_switcher.dart';
 import '../components/adaptive_page_layout.dart';
 import '../components/list_items/chat_list_item.dart';
 import '../components/matrix.dart';
-import '../i18n/i18n.dart';
+import '../l10n/l10n.dart';
 import '../utils/app_route.dart';
 import '../utils/url_launcher.dart';
 import '../utils/client_presence_extension.dart';
@@ -185,9 +185,9 @@ class _ChatListState extends State<ChatList> {
     Navigator.of(context).pop();
     final status = await SimpleDialogs(context).enterText(
       multiLine: true,
-      titleText: I18n.of(context).setStatus,
-      labelText: I18n.of(context).setStatus,
-      hintText: I18n.of(context).statusExampleMessage,
+      titleText: L10n.of(context).setStatus,
+      labelText: L10n.of(context).setStatus,
+      hintText: L10n.of(context).statusExampleMessage,
     );
     if (status?.isEmpty ?? true) return;
     await SimpleDialogs(context).tryRequestWithLoadingDialog(
@@ -238,31 +238,31 @@ class _ChatListState extends State<ChatList> {
                   children: <Widget>[
                     ListTile(
                       leading: Icon(Icons.edit),
-                      title: Text(I18n.of(context).setStatus),
+                      title: Text(L10n.of(context).setStatus),
                       onTap: () => _setStatus(context),
                     ),
                     Divider(height: 1),
                     ListTile(
                       leading: Icon(Icons.people_outline),
-                      title: Text(I18n.of(context).createNewGroup),
+                      title: Text(L10n.of(context).createNewGroup),
                       onTap: () => _drawerTapAction(NewGroupView()),
                     ),
                     ListTile(
                       leading: Icon(Icons.person_add),
-                      title: Text(I18n.of(context).newPrivateChat),
+                      title: Text(L10n.of(context).newPrivateChat),
                       onTap: () => _drawerTapAction(NewPrivateChatView()),
                     ),
                     Divider(height: 1),
                     ListTile(
                       leading: Icon(Icons.archive),
-                      title: Text(I18n.of(context).archive),
+                      title: Text(L10n.of(context).archive),
                       onTap: () => _drawerTapAction(
                         Archive(),
                       ),
                     ),
                     ListTile(
                       leading: Icon(Icons.settings),
-                      title: Text(I18n.of(context).settings),
+                      title: Text(L10n.of(context).settings),
                       onTap: () => _drawerTapAction(
                         SettingsView(),
                       ),
@@ -270,10 +270,10 @@ class _ChatListState extends State<ChatList> {
                     Divider(height: 1),
                     ListTile(
                       leading: Icon(Icons.share),
-                      title: Text(I18n.of(context).inviteContact),
+                      title: Text(L10n.of(context).inviteContact),
                       onTap: () {
                         Navigator.of(context).pop();
-                        Share.share(I18n.of(context).inviteText(
+                        Share.share(L10n.of(context).inviteText(
                             Matrix.of(context).client.userID,
                             "https://matrix.to/#/${Matrix.of(context).client.userID}"));
                       },
@@ -291,7 +291,7 @@ class _ChatListState extends State<ChatList> {
               ),
         titleSpacing: 0,
         title: selectMode == SelectMode.share
-            ? Text(I18n.of(context).share)
+            ? Text(L10n.of(context).share)
             : Container(
                 padding: EdgeInsets.all(8),
                 height: 42,
@@ -316,7 +316,7 @@ class _ChatListState extends State<ChatList> {
                         : Icon(Icons.search),
                     contentPadding: EdgeInsets.all(9),
                     border: InputBorder.none,
-                    hintText: I18n.of(context).searchForAChat,
+                    hintText: L10n.of(context).searchForAChat,
                   ),
                 ),
               ),
@@ -334,7 +334,7 @@ class _ChatListState extends State<ChatList> {
                   child: Icon(Icons.people_outline),
                   foregroundColor: Colors.white,
                   backgroundColor: Colors.blue,
-                  label: I18n.of(context).createNewGroup,
+                  label: L10n.of(context).createNewGroup,
                   labelStyle: TextStyle(fontSize: 18.0, color: Colors.black),
                   onTap: () => Navigator.of(context).pushAndRemoveUntil(
                       AppRoute.defaultRoute(context, NewGroupView()),
@@ -344,7 +344,7 @@ class _ChatListState extends State<ChatList> {
                   child: Icon(Icons.person_add),
                   foregroundColor: Colors.white,
                   backgroundColor: Colors.green,
-                  label: I18n.of(context).newPrivateChat,
+                  label: L10n.of(context).newPrivateChat,
                   labelStyle: TextStyle(fontSize: 18.0, color: Colors.black),
                   onTap: () => Navigator.of(context).pushAndRemoveUntil(
                       AppRoute.defaultRoute(context, NewPrivateChatView()),
@@ -373,8 +373,8 @@ class _ChatListState extends State<ChatList> {
                       color: Colors.grey,
                     ),
                     Text(searchMode
-                        ? I18n.of(context).noRoomsFound
-                        : I18n.of(context).startYourFirstChat),
+                        ? L10n.of(context).noRoomsFound
+                        : L10n.of(context).startYourFirstChat),
                   ],
                 ),
               );
@@ -388,7 +388,7 @@ class _ChatListState extends State<ChatList> {
                         ? Material(
                             elevation: 2,
                             child: ListTile(
-                              title: Text(I18n.of(context).publicRooms),
+                              title: Text(L10n.of(context).publicRooms),
                             ),
                           )
                         : Container(),

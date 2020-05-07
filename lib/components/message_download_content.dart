@@ -1,5 +1,5 @@
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/i18n/i18n.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:fluffychat/utils/matrix_file_extension.dart';
 import 'package:fluffychat/utils/event_extension.dart';
@@ -22,7 +22,7 @@ class MessageDownloadContent extends StatelessWidget {
           RaisedButton(
               color: Colors.blueGrey,
               child: Text(
-                I18n.of(context).downloadFile,
+                L10n.of(context).downloadFile,
                 overflow: TextOverflow.fade,
                 softWrap: false,
                 maxLines: 1,

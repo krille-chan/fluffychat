@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/matrix.dart';
-import 'package:fluffychat/i18n/i18n.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/utils/firebase_controller.dart';
 import 'package:flutter/foundation.dart';
@@ -26,12 +26,12 @@ class _LoginState extends State<Login> {
   void login(BuildContext context) async {
     MatrixState matrix = Matrix.of(context);
     if (usernameController.text.isEmpty) {
-      setState(() => usernameError = I18n.of(context).pleaseEnterYourUsername);
+      setState(() => usernameError = L10n.of(context).pleaseEnterYourUsername);
     } else {
       setState(() => usernameError = null);
     }
     if (passwordController.text.isEmpty) {
-      setState(() => passwordError = I18n.of(context).pleaseEnterYourPassword);
+      setState(() => passwordError = L10n.of(context).pleaseEnterYourPassword);
     } else {
       setState(() => passwordError = null);
     }
@@ -77,7 +77,7 @@ class _LoginState extends State<Login> {
         leading: loading ? Container() : null,
         elevation: 0,
         title: Text(
-          I18n.of(context).logInTo(Matrix.of(context)
+          L10n.of(context).logInTo(Matrix.of(context)
               .client
               .homeserver
               .replaceFirst('https://', '')),
@@ -101,9 +101,9 @@ class _LoginState extends State<Login> {
                 controller: usernameController,
                 decoration: InputDecoration(
                     hintText:
-                        "@${I18n.of(context).username.toLowerCase()}:domain",
+                        "@${L10n.of(context).username.toLowerCase()}:domain",
                     errorText: usernameError,
-                    labelText: I18n.of(context).username),
+                    labelText: L10n.of(context).username),
               ),
             ),
             ListTile(
@@ -129,7 +129,7 @@ class _LoginState extends State<Login> {
                       onPressed: () =>
                           setState(() => showPassword = !showPassword),
                     ),
-                    labelText: I18n.of(context).password),
+                    labelText: L10n.of(context).password),
               ),
             ),
             SizedBox(height: 20),
@@ -147,7 +147,7 @@ class _LoginState extends State<Login> {
                   child: loading
                       ? CircularProgressIndicator()
                       : Text(
-                          I18n.of(context).login.toUpperCase(),
+                          L10n.of(context).login.toUpperCase(),
                           style: TextStyle(color: Colors.white, fontSize: 16),
                         ),
                   onPressed: () => loading ? null : login(context),

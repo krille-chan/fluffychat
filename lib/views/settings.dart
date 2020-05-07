@@ -15,7 +15,7 @@ import '../components/adaptive_page_layout.dart';
 import '../components/dialogs/simple_dialogs.dart';
 import '../components/content_banner.dart';
 import '../components/matrix.dart';
-import '../i18n/i18n.dart';
+import '../l10n/l10n.dart';
 import '../utils/app_route.dart';
 
 class SettingsView extends StatelessWidget {
@@ -52,9 +52,9 @@ class _SettingsState extends State<Settings> {
 
   void setJitsiInstanceAction(BuildContext context) async {
     var jitsi = await SimpleDialogs(context).enterText(
-      titleText: I18n.of(context).editJitsiInstance,
+      titleText: L10n.of(context).editJitsiInstance,
       hintText: Matrix.of(context).jitsiInstance,
-      labelText: I18n.of(context).editJitsiInstance,
+      labelText: L10n.of(context).editJitsiInstance,
     );
     if (jitsi == null) return;
     if (!jitsi.endsWith('/')) {
@@ -67,10 +67,10 @@ class _SettingsState extends State<Settings> {
 
   void setDisplaynameAction(BuildContext context) async {
     final String displayname = await SimpleDialogs(context).enterText(
-      titleText: I18n.of(context).editDisplayname,
+      titleText: L10n.of(context).editDisplayname,
       hintText:
           profile?.displayname ?? Matrix.of(context).client.userID.localpart,
-      labelText: I18n.of(context).enterAUsername,
+      labelText: L10n.of(context).enterAUsername,
     );
     if (displayname == null) return;
     final MatrixState matrix = Matrix.of(context);
@@ -147,7 +147,7 @@ class _SettingsState extends State<Settings> {
             backgroundColor: Theme.of(context).appBarTheme.color,
             flexibleSpace: FlexibleSpaceBar(
               title: Text(
-                I18n.of(context).settings,
+                L10n.of(context).settings,
                 style: TextStyle(
                     color: Theme.of(context)
                         .appBarTheme
@@ -169,7 +169,7 @@ class _SettingsState extends State<Settings> {
           children: <Widget>[
             ListTile(
               title: Text(
-                I18n.of(context).changeTheme,
+                L10n.of(context).changeTheme,
                 style: TextStyle(
                   color: Theme.of(context).primaryColor,
                   fontWeight: FontWeight.bold,
@@ -181,7 +181,7 @@ class _SettingsState extends State<Settings> {
             if (!kIsWeb && client.storeAPI != null)
               ListTile(
                 title: Text(
-                  I18n.of(context).wallpaper,
+                  L10n.of(context).wallpaper,
                   style: TextStyle(
                     color: Theme.of(context).primaryColor,
                     fontWeight: FontWeight.bold,
@@ -204,7 +204,7 @@ class _SettingsState extends State<Settings> {
             if (!kIsWeb && client.storeAPI != null)
               Builder(builder: (context) {
                 return ListTile(
-                  title: Text(I18n.of(context).changeWallpaper),
+                  title: Text(L10n.of(context).changeWallpaper),
                   trailing: Icon(Icons.wallpaper),
                   onTap: () => setWallpaperAction(context),
                 );
@@ -212,7 +212,7 @@ class _SettingsState extends State<Settings> {
             Divider(thickness: 1),
             ListTile(
               title: Text(
-                I18n.of(context).account,
+                L10n.of(context).account,
                 style: TextStyle(
                   color: Theme.of(context).primaryColor,
                   fontWeight: FontWeight.bold,
@@ -221,19 +221,19 @@ class _SettingsState extends State<Settings> {
             ),
             ListTile(
               trailing: Icon(Icons.edit),
-              title: Text(I18n.of(context).editDisplayname),
+              title: Text(L10n.of(context).editDisplayname),
               subtitle: Text(profile?.displayname ?? client.userID.localpart),
               onTap: () => setDisplaynameAction(context),
             ),
             ListTile(
               trailing: Icon(Icons.phone),
-              title: Text(I18n.of(context).editJitsiInstance),
+              title: Text(L10n.of(context).editJitsiInstance),
               subtitle: Text(Matrix.of(context).jitsiInstance),
               onTap: () => setJitsiInstanceAction(context),
             ),
             ListTile(
               trailing: Icon(Icons.devices_other),
-              title: Text(I18n.of(context).devices),
+              title: Text(L10n.of(context).devices),
               onTap: () async => await Navigator.of(context).push(
                 AppRoute.defaultRoute(
                   context,
@@ -243,7 +243,7 @@ class _SettingsState extends State<Settings> {
             ),
             ListTile(
               trailing: Icon(Icons.account_circle),
-              title: Text(I18n.of(context).accountInformations),
+              title: Text(L10n.of(context).accountInformations),
               onTap: () => Navigator.of(context).push(
                 AppRoute.defaultRoute(
                   context,
@@ -253,13 +253,13 @@ class _SettingsState extends State<Settings> {
             ),
             ListTile(
               trailing: Icon(Icons.exit_to_app),
-              title: Text(I18n.of(context).logout),
+              title: Text(L10n.of(context).logout),
               onTap: () => logoutAction(context),
             ),
             Divider(thickness: 1),
             ListTile(
               title: Text(
-                I18n.of(context).about,
+                L10n.of(context).about,
                 style: TextStyle(
                   color: Theme.of(context).primaryColor,
                   fontWeight: FontWeight.bold,
@@ -268,19 +268,19 @@ class _SettingsState extends State<Settings> {
             ),
             ListTile(
               trailing: Icon(Icons.help),
-              title: Text(I18n.of(context).help),
+              title: Text(L10n.of(context).help),
               onTap: () => launch(
                   "https://gitlab.com/ChristianPauly/fluffychat-flutter/issues"),
             ),
             ListTile(
               trailing: Icon(Icons.link),
-              title: Text(I18n.of(context).license),
+              title: Text(L10n.of(context).license),
               onTap: () => launch(
                   "https://gitlab.com/ChristianPauly/fluffychat-flutter/raw/master/LICENSE"),
             ),
             ListTile(
               trailing: Icon(Icons.code),
-              title: Text(I18n.of(context).sourceCode),
+              title: Text(L10n.of(context).sourceCode),
               onTap: () => launch(
                   "https://gitlab.com/ChristianPauly/fluffychat-flutter"),
             ),

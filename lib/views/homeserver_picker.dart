@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/matrix.dart';
-import 'package:fluffychat/i18n/i18n.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/views/sign_up.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 class HomeserverPicker extends StatelessWidget {
   _setHomeserverAction(BuildContext context) async {
     final homeserver = await SimpleDialogs(context).enterText(
-        titleText: I18n.of(context).enterYourHomeserver,
+        titleText: L10n.of(context).enterYourHomeserver,
         hintText: Matrix.defaultHomeserver,
         prefixText: 'https://');
     if (homeserver?.isEmpty ?? true) return;
@@ -45,7 +45,7 @@ class HomeserverPicker extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
-                  I18n.of(context).welcomeText,
+                  L10n.of(context).welcomeText,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 22,
@@ -66,7 +66,7 @@ class HomeserverPicker extends StatelessWidget {
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: Text(
-                      I18n.of(context).connect.toUpperCase(),
+                      L10n.of(context).connect.toUpperCase(),
                       style: TextStyle(color: Colors.white, fontSize: 16),
                     ),
                     onPressed: () => _checkHomeserverAction(
@@ -80,7 +80,7 @@ class HomeserverPicker extends StatelessWidget {
                 child: Opacity(
                   opacity: 0.75,
                   child: Text(
-                    I18n.of(context).byDefaultYouWillBeConnectedTo(
+                    L10n.of(context).byDefaultYouWillBeConnectedTo(
                         Matrix.defaultHomeserver),
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -91,7 +91,7 @@ class HomeserverPicker extends StatelessWidget {
               ),
               FlatButton(
                 child: Text(
-                  I18n.of(context).changeTheHomeserver,
+                  L10n.of(context).changeTheHomeserver,
                   style: TextStyle(
                     decoration: TextDecoration.underline,
                     color: Colors.blue,

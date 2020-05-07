@@ -2,7 +2,7 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/list_items/chat_list_item.dart';
 import 'package:fluffychat/components/matrix.dart';
-import 'package:fluffychat/i18n/i18n.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 
 class Archive extends StatefulWidget {
@@ -23,7 +23,7 @@ class _ArchiveState extends State<Archive> {
     return AdaptivePageLayout(
       firstScaffold: Scaffold(
         appBar: AppBar(
-          title: Text(I18n.of(context).archive),
+          title: Text(L10n.of(context).archive),
         ),
         body: FutureBuilder<List<Room>>(
           future: getArchive(context),

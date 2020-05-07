@@ -8,7 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 
-import 'i18n/i18n.dart';
+import 'l10n/l10n.dart';
 import 'components/theme_switcher.dart';
 import 'components/matrix.dart';
 import 'views/chat_list.dart';

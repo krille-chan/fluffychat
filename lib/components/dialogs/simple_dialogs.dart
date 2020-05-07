@@ -1,4 +1,4 @@
-import 'package:fluffychat/i18n/i18n.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
@@ -51,14 +51,14 @@ class SimpleDialogs {
           FlatButton(
             child: Text(
                 cancelText?.toUpperCase() ??
-                    I18n.of(context).close.toUpperCase(),
+                    L10n.of(context).close.toUpperCase(),
                 style: TextStyle(color: Colors.blueGrey)),
             onPressed: () => Navigator.of(context).pop(),
           ),
           FlatButton(
             child: Text(
               confirmText?.toUpperCase() ??
-                  I18n.of(context).confirm.toUpperCase(),
+                  L10n.of(context).confirm.toUpperCase(),
             ),
             onPressed: () {
               input = controller.text;
@@ -81,20 +81,20 @@ class SimpleDialogs {
     await showDialog(
       context: context,
       builder: (c) => AlertDialog(
-        title: Text(titleText ?? I18n.of(context).areYouSure),
+        title: Text(titleText ?? L10n.of(context).areYouSure),
         content: contentText != null ? Text(contentText) : null,
         actions: <Widget>[
           FlatButton(
             child: Text(
                 cancelText?.toUpperCase() ??
-                    I18n.of(context).close.toUpperCase(),
+                    L10n.of(context).close.toUpperCase(),
                 style: TextStyle(color: Colors.blueGrey)),
             onPressed: () => Navigator.of(context).pop(),
           ),
           FlatButton(
             child: Text(
               confirmText?.toUpperCase() ??
-                  I18n.of(context).confirm.toUpperCase(),
+                  L10n.of(context).confirm.toUpperCase(),
             ),
             onPressed: () {
               confirmed = true;
@@ -142,7 +142,7 @@ class SimpleDialogs {
           children: <Widget>[
             CircularProgressIndicator(),
             SizedBox(width: 16),
-            Text(I18n.of(context).loadingPleaseWait),
+            Text(L10n.of(context).loadingPleaseWait),
           ],
         ),
       ),

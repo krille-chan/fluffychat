@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/i18n/i18n.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/views/chat_details.dart';
 import 'package:fluffychat/views/chat_list.dart';
@@ -56,19 +56,19 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
       widget.room.pushRuleState == PushRuleState.notify
           ? PopupMenuItem<String>(
               value: "mute",
-              child: Text(I18n.of(context).muteChat),
+              child: Text(L10n.of(context).muteChat),
             )
           : PopupMenuItem<String>(
               value: "unmute",
-              child: Text(I18n.of(context).unmuteChat),
+              child: Text(L10n.of(context).unmuteChat),
             ),
       PopupMenuItem<String>(
         value: "call",
-        child: Text(I18n.of(context).videoCall),
+        child: Text(L10n.of(context).videoCall),
       ),
       PopupMenuItem<String>(
         value: "leave",
-        child: Text(I18n.of(context).leave),
+        child: Text(L10n.of(context).leave),
       ),
     ];
     if (widget.displayChatDetails) {
@@ -76,7 +76,7 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
         0,
         PopupMenuItem<String>(
           value: "details",
-          child: Text(I18n.of(context).chatDetails),
+          child: Text(L10n.of(context).chatDetails),
         ),
       );
     }

@@ -1,7 +1,7 @@
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/audio_player.dart';
 import 'package:fluffychat/components/image_bubble.dart';
-import 'package:fluffychat/i18n/i18n.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:link_text/link_text.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -50,14 +50,14 @@ class MessageContent extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Icon(Icons.phone),
-                    Text(I18n.of(context).videoCall),
+                    Text(L10n.of(context).videoCall),
                   ],
                 ),
                 onPressed: () => launch(event.body),
               );
             }
             return LinkText(
-              text: event.getLocalizedBody(I18n.of(context), hideReply: true),
+              text: event.getLocalizedBody(L10n.of(context), hideReply: true),
               textStyle: TextStyle(
                 color: textColor,
                 decoration: event.redacted ? TextDecoration.lineThrough : null,
@@ -67,7 +67,7 @@ class MessageContent extends StatelessWidget {
         break;
       default:
         return Text(
-          I18n.of(context).userSentUnknownEvent(
+          L10n.of(context).userSentUnknownEvent(
               event.sender.calcDisplayname(), event.typeKey),
           style: TextStyle(
             color: textColor,

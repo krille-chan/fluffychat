@@ -3,7 +3,7 @@ import 'dart:math';
 
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/matrix.dart';
-import 'package:fluffychat/i18n/i18n.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/views/auth_web_view.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +29,7 @@ class _SignUpPasswordState extends State<SignUpPassword> {
   void _signUpAction(BuildContext context, {Map<String, dynamic> auth}) async {
     MatrixState matrix = Matrix.of(context);
     if (passwordController.text.isEmpty) {
-      setState(() => passwordError = I18n.of(context).pleaseEnterYourPassword);
+      setState(() => passwordError = L10n.of(context).pleaseEnterYourPassword);
     } else {
       setState(() => passwordError = null);
     }
@@ -96,7 +96,7 @@ class _SignUpPasswordState extends State<SignUpPassword> {
     try {
       await matrix.client.setDisplayname(widget.displayname);
     } catch (exception) {
-      showToast(I18n.of(context).couldNotSetDisplayname);
+      showToast(L10n.of(context).couldNotSetDisplayname);
     }
     if (widget.avatar != null) {
       try {
@@ -107,7 +107,7 @@ class _SignUpPasswordState extends State<SignUpPassword> {
           ),
         );
       } catch (exception) {
-        showToast(I18n.of(context).couldNotSetAvatar);
+        showToast(L10n.of(context).couldNotSetAvatar);
       }
     }
     await Navigator.of(context).pushAndRemoveUntil(
@@ -122,7 +122,7 @@ class _SignUpPasswordState extends State<SignUpPassword> {
         elevation: 0,
         leading: loading ? Container() : null,
         title: Text(
-          I18n.of(context).chooseAStrongPassword,
+          L10n.of(context).chooseAStrongPassword,
         ),
       ),
       body: ListView(
@@ -149,7 +149,7 @@ class _SignUpPasswordState extends State<SignUpPassword> {
                     onPressed: () =>
                         setState(() => showPassword = !showPassword),
                   ),
-                  labelText: I18n.of(context).password),
+                  labelText: L10n.of(context).password),
             ),
           ),
           SizedBox(height: 20),
@@ -167,7 +167,7 @@ class _SignUpPasswordState extends State<SignUpPassword> {
                 child: loading
                     ? CircularProgressIndicator()
                     : Text(
-                        I18n.of(context).createAccountNow.toUpperCase(),
+                        L10n.of(context).createAccountNow.toUpperCase(),
                         style: TextStyle(color: Colors.white, fontSize: 16),
                       ),
                 onPressed: () => loading ? null : _signUpAction(context),

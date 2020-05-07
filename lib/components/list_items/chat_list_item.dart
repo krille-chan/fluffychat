@@ -5,7 +5,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:pedantic/pedantic.dart';
 
-import '../../i18n/i18n.dart';
+import '../../l10n/l10n.dart';
 import '../../utils/app_route.dart';
 import '../../utils/date_time_extension.dart';
 import '../../views/chat.dart';
@@ -31,7 +31,7 @@ class ChatListItem extends StatelessWidget {
       }
 
       if (room.membership == Membership.ban) {
-        showToast(I18n.of(context).youHaveBeenBannedFromThisChat);
+        showToast(L10n.of(context).youHaveBeenBannedFromThisChat);
         return;
       }
 
@@ -39,16 +39,16 @@ class ChatListItem extends StatelessWidget {
         await showDialog(
           context: context,
           builder: (BuildContext context) => AlertDialog(
-            title: Text(I18n.of(context).archivedRoom),
-            content: Text(I18n.of(context).thisRoomHasBeenArchived),
+            title: Text(L10n.of(context).archivedRoom),
+            content: Text(L10n.of(context).thisRoomHasBeenArchived),
             actions: <Widget>[
               FlatButton(
-                child: Text(I18n.of(context).close.toUpperCase(),
+                child: Text(L10n.of(context).close.toUpperCase(),
                     style: TextStyle(color: Colors.blueGrey)),
                 onPressed: () => Navigator.of(context).pop(),
               ),
               FlatButton(
-                child: Text(I18n.of(context).delete.toUpperCase(),
+                child: Text(L10n.of(context).delete.toUpperCase(),
                     style: TextStyle(color: Colors.red)),
                 onPressed: () async {
                   await archiveAction(context);
@@ -56,7 +56,7 @@ class ChatListItem extends StatelessWidget {
                 },
               ),
               FlatButton(
-                child: Text(I18n.of(context).rejoin.toUpperCase(),
+                child: Text(L10n.of(context).rejoin.toUpperCase(),
                     style: TextStyle(color: Colors.blue)),
                 onPressed: () async {
                   await SimpleDialogs(context)
@@ -122,14 +122,14 @@ class ChatListItem extends StatelessWidget {
       secondaryActions: <Widget>[
         if ([Membership.join, Membership.invite].contains(room.membership))
           IconSlideAction(
-            caption: I18n.of(context).leave,
+            caption: L10n.of(context).leave,
             color: Colors.red,
             icon: Icons.archive,
             onTap: () => archiveAction(context),
           ),
         if ([Membership.leave, Membership.ban].contains(room.membership))
           IconSlideAction(
-            caption: I18n.of(context).delete,
+            caption: L10n.of(context).delete,
             color: Colors.red,
             icon: Icons.delete_forever,
             onTap: () => archiveAction(context),
@@ -151,7 +151,7 @@ class ChatListItem extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Text(
-                      room.getLocalizedDisplayname(I18n.of(context)),
+                      room.getLocalizedDisplayname(L10n.of(context)),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -181,13 +181,13 @@ class ChatListItem extends StatelessWidget {
               Expanded(
                 child: room.membership == Membership.invite
                     ? Text(
-                        I18n.of(context).youAreInvitedToThisChat,
+                        L10n.of(context).youAreInvitedToThisChat,
                         style: TextStyle(
                           color: Theme.of(context).primaryColor,
                         ),
                       )
                     : Text(
-                        room.lastEvent.getLocalizedBody(I18n.of(context),
+                        room.lastEvent.getLocalizedBody(L10n.of(context),
                             withSenderNamePrefix: true, hideReply: true),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,

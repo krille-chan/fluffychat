@@ -72,23 +72,23 @@ Text("Hello world"),
 ```
 with a method call:
 ```
-Text(I18n.of(context).helloWorld),
+Text(L10n.of(context).helloWorld),
 ```
-And add the method to `/lib/i18n/i18n.dart`:
+And add the method to `/lib/l10n/l10n.dart`:
 ```
 String get helloWorld => Intl.message('Hello world');
 ```
 
 2. Add the string to the .arb files with this command:
 ```
-flutter pub run intl_translation:extract_to_arb --output-dir=lib/i18n lib/i18n/i18n.dart
+flutter pub run intl_translation:extract_to_arb --output-dir=lib/l10n lib/l10n/l10n.dart
 ```
 
-3. Copy the new translation objects from `/lib/i18n/intl_message.arb` to `/lib/i18n/intl_<yourlanguage>.arb` and translate it or create a new file for your language by copying `intl_message.arb`.
+3. Copy the new translation objects from `/lib/l10n/intl_message.arb` to `/lib/l10n/intl_<yourlanguage>.arb` and translate it or create a new file for your language by copying `intl_message.arb`.
 
 4. Update the translations with this command:
 ```
-flutter pub pub run intl_translation:generate_from_arb --output-dir=lib/i18n --no-use-deferred-loading lib/i18n/i18n.dart lib/i18n/intl_*.arb
+flutter pub pub run intl_translation:generate_from_arb --output-dir=lib/l10n --no-use-deferred-loading lib/l10n/l10n.dart lib/l10n/intl_*.arb
 ```
 
 5. Make sure your language is in `supportedLocales` in `/lib/main.dart`.

@@ -2,7 +2,7 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:flutter/material.dart';
 
-import '../../i18n/i18n.dart';
+import '../../l10n/l10n.dart';
 import '../../utils/app_route.dart';
 import '../../views/chat.dart';
 import '../avatar.dart';
@@ -41,7 +41,7 @@ class PublicRoomListItem extends StatelessWidget {
       subtitle: Text(
         hasTopic
             ? publicRoomEntry.topic
-            : I18n.of(context).countParticipants(
+            : L10n.of(context).countParticipants(
                 publicRoomEntry.numJoinedMembers?.toString() ?? "0"),
         maxLines: 1,
       ),

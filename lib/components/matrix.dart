@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../i18n/i18n.dart';
+import '../l10n/l10n.dart';
 import '../utils/beautify_string_extension.dart';
 import '../utils/famedlysdk_store.dart';
 import 'avatar.dart';
@@ -106,7 +106,7 @@ class MatrixState extends State<Matrix> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text(I18n.of(context).videoCall),
+        title: Text(L10n.of(context).videoCall),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
@@ -165,11 +165,11 @@ class MatrixState extends State<Matrix> {
         final Room room = request.room;
         final User sender = room.getUserByMXIDSync(request.sender);
         if (await SimpleDialogs(context).askConfirmation(
-          titleText: I18n.of(context).requestToReadOlderMessages,
+          titleText: L10n.of(context).requestToReadOlderMessages,
           contentText:
-              "${sender.id}\n\n${I18n.of(context).device}:\n${request.requestingDevice.deviceId}\n\n${I18n.of(context).identity}:\n${request.requestingDevice.curve25519Key.beautified}",
-          confirmText: I18n.of(context).verify,
-          cancelText: I18n.of(context).deny,
+              "${sender.id}\n\n${L10n.of(context).device}:\n${request.requestingDevice.deviceId}\n\n${L10n.of(context).identity}:\n${request.requestingDevice.curve25519Key.beautified}",
+          confirmText: L10n.of(context).verify,
+          cancelText: L10n.of(context).deny,
         )) {
           await request.forwardKey();
         }

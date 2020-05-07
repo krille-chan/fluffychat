@@ -3,7 +3,7 @@ import 'dart:math';
 
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/matrix.dart';
-import 'package:fluffychat/i18n/i18n.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/views/login.dart';
 import 'package:fluffychat/views/sign_up_password.dart';
@@ -35,7 +35,7 @@ class _SignUpState extends State<SignUp> {
   void signUpAction(BuildContext context) async {
     MatrixState matrix = Matrix.of(context);
     if (usernameController.text.isEmpty) {
-      setState(() => usernameError = I18n.of(context).pleaseChooseAUsername);
+      setState(() => usernameError = L10n.of(context).pleaseChooseAUsername);
     } else {
       setState(() => usernameError = null);
     }
@@ -105,8 +105,8 @@ class _SignUpState extends State<SignUp> {
                       color: Colors.red,
                     ),
               title: Text(avatar == null
-                  ? I18n.of(context).setAProfilePicture
-                  : I18n.of(context).discardPicture),
+                  ? L10n.of(context).setAProfilePicture
+                  : L10n.of(context).discardPicture),
               onTap: avatar == null
                   ? setAvatarAction
                   : () => setState(() => avatar = null),
@@ -126,9 +126,9 @@ class _SignUpState extends State<SignUp> {
                 controller: usernameController,
                 onSubmitted: (s) => signUpAction(context),
                 decoration: InputDecoration(
-                    hintText: I18n.of(context).username,
+                    hintText: L10n.of(context).username,
                     errorText: usernameError,
-                    labelText: I18n.of(context).chooseAUsername),
+                    labelText: L10n.of(context).chooseAUsername),
               ),
             ),
             SizedBox(height: 20),
@@ -146,7 +146,7 @@ class _SignUpState extends State<SignUp> {
                   child: loading
                       ? CircularProgressIndicator()
                       : Text(
-                          I18n.of(context).signUp.toUpperCase(),
+                          L10n.of(context).signUp.toUpperCase(),
                           style: TextStyle(color: Colors.white, fontSize: 16),
                         ),
                   onPressed: () => loading ? null : signUpAction(context),
@@ -156,7 +156,7 @@ class _SignUpState extends State<SignUp> {
             Center(
               child: FlatButton(
                 child: Text(
-                  I18n.of(context).alreadyHaveAnAccount,
+                  L10n.of(context).alreadyHaveAnAccount,
                   style: TextStyle(
                     decoration: TextDecoration.underline,
                     color: Colors.blue,
