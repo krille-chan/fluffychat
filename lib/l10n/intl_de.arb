@@ -1166,6 +1166,13 @@
       "unreadEvents": {}
     }
   },
+  "unreadChats": "{unreadCount} ungelesene Unterhaltungen",
+  "@unreadChats": {
+    "type": "text",
+    "placeholders": {
+      "unreadCount": {}
+    }
+  },
   "unreadMessagesInChats": "{unreadEvents} ungelesene Nachrichten in {unreadChats} Chats",
   "@unreadMessagesInChats": {
     "type": "text",

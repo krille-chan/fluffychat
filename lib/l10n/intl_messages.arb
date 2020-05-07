@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-05-07T07:52:19.301540",
+  "@@last_modified": "2020-05-07T11:13:43.051811",
   "About": "About",
   "@About": {
     "type": "text",
@@ -785,6 +785,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "Open app to read messages": "Open app to read messages",
+  "@Open app to read messages": {
+    "type": "text",
+    "placeholders": {}
+  },
   "Open camera": "Open camera",
   "@Open camera": {
     "type": "text",
@@ -1162,6 +1167,13 @@
     "type": "text",
     "placeholders": {
       "type": {}
+    }
+  },
+  "unreadChats": "{unreadCount} unread chats",
+  "@unreadChats": {
+    "type": "text",
+    "placeholders": {
+      "unreadCount": {}
     }
   },
   "unreadMessages": "{unreadEvents} unread messages",

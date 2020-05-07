@@ -19,6 +19,9 @@ abstract class FirebaseController {
   static FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
   static BuildContext context;
+  static const String CHANNEL_ID = 'fluffychat_push';
+  static const String CHANNEL_NAME = 'FluffyChat push channel';
+  static const String CHANNEL_DESCRIPTION = 'Push notifications for FluffyChat';
 
   static Future<void> setupFirebase(Client client, String clientName) async {
     if (Platform.isIOS) iOS_Permission();
@@ -83,7 +86,7 @@ abstract class FirebaseController {
 
     _firebaseMessaging.configure(
       onMessage: _onMessage,
-      onBackgroundMessage: _onMessage,
+      onBackgroundMessage: _showDefaultNotification,
       onResume: goToRoom,
       onLaunch: goToRoom,
     );
@@ -106,7 +109,8 @@ abstract class FirebaseController {
       if (context != null && Matrix.of(context).activeRoomId == roomId) {
         return null;
       }
-      final i18n = context == null ? L10n('en') : L10n.of(context);
+      final i18n =
+          context == null ? L10n(Platform.localeName) : L10n.of(context);
 
       // Get the client
       Client client;
@@ -181,9 +185,7 @@ abstract class FirebaseController {
 
       // Show notification
       var androidPlatformChannelSpecifics = AndroidNotificationDetails(
-          'fluffychat_push',
-          'FluffyChat push channel',
-          'Push notifications for FluffyChat',
+          CHANNEL_ID, CHANNEL_NAME, CHANNEL_DESCRIPTION,
           styleInformation: MessagingStyleInformation(
             person,
             conversationTitle: title,
@@ -224,6 +226,7 @@ abstract class FirebaseController {
       var initializationSettings = InitializationSettings(
           initializationSettingsAndroid, initializationSettingsIOS);
       await flutterLocalNotificationsPlugin.initialize(initializationSettings);
+      final l10n = L10n(Platform.localeName);
 
       // Notification data and matrix data
       Map<dynamic, dynamic> data = message['data'] ?? message;
@@ -239,17 +242,14 @@ abstract class FirebaseController {
 
       // Display notification
       var androidPlatformChannelSpecifics = AndroidNotificationDetails(
-          'fluffychat_push',
-          'FluffyChat push channel',
-          'Push notifications for FluffyChat',
-          importance: Importance.Max,
-          priority: Priority.High);
+          CHANNEL_ID, CHANNEL_NAME, CHANNEL_DESCRIPTION,
+          importance: Importance.Max, priority: Priority.High);
       var iOSPlatformChannelSpecifics = IOSNotificationDetails();
       var platformChannelSpecifics = NotificationDetails(
           androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
-      final String title = "$unread unread chats";
+      final String title = l10n.unreadChats(unread.toString());
       await flutterLocalNotificationsPlugin.show(
-          1, title, 'Open app to read messages', platformChannelSpecifics,
+          1, title, l10n.openAppToReadMessages, platformChannelSpecifics,
           payload: roomID);
     } catch (exception) {
       debugPrint("[Push] Error while processing background notification: " +
