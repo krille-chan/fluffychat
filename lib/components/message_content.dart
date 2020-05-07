@@ -2,6 +2,7 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/audio_player.dart';
 import 'package:fluffychat/components/image_bubble.dart';
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/utils/event_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:link_text/link_text.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -23,7 +24,7 @@ class MessageContent extends StatelessWidget {
         switch (event.messageType) {
           case MessageTypes.Image:
           case MessageTypes.Sticker:
-            if (event.hasThumbnail) {
+            if (event.showThumbnail) {
               return ImageBubble(event);
             }
             return MessageDownloadContent(event, textColor);

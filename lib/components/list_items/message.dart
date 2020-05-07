@@ -56,7 +56,7 @@ class Message extends StatelessWidget {
     MainAxisAlignment rowMainAxisAlignment =
         ownMessage ? MainAxisAlignment.end : MainAxisAlignment.start;
 
-    if (event.messageType == MessageTypes.Image) {
+    if (event.showThumbnail) {
       color = Theme.of(context).scaffoldBackgroundColor.withOpacity(0.66);
       textColor = Theme.of(context).textTheme.bodyText2.color;
     } else if (ownMessage) {

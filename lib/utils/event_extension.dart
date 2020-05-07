@@ -1,4 +1,5 @@
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 extension LocalizedBody on Event {
@@ -16,6 +17,11 @@ extension LocalizedBody on Event {
         return Icons.done;
     }
   }
+
+  bool get showThumbnail =>
+      kIsWeb ||
+      (content['info'] is Map &&
+          content['info']['size'] < room.client.store.maxFileSize);
 
   String get sizeString {
     if (content["info"] is Map<String, dynamic> &&
