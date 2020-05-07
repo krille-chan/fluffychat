@@ -123,19 +123,21 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m51(type) => "Unbekanntes Event \'${type}\'";
 
-  static m52(unreadEvents) => "${unreadEvents} ungelesene Nachrichten";
+  static m52(unreadCount) => "${unreadCount} ungelesene Unterhaltungen";
 
-  static m53(unreadEvents, unreadChats) => "${unreadEvents} ungelesene Nachrichten in ${unreadChats} Chats";
+  static m53(unreadEvents) => "${unreadEvents} ungelesene Nachrichten";
 
-  static m54(username, count) => "${username} und ${count} andere schreiben ...";
+  static m54(unreadEvents, unreadChats) => "${unreadEvents} ungelesene Nachrichten in ${unreadChats} Chats";
 
-  static m55(username, username2) => "${username} und ${username2} schreiben ...";
+  static m55(username, count) => "${username} und ${count} andere schreiben ...";
 
-  static m56(username) => "${username} schreibt ...";
+  static m56(username, username2) => "${username} und ${username2} schreiben ...";
 
-  static m57(username) => "${username} hat den Chat verlassen";
+  static m57(username) => "${username} schreibt ...";
 
-  static m58(username, type) => "${username} hat ${type} Event gesendet";
+  static m58(username) => "${username} hat den Chat verlassen";
+
+  static m59(username, type) => "${username} hat ${type} Event gesendet";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
@@ -364,12 +366,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "title" : MessageLookupByLibrary.simpleMessage("FluffyChat"),
     "unbannedUser" : m50,
     "unknownEvent" : m51,
-    "unreadMessages" : m52,
-    "unreadMessagesInChats" : m53,
-    "userAndOthersAreTyping" : m54,
-    "userAndUserAreTyping" : m55,
-    "userIsTyping" : m56,
-    "userLeftTheChat" : m57,
-    "userSentUnknownEvent" : m58
+    "unreadChats" : m52,
+    "unreadMessages" : m53,
+    "unreadMessagesInChats" : m54,
+    "userAndOthersAreTyping" : m55,
+    "userAndUserAreTyping" : m56,
+    "userIsTyping" : m57,
+    "userLeftTheChat" : m58,
+    "userSentUnknownEvent" : m59
   };
 }

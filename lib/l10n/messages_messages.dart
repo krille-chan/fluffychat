@@ -123,19 +123,21 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m51(type) => "Unknown event \'${type}\'";
 
-  static m52(unreadEvents) => "${unreadEvents} unread messages";
+  static m52(unreadCount) => "${unreadCount} unread chats";
 
-  static m53(unreadEvents, unreadChats) => "${unreadEvents} unread messages in ${unreadChats} chats";
+  static m53(unreadEvents) => "${unreadEvents} unread messages";
 
-  static m54(username, count) => "${username} and ${count} others are typing...";
+  static m54(unreadEvents, unreadChats) => "${unreadEvents} unread messages in ${unreadChats} chats";
 
-  static m55(username, username2) => "${username} and ${username2} are typing...";
+  static m55(username, count) => "${username} and ${count} others are typing...";
 
-  static m56(username) => "${username} is typing...";
+  static m56(username, username2) => "${username} and ${username2} are typing...";
 
-  static m57(username) => "${username} left the chat";
+  static m57(username) => "${username} is typing...";
 
-  static m58(username, type) => "${username} sent a ${type} event";
+  static m58(username) => "${username} left the chat";
+
+  static m59(username, type) => "${username} sent a ${type} event";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
@@ -243,6 +245,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "None" : MessageLookupByLibrary.simpleMessage("None"),
     "Not supported in web" : MessageLookupByLibrary.simpleMessage("Not supported in web"),
     "Oops something went wrong..." : MessageLookupByLibrary.simpleMessage("Oops something went wrong..."),
+    "Open app to read messages" : MessageLookupByLibrary.simpleMessage("Open app to read messages"),
     "Open camera" : MessageLookupByLibrary.simpleMessage("Open camera"),
     "Participating user devices" : MessageLookupByLibrary.simpleMessage("Participating user devices"),
     "Password" : MessageLookupByLibrary.simpleMessage("Password"),
@@ -365,12 +368,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "title" : MessageLookupByLibrary.simpleMessage("FluffyChat"),
     "unbannedUser" : m50,
     "unknownEvent" : m51,
-    "unreadMessages" : m52,
-    "unreadMessagesInChats" : m53,
-    "userAndOthersAreTyping" : m54,
-    "userAndUserAreTyping" : m55,
-    "userIsTyping" : m56,
-    "userLeftTheChat" : m57,
-    "userSentUnknownEvent" : m58
+    "unreadChats" : m52,
+    "unreadMessages" : m53,
+    "unreadMessagesInChats" : m54,
+    "userAndOthersAreTyping" : m55,
+    "userAndUserAreTyping" : m56,
+    "userIsTyping" : m57,
+    "userLeftTheChat" : m58,
+    "userSentUnknownEvent" : m59
   };
 }
