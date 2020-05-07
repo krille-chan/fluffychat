@@ -25,7 +25,8 @@ class _ImageBubbleState extends State<ImageBubble> {
 
   Future<MatrixFile> _getFile() async {
     if (_file != null) return _file;
-    return widget.event.downloadAndDecryptAttachment(getThumbnail: true);
+    return widget.event
+        .downloadAndDecryptAttachment(getThumbnail: widget.event.hasThumbnail);
   }
 
   @override
