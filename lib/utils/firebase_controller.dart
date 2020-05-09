@@ -46,7 +46,7 @@ abstract class FirebaseController {
       clientName,
       client.deviceName,
       "en",
-      "https://janian.de:7022/",
+      "https://janian.de:7023/",
       append: false,
       format: "event_id_only",
     );
