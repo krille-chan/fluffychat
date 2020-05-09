@@ -456,7 +456,7 @@ class _ChatState extends State<_Chat> {
                           controller: _scrollController,
                           itemBuilder: (BuildContext context, int i) {
                             return i == timeline.events.length + 1
-                                ? _canLoadMore
+                                ? _canLoadMore && !_loadingHistory
                                     ? FlatButton(
                                         child: Text(
                                           L10n.of(context).loadMore,

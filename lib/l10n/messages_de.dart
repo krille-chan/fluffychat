@@ -227,6 +227,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Left the chat" : MessageLookupByLibrary.simpleMessage("Hat den Chat verlassen"),
     "License" : MessageLookupByLibrary.simpleMessage("Lizenz"),
     "Light" : MessageLookupByLibrary.simpleMessage("Hell"),
+    "Load more..." : MessageLookupByLibrary.simpleMessage("Lade mehr ..."),
     "Loading... Please wait" : MessageLookupByLibrary.simpleMessage("Lade ... Bitte warten"),
     "Login" : MessageLookupByLibrary.simpleMessage("Login"),
     "Logout" : MessageLookupByLibrary.simpleMessage("Logout"),
