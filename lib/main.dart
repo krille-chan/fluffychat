@@ -44,6 +44,7 @@ class App extends StatelessWidget {
                   const Locale('en'), // English
                   const Locale('de'), // German
                   const Locale('hu'), // Hungarian
+                  const Locale('pl'), // Polish
                 ],
                 locale: kIsWeb
                     ? Locale(html.window.navigator.language.split("-").first)
