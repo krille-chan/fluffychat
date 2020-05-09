@@ -41,8 +41,7 @@ class Message extends StatelessWidget {
     final bool ownMessage = event.senderId == client.userID;
     Alignment alignment = ownMessage ? Alignment.topRight : Alignment.topLeft;
     Color color = Theme.of(context).secondaryHeaderColor;
-    final bool isImage = [EventTypes.Message, EventTypes.Sticker].contains(nextEvent.type);
-    final bool sameSender = nextEvent != null && isImage
+    final bool sameSender = nextEvent != null && [EventTypes.Message, EventTypes.Sticker].contains(nextEvent.type)
         ? nextEvent.sender.id == event.sender.id
         : false;
     BubbleNip nip = sameSender
@@ -56,7 +55,7 @@ class Message extends StatelessWidget {
     MainAxisAlignment rowMainAxisAlignment =
         ownMessage ? MainAxisAlignment.end : MainAxisAlignment.start;
 
-    if (isImage && event.showThumbnail) {
+    if ([EventTypes.Message, EventTypes.Sticker].contains(event.type) && event.showThumbnail) {
       color = Theme.of(context).scaffoldBackgroundColor.withOpacity(0.66);
       textColor = Theme.of(context).textTheme.bodyText2.color;
     } else if (ownMessage) {
