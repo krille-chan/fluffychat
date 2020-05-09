@@ -496,6 +496,10 @@ class ExtendedStore extends Store implements ExtendedStoreAPI {
 
   Future<void> forgetRoom(String roomID) async {
     await _db.rawDelete("DELETE FROM Rooms WHERE room_id=?", [roomID]);
+    await _db.rawDelete("DELETE FROM Events WHERE room_id=?", [roomID]);
+    await _db.rawDelete("DELETE FROM RoomStates WHERE room_id=?", [roomID]);
+    await _db
+        .rawDelete("DELETE FROM RoomAccountData WHERE room_id=?", [roomID]);
     return;
   }
 
@@ -528,7 +532,7 @@ class ExtendedStore extends Store implements ExtendedStoreAPI {
         "sender": rawPresences[i]["sender"],
         "content": json.decode(rawPresences[i]["content"]),
       };
-      newPresences[rawPresences[i]["type"]] = Presence.fromJson(rawPresence);
+      newPresences[rawPresences[i]["sender"]] = Presence.fromJson(rawPresence);
     }
     return newPresences;
   }

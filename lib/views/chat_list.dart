@@ -58,6 +58,8 @@ class _ChatListState extends State<ChatList> {
   bool loadingPublicRooms = false;
   String searchServer;
 
+  final ScrollController _scrollController = ScrollController();
+
   Future<void> waitForFirstSync(BuildContext context) async {
     Client client = Matrix.of(context).client;
     if (client.prevBatch?.isEmpty ?? true) {
@@ -66,8 +68,17 @@ class _ChatListState extends State<ChatList> {
     return true;
   }
 
+  bool _scrolledToTop = true;
+
   @override
   void initState() {
+    _scrollController.addListener(() async {
+      if (_scrollController.position.pixels > 0 && _scrolledToTop) {
+        setState(() => _scrolledToTop = false);
+      } else if (_scrollController.position.pixels == 0 && !_scrolledToTop) {
+        setState(() => _scrolledToTop = true);
+      }
+    });
     searchController.addListener(() {
       coolDown?.cancel();
       if (searchController.text.isEmpty) {
@@ -272,6 +283,7 @@ class _ChatListState extends State<ChatList> {
                     ),
                   ),
             appBar: AppBar(
+              elevation: _scrolledToTop ? 0 : null,
               leading: selectMode != SelectMode.share
                   ? null
                   : IconButton(
@@ -381,6 +393,7 @@ class _ChatListState extends State<ChatList> {
                             (publicRoomsResponse?.publicRooms?.length ?? 0);
                         final int totalCount = rooms.length + publicRoomsCount;
                         return ListView.separated(
+                            controller: _scrollController,
                             separatorBuilder: (BuildContext context, int i) =>
                                 i == totalCount - publicRoomsCount
                                     ? Material(

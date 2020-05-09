@@ -79,8 +79,10 @@ class _ChatState extends State<_Chat> {
 
   String inputText = "";
 
+  bool get _canLoadMore => timeline.events.last.type != EventTypes.RoomCreate;
+
   void requestHistory() async {
-    if (timeline.events.last.type != EventTypes.RoomCreate) {
+    if (_canLoadMore) {
       setState(() => this._loadingHistory = true);
       await timeline.requestHistory(historyCount: _loadHistoryCount);
       if (mounted) setState(() => this._loadingHistory = false);
@@ -450,58 +452,79 @@ class _ChatState extends State<_Chat> {
 
                       return ListView.builder(
                           reverse: true,
-                          itemCount: timeline.events.length + 1,
+                          itemCount: timeline.events.length + 2,
                           controller: _scrollController,
                           itemBuilder: (BuildContext context, int i) {
-                            return i == 0
-                                ? AnimatedContainer(
-                                    height: seenByText.isEmpty ? 0 : 24,
-                                    duration: seenByText.isEmpty
-                                        ? Duration(milliseconds: 0)
-                                        : Duration(milliseconds: 500),
-                                    alignment: timeline.events.first.senderId ==
-                                            client.userID
-                                        ? Alignment.topRight
-                                        : Alignment.topLeft,
-                                    child: Text(
-                                      seenByText,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
-                                        color: Theme.of(context).primaryColor,
-                                      ),
-                                    ),
-                                    padding: EdgeInsets.only(
-                                      left: 8,
-                                      right: 8,
-                                      bottom: 8,
-                                    ),
-                                  )
-                                : Message(timeline.events[i - 1],
-                                    onAvatarTab: (Event event) {
-                                    sendController.text += ' ${event.senderId}';
-                                  }, onSelect: (Event event) {
-                                    if (!event.redacted) {
-                                      if (selectedEvents.contains(event)) {
-                                        setState(
-                                          () => selectedEvents.remove(event),
-                                        );
-                                      } else {
-                                        setState(
-                                          () => selectedEvents.add(event),
-                                        );
-                                      }
-                                      selectedEvents.sort(
-                                        (a, b) => a.time.compareTo(b.time),
-                                      );
-                                    }
-                                  },
-                                    longPressSelect: selectedEvents.isEmpty,
-                                    selected: selectedEvents
-                                        .contains(timeline.events[i - 1]),
-                                    timeline: timeline,
-                                    nextEvent:
-                                        i >= 2 ? timeline.events[i - 2] : null);
+                            return i == timeline.events.length + 1
+                                ? _canLoadMore
+                                    ? FlatButton(
+                                        child: Text(
+                                          L10n.of(context).loadMore,
+                                          style: TextStyle(
+                                            color:
+                                                Theme.of(context).primaryColor,
+                                            fontWeight: FontWeight.bold,
+                                            decoration:
+                                                TextDecoration.underline,
+                                          ),
+                                        ),
+                                        onPressed: requestHistory,
+                                      )
+                                    : Container()
+                                : i == 0
+                                    ? AnimatedContainer(
+                                        height: seenByText.isEmpty ? 0 : 24,
+                                        duration: seenByText.isEmpty
+                                            ? Duration(milliseconds: 0)
+                                            : Duration(milliseconds: 500),
+                                        alignment:
+                                            timeline.events.first.senderId ==
+                                                    client.userID
+                                                ? Alignment.topRight
+                                                : Alignment.topLeft,
+                                        child: Text(
+                                          seenByText,
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                            color:
+                                                Theme.of(context).primaryColor,
+                                          ),
+                                        ),
+                                        padding: EdgeInsets.only(
+                                          left: 8,
+                                          right: 8,
+                                          bottom: 8,
+                                        ),
+                                      )
+                                    : Message(timeline.events[i - 1],
+                                        onAvatarTab: (Event event) {
+                                        sendController.text +=
+                                            ' ${event.senderId}';
+                                      }, onSelect: (Event event) {
+                                        if (!event.redacted) {
+                                          if (selectedEvents.contains(event)) {
+                                            setState(
+                                              () =>
+                                                  selectedEvents.remove(event),
+                                            );
+                                          } else {
+                                            setState(
+                                              () => selectedEvents.add(event),
+                                            );
+                                          }
+                                          selectedEvents.sort(
+                                            (a, b) => a.time.compareTo(b.time),
+                                          );
+                                        }
+                                      },
+                                        longPressSelect: selectedEvents.isEmpty,
+                                        selected: selectedEvents
+                                            .contains(timeline.events[i - 1]),
+                                        timeline: timeline,
+                                        nextEvent: i >= 2
+                                            ? timeline.events[i - 2]
+                                            : null);
                           });
                     },
                   ),

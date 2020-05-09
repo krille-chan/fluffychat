@@ -435,6 +435,8 @@ class L10n extends MatrixLocalizations {
 
   String get loadingPleaseWait => Intl.message("Loading... Please wait");
 
+  String get loadMore => Intl.message('Load more...');
+
   String loadCountMoreParticipants(String count) => Intl.message(
         "Load $count more participants",
         name: "loadCountMoreParticipants",
