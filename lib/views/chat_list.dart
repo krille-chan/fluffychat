@@ -392,56 +392,61 @@ class _ChatListState extends State<ChatList> {
                         final int publicRoomsCount =
                             (publicRoomsResponse?.publicRooms?.length ?? 0);
                         final int totalCount = rooms.length + publicRoomsCount;
-                        return ListView.separated(
-                            controller: _scrollController,
-                            separatorBuilder: (BuildContext context, int i) =>
-                                i == totalCount - publicRoomsCount
-                                    ? Material(
-                                        elevation: 2,
-                                        child: ListTile(
-                                          title: Text(
-                                              L10n.of(context).publicRooms),
-                                        ),
-                                      )
-                                    : Container(),
-                            itemCount: totalCount + 1,
-                            itemBuilder: (BuildContext context, int i) {
-                              if (i == 0) {
-                                return Matrix.of(context)
-                                        .client
-                                        .statusList
-                                        .isEmpty
-                                    ? Container()
-                                    : PreferredSize(
-                                        preferredSize: Size.fromHeight(89),
-                                        child: Container(
-                                          height: 81,
-                                          child: ListView.builder(
-                                            scrollDirection: Axis.horizontal,
-                                            itemCount: Matrix.of(context)
-                                                .client
-                                                .statusList
-                                                .length,
-                                            itemBuilder:
-                                                (BuildContext context, int i) =>
-                                                    PresenceListItem(
-                                                        Matrix.of(context)
-                                                            .client
-                                                            .statusList[i]),
-                                          ),
-                                        ),
-                                      );
-                              }
-                              i--;
-                              return i < rooms.length
-                                  ? ChatListItem(
-                                      rooms[i],
-                                      activeChat:
-                                          widget.activeChat == rooms[i].id,
-                                    )
-                                  : PublicRoomListItem(publicRoomsResponse
-                                      .publicRooms[i - rooms.length]);
-                            });
+                        return selectMode == SelectMode.share
+                            ? Container()
+                            : ListView.separated(
+                                controller: _scrollController,
+                                separatorBuilder: (BuildContext context,
+                                        int i) =>
+                                    i == totalCount - publicRoomsCount
+                                        ? Material(
+                                            elevation: 2,
+                                            child: ListTile(
+                                              title: Text(
+                                                  L10n.of(context).publicRooms),
+                                            ),
+                                          )
+                                        : Container(),
+                                itemCount: totalCount + 1,
+                                itemBuilder: (BuildContext context, int i) {
+                                  if (i == 0) {
+                                    return Matrix.of(context)
+                                            .client
+                                            .statusList
+                                            .isEmpty
+                                        ? Container()
+                                        : PreferredSize(
+                                            preferredSize: Size.fromHeight(89),
+                                            child: Container(
+                                              height: 81,
+                                              child: ListView.builder(
+                                                scrollDirection:
+                                                    Axis.horizontal,
+                                                itemCount: Matrix.of(context)
+                                                    .client
+                                                    .statusList
+                                                    .length,
+                                                itemBuilder:
+                                                    (BuildContext context,
+                                                            int i) =>
+                                                        PresenceListItem(
+                                                            Matrix.of(context)
+                                                                .client
+                                                                .statusList[i]),
+                                              ),
+                                            ),
+                                          );
+                                  }
+                                  i--;
+                                  return i < rooms.length
+                                      ? ChatListItem(
+                                          rooms[i],
+                                          activeChat:
+                                              widget.activeChat == rooms[i].id,
+                                        )
+                                      : PublicRoomListItem(publicRoomsResponse
+                                          .publicRooms[i - rooms.length]);
+                                });
                       } else {
                         return Center(
                           child: CircularProgressIndicator(),
