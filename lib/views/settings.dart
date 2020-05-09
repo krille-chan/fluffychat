@@ -212,6 +212,28 @@ class _SettingsState extends State<Settings> {
             Divider(thickness: 1),
             ListTile(
               title: Text(
+                L10n.of(context).chat,
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            ListTile(
+              title: Text(L10n.of(context).renderRichContent),
+              trailing: Switch(
+                value: Matrix.of(context).renderHtml,
+                activeColor: Theme.of(context).primaryColor,
+                onChanged: (bool newValue) async {
+                  Matrix.of(context).renderHtml = newValue;
+                  await client.storeAPI.setItem("chat.fluffy.renderHtml", newValue ? "1" : "0");
+                  setState(() => null);
+                },
+              ),
+            ),
+            Divider(thickness: 1),
+            ListTile(
+              title: Text(
                 L10n.of(context).account,
                 style: TextStyle(
                   color: Theme.of(context).primaryColor,

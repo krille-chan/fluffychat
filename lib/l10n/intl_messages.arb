@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-05-09T12:56:54.540935",
+  "@@last_modified": "2020-05-09T13:02:58.452942",
   "About": "About",
   "@About": {
     "type": "text",
@@ -245,6 +245,11 @@
   },
   "The encryption has been corrupted": "The encryption has been corrupted",
   "@The encryption has been corrupted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Chat": "Chat",
+  "@Chat": {
     "type": "text",
     "placeholders": {}
   },
@@ -849,6 +854,11 @@
   },
   "Rejoin": "Rejoin",
   "@Rejoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Render rich message content": "Render rich message content",
+  "@Render rich message content": {
     "type": "text",
     "placeholders": {}
   },
