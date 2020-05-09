@@ -55,83 +55,83 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m17(username) => "${username} módosította a meghívó linket";
 
-  static m18(count) => "${count} résztvevő";
+  static m19(count) => "${count} résztvevő";
 
-  static m19(username) => "${username} létrehozta a csevegést";
+  static m20(username) => "${username} létrehozta a csevegést";
 
-  static m20(date, timeOfDay) => "${date}, ${timeOfDay}";
+  static m21(date, timeOfDay) => "${date}, ${timeOfDay}";
 
-  static m21(year, month, day) => "${year}-${month}-${day}";
+  static m22(year, month, day) => "${year}-${month}-${day}";
 
-  static m22(month, day) => "${month}-${day}";
+  static m23(month, day) => "${month}-${day}";
 
-  static m23(displayname) => "Csoport ${displayname}-vel";
+  static m24(displayname) => "Csoport ${displayname}-vel";
 
-  static m24(username, targetName) => "${username} visszavonta ${targetName} meghívását";
+  static m25(username, targetName) => "${username} visszavonta ${targetName} meghívását";
 
-  static m25(groupName) => "Ismerős meghívása a ${groupName} csoportba";
+  static m26(groupName) => "Ismerős meghívása a ${groupName} csoportba";
 
-  static m26(username, link) => "${username} meghívott a FluffyChatre. \n1. FluffyChat telepítése: http://fluffy.chat \n2. Jelentkezz be vagy regisztrálj. \n3. Nyisd meg a meghívó linket: ${link}";
+  static m27(username, link) => "${username} meghívott a FluffyChatre. \n1. FluffyChat telepítése: http://fluffy.chat \n2. Jelentkezz be vagy regisztrálj. \n3. Nyisd meg a meghívó linket: ${link}";
 
-  static m27(username, targetName) => "${username} meghívta ${targetName}-t";
+  static m28(username, targetName) => "${username} meghívta ${targetName}-t";
 
-  static m28(username) => "${username} csatalakozott a csevegéshez";
+  static m29(username) => "${username} csatalakozott a csevegéshez";
 
-  static m29(username, targetName) => "${username} kirúgta ${targetName}-t";
+  static m30(username, targetName) => "${username} kirúgta ${targetName}-t";
 
-  static m30(username, targetName) => "${username} kirúgta és kitiltotta ${targetName}-t";
+  static m31(username, targetName) => "${username} kirúgta és kitiltotta ${targetName}-t";
 
-  static m31(count) => "További ${count} résztvevő betöltése";
+  static m33(count) => "További ${count} résztvevő betöltése";
 
-  static m32(homeserver) => "Bejelentkezés ${homeserver} Matrix szerverre";
+  static m34(homeserver) => "Bejelentkezés ${homeserver} Matrix szerverre";
 
-  static m33(number) => "${number} kijelölve";
+  static m35(number) => "${number} kijelölve";
 
-  static m34(fileName) => "${fileName} lejátszása";
+  static m36(fileName) => "${fileName} lejátszása";
 
-  static m35(username) => "${username} visszavont egy eseményt";
+  static m37(username) => "${username} visszavont egy eseményt";
 
-  static m36(username) => "${username} elutasította a meghívást";
+  static m38(username) => "${username} elutasította a meghívást";
 
-  static m37(username) => "Törölve ${username} által";
+  static m39(username) => "Törölve ${username} által";
 
-  static m38(username) => "${username} látta";
+  static m40(username) => "${username} látta";
 
-  static m39(username, count) => "${username} és ${count} másik résztvevő látta";
+  static m41(username, count) => "${username} és ${count} másik résztvevő látta";
 
-  static m40(username, username2) => "${username} és ${username2} látta";
+  static m42(username, username2) => "${username} és ${username2} látta";
 
-  static m41(username) => "${username} fájlt küldött";
+  static m43(username) => "${username} fájlt küldött";
 
-  static m42(username) => "${username} képet küldött";
+  static m44(username) => "${username} képet küldött";
 
-  static m43(username) => "${username} matricát küldött";
+  static m45(username) => "${username} matricát küldött";
 
-  static m44(username) => "${username} videót küldött";
+  static m46(username) => "${username} videót küldött";
 
-  static m45(username) => "${username} hangüzenetet küldött";
+  static m47(username) => "${username} hangüzenetet küldött";
 
-  static m46(username) => "${username} megosztotta a pozícióját";
+  static m48(username) => "${username} megosztotta a pozícióját";
 
-  static m47(hours12, hours24, minutes, suffix) => "${hours24}:${minutes}";
+  static m49(hours12, hours24, minutes, suffix) => "${hours24}:${minutes}";
 
-  static m48(username, targetName) => "${username} feloldotta ${targetName} kitiltását";
+  static m50(username, targetName) => "${username} feloldotta ${targetName} kitiltását";
 
-  static m49(type) => "Ismeretlen esemény \'${type}\'";
+  static m51(type) => "Ismeretlen esemény \'${type}\'";
 
-  static m50(unreadEvents) => "${unreadEvents} olvasatlan üzenet";
+  static m53(unreadEvents) => "${unreadEvents} olvasatlan üzenet";
 
-  static m51(unreadEvents, unreadChats) => "${unreadEvents} olvastlan üzenet van ${unreadChats}-ban";
+  static m54(unreadEvents, unreadChats) => "${unreadEvents} olvastlan üzenet van ${unreadChats}-ban";
 
-  static m52(username, count) => "${username} és ${count} másik résztvevő gépel...";
+  static m55(username, count) => "${username} és ${count} másik résztvevő gépel...";
 
-  static m53(username, username2) => "${username} és ${username2} gépel...";
+  static m56(username, username2) => "${username} és ${username2} gépel...";
 
-  static m54(username) => "${username} gépel...";
+  static m57(username) => "${username} gépel...";
 
-  static m55(username) => "${username} elhagyta a csevegést";
+  static m58(username) => "${username} elhagyta a csevegést";
 
-  static m56(username, type) => "${username} ${type} eseményt küldött";
+  static m59(username, type) => "${username} ${type} eseményt küldött";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
@@ -323,46 +323,46 @@ class MessageLookup extends MessageLookupByLibrary {
     "changedTheProfileAvatar" : m15,
     "changedTheRoomAliases" : m16,
     "changedTheRoomInvitationLink" : m17,
-    "countParticipants" : m18,
-    "createdTheChat" : m19,
-    "dateAndTimeOfDay" : m20,
-    "dateWithYear" : m21,
-    "dateWithoutYear" : m22,
-    "groupWith" : m23,
-    "hasWithdrawnTheInvitationFor" : m24,
-    "inviteContactToGroup" : m25,
-    "inviteText" : m26,
-    "invitedUser" : m27,
+    "countParticipants" : m19,
+    "createdTheChat" : m20,
+    "dateAndTimeOfDay" : m21,
+    "dateWithYear" : m22,
+    "dateWithoutYear" : m23,
+    "groupWith" : m24,
+    "hasWithdrawnTheInvitationFor" : m25,
+    "inviteContactToGroup" : m26,
+    "inviteText" : m27,
+    "invitedUser" : m28,
     "is typing..." : MessageLookupByLibrary.simpleMessage("gépel..."),
-    "joinedTheChat" : m28,
-    "kicked" : m29,
-    "kickedAndBanned" : m30,
-    "loadCountMoreParticipants" : m31,
-    "logInTo" : m32,
-    "numberSelected" : m33,
-    "play" : m34,
-    "redactedAnEvent" : m35,
-    "rejectedTheInvitation" : m36,
-    "removedBy" : m37,
-    "seenByUser" : m38,
-    "seenByUserAndCountOthers" : m39,
-    "seenByUserAndUser" : m40,
-    "sentAFile" : m41,
-    "sentAPicture" : m42,
-    "sentASticker" : m43,
-    "sentAVideo" : m44,
-    "sentAnAudio" : m45,
-    "sharedTheLocation" : m46,
-    "timeOfDay" : m47,
+    "joinedTheChat" : m29,
+    "kicked" : m30,
+    "kickedAndBanned" : m31,
+    "loadCountMoreParticipants" : m33,
+    "logInTo" : m34,
+    "numberSelected" : m35,
+    "play" : m36,
+    "redactedAnEvent" : m37,
+    "rejectedTheInvitation" : m38,
+    "removedBy" : m39,
+    "seenByUser" : m40,
+    "seenByUserAndCountOthers" : m41,
+    "seenByUserAndUser" : m42,
+    "sentAFile" : m43,
+    "sentAPicture" : m44,
+    "sentASticker" : m45,
+    "sentAVideo" : m46,
+    "sentAnAudio" : m47,
+    "sharedTheLocation" : m48,
+    "timeOfDay" : m49,
     "title" : MessageLookupByLibrary.simpleMessage("FluffyChat"),
-    "unbannedUser" : m48,
-    "unknownEvent" : m49,
-    "unreadMessages" : m50,
-    "unreadMessagesInChats" : m51,
-    "userAndOthersAreTyping" : m52,
-    "userAndUserAreTyping" : m53,
-    "userIsTyping" : m54,
-    "userLeftTheChat" : m55,
-    "userSentUnknownEvent" : m56
+    "unbannedUser" : m50,
+    "unknownEvent" : m51,
+    "unreadMessages" : m53,
+    "unreadMessagesInChats" : m54,
+    "userAndOthersAreTyping" : m55,
+    "userAndUserAreTyping" : m56,
+    "userIsTyping" : m57,
+    "userLeftTheChat" : m58,
+    "userSentUnknownEvent" : m59
   };
 }
