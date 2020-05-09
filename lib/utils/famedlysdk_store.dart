@@ -465,13 +465,15 @@ class ExtendedStore extends Store implements ExtendedStoreAPI {
         (onlyLeft ? "=" : "!=") +
         "'leave' " +
         " GROUP BY room_id ");
+    List<Map<String, dynamic>> resStates = await _db.rawQuery("SELECT * FROM RoomStates WHERE type IS NOT NULL");
+    List<Map<String, dynamic>> resAccountData = await _db.rawQuery("SELECT * FROM RoomAccountData");
     List<Room> roomList = [];
     for (num i = 0; i < res.length; i++) {
       Room room = await Room.getRoomFromTableRow(
         res[i],
         client,
-        states: getStatesFromRoomId(res[i]["room_id"]),
-        roomAccountData: getAccountDataFromRoomId(res[i]["room_id"]),
+        states: Future.value(resStates.where((r) => r["room_id"] == res[i]["room_id"]).toList()),
+        roomAccountData: Future.value(resAccountData.where((r) => r["room_id"] == res[i]["room_id"]).toList()),
       );
       roomList.add(room);
     }
