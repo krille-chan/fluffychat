@@ -8,6 +8,7 @@ import 'package:link_text/link_text.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'matrix.dart';
 import 'message_download_content.dart';
+import 'html_message.dart';
 
 class MessageContent extends StatelessWidget {
   final Event event;
@@ -36,13 +37,30 @@ class MessageContent extends StatelessWidget {
           case MessageTypes.Video:
           case MessageTypes.File:
             return MessageDownloadContent(event, textColor);
-          case MessageTypes.BadEncrypted:
           case MessageTypes.Text:
+          case MessageTypes.Notice:
+          case MessageTypes.Emote:
+            if (
+              Matrix.of(context).renderHtml && !event.redacted &&
+              event.content['format'] == 'org.matrix.custom.html' &&
+              event.content['formatted_body'] is String
+            ) {
+              String html = event.content['formatted_body'];
+              if (event.messageType == MessageTypes.Emote) {
+                html = "* $html";
+              }
+              return HtmlMessage(
+                html: html,
+                textColor: textColor,
+              );
+            }
+            // else we fall through to the normal message rendering
+            continue textmessage;
+          case MessageTypes.BadEncrypted:
           case MessageTypes.Reply:
           case MessageTypes.Location:
           case MessageTypes.None:
-          case MessageTypes.Notice:
-          case MessageTypes.Emote:
+          textmessage:
           default:
             if (event.content['msgtype'] == Matrix.callNamespace) {
               return RaisedButton(
@@ -76,5 +94,6 @@ class MessageContent extends StatelessWidget {
           ),
         );
     }
+    return Container(); // else flutter analyze complains
   }
 }

@@ -206,6 +206,8 @@ class L10n extends MatrixLocalizations {
   String get channelCorruptedDecryptError =>
       Intl.message("The encryption has been corrupted");
 
+  String get chat => Intl.message('Chat');
+
   String get chatDetails => Intl.message('Chat details');
 
   String get chooseAStrongPassword => Intl.message("Choose a strong password");
@@ -523,6 +525,8 @@ class L10n extends MatrixLocalizations {
   String get publicRooms => Intl.message("Public Rooms");
 
   String get rejoin => Intl.message("Rejoin");
+
+  String get renderRichContent => Intl.message("Render rich message content");
 
   String get recording => Intl.message("Recording");
 

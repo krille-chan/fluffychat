@@ -54,6 +54,7 @@ dependencies:
   open_file: ^3.0.1
   mime_type: ^0.3.0
   flutter_styled_toast: ^1.2.1
+  flutter_matrix_html: ^0.0.5
 
   intl: ^0.16.0
   intl_translation: ^0.17.9

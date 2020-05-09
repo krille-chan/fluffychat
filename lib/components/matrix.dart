@@ -55,6 +55,7 @@ class MatrixState extends State<Matrix> {
 
   String activeRoomId;
   File wallpaper;
+  bool renderHtml = false;
 
   String jitsiInstance = 'https://meet.jit.si/';
 
@@ -188,6 +189,9 @@ class MatrixState extends State<Matrix> {
         if (await file.exists()) {
           wallpaper = file;
         }
+      });
+      client.storeAPI.getItem("chat.fluffy.renderHtml").then((final render) async {
+        renderHtml = render == "1";
       });
     }
     super.initState();

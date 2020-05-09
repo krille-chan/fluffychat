@@ -181,6 +181,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_matrix_html:
+    dependency: "direct main"
+    description:
+      name: flutter_matrix_html
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.5"
   flutter_secure_storage:
     dependency: "direct main"
     description:
@@ -738,7 +745,7 @@ packages:
       name: webkit_inspection_protocol
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.5.2"
+    version: "0.5.3"
   webview_flutter:
     dependency: "direct main"
     description:
