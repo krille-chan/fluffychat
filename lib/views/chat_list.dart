@@ -52,21 +52,17 @@ class ChatList extends StatefulWidget {
 
 class _ChatListState extends State<ChatList> {
   bool get searchMode => searchController.text?.isNotEmpty ?? false;
-  StreamSubscription sub;
   final TextEditingController searchController = TextEditingController();
-  SelectMode selectMode = SelectMode.normal;
   Timer coolDown;
   PublicRoomsResponse publicRoomsResponse;
   bool loadingPublicRooms = false;
   String searchServer;
 
-  Future<bool> waitForFirstSync(BuildContext context) async {
+  Future<void> waitForFirstSync(BuildContext context) async {
     Client client = Matrix.of(context).client;
     if (client.prevBatch?.isEmpty ?? true) {
       await client.onFirstSync.stream.first;
     }
-    sub ??= client.onSync.stream
-        .listen((s) => mounted ? setState(() => null) : null);
     return true;
   }
 
@@ -205,230 +201,243 @@ class _ChatListState extends State<ChatList> {
 
   @override
   void dispose() {
-    sub?.cancel();
     searchController.removeListener(
       () => setState(() => null),
     );
     _intentDataStreamSubscription?.cancel();
     _intentFileStreamSubscription?.cancel();
-    _onShareContentChangedSub?.cancel();
     super.dispose();
   }
 
-  StreamSubscription _onShareContentChangedSub;
-
   @override
   Widget build(BuildContext context) {
-    _onShareContentChangedSub ??= Matrix.of(context)
-        .onShareContentChanged
-        .stream
-        .listen((c) => setState(() => null));
-    if (Matrix.of(context).shareContent != null) {
-      selectMode = SelectMode.share;
-    } else if (selectMode == SelectMode.share) {
-      setState(() => selectMode = SelectMode.normal);
-    }
-    return Scaffold(
-      drawer: selectMode == SelectMode.share
-          ? null
-          : Drawer(
-              child: SafeArea(
-                child: ListView(
-                  padding: EdgeInsets.zero,
-                  children: <Widget>[
-                    ListTile(
-                      leading: Icon(Icons.edit),
-                      title: Text(L10n.of(context).setStatus),
-                      onTap: () => _setStatus(context),
-                    ),
-                    Divider(height: 1),
-                    ListTile(
-                      leading: Icon(Icons.people_outline),
-                      title: Text(L10n.of(context).createNewGroup),
-                      onTap: () => _drawerTapAction(NewGroupView()),
-                    ),
-                    ListTile(
-                      leading: Icon(Icons.person_add),
-                      title: Text(L10n.of(context).newPrivateChat),
-                      onTap: () => _drawerTapAction(NewPrivateChatView()),
-                    ),
-                    Divider(height: 1),
-                    ListTile(
-                      leading: Icon(Icons.archive),
-                      title: Text(L10n.of(context).archive),
-                      onTap: () => _drawerTapAction(
-                        Archive(),
-                      ),
-                    ),
-                    ListTile(
-                      leading: Icon(Icons.settings),
-                      title: Text(L10n.of(context).settings),
-                      onTap: () => _drawerTapAction(
-                        SettingsView(),
-                      ),
-                    ),
-                    Divider(height: 1),
-                    ListTile(
-                      leading: Icon(Icons.share),
-                      title: Text(L10n.of(context).inviteContact),
-                      onTap: () {
-                        Navigator.of(context).pop();
-                        Share.share(L10n.of(context).inviteText(
-                            Matrix.of(context).client.userID,
-                            "https://matrix.to/#/${Matrix.of(context).client.userID}"));
-                      },
-                    ),
-                  ],
-                ),
-              ),
-            ),
-      appBar: AppBar(
-        leading: selectMode != SelectMode.share
-            ? null
-            : IconButton(
-                icon: Icon(Icons.close),
-                onPressed: () => Matrix.of(context).shareContent = null,
-              ),
-        titleSpacing: 0,
-        title: selectMode == SelectMode.share
-            ? Text(L10n.of(context).share)
-            : Container(
-                padding: EdgeInsets.all(8),
-                height: 42,
-                margin: EdgeInsets.only(right: 8),
-                decoration: BoxDecoration(
-                  color: Theme.of(context).secondaryHeaderColor,
-                  borderRadius: BorderRadius.circular(90),
-                ),
-                child: TextField(
-                  autocorrect: false,
-                  controller: searchController,
-                  decoration: InputDecoration(
-                    suffixIcon: loadingPublicRooms
-                        ? Container(
-                            alignment: Alignment.centerRight,
-                            child: Container(
-                              width: 20,
-                              height: 20,
-                              child: CircularProgressIndicator(),
+    return StreamBuilder(
+        stream: Matrix.of(context).onShareContentChanged.stream,
+        builder: (context, snapshot) {
+          final selectMode = Matrix.of(context).shareContent == null
+              ? SelectMode.normal
+              : SelectMode.share;
+          return Scaffold(
+            drawer: selectMode == SelectMode.share
+                ? null
+                : Drawer(
+                    child: SafeArea(
+                      child: ListView(
+                        padding: EdgeInsets.zero,
+                        children: <Widget>[
+                          ListTile(
+                            leading: Icon(Icons.edit),
+                            title: Text(L10n.of(context).setStatus),
+                            onTap: () => _setStatus(context),
+                          ),
+                          Divider(height: 1),
+                          ListTile(
+                            leading: Icon(Icons.people_outline),
+                            title: Text(L10n.of(context).createNewGroup),
+                            onTap: () => _drawerTapAction(NewGroupView()),
+                          ),
+                          ListTile(
+                            leading: Icon(Icons.person_add),
+                            title: Text(L10n.of(context).newPrivateChat),
+                            onTap: () => _drawerTapAction(NewPrivateChatView()),
+                          ),
+                          Divider(height: 1),
+                          ListTile(
+                            leading: Icon(Icons.archive),
+                            title: Text(L10n.of(context).archive),
+                            onTap: () => _drawerTapAction(
+                              Archive(),
                             ),
-                          )
-                        : Icon(Icons.search),
-                    contentPadding: EdgeInsets.all(9),
-                    border: InputBorder.none,
-                    hintText: L10n.of(context).searchForAChat,
+                          ),
+                          ListTile(
+                            leading: Icon(Icons.settings),
+                            title: Text(L10n.of(context).settings),
+                            onTap: () => _drawerTapAction(
+                              SettingsView(),
+                            ),
+                          ),
+                          Divider(height: 1),
+                          ListTile(
+                            leading: Icon(Icons.share),
+                            title: Text(L10n.of(context).inviteContact),
+                            onTap: () {
+                              Navigator.of(context).pop();
+                              Share.share(L10n.of(context).inviteText(
+                                  Matrix.of(context).client.userID,
+                                  "https://matrix.to/#/${Matrix.of(context).client.userID}"));
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                ),
-              ),
-      ),
-      floatingActionButton: (AdaptivePageLayout.columnMode(context) ||
-              selectMode == SelectMode.share)
-          ? null
-          : SpeedDial(
-              child: Icon(Icons.add),
-              overlayColor: blackWhiteColor(context),
-              foregroundColor: Colors.white,
-              backgroundColor: Theme.of(context).primaryColor,
-              children: [
-                SpeedDialChild(
-                  child: Icon(Icons.people_outline),
-                  foregroundColor: Colors.white,
-                  backgroundColor: Colors.blue,
-                  label: L10n.of(context).createNewGroup,
-                  labelStyle: TextStyle(fontSize: 18.0, color: Colors.black),
-                  onTap: () => Navigator.of(context).pushAndRemoveUntil(
-                      AppRoute.defaultRoute(context, NewGroupView()),
-                      (r) => r.isFirst),
-                ),
-                SpeedDialChild(
-                  child: Icon(Icons.person_add),
-                  foregroundColor: Colors.white,
-                  backgroundColor: Colors.green,
-                  label: L10n.of(context).newPrivateChat,
-                  labelStyle: TextStyle(fontSize: 18.0, color: Colors.black),
-                  onTap: () => Navigator.of(context).pushAndRemoveUntil(
-                      AppRoute.defaultRoute(context, NewPrivateChatView()),
-                      (r) => r.isFirst),
-                ),
-              ],
-            ),
-      body: FutureBuilder<bool>(
-        future: waitForFirstSync(context),
-        builder: (BuildContext context, snapshot) {
-          if (snapshot.hasData) {
-            List<Room> rooms = List<Room>.from(Matrix.of(context).client.rooms);
-            rooms.removeWhere((Room room) =>
-                searchMode &&
-                !room.displayname
-                    .toLowerCase()
-                    .contains(searchController.text.toLowerCase() ?? ""));
-            if (rooms.isEmpty && (!searchMode || publicRoomsResponse == null)) {
-              return Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Icon(
-                      searchMode ? Icons.search : Icons.chat_bubble_outline,
-                      size: 80,
-                      color: Colors.grey,
+            appBar: AppBar(
+              leading: selectMode != SelectMode.share
+                  ? null
+                  : IconButton(
+                      icon: Icon(Icons.close),
+                      onPressed: () => Matrix.of(context).shareContent = null,
                     ),
-                    Text(searchMode
-                        ? L10n.of(context).noRoomsFound
-                        : L10n.of(context).startYourFirstChat),
-                  ],
-                ),
-              );
-            }
-            final int publicRoomsCount =
-                (publicRoomsResponse?.publicRooms?.length ?? 0);
-            final int totalCount = rooms.length + publicRoomsCount;
-            return ListView.separated(
-                separatorBuilder: (BuildContext context, int i) =>
-                    i == totalCount - publicRoomsCount
-                        ? Material(
-                            elevation: 2,
-                            child: ListTile(
-                              title: Text(L10n.of(context).publicRooms),
-                            ),
-                          )
-                        : Container(),
-                itemCount: totalCount + 1,
-                itemBuilder: (BuildContext context, int i) {
-                  if (i == 0) {
-                    return Matrix.of(context).client.statusList.isEmpty
-                        ? Container()
-                        : PreferredSize(
-                            preferredSize: Size.fromHeight(89),
-                            child: Container(
-                              height: 81,
-                              child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount:
-                                    Matrix.of(context).client.statusList.length,
-                                itemBuilder: (BuildContext context, int i) =>
-                                    PresenceListItem(Matrix.of(context)
-                                        .client
-                                        .statusList[i]),
-                              ),
+              titleSpacing: 0,
+              title: selectMode == SelectMode.share
+                  ? Text(L10n.of(context).share)
+                  : Container(
+                      padding: EdgeInsets.all(8),
+                      height: 42,
+                      margin: EdgeInsets.only(right: 8),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).secondaryHeaderColor,
+                        borderRadius: BorderRadius.circular(90),
+                      ),
+                      child: TextField(
+                        autocorrect: false,
+                        controller: searchController,
+                        decoration: InputDecoration(
+                          suffixIcon: loadingPublicRooms
+                              ? Container(
+                                  alignment: Alignment.centerRight,
+                                  child: Container(
+                                    width: 20,
+                                    height: 20,
+                                    child: CircularProgressIndicator(),
+                                  ),
+                                )
+                              : Icon(Icons.search),
+                          contentPadding: EdgeInsets.all(9),
+                          border: InputBorder.none,
+                          hintText: L10n.of(context).searchForAChat,
+                        ),
+                      ),
+                    ),
+            ),
+            floatingActionButton: (AdaptivePageLayout.columnMode(context) ||
+                    selectMode == SelectMode.share)
+                ? null
+                : SpeedDial(
+                    child: Icon(Icons.add),
+                    overlayColor: blackWhiteColor(context),
+                    foregroundColor: Colors.white,
+                    backgroundColor: Theme.of(context).primaryColor,
+                    children: [
+                      SpeedDialChild(
+                        child: Icon(Icons.people_outline),
+                        foregroundColor: Colors.white,
+                        backgroundColor: Colors.blue,
+                        label: L10n.of(context).createNewGroup,
+                        labelStyle:
+                            TextStyle(fontSize: 18.0, color: Colors.black),
+                        onTap: () => Navigator.of(context).pushAndRemoveUntil(
+                            AppRoute.defaultRoute(context, NewGroupView()),
+                            (r) => r.isFirst),
+                      ),
+                      SpeedDialChild(
+                        child: Icon(Icons.person_add),
+                        foregroundColor: Colors.white,
+                        backgroundColor: Colors.green,
+                        label: L10n.of(context).newPrivateChat,
+                        labelStyle:
+                            TextStyle(fontSize: 18.0, color: Colors.black),
+                        onTap: () => Navigator.of(context).pushAndRemoveUntil(
+                            AppRoute.defaultRoute(
+                                context, NewPrivateChatView()),
+                            (r) => r.isFirst),
+                      ),
+                    ],
+                  ),
+            body: StreamBuilder(
+                stream: Matrix.of(context).client.onSync.stream,
+                builder: (context, snapshot) {
+                  return FutureBuilder<void>(
+                    future: waitForFirstSync(context),
+                    builder: (BuildContext context, snapshot) {
+                      if (snapshot.hasData) {
+                        List<Room> rooms =
+                            List<Room>.from(Matrix.of(context).client.rooms);
+                        rooms.removeWhere((Room room) =>
+                            searchMode &&
+                            !room.displayname.toLowerCase().contains(
+                                searchController.text.toLowerCase() ?? ""));
+                        if (rooms.isEmpty &&
+                            (!searchMode || publicRoomsResponse == null)) {
+                          return Center(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Icon(
+                                  searchMode
+                                      ? Icons.search
+                                      : Icons.chat_bubble_outline,
+                                  size: 80,
+                                  color: Colors.grey,
+                                ),
+                                Text(searchMode
+                                    ? L10n.of(context).noRoomsFound
+                                    : L10n.of(context).startYourFirstChat),
+                              ],
                             ),
                           );
-                  }
-                  i--;
-                  return i < rooms.length
-                      ? ChatListItem(
-                          rooms[i],
-                          activeChat: widget.activeChat == rooms[i].id,
-                        )
-                      : PublicRoomListItem(
-                          publicRoomsResponse.publicRooms[i - rooms.length]);
-                });
-          } else {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        },
-      ),
-    );
+                        }
+                        final int publicRoomsCount =
+                            (publicRoomsResponse?.publicRooms?.length ?? 0);
+                        final int totalCount = rooms.length + publicRoomsCount;
+                        return ListView.separated(
+                            separatorBuilder: (BuildContext context, int i) =>
+                                i == totalCount - publicRoomsCount
+                                    ? Material(
+                                        elevation: 2,
+                                        child: ListTile(
+                                          title: Text(
+                                              L10n.of(context).publicRooms),
+                                        ),
+                                      )
+                                    : Container(),
+                            itemCount: totalCount + 1,
+                            itemBuilder: (BuildContext context, int i) {
+                              if (i == 0) {
+                                return Matrix.of(context)
+                                        .client
+                                        .statusList
+                                        .isEmpty
+                                    ? Container()
+                                    : PreferredSize(
+                                        preferredSize: Size.fromHeight(89),
+                                        child: Container(
+                                          height: 81,
+                                          child: ListView.builder(
+                                            scrollDirection: Axis.horizontal,
+                                            itemCount: Matrix.of(context)
+                                                .client
+                                                .statusList
+                                                .length,
+                                            itemBuilder:
+                                                (BuildContext context, int i) =>
+                                                    PresenceListItem(
+                                                        Matrix.of(context)
+                                                            .client
+                                                            .statusList[i]),
+                                          ),
+                                        ),
+                                      );
+                              }
+                              i--;
+                              return i < rooms.length
+                                  ? ChatListItem(
+                                      rooms[i],
+                                      activeChat:
+                                          widget.activeChat == rooms[i].id,
+                                    )
+                                  : PublicRoomListItem(publicRoomsResponse
+                                      .publicRooms[i - rooms.length]);
+                            });
+                      } else {
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                    },
+                  );
+                }),
+          );
+        });
   }
 }

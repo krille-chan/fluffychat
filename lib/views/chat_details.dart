@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:io';
 
 import 'package:famedlysdk/famedlysdk.dart';
@@ -131,14 +130,6 @@ class _ChatDetailsState extends State<ChatDetails> {
     if (participants != null) setState(() => members = participants);
   }
 
-  StreamSubscription onUpdate;
-
-  @override
-  void dispose() {
-    onUpdate?.cancel();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     if (widget.room == null) {
@@ -156,293 +147,313 @@ class _ChatDetailsState extends State<ChatDetails> {
     final int actualMembersCount =
         widget.room.mInvitedMemberCount + widget.room.mJoinedMemberCount;
     final bool canRequestMoreMembers = members.length < actualMembersCount;
-    this.onUpdate ??= widget.room.onUpdate.stream
-        .listen((id) => setState(() => members = null));
     return AdaptivePageLayout(
       primaryPage: FocusPage.SECOND,
       firstScaffold: ChatList(
         activeChat: widget.room.id,
       ),
-      secondScaffold: Scaffold(
-        body: NestedScrollView(
-          headerSliverBuilder:
-              (BuildContext context, bool innerBoxIsScrolled) => <Widget>[
-            SliverAppBar(
-              expandedHeight: 300.0,
-              floating: true,
-              pinned: true,
-              actions: <Widget>[
-                if (widget.room.canonicalAlias?.isNotEmpty ?? false)
-                  IconButton(
-                    icon: Icon(Icons.share),
-                    onPressed: () {
-                      Clipboard.setData(
-                        ClipboardData(text: widget.room.canonicalAlias),
-                      );
-                      showToast(L10n.of(context).copiedToClipboard);
-                    },
+      secondScaffold: StreamBuilder(
+          stream: widget.room.onUpdate.stream,
+          builder: (context, snapshot) {
+            return Scaffold(
+              body: NestedScrollView(
+                headerSliverBuilder:
+                    (BuildContext context, bool innerBoxIsScrolled) => <Widget>[
+                  SliverAppBar(
+                    expandedHeight: 300.0,
+                    floating: true,
+                    pinned: true,
+                    actions: <Widget>[
+                      if (widget.room.canonicalAlias?.isNotEmpty ?? false)
+                        IconButton(
+                          icon: Icon(Icons.share),
+                          onPressed: () {
+                            Clipboard.setData(
+                              ClipboardData(text: widget.room.canonicalAlias),
+                            );
+                            showToast(L10n.of(context).copiedToClipboard);
+                          },
+                        ),
+                      ChatSettingsPopupMenu(widget.room, false)
+                    ],
+                    title: Text(
+                        widget.room.getLocalizedDisplayname(L10n.of(context)),
+                        style: TextStyle(
+                            color: Theme.of(context)
+                                .appBarTheme
+                                .textTheme
+                                .headline6
+                                .color)),
+                    backgroundColor: Theme.of(context).appBarTheme.color,
+                    flexibleSpace: FlexibleSpaceBar(
+                      background: ContentBanner(widget.room.avatar,
+                          onEdit: widget.room.canSendEvent("m.room.avatar") &&
+                                  !kIsWeb
+                              ? () => setAvatarAction(context)
+                              : null),
+                    ),
                   ),
-                ChatSettingsPopupMenu(widget.room, false)
-              ],
-              title: Text(widget.room.getLocalizedDisplayname(L10n.of(context)),
-                  style: TextStyle(
-                      color: Theme.of(context)
-                          .appBarTheme
-                          .textTheme
-                          .headline6
-                          .color)),
-              backgroundColor: Theme.of(context).appBarTheme.color,
-              flexibleSpace: FlexibleSpaceBar(
-                background: ContentBanner(widget.room.avatar,
-                    onEdit: widget.room.canSendEvent("m.room.avatar") && !kIsWeb
-                        ? () => setAvatarAction(context)
-                        : null),
-              ),
-            ),
-          ],
-          body: ListView.builder(
-            itemCount: members.length + 1 + (canRequestMoreMembers ? 1 : 0),
-            itemBuilder: (BuildContext context, int i) => i == 0
-                ? Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: <Widget>[
-                      ListTile(
-                        leading: widget.room.canSendEvent("m.room.topic")
-                            ? CircleAvatar(
+                ],
+                body: ListView.builder(
+                  itemCount:
+                      members.length + 1 + (canRequestMoreMembers ? 1 : 0),
+                  itemBuilder: (BuildContext context, int i) => i == 0
+                      ? Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: <Widget>[
+                            ListTile(
+                              leading: widget.room.canSendEvent("m.room.topic")
+                                  ? CircleAvatar(
+                                      backgroundColor: Theme.of(context)
+                                          .scaffoldBackgroundColor,
+                                      foregroundColor: Colors.grey,
+                                      child: Icon(Icons.edit),
+                                    )
+                                  : null,
+                              title: Text(
+                                  "${L10n.of(context).groupDescription}:",
+                                  style: TextStyle(
+                                      color: Theme.of(context).primaryColor,
+                                      fontWeight: FontWeight.bold)),
+                              subtitle: LinkText(
+                                text: widget.room.topic?.isEmpty ?? true
+                                    ? L10n.of(context).addGroupDescription
+                                    : widget.room.topic,
+                                linkStyle: TextStyle(color: Colors.blueAccent),
+                                textStyle: TextStyle(
+                                  fontSize: 14,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodyText2
+                                      .color,
+                                ),
+                              ),
+                              onTap: widget.room.canSendEvent("m.room.topic")
+                                  ? () => setTopicAction(context)
+                                  : null,
+                            ),
+                            Divider(thickness: 1),
+                            ListTile(
+                              title: Text(
+                                L10n.of(context).settings,
+                                style: TextStyle(
+                                  color: Theme.of(context).primaryColor,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            if (widget.room.canSendEvent("m.room.name"))
+                              ListTile(
+                                leading: CircleAvatar(
+                                  backgroundColor:
+                                      Theme.of(context).scaffoldBackgroundColor,
+                                  foregroundColor: Colors.grey,
+                                  child: Icon(Icons.people),
+                                ),
+                                title: Text(
+                                    L10n.of(context).changeTheNameOfTheGroup),
+                                subtitle: Text(widget.room
+                                    .getLocalizedDisplayname(L10n.of(context))),
+                                onTap: () => setDisplaynameAction(context),
+                              ),
+                            if (widget.room
+                                    .canSendEvent("m.room.canonical_alias") &&
+                                widget.room.joinRules == JoinRules.public)
+                              ListTile(
+                                leading: CircleAvatar(
+                                  backgroundColor:
+                                      Theme.of(context).scaffoldBackgroundColor,
+                                  foregroundColor: Colors.grey,
+                                  child: Icon(Icons.link),
+                                ),
+                                onTap: () => setCanonicalAliasAction(context),
+                                title: Text(L10n.of(context).setInvitationLink),
+                                subtitle: Text(
+                                    (widget.room.canonicalAlias?.isNotEmpty ??
+                                            false)
+                                        ? widget.room.canonicalAlias
+                                        : L10n.of(context).none),
+                              ),
+                            PopupMenuButton(
+                              child: ListTile(
+                                leading: CircleAvatar(
+                                    backgroundColor: Theme.of(context)
+                                        .scaffoldBackgroundColor,
+                                    foregroundColor: Colors.grey,
+                                    child: Icon(Icons.public)),
+                                title: Text(L10n.of(context)
+                                    .whoIsAllowedToJoinThisGroup),
+                                subtitle: Text(
+                                  widget.room.joinRules
+                                      .getLocalizedString(L10n.of(context)),
+                                ),
+                              ),
+                              onSelected: (JoinRules joinRule) =>
+                                  SimpleDialogs(context)
+                                      .tryRequestWithLoadingDialog(
+                                widget.room.setJoinRules(joinRule),
+                              ),
+                              itemBuilder: (BuildContext context) =>
+                                  <PopupMenuEntry<JoinRules>>[
+                                if (widget.room.canChangeJoinRules)
+                                  PopupMenuItem<JoinRules>(
+                                    value: JoinRules.public,
+                                    child: Text(JoinRules.public
+                                        .getLocalizedString(L10n.of(context))),
+                                  ),
+                                if (widget.room.canChangeJoinRules)
+                                  PopupMenuItem<JoinRules>(
+                                    value: JoinRules.invite,
+                                    child: Text(JoinRules.invite
+                                        .getLocalizedString(L10n.of(context))),
+                                  ),
+                              ],
+                            ),
+                            PopupMenuButton(
+                              child: ListTile(
+                                leading: CircleAvatar(
+                                  backgroundColor:
+                                      Theme.of(context).scaffoldBackgroundColor,
+                                  foregroundColor: Colors.grey,
+                                  child: Icon(Icons.visibility),
+                                ),
+                                title: Text(L10n.of(context)
+                                    .visibilityOfTheChatHistory),
+                                subtitle: Text(
+                                  widget.room.historyVisibility
+                                      .getLocalizedString(L10n.of(context)),
+                                ),
+                              ),
+                              onSelected:
+                                  (HistoryVisibility historyVisibility) =>
+                                      SimpleDialogs(context)
+                                          .tryRequestWithLoadingDialog(
+                                widget.room
+                                    .setHistoryVisibility(historyVisibility),
+                              ),
+                              itemBuilder: (BuildContext context) =>
+                                  <PopupMenuEntry<HistoryVisibility>>[
+                                if (widget.room.canChangeHistoryVisibility)
+                                  PopupMenuItem<HistoryVisibility>(
+                                    value: HistoryVisibility.invited,
+                                    child: Text(HistoryVisibility.invited
+                                        .getLocalizedString(L10n.of(context))),
+                                  ),
+                                if (widget.room.canChangeHistoryVisibility)
+                                  PopupMenuItem<HistoryVisibility>(
+                                    value: HistoryVisibility.joined,
+                                    child: Text(HistoryVisibility.joined
+                                        .getLocalizedString(L10n.of(context))),
+                                  ),
+                                if (widget.room.canChangeHistoryVisibility)
+                                  PopupMenuItem<HistoryVisibility>(
+                                    value: HistoryVisibility.shared,
+                                    child: Text(HistoryVisibility.shared
+                                        .getLocalizedString(L10n.of(context))),
+                                  ),
+                                if (widget.room.canChangeHistoryVisibility)
+                                  PopupMenuItem<HistoryVisibility>(
+                                    value: HistoryVisibility.world_readable,
+                                    child: Text(HistoryVisibility.world_readable
+                                        .getLocalizedString(L10n.of(context))),
+                                  ),
+                              ],
+                            ),
+                            if (widget.room.joinRules == JoinRules.public)
+                              PopupMenuButton(
+                                child: ListTile(
+                                  leading: CircleAvatar(
+                                    backgroundColor: Theme.of(context)
+                                        .scaffoldBackgroundColor,
+                                    foregroundColor: Colors.grey,
+                                    child: Icon(Icons.info_outline),
+                                  ),
+                                  title: Text(
+                                      L10n.of(context).areGuestsAllowedToJoin),
+                                  subtitle: Text(
+                                    widget.room.guestAccess
+                                        .getLocalizedString(L10n.of(context)),
+                                  ),
+                                ),
+                                onSelected: (GuestAccess guestAccess) =>
+                                    SimpleDialogs(context)
+                                        .tryRequestWithLoadingDialog(
+                                  widget.room.setGuestAccess(guestAccess),
+                                ),
+                                itemBuilder: (BuildContext context) =>
+                                    <PopupMenuEntry<GuestAccess>>[
+                                  if (widget.room.canChangeGuestAccess)
+                                    PopupMenuItem<GuestAccess>(
+                                      value: GuestAccess.can_join,
+                                      child: Text(
+                                        GuestAccess.can_join.getLocalizedString(
+                                            L10n.of(context)),
+                                      ),
+                                    ),
+                                  if (widget.room.canChangeGuestAccess)
+                                    PopupMenuItem<GuestAccess>(
+                                      value: GuestAccess.forbidden,
+                                      child: Text(
+                                        GuestAccess.forbidden
+                                            .getLocalizedString(
+                                                L10n.of(context)),
+                                      ),
+                                    ),
+                                ],
+                              ),
+                            Divider(thickness: 1),
+                            ListTile(
+                              title: Text(
+                                actualMembersCount > 1
+                                    ? L10n.of(context).countParticipants(
+                                        actualMembersCount.toString())
+                                    : L10n.of(context).emptyChat,
+                                style: TextStyle(
+                                  color: Theme.of(context).primaryColor,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            widget.room.canInvite
+                                ? ListTile(
+                                    title: Text(L10n.of(context).inviteContact),
+                                    leading: CircleAvatar(
+                                      child: Icon(Icons.add),
+                                      backgroundColor:
+                                          Theme.of(context).primaryColor,
+                                      foregroundColor: Colors.white,
+                                    ),
+                                    onTap: () => Navigator.of(context).push(
+                                      AppRoute.defaultRoute(
+                                        context,
+                                        InvitationSelection(widget.room),
+                                      ),
+                                    ),
+                                  )
+                                : Container(),
+                          ],
+                        )
+                      : i < members.length + 1
+                          ? ParticipantListItem(members[i - 1])
+                          : ListTile(
+                              title: Text(L10n.of(context)
+                                  .loadCountMoreParticipants(
+                                      (actualMembersCount - members.length)
+                                          .toString())),
+                              leading: CircleAvatar(
                                 backgroundColor:
                                     Theme.of(context).scaffoldBackgroundColor,
-                                foregroundColor: Colors.grey,
-                                child: Icon(Icons.edit),
-                              )
-                            : null,
-                        title: Text("${L10n.of(context).groupDescription}:",
-                            style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontWeight: FontWeight.bold)),
-                        subtitle: LinkText(
-                          text: widget.room.topic?.isEmpty ?? true
-                              ? L10n.of(context).addGroupDescription
-                              : widget.room.topic,
-                          linkStyle: TextStyle(color: Colors.blueAccent),
-                          textStyle: TextStyle(
-                            fontSize: 14,
-                            color: Theme.of(context).textTheme.bodyText2.color,
-                          ),
-                        ),
-                        onTap: widget.room.canSendEvent("m.room.topic")
-                            ? () => setTopicAction(context)
-                            : null,
-                      ),
-                      Divider(thickness: 1),
-                      ListTile(
-                        title: Text(
-                          L10n.of(context).settings,
-                          style: TextStyle(
-                            color: Theme.of(context).primaryColor,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      if (widget.room.canSendEvent("m.room.name"))
-                        ListTile(
-                          leading: CircleAvatar(
-                            backgroundColor:
-                                Theme.of(context).scaffoldBackgroundColor,
-                            foregroundColor: Colors.grey,
-                            child: Icon(Icons.people),
-                          ),
-                          title: Text(L10n.of(context).changeTheNameOfTheGroup),
-                          subtitle: Text(widget.room
-                              .getLocalizedDisplayname(L10n.of(context))),
-                          onTap: () => setDisplaynameAction(context),
-                        ),
-                      if (widget.room.canSendEvent("m.room.canonical_alias") &&
-                          widget.room.joinRules == JoinRules.public)
-                        ListTile(
-                          leading: CircleAvatar(
-                            backgroundColor:
-                                Theme.of(context).scaffoldBackgroundColor,
-                            foregroundColor: Colors.grey,
-                            child: Icon(Icons.link),
-                          ),
-                          onTap: () => setCanonicalAliasAction(context),
-                          title: Text(L10n.of(context).setInvitationLink),
-                          subtitle: Text(
-                              (widget.room.canonicalAlias?.isNotEmpty ?? false)
-                                  ? widget.room.canonicalAlias
-                                  : L10n.of(context).none),
-                        ),
-                      PopupMenuButton(
-                        child: ListTile(
-                          leading: CircleAvatar(
-                              backgroundColor:
-                                  Theme.of(context).scaffoldBackgroundColor,
-                              foregroundColor: Colors.grey,
-                              child: Icon(Icons.public)),
-                          title: Text(
-                              L10n.of(context).whoIsAllowedToJoinThisGroup),
-                          subtitle: Text(
-                            widget.room.joinRules
-                                .getLocalizedString(L10n.of(context)),
-                          ),
-                        ),
-                        onSelected: (JoinRules joinRule) =>
-                            SimpleDialogs(context).tryRequestWithLoadingDialog(
-                          widget.room.setJoinRules(joinRule),
-                        ),
-                        itemBuilder: (BuildContext context) =>
-                            <PopupMenuEntry<JoinRules>>[
-                          if (widget.room.canChangeJoinRules)
-                            PopupMenuItem<JoinRules>(
-                              value: JoinRules.public,
-                              child: Text(JoinRules.public
-                                  .getLocalizedString(L10n.of(context))),
-                            ),
-                          if (widget.room.canChangeJoinRules)
-                            PopupMenuItem<JoinRules>(
-                              value: JoinRules.invite,
-                              child: Text(JoinRules.invite
-                                  .getLocalizedString(L10n.of(context))),
-                            ),
-                        ],
-                      ),
-                      PopupMenuButton(
-                        child: ListTile(
-                          leading: CircleAvatar(
-                            backgroundColor:
-                                Theme.of(context).scaffoldBackgroundColor,
-                            foregroundColor: Colors.grey,
-                            child: Icon(Icons.visibility),
-                          ),
-                          title:
-                              Text(L10n.of(context).visibilityOfTheChatHistory),
-                          subtitle: Text(
-                            widget.room.historyVisibility
-                                .getLocalizedString(L10n.of(context)),
-                          ),
-                        ),
-                        onSelected: (HistoryVisibility historyVisibility) =>
-                            SimpleDialogs(context).tryRequestWithLoadingDialog(
-                          widget.room.setHistoryVisibility(historyVisibility),
-                        ),
-                        itemBuilder: (BuildContext context) =>
-                            <PopupMenuEntry<HistoryVisibility>>[
-                          if (widget.room.canChangeHistoryVisibility)
-                            PopupMenuItem<HistoryVisibility>(
-                              value: HistoryVisibility.invited,
-                              child: Text(HistoryVisibility.invited
-                                  .getLocalizedString(L10n.of(context))),
-                            ),
-                          if (widget.room.canChangeHistoryVisibility)
-                            PopupMenuItem<HistoryVisibility>(
-                              value: HistoryVisibility.joined,
-                              child: Text(HistoryVisibility.joined
-                                  .getLocalizedString(L10n.of(context))),
-                            ),
-                          if (widget.room.canChangeHistoryVisibility)
-                            PopupMenuItem<HistoryVisibility>(
-                              value: HistoryVisibility.shared,
-                              child: Text(HistoryVisibility.shared
-                                  .getLocalizedString(L10n.of(context))),
-                            ),
-                          if (widget.room.canChangeHistoryVisibility)
-                            PopupMenuItem<HistoryVisibility>(
-                              value: HistoryVisibility.world_readable,
-                              child: Text(HistoryVisibility.world_readable
-                                  .getLocalizedString(L10n.of(context))),
-                            ),
-                        ],
-                      ),
-                      if (widget.room.joinRules == JoinRules.public)
-                        PopupMenuButton(
-                          child: ListTile(
-                            leading: CircleAvatar(
-                              backgroundColor:
-                                  Theme.of(context).scaffoldBackgroundColor,
-                              foregroundColor: Colors.grey,
-                              child: Icon(Icons.info_outline),
-                            ),
-                            title:
-                                Text(L10n.of(context).areGuestsAllowedToJoin),
-                            subtitle: Text(
-                              widget.room.guestAccess
-                                  .getLocalizedString(L10n.of(context)),
-                            ),
-                          ),
-                          onSelected: (GuestAccess guestAccess) =>
-                              SimpleDialogs(context)
-                                  .tryRequestWithLoadingDialog(
-                            widget.room.setGuestAccess(guestAccess),
-                          ),
-                          itemBuilder: (BuildContext context) =>
-                              <PopupMenuEntry<GuestAccess>>[
-                            if (widget.room.canChangeGuestAccess)
-                              PopupMenuItem<GuestAccess>(
-                                value: GuestAccess.can_join,
-                                child: Text(
-                                  GuestAccess.can_join
-                                      .getLocalizedString(L10n.of(context)),
+                                child: Icon(
+                                  Icons.refresh,
+                                  color: Colors.grey,
                                 ),
                               ),
-                            if (widget.room.canChangeGuestAccess)
-                              PopupMenuItem<GuestAccess>(
-                                value: GuestAccess.forbidden,
-                                child: Text(
-                                  GuestAccess.forbidden
-                                      .getLocalizedString(L10n.of(context)),
-                                ),
-                              ),
-                          ],
-                        ),
-                      Divider(thickness: 1),
-                      ListTile(
-                        title: Text(
-                          actualMembersCount > 1
-                              ? L10n.of(context).countParticipants(
-                                  actualMembersCount.toString())
-                              : L10n.of(context).emptyChat,
-                          style: TextStyle(
-                            color: Theme.of(context).primaryColor,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      widget.room.canInvite
-                          ? ListTile(
-                              title: Text(L10n.of(context).inviteContact),
-                              leading: CircleAvatar(
-                                child: Icon(Icons.add),
-                                backgroundColor: Theme.of(context).primaryColor,
-                                foregroundColor: Colors.white,
-                              ),
-                              onTap: () => Navigator.of(context).push(
-                                AppRoute.defaultRoute(
-                                  context,
-                                  InvitationSelection(widget.room),
-                                ),
-                              ),
-                            )
-                          : Container(),
-                    ],
-                  )
-                : i < members.length + 1
-                    ? ParticipantListItem(members[i - 1])
-                    : ListTile(
-                        title: Text(L10n.of(context).loadCountMoreParticipants(
-                            (actualMembersCount - members.length).toString())),
-                        leading: CircleAvatar(
-                          backgroundColor:
-                              Theme.of(context).scaffoldBackgroundColor,
-                          child: Icon(
-                            Icons.refresh,
-                            color: Colors.grey,
-                          ),
-                        ),
-                        onTap: () => requestMoreMembersAction(context),
-                      ),
-          ),
-        ),
-      ),
+                              onTap: () => requestMoreMembersAction(context),
+                            ),
+                ),
+              ),
+            );
+          }),
     );
   }
 }
