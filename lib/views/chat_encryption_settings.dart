@@ -58,75 +58,71 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
                   return Center(child: CircularProgressIndicator());
                 }
                 final List<DeviceKeys> deviceKeys = snapshot.data;
-                return Expanded(
-                  child: ListView.separated(
-                    separatorBuilder: (BuildContext context, int i) =>
-                        Divider(height: 1),
-                    itemCount: deviceKeys.length,
-                    itemBuilder: (BuildContext context, int i) => Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        if (i == 0 ||
-                            deviceKeys[i].userId != deviceKeys[i - 1].userId)
-                          Material(
-                            child: ListTile(
-                              leading: Avatar(
-                                room
-                                    .getUserByMXIDSync(deviceKeys[i].userId)
-                                    .avatarUrl,
-                                room
-                                    .getUserByMXIDSync(deviceKeys[i].userId)
-                                    .calcDisplayname(),
-                              ),
-                              title: Text(room
+                return ListView.separated(
+                  separatorBuilder: (BuildContext context, int i) =>
+                      Divider(height: 1),
+                  itemCount: deviceKeys.length,
+                  itemBuilder: (BuildContext context, int i) => Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      if (i == 0 ||
+                          deviceKeys[i].userId != deviceKeys[i - 1].userId)
+                        Material(
+                          child: ListTile(
+                            leading: Avatar(
+                              room
                                   .getUserByMXIDSync(deviceKeys[i].userId)
-                                  .calcDisplayname()),
-                              subtitle: Text(deviceKeys[i].userId),
+                                  .avatarUrl,
+                              room
+                                  .getUserByMXIDSync(deviceKeys[i].userId)
+                                  .calcDisplayname(),
                             ),
-                            elevation: 2,
+                            title: Text(room
+                                .getUserByMXIDSync(deviceKeys[i].userId)
+                                .calcDisplayname()),
+                            subtitle: Text(deviceKeys[i].userId),
                           ),
-                        CheckboxListTile(
-                          title: Text(
-                            "${deviceKeys[i].unsigned["device_display_name"] ?? L10n.of(context).unknownDevice} - ${deviceKeys[i].deviceId}",
-                            style: TextStyle(
-                                color: deviceKeys[i].blocked
-                                    ? Colors.red
-                                    : deviceKeys[i].verified
-                                        ? Colors.green
-                                        : Colors.orange),
-                          ),
-                          subtitle: Text(
-                            deviceKeys[i]
-                                .keys["ed25519:${deviceKeys[i].deviceId}"]
-                                .beautified,
-                            style: TextStyle(
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .bodyText2
-                                    .color),
-                          ),
-                          value: deviceKeys[i].verified,
-                          onChanged: (bool newVal) {
-                            if (newVal == true) {
-                              if (deviceKeys[i].blocked) {
-                                deviceKeys[i].setBlocked(
-                                    false, Matrix.of(context).client);
-                              }
-                              deviceKeys[i]
-                                  .setVerified(true, Matrix.of(context).client);
-                            } else {
-                              if (deviceKeys[i].verified) {
-                                deviceKeys[i].setVerified(
-                                    false, Matrix.of(context).client);
-                              }
-                              deviceKeys[i]
-                                  .setBlocked(true, Matrix.of(context).client);
-                            }
-                            setState(() => null);
-                          },
+                          elevation: 2,
                         ),
-                      ],
-                    ),
+                      CheckboxListTile(
+                        title: Text(
+                          "${deviceKeys[i].unsigned["device_display_name"] ?? L10n.of(context).unknownDevice} - ${deviceKeys[i].deviceId}",
+                          style: TextStyle(
+                              color: deviceKeys[i].blocked
+                                  ? Colors.red
+                                  : deviceKeys[i].verified
+                                      ? Colors.green
+                                      : Colors.orange),
+                        ),
+                        subtitle: Text(
+                          deviceKeys[i]
+                              .keys["ed25519:${deviceKeys[i].deviceId}"]
+                              .beautified,
+                          style: TextStyle(
+                              color:
+                                  Theme.of(context).textTheme.bodyText2.color),
+                        ),
+                        value: deviceKeys[i].verified,
+                        onChanged: (bool newVal) {
+                          if (newVal == true) {
+                            if (deviceKeys[i].blocked) {
+                              deviceKeys[i]
+                                  .setBlocked(false, Matrix.of(context).client);
+                            }
+                            deviceKeys[i]
+                                .setVerified(true, Matrix.of(context).client);
+                          } else {
+                            if (deviceKeys[i].verified) {
+                              deviceKeys[i].setVerified(
+                                  false, Matrix.of(context).client);
+                            }
+                            deviceKeys[i]
+                                .setBlocked(true, Matrix.of(context).client);
+                          }
+                          setState(() => null);
+                        },
+                      ),
+                    ],
                   ),
                 );
               },
