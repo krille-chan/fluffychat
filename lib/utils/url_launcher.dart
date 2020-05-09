@@ -43,9 +43,10 @@ class UrlLauncher {
       Navigator.of(context).pop();
 
       if (roomID != null) {
-        await Navigator.push(
+        await Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => ChatView(roomID)),
+          AppRoute.defaultRoute(context, ChatView(roomID)),
+          (r) => r.isFirst,
         );
       }
     }
