@@ -1,7 +1,12 @@
 # Version 0.13.0 - 2020-??-??
 ### Features:
 - New status feature
+- HTML rendering of messages
+- Markdown support
 - Enhanced chat list design
+- New translations (Polish, Hungarian)
+### Fixes:
+- Lots of minor fixes and refactoring
 
 # Version 0.12.4 - 2020-04-17
 ### Fixed
