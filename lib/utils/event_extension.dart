@@ -19,10 +19,10 @@ extension LocalizedBody on Event {
   }
 
   bool get showThumbnail =>
-      [EventTypes.Message, EventTypes.Sticker].contains(type) &&
+      [MessageTypes.Image, MessageTypes.Sticker].contains(messageType) &&
       (kIsWeb ||
-      (content['info'] is Map &&
-          content['info']['size'] < room.client.store.maxFileSize));
+          (content['info'] is Map &&
+              content['info']['size'] < room.client.store.maxFileSize));
 
   String get sizeString {
     if (content["info"] is Map<String, dynamic> &&
