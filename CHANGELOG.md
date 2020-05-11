@@ -1,4 +1,8 @@
-# Version 0.13.0 - 2020-??-??
+# Version 0.13.1 - 2020-05-11
+### Fixes:
+- Fix share content
+
+# Version 0.13.0 - 2020-05-10
 ### Features:
 - New status feature
 - HTML rendering of messages
