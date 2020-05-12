@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/settings_themes.dart';
-import 'package:fluffychat/views/homeserver_picker.dart';
 import 'package:fluffychat/views/settings_devices.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -46,9 +45,6 @@ class _SettingsState extends State<Settings> {
     MatrixState matrix = Matrix.of(context);
     await SimpleDialogs(context)
         .tryRequestWithLoadingDialog(matrix.client.logout());
-    matrix.clean();
-    await Navigator.of(context).pushAndRemoveUntil(
-        AppRoute.defaultRoute(context, HomeserverPicker()), (r) => false);
   }
 
   void setJitsiInstanceAction(BuildContext context) async {
