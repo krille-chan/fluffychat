@@ -91,7 +91,7 @@ flutter pub run intl_translation:extract_to_arb --output-dir=lib/l10n lib/l10n/l
 flutter pub pub run intl_translation:generate_from_arb --output-dir=lib/l10n --no-use-deferred-loading lib/l10n/l10n.dart lib/l10n/intl_*.arb
 ```
 
-5. Make sure your language is in `supportedLocales` in `/lib/main.dart`.
+5. Make sure your language is in `supportedLocales` in `/lib/main.dart` and in the List at `https://gitlab.com/ChristianPauly/fluffychat-flutter/-/blob/master/lib/l10n/l10n.dart#L11`.
 
 
 # Special thanks to
