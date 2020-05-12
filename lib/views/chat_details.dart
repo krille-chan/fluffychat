@@ -16,6 +16,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:link_text/link_text.dart';
+import './settings_emotes.dart';
 
 class ChatDetails extends StatefulWidget {
   final Room room;
@@ -274,6 +275,22 @@ class _ChatDetailsState extends State<ChatDetails> {
                                         ? widget.room.canonicalAlias
                                         : L10n.of(context).none),
                               ),
+                            ListTile(
+                              leading: CircleAvatar(
+                                backgroundColor:
+                                    Theme.of(context).scaffoldBackgroundColor,
+                                foregroundColor: Colors.grey,
+                                child: Icon(Icons.insert_emoticon),
+                              ),
+                              title: Text(L10n.of(context).emoteSettings),
+                              onTap: () async =>
+                                  await Navigator.of(context).push(
+                                AppRoute.defaultRoute(
+                                  context,
+                                  EmotesSettingsView(room: widget.room),
+                                ),
+                              ),
+                            ),
                             PopupMenuButton(
                               child: ListTile(
                                 leading: CircleAvatar(
