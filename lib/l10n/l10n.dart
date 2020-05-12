@@ -298,6 +298,20 @@ class L10n extends MatrixLocalizations {
 
   String get editDisplayname => Intl.message("Edit displayname");
 
+  String get emoteSettings => Intl.message('Emote Settings');
+
+  String get emoteShortcode => Intl.message('Emote shortcode');
+
+  String get emoteWarnNeedToPick =>
+      Intl.message('You need to pick an emote shortcode and an image!',
+          name: 'emoteWarnNeedToPick');
+
+  String get emoteExists =>
+      Intl.message('Emote already exists!', name: 'emoteExists');
+
+  String get emoteInvalid =>
+      Intl.message('Invalid emote shortcode!', name: 'emoteInvalid');
+
   String get emptyChat => Intl.message("Empty chat");
 
   String get enableEncryptionWarning => Intl.message(
@@ -482,6 +496,8 @@ class L10n extends MatrixLocalizations {
 
   String get none => Intl.message("None");
 
+  String get noEmotesFound => Intl.message('No emotes found. 😕');
+
   String get noPermission => Intl.message("No permission");
 
   String get noRoomsFound => Intl.message("No rooms found...");
@@ -490,6 +506,8 @@ class L10n extends MatrixLocalizations {
 
   String numberSelected(String number) =>
       Intl.message("$number selected", name: "numberSelected", args: [number]);
+
+  String get ok => Intl.message('ok');
 
   String get oopsSomethingWentWrong =>
       Intl.message("Oops something went wrong...");
@@ -504,6 +522,8 @@ class L10n extends MatrixLocalizations {
       Intl.message("Participating user devices");
 
   String get password => Intl.message("Password");
+
+  String get pickImage => Intl.message('Pick image');
 
   String play(String fileName) => Intl.message(
         "Play $fileName",

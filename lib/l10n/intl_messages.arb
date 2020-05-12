@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-05-09T15:29:08.901368",
+  "@@last_modified": "2020-05-12T08:42:24.358124",
   "About": "About",
   "@About": {
     "type": "text",
@@ -424,6 +424,31 @@
     "type": "text",
     "placeholders": {}
   },
+  "Emote Settings": "Emote Settings",
+  "@Emote Settings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Emote shortcode": "Emote shortcode",
+  "@Emote shortcode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteWarnNeedToPick": "You need to pick an emote shortcode and an image!",
+  "@emoteWarnNeedToPick": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteExists": "Emote already exists!",
+  "@emoteExists": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteInvalid": "Invalid emote shortcode!",
+  "@emoteInvalid": {
+    "type": "text",
+    "placeholders": {}
+  },
   "Empty chat": "Empty chat",
   "@Empty chat": {
     "type": "text",
@@ -768,6 +793,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "No emotes found. 😕": "No emotes found. 😕",
+  "@No emotes found. 😕": {
+    "type": "text",
+    "placeholders": {}
+  },
   "No permission": "No permission",
   "@No permission": {
     "type": "text",
@@ -789,6 +819,11 @@
     "placeholders": {
       "number": {}
     }
+  },
+  "ok": "ok",
+  "@ok": {
+    "type": "text",
+    "placeholders": {}
   },
   "Oops something went wrong...": "Oops something went wrong...",
   "@Oops something went wrong...": {
@@ -817,6 +852,11 @@
   },
   "Password": "Password",
   "@Password": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Pick image": "Pick image",
+  "@Pick image": {
     "type": "text",
     "placeholders": {}
   },

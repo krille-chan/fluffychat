@@ -107,6 +107,30 @@ class SimpleDialogs {
     return confirmed;
   }
 
+  Future<void> inform({
+    String titleText,
+    String contentText,
+    String okText,
+  }) async {
+    await showDialog(
+      context: context,
+      builder: (c) => AlertDialog(
+        title: titleText != null ? Text(titleText) : null,
+        content: contentText != null ? Text(contentText) : null,
+        actions:  <Widget>[
+          FlatButton(
+            child: Text(
+              okText ?? L10n.of(context).ok.toUpperCase(),
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
   Future<dynamic> tryRequestWithLoadingDialog(Future<dynamic> request,
       {Function(MatrixException) onAdditionalAuth}) async {
     showLoadingDialog(context);
