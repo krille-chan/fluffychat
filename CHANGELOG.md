@@ -1,3 +1,9 @@
+# Version 0.13.2 - 2020-05-13
+### Fixes:
+- Fix textfields copy&paste
+- Clean up pushers on server
+- Show rich notifications
+
 # Version 0.13.1 - 2020-05-11
 ### Fixes:
 - Fix share content
