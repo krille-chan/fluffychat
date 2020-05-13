@@ -117,7 +117,7 @@ abstract class FirebaseController {
 
     _firebaseMessaging.configure(
       onMessage: _onMessage,
-      onBackgroundMessage: _showDefaultNotification,
+      onBackgroundMessage: _onMessage,
       onResume: goToRoom,
       onLaunch: goToRoom,
     );
