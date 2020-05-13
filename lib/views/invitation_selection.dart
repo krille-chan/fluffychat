@@ -7,7 +7,7 @@ import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_styled_toast/flutter_styled_toast.dart';
+import 'package:bot_toast/bot_toast.dart';
 
 import 'chat_list.dart';
 
@@ -58,7 +58,7 @@ class _InvitationSelectionState extends State<InvitationSelection> {
       widget.room.invite(id),
     );
     if (success != false) {
-      showToast(L10n.of(context).contactHasBeenInvitedToTheGroup);
+      BotToast.showText(text: L10n.of(context).contactHasBeenInvitedToTheGroup);
     }
   }
 

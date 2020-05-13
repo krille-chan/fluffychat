@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_advanced_networkimage/provider.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:flutter_styled_toast/flutter_styled_toast.dart';
+import 'package:bot_toast/bot_toast.dart';
 
 import 'chat_list.dart';
 import '../components/adaptive_page_layout.dart';
@@ -371,7 +371,7 @@ class _EmoteImagePickerState extends State<_EmoteImagePicker> {
         ),
         onPressed: () async {
           if (kIsWeb) {
-            showToast(L10n.of(context).notSupportedInWeb);
+            BotToast.showText(text: L10n.of(context).notSupportedInWeb);
             return;
           }
           File file = await ImagePicker.pickImage(

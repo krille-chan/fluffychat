@@ -2,7 +2,7 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/views/chat.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:flutter_styled_toast/flutter_styled_toast.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:pedantic/pedantic.dart';
 
 import '../../l10n/l10n.dart';
@@ -31,7 +31,7 @@ class ChatListItem extends StatelessWidget {
       }
 
       if (room.membership == Membership.ban) {
-        showToast(L10n.of(context).youHaveBeenBannedFromThisChat);
+        BotToast.showText(text: L10n.of(context).youHaveBeenBannedFromThisChat);
         return;
       }
 

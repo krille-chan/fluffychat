@@ -9,7 +9,7 @@ import 'package:fluffychat/views/chat.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:flutter_styled_toast/flutter_styled_toast.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'famedlysdk_store.dart';
@@ -33,8 +33,8 @@ abstract class FirebaseController {
       token = null;
     }
     if (token?.isEmpty ?? true) {
-      showToast(
-        L10n.of(context).noGoogleServicesWarning,
+      BotToast.showText(
+        text: L10n.of(context).noGoogleServicesWarning,
         duration: Duration(seconds: 15),
       );
       return;
@@ -67,7 +67,7 @@ abstract class FirebaseController {
             ),
             (r) => r.isFirst);
       } catch (_) {
-        showToast("Failed to open chat...");
+        BotToast.showText(text: "Failed to open chat...");
         debugPrint(_);
       }
     };

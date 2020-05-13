@@ -7,7 +7,7 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/views/auth_web_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_styled_toast/flutter_styled_toast.dart';
+import 'package:bot_toast/bot_toast.dart';
 
 import 'chat_list.dart';
 
@@ -96,7 +96,7 @@ class _SignUpPasswordState extends State<SignUpPassword> {
     try {
       await matrix.client.setDisplayname(widget.displayname);
     } catch (exception) {
-      showToast(L10n.of(context).couldNotSetDisplayname);
+      BotToast.showText(text: L10n.of(context).couldNotSetDisplayname);
     }
     if (widget.avatar != null) {
       try {
@@ -107,7 +107,7 @@ class _SignUpPasswordState extends State<SignUpPassword> {
           ),
         );
       } catch (exception) {
-        showToast(L10n.of(context).couldNotSetAvatar);
+        BotToast.showText(text: L10n.of(context).couldNotSetAvatar);
       }
     }
     await Navigator.of(context).pushAndRemoveUntil(

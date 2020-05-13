@@ -13,7 +13,7 @@ import 'package:fluffychat/views/invitation_selection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_styled_toast/flutter_styled_toast.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:link_text/link_text.dart';
 import './settings_emotes.dart';
@@ -40,7 +40,7 @@ class _ChatDetailsState extends State<ChatDetails> {
       widget.room.setName(displayname),
     );
     if (success != false) {
-      showToast(L10n.of(context).displaynameHasBeenChanged);
+      BotToast.showText(text: L10n.of(context).displaynameHasBeenChanged);
     }
   }
 
@@ -101,7 +101,7 @@ class _ChatDetailsState extends State<ChatDetails> {
       widget.room.setDescription(displayname),
     );
     if (success != false) {
-      showToast(L10n.of(context).groupDescriptionHasBeenChanged);
+      BotToast.showText(text: L10n.of(context).groupDescriptionHasBeenChanged);
     }
   }
 
@@ -121,7 +121,7 @@ class _ChatDetailsState extends State<ChatDetails> {
       ),
     );
     if (success != false) {
-      showToast(L10n.of(context).avatarHasBeenChanged);
+      BotToast.showText(text: L10n.of(context).avatarHasBeenChanged);
     }
   }
 
@@ -172,7 +172,8 @@ class _ChatDetailsState extends State<ChatDetails> {
                             Clipboard.setData(
                               ClipboardData(text: widget.room.canonicalAlias),
                             );
-                            showToast(L10n.of(context).copiedToClipboard);
+                            BotToast.showText(
+                                text: L10n.of(context).copiedToClipboard);
                           },
                         ),
                       ChatSettingsPopupMenu(widget.room, false)
