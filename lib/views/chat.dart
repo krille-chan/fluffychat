@@ -55,7 +55,7 @@ class _ChatState extends State<_Chat> {
 
   MatrixState matrix;
 
-  String seenByText = "";
+  String seenByText = '';
 
   final ScrollController _scrollController = ScrollController();
 
@@ -77,15 +77,19 @@ class _ChatState extends State<_Chat> {
 
   final int _loadHistoryCount = 100;
 
-  String inputText = "";
+  String inputText = '';
 
   bool get _canLoadMore => timeline.events.last.type != EventTypes.RoomCreate;
 
   void requestHistory() async {
     if (_canLoadMore) {
-      setState(() => this._loadingHistory = true);
-      await timeline.requestHistory(historyCount: _loadHistoryCount);
-      if (mounted) setState(() => this._loadingHistory = false);
+      setState(() => _loadingHistory = true);
+      try {
+        await timeline.requestHistory(historyCount: _loadHistoryCount);
+      } catch (e) {
+        debugPrint('Error loading history: ' + e.toString());
+      }
+      if (mounted) setState(() => _loadingHistory = false);
     }
   }
 
@@ -114,9 +118,9 @@ class _ChatState extends State<_Chat> {
   void updateView() {
     if (!mounted) return;
 
-    String seenByText = "";
+    var seenByText = '';
     if (timeline.events.isNotEmpty) {
-      List lastReceipts = List.from(timeline.events.first.receipts);
+      var lastReceipts = List.from(timeline.events.first.receipts);
       lastReceipts.removeWhere((r) =>
           r.user.id == room.client.userID ||
           r.user.id == timeline.events.first.senderId);
@@ -147,7 +151,7 @@ class _ChatState extends State<_Chat> {
         unawaited(room.sendReadReceipt(timeline.events.first.eventId));
       }
       if (timeline.events.length < _loadHistoryCount) {
-        this.requestHistory();
+        requestHistory();
       }
     }
     updateView();
@@ -158,7 +162,7 @@ class _ChatState extends State<_Chat> {
   void dispose() {
     timeline?.cancelSubscriptions();
     timeline = null;
-    matrix.activeRoomId = "";
+    matrix.activeRoomId = '';
     super.dispose();
   }
 
@@ -167,12 +171,12 @@ class _ChatState extends State<_Chat> {
   void send() {
     if (sendController.text.isEmpty) return;
     room.sendTextEvent(sendController.text, inReplyTo: replyEvent);
-    sendController.text = "";
+    sendController.text = '';
     if (replyEvent != null) {
       setState(() => replyEvent = null);
     }
 
-    setState(() => inputText = "");
+    setState(() => inputText = '');
   }
 
   void sendFileAction(BuildContext context) async {
@@ -180,7 +184,7 @@ class _ChatState extends State<_Chat> {
       BotToast.showText(text: L10n.of(context).notSupportedInWeb);
       return;
     }
-    File file = await FilePicker.getFile();
+    var file = await FilePicker.getFile();
     if (file == null) return;
     await SimpleDialogs(context).tryRequestWithLoadingDialog(
       room.sendFileEvent(
@@ -194,7 +198,7 @@ class _ChatState extends State<_Chat> {
       BotToast.showText(text: L10n.of(context).notSupportedInWeb);
       return;
     }
-    File file = await ImagePicker.pickImage(
+    var file = await ImagePicker.pickImage(
         source: ImageSource.gallery,
         imageQuality: 50,
         maxWidth: 1600,
@@ -212,7 +216,7 @@ class _ChatState extends State<_Chat> {
       BotToast.showText(text: L10n.of(context).notSupportedInWeb);
       return;
     }
-    File file = await ImagePicker.pickImage(
+    var file = await ImagePicker.pickImage(
         source: ImageSource.camera,
         imageQuality: 50,
         maxWidth: 1600,
@@ -233,7 +237,7 @@ class _ChatState extends State<_Chat> {
               onFinished: (r) => result = r,
             ));
     if (result == null) return;
-    final File audioFile = File(result);
+    final audioFile = File(result);
     await SimpleDialogs(context).tryRequestWithLoadingDialog(
       room.sendAudioEvent(
         MatrixFile(bytes: audioFile.readAsBytesSync(), path: audioFile.path),
@@ -242,12 +246,12 @@ class _ChatState extends State<_Chat> {
   }
 
   String _getSelectedEventString(BuildContext context) {
-    String copyString = "";
+    var copyString = '';
     if (selectedEvents.length == 1) {
       return selectedEvents.first.getLocalizedBody(L10n.of(context));
     }
-    for (Event event in selectedEvents) {
-      if (copyString.isNotEmpty) copyString += "\n\n";
+    for (var event in selectedEvents) {
+      if (copyString.isNotEmpty) copyString += '\n\n';
       copyString +=
           event.getLocalizedBody(L10n.of(context), withSenderNamePrefix: true);
     }
@@ -260,12 +264,12 @@ class _ChatState extends State<_Chat> {
   }
 
   void redactEventsAction(BuildContext context) async {
-    bool confirmed = await SimpleDialogs(context).askConfirmation(
+    var confirmed = await SimpleDialogs(context).askConfirmation(
       titleText: L10n.of(context).messageWillBeRemovedWarning,
       confirmText: L10n.of(context).remove,
     );
     if (!confirmed) return;
-    for (Event event in selectedEvents) {
+    for (var event in selectedEvents) {
       await SimpleDialogs(context).tryRequestWithLoadingDialog(
           event.status > 0 ? event.redact() : event.remove());
     }
@@ -273,7 +277,7 @@ class _ChatState extends State<_Chat> {
   }
 
   bool get canRedactSelectedEvents {
-    for (Event event in selectedEvents) {
+    for (var event in selectedEvents) {
       if (event.canRedact == false) return false;
     }
     return true;
@@ -284,8 +288,8 @@ class _ChatState extends State<_Chat> {
       Matrix.of(context).shareContent = selectedEvents.first.content;
     } else {
       Matrix.of(context).shareContent = {
-        "msgtype": "m.text",
-        "body": _getSelectedEventString(context),
+        'msgtype': 'm.text',
+        'body': _getSelectedEventString(context),
       };
     }
     setState(() => selectedEvents.clear());
@@ -308,7 +312,7 @@ class _ChatState extends State<_Chat> {
   @override
   Widget build(BuildContext context) {
     matrix = Matrix.of(context);
-    Client client = matrix.client;
+    var client = matrix.client;
     room ??= client.getRoomById(widget.id);
     if (room == null) {
       return Scaffold(
@@ -326,8 +330,8 @@ class _ChatState extends State<_Chat> {
       SimpleDialogs(context).tryRequestWithLoadingDialog(room.join());
     }
 
-    String typingText = "";
-    List<User> typingUsers = room.typingUsers;
+    var typingText = '';
+    var typingUsers = room.typingUsers;
     typingUsers.removeWhere((User u) => u.id == client.userID);
 
     if (typingUsers.length == 1) {
@@ -616,22 +620,22 @@ class _ChatState extends State<_Chat> {
                                     PopupMenuButton<String>(
                                       icon: Icon(Icons.add),
                                       onSelected: (String choice) async {
-                                        if (choice == "file") {
+                                        if (choice == 'file') {
                                           sendFileAction(context);
-                                        } else if (choice == "image") {
+                                        } else if (choice == 'image') {
                                           sendImageAction(context);
                                         }
-                                        if (choice == "camera") {
+                                        if (choice == 'camera') {
                                           openCameraAction(context);
                                         }
-                                        if (choice == "voice") {
+                                        if (choice == 'voice') {
                                           voiceMessageAction(context);
                                         }
                                       },
                                       itemBuilder: (BuildContext context) =>
                                           <PopupMenuEntry<String>>[
                                         PopupMenuItem<String>(
-                                          value: "file",
+                                          value: 'file',
                                           child: ListTile(
                                             leading: CircleAvatar(
                                               backgroundColor: Colors.green,
@@ -644,7 +648,7 @@ class _ChatState extends State<_Chat> {
                                           ),
                                         ),
                                         PopupMenuItem<String>(
-                                          value: "image",
+                                          value: 'image',
                                           child: ListTile(
                                             leading: CircleAvatar(
                                               backgroundColor: Colors.blue,
@@ -657,7 +661,7 @@ class _ChatState extends State<_Chat> {
                                           ),
                                         ),
                                         PopupMenuItem<String>(
-                                          value: "camera",
+                                          value: 'camera',
                                           child: ListTile(
                                             leading: CircleAvatar(
                                               backgroundColor: Colors.purple,
@@ -670,7 +674,7 @@ class _ChatState extends State<_Chat> {
                                           ),
                                         ),
                                         PopupMenuItem<String>(
-                                          value: "voice",
+                                          value: 'voice',
                                           child: ListTile(
                                             leading: CircleAvatar(
                                               backgroundColor: Colors.red,
@@ -708,20 +712,20 @@ class _ChatState extends State<_Chat> {
                                           border: InputBorder.none,
                                         ),
                                         onChanged: (String text) {
-                                          this.typingCoolDown?.cancel();
-                                          this.typingCoolDown =
+                                          typingCoolDown?.cancel();
+                                          typingCoolDown =
                                               Timer(Duration(seconds: 2), () {
-                                            this.typingCoolDown = null;
-                                            this.currentlyTyping = false;
+                                            typingCoolDown = null;
+                                            currentlyTyping = false;
                                             room.sendTypingInfo(false);
                                           });
-                                          this.typingTimeout ??=
+                                          typingTimeout ??=
                                               Timer(Duration(seconds: 30), () {
-                                            this.typingTimeout = null;
-                                            this.currentlyTyping = false;
+                                            typingTimeout = null;
+                                            currentlyTyping = false;
                                           });
-                                          if (!this.currentlyTyping) {
-                                            this.currentlyTyping = true;
+                                          if (!currentlyTyping) {
+                                            currentlyTyping = true;
                                             room.sendTypingInfo(true,
                                                 timeout: Duration(seconds: 30)
                                                     .inMilliseconds);

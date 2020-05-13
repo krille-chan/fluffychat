@@ -36,9 +36,9 @@ class MessageDownloadContent extends StatelessWidget {
                 matrixFile.open();
               }),
           Text(
-            "- " +
-                (event.content.containsKey("filename")
-                    ? event.content["filename"]
+            '- ' +
+                (event.content.containsKey('filename')
+                    ? event.content['filename']
                     : event.body),
             style: TextStyle(
               color: textColor,
@@ -47,7 +47,7 @@ class MessageDownloadContent extends StatelessWidget {
           ),
           if (event.sizeString != null)
             Text(
-              "- " + event.sizeString,
+              '- ' + event.sizeString,
               style: TextStyle(
                 color: textColor,
                 fontWeight: FontWeight.bold,

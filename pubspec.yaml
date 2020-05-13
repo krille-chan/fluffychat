@@ -27,7 +27,7 @@ dependencies:
   famedlysdk:
     git:
       url: https://gitlab.com/famedly/famedlysdk.git
-      ref: 2525b3d9f156fa303ca9283a96fd8cf8db154dd9
+      ref: 2455bac3bf8dab846ba453a6393f0be2c0b61001
 
   localstorage: ^3.0.1+4
   bubble: ^1.1.9+1
@@ -55,18 +55,25 @@ dependencies:
   mime_type: ^0.3.0
   bot_toast: ^3.0.0
   flutter_matrix_html: ^0.0.5
+  moor: ^3.0.2
+  random_string: ^2.0.1
 
   intl: ^0.16.0
   intl_translation: ^0.17.9
   flutter_localizations:
     sdk: flutter
 
+  encrypted_moor:
+    git:
+      url: https://github.com/simolus3/moor.git
+      path: extras/encryption 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_launcher_icons: "^0.7.4"
-  pedantic: ^1.5.0
+  pedantic: ^1.9.0
 
 flutter_icons:
   android: "launcher_icon"

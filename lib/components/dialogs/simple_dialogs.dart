@@ -19,7 +19,8 @@ class SimpleDialogs {
     bool password = false,
     bool multiLine = false,
   }) async {
-    final TextEditingController controller = TextEditingController();
+    var textEditingController = TextEditingController();
+    final controller = textEditingController;
     String input;
     await showDialog(
       context: context,
@@ -77,7 +78,7 @@ class SimpleDialogs {
     String confirmText,
     String cancelText,
   }) async {
-    bool confirmed = false;
+    var confirmed = false;
     await showDialog(
       context: context,
       builder: (c) => AlertDialog(
@@ -157,8 +158,8 @@ class SimpleDialogs {
     }
   }
 
-  showLoadingDialog(BuildContext context) {
-    showDialog(
+  void showLoadingDialog(BuildContext context) async {
+    await showDialog(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) => AlertDialog(

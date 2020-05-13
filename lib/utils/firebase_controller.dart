@@ -15,9 +15,9 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'famedlysdk_store.dart';
 
 abstract class FirebaseController {
-  static FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
-  static FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
+  static final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+  static final FlutterLocalNotificationsPlugin
+      _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
   static BuildContext context;
   static const String CHANNEL_ID = 'fluffychat_push';
   static const String CHANNEL_NAME = 'FluffyChat push channel';
@@ -52,7 +52,7 @@ abstract class FirebaseController {
         currentPushers.first.lang == 'en' &&
         currentPushers.first.data.url == GATEWAY_URL &&
         currentPushers.first.data.format == PUSHER_FORMAT) {
-      debugPrint("[Push] Pusher already set");
+      debugPrint('[Push] Pusher already set');
     } else {
       if (currentPushers.isNotEmpty) {
         for (final currentPusher in currentPushers) {
@@ -66,16 +66,16 @@ abstract class FirebaseController {
             currentPusher.data.url,
             append: true,
           );
-          debugPrint("[Push] Remove legacy pusher for this device");
+          debugPrint('[Push] Remove legacy pusher for this device');
         }
       }
       await client.setPushers(
         token,
-        "http",
+        'http',
         APP_ID,
         clientName,
         client.deviceName,
-        "en",
+        'en',
         GATEWAY_URL,
         append: false,
         format: PUSHER_FORMAT,
@@ -88,9 +88,9 @@ abstract class FirebaseController {
         if (message is String) {
           roomId = message;
         } else if (message is Map) {
-          roomId = (message["data"] ?? message)["room_id"];
+          roomId = (message['data'] ?? message)['room_id'];
         }
-        if (roomId?.isEmpty ?? true) throw ("Bad roomId");
+        if (roomId?.isEmpty ?? true) throw ('Bad roomId');
         await Navigator.of(context).pushAndRemoveUntil(
             AppRoute.defaultRoute(
               context,
@@ -98,7 +98,7 @@ abstract class FirebaseController {
             ),
             (r) => r.isFirst);
       } catch (_) {
-        BotToast.showText(text: "Failed to open chat...");
+        BotToast.showText(text: 'Failed to open chat...');
         debugPrint(_);
       }
     };
@@ -121,16 +121,16 @@ abstract class FirebaseController {
       onResume: goToRoom,
       onLaunch: goToRoom,
     );
-    debugPrint("[Push] Firebase initialized");
+    debugPrint('[Push] Firebase initialized');
     return;
   }
 
   static Future<dynamic> _onMessage(Map<String, dynamic> message) async {
     try {
       final data = message['data'] ?? message;
-      final String roomId = data["room_id"];
-      final String eventId = data["event_id"];
-      final int unread = json.decode(data["counts"])["unread"];
+      final String roomId = data['room_id'];
+      final String eventId = data['event_id'];
+      final int unread = json.decode(data['counts'])['unread'];
       if ((roomId?.isEmpty ?? true) ||
           (eventId?.isEmpty ?? true) ||
           unread == 0) {
@@ -148,10 +148,12 @@ abstract class FirebaseController {
       if (context != null) {
         client = Matrix.of(context).client;
       } else {
-        final platform = kIsWeb ? "Web" : Platform.operatingSystem;
-        final clientName = "FluffyChat $platform";
+        final platform = kIsWeb ? 'Web' : Platform.operatingSystem;
+        final clientName = 'FluffyChat $platform';
         client = Client(clientName, debug: false);
-        client.storeAPI = ExtendedStore(client);
+        final store = Store();
+        client.database = await getDatabase(client, store);
+        client.connect();
         await client.onLoginStateChanged.stream
             .firstWhere((l) => l == LoginState.logged)
             .timeout(
@@ -160,7 +162,7 @@ abstract class FirebaseController {
       }
 
       // Get the room
-      Room room = client.getRoomById(roomId);
+      var room = client.getRoomById(roomId);
       if (room == null) {
         await client.onRoomUpdate.stream
             .where((u) => u.id == roomId)
@@ -171,10 +173,10 @@ abstract class FirebaseController {
       }
 
       // Get the event
-      Event event = await client.store.getEventById(eventId, room);
+      var event = await client.database.getEventById(client.id, eventId, room);
       if (event == null) {
-        final EventUpdate eventUpdate = await client.onEvent.stream
-            .where((u) => u.content["event_id"] == eventId)
+        final eventUpdate = await client.onEvent.stream
+            .where((u) => u.content['event_id'] == eventId)
             .first
             .timeout(Duration(seconds: 5));
         event = Event.fromJson(eventUpdate.content, room);
@@ -182,18 +184,18 @@ abstract class FirebaseController {
       }
 
       // Count all unread events
-      int unreadEvents = 0;
+      var unreadEvents = 0;
       client.rooms
           .forEach((Room room) => unreadEvents += room.notificationCount);
 
       // Calculate title
-      final String title = unread > 1
+      final title = unread > 1
           ? i18n.unreadMessagesInChats(
               unreadEvents.toString(), unread.toString())
           : i18n.unreadMessages(unreadEvents.toString());
 
       // Calculate the body
-      final String body = event.getLocalizedBody(
+      final body = event.getLocalizedBody(
         i18n,
         withSenderNamePrefix: true,
         hideReply: true,
@@ -238,7 +240,7 @@ abstract class FirebaseController {
           0, room.getLocalizedDisplayname(i18n), body, platformChannelSpecifics,
           payload: roomId);
     } catch (exception) {
-      debugPrint("[Push] Error while processing notification: " +
+      debugPrint('[Push] Error while processing notification: ' +
           exception.toString());
       await _showDefaultNotification(message);
     }
@@ -248,8 +250,7 @@ abstract class FirebaseController {
   static Future<dynamic> _showDefaultNotification(
       Map<String, dynamic> message) async {
     try {
-      FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-          FlutterLocalNotificationsPlugin();
+      var flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
       // Init notifications framework
       var initializationSettingsAndroid =
           AndroidInitializationSettings('notifications_icon');
@@ -261,10 +262,10 @@ abstract class FirebaseController {
 
       // Notification data and matrix data
       Map<dynamic, dynamic> data = message['data'] ?? message;
-      String eventID = data["event_id"];
-      String roomID = data["room_id"];
-      final int unread = data.containsKey("counts")
-          ? json.decode(data["counts"])["unread"]
+      String eventID = data['event_id'];
+      String roomID = data['room_id'];
+      final int unread = data.containsKey('counts')
+          ? json.decode(data['counts'])['unread']
           : 1;
       await flutterLocalNotificationsPlugin.cancelAll();
       if (unread == 0 || roomID == null || eventID == null) {
@@ -278,12 +279,12 @@ abstract class FirebaseController {
       var iOSPlatformChannelSpecifics = IOSNotificationDetails();
       var platformChannelSpecifics = NotificationDetails(
           androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
-      final String title = l10n.unreadChats(unread.toString());
+      final title = l10n.unreadChats(unread.toString());
       await flutterLocalNotificationsPlugin.show(
           1, title, l10n.openAppToReadMessages, platformChannelSpecifics,
           payload: roomID);
     } catch (exception) {
-      debugPrint("[Push] Error while processing background notification: " +
+      debugPrint('[Push] Error while processing background notification: ' +
           exception.toString());
     }
     return Future<void>.value();
@@ -291,10 +292,10 @@ abstract class FirebaseController {
 
   static Future<String> downloadAndSaveAvatar(Uri content, Client client,
       {int width, int height}) async {
-    final bool thumbnail = width == null && height == null ? false : true;
-    final String tempDirectory = (await getTemporaryDirectory()).path;
-    final String prefix = thumbnail ? "thumbnail" : "";
-    File file =
+    final thumbnail = width == null && height == null ? false : true;
+    final tempDirectory = (await getTemporaryDirectory()).path;
+    final prefix = thumbnail ? 'thumbnail' : '';
+    var file =
         File('$tempDirectory/${prefix}_${content.toString().split("/").last}');
 
     if (!file.existsSync()) {
@@ -315,7 +316,7 @@ abstract class FirebaseController {
         IosNotificationSettings(sound: true, badge: true, alert: true));
     _firebaseMessaging.onIosSettingsRegistered
         .listen((IosNotificationSettings settings) {
-      debugPrint("Settings registered: $settings");
+      debugPrint('Settings registered: $settings');
     });
   }
 }

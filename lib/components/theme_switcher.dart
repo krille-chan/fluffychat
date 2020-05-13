@@ -147,7 +147,7 @@ class ThemeSwitcher extends InheritedWidget {
 class ThemeSwitcherWidget extends StatefulWidget {
   final Widget child;
 
-  ThemeSwitcherWidget({Key key, this.child})
+  ThemeSwitcherWidget({Key key, @required this.child})
       : assert(child != null),
         super(key: key);
 
@@ -156,7 +156,7 @@ class ThemeSwitcherWidget extends StatefulWidget {
 
   /// Returns the (nearest) Client instance of your application.
   static ThemeSwitcherWidgetState of(BuildContext context) {
-    ThemeSwitcherWidgetState newState =
+    var newState =
         (context.dependOnInheritedWidgetOfExactType<ThemeSwitcher>()).data;
     newState.context = context;
     return newState;
@@ -167,17 +167,17 @@ class ThemeSwitcherWidgetState extends State<ThemeSwitcherWidget> {
   ThemeData themeData;
   Themes selectedTheme;
   bool amoledEnabled;
+  @override
   BuildContext context;
 
   Future loadSelection(MatrixState matrix) async {
-    String item = await matrix.client.storeAPI.getItem("theme") ?? "light";
+    String item = await matrix.store.getItem('theme') ?? 'light';
     selectedTheme =
         Themes.values.firstWhere((e) => e.toString() == 'Themes.' + item);
 
-    amoledEnabled =
-        (await matrix.client.storeAPI.getItem("amoled_enabled") ?? "false")
-                .toLowerCase() ==
-            'true';
+    amoledEnabled = (await matrix.store.getItem('amoled_enabled') ?? 'false')
+            .toLowerCase() ==
+        'true';
 
     switchTheme(matrix, selectedTheme, amoledEnabled);
     return;
@@ -199,7 +199,7 @@ class ThemeSwitcherWidgetState extends State<ThemeSwitcherWidget> {
         break;
       case Themes.system:
         // This needs to be a low level call as we don't have a MaterialApp yet
-        Brightness brightness =
+        var brightness =
             MediaQueryData.fromWindow(WidgetsBinding.instance.window)
                 .platformBrightness;
         if (brightness == Brightness.dark) {
@@ -224,16 +224,15 @@ class ThemeSwitcherWidgetState extends State<ThemeSwitcherWidget> {
   }
 
   Future saveThemeValue(MatrixState matrix, Themes value) async {
-    await matrix.client.storeAPI
-        .setItem("theme", value.toString().split('.').last);
+    await matrix.store.setItem('theme', value.toString().split('.').last);
   }
 
   Future saveAmoledEnabledValue(MatrixState matrix, bool value) async {
-    await matrix.client.storeAPI.setItem("amoled_enabled", value.toString());
+    await matrix.store.setItem('amoled_enabled', value.toString());
   }
 
   void setup() async {
-    final MatrixState matrix = Matrix.of(context);
+    final matrix = Matrix.of(context);
     await loadSelection(matrix);
 
     if (selectedTheme == null) {
@@ -271,9 +270,8 @@ class ThemeSwitcherWidgetState extends State<ThemeSwitcherWidget> {
   Widget build(BuildContext context) {
     if (themeData == null) {
       // This needs to be a low level call as we don't have a MaterialApp yet
-      Brightness brightness =
-          MediaQueryData.fromWindow(WidgetsBinding.instance.window)
-              .platformBrightness;
+      var brightness = MediaQueryData.fromWindow(WidgetsBinding.instance.window)
+          .platformBrightness;
       if (brightness == Brightness.dark) {
         themeData = darkTheme;
       } else {

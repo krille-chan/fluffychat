@@ -37,23 +37,23 @@ class Message extends StatelessWidget {
       return StateMessage(event);
     }
 
-    Client client = Matrix.of(context).client;
-    final bool ownMessage = event.senderId == client.userID;
-    Alignment alignment = ownMessage ? Alignment.topRight : Alignment.topLeft;
-    Color color = Theme.of(context).secondaryHeaderColor;
-    final bool sameSender = nextEvent != null &&
+    var client = Matrix.of(context).client;
+    final ownMessage = event.senderId == client.userID;
+    var alignment = ownMessage ? Alignment.topRight : Alignment.topLeft;
+    var color = Theme.of(context).secondaryHeaderColor;
+    final sameSender = nextEvent != null &&
             [EventTypes.Message, EventTypes.Sticker].contains(nextEvent.type)
         ? nextEvent.sender.id == event.sender.id
         : false;
-    BubbleNip nip = sameSender
+    var nip = sameSender
         ? BubbleNip.no
         : ownMessage ? BubbleNip.rightBottom : BubbleNip.leftBottom;
-    Color textColor = ownMessage
+    var textColor = ownMessage
         ? Colors.white
         : Theme.of(context).brightness == Brightness.dark
             ? Colors.white
             : Colors.black;
-    MainAxisAlignment rowMainAxisAlignment =
+    var rowMainAxisAlignment =
         ownMessage ? MainAxisAlignment.end : MainAxisAlignment.start;
 
     if (event.showThumbnail) {
@@ -65,7 +65,7 @@ class Message extends StatelessWidget {
           : Theme.of(context).primaryColor;
     }
 
-    List<Widget> rowChildren = [
+    var rowChildren = <Widget>[
       Expanded(
         child: Bubble(
           elevation: 0,
@@ -84,14 +84,14 @@ class Message extends StatelessWidget {
                     FutureBuilder<Event>(
                       future: event.getReplyEvent(timeline),
                       builder: (BuildContext context, snapshot) {
-                        final Event replyEvent = snapshot.hasData
+                        final replyEvent = snapshot.hasData
                             ? snapshot.data
                             : Event(
                                 eventId: event.content['m.relates_to']
                                     ['m.in_reply_to']['event_id'],
-                                content: {"msgtype": "m.text", "body": "..."},
+                                content: {'msgtype': 'm.text', 'body': '...'},
                                 senderId: event.senderId,
-                                typeKey: "m.room.message",
+                                typeKey: 'm.room.message',
                                 room: event.room,
                                 roomId: event.roomId,
                                 status: 1,
@@ -110,7 +110,7 @@ class Message extends StatelessWidget {
                   ),
                   if (event.type == EventTypes.Encrypted &&
                       event.messageType == MessageTypes.BadEncrypted &&
-                      event.content["body"] == DecryptError.UNKNOWN_SESSION)
+                      event.content['body'] == DecryptError.UNKNOWN_SESSION)
                     RaisedButton(
                       color: color.withAlpha(100),
                       child: Text(
@@ -146,7 +146,7 @@ class Message extends StatelessWidget {
         ),
       ),
     ];
-    final Widget avatarOrSizedBox = sameSender
+    final avatarOrSizedBox = sameSender
         ? SizedBox(width: Avatar.defaultSize)
         : Avatar(
             event.sender.avatarUrl,
@@ -193,8 +193,8 @@ class _MetaRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String displayname = event.sender.calcDisplayname();
-    final bool showDisplayname =
+    final displayname = event.sender.calcDisplayname();
+    final showDisplayname =
         !ownMessage && event.senderId != event.room.directChatMatrixID;
     return Row(
       mainAxisSize: MainAxisSize.min,

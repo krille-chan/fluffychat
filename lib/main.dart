@@ -21,11 +21,11 @@ void main() {
 }
 
 class App extends StatelessWidget {
-  final String platform = kIsWeb ? "Web" : Platform.operatingSystem;
+  final String platform = kIsWeb ? 'Web' : Platform.operatingSystem;
   @override
   Widget build(BuildContext context) {
     return Matrix(
-      clientName: "FluffyChat $platform",
+      clientName: 'FluffyChat $platform',
       child: Builder(
         builder: (BuildContext context) => ThemeSwitcherWidget(
           child: Builder(
@@ -47,7 +47,7 @@ class App extends StatelessWidget {
                 const Locale('pl'), // Polish
               ],
               locale: kIsWeb
-                  ? Locale(html.window.navigator.language.split("-").first)
+                  ? Locale(html.window.navigator.language.split('-').first)
                   : null,
               home: FutureBuilder<LoginState>(
                 future:

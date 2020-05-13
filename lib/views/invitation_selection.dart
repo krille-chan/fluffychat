@@ -27,17 +27,18 @@ class _InvitationSelectionState extends State<InvitationSelection> {
   Timer coolDown;
 
   Future<List<User>> getContacts(BuildContext context) async {
-    final Client client = Matrix.of(context).client;
-    List<User> participants = await widget.room.requestParticipants();
+    var client2 = Matrix.of(context).client;
+    final client = client2;
+    var participants = await widget.room.requestParticipants();
     participants.removeWhere(
       (u) => ![Membership.join, Membership.invite].contains(u.membership),
     );
-    List<User> contacts = [];
-    Map<String, bool> userMap = {};
-    for (int i = 0; i < client.rooms.length; i++) {
-      List<User> roomUsers = client.rooms[i].getParticipants();
+    var contacts = <User>[];
+    var userMap = <String, bool>{};
+    for (var i = 0; i < client.rooms.length; i++) {
+      var roomUsers = client.rooms[i].getParticipants();
 
-      for (int j = 0; j < roomUsers.length; j++) {
+      for (var j = 0; j < roomUsers.length; j++) {
         if (userMap[roomUsers[j].id] != true &&
             participants.indexWhere((u) => u.id == roomUsers[j].id) == -1) {
           contacts.add(roomUsers[j]);
@@ -81,41 +82,41 @@ class _InvitationSelectionState extends State<InvitationSelection> {
     if (currentSearchTerm.isEmpty) return;
     if (loading) return;
     setState(() => loading = true);
-    final MatrixState matrix = Matrix.of(context);
+    final matrix = Matrix.of(context);
     final response = await SimpleDialogs(context).tryRequestWithErrorToast(
       matrix.client.jsonRequest(
           type: HTTPType.POST,
-          action: "/client/r0/user_directory/search",
+          action: '/client/r0/user_directory/search',
           data: {
-            "search_term": text,
-            "limit": 10,
+            'search_term': text,
+            'limit': 10,
           }),
     );
     setState(() => loading = false);
     if (response == false ||
         !(response is Map) ||
-        (response["results"] == null)) return;
+        (response['results'] == null)) return;
     setState(() {
-      foundProfiles = List<Map<String, dynamic>>.from(response["results"]);
-      if ("@$text".isValidMatrixId &&
+      foundProfiles = List<Map<String, dynamic>>.from(response['results']);
+      if ('@$text'.isValidMatrixId &&
           foundProfiles
-                  .indexWhere((profile) => "@$text" == profile["user_id"]) ==
+                  .indexWhere((profile) => '@$text' == profile['user_id']) ==
               -1) {
         setState(() => foundProfiles = [
-              {"user_id": "@$text"}
+              {'user_id': '@$text'}
             ]);
       }
       foundProfiles.removeWhere((profile) =>
           widget.room
               .getParticipants()
-              .indexWhere((u) => u.id == profile["user_id"]) !=
+              .indexWhere((u) => u.id == profile['user_id']) !=
           -1);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final String groupName = widget.room.name?.isEmpty ?? false
+    final groupName = widget.room.name?.isEmpty ?? false
         ? L10n.of(context).group
         : widget.room.name;
     return AdaptivePageLayout(
@@ -138,7 +139,7 @@ class _InvitationSelectionState extends State<InvitationSelection> {
                   onSubmitted: (String text) => searchUser(context, text),
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    prefixText: "@",
+                    prefixText: '@',
                     hintText: L10n.of(context).username,
                     labelText: L10n.of(context).inviteContactToGroup(groupName),
                     suffixIcon: loading
@@ -159,19 +160,19 @@ class _InvitationSelectionState extends State<InvitationSelection> {
                   itemCount: foundProfiles.length,
                   itemBuilder: (BuildContext context, int i) => ListTile(
                     leading: Avatar(
-                      foundProfiles[i]["avatar_url"] == null
+                      foundProfiles[i]['avatar_url'] == null
                           ? null
-                          : Uri.parse(foundProfiles[i]["avatar_url"]),
-                      foundProfiles[i]["display_name"] ??
-                          foundProfiles[i]["user_id"],
+                          : Uri.parse(foundProfiles[i]['avatar_url']),
+                      foundProfiles[i]['display_name'] ??
+                          foundProfiles[i]['user_id'],
                     ),
                     title: Text(
-                      foundProfiles[i]["display_name"] ??
-                          (foundProfiles[i]["user_id"] as String).localpart,
+                      foundProfiles[i]['display_name'] ??
+                          (foundProfiles[i]['user_id'] as String).localpart,
                     ),
-                    subtitle: Text(foundProfiles[i]["user_id"]),
+                    subtitle: Text(foundProfiles[i]['user_id']),
                     onTap: () =>
-                        inviteAction(context, foundProfiles[i]["user_id"]),
+                        inviteAction(context, foundProfiles[i]['user_id']),
                   ),
                 )
               : FutureBuilder<List<User>>(
@@ -182,7 +183,7 @@ class _InvitationSelectionState extends State<InvitationSelection> {
                         child: CircularProgressIndicator(),
                       );
                     }
-                    List<User> contacts = snapshot.data;
+                    var contacts = snapshot.data;
                     return ListView.builder(
                       itemCount: contacts.length,
                       itemBuilder: (BuildContext context, int i) => ListTile(

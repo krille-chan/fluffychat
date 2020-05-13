@@ -32,7 +32,7 @@ class _AudioPlayerState extends State<AudioPlayer> {
   StreamSubscription soundSubscription;
   Uint8List audioFile;
 
-  String statusText = "00:00";
+  String statusText = '00:00';
   double currentPosition = 0;
   double maxPosition = 0;
 
@@ -45,7 +45,7 @@ class _AudioPlayerState extends State<AudioPlayer> {
     super.dispose();
   }
 
-  _downloadAction() async {
+  Future<void> _downloadAction() async {
     if (status != AudioPlayerStatus.NOT_DOWNLOADED) return;
     setState(() => status = AudioPlayerStatus.DOWNLOADING);
     final matrixFile = await SimpleDialogs(context)
@@ -57,7 +57,7 @@ class _AudioPlayerState extends State<AudioPlayer> {
     _playAction();
   }
 
-  _playAction() async {
+  void _playAction() async {
     if (AudioPlayer.currentId != widget.event.eventId) {
       if (AudioPlayer.currentId != null) {
         if (flutterSound.audioState != t_AUDIO_STATE.IS_STOPPED) {
@@ -84,16 +84,16 @@ class _AudioPlayerState extends State<AudioPlayer> {
         soundSubscription ??= flutterSound.onPlayerStateChanged.listen((e) {
           if (AudioPlayer.currentId != widget.event.eventId) {
             soundSubscription?.cancel()?.then((f) => soundSubscription = null);
-            this.setState(() {
+            setState(() {
               currentPosition = 0;
-              statusText = "00:00";
+              statusText = '00:00';
             });
             AudioPlayer.currentId = null;
           } else if (e != null) {
-            DateTime date =
+            var date =
                 DateTime.fromMillisecondsSinceEpoch(e.currentPosition.toInt());
-            String txt = DateFormat('mm:ss', 'en_US').format(date);
-            this.setState(() {
+            var txt = DateFormat('mm:ss', 'en_US').format(date);
+            setState(() {
               maxPosition = e.duration;
               currentPosition = e.currentPosition;
               statusText = txt;

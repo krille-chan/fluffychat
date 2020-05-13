@@ -50,14 +50,14 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
                 if (snapshot.hasError) {
                   return Center(
                     child: Text(L10n.of(context).oopsSomethingWentWrong +
-                        ": " +
+                        ': ' +
                         snapshot.error.toString()),
                   );
                 }
                 if (!snapshot.hasData) {
                   return Center(child: CircularProgressIndicator());
                 }
-                final List<DeviceKeys> deviceKeys = snapshot.data;
+                final deviceKeys = snapshot.data;
                 return ListView.separated(
                   separatorBuilder: (BuildContext context, int i) =>
                       Divider(height: 1),
@@ -96,7 +96,7 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
                         ),
                         subtitle: Text(
                           deviceKeys[i]
-                              .keys["ed25519:${deviceKeys[i].deviceId}"]
+                              .keys['ed25519:${deviceKeys[i].deviceId}']
                               .beautified,
                           style: TextStyle(
                               color:

@@ -48,26 +48,26 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
         .client
         .onUserEvent
         .stream
-        .where((u) => u.type == 'account_data' && u.eventType == "m.push_rules")
+        .where((u) => u.type == 'account_data' && u.eventType == 'm.push_rules')
         .listen(
           (u) => setState(() => null),
         );
-    List<PopupMenuEntry<String>> items = <PopupMenuEntry<String>>[
+    var items = <PopupMenuEntry<String>>[
       widget.room.pushRuleState == PushRuleState.notify
           ? PopupMenuItem<String>(
-              value: "mute",
+              value: 'mute',
               child: Text(L10n.of(context).muteChat),
             )
           : PopupMenuItem<String>(
-              value: "unmute",
+              value: 'unmute',
               child: Text(L10n.of(context).unmuteChat),
             ),
       PopupMenuItem<String>(
-        value: "call",
+        value: 'call',
         child: Text(L10n.of(context).videoCall),
       ),
       PopupMenuItem<String>(
-        value: "leave",
+        value: 'leave',
         child: Text(L10n.of(context).leave),
       ),
     ];
@@ -75,7 +75,7 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
       items.insert(
         0,
         PopupMenuItem<String>(
-          value: "details",
+          value: 'details',
           child: Text(L10n.of(context).chatDetails),
         ),
       );
@@ -83,8 +83,8 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
     return PopupMenuButton(
       onSelected: (String choice) async {
         switch (choice) {
-          case "leave":
-            bool confirmed = await SimpleDialogs(context).askConfirmation();
+          case 'leave':
+            var confirmed = await SimpleDialogs(context).askConfirmation();
             if (confirmed) {
               final success = await SimpleDialogs(context)
                   .tryRequestWithLoadingDialog(widget.room.leave());
@@ -95,18 +95,18 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
               }
             }
             break;
-          case "mute":
+          case 'mute':
             await SimpleDialogs(context).tryRequestWithLoadingDialog(
                 widget.room.setPushRuleState(PushRuleState.mentions_only));
             break;
-          case "unmute":
+          case 'unmute':
             await SimpleDialogs(context).tryRequestWithLoadingDialog(
                 widget.room.setPushRuleState(PushRuleState.notify));
             break;
-          case "call":
+          case 'call':
             startCallAction(context);
             break;
-          case "details":
+          case 'details':
             await Navigator.of(context).push(
               AppRoute.defaultRoute(
                 context,

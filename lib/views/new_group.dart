@@ -31,18 +31,18 @@ class _NewGroupState extends State<_NewGroup> {
   bool publicGroup = false;
 
   void submitAction(BuildContext context) async {
-    final MatrixState matrix = Matrix.of(context);
-    Map<String, dynamic> params = {};
+    final matrix = Matrix.of(context);
+    var params = <String, dynamic>{};
     if (publicGroup) {
-      params["preset"] = "public_chat";
-      params["visibility"] = "public";
+      params['preset'] = 'public_chat';
+      params['visibility'] = 'public';
       if (controller.text.isNotEmpty) {
-        params["room_alias_name"] = controller.text;
+        params['room_alias_name'] = controller.text;
       }
     } else {
-      params["preset"] = "private_chat";
+      params['preset'] = 'private_chat';
     }
-    if (controller.text.isNotEmpty) params["name"] = controller.text;
+    if (controller.text.isNotEmpty) params['name'] = controller.text;
     final String roomID =
         await SimpleDialogs(context).tryRequestWithLoadingDialog(
       matrix.client.createRoom(params: params),
@@ -99,7 +99,7 @@ class _NewGroupState extends State<_NewGroup> {
             onChanged: (bool b) => setState(() => publicGroup = b),
           ),
           Expanded(
-            child: Image.asset("assets/new_group_wallpaper.png"),
+            child: Image.asset('assets/new_group_wallpaper.png'),
           ),
         ],
       ),

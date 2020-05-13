@@ -24,7 +24,7 @@ class _LoginState extends State<Login> {
   bool showPassword = false;
 
   void login(BuildContext context) async {
-    MatrixState matrix = Matrix.of(context);
+    var matrix = Matrix.of(context);
     if (usernameController.text.isEmpty) {
       setState(() => usernameError = L10n.of(context).pleaseEnterYourUsername);
     } else {
@@ -101,7 +101,7 @@ class _LoginState extends State<Login> {
                 controller: usernameController,
                 decoration: InputDecoration(
                     hintText:
-                        "@${L10n.of(context).username.toLowerCase()}:domain",
+                        '@${L10n.of(context).username.toLowerCase()}:domain',
                     errorText: usernameError,
                     labelText: L10n.of(context).username),
               ),
@@ -120,7 +120,7 @@ class _LoginState extends State<Login> {
                 obscureText: !showPassword,
                 onSubmitted: (t) => login(context),
                 decoration: InputDecoration(
-                    hintText: "****",
+                    hintText: '****',
                     errorText: passwordError,
                     suffixIcon: IconButton(
                       icon: Icon(showPassword

@@ -37,23 +37,23 @@ class _NewPrivateChatState extends State<_NewPrivateChat> {
   List<Map<String, dynamic>> foundProfiles = [];
   Timer coolDown;
   Map<String, dynamic> get foundProfile => foundProfiles.firstWhere(
-      (user) => user["user_id"] == "@$currentSearchTerm",
+      (user) => user['user_id'] == '@$currentSearchTerm',
       orElse: () => null);
   bool get correctMxId =>
       foundProfiles
-          .indexWhere((user) => user["user_id"] == "@$currentSearchTerm") !=
+          .indexWhere((user) => user['user_id'] == '@$currentSearchTerm') !=
       -1;
 
   void submitAction(BuildContext context) async {
     if (controller.text.isEmpty) return;
     if (!_formKey.currentState.validate()) return;
-    final MatrixState matrix = Matrix.of(context);
+    final matrix = Matrix.of(context);
 
-    if ("@" + controller.text.trim() == matrix.client.userID) return;
+    if ('@' + controller.text.trim() == matrix.client.userID) return;
 
-    final User user = User(
-      "@" + controller.text.trim(),
-      room: Room(id: "", client: matrix.client),
+    final user = User(
+      '@' + controller.text.trim(),
+      room: Room(id: '', client: matrix.client),
     );
     final String roomID = await SimpleDialogs(context)
         .tryRequestWithLoadingDialog(user.startDirectChat());
@@ -87,22 +87,22 @@ class _NewPrivateChatState extends State<_NewPrivateChat> {
     if (currentSearchTerm.isEmpty) return;
     if (loading) return;
     setState(() => loading = true);
-    final MatrixState matrix = Matrix.of(context);
+    final matrix = Matrix.of(context);
     final response = await SimpleDialogs(context).tryRequestWithErrorToast(
       matrix.client.jsonRequest(
           type: HTTPType.POST,
-          action: "/client/r0/user_directory/search",
+          action: '/client/r0/user_directory/search',
           data: {
-            "search_term": text,
-            "limit": 10,
+            'search_term': text,
+            'limit': 10,
           }),
     );
     setState(() => loading = false);
     if (response == false ||
         !(response is Map) ||
-        (response["results"]?.isEmpty ?? true)) return;
+        (response['results']?.isEmpty ?? true)) return;
     setState(() {
-      foundProfiles = List<Map<String, dynamic>>.from(response["results"]);
+      foundProfiles = List<Map<String, dynamic>>.from(response['results']);
     });
   }
 
@@ -131,15 +131,15 @@ class _NewPrivateChatState extends State<_NewPrivateChat> {
                   if (value.isEmpty) {
                     return L10n.of(context).pleaseEnterAMatrixIdentifier;
                   }
-                  final MatrixState matrix = Matrix.of(context);
-                  String mxid = "@" + controller.text.trim();
+                  final matrix = Matrix.of(context);
+                  var mxid = '@' + controller.text.trim();
                   if (mxid == matrix.client.userID) {
                     return L10n.of(context).youCannotInviteYourself;
                   }
-                  if (!mxid.contains("@")) {
+                  if (!mxid.contains('@')) {
                     return L10n.of(context).makeSureTheIdentifierIsValid;
                   }
-                  if (!mxid.contains(":")) {
+                  if (!mxid.contains(':')) {
                     return L10n.of(context).makeSureTheIdentifierIsValid;
                   }
                   return null;
@@ -158,17 +158,17 @@ class _NewPrivateChatState extends State<_NewPrivateChat> {
                           ? Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Avatar(
-                                foundProfile["avatar_url"] == null
+                                foundProfile['avatar_url'] == null
                                     ? null
-                                    : Uri.parse(foundProfile["avatar_url"]),
-                                foundProfile["display_name"] ??
-                                    foundProfile["user_id"],
+                                    : Uri.parse(foundProfile['avatar_url']),
+                                foundProfile['display_name'] ??
+                                    foundProfile['user_id'],
                                 size: 12,
                               ),
                             )
                           : Icon(Icons.account_circle),
-                  prefixText: "@",
-                  hintText: "${L10n.of(context).username.toLowerCase()}",
+                  prefixText: '@',
+                  hintText: '${L10n.of(context).username.toLowerCase()}',
                 ),
               ),
             ),
@@ -179,29 +179,29 @@ class _NewPrivateChatState extends State<_NewPrivateChat> {
               child: ListView.builder(
                 itemCount: foundProfiles.length,
                 itemBuilder: (BuildContext context, int i) {
-                  Map<String, dynamic> foundProfile = foundProfiles[i];
+                  var foundProfile = foundProfiles[i];
                   return ListTile(
                     onTap: () {
                       setState(() {
                         controller.text = currentSearchTerm =
-                            foundProfile["user_id"].substring(1);
+                            foundProfile['user_id'].substring(1);
                       });
                     },
                     leading: Avatar(
-                      foundProfile["avatar_url"] == null
+                      foundProfile['avatar_url'] == null
                           ? null
-                          : Uri.parse(foundProfile["avatar_url"]),
-                      foundProfile["display_name"] ?? foundProfile["user_id"],
+                          : Uri.parse(foundProfile['avatar_url']),
+                      foundProfile['display_name'] ?? foundProfile['user_id'],
                       //size: 24,
                     ),
                     title: Text(
-                      foundProfile["display_name"] ??
-                          (foundProfile["user_id"] as String).localpart,
+                      foundProfile['display_name'] ??
+                          (foundProfile['user_id'] as String).localpart,
                       style: TextStyle(),
                       maxLines: 1,
                     ),
                     subtitle: Text(
-                      foundProfile["user_id"],
+                      foundProfile['user_id'],
                       maxLines: 1,
                       style: TextStyle(
                         fontSize: 12,
@@ -219,9 +219,9 @@ class _NewPrivateChatState extends State<_NewPrivateChat> {
               ),
               onTap: () => Share.share(L10n.of(context).inviteText(
                   Matrix.of(context).client.userID,
-                  "https://matrix.to/#/${Matrix.of(context).client.userID}")),
+                  'https://matrix.to/#/${Matrix.of(context).client.userID}')),
               title: Text(
-                "${L10n.of(context).yourOwnUsername}:",
+                '${L10n.of(context).yourOwnUsername}:',
                 style: TextStyle(
                   fontStyle: FontStyle.italic,
                 ),
@@ -237,7 +237,7 @@ class _NewPrivateChatState extends State<_NewPrivateChat> {
           Divider(height: 1),
           if (foundProfiles.isEmpty || correctMxId)
             Expanded(
-              child: Image.asset("assets/private_chat_wallpaper.png"),
+              child: Image.asset('assets/private_chat_wallpaper.png'),
             ),
         ],
       ),

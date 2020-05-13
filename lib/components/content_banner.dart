@@ -23,9 +23,9 @@ class ContentBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
-    final int bannerSize =
+    final bannerSize =
         (mediaQuery.size.width * mediaQuery.devicePixelRatio).toInt();
-    final String src = mxContent?.getThumbnail(
+    final src = mxContent?.getThumbnail(
       Matrix.of(context).client,
       width: bannerSize,
       height: bannerSize,
@@ -60,7 +60,7 @@ class ContentBanner extends StatelessWidget {
                   : Icon(defaultIcon, size: 300),
             ),
           ),
-          if (this.onEdit != null)
+          if (onEdit != null)
             Container(
               margin: EdgeInsets.all(8),
               alignment: Alignment.bottomRight,

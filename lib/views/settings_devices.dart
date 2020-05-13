@@ -37,18 +37,18 @@ class DevicesSettingsState extends State<DevicesSettings> {
   void _removeDevicesAction(
       BuildContext context, List<UserDevice> devices) async {
     if (await SimpleDialogs(context).askConfirmation() == false) return;
-    MatrixState matrix = Matrix.of(context);
-    List<String> deviceIds = [];
-    for (UserDevice userDevice in devices) {
+    var matrix = Matrix.of(context);
+    var deviceIds = <String>[];
+    for (var userDevice in devices) {
       deviceIds.add(userDevice.deviceId);
     }
     final success = await SimpleDialogs(context)
         .tryRequestWithLoadingDialog(matrix.client.deleteDevices(deviceIds),
             onAdditionalAuth: (MatrixException exception) async {
-      final String password = await SimpleDialogs(context).enterText(
+      final password = await SimpleDialogs(context).enterText(
           titleText: L10n.of(context).pleaseEnterYourPassword,
           labelText: L10n.of(context).pleaseEnterYourPassword,
-          hintText: "******",
+          hintText: '******',
           password: true);
       if (password == null) return;
       await matrix.client.deleteDevices(deviceIds,
@@ -83,9 +83,8 @@ class DevicesSettingsState extends State<DevicesSettings> {
           }
           Function isOwnDevice = (UserDevice userDevice) =>
               userDevice.deviceId == Matrix.of(context).client.deviceID;
-          final List<UserDevice> devices = List<UserDevice>.from(this.devices);
-          UserDevice thisDevice =
-              devices.firstWhere(isOwnDevice, orElse: () => null);
+          final devices = List<UserDevice>.from(this.devices);
+          var thisDevice = devices.firstWhere(isOwnDevice, orElse: () => null);
           devices.removeWhere(isOwnDevice);
           devices.sort((a, b) => b.lastSeenTs.compareTo(a.lastSeenTs));
           return Column(
@@ -145,13 +144,13 @@ class UserDeviceListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return PopupMenuButton(
       onSelected: (String action) {
-        if (action == "remove" && this.remove != null) {
+        if (action == 'remove' && remove != null) {
           remove(userDevice);
         }
       },
       itemBuilder: (BuildContext context) => [
         PopupMenuItem<String>(
-          value: "remove",
+          value: 'remove',
           child: Text(L10n.of(context).removeDevice,
               style: TextStyle(color: Colors.red)),
         ),
@@ -175,8 +174,8 @@ class UserDeviceListItem extends StatelessWidget {
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text("${L10n.of(context).id}: ${userDevice.deviceId}"),
-            Text("${L10n.of(context).lastSeenIp}: ${userDevice.lastSeenIp}"),
+            Text('${L10n.of(context).id}: ${userDevice.deviceId}'),
+            Text('${L10n.of(context).lastSeenIp}: ${userDevice.lastSeenIp}'),
           ],
         ),
       ),

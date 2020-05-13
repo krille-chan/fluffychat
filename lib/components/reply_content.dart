@@ -15,15 +15,17 @@ class ReplyContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget replyBody;
-    if (
-      replyEvent != null && Matrix.of(context).renderHtml &&
-      [EventTypes.Message, EventTypes.Encrypted].contains(replyEvent.type) &&
-      [MessageTypes.Text, MessageTypes.Notice, MessageTypes.Emote].contains(replyEvent.messageType) &&
-      !replyEvent.redacted && replyEvent.content['format'] == 'org.matrix.custom.html' && replyEvent.content['formatted_body'] is String
-    ) {
+    if (replyEvent != null &&
+        Matrix.of(context).renderHtml &&
+        [EventTypes.Message, EventTypes.Encrypted].contains(replyEvent.type) &&
+        [MessageTypes.Text, MessageTypes.Notice, MessageTypes.Emote]
+            .contains(replyEvent.messageType) &&
+        !replyEvent.redacted &&
+        replyEvent.content['format'] == 'org.matrix.custom.html' &&
+        replyEvent.content['formatted_body'] is String) {
       String html = replyEvent.content['formatted_body'];
       if (replyEvent.messageType == MessageTypes.Emote) {
-        html = "* $html";
+        html = '* $html';
       }
       replyBody = HtmlMessage(
         html: html,
@@ -39,7 +41,7 @@ class ReplyContent extends StatelessWidget {
               withSenderNamePrefix: false,
               hideReply: true,
             ) ??
-            "",
+            '',
         overflow: TextOverflow.ellipsis,
         maxLines: 1,
         style: TextStyle(
@@ -62,7 +64,7 @@ class ReplyContent extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                (replyEvent?.sender?.calcDisplayname() ?? "") + ":",
+                (replyEvent?.sender?.calcDisplayname() ?? '') + ':',
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(

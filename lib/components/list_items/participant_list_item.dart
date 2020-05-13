@@ -13,44 +13,44 @@ class ParticipantListItem extends StatelessWidget {
 
   const ParticipantListItem(this.user);
 
-  participantAction(BuildContext context, String action) async {
+  void participantAction(BuildContext context, String action) async {
     switch (action) {
-      case "ban":
+      case 'ban':
         if (await SimpleDialogs(context).askConfirmation()) {
           await SimpleDialogs(context).tryRequestWithLoadingDialog(user.ban());
         }
         break;
-      case "unban":
+      case 'unban':
         if (await SimpleDialogs(context).askConfirmation()) {
           await SimpleDialogs(context)
               .tryRequestWithLoadingDialog(user.unban());
         }
         break;
-      case "kick":
+      case 'kick':
         if (await SimpleDialogs(context).askConfirmation()) {
           await SimpleDialogs(context).tryRequestWithLoadingDialog(user.kick());
         }
         break;
-      case "admin":
+      case 'admin':
         if (await SimpleDialogs(context).askConfirmation()) {
           await SimpleDialogs(context)
               .tryRequestWithLoadingDialog(user.setPower(100));
         }
         break;
-      case "moderator":
+      case 'moderator':
         if (await SimpleDialogs(context).askConfirmation()) {
           await SimpleDialogs(context)
               .tryRequestWithLoadingDialog(user.setPower(50));
         }
         break;
-      case "user":
+      case 'user':
         if (await SimpleDialogs(context).askConfirmation()) {
           await SimpleDialogs(context)
               .tryRequestWithLoadingDialog(user.setPower(0));
         }
         break;
-      case "message":
-        final String roomId = await user.startDirectChat();
+      case 'message':
+        final roomId = await user.startDirectChat();
         await Navigator.of(context).pushAndRemoveUntil(
             AppRoute.defaultRoute(
               context,
@@ -63,21 +63,21 @@ class ParticipantListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Map<Membership, String> membershipBatch = {
-      Membership.join: "",
+    var membershipBatch = <Membership, String>{
+      Membership.join: '',
       Membership.ban: L10n.of(context).banned,
       Membership.invite: L10n.of(context).invited,
       Membership.leave: L10n.of(context).leftTheChat,
     };
-    final String permissionBatch = user.powerLevel == 100
+    final permissionBatch = user.powerLevel == 100
         ? L10n.of(context).admin
-        : user.powerLevel >= 50 ? L10n.of(context).moderator : "";
-    List<PopupMenuEntry<String>> items = <PopupMenuEntry<String>>[];
+        : user.powerLevel >= 50 ? L10n.of(context).moderator : '';
+    var items = <PopupMenuEntry<String>>[];
 
     if (user.id != Matrix.of(context).client.userID) {
       items.add(
         PopupMenuItem(
-            child: Text(L10n.of(context).sendAMessage), value: "message"),
+            child: Text(L10n.of(context).sendAMessage), value: 'message'),
       );
     }
     if (user.canChangePowerLevel &&
@@ -85,7 +85,7 @@ class ParticipantListItem extends StatelessWidget {
         user.powerLevel != 100) {
       items.add(
         PopupMenuItem(
-            child: Text(L10n.of(context).makeAnAdmin), value: "admin"),
+            child: Text(L10n.of(context).makeAnAdmin), value: 'admin'),
       );
     }
     if (user.canChangePowerLevel &&
@@ -93,29 +93,29 @@ class ParticipantListItem extends StatelessWidget {
         user.powerLevel != 50) {
       items.add(
         PopupMenuItem(
-            child: Text(L10n.of(context).makeAModerator), value: "moderator"),
+            child: Text(L10n.of(context).makeAModerator), value: 'moderator'),
       );
     }
     if (user.canChangePowerLevel && user.powerLevel != 0) {
       items.add(
         PopupMenuItem(
-            child: Text(L10n.of(context).revokeAllPermissions), value: "user"),
+            child: Text(L10n.of(context).revokeAllPermissions), value: 'user'),
       );
     }
     if (user.canKick) {
       items.add(
         PopupMenuItem(
-            child: Text(L10n.of(context).kickFromChat), value: "kick"),
+            child: Text(L10n.of(context).kickFromChat), value: 'kick'),
       );
     }
     if (user.canBan && user.membership != Membership.ban) {
       items.add(
-        PopupMenuItem(child: Text(L10n.of(context).banFromChat), value: "ban"),
+        PopupMenuItem(child: Text(L10n.of(context).banFromChat), value: 'ban'),
       );
     } else if (user.canBan && user.membership == Membership.ban) {
       items.add(
         PopupMenuItem(
-            child: Text(L10n.of(context).removeExile), value: "unban"),
+            child: Text(L10n.of(context).removeExile), value: 'unban'),
       );
     }
     return PopupMenuButton(
