@@ -27,7 +27,7 @@ class _SignUpPasswordState extends State<SignUpPassword> {
   bool showPassword = true;
 
   void _signUpAction(BuildContext context, {Map<String, dynamic> auth}) async {
-    MatrixState matrix = Matrix.of(context);
+    var matrix = Matrix.of(context);
     if (passwordController.text.isEmpty) {
       setState(() => passwordError = L10n.of(context).pleaseEnterYourPassword);
     } else {
@@ -40,8 +40,7 @@ class _SignUpPasswordState extends State<SignUpPassword> {
 
     try {
       setState(() => loading = true);
-      Future<LoginState> waitForLogin =
-          matrix.client.onLoginStateChanged.stream.first;
+      var waitForLogin = matrix.client.onLoginStateChanged.stream.first;
       await matrix.client.register(
         username: widget.username,
         password: passwordController.text,
@@ -51,21 +50,20 @@ class _SignUpPasswordState extends State<SignUpPassword> {
       await waitForLogin;
     } on MatrixException catch (exception) {
       if (exception.requireAdditionalAuthentication) {
-        final List<String> stages = exception.authenticationFlows
-            .firstWhere((a) => !a.stages.contains("m.login.email.identity"))
+        final stages = exception.authenticationFlows
+            .firstWhere((a) => !a.stages.contains('m.login.email.identity'))
             .stages;
 
-        final String currentStage =
-            exception.completedAuthenticationFlows == null
-                ? stages.first
-                : stages.firstWhere((stage) =>
-                    !exception.completedAuthenticationFlows.contains(stage) ??
-                    true);
+        final currentStage = exception.completedAuthenticationFlows == null
+            ? stages.first
+            : stages.firstWhere((stage) =>
+                !exception.completedAuthenticationFlows.contains(stage) ??
+                true);
 
-        if (currentStage == "m.login.dummy") {
+        if (currentStage == 'm.login.dummy') {
           _signUpAction(context, auth: {
-            "type": currentStage,
-            "session": exception.session,
+            'type': currentStage,
+            'session': exception.session,
           });
         } else {
           await Navigator.of(context).push(
@@ -75,7 +73,7 @@ class _SignUpPasswordState extends State<SignUpPassword> {
                 currentStage,
                 exception.session,
                 () => _signUpAction(context, auth: {
-                  "session": exception.session,
+                  'session': exception.session,
                 }),
               ),
             ),
@@ -141,7 +139,7 @@ class _SignUpPasswordState extends State<SignUpPassword> {
               autocorrect: false,
               onSubmitted: (t) => _signUpAction(context),
               decoration: InputDecoration(
-                  hintText: "****",
+                  hintText: '****',
                   errorText: passwordError,
                   suffixIcon: IconButton(
                     icon: Icon(

@@ -35,7 +35,7 @@ class ChatListView extends StatelessWidget {
       firstScaffold: ChatList(),
       secondScaffold: Scaffold(
         body: Center(
-          child: Image.asset("assets/logo.png", width: 100, height: 100),
+          child: Image.asset('assets/logo.png', width: 100, height: 100),
         ),
       ),
     );
@@ -62,7 +62,7 @@ class _ChatListState extends State<ChatList> {
   final ScrollController _scrollController = ScrollController();
 
   Future<void> waitForFirstSync(BuildContext context) async {
-    Client client = Matrix.of(context).client;
+    var client = Matrix.of(context).client;
     if (client.prevBatch?.isEmpty ?? true) {
       await client.onFirstSync.stream.first;
     }
@@ -106,7 +106,7 @@ class _ChatListState extends State<ChatList> {
             publicRoomsResponse = newPublicRoomsResponse;
             if (searchController.text.isNotEmpty &&
                 searchController.text.isValidMatrixId &&
-                searchController.text.sigil == "#") {
+                searchController.text.sigil == '#') {
               publicRoomsResponse.publicRooms.add(
                 PublicRoomEntry(
                   aliases: [searchController.text],
@@ -134,11 +134,11 @@ class _ChatListState extends State<ChatList> {
     if (Navigator.of(context).canPop()) {
       Navigator.of(context).popUntil((r) => r.isFirst);
     }
-    final File file = File(files.first.path);
+    final file = File(files.first.path);
 
     Matrix.of(context).shareContent = {
-      "msgtype": "chat.fluffy.shared_file",
-      "file": MatrixFile(
+      'msgtype': 'chat.fluffy.shared_file',
+      'file': MatrixFile(
         bytes: file.readAsBytesSync(),
         path: file.path,
       ),
@@ -150,13 +150,13 @@ class _ChatListState extends State<ChatList> {
     if (Navigator.of(context).canPop()) {
       Navigator.of(context).popUntil((r) => r.isFirst);
     }
-    if (text.startsWith("https://matrix.to/#/")) {
+    if (text.startsWith('https://matrix.to/#/')) {
       UrlLauncher(context, text).openMatrixToUrl();
       return;
     }
     Matrix.of(context).shareContent = {
-      "msgtype": "m.text",
-      "body": text,
+      'msgtype': 'm.text',
+      'body': text,
     };
   }
 
@@ -204,8 +204,8 @@ class _ChatListState extends State<ChatList> {
         action:
             '/client/r0/presence/${Matrix.of(context).client.userID}/status',
         data: {
-          "presence": "online",
-          "status_msg": status,
+          'presence': 'online',
+          'status_msg': status,
         },
       ),
     );
@@ -288,7 +288,7 @@ class _ChatListState extends State<ChatList> {
                                     Navigator.of(context).pop();
                                     Share.share(L10n.of(context).inviteText(
                                         Matrix.of(context).client.userID,
-                                        "https://matrix.to/#/${Matrix.of(context).client.userID}"));
+                                        'https://matrix.to/#/${Matrix.of(context).client.userID}'));
                                   },
                                 ),
                               ],
@@ -381,13 +381,13 @@ class _ChatListState extends State<ChatList> {
                           future: waitForFirstSync(context),
                           builder: (BuildContext context, snapshot) {
                             if (snapshot.hasData) {
-                              List<Room> rooms = List<Room>.from(
+                              var rooms = List<Room>.from(
                                   Matrix.of(context).client.rooms);
                               rooms.removeWhere((Room room) =>
                                   searchMode &&
                                   !room.displayname.toLowerCase().contains(
                                       searchController.text.toLowerCase() ??
-                                          ""));
+                                          ''));
                               if (rooms.isEmpty &&
                                   (!searchMode ||
                                       publicRoomsResponse == null)) {
@@ -410,10 +410,10 @@ class _ChatListState extends State<ChatList> {
                                   ),
                                 );
                               }
-                              final int publicRoomsCount =
+                              final publicRoomsCount =
                                   (publicRoomsResponse?.publicRooms?.length ??
                                       0);
-                              final int totalCount =
+                              final totalCount =
                                   rooms.length + publicRoomsCount;
                               return ListView.separated(
                                   controller: _scrollController,

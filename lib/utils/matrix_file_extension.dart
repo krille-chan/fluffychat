@@ -15,8 +15,8 @@ extension MatrixFileExtension on MatrixFile {
       var element = html.document.createElement('a');
       element.setAttribute(
           'href', html.Url.createObjectUrlFromBlob(html.Blob([bytes])));
-      element.setAttribute('target', "_blank");
-      element.setAttribute('rel', "noopener");
+      element.setAttribute('target', '_blank');
+      element.setAttribute('rel', 'noopener');
       element.setAttribute('download', fileName);
       element.setAttribute('type', mimeType);
       element.style.display = 'none';
@@ -24,8 +24,8 @@ extension MatrixFileExtension on MatrixFile {
       element.click();
       element.remove();
     } else {
-      Directory tempDir = await getTemporaryDirectory();
-      final file = File(tempDir.path + "/" + path.split("/").last);
+      var tempDir = await getTemporaryDirectory();
+      final file = File(tempDir.path + '/' + path.split('/').last);
       file.writeAsBytesSync(bytes);
       await OpenFile.open(file.path);
     }

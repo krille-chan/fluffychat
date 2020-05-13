@@ -15,9 +15,8 @@ class ThemesSettingsState extends State<ThemesSettings> {
 
   @override
   Widget build(BuildContext context) {
-    final MatrixState matrix = Matrix.of(context);
-    final ThemeSwitcherWidgetState themeEngine =
-        ThemeSwitcherWidget.of(context);
+    final matrix = Matrix.of(context);
+    final themeEngine = ThemeSwitcherWidget.of(context);
     _selectedTheme = themeEngine.selectedTheme;
     _amoledEnabled = themeEngine.amoledEnabled;
 

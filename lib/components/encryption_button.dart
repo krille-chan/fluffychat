@@ -67,7 +67,8 @@ class _EncryptionButtonState extends State<EncryptionButton> {
         builder: (BuildContext context, snapshot) {
           Color color;
           if (widget.room.encrypted && snapshot.hasData) {
-            final List<DeviceKeys> deviceKeysList = snapshot.data;
+            var data = snapshot.data;
+            final deviceKeysList = data;
             color = Colors.orange;
             if (deviceKeysList.indexWhere((DeviceKeys deviceKeys) =>
                     deviceKeys.verified == false &&

@@ -8,7 +8,7 @@ import 'package:fluffychat/views/sign_up.dart';
 import 'package:flutter/material.dart';
 
 class HomeserverPicker extends StatelessWidget {
-  _setHomeserverAction(BuildContext context) async {
+  Future<void> _setHomeserverAction(BuildContext context) async {
     final homeserver = await SimpleDialogs(context).enterText(
         titleText: L10n.of(context).enterYourHomeserver,
         hintText: Matrix.defaultHomeserver,
@@ -17,7 +17,7 @@ class HomeserverPicker extends StatelessWidget {
     _checkHomeserverAction(homeserver, context);
   }
 
-  _checkHomeserverAction(String homeserver, BuildContext context) async {
+  void _checkHomeserverAction(String homeserver, BuildContext context) async {
     if (!homeserver.startsWith('https://')) {
       homeserver = 'https://$homeserver';
     }
@@ -40,7 +40,7 @@ class HomeserverPicker extends StatelessWidget {
             children: <Widget>[
               Hero(
                 tag: 'loginBanner',
-                child: Image.asset("assets/fluffychat-banner.png"),
+                child: Image.asset('assets/fluffychat-banner.png'),
               ),
               Padding(
                 padding: const EdgeInsets.all(16.0),

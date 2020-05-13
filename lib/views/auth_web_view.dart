@@ -14,8 +14,9 @@ class AuthWebView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String url = Matrix.of(context).client.homeserver +
-        "/_matrix/client/r0/auth/$authType/fallback/web?session=$session";
+    final url =
+        '/_matrix/client/r0/auth/$authType/fallback/web?session=$session' +
+            Matrix.of(context).client.homeserver;
     if (kIsWeb) launch(url);
     return Scaffold(
       appBar: AppBar(

@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_advanced_networkimage/provider.dart';
@@ -55,7 +53,7 @@ class _EmotesSettingsState extends State<EmotesSettings> {
     if (readonly) {
       return;
     }
-    debugPrint("Saving....");
+    debugPrint('Saving....');
     final client = Matrix.of(context).client;
     // be sure to preserve any data not in "short"
     Map<String, dynamic> content;
@@ -95,7 +93,7 @@ class _EmotesSettingsState extends State<EmotesSettings> {
 
   @override
   Widget build(BuildContext context) {
-    Client client = Matrix.of(context).client;
+    var client = Matrix.of(context).client;
     if (emotes == null) {
       emotes = <_EmoteEntry>[];
       Map<String, dynamic> emoteSource;
@@ -173,7 +171,7 @@ class _EmotesSettingsState extends State<EmotesSettings> {
                           size: 32.0,
                         ),
                         onTap: () async {
-                          debugPrint("blah");
+                          debugPrint('blah');
                           if (newEmoteController.text == null ||
                               newEmoteController.text.isEmpty ||
                               newMxcController.text == null ||
@@ -374,7 +372,7 @@ class _EmoteImagePickerState extends State<_EmoteImagePicker> {
             BotToast.showText(text: L10n.of(context).notSupportedInWeb);
             return;
           }
-          File file = await ImagePicker.pickImage(
+          var file = await ImagePicker.pickImage(
               source: ImageSource.gallery,
               imageQuality: 50,
               maxWidth: 128,

@@ -10,3 +10,4 @@ analyzer:
     todo: ignore
   exclude:
     - lib/generated_plugin_registrant.dart
+    - lib/l10n/*.dart

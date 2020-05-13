@@ -16,7 +16,7 @@ class RecordingDialog extends StatefulWidget {
 
 class _RecordingDialogState extends State<RecordingDialog> {
   FlutterSound flutterSound = FlutterSound();
-  String time = "00:00:00";
+  String time = '00:00:00';
 
   StreamSubscription _recorderSubscription;
 
@@ -28,7 +28,7 @@ class _RecordingDialogState extends State<RecordingDialog> {
         codec: t_CODEC.CODEC_AAC,
       );
       _recorderSubscription = flutterSound.onRecorderStateChanged.listen((e) {
-        DateTime date =
+        var date =
             DateTime.fromMillisecondsSinceEpoch(e.currentPosition.toInt());
         setState(() => time = DateFormat('mm:ss:SS', 'en_US').format(date));
       });
@@ -67,7 +67,7 @@ class _RecordingDialogState extends State<RecordingDialog> {
           SizedBox(width: 8),
           Expanded(
             child: Text(
-              "${L10n.of(context).recording}: $time",
+              '${L10n.of(context).recording}: $time',
               style: TextStyle(
                 fontSize: 18,
               ),
@@ -95,7 +95,7 @@ class _RecordingDialogState extends State<RecordingDialog> {
           ),
           onPressed: () async {
             await _recorderSubscription?.cancel();
-            final String result = await flutterSound.stopRecorder();
+            final result = await flutterSound.stopRecorder();
             if (widget.onFinished != null) {
               widget.onFinished(result);
             }

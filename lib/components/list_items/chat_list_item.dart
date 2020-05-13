@@ -71,11 +71,11 @@ class ChatListItem extends StatelessWidget {
 
       if (room.membership == Membership.join) {
         if (Matrix.of(context).shareContent != null) {
-          if (Matrix.of(context).shareContent["msgtype"] ==
-              "chat.fluffy.shared_file") {
+          if (Matrix.of(context).shareContent['msgtype'] ==
+              'chat.fluffy.shared_file') {
             await SimpleDialogs(context).tryRequestWithErrorToast(
               room.sendFileEvent(
-                Matrix.of(context).shareContent["file"],
+                Matrix.of(context).shareContent['file'],
               ),
             );
           } else {
@@ -98,11 +98,11 @@ class ChatListItem extends StatelessWidget {
         final success = await SimpleDialogs(context)
             .tryRequestWithLoadingDialog(room.forget());
         if (success != false) {
-          if (this.onForget != null) this.onForget();
+          if (onForget != null) onForget();
         }
         return success;
       }
-      final bool confirmed = await SimpleDialogs(context).askConfirmation();
+      final confirmed = await SimpleDialogs(context).askConfirmation();
       if (!confirmed) {
         return false;
       }
@@ -217,7 +217,7 @@ class ChatListItem extends StatelessWidget {
                         ),
                       ),
                     )
-                  : Text(" "),
+                  : Text(' '),
             ],
           ),
           onTap: () => clickAction(context),

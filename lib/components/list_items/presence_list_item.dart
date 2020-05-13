@@ -13,7 +13,7 @@ class PresenceListItem extends StatelessWidget {
 
   const PresenceListItem(this.presence);
 
-  static Map<String, Profile> _presences = {};
+  static final Map<String, Profile> _presences = {};
 
   Future<Profile> _requestProfile(BuildContext context) async {
     _presences[presence.sender] ??=
@@ -28,7 +28,7 @@ class PresenceListItem extends StatelessWidget {
         builder: (context, snapshot) {
           if (!snapshot.hasData) return Container();
           Uri avatarUrl;
-          String displayname = presence.sender.localpart;
+          var displayname = presence.sender.localpart;
           if (snapshot.hasData) {
             avatarUrl = snapshot.data.avatarUrl;
             displayname = snapshot.data.displayname;
@@ -64,7 +64,7 @@ class PresenceListItem extends StatelessWidget {
                     FlatButton(
                       child: Text(L10n.of(context).sendAMessage),
                       onPressed: () async {
-                        final String roomId = await User(
+                        final roomId = await User(
                           presence.sender,
                           room: Room(id: '', client: Matrix.of(context).client),
                         ).startDirectChat();

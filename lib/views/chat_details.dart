@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/chat_settings_popup_menu.dart';
@@ -30,11 +28,12 @@ class ChatDetails extends StatefulWidget {
 class _ChatDetailsState extends State<ChatDetails> {
   List<User> members;
   void setDisplaynameAction(BuildContext context) async {
-    final String displayname = await SimpleDialogs(context).enterText(
+    var enterText = SimpleDialogs(context).enterText(
       titleText: L10n.of(context).changeTheNameOfTheGroup,
       labelText: L10n.of(context).changeTheNameOfTheGroup,
       hintText: widget.room.getLocalizedDisplayname(L10n.of(context)),
     );
+    final displayname = await enterText;
     if (displayname == null) return;
     final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
       widget.room.setName(displayname),
@@ -45,26 +44,26 @@ class _ChatDetailsState extends State<ChatDetails> {
   }
 
   void setCanonicalAliasAction(context) async {
-    final String s = await SimpleDialogs(context).enterText(
+    final s = await SimpleDialogs(context).enterText(
       titleText: L10n.of(context).setInvitationLink,
       labelText: L10n.of(context).setInvitationLink,
       hintText: L10n.of(context).alias.toLowerCase(),
-      prefixText: "#",
-      suffixText: ":" + widget.room.client.userID.domain,
+      prefixText: '#',
+      suffixText: ':' + widget.room.client.userID.domain,
     );
     if (s == null) return;
-    final String domain = widget.room.client.userID.domain;
-    final String canonicalAlias = "%23" + s + "%3A" + domain;
-    final Event aliasEvent = widget.room.getState("m.room.aliases", domain);
-    final List aliases =
-        aliasEvent != null ? aliasEvent.content["aliases"] ?? [] : [];
+    final domain = widget.room.client.userID.domain;
+    final canonicalAlias = '%23' + s + '%3A' + domain;
+    final aliasEvent = widget.room.getState('m.room.aliases', domain);
+    final aliases =
+        aliasEvent != null ? aliasEvent.content['aliases'] ?? [] : [];
     if (aliases.indexWhere((s) => s == canonicalAlias) == -1) {
-      List<String> newAliases = List.from(aliases);
+      var newAliases = List<String>.from(aliases);
       newAliases.add(canonicalAlias);
       final response = await SimpleDialogs(context).tryRequestWithLoadingDialog(
         widget.room.client.jsonRequest(
           type: HTTPType.GET,
-          action: "/client/r0/directory/room/$canonicalAlias",
+          action: '/client/r0/directory/room/$canonicalAlias',
         ),
       );
       if (response == false) {
@@ -72,8 +71,8 @@ class _ChatDetailsState extends State<ChatDetails> {
             await SimpleDialogs(context).tryRequestWithLoadingDialog(
           widget.room.client.jsonRequest(
               type: HTTPType.PUT,
-              action: "/client/r0/directory/room/$canonicalAlias",
-              data: {"room_id": widget.room.id}),
+              action: '/client/r0/directory/room/$canonicalAlias',
+              data: {'room_id': widget.room.id}),
         );
         if (success == false) return;
       }
@@ -82,13 +81,13 @@ class _ChatDetailsState extends State<ChatDetails> {
       widget.room.client.jsonRequest(
           type: HTTPType.PUT,
           action:
-              "/client/r0/rooms/${widget.room.id}/state/m.room.canonical_alias",
-          data: {"alias": "#$s:$domain"}),
+              '/client/r0/rooms/${widget.room.id}/state/m.room.canonical_alias',
+          data: {'alias': '#$s:$domain'}),
     );
   }
 
   void setTopicAction(BuildContext context) async {
-    final String displayname = await SimpleDialogs(context).enterText(
+    final displayname = await SimpleDialogs(context).enterText(
       titleText: L10n.of(context).setGroupDescription,
       labelText: L10n.of(context).setGroupDescription,
       hintText: (widget.room.topic?.isNotEmpty ?? false)
@@ -106,7 +105,7 @@ class _ChatDetailsState extends State<ChatDetails> {
   }
 
   void setAvatarAction(BuildContext context) async {
-    final File tempFile = await ImagePicker.pickImage(
+    final tempFile = await ImagePicker.pickImage(
         source: ImageSource.gallery,
         imageQuality: 50,
         maxWidth: 1600,
@@ -145,9 +144,9 @@ class _ChatDetailsState extends State<ChatDetails> {
     }
     members ??= widget.room.getParticipants();
     members.removeWhere((u) => u.membership == Membership.leave);
-    final int actualMembersCount =
+    final actualMembersCount =
         widget.room.mInvitedMemberCount + widget.room.mJoinedMemberCount;
-    final bool canRequestMoreMembers = members.length < actualMembersCount;
+    final canRequestMoreMembers = members.length < actualMembersCount;
     return AdaptivePageLayout(
       primaryPage: FocusPage.SECOND,
       firstScaffold: ChatList(
@@ -189,7 +188,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                     backgroundColor: Theme.of(context).appBarTheme.color,
                     flexibleSpace: FlexibleSpaceBar(
                       background: ContentBanner(widget.room.avatar,
-                          onEdit: widget.room.canSendEvent("m.room.avatar") &&
+                          onEdit: widget.room.canSendEvent('m.room.avatar') &&
                                   !kIsWeb
                               ? () => setAvatarAction(context)
                               : null),
@@ -204,7 +203,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: <Widget>[
                             ListTile(
-                              leading: widget.room.canSendEvent("m.room.topic")
+                              leading: widget.room.canSendEvent('m.room.topic')
                                   ? CircleAvatar(
                                       backgroundColor: Theme.of(context)
                                           .scaffoldBackgroundColor,
@@ -213,7 +212,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                                     )
                                   : null,
                               title: Text(
-                                  "${L10n.of(context).groupDescription}:",
+                                  '${L10n.of(context).groupDescription}:',
                                   style: TextStyle(
                                       color: Theme.of(context).primaryColor,
                                       fontWeight: FontWeight.bold)),
@@ -230,7 +229,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                                       .color,
                                 ),
                               ),
-                              onTap: widget.room.canSendEvent("m.room.topic")
+                              onTap: widget.room.canSendEvent('m.room.topic')
                                   ? () => setTopicAction(context)
                                   : null,
                             ),
@@ -244,7 +243,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                                 ),
                               ),
                             ),
-                            if (widget.room.canSendEvent("m.room.name"))
+                            if (widget.room.canSendEvent('m.room.name'))
                               ListTile(
                                 leading: CircleAvatar(
                                   backgroundColor:
@@ -259,7 +258,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                                 onTap: () => setDisplaynameAction(context),
                               ),
                             if (widget.room
-                                    .canSendEvent("m.room.canonical_alias") &&
+                                    .canSendEvent('m.room.canonical_alias') &&
                                 widget.room.joinRules == JoinRules.public)
                               ListTile(
                                 leading: CircleAvatar(

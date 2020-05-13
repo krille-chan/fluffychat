@@ -23,7 +23,7 @@ class _SignUpState extends State<SignUp> {
   File avatar;
 
   void setAvatarAction() async {
-    File file = await ImagePicker.pickImage(
+    var file = await ImagePicker.pickImage(
       source: ImageSource.gallery,
       maxHeight: 512,
       maxWidth: 512,
@@ -33,7 +33,7 @@ class _SignUpState extends State<SignUp> {
   }
 
   void signUpAction(BuildContext context) async {
-    MatrixState matrix = Matrix.of(context);
+    var matrix = Matrix.of(context);
     if (usernameController.text.isEmpty) {
       setState(() => usernameError = L10n.of(context).pleaseChooseAUsername);
     } else {
@@ -45,8 +45,8 @@ class _SignUpState extends State<SignUp> {
     }
     setState(() => loading = true);
 
-    final String preferredUsername =
-        usernameController.text.toLowerCase().replaceAll(" ", "-");
+    final preferredUsername =
+        usernameController.text.toLowerCase().replaceAll(' ', '-');
 
     try {
       await matrix.client.usernameAvailable(preferredUsername);
@@ -83,7 +83,7 @@ class _SignUpState extends State<SignUp> {
           children: <Widget>[
             Hero(
               tag: 'loginBanner',
-              child: Image.asset("assets/fluffychat-banner.png"),
+              child: Image.asset('assets/fluffychat-banner.png'),
             ),
             ListTile(
               leading: CircleAvatar(

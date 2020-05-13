@@ -27,7 +27,7 @@ class PublicRoomListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool hasTopic =
+    final hasTopic =
         publicRoomEntry.topic != null && publicRoomEntry.topic.isNotEmpty;
     return ListTile(
       leading: Avatar(
@@ -36,13 +36,13 @@ class PublicRoomListItem extends StatelessWidget {
               : Uri.parse(publicRoomEntry.avatarUrl),
           publicRoomEntry.name),
       title: Text(hasTopic
-          ? "${publicRoomEntry.name} (${publicRoomEntry.numJoinedMembers})"
+          ? '${publicRoomEntry.name} (${publicRoomEntry.numJoinedMembers})'
           : publicRoomEntry.name),
       subtitle: Text(
         hasTopic
             ? publicRoomEntry.topic
             : L10n.of(context).countParticipants(
-                publicRoomEntry.numJoinedMembers?.toString() ?? "0"),
+                publicRoomEntry.numJoinedMembers?.toString() ?? '0'),
         maxLines: 1,
       ),
       onTap: () => joinAction(context),
