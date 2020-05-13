@@ -29,7 +29,6 @@ class App extends StatelessWidget {
       child: Builder(
         builder: (BuildContext context) => ThemeSwitcherWidget(
           child: Builder(
-            // Workaround for: https://github.com/JackJonson/flutter_styled_toast/issues/7
             builder: (BuildContext context) => MaterialApp(
               title: 'FluffyChat',
               builder: BotToastInit(),
