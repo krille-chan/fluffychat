@@ -248,6 +248,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "Chat": "Csevegés",
+  "@Chat": {
+    "type": "text",
+    "placeholders": {}
+  },
   "Chat details": "Csevegés részletei",
   "@Chat details": {
     "type": "text",
@@ -303,10 +308,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "Could not decrypt message": "Nem sikerült az üzenet titkosítását feloldani",
+  "Could not decrypt message": "Nem sikerült az üzenet titkosítását feloldani: {error}",
   "@Could not decrypt message": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": {
+      "error": {}
+    }
   },
   "Could not set avatar": "Nem sikerült beállítani a képet",
   "@Could not set avatar": {
@@ -414,6 +421,31 @@
   },
   "Edit displayname": "Megjelenítési név módosítása",
   "@Edit displayname": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Emote Settings": "Hangulatjel beállíŧások",
+  "@Emote Settings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Emote shortcode": "Rövid kód a hangulatjelhez",
+  "@Emote shortcode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteWarnNeedToPick": "A hangulatjelhez válassz egy képet és egy rövid kód",
+  "@emoteWarnNeedToPick": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteExists": "A hangulatjel már létezik!",
+  "@emoteExists": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteInvalid": "Érvénytelen rövid kód!",
+  "@emoteInvalid": {
     "type": "text",
     "placeholders": {}
   },
@@ -655,6 +687,13 @@
       "username": {}
     }
   },
+  "lastActiveAgo": "Utoljára aktív: {localizedTimeShort}",
+  "@lastActiveAgo": {
+    "type": "text",
+    "placeholders": {
+      "localizedTimeShort": {}
+    }
+  },
   "Last seen IP": "Utoljára látott IP",
   "@Last seen IP": {
     "type": "text",
@@ -667,6 +706,11 @@
   },
   "Loading... Please wait": "Betöltés... Kérlek várj",
   "@Loading... Please wait": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Load more...": "Továbbiak betöltése...",
+  "@Load more...": {
     "type": "text",
     "placeholders": {}
   },
@@ -749,6 +793,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "No emotes found. 😕": "Nincsenek hangulatjelek. 😕",
+  "@No emotes found. 😕": {
+    "type": "text",
+    "placeholders": {}
+  },
   "No permission": "Nincsenek engedélyek",
   "@No permission": {
     "type": "text",
@@ -771,12 +820,22 @@
       "number": {}
     }
   },
+  "ok": "ok",
+  "@ok": {
+    "type": "text",
+    "placeholders": {}
+  },
   "Oops something went wrong...": "Hoppá, valami baj történt...",
   "@Oops something went wrong...": {
     "type": "text",
     "placeholders": {}
   },
-  "Open camera": "Kamera megnyitása",
+  "Open app to read messages": "App megnyitása az üzenetek elolvasásához",
+  "@Open app to read messages": {
+    "type": "text",
+    "placeholders": {}
+  },
+   "Open camera": "Kamera megnyitása",
   "@Open camera": {
     "type": "text",
     "placeholders": {}
@@ -793,6 +852,11 @@
   },
   "Password": "Jelszó",
   "@Password": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Pick image": "Válassz egy képet",
+  "@Pick image": {
     "type": "text",
     "placeholders": {}
   },
@@ -830,6 +894,11 @@
   },
   "Rejoin": "Újracsatlakozás",
   "@Rejoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Render rich message content": "Formázott üzenetek megjelenítése",
+  "@Render rich message content": {
     "type": "text",
     "placeholders": {}
   },
@@ -1019,6 +1088,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "Set status": "Állapot beállítása",
+  "@Set status": {
+    "type": "text",
+    "placeholders": {}
+  },
   "Settings": "Beállítások",
   "@Settings": {
     "type": "text",
@@ -1036,6 +1110,11 @@
   },
   "System": "Rendszer",
   "@System": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "How are you today?": "Hogy vagy?",
+  "@How are you today?": {
     "type": "text",
     "placeholders": {}
   },
@@ -1143,6 +1222,13 @@
     "type": "text",
     "placeholders": {
       "type": {}
+    }
+  },
+  "unreadChats": "{unreadCount} olvasatlan üzenet",
+  "@unreadChats": {
+    "type": "text",
+    "placeholders": {
+      "unreadCount": {}
     }
   },
   "unreadMessages": "{unreadEvents} olvasatlan üzenet",
