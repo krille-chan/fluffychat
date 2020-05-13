@@ -81,6 +81,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m31(username, targetName) => "${username} kirúgta és kitiltotta ${targetName}-t";
 
+  static m32(localizedTimeShort) => "Utoljára aktív: ${localizedTimeShort}";
+
   static m33(count) => "További ${count} résztvevő betöltése";
 
   static m34(homeserver) => "Bejelentkezés ${homeserver} Matrix szerverre";
@@ -118,6 +120,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static m50(username, targetName) => "${username} feloldotta ${targetName} kitiltását";
 
   static m51(type) => "Ismeretlen esemény \'${type}\'";
+
+  static m52(unreadCount) => "${unreadCount} olvasatlan üzenet";
 
   static m53(unreadEvents) => "${unreadEvents} olvasatlan üzenet";
 
@@ -158,6 +162,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Change wallpaper" : MessageLookupByLibrary.simpleMessage("Háttér módosítása"),
     "Change your style" : MessageLookupByLibrary.simpleMessage("Stílus módosítása"),
     "Changelog" : MessageLookupByLibrary.simpleMessage("Változás napló"),
+    "Chat" : MessageLookupByLibrary.simpleMessage("Csevegés"),
     "Chat details" : MessageLookupByLibrary.simpleMessage("Csevegés részletei"),
     "Choose a strong password" : MessageLookupByLibrary.simpleMessage("Válassz egy erős jelszót"),
     "Choose a username" : MessageLookupByLibrary.simpleMessage("Válassz egy felhasználónevet"),
@@ -186,6 +191,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "Download file" : MessageLookupByLibrary.simpleMessage("File letöltése"),
     "Edit Jitsi instance" : MessageLookupByLibrary.simpleMessage("Jitsi példány módosítása"),
     "Edit displayname" : MessageLookupByLibrary.simpleMessage("Megjelenítési név módosítása"),
+    "Emote Settings" : MessageLookupByLibrary.simpleMessage("Hangulatjel beállíŧások"),
+    "Emote shortcode" : MessageLookupByLibrary.simpleMessage("Rövid kód a hangulatjelhez"),
     "Empty chat" : MessageLookupByLibrary.simpleMessage("Üres csevegés"),
     "Encryption algorithm" : MessageLookupByLibrary.simpleMessage("Titkosítási algoritmus"),
     "Encryption is not enabled" : MessageLookupByLibrary.simpleMessage("Titkosítás nincs engedélyezve"),
@@ -209,6 +216,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Guests can join" : MessageLookupByLibrary.simpleMessage("Vendégek csatlakozhatnak"),
     "Help" : MessageLookupByLibrary.simpleMessage("Segítség"),
     "Homeserver is not compatible" : MessageLookupByLibrary.simpleMessage("Ez a Matrix szerver nem kompatibilis"),
+    "How are you today?" : MessageLookupByLibrary.simpleMessage("Hogy vagy?"),
     "ID" : MessageLookupByLibrary.simpleMessage("ID"),
     "Identity" : MessageLookupByLibrary.simpleMessage("Azonosság"),
     "Invite contact" : MessageLookupByLibrary.simpleMessage("Ismerős meghívása"),
@@ -221,6 +229,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Left the chat" : MessageLookupByLibrary.simpleMessage("Elhagyta a csevegést"),
     "License" : MessageLookupByLibrary.simpleMessage("Licenc"),
     "Light" : MessageLookupByLibrary.simpleMessage("Világos"),
+    "Load more..." : MessageLookupByLibrary.simpleMessage("Továbbiak betöltése..."),
     "Loading... Please wait" : MessageLookupByLibrary.simpleMessage("Betöltés... Kérlek várj"),
     "Login" : MessageLookupByLibrary.simpleMessage("Bejelentkezés"),
     "Logout" : MessageLookupByLibrary.simpleMessage("Kijelentkezés"),
@@ -233,14 +242,17 @@ class MessageLookup extends MessageLookupByLibrary {
     "Mute chat" : MessageLookupByLibrary.simpleMessage("Csevegés némítása"),
     "New message in FluffyChat" : MessageLookupByLibrary.simpleMessage("Új üzenet a FluffyChaten"),
     "New private chat" : MessageLookupByLibrary.simpleMessage("Új privát csevegés"),
+    "No emotes found. 😕" : MessageLookupByLibrary.simpleMessage("Nincsenek hangulatjelek. 😕"),
     "No permission" : MessageLookupByLibrary.simpleMessage("Nincsenek engedélyek"),
     "No rooms found..." : MessageLookupByLibrary.simpleMessage("Nem találtam szobákat..."),
     "None" : MessageLookupByLibrary.simpleMessage("Nincs"),
     "Not supported in web" : MessageLookupByLibrary.simpleMessage("Nem támogatott a weben"),
     "Oops something went wrong..." : MessageLookupByLibrary.simpleMessage("Hoppá, valami baj történt..."),
+    "Open app to read messages" : MessageLookupByLibrary.simpleMessage("App megnyitása az üzenetek elolvasásához"),
     "Open camera" : MessageLookupByLibrary.simpleMessage("Kamera megnyitása"),
     "Participating user devices" : MessageLookupByLibrary.simpleMessage("Résztvevő felhasználók eszközei"),
     "Password" : MessageLookupByLibrary.simpleMessage("Jelszó"),
+    "Pick image" : MessageLookupByLibrary.simpleMessage("Válassz egy képet"),
     "Please be aware that you need Pantalaimon to use end-to-end encryption for now." : MessageLookupByLibrary.simpleMessage("Tájékoztatlak, hogy egyelőre szükséged van a Pantalaimon-ra, hogy a végponttól-végpontig titkosítást hasnzáld."),
     "Please choose a username" : MessageLookupByLibrary.simpleMessage("Válassz egy felhasználónevet"),
     "Please enter a matrix identifier" : MessageLookupByLibrary.simpleMessage("Írj be egy Matrix azonosítót"),
@@ -254,6 +266,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Remove device" : MessageLookupByLibrary.simpleMessage("Eszköz eltávolítása"),
     "Remove exile" : MessageLookupByLibrary.simpleMessage("Kitiltás feloldása"),
     "Remove message" : MessageLookupByLibrary.simpleMessage("Üzenet eltávolítása"),
+    "Render rich message content" : MessageLookupByLibrary.simpleMessage("Formázott üzenetek megjelenítése"),
     "Reply" : MessageLookupByLibrary.simpleMessage("Válasz"),
     "Request permission" : MessageLookupByLibrary.simpleMessage("Jogosultság igénylése"),
     "Request to read older messages" : MessageLookupByLibrary.simpleMessage("Korábbi üzenetekhez való hozzáférés igénylése"),
@@ -267,6 +280,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Set a profile picture" : MessageLookupByLibrary.simpleMessage("Profilkép beállítása"),
     "Set group description" : MessageLookupByLibrary.simpleMessage("Csoport leírás beállítása"),
     "Set invitation link" : MessageLookupByLibrary.simpleMessage("Meghívó link beállítása"),
+    "Set status" : MessageLookupByLibrary.simpleMessage("Állapot beállítása"),
     "Settings" : MessageLookupByLibrary.simpleMessage("Beállítások"),
     "Share" : MessageLookupByLibrary.simpleMessage("Megosztás"),
     "Sign up" : MessageLookupByLibrary.simpleMessage("Felíratkozás"),
@@ -328,6 +342,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "dateAndTimeOfDay" : m21,
     "dateWithYear" : m22,
     "dateWithoutYear" : m23,
+    "emoteExists" : MessageLookupByLibrary.simpleMessage("A hangulatjel már létezik!"),
+    "emoteInvalid" : MessageLookupByLibrary.simpleMessage("Érvénytelen rövid kód!"),
+    "emoteWarnNeedToPick" : MessageLookupByLibrary.simpleMessage("A hangulatjelhez válassz egy képet és egy rövid kód"),
     "groupWith" : m24,
     "hasWithdrawnTheInvitationFor" : m25,
     "inviteContactToGroup" : m26,
@@ -337,9 +354,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "joinedTheChat" : m29,
     "kicked" : m30,
     "kickedAndBanned" : m31,
+    "lastActiveAgo" : m32,
     "loadCountMoreParticipants" : m33,
     "logInTo" : m34,
     "numberSelected" : m35,
+    "ok" : MessageLookupByLibrary.simpleMessage("ok"),
     "play" : m36,
     "redactedAnEvent" : m37,
     "rejectedTheInvitation" : m38,
@@ -357,6 +376,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "title" : MessageLookupByLibrary.simpleMessage("FluffyChat"),
     "unbannedUser" : m50,
     "unknownEvent" : m51,
+    "unreadChats" : m52,
     "unreadMessages" : m53,
     "unreadMessagesInChats" : m54,
     "userAndOthersAreTyping" : m55,
