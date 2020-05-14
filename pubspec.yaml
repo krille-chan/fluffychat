@@ -54,7 +54,7 @@ dependencies:
   open_file: ^3.0.1
   mime_type: ^0.3.0
   bot_toast: ^3.0.0
-  flutter_matrix_html: ^0.0.6
+  flutter_matrix_html: ^0.0.7
   moor: ^3.0.2
   random_string: ^2.0.1
 

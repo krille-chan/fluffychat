@@ -203,7 +203,7 @@ packages:
       name: flutter_matrix_html
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.6"
+    version: "0.0.7"
   flutter_secure_storage:
     dependency: "direct main"
     description:
