@@ -9,8 +9,9 @@ class HtmlMessage extends StatelessWidget {
   final String html;
   final Color textColor;
   final int maxLines;
+  final Room room;
 
-  const HtmlMessage({this.html, this.textColor, this.maxLines});
+  const HtmlMessage({this.html, this.textColor, this.maxLines, this.room});
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +36,57 @@ class HtmlMessage extends StatelessWidget {
           height: (height ?? 800) * ratio,
           method: ThumbnailMethod.scale,
         );
+      },
+      getPillInfo: (String identifier) async {
+        if (room == null) {
+          return null;
+        }
+        if (identifier[0] == '@') {
+          // we have a user pill
+          final user = room.getState('m.room.member', identifier);
+          if (user != null) {
+            return user.content;
+          }
+          // there might still be a profile...
+          final profile = await room.client.getProfileFromUserId(identifier);
+          if (profile != null) {
+            return {
+              'displayname': profile.displayname,
+              'avatar_url': profile.avatarUrl.toString(),
+            };
+          }
+          return null;
+        }
+        if (identifier[0] == '#') {
+          // we have an alias pill
+          for (final r in room.client.rooms) {
+            final state = r.getState('m.room.canonical_alias');
+            if (
+              state != null && (
+              (state.content['alias'] is String && state.content['alias'] == identifier) ||
+              (state.content['alt_aliases'] is List && state.content['alt_aliases'].contains(identifier))
+            )) {
+              // we have a room!
+              return {
+                'displayname': identifier,
+                'avatar_url': r.getState('m.room.avatar')?.content['url'],
+              };
+            }
+          }
+          return null;
+        }
+        if (identifier[0] == '!') {
+          // we have a room ID pill
+          final r = room.client.getRoomById(identifier);
+          if (r == null) {
+            return null;
+          }
+          return {
+            'displayname': r.canonicalAlias,
+            'avatar_url': r.getState('m.room.avatar')?.content['url'],
+          };
+        }
+        return null;
       },
     );
   }

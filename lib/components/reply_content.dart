@@ -33,6 +33,7 @@ class ReplyContent extends StatelessWidget {
             ? Colors.white
             : Theme.of(context).textTheme.bodyText2.color,
         maxLines: 1,
+        room: replyEvent.room,
       );
     } else {
       replyBody = Text(
@@ -51,6 +52,7 @@ class ReplyContent extends StatelessWidget {
       );
     }
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Container(
           width: 3,
@@ -58,7 +60,7 @@ class ReplyContent extends StatelessWidget {
           color: lightText ? Colors.white : Theme.of(context).primaryColor,
         ),
         SizedBox(width: 6),
-        Expanded(
+        Flexible(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,

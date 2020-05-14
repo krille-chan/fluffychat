@@ -40,6 +40,7 @@ class MessageContent extends StatelessWidget {
           case MessageTypes.Text:
           case MessageTypes.Notice:
           case MessageTypes.Emote:
+          case MessageTypes.Reply:
             if (Matrix.of(context).renderHtml &&
                 !event.redacted &&
                 event.content['format'] == 'org.matrix.custom.html' &&
@@ -51,12 +52,12 @@ class MessageContent extends StatelessWidget {
               return HtmlMessage(
                 html: html,
                 textColor: textColor,
+                room: event.room,
               );
             }
             // else we fall through to the normal message rendering
             continue textmessage;
           case MessageTypes.BadEncrypted:
-          case MessageTypes.Reply:
           case MessageTypes.Location:
           case MessageTypes.None:
           textmessage:
