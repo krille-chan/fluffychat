@@ -335,10 +335,12 @@ class _EmoteImage extends StatelessWidget {
       method: ThumbnailMethod.scale,
     );
     return Image(
-      image: AdvancedNetworkImage(
-        url,
-        useDiskCache: !kIsWeb,
-      ),
+      image: kIsWeb
+          ? NetworkImage(url)
+          : AdvancedNetworkImage(
+              url,
+              useDiskCache: true,
+            ),
       fit: BoxFit.contain,
       width: size,
       height: size,
