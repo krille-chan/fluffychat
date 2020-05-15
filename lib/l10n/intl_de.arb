@@ -354,6 +354,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "Currenlty active": "Jetzt gerade online",
+  "@Currenlty active": {
+    "type": "text",
+    "placeholders": {}
+  },
   "dateAndTimeOfDay": "{date}, {timeOfDay}",
   "@dateAndTimeOfDay": {
     "type": "text",
@@ -687,7 +692,7 @@
       "username": {}
     }
   },
-  "lastActiveAgo": "Zuletzt aktiv: {localizedTimeShort}",
+  "lastActiveAgo": "Zuletzt gesehen: {localizedTimeShort}",
   "@lastActiveAgo": {
     "type": "text",
     "placeholders": {
@@ -996,6 +1001,11 @@
     "placeholders": {
       "username": {}
     }
+  },
+  "Seen a long time ago": "Vor sehr langer Zeit gesehen",
+  "@Seen a long time ago": {
+    "type": "text",
+    "placeholders": {}
   },
   "seenByUserAndUser": "Gelesen von {username} und {username2}",
   "@seenByUserAndUser": {

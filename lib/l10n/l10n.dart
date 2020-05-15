@@ -261,6 +261,8 @@ class L10n extends MatrixLocalizations {
 
   String get createNewGroup => Intl.message("Create new group");
 
+  String get currentlyActive => Intl.message('Currenlty active');
+
   String dateAndTimeOfDay(String date, String timeOfDay) => Intl.message(
         "$date, $timeOfDay",
         name: "dateAndTimeOfDay",
@@ -598,6 +600,8 @@ class L10n extends MatrixLocalizations {
       );
 
   String get searchForAChat => Intl.message("Search for a chat");
+
+  String get lastSeenLongTimeAgo => Intl.message('Seen a long time ago');
 
   String seenByUser(String username) => Intl.message(
         "Seen by $username",

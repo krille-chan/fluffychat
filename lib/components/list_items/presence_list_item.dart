@@ -1,12 +1,9 @@
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/utils/app_route.dart';
-import 'package:fluffychat/views/chat.dart';
+import 'package:fluffychat/components/dialogs/presence_dialog.dart';
 import 'package:flutter/material.dart';
 
 import '../avatar.dart';
 import '../matrix.dart';
-import 'package:fluffychat/utils/presence_extension.dart';
 
 class PresenceListItem extends StatelessWidget {
   final Presence presence;
@@ -36,68 +33,27 @@ class PresenceListItem extends StatelessWidget {
           return InkWell(
             onTap: () => showDialog(
               context: context,
-              builder: (c) => AlertDialog(
-                title: ListTile(
-                  contentPadding: EdgeInsets.zero,
-                  leading: Avatar(avatarUrl, displayname),
-                  title: Text(displayname),
-                  subtitle: Text(presence.sender),
-                ),
-                content: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+              builder: (c) => PresenceDialog(
+                presence,
+                avatarUrl: avatarUrl,
+                displayname: displayname,
+              ),
+              child: Container(
+                width: 80,
+                child: Column(
                   children: <Widget>[
-                    Text(presence.getLocalizedStatusMessage(context)),
-                    if (presence.presence != null)
-                      Text(
-                        presence.presence.toString().split('.').last,
-                        style: TextStyle(
-                          color: presence.currentlyActive == true
-                              ? Colors.green
-                              : Theme.of(context).primaryColor,
-                        ),
-                      )
+                    SizedBox(height: 9),
+                    Avatar(avatarUrl, displayname),
+                    Padding(
+                      padding: const EdgeInsets.all(6.0),
+                      child: Text(
+                        displayname,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
+                    ),
                   ],
                 ),
-                actions: <Widget>[
-                  if (presence.sender != Matrix.of(context).client.userID)
-                    FlatButton(
-                      child: Text(L10n.of(context).sendAMessage),
-                      onPressed: () async {
-                        final roomId = await User(
-                          presence.sender,
-                          room: Room(id: '', client: Matrix.of(context).client),
-                        ).startDirectChat();
-                        await Navigator.of(context).pushAndRemoveUntil(
-                            AppRoute.defaultRoute(
-                              context,
-                              ChatView(roomId),
-                            ),
-                            (Route r) => r.isFirst);
-                      },
-                    ),
-                  FlatButton(
-                    child: Text(L10n.of(context).close),
-                    onPressed: () => Navigator.of(context).pop(),
-                  ),
-                ],
-              ),
-            ),
-            child: Container(
-              width: 80,
-              child: Column(
-                children: <Widget>[
-                  SizedBox(height: 9),
-                  Avatar(avatarUrl, displayname),
-                  Padding(
-                    padding: const EdgeInsets.all(6.0),
-                    child: Text(
-                      displayname,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                    ),
-                  ),
-                ],
               ),
             ),
           );
