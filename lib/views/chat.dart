@@ -20,6 +20,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:pedantic/pedantic.dart';
 
 import 'chat_list.dart';
+import '../components/input_bar.dart';
 
 class ChatView extends StatelessWidget {
   final String id;
@@ -693,7 +694,8 @@ class _ChatState extends State<_Chat> {
                                     child: Padding(
                                       padding: const EdgeInsets.symmetric(
                                           vertical: 4.0),
-                                      child: TextField(
+                                      child: InputBar(
+                                        room: room,
                                         minLines: 1,
                                         maxLines: kIsWeb ? 1 : 8,
                                         keyboardType: kIsWeb

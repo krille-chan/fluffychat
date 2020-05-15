@@ -57,6 +57,7 @@ dependencies:
   flutter_matrix_html: ^0.0.7
   moor: ^3.0.2
   random_string: ^2.0.1
+  flutter_typeahead: ^1.8.1
 
   intl: ^0.16.0
   intl_translation: ^0.17.9
