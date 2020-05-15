@@ -83,7 +83,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m31(username, targetName) => "${username} hat ${targetName} hinausgeworfen und verbannt";
 
-  static m32(localizedTimeShort) => "Zuletzt aktiv: ${localizedTimeShort}";
+  static m32(localizedTimeShort) => "Zuletzt gesehen: ${localizedTimeShort}";
 
   static m33(count) => "${count} weitere Teilnehmer laden";
 
@@ -181,6 +181,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Create" : MessageLookupByLibrary.simpleMessage("Create"),
     "Create account now" : MessageLookupByLibrary.simpleMessage("Account jetzt erstellen"),
     "Create new group" : MessageLookupByLibrary.simpleMessage("Neue Gruppe"),
+    "Currenlty active" : MessageLookupByLibrary.simpleMessage("Jetzt gerade online"),
     "Dark" : MessageLookupByLibrary.simpleMessage("Dunkel"),
     "Delete" : MessageLookupByLibrary.simpleMessage("Löschen"),
     "Delete message" : MessageLookupByLibrary.simpleMessage("Nachricht löschen"),
@@ -273,6 +274,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Revoke all permissions" : MessageLookupByLibrary.simpleMessage("Alle Berechtigungen zurücknehmen"),
     "Saturday" : MessageLookupByLibrary.simpleMessage("Samstag"),
     "Search for a chat" : MessageLookupByLibrary.simpleMessage("Durchsuche die Chats"),
+    "Seen a long time ago" : MessageLookupByLibrary.simpleMessage("Vor sehr langer Zeit gesehen"),
     "Send" : MessageLookupByLibrary.simpleMessage("Senden"),
     "Send a message" : MessageLookupByLibrary.simpleMessage("Nachricht schreiben"),
     "Send file" : MessageLookupByLibrary.simpleMessage("Datei senden"),

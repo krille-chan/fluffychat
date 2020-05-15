@@ -1,10 +1,13 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
+import 'package:fluffychat/components/avatar.dart';
 import 'package:fluffychat/components/chat_settings_popup_menu.dart';
+import 'package:fluffychat/components/dialogs/presence_dialog.dart';
 import 'package:fluffychat/components/dialogs/recording_dialog.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/encryption_button.dart';
@@ -12,6 +15,8 @@ import 'package:fluffychat/components/list_items/message.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/components/reply_content.dart';
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/utils/app_route.dart';
+import 'package:fluffychat/utils/room_status_extension.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -19,6 +24,7 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pedantic/pedantic.dart';
 
+import 'chat_details.dart';
 import 'chat_list.dart';
 import '../components/input_bar.dart';
 
@@ -359,38 +365,59 @@ class _ChatState extends State<_Chat> {
                 onPressed: () => setState(() => selectedEvents.clear()),
               )
             : null,
+        titleSpacing: 0,
         title: selectedEvents.isEmpty
-            ? Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: !kIsWeb && Platform.isIOS
-                    ? CrossAxisAlignment.center
-                    : CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(room.getLocalizedDisplayname(L10n.of(context))),
-                  AnimatedContainer(
-                    duration: Duration(milliseconds: 500),
-                    height: typingText.isEmpty ? 0 : 20,
-                    child: Row(
-                      children: <Widget>[
-                        typingText.isEmpty
-                            ? Container()
-                            : Icon(Icons.edit,
-                                color: Theme.of(context).primaryColor,
-                                size: 13),
-                        SizedBox(width: 4),
-                        Text(
-                          typingText,
-                          style: TextStyle(
-                            color: Theme.of(context).primaryColor,
-                            fontStyle: FontStyle.italic,
-                            fontSize: 16,
+            ? StreamBuilder<Object>(
+                stream: Matrix.of(context)
+                    .client
+                    .onPresence
+                    .stream
+                    .where((p) => p.sender == room.directChatMatrixID),
+                builder: (context, snapshot) {
+                  return ListTile(
+                    leading: Avatar(room.avatar, room.displayname),
+                    contentPadding: EdgeInsets.zero,
+                    onTap: () =>
+                        room.isDirectChat && room.directChatPresence == null
+                            ? null
+                            : room.isDirectChat
+                                ? showDialog(
+                                    context: context,
+                                    builder: (c) => PresenceDialog(
+                                      room.directChatPresence,
+                                      avatarUrl: room.avatar,
+                                      displayname: room.displayname,
+                                    ),
+                                  )
+                                : Navigator.of(context).push(
+                                    AppRoute.defaultRoute(
+                                      context,
+                                      ChatDetails(room),
+                                    ),
+                                  ),
+                    title: Text(room.getLocalizedDisplayname(L10n.of(context))),
+                    subtitle: typingText.isEmpty
+                        ? Text(
+                            room.getLocalizedStatus(context),
+                          )
+                        : Row(
+                            children: <Widget>[
+                              Icon(Icons.edit,
+                                  color: Theme.of(context).primaryColor,
+                                  size: 13),
+                              SizedBox(width: 4),
+                              Text(
+                                typingText,
+                                style: TextStyle(
+                                  color: Theme.of(context).primaryColor,
+                                  fontStyle: FontStyle.italic,
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              )
+                  );
+                })
             : Text(L10n.of(context)
                 .numberSelected(selectedEvents.length.toString())),
         actions: selectMode
@@ -456,6 +483,14 @@ class _ChatState extends State<_Chat> {
                       if (timeline.events.isEmpty) return Container();
 
                       return ListView.builder(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: max(
+                                0,
+                                (MediaQuery.of(context).size.width -
+                                        AdaptivePageLayout.defaultMinWidth *
+                                            2) /
+                                    2),
+                          ),
                           reverse: true,
                           itemCount: timeline.events.length + 2,
                           controller: _scrollController,

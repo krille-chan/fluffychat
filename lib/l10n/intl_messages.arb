@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-05-12T08:42:24.358124",
+  "@@last_modified": "2020-05-15T15:34:50.065646",
   "About": "About",
   "@About": {
     "type": "text",
@@ -351,6 +351,11 @@
   },
   "Create new group": "Create new group",
   "@Create new group": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Currenlty active": "Currenlty active",
+  "@Currenlty active": {
     "type": "text",
     "placeholders": {}
   },
@@ -992,6 +997,11 @@
   },
   "Search for a chat": "Search for a chat",
   "@Search for a chat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Seen a long time ago": "Seen a long time ago",
+  "@Seen a long time ago": {
     "type": "text",
     "placeholders": {}
   },
