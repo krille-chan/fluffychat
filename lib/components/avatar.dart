@@ -42,12 +42,10 @@ class Avatar extends StatelessWidget {
       child: CircleAvatar(
         radius: size / 2,
         backgroundImage: !noPic
-            ? kIsWeb
-                ? NetworkImage(src)
-                : AdvancedNetworkImage(
-                    src,
-                    useDiskCache: true,
-                  )
+            ? AdvancedNetworkImage(
+                src,
+                useDiskCache: !kIsWeb,
+              )
             : null,
         backgroundColor: noPic
             ? name?.color ?? Theme.of(context).secondaryHeaderColor

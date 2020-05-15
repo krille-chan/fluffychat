@@ -49,12 +49,15 @@ class InputBar extends StatelessWidget {
   }
 
   List<Map<String, String>> getSuggestions(String text) {
-    if (controller.selection.baseOffset != controller.selection.extentOffset || controller.selection.baseOffset < 0) {
+    if (controller.selection.baseOffset != controller.selection.extentOffset ||
+        controller.selection.baseOffset < 0) {
       return []; // no entries if there is selected text
     }
-    final searchText = controller.text.substring(0, controller.selection.baseOffset);
+    final searchText =
+        controller.text.substring(0, controller.selection.baseOffset);
     final ret = <Map<String, String>>[];
-    final emojiMatch = RegExp(r'(?:\s|^):(?:([-\w]+)~)?([-\w]+)$').firstMatch(searchText);
+    final emojiMatch =
+        RegExp(r'(?:\s|^):(?:([-\w]+)~)?([-\w]+)$').firstMatch(searchText);
     if (emojiMatch != null) {
       final packSearch = emojiMatch[1];
       final emoteSearch = emojiMatch[2].toLowerCase();
@@ -116,9 +119,7 @@ class InputBar extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Image(
-              image: kIsWeb
-                ? NetworkImage(url)
-                : AdvancedNetworkImage(url, useDiskCache: true),
+              image: AdvancedNetworkImage(url, useDiskCache: !kIsWeb),
               width: size,
               height: size,
             ),
@@ -160,9 +161,13 @@ class InputBar extends StatelessWidget {
           break;
         }
       }
-      final insertText = isUnique ? insertEmote : ':${insertPack}~${insertEmote.substring(1)}';
-      final replaceText = controller.text.substring(0, controller.selection.baseOffset);
-      final afterText = replaceText == controller.text ? '' : controller.text.substring(controller.selection.baseOffset + 1);
+      final insertText =
+          isUnique ? insertEmote : ':${insertPack}~${insertEmote.substring(1)}';
+      final replaceText =
+          controller.text.substring(0, controller.selection.baseOffset);
+      final afterText = replaceText == controller.text
+          ? ''
+          : controller.text.substring(controller.selection.baseOffset + 1);
       final startText = replaceText.replaceAllMapped(
         RegExp(r'(\s|^)(:(?:[-\w]+~)?[-\w]+)$'),
         (Match m) => '${m[1]}${insertText} ',
@@ -194,12 +199,15 @@ class InputBar extends StatelessWidget {
       hideOnEmpty: true,
       hideOnLoading: true,
       keepSuggestionsOnSuggestionSelected: true,
-      debounceDuration: Duration(milliseconds: 50), // show suggestions after 50ms idle time (default is 300)
+      debounceDuration: Duration(
+          milliseconds:
+              50), // show suggestions after 50ms idle time (default is 300)
       textFieldConfiguration: TextFieldConfiguration(
         minLines: minLines,
         maxLines: maxLines,
         keyboardType: keyboardType,
-        onSubmitted: (text) { // fix for library for now
+        onSubmitted: (text) {
+          // fix for library for now
           onSubmitted(text);
         },
         focusNode: focusNode,
@@ -211,10 +219,13 @@ class InputBar extends StatelessWidget {
       ),
       suggestionsCallback: getSuggestions,
       itemBuilder: buildSuggestion,
-      onSuggestionSelected: (Map<String, String> suggestion) => insertSuggestion(context, suggestion),
+      onSuggestionSelected: (Map<String, String> suggestion) =>
+          insertSuggestion(context, suggestion),
       errorBuilder: (BuildContext context, Object error) => Container(),
-      loadingBuilder: (BuildContext context) => Container(), // fix loading briefly flickering a dark box
-      noItemsFoundBuilder: (BuildContext context) => Container(), // fix loading briefly showing no suggestions
+      loadingBuilder: (BuildContext context) =>
+          Container(), // fix loading briefly flickering a dark box
+      noItemsFoundBuilder: (BuildContext context) =>
+          Container(), // fix loading briefly showing no suggestions
     );
   }
 }

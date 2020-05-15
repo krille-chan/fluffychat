@@ -51,12 +51,10 @@ class ContentBanner extends StatelessWidget {
                       ? Image(
                           height: 300,
                           fit: BoxFit.cover,
-                          image: kIsWeb
-                              ? NetworkImage(src)
-                              : AdvancedNetworkImage(
-                                  src,
-                                  useDiskCache: true,
-                                ),
+                          image: AdvancedNetworkImage(
+                            src,
+                            useDiskCache: !kIsWeb,
+                          ),
                         )
                       : Icon(defaultIcon, size: 300)
                   : Icon(defaultIcon, size: 300),
