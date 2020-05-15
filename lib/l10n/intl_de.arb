@@ -325,7 +325,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "countParticipants": "{count} Teilnehmer",
+  "countParticipants": "{count} Teilnehmer*innen",
   "@countParticipants": {
     "type": "text",
     "placeholders": {
@@ -719,7 +719,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "loadCountMoreParticipants": "{count} weitere Teilnehmer laden",
+  "loadCountMoreParticipants": "{count} weitere Teilnehmer*innen laden",
   "@loadCountMoreParticipants": {
     "type": "text",
     "placeholders": {
@@ -753,7 +753,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Message will be removed for all participants": "Nachricht wird für alle Teilnehmer entfernt",
+  "Message will be removed for all participants": "Nachricht wird für alle Teilnehmer*innen entfernt",
   "@Message will be removed for all participants": {
     "type": "text",
     "placeholders": {}
@@ -1292,7 +1292,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Visible for all participants": "Sichtbar für alle Teilnehmer",
+  "Visible for all participants": "Sichtbar für alle Teilnehmer*innen",
   "@Visible for all participants": {
     "type": "text",
     "placeholders": {}
@@ -1357,7 +1357,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "You are no longer participating in this chat": "Du bist kein Teilnehmer mehr in diesem Chat",
+  "You are no longer participating in this chat": "Du bist kein Mitglied mehr in diesem Chat",
   "@You are no longer participating in this chat": {
     "type": "text",
     "placeholders": {}
