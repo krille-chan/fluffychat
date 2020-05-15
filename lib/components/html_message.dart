@@ -7,19 +7,25 @@ import 'matrix.dart';
 
 class HtmlMessage extends StatelessWidget {
   final String html;
-  final Color textColor;
   final int maxLines;
   final Room room;
+  final TextStyle defaultTextStyle;
+  final TextStyle linkStyle;
 
-  const HtmlMessage({this.html, this.textColor, this.maxLines, this.room});
+  const HtmlMessage({this.html, this.maxLines, this.room, this.defaultTextStyle, this.linkStyle});
 
   @override
   Widget build(BuildContext context) {
     // there is no need to pre-validate the html, as we validate it while rendering
     
+    final themeData = Theme.of(context);
     return Html(
       data: html,
-      defaultTextStyle: TextStyle(color: textColor),
+      defaultTextStyle: defaultTextStyle,
+      linkStyle: linkStyle ?? themeData.textTheme.bodyText2.copyWith(
+        color: themeData.accentColor,
+        decoration: TextDecoration.underline,
+      ),
       shrinkToFit: true,
       maxLines: maxLines,
       onLinkTap: (String url) {

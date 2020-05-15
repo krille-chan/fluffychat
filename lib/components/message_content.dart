@@ -51,7 +51,10 @@ class MessageContent extends StatelessWidget {
               }
               return HtmlMessage(
                 html: html,
-                textColor: textColor,
+                defaultTextStyle: TextStyle(
+                  color: textColor,
+                  fontSize: DefaultTextStyle.of(context).style.fontSize,
+                ),
                 room: event.room,
               );
             }
@@ -79,6 +82,7 @@ class MessageContent extends StatelessWidget {
               text: event.getLocalizedBody(L10n.of(context), hideReply: true),
               textStyle: TextStyle(
                 color: textColor,
+                fontSize: DefaultTextStyle.of(context).style.fontSize,
                 decoration: event.redacted ? TextDecoration.lineThrough : null,
               ),
             );
