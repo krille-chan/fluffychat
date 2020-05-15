@@ -29,9 +29,12 @@ class ReplyContent extends StatelessWidget {
       }
       replyBody = HtmlMessage(
         html: html,
-        textColor: lightText
+        defaultTextStyle: TextStyle(
+          color: lightText
             ? Colors.white
             : Theme.of(context).textTheme.bodyText2.color,
+          fontSize: DefaultTextStyle.of(context).style.fontSize,
+        ),
         maxLines: 1,
         room: replyEvent.room,
       );
@@ -46,9 +49,11 @@ class ReplyContent extends StatelessWidget {
         overflow: TextOverflow.ellipsis,
         maxLines: 1,
         style: TextStyle(
-            color: lightText
-                ? Colors.white
-                : Theme.of(context).textTheme.bodyText2.color),
+          color: lightText
+            ? Colors.white
+            : Theme.of(context).textTheme.bodyText2.color,
+          fontSize: DefaultTextStyle.of(context).style.fontSize,
+        ),
       );
     }
     return Row(
