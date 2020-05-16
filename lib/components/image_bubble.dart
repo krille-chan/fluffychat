@@ -7,9 +7,14 @@ import 'package:flutter/material.dart';
 class ImageBubble extends StatefulWidget {
   final Event event;
   final bool tapToView;
+  final BoxFit fit;
 
-  const ImageBubble(this.event, {this.tapToView = true, Key key})
-      : super(key: key);
+  const ImageBubble(
+    this.event, {
+    this.tapToView = true,
+    this.fit = BoxFit.cover,
+    Key key,
+  }) : super(key: key);
 
   @override
   _ImageBubbleState createState() => _ImageBubbleState();
@@ -63,7 +68,7 @@ class _ImageBubbleState extends State<ImageBubble> {
                   tag: widget.event.eventId,
                   child: Image.memory(
                     _file.bytes,
-                    fit: BoxFit.cover,
+                    fit: widget.fit,
                   ),
                 ),
               );

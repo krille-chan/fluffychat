@@ -43,7 +43,7 @@ class ImageView extends StatelessWidget {
         minScale: 1.0,
         maxScale: 10.0,
         panLimit: 0.0,
-        child: ImageBubble(event, tapToView: false),
+        child: ImageBubble(event, tapToView: false, fit: BoxFit.contain),
       ),
     );
   }
