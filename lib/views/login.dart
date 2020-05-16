@@ -1,6 +1,8 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/app_route.dart';
@@ -70,6 +72,35 @@ class _LoginState extends State<Login> {
         AppRoute.defaultRoute(context, ChatListView()), (r) => false);
   }
 
+  Timer _coolDown;
+
+  void _checkWellKnownWithCoolDown(String userId, BuildContext context) async {
+    _coolDown?.cancel();
+    _coolDown = Timer(
+      Duration(seconds: 1),
+      () => _checkWellKnown(userId, context),
+    );
+  }
+
+  void _checkWellKnown(String userId, BuildContext context) async {
+    setState(() => usernameError = null);
+    if (!userId.isValidMatrixId) return;
+    try {
+      final wellKnownInformations = await Matrix.of(context)
+          .client
+          .getWellKnownInformationsByUserId(userId);
+      final newDomain = wellKnownInformations.mHomeserver?.baseUrl;
+      if ((newDomain?.isNotEmpty ?? false) &&
+          newDomain != Matrix.of(context).client.homeserver) {
+        await SimpleDialogs(context).tryRequestWithErrorToast(
+            Matrix.of(context).client.checkServer(newDomain));
+        setState(() => usernameError = null);
+      }
+    } catch (e) {
+      setState(() => usernameError = e.toString());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,6 +129,7 @@ class _LoginState extends State<Login> {
                 readOnly: loading,
                 autocorrect: false,
                 autofocus: true,
+                onChanged: (t) => _checkWellKnownWithCoolDown(t, context),
                 controller: usernameController,
                 decoration: InputDecoration(
                     hintText:

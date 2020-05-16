@@ -3,6 +3,7 @@
 - Implement image viewer
 - Implement room pills
 - New chat appBar showing presences and room avatars
+- Implement well-known support
 
 # Version 0.13.2 - 2020-05-13
 ### Fixes:

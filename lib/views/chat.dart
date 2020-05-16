@@ -395,10 +395,12 @@ class _ChatState extends State<_Chat> {
                                       ChatDetails(room),
                                     ),
                                   ),
-                    title: Text(room.getLocalizedDisplayname(L10n.of(context)),maxLines: 1),
+                    title: Text(room.getLocalizedDisplayname(L10n.of(context)),
+                        maxLines: 1),
                     subtitle: typingText.isEmpty
                         ? Text(
-                            room.getLocalizedStatus(context),maxLines: 1,
+                            room.getLocalizedStatus(context),
+                            maxLines: 1,
                           )
                         : Row(
                             children: <Widget>[
@@ -407,7 +409,8 @@ class _ChatState extends State<_Chat> {
                                   size: 13),
                               SizedBox(width: 4),
                               Text(
-                                typingText,maxLines: 1,
+                                typingText,
+                                maxLines: 1,
                                 style: TextStyle(
                                   color: Theme.of(context).primaryColor,
                                   fontStyle: FontStyle.italic,
