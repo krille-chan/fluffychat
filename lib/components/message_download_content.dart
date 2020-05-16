@@ -1,5 +1,4 @@
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:fluffychat/utils/event_extension.dart';
 
