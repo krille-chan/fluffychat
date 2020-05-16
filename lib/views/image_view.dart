@@ -40,10 +40,8 @@ class ImageView extends StatelessWidget {
         ],
       ),
       body: ZoomableWidget(
-        minScale: 0.3,
-        maxScale: 2.0,
-        // default factor is 1.0, use 0.0 to disable boundary
-        panLimit: 0.8,
+        minScale: 1.0,
+        panLimit: 0.0,
         child: ImageBubble(event, tapToView: false),
       ),
     );

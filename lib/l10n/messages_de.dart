@@ -57,7 +57,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m18(error) => "Nachricht konnte nicht entschlüsselt werden: ${error}";
 
-  static m19(count) => "${count} Teilnehmer";
+  static m19(count) => "${count} Teilnehmer*innen";
 
   static m20(username) => "${username} hat den Chat erstellt";
 
@@ -85,7 +85,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m32(localizedTimeShort) => "Zuletzt gesehen: ${localizedTimeShort}";
 
-  static m33(count) => "${count} weitere Teilnehmer laden";
+  static m33(count) => "${count} weitere Teilnehmer*innen laden";
 
   static m34(homeserver) => "Bei ${homeserver} anmelden";
 
@@ -238,7 +238,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Make a moderator" : MessageLookupByLibrary.simpleMessage("Zum Moderator ernennen"),
     "Make an admin" : MessageLookupByLibrary.simpleMessage("Zum Admin ernennen"),
     "Make sure the identifier is valid" : MessageLookupByLibrary.simpleMessage("Gib bitte einen richtigen Benutzernamen ein"),
-    "Message will be removed for all participants" : MessageLookupByLibrary.simpleMessage("Nachricht wird für alle Teilnehmer entfernt"),
+    "Message will be removed for all participants" : MessageLookupByLibrary.simpleMessage("Nachricht wird für alle Teilnehmer*innen entfernt"),
     "Moderator" : MessageLookupByLibrary.simpleMessage("Moderator"),
     "Monday" : MessageLookupByLibrary.simpleMessage("Montag"),
     "Mute chat" : MessageLookupByLibrary.simpleMessage("Stummschalten"),
@@ -304,7 +304,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Verify" : MessageLookupByLibrary.simpleMessage("Bestätigen"),
     "Video call" : MessageLookupByLibrary.simpleMessage("Videoanruf"),
     "Visibility of the chat history" : MessageLookupByLibrary.simpleMessage("Sichtbarkeit des Chat-Verlaufs"),
-    "Visible for all participants" : MessageLookupByLibrary.simpleMessage("Sichtbar für alle Teilnehmer"),
+    "Visible for all participants" : MessageLookupByLibrary.simpleMessage("Sichtbar für alle Teilnehmer*innen"),
     "Visible for everyone" : MessageLookupByLibrary.simpleMessage("Für jeden sichtbar"),
     "Voice message" : MessageLookupByLibrary.simpleMessage("Sprachnachricht"),
     "Wallpaper" : MessageLookupByLibrary.simpleMessage("Hintergrund"),
@@ -315,7 +315,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Yes" : MessageLookupByLibrary.simpleMessage("Ja"),
     "You" : MessageLookupByLibrary.simpleMessage("Du"),
     "You are invited to this chat" : MessageLookupByLibrary.simpleMessage("Du wurdest eingeladen in diesen Chat"),
-    "You are no longer participating in this chat" : MessageLookupByLibrary.simpleMessage("Du bist kein Teilnehmer mehr in diesem Chat"),
+    "You are no longer participating in this chat" : MessageLookupByLibrary.simpleMessage("Du bist kein Mitglied mehr in diesem Chat"),
     "You cannot invite yourself" : MessageLookupByLibrary.simpleMessage("Du kannst dich nicht selbst einladen"),
     "You have been banned from this chat" : MessageLookupByLibrary.simpleMessage("Du wurdest aus dem Chat verbannt"),
     "You won\'t be able to disable the encryption anymore. Are you sure?" : MessageLookupByLibrary.simpleMessage("Du wirst die Verschlüsselung nicht mehr ausstellen können. Bist Du sicher?"),
