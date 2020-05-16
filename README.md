@@ -4,7 +4,7 @@
 <a target="new" href="https://play.google.com/store/apps/details?id=chat.fluffy.fluffychat">
   <img height="66px" src="https://christianpauly.gitlab.io/fluffychat-website/assets/images/google-play-badge.png" />
   </a>
-  <a target="new" href="https://mtrnord.gitlab.io/fluffychat-flutter-fdroid/fdroid/repo/">
+  <a target="new" href="https://christianpauly.gitlab.io/fluffychat-website/en/fdroid.html">
   <img height="66px" src="https://christianpauly.gitlab.io/fluffychat-website/assets/images/fdroid_button.png " />
   </a>
   <br>
