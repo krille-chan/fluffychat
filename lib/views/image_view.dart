@@ -41,6 +41,7 @@ class ImageView extends StatelessWidget {
       ),
       body: ZoomableWidget(
         minScale: 1.0,
+        maxScale: 10.0,
         panLimit: 0.0,
         child: ImageBubble(event, tapToView: false),
       ),
