@@ -1,14 +1,15 @@
 import 'package:bubble/bubble.dart';
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/utils/app_route.dart';
+import 'package:fluffychat/views/image_view.dart';
 import 'package:flutter/material.dart';
-import 'package:fluffychat/utils/matrix_file_extension.dart';
-
-import 'dialogs/simple_dialogs.dart';
 
 class ImageBubble extends StatefulWidget {
   final Event event;
+  final bool tapToView;
 
-  const ImageBubble(this.event, {Key key}) : super(key: key);
+  const ImageBubble(this.event, {this.tapToView = true, Key key})
+      : super(key: key);
 
   @override
   _ImageBubbleState createState() => _ImageBubbleState();
@@ -50,16 +51,20 @@ class _ImageBubbleState extends State<ImageBubble> {
             }
             if (_file != null) {
               return InkWell(
-                onTap: () async {
-                  final MatrixFile matrixFile =
-                      await SimpleDialogs(context).tryRequestWithLoadingDialog(
-                    widget.event.downloadAndDecryptAttachment(),
+                onTap: () {
+                  if (!widget.tapToView) return;
+                  Navigator.of(context).push(
+                    AppRoute(
+                      ImageView(widget.event),
+                    ),
                   );
-                  matrixFile.open();
                 },
-                child: Image.memory(
-                  _file.bytes,
-                  fit: BoxFit.cover,
+                child: Hero(
+                  tag: widget.event.eventId,
+                  child: Image.memory(
+                    _file.bytes,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               );
             }

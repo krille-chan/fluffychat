@@ -71,6 +71,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.3"
+  clock:
+    dependency: transitive
+    description:
+      name: clock
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   collection:
     dependency: transitive
     description:
@@ -129,12 +136,19 @@ packages:
       url: "https://github.com/simolus3/moor.git"
     source: git
     version: "1.0.0"
+  fake_async:
+    dependency: transitive
+    description:
+      name: fake_async
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
   famedlysdk:
     dependency: "direct main"
     description:
       path: "."
-      ref: "1860e579475af7dd0c936a6c5bc22bb5e2d9bc76"
-      resolved-ref: "1860e579475af7dd0c936a6c5bc22bb5e2d9bc76"
+      ref: e8436198bbf77ad6d13d852d13e73e745a5df0cf
+      resolved-ref: e8436198bbf77ad6d13d852d13e73e745a5df0cf
       url: "https://gitlab.com/famedly/famedlysdk.git"
     source: git
     version: "0.0.1"
@@ -210,7 +224,7 @@ packages:
       name: flutter_matrix_html
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.7"
+    version: "0.0.8"
   flutter_secure_storage:
     dependency: "direct main"
     description:
@@ -483,7 +497,7 @@ packages:
       name: path
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.6.4"
+    version: "1.7.0"
   path_drawing:
     dependency: transitive
     description:
@@ -561,13 +575,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.4.2"
-  quiver:
-    dependency: transitive
-    description:
-      name: quiver
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.1.3"
   random_string:
     dependency: "direct main"
     description:

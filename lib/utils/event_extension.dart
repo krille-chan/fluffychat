@@ -1,8 +1,18 @@
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'matrix_file_extension.dart';
 
 extension LocalizedBody on Event {
+  void openFile(BuildContext context) async {
+    final MatrixFile matrixFile =
+        await SimpleDialogs(context).tryRequestWithLoadingDialog(
+      downloadAndDecryptAttachment(),
+    );
+    matrixFile.open();
+  }
+
   IconData get statusIcon {
     switch (status) {
       case -1:
