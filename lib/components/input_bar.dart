@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:flutter_advanced_networkimage/provider.dart';
+import 'avatar.dart';
 
 class InputBar extends StatelessWidget {
   final Room room;
@@ -27,27 +28,6 @@ class InputBar extends StatelessWidget {
     this.onChanged,
   });
 
-  Map<String, Map<String, String>> getEmotePacks() {
-    final emotePacks = <String, Map<String, String>>{};
-    final addEmotePack = (String packName, Map<String, dynamic> content) {
-      emotePacks[packName] = <String, String>{};
-      content.forEach((key, value) {
-        if (key is String && value is String && value.startsWith('mxc://')) {
-          emotePacks[packName][key] = value;
-        }
-      });
-    };
-    final roomEmotes = room.getState('im.ponies.room_emotes');
-    final userEmotes = room.client.accountData['im.ponies.user_emotes'];
-    if (roomEmotes != null && roomEmotes.content['short'] is Map) {
-      addEmotePack('room', roomEmotes.content['short']);
-    }
-    if (userEmotes != null && userEmotes.content['short'] is Map) {
-      addEmotePack('user', userEmotes.content['short']);
-    }
-    return emotePacks;
-  }
-
   List<Map<String, String>> getSuggestions(String text) {
     if (controller.selection.baseOffset != controller.selection.extentOffset ||
         controller.selection.baseOffset < 0) {
@@ -58,11 +38,11 @@ class InputBar extends StatelessWidget {
     final ret = <Map<String, String>>[];
     final emojiMatch =
         RegExp(r'(?:\s|^):(?:([-\w]+)~)?([-\w]+)$').firstMatch(searchText);
+    final MAX_RESULTS = 10;
     if (emojiMatch != null) {
       final packSearch = emojiMatch[1];
       final emoteSearch = emojiMatch[2].toLowerCase();
-      var results = 0;
-      final emotePacks = getEmotePacks();
+      final emotePacks = room.emotePacks;
       if (packSearch == null || packSearch.isEmpty) {
         for (final pack in emotePacks.entries) {
           for (final emote in pack.value.entries) {
@@ -73,13 +53,12 @@ class InputBar extends StatelessWidget {
                 'pack': pack.key,
                 'mxc': emote.value,
               });
-              results++;
             }
-            if (results > 10) {
+            if (ret.length > MAX_RESULTS) {
               break;
             }
           }
-          if (results > 10) {
+          if (ret.length > MAX_RESULTS) {
             break;
           }
         }
@@ -92,11 +71,53 @@ class InputBar extends StatelessWidget {
               'pack': packSearch,
               'mxc': emote.value,
             });
-            results++;
           }
-          if (results > 10) {
+          if (ret.length > MAX_RESULTS) {
             break;
           }
+        }
+      }
+    }
+    final userMatch = RegExp(r'(?:\s|^)@([-\w]+)$').firstMatch(searchText);
+    if (userMatch != null) {
+      final userSearch = userMatch[1].toLowerCase();
+      for (final user in room.getParticipants()) {
+        if (
+          (user.displayName != null && user.displayName.toLowerCase().contains(userSearch)) ||
+          user.id.split(':')[0].toLowerCase().contains(userSearch)
+        ) {
+          ret.add({
+            'type': 'user',
+            'mxid': user.id,
+            'displayname': user.displayName,
+            'avatar_url': user.avatarUrl?.toString(),
+          });
+        }
+        if (ret.length > MAX_RESULTS) {
+          break;
+        }
+      }
+    }
+    final roomMatch = RegExp(r'(?:\s|^)#([-\w]+)$').firstMatch(searchText);
+    if (roomMatch != null) {
+      final roomSearch = roomMatch[1].toLowerCase();
+      for (final r in room.client.rooms) {
+        final state = r.getState('m.room.canonical_alias');
+        if (
+          state != null && (
+          (state.content['alias'] is String && state.content['alias'].split(':')[0].toLowerCase().contains(roomSearch)) ||
+          (state.content['alt_aliases'] is List && state.content['alt_aliases'].any((l) => l is String && l.split(':')[0].toLowerCase().contains(roomSearch))) ||
+          (room.name != null && room.name.toLowerCase().contains(roomSearch))
+        )) {
+          ret.add({
+            'type': 'room',
+            'mxid': (r.canonicalAlias != null && r.canonicalAlias.isNotEmpty) ? r.canonicalAlias : r.id,
+            'displayname': r.displayname,
+            'avatar_url': r.avatar?.toString(),
+          });
+        }
+        if (ret.length > MAX_RESULTS) {
+          break;
         }
       }
     }
@@ -138,15 +159,37 @@ class InputBar extends StatelessWidget {
         ),
       );
     }
+    if (suggestion['type'] == 'user' || suggestion['type'] == 'room') {
+      final size = 30.0;
+      final url = Uri.parse(suggestion['avatar_url'] ?? '');
+      return Container(
+        padding: EdgeInsets.all(4.0),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Avatar(url, suggestion['displayname'] ?? suggestion['mxid'], size: size),
+            SizedBox(width: 6),
+            Text(suggestion['displayname'] ?? suggestion['mxid']),
+          ],
+        ),
+      );
+    }
     return Container();
   }
 
   void insertSuggestion(BuildContext context, Map<String, String> suggestion) {
+    final replaceText =
+        controller.text.substring(0, controller.selection.baseOffset);
+    var startText = '';
+    final afterText = replaceText == controller.text
+      ? ''
+      : controller.text.substring(controller.selection.baseOffset + 1);
+    var insertText = '';
     if (suggestion['type'] == 'emote') {
       var isUnique = true;
       final insertEmote = suggestion['name'];
       final insertPack = suggestion['pack'];
-      final emotePacks = getEmotePacks();
+      final emotePacks = room.emotePacks;
       for (final pack in emotePacks.entries) {
         if (pack.key == insertPack) {
           continue;
@@ -161,19 +204,30 @@ class InputBar extends StatelessWidget {
           break;
         }
       }
-      final insertText =
-          isUnique ? insertEmote : ':${insertPack}~${insertEmote.substring(1)}';
-      final replaceText =
-          controller.text.substring(0, controller.selection.baseOffset);
-      final afterText = replaceText == controller.text
-          ? ''
-          : controller.text.substring(controller.selection.baseOffset + 1);
-      final startText = replaceText.replaceAllMapped(
+      insertText =
+          (isUnique ? insertEmote : ':${insertPack}~${insertEmote.substring(1)}') + ' ';
+      startText = replaceText.replaceAllMapped(
         RegExp(r'(\s|^)(:(?:[-\w]+~)?[-\w]+)$'),
-        (Match m) => '${m[1]}${insertText} ',
+        (Match m) => '${m[1]}${insertText}',
       );
+    }
+    if (suggestion['type'] == 'user') {
+      insertText = suggestion['mxid'] + ' ';
+      startText = replaceText.replaceAllMapped(
+        RegExp(r'(\s|^)(@[-\w]+)$'),
+        (Match m) => '${m[1]}${insertText}',
+      );
+    }
+    if (suggestion['type'] == 'room') {
+      insertText = suggestion['mxid'] + ' ';
+      startText = replaceText.replaceAllMapped(
+        RegExp(r'(\s|^)(#[-\w]+)$'),
+        (Match m) => '${m[1]}${insertText}',
+      );
+    }
+    if (insertText.isNotEmpty && startText.isNotEmpty) {
       controller.text = startText + afterText;
-      if (startText == insertText + ' ') {
+      if (startText == insertText) {
         // stupid fix for now
         FocusScope.of(context).requestFocus(FocusNode());
         Future.delayed(Duration(milliseconds: 1)).then((res) {
