@@ -40,13 +40,16 @@ extension LocalizedBody on Event {
       num size = content['info']['size'];
       if (size < 1000000) {
         size = size / 1000;
-        return '${size.toString()}kb';
+        size = (size * 10).round() / 10;
+        return '${size.toString()} KB';
       } else if (size < 1000000000) {
         size = size / 1000000;
-        return '${size.toString()}mb';
+        size = (size * 10).round() / 10;
+        return '${size.toString()} MB';
       } else {
         size = size / 1000000000;
-        return '${size.toString()}gb';
+        size = (size * 10).round() / 10;
+        return '${size.toString()} GB';
       }
     } else {
       return null;

@@ -12,38 +12,34 @@ class MessageDownloadContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String filename = event.content.containsKey('filename')
+        ? event.content['filename']
+        : event.body;
     return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           RaisedButton(
-            color: Colors.blueGrey,
+            color: textColor,
+            elevation: 10,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8.0),
+            ),
             child: Text(
-              L10n.of(context).downloadFile,
+              filename,
               overflow: TextOverflow.fade,
               softWrap: false,
               maxLines: 1,
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Theme.of(context).primaryColor),
             ),
             onPressed: () => event.openFile(context),
           ),
-          Text(
-            '- ' +
-                (event.content.containsKey('filename')
-                    ? event.content['filename']
-                    : event.body),
-            style: TextStyle(
-              color: textColor,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
           if (event.sizeString != null)
             Text(
-              '- ' + event.sizeString,
+              event.sizeString,
               style: TextStyle(
                 color: textColor,
-                fontWeight: FontWeight.bold,
               ),
             ),
         ],
