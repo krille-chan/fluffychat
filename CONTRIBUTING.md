@@ -7,16 +7,17 @@ We always need help with social media stuff. We don't have much time and the tim
 Just contact us at [#fluffychat:matrix.org](https://matrix.to/#/#fluffychat:matrix.org).
 
 ## Translations:
-You can add translations for your language easily. Just download this file [intl_messages.arb](https://gitlab.com/ChristianPauly/fluffychat-flutter/-/raw/master/lib/i18n/intl_messages.arb) and translate it to your language. Then you can either send us the file and we add it to the project or you can do this by yourself in these steps (for mor experienced users):
+You can add translations for your language easily. Just download this file [intl_messages.arb](https://gitlab.com/ChristianPauly/fluffychat-flutter/-/raw/master/lib/l10n/intl_messages.arb) and translate it to your language. Then you can either send us the file and we add it to the project or you can do this by yourself in these steps (for mor experienced users):
 
 1. Create a GitLab account if you don't have one.
 2. Fork the project.
-3. Create a new .arb file in /lib/i18n and name it with the country code of your language. For example with klingon you name it **intl_kl.arb**.
-4. (Optional) If you are a Flutter developer, execute this command to add the translations to the project: 
+3. Create a new .arb file in /lib/l10n and name it with the country code of your language. For example with klingon you name it **intl_kl.arb**.
+4. (Optional) If you are a Flutter developer, execute this command to add the translations to the project:
 ```
-flutter pub pub run intl_translation:generate_from_arb --output-dir=lib/i18n --no-use-deferred-loading lib/i18n/i18n.dart lib/i18n/intl_*.arb
+flutter pub pub run intl_translation:generate_from_arb --output-dir=lib/l10n --no-use-deferred-loading lib/l10n/l10n.dart lib/l10n/intl_*.arb
 ```
-5. Start a new Merge Request and become a hero. ❤❤❤
+5. Append the country code of your language to the list in the `isSupported` method at the top of `/lib/l10n/l10n.dart`, as well as to the `supportedLocales` list in `/lib/main.dart`.
+6. Start a new Merge Request and become a hero. ❤❤❤
 
 ## Bug reports:
 Bug reporting and issue tracking is a huge task. We need help with:
