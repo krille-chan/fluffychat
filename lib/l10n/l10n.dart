@@ -589,6 +589,8 @@ class L10n extends MatrixLocalizations {
   String get requestToReadOlderMessages =>
       Intl.message("Request to read older messages");
 
+  String get roomHasBeenUpgraded => Intl.message('Room has been upgraded');
+
   String get saturday => Intl.message("Saturday");
 
   String get share => Intl.message("Share");
