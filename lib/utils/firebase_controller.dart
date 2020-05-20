@@ -151,8 +151,7 @@ abstract class FirebaseController {
         final platform = kIsWeb ? 'Web' : Platform.operatingSystem;
         final clientName = 'FluffyChat $platform';
         client = Client(clientName, debug: false);
-        final store = Store();
-        client.database = await getDatabase(client, store);
+        client.database = await getDatabase(client);
         client.connect();
         await client.onLoginStateChanged.stream
             .firstWhere((l) => l == LoginState.logged)
