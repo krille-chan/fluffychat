@@ -74,7 +74,7 @@ class MatrixState extends State<Matrix> {
 
   void _initWithStore() async {
     var initLoginState = client.onLoginStateChanged.stream.first;
-    client.database = await getDatabase(client, store);
+    client.database = await getDatabase(client);
     client.connect();
     if (await initLoginState == LoginState.logged && !kIsWeb) {
       await FirebaseController.setupFirebase(

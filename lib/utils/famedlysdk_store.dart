@@ -11,24 +11,28 @@ import './database/shared.dart';
 import 'package:olm/olm.dart' as olm; // needed for migration
 import 'package:random_string/random_string.dart';
 
-Future<Database> getDatabase(Client client, Store store) async {
+Future<Database> getDatabase(Client client) async {
+  if (_db != null) return _db;
+  final store = Store();
   var password = await store.getItem('database-password');
   var needMigration = false;
   if (password == null || password.isEmpty) {
     needMigration = true;
     password = randomString(255);
   }
-  final db = constructDb(
+  _db = constructDb(
     logStatements: false,
     filename: 'moor.sqlite',
     password: password,
   );
   if (needMigration) {
-    await migrate(client.clientName, db, store);
+    await migrate(client.clientName, _db, store);
     await store.setItem('database-password', password);
   }
-  return db;
+  return _db;
 }
+
+Database _db;
 
 Future<void> migrate(String clientName, Database db, Store store) async {
   debugPrint('[Store] attempting old migration to moor...');
@@ -147,7 +151,13 @@ Future<void> migrate(String clientName, Database db, Store store) async {
           devices = List<String>.from(json.decode(devicesString));
         }
         await db.storeOutboundGroupSession(
-            clientId, roomId, pickle, json.encode(devices));
+          clientId,
+          roomId,
+          pickle,
+          json.encode(devices),
+          DateTime.now(),
+          0,
+        );
       }
       // session_keys
       final sessionKeysMatch =
