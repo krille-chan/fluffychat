@@ -491,7 +491,7 @@ class _ChatState extends State<_Chat> {
                                 0,
                                 (MediaQuery.of(context).size.width -
                                         AdaptivePageLayout.defaultMinWidth *
-                                            3) /
+                                            3.5) /
                                     2),
                           ),
                           reverse: true,
