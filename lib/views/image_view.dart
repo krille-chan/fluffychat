@@ -19,13 +19,15 @@ class ImageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
+        elevation: 0,
         leading: IconButton(
           icon: Icon(Icons.close),
           onPressed: () => Navigator.of(context).pop(),
           color: Colors.white,
         ),
-        backgroundColor: Colors.black,
+        backgroundColor: Color(0x44000000),
         actions: [
           IconButton(
             icon: Icon(Icons.reply),
@@ -42,8 +44,14 @@ class ImageView extends StatelessWidget {
       body: ZoomableWidget(
         minScale: 1.0,
         maxScale: 10.0,
-        panLimit: 0.0,
-        child: ImageBubble(event, tapToView: false, fit: BoxFit.contain),
+        child: ImageBubble(
+          event,
+          tapToView: false,
+          fit: BoxFit.contain,
+          backgroundColor: Colors.black,
+          maxSize: false,
+          radius: 0.0,
+        ),
       ),
     );
   }

@@ -8,11 +8,17 @@ class ImageBubble extends StatefulWidget {
   final Event event;
   final bool tapToView;
   final BoxFit fit;
+  final bool maxSize;
+  final Color backgroundColor;
+  final double radius;
 
   const ImageBubble(
     this.event, {
     this.tapToView = true,
+    this.maxSize = true,
+    this.backgroundColor,
     this.fit = BoxFit.cover,
+    this.radius = 10.0,
     Key key,
   }) : super(key: key);
 
@@ -39,12 +45,12 @@ class _ImageBubbleState extends State<ImageBubble> {
   Widget build(BuildContext context) {
     return Bubble(
       padding: BubbleEdges.all(0),
-      radius: Radius.circular(10),
-      color: Theme.of(context).secondaryHeaderColor,
+      radius: Radius.circular(widget.radius),
+      color: widget.backgroundColor ?? Theme.of(context).secondaryHeaderColor,
       elevation: 0,
       child: Container(
-        height: 300,
-        width: 400,
+        height: widget.maxSize ? 300 : null,
+        width: widget.maxSize ? 400 : null,
         child: Builder(
           builder: (BuildContext context) {
             if (_error != null) {
