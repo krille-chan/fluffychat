@@ -74,6 +74,34 @@ build_android_appbundle:
   only:
     - master
 
+upload_to_fdroid_repo:
+  stage: publish
+  before_script:
+    ##
+    ## Install ssh-agent if not already installed.
+    ##
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    ##
+    ## Install rsync if not already installed.
+    ##
+    - 'which rsync || ( apt-get update -y && apt-get install rsync -y )'
+    ##
+    ## Run ssh-agent (inside the build environment)
+    ##
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+  script:
+    - export UPDATE_VERSION=$(pcregrep -o1 'version:\\s([0-9]*\\.[0-9]*\\.[0-9]*)\\+[0-9]*' pubspec.yaml)
+    - mv app-release.apk "${UPDATE_VERSION}.apk"
+    - cd build/app/outputs/apk/release/ && rsync -rav -e ssh ./ fluffy@fdroid.nordgedanken.dev:/fdroid/repo
+    - ssh fluffy@fdroid.nordgedanken.dev "cd fdroid && fdroid update"
+  dependencies:
+    - build_android_apk
+  only:
+    - tags
+
 pages:
   stage: publish
   image: ruby:2.3
