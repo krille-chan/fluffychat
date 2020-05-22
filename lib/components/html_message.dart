@@ -12,20 +12,26 @@ class HtmlMessage extends StatelessWidget {
   final TextStyle defaultTextStyle;
   final TextStyle linkStyle;
 
-  const HtmlMessage({this.html, this.maxLines, this.room, this.defaultTextStyle, this.linkStyle});
+  const HtmlMessage(
+      {this.html,
+      this.maxLines,
+      this.room,
+      this.defaultTextStyle,
+      this.linkStyle});
 
   @override
   Widget build(BuildContext context) {
     // there is no need to pre-validate the html, as we validate it while rendering
-    
+
     final themeData = Theme.of(context);
     return Html(
       data: html,
       defaultTextStyle: defaultTextStyle,
-      linkStyle: linkStyle ?? themeData.textTheme.bodyText2.copyWith(
-        color: themeData.accentColor,
-        decoration: TextDecoration.underline,
-      ),
+      linkStyle: linkStyle ??
+          themeData.textTheme.bodyText2.copyWith(
+            color: themeData.accentColor,
+            decoration: TextDecoration.underline,
+          ),
       shrinkToFit: true,
       maxLines: maxLines,
       onLinkTap: (String url) {
@@ -67,11 +73,11 @@ class HtmlMessage extends StatelessWidget {
           // we have an alias pill
           for (final r in room.client.rooms) {
             final state = r.getState('m.room.canonical_alias');
-            if (
-              state != null && (
-              (state.content['alias'] is String && state.content['alias'] == identifier) ||
-              (state.content['alt_aliases'] is List && state.content['alt_aliases'].contains(identifier))
-            )) {
+            if (state != null &&
+                ((state.content['alias'] is String &&
+                        state.content['alias'] == identifier) ||
+                    (state.content['alt_aliases'] is List &&
+                        state.content['alt_aliases'].contains(identifier)))) {
               // we have a room!
               return {
                 'displayname': identifier,

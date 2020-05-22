@@ -82,10 +82,9 @@ class InputBar extends StatelessWidget {
     if (userMatch != null) {
       final userSearch = userMatch[1].toLowerCase();
       for (final user in room.getParticipants()) {
-        if (
-          (user.displayName != null && user.displayName.toLowerCase().contains(userSearch)) ||
-          user.id.split(':')[0].toLowerCase().contains(userSearch)
-        ) {
+        if ((user.displayName != null &&
+                user.displayName.toLowerCase().contains(userSearch)) ||
+            user.id.split(':')[0].toLowerCase().contains(userSearch)) {
           ret.add({
             'type': 'user',
             'mxid': user.id,
@@ -103,15 +102,23 @@ class InputBar extends StatelessWidget {
       final roomSearch = roomMatch[1].toLowerCase();
       for (final r in room.client.rooms) {
         final state = r.getState('m.room.canonical_alias');
-        if (
-          state != null && (
-          (state.content['alias'] is String && state.content['alias'].split(':')[0].toLowerCase().contains(roomSearch)) ||
-          (state.content['alt_aliases'] is List && state.content['alt_aliases'].any((l) => l is String && l.split(':')[0].toLowerCase().contains(roomSearch))) ||
-          (room.name != null && room.name.toLowerCase().contains(roomSearch))
-        )) {
+        if (state != null &&
+            ((state.content['alias'] is String &&
+                    state.content['alias']
+                        .split(':')[0]
+                        .toLowerCase()
+                        .contains(roomSearch)) ||
+                (state.content['alt_aliases'] is List &&
+                    state.content['alt_aliases'].any((l) =>
+                        l is String &&
+                        l.split(':')[0].toLowerCase().contains(roomSearch))) ||
+                (room.name != null &&
+                    room.name.toLowerCase().contains(roomSearch)))) {
           ret.add({
             'type': 'room',
-            'mxid': (r.canonicalAlias != null && r.canonicalAlias.isNotEmpty) ? r.canonicalAlias : r.id,
+            'mxid': (r.canonicalAlias != null && r.canonicalAlias.isNotEmpty)
+                ? r.canonicalAlias
+                : r.id,
             'displayname': r.displayname,
             'avatar_url': r.avatar?.toString(),
           });
@@ -167,7 +174,8 @@ class InputBar extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Avatar(url, suggestion['displayname'] ?? suggestion['mxid'], size: size),
+            Avatar(url, suggestion['displayname'] ?? suggestion['mxid'],
+                size: size),
             SizedBox(width: 6),
             Text(suggestion['displayname'] ?? suggestion['mxid']),
           ],
@@ -182,8 +190,8 @@ class InputBar extends StatelessWidget {
         controller.text.substring(0, controller.selection.baseOffset);
     var startText = '';
     final afterText = replaceText == controller.text
-      ? ''
-      : controller.text.substring(controller.selection.baseOffset + 1);
+        ? ''
+        : controller.text.substring(controller.selection.baseOffset + 1);
     var insertText = '';
     if (suggestion['type'] == 'emote') {
       var isUnique = true;
@@ -204,8 +212,10 @@ class InputBar extends StatelessWidget {
           break;
         }
       }
-      insertText =
-          (isUnique ? insertEmote : ':${insertPack}~${insertEmote.substring(1)}') + ' ';
+      insertText = (isUnique
+              ? insertEmote
+              : ':${insertPack}~${insertEmote.substring(1)}') +
+          ' ';
       startText = replaceText.replaceAllMapped(
         RegExp(r'(\s|^)(:(?:[-\w]+~)?[-\w]+)$'),
         (Match m) => '${m[1]}${insertText}',

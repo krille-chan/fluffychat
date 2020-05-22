@@ -31,8 +31,8 @@ class ReplyContent extends StatelessWidget {
         html: html,
         defaultTextStyle: TextStyle(
           color: lightText
-            ? Colors.white
-            : Theme.of(context).textTheme.bodyText2.color,
+              ? Colors.white
+              : Theme.of(context).textTheme.bodyText2.color,
           fontSize: DefaultTextStyle.of(context).style.fontSize,
         ),
         maxLines: 1,
@@ -50,8 +50,8 @@ class ReplyContent extends StatelessWidget {
         maxLines: 1,
         style: TextStyle(
           color: lightText
-            ? Colors.white
-            : Theme.of(context).textTheme.bodyText2.color,
+              ? Colors.white
+              : Theme.of(context).textTheme.bodyText2.color,
           fontSize: DefaultTextStyle.of(context).style.fontSize,
         ),
       );

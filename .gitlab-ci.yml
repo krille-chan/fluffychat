@@ -12,6 +12,7 @@ code_analyze:
   stage: coverage
   dependencies: []
   script:
+    - flutter format lib/ test/ test_driver/ --set-exit-if-changed
     - flutter analyze
 
 test:
