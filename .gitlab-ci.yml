@@ -40,6 +40,19 @@ build_web:
       - build/web/
 
 
+build_android_debug:
+  stage: coverage
+  script:
+    - truncate -s $(head -n -2 android/app/build.gradle | wc -c) android/app/build.gradle
+    - flutter build apk --debug
+  artifacts:
+    when: on_success
+    paths:
+      - build/app/outputs/apk/release/app-release.apk
+  except:
+    - master
+
+
 build_android_apk:
   stage: coverage
   script:
