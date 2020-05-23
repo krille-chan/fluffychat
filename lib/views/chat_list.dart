@@ -384,10 +384,11 @@ class _ChatListState extends State<ChatList> {
                               var rooms = List<Room>.from(
                                   Matrix.of(context).client.rooms);
                               rooms.removeWhere((Room room) =>
-                                  searchMode &&
-                                  !room.displayname.toLowerCase().contains(
-                                      searchController.text.toLowerCase() ??
-                                          ''));
+                                  room.lastEvent == null ||
+                                  (searchMode &&
+                                      !room.displayname.toLowerCase().contains(
+                                          searchController.text.toLowerCase() ??
+                                              '')));
                               if (rooms.isEmpty &&
                                   (!searchMode ||
                                       publicRoomsResponse == null)) {
