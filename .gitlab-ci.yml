@@ -44,11 +44,11 @@ build_android_debug:
   stage: coverage
   script:
     - truncate -s $(head -n -2 android/app/build.gradle | wc -c) android/app/build.gradle
-    - flutter build apk --debug
+    - flutter build apk --debug -v
   artifacts:
     when: on_success
     paths:
-      - build/app/outputs/apk/release/app-release.apk
+      - build/app/outputs/apk/debug/app-debug.apk
   except:
     - master
 
