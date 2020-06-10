@@ -5,9 +5,11 @@ import 'date_time_extension.dart';
 
 extension PresenceExtension on Presence {
   String getLocalizedStatusMessage(BuildContext context) {
-    if (statusMsg?.isNotEmpty ?? false) {
-      return statusMsg;
+    if (presence.statusMsg?.isNotEmpty ?? false) {
+      return presence.statusMsg;
     }
-    return L10n.of(context).lastActiveAgo(time.localizedTimeShort(context));
+    return L10n.of(context).lastActiveAgo(
+        DateTime.fromMillisecondsSinceEpoch(presence.lastActiveAgo)
+            .localizedTimeShort(context));
   }
 }

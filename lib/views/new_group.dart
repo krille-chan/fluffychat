@@ -1,3 +1,4 @@
+import 'package:famedlysdk/matrix_api.dart' as api;
 import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/matrix.dart';
@@ -32,20 +33,17 @@ class _NewGroupState extends State<_NewGroup> {
 
   void submitAction(BuildContext context) async {
     final matrix = Matrix.of(context);
-    var params = <String, dynamic>{};
-    if (publicGroup) {
-      params['preset'] = 'public_chat';
-      params['visibility'] = 'public';
-      if (controller.text.isNotEmpty) {
-        params['room_alias_name'] = controller.text;
-      }
-    } else {
-      params['preset'] = 'private_chat';
-    }
-    if (controller.text.isNotEmpty) params['name'] = controller.text;
     final String roomID =
         await SimpleDialogs(context).tryRequestWithLoadingDialog(
-      matrix.client.createRoom(params: params),
+      matrix.client.api.createRoom(
+        preset: publicGroup
+            ? api.CreateRoomPreset.public_chat
+            : api.CreateRoomPreset.private_chat,
+        visibility: publicGroup ? api.Visibility.public : null,
+        roomAliasName:
+            publicGroup && controller.text.isNotEmpty ? controller.text : null,
+        name: controller.text.isNotEmpty ? controller.text : null,
+      ),
     );
     Navigator.of(context).pop();
     if (roomID != null) {

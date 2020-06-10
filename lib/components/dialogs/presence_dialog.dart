@@ -27,7 +27,7 @@ class PresenceDialog extends StatelessWidget {
         contentPadding: EdgeInsets.zero,
         leading: Avatar(avatarUrl, displayname),
         title: Text(displayname),
-        subtitle: Text(presence.sender),
+        subtitle: Text(presence.senderId),
       ),
       content: Column(
         mainAxisSize: MainAxisSize.min,
@@ -38,7 +38,7 @@ class PresenceDialog extends StatelessWidget {
             Text(
               presence.presence.toString().split('.').last,
               style: TextStyle(
-                color: presence.currentlyActive == true
+                color: presence.presence.currentlyActive == true
                     ? Colors.green
                     : Theme.of(context).primaryColor,
               ),
@@ -46,12 +46,12 @@ class PresenceDialog extends StatelessWidget {
         ],
       ),
       actions: <Widget>[
-        if (presence.sender != Matrix.of(context).client.userID)
+        if (presence.senderId != Matrix.of(context).client.userID)
           FlatButton(
             child: Text(L10n.of(context).sendAMessage),
             onPressed: () async {
               final roomId = await User(
-                presence.sender,
+                presence.senderId,
                 room: Room(id: '', client: Matrix.of(context).client),
               ).startDirectChat();
               await Navigator.of(context).pushAndRemoveUntil(

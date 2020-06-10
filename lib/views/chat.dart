@@ -372,7 +372,7 @@ class _ChatState extends State<_Chat> {
                     .client
                     .onPresence
                     .stream
-                    .where((p) => p.sender == room.directChatMatrixID),
+                    .where((p) => p.senderId == room.directChatMatrixID),
                 builder: (context, snapshot) {
                   return ListTile(
                     leading: Avatar(room.avatar, room.displayname),
@@ -557,7 +557,8 @@ class _ChatState extends State<_Chat> {
                                             );
                                           }
                                           selectedEvents.sort(
-                                            (a, b) => a.time.compareTo(b.time),
+                                            (a, b) => a.originServerTs
+                                                .compareTo(b.originServerTs),
                                           );
                                         }
                                       },

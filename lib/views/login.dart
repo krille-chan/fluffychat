@@ -91,7 +91,7 @@ class _LoginState extends State<Login> {
           .getWellKnownInformationsByUserId(userId);
       final newDomain = wellKnownInformations.mHomeserver?.baseUrl;
       if ((newDomain?.isNotEmpty ?? false) &&
-          newDomain != Matrix.of(context).client.homeserver) {
+          newDomain != Matrix.of(context).client.api.homeserver.toString()) {
         await SimpleDialogs(context).tryRequestWithErrorToast(
             Matrix.of(context).client.checkServer(newDomain));
         setState(() => usernameError = null);
@@ -110,7 +110,9 @@ class _LoginState extends State<Login> {
         title: Text(
           L10n.of(context).logInTo(Matrix.of(context)
               .client
+              .api
               .homeserver
+              .toString()
               .replaceFirst('https://', '')),
         ),
       ),

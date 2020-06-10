@@ -13,9 +13,9 @@ class PresenceListItem extends StatelessWidget {
   static final Map<String, Profile> _presences = {};
 
   Future<Profile> _requestProfile(BuildContext context) async {
-    _presences[presence.sender] ??=
-        await Matrix.of(context).client.getProfileFromUserId(presence.sender);
-    return _presences[presence.sender];
+    _presences[presence.senderId] ??=
+        await Matrix.of(context).client.getProfileFromUserId(presence.senderId);
+    return _presences[presence.senderId];
   }
 
   @override
@@ -25,7 +25,7 @@ class PresenceListItem extends StatelessWidget {
         builder: (context, snapshot) {
           if (!snapshot.hasData) return Container();
           Uri avatarUrl;
-          var displayname = presence.sender.localpart;
+          var displayname = presence.senderId.localpart;
           if (snapshot.hasData) {
             avatarUrl = snapshot.data.avatarUrl;
             displayname = snapshot.data.displayname;

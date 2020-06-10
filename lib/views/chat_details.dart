@@ -1,4 +1,5 @@
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:famedlysdk/matrix_api.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/chat_settings_popup_menu.dart';
 import 'package:fluffychat/components/content_banner.dart';
@@ -61,28 +62,22 @@ class _ChatDetailsState extends State<ChatDetails> {
       var newAliases = List<String>.from(aliases);
       newAliases.add(canonicalAlias);
       final response = await SimpleDialogs(context).tryRequestWithLoadingDialog(
-        widget.room.client.jsonRequest(
-          type: HTTPType.GET,
-          action: '/client/r0/directory/room/$canonicalAlias',
-        ),
+        widget.room.client.api.requestRoomAliasInformations(canonicalAlias),
       );
       if (response == false) {
         final success =
             await SimpleDialogs(context).tryRequestWithLoadingDialog(
-          widget.room.client.jsonRequest(
-              type: HTTPType.PUT,
-              action: '/client/r0/directory/room/$canonicalAlias',
-              data: {'room_id': widget.room.id}),
+          widget.room.client.api
+              .createRoomAlias(canonicalAlias, widget.room.id),
         );
         if (success == false) return;
       }
     }
     await SimpleDialogs(context).tryRequestWithLoadingDialog(
-      widget.room.client.jsonRequest(
-          type: HTTPType.PUT,
-          action:
-              '/client/r0/rooms/${widget.room.id}/state/m.room.canonical_alias',
-          data: {'alias': '#$s:$domain'}),
+      widget.room.client.api
+          .sendState(widget.room.id, 'm.room.canonical_alias', {
+        'alias': '#$s:$domain',
+      }),
     );
   }
 

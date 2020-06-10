@@ -25,36 +25,32 @@ class DevicesSettings extends StatefulWidget {
 }
 
 class DevicesSettingsState extends State<DevicesSettings> {
-  List<UserDevice> devices;
+  List<Device> devices;
   Future<bool> _loadUserDevices(BuildContext context) async {
     if (devices != null) return true;
-    devices = await Matrix.of(context).client.requestUserDevices();
+    devices = await Matrix.of(context).client.api.requestDevices();
     return true;
   }
 
   void reload() => setState(() => devices = null);
 
-  void _removeDevicesAction(
-      BuildContext context, List<UserDevice> devices) async {
+  void _removeDevicesAction(BuildContext context, List<Device> devices) async {
     if (await SimpleDialogs(context).askConfirmation() == false) return;
     var matrix = Matrix.of(context);
     var deviceIds = <String>[];
     for (var userDevice in devices) {
       deviceIds.add(userDevice.deviceId);
     }
-    final success = await SimpleDialogs(context)
-        .tryRequestWithLoadingDialog(matrix.client.deleteDevices(deviceIds),
-            onAdditionalAuth: (MatrixException exception) async {
-      final password = await SimpleDialogs(context).enterText(
-          titleText: L10n.of(context).pleaseEnterYourPassword,
-          labelText: L10n.of(context).pleaseEnterYourPassword,
-          hintText: '******',
-          password: true);
-      if (password == null) return;
-      await matrix.client.deleteDevices(deviceIds,
-          auth: matrix.getAuthByPassword(password, exception.session));
-      return;
-    });
+    final password = await SimpleDialogs(context).enterText(
+        titleText: L10n.of(context).pleaseEnterYourPassword,
+        labelText: L10n.of(context).pleaseEnterYourPassword,
+        hintText: '******',
+        password: true);
+    if (password == null) return;
+
+    final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
+        matrix.client.api.deleteDevices(deviceIds,
+            auth: matrix.getAuthByPassword(password)));
     if (success != false) {
       reload();
     }
@@ -81,9 +77,9 @@ class DevicesSettingsState extends State<DevicesSettings> {
           if (!snapshot.hasData || this.devices == null) {
             return Center(child: CircularProgressIndicator());
           }
-          Function isOwnDevice = (UserDevice userDevice) =>
+          Function isOwnDevice = (Device userDevice) =>
               userDevice.deviceId == Matrix.of(context).client.deviceID;
-          final devices = List<UserDevice>.from(this.devices);
+          final devices = List<Device>.from(this.devices);
           var thisDevice = devices.firstWhere(isOwnDevice, orElse: () => null);
           devices.removeWhere(isOwnDevice);
           devices.sort((a, b) => b.lastSeenTs.compareTo(a.lastSeenTs));
@@ -134,7 +130,7 @@ class DevicesSettingsState extends State<DevicesSettings> {
 }
 
 class UserDeviceListItem extends StatelessWidget {
-  final UserDevice userDevice;
+  final Device userDevice;
   final Function remove;
 
   const UserDeviceListItem(this.userDevice, {this.remove, Key key})

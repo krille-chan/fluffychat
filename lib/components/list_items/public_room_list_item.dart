@@ -1,4 +1,5 @@
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:famedlysdk/matrix_api.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:flutter/material.dart';
 
@@ -6,15 +7,16 @@ import '../../l10n/l10n.dart';
 import '../../utils/app_route.dart';
 import '../../views/chat.dart';
 import '../avatar.dart';
+import '../matrix.dart';
 
 class PublicRoomListItem extends StatelessWidget {
-  final PublicRoomEntry publicRoomEntry;
+  final PublicRoom publicRoomEntry;
 
   const PublicRoomListItem(this.publicRoomEntry, {Key key}) : super(key: key);
 
   void joinAction(BuildContext context) async {
-    final success = await SimpleDialogs(context)
-        .tryRequestWithLoadingDialog(publicRoomEntry.join());
+    final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
+        Matrix.of(context).client.api.joinRoom(publicRoomEntry.roomId));
     if (success != false) {
       await Navigator.of(context).push(
         AppRoute.defaultRoute(

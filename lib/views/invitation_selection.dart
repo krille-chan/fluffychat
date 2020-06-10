@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:famedlysdk/matrix_api.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/avatar.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
@@ -23,7 +24,7 @@ class _InvitationSelectionState extends State<InvitationSelection> {
   TextEditingController controller = TextEditingController();
   String currentSearchTerm;
   bool loading = false;
-  List<Map<String, dynamic>> foundProfiles = [];
+  List<Profile> foundProfiles = [];
   Timer coolDown;
 
   Future<List<User>> getContacts(BuildContext context) async {
@@ -84,32 +85,23 @@ class _InvitationSelectionState extends State<InvitationSelection> {
     setState(() => loading = true);
     final matrix = Matrix.of(context);
     final response = await SimpleDialogs(context).tryRequestWithErrorToast(
-      matrix.client.jsonRequest(
-          type: HTTPType.POST,
-          action: '/client/r0/user_directory/search',
-          data: {
-            'search_term': text,
-            'limit': 10,
-          }),
+      matrix.client.api.searchUser(text, limit: 10),
     );
     setState(() => loading = false);
-    if (response == false ||
-        !(response is Map) ||
-        (response['results'] == null)) return;
+    if (response == false || (response?.results == null)) return;
     setState(() {
-      foundProfiles = List<Map<String, dynamic>>.from(response['results']);
+      foundProfiles = List<Profile>.from(response.results);
       if ('@$text'.isValidMatrixId &&
-          foundProfiles
-                  .indexWhere((profile) => '@$text' == profile['user_id']) ==
+          foundProfiles.indexWhere((profile) => '@$text' == profile.userId) ==
               -1) {
         setState(() => foundProfiles = [
-              {'user_id': '@$text'}
+              Profile.fromJson({'user_id': '@$text'}),
             ]);
       }
       foundProfiles.removeWhere((profile) =>
           widget.room
               .getParticipants()
-              .indexWhere((u) => u.id == profile['user_id']) !=
+              .indexWhere((u) => u.id == profile.userId) !=
           -1);
     });
   }
@@ -160,19 +152,15 @@ class _InvitationSelectionState extends State<InvitationSelection> {
                   itemCount: foundProfiles.length,
                   itemBuilder: (BuildContext context, int i) => ListTile(
                     leading: Avatar(
-                      foundProfiles[i]['avatar_url'] == null
-                          ? null
-                          : Uri.parse(foundProfiles[i]['avatar_url']),
-                      foundProfiles[i]['display_name'] ??
-                          foundProfiles[i]['user_id'],
+                      foundProfiles[i].avatarUrl,
+                      foundProfiles[i].displayname ?? foundProfiles[i].userId,
                     ),
                     title: Text(
-                      foundProfiles[i]['display_name'] ??
-                          (foundProfiles[i]['user_id'] as String).localpart,
+                      foundProfiles[i].displayname ??
+                          foundProfiles[i].userId.localpart,
                     ),
-                    subtitle: Text(foundProfiles[i]['user_id']),
-                    onTap: () =>
-                        inviteAction(context, foundProfiles[i]['user_id']),
+                    subtitle: Text(foundProfiles[i].userId),
+                    onTap: () => inviteAction(context, foundProfiles[i].userId),
                   ),
                 )
               : FutureBuilder<List<User>>(

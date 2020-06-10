@@ -42,7 +42,7 @@ abstract class FirebaseController {
       );
       return;
     }
-    final pushers = await client.getPushers();
+    final pushers = await client.api.requestPushers();
     final currentPushers = pushers.where((pusher) => pusher.pushkey == token);
     if (currentPushers.length == 1 &&
         currentPushers.first.kind == 'http' &&
@@ -50,35 +50,35 @@ abstract class FirebaseController {
         currentPushers.first.appDisplayName == clientName &&
         currentPushers.first.deviceDisplayName == client.deviceName &&
         currentPushers.first.lang == 'en' &&
-        currentPushers.first.data.url == GATEWAY_URL &&
+        currentPushers.first.data.url.toString() == GATEWAY_URL &&
         currentPushers.first.data.format == PUSHER_FORMAT) {
       debugPrint('[Push] Pusher already set');
     } else {
       if (currentPushers.isNotEmpty) {
         for (final currentPusher in currentPushers) {
-          await client.setPushers(
-            token,
-            'null',
-            currentPusher.appId,
-            currentPusher.appDisplayName,
-            currentPusher.deviceDisplayName,
-            currentPusher.lang,
-            currentPusher.data.url,
+          currentPusher.pushkey = token;
+          currentPusher.kind = 'null';
+          await client.api.setPusher(
+            currentPusher,
             append: true,
           );
           debugPrint('[Push] Remove legacy pusher for this device');
         }
       }
-      await client.setPushers(
-        token,
-        'http',
-        APP_ID,
-        clientName,
-        client.deviceName,
-        'en',
-        GATEWAY_URL,
+      await client.api.setPusher(
+        Pusher(
+          token,
+          APP_ID,
+          clientName,
+          client.deviceName,
+          'en',
+          PusherData(
+            url: Uri.parse(GATEWAY_URL),
+            format: PUSHER_FORMAT,
+          ),
+          kind: 'http',
+        ),
         append: false,
-        format: PUSHER_FORMAT,
       );
     }
 
@@ -224,7 +224,7 @@ abstract class FirebaseController {
             messages: [
               Message(
                 body,
-                event.time,
+                event.originServerTs,
                 person,
               )
             ],

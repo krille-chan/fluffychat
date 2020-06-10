@@ -10,11 +10,13 @@ extension RoomStatusExtension on Room {
   String getLocalizedStatus(BuildContext context) {
     if (isDirectChat) {
       if (directChatPresence != null) {
-        if (directChatPresence.currentlyActive == true) {
+        if (directChatPresence.presence.currentlyActive == true) {
           return L10n.of(context).currentlyActive;
         }
-        return L10n.of(context)
-            .lastActiveAgo(directChatPresence.time.localizedTimeShort(context));
+        return L10n.of(context).lastActiveAgo(
+            DateTime.fromMillisecondsSinceEpoch(
+                    directChatPresence.presence.lastActiveAgo)
+                .localizedTimeShort(context));
       }
       return L10n.of(context).lastSeenLongTimeAgo;
     }

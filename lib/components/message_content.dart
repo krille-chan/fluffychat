@@ -90,8 +90,8 @@ class MessageContent extends StatelessWidget {
         break;
       default:
         return Text(
-          L10n.of(context).userSentUnknownEvent(
-              event.sender.calcDisplayname(), event.typeKey),
+          L10n.of(context)
+              .userSentUnknownEvent(event.sender.calcDisplayname(), event.type),
           style: TextStyle(
             color: textColor,
             decoration: event.redacted ? TextDecoration.lineThrough : null,
