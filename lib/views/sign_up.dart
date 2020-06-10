@@ -49,7 +49,7 @@ class _SignUpState extends State<SignUp> {
         usernameController.text.toLowerCase().replaceAll(' ', '-');
 
     try {
-      await matrix.client.usernameAvailable(preferredUsername);
+      await matrix.client.api.usernameAvailable(preferredUsername);
     } on MatrixException catch (exception) {
       setState(() => usernameError = exception.errorMessage);
       return setState(() => loading = false);
@@ -73,7 +73,12 @@ class _SignUpState extends State<SignUp> {
         elevation: 0,
         leading: loading ? Container() : null,
         title: Text(
-          Matrix.of(context).client.homeserver.replaceFirst('https://', ''),
+          Matrix.of(context)
+              .client
+              .api
+              .homeserver
+              .toString()
+              .replaceFirst('https://', ''),
         ),
       ),
       body: ListView(

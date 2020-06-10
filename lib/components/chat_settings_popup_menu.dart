@@ -46,9 +46,9 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
   Widget build(BuildContext context) {
     notificationChangeSub ??= Matrix.of(context)
         .client
-        .onUserEvent
+        .onAccountData
         .stream
-        .where((u) => u.type == 'account_data' && u.eventType == 'm.push_rules')
+        .where((u) => u.type == 'm.push_rules')
         .listen(
           (u) => setState(() => null),
         );

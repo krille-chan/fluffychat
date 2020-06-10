@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:famedlysdk/matrix_api.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/avatar.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
@@ -34,14 +35,14 @@ class _NewPrivateChatState extends State<_NewPrivateChat> {
   final _formKey = GlobalKey<FormState>();
   bool loading = false;
   String currentSearchTerm;
-  List<Map<String, dynamic>> foundProfiles = [];
+  List<Profile> foundProfiles = [];
   Timer coolDown;
-  Map<String, dynamic> get foundProfile => foundProfiles.firstWhere(
-      (user) => user['user_id'] == '@$currentSearchTerm',
-      orElse: () => null);
+  Profile get foundProfile =>
+      foundProfiles.firstWhere((user) => user.userId == '@$currentSearchTerm',
+          orElse: () => null);
   bool get correctMxId =>
       foundProfiles
-          .indexWhere((user) => user['user_id'] == '@$currentSearchTerm') !=
+          .indexWhere((user) => user.userId == '@$currentSearchTerm') !=
       -1;
 
   void submitAction(BuildContext context) async {
@@ -89,20 +90,12 @@ class _NewPrivateChatState extends State<_NewPrivateChat> {
     setState(() => loading = true);
     final matrix = Matrix.of(context);
     final response = await SimpleDialogs(context).tryRequestWithErrorToast(
-      matrix.client.jsonRequest(
-          type: HTTPType.POST,
-          action: '/client/r0/user_directory/search',
-          data: {
-            'search_term': text,
-            'limit': 10,
-          }),
+      matrix.client.api.searchUser(text, limit: 10),
     );
     setState(() => loading = false);
-    if (response == false ||
-        !(response is Map) ||
-        (response['results']?.isEmpty ?? true)) return;
+    if (response == false || (response?.results?.isEmpty ?? true)) return;
     setState(() {
-      foundProfiles = List<Map<String, dynamic>>.from(response['results']);
+      foundProfiles = List<Profile>.from(response.results);
     });
   }
 
@@ -158,11 +151,8 @@ class _NewPrivateChatState extends State<_NewPrivateChat> {
                           ? Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Avatar(
-                                foundProfile['avatar_url'] == null
-                                    ? null
-                                    : Uri.parse(foundProfile['avatar_url']),
-                                foundProfile['display_name'] ??
-                                    foundProfile['user_id'],
+                                foundProfile.avatarUrl,
+                                foundProfile.displayname ?? foundProfile.userId,
                                 size: 12,
                               ),
                             )
@@ -184,24 +174,21 @@ class _NewPrivateChatState extends State<_NewPrivateChat> {
                     onTap: () {
                       setState(() {
                         controller.text = currentSearchTerm =
-                            foundProfile['user_id'].substring(1);
+                            foundProfile.userId.substring(1);
                       });
                     },
                     leading: Avatar(
-                      foundProfile['avatar_url'] == null
-                          ? null
-                          : Uri.parse(foundProfile['avatar_url']),
-                      foundProfile['display_name'] ?? foundProfile['user_id'],
+                      foundProfile.avatarUrl,
+                      foundProfile.displayname ?? foundProfile.userId,
                       //size: 24,
                     ),
                     title: Text(
-                      foundProfile['display_name'] ??
-                          (foundProfile['user_id'] as String).localpart,
+                      foundProfile.displayname ?? foundProfile.userId.localpart,
                       style: TextStyle(),
                       maxLines: 1,
                     ),
                     subtitle: Text(
-                      foundProfile['user_id'],
+                      foundProfile.userId,
                       maxLines: 1,
                       style: TextStyle(
                         fontSize: 12,
