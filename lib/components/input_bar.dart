@@ -280,6 +280,7 @@ class InputBar extends StatelessWidget {
         onChanged: (text) {
           onChanged(text);
         },
+        textCapitalization: TextCapitalization.sentences,
       ),
       suggestionsCallback: getSuggestions,
       itemBuilder: buildSuggestion,
