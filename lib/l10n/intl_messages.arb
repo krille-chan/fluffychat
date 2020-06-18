@@ -354,8 +354,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "Currenlty active": "Currenlty active",
-  "@Currenlty active": {
+  "Currently active": "Currently active",
+  "@Currently active": {
     "type": "text",
     "placeholders": {}
   },

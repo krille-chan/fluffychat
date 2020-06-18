@@ -354,8 +354,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "Currenlty active": "Jetzt gerade online",
-  "@Currenlty active": {
+  "Currently active": "Jetzt gerade online",
+  "@Currently active": {
     "type": "text",
     "placeholders": {}
   },
