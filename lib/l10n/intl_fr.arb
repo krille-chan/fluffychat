@@ -354,8 +354,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "Currenlty active": "Actif en ce moment",
-  "@Currenlty active": {
+  "Currently active": "Actif en ce moment",
+  "@Currently active": {
     "type": "text",
     "placeholders": {}
   },

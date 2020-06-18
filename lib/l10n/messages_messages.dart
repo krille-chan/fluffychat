@@ -218,8 +218,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Create account now"),
         "Create new group":
             MessageLookupByLibrary.simpleMessage("Create new group"),
-        "Currenlty active":
-            MessageLookupByLibrary.simpleMessage("Currenlty active"),
+        "Currently active":
+            MessageLookupByLibrary.simpleMessage("Currently active"),
         "Dark": MessageLookupByLibrary.simpleMessage("Dark"),
         "Delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "Delete message":

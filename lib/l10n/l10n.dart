@@ -261,7 +261,7 @@ class L10n extends MatrixLocalizations {
 
   String get createNewGroup => Intl.message("Create new group");
 
-  String get currentlyActive => Intl.message('Currenlty active');
+  String get currentlyActive => Intl.message('Currently active');
 
   String dateAndTimeOfDay(String date, String timeOfDay) => Intl.message(
         "$date, $timeOfDay",
