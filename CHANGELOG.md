@@ -1,3 +1,11 @@
+# Version 0.15.0
+### Features:
+- New room list app bar design
+- Chat app bar transparent
+### Changes:
+- Show presences of users sharing a direct chat
+- Big refactoring
+
 # Version 0.14.0 - 2020-05-20
 ### Features:
 - Implement image viewer

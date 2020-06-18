@@ -298,34 +298,61 @@ class _ChatListState extends State<ChatList> {
                             onPressed: () =>
                                 Matrix.of(context).shareContent = null,
                           ),
+                    automaticallyImplyLeading: false,
                     titleSpacing: 0,
                     title: selectMode == SelectMode.share
                         ? Text(L10n.of(context).share)
                         : Container(
-                            padding: EdgeInsets.all(8),
                             height: 42,
-                            margin: EdgeInsets.only(right: 8),
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).secondaryHeaderColor,
-                              borderRadius: BorderRadius.circular(90),
-                            ),
-                            child: TextField(
-                              autocorrect: false,
-                              controller: searchController,
-                              decoration: InputDecoration(
-                                suffixIcon: loadingPublicRooms
-                                    ? Container(
-                                        alignment: Alignment.centerRight,
-                                        child: Container(
-                                          width: 20,
-                                          height: 20,
-                                          child: CircularProgressIndicator(),
+                            margin: EdgeInsets.symmetric(horizontal: 8),
+                            child: Material(
+                              elevation: 5,
+                              borderRadius: BorderRadius.circular(7),
+                              child: Padding(
+                                padding: EdgeInsets.all(8),
+                                child: Row(
+                                  children: [
+                                    Builder(
+                                      builder: (context) => IconButton(
+                                        padding: EdgeInsets.zero,
+                                        icon: Icon(Icons.menu),
+                                        onPressed: () =>
+                                            Scaffold.of(context).openDrawer(),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: TextField(
+                                        autocorrect: false,
+                                        controller: searchController,
+                                        decoration: InputDecoration(
+                                          contentPadding: EdgeInsets.all(9),
+                                          border: InputBorder.none,
+                                          hintText:
+                                              L10n.of(context).searchForAChat,
                                         ),
-                                      )
-                                    : Icon(Icons.search),
-                                contentPadding: EdgeInsets.all(9),
-                                border: InputBorder.none,
-                                hintText: L10n.of(context).searchForAChat,
+                                      ),
+                                    ),
+                                    loadingPublicRooms
+                                        ? Container(
+                                            alignment: Alignment.centerRight,
+                                            child: Container(
+                                              width: 20,
+                                              height: 20,
+                                              child:
+                                                  CircularProgressIndicator(),
+                                            ),
+                                          )
+                                        : IconButton(
+                                            padding: EdgeInsets.zero,
+                                            icon: Icon(Icons.account_circle),
+                                            onPressed: () =>
+                                                Navigator.of(context).push(
+                                                    AppRoute.defaultRoute(
+                                                        context,
+                                                        SettingsView())),
+                                          ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -433,9 +460,9 @@ class _ChatListState extends State<ChatList> {
                                           ? Container()
                                           : PreferredSize(
                                               preferredSize:
-                                                  Size.fromHeight(89),
+                                                  Size.fromHeight(90),
                                               child: Container(
-                                                height: 81,
+                                                height: 82,
                                                 child: ListView.builder(
                                                   scrollDirection:
                                                       Axis.horizontal,

@@ -167,7 +167,12 @@ class SimpleDialogs {
           children: <Widget>[
             CircularProgressIndicator(),
             SizedBox(width: 16),
-            Text(L10n.of(context).loadingPleaseWait),
+            Expanded(
+                child: Text(
+              L10n.of(context).loadingPleaseWait,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+            )),
           ],
         ),
       ),
