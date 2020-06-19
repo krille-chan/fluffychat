@@ -1,15 +1,15 @@
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/components/dialogs/presence_dialog.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/views/chat.dart';
 import 'package:flutter/material.dart';
-import '../../utils/client_presence_extension.dart';
 import '../avatar.dart';
 import '../matrix.dart';
 
 class PresenceListItem extends StatelessWidget {
-  final Presence presence;
+  final Room room;
 
-  const PresenceListItem(this.presence);
+  const PresenceListItem(this.room);
 
   void _startChatAction(BuildContext context, String userId) async {
     final roomId = await User(userId,
@@ -25,37 +25,42 @@ class PresenceListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Profile>(
-        future:
-            Matrix.of(context).client.requestProfileCached(presence.senderId),
-        builder: (context, snapshot) {
-          Uri avatarUrl;
-          var displayname = presence.senderId.localpart;
-          if (snapshot.hasData) {
-            avatarUrl = snapshot.data.avatarUrl;
-            displayname =
-                snapshot.data.displayname ?? presence.senderId.localpart;
-          }
-          return InkWell(
-            onTap: () => _startChatAction(context, presence.senderId),
-            child: Container(
-              width: 80,
-              child: Column(
-                children: <Widget>[
-                  SizedBox(height: 9),
-                  Avatar(avatarUrl, displayname),
-                  Padding(
-                    padding: const EdgeInsets.all(6.0),
-                    child: Text(
-                      displayname,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                    ),
-                  ),
-                ],
+    final user = room.getUserByMXIDSync(room.directChatMatrixID);
+    final presence =
+        Matrix.of(context).client.presences[room.directChatMatrixID];
+    return InkWell(
+      onTap: () => presence?.presence?.statusMsg == null
+          ? _startChatAction(context, user.id)
+          : showDialog(
+              context: context,
+              builder: (_) => PresenceDialog(
+                presence,
+                avatarUrl: user.avatarUrl,
+                displayname: user.calcDisplayname(),
               ),
             ),
-          );
-        });
+      child: Container(
+        width: 80,
+        child: Column(
+          children: <Widget>[
+            SizedBox(height: 9),
+            Avatar(user.avatarUrl, user.calcDisplayname()),
+            Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: Text(
+                user.calcDisplayname(),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+                style: TextStyle(
+                  fontWeight: presence?.presence?.statusMsg == null
+                      ? null
+                      : FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

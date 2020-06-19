@@ -19,7 +19,6 @@ import '../components/matrix.dart';
 import '../l10n/l10n.dart';
 import '../utils/app_route.dart';
 import '../utils/url_launcher.dart';
-import '../utils/client_presence_extension.dart';
 import 'archive.dart';
 import 'homeserver_picker.dart';
 import 'new_group.dart';
@@ -436,6 +435,16 @@ class _ChatListState extends State<ChatList> {
                                   (publicRoomsResponse?.chunk?.length ?? 0);
                               final totalCount =
                                   rooms.length + publicRoomsCount;
+                              final directChats =
+                                  rooms.where((r) => r.isDirectChat).toList();
+                              directChats.sort((a, b) => Matrix.of(context)
+                                          .client
+                                          .presences[b.directChatMatrixID]
+                                          ?.presence
+                                          ?.statusMsg !=
+                                      null
+                                  ? 1
+                                  : -1);
                               return ListView.separated(
                                   controller: _scrollController,
                                   separatorBuilder:
@@ -452,10 +461,7 @@ class _ChatListState extends State<ChatList> {
                                   itemCount: totalCount + 1,
                                   itemBuilder: (BuildContext context, int i) {
                                     if (i == 0) {
-                                      return (Matrix.of(context)
-                                                  .client
-                                                  .statusList
-                                                  .isEmpty ||
+                                      return (directChats.isEmpty ||
                                               selectMode == SelectMode.share)
                                           ? Container()
                                           : PreferredSize(
@@ -466,17 +472,12 @@ class _ChatListState extends State<ChatList> {
                                                 child: ListView.builder(
                                                   scrollDirection:
                                                       Axis.horizontal,
-                                                  itemCount: Matrix.of(context)
-                                                      .client
-                                                      .statusList
-                                                      .length,
-                                                  itemBuilder: (BuildContext
-                                                              context,
-                                                          int i) =>
-                                                      PresenceListItem(
-                                                          Matrix.of(context)
-                                                              .client
-                                                              .statusList[i]),
+                                                  itemCount: directChats.length,
+                                                  itemBuilder:
+                                                      (BuildContext context,
+                                                              int i) =>
+                                                          PresenceListItem(
+                                                              directChats[i]),
                                                 ),
                                               ),
                                             );

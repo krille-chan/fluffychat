@@ -34,15 +34,6 @@ class PresenceDialog extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(presence.getLocalizedStatusMessage(context)),
-          if (presence.presence != null)
-            Text(
-              presence.presence.toString().split('.').last,
-              style: TextStyle(
-                color: presence.presence.currentlyActive == true
-                    ? Colors.green
-                    : Theme.of(context).primaryColor,
-              ),
-            )
         ],
       ),
       actions: <Widget>[

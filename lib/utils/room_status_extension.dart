@@ -9,7 +9,10 @@ extension RoomStatusExtension on Room {
 
   String getLocalizedStatus(BuildContext context) {
     if (isDirectChat) {
-      if (directChatPresence != null) {
+      if (directChatPresence != null &&
+          directChatPresence.presence != null &&
+          (directChatPresence.presence.lastActiveAgo != null ||
+              directChatPresence.presence.currentlyActive != null)) {
         if (directChatPresence.presence.currentlyActive == true) {
           return L10n.of(context).currentlyActive;
         }
