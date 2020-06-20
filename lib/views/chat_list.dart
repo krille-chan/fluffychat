@@ -445,8 +445,8 @@ class _ChatListState extends State<ChatList> {
                                               ?.statusMsg !=
                                           null
                                       ? 1
-                                      : a.lastEvent.originServerTs.compareTo(
-                                          b.lastEvent.originServerTs));
+                                      : b.lastEvent.originServerTs.compareTo(
+                                          a.lastEvent.originServerTs));
                               return ListView.separated(
                                   controller: _scrollController,
                                   separatorBuilder:
