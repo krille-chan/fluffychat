@@ -162,7 +162,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "(Optional) Group name":
             MessageLookupByLibrary.simpleMessage("(Optionnel) Nom du groupe"),
         "About": MessageLookupByLibrary.simpleMessage("About"),
-        "Account": MessageLookupByLibrary.simpleMessage("Account"),
+        "Account": MessageLookupByLibrary.simpleMessage("Compte"),
         "Account informations":
             MessageLookupByLibrary.simpleMessage("Informations du compte"),
         "Add a group description": MessageLookupByLibrary.simpleMessage(
