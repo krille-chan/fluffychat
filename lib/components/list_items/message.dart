@@ -32,6 +32,10 @@ class Message extends StatelessWidget {
       this.selected,
       this.timeline});
 
+  /// Indicates wheither the user may use a mouse instead
+  /// of touchscreen.
+  static bool useMouse = false;
+
   @override
   Widget build(BuildContext context) {
     if (event.type == EventTypes.Unknown) {
@@ -169,7 +173,8 @@ class Message extends StatelessWidget {
     }
 
     return InkWell(
-      onTap: longPressSelect ? () => null : () => onSelect(event),
+      onHover: (b) => useMouse = true,
+      onTap: !useMouse && longPressSelect ? () => null : () => onSelect(event),
       splashColor: Theme.of(context).primaryColor.withAlpha(100),
       onLongPress: !longPressSelect ? null : () => onSelect(event),
       child: AnimatedContainer(
