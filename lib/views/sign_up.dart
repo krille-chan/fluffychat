@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:math';
 
 import 'package:famedlysdk/famedlysdk.dart';
@@ -10,6 +9,7 @@ import 'package:fluffychat/views/sign_up_password.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:memoryfilepicker/memoryfilepicker.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -20,10 +20,10 @@ class _SignUpState extends State<SignUp> {
   final TextEditingController usernameController = TextEditingController();
   String usernameError;
   bool loading = false;
-  File avatar;
+  MemoryFile avatar;
 
   void setAvatarAction() async {
-    var file = await ImagePicker.pickImage(
+    var file = await MemoryFilePicker.getImage(
       source: ImageSource.gallery,
       maxHeight: 512,
       maxWidth: 512,
@@ -92,7 +92,8 @@ class _SignUpState extends State<SignUp> {
             ),
             ListTile(
               leading: CircleAvatar(
-                backgroundImage: avatar == null ? null : FileImage(avatar),
+                backgroundImage:
+                    avatar == null ? null : MemoryImage(avatar.bytes),
                 backgroundColor: avatar == null
                     ? Theme.of(context).brightness == Brightness.dark
                         ? Color(0xff121212)

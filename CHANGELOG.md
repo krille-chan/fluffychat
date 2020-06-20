@@ -2,6 +2,7 @@
 ### Features:
 - New room list app bar design
 - Chat app bar transparent
+- Implement web file picker
 ### Changes:
 - Show presences of users sharing a direct chat
 - Big refactoring

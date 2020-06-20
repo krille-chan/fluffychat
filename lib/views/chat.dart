@@ -3,7 +3,6 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/avatar.dart';
 import 'package:fluffychat/components/chat_settings_popup_menu.dart';
@@ -20,9 +19,9 @@ import 'package:fluffychat/utils/room_status_extension.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:memoryfilepicker/memoryfilepicker.dart';
 import 'package:pedantic/pedantic.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'chat_details.dart';
 import 'chat_list.dart';
@@ -187,25 +186,17 @@ class _ChatState extends State<_Chat> {
   }
 
   void sendFileAction(BuildContext context) async {
-    if (kIsWeb) {
-      BotToast.showText(text: L10n.of(context).notSupportedInWeb);
-      return;
-    }
-    var file = await FilePicker.getFile();
+    var file = await MemoryFilePicker.getFile();
     if (file == null) return;
     await SimpleDialogs(context).tryRequestWithLoadingDialog(
       room.sendFileEvent(
-        MatrixFile(bytes: await file.readAsBytes(), path: file.path),
+        MatrixFile(bytes: file.bytes, path: file.path),
       ),
     );
   }
 
   void sendImageAction(BuildContext context) async {
-    if (kIsWeb) {
-      BotToast.showText(text: L10n.of(context).notSupportedInWeb);
-      return;
-    }
-    var file = await ImagePicker.pickImage(
+    var file = await MemoryFilePicker.getImage(
         source: ImageSource.gallery,
         imageQuality: 50,
         maxWidth: 1600,
@@ -213,17 +204,13 @@ class _ChatState extends State<_Chat> {
     if (file == null) return;
     await SimpleDialogs(context).tryRequestWithLoadingDialog(
       room.sendImageEvent(
-        MatrixFile(bytes: await file.readAsBytes(), path: file.path),
+        MatrixFile(bytes: await file.bytes, path: file.path),
       ),
     );
   }
 
   void openCameraAction(BuildContext context) async {
-    if (kIsWeb) {
-      BotToast.showText(text: L10n.of(context).notSupportedInWeb);
-      return;
-    }
-    var file = await ImagePicker.pickImage(
+    var file = await MemoryFilePicker.getImage(
         source: ImageSource.camera,
         imageQuality: 50,
         maxWidth: 1600,
@@ -231,7 +218,7 @@ class _ChatState extends State<_Chat> {
     if (file == null) return;
     await SimpleDialogs(context).tryRequestWithLoadingDialog(
       room.sendImageEvent(
-        MatrixFile(bytes: await file.readAsBytes(), path: file.path),
+        MatrixFile(bytes: file.bytes, path: file.path),
       ),
     );
   }
@@ -650,7 +637,7 @@ class _ChatState extends State<_Chat> {
                                     : Container(),
                               ]
                             : <Widget>[
-                                if (!kIsWeb && inputText.isEmpty)
+                                if (inputText.isEmpty)
                                   PopupMenuButton<String>(
                                     icon: Icon(Icons.add),
                                     onSelected: (String choice) async {
@@ -694,32 +681,34 @@ class _ChatState extends State<_Chat> {
                                           contentPadding: EdgeInsets.all(0),
                                         ),
                                       ),
-                                      PopupMenuItem<String>(
-                                        value: 'camera',
-                                        child: ListTile(
-                                          leading: CircleAvatar(
-                                            backgroundColor: Colors.purple,
-                                            foregroundColor: Colors.white,
-                                            child: Icon(Icons.camera_alt),
+                                      if (!kIsWeb)
+                                        PopupMenuItem<String>(
+                                          value: 'camera',
+                                          child: ListTile(
+                                            leading: CircleAvatar(
+                                              backgroundColor: Colors.purple,
+                                              foregroundColor: Colors.white,
+                                              child: Icon(Icons.camera_alt),
+                                            ),
+                                            title: Text(
+                                                L10n.of(context).openCamera),
+                                            contentPadding: EdgeInsets.all(0),
                                           ),
-                                          title:
-                                              Text(L10n.of(context).openCamera),
-                                          contentPadding: EdgeInsets.all(0),
                                         ),
-                                      ),
-                                      PopupMenuItem<String>(
-                                        value: 'voice',
-                                        child: ListTile(
-                                          leading: CircleAvatar(
-                                            backgroundColor: Colors.red,
-                                            foregroundColor: Colors.white,
-                                            child: Icon(Icons.mic),
+                                      if (!kIsWeb)
+                                        PopupMenuItem<String>(
+                                          value: 'voice',
+                                          child: ListTile(
+                                            leading: CircleAvatar(
+                                              backgroundColor: Colors.red,
+                                              foregroundColor: Colors.white,
+                                              child: Icon(Icons.mic),
+                                            ),
+                                            title: Text(
+                                                L10n.of(context).voiceMessage),
+                                            contentPadding: EdgeInsets.all(0),
                                           ),
-                                          title: Text(
-                                              L10n.of(context).voiceMessage),
-                                          contentPadding: EdgeInsets.all(0),
                                         ),
-                                      ),
                                     ],
                                   ),
                                 EncryptionButton(room),

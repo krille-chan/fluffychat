@@ -4,6 +4,7 @@ import 'package:flutter_advanced_networkimage/provider.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:bot_toast/bot_toast.dart';
+import 'package:memoryfilepicker/memoryfilepicker.dart';
 
 import 'chat_list.dart';
 import '../components/adaptive_page_layout.dart';
@@ -367,14 +368,13 @@ class _EmoteImagePickerState extends State<_EmoteImagePicker> {
             BotToast.showText(text: L10n.of(context).notSupportedInWeb);
             return;
           }
-          var file = await ImagePicker.pickImage(
+          var file = await MemoryFilePicker.getImage(
               source: ImageSource.gallery,
               imageQuality: 50,
               maxWidth: 128,
               maxHeight: 128);
           if (file == null) return;
-          final matrixFile =
-              MatrixFile(bytes: await file.readAsBytes(), path: file.path);
+          final matrixFile = MatrixFile(bytes: file.bytes, path: file.path);
           final uploadResp =
               await SimpleDialogs(context).tryRequestWithLoadingDialog(
             Matrix.of(context)

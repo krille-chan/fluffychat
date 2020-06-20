@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/settings_themes.dart';
 import 'package:fluffychat/views/settings_devices.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:memoryfilepicker/memoryfilepicker.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'app_info.dart';
@@ -81,7 +84,7 @@ class _SettingsState extends State<Settings> {
   }
 
   void setAvatarAction(BuildContext context) async {
-    final tempFile = await ImagePicker.pickImage(
+    final tempFile = await MemoryFilePicker.getImage(
         source: ImageSource.gallery,
         imageQuality: 50,
         maxWidth: 1600,
@@ -91,7 +94,7 @@ class _SettingsState extends State<Settings> {
     final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
       matrix.client.setAvatar(
         MatrixFile(
-          bytes: await tempFile.readAsBytes(),
+          bytes: tempFile.bytes,
           path: tempFile.path,
         ),
       ),
@@ -105,9 +108,9 @@ class _SettingsState extends State<Settings> {
   }
 
   void setWallpaperAction(BuildContext context) async {
-    final wallpaper = await ImagePicker.pickImage(source: ImageSource.gallery);
+    final wallpaper = await ImagePicker().getImage(source: ImageSource.gallery);
     if (wallpaper == null) return;
-    Matrix.of(context).wallpaper = wallpaper;
+    Matrix.of(context).wallpaper = File(wallpaper.path);
     await Matrix.of(context)
         .store
         .setItem('chat.fluffy.wallpaper', wallpaper.path);
