@@ -437,14 +437,16 @@ class _ChatListState extends State<ChatList> {
                                   rooms.length + publicRoomsCount;
                               final directChats =
                                   rooms.where((r) => r.isDirectChat).toList();
-                              directChats.sort((a, b) => Matrix.of(context)
-                                          .client
-                                          .presences[b.directChatMatrixID]
-                                          ?.presence
-                                          ?.statusMsg !=
-                                      null
-                                  ? 1
-                                  : -1);
+                              final presences =
+                                  Matrix.of(context).client.presences;
+                              directChats.sort((a, b) =>
+                                  presences[b.directChatMatrixID]
+                                              ?.presence
+                                              ?.statusMsg !=
+                                          null
+                                      ? 1
+                                      : a.lastEvent.originServerTs.compareTo(
+                                          b.lastEvent.originServerTs));
                               return ListView.separated(
                                   controller: _scrollController,
                                   separatorBuilder:

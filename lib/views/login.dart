@@ -184,7 +184,7 @@ class _LoginState extends State<Login> {
                           L10n.of(context).login.toUpperCase(),
                           style: TextStyle(color: Colors.white, fontSize: 16),
                         ),
-                  onPressed: () => loading ? null : login(context),
+                  onPressed: loading ? null : () => login(context),
                 ),
               ),
             ),

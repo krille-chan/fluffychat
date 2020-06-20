@@ -155,7 +155,7 @@ class _SignUpState extends State<SignUp> {
                           L10n.of(context).signUp.toUpperCase(),
                           style: TextStyle(color: Colors.white, fontSize: 16),
                         ),
-                  onPressed: () => loading ? null : signUpAction(context),
+                  onPressed: loading ? null : () => signUpAction(context),
                 ),
               ),
             ),

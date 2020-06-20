@@ -168,7 +168,7 @@ class _SignUpPasswordState extends State<SignUpPassword> {
                         L10n.of(context).createAccountNow.toUpperCase(),
                         style: TextStyle(color: Colors.white, fontSize: 16),
                       ),
-                onPressed: () => loading ? null : _signUpAction(context),
+                onPressed: loading ? null : () => _signUpAction(context),
               ),
             ),
           ),
