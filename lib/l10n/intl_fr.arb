@@ -12,7 +12,7 @@
       "username": {}
     }
   },
-  "Account": "Account",
+  "Account": "Compte",
   "@Account": {
     "type": "text",
     "placeholders": {}
