@@ -299,15 +299,13 @@ class _ChatListState extends State<ChatList> {
                         ? Text(L10n.of(context).share)
                         : Padding(
                             padding: EdgeInsets.all(8),
-                            child: Expanded(
-                              child: TextField(
-                                autocorrect: false,
-                                controller: searchController,
-                                decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.all(9),
-                                  border: InputBorder.none,
-                                  hintText: L10n.of(context).searchForAChat,
-                                ),
+                            child: TextField(
+                              autocorrect: false,
+                              controller: searchController,
+                              decoration: InputDecoration(
+                                contentPadding: EdgeInsets.all(9),
+                                border: InputBorder.none,
+                                hintText: L10n.of(context).searchForAChat,
                               ),
                             ),
                           ),
