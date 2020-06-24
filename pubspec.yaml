@@ -32,7 +32,6 @@ dependencies:
   localstorage: ^3.0.1+4
   bubble: ^1.1.9+1
   memoryfilepicker: ^0.1.1
-  flutter_speed_dial: ^1.2.5
   url_launcher: ^5.4.1
   url_launcher_web: ^0.1.0
   sqflite: ^1.2.0
