@@ -170,6 +170,9 @@ class MatrixState extends State<Matrix> {
       onRoomKeyRequestSub ??=
           client.onRoomKeyRequest.stream.listen((RoomKeyRequest request) async {
         final room = request.room;
+        if (request.sender != room.client.userID) {
+          return; // ignore share requests by others
+        }
         final sender = room.getUserByMXIDSync(request.sender);
         if (await SimpleDialogs(context).askConfirmation(
           titleText: L10n.of(context).requestToReadOlderMessages,
