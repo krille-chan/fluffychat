@@ -43,15 +43,17 @@ class PresenceListItem extends StatelessWidget {
         width: 80,
         child: Column(
           children: <Widget>[
-            SizedBox(height: 9),
+            SizedBox(height: 16),
             Avatar(user.avatarUrl, user.calcDisplayname()),
             Padding(
-              padding: const EdgeInsets.all(6.0),
+              padding: const EdgeInsets.only(left: 6.0, top: 6.0, right: 6.0),
               child: Text(
                 user.calcDisplayname(),
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
                 style: TextStyle(
+                  color: Color(0xFF555555),
+                  fontSize: 13,
                   fontWeight: presence?.presence?.statusMsg == null
                       ? null
                       : FontWeight.bold,

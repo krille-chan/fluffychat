@@ -345,9 +345,7 @@ class _ChatState extends State<_Chat> {
     }
 
     return Scaffold(
-      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).appBarTheme.color.withOpacity(0.95),
         leading: selectMode
             ? IconButton(
                 icon: Icon(Icons.close),
@@ -587,7 +585,7 @@ class _ChatState extends State<_Chat> {
                             Theme.of(context).backgroundColor.withOpacity(0.8),
                       ),
                       child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: selectMode
                             ? <Widget>[
@@ -638,80 +636,88 @@ class _ChatState extends State<_Chat> {
                               ]
                             : <Widget>[
                                 if (inputText.isEmpty)
-                                  PopupMenuButton<String>(
-                                    icon: Icon(Icons.add),
-                                    onSelected: (String choice) async {
-                                      if (choice == 'file') {
-                                        sendFileAction(context);
-                                      } else if (choice == 'image') {
-                                        sendImageAction(context);
-                                      }
-                                      if (choice == 'camera') {
-                                        openCameraAction(context);
-                                      }
-                                      if (choice == 'voice') {
-                                        voiceMessageAction(context);
-                                      }
-                                    },
-                                    itemBuilder: (BuildContext context) =>
-                                        <PopupMenuEntry<String>>[
-                                      PopupMenuItem<String>(
-                                        value: 'file',
-                                        child: ListTile(
-                                          leading: CircleAvatar(
-                                            backgroundColor: Colors.green,
-                                            foregroundColor: Colors.white,
-                                            child: Icon(Icons.attachment),
-                                          ),
-                                          title:
-                                              Text(L10n.of(context).sendFile),
-                                          contentPadding: EdgeInsets.all(0),
-                                        ),
-                                      ),
-                                      PopupMenuItem<String>(
-                                        value: 'image',
-                                        child: ListTile(
-                                          leading: CircleAvatar(
-                                            backgroundColor: Colors.blue,
-                                            foregroundColor: Colors.white,
-                                            child: Icon(Icons.image),
-                                          ),
-                                          title:
-                                              Text(L10n.of(context).sendImage),
-                                          contentPadding: EdgeInsets.all(0),
-                                        ),
-                                      ),
-                                      if (!kIsWeb)
+                                  Container(
+                                    height: 56,
+                                    alignment: Alignment.center,
+                                    child: PopupMenuButton<String>(
+                                      icon: Icon(Icons.add),
+                                      onSelected: (String choice) async {
+                                        if (choice == 'file') {
+                                          sendFileAction(context);
+                                        } else if (choice == 'image') {
+                                          sendImageAction(context);
+                                        }
+                                        if (choice == 'camera') {
+                                          openCameraAction(context);
+                                        }
+                                        if (choice == 'voice') {
+                                          voiceMessageAction(context);
+                                        }
+                                      },
+                                      itemBuilder: (BuildContext context) =>
+                                          <PopupMenuEntry<String>>[
                                         PopupMenuItem<String>(
-                                          value: 'camera',
+                                          value: 'file',
                                           child: ListTile(
                                             leading: CircleAvatar(
-                                              backgroundColor: Colors.purple,
+                                              backgroundColor: Colors.green,
                                               foregroundColor: Colors.white,
-                                              child: Icon(Icons.camera_alt),
+                                              child: Icon(Icons.attachment),
                                             ),
-                                            title: Text(
-                                                L10n.of(context).openCamera),
+                                            title:
+                                                Text(L10n.of(context).sendFile),
                                             contentPadding: EdgeInsets.all(0),
                                           ),
                                         ),
-                                      if (!kIsWeb)
                                         PopupMenuItem<String>(
-                                          value: 'voice',
+                                          value: 'image',
                                           child: ListTile(
                                             leading: CircleAvatar(
-                                              backgroundColor: Colors.red,
+                                              backgroundColor: Colors.blue,
                                               foregroundColor: Colors.white,
-                                              child: Icon(Icons.mic),
+                                              child: Icon(Icons.image),
                                             ),
                                             title: Text(
-                                                L10n.of(context).voiceMessage),
+                                                L10n.of(context).sendImage),
                                             contentPadding: EdgeInsets.all(0),
                                           ),
                                         ),
-                                    ],
+                                        if (!kIsWeb)
+                                          PopupMenuItem<String>(
+                                            value: 'camera',
+                                            child: ListTile(
+                                              leading: CircleAvatar(
+                                                backgroundColor: Colors.purple,
+                                                foregroundColor: Colors.white,
+                                                child: Icon(Icons.camera_alt),
+                                              ),
+                                              title: Text(
+                                                  L10n.of(context).openCamera),
+                                              contentPadding: EdgeInsets.all(0),
+                                            ),
+                                          ),
+                                        if (!kIsWeb)
+                                          PopupMenuItem<String>(
+                                            value: 'voice',
+                                            child: ListTile(
+                                              leading: CircleAvatar(
+                                                backgroundColor: Colors.red,
+                                                foregroundColor: Colors.white,
+                                                child: Icon(Icons.mic),
+                                              ),
+                                              title: Text(L10n.of(context)
+                                                  .voiceMessage),
+                                              contentPadding: EdgeInsets.all(0),
+                                            ),
+                                          ),
+                                      ],
+                                    ),
                                   ),
-                                EncryptionButton(room),
+                                Container(
+                                  height: 56,
+                                  alignment: Alignment.center,
+                                  child: EncryptionButton(room),
+                                ),
                                 Expanded(
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(
@@ -733,6 +739,7 @@ class _ChatState extends State<_Chat> {
                                       decoration: InputDecoration(
                                         hintText:
                                             L10n.of(context).writeAMessage,
+                                        hintMaxLines: 1,
                                         border: InputBorder.none,
                                       ),
                                       onChanged: (String text) {
@@ -760,15 +767,23 @@ class _ChatState extends State<_Chat> {
                                   ),
                                 ),
                                 if (!kIsWeb && inputText.isEmpty)
-                                  IconButton(
-                                    icon: Icon(Icons.mic),
-                                    onPressed: () =>
-                                        voiceMessageAction(context),
+                                  Container(
+                                    height: 56,
+                                    alignment: Alignment.center,
+                                    child: IconButton(
+                                      icon: Icon(Icons.mic),
+                                      onPressed: () =>
+                                          voiceMessageAction(context),
+                                    ),
                                   ),
                                 if (kIsWeb || inputText.isNotEmpty)
-                                  IconButton(
-                                    icon: Icon(Icons.send),
-                                    onPressed: () => send(),
+                                  Container(
+                                    height: 56,
+                                    alignment: Alignment.center,
+                                    child: IconButton(
+                                      icon: Icon(Icons.send),
+                                      onPressed: () => send(),
+                                    ),
                                   ),
                               ],
                       ),

@@ -8,11 +8,8 @@ import 'package:fluffychat/components/list_items/presence_list_item.dart';
 import 'package:fluffychat/components/list_items/public_room_list_item.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 import 'package:share/share.dart';
-
-import '../components/theme_switcher.dart';
 import '../components/adaptive_page_layout.dart';
 import '../components/list_items/chat_list_item.dart';
 import '../components/matrix.dart';
@@ -289,7 +286,7 @@ class _ChatListState extends State<ChatList> {
                           ),
                         ),
                   appBar: AppBar(
-                    elevation: _scrolledToTop ? 0 : null,
+                    //elevation: _scrolledToTop ? 0 : null,
                     leading: selectMode != SelectMode.share
                         ? null
                         : IconButton(
@@ -297,60 +294,19 @@ class _ChatListState extends State<ChatList> {
                             onPressed: () =>
                                 Matrix.of(context).shareContent = null,
                           ),
-                    automaticallyImplyLeading: false,
                     titleSpacing: 0,
                     title: selectMode == SelectMode.share
                         ? Text(L10n.of(context).share)
-                        : Container(
-                            height: 42,
-                            margin: EdgeInsets.symmetric(horizontal: 8),
-                            child: Material(
-                              elevation: 5,
-                              borderRadius: BorderRadius.circular(7),
-                              child: Padding(
-                                padding: EdgeInsets.all(8),
-                                child: Row(
-                                  children: [
-                                    Builder(
-                                      builder: (context) => IconButton(
-                                        padding: EdgeInsets.zero,
-                                        icon: Icon(Icons.menu),
-                                        onPressed: () =>
-                                            Scaffold.of(context).openDrawer(),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: TextField(
-                                        autocorrect: false,
-                                        controller: searchController,
-                                        decoration: InputDecoration(
-                                          contentPadding: EdgeInsets.all(9),
-                                          border: InputBorder.none,
-                                          hintText:
-                                              L10n.of(context).searchForAChat,
-                                        ),
-                                      ),
-                                    ),
-                                    loadingPublicRooms
-                                        ? Container(
-                                            alignment: Alignment.centerRight,
-                                            child: Container(
-                                              width: 20,
-                                              height: 20,
-                                              child:
-                                                  CircularProgressIndicator(),
-                                            ),
-                                          )
-                                        : IconButton(
-                                            padding: EdgeInsets.zero,
-                                            icon: Icon(Icons.account_circle),
-                                            onPressed: () =>
-                                                Navigator.of(context).push(
-                                                    AppRoute.defaultRoute(
-                                                        context,
-                                                        SettingsView())),
-                                          ),
-                                  ],
+                        : Padding(
+                            padding: EdgeInsets.all(8),
+                            child: Expanded(
+                              child: TextField(
+                                autocorrect: false,
+                                controller: searchController,
+                                decoration: InputDecoration(
+                                  contentPadding: EdgeInsets.all(9),
+                                  border: InputBorder.none,
+                                  hintText: L10n.of(context).searchForAChat,
                                 ),
                               ),
                             ),
@@ -360,39 +316,14 @@ class _ChatListState extends State<ChatList> {
                       (AdaptivePageLayout.columnMode(context) ||
                               selectMode == SelectMode.share)
                           ? null
-                          : SpeedDial(
+                          : FloatingActionButton(
                               child: Icon(Icons.add),
-                              overlayColor: blackWhiteColor(context),
-                              foregroundColor: Colors.white,
                               backgroundColor: Theme.of(context).primaryColor,
-                              children: [
-                                SpeedDialChild(
-                                  child: Icon(Icons.people_outline),
-                                  foregroundColor: Colors.white,
-                                  backgroundColor: Colors.blue,
-                                  label: L10n.of(context).createNewGroup,
-                                  labelStyle: TextStyle(
-                                      fontSize: 18.0, color: Colors.black),
-                                  onTap: () => Navigator.of(context)
-                                      .pushAndRemoveUntil(
-                                          AppRoute.defaultRoute(
-                                              context, NewGroupView()),
-                                          (r) => r.isFirst),
-                                ),
-                                SpeedDialChild(
-                                  child: Icon(Icons.person_add),
-                                  foregroundColor: Colors.white,
-                                  backgroundColor: Colors.green,
-                                  label: L10n.of(context).newPrivateChat,
-                                  labelStyle: TextStyle(
-                                      fontSize: 18.0, color: Colors.black),
-                                  onTap: () => Navigator.of(context)
-                                      .pushAndRemoveUntil(
-                                          AppRoute.defaultRoute(
-                                              context, NewPrivateChatView()),
-                                          (r) => r.isFirst),
-                                ),
-                              ],
+                              onPressed: () => Navigator.of(context)
+                                  .pushAndRemoveUntil(
+                                      AppRoute.defaultRoute(
+                                          context, NewPrivateChatView()),
+                                      (r) => r.isFirst),
                             ),
                   body: StreamBuilder(
                       stream: Matrix.of(context).client.onSync.stream,
