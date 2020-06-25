@@ -990,7 +990,7 @@
       "username": {}
     }
   },
-  "Search for a chat": "Durchsuche die Chats",
+  "Search for a chat": "Chats durchsuchen",
   "@Search for a chat": {
     "type": "text",
     "placeholders": {}
