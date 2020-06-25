@@ -48,7 +48,7 @@ class Avatar extends StatelessWidget {
               )
             : null,
         backgroundColor: noPic
-            ? name?.color ?? Theme.of(context).secondaryHeaderColor
+            ? name?.lightColor ?? Theme.of(context).secondaryHeaderColor
             : Theme.of(context).secondaryHeaderColor,
         child: noPic
             ? Text(fallbackLetters, style: TextStyle(color: Colors.white))
