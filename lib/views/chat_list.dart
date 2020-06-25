@@ -298,7 +298,8 @@ class _ChatListState extends State<ChatList> {
                     title: selectMode == SelectMode.share
                         ? Text(L10n.of(context).share)
                         : Padding(
-                            padding: EdgeInsets.all(8),
+                            padding:
+                                EdgeInsets.only(top: 8, bottom: 8, right: 8),
                             child: TextField(
                               autocorrect: false,
                               controller: searchController,
