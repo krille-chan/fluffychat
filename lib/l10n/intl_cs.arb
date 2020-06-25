@@ -367,7 +367,7 @@
       "timeOfDay": {}
     }
   },
-  "dateWithoutYear": "{day}. {month}.",
+  "dateWithoutYear": "{day}.{month}",
   "@dateWithoutYear": {
     "type": "text",
     "placeholders": {
@@ -1020,7 +1020,7 @@
       "username2": {}
     }
   },
-  "seenByUserAndCountOthers": "Viděno uživateli {username} a {count} dalšími.",
+  "seenByUserAndCountOthers": "Viděno uživateli {username} a {count} dalšími",
   "@seenByUserAndCountOthers": {
     "type": "text",
     "placeholders": {
