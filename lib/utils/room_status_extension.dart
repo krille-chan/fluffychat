@@ -16,10 +16,13 @@ extension RoomStatusExtension on Room {
         if (directChatPresence.presence.currentlyActive == true) {
           return L10n.of(context).currentlyActive;
         }
-        return L10n.of(context).lastActiveAgo(
-            DateTime.fromMillisecondsSinceEpoch(
-                    directChatPresence.presence.lastActiveAgo)
-                .localizedTimeShort(context));
+        if (directChatPresence.presence.lastActiveAgo == null) {
+          return L10n.of(context).lastSeenLongTimeAgo;
+        }
+        final time = DateTime.fromMillisecondsSinceEpoch(
+            DateTime.now().millisecondsSinceEpoch -
+                directChatPresence.presence.lastActiveAgo);
+        return L10n.of(context).lastActiveAgo(time.localizedTimeShort(context));
       }
       return L10n.of(context).lastSeenLongTimeAgo;
     }

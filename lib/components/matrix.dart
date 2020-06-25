@@ -14,6 +14,8 @@ import '../l10n/l10n.dart';
 import '../utils/beautify_string_extension.dart';
 import '../utils/famedlysdk_store.dart';
 import 'avatar.dart';
+import '../views/key_verification.dart';
+import '../utils/app_route.dart';
 
 class Matrix extends StatefulWidget {
   static const String callNamespace = 'chat.fluffy.jitsi_call';
@@ -97,6 +99,7 @@ class MatrixState extends State<Matrix> {
       };
 
   StreamSubscription onRoomKeyRequestSub;
+  StreamSubscription onKeyVerificationRequestSub;
   StreamSubscription onJitsiCallSub;
 
   void onJitsiCall(EventUpdate eventUpdate) {
@@ -159,7 +162,17 @@ class MatrixState extends State<Matrix> {
     store = widget.store ?? Store();
     if (widget.client == null) {
       debugPrint('[Matrix] Init matrix client');
-      client = Client(widget.clientName, debug: false);
+      final Set verificationMethods = <KeyVerificationMethod>{
+        KeyVerificationMethod.numbers
+      };
+      if (!kIsWeb) {
+        // emojis don't show in web somehow
+        verificationMethods.add(KeyVerificationMethod.emoji);
+      }
+      client = Client(widget.clientName,
+          debug: false,
+          enableE2eeRecovery: true,
+          verificationMethods: verificationMethods);
       onJitsiCallSub ??= client.onEvent.stream
           .where((e) =>
               e.type == 'timeline' &&
@@ -182,6 +195,23 @@ class MatrixState extends State<Matrix> {
           cancelText: L10n.of(context).deny,
         )) {
           await request.forwardKey();
+        }
+      });
+      onKeyVerificationRequestSub ??= client.onKeyVerificationRequest.stream
+          .listen((KeyVerification request) async {
+        if (await SimpleDialogs(context).askConfirmation(
+          titleText: L10n.of(context).newVerificationRequest,
+          contentText: L10n.of(context).askVerificationRequest(request.userId),
+        )) {
+          await request.acceptVerification();
+          await Navigator.of(context).push(
+            AppRoute.defaultRoute(
+              context,
+              KeyVerificationView(request: request),
+            ),
+          );
+        } else {
+          await request.rejectVerification();
         }
       });
       _initWithStore();
@@ -210,6 +240,7 @@ class MatrixState extends State<Matrix> {
   @override
   void dispose() {
     onRoomKeyRequestSub?.cancel();
+    onKeyVerificationRequestSub?.cancel();
     onJitsiCallSub?.cancel();
     super.dispose();
   }

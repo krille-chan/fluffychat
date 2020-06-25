@@ -1,4 +1,5 @@
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:famedlysdk/encryption.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/avatar.dart';
 import 'package:fluffychat/components/matrix.dart';
@@ -6,6 +7,9 @@ import 'package:fluffychat/utils/beautify_string_extension.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/views/chat_list.dart';
 import 'package:flutter/material.dart';
+import 'key_verification.dart';
+import '../utils/app_route.dart';
+import '../components/dialogs/simple_dialogs.dart';
 
 class ChatEncryptionSettingsView extends StatelessWidget {
   final String id;
@@ -33,6 +37,70 @@ class ChatEncryptionSettings extends StatefulWidget {
 }
 
 class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
+  Future<void> onSelected(
+      BuildContext context, String action, DeviceKeys key) async {
+    final room = Matrix.of(context).client.getRoomById(widget.id);
+    final unblock = () async {
+      if (key.blocked) {
+        await key.setBlocked(false);
+      }
+    };
+    switch (action) {
+      case 'verify':
+        await unblock();
+        final req = key.startVerification();
+        req.onUpdate = () {
+          if (req.state == KeyVerificationState.done) {
+            setState(() => null);
+          }
+        };
+        await Navigator.of(context).push(
+          AppRoute.defaultRoute(
+            context,
+            KeyVerificationView(request: req),
+          ),
+        );
+        break;
+      case 'verify_manual':
+        if (await SimpleDialogs(context).askConfirmation(
+          titleText: L10n.of(context).isDeviceKeyCorrect,
+          contentText: key.ed25519Key.beautified,
+        )) {
+          await unblock();
+          await key.setVerified(true);
+          setState(() => null);
+        }
+        break;
+      case 'verify_user':
+        await unblock();
+        final req =
+            await room.client.userDeviceKeys[key.userId].startVerification();
+        req.onUpdate = () {
+          if (req.state == KeyVerificationState.done) {
+            setState(() => null);
+          }
+        };
+        await Navigator.of(context).push(
+          AppRoute.defaultRoute(
+            context,
+            KeyVerificationView(request: req),
+          ),
+        );
+        break;
+      case 'block':
+        if (key.directVerified) {
+          await key.setVerified(false);
+        }
+        await key.setBlocked(true);
+        setState(() => null);
+        break;
+      case 'unblock':
+        await unblock();
+        setState(() => null);
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final room = Matrix.of(context).client.getRoomById(widget.id);
@@ -68,59 +136,99 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
                       if (i == 0 ||
                           deviceKeys[i].userId != deviceKeys[i - 1].userId)
                         Material(
-                          child: ListTile(
-                            leading: Avatar(
-                              room
+                          child: PopupMenuButton(
+                            onSelected: (action) =>
+                                onSelected(context, action, deviceKeys[i]),
+                            itemBuilder: (c) {
+                              var items = <PopupMenuEntry<String>>[];
+                              if (room
+                                          .client
+                                          .userDeviceKeys[deviceKeys[i].userId]
+                                          .verified ==
+                                      UserVerifiedStatus.unknown &&
+                                  deviceKeys[i].userId != room.client.userID) {
+                                items.add(PopupMenuItem(
+                                  child: Text(L10n.of(context).verifyUser),
+                                  value: 'verify_user',
+                                ));
+                              }
+                              return items;
+                            },
+                            child: ListTile(
+                              leading: Avatar(
+                                room
+                                    .getUserByMXIDSync(deviceKeys[i].userId)
+                                    .avatarUrl,
+                                room
+                                    .getUserByMXIDSync(deviceKeys[i].userId)
+                                    .calcDisplayname(),
+                              ),
+                              title: Text(room
                                   .getUserByMXIDSync(deviceKeys[i].userId)
-                                  .avatarUrl,
-                              room
-                                  .getUserByMXIDSync(deviceKeys[i].userId)
-                                  .calcDisplayname(),
+                                  .calcDisplayname()),
+                              subtitle: Text(deviceKeys[i].userId),
                             ),
-                            title: Text(room
-                                .getUserByMXIDSync(deviceKeys[i].userId)
-                                .calcDisplayname()),
-                            subtitle: Text(deviceKeys[i].userId),
                           ),
                           elevation: 2,
                         ),
-                      CheckboxListTile(
-                        title: Text(
-                          "${deviceKeys[i].unsigned["device_display_name"] ?? L10n.of(context).unknownDevice} - ${deviceKeys[i].deviceId}",
-                          style: TextStyle(
-                              color: deviceKeys[i].blocked
-                                  ? Colors.red
-                                  : deviceKeys[i].verified
-                                      ? Colors.green
-                                      : Colors.orange),
-                        ),
-                        subtitle: Text(
-                          deviceKeys[i]
-                              .keys['ed25519:${deviceKeys[i].deviceId}']
-                              .beautified,
-                          style: TextStyle(
-                              color:
-                                  Theme.of(context).textTheme.bodyText2.color),
-                        ),
-                        value: deviceKeys[i].verified,
-                        onChanged: (bool newVal) {
-                          if (newVal == true) {
-                            if (deviceKeys[i].blocked) {
-                              deviceKeys[i]
-                                  .setBlocked(false, Matrix.of(context).client);
+                      PopupMenuButton(
+                        onSelected: (action) =>
+                            onSelected(context, action, deviceKeys[i]),
+                        itemBuilder: (c) {
+                          var items = <PopupMenuEntry<String>>[];
+                          if (deviceKeys[i].blocked ||
+                              !deviceKeys[i].verified) {
+                            if (deviceKeys[i].userId == room.client.userID) {
+                              items.add(PopupMenuItem(
+                                child: Text(L10n.of(context).verifyStart),
+                                value: 'verify',
+                              ));
+                              items.add(PopupMenuItem(
+                                child: Text(L10n.of(context).verifyManual),
+                                value: 'verify_manual',
+                              ));
+                            } else {
+                              items.add(PopupMenuItem(
+                                child: Text(L10n.of(context).verifyUser),
+                                value: 'verify_user',
+                              ));
                             }
-                            deviceKeys[i]
-                                .setVerified(true, Matrix.of(context).client);
-                          } else {
-                            if (deviceKeys[i].verified) {
-                              deviceKeys[i].setVerified(
-                                  false, Matrix.of(context).client);
-                            }
-                            deviceKeys[i]
-                                .setBlocked(true, Matrix.of(context).client);
                           }
-                          setState(() => null);
+                          if (deviceKeys[i].blocked) {
+                            items.add(PopupMenuItem(
+                              child: Text(L10n.of(context).unblockDevice),
+                              value: 'unblock',
+                            ));
+                          }
+                          if (!deviceKeys[i].blocked) {
+                            items.add(PopupMenuItem(
+                              child: Text(L10n.of(context).blockDevice),
+                              value: 'block',
+                            ));
+                          }
+                          return items;
                         },
+                        child: ListTile(
+                          title: Text(
+                            "${deviceKeys[i].unsigned["device_display_name"] ?? L10n.of(context).unknownDevice} - ${deviceKeys[i].deviceId}",
+                            style: TextStyle(
+                                color: deviceKeys[i].blocked
+                                    ? Colors.red
+                                    : deviceKeys[i].verified
+                                        ? Colors.green
+                                        : Colors.orange),
+                          ),
+                          subtitle: Text(
+                            deviceKeys[i]
+                                .keys['ed25519:${deviceKeys[i].deviceId}']
+                                .beautified,
+                            style: TextStyle(
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2
+                                    .color),
+                          ),
+                        ),
                       ),
                     ],
                   ),

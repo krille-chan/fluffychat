@@ -1,7 +1,12 @@
 {
-  "@@last_modified": "2020-05-15T15:34:50.065646",
+  "@@last_modified": "2020-06-25T16:02:16.297192",
   "About": "About",
   "@About": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Accept": "Accept",
+  "@Accept": {
     "type": "text",
     "placeholders": {}
   },
@@ -74,6 +79,28 @@
     "type": "text",
     "placeholders": {}
   },
+  "askSSSSCache": "Please enter your secure store passphrase or recovery key to cache the keys.",
+  "@askSSSSCache": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askSSSSSign": "To be able to sign the other person, please enter your secure store passphrase or recovery key.",
+  "@askSSSSSign": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askSSSSVerify": "Please enter your secure store passphrase or recovery key to verify your session.",
+  "@askSSSSVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askVerificationRequest": "Accept this verification request from {username}?",
+  "@askVerificationRequest": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
   "Authentication": "Authentication",
   "@Authentication": {
     "type": "text",
@@ -102,12 +129,22 @@
       "targetName": {}
     }
   },
+  "Block Device": "Block Device",
+  "@Block Device": {
+    "type": "text",
+    "placeholders": {}
+  },
   "byDefaultYouWillBeConnectedTo": "By default you will be connected to {homeserver}",
   "@byDefaultYouWillBeConnectedTo": {
     "type": "text",
     "placeholders": {
       "homeserver": {}
     }
+  },
+  "cachedKeys": "Successfully cached keys!",
+  "@cachedKeys": {
+    "type": "text",
+    "placeholders": {}
   },
   "Cancel": "Cancel",
   "@Cancel": {
@@ -273,6 +310,16 @@
     "type": "text",
     "placeholders": {}
   },
+  "compareEmojiMatch": "Compare and make sure the following emoji match those of the other device:",
+  "@compareEmojiMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "compareNumbersMatch": "Compare and make sure the following numbers match those of the other device:",
+  "@compareNumbersMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
   "Confirm": "Confirm",
   "@Confirm": {
     "type": "text",
@@ -351,6 +398,16 @@
   },
   "Create new group": "Create new group",
   "@Create new group": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "crossSigningDisabled": "Cross-Signing is disabled",
+  "@crossSigningDisabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "crossSigningEnabled": "Cross-Signing is enabled",
+  "@crossSigningEnabled": {
     "type": "text",
     "placeholders": {}
   },
@@ -461,6 +518,11 @@
   },
   "You won't be able to disable the encryption anymore. Are you sure?": "You won't be able to disable the encryption anymore. Are you sure?",
   "@You won't be able to disable the encryption anymore. Are you sure?": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Encryption": "Encryption",
+  "@Encryption": {
     "type": "text",
     "placeholders": {}
   },
@@ -594,6 +656,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "incorrectPassphraseOrKey": "Incorrect passphrase or recovery key",
+  "@incorrectPassphraseOrKey": {
+    "type": "text",
+    "placeholders": {}
+  },
   "Invite contact": "Invite contact",
   "@Invite contact": {
     "type": "text",
@@ -632,6 +699,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "isDeviceKeyCorrect": "Is the following device key correct?",
+  "@isDeviceKeyCorrect": {
+    "type": "text",
+    "placeholders": {}
+  },
   "is typing...": "is typing...",
   "@is typing...": {
     "type": "text",
@@ -648,6 +720,16 @@
     "placeholders": {
       "username": {}
     }
+  },
+  "keysCached": "Keys are cached",
+  "@keysCached": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "keysMissing": "Keys are missing",
+  "@keysMissing": {
+    "type": "text",
+    "placeholders": {}
   },
   "kicked": "{username} kicked {targetName}",
   "@kicked": {
@@ -788,6 +870,21 @@
     "type": "text",
     "placeholders": {}
   },
+  "newVerificationRequest": "New verification request!",
+  "@newVerificationRequest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noCrossSignBootstrap": "Fluffychat currently does not support enabling Cross-Signing. Please enable it from within Riot.",
+  "@noCrossSignBootstrap": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noMegolmBootstrap": "Fluffychat currently does not support enabling Online Key Backup. Please enable it from within Riot.",
+  "@noMegolmBootstrap": {
+    "type": "text",
+    "placeholders": {}
+  },
   "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/",
   "@It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": {
     "type": "text",
@@ -830,6 +927,16 @@
     "type": "text",
     "placeholders": {}
   },
+  "onlineKeyBackupDisabled": "Online Key Backup is disabled",
+  "@onlineKeyBackupDisabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "onlineKeyBackupEnabled": "Online Key Backup is enabled",
+  "@onlineKeyBackupEnabled": {
+    "type": "text",
+    "placeholders": {}
+  },
   "Oops something went wrong...": "Oops something went wrong...",
   "@Oops something went wrong...": {
     "type": "text",
@@ -852,6 +959,11 @@
   },
   "Participating user devices": "Participating user devices",
   "@Participating user devices": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passphraseOrKey": "passphrase or recovery key",
+  "@passphraseOrKey": {
     "type": "text",
     "placeholders": {}
   },
@@ -894,6 +1006,11 @@
   },
   "Public Rooms": "Public Rooms",
   "@Public Rooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Reject": "Reject",
+  "@Reject": {
     "type": "text",
     "placeholders": {}
   },
@@ -975,6 +1092,11 @@
   },
   "Request to read older messages": "Request to read older messages",
   "@Request to read older messages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Room has been upgraded": "Room has been upgraded",
+  "@Room has been upgraded": {
     "type": "text",
     "placeholders": {}
   },
@@ -1083,6 +1205,11 @@
       "username": {}
     }
   },
+  "sessionVerified": "Session is verified",
+  "@sessionVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
   "Set a profile picture": "Set a profile picture",
   "@Set a profile picture": {
     "type": "text",
@@ -1110,6 +1237,11 @@
   },
   "Sign up": "Sign up",
   "@Sign up": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Skip": "Skip",
+  "@Skip": {
     "type": "text",
     "placeholders": {}
   },
@@ -1153,6 +1285,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "Submit": "Submit",
+  "@Submit": {
+    "type": "text",
+    "placeholders": {}
+  },
   "Sunday": "Sunday",
   "@Sunday": {
     "type": "text",
@@ -1165,6 +1302,16 @@
   },
   "Tap to show menu": "Tap to show menu",
   "@Tap to show menu": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "They Don't Match": "They Don't Match",
+  "@They Don't Match": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "They Match": "They Match",
+  "@They Match": {
     "type": "text",
     "placeholders": {}
   },
@@ -1212,6 +1359,11 @@
       "targetName": {}
     }
   },
+  "Unblock Device": "Unblock Device",
+  "@Unblock Device": {
+    "type": "text",
+    "placeholders": {}
+  },
   "Unmute chat": "Unmute chat",
   "@Unmute chat": {
     "type": "text",
@@ -1224,6 +1376,11 @@
   },
   "Unknown encryption algorithm": "Unknown encryption algorithm",
   "@Unknown encryption algorithm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknownSessionVerify": "Unknown session, please verify",
+  "@unknownSessionVerify": {
     "type": "text",
     "placeholders": {}
   },
@@ -1297,6 +1454,36 @@
     "type": "text",
     "placeholders": {}
   },
+  "verifyManual": "Verify Manually",
+  "@verifyManual": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifiedSession": "Successfully verified session!",
+  "@verifiedSession": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyStart": "Start Verification",
+  "@verifyStart": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifySuccess": "You successfully verified!",
+  "@verifySuccess": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyTitle": "Verifying other account",
+  "@verifyTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Verify User": "Verify User",
+  "@Verify User": {
+    "type": "text",
+    "placeholders": {}
+  },
   "Video call": "Video call",
   "@Video call": {
     "type": "text",
@@ -1319,6 +1506,21 @@
   },
   "Voice message": "Voice message",
   "@Voice message": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "waitingPartnerAcceptRequest": "Waiting for partner to accept the request...",
+  "@waitingPartnerAcceptRequest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "waitingPartnerEmoji": "Waiting for partner to accept the emoji...",
+  "@waitingPartnerEmoji": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "waitingPartnerNumbers": "Waiting for partner to accept the numbers...",
+  "@waitingPartnerNumbers": {
     "type": "text",
     "placeholders": {}
   },

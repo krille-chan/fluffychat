@@ -4,9 +4,13 @@
 - Chat app bar transparent
 - Implement web file picker
 - Minor design and UX improvements
+- Implement Cross Signing
+- Restore keys from online key backup
 ### Changes:
 - Show presences of users sharing a direct chat
 - Big refactoring
+### Fixes:
+- Various fixes, including e2ee fixes and olm session recovery
 
 # Version 0.14.0 - 2020-05-20
 ### Features:
