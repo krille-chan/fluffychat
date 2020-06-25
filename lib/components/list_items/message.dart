@@ -1,6 +1,5 @@
 import 'package:bubble/bubble.dart';
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:famedlysdk/encryption.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/message_content.dart';
 import 'package:fluffychat/components/reply_content.dart';
@@ -122,7 +121,7 @@ class Message extends StatelessWidget {
                     ),
                     if (event.type == EventTypes.Encrypted &&
                         event.messageType == MessageTypes.BadEncrypted &&
-                        event.content['body'] == DecryptError.UNKNOWN_SESSION)
+                        event.content['can_request_session'] == true)
                       RaisedButton(
                         color: color.withAlpha(100),
                         child: Text(

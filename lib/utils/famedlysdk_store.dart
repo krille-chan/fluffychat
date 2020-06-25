@@ -127,7 +127,7 @@ Future<void> migrate(String clientName, Database db, Store store) async {
             var sess = olm.Session();
             sess.unpickle(credentials['userID'], pickle);
             await db.storeOlmSession(
-                clientId, identKey, sess.session_id(), pickle);
+                clientId, identKey, sess.session_id(), pickle, null);
             sess?.free();
           }
         }

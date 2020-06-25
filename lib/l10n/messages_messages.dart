@@ -23,6 +23,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m1(username) => "${username} activated end to end encryption";
 
+  static m60(username) => "Accept this verification request from ${username}?";
+
   static m2(username, targetName) => "${username} banned ${targetName}";
 
   static m3(homeserver) => "By default you will be connected to ${homeserver}";
@@ -157,6 +159,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "(Optional) Group name":
             MessageLookupByLibrary.simpleMessage("(Optional) Group name"),
         "About": MessageLookupByLibrary.simpleMessage("About"),
+        "Accept": MessageLookupByLibrary.simpleMessage("Accept"),
         "Account": MessageLookupByLibrary.simpleMessage("Account"),
         "Account informations":
             MessageLookupByLibrary.simpleMessage("Account informations"),
@@ -178,6 +181,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Avatar has been changed"),
         "Ban from chat": MessageLookupByLibrary.simpleMessage("Ban from chat"),
         "Banned": MessageLookupByLibrary.simpleMessage("Banned"),
+        "Block Device": MessageLookupByLibrary.simpleMessage("Block Device"),
         "Cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "Change the homeserver":
             MessageLookupByLibrary.simpleMessage("Change the homeserver"),
@@ -242,6 +246,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Emote shortcode":
             MessageLookupByLibrary.simpleMessage("Emote shortcode"),
         "Empty chat": MessageLookupByLibrary.simpleMessage("Empty chat"),
+        "Encryption": MessageLookupByLibrary.simpleMessage("Encryption"),
         "Encryption algorithm":
             MessageLookupByLibrary.simpleMessage("Encryption algorithm"),
         "Encryption is not enabled":
@@ -351,6 +356,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please enter your username"),
         "Public Rooms": MessageLookupByLibrary.simpleMessage("Public Rooms"),
         "Recording": MessageLookupByLibrary.simpleMessage("Recording"),
+        "Reject": MessageLookupByLibrary.simpleMessage("Reject"),
         "Rejoin": MessageLookupByLibrary.simpleMessage("Rejoin"),
         "Remove": MessageLookupByLibrary.simpleMessage("Remove"),
         "Remove all other devices":
@@ -368,6 +374,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Request to read older messages"),
         "Revoke all permissions":
             MessageLookupByLibrary.simpleMessage("Revoke all permissions"),
+        "Room has been upgraded":
+            MessageLookupByLibrary.simpleMessage("Room has been upgraded"),
         "Saturday": MessageLookupByLibrary.simpleMessage("Saturday"),
         "Search for a chat":
             MessageLookupByLibrary.simpleMessage("Search for a chat"),
@@ -388,9 +396,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "Settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "Share": MessageLookupByLibrary.simpleMessage("Share"),
         "Sign up": MessageLookupByLibrary.simpleMessage("Sign up"),
+        "Skip": MessageLookupByLibrary.simpleMessage("Skip"),
         "Source code": MessageLookupByLibrary.simpleMessage("Source code"),
         "Start your first chat :-)":
             MessageLookupByLibrary.simpleMessage("Start your first chat :-)"),
+        "Submit": MessageLookupByLibrary.simpleMessage("Submit"),
         "Sunday": MessageLookupByLibrary.simpleMessage("Sunday"),
         "System": MessageLookupByLibrary.simpleMessage("System"),
         "Tap to show menu":
@@ -398,12 +408,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "The encryption has been corrupted":
             MessageLookupByLibrary.simpleMessage(
                 "The encryption has been corrupted"),
+        "They Don\'t Match":
+            MessageLookupByLibrary.simpleMessage("They Don\'t Match"),
+        "They Match": MessageLookupByLibrary.simpleMessage("They Match"),
         "This room has been archived.": MessageLookupByLibrary.simpleMessage(
             "This room has been archived."),
         "Thursday": MessageLookupByLibrary.simpleMessage("Thursday"),
         "Try to send again":
             MessageLookupByLibrary.simpleMessage("Try to send again"),
         "Tuesday": MessageLookupByLibrary.simpleMessage("Tuesday"),
+        "Unblock Device":
+            MessageLookupByLibrary.simpleMessage("Unblock Device"),
         "Unknown device":
             MessageLookupByLibrary.simpleMessage("Unknown device"),
         "Unknown encryption algorithm": MessageLookupByLibrary.simpleMessage(
@@ -413,6 +428,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Use Amoled compatible colors?"),
         "Username": MessageLookupByLibrary.simpleMessage("Username"),
         "Verify": MessageLookupByLibrary.simpleMessage("Verify"),
+        "Verify User": MessageLookupByLibrary.simpleMessage("Verify User"),
         "Video call": MessageLookupByLibrary.simpleMessage("Video call"),
         "Visibility of the chat history": MessageLookupByLibrary.simpleMessage(
             "Visibility of the chat history"),
@@ -451,8 +467,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "acceptedTheInvitation": m0,
         "activatedEndToEndEncryption": m1,
         "alias": MessageLookupByLibrary.simpleMessage("alias"),
+        "askSSSSCache": MessageLookupByLibrary.simpleMessage(
+            "Please enter your secure store passphrase or recovery key to cache the keys."),
+        "askSSSSSign": MessageLookupByLibrary.simpleMessage(
+            "To be able to sign the other person, please enter your secure store passphrase or recovery key."),
+        "askSSSSVerify": MessageLookupByLibrary.simpleMessage(
+            "Please enter your secure store passphrase or recovery key to verify your session."),
+        "askVerificationRequest": m60,
         "bannedUser": m2,
         "byDefaultYouWillBeConnectedTo": m3,
+        "cachedKeys":
+            MessageLookupByLibrary.simpleMessage("Successfully cached keys!"),
         "changedTheChatAvatar": m4,
         "changedTheChatDescriptionTo": m5,
         "changedTheChatNameTo": m6,
@@ -467,9 +492,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "changedTheProfileAvatar": m15,
         "changedTheRoomAliases": m16,
         "changedTheRoomInvitationLink": m17,
+        "compareEmojiMatch": MessageLookupByLibrary.simpleMessage(
+            "Compare and make sure the following emoji match those of the other device:"),
+        "compareNumbersMatch": MessageLookupByLibrary.simpleMessage(
+            "Compare and make sure the following numbers match those of the other device:"),
         "couldNotDecryptMessage": m18,
         "countParticipants": m19,
         "createdTheChat": m20,
+        "crossSigningDisabled":
+            MessageLookupByLibrary.simpleMessage("Cross-Signing is disabled"),
+        "crossSigningEnabled":
+            MessageLookupByLibrary.simpleMessage("Cross-Signing is enabled"),
         "dateAndTimeOfDay": m21,
         "dateWithYear": m22,
         "dateWithoutYear": m23,
@@ -481,18 +514,36 @@ class MessageLookup extends MessageLookupByLibrary {
             "You need to pick an emote shortcode and an image!"),
         "groupWith": m24,
         "hasWithdrawnTheInvitationFor": m25,
+        "incorrectPassphraseOrKey": MessageLookupByLibrary.simpleMessage(
+            "Incorrect passphrase or recovery key"),
         "inviteContactToGroup": m26,
         "inviteText": m27,
         "invitedUser": m28,
         "is typing...": MessageLookupByLibrary.simpleMessage("is typing..."),
+        "isDeviceKeyCorrect": MessageLookupByLibrary.simpleMessage(
+            "Is the following device key correct?"),
         "joinedTheChat": m29,
+        "keysCached": MessageLookupByLibrary.simpleMessage("Keys are cached"),
+        "keysMissing": MessageLookupByLibrary.simpleMessage("Keys are missing"),
         "kicked": m30,
         "kickedAndBanned": m31,
         "lastActiveAgo": m32,
         "loadCountMoreParticipants": m33,
         "logInTo": m34,
+        "newVerificationRequest":
+            MessageLookupByLibrary.simpleMessage("New verification request!"),
+        "noCrossSignBootstrap": MessageLookupByLibrary.simpleMessage(
+            "Fluffychat currently does not support enabling Cross-Signing. Please enable it from within Riot."),
+        "noMegolmBootstrap": MessageLookupByLibrary.simpleMessage(
+            "Fluffychat currently does not support enabling Online Key Backup. Please enable it from within Riot."),
         "numberSelected": m35,
         "ok": MessageLookupByLibrary.simpleMessage("ok"),
+        "onlineKeyBackupDisabled": MessageLookupByLibrary.simpleMessage(
+            "Online Key Backup is disabled"),
+        "onlineKeyBackupEnabled": MessageLookupByLibrary.simpleMessage(
+            "Online Key Backup is enabled"),
+        "passphraseOrKey":
+            MessageLookupByLibrary.simpleMessage("passphrase or recovery key"),
         "play": m36,
         "redactedAnEvent": m37,
         "rejectedTheInvitation": m38,
@@ -505,11 +556,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "sentASticker": m45,
         "sentAVideo": m46,
         "sentAnAudio": m47,
+        "sessionVerified":
+            MessageLookupByLibrary.simpleMessage("Session is verified"),
         "sharedTheLocation": m48,
         "timeOfDay": m49,
         "title": MessageLookupByLibrary.simpleMessage("FluffyChat"),
         "unbannedUser": m50,
         "unknownEvent": m51,
+        "unknownSessionVerify": MessageLookupByLibrary.simpleMessage(
+            "Unknown session, please verify"),
         "unreadChats": m52,
         "unreadMessages": m53,
         "unreadMessagesInChats": m54,
@@ -517,6 +572,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "userAndUserAreTyping": m56,
         "userIsTyping": m57,
         "userLeftTheChat": m58,
-        "userSentUnknownEvent": m59
+        "userSentUnknownEvent": m59,
+        "verifiedSession": MessageLookupByLibrary.simpleMessage(
+            "Successfully verified session!"),
+        "verifyManual": MessageLookupByLibrary.simpleMessage("Verify Manually"),
+        "verifyStart":
+            MessageLookupByLibrary.simpleMessage("Start Verification"),
+        "verifySuccess":
+            MessageLookupByLibrary.simpleMessage("You successfully verified!"),
+        "verifyTitle":
+            MessageLookupByLibrary.simpleMessage("Verifying other account"),
+        "waitingPartnerAcceptRequest": MessageLookupByLibrary.simpleMessage(
+            "Waiting for partner to accept the request..."),
+        "waitingPartnerEmoji": MessageLookupByLibrary.simpleMessage(
+            "Waiting for partner to accept the emoji..."),
+        "waitingPartnerNumbers": MessageLookupByLibrary.simpleMessage(
+            "Waiting for partner to accept the numbers...")
       };
 }
