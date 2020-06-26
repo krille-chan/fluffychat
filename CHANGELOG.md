@@ -1,4 +1,8 @@
-# Version 0.15.0
+# Version 0.15.1 - 2020-06-26
+### Fixes:
+- Fix a big with account data being stored incorrectly
+
+# Version 0.15.0 - 2020-06-26
 ### Features:
 - New room list app bar design
 - Chat app bar transparent
