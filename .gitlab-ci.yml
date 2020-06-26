@@ -69,6 +69,7 @@ build_android_apk:
       - build/app/outputs/apk/release/app-release.apk
   only:
     - master
+    - tags
 
 
 build_android_appbundle:
@@ -94,11 +95,11 @@ upload_to_fdroid_repo:
     ##
     ## Install ssh-agent if not already installed.
     ##
-    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - 'which ssh-agent || (sudo apt-get update -y && sudo apt-get install openssh-client -y )'
     ##
     ## Install rsync if not already installed.
     ##
-    - 'which rsync || ( apt-get update -y && apt-get install rsync -y )'
+    - 'which rsync || (sudo apt-get update -y && sudo apt-get install rsync -y )'
     ##
     ## Run ssh-agent (inside the build environment)
     ##
