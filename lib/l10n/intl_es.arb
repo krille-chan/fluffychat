@@ -27,7 +27,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "activatedEndToEndEncryption": "{username} activó la encriptación de extremo a extremo",
+  "activatedEndToEndEncryption": "{username} activó el cifrado de extremo a extremo",
   "@activatedEndToEndEncryption": {
     "type": "text",
     "placeholders": {
@@ -69,7 +69,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Are guest users allowed to join": "¿Los usuarios invitados pueden unirse?",
+  "Are guest users allowed to join": "¿Pueden unirse los usuarios visitantes?",
   "@Are guest users allowed to join": {
     "type": "text",
     "placeholders": {}
@@ -84,7 +84,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSSign": "Para poder firmar a la otra persona, ingrese su contraseña de almacenamiento segura o la clave de recuperación",
+  "askSSSSSign": "Para poder confirmar a la otra persona, ingrese su contraseña de almacenamiento segura o la clave de recuperación.",
   "@askSSSSSign": {
     "type": "text",
     "placeholders": {}
@@ -106,7 +106,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Avatar has been changed": "El avatar ha sido cambiado",
+  "Avatar has been changed": "La imagen de perfil ha sido cambiada",
   "@Avatar has been changed": {
     "type": "text",
     "placeholders": {}
@@ -134,7 +134,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "byDefaultYouWillBeConnectedTo": "De forma predeterminada, estará conectado a {homeserver}",
+  "byDefaultYouWillBeConnectedTo": "De forma predeterminada estará conectado a {homeserver}",
   "@byDefaultYouWillBeConnectedTo": {
     "type": "text",
     "placeholders": {
@@ -151,7 +151,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changedTheChatAvatar": "{username} cambió el avatar del chat",
+  "changedTheChatAvatar": "{username} cambió el icono del chat",
   "@changedTheChatAvatar": {
     "type": "text",
     "placeholders": {
@@ -181,7 +181,7 @@
       "username": {}
     }
   },
-  "changedTheDisplaynameTo": "{username} cambió el nombre para mostrar a: {displayname}",
+  "changedTheDisplaynameTo": "{username} cambió su nombre visible a: {displayname}",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -194,14 +194,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "changedTheGuestAccessRules": "{username} cambió las reglas de acceso de invitado",
+  "changedTheGuestAccessRules": "{username} cambió las reglas de acceso de visitantes",
   "@changedTheGuestAccessRules": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheGuestAccessRulesTo": "{username} cambió las reglas de acceso de invitado a: {rules}",
+  "changedTheGuestAccessRulesTo": "{username} cambió las reglas de acceso de visitantes a: {rules}",
   "@changedTheGuestAccessRulesTo": {
     "type": "text",
     "placeholders": {
@@ -224,14 +224,14 @@
       "rules": {}
     }
   },
-  "changedTheJoinRules": "{username} cambió las reglas de unión",
+  "changedTheJoinRules": "{username} cambió las reglas de ingreso",
   "@changedTheJoinRules": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheJoinRulesTo": "{username} cambió las reglas de unión a {joinRules}",
+  "changedTheJoinRulesTo": "{username} cambió las reglas de ingreso a {joinRules}",
   "@changedTheJoinRulesTo": {
     "type": "text",
     "placeholders": {
@@ -239,7 +239,7 @@
       "joinRules": {}
     }
   },
-  "changedTheProfileAvatar": "{username} cambió el avatar de su perfil",
+  "changedTheProfileAvatar": "{username} cambió su imagen de perfil",
   "@changedTheProfileAvatar": {
     "type": "text",
     "placeholders": {
@@ -280,7 +280,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "The encryption has been corrupted": "El cifrado ha sido dañado",
+  "The encryption has been corrupted": "El cifrado se ha corrompido",
   "@The encryption has been corrupted": {
     "type": "text",
     "placeholders": {}
@@ -330,7 +330,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Connection attempt failed": "Intento de conexión fallido",
+  "Connection attempt failed": "Falló el intento de conexión",
   "@Connection attempt failed": {
     "type": "text",
     "placeholders": {}
@@ -362,12 +362,12 @@
       "error": {}
     }
   },
-  "Could not set avatar": "No se pudo establecer el avatar",
+  "Could not set avatar": "No se pudo establecer la imagen de perfil",
   "@Could not set avatar": {
     "type": "text",
     "placeholders": {}
   },
-  "Could not set displayname": "No se pudo establecer el nombre para mostrar",
+  "Could not set displayname": "No se pudo establecer el nombre visible",
   "@Could not set displayname": {
     "type": "text",
     "placeholders": {}
@@ -396,17 +396,17 @@
       "username": {}
     }
   },
-  "Create new group": "Crear nuevo grupo",
+  "Create new group": "Crear grupo nuevo",
   "@Create new group": {
     "type": "text",
     "placeholders": {}
   },
-  "crossSigningDisabled": "La firma cruzada está deshabilitada",
+  "crossSigningDisabled": "La confirmación cruzada está deshabilitada",
   "@crossSigningDisabled": {
     "type": "text",
     "placeholders": {}
   },
-  "crossSigningEnabled": "La firma cruzada está habilitada",
+  "crossSigningEnabled": "La confirmación cruzada está habilitada",
   "@crossSigningEnabled": {
     "type": "text",
     "placeholders": {}
@@ -451,7 +451,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Deny": "Negar",
+  "Deny": "Rechazar",
   "@Deny": {
     "type": "text",
     "placeholders": {}
@@ -471,7 +471,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Displayname has been changed": "El nombre para mostrar ha cambiado",
+  "Displayname has been changed": "El nombre visible ha cambiado",
   "@Displayname has been changed": {
     "type": "text",
     "placeholders": {}
@@ -481,7 +481,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Edit displayname": "Editar nombre para mostrar",
+  "Edit displayname": "Editar nombre visible",
   "@Edit displayname": {
     "type": "text",
     "placeholders": {}
@@ -491,12 +491,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "Emote shortcode": "Código corto de emote",
+  "Emote shortcode": "Atajo de emote",
   "@Emote shortcode": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteWarnNeedToPick": "¡Debes elegir un código abreviado de emote y una imagen!",
+  "emoteWarnNeedToPick": "¡Debes elegir un atajo de emote y una imagen!",
   "@emoteWarnNeedToPick": {
     "type": "text",
     "placeholders": {}
@@ -506,7 +506,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteInvalid": "¡El código corto del emote es inválido!",
+  "emoteInvalid": "¡El atajo del emote es inválido!",
   "@emoteInvalid": {
     "type": "text",
     "placeholders": {}
@@ -516,7 +516,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "You won't be able to disable the encryption anymore. Are you sure?": "Ya no podrá deshabilitar el cifrado. ¿Está seguro?",
+  "You won't be able to disable the encryption anymore. Are you sure?": "Ya no podrá deshabilitar el cifrado. ¿Estás seguro?",
   "@You won't be able to disable the encryption anymore. Are you sure?": {
     "type": "text",
     "placeholders": {}
@@ -581,12 +581,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "From joining": "De unirse",
+  "From joining": "Desde que se unió",
   "@From joining": {
     "type": "text",
     "placeholders": {}
   },
-  "From the invitation": "De la invitación",
+  "From the invitation": "Desde la invitación",
   "@From the invitation": {
     "type": "text",
     "placeholders": {}
@@ -678,7 +678,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "{username} te invitó a FluffyChat.\n1. Instale FluffyChat: http://fluffy.chat\n2. Regístrate o inicia",
+  "inviteText": "{username} te invitó a FluffyChat.\n1. Instale FluffyChat: http://fluffy.chat\n2. Regístrate o inicia sesión \n3. Abra el enlace de invitación: {link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {
@@ -699,7 +699,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "isDeviceKeyCorrect": "¿Es correcta la siguiente clave del dispositivo?",
+  "isDeviceKeyCorrect": "¿Es correcta la siguiente clave de dispositivo?",
   "@isDeviceKeyCorrect": {
     "type": "text",
     "placeholders": {}
@@ -709,12 +709,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "Edit Jitsi instance": "Editar instancia de Jitsi",
+  "Edit Jitsi instance": "Cambiar la instancia de Jitsi",
   "@Edit Jitsi instance": {
     "type": "text",
     "placeholders": {}
   },
-  "joinedTheChat": "{username} see unió al chat",
+  "joinedTheChat": "{username} se unió al chat",
   "@joinedTheChat": {
     "type": "text",
     "placeholders": {
@@ -747,7 +747,7 @@
       "targetName": {}
     }
   },
-  "Kick from chat": "Echar el chat",
+  "Kick from chat": "Echar del chat",
   "@Kick from chat": {
     "type": "text",
     "placeholders": {}
@@ -791,7 +791,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Loading... Please wait": "Cargando... Por favor, espere",
+  "Loading... Please wait": "Cargando... Por favor espere",
   "@Loading... Please wait": {
     "type": "text",
     "placeholders": {}
@@ -830,7 +830,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Make sure the identifier is valid": "Asegúrese de que el identificador sea válido",
+  "Make sure the identifier is valid": "Asegúrese de que el identificador es válido",
   "@Make sure the identifier is valid": {
     "type": "text",
     "placeholders": {}
@@ -875,7 +875,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "Fluffychat actualmente no admite la habilitación de firma cruzada. Por favor habilítela desde Riot.",
+  "noCrossSignBootstrap": "Fluffychat actualmente no admite habilitar confirmación cruzada. Por favor habilítela desde Riot.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -994,7 +994,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Please enter your password": "Por favor, ingrese su contraseña",
+  "Please enter your password": "Por favor ingrese su contraseña",
   "@Please enter your password": {
     "type": "text",
     "placeholders": {}
@@ -1019,7 +1019,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Render rich message content": "Renderizar el contenido de mensajes enriquecidos",
+  "Render rich message content": "Mostrar el contenido con mensajes enriquecidos",
   "@Render rich message content": {
     "type": "text",
     "placeholders": {}
@@ -1090,7 +1090,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Request to read older messages": "Solicitud para leer mensajes antiguos",
+  "Request to read older messages": "Solicitar poder leer mensajes antiguos",
   "@Request to read older messages": {
     "type": "text",
     "placeholders": {}
@@ -1142,7 +1142,7 @@
       "username2": {}
     }
   },
-  "seenByUserAndCountOthers": "Visto por {username} y {count} otros",
+  "seenByUserAndCountOthers": "Visto por {username} y {count} más",
   "@seenByUserAndCountOthers": {
     "type": "text",
     "placeholders": {
@@ -1205,7 +1205,7 @@
       "username": {}
     }
   },
-  "sessionVerified": "La sesión ha sido verificada",
+  "sessionVerified": "La sesión está verificada",
   "@sessionVerified": {
     "type": "text",
     "placeholders": {}
@@ -1413,7 +1413,7 @@
       "unreadChats": {}
     }
   },
-  "userAndOthersAreTyping": "{username} y {count} otros están escribiendo...",
+  "userAndOthersAreTyping": "{username} y {count} más están escribiendo...",
   "@userAndOthersAreTyping": {
     "type": "text",
     "placeholders": {
@@ -1434,14 +1434,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "userIsTyping": "{username} está escribiendo..",
+  "userIsTyping": "{username} está escribiendo...",
   "@userIsTyping": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "userSentUnknownEvent": "{username} envió un evento de tipo {type}",
+  "userSentUnknownEvent": "{username} envió un evento {type}",
   "@userSentUnknownEvent": {
     "type": "text",
     "placeholders": {
@@ -1509,7 +1509,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerAcceptRequest": "Esperando a que el compañero acepte la solicitud...",
+  "waitingPartnerAcceptRequest": "Esperando a que el socio acepte la solicitud...",
   "@waitingPartnerAcceptRequest": {
     "type": "text",
     "placeholders": {}
@@ -1539,7 +1539,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Welcome to the cutest instant messenger in the matrix network.": "Bienvenido a la mensajería instantánea más tierna de la red Matrix.",
+  "Welcome to the cutest instant messenger in the matrix network.": "Bienvenido al mensajero instantáneo más tierno de la red Matrix.",
   "@Welcome to the cutest instant messenger in the matrix network.": {
     "type": "text",
     "placeholders": {}
