@@ -379,7 +379,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Alle Berechtigungen zurücknehmen"),
         "Saturday": MessageLookupByLibrary.simpleMessage("Samstag"),
         "Search for a chat":
-            MessageLookupByLibrary.simpleMessage("Durchsuche die Chats"),
+            MessageLookupByLibrary.simpleMessage("Chats durchsuchen"),
         "Seen a long time ago": MessageLookupByLibrary.simpleMessage(
             "Vor sehr langer Zeit gesehen"),
         "Send": MessageLookupByLibrary.simpleMessage("Senden"),

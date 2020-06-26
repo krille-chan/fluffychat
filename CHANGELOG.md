@@ -6,6 +6,7 @@
 - Minor design and UX improvements
 - Implement Cross Signing
 - Restore keys from online key backup
+- Added translations: Czech, Spanish, Slovakian
 ### Changes:
 - Show presences of users sharing a direct chat
 - Big refactoring
