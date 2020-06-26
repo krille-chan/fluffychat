@@ -1376,5 +1376,212 @@
   "@Your own username": {
     "type": "text",
     "placeholders": {}
+  },
+  "waitingPartnerNumbers": "Warte darauf, dass der Partner die Zahlen annimmt...",
+  "@waitingPartnerNumbers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "waitingPartnerEmoji": "Warte darauf, dass der Partner die Emoji annimmt...",
+  "@waitingPartnerEmoji": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "waitingPartnerAcceptRequest": "Warte darauf, dass der Partner die Verifikationsanfrage annimmt...",
+  "@waitingPartnerAcceptRequest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Verify User": "Verifiziere Benutzer",
+  "@Verify User": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyTitle": "Verifiziere anderen Benutzer",
+  "@verifyTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifySuccess": "Erfolgreich verifiziert!",
+  "@verifySuccess": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyStart": "Starte Verifikation",
+  "@verifyStart": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifiedSession": "Sitzung erfolgreich verifiziert!",
+  "@verifiedSession": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyManual": "Verifiziere manuell",
+  "@verifyManual": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknownSessionVerify": "Unbekannte Sitzung, bitte verifiziere diese",
+  "@unknownSessionVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Unblock Device": "Geräteblockierung aufheben",
+  "@Unblock Device": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "They Match": "Stimmen überein",
+  "@They Match": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "They Don't Match": "Stimmen nicht überein",
+  "@They Don't Match": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "How are you today?": "Wie geht es dir heute?",
+  "@How are you today?": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Skip": "Überspringe",
+  "@Skip": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sessionVerified": "Sitzung ist verifiziert",
+  "@sessionVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Room has been upgraded": "Der Raum wurde ge-upgraded",
+  "@Room has been upgraded": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Reject": "Ablehnen",
+  "@Reject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passphraseOrKey": "Passwort oder Wiederherstellungsschlüssel",
+  "@passphraseOrKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Open app to read messages": "Öffne app, um Nachrichten zu lesen",
+  "@Open app to read messages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "onlineKeyBackupEnabled": "Online Key Backup ist aktiviert",
+  "@onlineKeyBackupEnabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "onlineKeyBackupDisabled": "Online Key Backup ist deaktiviert",
+  "@onlineKeyBackupDisabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noMegolmBootstrap": "Fluffychat unterstützt noch nicht das Einschalten vom Online Key Backup. Bitte schalte es innerhalb Riot an.",
+  "@noMegolmBootstrap": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noCrossSignBootstrap": "Fluffychat unterstützt noch nicht das Einschalten von Cross-Signing. Bitte schalte es innerhalb Riot an.",
+  "@noCrossSignBootstrap": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newVerificationRequest": "Neue Verifikationsanfrage!",
+  "@newVerificationRequest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "keysMissing": "Keys fehlen",
+  "@keysMissing": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "keysCached": "Keys sind gecached",
+  "@keysCached": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "isDeviceKeyCorrect": "Ist der folgende Geräteschlüssel korrekt?",
+  "@isDeviceKeyCorrect": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "incorrectPassphraseOrKey": "Falsches Passwort oder Wiederherstellungsschlüssel",
+  "@incorrectPassphraseOrKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Encryption": "Verschlüsselung",
+  "@Encryption": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "crossSigningEnabled": "Cross-Signing ist aktiviert",
+  "@crossSigningEnabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "crossSigningDisabled": "Cross-Signing ist deaktiviert",
+  "@crossSigningDisabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "compareNumbersMatch": "Vergleiche und stelle sicher, dass die folgenden Zahlen mit denen des anderen Gerätes übereinstimmen:",
+  "@compareNumbersMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "compareEmojiMatch": "Vergleiche und stelle sicher, dass die folgenden Emoji mit denen des anderen Gerätes übereinstimmen:",
+  "@compareEmojiMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cachedKeys": "Keys erfolgreich gecached!",
+  "@cachedKeys": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Block Device": "Blockiere Gerät",
+  "@Block Device": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askVerificationRequest": "Nehme Verifikationsanfrage von {username} an?",
+  "@askVerificationRequest": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "askSSSSVerify": "Bitte gebe um deine Session zu verifizieren dein Secure-Store Passwort oder Wiederherstellungsschlüssel ein.",
+  "@askSSSSVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askSSSSSign": "Bitte gebe um die andere Person signieren zu können dein Secure-Store Passwort oder Wiederherstellungsschlüssel ein.",
+  "@askSSSSSign": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askSSSSCache": "Bitte gib dein Secure-Store Passwort oder Wiederherstellungsschlüssel ein, um die Keys zu cachen.",
+  "@askSSSSCache": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Accept": "Annehmen",
+  "@Accept": {
+    "type": "text",
+    "placeholders": {}
   }
 }
