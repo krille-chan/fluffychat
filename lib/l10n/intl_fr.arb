@@ -1,6 +1,6 @@
 {
   "@@last_modified": "2020-05-15T22:28:40",
-  "About": "About",
+  "About": "À propos",
   "@About": {
     "type": "text",
     "placeholders": {}
@@ -1384,6 +1384,208 @@
   },
   "Your own username": "Votre propre nom d'utilisateur",
   "@Your own username": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "waitingPartnerNumbers": "En attente de l'acceptation des nombres par le partenaire...",
+  "@waitingPartnerNumbers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "waitingPartnerEmoji": "En attente de l'acceptation de l'émoji par le partenaire...",
+  "@waitingPartnerEmoji": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "waitingPartnerAcceptRequest": "En attente de la vérification de la demande par le partenaire...",
+  "@waitingPartnerAcceptRequest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Verify User": "Vérifier l'utilisateur/trice",
+  "@Verify User": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyTitle": "Vérification de l'autre compte",
+  "@verifyTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifySuccess": "Vous avez vérifié avec succès !",
+  "@verifySuccess": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyStart": "Commencer la vérification",
+  "@verifyStart": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifiedSession": "Session vérifiée avec succès !",
+  "@verifiedSession": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyManual": "Vérifier manuellement",
+  "@verifyManual": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknownSessionVerify": "Session inconnue, veuillez vérifier",
+  "@unknownSessionVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Unblock Device": "Débloquer l'appareil",
+  "@Unblock Device": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "They Match": "Elles correspondent",
+  "@They Match": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "They Don't Match": "Elles ne correspondent pas",
+  "@They Don't Match": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Submit": "Soumettre",
+  "@Submit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Skip": "Ignorer",
+  "@Skip": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sessionVerified": "La session est vérifiée",
+  "@sessionVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Room has been upgraded": "Le salon a été mis à niveau",
+  "@Room has been upgraded": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Reject": "Refuser",
+  "@Reject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passphraseOrKey": "Phrase de passe ou clé de récupération",
+  "@passphraseOrKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "onlineKeyBackupEnabled": "La sauvegarde en ligne des clés est activée",
+  "@onlineKeyBackupEnabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "onlineKeyBackupDisabled": "La sauvegarde en ligne des clés est désactivée",
+  "@onlineKeyBackupDisabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noMegolmBootstrap": "Fluffychat ne prend pas actuellement en charge l'activation de la sauvegarde des clés en ligne. Veuillez l'activer à partir de Riot.",
+  "@noMegolmBootstrap": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noCrossSignBootstrap": "Fluffychat ne permet pas actuellement d'activer la signature croisée. Veuillez l'activer à partir de Riot.",
+  "@noCrossSignBootstrap": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newVerificationRequest": "Nouvelle demande de vérification !",
+  "@newVerificationRequest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "keysMissing": "Les clés sont manquantes",
+  "@keysMissing": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "keysCached": "Les clés sont mises en cache",
+  "@keysCached": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "isDeviceKeyCorrect": "La clé de l'appareil ci-dessous est-elle correcte ?",
+  "@isDeviceKeyCorrect": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "incorrectPassphraseOrKey": "Phrase de passe ou clé de récupération incorrecte",
+  "@incorrectPassphraseOrKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Encryption": "Chiffrement",
+  "@Encryption": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "crossSigningEnabled": "La signature croisée est activée",
+  "@crossSigningEnabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "crossSigningDisabled": "La signature croisée est désactivée",
+  "@crossSigningDisabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "compareNumbersMatch": "Comparez et assurez-vous que les chiffres suivants correspondent à ceux de l'autre appareil :",
+  "@compareNumbersMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "compareEmojiMatch": "Comparez et assurez-vous que les emojis suivants correspondent à ceux de l'autre appareil :",
+  "@compareEmojiMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cachedKeys": "Clés mises en cache avec succès !",
+  "@cachedKeys": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Block Device": "Bloquer l'appareil",
+  "@Block Device": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askVerificationRequest": "Accepter cette demande de vérification de {username} ?",
+  "@askVerificationRequest": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "askSSSSVerify": "Veuillez saisir votre phrase de passe stockée de manière sécurisée ou votre clé de récupération pour vérifier votre session.",
+  "@askSSSSVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askSSSSSign": "Pour pouvoir faire signer l'autre personne, veuillez entrer votre phrase de passe stockée de manière sécurisée ou votre clé de récupération.",
+  "@askSSSSSign": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askSSSSCache": "Veuillez saisir votre phrase de passe stockée de manière sécurisée ou votre clé de récupération pour mettre les clés en cache.",
+  "@askSSSSCache": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Accept": "Accepter",
+  "@Accept": {
     "type": "text",
     "placeholders": {}
   }
