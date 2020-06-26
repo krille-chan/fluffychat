@@ -260,7 +260,7 @@
       "username": {}
     }
   },
-  "Changelog": "Changelog",
+  "Changelog": "História zmien",
   "@Changelog": {
     "type": "text",
     "placeholders": {}
@@ -678,7 +678,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "",
+  "inviteText": "{username} vás pozval na FluffyChat.\n1. Nainštalujte si FluffyChat: http://fluffy.chat\n2. Zaregistrujte sa alebo sa prihláste\n3. Otvorte odkaz na pozvánku: {link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {
