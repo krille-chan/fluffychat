@@ -51,6 +51,7 @@ class ChatList extends StatefulWidget {
 class _ChatListState extends State<ChatList> {
   bool get searchMode => searchController.text?.isNotEmpty ?? false;
   final TextEditingController searchController = TextEditingController();
+  final FocusNode _searchFocusNode = FocusNode();
   Timer coolDown;
   PublicRoomsResponse publicRoomsResponse;
   bool loadingPublicRooms = false;
@@ -303,10 +304,20 @@ class _ChatListState extends State<ChatList> {
                             child: TextField(
                               autocorrect: false,
                               controller: searchController,
+                              focusNode: _searchFocusNode,
                               decoration: InputDecoration(
                                 contentPadding: EdgeInsets.all(9),
                                 border: InputBorder.none,
                                 hintText: L10n.of(context).searchForAChat,
+                                suffixIcon: searchMode
+                                    ? IconButton(
+                                        icon: Icon(Icons.backspace),
+                                        onPressed: () => setState(() {
+                                          searchController.clear();
+                                          _searchFocusNode.unfocus();
+                                        }),
+                                      )
+                                    : null,
                               ),
                             ),
                           ),
