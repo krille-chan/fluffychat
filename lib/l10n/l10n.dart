@@ -463,6 +463,8 @@ class L10n extends MatrixLocalizations {
         args: [username],
       );
 
+  String get joinRoom => Intl.message('Join room');
+
   String get keysCached => Intl.message("Keys are cached", name: "keysCached");
 
   String get keysMissing =>
