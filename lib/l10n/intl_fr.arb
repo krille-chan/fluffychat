@@ -89,7 +89,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Banned": "Banned",
+  "Banned": "Banni",
   "@Banned": {
     "type": "text",
     "placeholders": {}
@@ -164,7 +164,7 @@
       "username": {}
     }
   },
-  "changedTheGuestAccessRulesTo": "{username}  a changé les règles d'accès à la discussion pour les invités en : {rules}",
+  "changedTheGuestAccessRulesTo": "{username} a changé les règles d'accès à la discussion pour les invités en : {rules}",
   "@changedTheGuestAccessRulesTo": {
     "type": "text",
     "placeholders": {
@@ -632,7 +632,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "is typing...": "is typing...",
+  "is typing...": "est en train d'écrire...",
   "@is typing...": {
     "type": "text",
     "placeholders": {}
@@ -670,17 +670,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "Leave": "Leave",
+  "Leave": "Partir",
   "@Leave": {
     "type": "text",
     "placeholders": {}
   },
-  "Left the chat": "Discussion quittée",
+  "Left the chat": "A quitté la discussion",
   "@Left the chat": {
     "type": "text",
     "placeholders": {}
   },
-  "Logout": "Logout",
+  "Logout": "Se déconnecter",
   "@Logout": {
     "type": "text",
     "placeholders": {}
@@ -692,7 +692,7 @@
       "username": {}
     }
   },
-  "lastActiveAgo": "Vu pour la dernière fois: {localizedTimeShort}",
+  "lastActiveAgo": "Vu pour la dernière fois : {localizedTimeShort}",
   "@lastActiveAgo": {
     "type": "text",
     "placeholders": {
@@ -1327,7 +1327,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "End to end encryption is currently in Beta! Use at your own risk!": "Le chiffrement de bout en bout est actuellement en beta ! Utilisez cette fonctionnalité à vos propres risques !!",
+  "End to end encryption is currently in Beta! Use at your own risk!": "Le chiffrement de bout en bout est actuellement en béta ! Utilisez cette fonctionnalité à vos propres risques !",
   "@End to end encryption is currently in Beta! Use at your own risk!": {
     "type": "text",
     "placeholders": {}
