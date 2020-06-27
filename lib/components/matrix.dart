@@ -160,6 +160,7 @@ class MatrixState extends State<Matrix> {
 
   void _showWebNotification(EventUpdate eventUpdate) async {
     final room = client.getRoomById(eventUpdate.roomID);
+    if (room.notificationCount == 0) return;
     final event = Event.fromJson(eventUpdate.content, room);
     final body = event.getLocalizedBody(
       L10n.of(context),
