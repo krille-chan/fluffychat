@@ -64,7 +64,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Are guest users allowed to join": "Csatlakozhatnak-e vendég felhasználók",
+  "Are guest users allowed to join": "Csatlakozhatnak vendég felhasználók",
   "@Are guest users allowed to join": {
     "type": "text",
     "placeholders": {}
@@ -424,7 +424,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Emote Settings": "Hangulatjel beállíŧások",
+  "Emote Settings": "Hangulatjel beállítások",
   "@Emote Settings": {
     "type": "text",
     "placeholders": {}
@@ -835,7 +835,7 @@
     "type": "text",
     "placeholders": {}
   },
-   "Open camera": "Kamera megnyitása",
+  "Open camera": "Kamera megnyitása",
   "@Open camera": {
     "type": "text",
     "placeholders": {}
@@ -1282,7 +1282,7 @@
       "type": {}
     }
   },
-  "Verify": "Igazol",
+  "Verify": "Hitelesít",
   "@Verify": {
     "type": "text",
     "placeholders": {}
@@ -1374,6 +1374,225 @@
   },
   "Your own username": "A saját felhasználóneved",
   "@Your own username": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askSSSSSign": "A másik személy igazolásához, kérlek add meg jelszavadat vagy visszaállítási kulcsodat.",
+  "@askSSSSSign": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newVerificationRequest": "Új hitelesítési kérelem!",
+  "@newVerificationRequest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "waitingPartnerNumbers": "Várakozás partnere, amíg elfogadja a számokat...",
+  "@waitingPartnerNumbers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "waitingPartnerAcceptRequest": "Várakozás partnerre, amíg elfogadja a kérést...",
+  "@waitingPartnerAcceptRequest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "waitingPartnerEmoji": "Várakozás partnere, amíg elfogadja a hangulatjeleket...",
+  "@waitingPartnerEmoji": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Verify User": "Felhasználó hitelesítése",
+  "@Verify User": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyTitle": "Másik fiók hitelesítése",
+  "@verifyTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifySuccess": "Sikeresen hitelesítettél!",
+  "@verifySuccess": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyStart": "Hitelesítés megkezdése",
+  "@verifyStart": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifiedSession": "Sikeresen hitelesítetted a munkamenetedet!",
+  "@verifiedSession": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyManual": "Kézi hitelesítés",
+  "@verifyManual": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknownSessionVerify": "Ismeretlen munkamenet, kérlek hitelesítsd",
+  "@unknownSessionVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Block Device": "Eszköz blokkolása",
+  "@Block Device": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Unblock Device": "Eszköz blokkolásának megszüntetése",
+  "@Unblock Device": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "They Match": "Megegyeznek",
+  "@They Match": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "They Don't Match": "Nem egyeznek",
+  "@They Don't Match": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Submit": "Mehet",
+  "@Submit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Skip": "Kihagy",
+  "@Skip": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sessionVerified": "Munkamenet hitelesítve",
+  "@sessionVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Seen a long time ago": "Már régen látta",
+  "@Seen a long time ago": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Room has been upgraded": "Szoba frissítve lett",
+  "@Room has been upgraded": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Reject": "Visszautasít",
+  "@Reject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passphraseOrKey": "Jelszó vagy visszaállítási kulcs",
+  "@passphraseOrKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "onlineKeyBackupEnabled": "Online Kulcs Archívum engedélyezve",
+  "@onlineKeyBackupEnabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "onlineKeyBackupDisabled": "Online Kulcs Archívum letiltva",
+  "@onlineKeyBackupDisabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noMegolmBootstrap": "FluffyChat jelenleg nem támogatja az Online Kulcs Archívumot (backup). Kérlek engedélyezd Riot-ból.",
+  "@noMegolmBootstrap": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noCrossSignBootstrap": "FluffyChat jelenleg nem támogatja a Kereszt-Aláírás bekapcsolását. Kérlek engedélyezd Riot-ból.",
+  "@noCrossSignBootstrap": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "keysMissing": "Kulcsok hiányoznak",
+  "@keysMissing": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "keysCached": "Kulcsok betöltve",
+  "@keysCached": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "isDeviceKeyCorrect": "Helyes az alábbi eszköz kulcs?",
+  "@isDeviceKeyCorrect": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "incorrectPassphraseOrKey": "Hibás jelszó vagy visszaállítási kulcs",
+  "@incorrectPassphraseOrKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Encryption": "Titkosítás",
+  "@Encryption": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Currently active": "Jelenleg aktív",
+  "@Currently active": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "crossSigningEnabled": "Kereszt-Aláírás bekapcsolva",
+  "@crossSigningEnabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "crossSigningDisabled": "Kereszt-Aláírás kikapcsolva",
+  "@crossSigningDisabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "couldNotDecryptMessage": "Nem sikerült visszafejteni a titkosított üzenetet: {error}",
+  "@couldNotDecryptMessage": {
+    "type": "text",
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "compareNumbersMatch": "Hasonlítsd össze a számokat a másik eszközön lévőkkel:",
+  "@compareNumbersMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "compareEmojiMatch": "Hasonlítsd össze a hangulatjeleket a másik eszközön lévőkkel:",
+  "@compareEmojiMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cachedKeys": "Sikeresen betöltöttük a kulcsokat!",
+  "@cachedKeys": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askVerificationRequest": "Elfogadod {username} hitelesítési kérelmét?",
+  "@askVerificationRequest": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "askSSSSVerify": "Add meg a biztonságos tárolóhoz tartozó vagy a visszaállítási jelszavadat, a munkamenet hitelesítéséhez.",
+  "@askSSSSVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askSSSSCache": "Add meg a biztonságos tárolóhoz tartozó vagy a visszaállítási jelszavadat, hogy betöltsük a kulcsaidat.",
+  "@askSSSSCache": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Accept": "Elfogad",
+  "@Accept": {
     "type": "text",
     "placeholders": {}
   }
