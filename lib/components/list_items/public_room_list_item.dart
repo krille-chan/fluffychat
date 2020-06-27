@@ -15,16 +15,31 @@ class PublicRoomListItem extends StatelessWidget {
   const PublicRoomListItem(this.publicRoomEntry, {Key key}) : super(key: key);
 
   void joinAction(BuildContext context) async {
-    final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
-        Matrix.of(context).client.api.joinRoom(publicRoomEntry.roomId));
+    final success = await SimpleDialogs(context)
+        .tryRequestWithLoadingDialog(_joinRoomAndWait(context));
     if (success != false) {
       await Navigator.of(context).push(
         AppRoute.defaultRoute(
           context,
-          ChatView(publicRoomEntry.roomId),
+          ChatView(success),
         ),
       );
     }
+  }
+
+  Future<String> _joinRoomAndWait(BuildContext context) async {
+    final roomId = await Matrix.of(context)
+        .client
+        .api
+        .joinRoomOrAlias(publicRoomEntry.roomId);
+    if (Matrix.of(context).client.getRoomById(roomId) == null) {
+      await Matrix.of(context)
+          .client
+          .onRoomUpdate
+          .stream
+          .firstWhere((r) => r.id == roomId);
+    }
+    return roomId;
   }
 
   @override
@@ -43,8 +58,10 @@ class PublicRoomListItem extends StatelessWidget {
       subtitle: Text(
         hasTopic
             ? publicRoomEntry.topic
-            : L10n.of(context).countParticipants(
-                publicRoomEntry.numJoinedMembers?.toString() ?? '0'),
+            : publicRoomEntry.numJoinedMembers == null
+                ? L10n.of(context).joinRoom
+                : L10n.of(context).countParticipants(
+                    publicRoomEntry.numJoinedMembers.toString()),
         maxLines: 1,
       ),
       onTap: () => joinAction(context),

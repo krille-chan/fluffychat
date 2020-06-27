@@ -390,17 +390,21 @@ class _ChatListState extends State<ChatList> {
                                           a.lastEvent.originServerTs));
                               return ListView.separated(
                                   controller: _scrollController,
-                                  separatorBuilder:
-                                      (BuildContext context, int i) =>
-                                          i == totalCount - publicRoomsCount
-                                              ? Material(
-                                                  elevation: 2,
-                                                  child: ListTile(
-                                                    title: Text(L10n.of(context)
-                                                        .publicRooms),
-                                                  ),
-                                                )
-                                              : Container(),
+                                  separatorBuilder: (BuildContext context,
+                                          int i) =>
+                                      i == totalCount - publicRoomsCount
+                                          ? ListTile(
+                                              title: Text(
+                                                L10n.of(context).publicRooms +
+                                                    ':',
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Theme.of(context)
+                                                      .primaryColor,
+                                                ),
+                                              ),
+                                            )
+                                          : Container(),
                                   itemCount: totalCount + 1,
                                   itemBuilder: (BuildContext context, int i) {
                                     if (i == 0) {
