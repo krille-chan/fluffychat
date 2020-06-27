@@ -44,19 +44,34 @@ class PresenceListItem extends StatelessWidget {
         child: Column(
           children: <Widget>[
             SizedBox(height: 16),
-            Avatar(user.avatarUrl, user.calcDisplayname()),
+            Container(
+              child: Avatar(user.avatarUrl, user.calcDisplayname()),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  width: 1,
+                  color: presence?.presence?.statusMsg == null
+                      ? presence?.presence?.currentlyActive == true
+                          ? Colors.blue
+                          : Theme.of(context).secondaryHeaderColor
+                      : Theme.of(context).primaryColor,
+                ),
+                borderRadius: BorderRadius.circular(80),
+              ),
+              padding: EdgeInsets.all(2),
+            ),
             Padding(
-              padding: const EdgeInsets.only(left: 6.0, top: 6.0, right: 6.0),
+              padding: const EdgeInsets.only(left: 6.0, top: 0.0, right: 6.0),
               child: Text(
-                user.calcDisplayname(),
-                overflow: TextOverflow.ellipsis,
+                user.calcDisplayname().trim().split(' ').first,
+                overflow: TextOverflow.clip,
                 maxLines: 1,
                 style: TextStyle(
-                  color: Color(0xFF555555),
+                  color: Theme.of(context)
+                      .textTheme
+                      .bodyText2
+                      .color
+                      .withOpacity(0.66),
                   fontSize: 13,
-                  fontWeight: presence?.presence?.statusMsg == null
-                      ? null
-                      : FontWeight.bold,
                 ),
               ),
             ),
