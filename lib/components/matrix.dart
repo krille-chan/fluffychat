@@ -9,7 +9,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+import 'package:universal_html/prefer_universal/html.dart' as html;
 import '../l10n/l10n.dart';
 import '../utils/beautify_string_extension.dart';
 import '../utils/famedlysdk_store.dart';
@@ -101,6 +101,7 @@ class MatrixState extends State<Matrix> {
   StreamSubscription onRoomKeyRequestSub;
   StreamSubscription onKeyVerificationRequestSub;
   StreamSubscription onJitsiCallSub;
+  StreamSubscription onNotification;
 
   void onJitsiCall(EventUpdate eventUpdate) {
     final event = Event.fromJson(
@@ -155,6 +156,28 @@ class MatrixState extends State<Matrix> {
       ),
     );
     return;
+  }
+
+  void _showWebNotification(EventUpdate eventUpdate) async {
+    final room = client.getRoomById(eventUpdate.roomID);
+    final event = Event.fromJson(eventUpdate.content, room);
+    final body = event.getLocalizedBody(
+      L10n.of(context),
+      withSenderNamePrefix:
+          !room.isDirectChat || room.lastEvent.senderId == client.userID,
+    );
+    html.AudioElement()
+      ..src = 'assets/assets/sounds/notification.wav'
+      ..autoplay = true
+      ..load();
+    html.Notification(
+      room.getLocalizedDisplayname(L10n.of(context)),
+      body: body,
+      icon: event.sender.avatarUrl?.getThumbnail(client,
+              width: 64, height: 64, method: ThumbnailMethod.crop) ??
+          room.avatar?.getThumbnail(client,
+              width: 64, height: 64, method: ThumbnailMethod.crop),
+    );
   }
 
   @override
@@ -234,6 +257,19 @@ class MatrixState extends State<Matrix> {
         renderHtml = render == '1';
       });
     }
+    if (kIsWeb) {
+      client.onSync.stream.first.then((s) {
+        html.Notification.requestPermission();
+        onNotification ??= client.onEvent.stream
+            .where((e) =>
+                e.roomID != activeRoomId &&
+                e.type == 'timeline' &&
+                [EventTypes.Message, EventTypes.Sticker, EventTypes.Encrypted]
+                    .contains(e.eventType) &&
+                e.content['sender'] != client.userID)
+            .listen(_showWebNotification);
+      });
+    }
     super.initState();
   }
 
@@ -242,6 +278,7 @@ class MatrixState extends State<Matrix> {
     onRoomKeyRequestSub?.cancel();
     onKeyVerificationRequestSub?.cancel();
     onJitsiCallSub?.cancel();
+    onNotification?.cancel();
     super.dispose();
   }
 
