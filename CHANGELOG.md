@@ -1,3 +1,7 @@
+# Version 0.16.0 - 2020-07-??
+### Features
+- Implement web notifications
+
 # Version 0.15.1 - 2020-06-26
 ### Fixes:
 - Fix a big with account data being stored incorrectly
