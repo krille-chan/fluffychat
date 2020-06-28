@@ -1,6 +1,6 @@
 {
   "@@last_modified": "2020-06-25T16:02:16.297192",
-  "About": "O aplikacií",
+  "About": "O aplikácii",
   "@About": {
     "type": "text",
     "placeholders": {}
@@ -10,7 +10,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "acceptedTheInvitation": "{username} prijali pozvanie",
+  "acceptedTheInvitation": "{username} prijali pozvánku",
   "@acceptedTheInvitation": {
     "type": "text",
     "placeholders": {
@@ -22,12 +22,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "Account informations": "Informácie o účtu",
+  "Account informations": "Informácie o účte",
   "@Account informations": {
     "type": "text",
     "placeholders": {}
   },
-  "activatedEndToEndEncryption": "{username} aktivoval koncové šifrovanie",
+  "activatedEndToEndEncryption": "{username} aktivovali koncové šifrovanie",
   "@activatedEndToEndEncryption": {
     "type": "text",
     "placeholders": {
@@ -151,7 +151,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changedTheChatAvatar": "{username} zmenili svôj avatar",
+  "changedTheChatAvatar": "{username} si zmenili svôj avatar",
   "@changedTheChatAvatar": {
     "type": "text",
     "placeholders": {
@@ -181,7 +181,7 @@
       "username": {}
     }
   },
-  "changedTheDisplaynameTo": "{username} zmenili prezývku na: {displayname}",
+  "changedTheDisplaynameTo": "{username} si zmenili prezývku na: {displayname}",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -209,14 +209,14 @@
       "rules": {}
     }
   },
-  "changedTheHistoryVisibility": "{username} zmenili nastavenie viditelnosti histórie diskusie",
+  "changedTheHistoryVisibility": "{username} zmenili nastavenie viditelnosti histórie chatu",
   "@changedTheHistoryVisibility": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheHistoryVisibilityTo": "{username} zmenili nastavenie viditelnosti histórie diskusie na: {rules}",
+  "changedTheHistoryVisibilityTo": "{username} zmenili nastavenie viditelnosti histórie chatu na: {rules}",
   "@changedTheHistoryVisibilityTo": {
     "type": "text",
     "placeholders": {
@@ -239,7 +239,7 @@
       "joinRules": {}
     }
   },
-  "changedTheProfileAvatar": "{username} zmenil profilový obrázok",
+  "changedTheProfileAvatar": "{username} si zmenili profilový obrázok",
   "@changedTheProfileAvatar": {
     "type": "text",
     "placeholders": {
@@ -411,7 +411,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Currently active": "Momentálne aktívny",
+  "Currently active": "Momentálne prítomní",
   "@Currently active": {
     "type": "text",
     "placeholders": {}
@@ -516,7 +516,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "You won't be able to disable the encryption anymore. Are you sure?": "Šifrovanie už nebude možné vypnúť. Ste si tým istý?",
+  "You won't be able to disable the encryption anymore. Are you sure?": "Šifrovanie už nebude možné vypnúť. Ste si tým istí?",
   "@You won't be able to disable the encryption anymore. Are you sure?": {
     "type": "text",
     "placeholders": {}
@@ -739,7 +739,7 @@
       "targetName": {}
     }
   },
-  "kickedAndBanned": "{username} vyhodil a zabanoval {targetName}",
+  "kickedAndBanned": "{username} vyhodili a zabanovali {targetName}",
   "@kickedAndBanned": {
     "type": "text",
     "placeholders": {
@@ -774,14 +774,14 @@
       "username": {}
     }
   },
-  "lastActiveAgo": "Naposledy aktívny: {localizedTimeShort}",
+  "lastActiveAgo": "Naposledy prítomní: {localizedTimeShort}",
   "@lastActiveAgo": {
     "type": "text",
     "placeholders": {
       "localizedTimeShort": {}
     }
   },
-  "Last seen IP": "Naposledy videná IP adresa",
+  "Last seen IP": "Naposledy zaznamenaná IP adresa",
   "@Last seen IP": {
     "type": "text",
     "placeholders": {}
@@ -855,7 +855,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Please be aware that you need Pantalaimon to use end-to-end encryption for now.": "Budte si vedomí, že na koncové šifrovanie zatiaľ potrebujete Pantalaimon.",
+  "Please be aware that you need Pantalaimon to use end-to-end encryption for now.": "Prosím berte na vedomie, že na koncové šifrovanie zatiaľ potrebujete Pantalaimon.",
   "@Please be aware that you need Pantalaimon to use end-to-end encryption for now.": {
     "type": "text",
     "placeholders": {}
@@ -900,7 +900,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "No permission": "Bez povolenia",
+  "No permission": "Chýba povolenie",
   "@No permission": {
     "type": "text",
     "placeholders": {}
@@ -915,7 +915,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "numberSelected": "{number} vybraných",
+  "numberSelected": "{number} označených správ",
   "@numberSelected": {
     "type": "text",
     "placeholders": {
@@ -1405,7 +1405,7 @@
       "unreadEvents": {}
     }
   },
-  "unreadMessagesInChats": "{unreadEvents} neprečítaných správ v {unreadChats}",
+  "unreadMessagesInChats": "{unreadEvents} neprečítaných správ v {unreadChats} chatoch",
   "@unreadMessagesInChats": {
     "type": "text",
     "placeholders": {
@@ -1441,7 +1441,7 @@
       "username": {}
     }
   },
-  "userSentUnknownEvent": "{username} poslal udalosť {type}",
+  "userSentUnknownEvent": "{username} poslali udalosť {type}",
   "@userSentUnknownEvent": {
     "type": "text",
     "placeholders": {
@@ -1529,7 +1529,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "End to end encryption is currently in Beta! Use at your own risk!": "Konečné šifrovanie je momentalné v Beta verzii! Používajte na vlastné riziko!",
+  "End to end encryption is currently in Beta! Use at your own risk!": "Konečné šifrovanie je momentálne v Beta verzii! Používajte na vlastné riziko!",
   "@End to end encryption is currently in Beta! Use at your own risk!": {
     "type": "text",
     "placeholders": {}
