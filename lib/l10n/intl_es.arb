@@ -1270,7 +1270,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Use Amoled compatible colors?": "¿Usar colores compatible con AMOLED?",
+  "Use Amoled compatible colors?": "¿Usar colores compatibles con AMOLED?",
   "@Use Amoled compatible colors?": {
     "type": "text",
     "placeholders": {}
@@ -1584,7 +1584,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Your own username": "Tu propio nombre de usuario",
+  "Your own username": "Tu nombre de usuario",
   "@Your own username": {
     "type": "text",
     "placeholders": {}
