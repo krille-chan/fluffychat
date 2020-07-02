@@ -99,7 +99,7 @@ class _SettingsState extends State<Settings> {
       matrix.client.setAvatar(
         MatrixFile(
           bytes: tempFile.bytes,
-          path: tempFile.path,
+          name: tempFile.path,
         ),
       ),
     );

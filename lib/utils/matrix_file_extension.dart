@@ -10,7 +10,7 @@ import 'package:mime_type/mime_type.dart';
 extension MatrixFileExtension on MatrixFile {
   void open() async {
     if (kIsWeb) {
-      final fileName = path.split('/').last;
+      final fileName = name.split('/').last;
       final mimeType = mime(fileName);
       var element = html.document.createElement('a');
       element.setAttribute(
@@ -25,7 +25,7 @@ extension MatrixFileExtension on MatrixFile {
       element.remove();
     } else {
       var tempDir = await getTemporaryDirectory();
-      final file = File(tempDir.path + '/' + path.split('/').last);
+      final file = File(tempDir.path + '/' + name.split('/').last);
       file.writeAsBytesSync(bytes);
       await OpenFile.open(file.path);
     }

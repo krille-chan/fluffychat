@@ -196,7 +196,10 @@ class MatrixState extends State<Matrix> {
       client = Client(widget.clientName,
           debug: false,
           enableE2eeRecovery: true,
-          verificationMethods: verificationMethods);
+          verificationMethods: verificationMethods,
+          importantStateEvents: <String>{
+            'im.ponies.room_emotes', // we want emotes to work properly
+          });
       onJitsiCallSub ??= client.onEvent.stream
           .where((e) =>
               e.type == 'timeline' &&
