@@ -8,17 +8,17 @@ class SimpleDialogs {
 
   const SimpleDialogs(this.context);
 
-  Future<String> enterText({
-    String titleText,
-    String confirmText,
-    String cancelText,
-    String hintText,
-    String labelText,
-    String prefixText,
-    String suffixText,
-    bool password = false,
-    bool multiLine = false,
-  }) async {
+  Future<String> enterText(
+      {String titleText,
+      String confirmText,
+      String cancelText,
+      String hintText,
+      String labelText,
+      String prefixText,
+      String suffixText,
+      bool password = false,
+      bool multiLine = false,
+      TextInputType keyboardType}) async {
     var textEditingController = TextEditingController();
     final controller = textEditingController;
     String input;
@@ -38,6 +38,7 @@ class SimpleDialogs {
           maxLines: multiLine ? 3 : 1,
           obscureText: password,
           textInputAction: multiLine ? TextInputAction.newline : null,
+          keyboardType: keyboardType,
           decoration: InputDecoration(
             hintText: hintText,
             labelText: labelText,
