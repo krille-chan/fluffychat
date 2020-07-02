@@ -137,7 +137,7 @@ class _ChatListState extends State<ChatList> {
       'msgtype': 'chat.fluffy.shared_file',
       'file': MatrixFile(
         bytes: file.readAsBytesSync(),
-        path: file.path,
+        name: file.path,
       ),
     };
   }

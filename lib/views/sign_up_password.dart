@@ -101,7 +101,7 @@ class _SignUpPasswordState extends State<SignUpPassword> {
         await matrix.client.setAvatar(
           MatrixFile(
             bytes: widget.avatar.bytes,
-            path: widget.avatar.path,
+            name: widget.avatar.path,
           ),
         );
       } catch (exception) {

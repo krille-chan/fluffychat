@@ -190,7 +190,7 @@ class _ChatState extends State<_Chat> {
     if (file == null) return;
     await SimpleDialogs(context).tryRequestWithLoadingDialog(
       room.sendFileEvent(
-        MatrixFile(bytes: file.bytes, path: file.path),
+        MatrixFile(bytes: file.bytes, name: file.path),
       ),
     );
   }
@@ -203,8 +203,8 @@ class _ChatState extends State<_Chat> {
         maxHeight: 1600);
     if (file == null) return;
     await SimpleDialogs(context).tryRequestWithLoadingDialog(
-      room.sendImageEvent(
-        MatrixFile(bytes: await file.bytes, path: file.path),
+      room.sendFileEvent(
+        MatrixImageFile(bytes: await file.bytes, name: file.path),
       ),
     );
   }
@@ -217,8 +217,8 @@ class _ChatState extends State<_Chat> {
         maxHeight: 1600);
     if (file == null) return;
     await SimpleDialogs(context).tryRequestWithLoadingDialog(
-      room.sendImageEvent(
-        MatrixFile(bytes: file.bytes, path: file.path),
+      room.sendFileEvent(
+        MatrixImageFile(bytes: file.bytes, name: file.path),
       ),
     );
   }
@@ -233,8 +233,9 @@ class _ChatState extends State<_Chat> {
     if (result == null) return;
     final audioFile = File(result);
     await SimpleDialogs(context).tryRequestWithLoadingDialog(
-      room.sendAudioEvent(
-        MatrixFile(bytes: audioFile.readAsBytesSync(), path: audioFile.path),
+      room.sendFileEvent(
+        MatrixAudioFile(
+            bytes: audioFile.readAsBytesSync(), name: audioFile.path),
       ),
     );
   }

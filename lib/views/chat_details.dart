@@ -111,7 +111,7 @@ class _ChatDetailsState extends State<ChatDetails> {
       widget.room.setAvatar(
         MatrixFile(
           bytes: tempFile.bytes,
-          path: tempFile.path,
+          name: tempFile.path,
         ),
       ),
     );

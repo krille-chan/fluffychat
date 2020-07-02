@@ -374,13 +374,13 @@ class _EmoteImagePickerState extends State<_EmoteImagePicker> {
               maxWidth: 128,
               maxHeight: 128);
           if (file == null) return;
-          final matrixFile = MatrixFile(bytes: file.bytes, path: file.path);
+          final matrixFile = MatrixFile(bytes: file.bytes, name: file.path);
           final uploadResp =
               await SimpleDialogs(context).tryRequestWithLoadingDialog(
             Matrix.of(context)
                 .client
                 .api
-                .upload(matrixFile.bytes, matrixFile.path),
+                .upload(matrixFile.bytes, matrixFile.name),
           );
           setState(() {
             widget.controller.text = uploadResp;
