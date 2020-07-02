@@ -12,7 +12,8 @@ class HomeserverPicker extends StatelessWidget {
     final homeserver = await SimpleDialogs(context).enterText(
         titleText: L10n.of(context).enterYourHomeserver,
         hintText: Matrix.defaultHomeserver,
-        prefixText: 'https://');
+        prefixText: 'https://',
+        keyboardType: TextInputType.url);
     if (homeserver?.isEmpty ?? true) return;
     _checkHomeserverAction(homeserver, context);
   }
@@ -21,6 +22,13 @@ class HomeserverPicker extends StatelessWidget {
     if (!homeserver.startsWith('https://')) {
       homeserver = 'https://$homeserver';
     }
+
+    // removes trailing spaces and slash from url if present (api errors on it)
+    homeserver = homeserver.trim();
+    if (homeserver.endsWith('/')) {
+      homeserver = homeserver.substring(0, homeserver.length - 1);
+    }
+
     final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
         Matrix.of(context).client.checkServer(homeserver));
     if (success != false) {
