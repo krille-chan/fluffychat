@@ -6,6 +6,7 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/avatar.dart';
 import 'package:fluffychat/components/chat_settings_popup_menu.dart';
+import 'package:fluffychat/components/connection_status_header.dart';
 import 'package:fluffychat/components/dialogs/presence_dialog.dart';
 import 'package:fluffychat/components/dialogs/recording_dialog.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
@@ -90,11 +91,11 @@ class _ChatState extends State<_Chat> {
   void requestHistory() async {
     if (_canLoadMore) {
       setState(() => _loadingHistory = true);
-      try {
-        await timeline.requestHistory(historyCount: _loadHistoryCount);
-      } catch (e) {
-        debugPrint('Error loading history: ' + e.toString());
-      }
+
+      await SimpleDialogs(context).tryRequestWithErrorToast(
+        timeline.requestHistory(historyCount: _loadHistoryCount),
+      );
+
       if (mounted) setState(() => _loadingHistory = false);
     }
   }
@@ -452,7 +453,6 @@ class _ChatState extends State<_Chat> {
             ),
           Column(
             children: <Widget>[
-              if (_loadingHistory) LinearProgressIndicator(),
               Expanded(
                 child: FutureBuilder<bool>(
                   future: getTimeline(),
@@ -486,19 +486,28 @@ class _ChatState extends State<_Chat> {
                         controller: _scrollController,
                         itemBuilder: (BuildContext context, int i) {
                           return i == timeline.events.length + 1
-                              ? _canLoadMore && !_loadingHistory
-                                  ? FlatButton(
-                                      child: Text(
-                                        L10n.of(context).loadMore,
-                                        style: TextStyle(
-                                          color: Theme.of(context).primaryColor,
-                                          fontWeight: FontWeight.bold,
-                                          decoration: TextDecoration.underline,
-                                        ),
-                                      ),
-                                      onPressed: requestHistory,
+                              ? _loadingHistory
+                                  ? Container(
+                                      height: 50,
+                                      alignment: Alignment.center,
+                                      padding: EdgeInsets.all(8),
+                                      child: CircularProgressIndicator(),
                                     )
-                                  : Container()
+                                  : _canLoadMore
+                                      ? FlatButton(
+                                          child: Text(
+                                            L10n.of(context).loadMore,
+                                            style: TextStyle(
+                                              color: Theme.of(context)
+                                                  .primaryColor,
+                                              fontWeight: FontWeight.bold,
+                                              decoration:
+                                                  TextDecoration.underline,
+                                            ),
+                                          ),
+                                          onPressed: requestHistory,
+                                        )
+                                      : Container()
                               : i == 0
                                   ? AnimatedContainer(
                                       height: seenByText.isEmpty ? 0 : 24,
@@ -556,6 +565,7 @@ class _ChatState extends State<_Chat> {
                   },
                 ),
               ),
+              ConnectionStatusHeader(),
               AnimatedContainer(
                 duration: Duration(milliseconds: 300),
                 height: replyEvent != null ? 56 : 0,
