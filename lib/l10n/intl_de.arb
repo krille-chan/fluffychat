@@ -89,7 +89,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Banned": "Banned",
+  "Banned": "Verbannt",
   "@Banned": {
     "type": "text",
     "placeholders": {}
@@ -102,7 +102,7 @@
       "targetName": {}
     }
   },
-  "byDefaultYouWillBeConnectedTo": "Standardmäßig wirst Du mit {Homeserver} verbunden",
+  "byDefaultYouWillBeConnectedTo": "Standardmäßig wirst Du mit {homeserver} verbunden",
   "@byDefaultYouWillBeConnectedTo": {
     "type": "text",
     "placeholders": {
@@ -223,7 +223,7 @@
       "username": {}
     }
   },
-  "Changelog": "Changelog",
+  "Changelog": "Protokoll der Änderungen",
   "@Changelog": {
     "type": "text",
     "placeholders": {}
@@ -332,7 +332,7 @@
       "count": {}
     }
   },
-  "Create": "Create",
+  "Create": "Erstellen",
   "@Create": {
     "type": "text",
     "placeholders": {}
@@ -367,7 +367,7 @@
       "timeOfDay": {}
     }
   },
-  "dateWithoutYear": "{day}.{month}",
+  "dateWithoutYear": "{day}. {month}",
   "@dateWithoutYear": {
     "type": "text",
     "placeholders": {
@@ -375,7 +375,7 @@
       "day": {}
     }
   },
-  "dateWithYear": "{day}.{month}.{year}",
+  "dateWithYear": "{day}. {month}. {year}",
   "@dateWithYear": {
     "type": "text",
     "placeholders": {
@@ -599,7 +599,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteContactToGroup": "Kontakt zu {groupName} einladen",
+  "inviteContactToGroup": "Kontakt in die Gruppe {groupName} einladen",
   "@inviteContactToGroup": {
     "type": "text",
     "placeholders": {
@@ -680,7 +680,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Logout": "Logout",
+  "Logout": "Abmelden",
   "@Logout": {
     "type": "text",
     "placeholders": {}
@@ -692,7 +692,7 @@
       "username": {}
     }
   },
-  "lastActiveAgo": "Zuletzt gesehen: {localizedTimeShort}",
+  "lastActiveAgo": "Zuletzt aktiv: {localizedTimeShort}",
   "@lastActiveAgo": {
     "type": "text",
     "placeholders": {
@@ -860,7 +860,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "play": "Play {fileName}",
+  "play": "{fileName} abspielen",
   "@play": {
     "type": "text",
     "placeholders": {
@@ -990,7 +990,7 @@
       "username": {}
     }
   },
-  "Search for a chat": "Chats durchsuchen",
+  "Search for a chat": "Chat suchen",
   "@Search for a chat": {
     "type": "text",
     "placeholders": {}
@@ -1217,7 +1217,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unknownEvent": "Unbekanntes Event '{type}'",
+  "unknownEvent": "Unbekanntes Ereignis '{type}'",
   "@unknownEvent": {
     "type": "text",
     "placeholders": {
@@ -1557,7 +1557,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "askVerificationRequest": "Nehme Verifikationsanfrage von {username} an?",
+  "askVerificationRequest": "Diese Bestätigungsanfrage von {username} annehmen?",
   "@askVerificationRequest": {
     "type": "text",
     "placeholders": {
@@ -1581,6 +1581,11 @@
   },
   "Accept": "Annehmen",
   "@Accept": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Submit": "Absenden",
+  "@Submit": {
     "type": "text",
     "placeholders": {}
   }
