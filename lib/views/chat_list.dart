@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:famedlysdk/matrix_api.dart';
+import 'package:fluffychat/components/connection_status_header.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/list_items/presence_list_item.dart';
 import 'package:fluffychat/components/list_items/public_room_list_item.dart';
@@ -408,26 +409,34 @@ class _ChatListState extends State<ChatList> {
                                   itemCount: totalCount + 1,
                                   itemBuilder: (BuildContext context, int i) {
                                     if (i == 0) {
-                                      return (directChats.isEmpty ||
-                                              selectMode == SelectMode.share)
-                                          ? Container()
-                                          : PreferredSize(
-                                              preferredSize:
-                                                  Size.fromHeight(90),
-                                              child: Container(
-                                                height: 82,
-                                                child: ListView.builder(
-                                                  scrollDirection:
-                                                      Axis.horizontal,
-                                                  itemCount: directChats.length,
-                                                  itemBuilder:
-                                                      (BuildContext context,
+                                      return Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          ConnectionStatusHeader(),
+                                          (directChats.isEmpty ||
+                                                  selectMode ==
+                                                      SelectMode.share)
+                                              ? Container()
+                                              : PreferredSize(
+                                                  preferredSize:
+                                                      Size.fromHeight(90),
+                                                  child: Container(
+                                                    height: 82,
+                                                    child: ListView.builder(
+                                                      scrollDirection:
+                                                          Axis.horizontal,
+                                                      itemCount:
+                                                          directChats.length,
+                                                      itemBuilder: (BuildContext
+                                                                  context,
                                                               int i) =>
                                                           PresenceListItem(
                                                               directChats[i]),
+                                                    ),
+                                                  ),
                                                 ),
-                                              ),
-                                            );
+                                        ],
+                                      );
                                     }
                                     i--;
                                     return i < rooms.length
