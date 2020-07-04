@@ -157,9 +157,6 @@ class _ChatState extends State<_Chat> {
       if (timeline.events.isNotEmpty) {
         unawaited(room.sendReadReceipt(timeline.events.first.eventId));
       }
-      if (timeline.events.length < _loadHistoryCount) {
-        requestHistory();
-      }
     }
     updateView();
     return true;
