@@ -21,11 +21,19 @@ class HtmlMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // riot-web is notorious for creating bad reply fallback events from invalid messages which, if
+    // not handled properly, can lead to impersination. As such, we strip the entire `<mx-reply>` tags
+    // here already, to prevent that from happening.
+    // We do *not* do this in an AST and just with simple regex here, as riot-web tends to create
+    // miss-matching tags, and this way we actually correctly identify what we want to strip and, well,
+    // strip it.
+    final renderHtml = html.replaceAll(RegExp('<mx-reply>.*<\/mx-reply>'), '');
+
     // there is no need to pre-validate the html, as we validate it while rendering
 
     final themeData = Theme.of(context);
     return Html(
-      data: html,
+      data: renderHtml,
       defaultTextStyle: defaultTextStyle,
       linkStyle: linkStyle ??
           themeData.textTheme.bodyText2.copyWith(
