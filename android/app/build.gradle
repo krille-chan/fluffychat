@@ -49,11 +49,6 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        externalNativeBuild {
-            cmake {
-                arguments "-DOLM_TESTS=NO"
-            }
-        }
     }
 
     signingConfigs {
@@ -75,15 +70,6 @@ android {
             minifyEnabled true
 
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-
-    externalNativeBuild {
-        // Encapsulates your CMake build configurations.
-        cmake {
-            // Provides a relative path to your CMake build script.
-            path "../../ios/olm/CMakeLists.txt"
-            version "3.10.2"
         }
     }
 }
