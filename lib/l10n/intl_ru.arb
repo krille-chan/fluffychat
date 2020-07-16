@@ -1,127 +1,127 @@
 {
   "@@last_modified": "2020-06-25T16:02:16.297192",
-  "About": "",
+  "About": "О приложении",
   "@About": {
     "type": "text",
     "placeholders": {}
   },
-  "Accept": "",
+  "Accept": "Принять",
   "@Accept": {
     "type": "text",
     "placeholders": {}
   },
-  "acceptedTheInvitation": "",
+  "acceptedTheInvitation": "{username} принял приглашение",
   "@acceptedTheInvitation": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "Account": "",
+  "Account": "Аккаунт",
   "@Account": {
     "type": "text",
     "placeholders": {}
   },
-  "Account informations": "",
+  "Account informations": "Сведения об аккаунте",
   "@Account informations": {
     "type": "text",
     "placeholders": {}
   },
-  "activatedEndToEndEncryption": "",
+  "activatedEndToEndEncryption": "{username} активировал сквозное шифрование",
   "@activatedEndToEndEncryption": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "Add a group description": "",
+  "Add a group description": "Добавить описание группы",
   "@Add a group description": {
     "type": "text",
     "placeholders": {}
   },
-  "Admin": "",
+  "Admin": "Админ",
   "@Admin": {
     "type": "text",
     "placeholders": {}
   },
-  "alias": "",
+  "alias": "псевдоним",
   "@alias": {
     "type": "text",
     "placeholders": {}
   },
-  "Already have an account?": "",
+  "Already have an account?": "Уже есть аккаунт?",
   "@Already have an account?": {
     "type": "text",
     "placeholders": {}
   },
-  "Anyone can join": "",
+  "Anyone can join": "Каждый может присоединиться",
   "@Anyone can join": {
     "type": "text",
     "placeholders": {}
   },
-  "Archive": "",
+  "Archive": "Архив",
   "@Archive": {
     "type": "text",
     "placeholders": {}
   },
-  "Archived Room": "",
+  "Archived Room": "Архивная комната",
   "@Archived Room": {
     "type": "text",
     "placeholders": {}
   },
-  "Are guest users allowed to join": "",
+  "Are guest users allowed to join": "Разрешено ли гостям присоединяться",
   "@Are guest users allowed to join": {
     "type": "text",
     "placeholders": {}
   },
-  "Are you sure?": "",
+  "Are you sure?": "Вы уверены?",
   "@Are you sure?": {
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSCache": "",
+  "askSSSSCache": "Пожалуйста, введите секретную фразу безопасного хранилища или ключ восстановления для кеширования ключей.",
   "@askSSSSCache": {
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSSign": "",
+  "askSSSSSign": "Чтобы иметь возможность подписать другое лицо, пожалуйста, введите пароль или ключ восстановления вашего безопасного хранилища.",
   "@askSSSSSign": {
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSVerify": "",
+  "askSSSSVerify": "Пожалуйста, введите вашу безопасную парольную фразу или ключ восстановления, чтобы подтвердить ваш сеанс.",
   "@askSSSSVerify": {
     "type": "text",
     "placeholders": {}
   },
-  "askVerificationRequest": "",
+  "askVerificationRequest": "Принять этот запрос подтверждения от {username}?",
   "@askVerificationRequest": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "Authentication": "",
+  "Authentication": "Аутентификация",
   "@Authentication": {
     "type": "text",
     "placeholders": {}
   },
-  "Avatar has been changed": "",
+  "Avatar has been changed": "Аватар был изменен",
   "@Avatar has been changed": {
     "type": "text",
     "placeholders": {}
   },
-  "Ban from chat": "",
+  "Ban from chat": "Бан чата",
   "@Ban from chat": {
     "type": "text",
     "placeholders": {}
   },
-  "Banned": "",
+  "Banned": "Забанен",
   "@Banned": {
     "type": "text",
     "placeholders": {}
   },
-  "bannedUser": "",
+  "bannedUser": "{username} забанен {targetName}",
   "@bannedUser": {
     "type": "text",
     "placeholders": {
@@ -129,36 +129,36 @@
       "targetName": {}
     }
   },
-  "Block Device": "",
+  "Block Device": "Заблокировать устройство",
   "@Block Device": {
     "type": "text",
     "placeholders": {}
   },
-  "byDefaultYouWillBeConnectedTo": "",
+  "byDefaultYouWillBeConnectedTo": "По умолчанию вы будете подключены к {homeserver}",
   "@byDefaultYouWillBeConnectedTo": {
     "type": "text",
     "placeholders": {
       "homeserver": {}
     }
   },
-  "cachedKeys": "",
+  "cachedKeys": "Ключи успешно кэшированы!",
   "@cachedKeys": {
     "type": "text",
     "placeholders": {}
   },
-  "Cancel": "",
+  "Cancel": "Отмена",
   "@Cancel": {
     "type": "text",
     "placeholders": {}
   },
-  "changedTheChatAvatar": "",
+  "changedTheChatAvatar": "{username} изменил аватар чата",
   "@changedTheChatAvatar": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheChatNameTo": "",
+  "changedTheChatNameTo": "{username} изменил имя чата на: '{chatname}'",
   "@changedTheChatNameTo": {
     "type": "text",
     "placeholders": {
@@ -166,7 +166,7 @@
       "chatname": {}
     }
   },
-  "changedTheChatDescriptionTo": "",
+  "changedTheChatDescriptionTo": "{username} изменил описание чата на: '{description}'",
   "@changedTheChatDescriptionTo": {
     "type": "text",
     "placeholders": {
@@ -174,14 +174,14 @@
       "description": {}
     }
   },
-  "changedTheChatPermissions": "",
+  "changedTheChatPermissions": "{username} изменил права чата",
   "@changedTheChatPermissions": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheDisplaynameTo": "",
+  "changedTheDisplaynameTo": "{username} изменил отображаемое имя на: {displayname}",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -189,19 +189,19 @@
       "displayname": {}
     }
   },
-  "Change the homeserver": "",
+  "Change the homeserver": "Измените домашний сервер",
   "@Change the homeserver": {
     "type": "text",
     "placeholders": {}
   },
-  "changedTheGuestAccessRules": "",
+  "changedTheGuestAccessRules": "{username} изменил правила гостевого доступа",
   "@changedTheGuestAccessRules": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheGuestAccessRulesTo": "",
+  "changedTheGuestAccessRulesTo": "{username} изменил правила гостевого доступа на: {rules}",
   "@changedTheGuestAccessRulesTo": {
     "type": "text",
     "placeholders": {
@@ -209,14 +209,14 @@
       "rules": {}
     }
   },
-  "changedTheHistoryVisibility": "",
+  "changedTheHistoryVisibility": "{username} изменил видимость истории",
   "@changedTheHistoryVisibility": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheHistoryVisibilityTo": "",
+  "changedTheHistoryVisibilityTo": "{username} изменил видимость истории на: {rules}",
   "@changedTheHistoryVisibilityTo": {
     "type": "text",
     "placeholders": {
@@ -224,14 +224,14 @@
       "rules": {}
     }
   },
-  "changedTheJoinRules": "",
+  "changedTheJoinRules": "{username} изменил правила присоединения",
   "@changedTheJoinRules": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheJoinRulesTo": "",
+  "changedTheJoinRulesTo": "{username} изменил правила присоединения на: {joinRules}",
   "@changedTheJoinRulesTo": {
     "type": "text",
     "placeholders": {
@@ -239,184 +239,184 @@
       "joinRules": {}
     }
   },
-  "changedTheProfileAvatar": "",
+  "changedTheProfileAvatar": "{username} сменил аватар профиля",
   "@changedTheProfileAvatar": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheRoomAliases": "",
+  "changedTheRoomAliases": "{username} изменил псевдонимы комнаты",
   "@changedTheRoomAliases": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheRoomInvitationLink": "",
+  "changedTheRoomInvitationLink": "{username} изменил ссылку приглашения",
   "@changedTheRoomInvitationLink": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "Changelog": "",
+  "Changelog": "Изменения",
   "@Changelog": {
     "type": "text",
     "placeholders": {}
   },
-  "Change the name of the group": "",
+  "Change the name of the group": "Изменить название группы",
   "@Change the name of the group": {
     "type": "text",
     "placeholders": {}
   },
-  "Change wallpaper": "",
+  "Change wallpaper": "Сменить обои",
   "@Change wallpaper": {
     "type": "text",
     "placeholders": {}
   },
-  "Change the server": "",
+  "Change the server": "Сменить сервер",
   "@Change the server": {
     "type": "text",
     "placeholders": {}
   },
-  "The encryption has been corrupted": "",
+  "The encryption has been corrupted": "Шифрование было повреждено",
   "@The encryption has been corrupted": {
     "type": "text",
     "placeholders": {}
   },
-  "Chat": "",
+  "Chat": "Чат",
   "@Chat": {
     "type": "text",
     "placeholders": {}
   },
-  "Chat details": "",
+  "Chat details": "Детали чата",
   "@Chat details": {
     "type": "text",
     "placeholders": {}
   },
-  "Choose a strong password": "",
+  "Choose a strong password": "Выберите надёжный пароль",
   "@Choose a strong password": {
     "type": "text",
     "placeholders": {}
   },
-  "Choose a username": "",
+  "Choose a username": "Выберете имя пользователя",
   "@Choose a username": {
     "type": "text",
     "placeholders": {}
   },
-  "Close": "",
+  "Close": "Закрыть",
   "@Close": {
     "type": "text",
     "placeholders": {}
   },
-  "compareEmojiMatch": "",
+  "compareEmojiMatch": "Сравните и убедитесь, что следующие эмодзи соответствуют таковым на другом устройстве:",
   "@compareEmojiMatch": {
     "type": "text",
     "placeholders": {}
   },
-  "compareNumbersMatch": "",
+  "compareNumbersMatch": "Сравните и убедитесь, что следующие числа соответствуют числам на другом устройстве:",
   "@compareNumbersMatch": {
     "type": "text",
     "placeholders": {}
   },
-  "Confirm": "",
+  "Confirm": "Подтвердить",
   "@Confirm": {
     "type": "text",
     "placeholders": {}
   },
-  "Connect": "",
+  "Connect": "Присоединиться",
   "@Connect": {
     "type": "text",
     "placeholders": {}
   },
-  "Connection attempt failed": "",
+  "Connection attempt failed": "Попытка подключения не удалась",
   "@Connection attempt failed": {
     "type": "text",
     "placeholders": {}
   },
-  "Contact has been invited to the group": "",
+  "Contact has been invited to the group": "Контакт был приглашен в группу",
   "@Contact has been invited to the group": {
     "type": "text",
     "placeholders": {}
   },
-  "Content viewer": "",
+  "Content viewer": "Просмотр содержимого",
   "@Content viewer": {
     "type": "text",
     "placeholders": {}
   },
-  "Copied to clipboard": "",
+  "Copied to clipboard": "Скопировано в буфер обмена",
   "@Copied to clipboard": {
     "type": "text",
     "placeholders": {}
   },
-  "Copy": "",
+  "Copy": "Скопировать",
   "@Copy": {
     "type": "text",
     "placeholders": {}
   },
-  "couldNotDecryptMessage": "",
+  "couldNotDecryptMessage": "Не удалось расшифровать сообщение: {error}",
   "@couldNotDecryptMessage": {
     "type": "text",
     "placeholders": {
       "error": {}
     }
   },
-  "Could not set avatar": "",
+  "Could not set avatar": "Не удалось установить аватар",
   "@Could not set avatar": {
     "type": "text",
     "placeholders": {}
   },
-  "Could not set displayname": "",
+  "Could not set displayname": "Не удалось установить отображаемое имя",
   "@Could not set displayname": {
     "type": "text",
     "placeholders": {}
   },
-  "countParticipants": "",
+  "countParticipants": "{count} участника(ов)",
   "@countParticipants": {
     "type": "text",
     "placeholders": {
       "count": {}
     }
   },
-  "Create": "",
+  "Create": "Создать",
   "@Create": {
     "type": "text",
     "placeholders": {}
   },
-  "Create account now": "",
+  "Create account now": "Создать аккаунт сейчас",
   "@Create account now": {
     "type": "text",
     "placeholders": {}
   },
-  "createdTheChat": "",
+  "createdTheChat": "{username} создал чат",
   "@createdTheChat": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "Create new group": "",
+  "Create new group": "Создать новую группу",
   "@Create new group": {
     "type": "text",
     "placeholders": {}
   },
-  "crossSigningDisabled": "",
+  "crossSigningDisabled": "Кросс-подпись отключена",
   "@crossSigningDisabled": {
     "type": "text",
     "placeholders": {}
   },
-  "crossSigningEnabled": "",
+  "crossSigningEnabled": "Кросс-подпись включена",
   "@crossSigningEnabled": {
     "type": "text",
     "placeholders": {}
   },
-  "Currently active": "",
+  "Currently active": "В настоящее время активен",
   "@Currently active": {
     "type": "text",
     "placeholders": {}
   },
-  "dateAndTimeOfDay": "",
+  "dateAndTimeOfDay": "{date}, {timeOfDay}",
   "@dateAndTimeOfDay": {
     "type": "text",
     "placeholders": {
@@ -424,7 +424,7 @@
       "timeOfDay": {}
     }
   },
-  "dateWithoutYear": "",
+  "dateWithoutYear": "{month}-{day}",
   "@dateWithoutYear": {
     "type": "text",
     "placeholders": {
@@ -432,7 +432,7 @@
       "day": {}
     }
   },
-  "dateWithYear": "",
+  "dateWithYear": "{year}-{month}-{day}",
   "@dateWithYear": {
     "type": "text",
     "placeholders": {
@@ -441,194 +441,194 @@
       "day": {}
     }
   },
-  "Delete": "",
+  "Delete": "Удалить",
   "@Delete": {
     "type": "text",
     "placeholders": {}
   },
-  "Delete message": "",
+  "Delete message": "Удалить сообщение",
   "@Delete message": {
     "type": "text",
     "placeholders": {}
   },
-  "Deny": "",
+  "Deny": "Отклонить",
   "@Deny": {
     "type": "text",
     "placeholders": {}
   },
-  "Device": "",
+  "Device": "Устройство",
   "@Device": {
     "type": "text",
     "placeholders": {}
   },
-  "Devices": "",
+  "Devices": "Устройства",
   "@Devices": {
     "type": "text",
     "placeholders": {}
   },
-  "Discard picture": "",
+  "Discard picture": "Сбросить картинку",
   "@Discard picture": {
     "type": "text",
     "placeholders": {}
   },
-  "Displayname has been changed": "",
+  "Displayname has been changed": "Отображаемое имя было изменено",
   "@Displayname has been changed": {
     "type": "text",
     "placeholders": {}
   },
-  "Download file": "",
+  "Download file": "Скачать файл",
   "@Download file": {
     "type": "text",
     "placeholders": {}
   },
-  "Edit displayname": "",
+  "Edit displayname": "Изменить отображаемое имя",
   "@Edit displayname": {
     "type": "text",
     "placeholders": {}
   },
-  "Emote Settings": "",
+  "Emote Settings": "Настройки смайликов",
   "@Emote Settings": {
     "type": "text",
     "placeholders": {}
   },
-  "Emote shortcode": "",
+  "Emote shortcode": "Краткий код для смайлика",
   "@Emote shortcode": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteWarnNeedToPick": "",
+  "emoteWarnNeedToPick": "Вам нужно выбрать краткий код смайлика и картинку!",
   "@emoteWarnNeedToPick": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteExists": "",
+  "emoteExists": "Смайлик уже существует!",
   "@emoteExists": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteInvalid": "",
+  "emoteInvalid": "Недопустимый краткий код смайлика!",
   "@emoteInvalid": {
     "type": "text",
     "placeholders": {}
   },
-  "Empty chat": "",
+  "Empty chat": "Пустой чат",
   "@Empty chat": {
     "type": "text",
     "placeholders": {}
   },
-  "You won't be able to disable the encryption anymore. Are you sure?": "",
+  "You won't be able to disable the encryption anymore. Are you sure?": "Вы больше не сможете отключить шифрование. Вы уверены?",
   "@You won't be able to disable the encryption anymore. Are you sure?": {
     "type": "text",
     "placeholders": {}
   },
-  "Encryption": "",
+  "Encryption": "Шифрование",
   "@Encryption": {
     "type": "text",
     "placeholders": {}
   },
-  "Encryption algorithm": "",
+  "Encryption algorithm": "Алгоритм шифрования",
   "@Encryption algorithm": {
     "type": "text",
     "placeholders": {}
   },
-  "Encryption is not enabled": "",
+  "Encryption is not enabled": "Шифрование не включено",
   "@Encryption is not enabled": {
     "type": "text",
     "placeholders": {}
   },
-  "End-to-end encryption settings": "",
+  "End-to-end encryption settings": "Сквозные настройки шифрования",
   "@End-to-end encryption settings": {
     "type": "text",
     "placeholders": {}
   },
-  "Enter a group name": "",
+  "Enter a group name": "Введите название группы",
   "@Enter a group name": {
     "type": "text",
     "placeholders": {}
   },
-  "Enter a username": "",
+  "Enter a username": "Введите имя пользователя",
   "@Enter a username": {
     "type": "text",
     "placeholders": {}
   },
-  "Enter your homeserver": "",
+  "Enter your homeserver": "Введите ваш домашний сервер",
   "@Enter your homeserver": {
     "type": "text",
     "placeholders": {}
   },
-  "File name": "",
+  "File name": "Имя файла",
   "@File name": {
     "type": "text",
     "placeholders": {}
   },
-  "File size": "",
+  "File size": "Размер файла",
   "@File size": {
     "type": "text",
     "placeholders": {}
   },
-  "FluffyChat": "",
+  "FluffyChat": "FluffyChat",
   "@FluffyChat": {
     "type": "text",
     "placeholders": {}
   },
-  "Forward": "",
+  "Forward": "Отправить",
   "@Forward": {
     "type": "text",
     "placeholders": {}
   },
-  "Friday": "",
+  "Friday": "Пятница",
   "@Friday": {
     "type": "text",
     "placeholders": {}
   },
-  "From joining": "",
+  "From joining": "С момента присоединения",
   "@From joining": {
     "type": "text",
     "placeholders": {}
   },
-  "From the invitation": "",
+  "From the invitation": "С момента приглашения",
   "@From the invitation": {
     "type": "text",
     "placeholders": {}
   },
-  "Group": "",
+  "Group": "Группа",
   "@Group": {
     "type": "text",
     "placeholders": {}
   },
-  "Group description": "",
+  "Group description": "Описание группы",
   "@Group description": {
     "type": "text",
     "placeholders": {}
   },
-  "Group description has been changed": "",
+  "Group description has been changed": "Описание группы было изменено",
   "@Group description has been changed": {
     "type": "text",
     "placeholders": {}
   },
-  "Group is public": "",
+  "Group is public": "Публичная группа",
   "@Group is public": {
     "type": "text",
     "placeholders": {}
   },
-  "groupWith": "",
+  "groupWith": "Группа с {displayname}",
   "@groupWith": {
     "type": "text",
     "placeholders": {
       "displayname": {}
     }
   },
-  "Guests are forbidden": "",
+  "Guests are forbidden": "Гости запрещены",
   "@Guests are forbidden": {
     "type": "text",
     "placeholders": {}
   },
-  "Guests can join": "",
+  "Guests can join": "Гости могут присоединиться",
   "@Guests can join": {
     "type": "text",
     "placeholders": {}
   },
-  "hasWithdrawnTheInvitationFor": "",
+  "hasWithdrawnTheInvitationFor": "{username} отозвал приглашение для {targetName}",
   "@hasWithdrawnTheInvitationFor": {
     "type": "text",
     "placeholders": {
@@ -636,49 +636,49 @@
       "targetName": {}
     }
   },
-  "Help": "",
+  "Help": "Помощь",
   "@Help": {
     "type": "text",
     "placeholders": {}
   },
-  "Homeserver is not compatible": "",
+  "Homeserver is not compatible": "Домашний сервер не совместим",
   "@Homeserver is not compatible": {
     "type": "text",
     "placeholders": {}
   },
-  "ID": "",
+  "ID": "ID",
   "@ID": {
     "type": "text",
     "placeholders": {}
   },
-  "Identity": "",
+  "Identity": "Идентификация",
   "@Identity": {
     "type": "text",
     "placeholders": {}
   },
-  "incorrectPassphraseOrKey": "",
+  "incorrectPassphraseOrKey": "Неверный пароль или ключ восстановления",
   "@incorrectPassphraseOrKey": {
     "type": "text",
     "placeholders": {}
   },
-  "Invite contact": "",
+  "Invite contact": "Пригласить контакт",
   "@Invite contact": {
     "type": "text",
     "placeholders": {}
   },
-  "inviteContactToGroup": "",
+  "inviteContactToGroup": "Пригласить контакт в {groupName}",
   "@inviteContactToGroup": {
     "type": "text",
     "placeholders": {
       "groupName": {}
     }
   },
-  "Invited": "",
+  "Invited": "Приглашён",
   "@Invited": {
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "",
+  "inviteText": "{username} пригласил вас в FluffyChat. \n1. Установите FluffyChat: http://fluffy.chat \n2. Зарегистрируйтесь или войдите \n3. Откройте ссылку приглашения: {link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {
@@ -686,7 +686,7 @@
       "link": {}
     }
   },
-  "invitedUser": "",
+  "invitedUser": "{username} пригласил {targetName}",
   "@invitedUser": {
     "type": "text",
     "placeholders": {
@@ -694,44 +694,44 @@
       "targetName": {}
     }
   },
-  "Invited users only": "",
+  "Invited users only": "Только приглашённым пользователям",
   "@Invited users only": {
     "type": "text",
     "placeholders": {}
   },
-  "isDeviceKeyCorrect": "",
+  "isDeviceKeyCorrect": "Правильно ли указан следующий ключ устройства?",
   "@isDeviceKeyCorrect": {
     "type": "text",
     "placeholders": {}
   },
-  "is typing...": "",
+  "is typing...": "Печатает...",
   "@is typing...": {
     "type": "text",
     "placeholders": {}
   },
-  "Edit Jitsi instance": "",
+  "Edit Jitsi instance": "Изменить экземпляр Jitsi",
   "@Edit Jitsi instance": {
     "type": "text",
     "placeholders": {}
   },
-  "joinedTheChat": "",
+  "joinedTheChat": "{username} присоединился к чату",
   "@joinedTheChat": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "keysCached": "",
+  "keysCached": "Ключи кэшированы",
   "@keysCached": {
     "type": "text",
     "placeholders": {}
   },
-  "keysMissing": "",
+  "keysMissing": "Ключи отсутствуют",
   "@keysMissing": {
     "type": "text",
     "placeholders": {}
   },
-  "kicked": "",
+  "kicked": "{username} исключил {targetName}",
   "@kicked": {
     "type": "text",
     "placeholders": {
@@ -739,7 +739,7 @@
       "targetName": {}
     }
   },
-  "kickedAndBanned": "",
+  "kickedAndBanned": "{username} исключил и забанил {targetName}",
   "@kickedAndBanned": {
     "type": "text",
     "placeholders": {
@@ -747,394 +747,394 @@
       "targetName": {}
     }
   },
-  "Kick from chat": "",
+  "Kick from chat": "Исключить из чата",
   "@Kick from chat": {
     "type": "text",
     "placeholders": {}
   },
-  "Leave": "",
+  "Leave": "Покинуть",
   "@Leave": {
     "type": "text",
     "placeholders": {}
   },
-  "Left the chat": "",
+  "Left the chat": "Покинуть чат",
   "@Left the chat": {
     "type": "text",
     "placeholders": {}
   },
-  "Logout": "",
+  "Logout": "Выйти",
   "@Logout": {
     "type": "text",
     "placeholders": {}
   },
-  "userLeftTheChat": "",
+  "userLeftTheChat": "{username} покинул чат",
   "@userLeftTheChat": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "lastActiveAgo": "",
+  "lastActiveAgo": "Последнее посещение: {localizedTimeShort}",
   "@lastActiveAgo": {
     "type": "text",
     "placeholders": {
       "localizedTimeShort": {}
     }
   },
-  "Last seen IP": "",
+  "Last seen IP": "Последний увиденный IP",
   "@Last seen IP": {
     "type": "text",
     "placeholders": {}
   },
-  "License": "",
+  "License": "Лицензия",
   "@License": {
     "type": "text",
     "placeholders": {}
   },
-  "Loading... Please wait": "",
+  "Loading... Please wait": "Загрузка... Пожалуйста подождите",
   "@Loading... Please wait": {
     "type": "text",
     "placeholders": {}
   },
-  "Load more...": "",
+  "Load more...": "Загрузить больше...",
   "@Load more...": {
     "type": "text",
     "placeholders": {}
   },
-  "loadCountMoreParticipants": "",
+  "loadCountMoreParticipants": "Загрузить {count} больше участника(ов)",
   "@loadCountMoreParticipants": {
     "type": "text",
     "placeholders": {
       "count": {}
     }
   },
-  "Login": "",
+  "Login": "Вход",
   "@Login": {
     "type": "text",
     "placeholders": {}
   },
-  "logInTo": "",
+  "logInTo": "Войти в {homeserver}",
   "@logInTo": {
     "type": "text",
     "placeholders": {
       "homeserver": {}
     }
   },
-  "Make a moderator": "",
+  "Make a moderator": "Сделать модератором",
   "@Make a moderator": {
     "type": "text",
     "placeholders": {}
   },
-  "Make an admin": "",
+  "Make an admin": "Сделать админом",
   "@Make an admin": {
     "type": "text",
     "placeholders": {}
   },
-  "Make sure the identifier is valid": "",
+  "Make sure the identifier is valid": "Убедитесь, что идентификатор действителен",
   "@Make sure the identifier is valid": {
     "type": "text",
     "placeholders": {}
   },
-  "Message will be removed for all participants": "",
+  "Message will be removed for all participants": "Сообщение будет удалено для всех участников",
   "@Message will be removed for all participants": {
     "type": "text",
     "placeholders": {}
   },
-  "Moderator": "",
+  "Moderator": "Модератор",
   "@Moderator": {
     "type": "text",
     "placeholders": {}
   },
-  "Monday": "",
+  "Monday": "Понедельник",
   "@Monday": {
     "type": "text",
     "placeholders": {}
   },
-  "Mute chat": "",
+  "Mute chat": "Замутить чат",
   "@Mute chat": {
     "type": "text",
     "placeholders": {}
   },
-  "Please be aware that you need Pantalaimon to use end-to-end encryption for now.": "",
+  "Please be aware that you need Pantalaimon to use end-to-end encryption for now.": "Помните, что вам нужен Pantalaimon для использования сквозного шифрования.",
   "@Please be aware that you need Pantalaimon to use end-to-end encryption for now.": {
     "type": "text",
     "placeholders": {}
   },
-  "New message in FluffyChat": "",
+  "New message in FluffyChat": "Новое сообщение в FluffyChat",
   "@New message in FluffyChat": {
     "type": "text",
     "placeholders": {}
   },
-  "New private chat": "",
+  "New private chat": "Новый приватный чат",
   "@New private chat": {
     "type": "text",
     "placeholders": {}
   },
-  "newVerificationRequest": "",
+  "newVerificationRequest": "Новый запрос на подтверждение!",
   "@newVerificationRequest": {
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "",
+  "noCrossSignBootstrap": "Fluffychat в настоящее время не поддерживает включение кросс-подписи. Пожалуйста, включите его в Riot.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "",
+  "noMegolmBootstrap": "В настоящее время Fluffychat не поддерживает функцию резервного копирования онлайн-ключей. Пожалуйста, включите его из Riot.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
   },
-  "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": "",
+  "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": "Похоже, у вас нет служб Google на вашем телефоне. Это хорошее решение для вашей конфиденциальности! Для получения push-уведомлений в FluffyChat мы рекомендуем использовать microG: https://microg.org/",
   "@It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": {
     "type": "text",
     "placeholders": {}
   },
-  "None": "",
+  "None": "Ничего",
   "@None": {
     "type": "text",
     "placeholders": {}
   },
-  "No emotes found. 😕": "",
+  "No emotes found. 😕": "Смайликов не найдено. 😕",
   "@No emotes found. 😕": {
     "type": "text",
     "placeholders": {}
   },
-  "No permission": "",
+  "No permission": "Нет разрешений",
   "@No permission": {
     "type": "text",
     "placeholders": {}
   },
-  "No rooms found...": "",
+  "No rooms found...": "Комнаты не найдены...",
   "@No rooms found...": {
     "type": "text",
     "placeholders": {}
   },
-  "Not supported in web": "",
+  "Not supported in web": "Не поддерживается в сети",
   "@Not supported in web": {
     "type": "text",
     "placeholders": {}
   },
-  "numberSelected": "",
+  "numberSelected": "{number} выбрано",
   "@numberSelected": {
     "type": "text",
     "placeholders": {
       "number": {}
     }
   },
-  "ok": "",
+  "ok": "ok",
   "@ok": {
     "type": "text",
     "placeholders": {}
   },
-  "onlineKeyBackupDisabled": "",
+  "onlineKeyBackupDisabled": "Резервное копирование онлайн-ключей отключено",
   "@onlineKeyBackupDisabled": {
     "type": "text",
     "placeholders": {}
   },
-  "onlineKeyBackupEnabled": "",
+  "onlineKeyBackupEnabled": "Резервное копирование онлайн ключей включено",
   "@onlineKeyBackupEnabled": {
     "type": "text",
     "placeholders": {}
   },
-  "Oops something went wrong...": "",
+  "Oops something went wrong...": "Упс! Что-то пошло не так...",
   "@Oops something went wrong...": {
     "type": "text",
     "placeholders": {}
   },
-  "Open app to read messages": "",
+  "Open app to read messages": "Откройте приложение для чтения сообщений",
   "@Open app to read messages": {
     "type": "text",
     "placeholders": {}
   },
-  "Open camera": "",
+  "Open camera": "Открыть камеру",
   "@Open camera": {
     "type": "text",
     "placeholders": {}
   },
-  "(Optional) Group name": "",
+  "(Optional) Group name": "(Необязательно) Название группы",
   "@(Optional) Group name": {
     "type": "text",
     "placeholders": {}
   },
-  "Participating user devices": "",
+  "Participating user devices": "Участвующие устройства",
   "@Participating user devices": {
     "type": "text",
     "placeholders": {}
   },
-  "passphraseOrKey": "",
+  "passphraseOrKey": "пароль или ключ восстановления",
   "@passphraseOrKey": {
     "type": "text",
     "placeholders": {}
   },
-  "Password": "",
+  "Password": "Пароль",
   "@Password": {
     "type": "text",
     "placeholders": {}
   },
-  "Pick image": "",
+  "Pick image": "Выбрать картинку",
   "@Pick image": {
     "type": "text",
     "placeholders": {}
   },
-  "play": "",
+  "play": "Играть {fileName}",
   "@play": {
     "type": "text",
     "placeholders": {
       "fileName": {}
     }
   },
-  "Please choose a username": "",
+  "Please choose a username": "Пожалуйста, выберите имя пользователя",
   "@Please choose a username": {
     "type": "text",
     "placeholders": {}
   },
-  "Please enter a matrix identifier": "",
+  "Please enter a matrix identifier": "Пожалуйста, введите matrix идентификатор",
   "@Please enter a matrix identifier": {
     "type": "text",
     "placeholders": {}
   },
-  "Please enter your password": "",
+  "Please enter your password": "Пожалуйста введите ваш пароль",
   "@Please enter your password": {
     "type": "text",
     "placeholders": {}
   },
-  "Please enter your username": "",
+  "Please enter your username": "Пожалуйста, введите имя пользователя",
   "@Please enter your username": {
     "type": "text",
     "placeholders": {}
   },
-  "Public Rooms": "",
+  "Public Rooms": "Публичные комнаты",
   "@Public Rooms": {
     "type": "text",
     "placeholders": {}
   },
-  "Reject": "",
+  "Reject": "Отклонить",
   "@Reject": {
     "type": "text",
     "placeholders": {}
   },
-  "Rejoin": "",
+  "Rejoin": "Перезайти",
   "@Rejoin": {
     "type": "text",
     "placeholders": {}
   },
-  "Render rich message content": "",
+  "Render rich message content": "Показать расширенные сообщения",
   "@Render rich message content": {
     "type": "text",
     "placeholders": {}
   },
-  "Recording": "",
+  "Recording": "Запись",
   "@Recording": {
     "type": "text",
     "placeholders": {}
   },
-  "redactedAnEvent": "",
+  "redactedAnEvent": "{username} отредактировал событие",
   "@redactedAnEvent": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "rejectedTheInvitation": "",
+  "rejectedTheInvitation": "{username} отклонил приглашение",
   "@rejectedTheInvitation": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "Remove all other devices": "",
+  "Remove all other devices": "Удалить все другие устройства",
   "@Remove all other devices": {
     "type": "text",
     "placeholders": {}
   },
-  "removedBy": "",
+  "removedBy": "Удалено {username}",
   "@removedBy": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "Remove device": "",
+  "Remove device": "Удалить устройство",
   "@Remove device": {
     "type": "text",
     "placeholders": {}
   },
-  "Remove exile": "",
+  "Remove exile": "Удалить ссылку",
   "@Remove exile": {
     "type": "text",
     "placeholders": {}
   },
-  "Revoke all permissions": "",
+  "Revoke all permissions": "Отменить все разрешения",
   "@Revoke all permissions": {
     "type": "text",
     "placeholders": {}
   },
-  "Remove": "",
+  "Remove": "Удалить",
   "@Remove": {
     "type": "text",
     "placeholders": {}
   },
-  "Remove message": "",
+  "Remove message": "Удалить сообщение",
   "@Remove message": {
     "type": "text",
     "placeholders": {}
   },
-  "Reply": "",
+  "Reply": "Ответить",
   "@Reply": {
     "type": "text",
     "placeholders": {}
   },
-  "Request permission": "",
+  "Request permission": "Запросить разрешение",
   "@Request permission": {
     "type": "text",
     "placeholders": {}
   },
-  "Request to read older messages": "",
+  "Request to read older messages": "Запросить доступ к предыдущим сообщениям",
   "@Request to read older messages": {
     "type": "text",
     "placeholders": {}
   },
-  "Room has been upgraded": "",
+  "Room has been upgraded": "Комната обновлена",
   "@Room has been upgraded": {
     "type": "text",
     "placeholders": {}
   },
-  "Saturday": "",
+  "Saturday": "Суббота",
   "@Saturday": {
     "type": "text",
     "placeholders": {}
   },
-  "Share": "",
+  "Share": "Поделиться",
   "@Share": {
     "type": "text",
     "placeholders": {}
   },
-  "sharedTheLocation": "",
+  "sharedTheLocation": "{username} поделился местоположением",
   "@sharedTheLocation": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "Search for a chat": "",
+  "Search for a chat": "Поиск чата",
   "@Search for a chat": {
     "type": "text",
     "placeholders": {}
   },
-  "Seen a long time ago": "",
+  "Seen a long time ago": "В последний раз видели давно",
   "@Seen a long time ago": {
     "type": "text",
     "placeholders": {}
   },
-  "seenByUser": "",
+  "seenByUser": "Просмотрено {username}",
   "@seenByUser": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "seenByUserAndUser": "",
+  "seenByUserAndUser": "Просмотрено {username} и {username2}",
   "@seenByUserAndUser": {
     "type": "text",
     "placeholders": {
@@ -1142,7 +1142,7 @@
       "username2": {}
     }
   },
-  "seenByUserAndCountOthers": "",
+  "seenByUserAndCountOthers": "Просмотрено {username} и {count} другими",
   "@seenByUserAndCountOthers": {
     "type": "text",
     "placeholders": {
@@ -1150,182 +1150,182 @@
       "count": {}
     }
   },
-  "Send": "",
+  "Send": "Отправить",
   "@Send": {
     "type": "text",
     "placeholders": {}
   },
-  "Send a message": "",
+  "Send a message": "Отправить сообщение",
   "@Send a message": {
     "type": "text",
     "placeholders": {}
   },
-  "Send file": "",
+  "Send file": "Отправить файл",
   "@Send file": {
     "type": "text",
     "placeholders": {}
   },
-  "Send image": "",
+  "Send image": "Отправить картинку",
   "@Send image": {
     "type": "text",
     "placeholders": {}
   },
-  "sentAFile": "",
+  "sentAFile": "{username} отправил файл",
   "@sentAFile": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAnAudio": "",
+  "sentAnAudio": "{username} отправил аудио",
   "@sentAnAudio": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAPicture": "",
+  "sentAPicture": "{username} отправил картинку",
   "@sentAPicture": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentASticker": "",
+  "sentASticker": "{username} отправил стикер",
   "@sentASticker": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAVideo": "",
+  "sentAVideo": "{username} отправил видео",
   "@sentAVideo": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sessionVerified": "",
+  "sessionVerified": "Сессия подтверждена",
   "@sessionVerified": {
     "type": "text",
     "placeholders": {}
   },
-  "Set a profile picture": "",
+  "Set a profile picture": "Установить изображение профиля",
   "@Set a profile picture": {
     "type": "text",
     "placeholders": {}
   },
-  "Set group description": "",
+  "Set group description": "Задать описание группы",
   "@Set group description": {
     "type": "text",
     "placeholders": {}
   },
-  "Set invitation link": "",
+  "Set invitation link": "Установить ссылку для приглашения",
   "@Set invitation link": {
     "type": "text",
     "placeholders": {}
   },
-  "Set status": "",
+  "Set status": "Задать статус",
   "@Set status": {
     "type": "text",
     "placeholders": {}
   },
-  "Settings": "",
+  "Settings": "Настройки",
   "@Settings": {
     "type": "text",
     "placeholders": {}
   },
-  "Sign up": "",
+  "Sign up": "Зарегистрироваться",
   "@Sign up": {
     "type": "text",
     "placeholders": {}
   },
-  "Skip": "",
+  "Skip": "Пропустить",
   "@Skip": {
     "type": "text",
     "placeholders": {}
   },
-  "Change your style": "",
+  "Change your style": "Изменить свой стиль",
   "@Change your style": {
     "type": "text",
     "placeholders": {}
   },
-  "System": "",
+  "System": "Системный",
   "@System": {
     "type": "text",
     "placeholders": {}
   },
-  "How are you today?": "",
+  "How are you today?": "Как у вас сегодня дела?",
   "@How are you today?": {
     "type": "text",
     "placeholders": {}
   },
-  "Light": "",
+  "Light": "Светлый",
   "@Light": {
     "type": "text",
     "placeholders": {}
   },
-  "Dark": "",
+  "Dark": "Тёмный",
   "@Dark": {
     "type": "text",
     "placeholders": {}
   },
-  "Use Amoled compatible colors?": "",
+  "Use Amoled compatible colors?": "Использовать Amoled совместимые цвета?",
   "@Use Amoled compatible colors?": {
     "type": "text",
     "placeholders": {}
   },
-  "Source code": "",
+  "Source code": "Исходный код",
   "@Source code": {
     "type": "text",
     "placeholders": {}
   },
-  "Start your first chat :-)": "",
+  "Start your first chat :-)": "Начни свой первый чат :-)",
   "@Start your first chat :-)": {
     "type": "text",
     "placeholders": {}
   },
-  "Submit": "",
+  "Submit": "Отправить",
   "@Submit": {
     "type": "text",
     "placeholders": {}
   },
-  "Sunday": "",
+  "Sunday": "Воскресенье",
   "@Sunday": {
     "type": "text",
     "placeholders": {}
   },
-  "Donate": "",
+  "Donate": "Пожертвовать",
   "@Donate": {
     "type": "text",
     "placeholders": {}
   },
-  "Tap to show menu": "",
+  "Tap to show menu": "Нажмите, чтобы показать меню",
   "@Tap to show menu": {
     "type": "text",
     "placeholders": {}
   },
-  "They Don't Match": "",
+  "They Don't Match": "Они не совпадают",
   "@They Don't Match": {
     "type": "text",
     "placeholders": {}
   },
-  "They Match": "",
+  "They Match": "Они совпадают",
   "@They Match": {
     "type": "text",
     "placeholders": {}
   },
-  "This room has been archived.": "",
+  "This room has been archived.": "Эта комната была заархивирована.",
   "@This room has been archived.": {
     "type": "text",
     "placeholders": {}
   },
-  "Thursday": "",
+  "Thursday": "Четверг",
   "@Thursday": {
     "type": "text",
     "placeholders": {}
   },
-  "timeOfDay": "",
+  "timeOfDay": "{hours24}:{minutes} {suffix}",
   "@timeOfDay": {
     "type": "text",
     "placeholders": {
@@ -1335,23 +1335,23 @@
       "suffix": {}
     }
   },
-  "title": "",
+  "title": "FluffyChat",
   "@title": {
     "description": "Title for the application",
     "type": "text",
     "placeholders": {}
   },
-  "Try to send again": "",
+  "Try to send again": "Попробуйте отправить еще раз",
   "@Try to send again": {
     "type": "text",
     "placeholders": {}
   },
-  "Tuesday": "",
+  "Tuesday": "Вторник",
   "@Tuesday": {
     "type": "text",
     "placeholders": {}
   },
-  "unbannedUser": "",
+  "unbannedUser": "{username} разбанил {targetName}",
   "@unbannedUser": {
     "type": "text",
     "placeholders": {
@@ -1359,53 +1359,53 @@
       "targetName": {}
     }
   },
-  "Unblock Device": "",
+  "Unblock Device": "Разблокировать устройство",
   "@Unblock Device": {
     "type": "text",
     "placeholders": {}
   },
-  "Unmute chat": "",
+  "Unmute chat": "Размутить чат",
   "@Unmute chat": {
     "type": "text",
     "placeholders": {}
   },
-  "Unknown device": "",
+  "Unknown device": "Неизвестное устройство",
   "@Unknown device": {
     "type": "text",
     "placeholders": {}
   },
-  "Unknown encryption algorithm": "",
+  "Unknown encryption algorithm": "Неизвестный алгоритм шифрования",
   "@Unknown encryption algorithm": {
     "type": "text",
     "placeholders": {}
   },
-  "unknownSessionVerify": "",
+  "unknownSessionVerify": "Неизвестная сессия, пожалуйста, проверьте",
   "@unknownSessionVerify": {
     "type": "text",
     "placeholders": {}
   },
-  "unknownEvent": "",
+  "unknownEvent": "Неизвестное событие '{type}'",
   "@unknownEvent": {
     "type": "text",
     "placeholders": {
       "type": {}
     }
   },
-  "unreadChats": "",
+  "unreadChats": "{unreadCount} непрочитанных чатов",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "",
+  "unreadMessages": "{unreadEvents} непрочитанных сообщений",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
       "unreadEvents": {}
     }
   },
-  "unreadMessagesInChats": "",
+  "unreadMessagesInChats": "{unreadEvents} непрочитанных сообщений в {unreadChats} чатах",
   "@unreadMessagesInChats": {
     "type": "text",
     "placeholders": {
@@ -1413,7 +1413,7 @@
       "unreadChats": {}
     }
   },
-  "userAndOthersAreTyping": "",
+  "userAndOthersAreTyping": "{username} и {count} других печатают...",
   "@userAndOthersAreTyping": {
     "type": "text",
     "placeholders": {
@@ -1421,7 +1421,7 @@
       "count": {}
     }
   },
-  "userAndUserAreTyping": "",
+  "userAndUserAreTyping": "{username} и {username2} печатают...",
   "@userAndUserAreTyping": {
     "type": "text",
     "placeholders": {
@@ -1429,19 +1429,19 @@
       "username2": {}
     }
   },
-  "Username": "",
+  "Username": "Имя пользователя",
   "@Username": {
     "type": "text",
     "placeholders": {}
   },
-  "userIsTyping": "",
+  "userIsTyping": "{username} печатает...",
   "@userIsTyping": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "userSentUnknownEvent": "",
+  "userSentUnknownEvent": "{username} отправил {type} событие",
   "@userSentUnknownEvent": {
     "type": "text",
     "placeholders": {
@@ -1449,142 +1449,142 @@
       "type": {}
     }
   },
-  "Verify": "",
+  "Verify": "Проверить",
   "@Verify": {
     "type": "text",
     "placeholders": {}
   },
-  "verifyManual": "",
+  "verifyManual": "Проверить вручную",
   "@verifyManual": {
     "type": "text",
     "placeholders": {}
   },
-  "verifiedSession": "",
+  "verifiedSession": "Успешно проверенная сессия!",
   "@verifiedSession": {
     "type": "text",
     "placeholders": {}
   },
-  "verifyStart": "",
+  "verifyStart": "Начать проверку",
   "@verifyStart": {
     "type": "text",
     "placeholders": {}
   },
-  "verifySuccess": "",
+  "verifySuccess": "Вы успешно проверили!",
   "@verifySuccess": {
     "type": "text",
     "placeholders": {}
   },
-  "verifyTitle": "",
+  "verifyTitle": "Проверка другого аккаунта",
   "@verifyTitle": {
     "type": "text",
     "placeholders": {}
   },
-  "Verify User": "",
+  "Verify User": "Проверить пользователя",
   "@Verify User": {
     "type": "text",
     "placeholders": {}
   },
-  "Video call": "",
+  "Video call": "Видеозвонок",
   "@Video call": {
     "type": "text",
     "placeholders": {}
   },
-  "Visible for all participants": "",
+  "Visible for all participants": "Видима для всех участников",
   "@Visible for all participants": {
     "type": "text",
     "placeholders": {}
   },
-  "Visible for everyone": "",
+  "Visible for everyone": "Видна всем",
   "@Visible for everyone": {
     "type": "text",
     "placeholders": {}
   },
-  "Visibility of the chat history": "",
+  "Visibility of the chat history": "Видимость истории чата",
   "@Visibility of the chat history": {
     "type": "text",
     "placeholders": {}
   },
-  "Voice message": "",
+  "Voice message": "Голосовое сообщение",
   "@Voice message": {
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerAcceptRequest": "",
+  "waitingPartnerAcceptRequest": "В ожидании партнера, чтобы принять запрос...",
   "@waitingPartnerAcceptRequest": {
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerEmoji": "",
+  "waitingPartnerEmoji": "В ожидании партнера, чтобы принять смайлики...",
   "@waitingPartnerEmoji": {
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerNumbers": "",
+  "waitingPartnerNumbers": "В ожидании партнера, чтобы принять числа...",
   "@waitingPartnerNumbers": {
     "type": "text",
     "placeholders": {}
   },
-  "Wallpaper": "",
+  "Wallpaper": "Обои",
   "@Wallpaper": {
     "type": "text",
     "placeholders": {}
   },
-  "End to end encryption is currently in Beta! Use at your own risk!": "",
+  "End to end encryption is currently in Beta! Use at your own risk!": "Сквозное шифрование в настоящее время в бета-версии! Используйте на свой риск!",
   "@End to end encryption is currently in Beta! Use at your own risk!": {
     "type": "text",
     "placeholders": {}
   },
-  "Wednesday": "",
+  "Wednesday": "Среда",
   "@Wednesday": {
     "type": "text",
     "placeholders": {}
   },
-  "Welcome to the cutest instant messenger in the matrix network.": "",
+  "Welcome to the cutest instant messenger in the matrix network.": "Добро пожаловать в самый симпатичный мессенджер в сети matrix.",
   "@Welcome to the cutest instant messenger in the matrix network.": {
     "type": "text",
     "placeholders": {}
   },
-  "Who is allowed to join this group": "",
+  "Who is allowed to join this group": "Кому разрешено вступать в эту группу",
   "@Who is allowed to join this group": {
     "type": "text",
     "placeholders": {}
   },
-  "Write a message...": "",
+  "Write a message...": "Напишите сообщение...",
   "@Write a message...": {
     "type": "text",
     "placeholders": {}
   },
-  "Yes": "",
+  "Yes": "Да",
   "@Yes": {
     "type": "text",
     "placeholders": {}
   },
-  "You": "",
+  "You": "Вы",
   "@You": {
     "type": "text",
     "placeholders": {}
   },
-  "You are invited to this chat": "",
+  "You are invited to this chat": "Вы приглашены в этот чат",
   "@You are invited to this chat": {
     "type": "text",
     "placeholders": {}
   },
-  "You are no longer participating in this chat": "",
+  "You are no longer participating in this chat": "Вы больше не участвуете в этом чате",
   "@You are no longer participating in this chat": {
     "type": "text",
     "placeholders": {}
   },
-  "You cannot invite yourself": "",
+  "You cannot invite yourself": "Вы не можете пригласить себя",
   "@You cannot invite yourself": {
     "type": "text",
     "placeholders": {}
   },
-  "You have been banned from this chat": "",
+  "You have been banned from this chat": "Вы были забанены в этом чате",
   "@You have been banned from this chat": {
     "type": "text",
     "placeholders": {}
   },
-  "Your own username": "",
+  "Your own username": "Ваше имя пользователя",
   "@Your own username": {
     "type": "text",
     "placeholders": {}
