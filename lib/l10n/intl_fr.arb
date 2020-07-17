@@ -1492,12 +1492,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "Fluffychat ne prend pas actuellement en charge l'activation de la sauvegarde des clés en ligne. Veuillez l'activer à partir de Riot.",
+  "noMegolmBootstrap": "Fluffychat ne prend pas actuellement en charge l'activation de la sauvegarde des clés en ligne. Veuillez l'activer à partir de Element.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "Fluffychat ne permet pas actuellement d'activer la signature croisée. Veuillez l'activer à partir de Riot.",
+  "noCrossSignBootstrap": "Fluffychat ne permet pas actuellement d'activer la signature croisée. Veuillez l'activer à partir de Element.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
