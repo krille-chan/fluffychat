@@ -875,12 +875,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "Fluffychat trenutačno ne podržava unakrsno potpisivanje. Aktiviraj je pomoću Riot-a.",
+  "noCrossSignBootstrap": "Fluffychat trenutačno ne podržava unakrsno potpisivanje. Aktiviraj je pomoću Element-a.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "Fluffychat trenutačno ne podržava online sigurnosnu kopiju ključeva. Aktiviraj je pomoću Riot-a.",
+  "noMegolmBootstrap": "Fluffychat trenutačno ne podržava online sigurnosnu kopiju ključeva. Aktiviraj je pomoću Element-a.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
