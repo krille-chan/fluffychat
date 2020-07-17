@@ -49,7 +49,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Already have an account?": "Уже есть учетная запись?",
+  "Already have an account?": "Уже есть учётная запись?",
   "@Already have an account?": {
     "type": "text",
     "placeholders": {}
@@ -121,7 +121,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "bannedUser": "{username} забанен {targetName}",
+  "bannedUser": "{username} забанил(а) {targetName}",
   "@bannedUser": {
     "type": "text",
     "placeholders": {
@@ -151,14 +151,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "changedTheChatAvatar": "{username} изменил аватар чата",
+  "changedTheChatAvatar": "{username} изменил(а) аватар чата",
   "@changedTheChatAvatar": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheChatNameTo": "{username} изменил имя чата на: '{chatname}'",
+  "changedTheChatNameTo": "{username} изменил(а) имя чата на: '{chatname}'",
   "@changedTheChatNameTo": {
     "type": "text",
     "placeholders": {
@@ -166,7 +166,7 @@
       "chatname": {}
     }
   },
-  "changedTheChatDescriptionTo": "{username} изменил описание чата на: '{description}'",
+  "changedTheChatDescriptionTo": "{username} изменил(а) описание чата на: '{description}'",
   "@changedTheChatDescriptionTo": {
     "type": "text",
     "placeholders": {
@@ -174,14 +174,14 @@
       "description": {}
     }
   },
-  "changedTheChatPermissions": "{username} изменил права чата",
+  "changedTheChatPermissions": "{username} изменил(а) права чата",
   "@changedTheChatPermissions": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheDisplaynameTo": "{username} изменил отображаемое имя на: {displayname}",
+  "changedTheDisplaynameTo": "{username} изменил(а) отображаемое имя на: {displayname}",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -189,19 +189,19 @@
       "displayname": {}
     }
   },
-  "Change the homeserver": "Измените домашний сервер",
+  "Change the homeserver": "Изменить домашний сервер",
   "@Change the homeserver": {
     "type": "text",
     "placeholders": {}
   },
-  "changedTheGuestAccessRules": "{username} изменил правила гостевого доступа",
+  "changedTheGuestAccessRules": "{username} изменил(а) правила гостевого доступа",
   "@changedTheGuestAccessRules": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheGuestAccessRulesTo": "{username} изменил правила гостевого доступа на: {rules}",
+  "changedTheGuestAccessRulesTo": "{username} изменил(а) правила гостевого доступа на: {rules}",
   "@changedTheGuestAccessRulesTo": {
     "type": "text",
     "placeholders": {
@@ -209,14 +209,14 @@
       "rules": {}
     }
   },
-  "changedTheHistoryVisibility": "{username} изменил видимость истории",
+  "changedTheHistoryVisibility": "{username} изменил(а) видимость истории",
   "@changedTheHistoryVisibility": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheHistoryVisibilityTo": "{username} изменил видимость истории на: {rules}",
+  "changedTheHistoryVisibilityTo": "{username} изменил(а) видимость истории на: {rules}",
   "@changedTheHistoryVisibilityTo": {
     "type": "text",
     "placeholders": {
@@ -224,14 +224,14 @@
       "rules": {}
     }
   },
-  "changedTheJoinRules": "{username} изменил правила присоединения",
+  "changedTheJoinRules": "{username} изменил(а) правила присоединения",
   "@changedTheJoinRules": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheJoinRulesTo": "{username} изменил правила присоединения на: {joinRules}",
+  "changedTheJoinRulesTo": "{username} изменил(а) правила присоединения на: {joinRules}",
   "@changedTheJoinRulesTo": {
     "type": "text",
     "placeholders": {
@@ -239,21 +239,21 @@
       "joinRules": {}
     }
   },
-  "changedTheProfileAvatar": "{username} сменил аватар профиля",
+  "changedTheProfileAvatar": "{username} сменил(а) аватар профиля",
   "@changedTheProfileAvatar": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheRoomAliases": "{username} изменил псевдонимы комнаты",
+  "changedTheRoomAliases": "{username} изменил(а) псевдонимы комнаты",
   "@changedTheRoomAliases": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheRoomInvitationLink": "{username} изменил ссылку приглашения",
+  "changedTheRoomInvitationLink": "{username} изменил(а) ссылку приглашения",
   "@changedTheRoomInvitationLink": {
     "type": "text",
     "placeholders": {
@@ -372,7 +372,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "countParticipants": "{count} участника(ов)",
+  "countParticipants": "{count} участника(-ов)",
   "@countParticipants": {
     "type": "text",
     "placeholders": {
@@ -384,12 +384,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "Create account now": "Создать аккаунт сейчас",
+  "Create account now": "Создать учётную запись сейчас",
   "@Create account now": {
     "type": "text",
     "placeholders": {}
   },
-  "createdTheChat": "{username} создал чат",
+  "createdTheChat": "{username} создал(а) чат",
   "@createdTheChat": {
     "type": "text",
     "placeholders": {
@@ -424,7 +424,7 @@
       "timeOfDay": {}
     }
   },
-  "dateWithoutYear": "{month}-{day}",
+  "dateWithoutYear": "{day}. {month}",
   "@dateWithoutYear": {
     "type": "text",
     "placeholders": {
@@ -432,7 +432,7 @@
       "day": {}
     }
   },
-  "dateWithYear": "{year}-{month}-{day}",
+  "dateWithYear": "{day}. {month}. {year}",
   "@dateWithYear": {
     "type": "text",
     "placeholders": {
@@ -571,7 +571,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Forward": "Отправить",
+  "Forward": "Переслать",
   "@Forward": {
     "type": "text",
     "placeholders": {}
@@ -628,7 +628,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "hasWithdrawnTheInvitationFor": "{username} отозвал приглашение для {targetName}",
+  "hasWithdrawnTheInvitationFor": "{username} отозвал(а) приглашение для {targetName}",
   "@hasWithdrawnTheInvitationFor": {
     "type": "text",
     "placeholders": {
@@ -678,7 +678,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "{username} пригласил вас в FluffyChat. \n1. Установите FluffyChat: http://fluffy.chat \n2. Зарегистрируйтесь или войдите \n3. Откройте ссылку приглашения: {link}",
+  "inviteText": "{username} пригласил(а) вас в FluffyChat. \n1. Установите FluffyChat: http://fluffy.chat \n2. Зарегистрируйтесь или войдите \n3. Откройте ссылку приглашения: {link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {
@@ -686,7 +686,7 @@
       "link": {}
     }
   },
-  "invitedUser": "{username} пригласил {targetName}",
+  "invitedUser": "{username} пригласил(а) {targetName}",
   "@invitedUser": {
     "type": "text",
     "placeholders": {
@@ -714,7 +714,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "joinedTheChat": "{username} присоединился к чату",
+  "joinedTheChat": "{username} присоединился(-ась) к чату",
   "@joinedTheChat": {
     "type": "text",
     "placeholders": {
@@ -731,7 +731,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "kicked": "{username} исключил {targetName}",
+  "kicked": "{username} исключил(а) {targetName}",
   "@kicked": {
     "type": "text",
     "placeholders": {
@@ -739,7 +739,7 @@
       "targetName": {}
     }
   },
-  "kickedAndBanned": "{username} исключил и забанил {targetName}",
+  "kickedAndBanned": "{username} исключил(а) и забанил(а) {targetName}",
   "@kickedAndBanned": {
     "type": "text",
     "placeholders": {
@@ -767,7 +767,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "userLeftTheChat": "{username} покинул чат",
+  "userLeftTheChat": "{username} покинул(а) чат",
   "@userLeftTheChat": {
     "type": "text",
     "placeholders": {
@@ -801,7 +801,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "loadCountMoreParticipants": "Загрузить {count} больше участника(ов)",
+  "loadCountMoreParticipants": "Загрузить еще {count} участников",
   "@loadCountMoreParticipants": {
     "type": "text",
     "placeholders": {
@@ -875,12 +875,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "Fluffychat в настоящее время не поддерживает включение кросс-подписи. Пожалуйста, включите его в Riot.",
+  "noCrossSignBootstrap": "Fluffychat в настоящее время не поддерживает включение кросс-подписи. Пожалуйста, включите его в Element.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "В настоящее время Fluffychat не поддерживает функцию резервного копирования онлайн-ключей. Пожалуйста, включите его из Riot.",
+  "noMegolmBootstrap": "В настоящее время Fluffychat не поддерживает функцию резервного копирования онлайн-ключей. Пожалуйста, включите его из Element.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -910,7 +910,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Not supported in web": "Не поддерживается в сети",
+  "Not supported in web": "Не поддерживается в веб-версии",
   "@Not supported in web": {
     "type": "text",
     "placeholders": {}
@@ -1019,7 +1019,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Render rich message content": "Показать расширенные сообщения",
+  "Render rich message content": "Показать отформатированные сообщения",
   "@Render rich message content": {
     "type": "text",
     "placeholders": {}
@@ -1029,14 +1029,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "redactedAnEvent": "{username} отредактировал событие",
+  "redactedAnEvent": "{username} отредактировал(а) событие",
   "@redactedAnEvent": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "rejectedTheInvitation": "{username} отклонил приглашение",
+  "rejectedTheInvitation": "{username} отклонил(а) приглашение",
   "@rejectedTheInvitation": {
     "type": "text",
     "placeholders": {
@@ -1048,7 +1048,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "removedBy": "Удалено {username}",
+  "removedBy": "Удалено пользователем {username}",
   "@removedBy": {
     "type": "text",
     "placeholders": {
@@ -1110,7 +1110,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sharedTheLocation": "{username} поделился местоположением",
+  "sharedTheLocation": "{username} поделился(-ась) местоположением",
   "@sharedTheLocation": {
     "type": "text",
     "placeholders": {
@@ -1122,19 +1122,19 @@
     "type": "text",
     "placeholders": {}
   },
-  "Seen a long time ago": "В последний раз видели давно",
+  "Seen a long time ago": "Просматривали давно",
   "@Seen a long time ago": {
     "type": "text",
     "placeholders": {}
   },
-  "seenByUser": "Просмотрено {username}",
+  "seenByUser": "Просмотрено пользователем {username}",
   "@seenByUser": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "seenByUserAndUser": "Просмотрено {username} и {username2}",
+  "seenByUserAndUser": "Просмотрено пользователями {username} и {username2}",
   "@seenByUserAndUser": {
     "type": "text",
     "placeholders": {
@@ -1142,7 +1142,7 @@
       "username2": {}
     }
   },
-  "seenByUserAndCountOthers": "Просмотрено {username} и {count} другими",
+  "seenByUserAndCountOthers": "Просмотрено пользователями {username} и {count} другими",
   "@seenByUserAndCountOthers": {
     "type": "text",
     "placeholders": {
@@ -1170,35 +1170,35 @@
     "type": "text",
     "placeholders": {}
   },
-  "sentAFile": "{username} отправил файл",
+  "sentAFile": "{username} отправил(а) файл",
   "@sentAFile": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAnAudio": "{username} отправил аудио",
+  "sentAnAudio": "{username} отправил(а) аудио",
   "@sentAnAudio": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAPicture": "{username} отправил картинку",
+  "sentAPicture": "{username} отправил(а) картинку",
   "@sentAPicture": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentASticker": "{username} отправил стикер",
+  "sentASticker": "{username} отправил(а) стикер",
   "@sentASticker": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAVideo": "{username} отправил видео",
+  "sentAVideo": "{username} отправил(а) видео",
   "@sentAVideo": {
     "type": "text",
     "placeholders": {
@@ -1325,7 +1325,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "timeOfDay": "{hours24}:{minutes} {suffix}",
+  "timeOfDay": "{hours24}:{minutes}",
   "@timeOfDay": {
     "type": "text",
     "placeholders": {
@@ -1351,7 +1351,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unbannedUser": "{username} разбанил {targetName}",
+  "unbannedUser": "{username} разбанил(а) {targetName}",
   "@unbannedUser": {
     "type": "text",
     "placeholders": {
@@ -1413,7 +1413,7 @@
       "unreadChats": {}
     }
   },
-  "userAndOthersAreTyping": "{username} и {count} других печатают...",
+  "userAndOthersAreTyping": "{username} и {count} других участников печатают...",
   "@userAndOthersAreTyping": {
     "type": "text",
     "placeholders": {
@@ -1441,7 +1441,7 @@
       "username": {}
     }
   },
-  "userSentUnknownEvent": "{username} отправил {type} событие",
+  "userSentUnknownEvent": "{username} отправил(а) событие типа {type}",
   "@userSentUnknownEvent": {
     "type": "text",
     "placeholders": {
@@ -1474,7 +1474,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "verifyTitle": "Проверка другого аккаунта",
+  "verifyTitle": "Проверка другой учётной записи",
   "@verifyTitle": {
     "type": "text",
     "placeholders": {}
