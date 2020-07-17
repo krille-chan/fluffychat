@@ -875,12 +875,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "FluffyChatは現在相互署名機能をサポートしていません。Riotから有効化してください。",
+  "noCrossSignBootstrap": "FluffyChatは現在相互署名機能をサポートしていません。Elementから有効化してください。",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "FluffyChatは現在鍵のオンラインバックアップの有効化をサポートしていません。Riotから有効化してください。",
+  "noMegolmBootstrap": "FluffyChatは現在鍵のオンラインバックアップの有効化をサポートしていません。Elementから有効化してください。",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
