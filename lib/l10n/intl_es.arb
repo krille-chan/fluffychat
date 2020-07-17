@@ -875,12 +875,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "Fluffychat actualmente no admite habilitar confirmación cruzada. Por favor habilítela desde Riot.",
+  "noCrossSignBootstrap": "Fluffychat actualmente no admite habilitar confirmación cruzada. Por favor habilítela desde Element.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "Fluffychat actualmente no admite habilitar la Copia de seguridad de clave en línea. Por favor habilítela desde Riot.",
+  "noMegolmBootstrap": "Fluffychat actualmente no admite habilitar la Copia de seguridad de clave en línea. Por favor habilítela desde Element.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
