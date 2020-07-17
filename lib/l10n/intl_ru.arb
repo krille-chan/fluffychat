@@ -10,14 +10,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "acceptedTheInvitation": "{username} принял приглашение",
+  "acceptedTheInvitation": "{username} принял(а) приглашение",
   "@acceptedTheInvitation": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "Account": "Аккаунт",
+  "Account": "Учетная запись",
   "@Account": {
     "type": "text",
     "placeholders": {}
@@ -27,7 +27,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "activatedEndToEndEncryption": "{username} активировал сквозное шифрование",
+  "activatedEndToEndEncryption": "{username} активировал(а) сквозное шифрование",
   "@activatedEndToEndEncryption": {
     "type": "text",
     "placeholders": {
@@ -64,7 +64,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Archived Room": "Архивная комната",
+  "Archived Room": "Архивированная комната",
   "@Archived Room": {
     "type": "text",
     "placeholders": {}
