@@ -182,24 +182,23 @@ class _KeyVerificationPageState extends State<KeyVerificationPage> {
         );
         break;
       case KeyVerificationState.askSas:
-        var emojiWidgets = <Widget>[];
+        TextSpan compareWidget;
         // maybe add a button to switch between the two and only determine default
         // view for if "emoji" is a present sasType or not?
         String compareText;
         if (widget.request.sasTypes.contains('emoji')) {
           compareText = L10n.of(context).compareEmojiMatch;
-          emojiWidgets =
-              widget.request.sasEmojis.map((e) => _Emoji(e)).toList();
+          compareWidget = TextSpan(
+            children: widget.request.sasEmojis
+                .map((e) => WidgetSpan(child: _Emoji(e)))
+                .toList(),
+          );
         } else {
           compareText = L10n.of(context).compareNumbersMatch;
           final numbers = widget.request.sasNumbers;
-          emojiWidgets = <Widget>[
-            Text(numbers[0].toString(), style: TextStyle(fontSize: 40)),
-            Text('-', style: TextStyle(fontSize: 40)),
-            Text(numbers[1].toString(), style: TextStyle(fontSize: 40)),
-            Text('-', style: TextStyle(fontSize: 40)),
-            Text(numbers[2].toString(), style: TextStyle(fontSize: 40)),
-          ];
+          final numbstr = '${numbers[0]}-${numbers[1]}-${numbers[2]}';
+          compareWidget =
+              TextSpan(text: numbstr, style: TextStyle(fontSize: 40));
         }
         body = Column(
           children: <Widget>[
@@ -208,11 +207,8 @@ class _KeyVerificationPageState extends State<KeyVerificationPage> {
               margin: EdgeInsets.only(left: 8.0, right: 8.0),
             ),
             Container(height: 10),
-            RichText(
-              text: TextSpan(
-                children:
-                    emojiWidgets.map((w) => WidgetSpan(child: w)).toList(),
-              ),
+            Text.rich(
+              compareWidget,
               textAlign: TextAlign.center,
             ),
           ],
