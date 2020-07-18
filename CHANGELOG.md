@@ -1,6 +1,7 @@
 # Version 0.16.0 - 2020-07-??
 ### Features
 - Implement web notifications
+- Added languages: Galician, Croatian, Japanese, Russian
 
 # Version 0.15.1 - 2020-06-26
 ### Fixes:
