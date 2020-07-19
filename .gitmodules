@@ -1,3 +1,0 @@
-[submodule "ios/olm"]
-	path = ios/olm
-	url = https://gitlab.matrix.org/matrix-org/olm.git
