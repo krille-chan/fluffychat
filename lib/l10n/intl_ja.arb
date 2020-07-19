@@ -10,7 +10,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "acceptedTheInvitation": "{username} が招待を承諾しました",
+  "acceptedTheInvitation": "{username}が招待を承諾しました",
   "@acceptedTheInvitation": {
     "type": "text",
     "placeholders": {
@@ -27,7 +27,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "activatedEndToEndEncryption": "{username} がエンドツーエンド暗号化を有効にしました",
+  "activatedEndToEndEncryption": "{username}がエンドツーエンド暗号化を有効にしました",
   "@activatedEndToEndEncryption": {
     "type": "text",
     "placeholders": {
@@ -54,7 +54,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Anyone can join": "誰でも参加できます",
+  "Anyone can join": "誰でも参加できる",
   "@Anyone can join": {
     "type": "text",
     "placeholders": {}
@@ -94,7 +94,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "askVerificationRequest": "{username} の検証リクエストを承認しますか？",
+  "askVerificationRequest": "{username}の検証リクエストを承認しますか？",
   "@askVerificationRequest": {
     "type": "text",
     "placeholders": {
@@ -310,17 +310,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "compareEmojiMatch": "表示されている絵文字が他のデバイスで表示されているものと一致するか確認してください",
+  "compareEmojiMatch": "表示されている絵文字が他のデバイスで表示されているものと一致するか確認してください:",
   "@compareEmojiMatch": {
     "type": "text",
     "placeholders": {}
   },
-  "compareNumbersMatch": "表示されている数字が他のデバイスで表示されているものと一致するか確認してください",
+  "compareNumbersMatch": "表示されている数字が他のデバイスで表示されているものと一致するか確認してください:",
   "@compareNumbersMatch": {
     "type": "text",
     "placeholders": {}
   },
-  "Confirm": "確認しました",
+  "Confirm": "確認",
   "@Confirm": {
     "type": "text",
     "placeholders": {}
@@ -506,7 +506,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteInvalid": "不正なEmoteショートコード",
+  "emoteInvalid": "不正なEmoteショートコード！",
   "@emoteInvalid": {
     "type": "text",
     "placeholders": {}
@@ -581,12 +581,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "From joining": "参加から",
+  "From joining": "参加時点から閲覧可能",
   "@From joining": {
     "type": "text",
     "placeholders": {}
   },
-  "From the invitation": "招待から",
+  "From the invitation": "招待時点から閲覧可能",
   "@From the invitation": {
     "type": "text",
     "placeholders": {}
@@ -704,7 +704,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "is typing...": "が入力しています...",
+  "is typing...": "入力しています...",
   "@is typing...": {
     "type": "text",
     "placeholders": {}
@@ -791,7 +791,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Loading... Please wait": "読み込み中...お待ちください。",
+  "Loading... Please wait": "読み込み中...お待ちください",
   "@Loading... Please wait": {
     "type": "text",
     "placeholders": {}
@@ -820,12 +820,12 @@
       "homeserver": {}
     }
   },
-  "Make a moderator": "モデレータを作成する",
+  "Make a moderator": "モデレータにする",
   "@Make a moderator": {
     "type": "text",
     "placeholders": {}
   },
-  "Make an admin": "管理者を作成する",
+  "Make an admin": "管理者にする",
   "@Make an admin": {
     "type": "text",
     "placeholders": {}
@@ -870,7 +870,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "newVerificationRequest": "新しい認証リクエスト",
+  "newVerificationRequest": "新しい認証リクエスト！",
   "@newVerificationRequest": {
     "type": "text",
     "placeholders": {}
@@ -1122,7 +1122,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Seen a long time ago": "ずいぶん前に既読",
+  "Seen a long time ago": "ずいぶん前",
   "@Seen a long time ago": {
     "type": "text",
     "placeholders": {}
@@ -1315,7 +1315,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "This room has been archived.": "この部屋はアーカイブされています",
+  "This room has been archived.": "この部屋はアーカイブされています。",
   "@This room has been archived.": {
     "type": "text",
     "placeholders": {}
@@ -1489,12 +1489,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "Visible for all participants": "すべての参加者が閲覧可能です",
+  "Visible for all participants": "すべての参加者が閲覧可能",
   "@Visible for all participants": {
     "type": "text",
     "placeholders": {}
   },
-  "Visible for everyone": "すべての人が閲覧可能です",
+  "Visible for everyone": "すべての人が閲覧可能",
   "@Visible for everyone": {
     "type": "text",
     "placeholders": {}
@@ -1509,7 +1509,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerAcceptRequest": "パートナーのリクエスト承諾待ちです",
+  "waitingPartnerAcceptRequest": "パートナーのリクエスト承諾待ちです...",
   "@waitingPartnerAcceptRequest": {
     "type": "text",
     "placeholders": {}
@@ -1519,7 +1519,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerNumbers": "パートナーの数字承諾待ちです",
+  "waitingPartnerNumbers": "パートナーの数字承諾待ちです...",
   "@waitingPartnerNumbers": {
     "type": "text",
     "placeholders": {}
@@ -1539,7 +1539,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Welcome to the cutest instant messenger in the matrix network.": "Matrixネットワークで一番かわいいチャットアプリへようこそ！",
+  "Welcome to the cutest instant messenger in the matrix network.": "Matrixネットワークで一番かわいいチャットアプリへようこそ。",
   "@Welcome to the cutest instant messenger in the matrix network.": {
     "type": "text",
     "placeholders": {}
