@@ -32,7 +32,7 @@ class SimpleDialogs {
           autocorrect: false,
           onSubmitted: (s) {
             input = s;
-            Navigator.of(context).pop();
+            Navigator.of(c).pop();
           },
           minLines: multiLine ? 3 : 1,
           maxLines: multiLine ? 3 : 1,
@@ -55,7 +55,7 @@ class SimpleDialogs {
                 cancelText?.toUpperCase() ??
                     L10n.of(context).close.toUpperCase(),
                 style: TextStyle(color: Colors.blueGrey)),
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed: () => Navigator.of(c).pop(),
           ),
           FlatButton(
             child: Text(
@@ -64,7 +64,7 @@ class SimpleDialogs {
             ),
             onPressed: () {
               input = controller.text;
-              Navigator.of(context).pop();
+              Navigator.of(c).pop();
             },
           ),
         ],
@@ -91,7 +91,7 @@ class SimpleDialogs {
                 cancelText?.toUpperCase() ??
                     L10n.of(context).close.toUpperCase(),
                 style: TextStyle(color: Colors.blueGrey)),
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed: () => Navigator.of(c).pop(),
           ),
           FlatButton(
             child: Text(
@@ -100,7 +100,7 @@ class SimpleDialogs {
             ),
             onPressed: () {
               confirmed = true;
-              Navigator.of(context).pop();
+              Navigator.of(c).pop();
             },
           ),
         ],
@@ -125,7 +125,7 @@ class SimpleDialogs {
               okText ?? L10n.of(context).ok.toUpperCase(),
             ),
             onPressed: () {
-              Navigator.of(context).pop();
+              Navigator.of(c).pop();
             },
           ),
         ],
