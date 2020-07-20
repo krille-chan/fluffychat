@@ -148,15 +148,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.2"
-  encrypted_moor:
-    dependency: "direct main"
-    description:
-      path: "extras/encryption"
-      ref: HEAD
-      resolved-ref: "6f930b011577e5bc8a5e5511691c8fcc43869a1c"
-      url: "https://github.com/simolus3/moor.git"
-    source: git
-    version: "1.0.0"
   fake_async:
     dependency: transitive
     description:
@@ -168,8 +159,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: ac720df3d26985faef0b6d6a86a8013f44c5c6e3
-      resolved-ref: ac720df3d26985faef0b6d6a86a8013f44c5c6e3
+      ref: f4c8cfe992ceed937721af87abbd13fce7700ea5
+      resolved-ref: f4c8cfe992ceed937721af87abbd13fce7700ea5
       url: "https://gitlab.com/famedly/famedlysdk.git"
     source: git
     version: "0.0.1"
@@ -252,7 +243,14 @@ packages:
       name: flutter_matrix_html
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.1"
+    version: "0.1.2"
+  flutter_olm:
+    dependency: "direct main"
+    description:
+      name: flutter_olm
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -434,12 +432,10 @@ packages:
   matrix_file_e2ee:
     dependency: transitive
     description:
-      path: "."
-      ref: "1.x.y"
-      resolved-ref: "32edeff765369a7a77a0822f4b19302ca24a017b"
-      url: "https://gitlab.com/famedly/libraries/matrix_file_e2ee.git"
-    source: git
-    version: "1.0.3"
+      name: matrix_file_e2ee
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.4"
   memoryfilepicker:
     dependency: "direct main"
     description:
@@ -475,6 +471,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.2"
+  moor_ffi:
+    dependency: "direct main"
+    description:
+      name: moor_ffi
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.5.0"
   multi_server_socket:
     dependency: transitive
     description:
@@ -506,12 +509,10 @@ packages:
   olm:
     dependency: transitive
     description:
-      path: "."
-      ref: "1.x.y"
-      resolved-ref: "8e4fcccff7a2d4d0bd5142964db092bf45061905"
-      url: "https://gitlab.com/famedly/libraries/dart-olm.git"
-    source: git
-    version: "1.2.0"
+      name: olm
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.1"
   open_file:
     dependency: "direct main"
     description:
@@ -706,20 +707,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0"
-  sqflite_common:
-    dependency: transitive
-    description:
-      name: sqflite_common
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.1"
-  sqflite_sqlcipher:
-    dependency: transitive
-    description:
-      name: sqflite_sqlcipher
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0+6"
   stack_trace:
     dependency: transitive
     description:

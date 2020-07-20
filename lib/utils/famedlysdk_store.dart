@@ -12,27 +12,36 @@ import 'package:olm/olm.dart' as olm; // needed for migration
 import 'package:random_string/random_string.dart';
 
 Future<Database> getDatabase(Client client) async {
-  if (_db != null) return _db;
-  final store = Store();
-  var password = await store.getItem('database-password');
-  var needMigration = false;
-  if (password == null || password.isEmpty) {
-    needMigration = true;
-    password = randomString(255);
+  while (_generateDatabaseLock) {
+    await Future.delayed(Duration(milliseconds: 50));
   }
-  _db = constructDb(
-    logStatements: false,
-    filename: 'moor.sqlite',
-    password: password,
-  );
-  if (needMigration) {
-    await migrate(client.clientName, _db, store);
-    await store.setItem('database-password', password);
+  _generateDatabaseLock = true;
+  try {
+    if (_db != null) return _db;
+    final store = Store();
+    var password = await store.getItem('database-password');
+    var needMigration = false;
+    if (password == null || password.isEmpty) {
+      needMigration = true;
+      password = randomString(255);
+    }
+    _db = await constructDb(
+      logStatements: false,
+      filename: 'moor.sqlite',
+      password: password,
+    );
+    if (needMigration) {
+      await migrate(client.clientName, _db, store);
+      await store.setItem('database-password', password);
+    }
+    return _db;
+  } finally {
+    _generateDatabaseLock = false;
   }
-  return _db;
 }
 
 Database _db;
+bool _generateDatabaseLock = false;
 
 Future<void> migrate(String clientName, Database db, Store store) async {
   debugPrint('[Store] attempting old migration to moor...');
