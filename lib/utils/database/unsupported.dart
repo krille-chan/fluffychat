@@ -1,9 +1,9 @@
 import 'package:famedlysdk/famedlysdk.dart';
 
-Database constructDb(
+Future<Database> constructDb(
     {bool logStatements = false,
     String filename = 'database.sqlite',
-    String password = ''}) {
+    String password = ''}) async {
   throw 'Platform not supported';
 }
 
