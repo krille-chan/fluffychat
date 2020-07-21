@@ -24,6 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static m1(username) =>
       "${username} aktiválta a végpontól-végpontig titkosítást";
 
+  static m60(username) => "Elfogadod ${username} hitelesítési kérelmét?";
+
   static m2(username, targetName) => "${username} kitiltotta ${targetName}-t";
 
   static m3(homeserver) => "Alapértelmezésben ${homeserver}-hoz csatlakozol";
@@ -63,6 +65,9 @@ class MessageLookup extends MessageLookupByLibrary {
   static m16(username) => "${username} módosítottaa szoba álnevét";
 
   static m17(username) => "${username} módosította a meghívó linket";
+
+  static m18(error) =>
+      "Nem sikerült visszafejteni a titkosított üzenetet: ${error}";
 
   static m19(count) => "${count} résztvevő";
 
@@ -158,6 +163,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "(Optional) Group name":
             MessageLookupByLibrary.simpleMessage("(Nem kötelező) Csoport név"),
         "About": MessageLookupByLibrary.simpleMessage("Névjegy"),
+        "Accept": MessageLookupByLibrary.simpleMessage("Elfogad"),
         "Account": MessageLookupByLibrary.simpleMessage("Fiók"),
         "Account informations":
             MessageLookupByLibrary.simpleMessage("Fiók információk"),
@@ -172,7 +178,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Archived Room":
             MessageLookupByLibrary.simpleMessage("Archivált szoba"),
         "Are guest users allowed to join": MessageLookupByLibrary.simpleMessage(
-            "Csatlakozhatnak-e vendég felhasználók"),
+            "Csatlakozhatnak vendég felhasználók"),
         "Are you sure?": MessageLookupByLibrary.simpleMessage("Biztos?"),
         "Authentication": MessageLookupByLibrary.simpleMessage("Hitelesítés"),
         "Avatar has been changed":
@@ -180,6 +186,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Ban from chat":
             MessageLookupByLibrary.simpleMessage("Csevegésből kitiltás"),
         "Banned": MessageLookupByLibrary.simpleMessage("Kitiltva"),
+        "Block Device":
+            MessageLookupByLibrary.simpleMessage("Eszköz blokkolása"),
         "Cancel": MessageLookupByLibrary.simpleMessage("Mégsem"),
         "Change the homeserver":
             MessageLookupByLibrary.simpleMessage("Matrix szerver váltás"),
@@ -221,6 +229,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Új fiók létrehozása"),
         "Create new group":
             MessageLookupByLibrary.simpleMessage("Új csoport létrehozása"),
+        "Currently active":
+            MessageLookupByLibrary.simpleMessage("Jelenleg aktív"),
         "Dark": MessageLookupByLibrary.simpleMessage("Sötét"),
         "Delete": MessageLookupByLibrary.simpleMessage("Törlés"),
         "Delete message":
@@ -238,10 +248,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "Edit displayname": MessageLookupByLibrary.simpleMessage(
             "Megjelenítési név módosítása"),
         "Emote Settings":
-            MessageLookupByLibrary.simpleMessage("Hangulatjel beállíŧások"),
+            MessageLookupByLibrary.simpleMessage("Hangulatjel beállítások"),
         "Emote shortcode":
             MessageLookupByLibrary.simpleMessage("Rövid kód a hangulatjelhez"),
         "Empty chat": MessageLookupByLibrary.simpleMessage("Üres csevegés"),
+        "Encryption": MessageLookupByLibrary.simpleMessage("Titkosítás"),
         "Encryption algorithm":
             MessageLookupByLibrary.simpleMessage("Titkosítási algoritmus"),
         "Encryption is not enabled": MessageLookupByLibrary.simpleMessage(
@@ -357,6 +368,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Add meg a felhasználónevedet"),
         "Public Rooms": MessageLookupByLibrary.simpleMessage("Publikus szoba"),
         "Recording": MessageLookupByLibrary.simpleMessage("Felvétel"),
+        "Reject": MessageLookupByLibrary.simpleMessage("Visszautasít"),
         "Rejoin": MessageLookupByLibrary.simpleMessage("Újracsatlakozás"),
         "Remove": MessageLookupByLibrary.simpleMessage("Eltávolítás"),
         "Remove all other devices": MessageLookupByLibrary.simpleMessage(
@@ -376,9 +388,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "Korábbi üzenetekhez való hozzáférés igénylése"),
         "Revoke all permissions": MessageLookupByLibrary.simpleMessage(
             "Minden jogosultság megvonása"),
+        "Room has been upgraded":
+            MessageLookupByLibrary.simpleMessage("Szoba frissítve lett"),
         "Saturday": MessageLookupByLibrary.simpleMessage("Szombat"),
         "Search for a chat":
             MessageLookupByLibrary.simpleMessage("Csevegés keresése"),
+        "Seen a long time ago":
+            MessageLookupByLibrary.simpleMessage("Már régen látta"),
         "Send": MessageLookupByLibrary.simpleMessage("Küldés"),
         "Send a message":
             MessageLookupByLibrary.simpleMessage("Üzenet küldése"),
@@ -395,9 +411,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "Settings": MessageLookupByLibrary.simpleMessage("Beállítások"),
         "Share": MessageLookupByLibrary.simpleMessage("Megosztás"),
         "Sign up": MessageLookupByLibrary.simpleMessage("Felíratkozás"),
+        "Skip": MessageLookupByLibrary.simpleMessage("Kihagy"),
         "Source code": MessageLookupByLibrary.simpleMessage("Forráskód"),
         "Start your first chat :-)":
             MessageLookupByLibrary.simpleMessage("Kezdj el csevegni :-)"),
+        "Submit": MessageLookupByLibrary.simpleMessage("Mehet"),
         "Sunday": MessageLookupByLibrary.simpleMessage("Vasárnap"),
         "System": MessageLookupByLibrary.simpleMessage("Rendszer"),
         "Tap to show menu": MessageLookupByLibrary.simpleMessage(
@@ -405,12 +423,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "The encryption has been corrupted":
             MessageLookupByLibrary.simpleMessage(
                 "A titkosítás sérült és megbízhatatlan"),
+        "They Don\'t Match":
+            MessageLookupByLibrary.simpleMessage("Nem egyeznek"),
+        "They Match": MessageLookupByLibrary.simpleMessage("Megegyeznek"),
         "This room has been archived.":
             MessageLookupByLibrary.simpleMessage("Ez a szoba archiválva lett."),
         "Thursday": MessageLookupByLibrary.simpleMessage("Csütörtök"),
         "Try to send again":
             MessageLookupByLibrary.simpleMessage("Próbáld újraküldeni"),
         "Tuesday": MessageLookupByLibrary.simpleMessage("Kedd"),
+        "Unblock Device": MessageLookupByLibrary.simpleMessage(
+            "Eszköz blokkolásának megszüntetése"),
         "Unknown device":
             MessageLookupByLibrary.simpleMessage("Ismeretlen eszköz"),
         "Unknown encryption algorithm": MessageLookupByLibrary.simpleMessage(
@@ -420,7 +443,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "Use Amoled compatible colors?": MessageLookupByLibrary.simpleMessage(
             "AmoLED kompatibilis színek használata?"),
         "Username": MessageLookupByLibrary.simpleMessage("Felhasználónév"),
-        "Verify": MessageLookupByLibrary.simpleMessage("Igazol"),
+        "Verify": MessageLookupByLibrary.simpleMessage("Hitelesít"),
+        "Verify User":
+            MessageLookupByLibrary.simpleMessage("Felhasználó hitelesítése"),
         "Video call": MessageLookupByLibrary.simpleMessage("Videó hívás"),
         "Visibility of the chat history": MessageLookupByLibrary.simpleMessage(
             "Csevegési előzmény láthatósága"),
@@ -459,8 +484,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "acceptedTheInvitation": m0,
         "activatedEndToEndEncryption": m1,
         "alias": MessageLookupByLibrary.simpleMessage("álnév"),
+        "askSSSSCache": MessageLookupByLibrary.simpleMessage(
+            "Add meg a biztonságos tárolóhoz tartozó vagy a visszaállítási jelszavadat, hogy betöltsük a kulcsaidat."),
+        "askSSSSSign": MessageLookupByLibrary.simpleMessage(
+            "A másik személy igazolásához, kérlek add meg jelszavadat vagy visszaállítási kulcsodat."),
+        "askSSSSVerify": MessageLookupByLibrary.simpleMessage(
+            "Add meg a biztonságos tárolóhoz tartozó vagy a visszaállítási jelszavadat, a munkamenet hitelesítéséhez."),
+        "askVerificationRequest": m60,
         "bannedUser": m2,
         "byDefaultYouWillBeConnectedTo": m3,
+        "cachedKeys": MessageLookupByLibrary.simpleMessage(
+            "Sikeresen betöltöttük a kulcsokat!"),
         "changedTheChatAvatar": m4,
         "changedTheChatDescriptionTo": m5,
         "changedTheChatNameTo": m6,
@@ -475,8 +509,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "changedTheProfileAvatar": m15,
         "changedTheRoomAliases": m16,
         "changedTheRoomInvitationLink": m17,
+        "compareEmojiMatch": MessageLookupByLibrary.simpleMessage(
+            "Hasonlítsd össze a hangulatjeleket a másik eszközön lévőkkel:"),
+        "compareNumbersMatch": MessageLookupByLibrary.simpleMessage(
+            "Hasonlítsd össze a számokat a másik eszközön lévőkkel:"),
+        "couldNotDecryptMessage": m18,
         "countParticipants": m19,
         "createdTheChat": m20,
+        "crossSigningDisabled":
+            MessageLookupByLibrary.simpleMessage("Kereszt-Aláírás kikapcsolva"),
+        "crossSigningEnabled":
+            MessageLookupByLibrary.simpleMessage("Kereszt-Aláírás bekapcsolva"),
         "dateAndTimeOfDay": m21,
         "dateWithYear": m22,
         "dateWithoutYear": m23,
@@ -488,18 +531,37 @@ class MessageLookup extends MessageLookupByLibrary {
             "A hangulatjelhez válassz egy képet és egy rövid kód"),
         "groupWith": m24,
         "hasWithdrawnTheInvitationFor": m25,
+        "incorrectPassphraseOrKey": MessageLookupByLibrary.simpleMessage(
+            "Hibás jelszó vagy visszaállítási kulcs"),
         "inviteContactToGroup": m26,
         "inviteText": m27,
         "invitedUser": m28,
         "is typing...": MessageLookupByLibrary.simpleMessage("gépel..."),
+        "isDeviceKeyCorrect": MessageLookupByLibrary.simpleMessage(
+            "Helyes az alábbi eszköz kulcs?"),
         "joinedTheChat": m29,
+        "keysCached": MessageLookupByLibrary.simpleMessage("Kulcsok betöltve"),
+        "keysMissing":
+            MessageLookupByLibrary.simpleMessage("Kulcsok hiányoznak"),
         "kicked": m30,
         "kickedAndBanned": m31,
         "lastActiveAgo": m32,
         "loadCountMoreParticipants": m33,
         "logInTo": m34,
+        "newVerificationRequest":
+            MessageLookupByLibrary.simpleMessage("Új hitelesítési kérelem!"),
+        "noCrossSignBootstrap": MessageLookupByLibrary.simpleMessage(
+            "FluffyChat jelenleg nem támogatja a Kereszt-Aláírás bekapcsolását. Kérlek engedélyezd Riot-ból."),
+        "noMegolmBootstrap": MessageLookupByLibrary.simpleMessage(
+            "FluffyChat jelenleg nem támogatja az Online Kulcs Archívumot (backup). Kérlek engedélyezd Riot-ból."),
         "numberSelected": m35,
         "ok": MessageLookupByLibrary.simpleMessage("ok"),
+        "onlineKeyBackupDisabled": MessageLookupByLibrary.simpleMessage(
+            "Online Kulcs Archívum letiltva"),
+        "onlineKeyBackupEnabled": MessageLookupByLibrary.simpleMessage(
+            "Online Kulcs Archívum engedélyezve"),
+        "passphraseOrKey": MessageLookupByLibrary.simpleMessage(
+            "Jelszó vagy visszaállítási kulcs"),
         "play": m36,
         "redactedAnEvent": m37,
         "rejectedTheInvitation": m38,
@@ -512,11 +574,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "sentASticker": m45,
         "sentAVideo": m46,
         "sentAnAudio": m47,
+        "sessionVerified":
+            MessageLookupByLibrary.simpleMessage("Munkamenet hitelesítve"),
         "sharedTheLocation": m48,
         "timeOfDay": m49,
         "title": MessageLookupByLibrary.simpleMessage("FluffyChat"),
         "unbannedUser": m50,
         "unknownEvent": m51,
+        "unknownSessionVerify": MessageLookupByLibrary.simpleMessage(
+            "Ismeretlen munkamenet, kérlek hitelesítsd"),
         "unreadChats": m52,
         "unreadMessages": m53,
         "unreadMessagesInChats": m54,
@@ -524,6 +590,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "userAndUserAreTyping": m56,
         "userIsTyping": m57,
         "userLeftTheChat": m58,
-        "userSentUnknownEvent": m59
+        "userSentUnknownEvent": m59,
+        "verifiedSession": MessageLookupByLibrary.simpleMessage(
+            "Sikeresen hitelesítetted a munkamenetedet!"),
+        "verifyManual":
+            MessageLookupByLibrary.simpleMessage("Kézi hitelesítés"),
+        "verifyStart":
+            MessageLookupByLibrary.simpleMessage("Hitelesítés megkezdése"),
+        "verifySuccess":
+            MessageLookupByLibrary.simpleMessage("Sikeresen hitelesítettél!"),
+        "verifyTitle":
+            MessageLookupByLibrary.simpleMessage("Másik fiók hitelesítése"),
+        "waitingPartnerAcceptRequest": MessageLookupByLibrary.simpleMessage(
+            "Várakozás partnerre, amíg elfogadja a kérést..."),
+        "waitingPartnerEmoji": MessageLookupByLibrary.simpleMessage(
+            "Várakozás partnere, amíg elfogadja a hangulatjeleket..."),
+        "waitingPartnerNumbers": MessageLookupByLibrary.simpleMessage(
+            "Várakozás partnere, amíg elfogadja a számokat...")
       };
 }

@@ -57,7 +57,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static m14(username, joinRules) =>
       "${username} changed the join rules to: ${joinRules}";
 
-  static m15(username) => "${username} changed the profile avatar";
+  static m15(username) => "${username} changed their avatar";
 
   static m16(username) => "${username} changed the room aliases";
 
@@ -533,9 +533,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "newVerificationRequest":
             MessageLookupByLibrary.simpleMessage("New verification request!"),
         "noCrossSignBootstrap": MessageLookupByLibrary.simpleMessage(
-            "Fluffychat currently does not support enabling Cross-Signing. Please enable it from within Riot."),
+            "Fluffychat currently does not support enabling Cross-Signing. Please enable it from within Element."),
         "noMegolmBootstrap": MessageLookupByLibrary.simpleMessage(
-            "Fluffychat currently does not support enabling Online Key Backup. Please enable it from within Riot."),
+            "Fluffychat currently does not support enabling Online Key Backup. Please enable it from within Element."),
         "numberSelected": m35,
         "ok": MessageLookupByLibrary.simpleMessage("ok"),
         "onlineKeyBackupDisabled": MessageLookupByLibrary.simpleMessage(

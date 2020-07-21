@@ -24,6 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static m1(username) =>
       "${username} hat Ende-zu-Ende Verschlüsselung aktiviert";
 
+  static m60(username) => "Diese Bestätigungsanfrage von ${username} annehmen?";
+
   static m2(username, targetName) => "${username} hat ${targetName} verbannt";
 
   static m3(homeserver) => "Standardmäßig wirst Du mit ${homeserver} verbunden";
@@ -71,16 +73,16 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m21(date, timeOfDay) => "${date}, ${timeOfDay}";
 
-  static m22(year, month, day) => "${day}.${month}.${year}";
+  static m22(year, month, day) => "${day}. ${month}. ${year}";
 
-  static m23(month, day) => "${day}.${month}";
+  static m23(month, day) => "${day}. ${month}";
 
   static m24(displayname) => "Gruppe mit ${displayname}";
 
   static m25(username, targetName) =>
       "${username} hat die Einladung für ${targetName} zurückgezogen";
 
-  static m26(groupName) => "Kontakt zu ${groupName} einladen";
+  static m26(groupName) => "Kontakt in die Gruppe ${groupName} einladen";
 
   static m27(username, link) =>
       "${username} hat Dich zu FluffyChat eingeladen. \n1. Installiere FluffyChat: http://fluffy.chat \n2. Melde Dich in der App an \n3. Öffne den Einladungslink: ${link}";
@@ -96,7 +98,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static m31(username, targetName) =>
       "${username} hat ${targetName} hinausgeworfen und verbannt";
 
-  static m32(localizedTimeShort) => "Zuletzt gesehen: ${localizedTimeShort}";
+  static m32(localizedTimeShort) => "Zuletzt aktiv: ${localizedTimeShort}";
 
   static m33(count) => "${count} weitere Teilnehmer*innen laden";
 
@@ -104,7 +106,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m35(number) => "${number} ausgewählt";
 
-  static m36(fileName) => "Play ${fileName}";
+  static m36(fileName) => "${fileName} abspielen";
 
   static m37(username) => "${username} hat ein Event enternt";
 
@@ -135,7 +137,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static m50(username, targetName) =>
       "${username} hat die Verbannung von ${targetName} aufgehoben";
 
-  static m51(type) => "Unbekanntes Event \'${type}\'";
+  static m51(type) => "Unbekanntes Ereignis \'${type}\'";
 
   static m52(unreadCount) => "${unreadCount} ungelesene Unterhaltungen";
 
@@ -161,6 +163,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "(Optional) Group name": MessageLookupByLibrary.simpleMessage(
             "(Optional) Name für die Gruppe"),
         "About": MessageLookupByLibrary.simpleMessage("Über"),
+        "Accept": MessageLookupByLibrary.simpleMessage("Annehmen"),
         "Account": MessageLookupByLibrary.simpleMessage("Konto"),
         "Account informations":
             MessageLookupByLibrary.simpleMessage("Kontoinformationen"),
@@ -184,7 +187,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Avatar wurde geändert"),
         "Ban from chat":
             MessageLookupByLibrary.simpleMessage("Aus dem Chat verbannen"),
-        "Banned": MessageLookupByLibrary.simpleMessage("Banned"),
+        "Banned": MessageLookupByLibrary.simpleMessage("Verbannt"),
+        "Block Device": MessageLookupByLibrary.simpleMessage("Blockiere Gerät"),
         "Cancel": MessageLookupByLibrary.simpleMessage("Abbrechen"),
         "Change the homeserver": MessageLookupByLibrary.simpleMessage(
             "Anderen Homeserver verwenden"),
@@ -196,7 +200,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Hintergrund ändern"),
         "Change your style":
             MessageLookupByLibrary.simpleMessage("Ändere Deinen Style"),
-        "Changelog": MessageLookupByLibrary.simpleMessage("Changelog"),
+        "Changelog":
+            MessageLookupByLibrary.simpleMessage("Protokoll der Änderungen"),
         "Chat": MessageLookupByLibrary.simpleMessage("Chat"),
         "Chat details": MessageLookupByLibrary.simpleMessage("Gruppeninfo"),
         "Choose a strong password":
@@ -220,7 +225,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Profilbild konnte nicht gesetzt werden"),
         "Could not set displayname": MessageLookupByLibrary.simpleMessage(
             "Anzeigename konnte nicht gesetzt werden"),
-        "Create": MessageLookupByLibrary.simpleMessage("Create"),
+        "Create": MessageLookupByLibrary.simpleMessage("Erstellen"),
         "Create account now":
             MessageLookupByLibrary.simpleMessage("Account jetzt erstellen"),
         "Create new group": MessageLookupByLibrary.simpleMessage("Neue Gruppe"),
@@ -248,6 +253,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Emote Einstellungen"),
         "Emote shortcode": MessageLookupByLibrary.simpleMessage("Emote kürzel"),
         "Empty chat": MessageLookupByLibrary.simpleMessage("Leerer Chat"),
+        "Encryption": MessageLookupByLibrary.simpleMessage("Verschlüsselung"),
         "Encryption algorithm":
             MessageLookupByLibrary.simpleMessage("Verschlüsselungsalgorithmus"),
         "Encryption is not enabled": MessageLookupByLibrary.simpleMessage(
@@ -286,6 +292,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Help": MessageLookupByLibrary.simpleMessage("Hilfe"),
         "Homeserver is not compatible": MessageLookupByLibrary.simpleMessage(
             "Homeserver ist nicht kompatibel"),
+        "How are you today?":
+            MessageLookupByLibrary.simpleMessage("Wie geht es dir heute?"),
         "ID": MessageLookupByLibrary.simpleMessage("ID"),
         "Identity": MessageLookupByLibrary.simpleMessage("Identität"),
         "Invite contact":
@@ -309,7 +317,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Loading... Please wait":
             MessageLookupByLibrary.simpleMessage("Lade ... Bitte warten"),
         "Login": MessageLookupByLibrary.simpleMessage("Login"),
-        "Logout": MessageLookupByLibrary.simpleMessage("Logout"),
+        "Logout": MessageLookupByLibrary.simpleMessage("Abmelden"),
         "Make a moderator":
             MessageLookupByLibrary.simpleMessage("Zum Moderator ernennen"),
         "Make an admin":
@@ -338,6 +346,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Wird in der Web-Version nicht unterstützt"),
         "Oops something went wrong...": MessageLookupByLibrary.simpleMessage(
             "Hoppla! Da ist etwas schief gelaufen ..."),
+        "Open app to read messages": MessageLookupByLibrary.simpleMessage(
+            "Öffne app, um Nachrichten zu lesen"),
         "Open camera": MessageLookupByLibrary.simpleMessage("Kamera öffnen"),
         "Participating user devices":
             MessageLookupByLibrary.simpleMessage("Teilnehmende Geräte"),
@@ -358,6 +368,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Public Rooms":
             MessageLookupByLibrary.simpleMessage("Öffentliche Räume"),
         "Recording": MessageLookupByLibrary.simpleMessage("Aufnahme"),
+        "Reject": MessageLookupByLibrary.simpleMessage("Ablehnen"),
         "Rejoin": MessageLookupByLibrary.simpleMessage("Wieder beitreten"),
         "Remove": MessageLookupByLibrary.simpleMessage("Entfernen"),
         "Remove all other devices": MessageLookupByLibrary.simpleMessage(
@@ -377,9 +388,11 @@ class MessageLookup extends MessageLookupByLibrary {
             "Anfrage um ältere Nachrichten zu lesen"),
         "Revoke all permissions": MessageLookupByLibrary.simpleMessage(
             "Alle Berechtigungen zurücknehmen"),
+        "Room has been upgraded":
+            MessageLookupByLibrary.simpleMessage("Der Raum wurde ge-upgraded"),
         "Saturday": MessageLookupByLibrary.simpleMessage("Samstag"),
         "Search for a chat":
-            MessageLookupByLibrary.simpleMessage("Chats durchsuchen"),
+            MessageLookupByLibrary.simpleMessage("Chat suchen"),
         "Seen a long time ago": MessageLookupByLibrary.simpleMessage(
             "Vor sehr langer Zeit gesehen"),
         "Send": MessageLookupByLibrary.simpleMessage("Senden"),
@@ -397,9 +410,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "Settings": MessageLookupByLibrary.simpleMessage("Einstellungen"),
         "Share": MessageLookupByLibrary.simpleMessage("Teilen"),
         "Sign up": MessageLookupByLibrary.simpleMessage("Registrieren"),
+        "Skip": MessageLookupByLibrary.simpleMessage("Überspringe"),
         "Source code": MessageLookupByLibrary.simpleMessage("Quellcode"),
         "Start your first chat :-)": MessageLookupByLibrary.simpleMessage(
             "Starte deinen ersten Chat :-)"),
+        "Submit": MessageLookupByLibrary.simpleMessage("Absenden"),
         "Sunday": MessageLookupByLibrary.simpleMessage("Sonntag"),
         "System": MessageLookupByLibrary.simpleMessage("System"),
         "Tap to show menu": MessageLookupByLibrary.simpleMessage(
@@ -407,12 +422,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "The encryption has been corrupted":
             MessageLookupByLibrary.simpleMessage(
                 "Die Verschlüsselung wurde korrumpiert"),
+        "They Don\'t Match":
+            MessageLookupByLibrary.simpleMessage("Stimmen nicht überein"),
+        "They Match": MessageLookupByLibrary.simpleMessage("Stimmen überein"),
         "This room has been archived.": MessageLookupByLibrary.simpleMessage(
             "Dieser Raum wurde archiviert."),
         "Thursday": MessageLookupByLibrary.simpleMessage("Donnerstag"),
         "Try to send again":
             MessageLookupByLibrary.simpleMessage("Nochmal versuchen zu senden"),
         "Tuesday": MessageLookupByLibrary.simpleMessage("Dienstag"),
+        "Unblock Device":
+            MessageLookupByLibrary.simpleMessage("Geräteblockierung aufheben"),
         "Unknown device":
             MessageLookupByLibrary.simpleMessage("Unbekanntes Gerät"),
         "Unknown encryption algorithm": MessageLookupByLibrary.simpleMessage(
@@ -422,6 +442,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Amoled optimierte Farben verwenden?"),
         "Username": MessageLookupByLibrary.simpleMessage("Benutzername"),
         "Verify": MessageLookupByLibrary.simpleMessage("Bestätigen"),
+        "Verify User":
+            MessageLookupByLibrary.simpleMessage("Verifiziere Benutzer"),
         "Video call": MessageLookupByLibrary.simpleMessage("Videoanruf"),
         "Visibility of the chat history": MessageLookupByLibrary.simpleMessage(
             "Sichtbarkeit des Chat-Verlaufs"),
@@ -461,8 +483,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "acceptedTheInvitation": m0,
         "activatedEndToEndEncryption": m1,
         "alias": MessageLookupByLibrary.simpleMessage("Alias"),
+        "askSSSSCache": MessageLookupByLibrary.simpleMessage(
+            "Bitte gib dein Secure-Store Passwort oder Wiederherstellungsschlüssel ein, um die Keys zu cachen."),
+        "askSSSSSign": MessageLookupByLibrary.simpleMessage(
+            "Bitte gebe um die andere Person signieren zu können dein Secure-Store Passwort oder Wiederherstellungsschlüssel ein."),
+        "askSSSSVerify": MessageLookupByLibrary.simpleMessage(
+            "Bitte gebe um deine Session zu verifizieren dein Secure-Store Passwort oder Wiederherstellungsschlüssel ein."),
+        "askVerificationRequest": m60,
         "bannedUser": m2,
         "byDefaultYouWillBeConnectedTo": m3,
+        "cachedKeys":
+            MessageLookupByLibrary.simpleMessage("Keys erfolgreich gecached!"),
         "changedTheChatAvatar": m4,
         "changedTheChatDescriptionTo": m5,
         "changedTheChatNameTo": m6,
@@ -477,9 +508,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "changedTheProfileAvatar": m15,
         "changedTheRoomAliases": m16,
         "changedTheRoomInvitationLink": m17,
+        "compareEmojiMatch": MessageLookupByLibrary.simpleMessage(
+            "Vergleiche und stelle sicher, dass die folgenden Emoji mit denen des anderen Gerätes übereinstimmen:"),
+        "compareNumbersMatch": MessageLookupByLibrary.simpleMessage(
+            "Vergleiche und stelle sicher, dass die folgenden Zahlen mit denen des anderen Gerätes übereinstimmen:"),
         "couldNotDecryptMessage": m18,
         "countParticipants": m19,
         "createdTheChat": m20,
+        "crossSigningDisabled": MessageLookupByLibrary.simpleMessage(
+            "Cross-Signing ist deaktiviert"),
+        "crossSigningEnabled":
+            MessageLookupByLibrary.simpleMessage("Cross-Signing ist aktiviert"),
         "dateAndTimeOfDay": m21,
         "dateWithYear": m22,
         "dateWithoutYear": m23,
@@ -491,18 +530,37 @@ class MessageLookup extends MessageLookupByLibrary {
             "Wähle ein Emote-kürzel und ein Bild!"),
         "groupWith": m24,
         "hasWithdrawnTheInvitationFor": m25,
+        "incorrectPassphraseOrKey": MessageLookupByLibrary.simpleMessage(
+            "Falsches Passwort oder Wiederherstellungsschlüssel"),
         "inviteContactToGroup": m26,
         "inviteText": m27,
         "invitedUser": m28,
         "is typing...": MessageLookupByLibrary.simpleMessage("schreibt..."),
+        "isDeviceKeyCorrect": MessageLookupByLibrary.simpleMessage(
+            "Ist der folgende Geräteschlüssel korrekt?"),
         "joinedTheChat": m29,
+        "keysCached":
+            MessageLookupByLibrary.simpleMessage("Keys sind gecached"),
+        "keysMissing": MessageLookupByLibrary.simpleMessage("Keys fehlen"),
         "kicked": m30,
         "kickedAndBanned": m31,
         "lastActiveAgo": m32,
         "loadCountMoreParticipants": m33,
         "logInTo": m34,
+        "newVerificationRequest":
+            MessageLookupByLibrary.simpleMessage("Neue Verifikationsanfrage!"),
+        "noCrossSignBootstrap": MessageLookupByLibrary.simpleMessage(
+            "Fluffychat unterstützt noch nicht das Einschalten von Cross-Signing. Bitte schalte es innerhalb Riot an."),
+        "noMegolmBootstrap": MessageLookupByLibrary.simpleMessage(
+            "Fluffychat unterstützt noch nicht das Einschalten vom Online Key Backup. Bitte schalte es innerhalb Riot an."),
         "numberSelected": m35,
         "ok": MessageLookupByLibrary.simpleMessage("ok"),
+        "onlineKeyBackupDisabled": MessageLookupByLibrary.simpleMessage(
+            "Online Key Backup ist deaktiviert"),
+        "onlineKeyBackupEnabled": MessageLookupByLibrary.simpleMessage(
+            "Online Key Backup ist aktiviert"),
+        "passphraseOrKey": MessageLookupByLibrary.simpleMessage(
+            "Passwort oder Wiederherstellungsschlüssel"),
         "play": m36,
         "redactedAnEvent": m37,
         "rejectedTheInvitation": m38,
@@ -515,11 +573,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "sentASticker": m45,
         "sentAVideo": m46,
         "sentAnAudio": m47,
+        "sessionVerified":
+            MessageLookupByLibrary.simpleMessage("Sitzung ist verifiziert"),
         "sharedTheLocation": m48,
         "timeOfDay": m49,
         "title": MessageLookupByLibrary.simpleMessage("FluffyChat"),
         "unbannedUser": m50,
         "unknownEvent": m51,
+        "unknownSessionVerify": MessageLookupByLibrary.simpleMessage(
+            "Unbekannte Sitzung, bitte verifiziere diese"),
         "unreadChats": m52,
         "unreadMessages": m53,
         "unreadMessagesInChats": m54,
@@ -527,6 +589,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "userAndUserAreTyping": m56,
         "userIsTyping": m57,
         "userLeftTheChat": m58,
-        "userSentUnknownEvent": m59
+        "userSentUnknownEvent": m59,
+        "verifiedSession": MessageLookupByLibrary.simpleMessage(
+            "Sitzung erfolgreich verifiziert!"),
+        "verifyManual":
+            MessageLookupByLibrary.simpleMessage("Verifiziere manuell"),
+        "verifyStart":
+            MessageLookupByLibrary.simpleMessage("Starte Verifikation"),
+        "verifySuccess":
+            MessageLookupByLibrary.simpleMessage("Erfolgreich verifiziert!"),
+        "verifyTitle": MessageLookupByLibrary.simpleMessage(
+            "Verifiziere anderen Benutzer"),
+        "waitingPartnerAcceptRequest": MessageLookupByLibrary.simpleMessage(
+            "Warte darauf, dass der Partner die Verifikationsanfrage annimmt..."),
+        "waitingPartnerEmoji": MessageLookupByLibrary.simpleMessage(
+            "Warte darauf, dass der Partner die Emoji annimmt..."),
+        "waitingPartnerNumbers": MessageLookupByLibrary.simpleMessage(
+            "Warte darauf, dass der Partner die Zahlen annimmt...")
       };
 }

@@ -213,7 +213,7 @@ class L10n extends MatrixLocalizations {
       );
 
   String changedTheProfileAvatar(String username) => Intl.message(
-        "$username changed the profile avatar",
+        "$username changed their avatar",
         name: "changedTheProfileAvatar",
         args: [username],
       );

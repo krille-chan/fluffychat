@@ -21,8 +21,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m0(username) => "${username} aceptó la invitación";
 
-  static m1(username) =>
-      "${username} activó la encriptación de extremo a extremo";
+  static m1(username) => "${username} activó el cifrado de extremo a extremo";
 
   static m60(username) =>
       "¿Aceptar esta solicitud de verificación de ${username}?";
@@ -30,9 +29,9 @@ class MessageLookup extends MessageLookupByLibrary {
   static m2(username, targetName) => "${username} vetó a ${targetName}";
 
   static m3(homeserver) =>
-      "De forma predeterminada, estará conectado a ${homeserver}";
+      "De forma predeterminada estará conectado a ${homeserver}";
 
-  static m4(username) => "${username} cambió el avatar del chat";
+  static m4(username) => "${username} cambió el icono del chat";
 
   static m5(username, description) =>
       "${username} cambió la descripción del chat a: \'${description}\'";
@@ -43,24 +42,25 @@ class MessageLookup extends MessageLookupByLibrary {
   static m7(username) => "${username} cambió los permisos del chat";
 
   static m8(username, displayname) =>
-      "${username} cambió el nombre para mostrar a: ${displayname}";
+      "${username} cambió su nombre visible a: ${displayname}";
 
-  static m9(username) => "${username} cambió las reglas de acceso de invitado";
+  static m9(username) =>
+      "${username} cambió las reglas de acceso de visitantes";
 
   static m10(username, rules) =>
-      "${username} cambió las reglas de acceso de invitado a: ${rules}";
+      "${username} cambió las reglas de acceso de visitantes a: ${rules}";
 
   static m11(username) => "${username} cambió la visibilidad del historial";
 
   static m12(username, rules) =>
       "${username} cambió la visibilidad del historial a: ${rules}";
 
-  static m13(username) => "${username} cambió las reglas de unión";
+  static m13(username) => "${username} cambió las reglas de ingreso";
 
   static m14(username, joinRules) =>
-      "${username} cambió las reglas de unión a ${joinRules}";
+      "${username} cambió las reglas de ingreso a ${joinRules}";
 
-  static m15(username) => "${username} cambió el avatar de su perfil";
+  static m15(username) => "${username} cambió su imagen de perfil";
 
   static m16(username) => "${username} cambió el alias de la sala";
 
@@ -86,11 +86,11 @@ class MessageLookup extends MessageLookupByLibrary {
   static m26(groupName) => "Invitar contacto a ${groupName}";
 
   static m27(username, link) =>
-      "${username} te invitó a FluffyChat.\n1. Instale FluffyChat: http://fluffy.chat\n2. Regístrate o inicia";
+      "${username} te invitó a FluffyChat.\n1. Instale FluffyChat: http://fluffy.chat\n2. Regístrate o inicia sesión \n3. Abra el enlace de invitación: ${link}";
 
   static m28(username, targetName) => "${username} invitó a ${targetName}";
 
-  static m29(username) => "${username} see unió al chat";
+  static m29(username) => "${username} se unió al chat";
 
   static m30(username, targetName) => "${username} echó a ${targetName}";
 
@@ -114,7 +114,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m40(username) => "Visto por ${username}";
 
-  static m41(username, count) => "Visto por ${username} y ${count} otros";
+  static m41(username, count) => "Visto por ${username} y ${count} más";
 
   static m42(username, username2) => "Visto por ${username} y ${username2}";
 
@@ -145,22 +145,22 @@ class MessageLookup extends MessageLookupByLibrary {
       "${unreadEvents} mensajes no leídos en ${unreadChats} chats";
 
   static m55(username, count) =>
-      "${username} y ${count} otros están escribiendo...";
+      "${username} y ${count} más están escribiendo...";
 
   static m56(username, username2) =>
       "${username} y ${username2} están escribiendo...";
 
-  static m57(username) => "${username} está escribiendo..";
+  static m57(username) => "${username} está escribiendo...";
 
   static m58(username) => "${username} abandonó el chat";
 
-  static m59(username, type) => "${username} envió un evento de tipo ${type}";
+  static m59(username, type) => "${username} envió un evento ${type}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function>{
         "(Optional) Group name":
             MessageLookupByLibrary.simpleMessage("(Opcional) Nombre del grupo"),
-        "About": MessageLookupByLibrary.simpleMessage("Acerca"),
+        "About": MessageLookupByLibrary.simpleMessage("Acerca de"),
         "Accept": MessageLookupByLibrary.simpleMessage("Aceptar"),
         "Account": MessageLookupByLibrary.simpleMessage("Cuenta"),
         "Account informations":
@@ -175,11 +175,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "Archive": MessageLookupByLibrary.simpleMessage("Archivo"),
         "Archived Room": MessageLookupByLibrary.simpleMessage("Sala archivada"),
         "Are guest users allowed to join": MessageLookupByLibrary.simpleMessage(
-            "¿Los usuarios invitados pueden unirse?"),
+            "¿Pueden unirse los usuarios visitantes?"),
         "Are you sure?": MessageLookupByLibrary.simpleMessage("¿Estás seguro?"),
         "Authentication": MessageLookupByLibrary.simpleMessage("Autenticación"),
-        "Avatar has been changed":
-            MessageLookupByLibrary.simpleMessage("El avatar ha sido cambiado"),
+        "Avatar has been changed": MessageLookupByLibrary.simpleMessage(
+            "La imagen de perfil ha sido cambiada"),
         "Ban from chat": MessageLookupByLibrary.simpleMessage("Vetar del chat"),
         "Banned": MessageLookupByLibrary.simpleMessage("Vetado"),
         "Block Device":
@@ -207,8 +207,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Close": MessageLookupByLibrary.simpleMessage("Cerrar"),
         "Confirm": MessageLookupByLibrary.simpleMessage("Confirmar"),
         "Connect": MessageLookupByLibrary.simpleMessage("Conectar"),
-        "Connection attempt failed":
-            MessageLookupByLibrary.simpleMessage("Intento de conexión fallido"),
+        "Connection attempt failed": MessageLookupByLibrary.simpleMessage(
+            "Falló el intento de conexión"),
         "Contact has been invited to the group":
             MessageLookupByLibrary.simpleMessage(
                 "El contacto ha sido invitado al grupo"),
@@ -218,38 +218,38 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Copiado al portapapeles"),
         "Copy": MessageLookupByLibrary.simpleMessage("Copiar"),
         "Could not set avatar": MessageLookupByLibrary.simpleMessage(
-            "No se pudo establecer el avatar"),
+            "No se pudo establecer la imagen de perfil"),
         "Could not set displayname": MessageLookupByLibrary.simpleMessage(
-            "No se pudo establecer el nombre para mostrar"),
+            "No se pudo establecer el nombre visible"),
         "Create": MessageLookupByLibrary.simpleMessage("Crear"),
         "Create account now":
             MessageLookupByLibrary.simpleMessage("Crear cuenta ahora"),
         "Create new group":
-            MessageLookupByLibrary.simpleMessage("Crear nuevo grupo"),
+            MessageLookupByLibrary.simpleMessage("Crear grupo nuevo"),
         "Currently active":
             MessageLookupByLibrary.simpleMessage("Actualmente activo"),
         "Dark": MessageLookupByLibrary.simpleMessage("Oscuro"),
         "Delete": MessageLookupByLibrary.simpleMessage("Eliminar"),
         "Delete message":
             MessageLookupByLibrary.simpleMessage("Eliminar mensaje"),
-        "Deny": MessageLookupByLibrary.simpleMessage("Negar"),
+        "Deny": MessageLookupByLibrary.simpleMessage("Rechazar"),
         "Device": MessageLookupByLibrary.simpleMessage("Dispositivo"),
         "Devices": MessageLookupByLibrary.simpleMessage("Dispositivos"),
         "Discard picture":
             MessageLookupByLibrary.simpleMessage("Descartar imagen"),
         "Displayname has been changed": MessageLookupByLibrary.simpleMessage(
-            "El nombre para mostrar ha cambiado"),
+            "El nombre visible ha cambiado"),
         "Donate": MessageLookupByLibrary.simpleMessage("Donar"),
         "Download file":
             MessageLookupByLibrary.simpleMessage("Descargar archivo"),
-        "Edit Jitsi instance":
-            MessageLookupByLibrary.simpleMessage("Editar instancia de Jitsi"),
+        "Edit Jitsi instance": MessageLookupByLibrary.simpleMessage(
+            "Cambiar la instancia de Jitsi"),
         "Edit displayname":
-            MessageLookupByLibrary.simpleMessage("Editar nombre para mostrar"),
+            MessageLookupByLibrary.simpleMessage("Editar nombre visible"),
         "Emote Settings":
             MessageLookupByLibrary.simpleMessage("Configuración de emotes"),
         "Emote shortcode":
-            MessageLookupByLibrary.simpleMessage("Código corto de emote"),
+            MessageLookupByLibrary.simpleMessage("Atajo de emote"),
         "Empty chat": MessageLookupByLibrary.simpleMessage("Chat vacío"),
         "Encryption": MessageLookupByLibrary.simpleMessage("Cifrado"),
         "Encryption algorithm":
@@ -272,9 +272,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "FluffyChat": MessageLookupByLibrary.simpleMessage("FluffyChat"),
         "Forward": MessageLookupByLibrary.simpleMessage("Reenviar"),
         "Friday": MessageLookupByLibrary.simpleMessage("Viernes"),
-        "From joining": MessageLookupByLibrary.simpleMessage("De unirse"),
+        "From joining":
+            MessageLookupByLibrary.simpleMessage("Desde que se unió"),
         "From the invitation":
-            MessageLookupByLibrary.simpleMessage("De la invitación"),
+            MessageLookupByLibrary.simpleMessage("Desde la invitación"),
         "Group": MessageLookupByLibrary.simpleMessage("Grupo"),
         "Group description":
             MessageLookupByLibrary.simpleMessage("Descripción del grupo"),
@@ -302,7 +303,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "It seems that you have no google services on your phone. That\'s a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/":
             MessageLookupByLibrary.simpleMessage(
                 "Parece que no tienes servicios de Google en tu teléfono. ¡Esa es una buena decisión para tu privacidad! Para recibir notificaciones instantáneas en FluffyChat, recomendamos usar microG: https://microg.org/"),
-        "Kick from chat": MessageLookupByLibrary.simpleMessage("Echar el chat"),
+        "Kick from chat":
+            MessageLookupByLibrary.simpleMessage("Echar del chat"),
         "Last seen IP":
             MessageLookupByLibrary.simpleMessage("Última dirección IP vista"),
         "Leave": MessageLookupByLibrary.simpleMessage("Abandonar"),
@@ -312,7 +314,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Light": MessageLookupByLibrary.simpleMessage("Claro"),
         "Load more...": MessageLookupByLibrary.simpleMessage("Mostrar más..."),
         "Loading... Please wait": MessageLookupByLibrary.simpleMessage(
-            "Cargando... Por favor, espere"),
+            "Cargando... Por favor espere"),
         "Login": MessageLookupByLibrary.simpleMessage("Iniciar sesión"),
         "Logout": MessageLookupByLibrary.simpleMessage("Cerrar sesión"),
         "Make a moderator":
@@ -321,7 +323,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Hacer un administrador/a"),
         "Make sure the identifier is valid":
             MessageLookupByLibrary.simpleMessage(
-                "Asegúrese de que el identificador sea válido"),
+                "Asegúrese de que el identificador es válido"),
         "Message will be removed for all participants":
             MessageLookupByLibrary.simpleMessage(
                 "El mensaje será eliminado para todos los participantes"),
@@ -359,7 +361,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Por favor, ingrese un identificador matrix"),
         "Please enter your password": MessageLookupByLibrary.simpleMessage(
-            "Por favor, ingrese su contraseña"),
+            "Por favor ingrese su contraseña"),
         "Please enter your username": MessageLookupByLibrary.simpleMessage(
             "Por favor ingrese su nombre de usuario"),
         "Public Rooms": MessageLookupByLibrary.simpleMessage("Salas públicas"),
@@ -376,12 +378,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "Remove message":
             MessageLookupByLibrary.simpleMessage("Eliminar mensaje"),
         "Render rich message content": MessageLookupByLibrary.simpleMessage(
-            "Renderizar el contenido de mensajes enriquecidos"),
+            "Mostrar el contenido con mensajes enriquecidos"),
         "Reply": MessageLookupByLibrary.simpleMessage("Responder"),
         "Request permission":
             MessageLookupByLibrary.simpleMessage("Solicitar permiso"),
         "Request to read older messages": MessageLookupByLibrary.simpleMessage(
-            "Solicitud para leer mensajes antiguos"),
+            "Solicitar poder leer mensajes antiguos"),
         "Revoke all permissions":
             MessageLookupByLibrary.simpleMessage("Revocar todos los permisos"),
         "Room has been upgraded": MessageLookupByLibrary.simpleMessage(
@@ -416,7 +418,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Tap to show menu":
             MessageLookupByLibrary.simpleMessage("Toca para mostrar el menú"),
         "The encryption has been corrupted":
-            MessageLookupByLibrary.simpleMessage("El cifrado ha sido dañado"),
+            MessageLookupByLibrary.simpleMessage("El cifrado se ha corrompido"),
         "They Don\'t Match":
             MessageLookupByLibrary.simpleMessage("No coinciden"),
         "They Match": MessageLookupByLibrary.simpleMessage("Coinciden"),
@@ -435,7 +437,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Unmute chat":
             MessageLookupByLibrary.simpleMessage("Dejar de silenciar el chat"),
         "Use Amoled compatible colors?": MessageLookupByLibrary.simpleMessage(
-            "¿Usar colores compatible con AMOLED?"),
+            "¿Usar colores compatibles con AMOLED?"),
         "Username": MessageLookupByLibrary.simpleMessage("Nombre de usuario"),
         "Verify": MessageLookupByLibrary.simpleMessage("Verificar"),
         "Verify User":
@@ -452,7 +454,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Wednesday": MessageLookupByLibrary.simpleMessage("Miércoles"),
         "Welcome to the cutest instant messenger in the matrix network.":
             MessageLookupByLibrary.simpleMessage(
-                "Bienvenido a la mensajería instantánea más tierna de la red Matrix."),
+                "Bienvenido al mensajero instantáneo más tierno de la red Matrix."),
         "Who is allowed to join this group":
             MessageLookupByLibrary.simpleMessage(
                 "Quién tiene permitido unirse al grupo"),
@@ -472,16 +474,16 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Has sido vetado de este chat"),
         "You won\'t be able to disable the encryption anymore. Are you sure?":
             MessageLookupByLibrary.simpleMessage(
-                "Ya no podrá deshabilitar el cifrado. ¿Está seguro?"),
+                "Ya no podrá deshabilitar el cifrado. ¿Estás seguro?"),
         "Your own username":
-            MessageLookupByLibrary.simpleMessage("Tu propio nombre de usuario"),
+            MessageLookupByLibrary.simpleMessage("Tu nombre de usuario"),
         "acceptedTheInvitation": m0,
         "activatedEndToEndEncryption": m1,
         "alias": MessageLookupByLibrary.simpleMessage("alias"),
         "askSSSSCache": MessageLookupByLibrary.simpleMessage(
             "Ingrese su contraseña de almacenamiento segura (SSSS) o la clave de recuperación para almacenar en caché las claves."),
         "askSSSSSign": MessageLookupByLibrary.simpleMessage(
-            "Para poder firmar a la otra persona, ingrese su contraseña de almacenamiento segura o la clave de recuperación"),
+            "Para poder confirmar a la otra persona, ingrese su contraseña de almacenamiento segura o la clave de recuperación."),
         "askSSSSVerify": MessageLookupByLibrary.simpleMessage(
             "Por favor, ingrese su contraseña de almacenamiento seguro (SSSS) o la clave de recuperación para verificar su sesión."),
         "askVerificationRequest": m60,
@@ -511,18 +513,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "countParticipants": m19,
         "createdTheChat": m20,
         "crossSigningDisabled": MessageLookupByLibrary.simpleMessage(
-            "La firma cruzada está deshabilitada"),
+            "La confirmación cruzada está deshabilitada"),
         "crossSigningEnabled": MessageLookupByLibrary.simpleMessage(
-            "La firma cruzada está habilitada"),
+            "La confirmación cruzada está habilitada"),
         "dateAndTimeOfDay": m21,
         "dateWithYear": m22,
         "dateWithoutYear": m23,
         "emoteExists":
             MessageLookupByLibrary.simpleMessage("¡El emote ya existe!"),
         "emoteInvalid": MessageLookupByLibrary.simpleMessage(
-            "¡El código corto del emote es inválido!"),
+            "¡El atajo del emote es inválido!"),
         "emoteWarnNeedToPick": MessageLookupByLibrary.simpleMessage(
-            "¡Debes elegir un código abreviado de emote y una imagen!"),
+            "¡Debes elegir un atajo de emote y una imagen!"),
         "groupWith": m24,
         "hasWithdrawnTheInvitationFor": m25,
         "incorrectPassphraseOrKey": MessageLookupByLibrary.simpleMessage(
@@ -533,7 +535,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "is typing...":
             MessageLookupByLibrary.simpleMessage("está escribiendo..."),
         "isDeviceKeyCorrect": MessageLookupByLibrary.simpleMessage(
-            "¿Es correcta la siguiente clave del dispositivo?"),
+            "¿Es correcta la siguiente clave de dispositivo?"),
         "joinedTheChat": m29,
         "keysCached":
             MessageLookupByLibrary.simpleMessage("Las claves están en caché"),
@@ -547,9 +549,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "newVerificationRequest": MessageLookupByLibrary.simpleMessage(
             "¡Nueva solicitud de verificación!"),
         "noCrossSignBootstrap": MessageLookupByLibrary.simpleMessage(
-            "Fluffychat actualmente no admite la habilitación de firma cruzada. Por favor habilítela desde Riot."),
+            "Fluffychat actualmente no admite habilitar confirmación cruzada. Por favor habilítela desde Element."),
         "noMegolmBootstrap": MessageLookupByLibrary.simpleMessage(
-            "Fluffychat actualmente no admite habilitar la Copia de seguridad de clave en línea. Por favor habilítela desde Riot."),
+            "Fluffychat actualmente no admite habilitar la Copia de seguridad de clave en línea. Por favor habilítela desde Element."),
         "numberSelected": m35,
         "ok": MessageLookupByLibrary.simpleMessage("ok"),
         "onlineKeyBackupDisabled": MessageLookupByLibrary.simpleMessage(
@@ -570,8 +572,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "sentASticker": m45,
         "sentAVideo": m46,
         "sentAnAudio": m47,
-        "sessionVerified": MessageLookupByLibrary.simpleMessage(
-            "La sesión ha sido verificada"),
+        "sessionVerified":
+            MessageLookupByLibrary.simpleMessage("La sesión está verificada"),
         "sharedTheLocation": m48,
         "timeOfDay": m49,
         "title": MessageLookupByLibrary.simpleMessage("FluffyChat"),
@@ -598,7 +600,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "verifyTitle":
             MessageLookupByLibrary.simpleMessage("Verificando la otra cuenta"),
         "waitingPartnerAcceptRequest": MessageLookupByLibrary.simpleMessage(
-            "Esperando a que el compañero acepte la solicitud..."),
+            "Esperando a que el socio acepte la solicitud..."),
         "waitingPartnerEmoji": MessageLookupByLibrary.simpleMessage(
             "Esperando a que el socio acepte los emojis..."),
         "waitingPartnerNumbers": MessageLookupByLibrary.simpleMessage(
