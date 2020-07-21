@@ -1539,7 +1539,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Welcome to the cutest instant messenger in the matrix network.": "Welcome to the cutest instant messenger in the matrix network.",
+  "Welcome to the cutest instant messenger in the matrix network.": "Welcome to the cutest instant messenger in the Matrix network.",
   "@Welcome to the cutest instant messenger in the matrix network.": {
     "type": "text",
     "placeholders": {}
