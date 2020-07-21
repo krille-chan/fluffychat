@@ -239,7 +239,7 @@
       "joinRules": {}
     }
   },
-  "changedTheProfileAvatar": "{username}がプロフィールのアバターを変更しました",
+  "changedTheProfileAvatar": "{username}がアバターを変更しました",
   "@changedTheProfileAvatar": {
     "type": "text",
     "placeholders": {
@@ -432,7 +432,7 @@
       "day": {}
     }
   },
-  "dateWithYear": "{year}-{month}-{day}",
+  "dateWithYear": "{year}/{month}/{day}",
   "@dateWithYear": {
     "type": "text",
     "placeholders": {
