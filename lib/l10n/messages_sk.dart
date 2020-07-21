@@ -19,9 +19,9 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'sk';
 
-  static m0(username) => "${username} prijali pozvanie";
+  static m0(username) => "${username} prijali pozvánku";
 
-  static m1(username) => "${username} aktivoval koncové šifrovanie";
+  static m1(username) => "${username} aktivovali koncové šifrovanie";
 
   static m60(username) => "Akcepovať žiadosť o verifikáciu od ${username}?";
 
@@ -30,7 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static m3(homeserver) =>
       "V základnom nastavení budete pripojený k ${homeserver}";
 
-  static m4(username) => "${username} zmenili svôj avatar";
+  static m4(username) => "${username} si zmenili svôj avatar";
 
   static m5(username, description) =>
       "${username} zmenili popis chatu na: „${description}“";
@@ -41,7 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static m7(username) => "${username} zmenili nastavenie oprávnení chatu";
 
   static m8(username, displayname) =>
-      "${username} zmenili prezývku na: ${displayname}";
+      "${username} si zmenili prezývku na: ${displayname}";
 
   static m9(username) => "${username} zmenili prístupové práva pre hosťov";
 
@@ -49,17 +49,17 @@ class MessageLookup extends MessageLookupByLibrary {
       "${username} zmenili prístupové práva pro hosťov na: ${rules}";
 
   static m11(username) =>
-      "${username} zmenili nastavenie viditelnosti histórie diskusie";
+      "${username} zmenili nastavenie viditelnosti histórie chatu";
 
   static m12(username, rules) =>
-      "${username} zmenili nastavenie viditelnosti histórie diskusie na: ${rules}";
+      "${username} zmenili nastavenie viditelnosti histórie chatu na: ${rules}";
 
   static m13(username) => "${username} zmenili nastavenie pravidiel pripojenia";
 
   static m14(username, joinRules) =>
       "${username} zmenili nastavenie pravidiel pripojenia na: ${joinRules}";
 
-  static m15(username) => "${username} zmenil profilový obrázok";
+  static m15(username) => "${username} si zmenili profilový obrázok";
 
   static m16(username) => "${username} zmenili nastavenie aliasov chatu";
 
@@ -84,7 +84,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m26(groupName) => "Pozvať kontakt do ${groupName}";
 
-  static m27(username, link) => "";
+  static m27(username, link) =>
+      "${username} vás pozval na FluffyChat.\n1. Nainštalujte si FluffyChat: http://fluffy.chat\n2. Zaregistrujte sa alebo sa prihláste\n3. Otvorte odkaz na pozvánku: ${link}";
 
   static m28(username, targetName) => "${username} pozvali ${targetName}";
 
@@ -93,15 +94,15 @@ class MessageLookup extends MessageLookupByLibrary {
   static m30(username, targetName) => "${username} vyhodili ${targetName}";
 
   static m31(username, targetName) =>
-      "${username} vyhodil a zabanoval ${targetName}";
+      "${username} vyhodili a zabanovali ${targetName}";
 
-  static m32(localizedTimeShort) => "Naposledy aktívny: ${localizedTimeShort}";
+  static m32(localizedTimeShort) => "Naposledy prítomní: ${localizedTimeShort}";
 
   static m33(count) => "Načítať ďalších ${count} účastníkov";
 
   static m34(homeserver) => "Prihlásenie k ${homeserver}";
 
-  static m35(number) => "${number} vybraných";
+  static m35(number) => "${number} označených správ";
 
   static m36(fileName) => "Prehrať (fileName}";
 
@@ -142,7 +143,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static m53(unreadEvents) => "${unreadEvents} neprečítaných správ";
 
   static m54(unreadEvents, unreadChats) =>
-      "${unreadEvents} neprečítaných správ v ${unreadChats}";
+      "${unreadEvents} neprečítaných správ v ${unreadChats} chatoch";
 
   static m55(username, count) => "${username} a ${count} dalších píšu…";
 
@@ -152,17 +153,17 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m58(username) => "${username} opustili chat";
 
-  static m59(username, type) => "${username} poslal udalosť ${type}";
+  static m59(username, type) => "${username} poslali udalosť ${type}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function>{
         "(Optional) Group name":
             MessageLookupByLibrary.simpleMessage("(Voliteľné) Názov skupiny"),
-        "About": MessageLookupByLibrary.simpleMessage("O aplikacií"),
+        "About": MessageLookupByLibrary.simpleMessage("O aplikácii"),
         "Accept": MessageLookupByLibrary.simpleMessage("Prijať"),
         "Account": MessageLookupByLibrary.simpleMessage("Účet"),
         "Account informations":
-            MessageLookupByLibrary.simpleMessage("Informácie o účtu"),
+            MessageLookupByLibrary.simpleMessage("Informácie o účte"),
         "Add a group description":
             MessageLookupByLibrary.simpleMessage("Pridať popis skupiny"),
         "Admin": MessageLookupByLibrary.simpleMessage("Administrátor"),
@@ -196,7 +197,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Zmeniť pozadie"),
         "Change your style":
             MessageLookupByLibrary.simpleMessage("Zmena štýlu"),
-        "Changelog": MessageLookupByLibrary.simpleMessage("Changelog"),
+        "Changelog": MessageLookupByLibrary.simpleMessage("História zmien"),
         "Chat": MessageLookupByLibrary.simpleMessage("Chat"),
         "Chat details":
             MessageLookupByLibrary.simpleMessage("Podrobnosti o chate"),
@@ -227,7 +228,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Create new group":
             MessageLookupByLibrary.simpleMessage("Vytvoriť novú skupinu"),
         "Currently active":
-            MessageLookupByLibrary.simpleMessage("Momentálne aktívny"),
+            MessageLookupByLibrary.simpleMessage("Momentálne prítomní"),
         "Dark": MessageLookupByLibrary.simpleMessage("Tmavá"),
         "Delete": MessageLookupByLibrary.simpleMessage("Odstrániť"),
         "Delete message":
@@ -257,7 +258,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Šifrovanie nie je aktívne"),
         "End to end encryption is currently in Beta! Use at your own risk!":
             MessageLookupByLibrary.simpleMessage(
-                "Konečné šifrovanie je momentalné v Beta verzii! Používajte na vlastné riziko!"),
+                "Konečné šifrovanie je momentálne v Beta verzii! Používajte na vlastné riziko!"),
         "End-to-end encryption settings": MessageLookupByLibrary.simpleMessage(
             "Nastavenie koncového šifrovania"),
         "Enter a group name":
@@ -302,8 +303,8 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Zdá sa, že nemáte žiadne služby Googlu v telefóne. To je dobré rozhodnutie pre vaše súkromie! Ak chcete dostávať push notifikácie vo FluffyChat, odporúčame používať microG: https://microg.org/"),
         "Kick from chat":
             MessageLookupByLibrary.simpleMessage("Vyhodiť z chatu"),
-        "Last seen IP":
-            MessageLookupByLibrary.simpleMessage("Naposledy videná IP adresa"),
+        "Last seen IP": MessageLookupByLibrary.simpleMessage(
+            "Naposledy zaznamenaná IP adresa"),
         "Leave": MessageLookupByLibrary.simpleMessage("Opustiť"),
         "Left the chat": MessageLookupByLibrary.simpleMessage("Opustili chat"),
         "License": MessageLookupByLibrary.simpleMessage("Licencia"),
@@ -332,7 +333,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Nový súkromný chat"),
         "No emotes found. 😕": MessageLookupByLibrary.simpleMessage(
             "Nenašli sa žiadne emotikony. 😕"),
-        "No permission": MessageLookupByLibrary.simpleMessage("Bez povolenia"),
+        "No permission":
+            MessageLookupByLibrary.simpleMessage("Chýba povolenie"),
         "No rooms found...": MessageLookupByLibrary.simpleMessage(
             "Nenašli sa žiadne miestnosti..."),
         "None": MessageLookupByLibrary.simpleMessage("Žiadne"),
@@ -350,7 +352,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Pick image": MessageLookupByLibrary.simpleMessage("Vybrať obrázok"),
         "Please be aware that you need Pantalaimon to use end-to-end encryption for now.":
             MessageLookupByLibrary.simpleMessage(
-                "Budte si vedomí, že na koncové šifrovanie zatiaľ potrebujete Pantalaimon."),
+                "Prosím berte na vedomie, že na koncové šifrovanie zatiaľ potrebujete Pantalaimon."),
         "Please choose a username": MessageLookupByLibrary.simpleMessage(
             "Vyberte si používateľské meno"),
         "Please enter a matrix identifier":
@@ -470,7 +472,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Máte zablokovaný prístup k tomuto chatu"),
         "You won\'t be able to disable the encryption anymore. Are you sure?":
             MessageLookupByLibrary.simpleMessage(
-                "Šifrovanie už nebude možné vypnúť. Ste si tým istý?"),
+                "Šifrovanie už nebude možné vypnúť. Ste si tým istí?"),
         "Your own username":
             MessageLookupByLibrary.simpleMessage("Vaša vlastná prezývka"),
         "acceptedTheInvitation": m0,

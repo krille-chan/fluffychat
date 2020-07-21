@@ -239,7 +239,7 @@
       "joinRules": {}
     }
   },
-  "changedTheProfileAvatar": "{username} changed the profile avatar",
+  "changedTheProfileAvatar": "{username} changed their avatar",
   "@changedTheProfileAvatar": {
     "type": "text",
     "placeholders": {

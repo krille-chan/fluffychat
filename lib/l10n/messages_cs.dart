@@ -157,6 +157,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "(Optional) Group name":
             MessageLookupByLibrary.simpleMessage("(Volitelné) Název skupiny"),
         "About": MessageLookupByLibrary.simpleMessage("O aplikaci"),
+        "Accept": MessageLookupByLibrary.simpleMessage("Přijmout"),
         "Account": MessageLookupByLibrary.simpleMessage("Účet"),
         "Account informations":
             MessageLookupByLibrary.simpleMessage("Informace o účtu"),
