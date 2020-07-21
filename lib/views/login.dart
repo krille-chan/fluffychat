@@ -57,7 +57,7 @@ class _LoginState extends State<Login> {
     if (!kIsWeb) {
       try {
         await FirebaseController.setupFirebase(
-          matrix.client,
+          matrix,
           matrix.widget.clientName,
         );
       } catch (exception) {

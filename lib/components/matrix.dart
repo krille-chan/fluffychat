@@ -81,7 +81,7 @@ class MatrixState extends State<Matrix> {
     client.connect();
     if (await initLoginState == LoginState.logged && !kIsWeb) {
       await FirebaseController.setupFirebase(
-        client,
+        this,
         widget.clientName,
       );
     }

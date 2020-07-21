@@ -13,6 +13,7 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'famedlysdk_store.dart';
+import '../components/matrix.dart';
 
 abstract class FirebaseController {
   static final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
@@ -26,7 +27,9 @@ abstract class FirebaseController {
   static const String GATEWAY_URL = 'https://janian.de:7023/';
   static const String PUSHER_FORMAT = 'event_id_only';
 
-  static Future<void> setupFirebase(Client client, String clientName) async {
+  static Future<void> setupFirebase(
+      MatrixState matrix, String clientName) async {
+    final client = matrix.client;
     if (Platform.isIOS) iOS_Permission();
 
     String token;
@@ -36,10 +39,18 @@ abstract class FirebaseController {
       token = null;
     }
     if (token?.isEmpty ?? true) {
-      BotToast.showText(
-        text: L10n.of(context).noGoogleServicesWarning,
-        duration: Duration(seconds: 15),
-      );
+      final storeItem =
+          await matrix.store.getItem('chat.fluffy.show_no_google');
+      final configOptionMissing = storeItem == null || storeItem.isEmpty;
+      if (configOptionMissing || (!configOptionMissing && storeItem == '1')) {
+        BotToast.showText(
+          text: L10n.of(context).noGoogleServicesWarning,
+          duration: Duration(seconds: 15),
+        );
+        if (configOptionMissing) {
+          await matrix.store.setItem('chat.fluffy.show_no_google', '0');
+        }
+      }
       return;
     }
     final pushers = await client.api.requestPushers();
