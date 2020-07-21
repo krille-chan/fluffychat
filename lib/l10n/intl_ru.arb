@@ -239,7 +239,7 @@
       "joinRules": {}
     }
   },
-  "changedTheProfileAvatar": "{username} сменил(а) аватар профиля",
+  "changedTheProfileAvatar": "{username} сменил(а) свой аватар",
   "@changedTheProfileAvatar": {
     "type": "text",
     "placeholders": {
