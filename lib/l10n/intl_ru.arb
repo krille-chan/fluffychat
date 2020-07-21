@@ -39,7 +39,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Admin": "Админ",
+  "Admin": "Администратор",
   "@Admin": {
     "type": "text",
     "placeholders": {}
@@ -825,7 +825,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Make an admin": "Сделать админом",
+  "Make an admin": "Сделать администратором",
   "@Make an admin": {
     "type": "text",
     "placeholders": {}
@@ -850,7 +850,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Mute chat": "Замутить чат",
+  "Mute chat": "Отключить уведомления",
   "@Mute chat": {
     "type": "text",
     "placeholders": {}
@@ -1364,7 +1364,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Unmute chat": "Размутить чат",
+  "Unmute chat": "Включить уведомления",
   "@Unmute chat": {
     "type": "text",
     "placeholders": {}
@@ -1509,17 +1509,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerAcceptRequest": "В ожидании партнера, чтобы принять запрос...",
+  "waitingPartnerAcceptRequest": "В ожидании партнёра, чтобы принять запрос...",
   "@waitingPartnerAcceptRequest": {
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerEmoji": "В ожидании партнера, чтобы принять смайлики...",
+  "waitingPartnerEmoji": "В ожидании партнёра, чтобы принять смайлики...",
   "@waitingPartnerEmoji": {
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerNumbers": "В ожидании партнера, чтобы принять числа...",
+  "waitingPartnerNumbers": "В ожидании партнёра, чтобы принять числа...",
   "@waitingPartnerNumbers": {
     "type": "text",
     "placeholders": {}
@@ -1539,7 +1539,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Welcome to the cutest instant messenger in the matrix network.": "Добро пожаловать в самый симпатичный мессенджер в сети matrix.",
+  "Welcome to the cutest instant messenger in the matrix network.": "Добро пожаловать в самый симпатичный мессенджер в сети Matrix.",
   "@Welcome to the cutest instant messenger in the matrix network.": {
     "type": "text",
     "placeholders": {}
