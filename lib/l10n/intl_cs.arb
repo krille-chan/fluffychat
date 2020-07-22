@@ -202,7 +202,7 @@
       "joinRules": {}
     }
   },
-  "changedTheProfileAvatar": "{username} změnili nastavení profilového avataru",
+  "changedTheProfileAvatar": "{username} změnili svůj avatar",
   "@changedTheProfileAvatar": {
     "type": "text",
     "placeholders": {
@@ -611,7 +611,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "",
+  "inviteText": "{username} vás pozval na FluffyChat.\n1. Nainstalujte si FluffyChat: http://fluffy.chat\n2. Zaregistrujte se anebo se přihlašte\n3. Otevřete odkaz na pozvánce: {link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {
@@ -773,7 +773,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Please be aware that you need Pantalaimon to use end-to-end encryption for now.": "",
+  "Please be aware that you need Pantalaimon to use end-to-end encryption for now.": "Vezmět na vědomí,",
   "@Please be aware that you need Pantalaimon to use end-to-end encryption for now.": {
     "type": "text",
     "placeholders": {}
@@ -1389,6 +1389,83 @@
   },
   "Accept": "Přijmout",
   "@Accept": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "keysMissing": "Chybí klíče",
+  "@keysMissing": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "keysCached": "Klíče jsou uloženy v mezipaměti",
+  "@keysCached": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "isDeviceKeyCorrect": "Je následjící kód zařízení správný?",
+  "@isDeviceKeyCorrect": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "incorrectPassphraseOrKey": "Nesprávné přístupové heslo anebo klíč pro obnovu",
+  "@incorrectPassphraseOrKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Encryption": "Šifrování",
+  "@Encryption": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "crossSigningEnabled": "Vzájemné ověření je zapnuté",
+  "@crossSigningEnabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "crossSigningDisabled": "Vzájemné ověření je vypnuté",
+  "@crossSigningDisabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "compareNumbersMatch": "Porovnejte a přesvědčete se, že následující čísla se shodují na obou zařízeních:",
+  "@compareNumbersMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "compareEmojiMatch": "Porovnejte a přesvědčete se, že následující emotikony se shodují na obou zařízeních:",
+  "@compareEmojiMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cachedKeys": "Klíče byly úspěšně uloženy!",
+  "@cachedKeys": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Block Device": "Blokovat zařízení",
+  "@Block Device": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askVerificationRequest": "Přijmout žádost o ověření od (username)?",
+  "@askVerificationRequest": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "askSSSSVerify": "Zadejte prosím vaší přístupovou frází k “bezpečnému úložišti” anebo “klíč pro obnovu” pro ověření vaší relace.",
+  "@askSSSSVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askSSSSSign": "Pro ověření této osoby, zadejte prosím přístupovou frází k “bezpečnému úložišti” anebo “klíč pro obnovu”.",
+  "@askSSSSSign": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askSSSSCache": "Prosím zadajte vaší prístupovu frázI k \"bezpečému úložišti\" anebo \"klíč na obnovu\" pro uložení klíčů.",
+  "@askSSSSCache": {
     "type": "text",
     "placeholders": {}
   }
