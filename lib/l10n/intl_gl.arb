@@ -239,7 +239,7 @@
       "joinRules": {}
     }
   },
-  "changedTheProfileAvatar": "{username} mudou o avatar do perfil",
+  "changedTheProfileAvatar": "{username} mudou o avatar",
   "@changedTheProfileAvatar": {
     "type": "text",
     "placeholders": {
@@ -1539,7 +1539,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Welcome to the cutest instant messenger in the matrix network.": "Benvida a mensaxería instantánea más cuquiña da rede matrix.",
+  "Welcome to the cutest instant messenger in the matrix network.": "Benvida a mensaxería instantánea más cuquiña da rede Matrix.",
   "@Welcome to the cutest instant messenger in the matrix network.": {
     "type": "text",
     "placeholders": {}
