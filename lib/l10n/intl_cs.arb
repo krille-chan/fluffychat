@@ -773,7 +773,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Please be aware that you need Pantalaimon to use end-to-end encryption for now.": "Vezmět na vědomí,",
+  "Please be aware that you need Pantalaimon to use end-to-end encryption for now.": "Prosím vezměte na vědomí, že pro použití koncového šifrování je prozatím potřeba použít Pantalaimon",
   "@Please be aware that you need Pantalaimon to use end-to-end encryption for now.": {
     "type": "text",
     "placeholders": {}
@@ -943,7 +943,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Remove exile": "",
+  "Remove exile": "Odblokovat",
   "@Remove exile": {
     "type": "text",
     "placeholders": {}
@@ -1000,7 +1000,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Seen a long time ago": "",
+  "Seen a long time ago": "Viděni velmi dávno",
   "@Seen a long time ago": {
     "type": "text",
     "placeholders": {}
@@ -1194,17 +1194,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "Try to send again": "",
+  "Try to send again": "Pokusit se odeslat znovu",
   "@Try to send again": {
     "type": "text",
     "placeholders": {}
   },
-  "Tuesday": "",
+  "Tuesday": "Úterý",
   "@Tuesday": {
     "type": "text",
     "placeholders": {}
   },
-  "unbannedUser": "",
+  "unbannedUser": "{username} odbanovali {targetName}",
   "@unbannedUser": {
     "type": "text",
     "placeholders": {
@@ -1337,7 +1337,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Welcome to the cutest instant messenger in the matrix network.": "Vítejte v nejroztomilejší diskuzní aplikaci pro síť matrix.",
+  "Welcome to the cutest instant messenger in the matrix network.": "Vítejte v nejroztomilejší diskuzní aplikaci pro síť Matrix.",
   "@Welcome to the cutest instant messenger in the matrix network.": {
     "type": "text",
     "placeholders": {}
@@ -1466,6 +1466,126 @@
   },
   "askSSSSCache": "Prosím zadajte vaší prístupovu frázI k \"bezpečému úložišti\" anebo \"klíč na obnovu\" pro uložení klíčů.",
   "@askSSSSCache": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "waitingPartnerNumbers": "Čeká se na potvrzení čísel partnerem…",
+  "@waitingPartnerNumbers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "waitingPartnerEmoji": "Čeká se na potvrzení emoji partnerem…",
+  "@waitingPartnerEmoji": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "waitingPartnerAcceptRequest": "Čeká se na potvrzení žádosti partnerem…",
+  "@waitingPartnerAcceptRequest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Verify User": "Ověřit uživatele",
+  "@Verify User": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyTitle": "Ověřuji druhý účet",
+  "@verifyTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifySuccess": "Ověření proběhlo úspěšně!",
+  "@verifySuccess": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyStart": "Spustit ověření",
+  "@verifyStart": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifiedSession": "Sezení úspěšně ověřeno!",
+  "@verifiedSession": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyManual": "Ověřit ručně",
+  "@verifyManual": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknownSessionVerify": "Neznámé sezení, prosím o ověření",
+  "@unknownSessionVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Unblock Device": "Odblokovat zařízení",
+  "@Unblock Device": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "They Match": "Shodují se",
+  "@They Match": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "They Don't Match": "Neshodují se",
+  "@They Don't Match": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Submit": "Potvrdit",
+  "@Submit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Skip": "Přeskočit",
+  "@Skip": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sessionVerified": "Sezení je ověřeno",
+  "@sessionVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Room has been upgraded": "Místnost byla upgradována",
+  "@Room has been upgraded": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Reject": "Zamítnout",
+  "@Reject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passphraseOrKey": "heslo nebo klíč k ověření",
+  "@passphraseOrKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "onlineKeyBackupEnabled": "Online záloha kíčů je zapnuta",
+  "@onlineKeyBackupEnabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "onlineKeyBackupDisabled": "Online záloha klíčů je vypnutá",
+  "@onlineKeyBackupDisabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noMegolmBootstrap": "Fluffychet momentálně nepodporuje aktivaci online záloh klíčů. Prosím zapněte ji z klientu Element.",
+  "@noMegolmBootstrap": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noCrossSignBootstrap": "Fluffychet momentálně nepodporuje aktivaci křížového podpisu. Prosím aktivujte ho z klientu Element.",
+  "@noCrossSignBootstrap": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newVerificationRequest": "Nová žádost o ověření!",
+  "@newVerificationRequest": {
     "type": "text",
     "placeholders": {}
   }
