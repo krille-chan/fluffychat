@@ -202,7 +202,7 @@
       "joinRules": {}
     }
   },
-  "changedTheProfileAvatar": "{username} a changé son image de profil",
+  "changedTheProfileAvatar": "{username} a changé son avatar",
   "@changedTheProfileAvatar": {
     "type": "text",
     "placeholders": {
@@ -1337,7 +1337,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Welcome to the cutest instant messenger in the matrix network.": "Bienvenue dans la messagerie la plus mignonne du réseau Matrix.",
+  "Welcome to the cutest instant messenger in the matrix network.": "Bienvenue dans la messagerie instantanée la plus mignonne du réseau Matrix.",
   "@Welcome to the cutest instant messenger in the matrix network.": {
     "type": "text",
     "placeholders": {}
