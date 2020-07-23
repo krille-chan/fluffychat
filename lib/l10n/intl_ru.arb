@@ -79,7 +79,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSCache": "Пожалуйста, введите секретную фразу безопасного хранилища или ключ восстановления для кеширования ключей.",
+  "askSSSSCache": "Пожалуйста, введите секретную фразу безопасного хранилища или ключ восстановления для кэширования ключей.",
   "@askSSSSCache": {
     "type": "text",
     "placeholders": {}
@@ -89,7 +89,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSVerify": "Пожалуйста, введите вашу безопасную парольную фразу или ключ восстановления, чтобы подтвердить ваш сеанс.",
+  "askSSSSVerify": "Пожалуйста, введите вашу парольную фразу или ключ восстановления для подтвердждения сеанса.",
   "@askSSSSVerify": {
     "type": "text",
     "placeholders": {}
@@ -106,17 +106,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "Avatar has been changed": "Аватар был изменен",
+  "Avatar has been changed": "Аватар был изменён",
   "@Avatar has been changed": {
     "type": "text",
     "placeholders": {}
   },
-  "Ban from chat": "Бан чата",
+  "Ban from chat": "Забанить в чате",
   "@Ban from chat": {
     "type": "text",
     "placeholders": {}
   },
-  "Banned": "Забанен",
+  "Banned": "Забанен(а)",
   "@Banned": {
     "type": "text",
     "placeholders": {}
@@ -300,7 +300,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Choose a username": "Выберете имя пользователя",
+  "Choose a username": "Выберите имя пользователя",
   "@Choose a username": {
     "type": "text",
     "placeholders": {}
@@ -709,7 +709,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Edit Jitsi instance": "Изменить экземпляр Jitsi",
+  "Edit Jitsi instance": "Изменить сервер Jitsi",
   "@Edit Jitsi instance": {
     "type": "text",
     "placeholders": {}
@@ -989,7 +989,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Please enter a matrix identifier": "Пожалуйста, введите matrix идентификатор",
+  "Please enter a matrix identifier": "Пожалуйста, введите идентификатор Matrix",
   "@Please enter a matrix identifier": {
     "type": "text",
     "placeholders": {}
@@ -1270,7 +1270,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Use Amoled compatible colors?": "Использовать Amoled совместимые цвета?",
+  "Use Amoled compatible colors?": "Использовать AMOLED-совместимые цвета?",
   "@Use Amoled compatible colors?": {
     "type": "text",
     "placeholders": {}
@@ -1280,7 +1280,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Start your first chat :-)": "Начни свой первый чат :-)",
+  "Start your first chat :-)": "Начните свой первый чат :-)",
   "@Start your first chat :-)": {
     "type": "text",
     "placeholders": {}
