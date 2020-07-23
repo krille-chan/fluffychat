@@ -23,138 +23,138 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m1(username) => "${username} je aktivirao/la obostrano šifriranje";
 
-  static m60(username) =>
+  static m2(username) =>
       "Prihvatiti ovaj zahtjev za potvrđivanje od ${username}?";
 
-  static m2(username, targetName) =>
+  static m3(username, targetName) =>
       "${username} je isključio/la ${targetName}";
 
-  static m3(homeserver) => "Standardno ćeš biti povezan/a s ${homeserver}";
+  static m4(homeserver) => "Standardno ćeš biti povezan/a s ${homeserver}";
 
-  static m4(username) => "${username} je promijenio/la avatar chata";
+  static m5(username) => "${username} je promijenio/la avatar chata";
 
-  static m5(username, description) =>
+  static m6(username, description) =>
       "${username} je promijenio/la opis chata u: „${description}”";
 
-  static m6(username, chatname) =>
+  static m7(username, chatname) =>
       "${username} je promijenio/la ime chata u: „${chatname}”";
 
-  static m7(username) => "${username} je promijenio/la dozvole chata";
+  static m8(username) => "${username} je promijenio/la dozvole chata";
 
-  static m8(username, displayname) =>
+  static m9(username, displayname) =>
       "${username} je promijenio/la prikazano ime u: ${displayname}";
 
-  static m9(username) =>
+  static m10(username) =>
       "${username} je promijenio/la pravila pristupa za goste";
 
-  static m10(username, rules) =>
+  static m11(username, rules) =>
       "${username} je promijenio/la pravila pristupa za goste u: ${rules}";
 
-  static m11(username) => "${username} je promijenio/la vidljivost kronologije";
+  static m12(username) => "${username} je promijenio/la vidljivost kronologije";
 
-  static m12(username, rules) =>
+  static m13(username, rules) =>
       "${username} je promijenio/la vidljivost kronologije u: ${rules}";
 
-  static m13(username) => "${username} je promijenio/la pravila pridruživanja";
+  static m14(username) => "${username} je promijenio/la pravila pridruživanja";
 
-  static m14(username, joinRules) =>
+  static m15(username, joinRules) =>
       "${username} je promijenio/la pravila pridruživanja u: ${joinRules}";
 
-  static m15(username) => "${username} je promijenio/la avatar profila";
+  static m16(username) => "${username} je promijenio/la avatar profila";
 
-  static m16(username) => "${username} je promijenio/la pseudonime soba";
+  static m17(username) => "${username} je promijenio/la pseudonime soba";
 
-  static m17(username) => "${username} je promijenio/la poveznicu poziva";
+  static m18(username) => "${username} je promijenio/la poveznicu poziva";
 
-  static m18(error) => "Neuspjelo dešifriranje poruke: ${error}";
+  static m19(error) => "Neuspjelo dešifriranje poruke: ${error}";
 
-  static m19(count) => "${count} sudionika";
+  static m20(count) => "${count} sudionika";
 
-  static m20(username) => "${username} je stvorio/la chat";
+  static m21(username) => "${username} je stvorio/la chat";
 
-  static m21(date, timeOfDay) => "${date}, ${timeOfDay}";
+  static m22(date, timeOfDay) => "${date}, ${timeOfDay}";
 
-  static m22(year, month, day) => "${day}. ${month}. ${year}.";
+  static m23(year, month, day) => "${day}. ${month}. ${year}.";
 
-  static m23(month, day) => "${day}. ${month}.";
+  static m24(month, day) => "${day}. ${month}.";
 
-  static m24(displayname) => "Grupa s ${displayname}";
+  static m25(displayname) => "Grupa s ${displayname}";
 
-  static m25(username, targetName) =>
+  static m26(username, targetName) =>
       "${username} je povukao/la poziv za ${targetName}";
 
-  static m26(groupName) => "Pozovi kontakt u ${groupName}";
+  static m27(groupName) => "Pozovi kontakt u ${groupName}";
 
-  static m27(username, link) =>
+  static m28(username, link) =>
       "${username} te je pozvao/la u FluffyChat. \n1. Instaliraj FluffyChat: http://fluffy.chat \n2. Registriraj ili prijavi se \n3. Otvori poveznicu poziva: ${link}";
 
-  static m28(username, targetName) => "${username} je pozvao/la ${targetName}";
+  static m29(username, targetName) => "${username} je pozvao/la ${targetName}";
 
-  static m29(username) => "${username} se pridružio/la chatu";
+  static m30(username) => "${username} se pridružio/la chatu";
 
-  static m30(username, targetName) => "${username} je izbacio/la ${targetName}";
+  static m31(username, targetName) => "${username} je izbacio/la ${targetName}";
 
-  static m31(username, targetName) =>
+  static m32(username, targetName) =>
       "${username} je izbacio/la i isključio/la ${targetName}";
 
-  static m32(localizedTimeShort) => "Zadnja aktivnost: ${localizedTimeShort}";
+  static m33(localizedTimeShort) => "Zadnja aktivnost: ${localizedTimeShort}";
 
-  static m33(count) => "Učitaj još ${count} sudionika";
+  static m34(count) => "Učitaj još ${count} sudionika";
 
-  static m34(homeserver) => "Prijavi se na ${homeserver}";
+  static m35(homeserver) => "Prijavi se na ${homeserver}";
 
-  static m35(number) => "${number} odabrano";
+  static m36(number) => "${number} odabrano";
 
-  static m36(fileName) => "Sviraj ${fileName}";
+  static m37(fileName) => "Sviraj ${fileName}";
 
-  static m37(username) => "${username} je preuredio/la događaj";
+  static m38(username) => "${username} je preuredio/la događaj";
 
-  static m38(username) => "${username} je odbio/la poziv";
+  static m39(username) => "${username} je odbio/la poziv";
 
-  static m39(username) => "Uklonjeno od ${username}";
+  static m40(username) => "Uklonjeno od ${username}";
 
-  static m40(username) => "Viđeno od ${username}";
+  static m41(username) => "Viđeno od ${username}";
 
-  static m41(username, count) =>
+  static m42(username, count) =>
       "Viđeno od ${username} i još ${count} korisnika";
 
-  static m42(username, username2) => "Viđeno od ${username} i ${username2}";
+  static m43(username, username2) => "Viđeno od ${username} i ${username2}";
 
-  static m43(username) => "${username} ja poslao/la datoteku";
+  static m44(username) => "${username} ja poslao/la datoteku";
 
-  static m44(username) => "${username} ja poslao/la sliku";
+  static m45(username) => "${username} ja poslao/la sliku";
 
-  static m45(username) => "${username} je poslao/la naljepnicu";
+  static m46(username) => "${username} je poslao/la naljepnicu";
 
-  static m46(username) => "${username} ja poslao/la video";
+  static m47(username) => "${username} ja poslao/la video";
 
-  static m47(username) => "${username} ja poslao/la audio";
+  static m48(username) => "${username} ja poslao/la audio";
 
-  static m48(username) => "${username} je dijelio/la mjesto";
+  static m49(username) => "${username} je dijelio/la mjesto";
 
-  static m49(hours12, hours24, minutes, suffix) => "${hours24}:${minutes}";
+  static m50(hours12, hours24, minutes, suffix) => "${hours24}:${minutes}";
 
-  static m50(username, targetName) =>
+  static m51(username, targetName) =>
       "${username} je ponovo uključio/la ${targetName}";
 
-  static m51(type) => "Nepoznata vrsta događaja „${type}”";
+  static m52(type) => "Nepoznata vrsta događaja „${type}”";
 
-  static m52(unreadCount) => "${unreadCount} nepročitana chata";
+  static m53(unreadCount) => "${unreadCount} nepročitana chata";
 
-  static m53(unreadEvents) => "${unreadEvents} nepročitane poruke";
+  static m54(unreadEvents) => "${unreadEvents} nepročitane poruke";
 
-  static m54(unreadEvents, unreadChats) =>
+  static m55(unreadEvents, unreadChats) =>
       "${unreadEvents} nepročitane poruke u ${unreadChats} chata";
 
-  static m55(username, count) => "${username} i još ${count} korisnika pišu …";
+  static m56(username, count) => "${username} i još ${count} korisnika pišu …";
 
-  static m56(username, username2) => "${username} i ${username2} pišu …";
+  static m57(username, username2) => "${username} i ${username2} pišu …";
 
-  static m57(username) => "${username} piše …";
+  static m58(username) => "${username} piše …";
 
-  static m58(username) => "${username} je napustio/la chat";
+  static m59(username) => "${username} je napustio/la chat";
 
-  static m59(username, type) => "${username} ja poslao/la ${type} događaj";
+  static m60(username, type) => "${username} ja poslao/la ${type} događaj";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function>{
@@ -479,72 +479,72 @@ class MessageLookup extends MessageLookupByLibrary {
             "Za potpisivanje druge osobe, upiši svoju sigurnosnu lozinku ili ključ za obnavljanje."),
         "askSSSSVerify": MessageLookupByLibrary.simpleMessage(
             "Za potvrđivanje tvoje sesije, upiši svoju sigurnosnu lozinku ili ključ za obnavljanje."),
-        "askVerificationRequest": m60,
-        "bannedUser": m2,
-        "byDefaultYouWillBeConnectedTo": m3,
+        "askVerificationRequest": m2,
+        "bannedUser": m3,
+        "byDefaultYouWillBeConnectedTo": m4,
         "cachedKeys": MessageLookupByLibrary.simpleMessage(
             "Uspješno međuspremljeni ključevi!"),
-        "changedTheChatAvatar": m4,
-        "changedTheChatDescriptionTo": m5,
-        "changedTheChatNameTo": m6,
-        "changedTheChatPermissions": m7,
-        "changedTheDisplaynameTo": m8,
-        "changedTheGuestAccessRules": m9,
-        "changedTheGuestAccessRulesTo": m10,
-        "changedTheHistoryVisibility": m11,
-        "changedTheHistoryVisibilityTo": m12,
-        "changedTheJoinRules": m13,
-        "changedTheJoinRulesTo": m14,
-        "changedTheProfileAvatar": m15,
-        "changedTheRoomAliases": m16,
-        "changedTheRoomInvitationLink": m17,
+        "changedTheChatAvatar": m5,
+        "changedTheChatDescriptionTo": m6,
+        "changedTheChatNameTo": m7,
+        "changedTheChatPermissions": m8,
+        "changedTheDisplaynameTo": m9,
+        "changedTheGuestAccessRules": m10,
+        "changedTheGuestAccessRulesTo": m11,
+        "changedTheHistoryVisibility": m12,
+        "changedTheHistoryVisibilityTo": m13,
+        "changedTheJoinRules": m14,
+        "changedTheJoinRulesTo": m15,
+        "changedTheProfileAvatar": m16,
+        "changedTheRoomAliases": m17,
+        "changedTheRoomInvitationLink": m18,
         "compareEmojiMatch": MessageLookupByLibrary.simpleMessage(
             "Usporedi i provjeri, poklapaju li se sljedeći emojiji s onima drugog uređaja:"),
         "compareNumbersMatch": MessageLookupByLibrary.simpleMessage(
             "Usporedi i provjeri, poklapaju li se sljedeći brojevi s onima drugog uređaja:"),
-        "couldNotDecryptMessage": m18,
-        "countParticipants": m19,
-        "createdTheChat": m20,
+        "couldNotDecryptMessage": m19,
+        "countParticipants": m20,
+        "createdTheChat": m21,
         "crossSigningDisabled": MessageLookupByLibrary.simpleMessage(
             "Unakrsno potpisivanje je deaktivirano"),
         "crossSigningEnabled": MessageLookupByLibrary.simpleMessage(
             "Unakrsno potpisivanje je aktivirano"),
-        "dateAndTimeOfDay": m21,
-        "dateWithYear": m22,
-        "dateWithoutYear": m23,
+        "dateAndTimeOfDay": m22,
+        "dateWithYear": m23,
+        "dateWithoutYear": m24,
         "emoteExists":
             MessageLookupByLibrary.simpleMessage("Emot već postoji!"),
         "emoteInvalid":
             MessageLookupByLibrary.simpleMessage("Neispravna kratica emota!"),
         "emoteWarnNeedToPick": MessageLookupByLibrary.simpleMessage(
             "Moraš odabrati jednu kraticu emota i sliku!"),
-        "groupWith": m24,
-        "hasWithdrawnTheInvitationFor": m25,
+        "groupWith": m25,
+        "hasWithdrawnTheInvitationFor": m26,
         "incorrectPassphraseOrKey": MessageLookupByLibrary.simpleMessage(
             "Neispravna lozinka ili ključ za obnavljanje"),
-        "inviteContactToGroup": m26,
-        "inviteText": m27,
-        "invitedUser": m28,
+        "inviteContactToGroup": m27,
+        "inviteText": m28,
+        "invitedUser": m29,
         "is typing...": MessageLookupByLibrary.simpleMessage("piše …"),
         "isDeviceKeyCorrect": MessageLookupByLibrary.simpleMessage(
             "Je li sljedeći ključ uređaja ispravan?"),
-        "joinedTheChat": m29,
+        "joinedTheChat": m30,
         "keysCached": MessageLookupByLibrary.simpleMessage(
             "Ključevi su spremljeni u predmemoriji"),
         "keysMissing":
             MessageLookupByLibrary.simpleMessage("Nedostaju ključevi"),
-        "kicked": m30,
-        "kickedAndBanned": m31,
-        "lastActiveAgo": m32,
-        "loadCountMoreParticipants": m33,
-        "logInTo": m34,
+        "kicked": m31,
+        "kickedAndBanned": m32,
+        "lastActiveAgo": m33,
+        "loadCountMoreParticipants": m34,
+        "logInTo": m35,
         "newVerificationRequest":
             MessageLookupByLibrary.simpleMessage("Novi zahtjev za provjeru!"),
         "noCrossSignBootstrap": MessageLookupByLibrary.simpleMessage(
             "Fluffychat trenutačno ne podržava unakrsno potpisivanje. Aktiviraj je pomoću Element-a."),
         "noMegolmBootstrap": MessageLookupByLibrary.simpleMessage(
             "Fluffychat trenutačno ne podržava online sigurnosnu kopiju ključeva. Aktiviraj je pomoću Element-a."),
-        "numberSelected": m35,
+        "numberSelected": m36,
         "ok": MessageLookupByLibrary.simpleMessage("u redu"),
         "onlineKeyBackupDisabled": MessageLookupByLibrary.simpleMessage(
             "Online sigurnosna kopija ključeva je deaktivirana"),
@@ -552,35 +552,35 @@ class MessageLookup extends MessageLookupByLibrary {
             "Online sigurnosna kopija ključeva je aktivirana"),
         "passphraseOrKey": MessageLookupByLibrary.simpleMessage(
             "Lozinka ili ključ za obnavljanje"),
-        "play": m36,
-        "redactedAnEvent": m37,
-        "rejectedTheInvitation": m38,
-        "removedBy": m39,
-        "seenByUser": m40,
-        "seenByUserAndCountOthers": m41,
-        "seenByUserAndUser": m42,
-        "sentAFile": m43,
-        "sentAPicture": m44,
-        "sentASticker": m45,
-        "sentAVideo": m46,
-        "sentAnAudio": m47,
+        "play": m37,
+        "redactedAnEvent": m38,
+        "rejectedTheInvitation": m39,
+        "removedBy": m40,
+        "seenByUser": m41,
+        "seenByUserAndCountOthers": m42,
+        "seenByUserAndUser": m43,
+        "sentAFile": m44,
+        "sentAPicture": m45,
+        "sentASticker": m46,
+        "sentAVideo": m47,
+        "sentAnAudio": m48,
         "sessionVerified":
             MessageLookupByLibrary.simpleMessage("Sesija je provjerena"),
-        "sharedTheLocation": m48,
-        "timeOfDay": m49,
+        "sharedTheLocation": m49,
+        "timeOfDay": m50,
         "title": MessageLookupByLibrary.simpleMessage("FluffyChat"),
-        "unbannedUser": m50,
-        "unknownEvent": m51,
+        "unbannedUser": m51,
+        "unknownEvent": m52,
         "unknownSessionVerify":
             MessageLookupByLibrary.simpleMessage("Nepoznata sesija, provjeri"),
-        "unreadChats": m52,
-        "unreadMessages": m53,
-        "unreadMessagesInChats": m54,
-        "userAndOthersAreTyping": m55,
-        "userAndUserAreTyping": m56,
-        "userIsTyping": m57,
-        "userLeftTheChat": m58,
-        "userSentUnknownEvent": m59,
+        "unreadChats": m53,
+        "unreadMessages": m54,
+        "unreadMessagesInChats": m55,
+        "userAndOthersAreTyping": m56,
+        "userAndUserAreTyping": m57,
+        "userIsTyping": m58,
+        "userLeftTheChat": m59,
+        "userSentUnknownEvent": m60,
         "verifiedSession":
             MessageLookupByLibrary.simpleMessage("Uspješno provjerena sesija!"),
         "verifyManual": MessageLookupByLibrary.simpleMessage("Provjeri ručno"),
