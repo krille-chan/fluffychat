@@ -62,7 +62,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static m15(username, joinRules) =>
       "${username} a changé les règles d\'accès à la discussion en : ${joinRules}";
 
-  static m16(username) => "${username} a changé son image de profil";
+  static m16(username) => "${username} a changé son avatar";
 
   static m17(username) => "${username} a changé les adresses du salon";
 
@@ -465,7 +465,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Wednesday": MessageLookupByLibrary.simpleMessage("Mercredi"),
         "Welcome to the cutest instant messenger in the matrix network.":
             MessageLookupByLibrary.simpleMessage(
-                "Bienvenue dans la messagerie la plus mignonne du réseau Matrix."),
+                "Bienvenue dans la messagerie instantanée la plus mignonne du réseau Matrix."),
         "Who is allowed to join this group":
             MessageLookupByLibrary.simpleMessage(
                 "Qui est autorisé à rejoindre ce groupe"),
