@@ -1,11 +1,24 @@
 # Version 0.16.0 - 2020-07-??
 ### Features
 - Implement web notifications
+- Implement a connection status header	
 ### Changes
-- Various performance improvements
-- Added languages: Galician, Croatian, Japanese, Russian
+- Switch out database engine for faster performance
+- Greatly improve startup time
+- Added languages: Galician, Croatian, Japanese, Russian, Ukrainian - Thanks a lot to all the weblate users!
+- Only show the microg toast once, if you have play services disabled
+- Homeserver URL input now strips trailing whitespace and slash - Thanks @Katerina
+- Also use prev_content to determine profile of a user: This allows the username and avatar of people who left a group to still be displayed
 ### Fixes:
-- Various fixes, including key verification fixes
+- Fix not being able to initiate key verification properly
+- Fix message sending being weird on slow networks
+- Fix a few HTML rendering bugs
+- Various other fixes
+- Fix the 12h clock showing 00:15am, instead of 12:15am	- Thanks @not_chicken
+- Fix an issue with replies and invalid HTML
+- Fix messages getting lost when retrieving chat history
+- Fix a bug where an incorrect string encoding from the server is assumed
+- Fix a bug where people couldn't log in if they had email notifications enabled
 
 # Version 0.15.1 - 2020-06-26
 ### Fixes:
