@@ -174,14 +174,14 @@
       "description": {}
     }
   },
-  "changedTheChatPermissions": "",
+  "changedTheChatPermissions": "{username} змінив(ла) права чату",
   "@changedTheChatPermissions": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheDisplaynameTo": "",
+  "changedTheDisplaynameTo": "{username} змінив(ла) відображуване ім'я на: {displayname}",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -189,12 +189,12 @@
       "displayname": {}
     }
   },
-  "Change the homeserver": "",
+  "Change the homeserver": "Змінити домашній сервер",
   "@Change the homeserver": {
     "type": "text",
     "placeholders": {}
   },
-  "changedTheGuestAccessRules": "",
+  "changedTheGuestAccessRules": "{username} змінив(ла) правила гостьового доступу",
   "@changedTheGuestAccessRules": {
     "type": "text",
     "placeholders": {
@@ -367,7 +367,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Could not set displayname": "",
+  "Could not set displayname": "Помилка при встановленні відображуваного імені",
   "@Could not set displayname": {
     "type": "text",
     "placeholders": {}
@@ -471,7 +471,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Displayname has been changed": "",
+  "Displayname has been changed": "Відображуване ім'я було змінено",
   "@Displayname has been changed": {
     "type": "text",
     "placeholders": {}
@@ -481,7 +481,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Edit displayname": "",
+  "Edit displayname": "Змінити відображуване ім'я",
   "@Edit displayname": {
     "type": "text",
     "placeholders": {}
@@ -611,7 +611,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "groupWith": "",
+  "groupWith": "Група з {displayname}",
   "@groupWith": {
     "type": "text",
     "placeholders": {
