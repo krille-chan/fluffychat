@@ -180,9 +180,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "Authentication":
             MessageLookupByLibrary.simpleMessage("Аутентификация"),
         "Avatar has been changed":
-            MessageLookupByLibrary.simpleMessage("Аватар был изменен"),
-        "Ban from chat": MessageLookupByLibrary.simpleMessage("Бан чата"),
-        "Banned": MessageLookupByLibrary.simpleMessage("Забанен"),
+            MessageLookupByLibrary.simpleMessage("Аватар был изменён"),
+        "Ban from chat":
+            MessageLookupByLibrary.simpleMessage("Забанить в чате"),
+        "Banned": MessageLookupByLibrary.simpleMessage("Забанен(а)"),
         "Block Device":
             MessageLookupByLibrary.simpleMessage("Заблокировать устройство"),
         "Cancel": MessageLookupByLibrary.simpleMessage("Отмена"),
@@ -202,7 +203,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Choose a strong password":
             MessageLookupByLibrary.simpleMessage("Выберите надёжный пароль"),
         "Choose a username":
-            MessageLookupByLibrary.simpleMessage("Выберете имя пользователя"),
+            MessageLookupByLibrary.simpleMessage("Выберите имя пользователя"),
         "Close": MessageLookupByLibrary.simpleMessage("Закрыть"),
         "Confirm": MessageLookupByLibrary.simpleMessage("Подтвердить"),
         "Connect": MessageLookupByLibrary.simpleMessage("Присоединиться"),
@@ -241,7 +242,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Donate": MessageLookupByLibrary.simpleMessage("Пожертвовать"),
         "Download file": MessageLookupByLibrary.simpleMessage("Скачать файл"),
         "Edit Jitsi instance":
-            MessageLookupByLibrary.simpleMessage("Изменить экземпляр Jitsi"),
+            MessageLookupByLibrary.simpleMessage("Изменить сервер Jitsi"),
         "Edit displayname":
             MessageLookupByLibrary.simpleMessage("Изменить отображаемое имя"),
         "Emote Settings":
@@ -357,7 +358,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Пожалуйста, выберите имя пользователя"),
         "Please enter a matrix identifier":
             MessageLookupByLibrary.simpleMessage(
-                "Пожалуйста, введите matrix идентификатор"),
+                "Пожалуйста, введите идентификатор Matrix"),
         "Please enter your password": MessageLookupByLibrary.simpleMessage(
             "Пожалуйста введите ваш пароль"),
         "Please enter your username": MessageLookupByLibrary.simpleMessage(
@@ -409,7 +410,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Skip": MessageLookupByLibrary.simpleMessage("Пропустить"),
         "Source code": MessageLookupByLibrary.simpleMessage("Исходный код"),
         "Start your first chat :-)":
-            MessageLookupByLibrary.simpleMessage("Начни свой первый чат :-)"),
+            MessageLookupByLibrary.simpleMessage("Начните свой первый чат :-)"),
         "Submit": MessageLookupByLibrary.simpleMessage("Отправить"),
         "Sunday": MessageLookupByLibrary.simpleMessage("Воскресенье"),
         "System": MessageLookupByLibrary.simpleMessage("Системный"),
@@ -435,7 +436,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Unmute chat":
             MessageLookupByLibrary.simpleMessage("Включить уведомления"),
         "Use Amoled compatible colors?": MessageLookupByLibrary.simpleMessage(
-            "Использовать Amoled совместимые цвета?"),
+            "Использовать AMOLED-совместимые цвета?"),
         "Username": MessageLookupByLibrary.simpleMessage("Имя пользователя"),
         "Verify": MessageLookupByLibrary.simpleMessage("Проверить"),
         "Verify User":
@@ -480,11 +481,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "activatedEndToEndEncryption": m1,
         "alias": MessageLookupByLibrary.simpleMessage("псевдоним"),
         "askSSSSCache": MessageLookupByLibrary.simpleMessage(
-            "Пожалуйста, введите секретную фразу безопасного хранилища или ключ восстановления для кеширования ключей."),
+            "Пожалуйста, введите секретную фразу безопасного хранилища или ключ восстановления для кэширования ключей."),
         "askSSSSSign": MessageLookupByLibrary.simpleMessage(
             "Чтобы иметь возможность подписать другое лицо, пожалуйста, введите пароль или ключ восстановления вашего безопасного хранилища."),
         "askSSSSVerify": MessageLookupByLibrary.simpleMessage(
-            "Пожалуйста, введите вашу безопасную парольную фразу или ключ восстановления, чтобы подтвердить ваш сеанс."),
+            "Пожалуйста, введите вашу парольную фразу или ключ восстановления для подтвердждения сеанса."),
         "askVerificationRequest": m2,
         "bannedUser": m3,
         "byDefaultYouWillBeConnectedTo": m4,

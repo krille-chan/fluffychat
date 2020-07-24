@@ -441,7 +441,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Wednesday": MessageLookupByLibrary.simpleMessage("Wednesday"),
         "Welcome to the cutest instant messenger in the matrix network.":
             MessageLookupByLibrary.simpleMessage(
-                "Welcome to the cutest instant messenger in the matrix network."),
+                "Welcome to the cutest instant messenger in the Matrix network."),
         "Who is allowed to join this group":
             MessageLookupByLibrary.simpleMessage(
                 "Who is allowed to join this group"),

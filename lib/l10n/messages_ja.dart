@@ -52,7 +52,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m15(username, joinRules) => "${username}が参加ルールを${joinRules}に変更しました";
 
-  static m16(username) => "${username}がプロフィールのアバターを変更しました";
+  static m16(username) => "${username}がアバターを変更しました";
 
   static m17(username) => "${username}が部屋のエイリアスを変更しました";
 
@@ -66,7 +66,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m22(date, timeOfDay) => "${date}, ${timeOfDay}";
 
-  static m23(year, month, day) => "${year}-${month}-${day}";
+  static m23(year, month, day) => "${year}/${month}/${day}";
 
   static m24(month, day) => "${month}-${day}";
 

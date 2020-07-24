@@ -134,7 +134,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m50(hours12, hours24, minutes, suffix) => "${hours24}:${minutes}";
 
-  static m51(username, targetName) => "";
+  static m51(username, targetName) => "${username} odbanovali ${targetName}";
 
   static m52(type) => "Neznámá událost „${type}“";
 
@@ -349,7 +349,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Password": MessageLookupByLibrary.simpleMessage("Heslo"),
         "Pick image": MessageLookupByLibrary.simpleMessage("Zvolit obrázek"),
         "Please be aware that you need Pantalaimon to use end-to-end encryption for now.":
-            MessageLookupByLibrary.simpleMessage("Vezmět na vědomí,"),
+            MessageLookupByLibrary.simpleMessage(
+                "Prosím vezměte na vědomí, že pro použití koncového šifrování je prozatím potřeba použít Pantalaimon"),
         "Please choose a username": MessageLookupByLibrary.simpleMessage(
             "Prosíme zvolte si uživatelské jméno"),
         "Please enter a matrix identifier":
@@ -362,13 +363,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "Public Rooms":
             MessageLookupByLibrary.simpleMessage("Veřejné místnosti"),
         "Recording": MessageLookupByLibrary.simpleMessage("Nahrávání"),
+        "Reject": MessageLookupByLibrary.simpleMessage("Zamítnout"),
         "Rejoin": MessageLookupByLibrary.simpleMessage("Připojit znovu"),
         "Remove": MessageLookupByLibrary.simpleMessage("Odstranit"),
         "Remove all other devices": MessageLookupByLibrary.simpleMessage(
             "Odstranit všechna další zařízení"),
         "Remove device":
             MessageLookupByLibrary.simpleMessage("Odstraň zařízení"),
-        "Remove exile": MessageLookupByLibrary.simpleMessage(""),
+        "Remove exile": MessageLookupByLibrary.simpleMessage("Odblokovat"),
         "Remove message":
             MessageLookupByLibrary.simpleMessage("Odstranit zprávu"),
         "Render rich message content":
@@ -380,10 +382,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "Vyžádat přečtení starších zpráv"),
         "Revoke all permissions": MessageLookupByLibrary.simpleMessage(
             "Vezmi zpět všechna oprávnění"),
+        "Room has been upgraded":
+            MessageLookupByLibrary.simpleMessage("Místnost byla upgradována"),
         "Saturday": MessageLookupByLibrary.simpleMessage("Sobota"),
         "Search for a chat":
             MessageLookupByLibrary.simpleMessage("Hledej diskuzi"),
-        "Seen a long time ago": MessageLookupByLibrary.simpleMessage(""),
+        "Seen a long time ago":
+            MessageLookupByLibrary.simpleMessage("Viděni velmi dávno"),
         "Send": MessageLookupByLibrary.simpleMessage("Odeslat"),
         "Send a message":
             MessageLookupByLibrary.simpleMessage("Odeslat zprávu"),
@@ -399,20 +404,28 @@ class MessageLookup extends MessageLookupByLibrary {
         "Settings": MessageLookupByLibrary.simpleMessage("Nastavení"),
         "Share": MessageLookupByLibrary.simpleMessage("Sdílet"),
         "Sign up": MessageLookupByLibrary.simpleMessage("Registrovat se"),
+        "Skip": MessageLookupByLibrary.simpleMessage("Přeskočit"),
         "Source code": MessageLookupByLibrary.simpleMessage("Zdrojové kódy"),
         "Start your first chat :-)": MessageLookupByLibrary.simpleMessage(
             "Začněte svou první diskuzi :)"),
+        "Submit": MessageLookupByLibrary.simpleMessage("Potvrdit"),
         "Sunday": MessageLookupByLibrary.simpleMessage("Neděle"),
         "System": MessageLookupByLibrary.simpleMessage("Systém"),
         "Tap to show menu":
             MessageLookupByLibrary.simpleMessage("Klepněte pro zobrazení menu"),
         "The encryption has been corrupted":
             MessageLookupByLibrary.simpleMessage("Šifrování bylo poškozeno"),
+        "They Don\'t Match":
+            MessageLookupByLibrary.simpleMessage("Neshodují se"),
+        "They Match": MessageLookupByLibrary.simpleMessage("Shodují se"),
         "This room has been archived.": MessageLookupByLibrary.simpleMessage(
             "Tato místnost byla archivována."),
         "Thursday": MessageLookupByLibrary.simpleMessage("Čtvrtek"),
-        "Try to send again": MessageLookupByLibrary.simpleMessage(""),
-        "Tuesday": MessageLookupByLibrary.simpleMessage(""),
+        "Try to send again":
+            MessageLookupByLibrary.simpleMessage("Pokusit se odeslat znovu"),
+        "Tuesday": MessageLookupByLibrary.simpleMessage("Úterý"),
+        "Unblock Device":
+            MessageLookupByLibrary.simpleMessage("Odblokovat zařízení"),
         "Unknown device":
             MessageLookupByLibrary.simpleMessage("Neznámé zařízení"),
         "Unknown encryption algorithm": MessageLookupByLibrary.simpleMessage(
@@ -422,6 +435,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Použít barvy kompatibilní s Amoled displayem?"),
         "Username": MessageLookupByLibrary.simpleMessage("Uživatelské jméno"),
         "Verify": MessageLookupByLibrary.simpleMessage("Ověř"),
+        "Verify User": MessageLookupByLibrary.simpleMessage("Ověřit uživatele"),
         "Video call": MessageLookupByLibrary.simpleMessage("Video hovor"),
         "Visibility of the chat history": MessageLookupByLibrary.simpleMessage(
             "Viditelnost historie diskuze"),
@@ -434,7 +448,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Wednesday": MessageLookupByLibrary.simpleMessage("Středa"),
         "Welcome to the cutest instant messenger in the matrix network.":
             MessageLookupByLibrary.simpleMessage(
-                "Vítejte v nejroztomilejší diskuzní aplikaci pro síť matrix."),
+                "Vítejte v nejroztomilejší diskuzní aplikaci pro síť Matrix."),
         "Who is allowed to join this group":
             MessageLookupByLibrary.simpleMessage(
                 "Kdo se může připojit do této skupiny"),
@@ -524,8 +538,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "lastActiveAgo": m33,
         "loadCountMoreParticipants": m34,
         "logInTo": m35,
+        "newVerificationRequest":
+            MessageLookupByLibrary.simpleMessage("Nová žádost o ověření!"),
+        "noCrossSignBootstrap": MessageLookupByLibrary.simpleMessage(
+            "Fluffychet momentálně nepodporuje aktivaci křížového podpisu. Prosím aktivujte ho z klientu Element."),
+        "noMegolmBootstrap": MessageLookupByLibrary.simpleMessage(
+            "Fluffychet momentálně nepodporuje aktivaci online záloh klíčů. Prosím zapněte ji z klientu Element."),
         "numberSelected": m36,
         "ok": MessageLookupByLibrary.simpleMessage("ok"),
+        "onlineKeyBackupDisabled": MessageLookupByLibrary.simpleMessage(
+            "Online záloha klíčů je vypnutá"),
+        "onlineKeyBackupEnabled": MessageLookupByLibrary.simpleMessage(
+            "Online záloha kíčů je zapnuta"),
+        "passphraseOrKey":
+            MessageLookupByLibrary.simpleMessage("heslo nebo klíč k ověření"),
         "play": m37,
         "redactedAnEvent": m38,
         "rejectedTheInvitation": m39,
@@ -538,11 +564,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "sentASticker": m46,
         "sentAVideo": m47,
         "sentAnAudio": m48,
+        "sessionVerified":
+            MessageLookupByLibrary.simpleMessage("Sezení je ověřeno"),
         "sharedTheLocation": m49,
         "timeOfDay": m50,
         "title": MessageLookupByLibrary.simpleMessage("FluffyChat"),
         "unbannedUser": m51,
         "unknownEvent": m52,
+        "unknownSessionVerify": MessageLookupByLibrary.simpleMessage(
+            "Neznámé sezení, prosím o ověření"),
         "unreadChats": m53,
         "unreadMessages": m54,
         "unreadMessagesInChats": m55,
@@ -550,6 +580,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "userAndUserAreTyping": m57,
         "userIsTyping": m58,
         "userLeftTheChat": m59,
-        "userSentUnknownEvent": m60
+        "userSentUnknownEvent": m60,
+        "verifiedSession":
+            MessageLookupByLibrary.simpleMessage("Sezení úspěšně ověřeno!"),
+        "verifyManual": MessageLookupByLibrary.simpleMessage("Ověřit ručně"),
+        "verifyStart": MessageLookupByLibrary.simpleMessage("Spustit ověření"),
+        "verifySuccess":
+            MessageLookupByLibrary.simpleMessage("Ověření proběhlo úspěšně!"),
+        "verifyTitle":
+            MessageLookupByLibrary.simpleMessage("Ověřuji druhý účet"),
+        "waitingPartnerAcceptRequest": MessageLookupByLibrary.simpleMessage(
+            "Čeká se na potvrzení žádosti partnerem…"),
+        "waitingPartnerEmoji": MessageLookupByLibrary.simpleMessage(
+            "Čeká se na potvrzení emoji partnerem…"),
+        "waitingPartnerNumbers": MessageLookupByLibrary.simpleMessage(
+            "Čeká se na potvrzení čísel partnerem…")
       };
 }
