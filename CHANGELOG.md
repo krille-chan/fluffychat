@@ -1,4 +1,4 @@
-# Version 0.16.0 - 2020-07-??
+# Version 0.16.0 - 2020-07-24
 ### Features
 - Implement web notifications
 - Implement a connection status header	
