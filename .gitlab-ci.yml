@@ -105,6 +105,10 @@ upload_to_fdroid_repo:
     ##
     - 'which rsync || (sudo apt-get update -y && sudo apt-get install rsync -y )'
     ##
+    ## Install pcregrep if not already installed.
+    ##
+    - 'which pcregrep || (sudo apt-get update -y && sudo apt-get install pcregrep -y )'
+    ##
     ## Run ssh-agent (inside the build environment)
     ##
     - eval $(ssh-agent -s)
