@@ -239,7 +239,7 @@
       "joinRules": {}
     }
   },
-  "changedTheProfileAvatar": "{username} je promijenio/la avatar profila",
+  "changedTheProfileAvatar": "{username} je promijenio/la svoj avatar",
   "@changedTheProfileAvatar": {
     "type": "text",
     "placeholders": {
@@ -1539,7 +1539,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Welcome to the cutest instant messenger in the matrix network.": "Lijep pozdrav u najslađi program za čavrljanje u matrix-mreži.",
+  "Welcome to the cutest instant messenger in the matrix network.": "Lijep pozdrav u najslađi program za čavrljanje u Matrix-mreži.",
   "@Welcome to the cutest instant messenger in the matrix network.": {
     "type": "text",
     "placeholders": {}
