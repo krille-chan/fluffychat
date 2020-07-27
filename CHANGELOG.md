@@ -11,7 +11,7 @@
 - Greatly improve startup time
 - Added languages: Galician, Croatian, Japanese, Russian, Ukrainian - Thanks a lot to all the weblate users!
 - Only show the microg toast once, if you have play services disabled
-- Homeserver URL input now strips trailing whitespace and slash - Thanks @Katerina
+- Homeserver URL input now strips trailing whitespace and slash - Thanks @kate_shine
 - Also use prev_content to determine profile of a user: This allows the username and avatar of people who left a group to still be displayed
 ### Fixes:
 - Fix not being able to initiate key verification properly
