@@ -337,7 +337,11 @@ class _ChatListState extends State<ChatList> {
                                       (r) => r.isFirst),
                             ),
                   body: StreamBuilder(
-                      stream: Matrix.of(context).client.onSync.stream,
+                      stream: Matrix.of(context)
+                          .client
+                          .onSync
+                          .stream
+                          .where((s) => s.hasRoomUpdate),
                       builder: (context, snapshot) {
                         return FutureBuilder<void>(
                           future: waitForFirstSync(context),
