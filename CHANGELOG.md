@@ -1,3 +1,7 @@
+# Version 0.17.0 - 2020-08-??
+### Fixes:
+- Don't re-render the room list nearly as often, increasing performance
+
 # Version 0.16.0 - 2020-07-24
 ### Features
 - Implement web notifications
