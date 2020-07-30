@@ -201,7 +201,7 @@
       "username": {}
     }
   },
-  "changedTheGuestAccessRulesTo": "",
+  "changedTheGuestAccessRulesTo": "{username} змінив(ла) правила гостьового доступу на: {rules}",
   "@changedTheGuestAccessRulesTo": {
     "type": "text",
     "placeholders": {
@@ -209,14 +209,14 @@
       "rules": {}
     }
   },
-  "changedTheHistoryVisibility": "",
+  "changedTheHistoryVisibility": "{username} змінив(ла) видимість історії",
   "@changedTheHistoryVisibility": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheHistoryVisibilityTo": "",
+  "changedTheHistoryVisibilityTo": "{username} змінив(ла) видимість історії на: {rules}",
   "@changedTheHistoryVisibilityTo": {
     "type": "text",
     "placeholders": {
@@ -224,14 +224,14 @@
       "rules": {}
     }
   },
-  "changedTheJoinRules": "",
+  "changedTheJoinRules": "{username} змінив(ла) правила щодо приєднання",
   "@changedTheJoinRules": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheJoinRulesTo": "",
+  "changedTheJoinRulesTo": "{username} змінив(ла) правила щодо приєднання на: {joinRules}",
   "@changedTheJoinRulesTo": {
     "type": "text",
     "placeholders": {
@@ -239,14 +239,14 @@
       "joinRules": {}
     }
   },
-  "changedTheProfileAvatar": "",
+  "changedTheProfileAvatar": "{username} змінив(ла) аватар",
   "@changedTheProfileAvatar": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheRoomAliases": "",
+  "changedTheRoomAliases": "{username} змінив(ла) псевдоніми кімнати",
   "@changedTheRoomAliases": {
     "type": "text",
     "placeholders": {
