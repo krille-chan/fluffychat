@@ -253,14 +253,14 @@
       "username": {}
     }
   },
-  "changedTheRoomInvitationLink": "{username} изменил(а) ссылку приглашения",
+  "changedTheRoomInvitationLink": "{username} изменил(а) ссылку для приглашения",
   "@changedTheRoomInvitationLink": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "Changelog": "Изменения",
+  "Changelog": "Журнал изменений",
   "@Changelog": {
     "type": "text",
     "placeholders": {}
