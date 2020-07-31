@@ -253,54 +253,54 @@
       "username": {}
     }
   },
-  "changedTheRoomInvitationLink": "",
+  "changedTheRoomInvitationLink": "{username} змінив(ла) посилання для запрошення",
   "@changedTheRoomInvitationLink": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "Changelog": "",
+  "Changelog": "Журнал змін",
   "@Changelog": {
     "type": "text",
     "placeholders": {}
   },
-  "Change the name of the group": "",
+  "Change the name of the group": "Змінити назву групи",
   "@Change the name of the group": {
     "type": "text",
     "placeholders": {}
   },
-  "Change wallpaper": "",
+  "Change wallpaper": "Змінити фонове зображення",
   "@Change wallpaper": {
     "type": "text",
     "placeholders": {}
   },
-  "Change the server": "",
+  "Change the server": "Змінити сервер",
   "@Change the server": {
     "type": "text",
     "placeholders": {}
   },
-  "The encryption has been corrupted": "",
+  "The encryption has been corrupted": "Шифрування було пошкоджено",
   "@The encryption has been corrupted": {
     "type": "text",
     "placeholders": {}
   },
-  "Chat": "",
+  "Chat": "Чат",
   "@Chat": {
     "type": "text",
     "placeholders": {}
   },
-  "Chat details": "",
+  "Chat details": "Деталі чату",
   "@Chat details": {
     "type": "text",
     "placeholders": {}
   },
-  "Choose a strong password": "",
+  "Choose a strong password": "Виберіть надійний пароль",
   "@Choose a strong password": {
     "type": "text",
     "placeholders": {}
   },
-  "Choose a username": "",
+  "Choose a username": "Виберіть ім'я користувача",
   "@Choose a username": {
     "type": "text",
     "placeholders": {}
