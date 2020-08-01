@@ -1,70 +1,70 @@
 {
   "@@last_modified": "2020-06-25T16:02:16.297192",
-  "About": "",
+  "About": "Hakkında",
   "@About": {
     "type": "text",
     "placeholders": {}
   },
-  "Accept": "",
+  "Accept": "Kabul et",
   "@Accept": {
     "type": "text",
     "placeholders": {}
   },
-  "acceptedTheInvitation": "",
+  "acceptedTheInvitation": "{username} katılma davetini kabul etti",
   "@acceptedTheInvitation": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "Account": "",
+  "Account": "Hesap",
   "@Account": {
     "type": "text",
     "placeholders": {}
   },
-  "Account informations": "",
+  "Account informations": "Hesap bilgileri",
   "@Account informations": {
     "type": "text",
     "placeholders": {}
   },
-  "activatedEndToEndEncryption": "",
+  "activatedEndToEndEncryption": "{username} uçtan uca şifrelemeyi etkinleştirdi",
   "@activatedEndToEndEncryption": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "Add a group description": "",
+  "Add a group description": "Grup açıklaması ekle",
   "@Add a group description": {
     "type": "text",
     "placeholders": {}
   },
-  "Admin": "",
+  "Admin": "Yönetici",
   "@Admin": {
     "type": "text",
     "placeholders": {}
   },
-  "alias": "",
+  "alias": "takma ad",
   "@alias": {
     "type": "text",
     "placeholders": {}
   },
-  "Already have an account?": "",
+  "Already have an account?": "Hesabınız var mı?",
   "@Already have an account?": {
     "type": "text",
     "placeholders": {}
   },
-  "Anyone can join": "",
+  "Anyone can join": "Herkes katılabilir",
   "@Anyone can join": {
     "type": "text",
     "placeholders": {}
   },
-  "Archive": "",
+  "Archive": "Arşiv",
   "@Archive": {
     "type": "text",
     "placeholders": {}
   },
-  "Archived Room": "",
+  "Archived Room": "Arşiv Odası",
   "@Archived Room": {
     "type": "text",
     "placeholders": {}
@@ -74,7 +74,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Are you sure?": "",
+  "Are you sure?": "Emin misiniz?",
   "@Are you sure?": {
     "type": "text",
     "placeholders": {}
@@ -94,34 +94,34 @@
     "type": "text",
     "placeholders": {}
   },
-  "askVerificationRequest": "",
+  "askVerificationRequest": "{username}'den gelen doğrulama talebini kabul etmek istiyor musunuz?",
   "@askVerificationRequest": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "Authentication": "",
+  "Authentication": "Doğrulama",
   "@Authentication": {
     "type": "text",
     "placeholders": {}
   },
-  "Avatar has been changed": "",
+  "Avatar has been changed": "Avatar değiştirildi",
   "@Avatar has been changed": {
     "type": "text",
     "placeholders": {}
   },
-  "Ban from chat": "",
+  "Ban from chat": "Sohbetten engellendiniz",
   "@Ban from chat": {
     "type": "text",
     "placeholders": {}
   },
-  "Banned": "",
+  "Banned": "Engellendi",
   "@Banned": {
     "type": "text",
     "placeholders": {}
   },
-  "bannedUser": "",
+  "bannedUser": "{username} engelledi: {targetName}",
   "@bannedUser": {
     "type": "text",
     "placeholders": {
@@ -134,31 +134,31 @@
     "type": "text",
     "placeholders": {}
   },
-  "byDefaultYouWillBeConnectedTo": "",
+  "byDefaultYouWillBeConnectedTo": "Varsayılan olarak {homeserver} sunucusuna bağlanacaksınız",
   "@byDefaultYouWillBeConnectedTo": {
     "type": "text",
     "placeholders": {
       "homeserver": {}
     }
   },
-  "cachedKeys": "",
+  "cachedKeys": "Anahtarlar başarıyla önbelleğe alındı!",
   "@cachedKeys": {
     "type": "text",
     "placeholders": {}
   },
-  "Cancel": "",
+  "Cancel": "İptal",
   "@Cancel": {
     "type": "text",
     "placeholders": {}
   },
-  "changedTheChatAvatar": "",
+  "changedTheChatAvatar": "{username} sohbet resmini değiştirdi",
   "@changedTheChatAvatar": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheChatNameTo": "",
+  "changedTheChatNameTo": "{username} sohbet adını değiştirdi: '{chatname}'",
   "@changedTheChatNameTo": {
     "type": "text",
     "placeholders": {
@@ -166,7 +166,7 @@
       "chatname": {}
     }
   },
-  "changedTheChatDescriptionTo": "",
+  "changedTheChatDescriptionTo": "{username} sohbet açıklamasını değiştirdi: '{description}'",
   "@changedTheChatDescriptionTo": {
     "type": "text",
     "placeholders": {
@@ -174,7 +174,7 @@
       "description": {}
     }
   },
-  "changedTheChatPermissions": "",
+  "changedTheChatPermissions": "{username} sohbet izinlerini değiştirdi",
   "@changedTheChatPermissions": {
     "type": "text",
     "placeholders": {
@@ -194,14 +194,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "changedTheGuestAccessRules": "",
+  "changedTheGuestAccessRules": "{username} misafir erişim kurallarını değiştirdi",
   "@changedTheGuestAccessRules": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheGuestAccessRulesTo": "",
+  "changedTheGuestAccessRulesTo": "{username} misafir erişim kurallarını değiştirdi: {rules}",
   "@changedTheGuestAccessRulesTo": {
     "type": "text",
     "placeholders": {
@@ -209,14 +209,14 @@
       "rules": {}
     }
   },
-  "changedTheHistoryVisibility": "",
+  "changedTheHistoryVisibility": "{username} geçmiş görünürlüğünü değiştirdi",
   "@changedTheHistoryVisibility": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheHistoryVisibilityTo": "",
+  "changedTheHistoryVisibilityTo": "{username} geçmiş görünürlüğünü değiştirdi: {rules}",
   "@changedTheHistoryVisibilityTo": {
     "type": "text",
     "placeholders": {
@@ -224,14 +224,14 @@
       "rules": {}
     }
   },
-  "changedTheJoinRules": "",
+  "changedTheJoinRules": "{username} katılım kurallarını değiştirdi",
   "@changedTheJoinRules": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheJoinRulesTo": "",
+  "changedTheJoinRulesTo": "{username} katılım kurallarını değiştirdi: {joinRules}",
   "@changedTheJoinRulesTo": {
     "type": "text",
     "placeholders": {
@@ -1170,162 +1170,162 @@
     "type": "text",
     "placeholders": {}
   },
-  "sentAFile": "",
+  "sentAFile": "{username} bir dosya gönderdi",
   "@sentAFile": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAnAudio": "",
+  "sentAnAudio": "{username} bir ses gönderdi",
   "@sentAnAudio": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAPicture": "",
+  "sentAPicture": "{username} bir resim gönderdi",
   "@sentAPicture": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentASticker": "",
+  "sentASticker": "{username} bir çıkartma gönderdi",
   "@sentASticker": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAVideo": "",
+  "sentAVideo": "{username} bir video gönderdi",
   "@sentAVideo": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sessionVerified": "",
+  "sessionVerified": "Oturum doğrulandı",
   "@sessionVerified": {
     "type": "text",
     "placeholders": {}
   },
-  "Set a profile picture": "",
+  "Set a profile picture": "Profil fotoğrafı ekleyin",
   "@Set a profile picture": {
     "type": "text",
     "placeholders": {}
   },
-  "Set group description": "",
+  "Set group description": "Grup açıklaması ekleyin",
   "@Set group description": {
     "type": "text",
     "placeholders": {}
   },
-  "Set invitation link": "",
+  "Set invitation link": "Davet bağlantısı ayarlayın",
   "@Set invitation link": {
     "type": "text",
     "placeholders": {}
   },
-  "Set status": "",
+  "Set status": "Durumu ayarla",
   "@Set status": {
     "type": "text",
     "placeholders": {}
   },
-  "Settings": "",
+  "Settings": "Ayarlar",
   "@Settings": {
     "type": "text",
     "placeholders": {}
   },
-  "Sign up": "",
+  "Sign up": "Hesap oluştur",
   "@Sign up": {
     "type": "text",
     "placeholders": {}
   },
-  "Skip": "",
+  "Skip": "Geç",
   "@Skip": {
     "type": "text",
     "placeholders": {}
   },
-  "Change your style": "",
+  "Change your style": "Sitilinizi değiştirin",
   "@Change your style": {
     "type": "text",
     "placeholders": {}
   },
-  "System": "",
+  "System": "Sistem",
   "@System": {
     "type": "text",
     "placeholders": {}
   },
-  "How are you today?": "",
+  "How are you today?": "Bugün nasılsınız?",
   "@How are you today?": {
     "type": "text",
     "placeholders": {}
   },
-  "Light": "",
+  "Light": "Açık",
   "@Light": {
     "type": "text",
     "placeholders": {}
   },
-  "Dark": "",
+  "Dark": "Koyu",
   "@Dark": {
     "type": "text",
     "placeholders": {}
   },
-  "Use Amoled compatible colors?": "",
+  "Use Amoled compatible colors?": "Amolede uyumlu renkler kullanılsın mı?",
   "@Use Amoled compatible colors?": {
     "type": "text",
     "placeholders": {}
   },
-  "Source code": "",
+  "Source code": "Kaynak kod",
   "@Source code": {
     "type": "text",
     "placeholders": {}
   },
-  "Start your first chat :-)": "",
+  "Start your first chat :-)": "İlk sohbetini başlat :-)",
   "@Start your first chat :-)": {
     "type": "text",
     "placeholders": {}
   },
-  "Submit": "",
+  "Submit": "Gönder",
   "@Submit": {
     "type": "text",
     "placeholders": {}
   },
-  "Sunday": "",
+  "Sunday": "Pazar",
   "@Sunday": {
     "type": "text",
     "placeholders": {}
   },
-  "Donate": "",
+  "Donate": "Bağış",
   "@Donate": {
     "type": "text",
     "placeholders": {}
   },
-  "Tap to show menu": "",
+  "Tap to show menu": "Menüyü açmak için dokunun",
   "@Tap to show menu": {
     "type": "text",
     "placeholders": {}
   },
-  "They Don't Match": "",
+  "They Don't Match": "Eşleşme yok",
   "@They Don't Match": {
     "type": "text",
     "placeholders": {}
   },
-  "They Match": "",
+  "They Match": "Eşleştiler",
   "@They Match": {
     "type": "text",
     "placeholders": {}
   },
-  "This room has been archived.": "",
+  "This room has been archived.": "Bu sohbet arşivlendi.",
   "@This room has been archived.": {
     "type": "text",
     "placeholders": {}
   },
-  "Thursday": "",
+  "Thursday": "Perşembe",
   "@Thursday": {
     "type": "text",
     "placeholders": {}
   },
-  "timeOfDay": "",
+  "timeOfDay": "{hours12}:{minutes} {suffix}",
   "@timeOfDay": {
     "type": "text",
     "placeholders": {
@@ -1335,23 +1335,23 @@
       "suffix": {}
     }
   },
-  "title": "",
+  "title": "FluffyChat",
   "@title": {
     "description": "Title for the application",
     "type": "text",
     "placeholders": {}
   },
-  "Try to send again": "",
+  "Try to send again": "Tekrar göndermeyi deneyin",
   "@Try to send again": {
     "type": "text",
     "placeholders": {}
   },
-  "Tuesday": "",
+  "Tuesday": "Salı",
   "@Tuesday": {
     "type": "text",
     "placeholders": {}
   },
-  "unbannedUser": "",
+  "unbannedUser": "{username} engeli kaldırdı: {targetName}",
   "@unbannedUser": {
     "type": "text",
     "placeholders": {
@@ -1364,22 +1364,22 @@
     "type": "text",
     "placeholders": {}
   },
-  "Unmute chat": "",
+  "Unmute chat": "Sohbeti sessizden çıkart",
   "@Unmute chat": {
     "type": "text",
     "placeholders": {}
   },
-  "Unknown device": "",
+  "Unknown device": "Bilinmeyen cihaz",
   "@Unknown device": {
     "type": "text",
     "placeholders": {}
   },
-  "Unknown encryption algorithm": "",
+  "Unknown encryption algorithm": "Bilinmeyen şifreleme algoritması",
   "@Unknown encryption algorithm": {
     "type": "text",
     "placeholders": {}
   },
-  "unknownSessionVerify": "",
+  "unknownSessionVerify": "Bilinmeyen oturum, lütfen doğrulayın",
   "@unknownSessionVerify": {
     "type": "text",
     "placeholders": {}
@@ -1391,21 +1391,21 @@
       "type": {}
     }
   },
-  "unreadChats": "",
+  "unreadChats": "{unreadCount} okunmamış sohbet",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "",
+  "unreadMessages": "{unreadEvents} okunmamış mesaj",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
       "unreadEvents": {}
     }
   },
-  "unreadMessagesInChats": "",
+  "unreadMessagesInChats": "{unreadChats} sohbetten {unreadEvents} okunmamış mesaj",
   "@unreadMessagesInChats": {
     "type": "text",
     "placeholders": {
@@ -1413,7 +1413,7 @@
       "unreadChats": {}
     }
   },
-  "userAndOthersAreTyping": "",
+  "userAndOthersAreTyping": "{username} ve {count} diğer kişi yazıyor...",
   "@userAndOthersAreTyping": {
     "type": "text",
     "placeholders": {
@@ -1421,7 +1421,7 @@
       "count": {}
     }
   },
-  "userAndUserAreTyping": "",
+  "userAndUserAreTyping": "{username} ve {username2} yazıyor...",
   "@userAndUserAreTyping": {
     "type": "text",
     "placeholders": {
@@ -1429,12 +1429,12 @@
       "username2": {}
     }
   },
-  "Username": "",
+  "Username": "Kullanıcı adı",
   "@Username": {
     "type": "text",
     "placeholders": {}
   },
-  "userIsTyping": "",
+  "userIsTyping": "{username} yazıyor...",
   "@userIsTyping": {
     "type": "text",
     "placeholders": {
@@ -1449,72 +1449,72 @@
       "type": {}
     }
   },
-  "Verify": "",
+  "Verify": "Doğrula",
   "@Verify": {
     "type": "text",
     "placeholders": {}
   },
-  "verifyManual": "",
+  "verifyManual": "Manuel Olarak Doğrula",
   "@verifyManual": {
     "type": "text",
     "placeholders": {}
   },
-  "verifiedSession": "",
+  "verifiedSession": "Oturum başarıyla doğrulandı!",
   "@verifiedSession": {
     "type": "text",
     "placeholders": {}
   },
-  "verifyStart": "",
+  "verifyStart": "Doğrulamayı Başlat",
   "@verifyStart": {
     "type": "text",
     "placeholders": {}
   },
-  "verifySuccess": "",
+  "verifySuccess": "Başarıyla doğrulandı!",
   "@verifySuccess": {
     "type": "text",
     "placeholders": {}
   },
-  "verifyTitle": "",
+  "verifyTitle": "Diğer hesap doğrulanıyor",
   "@verifyTitle": {
     "type": "text",
     "placeholders": {}
   },
-  "Verify User": "",
+  "Verify User": "Kullanıcıyı Doğrula",
   "@Verify User": {
     "type": "text",
     "placeholders": {}
   },
-  "Video call": "",
+  "Video call": "Video arama",
   "@Video call": {
     "type": "text",
     "placeholders": {}
   },
-  "Visible for all participants": "",
+  "Visible for all participants": "Tüm katılımcılar için görünür",
   "@Visible for all participants": {
     "type": "text",
     "placeholders": {}
   },
-  "Visible for everyone": "",
+  "Visible for everyone": "Herkes için görünür",
   "@Visible for everyone": {
     "type": "text",
     "placeholders": {}
   },
-  "Visibility of the chat history": "",
+  "Visibility of the chat history": "Sohbet geçmişi görünürlüğü",
   "@Visibility of the chat history": {
     "type": "text",
     "placeholders": {}
   },
-  "Voice message": "",
+  "Voice message": "Sesli mesaj",
   "@Voice message": {
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerAcceptRequest": "",
+  "waitingPartnerAcceptRequest": "İsteği kabul etmesi bekleniyor...",
   "@waitingPartnerAcceptRequest": {
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerEmoji": "",
+  "waitingPartnerEmoji": "Emojiyi kabul etmesi bekleniyor...",
   "@waitingPartnerEmoji": {
     "type": "text",
     "placeholders": {}
@@ -1524,22 +1524,22 @@
     "type": "text",
     "placeholders": {}
   },
-  "Wallpaper": "",
+  "Wallpaper": "Duvar kağıdı",
   "@Wallpaper": {
     "type": "text",
     "placeholders": {}
   },
-  "End to end encryption is currently in Beta! Use at your own risk!": "",
+  "End to end encryption is currently in Beta! Use at your own risk!": "Uçtan uca şifreleme şimdilik Beta aşamasında! Risk alarak kullanın!",
   "@End to end encryption is currently in Beta! Use at your own risk!": {
     "type": "text",
     "placeholders": {}
   },
-  "Wednesday": "",
+  "Wednesday": "Çarşamba",
   "@Wednesday": {
     "type": "text",
     "placeholders": {}
   },
-  "Welcome to the cutest instant messenger in the matrix network.": "",
+  "Welcome to the cutest instant messenger in the matrix network.": "Matrix ağındaki en şirin anlık mesajlaşma uygulamasına hoş geldiniz.",
   "@Welcome to the cutest instant messenger in the matrix network.": {
     "type": "text",
     "placeholders": {}
@@ -1549,42 +1549,42 @@
     "type": "text",
     "placeholders": {}
   },
-  "Write a message...": "",
+  "Write a message...": "Mesaj yazın...",
   "@Write a message...": {
     "type": "text",
     "placeholders": {}
   },
-  "Yes": "",
+  "Yes": "Evet",
   "@Yes": {
     "type": "text",
     "placeholders": {}
   },
-  "You": "",
+  "You": "Sen",
   "@You": {
     "type": "text",
     "placeholders": {}
   },
-  "You are invited to this chat": "",
+  "You are invited to this chat": "Sohbete davet edildiniz",
   "@You are invited to this chat": {
     "type": "text",
     "placeholders": {}
   },
-  "You are no longer participating in this chat": "",
+  "You are no longer participating in this chat": "Artık bu sohbette katılımcı değilsiniz",
   "@You are no longer participating in this chat": {
     "type": "text",
     "placeholders": {}
   },
-  "You cannot invite yourself": "",
+  "You cannot invite yourself": "Kendinizi davet edemezsiniz",
   "@You cannot invite yourself": {
     "type": "text",
     "placeholders": {}
   },
-  "You have been banned from this chat": "",
+  "You have been banned from this chat": "Bu sohbetten engellendiniz",
   "@You have been banned from this chat": {
     "type": "text",
     "placeholders": {}
   },
-  "Your own username": "",
+  "Your own username": "Kullanıcı adınız",
   "@Your own username": {
     "type": "text",
     "placeholders": {}
