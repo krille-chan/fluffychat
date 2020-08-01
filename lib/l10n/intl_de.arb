@@ -121,7 +121,7 @@
       "username": {}
     }
   },
-  "changedTheChatNameTo": "{username} hat den Chat-Namen geändert zu: '{chatname}'",
+  "changedTheChatNameTo": "{username} hat den Chat-Namen geändert zu: „{chatname}“",
   "@changedTheChatNameTo": {
     "type": "text",
     "placeholders": {
@@ -129,7 +129,7 @@
       "chatname": {}
     }
   },
-  "changedTheChatDescriptionTo": "{username} hat die Beschreibung vom Chat geändert zu: '{description}'",
+  "changedTheChatDescriptionTo": "{username} hat die Chat-Beschreibung geändert zu: „{description}“",
   "@changedTheChatDescriptionTo": {
     "type": "text",
     "placeholders": {
@@ -137,7 +137,7 @@
       "description": {}
     }
   },
-  "changedTheChatPermissions": "{username} hat die Berechtigungen vom Chat geändert",
+  "changedTheChatPermissions": "{username} hat die Chat-Berechtigungen geändert",
   "@changedTheChatPermissions": {
     "type": "text",
     "placeholders": {
@@ -157,14 +157,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "changedTheGuestAccessRules": "{username} hat Gast-Zugangsregeln geändert",
+  "changedTheGuestAccessRules": "{username} hat die Zugangsregeln für Gäste geändert",
   "@changedTheGuestAccessRules": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheGuestAccessRulesTo": "{username} hat Gast-Zugangsregeln geändert zu: {rules}",
+  "changedTheGuestAccessRulesTo": "{username} hat die Zugangsregeln für Gäste geändert zu: {rules}",
   "@changedTheGuestAccessRulesTo": {
     "type": "text",
     "placeholders": {
@@ -209,7 +209,7 @@
       "username": {}
     }
   },
-  "changedTheRoomAliases": "{username} hat die Raum-Aliase geändert",
+  "changedTheRoomAliases": "{username} hat die Raum-Aliasse geändert",
   "@changedTheRoomAliases": {
     "type": "text",
     "placeholders": {
@@ -429,17 +429,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "Emote Settings": "Emote Einstellungen",
+  "Emote Settings": "Emote-Einstellungen",
   "@Emote Settings": {
     "type": "text",
     "placeholders": {}
   },
-  "Emote shortcode": "Emote kürzel",
+  "Emote shortcode": "Emote-Kürzel",
   "@Emote shortcode": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteWarnNeedToPick": "Wähle ein Emote-kürzel und ein Bild!",
+  "emoteWarnNeedToPick": "Wähle ein Emote-Kürzel und ein Bild!",
   "@emoteWarnNeedToPick": {
     "type": "text",
     "placeholders": {}
@@ -449,7 +449,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteInvalid": "Ungültiges Emote-kürzel!",
+  "emoteInvalid": "Ungültiges Emote-Kürzel!",
   "@emoteInvalid": {
     "type": "text",
     "placeholders": {}
@@ -637,7 +637,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Edit Jitsi instance": "Jitsi Instanz ändern",
+  "Edit Jitsi instance": "Jitsi-Instanz ändern",
   "@Edit Jitsi instance": {
     "type": "text",
     "placeholders": {}
@@ -699,7 +699,7 @@
       "localizedTimeShort": {}
     }
   },
-  "Last seen IP": "Zuletzt bekannte IP",
+  "Last seen IP": "Letzte bekannte IP",
   "@Last seen IP": {
     "type": "text",
     "placeholders": {}
@@ -709,12 +709,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "Loading... Please wait": "Lade ... Bitte warten",
+  "Loading... Please wait": "Lade... Bitte warten",
   "@Loading... Please wait": {
     "type": "text",
     "placeholders": {}
   },
-  "Load more...": "Lade mehr ...",
+  "Load more...": "Lade mehr...",
   "@Load more...": {
     "type": "text",
     "placeholders": {}
@@ -788,7 +788,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": "Es sieht so aus als hättest du keine Google Dienste auf deinem Gerät. Das ist eine gute Entscheidung für deine Privatsphäre. Um Push Benachrichtigungen in FluffyChat zu erhalten, empfehlen wir die Verwendung von microG: https://microg.org/",
+  "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": "Es sieht so aus als hättest du keine Google-Dienste auf deinem Gerät. Das ist eine gute Entscheidung für deine Privatsphäre! Um Push Benachrichtigungen in FluffyChat zu erhalten, empfehlen wir die Verwendung von microG: https://microg.org/",
   "@It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": {
     "type": "text",
     "placeholders": {}
@@ -808,7 +808,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "No rooms found...": "Keine Räume gefunden ...",
+  "No rooms found...": "Keine Räume gefunden...",
   "@No rooms found...": {
     "type": "text",
     "placeholders": {}
@@ -855,7 +855,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Pick image": "Wähle Bild",
+  "Pick image": "Bild wählen",
   "@Pick image": {
     "type": "text",
     "placeholders": {}
@@ -902,7 +902,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "redactedAnEvent": "{username} hat ein Event enternt",
+  "redactedAnEvent": "{username} hat ein Event entfernt",
   "@redactedAnEvent": {
     "type": "text",
     "placeholders": {
@@ -1246,7 +1246,7 @@
       "unreadChats": {}
     }
   },
-  "userAndOthersAreTyping": "{username} und {count} andere schreiben ...",
+  "userAndOthersAreTyping": "{username} und {count} andere schreiben...",
   "@userAndOthersAreTyping": {
     "type": "text",
     "placeholders": {
@@ -1254,7 +1254,7 @@
       "count": {}
     }
   },
-  "userAndUserAreTyping": "{username} und {username2} schreiben ...",
+  "userAndUserAreTyping": "{username} und {username2} schreiben...",
   "@userAndUserAreTyping": {
     "type": "text",
     "placeholders": {
@@ -1352,7 +1352,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "You are invited to this chat": "Du wurdest eingeladen in diesen Chat",
+  "You are invited to this chat": "Du wurdest in diesen Chat eingeladen",
   "@You are invited to this chat": {
     "type": "text",
     "placeholders": {}
@@ -1472,7 +1472,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Open app to read messages": "Öffne app, um Nachrichten zu lesen",
+  "Open app to read messages": "App öffnen, um Nachrichten zu lesen",
   "@Open app to read messages": {
     "type": "text",
     "placeholders": {}
@@ -1487,12 +1487,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "Fluffychat unterstützt noch nicht das Einschalten vom Online Key Backup. Bitte schalte es innerhalb Riot an.",
+  "noMegolmBootstrap": "Fluffychat kann das Online-Schlüssel-Backup noch nicht aktivieren. Bitte schalte es innerhalb von Element an.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "Fluffychat unterstützt noch nicht das Einschalten von Cross-Signing. Bitte schalte es innerhalb Riot an.",
+  "noCrossSignBootstrap": "Fluffychat kann Cross-Signing noch nicht einschalten. Bitte schalte es innerhalb Element an.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
