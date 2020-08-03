@@ -1,4 +1,6 @@
 # Version 0.17.0 - 2020-08-??
+### Features:
+- Pin and unpin chats
 ### Fixes:
 - Don't re-render the room list nearly as often, increasing performance
 

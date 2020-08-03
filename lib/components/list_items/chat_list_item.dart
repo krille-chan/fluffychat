@@ -92,6 +92,18 @@ class ChatListItem extends StatelessWidget {
     }
   }
 
+  Future<void> _toggleFavouriteRoom(BuildContext context) =>
+      SimpleDialogs(context).tryRequestWithLoadingDialog(
+        room.setFavourite(!room.isFavourite),
+      );
+
+  Future<void> _toggleMuted(BuildContext context) =>
+      SimpleDialogs(context).tryRequestWithLoadingDialog(
+        room.setPushRuleState(room.pushRuleState == PushRuleState.notify
+            ? PushRuleState.mentions_only
+            : PushRuleState.notify),
+      );
+
   Future<bool> archiveAction(BuildContext context) async {
     {
       if ([Membership.leave, Membership.ban].contains(room.membership)) {
@@ -117,9 +129,30 @@ class ChatListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isMuted = room.pushRuleState == PushRuleState.notify;
+    final slideableKey = GlobalKey();
     return Slidable(
-      key: Key(room.id),
+      key: slideableKey,
       secondaryActions: <Widget>[
+        if ([Membership.join, Membership.invite].contains(room.membership))
+          IconSlideAction(
+            caption: isMuted
+                ? L10n.of(context).unmuteChat
+                : L10n.of(context).muteChat,
+            color: Colors.blueGrey,
+            icon:
+                isMuted ? Icons.notifications_active : Icons.notifications_off,
+            onTap: () => _toggleMuted(context),
+          ),
+        if ([Membership.join, Membership.invite].contains(room.membership))
+          IconSlideAction(
+            caption: room.isFavourite
+                ? L10n.of(context).unpin
+                : L10n.of(context).pin,
+            color: Colors.blue,
+            icon: room.isFavourite ? Icons.favorite_border : Icons.favorite,
+            onTap: () => _toggleFavouriteRoom(context),
+          ),
         if ([Membership.join, Membership.invite].contains(room.membership))
           IconSlideAction(
             caption: L10n.of(context).leave,
@@ -136,92 +169,107 @@ class ChatListItem extends StatelessWidget {
           ),
       ],
       actionPane: SlidableDrawerActionPane(),
-      dismissal: SlidableDismissal(
-        child: SlidableDrawerDismissal(),
-        onWillDismiss: (actionType) => archiveAction(context),
-      ),
-      child: Material(
-        color: chatListItemColor(context, activeChat),
-        child: ListTile(
-          leading: Avatar(room.avatar, room.displayname),
-          title: Row(
-            children: <Widget>[
-              Expanded(
-                child: Text(
-                  room.getLocalizedDisplayname(L10n.of(context)),
-                  maxLines: 1,
-                  overflow: TextOverflow.fade,
-                  softWrap: false,
+      child: Center(
+        child: Material(
+          color: chatListItemColor(context, activeChat),
+          child: ListTile(
+            onLongPress: () => (slideableKey.currentState as SlidableState)
+                .open(actionType: SlideActionType.secondary),
+            leading: Avatar(room.avatar, room.displayname),
+            title: Row(
+              children: <Widget>[
+                Expanded(
+                  child: Text(
+                    room.getLocalizedDisplayname(L10n.of(context)),
+                    maxLines: 1,
+                    overflow: TextOverflow.fade,
+                    softWrap: false,
+                  ),
                 ),
-              ),
-              SizedBox(width: 4),
-              room.pushRuleState == PushRuleState.notify
-                  ? Container()
-                  : Icon(
-                      Icons.notifications_off,
-                      color: Colors.grey[400],
-                      size: 16,
-                    ),
-              Text(
-                room.timeCreated.localizedTimeShort(context),
-                style: TextStyle(
-                  color: Color(0xFF555555),
-                  fontSize: 13,
-                ),
-              ),
-            ],
-          ),
-          subtitle: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Expanded(
-                child: room.membership == Membership.invite
-                    ? Text(
-                        L10n.of(context).youAreInvitedToThisChat,
-                        style: TextStyle(
-                          color: Theme.of(context).primaryColor,
+                room.isFavourite
+                    ? Padding(
+                        padding: const EdgeInsets.only(left: 4.0),
+                        child: Icon(
+                          Icons.favorite,
+                          color: Colors.grey[400],
+                          size: 16,
                         ),
-                        softWrap: false,
                       )
-                    : Text(
-                        room.lastEvent?.getLocalizedBody(
-                              L10n.of(context),
-                              withSenderNamePrefix: !room.isDirectChat,
-                              hideReply: true,
-                            ) ??
-                            '',
-                        softWrap: false,
-                        maxLines: 1,
-                        overflow: TextOverflow.fade,
-                        style: TextStyle(
-                          decoration: room.lastEvent?.redacted == true
-                              ? TextDecoration.lineThrough
-                              : null,
+                    : Container(),
+                isMuted
+                    ? Padding(
+                        padding: const EdgeInsets.only(left: 4.0),
+                        child: Icon(
+                          Icons.notifications_off,
+                          color: Colors.grey[400],
+                          size: 16,
                         ),
-                      ),
-              ),
-              SizedBox(width: 8),
-              room.notificationCount > 0
-                  ? Container(
-                      padding: EdgeInsets.symmetric(horizontal: 5),
-                      height: 20,
-                      decoration: BoxDecoration(
-                        color: room.highlightCount > 0
-                            ? Colors.red
-                            : Theme.of(context).primaryColor,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Center(
-                        child: Text(
-                          room.notificationCount.toString(),
-                          style: TextStyle(color: Colors.white),
+                      )
+                    : Container(),
+                Padding(
+                  padding: const EdgeInsets.only(left: 4.0),
+                  child: Text(
+                    room.timeCreated.localizedTimeShort(context),
+                    style: TextStyle(
+                      color: Color(0xFF555555),
+                      fontSize: 13,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            subtitle: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                  child: room.membership == Membership.invite
+                      ? Text(
+                          L10n.of(context).youAreInvitedToThisChat,
+                          style: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          softWrap: false,
+                        )
+                      : Text(
+                          room.lastEvent?.getLocalizedBody(
+                                L10n.of(context),
+                                withSenderNamePrefix: !room.isDirectChat,
+                                hideReply: true,
+                              ) ??
+                              '',
+                          softWrap: false,
+                          maxLines: 1,
+                          overflow: TextOverflow.fade,
+                          style: TextStyle(
+                            decoration: room.lastEvent?.redacted == true
+                                ? TextDecoration.lineThrough
+                                : null,
+                          ),
                         ),
-                      ),
-                    )
-                  : Text(' '),
-            ],
+                ),
+                SizedBox(width: 8),
+                room.notificationCount > 0
+                    ? Container(
+                        padding: EdgeInsets.symmetric(horizontal: 5),
+                        height: 20,
+                        decoration: BoxDecoration(
+                          color: room.highlightCount > 0
+                              ? Colors.red
+                              : Theme.of(context).primaryColor,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Center(
+                          child: Text(
+                            room.notificationCount.toString(),
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      )
+                    : Text(' '),
+              ],
+            ),
+            onTap: () => clickAction(context),
           ),
-          onTap: () => clickAction(context),
         ),
       ),
     );
