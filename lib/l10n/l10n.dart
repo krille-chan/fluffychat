@@ -617,6 +617,8 @@ class L10n extends MatrixLocalizations {
 
   String get pickImage => Intl.message('Pick image');
 
+  String get pin => Intl.message('Pin');
+
   String play(String fileName) => Intl.message(
         "Play $fileName",
         name: "play",
@@ -847,6 +849,8 @@ class L10n extends MatrixLocalizations {
         name: "unknownEvent",
         args: [type],
       );
+
+  String get unpin => Intl.message('Unpin');
 
   String unreadChats(String unreadCount) => Intl.message(
         "$unreadCount unread chats",
