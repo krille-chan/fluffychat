@@ -111,17 +111,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "Ban from chat": "Забанить в чате",
+  "Ban from chat": "Заблокировать в чате",
   "@Ban from chat": {
     "type": "text",
     "placeholders": {}
   },
-  "Banned": "Забанен(а)",
+  "Banned": "Заблокирован(а)",
   "@Banned": {
     "type": "text",
     "placeholders": {}
   },
-  "bannedUser": "{username} забанил(а) {targetName}",
+  "bannedUser": "{username} заблокировал(а) {targetName}",
   "@bannedUser": {
     "type": "text",
     "placeholders": {
@@ -141,7 +141,7 @@
       "homeserver": {}
     }
   },
-  "cachedKeys": "Ключи успешно кэшированы!",
+  "cachedKeys": "Ключи успешно кэшированы",
   "@cachedKeys": {
     "type": "text",
     "placeholders": {}
@@ -389,7 +389,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "createdTheChat": "{username} создал(а) чат",
+  "createdTheChat": "{username} создал(-а) чат",
   "@createdTheChat": {
     "type": "text",
     "placeholders": {
@@ -411,7 +411,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Currently active": "В настоящее время активен",
+  "Currently active": "В настоящее время активен(-а)",
   "@Currently active": {
     "type": "text",
     "placeholders": {}
@@ -424,7 +424,7 @@
       "timeOfDay": {}
     }
   },
-  "dateWithoutYear": "{day}. {month}",
+  "dateWithoutYear": "{day}.{month}",
   "@dateWithoutYear": {
     "type": "text",
     "placeholders": {
@@ -432,7 +432,7 @@
       "day": {}
     }
   },
-  "dateWithYear": "{day}. {month}. {year}",
+  "dateWithYear": "{day}.{month}.{year}",
   "@dateWithYear": {
     "type": "text",
     "placeholders": {
@@ -466,7 +466,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Discard picture": "Сбросить картинку",
+  "Discard picture": "Сбросить изображение",
   "@Discard picture": {
     "type": "text",
     "placeholders": {}
@@ -486,27 +486,27 @@
     "type": "text",
     "placeholders": {}
   },
-  "Emote Settings": "Настройки смайликов",
+  "Emote Settings": "Настройки эмодзи",
   "@Emote Settings": {
     "type": "text",
     "placeholders": {}
   },
-  "Emote shortcode": "Краткий код для смайлика",
+  "Emote shortcode": "Краткий код для эмодзи",
   "@Emote shortcode": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteWarnNeedToPick": "Вам нужно выбрать краткий код смайлика и картинку!",
+  "emoteWarnNeedToPick": "Выберите краткий код эмодзи и изображение",
   "@emoteWarnNeedToPick": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteExists": "Смайлик уже существует!",
+  "emoteExists": "Эмодзи уже существует",
   "@emoteExists": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteInvalid": "Недопустимый краткий код смайлика!",
+  "emoteInvalid": "Недопустимый краткий код эмодзи",
   "@emoteInvalid": {
     "type": "text",
     "placeholders": {}
@@ -739,7 +739,7 @@
       "targetName": {}
     }
   },
-  "kickedAndBanned": "{username} исключил(а) и забанил(а) {targetName}",
+  "kickedAndBanned": "{username} исключил(а) и заблокировал(а) {targetName}",
   "@kickedAndBanned": {
     "type": "text",
     "placeholders": {
@@ -895,7 +895,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "No emotes found. 😕": "Смайликов не найдено. 😕",
+  "No emotes found. 😕": "Эмодзи не найдены 😕",
   "@No emotes found. 😕": {
     "type": "text",
     "placeholders": {}
@@ -972,7 +972,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Pick image": "Выбрать картинку",
+  "Pick image": "Выбрать изображение",
   "@Pick image": {
     "type": "text",
     "placeholders": {}
@@ -1165,7 +1165,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Send image": "Отправить картинку",
+  "Send image": "Отправить изображение",
   "@Send image": {
     "type": "text",
     "placeholders": {}
@@ -1184,7 +1184,7 @@
       "username": {}
     }
   },
-  "sentAPicture": "{username} отправил(а) картинку",
+  "sentAPicture": "{username} отправил(-а) изображение",
   "@sentAPicture": {
     "type": "text",
     "placeholders": {
@@ -1351,7 +1351,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unbannedUser": "{username} разбанил(а) {targetName}",
+  "unbannedUser": "{username} разблокировал(а) {targetName}",
   "@unbannedUser": {
     "type": "text",
     "placeholders": {
@@ -1514,7 +1514,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerEmoji": "В ожидании партнёра, чтобы принять смайлики...",
+  "waitingPartnerEmoji": "В ожидании партнёра, чтобы принять эмодзи...",
   "@waitingPartnerEmoji": {
     "type": "text",
     "placeholders": {}
@@ -1579,7 +1579,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "You have been banned from this chat": "Вы были забанены в этом чате",
+  "You have been banned from this chat": "Вы были заблокированы в этом чате",
   "@You have been banned from this chat": {
     "type": "text",
     "placeholders": {}
