@@ -10,7 +10,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "acceptedTheInvitation": "{username} прийняв(ла) запрошення",
+  "acceptedTheInvitation": "{username} прийняв(-ла) запрошення",
   "@acceptedTheInvitation": {
     "type": "text",
     "placeholders": {
@@ -111,17 +111,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "Ban from chat": "Забанити в чаті",
+  "Ban from chat": "Заблокувати в чаті",
   "@Ban from chat": {
     "type": "text",
     "placeholders": {}
   },
-  "Banned": "Забанений(на)",
+  "Banned": "Заблокований(-на)",
   "@Banned": {
     "type": "text",
     "placeholders": {}
   },
-  "bannedUser": "{username} забанив(ла) {targetName}",
+  "bannedUser": "{username} заблокував(-ла) {targetName}",
   "@bannedUser": {
     "type": "text",
     "placeholders": {
@@ -151,14 +151,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "changedTheChatAvatar": "{username} змінив(ла) аватар чату",
+  "changedTheChatAvatar": "{username} змінив(-ла) аватар чату",
   "@changedTheChatAvatar": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheChatNameTo": "{username} змінив(ла) ім'я чату на: '{chatname}'",
+  "changedTheChatNameTo": "{username} змінив(-ла) ім'я чату на: '{chatname}'",
   "@changedTheChatNameTo": {
     "type": "text",
     "placeholders": {
@@ -166,7 +166,7 @@
       "chatname": {}
     }
   },
-  "changedTheChatDescriptionTo": "{username} змінив(ла) опис чату на: '{description}'",
+  "changedTheChatDescriptionTo": "{username} змінив(-ла) опис чату на: '{description}'",
   "@changedTheChatDescriptionTo": {
     "type": "text",
     "placeholders": {
@@ -174,14 +174,14 @@
       "description": {}
     }
   },
-  "changedTheChatPermissions": "{username} змінив(ла) права чату",
+  "changedTheChatPermissions": "{username} змінив(-ла) права чату",
   "@changedTheChatPermissions": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheDisplaynameTo": "{username} змінив(ла) відображуване ім'я на: {displayname}",
+  "changedTheDisplaynameTo": "{username} змінив(-ла) відображуване ім'я на: {displayname}",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -194,14 +194,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "changedTheGuestAccessRules": "{username} змінив(ла) правила гостьового доступу",
+  "changedTheGuestAccessRules": "{username} змінив(-ла) правила гостьового доступу",
   "@changedTheGuestAccessRules": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheGuestAccessRulesTo": "{username} змінив(ла) правила гостьового доступу на: {rules}",
+  "changedTheGuestAccessRulesTo": "{username} змінив(-ла) правила гостьового доступу на: {rules}",
   "@changedTheGuestAccessRulesTo": {
     "type": "text",
     "placeholders": {
@@ -209,14 +209,14 @@
       "rules": {}
     }
   },
-  "changedTheHistoryVisibility": "{username} змінив(ла) видимість історії",
+  "changedTheHistoryVisibility": "{username} змінив(-ла) видимість історії",
   "@changedTheHistoryVisibility": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheHistoryVisibilityTo": "{username} змінив(ла) видимість історії на: {rules}",
+  "changedTheHistoryVisibilityTo": "{username} змінив(-ла) видимість історії на: {rules}",
   "@changedTheHistoryVisibilityTo": {
     "type": "text",
     "placeholders": {
@@ -224,14 +224,14 @@
       "rules": {}
     }
   },
-  "changedTheJoinRules": "{username} змінив(ла) правила щодо приєднання",
+  "changedTheJoinRules": "{username} змінив(-ла) правила щодо приєднання",
   "@changedTheJoinRules": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheJoinRulesTo": "{username} змінив(ла) правила щодо приєднання на: {joinRules}",
+  "changedTheJoinRulesTo": "{username} змінив(-ла) правила щодо приєднання на: {joinRules}",
   "@changedTheJoinRulesTo": {
     "type": "text",
     "placeholders": {
@@ -239,21 +239,21 @@
       "joinRules": {}
     }
   },
-  "changedTheProfileAvatar": "{username} змінив(ла) аватар",
+  "changedTheProfileAvatar": "{username} змінив(-ла) аватар",
   "@changedTheProfileAvatar": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheRoomAliases": "{username} змінив(ла) псевдоніми кімнати",
+  "changedTheRoomAliases": "{username} змінив(-ла) псевдоніми кімнати",
   "@changedTheRoomAliases": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheRoomInvitationLink": "{username} змінив(ла) посилання для запрошення",
+  "changedTheRoomInvitationLink": "{username} змінив(-ла) посилання для запрошення",
   "@changedTheRoomInvitationLink": {
     "type": "text",
     "placeholders": {
@@ -305,64 +305,64 @@
     "type": "text",
     "placeholders": {}
   },
-  "Close": "",
+  "Close": "Закрити",
   "@Close": {
     "type": "text",
     "placeholders": {}
   },
-  "compareEmojiMatch": "",
+  "compareEmojiMatch": "Порівняйте і переконайтесь, що наступні емодзі відповідають таким на іншому пристрої:",
   "@compareEmojiMatch": {
     "type": "text",
     "placeholders": {}
   },
-  "compareNumbersMatch": "",
+  "compareNumbersMatch": "Порівняйте і переконайтесь, що наступні числа відповідають числам на іншому пристрої:",
   "@compareNumbersMatch": {
     "type": "text",
     "placeholders": {}
   },
-  "Confirm": "",
+  "Confirm": "Підтвердити",
   "@Confirm": {
     "type": "text",
     "placeholders": {}
   },
-  "Connect": "",
+  "Connect": "Приєднатись",
   "@Connect": {
     "type": "text",
     "placeholders": {}
   },
-  "Connection attempt failed": "",
+  "Connection attempt failed": "Спроба підключення не вдалась",
   "@Connection attempt failed": {
     "type": "text",
     "placeholders": {}
   },
-  "Contact has been invited to the group": "",
+  "Contact has been invited to the group": "Контакт був запрошений в групу",
   "@Contact has been invited to the group": {
     "type": "text",
     "placeholders": {}
   },
-  "Content viewer": "",
+  "Content viewer": "Перегляд вмісту",
   "@Content viewer": {
     "type": "text",
     "placeholders": {}
   },
-  "Copied to clipboard": "",
+  "Copied to clipboard": "Скопійовано в буфер обміну",
   "@Copied to clipboard": {
     "type": "text",
     "placeholders": {}
   },
-  "Copy": "",
+  "Copy": "Копіювати",
   "@Copy": {
     "type": "text",
     "placeholders": {}
   },
-  "couldNotDecryptMessage": "",
+  "couldNotDecryptMessage": "Помилка при розшифруванні повідомлення: {error}",
   "@couldNotDecryptMessage": {
     "type": "text",
     "placeholders": {
       "error": {}
     }
   },
-  "Could not set avatar": "",
+  "Could not set avatar": "Помилка при встановленні аватара",
   "@Could not set avatar": {
     "type": "text",
     "placeholders": {}
@@ -372,51 +372,51 @@
     "type": "text",
     "placeholders": {}
   },
-  "countParticipants": "",
+  "countParticipants": "{count} учасника(-ів)",
   "@countParticipants": {
     "type": "text",
     "placeholders": {
       "count": {}
     }
   },
-  "Create": "",
+  "Create": "Створити",
   "@Create": {
     "type": "text",
     "placeholders": {}
   },
-  "Create account now": "",
+  "Create account now": "Створити обліковий запис зараз",
   "@Create account now": {
     "type": "text",
     "placeholders": {}
   },
-  "createdTheChat": "",
+  "createdTheChat": "{username} створив(-ла) чат",
   "@createdTheChat": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "Create new group": "",
+  "Create new group": "Створити нову групу",
   "@Create new group": {
     "type": "text",
     "placeholders": {}
   },
-  "crossSigningDisabled": "",
+  "crossSigningDisabled": "Крос-підпис вимкнено",
   "@crossSigningDisabled": {
     "type": "text",
     "placeholders": {}
   },
-  "crossSigningEnabled": "",
+  "crossSigningEnabled": "Крос-підпис ввімкнено",
   "@crossSigningEnabled": {
     "type": "text",
     "placeholders": {}
   },
-  "Currently active": "",
+  "Currently active": "Зараз активний(-на)",
   "@Currently active": {
     "type": "text",
     "placeholders": {}
   },
-  "dateAndTimeOfDay": "",
+  "dateAndTimeOfDay": "{date}, {timeOfDay}",
   "@dateAndTimeOfDay": {
     "type": "text",
     "placeholders": {
@@ -424,7 +424,7 @@
       "timeOfDay": {}
     }
   },
-  "dateWithoutYear": "",
+  "dateWithoutYear": "{day}.{month}",
   "@dateWithoutYear": {
     "type": "text",
     "placeholders": {
@@ -441,32 +441,32 @@
       "day": {}
     }
   },
-  "Delete": "",
+  "Delete": "Видалити",
   "@Delete": {
     "type": "text",
     "placeholders": {}
   },
-  "Delete message": "",
+  "Delete message": "Видалити повідомлення",
   "@Delete message": {
     "type": "text",
     "placeholders": {}
   },
-  "Deny": "",
+  "Deny": "Відхилити",
   "@Deny": {
     "type": "text",
     "placeholders": {}
   },
-  "Device": "",
+  "Device": "Пристрій",
   "@Device": {
     "type": "text",
     "placeholders": {}
   },
-  "Devices": "",
+  "Devices": "Пристрої",
   "@Devices": {
     "type": "text",
     "placeholders": {}
   },
-  "Discard picture": "",
+  "Discard picture": "Скинути зображення",
   "@Discard picture": {
     "type": "text",
     "placeholders": {}
@@ -476,7 +476,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Download file": "",
+  "Download file": "Завантажити файл",
   "@Download file": {
     "type": "text",
     "placeholders": {}
@@ -486,27 +486,27 @@
     "type": "text",
     "placeholders": {}
   },
-  "Emote Settings": "",
+  "Emote Settings": "Н",
   "@Emote Settings": {
     "type": "text",
     "placeholders": {}
   },
-  "Emote shortcode": "",
+  "Emote shortcode": "Налаштування емодзі",
   "@Emote shortcode": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteWarnNeedToPick": "",
+  "emoteWarnNeedToPick": "Виберіть короткий код емодзі і картинку",
   "@emoteWarnNeedToPick": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteExists": "",
+  "emoteExists": "Емодзі вже існує",
   "@emoteExists": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteInvalid": "",
+  "emoteInvalid": "Неприпустимий короткий код емодзі",
   "@emoteInvalid": {
     "type": "text",
     "placeholders": {}
@@ -739,7 +739,7 @@
       "targetName": {}
     }
   },
-  "kickedAndBanned": "",
+  "kickedAndBanned": "{username} виключив(-ла) та заблокував(-ла) {targetName}",
   "@kickedAndBanned": {
     "type": "text",
     "placeholders": {
@@ -1351,7 +1351,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unbannedUser": "",
+  "unbannedUser": "{username} розблокував(-ла) {targetName}",
   "@unbannedUser": {
     "type": "text",
     "placeholders": {
@@ -1579,7 +1579,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "You have been banned from this chat": "",
+  "You have been banned from this chat": "Ви були заблоковані в цьому чаті",
   "@You have been banned from this chat": {
     "type": "text",
     "placeholders": {}
