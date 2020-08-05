@@ -536,7 +536,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "End-to-end encryption settings": "Сквозные настройки шифрования",
+  "End-to-end encryption settings": "Настройки сквозного шифрования",
   "@End-to-end encryption settings": {
     "type": "text",
     "placeholders": {}
@@ -551,7 +551,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Enter your homeserver": "Введите ваш домашний сервер",
+  "Enter your homeserver": "Введите адрес вашего сервера Matrix",
   "@Enter your homeserver": {
     "type": "text",
     "placeholders": {}
@@ -678,7 +678,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "{username} пригласил(а) вас в FluffyChat. \n1. Установите FluffyChat: http://fluffy.chat \n2. Зарегистрируйтесь или войдите \n3. Откройте ссылку приглашения: {link}",
+  "inviteText": "{username} пригласил(а) вас в FluffyChat. \n1. Установите FluffyChat: http://fluffychat.im \n2. Зарегистрируйтесь или войдите \n3. Откройте ссылку приглашения: {link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {
@@ -714,7 +714,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "joinedTheChat": "{username} присоединился(-ась) к чату",
+  "joinedTheChat": "{username} присоединился(ась) к чату",
   "@joinedTheChat": {
     "type": "text",
     "placeholders": {
