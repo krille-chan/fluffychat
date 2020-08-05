@@ -486,12 +486,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "Emote Settings": "Н",
+  "Emote Settings": "Налаштування емодзі",
   "@Emote Settings": {
     "type": "text",
     "placeholders": {}
   },
-  "Emote shortcode": "Налаштування емодзі",
+  "Emote shortcode": "Короткий код для емодзі",
   "@Emote shortcode": {
     "type": "text",
     "placeholders": {}
@@ -511,102 +511,102 @@
     "type": "text",
     "placeholders": {}
   },
-  "Empty chat": "",
+  "Empty chat": "Пустий чат",
   "@Empty chat": {
     "type": "text",
     "placeholders": {}
   },
-  "You won't be able to disable the encryption anymore. Are you sure?": "",
+  "You won't be able to disable the encryption anymore. Are you sure?": "Ви більше не зможете відключити шифрування. Ви впевнені?",
   "@You won't be able to disable the encryption anymore. Are you sure?": {
     "type": "text",
     "placeholders": {}
   },
-  "Encryption": "",
+  "Encryption": "Шифрування",
   "@Encryption": {
     "type": "text",
     "placeholders": {}
   },
-  "Encryption algorithm": "",
+  "Encryption algorithm": "Алгоритм шифрування",
   "@Encryption algorithm": {
     "type": "text",
     "placeholders": {}
   },
-  "Encryption is not enabled": "",
+  "Encryption is not enabled": "Шифрування вимкнено",
   "@Encryption is not enabled": {
     "type": "text",
     "placeholders": {}
   },
-  "End-to-end encryption settings": "",
+  "End-to-end encryption settings": "Налаштування наскрізного шифрування",
   "@End-to-end encryption settings": {
     "type": "text",
     "placeholders": {}
   },
-  "Enter a group name": "",
+  "Enter a group name": "Введіть назву групи",
   "@Enter a group name": {
     "type": "text",
     "placeholders": {}
   },
-  "Enter a username": "",
+  "Enter a username": "Введіть ім'я користувача",
   "@Enter a username": {
     "type": "text",
     "placeholders": {}
   },
-  "Enter your homeserver": "",
+  "Enter your homeserver": "Введіть адресу вашого сервера Matrix",
   "@Enter your homeserver": {
     "type": "text",
     "placeholders": {}
   },
-  "File name": "",
+  "File name": "Ім'я файлу",
   "@File name": {
     "type": "text",
     "placeholders": {}
   },
-  "File size": "",
+  "File size": "Розмір файлу",
   "@File size": {
     "type": "text",
     "placeholders": {}
   },
-  "FluffyChat": "",
+  "FluffyChat": "FluffyChat",
   "@FluffyChat": {
     "type": "text",
     "placeholders": {}
   },
-  "Forward": "",
+  "Forward": "Переслати",
   "@Forward": {
     "type": "text",
     "placeholders": {}
   },
-  "Friday": "",
+  "Friday": "П'ятниця",
   "@Friday": {
     "type": "text",
     "placeholders": {}
   },
-  "From joining": "",
+  "From joining": "З моменту приєднання",
   "@From joining": {
     "type": "text",
     "placeholders": {}
   },
-  "From the invitation": "",
+  "From the invitation": "З моменту запрошення",
   "@From the invitation": {
     "type": "text",
     "placeholders": {}
   },
-  "Group": "",
+  "Group": "Група",
   "@Group": {
     "type": "text",
     "placeholders": {}
   },
-  "Group description": "",
+  "Group description": "Опис групи",
   "@Group description": {
     "type": "text",
     "placeholders": {}
   },
-  "Group description has been changed": "",
+  "Group description has been changed": "Опис групи було змінено",
   "@Group description has been changed": {
     "type": "text",
     "placeholders": {}
   },
-  "Group is public": "",
+  "Group is public": "Публічна група",
   "@Group is public": {
     "type": "text",
     "placeholders": {}
@@ -678,7 +678,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "",
+  "inviteText": "{username} запросив(-ла) вас у FluffyChat. \n1. Встановіть FluffyChat: http://fluffychat.im \n2. Зареєструйтесь або увійдіть \n3. Відкрийте посилання для запрошення: {link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {
