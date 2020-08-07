@@ -372,7 +372,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "countParticipants": "{count} участника(-ов)",
+  "countParticipants": "{count} участника(ов)",
   "@countParticipants": {
     "type": "text",
     "placeholders": {
@@ -389,14 +389,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "createdTheChat": "{username} создал(-а) чат",
+  "createdTheChat": "{username} создал(а) чат",
   "@createdTheChat": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "Create new group": "Создать новую группу",
+  "Create new group": "Новая группа",
   "@Create new group": {
     "type": "text",
     "placeholders": {}
@@ -411,7 +411,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Currently active": "В настоящее время активен(-а)",
+  "Currently active": "В настоящее время активен(а)",
   "@Currently active": {
     "type": "text",
     "placeholders": {}
@@ -481,7 +481,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Edit displayname": "Изменить отображаемое имя",
+  "Edit displayname": "Отображаемое имя",
   "@Edit displayname": {
     "type": "text",
     "placeholders": {}
@@ -709,7 +709,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Edit Jitsi instance": "Изменить сервер Jitsi",
+  "Edit Jitsi instance": "Сервер Jitsi",
   "@Edit Jitsi instance": {
     "type": "text",
     "placeholders": {}
@@ -801,7 +801,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "loadCountMoreParticipants": "Загрузить еще {count} участников",
+  "loadCountMoreParticipants": "Загрузить еще {count} участника(ов)",
   "@loadCountMoreParticipants": {
     "type": "text",
     "placeholders": {
@@ -860,7 +860,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "New message in FluffyChat": "Новое сообщение в FluffyChat",
+  "New message in FluffyChat": "Новое сообщение во FluffyChat",
   "@New message in FluffyChat": {
     "type": "text",
     "placeholders": {}
@@ -870,22 +870,22 @@
     "type": "text",
     "placeholders": {}
   },
-  "newVerificationRequest": "Новый запрос на подтверждение!",
+  "newVerificationRequest": "Новый запрос на подтверждение",
   "@newVerificationRequest": {
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "Fluffychat в настоящее время не поддерживает включение кросс-подписи. Пожалуйста, включите его в Element.",
+  "noCrossSignBootstrap": "FluffyChat в настоящее время не поддерживает включение кросс-подписи. Пожалуйста, включите его в Element.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "В настоящее время Fluffychat не поддерживает функцию резервного копирования онлайн-ключей. Пожалуйста, включите его из Element.",
+  "noMegolmBootstrap": "В настоящее время FluffyChat не поддерживает функцию резервного копирования онлайн-ключей. Пожалуйста, включите его из Element.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
   },
-  "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": "Похоже, у вас нет служб Google на вашем телефоне. Это хорошее решение для вашей конфиденциальности! Для получения push-уведомлений в FluffyChat мы рекомендуем использовать microG: https://microg.org/",
+  "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": "Похоже, у вас нет служб Google на вашем телефоне. Это хорошее решение для вашей конфиденциальности! Для получения push-уведомлений во FluffyChat мы рекомендуем использовать microG: https://microg.org/",
   "@It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": {
     "type": "text",
     "placeholders": {}
@@ -915,7 +915,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "numberSelected": "{number} выбрано",
+  "numberSelected": "{number} выбран(о)",
   "@numberSelected": {
     "type": "text",
     "placeholders": {
@@ -952,7 +952,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "(Optional) Group name": "(Необязательно) Название группы",
+  "(Optional) Group name": "(необязательно) Название группы",
   "@(Optional) Group name": {
     "type": "text",
     "placeholders": {}
@@ -994,7 +994,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Please enter your password": "Пожалуйста введите ваш пароль",
+  "Please enter your password": "Пожалуйста, введите ваш пароль",
   "@Please enter your password": {
     "type": "text",
     "placeholders": {}
@@ -1014,12 +1014,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "Rejoin": "Перезайти",
+  "Rejoin": "Зайти повторно",
   "@Rejoin": {
     "type": "text",
     "placeholders": {}
   },
-  "Render rich message content": "Показать отформатированные сообщения",
+  "Render rich message content": "Показывать текст с форматированием",
   "@Render rich message content": {
     "type": "text",
     "placeholders": {}
@@ -1110,7 +1110,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sharedTheLocation": "{username} поделился(-ась) местоположением",
+  "sharedTheLocation": "{username} поделился(ась) местоположением",
   "@sharedTheLocation": {
     "type": "text",
     "placeholders": {
@@ -1184,7 +1184,7 @@
       "username": {}
     }
   },
-  "sentAPicture": "{username} отправил(-а) изображение",
+  "sentAPicture": "{username} отправил(а) изображение",
   "@sentAPicture": {
     "type": "text",
     "placeholders": {
@@ -1245,12 +1245,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "Change your style": "Изменить свой стиль",
+  "Change your style": "Тема",
   "@Change your style": {
     "type": "text",
     "placeholders": {}
   },
-  "System": "Системный",
+  "System": "Системная",
   "@System": {
     "type": "text",
     "placeholders": {}
@@ -1260,17 +1260,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "Light": "Светлый",
+  "Light": "Светлая",
   "@Light": {
     "type": "text",
     "placeholders": {}
   },
-  "Dark": "Тёмный",
+  "Dark": "Тёмная",
   "@Dark": {
     "type": "text",
     "placeholders": {}
   },
-  "Use Amoled compatible colors?": "Использовать AMOLED-совместимые цвета?",
+  "Use Amoled compatible colors?": "AMOLED-совместимые цвета",
   "@Use Amoled compatible colors?": {
     "type": "text",
     "placeholders": {}
@@ -1391,14 +1391,14 @@
       "type": {}
     }
   },
-  "unreadChats": "{unreadCount} непрочитанных чатов",
+  "unreadChats": "{unreadCount} непрочитанных чата(ов)",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents} непрочитанных сообщений",
+  "unreadMessages": "{unreadEvents} непрочитанных сообщения(ий)",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
