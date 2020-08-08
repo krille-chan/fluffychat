@@ -1504,7 +1504,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Voice message": "Голосовое сообщение",
+  "Voice message": "Отправить голосовое сообщение",
   "@Voice message": {
     "type": "text",
     "placeholders": {}
