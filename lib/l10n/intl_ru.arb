@@ -79,17 +79,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSCache": "Пожалуйста, введите секретную фразу безопасного хранилища или ключ восстановления для кэширования ключей.",
+  "askSSSSCache": "Пожалуйста, введите вашу парольную фразу или ключ восстановления для кэширования ключей.",
   "@askSSSSCache": {
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSSign": "Чтобы иметь возможность подписать другое лицо, пожалуйста, введите пароль или ключ восстановления вашего безопасного хранилища.",
+  "askSSSSSign": "Для подписи ключа другого пользователя, пожалуйста, введите вашу парольную фразу или ключ восстановления.",
   "@askSSSSSign": {
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSVerify": "Пожалуйста, введите вашу парольную фразу или ключ восстановления для подтвердждения сеанса.",
+  "askSSSSVerify": "Пожалуйста, введите вашу парольную фразу или ключ восстановления для подтвердждения сессии.",
   "@askSSSSVerify": {
     "type": "text",
     "placeholders": {}
@@ -158,7 +158,7 @@
       "username": {}
     }
   },
-  "changedTheChatNameTo": "{username} изменил(а) имя чата на: '{chatname}'",
+  "changedTheChatNameTo": "{username} изменил(а) имя чата на: \"{chatname}\"",
   "@changedTheChatNameTo": {
     "type": "text",
     "placeholders": {
@@ -166,7 +166,7 @@
       "chatname": {}
     }
   },
-  "changedTheChatDescriptionTo": "{username} изменил(а) описание чата на: '{description}'",
+  "changedTheChatDescriptionTo": "{username} изменил(а) описание чата на: \"{description}\"",
   "@changedTheChatDescriptionTo": {
     "type": "text",
     "placeholders": {
@@ -189,7 +189,7 @@
       "displayname": {}
     }
   },
-  "Change the homeserver": "Изменить домашний сервер",
+  "Change the homeserver": "Изменить сервер Matrix",
   "@Change the homeserver": {
     "type": "text",
     "placeholders": {}
@@ -270,12 +270,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "Change wallpaper": "Сменить обои",
+  "Change wallpaper": "Изменить фон чатов",
   "@Change wallpaper": {
     "type": "text",
     "placeholders": {}
   },
-  "Change the server": "Сменить сервер",
+  "Change the server": "Изменить сервер",
   "@Change the server": {
     "type": "text",
     "placeholders": {}
@@ -310,7 +310,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "compareEmojiMatch": "Сравните и убедитесь, что следующие эмодзи соответствуют таковым на другом устройстве:",
+  "compareEmojiMatch": "Сравните и убедитесь, что следующие эмодзи соответствуют эмодзи на другом устройстве:",
   "@compareEmojiMatch": {
     "type": "text",
     "placeholders": {}
@@ -466,7 +466,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Discard picture": "Сбросить изображение",
+  "Discard picture": "Удалить изображение",
   "@Discard picture": {
     "type": "text",
     "placeholders": {}
@@ -641,7 +641,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Homeserver is not compatible": "Домашний сервер не совместим",
+  "Homeserver is not compatible": "Несовместимый сервер Matrix",
   "@Homeserver is not compatible": {
     "type": "text",
     "placeholders": {}
@@ -880,7 +880,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "В настоящее время FluffyChat не поддерживает функцию резервного копирования онлайн-ключей. Пожалуйста, включите его из Element.",
+  "noMegolmBootstrap": "В настоящее время FluffyChat не поддерживает функцию резервного копирования онлайн-ключей. Пожалуйста, включите её в Element.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -977,7 +977,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "play": "Играть {fileName}",
+  "play": "Проиграть {fileName}",
   "@play": {
     "type": "text",
     "placeholders": {
@@ -1065,7 +1065,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Revoke all permissions": "Отменить все разрешения",
+  "Revoke all permissions": "Отменить все права доступа",
   "@Revoke all permissions": {
     "type": "text",
     "placeholders": {}
@@ -1384,7 +1384,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unknownEvent": "Неизвестное событие '{type}'",
+  "unknownEvent": "Неизвестное событие \"{type}\"",
   "@unknownEvent": {
     "type": "text",
     "placeholders": {
@@ -1405,7 +1405,7 @@
       "unreadEvents": {}
     }
   },
-  "unreadMessagesInChats": "{unreadEvents} непрочитанных сообщений в {unreadChats} чатах",
+  "unreadMessagesInChats": "{unreadEvents} непрочитанное(ых) сообщение(ий) в {unreadChats} чате(ах)",
   "@unreadMessagesInChats": {
     "type": "text",
     "placeholders": {
@@ -1441,7 +1441,7 @@
       "username": {}
     }
   },
-  "userSentUnknownEvent": "{username} отправил(а) событие типа {type}",
+  "userSentUnknownEvent": "{username} отправил(а) событие типа \"{type}\"",
   "@userSentUnknownEvent": {
     "type": "text",
     "placeholders": {
@@ -1459,7 +1459,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "verifiedSession": "Успешно проверенная сессия!",
+  "verifiedSession": "Сессия успешно проверена",
   "@verifiedSession": {
     "type": "text",
     "placeholders": {}
@@ -1469,7 +1469,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "verifySuccess": "Вы успешно проверили!",
+  "verifySuccess": "Проверка успешно завершена",
   "@verifySuccess": {
     "type": "text",
     "placeholders": {}
