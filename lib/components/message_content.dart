@@ -40,7 +40,6 @@ class MessageContent extends StatelessWidget {
           case MessageTypes.Text:
           case MessageTypes.Notice:
           case MessageTypes.Emote:
-          case MessageTypes.Reply:
             if (Matrix.of(context).renderHtml &&
                 !event.redacted &&
                 event.content['format'] == 'org.matrix.custom.html' &&

@@ -1,6 +1,10 @@
 # Version 0.17.0 - 2020-08-??
-### Features:
+### Features
 - Pin and unpin chats
+- Implement event aggregations
+- Implement message edits
+- Render reactions
+- Add / Remove reactions by tapping on existing reactions
 ### Fixes:
 - Don't re-render the room list nearly as often, increasing performance
 

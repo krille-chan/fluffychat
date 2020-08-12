@@ -27,14 +27,17 @@ dependencies:
   famedlysdk:
     git:
       url: https://gitlab.com/famedly/famedlysdk.git
-      ref: 3fae58439bdc2100d26fbfb92a62c7fbb7b48903
+      ref: 574fe27101bb03c8c18c776e98f7f44668e6d159
 
   localstorage: ^3.0.1+4
   bubble: ^1.1.9+1
   memoryfilepicker: ^0.1.1
   url_launcher: ^5.4.1
   url_launcher_web: ^0.1.0
-  flutter_advanced_networkimage: any
+  flutter_advanced_networkimage:
+    git:
+      url: https://github.com/mchome/flutter_advanced_networkimage
+      ref: master
   firebase_messaging: ^6.0.13
   flutter_local_notifications: ^1.4.3
   link_text: ^0.1.1
@@ -51,7 +54,10 @@ dependencies:
   open_file: ^3.0.1
   mime_type: ^0.3.0
   bot_toast: ^3.0.0
-  flutter_matrix_html: ^0.1.2
+  flutter_matrix_html:
+    git:
+      url: https://github.com/Sorunome/flutter_matrix_html
+      ref: 530df434b50002e04cbad63f53d6f0f5d5adbab5
   moor: ^3.0.2
   random_string: ^2.0.1
   flutter_typeahead: ^1.8.1

@@ -8,6 +8,18 @@ import 'package:moor/moor.dart';
 import 'package:moor/isolate.dart';
 import 'cipher_db.dart' as cipher;
 
+class DatabaseNoTransactions extends Database {
+  DatabaseNoTransactions.connect(DatabaseConnection connection)
+      : super.connect(connection);
+
+  // moor transactions are sometimes rather weird and freeze. Until there is a
+  // proper fix in moor we override that there aren't actually using transactions
+  @override
+  Future<T> transaction<T>(Future<T> Function() action) async {
+    return action();
+  }
+}
+
 bool _inited = false;
 
 // see https://moor.simonbinder.eu/docs/advanced-features/isolates/
@@ -57,7 +69,7 @@ Future<Database> constructDb(
         receivePort.sendPort, targetPath, password, logStatements),
   );
   final isolate = (await receivePort.first as MoorIsolate);
-  return Database.connect(await isolate.connect());
+  return DatabaseNoTransactions.connect(await isolate.connect());
 }
 
 Future<String> getLocalstorage(String key) async {
