@@ -194,7 +194,6 @@ class MatrixState extends State<Matrix> {
         verificationMethods.add(KeyVerificationMethod.emoji);
       }
       client = Client(widget.clientName,
-          debug: false,
           enableE2eeRecovery: true,
           verificationMethods: verificationMethods,
           importantStateEvents: <String>{

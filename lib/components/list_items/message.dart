@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import '../adaptive_page_layout.dart';
 import '../avatar.dart';
 import '../matrix.dart';
+import '../message_reactions.dart';
 import 'state_message.dart';
 
 class Message extends StatelessWidget {
@@ -64,11 +65,13 @@ class Message extends StatelessWidget {
     var rowMainAxisAlignment =
         ownMessage ? MainAxisAlignment.end : MainAxisAlignment.start;
 
+    final displayEvent = event.getDisplayEvent(timeline);
+
     if (event.showThumbnail) {
       color = Theme.of(context).scaffoldBackgroundColor.withOpacity(0.66);
       textColor = Theme.of(context).textTheme.bodyText2.color;
     } else if (ownMessage) {
-      color = event.status == -1
+      color = displayEvent.status == -1
           ? Colors.redAccent
           : Theme.of(context).primaryColor;
     }
@@ -91,15 +94,14 @@ class Message extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    if (event.isReply)
+                    if (event.relationshipType == RelationshipTypes.Reply)
                       FutureBuilder<Event>(
                         future: event.getReplyEvent(timeline),
                         builder: (BuildContext context, snapshot) {
                           final replyEvent = snapshot.hasData
                               ? snapshot.data
                               : Event(
-                                  eventId: event.content['m.relates_to']
-                                      ['m.in_reply_to']['event_id'],
+                                  eventId: event.relationshipEventId,
                                   content: {'msgtype': 'm.text', 'body': '...'},
                                   senderId: event.senderId,
                                   type: 'm.room.message',
@@ -110,18 +112,18 @@ class Message extends StatelessWidget {
                                 );
                           return Container(
                             margin: EdgeInsets.symmetric(vertical: 4.0),
-                            child:
-                                ReplyContent(replyEvent, lightText: ownMessage),
+                            child: ReplyContent(replyEvent,
+                                lightText: ownMessage, timeline: timeline),
                           );
                         },
                       ),
                     MessageContent(
-                      event,
+                      displayEvent,
                       textColor: textColor,
                     ),
-                    if (event.type == EventTypes.Encrypted &&
-                        event.messageType == MessageTypes.BadEncrypted &&
-                        event.content['can_request_session'] == true)
+                    if (displayEvent.type == EventTypes.Encrypted &&
+                        displayEvent.messageType == MessageTypes.BadEncrypted &&
+                        displayEvent.content['can_request_session'] == true)
                       RaisedButton(
                         color: color.withAlpha(100),
                         child: Text(
@@ -129,15 +131,18 @@ class Message extends StatelessWidget {
                           style: TextStyle(color: textColor),
                         ),
                         onPressed: () => SimpleDialogs(context)
-                            .tryRequestWithLoadingDialog(event.requestKey()),
+                            .tryRequestWithLoadingDialog(
+                                displayEvent.requestKey()),
                       ),
                     SizedBox(height: 4),
                     Opacity(
                       opacity: 0,
                       child: _MetaRow(
-                        event,
+                        event, // meta information should be from the unedited event
                         ownMessage,
                         textColor,
+                        timeline,
+                        displayEvent,
                       ),
                     ),
                   ],
@@ -150,6 +155,8 @@ class Message extends StatelessWidget {
                     event,
                     ownMessage,
                     textColor,
+                    timeline,
+                    displayEvent,
                   ),
                 ),
               ],
@@ -170,6 +177,32 @@ class Message extends StatelessWidget {
     } else {
       rowChildren.insert(0, avatarOrSizedBox);
     }
+    final row = Row(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      mainAxisAlignment: rowMainAxisAlignment,
+      children: rowChildren,
+    );
+    Widget container;
+    if (event.hasAggregatedEvents(timeline, RelationshipTypes.Reaction)) {
+      container = Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment:
+            ownMessage ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+        children: <Widget>[
+          row,
+          Padding(
+            padding: EdgeInsets.only(
+              top: 4.0,
+              left: (ownMessage ? 0 : Avatar.defaultSize) + 12.0,
+              right: (ownMessage ? Avatar.defaultSize : 0) + 12.0,
+            ),
+            child: MessageReactions(event, timeline),
+          ),
+        ],
+      );
+    } else {
+      container = row;
+    }
 
     return InkWell(
       onHover: (b) => useMouse = true,
@@ -185,11 +218,7 @@ class Message extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.only(
               left: 8.0, right: 8.0, bottom: sameSender ? 4.0 : 8.0),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisAlignment: rowMainAxisAlignment,
-            children: rowChildren,
-          ),
+          child: container,
         ),
       ),
     );
@@ -200,8 +229,12 @@ class _MetaRow extends StatelessWidget {
   final Event event;
   final bool ownMessage;
   final Color color;
+  final Timeline timeline;
+  final Event displayEvent;
 
-  const _MetaRow(this.event, this.ownMessage, this.color, {Key key})
+  const _MetaRow(
+      this.event, this.ownMessage, this.color, this.timeline, this.displayEvent,
+      {Key key})
       : super(key: key);
 
   @override
@@ -229,10 +262,16 @@ class _MetaRow extends StatelessWidget {
             fontSize: 11,
           ),
         ),
+        if (event.hasAggregatedEvents(timeline, RelationshipTypes.Edit))
+          Icon(
+            Icons.edit,
+            size: 12,
+            color: color,
+          ),
         if (ownMessage) SizedBox(width: 2),
         if (ownMessage)
           Icon(
-            event.statusIcon,
+            displayEvent.statusIcon,
             size: 12,
             color: color,
           ),

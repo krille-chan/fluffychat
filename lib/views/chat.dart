@@ -76,6 +76,8 @@ class _ChatState extends State<_Chat> {
 
   Event replyEvent;
 
+  Event editEvent;
+
   bool showScrollDownButton = false;
 
   bool get selectMode => selectedEvents.isNotEmpty;
@@ -174,13 +176,15 @@ class _ChatState extends State<_Chat> {
 
   void send() {
     if (sendController.text.isEmpty) return;
-    room.sendTextEvent(sendController.text, inReplyTo: replyEvent);
+    room.sendTextEvent(sendController.text,
+        inReplyTo: replyEvent, editEventId: editEvent?.eventId);
     sendController.text = '';
-    if (replyEvent != null) {
-      setState(() => replyEvent = null);
-    }
 
-    setState(() => inputText = '');
+    setState(() {
+      inputText = '';
+      replyEvent = null;
+      editEvent = null;
+    });
   }
 
   void sendFileAction(BuildContext context) async {
@@ -289,8 +293,17 @@ class _ChatState extends State<_Chat> {
     Navigator.of(context).popUntil((r) => r.isFirst);
   }
 
-  void sendAgainAction() {
-    selectedEvents.first.sendAgain();
+  void sendAgainAction(Timeline timeline) {
+    final event = selectedEvents.first;
+    if (event.status == -1) {
+      event.sendAgain();
+    }
+    final allEditEvents = event
+        .aggregatedEvents(timeline, RelationshipTypes.Edit)
+        .where((e) => e.status == -1);
+    for (final e in allEditEvents) {
+      e.sendAgain();
+    }
     setState(() => selectedEvents.clear());
   }
 
@@ -411,6 +424,23 @@ class _ChatState extends State<_Chat> {
                 .numberSelected(selectedEvents.length.toString())),
         actions: selectMode
             ? <Widget>[
+                if (selectedEvents.length == 1 &&
+                    selectedEvents.first.status > 0 &&
+                    selectedEvents.first.senderId == client.userID)
+                  IconButton(
+                    icon: Icon(Icons.edit),
+                    onPressed: () {
+                      setState(() {
+                        editEvent = selectedEvents.first;
+                        sendController.text = editEvent
+                            .getDisplayEvent(timeline)
+                            .getLocalizedBody(L10n.of(context),
+                                withSenderNamePrefix: false, hideReply: true);
+                        selectedEvents.clear();
+                      });
+                      inputFocus.requestFocus();
+                    },
+                  ),
                 IconButton(
                   icon: Icon(Icons.content_copy),
                   onPressed: () => copyEventsAction(context),
@@ -467,7 +497,16 @@ class _ChatState extends State<_Chat> {
                       room.sendReadReceipt(timeline.events.first.eventId);
                     }
 
-                    if (timeline.events.isEmpty) return Container();
+                    final filteredEvents = timeline.events
+                        .where((e) =>
+                            ![
+                              RelationshipTypes.Edit,
+                              RelationshipTypes.Reaction
+                            ].contains(e.relationshipType) &&
+                            e.type != 'm.reaction')
+                        .toList();
+
+                    if (filteredEvents.isEmpty) return Container();
 
                     return ListView.builder(
                         padding: EdgeInsets.symmetric(
@@ -479,10 +518,10 @@ class _ChatState extends State<_Chat> {
                                   2),
                         ),
                         reverse: true,
-                        itemCount: timeline.events.length + 2,
+                        itemCount: filteredEvents.length + 2,
                         controller: _scrollController,
                         itemBuilder: (BuildContext context, int i) {
-                          return i == timeline.events.length + 1
+                          return i == filteredEvents.length + 1
                               ? _loadingHistory
                                   ? Container(
                                       height: 50,
@@ -512,7 +551,7 @@ class _ChatState extends State<_Chat> {
                                           ? Duration(milliseconds: 0)
                                           : Duration(milliseconds: 500),
                                       alignment:
-                                          timeline.events.first.senderId ==
+                                          filteredEvents.first.senderId ==
                                                   client.userID
                                               ? Alignment.topRight
                                               : Alignment.topLeft,
@@ -530,7 +569,7 @@ class _ChatState extends State<_Chat> {
                                         bottom: 8,
                                       ),
                                     )
-                                  : Message(timeline.events[i - 1],
+                                  : Message(filteredEvents[i - 1],
                                       onAvatarTab: (Event event) {
                                       sendController.text +=
                                           ' ${event.senderId}';
@@ -553,10 +592,10 @@ class _ChatState extends State<_Chat> {
                                     },
                                       longPressSelect: selectedEvents.isEmpty,
                                       selected: selectedEvents
-                                          .contains(timeline.events[i - 1]),
+                                          .contains(filteredEvents[i - 1]),
                                       timeline: timeline,
                                       nextEvent: i >= 2
-                                          ? timeline.events[i - 2]
+                                          ? filteredEvents[i - 2]
                                           : null);
                         });
                   },
@@ -565,17 +604,23 @@ class _ChatState extends State<_Chat> {
               ConnectionStatusHeader(),
               AnimatedContainer(
                 duration: Duration(milliseconds: 300),
-                height: replyEvent != null ? 56 : 0,
+                height: editEvent != null || replyEvent != null ? 56 : 0,
                 child: Material(
                   color: Theme.of(context).secondaryHeaderColor,
                   child: Row(
                     children: <Widget>[
                       IconButton(
                         icon: Icon(Icons.close),
-                        onPressed: () => setState(() => replyEvent = null),
+                        onPressed: () => setState(() {
+                          replyEvent = null;
+                          editEvent = null;
+                        }),
                       ),
                       Expanded(
-                        child: ReplyContent(replyEvent),
+                        child: replyEvent != null
+                            ? ReplyContent(replyEvent, timeline: timeline)
+                            : _EditContent(
+                                editEvent?.getDisplayEvent(timeline)),
                       ),
                     ],
                   ),
@@ -611,7 +656,10 @@ class _ChatState extends State<_Chat> {
                                   ),
                                 ),
                                 selectedEvents.length == 1
-                                    ? selectedEvents.first.status > 0
+                                    ? selectedEvents.first
+                                                .getDisplayEvent(timeline)
+                                                .status >
+                                            0
                                         ? Container(
                                             height: 56,
                                             child: FlatButton(
@@ -629,7 +677,7 @@ class _ChatState extends State<_Chat> {
                                             height: 56,
                                             child: FlatButton(
                                               onPressed: () =>
-                                                  sendAgainAction(),
+                                                  sendAgainAction(timeline),
                                               child: Row(
                                                 children: <Widget>[
                                                   Text(L10n.of(context)
@@ -801,6 +849,41 @@ class _ChatState extends State<_Chat> {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _EditContent extends StatelessWidget {
+  final Event event;
+
+  _EditContent(this.event);
+
+  @override
+  Widget build(BuildContext context) {
+    if (event == null) {
+      return Container();
+    }
+    return Row(
+      children: <Widget>[
+        Icon(
+          Icons.edit,
+          color: Theme.of(context).primaryColor,
+        ),
+        Container(width: 15.0),
+        Text(
+          event?.getLocalizedBody(
+                L10n.of(context),
+                withSenderNamePrefix: false,
+                hideReply: true,
+              ) ??
+              '',
+          overflow: TextOverflow.ellipsis,
+          maxLines: 1,
+          style: TextStyle(
+            color: Theme.of(context).textTheme.bodyText2.color,
+          ),
+        ),
+      ],
     );
   }
 }
