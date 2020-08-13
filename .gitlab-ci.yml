@@ -38,7 +38,7 @@ build_web:
     - cd web/ && rm sqljs-wasm.zip && cd ../
     - flutter pub get
     - flutter clean
-    - flutter build web --release --verbose --dart-define=FLUTTER_WEB_USE_SKIA=true
+    - flutter build web --release --verbose
   artifacts:
     paths:
       - build/web/
