@@ -129,7 +129,7 @@ class ChatListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isMuted = room.pushRuleState == PushRuleState.notify;
+    final isMuted = room.pushRuleState != PushRuleState.notify;
     final slideableKey = GlobalKey();
     return Slidable(
       key: slideableKey,
