@@ -10,7 +10,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "acceptedTheInvitation": "{username} принял(а) приглашение",
+  "acceptedTheInvitation": "{username} принял(а) приглашение войти в чат",
   "@acceptedTheInvitation": {
     "type": "text",
     "placeholders": {
@@ -174,7 +174,7 @@
       "description": {}
     }
   },
-  "changedTheChatPermissions": "{username} изменил(а) права чата",
+  "changedTheChatPermissions": "{username} изменил(а) права доступа к чату",
   "@changedTheChatPermissions": {
     "type": "text",
     "placeholders": {
@@ -239,7 +239,7 @@
       "joinRules": {}
     }
   },
-  "changedTheProfileAvatar": "{username} сменил(а) аватар",
+  "changedTheProfileAvatar": "{username} изменил(а) аватар",
   "@changedTheProfileAvatar": {
     "type": "text",
     "placeholders": {
@@ -721,7 +721,7 @@
       "username": {}
     }
   },
-  "keysCached": "Ключи кэшированы",
+  "keysCached": "Ключи сохранены в кэше",
   "@keysCached": {
     "type": "text",
     "placeholders": {}
@@ -781,7 +781,7 @@
       "localizedTimeShort": {}
     }
   },
-  "Last seen IP": "Последний увиденный IP",
+  "Last seen IP": "Последний IP, с которого заходили",
   "@Last seen IP": {
     "type": "text",
     "placeholders": {}
@@ -791,7 +791,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Loading... Please wait": "Загрузка... Пожалуйста подождите",
+  "Loading... Please wait": "Пожалуйста, подождите...",
   "@Loading... Please wait": {
     "type": "text",
     "placeholders": {}
@@ -900,7 +900,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "No permission": "Нет разрешений",
+  "No permission": "Нет прав доступа",
   "@No permission": {
     "type": "text",
     "placeholders": {}
@@ -927,12 +927,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "onlineKeyBackupDisabled": "Резервное копирование онлайн-ключей отключено",
+  "onlineKeyBackupDisabled": "Резервное копирование ключей на сервере отключено",
   "@onlineKeyBackupDisabled": {
     "type": "text",
     "placeholders": {}
   },
-  "onlineKeyBackupEnabled": "Резервное копирование онлайн ключей включено",
+  "onlineKeyBackupEnabled": "Резервное копирование ключей на сервере включено",
   "@onlineKeyBackupEnabled": {
     "type": "text",
     "placeholders": {}
@@ -1060,7 +1060,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Remove exile": "Удалить ссылку",
+  "Remove exile": "Разблокировать в чате",
   "@Remove exile": {
     "type": "text",
     "placeholders": {}
@@ -1122,7 +1122,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Seen a long time ago": "Просматривали давно",
+  "Seen a long time ago": "Был(а) в сети давно",
   "@Seen a long time ago": {
     "type": "text",
     "placeholders": {}
