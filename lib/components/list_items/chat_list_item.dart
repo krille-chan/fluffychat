@@ -182,7 +182,7 @@ class ChatListItem extends StatelessWidget {
                   child: Text(
                     room.getLocalizedDisplayname(L10n.of(context)),
                     maxLines: 1,
-                    overflow: TextOverflow.fade,
+                    overflow: TextOverflow.ellipsis,
                     softWrap: false,
                   ),
                 ),
@@ -239,7 +239,7 @@ class ChatListItem extends StatelessWidget {
                               '',
                           softWrap: false,
                           maxLines: 1,
-                          overflow: TextOverflow.fade,
+                          overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             decoration: room.lastEvent?.redacted == true
                                 ? TextDecoration.lineThrough
