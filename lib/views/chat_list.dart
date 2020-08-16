@@ -92,7 +92,7 @@ class _ChatListState extends State<ChatList> {
         setState(() => loadingPublicRooms = true);
         final newPublicRoomsResponse =
             await SimpleDialogs(context).tryRequestWithErrorToast(
-          Matrix.of(context).client.api.searchPublicRooms(
+          Matrix.of(context).client.searchPublicRooms(
                 limit: 30,
                 includeAllNetworks: true,
                 genericSearchTerm: searchController.text,
@@ -197,7 +197,7 @@ class _ChatListState extends State<ChatList> {
     );
     if (status?.isEmpty ?? true) return;
     await SimpleDialogs(context).tryRequestWithLoadingDialog(
-      Matrix.of(context).client.api.sendPresence(
+      Matrix.of(context).client.sendPresence(
           Matrix.of(context).client.userID, PresenceType.online,
           statusMsg: status),
     );

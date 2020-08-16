@@ -53,7 +53,7 @@ abstract class FirebaseController {
       }
       return;
     }
-    final pushers = await client.api.requestPushers();
+    final pushers = await client.requestPushers();
     final currentPushers = pushers.where((pusher) => pusher.pushkey == token);
     if (currentPushers.length == 1 &&
         currentPushers.first.kind == 'http' &&
@@ -69,14 +69,14 @@ abstract class FirebaseController {
         for (final currentPusher in currentPushers) {
           currentPusher.pushkey = token;
           currentPusher.kind = 'null';
-          await client.api.setPusher(
+          await client.setPusher(
             currentPusher,
             append: true,
           );
           debugPrint('[Push] Remove legacy pusher for this device');
         }
       }
-      await client.api.setPusher(
+      await client.setPusher(
         Pusher(
           token,
           APP_ID,

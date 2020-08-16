@@ -28,7 +28,7 @@ class DevicesSettingsState extends State<DevicesSettings> {
   List<Device> devices;
   Future<bool> _loadUserDevices(BuildContext context) async {
     if (devices != null) return true;
-    devices = await Matrix.of(context).client.api.requestDevices();
+    devices = await Matrix.of(context).client.requestDevices();
     return true;
   }
 
@@ -49,7 +49,7 @@ class DevicesSettingsState extends State<DevicesSettings> {
     if (password == null) return;
 
     final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
-        matrix.client.api.deleteDevices(deviceIds,
+        matrix.client.deleteDevices(deviceIds,
             auth: matrix.getAuthByPassword(password)));
     if (success != false) {
       reload();

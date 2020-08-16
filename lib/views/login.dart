@@ -45,7 +45,8 @@ class _LoginState extends State<Login> {
     setState(() => loading = true);
     try {
       await matrix.client.login(
-          usernameController.text, passwordController.text,
+          user: usernameController.text,
+          password: passwordController.text,
           initialDeviceDisplayName: matrix.widget.clientName);
     } on MatrixException catch (exception) {
       setState(() => passwordError = exception.errorMessage);
@@ -91,7 +92,7 @@ class _LoginState extends State<Login> {
           .getWellKnownInformationsByUserId(userId);
       final newDomain = wellKnownInformations.mHomeserver?.baseUrl;
       if ((newDomain?.isNotEmpty ?? false) &&
-          newDomain != Matrix.of(context).client.api.homeserver.toString()) {
+          newDomain != Matrix.of(context).client.homeserver.toString()) {
         await SimpleDialogs(context).tryRequestWithErrorToast(
             Matrix.of(context).client.checkServer(newDomain));
         setState(() => usernameError = null);
@@ -110,7 +111,6 @@ class _LoginState extends State<Login> {
         title: Text(
           L10n.of(context).logInTo(Matrix.of(context)
               .client
-              .api
               .homeserver
               .toString()
               .replaceFirst('https://', '')),

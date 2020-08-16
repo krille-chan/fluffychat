@@ -23,6 +23,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m1(username) => "${username} activated end to end encryption";
 
+  static m61(senderName) => "${senderName} answered the call";
+
   static m2(username) => "Accept this verification request from ${username}?";
 
   static m3(username, targetName) => "${username} banned ${targetName}";
@@ -75,6 +77,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m24(month, day) => "${month}-${day}";
 
+  static m62(senderName) => "${senderName} ended the call";
+
   static m25(displayname) => "Group with ${displayname}";
 
   static m26(username, targetName) =>
@@ -126,7 +130,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m48(username) => "${username} sent an audio";
 
+  static m63(senderName) => "${senderName} sent call informations";
+
   static m49(username) => "${username} shared the location";
+
+  static m64(senderName) => "${senderName} started a call";
 
   static m50(hours12, hours24, minutes, suffix) =>
       "${hours12}:${minutes} ${suffix}";
@@ -297,6 +305,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "It seems that you have no google services on your phone. That\'s a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/":
             MessageLookupByLibrary.simpleMessage(
                 "It seems that you have no google services on your phone. That\'s a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/"),
+        "Join room": MessageLookupByLibrary.simpleMessage("Join room"),
         "Kick from chat":
             MessageLookupByLibrary.simpleMessage("Kick from chat"),
         "Last seen IP": MessageLookupByLibrary.simpleMessage("Last seen IP"),
@@ -342,6 +351,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Participating user devices"),
         "Password": MessageLookupByLibrary.simpleMessage("Password"),
         "Pick image": MessageLookupByLibrary.simpleMessage("Pick image"),
+        "Pin": MessageLookupByLibrary.simpleMessage("Pin"),
         "Please be aware that you need Pantalaimon to use end-to-end encryption for now.":
             MessageLookupByLibrary.simpleMessage(
                 "Please be aware that you need Pantalaimon to use end-to-end encryption for now."),
@@ -424,6 +434,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Unknown encryption algorithm": MessageLookupByLibrary.simpleMessage(
             "Unknown encryption algorithm"),
         "Unmute chat": MessageLookupByLibrary.simpleMessage("Unmute chat"),
+        "Unpin": MessageLookupByLibrary.simpleMessage("Unpin"),
         "Use Amoled compatible colors?": MessageLookupByLibrary.simpleMessage(
             "Use Amoled compatible colors?"),
         "Username": MessageLookupByLibrary.simpleMessage("Username"),
@@ -441,7 +452,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Wednesday": MessageLookupByLibrary.simpleMessage("Wednesday"),
         "Welcome to the cutest instant messenger in the matrix network.":
             MessageLookupByLibrary.simpleMessage(
-                "Welcome to the cutest instant messenger in the Matrix network."),
+                "Welcome to the cutest instant messenger in the matrix network."),
         "Who is allowed to join this group":
             MessageLookupByLibrary.simpleMessage(
                 "Who is allowed to join this group"),
@@ -467,6 +478,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "acceptedTheInvitation": m0,
         "activatedEndToEndEncryption": m1,
         "alias": MessageLookupByLibrary.simpleMessage("alias"),
+        "answeredTheCall": m61,
         "askSSSSCache": MessageLookupByLibrary.simpleMessage(
             "Please enter your secure store passphrase or recovery key to cache the keys."),
         "askSSSSSign": MessageLookupByLibrary.simpleMessage(
@@ -512,6 +524,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Invalid emote shortcode!"),
         "emoteWarnNeedToPick": MessageLookupByLibrary.simpleMessage(
             "You need to pick an emote shortcode and an image!"),
+        "endedTheCall": m62,
         "groupWith": m25,
         "hasWithdrawnTheInvitationFor": m26,
         "incorrectPassphraseOrKey": MessageLookupByLibrary.simpleMessage(
@@ -533,9 +546,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "newVerificationRequest":
             MessageLookupByLibrary.simpleMessage("New verification request!"),
         "noCrossSignBootstrap": MessageLookupByLibrary.simpleMessage(
-            "Fluffychat currently does not support enabling Cross-Signing. Please enable it from within Element."),
+            "Fluffychat currently does not support enabling Cross-Signing. Please enable it from within Riot."),
         "noMegolmBootstrap": MessageLookupByLibrary.simpleMessage(
-            "Fluffychat currently does not support enabling Online Key Backup. Please enable it from within Element."),
+            "Fluffychat currently does not support enabling Online Key Backup. Please enable it from within Riot."),
         "numberSelected": m36,
         "ok": MessageLookupByLibrary.simpleMessage("ok"),
         "onlineKeyBackupDisabled": MessageLookupByLibrary.simpleMessage(
@@ -556,9 +569,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "sentASticker": m46,
         "sentAVideo": m47,
         "sentAnAudio": m48,
+        "sentCallInformations": m63,
         "sessionVerified":
             MessageLookupByLibrary.simpleMessage("Session is verified"),
         "sharedTheLocation": m49,
+        "startedACall": m64,
         "timeOfDay": m50,
         "title": MessageLookupByLibrary.simpleMessage("FluffyChat"),
         "unbannedUser": m51,

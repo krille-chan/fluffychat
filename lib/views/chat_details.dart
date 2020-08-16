@@ -63,20 +63,18 @@ class _ChatDetailsState extends State<ChatDetails> {
       var newAliases = List<String>.from(aliases);
       newAliases.add(canonicalAlias);
       final response = await SimpleDialogs(context).tryRequestWithLoadingDialog(
-        widget.room.client.api.requestRoomAliasInformations(canonicalAlias),
+        widget.room.client.requestRoomAliasInformations(canonicalAlias),
       );
       if (response == false) {
         final success =
             await SimpleDialogs(context).tryRequestWithLoadingDialog(
-          widget.room.client.api
-              .createRoomAlias(canonicalAlias, widget.room.id),
+          widget.room.client.createRoomAlias(canonicalAlias, widget.room.id),
         );
         if (success == false) return;
       }
     }
     await SimpleDialogs(context).tryRequestWithLoadingDialog(
-      widget.room.client.api
-          .sendState(widget.room.id, 'm.room.canonical_alias', {
+      widget.room.client.sendState(widget.room.id, 'm.room.canonical_alias', {
         'alias': '#$s:$domain',
       }),
     );

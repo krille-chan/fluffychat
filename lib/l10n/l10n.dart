@@ -86,6 +86,10 @@ class L10n extends MatrixLocalizations {
 
   String get alreadyHaveAnAccount => Intl.message("Already have an account?");
 
+  String answeredTheCall(String senderName) =>
+      Intl.message('$senderName answered the call',
+          name: "answeredTheCall", args: [senderName]);
+
   String get anyoneCanJoin => Intl.message("Anyone can join");
 
   String get archive => Intl.message("Archive");
@@ -378,6 +382,12 @@ class L10n extends MatrixLocalizations {
 
   String get end2endEncryptionSettings =>
       Intl.message("End-to-end encryption settings");
+
+  String endedTheCall(String senderName) => Intl.message(
+        '$senderName ended the call',
+        name: 'endedTheCall',
+        args: [senderName],
+      );
 
   String get enterAGroupName => Intl.message("Enter a group name");
 
@@ -756,6 +766,12 @@ class L10n extends MatrixLocalizations {
         args: [username],
       );
 
+  String sentCallInformations(String senderName) => Intl.message(
+        '$senderName sent call informations',
+        name: 'sentCallInformations',
+        args: [senderName],
+      );
+
   String get sessionVerified =>
       Intl.message("Session is verified", name: "sessionVerified");
 
@@ -772,6 +788,10 @@ class L10n extends MatrixLocalizations {
   String get signUp => Intl.message("Sign up");
 
   String get skip => Intl.message("Skip");
+
+  String startedACall(String senderName) =>
+      Intl.message('$senderName started a call',
+          name: "startedACall", args: [senderName]);
 
   String get changeTheme => Intl.message("Change your style");
 

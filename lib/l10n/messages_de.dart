@@ -33,20 +33,21 @@ class MessageLookup extends MessageLookupByLibrary {
   static m5(username) => "${username} hat den Chat-Avatar geändert";
 
   static m6(username, description) =>
-      "${username} hat die Beschreibung vom Chat geändert zu: \'${description}\'";
+      "${username} hat die Chat-Beschreibung geändert zu: „${description}“";
 
   static m7(username, chatname) =>
-      "${username} hat den Chat-Namen geändert zu: \'${chatname}\'";
+      "${username} hat den Chat-Namen geändert zu: „${chatname}“";
 
-  static m8(username) => "${username} hat die Berechtigungen vom Chat geändert";
+  static m8(username) => "${username} hat die Chat-Berechtigungen geändert";
 
   static m9(username, displayname) =>
       "${username} hat den Nicknamen geändert zu: ${displayname}";
 
-  static m10(username) => "${username} hat Gast-Zugangsregeln geändert";
+  static m10(username) =>
+      "${username} hat die Zugangsregeln für Gäste geändert";
 
   static m11(username, rules) =>
-      "${username} hat Gast-Zugangsregeln geändert zu: ${rules}";
+      "${username} hat die Zugangsregeln für Gäste geändert zu: ${rules}";
 
   static m12(username) =>
       "${username} hat die Sichtbarkeit des Chat-Verlaufs geändert";
@@ -61,7 +62,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m16(username) => "${username} hat das Profilbild geändert";
 
-  static m17(username) => "${username} hat die Raum-Aliase geändert";
+  static m17(username) => "${username} hat die Raum-Aliasse geändert";
 
   static m18(username) => "${username} hat den Einladungslink geändert";
 
@@ -108,7 +109,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m37(fileName) => "${fileName} abspielen";
 
-  static m38(username) => "${username} hat ein Event enternt";
+  static m38(username) => "${username} hat ein Event entfernt";
 
   static m39(username) => "${username} hat die Einladung abgelehnt";
 
@@ -146,11 +147,10 @@ class MessageLookup extends MessageLookupByLibrary {
   static m55(unreadEvents, unreadChats) =>
       "${unreadEvents} ungelesene Nachrichten in ${unreadChats} Chats";
 
-  static m56(username, count) =>
-      "${username} und ${count} andere schreiben ...";
+  static m56(username, count) => "${username} und ${count} andere schreiben...";
 
   static m57(username, username2) =>
-      "${username} und ${username2} schreiben ...";
+      "${username} und ${username2} schreiben...";
 
   static m58(username) => "${username} schreibt ...";
 
@@ -246,12 +246,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "Download file":
             MessageLookupByLibrary.simpleMessage("Datei herunterladen"),
         "Edit Jitsi instance":
-            MessageLookupByLibrary.simpleMessage("Jitsi Instanz ändern"),
+            MessageLookupByLibrary.simpleMessage("Jitsi-Instanz ändern"),
         "Edit displayname":
             MessageLookupByLibrary.simpleMessage("Anzeigename ändern"),
         "Emote Settings":
-            MessageLookupByLibrary.simpleMessage("Emote Einstellungen"),
-        "Emote shortcode": MessageLookupByLibrary.simpleMessage("Emote kürzel"),
+            MessageLookupByLibrary.simpleMessage("Emote-Einstellungen"),
+        "Emote shortcode": MessageLookupByLibrary.simpleMessage("Emote-Kürzel"),
         "Empty chat": MessageLookupByLibrary.simpleMessage("Leerer Chat"),
         "Encryption": MessageLookupByLibrary.simpleMessage("Verschlüsselung"),
         "Encryption algorithm":
@@ -303,19 +303,19 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Nur eingeladene Benutzer"),
         "It seems that you have no google services on your phone. That\'s a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/":
             MessageLookupByLibrary.simpleMessage(
-                "Es sieht so aus als hättest du keine Google Dienste auf deinem Gerät. Das ist eine gute Entscheidung für deine Privatsphäre. Um Push Benachrichtigungen in FluffyChat zu erhalten, empfehlen wir die Verwendung von microG: https://microg.org/"),
+                "Es sieht so aus als hättest du keine Google-Dienste auf deinem Gerät. Das ist eine gute Entscheidung für deine Privatsphäre! Um Push Benachrichtigungen in FluffyChat zu erhalten, empfehlen wir die Verwendung von microG: https://microg.org/"),
         "Kick from chat":
             MessageLookupByLibrary.simpleMessage("Aus dem Chat hinauswerfen"),
         "Last seen IP":
-            MessageLookupByLibrary.simpleMessage("Zuletzt bekannte IP"),
+            MessageLookupByLibrary.simpleMessage("Letzte bekannte IP"),
         "Leave": MessageLookupByLibrary.simpleMessage("Verlassen"),
         "Left the chat":
             MessageLookupByLibrary.simpleMessage("Hat den Chat verlassen"),
         "License": MessageLookupByLibrary.simpleMessage("Lizenz"),
         "Light": MessageLookupByLibrary.simpleMessage("Hell"),
-        "Load more...": MessageLookupByLibrary.simpleMessage("Lade mehr ..."),
+        "Load more...": MessageLookupByLibrary.simpleMessage("Lade mehr..."),
         "Loading... Please wait":
-            MessageLookupByLibrary.simpleMessage("Lade ... Bitte warten"),
+            MessageLookupByLibrary.simpleMessage("Lade... Bitte warten"),
         "Login": MessageLookupByLibrary.simpleMessage("Login"),
         "Logout": MessageLookupByLibrary.simpleMessage("Abmelden"),
         "Make a moderator":
@@ -340,19 +340,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "No permission":
             MessageLookupByLibrary.simpleMessage("Keine Berechtigung"),
         "No rooms found...":
-            MessageLookupByLibrary.simpleMessage("Keine Räume gefunden ..."),
+            MessageLookupByLibrary.simpleMessage("Keine Räume gefunden..."),
         "None": MessageLookupByLibrary.simpleMessage("Keiner"),
         "Not supported in web": MessageLookupByLibrary.simpleMessage(
             "Wird in der Web-Version nicht unterstützt"),
         "Oops something went wrong...": MessageLookupByLibrary.simpleMessage(
             "Hoppla! Da ist etwas schief gelaufen ..."),
         "Open app to read messages": MessageLookupByLibrary.simpleMessage(
-            "Öffne app, um Nachrichten zu lesen"),
+            "App öffnen, um Nachrichten zu lesen"),
         "Open camera": MessageLookupByLibrary.simpleMessage("Kamera öffnen"),
         "Participating user devices":
             MessageLookupByLibrary.simpleMessage("Teilnehmende Geräte"),
         "Password": MessageLookupByLibrary.simpleMessage("Passwort"),
-        "Pick image": MessageLookupByLibrary.simpleMessage("Wähle Bild"),
+        "Pick image": MessageLookupByLibrary.simpleMessage("Bild wählen"),
         "Please be aware that you need Pantalaimon to use end-to-end encryption for now.":
             MessageLookupByLibrary.simpleMessage(
                 "Bitte beachte, dass du Pantalaimon brauchst, um Ende-zu-Ende-Verschlüsselung benutzen zu können."),
@@ -466,7 +466,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Yes": MessageLookupByLibrary.simpleMessage("Ja"),
         "You": MessageLookupByLibrary.simpleMessage("Du"),
         "You are invited to this chat": MessageLookupByLibrary.simpleMessage(
-            "Du wurdest eingeladen in diesen Chat"),
+            "Du wurdest in diesen Chat eingeladen"),
         "You are no longer participating in this chat":
             MessageLookupByLibrary.simpleMessage(
                 "Du bist kein Mitglied mehr in diesem Chat"),
@@ -525,9 +525,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "emoteExists":
             MessageLookupByLibrary.simpleMessage("Emote existiert bereits!"),
         "emoteInvalid":
-            MessageLookupByLibrary.simpleMessage("Ungültiges Emote-kürzel!"),
+            MessageLookupByLibrary.simpleMessage("Ungültiges Emote-Kürzel!"),
         "emoteWarnNeedToPick": MessageLookupByLibrary.simpleMessage(
-            "Wähle ein Emote-kürzel und ein Bild!"),
+            "Wähle ein Emote-Kürzel und ein Bild!"),
         "groupWith": m25,
         "hasWithdrawnTheInvitationFor": m26,
         "incorrectPassphraseOrKey": MessageLookupByLibrary.simpleMessage(
@@ -550,9 +550,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "newVerificationRequest":
             MessageLookupByLibrary.simpleMessage("Neue Verifikationsanfrage!"),
         "noCrossSignBootstrap": MessageLookupByLibrary.simpleMessage(
-            "Fluffychat unterstützt noch nicht das Einschalten von Cross-Signing. Bitte schalte es innerhalb Riot an."),
+            "Fluffychat kann Cross-Signing noch nicht einschalten. Bitte schalte es innerhalb Element an."),
         "noMegolmBootstrap": MessageLookupByLibrary.simpleMessage(
-            "Fluffychat unterstützt noch nicht das Einschalten vom Online Key Backup. Bitte schalte es innerhalb Riot an."),
+            "Fluffychat kann das Online-Schlüssel-Backup noch nicht aktivieren. Bitte schalte es innerhalb von Element an."),
         "numberSelected": m36,
         "ok": MessageLookupByLibrary.simpleMessage("ok"),
         "onlineKeyBackupDisabled": MessageLookupByLibrary.simpleMessage(

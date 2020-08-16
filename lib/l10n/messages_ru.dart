@@ -19,25 +19,26 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ru';
 
-  static m0(username) => "${username} принял(а) приглашение";
+  static m0(username) => "${username} принял(а) приглашение войти в чат";
 
   static m1(username) => "${username} активировал(а) сквозное шифрование";
 
   static m2(username) => "Принять этот запрос подтверждения от ${username}?";
 
-  static m3(username, targetName) => "${username} забанил(а) ${targetName}";
+  static m3(username, targetName) =>
+      "${username} заблокировал(а) ${targetName}";
 
   static m4(homeserver) => "По умолчанию вы будете подключены к ${homeserver}";
 
   static m5(username) => "${username} изменил(а) аватар чата";
 
   static m6(username, description) =>
-      "${username} изменил(а) описание чата на: \'${description}\'";
+      "${username} изменил(а) описание чата на: \"${description}\"";
 
   static m7(username, chatname) =>
-      "${username} изменил(а) имя чата на: \'${chatname}\'";
+      "${username} изменил(а) имя чата на: \"${chatname}\"";
 
-  static m8(username) => "${username} изменил(а) права чата";
+  static m8(username) => "${username} изменил(а) права доступа к чату";
 
   static m9(username, displayname) =>
       "${username} изменил(а) отображаемое имя на: ${displayname}";
@@ -57,23 +58,23 @@ class MessageLookup extends MessageLookupByLibrary {
   static m15(username, joinRules) =>
       "${username} изменил(а) правила присоединения на: ${joinRules}";
 
-  static m16(username) => "${username} сменил(а) свой аватар";
+  static m16(username) => "${username} изменил(а) аватар";
 
   static m17(username) => "${username} изменил(а) псевдонимы комнаты";
 
-  static m18(username) => "${username} изменил(а) ссылку приглашения";
+  static m18(username) => "${username} изменил(а) ссылку для приглашения";
 
   static m19(error) => "Не удалось расшифровать сообщение: ${error}";
 
-  static m20(count) => "${count} участника(-ов)";
+  static m20(count) => "${count} участника(ов)";
 
   static m21(username) => "${username} создал(а) чат";
 
   static m22(date, timeOfDay) => "${date}, ${timeOfDay}";
 
-  static m23(year, month, day) => "${day}. ${month}. ${year}";
+  static m23(year, month, day) => "${day}.${month}.${year}";
 
-  static m24(month, day) => "${day}. ${month}";
+  static m24(month, day) => "${day}.${month}";
 
   static m25(displayname) => "Группа с ${displayname}";
 
@@ -83,27 +84,27 @@ class MessageLookup extends MessageLookupByLibrary {
   static m27(groupName) => "Пригласить контакт в ${groupName}";
 
   static m28(username, link) =>
-      "${username} пригласил(а) вас в FluffyChat. \n1. Установите FluffyChat: http://fluffy.chat \n2. Зарегистрируйтесь или войдите \n3. Откройте ссылку приглашения: ${link}";
+      "${username} пригласил(а) вас в FluffyChat. \n1. Установите FluffyChat: http://fluffychat.im \n2. Зарегистрируйтесь или войдите \n3. Откройте ссылку приглашения: ${link}";
 
   static m29(username, targetName) => "${username} пригласил(а) ${targetName}";
 
-  static m30(username) => "${username} присоединился(-ась) к чату";
+  static m30(username) => "${username} присоединился(ась) к чату";
 
   static m31(username, targetName) => "${username} исключил(а) ${targetName}";
 
   static m32(username, targetName) =>
-      "${username} исключил(а) и забанил(а) ${targetName}";
+      "${username} исключил(а) и заблокировал(а) ${targetName}";
 
   static m33(localizedTimeShort) =>
       "Последнее посещение: ${localizedTimeShort}";
 
-  static m34(count) => "Загрузить еще ${count} участников";
+  static m34(count) => "Загрузить еще ${count} участника(ов)";
 
   static m35(homeserver) => "Войти в ${homeserver}";
 
-  static m36(number) => "${number} выбрано";
+  static m36(number) => "${number} выбран(о)";
 
-  static m37(fileName) => "Играть ${fileName}";
+  static m37(fileName) => "Проиграть ${fileName}";
 
   static m38(username) => "${username} отредактировал(а) событие";
 
@@ -121,7 +122,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m44(username) => "${username} отправил(а) файл";
 
-  static m45(username) => "${username} отправил(а) картинку";
+  static m45(username) => "${username} отправил(а) изображение";
 
   static m46(username) => "${username} отправил(а) стикер";
 
@@ -129,20 +130,21 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m48(username) => "${username} отправил(а) аудио";
 
-  static m49(username) => "${username} поделился(-ась) местоположением";
+  static m49(username) => "${username} поделился(ась) местоположением";
 
   static m50(hours12, hours24, minutes, suffix) => "${hours24}:${minutes}";
 
-  static m51(username, targetName) => "${username} разбанил(а) ${targetName}";
+  static m51(username, targetName) =>
+      "${username} разблокировал(а) ${targetName}";
 
-  static m52(type) => "Неизвестное событие \'${type}\'";
+  static m52(type) => "Неизвестное событие \"${type}\"";
 
-  static m53(unreadCount) => "${unreadCount} непрочитанных чатов";
+  static m53(unreadCount) => "${unreadCount} непрочитанных чата(ов)";
 
-  static m54(unreadEvents) => "${unreadEvents} непрочитанных сообщений";
+  static m54(unreadEvents) => "${unreadEvents} непрочитанных сообщения(ий)";
 
   static m55(unreadEvents, unreadChats) =>
-      "${unreadEvents} непрочитанных сообщений в ${unreadChats} чатах";
+      "${unreadEvents} непрочитанное(ых) сообщение(ий) в ${unreadChats} чате(ах)";
 
   static m56(username, count) =>
       "${username} и ${count} других участников печатают...";
@@ -153,12 +155,13 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m59(username) => "${username} покинул(а) чат";
 
-  static m60(username, type) => "${username} отправил(а) событие типа ${type}";
+  static m60(username, type) =>
+      "${username} отправил(а) событие типа \"${type}\"";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function>{
         "(Optional) Group name": MessageLookupByLibrary.simpleMessage(
-            "(Необязательно) Название группы"),
+            "(необязательно) Название группы"),
         "About": MessageLookupByLibrary.simpleMessage("О приложении"),
         "Accept": MessageLookupByLibrary.simpleMessage("Принять"),
         "Account": MessageLookupByLibrary.simpleMessage("Учётная запись"),
@@ -182,22 +185,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "Avatar has been changed":
             MessageLookupByLibrary.simpleMessage("Аватар был изменён"),
         "Ban from chat":
-            MessageLookupByLibrary.simpleMessage("Забанить в чате"),
-        "Banned": MessageLookupByLibrary.simpleMessage("Забанен(а)"),
+            MessageLookupByLibrary.simpleMessage("Заблокировать в чате"),
+        "Banned": MessageLookupByLibrary.simpleMessage("Заблокирован(а)"),
         "Block Device":
             MessageLookupByLibrary.simpleMessage("Заблокировать устройство"),
         "Cancel": MessageLookupByLibrary.simpleMessage("Отмена"),
         "Change the homeserver":
-            MessageLookupByLibrary.simpleMessage("Изменить домашний сервер"),
+            MessageLookupByLibrary.simpleMessage("Изменить сервер Matrix"),
         "Change the name of the group":
             MessageLookupByLibrary.simpleMessage("Изменить название группы"),
         "Change the server":
-            MessageLookupByLibrary.simpleMessage("Сменить сервер"),
+            MessageLookupByLibrary.simpleMessage("Изменить сервер"),
         "Change wallpaper":
-            MessageLookupByLibrary.simpleMessage("Сменить обои"),
-        "Change your style":
-            MessageLookupByLibrary.simpleMessage("Изменить свой стиль"),
-        "Changelog": MessageLookupByLibrary.simpleMessage("Изменения"),
+            MessageLookupByLibrary.simpleMessage("Изменить фон чатов"),
+        "Change your style": MessageLookupByLibrary.simpleMessage("Тема"),
+        "Changelog": MessageLookupByLibrary.simpleMessage("Журнал изменений"),
         "Chat": MessageLookupByLibrary.simpleMessage("Чат"),
         "Chat details": MessageLookupByLibrary.simpleMessage("Детали чата"),
         "Choose a strong password":
@@ -225,10 +227,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "Create account now": MessageLookupByLibrary.simpleMessage(
             "Создать учётную запись сейчас"),
         "Create new group":
-            MessageLookupByLibrary.simpleMessage("Создать новую группу"),
-        "Currently active":
-            MessageLookupByLibrary.simpleMessage("В настоящее время активен"),
-        "Dark": MessageLookupByLibrary.simpleMessage("Тёмный"),
+            MessageLookupByLibrary.simpleMessage("Новая группа"),
+        "Currently active": MessageLookupByLibrary.simpleMessage(
+            "В настоящее время активен(а)"),
+        "Dark": MessageLookupByLibrary.simpleMessage("Тёмная"),
         "Delete": MessageLookupByLibrary.simpleMessage("Удалить"),
         "Delete message":
             MessageLookupByLibrary.simpleMessage("Удалить сообщение"),
@@ -236,19 +238,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "Device": MessageLookupByLibrary.simpleMessage("Устройство"),
         "Devices": MessageLookupByLibrary.simpleMessage("Устройства"),
         "Discard picture":
-            MessageLookupByLibrary.simpleMessage("Сбросить картинку"),
+            MessageLookupByLibrary.simpleMessage("Удалить изображение"),
         "Displayname has been changed": MessageLookupByLibrary.simpleMessage(
             "Отображаемое имя было изменено"),
         "Donate": MessageLookupByLibrary.simpleMessage("Пожертвовать"),
         "Download file": MessageLookupByLibrary.simpleMessage("Скачать файл"),
         "Edit Jitsi instance":
-            MessageLookupByLibrary.simpleMessage("Изменить сервер Jitsi"),
+            MessageLookupByLibrary.simpleMessage("Сервер Jitsi"),
         "Edit displayname":
-            MessageLookupByLibrary.simpleMessage("Изменить отображаемое имя"),
+            MessageLookupByLibrary.simpleMessage("Отображаемое имя"),
         "Emote Settings":
-            MessageLookupByLibrary.simpleMessage("Настройки смайликов"),
+            MessageLookupByLibrary.simpleMessage("Настройки эмодзи"),
         "Emote shortcode":
-            MessageLookupByLibrary.simpleMessage("Краткий код для смайлика"),
+            MessageLookupByLibrary.simpleMessage("Краткий код для эмодзи"),
         "Empty chat": MessageLookupByLibrary.simpleMessage("Пустой чат"),
         "Encryption": MessageLookupByLibrary.simpleMessage("Шифрование"),
         "Encryption algorithm":
@@ -259,13 +261,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Сквозное шифрование в настоящее время в бета-версии! Используйте на свой риск!"),
         "End-to-end encryption settings": MessageLookupByLibrary.simpleMessage(
-            "Сквозные настройки шифрования"),
+            "Настройки сквозного шифрования"),
         "Enter a group name":
             MessageLookupByLibrary.simpleMessage("Введите название группы"),
         "Enter a username":
             MessageLookupByLibrary.simpleMessage("Введите имя пользователя"),
-        "Enter your homeserver":
-            MessageLookupByLibrary.simpleMessage("Введите ваш домашний сервер"),
+        "Enter your homeserver": MessageLookupByLibrary.simpleMessage(
+            "Введите адрес вашего сервера Matrix"),
         "File name": MessageLookupByLibrary.simpleMessage("Имя файла"),
         "File size": MessageLookupByLibrary.simpleMessage("Размер файла"),
         "FluffyChat": MessageLookupByLibrary.simpleMessage("FluffyChat"),
@@ -288,8 +290,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Guests can join":
             MessageLookupByLibrary.simpleMessage("Гости могут присоединиться"),
         "Help": MessageLookupByLibrary.simpleMessage("Помощь"),
-        "Homeserver is not compatible": MessageLookupByLibrary.simpleMessage(
-            "Домашний сервер не совместим"),
+        "Homeserver is not compatible":
+            MessageLookupByLibrary.simpleMessage("Несовместимый сервер Matrix"),
         "How are you today?":
             MessageLookupByLibrary.simpleMessage("Как у вас сегодня дела?"),
         "ID": MessageLookupByLibrary.simpleMessage("ID"),
@@ -301,19 +303,19 @@ class MessageLookup extends MessageLookupByLibrary {
             "Только приглашённым пользователям"),
         "It seems that you have no google services on your phone. That\'s a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/":
             MessageLookupByLibrary.simpleMessage(
-                "Похоже, у вас нет служб Google на вашем телефоне. Это хорошее решение для вашей конфиденциальности! Для получения push-уведомлений в FluffyChat мы рекомендуем использовать microG: https://microg.org/"),
+                "Похоже, у вас нет служб Google на вашем телефоне. Это хорошее решение для вашей конфиденциальности! Для получения push-уведомлений во FluffyChat мы рекомендуем использовать microG: https://microg.org/"),
         "Kick from chat":
             MessageLookupByLibrary.simpleMessage("Исключить из чата"),
-        "Last seen IP":
-            MessageLookupByLibrary.simpleMessage("Последний увиденный IP"),
+        "Last seen IP": MessageLookupByLibrary.simpleMessage(
+            "Последний IP, с которого заходили"),
         "Leave": MessageLookupByLibrary.simpleMessage("Покинуть"),
         "Left the chat": MessageLookupByLibrary.simpleMessage("Покинуть чат"),
         "License": MessageLookupByLibrary.simpleMessage("Лицензия"),
-        "Light": MessageLookupByLibrary.simpleMessage("Светлый"),
+        "Light": MessageLookupByLibrary.simpleMessage("Светлая"),
         "Load more...":
             MessageLookupByLibrary.simpleMessage("Загрузить больше..."),
-        "Loading... Please wait": MessageLookupByLibrary.simpleMessage(
-            "Загрузка... Пожалуйста подождите"),
+        "Loading... Please wait":
+            MessageLookupByLibrary.simpleMessage("Пожалуйста, подождите..."),
         "Login": MessageLookupByLibrary.simpleMessage("Вход"),
         "Logout": MessageLookupByLibrary.simpleMessage("Выйти"),
         "Make a moderator":
@@ -331,12 +333,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "Mute chat":
             MessageLookupByLibrary.simpleMessage("Отключить уведомления"),
         "New message in FluffyChat": MessageLookupByLibrary.simpleMessage(
-            "Новое сообщение в FluffyChat"),
+            "Новое сообщение во FluffyChat"),
         "New private chat":
             MessageLookupByLibrary.simpleMessage("Новый приватный чат"),
         "No emotes found. 😕":
-            MessageLookupByLibrary.simpleMessage("Смайликов не найдено. 😕"),
-        "No permission": MessageLookupByLibrary.simpleMessage("Нет разрешений"),
+            MessageLookupByLibrary.simpleMessage("Эмодзи не найдены 😕"),
+        "No permission":
+            MessageLookupByLibrary.simpleMessage("Нет прав доступа"),
         "No rooms found...":
             MessageLookupByLibrary.simpleMessage("Комнаты не найдены..."),
         "None": MessageLookupByLibrary.simpleMessage("Ничего"),
@@ -350,7 +353,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Participating user devices":
             MessageLookupByLibrary.simpleMessage("Участвующие устройства"),
         "Password": MessageLookupByLibrary.simpleMessage("Пароль"),
-        "Pick image": MessageLookupByLibrary.simpleMessage("Выбрать картинку"),
+        "Pick image":
+            MessageLookupByLibrary.simpleMessage("Выбрать изображение"),
         "Please be aware that you need Pantalaimon to use end-to-end encryption for now.":
             MessageLookupByLibrary.simpleMessage(
                 "Помните, что вам нужен Pantalaimon для использования сквозного шифрования."),
@@ -360,43 +364,44 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Пожалуйста, введите идентификатор Matrix"),
         "Please enter your password": MessageLookupByLibrary.simpleMessage(
-            "Пожалуйста введите ваш пароль"),
+            "Пожалуйста, введите ваш пароль"),
         "Please enter your username": MessageLookupByLibrary.simpleMessage(
             "Пожалуйста, введите имя пользователя"),
         "Public Rooms":
             MessageLookupByLibrary.simpleMessage("Публичные комнаты"),
         "Recording": MessageLookupByLibrary.simpleMessage("Запись"),
         "Reject": MessageLookupByLibrary.simpleMessage("Отклонить"),
-        "Rejoin": MessageLookupByLibrary.simpleMessage("Перезайти"),
+        "Rejoin": MessageLookupByLibrary.simpleMessage("Зайти повторно"),
         "Remove": MessageLookupByLibrary.simpleMessage("Удалить"),
         "Remove all other devices": MessageLookupByLibrary.simpleMessage(
             "Удалить все другие устройства"),
         "Remove device":
             MessageLookupByLibrary.simpleMessage("Удалить устройство"),
-        "Remove exile": MessageLookupByLibrary.simpleMessage("Удалить ссылку"),
+        "Remove exile":
+            MessageLookupByLibrary.simpleMessage("Разблокировать в чате"),
         "Remove message":
             MessageLookupByLibrary.simpleMessage("Удалить сообщение"),
         "Render rich message content": MessageLookupByLibrary.simpleMessage(
-            "Показать отформатированные сообщения"),
+            "Показывать текст с форматированием"),
         "Reply": MessageLookupByLibrary.simpleMessage("Ответить"),
         "Request permission":
             MessageLookupByLibrary.simpleMessage("Запросить разрешение"),
         "Request to read older messages": MessageLookupByLibrary.simpleMessage(
             "Запросить доступ к предыдущим сообщениям"),
         "Revoke all permissions":
-            MessageLookupByLibrary.simpleMessage("Отменить все разрешения"),
+            MessageLookupByLibrary.simpleMessage("Отменить все права доступа"),
         "Room has been upgraded":
             MessageLookupByLibrary.simpleMessage("Комната обновлена"),
         "Saturday": MessageLookupByLibrary.simpleMessage("Суббота"),
         "Search for a chat": MessageLookupByLibrary.simpleMessage("Поиск чата"),
         "Seen a long time ago":
-            MessageLookupByLibrary.simpleMessage("Просматривали давно"),
+            MessageLookupByLibrary.simpleMessage("Был(а) в сети давно"),
         "Send": MessageLookupByLibrary.simpleMessage("Отправить"),
         "Send a message":
             MessageLookupByLibrary.simpleMessage("Отправить сообщение"),
         "Send file": MessageLookupByLibrary.simpleMessage("Отправить файл"),
         "Send image":
-            MessageLookupByLibrary.simpleMessage("Отправить картинку"),
+            MessageLookupByLibrary.simpleMessage("Отправить изображение"),
         "Set a profile picture": MessageLookupByLibrary.simpleMessage(
             "Установить изображение профиля"),
         "Set group description":
@@ -413,7 +418,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Начните свой первый чат :-)"),
         "Submit": MessageLookupByLibrary.simpleMessage("Отправить"),
         "Sunday": MessageLookupByLibrary.simpleMessage("Воскресенье"),
-        "System": MessageLookupByLibrary.simpleMessage("Системный"),
+        "System": MessageLookupByLibrary.simpleMessage("Системная"),
         "Tap to show menu": MessageLookupByLibrary.simpleMessage(
             "Нажмите, чтобы показать меню"),
         "The encryption has been corrupted":
@@ -435,8 +440,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Неизвестный алгоритм шифрования"),
         "Unmute chat":
             MessageLookupByLibrary.simpleMessage("Включить уведомления"),
-        "Use Amoled compatible colors?": MessageLookupByLibrary.simpleMessage(
-            "Использовать AMOLED-совместимые цвета?"),
+        "Use Amoled compatible colors?":
+            MessageLookupByLibrary.simpleMessage("AMOLED-совместимые цвета"),
         "Username": MessageLookupByLibrary.simpleMessage("Имя пользователя"),
         "Verify": MessageLookupByLibrary.simpleMessage("Проверить"),
         "Verify User":
@@ -448,8 +453,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Видима для всех участников"),
         "Visible for everyone":
             MessageLookupByLibrary.simpleMessage("Видна всем"),
-        "Voice message":
-            MessageLookupByLibrary.simpleMessage("Голосовое сообщение"),
+        "Voice message": MessageLookupByLibrary.simpleMessage(
+            "Отправить голосовое сообщение"),
         "Wallpaper": MessageLookupByLibrary.simpleMessage("Обои"),
         "Wednesday": MessageLookupByLibrary.simpleMessage("Среда"),
         "Welcome to the cutest instant messenger in the matrix network.":
@@ -471,7 +476,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Вы не можете пригласить себя"),
         "You have been banned from this chat":
             MessageLookupByLibrary.simpleMessage(
-                "Вы были забанены в этом чате"),
+                "Вы были заблокированы в этом чате"),
         "You won\'t be able to disable the encryption anymore. Are you sure?":
             MessageLookupByLibrary.simpleMessage(
                 "Вы больше не сможете отключить шифрование. Вы уверены?"),
@@ -481,16 +486,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "activatedEndToEndEncryption": m1,
         "alias": MessageLookupByLibrary.simpleMessage("псевдоним"),
         "askSSSSCache": MessageLookupByLibrary.simpleMessage(
-            "Пожалуйста, введите секретную фразу безопасного хранилища или ключ восстановления для кэширования ключей."),
+            "Пожалуйста, введите вашу парольную фразу или ключ восстановления для кэширования ключей."),
         "askSSSSSign": MessageLookupByLibrary.simpleMessage(
-            "Чтобы иметь возможность подписать другое лицо, пожалуйста, введите пароль или ключ восстановления вашего безопасного хранилища."),
+            "Для подписи ключа другого пользователя, пожалуйста, введите вашу парольную фразу или ключ восстановления."),
         "askSSSSVerify": MessageLookupByLibrary.simpleMessage(
-            "Пожалуйста, введите вашу парольную фразу или ключ восстановления для подтвердждения сеанса."),
+            "Пожалуйста, введите вашу парольную фразу или ключ восстановления для подтвердждения сессии."),
         "askVerificationRequest": m2,
         "bannedUser": m3,
         "byDefaultYouWillBeConnectedTo": m4,
         "cachedKeys":
-            MessageLookupByLibrary.simpleMessage("Ключи успешно кэшированы!"),
+            MessageLookupByLibrary.simpleMessage("Ключи успешно кэшированы"),
         "changedTheChatAvatar": m5,
         "changedTheChatDescriptionTo": m6,
         "changedTheChatNameTo": m7,
@@ -506,7 +511,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "changedTheRoomAliases": m17,
         "changedTheRoomInvitationLink": m18,
         "compareEmojiMatch": MessageLookupByLibrary.simpleMessage(
-            "Сравните и убедитесь, что следующие эмодзи соответствуют таковым на другом устройстве:"),
+            "Сравните и убедитесь, что следующие эмодзи соответствуют эмодзи на другом устройстве:"),
         "compareNumbersMatch": MessageLookupByLibrary.simpleMessage(
             "Сравните и убедитесь, что следующие числа соответствуют числам на другом устройстве:"),
         "couldNotDecryptMessage": m19,
@@ -520,11 +525,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "dateWithYear": m23,
         "dateWithoutYear": m24,
         "emoteExists":
-            MessageLookupByLibrary.simpleMessage("Смайлик уже существует!"),
+            MessageLookupByLibrary.simpleMessage("Эмодзи уже существует"),
         "emoteInvalid": MessageLookupByLibrary.simpleMessage(
-            "Недопустимый краткий код смайлика!"),
+            "Недопустимый краткий код эмодзи"),
         "emoteWarnNeedToPick": MessageLookupByLibrary.simpleMessage(
-            "Вам нужно выбрать краткий код смайлика и картинку!"),
+            "Выберите краткий код эмодзи и изображение"),
         "groupWith": m25,
         "hasWithdrawnTheInvitationFor": m26,
         "incorrectPassphraseOrKey": MessageLookupByLibrary.simpleMessage(
@@ -536,7 +541,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "isDeviceKeyCorrect": MessageLookupByLibrary.simpleMessage(
             "Правильно ли указан следующий ключ устройства?"),
         "joinedTheChat": m30,
-        "keysCached": MessageLookupByLibrary.simpleMessage("Ключи кэшированы"),
+        "keysCached":
+            MessageLookupByLibrary.simpleMessage("Ключи сохранены в кэше"),
         "keysMissing":
             MessageLookupByLibrary.simpleMessage("Ключи отсутствуют"),
         "kicked": m31,
@@ -545,17 +551,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "loadCountMoreParticipants": m34,
         "logInTo": m35,
         "newVerificationRequest": MessageLookupByLibrary.simpleMessage(
-            "Новый запрос на подтверждение!"),
+            "Новый запрос на подтверждение"),
         "noCrossSignBootstrap": MessageLookupByLibrary.simpleMessage(
-            "Fluffychat в настоящее время не поддерживает включение кросс-подписи. Пожалуйста, включите его в Element."),
+            "FluffyChat в настоящее время не поддерживает включение кросс-подписи. Пожалуйста, включите его в Element."),
         "noMegolmBootstrap": MessageLookupByLibrary.simpleMessage(
-            "В настоящее время Fluffychat не поддерживает функцию резервного копирования онлайн-ключей. Пожалуйста, включите его из Element."),
+            "В настоящее время FluffyChat не поддерживает функцию резервного копирования онлайн-ключей. Пожалуйста, включите её в Element."),
         "numberSelected": m36,
         "ok": MessageLookupByLibrary.simpleMessage("ok"),
         "onlineKeyBackupDisabled": MessageLookupByLibrary.simpleMessage(
-            "Резервное копирование онлайн-ключей отключено"),
+            "Резервное копирование ключей на сервере отключено"),
         "onlineKeyBackupEnabled": MessageLookupByLibrary.simpleMessage(
-            "Резервное копирование онлайн ключей включено"),
+            "Резервное копирование ключей на сервере включено"),
         "passphraseOrKey": MessageLookupByLibrary.simpleMessage(
             "пароль или ключ восстановления"),
         "play": m37,
@@ -588,18 +594,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "userLeftTheChat": m59,
         "userSentUnknownEvent": m60,
         "verifiedSession":
-            MessageLookupByLibrary.simpleMessage("Успешно проверенная сессия!"),
+            MessageLookupByLibrary.simpleMessage("Сессия успешно проверена"),
         "verifyManual":
             MessageLookupByLibrary.simpleMessage("Проверить вручную"),
         "verifyStart": MessageLookupByLibrary.simpleMessage("Начать проверку"),
         "verifySuccess":
-            MessageLookupByLibrary.simpleMessage("Вы успешно проверили!"),
+            MessageLookupByLibrary.simpleMessage("Проверка успешно завершена"),
         "verifyTitle": MessageLookupByLibrary.simpleMessage(
             "Проверка другой учётной записи"),
         "waitingPartnerAcceptRequest": MessageLookupByLibrary.simpleMessage(
             "В ожидании партнёра, чтобы принять запрос..."),
         "waitingPartnerEmoji": MessageLookupByLibrary.simpleMessage(
-            "В ожидании партнёра, чтобы принять смайлики..."),
+            "В ожидании партнёра, чтобы принять эмодзи..."),
         "waitingPartnerNumbers": MessageLookupByLibrary.simpleMessage(
             "В ожидании партнёра, чтобы принять числа...")
       };
