@@ -90,7 +90,7 @@ class _NewPrivateChatState extends State<_NewPrivateChat> {
     setState(() => loading = true);
     final matrix = Matrix.of(context);
     final response = await SimpleDialogs(context).tryRequestWithErrorToast(
-      matrix.client.api.searchUser(text, limit: 10),
+      matrix.client.searchUser(text, limit: 10),
     );
     setState(() => loading = false);
     if (response == false || (response?.results?.isEmpty ?? true)) return;

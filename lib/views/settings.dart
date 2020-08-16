@@ -77,7 +77,7 @@ class _SettingsState extends State<Settings> {
     if (displayname == null) return;
     final matrix = Matrix.of(context);
     final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
-      matrix.client.setDisplayname(displayname),
+      matrix.client.setDisplayname(matrix.client.userID, displayname),
     );
     if (success != false) {
       setState(() {

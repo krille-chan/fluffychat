@@ -33,7 +33,7 @@ class AppInfo extends StatelessWidget {
           ),
           ListTile(
             title: Text('Homeserver:'),
-            subtitle: Text(client.api.homeserver.toString()),
+            subtitle: Text(client.homeserver.toString()),
           ),
           ListTile(
             title: Text('Device name:'),

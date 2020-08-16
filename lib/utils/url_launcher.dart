@@ -23,7 +23,7 @@ class UrlLauncher {
     final identifier = url.replaceAll('https://matrix.to/#/', '');
     if (identifier.substring(0, 1) == '#') {
       final response = await SimpleDialogs(context).tryRequestWithLoadingDialog(
-        matrix.client.api.joinRoom(
+        matrix.client.joinRoom(
           Uri.encodeComponent(identifier),
         ),
       );

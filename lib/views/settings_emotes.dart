@@ -73,12 +73,11 @@ class _EmotesSettingsState extends State<EmotesSettings> {
     debugPrint(content.toString());
     if (widget.room != null) {
       await SimpleDialogs(context).tryRequestWithLoadingDialog(
-        client.api.sendState(widget.room.id, 'im.ponies.room_emotes', content),
+        client.sendState(widget.room.id, 'im.ponies.room_emotes', content),
       );
     } else {
       await SimpleDialogs(context).tryRequestWithLoadingDialog(
-        client.api
-            .setAccountData(client.userID, 'im.ponies.user_emotes', content),
+        client.setAccountData(client.userID, 'im.ponies.user_emotes', content),
       );
     }
   }
@@ -377,10 +376,7 @@ class _EmoteImagePickerState extends State<_EmoteImagePicker> {
           final matrixFile = MatrixFile(bytes: file.bytes, name: file.path);
           final uploadResp =
               await SimpleDialogs(context).tryRequestWithLoadingDialog(
-            Matrix.of(context)
-                .client
-                .api
-                .upload(matrixFile.bytes, matrixFile.name),
+            Matrix.of(context).client.upload(matrixFile.bytes, matrixFile.name),
           );
           setState(() {
             widget.controller.text = uploadResp;

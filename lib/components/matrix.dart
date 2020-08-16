@@ -302,12 +302,11 @@ class _InheritedMatrix extends InheritedWidget {
 
   @override
   bool updateShouldNotify(_InheritedMatrix old) {
-    var update =
-        old.data.client.api.accessToken != data.client.api.accessToken ||
-            old.data.client.userID != data.client.userID ||
-            old.data.client.deviceID != data.client.deviceID ||
-            old.data.client.deviceName != data.client.deviceName ||
-            old.data.client.api.homeserver != data.client.api.homeserver;
+    var update = old.data.client.accessToken != data.client.accessToken ||
+        old.data.client.userID != data.client.userID ||
+        old.data.client.deviceID != data.client.deviceID ||
+        old.data.client.deviceName != data.client.deviceName ||
+        old.data.client.homeserver != data.client.homeserver;
     return update;
   }
 }

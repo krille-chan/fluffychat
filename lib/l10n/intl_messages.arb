@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-06-25T16:02:16.297192",
+  "@@last_modified": "2020-08-16T12:43:17.825046",
   "About": "About",
   "@About": {
     "type": "text",
@@ -53,6 +53,13 @@
   "@Already have an account?": {
     "type": "text",
     "placeholders": {}
+  },
+  "answeredTheCall": "{senderName} answered the call",
+  "@answeredTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
   },
   "Anyone can join": "Anyone can join",
   "@Anyone can join": {
@@ -541,6 +548,13 @@
     "type": "text",
     "placeholders": {}
   },
+  "endedTheCall": "{senderName} ended the call",
+  "@endedTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
   "Enter a group name": "Enter a group name",
   "@Enter a group name": {
     "type": "text",
@@ -721,6 +735,11 @@
       "username": {}
     }
   },
+  "Join room": "Join room",
+  "@Join room": {
+    "type": "text",
+    "placeholders": {}
+  },
   "keysCached": "Keys are cached",
   "@keysCached": {
     "type": "text",
@@ -875,12 +894,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "Fluffychat currently does not support enabling Cross-Signing. Please enable it from within Element.",
+  "noCrossSignBootstrap": "Fluffychat currently does not support enabling Cross-Signing. Please enable it from within Riot.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "Fluffychat currently does not support enabling Online Key Backup. Please enable it from within Element.",
+  "noMegolmBootstrap": "Fluffychat currently does not support enabling Online Key Backup. Please enable it from within Riot.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -974,6 +993,11 @@
   },
   "Pick image": "Pick image",
   "@Pick image": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Pin": "Pin",
+  "@Pin": {
     "type": "text",
     "placeholders": {}
   },
@@ -1205,6 +1229,13 @@
       "username": {}
     }
   },
+  "sentCallInformations": "{senderName} sent call informations",
+  "@sentCallInformations": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
   "sessionVerified": "Session is verified",
   "@sessionVerified": {
     "type": "text",
@@ -1244,6 +1275,13 @@
   "@Skip": {
     "type": "text",
     "placeholders": {}
+  },
+  "startedACall": "{senderName} started a call",
+  "@startedACall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
   },
   "Change your style": "Change your style",
   "@Change your style": {
@@ -1390,6 +1428,11 @@
     "placeholders": {
       "type": {}
     }
+  },
+  "Unpin": "Unpin",
+  "@Unpin": {
+    "type": "text",
+    "placeholders": {}
   },
   "unreadChats": "{unreadCount} unread chats",
   "@unreadChats": {
@@ -1539,7 +1582,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Welcome to the cutest instant messenger in the matrix network.": "Welcome to the cutest instant messenger in the Matrix network.",
+  "Welcome to the cutest instant messenger in the matrix network.": "Welcome to the cutest instant messenger in the matrix network.",
   "@Welcome to the cutest instant messenger in the matrix network.": {
     "type": "text",
     "placeholders": {}

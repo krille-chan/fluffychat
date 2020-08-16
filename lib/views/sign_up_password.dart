@@ -92,7 +92,8 @@ class _SignUpPasswordState extends State<SignUpPassword> {
     await matrix.client.onLoginStateChanged.stream
         .firstWhere((l) => l == LoginState.logged);
     try {
-      await matrix.client.setDisplayname(widget.displayname);
+      await matrix.client
+          .setDisplayname(matrix.client.userID, widget.displayname);
     } catch (exception) {
       BotToast.showText(text: L10n.of(context).couldNotSetDisplayname);
     }
