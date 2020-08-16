@@ -1492,12 +1492,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "Fluffychat ne prend pas actuellement en charge l'activation de la sauvegarde des clés en ligne. Veuillez l'activer à partir de Element.",
+  "noMegolmBootstrap": "Fluffychat ne prend pas actuellement en charge l'activation de la sauvegarde des clés en ligne. Veuillez l'activer à partir de Riot.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "Fluffychat ne permet pas actuellement d'activer la signature croisée. Veuillez l'activer à partir de Element.",
+  "noCrossSignBootstrap": "Fluffychat ne permet pas actuellement d'activer la signature croisée. Veuillez l'activer à partir de Riot.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -1588,5 +1588,48 @@
   "@Accept": {
     "type": "text",
     "placeholders": {}
+  },
+  "Unpin": "Détacher",
+  "@Unpin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "startedACall": "{senderName} a démarré un appel",
+  "@startedACall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "sentCallInformations": "{senderName} a envoyé des informations sur l'appel",
+  "@sentCallInformations": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "Pin": "Épingler",
+  "@Pin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Join room": "Rejoindre la réunion",
+  "@Join room": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "endedTheCall": "{senderName} a mis fin à l'appel",
+  "@endedTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "answeredTheCall": "{senderName} a répondu à l'appel",
+  "@answeredTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
   }
 }
