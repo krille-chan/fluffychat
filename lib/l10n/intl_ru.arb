@@ -1341,7 +1341,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Try to send again": "Попробуйте отправить еще раз",
+  "Try to send again": "Попробуйте отправить ещё раз",
   "@Try to send again": {
     "type": "text",
     "placeholders": {}
