@@ -89,12 +89,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "Banned": "Zabanován",
+  "Banned": "Zakázán",
   "@Banned": {
     "type": "text",
     "placeholders": {}
   },
-  "bannedUser": "{username} zabanoval {targetName}",
+  "bannedUser": "{username} zakázal {targetName}",
   "@bannedUser": {
     "type": "text",
     "placeholders": {
@@ -439,17 +439,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteWarnNeedToPick": "Musíte zvolit označení emotikony a obrázek",
+  "emoteWarnNeedToPick": "Musíte zvolit označení emotikony a obrázek!",
   "@emoteWarnNeedToPick": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteExists": "Emotikona již existuje",
+  "emoteExists": "Emotikona již existuje!",
   "@emoteExists": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteInvalid": "Nesprávné označení emotikony",
+  "emoteInvalid": "Nesprávné označení emotikony!",
   "@emoteInvalid": {
     "type": "text",
     "placeholders": {}
@@ -657,7 +657,7 @@
       "targetName": {}
     }
   },
-  "kickedAndBanned": "{username} vyhodil a zabanoval {targetName}",
+  "kickedAndBanned": "{username} vyhodil a zakázal {targetName}",
   "@kickedAndBanned": {
     "type": "text",
     "placeholders": {
@@ -773,7 +773,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Please be aware that you need Pantalaimon to use end-to-end encryption for now.": "Prosím vezměte na vědomí, že pro použití koncového šifrování je prozatím potřeba použít Pantalaimon",
+  "Please be aware that you need Pantalaimon to use end-to-end encryption for now.": "Prosím vezměte na vědomí, že pro použití koncového šifrování je prozatím potřeba použít Pantalaimon.",
   "@Please be aware that you need Pantalaimon to use end-to-end encryption for now.": {
     "type": "text",
     "placeholders": {}
@@ -1204,7 +1204,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unbannedUser": "{username} odbanovali {targetName}",
+  "unbannedUser": "{username} zrušil zákaz pro {targetName}",
   "@unbannedUser": {
     "type": "text",
     "placeholders": {
@@ -1337,7 +1337,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Welcome to the cutest instant messenger in the matrix network.": "Vítejte v nejroztomilejší diskuzní aplikaci pro síť Matrix.",
+  "Welcome to the cutest instant messenger in the matrix network.": "Vítejte v nejroztomilejší diskuzní aplikaci pro síť matrix.",
   "@Welcome to the cutest instant messenger in the matrix network.": {
     "type": "text",
     "placeholders": {}
@@ -1377,7 +1377,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "You have been banned from this chat": "Byli jste zabanováni z této diskuze",
+  "You have been banned from this chat": "Byl vám zablokován přístup k tomuto chatu",
   "@You have been banned from this chat": {
     "type": "text",
     "placeholders": {}
@@ -1574,12 +1574,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "Fluffychet momentálně nepodporuje aktivaci online záloh klíčů. Prosím zapněte ji z klientu Element.",
+  "noMegolmBootstrap": "Fluffychet momentálně nepodporuje aktivaci online záloh klíčů. Prosím zapněte ji z klientu Riot.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "Fluffychet momentálně nepodporuje aktivaci křížového podpisu. Prosím aktivujte ho z klientu Element.",
+  "noCrossSignBootstrap": "Fluffychet momentálně nepodporuje aktivaci křížového podpisu. Prosím aktivujte ho z klientu Riot.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -1588,5 +1588,48 @@
   "@newVerificationRequest": {
     "type": "text",
     "placeholders": {}
+  },
+  "Join room": "Vstoupil do místnosti",
+  "@Join room": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Unpin": "Odepnout zprávu",
+  "@Unpin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Pin": "Připnout zprávu",
+  "@Pin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "startedACall": "{senderName} zahájil hovor",
+  "@startedACall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "sentCallInformations": "{senderName} odeslal informace o hovoru",
+  "@sentCallInformations": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "answeredTheCall": "{senderName} odpověděl na hovor",
+  "@answeredTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "endedTheCall": "{senderName} ukončil hovor",
+  "@endedTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
   }
 }
