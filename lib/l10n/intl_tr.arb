@@ -79,17 +79,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSCache": "",
+  "askSSSSCache": "Anahtarları önbelleğe almak için lütfen güvenli depolama parolanızı veya kurtarma anahtarınızı girin.",
   "@askSSSSCache": {
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSSign": "",
+  "askSSSSSign": "Diğer kişiyi imzalayabilmek için lütfen güvenli depolama parolanızı veya kurtarma anahtarınızı girin.",
   "@askSSSSSign": {
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSVerify": "",
+  "askSSSSVerify": "Lütfen oturumunuzu doğrulamak için güvenli depolama parolanızı veya kurtarma anahtarınızı girin.",
   "@askSSSSVerify": {
     "type": "text",
     "placeholders": {}
@@ -129,7 +129,7 @@
       "targetName": {}
     }
   },
-  "Block Device": "",
+  "Block Device": "Cihazı Engelle",
   "@Block Device": {
     "type": "text",
     "placeholders": {}
@@ -181,7 +181,7 @@
       "username": {}
     }
   },
-  "changedTheDisplaynameTo": "",
+  "changedTheDisplaynameTo": "{username} görünen adını {displayname} olarak değiştirdi",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -1588,5 +1588,12 @@
   "@Your own username": {
     "type": "text",
     "placeholders": {}
+  },
+  "answeredTheCall": "{senderName} aramayı yanıtladı",
+  "@answeredTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
   }
 }
