@@ -1588,5 +1588,48 @@
   "@Your own username": {
     "type": "text",
     "placeholders": {}
+  },
+  "Pin": "Закрепить",
+  "@Pin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Unpin": "Открепить",
+  "@Unpin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "startedACall": "{senderName} начал(а) звонок",
+  "@startedACall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "sentCallInformations": "{senderName} отправил(а) информацию о звонке",
+  "@sentCallInformations": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "Join room": "Присоединиться к комнате",
+  "@Join room": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "endedTheCall": "{senderName} завершил(а) звонок",
+  "@endedTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "answeredTheCall": "{senderName} ответил(а) на звонок",
+  "@answeredTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
   }
 }
