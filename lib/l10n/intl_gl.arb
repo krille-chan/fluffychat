@@ -1539,7 +1539,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Welcome to the cutest instant messenger in the matrix network.": "Benvida a mensaxería instantánea más cuquiña da rede Matrix.",
+  "Welcome to the cutest instant messenger in the matrix network.": "Benvida á mensaxería instantánea más cuquiña da rede matrix.",
   "@Welcome to the cutest instant messenger in the matrix network.": {
     "type": "text",
     "placeholders": {}
@@ -1588,5 +1588,48 @@
   "@Your own username": {
     "type": "text",
     "placeholders": {}
+  },
+  "Unpin": "Desafixar",
+  "@Unpin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "startedACall": "{senderName} iniciou unha chamada",
+  "@startedACall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "sentCallInformations": "{senderName} enviou informacións da chamada",
+  "@sentCallInformations": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "Pin": "Fixar",
+  "@Pin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Join room": "Entrar na sala",
+  "@Join room": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "endedTheCall": "{senderName} rematou a chamada",
+  "@endedTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "answeredTheCall": "{senderName} respondeu á chamada",
+  "@answeredTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
   }
 }
