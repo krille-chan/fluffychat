@@ -1122,7 +1122,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Seen a long time ago": "Был(а) в сети давно",
+  "Seen a long time ago": "был(а) в сети давно",
   "@Seen a long time ago": {
     "type": "text",
     "placeholders": {}
