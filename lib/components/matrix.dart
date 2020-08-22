@@ -102,6 +102,8 @@ class MatrixState extends State<Matrix> {
   StreamSubscription onKeyVerificationRequestSub;
   StreamSubscription onJitsiCallSub;
   StreamSubscription onNotification;
+  StreamSubscription<html.Event> onFocusSub;
+  StreamSubscription<html.Event> onBlurSub;
 
   void onJitsiCall(EventUpdate eventUpdate) {
     final event = Event.fromJson(
@@ -158,7 +160,10 @@ class MatrixState extends State<Matrix> {
     return;
   }
 
+  bool webHasFocus = true;
+
   void _showWebNotification(EventUpdate eventUpdate) async {
+    if (webHasFocus && activeRoomId == eventUpdate.roomID) return;
     final room = client.getRoomById(eventUpdate.roomID);
     if (room.notificationCount == 0) return;
     final event = Event.fromJson(eventUpdate.content, room);
@@ -261,11 +266,13 @@ class MatrixState extends State<Matrix> {
       });
     }
     if (kIsWeb) {
+      onFocusSub = html.window.onFocus.listen((_) => webHasFocus = true);
+      onBlurSub = html.window.onBlur.listen((_) => webHasFocus = false);
+
       client.onSync.stream.first.then((s) {
         html.Notification.requestPermission();
         onNotification ??= client.onEvent.stream
             .where((e) =>
-                e.roomID != activeRoomId &&
                 e.type == 'timeline' &&
                 [EventTypes.Message, EventTypes.Sticker, EventTypes.Encrypted]
                     .contains(e.eventType) &&
@@ -282,6 +289,8 @@ class MatrixState extends State<Matrix> {
     onKeyVerificationRequestSub?.cancel();
     onJitsiCallSub?.cancel();
     onNotification?.cancel();
+    onFocusSub?.cancel();
+    onBlurSub?.cancel();
     super.dispose();
   }
 
