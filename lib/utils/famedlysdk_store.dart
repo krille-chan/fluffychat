@@ -186,7 +186,9 @@ Future<void> migrate(String clientName, Database db, Store store) async {
               entry.key,
               entry.value['inboundGroupSession'],
               json.encode(entry.value['content']),
-              json.encode(entry.value['indexes']));
+              json.encode(entry.value['indexes']),
+              null,
+              null);
         }
       }
     }

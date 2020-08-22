@@ -27,7 +27,7 @@ dependencies:
   famedlysdk:
     git:
       url: https://gitlab.com/famedly/famedlysdk.git
-      ref: 50d97ebeb224dcbfa8e306b8cb50adcaee12d4db
+      ref: 09ffa0940484862139c3fe431d4c3ef3392f2232
 
   localstorage: ^3.0.1+4
   bubble: ^1.1.9+1
@@ -58,17 +58,15 @@ dependencies:
     git:
       url: https://github.com/Sorunome/flutter_matrix_html
       ref: 530df434b50002e04cbad63f53d6f0f5d5adbab5
-  moor: ^3.0.2
+  moor: ^3.3.1
+  sqlite3: ^0.1.4
   random_string: ^2.0.1
   flutter_typeahead: ^1.8.1
   flutter_olm: ^1.0.1
-
   intl: ^0.16.0
   intl_translation: ^0.17.9
   flutter_localizations:
     sdk: flutter
-
-  moor_ffi: ^0.5.0 # 0.6.0 and  up have a bug that it doesn't build with --profile, see https://github.com/simolus3/moor/issues/581
   sqflite: ^1.1.7 # Still used to obtain the database location
 
 dev_dependencies:

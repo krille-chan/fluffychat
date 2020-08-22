@@ -6,9 +6,9 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:moor/backends.dart';
+import 'package:moor/ffi.dart';
 import 'package:moor/moor.dart';
-import 'package:moor_ffi/moor_ffi.dart';
-import 'package:moor_ffi/open_helper.dart';
+import 'package:sqlite3/open.dart';
 
 /// Tells `moor_ffi` to use `sqlcipher` instead of the regular `sqlite3`.
 ///
