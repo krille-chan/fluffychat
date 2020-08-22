@@ -336,130 +336,148 @@ class _ChatListState extends State<ChatList> {
                                           context, NewPrivateChatView()),
                                       (r) => r.isFirst),
                             ),
-                  body: StreamBuilder(
-                      stream: Matrix.of(context)
-                          .client
-                          .onSync
-                          .stream
-                          .where((s) => s.hasRoomUpdate),
-                      builder: (context, snapshot) {
-                        return FutureBuilder<void>(
-                          future: waitForFirstSync(context),
-                          builder: (BuildContext context, snapshot) {
-                            if (snapshot.hasData) {
-                              var rooms = List<Room>.from(
-                                  Matrix.of(context).client.rooms);
-                              rooms.removeWhere((Room room) =>
-                                  room.lastEvent == null ||
-                                  (searchMode &&
-                                      !room.displayname.toLowerCase().contains(
-                                          searchController.text.toLowerCase() ??
-                                              '')));
-                              if (rooms.isEmpty &&
-                                  (!searchMode ||
-                                      publicRoomsResponse == null)) {
-                                return Center(
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: <Widget>[
-                                      Icon(
-                                        searchMode
-                                            ? Icons.search
-                                            : Icons.chat_bubble_outline,
-                                        size: 80,
-                                        color: Colors.grey,
-                                      ),
-                                      Text(searchMode
-                                          ? L10n.of(context).noRoomsFound
-                                          : L10n.of(context)
-                                              .startYourFirstChat),
-                                    ],
-                                  ),
-                                );
-                              }
-                              final publicRoomsCount =
-                                  (publicRoomsResponse?.chunk?.length ?? 0);
-                              final totalCount =
-                                  rooms.length + publicRoomsCount;
-                              final directChats =
-                                  rooms.where((r) => r.isDirectChat).toList();
-                              final presences =
-                                  Matrix.of(context).client.presences;
-                              directChats.sort((a, b) =>
-                                  presences[b.directChatMatrixID]
-                                              ?.presence
-                                              ?.statusMsg !=
-                                          null
-                                      ? 1
-                                      : b.lastEvent.originServerTs.compareTo(
-                                          a.lastEvent.originServerTs));
-                              return ListView.separated(
-                                  controller: _scrollController,
-                                  separatorBuilder: (BuildContext context,
-                                          int i) =>
-                                      i == totalCount - publicRoomsCount
-                                          ? ListTile(
-                                              title: Text(
-                                                L10n.of(context).publicRooms +
-                                                    ':',
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Theme.of(context)
-                                                      .primaryColor,
-                                                ),
-                                              ),
-                                            )
-                                          : Container(),
-                                  itemCount: totalCount + 1,
-                                  itemBuilder: (BuildContext context, int i) {
-                                    if (i == 0) {
-                                      return Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          ConnectionStatusHeader(),
-                                          (directChats.isEmpty ||
-                                                  selectMode ==
-                                                      SelectMode.share)
-                                              ? Container()
-                                              : PreferredSize(
-                                                  preferredSize:
-                                                      Size.fromHeight(90),
-                                                  child: Container(
-                                                    height: 82,
-                                                    child: ListView.builder(
-                                                      scrollDirection:
-                                                          Axis.horizontal,
-                                                      itemCount:
-                                                          directChats.length,
-                                                      itemBuilder: (BuildContext
-                                                                  context,
-                                                              int i) =>
-                                                          PresenceListItem(
-                                                              directChats[i]),
-                                                    ),
-                                                  ),
-                                                ),
-                                        ],
+                  body: Column(
+                    children: [
+                      ConnectionStatusHeader(),
+                      Expanded(
+                        child: StreamBuilder(
+                            stream: Matrix.of(context)
+                                .client
+                                .onSync
+                                .stream
+                                .where((s) => s.hasRoomUpdate),
+                            builder: (context, snapshot) {
+                              return FutureBuilder<void>(
+                                future: waitForFirstSync(context),
+                                builder: (BuildContext context, snapshot) {
+                                  if (snapshot.hasData) {
+                                    var rooms = List<Room>.from(
+                                        Matrix.of(context).client.rooms);
+                                    rooms.removeWhere((Room room) =>
+                                        room.lastEvent == null ||
+                                        (searchMode &&
+                                            !room.displayname
+                                                .toLowerCase()
+                                                .contains(searchController.text
+                                                        .toLowerCase() ??
+                                                    '')));
+                                    if (rooms.isEmpty &&
+                                        (!searchMode ||
+                                            publicRoomsResponse == null)) {
+                                      return Center(
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: <Widget>[
+                                            Icon(
+                                              searchMode
+                                                  ? Icons.search
+                                                  : Icons.chat_bubble_outline,
+                                              size: 80,
+                                              color: Colors.grey,
+                                            ),
+                                            Text(searchMode
+                                                ? L10n.of(context).noRoomsFound
+                                                : L10n.of(context)
+                                                    .startYourFirstChat),
+                                          ],
+                                        ),
                                       );
                                     }
-                                    i--;
-                                    return i < rooms.length
-                                        ? ChatListItem(
-                                            rooms[i],
-                                            activeChat: widget.activeChat ==
-                                                rooms[i].id,
-                                          )
-                                        : PublicRoomListItem(publicRoomsResponse
-                                            .chunk[i - rooms.length]);
-                                  });
-                            } else {
-                              return Center(
-                                child: CircularProgressIndicator(),
+                                    final publicRoomsCount =
+                                        (publicRoomsResponse?.chunk?.length ??
+                                            0);
+                                    final totalCount =
+                                        rooms.length + publicRoomsCount;
+                                    final directChats = rooms
+                                        .where((r) => r.isDirectChat)
+                                        .toList();
+                                    final presences =
+                                        Matrix.of(context).client.presences;
+                                    directChats.sort((a, b) => presences[
+                                                    b.directChatMatrixID]
+                                                ?.presence
+                                                ?.statusMsg !=
+                                            null
+                                        ? 1
+                                        : b.lastEvent.originServerTs.compareTo(
+                                            a.lastEvent.originServerTs));
+                                    return ListView.separated(
+                                        controller: _scrollController,
+                                        separatorBuilder: (BuildContext context,
+                                                int i) =>
+                                            i == totalCount - publicRoomsCount
+                                                ? ListTile(
+                                                    title: Text(
+                                                      L10n.of(context)
+                                                              .publicRooms +
+                                                          ':',
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Theme.of(context)
+                                                            .primaryColor,
+                                                      ),
+                                                    ),
+                                                  )
+                                                : Container(),
+                                        itemCount: totalCount + 1,
+                                        itemBuilder:
+                                            (BuildContext context, int i) {
+                                          if (i == 0) {
+                                            return Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                (directChats.isEmpty ||
+                                                        selectMode ==
+                                                            SelectMode.share)
+                                                    ? Container()
+                                                    : PreferredSize(
+                                                        preferredSize:
+                                                            Size.fromHeight(90),
+                                                        child: Container(
+                                                          height: 82,
+                                                          child:
+                                                              ListView.builder(
+                                                            scrollDirection:
+                                                                Axis.horizontal,
+                                                            itemCount:
+                                                                directChats
+                                                                    .length,
+                                                            itemBuilder: (BuildContext
+                                                                        context,
+                                                                    int i) =>
+                                                                PresenceListItem(
+                                                                    directChats[
+                                                                        i]),
+                                                          ),
+                                                        ),
+                                                      ),
+                                              ],
+                                            );
+                                          }
+                                          i--;
+                                          return i < rooms.length
+                                              ? ChatListItem(
+                                                  rooms[i],
+                                                  activeChat:
+                                                      widget.activeChat ==
+                                                          rooms[i].id,
+                                                )
+                                              : PublicRoomListItem(
+                                                  publicRoomsResponse
+                                                      .chunk[i - rooms.length]);
+                                        });
+                                  } else {
+                                    return Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  }
+                                },
                               );
-                            }
-                          },
-                        );
-                      }),
+                            }),
+                      ),
+                    ],
+                  ),
                 );
               });
         });

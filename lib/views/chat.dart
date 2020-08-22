@@ -480,6 +480,7 @@ class _ChatState extends State<_Chat> {
             ),
           Column(
             children: <Widget>[
+              ConnectionStatusHeader(),
               Expanded(
                 child: FutureBuilder<bool>(
                   future: getTimeline(),
@@ -601,7 +602,6 @@ class _ChatState extends State<_Chat> {
                   },
                 ),
               ),
-              ConnectionStatusHeader(),
               AnimatedContainer(
                 duration: Duration(milliseconds: 300),
                 height: editEvent != null || replyEvent != null ? 56 : 0,
