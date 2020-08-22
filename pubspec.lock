@@ -180,8 +180,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "09ffa0940484862139c3fe431d4c3ef3392f2232"
-      resolved-ref: "09ffa0940484862139c3fe431d4c3ef3392f2232"
+      ref: "50d97ebeb224dcbfa8e306b8cb50adcaee12d4db"
+      resolved-ref: "50d97ebeb224dcbfa8e306b8cb50adcaee12d4db"
       url: "https://gitlab.com/famedly/famedlysdk.git"
     source: git
     version: "0.0.1"
@@ -502,7 +502,14 @@ packages:
       name: moor
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.3.1"
+    version: "3.3.0"
+  moor_ffi:
+    dependency: "direct main"
+    description:
+      name: moor_ffi
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.5.0"
   node_interop:
     dependency: transitive
     description:
@@ -761,7 +768,7 @@ packages:
     source: hosted
     version: "1.0.2+1"
   sqlite3:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: sqlite3
       url: "https://pub.dartlang.org"
