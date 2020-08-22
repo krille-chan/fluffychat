@@ -494,7 +494,8 @@ class _ChatState extends State<_Chat> {
                     if (room.notificationCount != null &&
                         room.notificationCount > 0 &&
                         timeline != null &&
-                        timeline.events.isNotEmpty) {
+                        timeline.events.isNotEmpty &&
+                        Matrix.of(context).webHasFocus) {
                       room.sendReadReceipt(timeline.events.first.eventId);
                     }
 
