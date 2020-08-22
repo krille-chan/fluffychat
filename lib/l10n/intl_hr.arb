@@ -875,12 +875,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "Fluffychat trenutačno ne podržava unakrsno potpisivanje. Aktiviraj je pomoću Element-a.",
+  "noCrossSignBootstrap": "Fluffychat trenutačno ne podržava unakrsno potpisivanje. Aktiviraj je u Riot.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "Fluffychat trenutačno ne podržava online sigurnosnu kopiju ključeva. Aktiviraj je pomoću Element-a.",
+  "noMegolmBootstrap": "Fluffychat trenutačno ne podržava aktiviranje online sigurnosnu kopiju ključeva. Aktiviraj je u Riot.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -905,7 +905,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "No rooms found...": "Nema pronađenih soba …",
+  "No rooms found...": "Nema soba …",
   "@No rooms found...": {
     "type": "text",
     "placeholders": {}
@@ -1095,7 +1095,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Room has been upgraded": "Ova soba je nadograđena",
+  "Room has been upgraded": "Soba je nadograđena",
   "@Room has been upgraded": {
     "type": "text",
     "placeholders": {}
@@ -1539,7 +1539,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Welcome to the cutest instant messenger in the matrix network.": "Lijep pozdrav u najslađi program za čavrljanje u Matrix-mreži.",
+  "Welcome to the cutest instant messenger in the matrix network.": "Lijep pozdrav u najslađi program za čavrljanje u mreži matrix.",
   "@Welcome to the cutest instant messenger in the matrix network.": {
     "type": "text",
     "placeholders": {}
@@ -1588,5 +1588,48 @@
   "@Your own username": {
     "type": "text",
     "placeholders": {}
+  },
+  "Unpin": "Otkvači",
+  "@Unpin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "startedACall": "{senderName} ja započeo/la poziv",
+  "@startedACall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "sentCallInformations": "{senderName} je poslao/la podatke poziva",
+  "@sentCallInformations": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "Pin": "Prikvači",
+  "@Pin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Join room": "Pridruži se sobi",
+  "@Join room": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "endedTheCall": "{senderName} je završio/la poziv",
+  "@endedTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "answeredTheCall": "{senderName} je odgovorio/la na poziv",
+  "@answeredTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
   }
 }
