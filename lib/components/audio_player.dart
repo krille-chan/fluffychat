@@ -2,12 +2,15 @@ import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/components/message_download_content.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:intl/intl.dart';
-
+import 'package:universal_html/prefer_universal/html.dart' as html;
 import 'dialogs/simple_dialogs.dart';
+import '../utils/ui_fake.dart' if (dart.library.html) 'dart:ui' as ui;
+import 'matrix.dart';
 
 class AudioPlayer extends StatefulWidget {
   final Color color;
@@ -35,6 +38,22 @@ class _AudioPlayerState extends State<AudioPlayer> {
   String statusText = '00:00';
   double currentPosition = 0;
   double maxPosition = 0;
+
+  String webSrcUrl;
+
+  @override
+  void initState() {
+    super.initState();
+    if (kIsWeb) {
+      ui.platformViewRegistry.registerViewFactory(
+          'web_audio_player',
+          (int viewId) => html.AudioElement()
+            ..src = webSrcUrl
+            ..autoplay = false
+            ..controls = true
+            ..style.border = 'none');
+    }
+  }
 
   @override
   void dispose() {
@@ -111,6 +130,18 @@ class _AudioPlayerState extends State<AudioPlayer> {
 
   @override
   Widget build(BuildContext context) {
+    if (kIsWeb) {
+      if (widget.event.content['url'] is String) {
+        webSrcUrl = Uri.parse(widget.event.content['url'])
+            .getDownloadLink(Matrix.of(context).client);
+        return Container(
+          height: 50,
+          width: 300,
+          child: HtmlElementView(viewType: 'web_audio_player'),
+        );
+      }
+      return MessageDownloadContent(widget.event, widget.color);
+    }
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
