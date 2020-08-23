@@ -8,10 +8,13 @@ extension PresenceExtension on Presence {
     if (presence.statusMsg?.isNotEmpty ?? false) {
       return presence.statusMsg;
     }
-    if (presence.lastActiveAgo != null) {
+    if (presence.lastActiveAgo != null ?? presence.lastActiveAgo != 0) {
       return L10n.of(context).lastActiveAgo(
           DateTime.fromMillisecondsSinceEpoch(presence.lastActiveAgo)
               .localizedTimeShort(context));
+    }
+    if (presence.currentlyActive) {
+      return L10n.of(context).currentlyActive;
     }
     return L10n.of(context).lastSeenLongTimeAgo;
   }
