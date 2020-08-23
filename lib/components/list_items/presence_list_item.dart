@@ -28,6 +28,7 @@ class PresenceListItem extends StatelessWidget {
     final user = room.getUserByMXIDSync(room.directChatMatrixID);
     final presence =
         Matrix.of(context).client.presences[room.directChatMatrixID];
+    final hasStatus = presence?.presence?.statusMsg != null;
     return InkWell(
       onTap: () => presence?.presence?.statusMsg == null
           ? _startChatAction(context, user.id)
@@ -45,14 +46,29 @@ class PresenceListItem extends StatelessWidget {
           children: <Widget>[
             SizedBox(height: 16),
             Container(
-              child: Avatar(user.avatarUrl, user.calcDisplayname()),
+              child: Stack(
+                children: [
+                  Avatar(user.avatarUrl, user.calcDisplayname()),
+                  if (presence?.presence?.currentlyActive == true)
+                    Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: Container(
+                        width: 10,
+                        height: 10,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.green,
+                        ),
+                      ),
+                    ),
+                ],
+              ),
               decoration: BoxDecoration(
                 border: Border.all(
                   width: 1,
-                  color: presence?.presence?.statusMsg == null
-                      ? presence?.presence?.currentlyActive == true
-                          ? Colors.blue
-                          : Theme.of(context).secondaryHeaderColor
+                  color: !hasStatus
+                      ? Theme.of(context).secondaryHeaderColor
                       : Theme.of(context).primaryColor,
                 ),
                 borderRadius: BorderRadius.circular(80),
@@ -70,7 +86,7 @@ class PresenceListItem extends StatelessWidget {
                       .textTheme
                       .bodyText2
                       .color
-                      .withOpacity(0.66),
+                      .withOpacity(hasStatus ? 1 : 0.66),
                   fontSize: 13,
                 ),
               ),
