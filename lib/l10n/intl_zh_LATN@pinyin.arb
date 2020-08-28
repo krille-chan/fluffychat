@@ -1,11 +1,11 @@
 {
   "@@last_modified": "2020-08-16T12:43:17.825046",
-  "About": "",
+  "About": "关于",
   "@About": {
     "type": "text",
     "placeholders": {}
   },
-  "Accept": "",
+  "Accept": "接受",
   "@Accept": {
     "type": "text",
     "placeholders": {}
