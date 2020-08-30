@@ -618,7 +618,7 @@
       "displayname": {}
     }
   },
-  "Guests are forbidden": "Гости запрещены",
+  "Guests are forbidden": "Гости не могут присоединиться",
   "@Guests are forbidden": {
     "type": "text",
     "placeholders": {}
