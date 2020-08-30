@@ -10,7 +10,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "acceptedTheInvitation": "{username} прийняв(-ла) запрошення",
+  "acceptedTheInvitation": "{username} прийняв(ла) запрошення увійти в чат",
   "@acceptedTheInvitation": {
     "type": "text",
     "placeholders": {
@@ -79,17 +79,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSCache": "Будь ласка, введіть секретну фразу безпечного сховища або ключ відновлення для кешування ключів.",
+  "askSSSSCache": "Будь ласка, введіть вашу парольну фразу або ключ відновлення для кешування ключів.",
   "@askSSSSCache": {
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSSign": "Щоб мати можливість підписати іншу особу, будь ласка, введіть пароль або ключ відновлення вашого безпечного сховища.",
+  "askSSSSSign": "Для підпису ключа іншого користувача, будь ласка, введіть вашу парольну фразу або ключ відновлення.",
   "@askSSSSSign": {
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSVerify": "Будь ласка, введіть вашу парольну фразу або ключ відновлення для підтвердження сеансу.",
+  "askSSSSVerify": "Будь ласка, введіть вашу парольну фразу або ключ відновлення для підтвердження сесії.",
   "@askSSSSVerify": {
     "type": "text",
     "placeholders": {}
@@ -116,12 +116,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "Banned": "Заблокований(-на)",
+  "Banned": "Заблокований(на)",
   "@Banned": {
     "type": "text",
     "placeholders": {}
   },
-  "bannedUser": "{username} заблокував(-ла) {targetName}",
+  "bannedUser": "{username} заблокував(ла) {targetName}",
   "@bannedUser": {
     "type": "text",
     "placeholders": {
@@ -141,7 +141,7 @@
       "homeserver": {}
     }
   },
-  "cachedKeys": "Ключі було успішно збережено в кеші!",
+  "cachedKeys": "Ключі було успішно збережено в кеші",
   "@cachedKeys": {
     "type": "text",
     "placeholders": {}
@@ -151,14 +151,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "changedTheChatAvatar": "{username} змінив(-ла) аватар чату",
+  "changedTheChatAvatar": "{username} змінив(ла) аватар чату",
   "@changedTheChatAvatar": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheChatNameTo": "{username} змінив(-ла) ім'я чату на: '{chatname}'",
+  "changedTheChatNameTo": "{username} змінив(ла) ім'я чату на: \"{chatname}\"",
   "@changedTheChatNameTo": {
     "type": "text",
     "placeholders": {
@@ -166,7 +166,7 @@
       "chatname": {}
     }
   },
-  "changedTheChatDescriptionTo": "{username} змінив(-ла) опис чату на: '{description}'",
+  "changedTheChatDescriptionTo": "{username} змінив(ла) опис чату на: \"{description}\"",
   "@changedTheChatDescriptionTo": {
     "type": "text",
     "placeholders": {
@@ -174,14 +174,14 @@
       "description": {}
     }
   },
-  "changedTheChatPermissions": "{username} змінив(-ла) права чату",
+  "changedTheChatPermissions": "{username} змінив(ла) права доступу чату",
   "@changedTheChatPermissions": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheDisplaynameTo": "{username} змінив(-ла) відображуване ім'я на: {displayname}",
+  "changedTheDisplaynameTo": "{username} змінив(ла) відображуване ім'я на: {displayname}",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -189,19 +189,19 @@
       "displayname": {}
     }
   },
-  "Change the homeserver": "Змінити домашній сервер",
+  "Change the homeserver": "Змінити сервер Matrix",
   "@Change the homeserver": {
     "type": "text",
     "placeholders": {}
   },
-  "changedTheGuestAccessRules": "{username} змінив(-ла) правила гостьового доступу",
+  "changedTheGuestAccessRules": "{username} змінив(ла) правила гостьового доступу",
   "@changedTheGuestAccessRules": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheGuestAccessRulesTo": "{username} змінив(-ла) правила гостьового доступу на: {rules}",
+  "changedTheGuestAccessRulesTo": "{username} змінив(ла) правила гостьового доступу на: {rules}",
   "@changedTheGuestAccessRulesTo": {
     "type": "text",
     "placeholders": {
@@ -209,14 +209,14 @@
       "rules": {}
     }
   },
-  "changedTheHistoryVisibility": "{username} змінив(-ла) видимість історії",
+  "changedTheHistoryVisibility": "{username} змінив(ла) видимість історії",
   "@changedTheHistoryVisibility": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheHistoryVisibilityTo": "{username} змінив(-ла) видимість історії на: {rules}",
+  "changedTheHistoryVisibilityTo": "{username} змінив(ла) видимість історії на: {rules}",
   "@changedTheHistoryVisibilityTo": {
     "type": "text",
     "placeholders": {
@@ -224,14 +224,14 @@
       "rules": {}
     }
   },
-  "changedTheJoinRules": "{username} змінив(-ла) правила щодо приєднання",
+  "changedTheJoinRules": "{username} змінив(ла) правила щодо приєднання",
   "@changedTheJoinRules": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheJoinRulesTo": "{username} змінив(-ла) правила щодо приєднання на: {joinRules}",
+  "changedTheJoinRulesTo": "{username} змінив(ла) правила щодо приєднання на: {joinRules}",
   "@changedTheJoinRulesTo": {
     "type": "text",
     "placeholders": {
@@ -239,21 +239,21 @@
       "joinRules": {}
     }
   },
-  "changedTheProfileAvatar": "{username} змінив(-ла) аватар",
+  "changedTheProfileAvatar": "{username} змінив(ла) аватар",
   "@changedTheProfileAvatar": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheRoomAliases": "{username} змінив(-ла) псевдоніми кімнати",
+  "changedTheRoomAliases": "{username} змінив(ла) псевдоніми кімнати",
   "@changedTheRoomAliases": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheRoomInvitationLink": "{username} змінив(-ла) посилання для запрошення",
+  "changedTheRoomInvitationLink": "{username} змінив(ла) посилання для запрошення",
   "@changedTheRoomInvitationLink": {
     "type": "text",
     "placeholders": {
@@ -270,7 +270,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Change wallpaper": "Змінити фонове зображення",
+  "Change wallpaper": "Змінити фон чатів",
   "@Change wallpaper": {
     "type": "text",
     "placeholders": {}
@@ -310,7 +310,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "compareEmojiMatch": "Порівняйте і переконайтесь, що наступні емодзі відповідають таким на іншому пристрої:",
+  "compareEmojiMatch": "Порівняйте і переконайтесь, що наступні емодзі відповідають емодзі на іншому пристрої:",
   "@compareEmojiMatch": {
     "type": "text",
     "placeholders": {}
@@ -372,7 +372,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "countParticipants": "{count} учасника(-ів)",
+  "countParticipants": "{count} учасника(ів)",
   "@countParticipants": {
     "type": "text",
     "placeholders": {
@@ -389,14 +389,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "createdTheChat": "{username} створив(-ла) чат",
+  "createdTheChat": "{username} створив(ла) чат",
   "@createdTheChat": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "Create new group": "Створити нову групу",
+  "Create new group": "Нова група",
   "@Create new group": {
     "type": "text",
     "placeholders": {}
@@ -411,7 +411,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Currently active": "Зараз активний(-на)",
+  "Currently active": "Зараз активний(на)",
   "@Currently active": {
     "type": "text",
     "placeholders": {}
@@ -466,7 +466,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Discard picture": "Скинути зображення",
+  "Discard picture": "Видалити зображення",
   "@Discard picture": {
     "type": "text",
     "placeholders": {}
@@ -496,7 +496,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteWarnNeedToPick": "Виберіть короткий код емодзі і картинку",
+  "emoteWarnNeedToPick": "Виберіть короткий код емодзі і зображення",
   "@emoteWarnNeedToPick": {
     "type": "text",
     "placeholders": {}
@@ -618,17 +618,17 @@
       "displayname": {}
     }
   },
-  "Guests are forbidden": "",
+  "Guests are forbidden": "Гості не можуть приєднуватись",
   "@Guests are forbidden": {
     "type": "text",
     "placeholders": {}
   },
-  "Guests can join": "",
+  "Guests can join": "Гості можуть приєднуватись",
   "@Guests can join": {
     "type": "text",
     "placeholders": {}
   },
-  "hasWithdrawnTheInvitationFor": "",
+  "hasWithdrawnTheInvitationFor": "{username} відкликав(ла) запрошення для {targetName}",
   "@hasWithdrawnTheInvitationFor": {
     "type": "text",
     "placeholders": {
@@ -636,7 +636,7 @@
       "targetName": {}
     }
   },
-  "Help": "",
+  "Help": "Допомога",
   "@Help": {
     "type": "text",
     "placeholders": {}
@@ -678,7 +678,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "{username} запросив(-ла) вас у FluffyChat. \n1. Встановіть FluffyChat: http://fluffychat.im \n2. Зареєструйтесь або увійдіть \n3. Відкрийте посилання для запрошення: {link}",
+  "inviteText": "{username} запросив(ла) вас у FluffyChat. \n1. Встановіть FluffyChat: http://fluffychat.im \n2. Зареєструйтесь або увійдіть \n3. Відкрийте посилання для запрошення: {link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {
@@ -739,7 +739,7 @@
       "targetName": {}
     }
   },
-  "kickedAndBanned": "{username} виключив(-ла) та заблокував(-ла) {targetName}",
+  "kickedAndBanned": "{username} виключив(ла) та заблокував(ла) {targetName}",
   "@kickedAndBanned": {
     "type": "text",
     "placeholders": {
@@ -1351,7 +1351,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unbannedUser": "{username} розблокував(-ла) {targetName}",
+  "unbannedUser": "{username} розблокував(ла) {targetName}",
   "@unbannedUser": {
     "type": "text",
     "placeholders": {
@@ -1588,5 +1588,19 @@
   "@Your own username": {
     "type": "text",
     "placeholders": {}
+  },
+  "endedTheCall": "{senderName} завершив(ла) дзвінок",
+  "@endedTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "answeredTheCall": "{senderName} відповів(ла) на дзвінок",
+  "@answeredTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
   }
 }
