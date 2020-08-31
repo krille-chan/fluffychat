@@ -678,7 +678,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "{username} vás pozval na FluffyChat.\n1. Nainštalujte si FluffyChat: http://fluffy.chat\n2. Zaregistrujte sa alebo sa prihláste\n3. Otvorte odkaz na pozvánku: {link}",
+  "inviteText": "{username} vás pozval na FluffyChat.\n1. Nainštalujte si FluffyChat: https://fluffychat.im\n2. Zaregistrujte sa alebo sa prihláste\n3. Otvorte odkaz na pozvánku: {link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {

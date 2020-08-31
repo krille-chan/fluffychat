@@ -82,7 +82,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static m27(groupName) => "Zaproś kontakty do ${groupName}";
 
   static m28(username, link) =>
-      "${username} zaprosił/-a cię do FluffyChat. \n1. Zainstaluj FluffyChat: http://fluffy.chat \n2. Zarejestuj się lub zaloguj \n3. Otwórz link zaproszenia: ${link}";
+      "${username} zaprosił/-a cię do FluffyChat. \n1. Zainstaluj FluffyChat: https://fluffychat.im \n2. Zarejestuj się lub zaloguj \n3. Otwórz link zaproszenia: ${link}";
 
   static m29(username, targetName) => "${username} zaprosił/-a ${targetName}";
 

@@ -678,7 +678,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "{username} пригласил(а) вас в FluffyChat. \n1. Установите FluffyChat: http://fluffychat.im \n2. Зарегистрируйтесь или войдите \n3. Откройте ссылку приглашения: {link}",
+  "inviteText": "{username} пригласил(а) вас в FluffyChat. \n1. Установите FluffyChat: https://fluffychat.im \n2. Зарегистрируйтесь или войдите \n3. Откройте ссылку приглашения: {link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {

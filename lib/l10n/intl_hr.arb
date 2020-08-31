@@ -678,7 +678,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "{username} te je pozvao/la u FluffyChat. \n1. Instaliraj FluffyChat: http://fluffy.chat \n2. Registriraj ili prijavi se \n3. Otvori poveznicu poziva: {link}",
+  "inviteText": "{username} te je pozvao/la u FluffyChat. \n1. Instaliraj FluffyChat: https://fluffychat.im \n2. Registriraj ili prijavi se \n3. Otvori poveznicu poziva: {link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {

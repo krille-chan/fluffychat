@@ -606,7 +606,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "{username} meghívott a FluffyChatre. \n1. FluffyChat telepítése: http://fluffy.chat \n2. Jelentkezz be vagy regisztrálj. \n3. Nyisd meg a meghívó linket: {link}",
+  "inviteText": "{username} meghívott a FluffyChatre. \n1. FluffyChat telepítése: https://fluffychat.im \n2. Jelentkezz be vagy regisztrálj. \n3. Nyisd meg a meghívó linket: {link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {

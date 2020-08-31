@@ -678,7 +678,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "{username}がFluffyChatにあなたを招待しました. \n1. FluffyChatをインストールしてください: http://fluffy.chat \n2. 新しくアカウントを作成するかサインインしてください\n3. 招待リンクを開いてください: {link}",
+  "inviteText": "{username}がFluffyChatにあなたを招待しました. \n1. FluffyChatをインストールしてください: https://fluffychat.im \n2. 新しくアカウントを作成するかサインインしてください\n3. 招待リンクを開いてください: {link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {
