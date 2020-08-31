@@ -276,6 +276,13 @@ packages:
       url: "https://github.com/Sorunome/flutter_matrix_html"
     source: git
     version: "0.1.2"
+  flutter_olm:
+    dependency: "direct main"
+    description:
+      name: flutter_olm
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
