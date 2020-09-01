@@ -62,7 +62,7 @@ dependencies:
   sqlite3: ^0.1.4
   random_string: ^2.0.1
   flutter_typeahead: ^1.8.1
-  #flutter_olm: ^1.0.1
+  flutter_olm: ^1.0.1
   intl: ^0.16.0
   intl_translation: ^0.17.9
   flutter_localizations:
