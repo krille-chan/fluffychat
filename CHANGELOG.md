@@ -1,4 +1,6 @@
-# Version 0.17.0 - 2020-08-??
+# Version 0.18.0 - 2020-09-??
+
+# Version 0.17.0 - 2020-08-31
 ### Features
 - Pin and unpin chats
 - Implement event aggregations
@@ -7,6 +9,9 @@
 - Add / Remove reactions by tapping on existing reactions
 ### Fixes:
 - Don't re-render the room list nearly as often, increasing performance
+- Various fixes for sending messages on bad networks
+- Design tweeks and fixes
+- Various performance fixes and improvements
 
 # Version 0.16.0 - 2020-07-24
 ### Features
