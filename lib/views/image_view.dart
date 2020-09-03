@@ -36,7 +36,7 @@ class ImageView extends StatelessWidget {
           ),
           IconButton(
             icon: Icon(Icons.file_download),
-            onPressed: () => event.openFile(context),
+            onPressed: () => event.openFile(context, downloadOnly: true),
             color: Colors.white,
           ),
         ],
@@ -51,6 +51,7 @@ class ImageView extends StatelessWidget {
           backgroundColor: Colors.black,
           maxSize: false,
           radius: 0.0,
+          thumbnailOnly: false,
         ),
       ),
     );

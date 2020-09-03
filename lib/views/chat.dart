@@ -27,6 +27,7 @@ import 'package:image_picker/image_picker.dart';
 import 'chat_details.dart';
 import 'chat_list.dart';
 import '../components/input_bar.dart';
+import '../utils/room_send_file_extension.dart';
 
 class ChatView extends StatelessWidget {
   final String id;
@@ -191,7 +192,7 @@ class _ChatState extends State<_Chat> {
     var file = await MemoryFilePicker.getFile();
     if (file == null) return;
     await SimpleDialogs(context).tryRequestWithLoadingDialog(
-      room.sendFileEvent(
+      room.sendFileEventWithThumbnail(
         MatrixFile(bytes: file.bytes, name: file.path),
       ),
     );
@@ -205,7 +206,7 @@ class _ChatState extends State<_Chat> {
         maxHeight: 1600);
     if (file == null) return;
     await SimpleDialogs(context).tryRequestWithLoadingDialog(
-      room.sendFileEvent(
+      room.sendFileEventWithThumbnail(
         MatrixImageFile(bytes: await file.bytes, name: file.path),
       ),
     );
@@ -219,7 +220,7 @@ class _ChatState extends State<_Chat> {
         maxHeight: 1600);
     if (file == null) return;
     await SimpleDialogs(context).tryRequestWithLoadingDialog(
-      room.sendFileEvent(
+      room.sendFileEventWithThumbnail(
         MatrixImageFile(bytes: file.bytes, name: file.path),
       ),
     );

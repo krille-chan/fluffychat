@@ -3,9 +3,20 @@ import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'matrix_file_extension.dart';
+import 'app_route.dart';
+import '../views/image_view.dart';
 
 extension LocalizedBody on Event {
-  void openFile(BuildContext context) async {
+  void openFile(BuildContext context, {bool downloadOnly = false}) async {
+    if (!downloadOnly &&
+        [MessageTypes.Image, MessageTypes.Sticker].contains(messageType)) {
+      await Navigator.of(context).push(
+        AppRoute(
+          ImageView(this),
+        ),
+      );
+      return;
+    }
     final MatrixFile matrixFile =
         await SimpleDialogs(context).tryRequestWithLoadingDialog(
       downloadAndDecryptAttachment(),
@@ -32,7 +43,12 @@ extension LocalizedBody on Event {
       [MessageTypes.Image, MessageTypes.Sticker].contains(messageType) &&
       (kIsWeb ||
           (content['info'] is Map &&
-              content['info']['size'] < room.client.database.maxFileSize));
+              content['info']['size'] < room.client.database.maxFileSize) ||
+          (hasThumbnail &&
+              content['info']['thumbnail_info'] is Map &&
+              content['info']['thumbnail_info']['size'] <
+                  room.client.database.maxFileSize) ||
+          (content['url'] is String));
 
   String get sizeString {
     if (content['info'] is Map<String, dynamic> &&

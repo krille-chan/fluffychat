@@ -241,6 +241,13 @@ packages:
       url: "https://github.com/mchome/flutter_advanced_networkimage"
     source: git
     version: "0.8.0"
+  flutter_blurhash:
+    dependency: "direct main"
+    description:
+      name: flutter_blurhash
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.5.0"
   flutter_keyboard_visibility:
     dependency: transitive
     description:
@@ -508,6 +515,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.3.1"
+  native_imaging:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: master
+      resolved-ref: bd24832f96537447174aa34ba78eaed7ff05bb8e
+      url: "https://gitlab.com/famedly/libraries/native_imaging.git"
+    source: git
+    version: "0.0.1"
   node_interop:
     dependency: transitive
     description:

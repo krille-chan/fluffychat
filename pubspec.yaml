@@ -65,6 +65,12 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   sqflite: ^1.1.7 # Still used to obtain the database location
+  native_imaging:
+    git:
+      url: https://gitlab.com/famedly/libraries/native_imaging.git
+      ref: master
+  flutter_blurhash: ^0.5.0
+
 
 dev_dependencies:
   flutter_test:
