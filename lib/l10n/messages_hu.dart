@@ -87,7 +87,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static m27(groupName) => "Ismerős meghívása a ${groupName} csoportba";
 
   static m28(username, link) =>
-      "${username} meghívott a FluffyChatre. \n1. FluffyChat telepítése: http://fluffy.chat \n2. Jelentkezz be vagy regisztrálj. \n3. Nyisd meg a meghívó linket: ${link}";
+      "${username} meghívott a FluffyChatre. \n1. FluffyChat telepítése: https://fluffychat.im \n2. Jelentkezz be vagy regisztrálj. \n3. Nyisd meg a meghívó linket: ${link}";
 
   static m29(username, targetName) => "${username} meghívta ${targetName}-t";
 

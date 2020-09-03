@@ -77,7 +77,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static m27(groupName) => "連絡先から${groupName}に招待する";
 
   static m28(username, link) =>
-      "${username}がFluffyChatにあなたを招待しました. \n1. FluffyChatをインストールしてください: http://fluffy.chat \n2. 新しくアカウントを作成するかサインインしてください\n3. 招待リンクを開いてください: ${link}";
+      "${username}がFluffyChatにあなたを招待しました. \n1. FluffyChatをインストールしてください: https://fluffychat.im \n2. 新しくアカウントを作成するかサインインしてください\n3. 招待リンクを開いてください: ${link}";
 
   static m29(username, targetName) => "${username}が${targetName}を招待しました";
 

@@ -611,7 +611,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "{username} hat Dich zu FluffyChat eingeladen. \n1. Installiere FluffyChat: http://fluffy.chat \n2. Melde Dich in der App an \n3. Öffne den Einladungslink: {link}",
+  "inviteText": "{username} hat Dich zu FluffyChat eingeladen. \n1. Installiere FluffyChat: https://fluffychat.im \n2. Melde Dich in der App an \n3. Öffne den Einladungslink: {link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {

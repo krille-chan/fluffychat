@@ -576,7 +576,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "{username} zaprosił/-a cię do FluffyChat. \n1. Zainstaluj FluffyChat: http://fluffy.chat \n2. Zarejestuj się lub zaloguj \n3. Otwórz link zaproszenia: {link}",
+  "inviteText": "{username} zaprosił/-a cię do FluffyChat. \n1. Zainstaluj FluffyChat: https://fluffychat.im \n2. Zarejestuj się lub zaloguj \n3. Otwórz link zaproszenia: {link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {
