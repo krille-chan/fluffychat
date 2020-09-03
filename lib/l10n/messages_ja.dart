@@ -23,127 +23,136 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m1(username) => "${username}がエンドツーエンド暗号化を有効にしました";
 
-  static m2(username) => "${username}の検証リクエストを承認しますか？";
+  static m2(senderName) => "${senderName}は通話に出ました";
 
-  static m3(username, targetName) => "${username}が${targetName}をBANしました";
+  static m3(username) => "${username}の検証リクエストを承認しますか？";
 
-  static m4(homeserver) => "デフォルトで${homeserver}に接続されます";
+  static m4(username, targetName) => "${username}が${targetName}をBANしました";
 
-  static m5(username) => "${username}がチャットアバターを変更しました";
+  static m5(homeserver) => "デフォルトで${homeserver}に接続されます";
 
-  static m6(username, description) =>
+  static m6(username) => "${username}がチャットアバターを変更しました";
+
+  static m7(username, description) =>
       "${username}がチャットの説明を「${description}」に変更しました";
 
-  static m7(username, chatname) => "${username}がチャットの名前を「${chatname}」に変更しました";
+  static m8(username, chatname) => "${username}がチャットの名前を「${chatname}」に変更しました";
 
-  static m8(username) => "${username}がチャットの権限を変更しました";
+  static m9(username) => "${username}がチャットの権限を変更しました";
 
-  static m9(username, displayname) => "${username}が表示名を「${displayname}」に変更しました";
+  static m10(username, displayname) =>
+      "${username}が表示名を「${displayname}」に変更しました";
 
-  static m10(username) => "${username}がゲストのアクセスルールを変更しました";
+  static m11(username) => "${username}がゲストのアクセスルールを変更しました";
 
-  static m11(username, rules) => "${username}がゲストのアクセスルールを${rules}に変更しました";
+  static m12(username, rules) => "${username}がゲストのアクセスルールを${rules}に変更しました";
 
-  static m12(username) => "${username}が履歴の表示設定を変更しました";
+  static m13(username) => "${username}が履歴の表示設定を変更しました";
 
-  static m13(username, rules) => "${username}が履歴の表示設定を${rules}に変更しました";
+  static m14(username, rules) => "${username}が履歴の表示設定を${rules}に変更しました";
 
-  static m14(username) => "${username}が参加ルールを変更しました";
+  static m15(username) => "${username}が参加ルールを変更しました";
 
-  static m15(username, joinRules) => "${username}が参加ルールを${joinRules}に変更しました";
+  static m16(username, joinRules) => "${username}が参加ルールを${joinRules}に変更しました";
 
-  static m16(username) => "${username}がアバターを変更しました";
+  static m17(username) => "${username}がアバターを変更しました";
 
-  static m17(username) => "${username}が部屋のエイリアスを変更しました";
+  static m18(username) => "${username}が部屋のエイリアスを変更しました";
 
-  static m18(username) => "${username}が招待リンクを変更しました";
+  static m19(username) => "${username}が招待リンクを変更しました";
 
-  static m19(error) => "メッセージを解読できませんでした: ${error}";
+  static m20(error) => "メッセージを解読できませんでした: ${error}";
 
-  static m20(count) => "${count}名の参加者";
+  static m21(count) => "${count}名の参加者";
 
-  static m21(username) => "${username}がチャットを作成しました";
+  static m22(username) => "${username}がチャットを作成しました";
 
-  static m22(date, timeOfDay) => "${date}, ${timeOfDay}";
+  static m23(date, timeOfDay) => "${date}, ${timeOfDay}";
 
-  static m23(year, month, day) => "${year}/${month}/${day}";
+  static m24(year, month, day) => "${year}/${month}/${day}";
 
-  static m24(month, day) => "${month}-${day}";
+  static m25(month, day) => "${month}-${day}";
 
-  static m25(displayname) => "${displayname}とグループを作成する";
+  static m26(senderName) => "${senderName}は通話を切断しました";
 
-  static m26(username, targetName) => "${targetName}の招待を${username}が取り下げました";
+  static m27(displayname) => "${displayname}とグループを作成する";
 
-  static m27(groupName) => "連絡先から${groupName}に招待する";
+  static m28(username, targetName) => "${targetName}の招待を${username}が取り下げました";
 
-  static m28(username, link) =>
+  static m29(groupName) => "連絡先から${groupName}に招待する";
+
+  static m30(username, link) =>
       "${username}がFluffyChatにあなたを招待しました. \n1. FluffyChatをインストールしてください: https://fluffychat.im \n2. 新しくアカウントを作成するかサインインしてください\n3. 招待リンクを開いてください: ${link}";
 
-  static m29(username, targetName) => "${username}が${targetName}を招待しました";
+  static m31(username, targetName) => "${username}が${targetName}を招待しました";
 
-  static m30(username) => "${username}がチャットに参加しました";
+  static m32(username) => "${username}がチャットに参加しました";
 
-  static m31(username, targetName) => "${username}は${targetName}をキックしました";
+  static m33(username, targetName) => "${username}は${targetName}をキックしました";
 
-  static m32(username, targetName) => "${username}は${targetName}をキックしBANしました";
+  static m34(username, targetName) => "${username}は${targetName}をキックしBANしました";
 
-  static m33(localizedTimeShort) => "最終アクティブ: ${localizedTimeShort}";
+  static m35(localizedTimeShort) => "最終アクティブ: ${localizedTimeShort}";
 
-  static m34(count) => "あと${count}名参加者を読み込む";
+  static m36(count) => "あと${count}名参加者を読み込む";
 
-  static m35(homeserver) => "${homeserver}にログインする";
+  static m37(homeserver) => "${homeserver}にログインする";
 
-  static m36(number) => "${number}選択されています";
+  static m38(number) => "${number}選択されています";
 
-  static m37(fileName) => "${fileName}を再生する";
+  static m39(fileName) => "${fileName}を再生する";
 
-  static m38(username) => "${username}がイベントを編集しました";
+  static m40(username) => "${username}がイベントを編集しました";
 
-  static m39(username) => "${username}は招待を拒否しました";
+  static m41(username) => "${username}は招待を拒否しました";
 
-  static m40(username) => "${username}によって削除されました";
+  static m42(username) => "${username}によって削除されました";
 
-  static m41(username) => "${username}が既読";
+  static m43(username) => "${username}が既読";
 
-  static m42(username, count) => "${username}と他${count}名が既読";
+  static m44(username, count) => "${username}と他${count}名が既読";
 
-  static m43(username, username2) => "${username}と${username2}が既読";
+  static m45(username, username2) => "${username}と${username2}が既読";
 
-  static m44(username) => "${username}はファイルを送信しました";
+  static m46(username) => "${username}はファイルを送信しました";
 
-  static m45(username) => "${username}は画像を送信しました";
+  static m47(username) => "${username}は画像を送信しました";
 
-  static m46(username) => "${username}はステッカーを送信しました";
+  static m48(username) => "${username}はステッカーを送信しました";
 
-  static m47(username) => "${username}は動画を送信しました";
+  static m49(username) => "${username}は動画を送信しました";
 
-  static m48(username) => "${username}は音声を送信しました";
+  static m50(username) => "${username}は音声を送信しました";
 
-  static m49(username) => "${username}は現在地を共有しました";
+  static m51(senderName) => "${senderName}は通話情報を送信しました";
 
-  static m50(hours12, hours24, minutes, suffix) =>
+  static m52(username) => "${username}は現在地を共有しました";
+
+  static m53(senderName) => "${senderName}は通話を開始しました";
+
+  static m54(hours12, hours24, minutes, suffix) =>
       "${hours24}:${minutes} ${suffix}";
 
-  static m51(username, targetName) => "${username}が${targetName}のBANを解除しました";
+  static m55(username, targetName) => "${username}が${targetName}のBANを解除しました";
 
-  static m52(type) => "未知のイベント\'${type}\'";
+  static m56(type) => "未知のイベント\'${type}\'";
 
-  static m53(unreadCount) => "${unreadCount}の未読メッセージ";
+  static m57(unreadCount) => "${unreadCount}の未読メッセージ";
 
-  static m54(unreadEvents) => "${unreadEvents}件の未読メッセージ";
+  static m58(unreadEvents) => "${unreadEvents}件の未読メッセージ";
 
-  static m55(unreadEvents, unreadChats) =>
+  static m59(unreadEvents, unreadChats) =>
       "${unreadChats}で${unreadEvents}件の未読メッセージ";
 
-  static m56(username, count) => "${username}と他${count}名が入力しています...";
+  static m60(username, count) => "${username}と他${count}名が入力しています...";
 
-  static m57(username, username2) => "${username}と${username2}が入力しています...";
+  static m61(username, username2) => "${username}と${username2}が入力しています...";
 
-  static m58(username) => "${username}が入力しています...";
+  static m62(username) => "${username}が入力しています...";
 
-  static m59(username) => "${username}は退室しました";
+  static m63(username) => "${username}は退室しました";
 
-  static m60(username, type) => "${username}は${type}イベントを送信しました";
+  static m64(username, type) => "${username}は${type}イベントを送信しました";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function>{
@@ -269,6 +278,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "It seems that you have no google services on your phone. That\'s a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/":
             MessageLookupByLibrary.simpleMessage(
                 "あなたのスマホにはグーグルサービスがないようですね。プライバシーを保護するための良い選択です！Push通知を受け取るにはmicroGを使うことを推奨しています: https://microg.org/"),
+        "Join room": MessageLookupByLibrary.simpleMessage("部屋に参加"),
         "Kick from chat": MessageLookupByLibrary.simpleMessage("チャットからキックする"),
         "Last seen IP": MessageLookupByLibrary.simpleMessage("最終IP"),
         "Leave": MessageLookupByLibrary.simpleMessage("退室する"),
@@ -310,6 +320,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ユーザーの使用しているデバイス"),
         "Password": MessageLookupByLibrary.simpleMessage("パスワード"),
         "Pick image": MessageLookupByLibrary.simpleMessage("画像を選択してください"),
+        "Pin": MessageLookupByLibrary.simpleMessage("ピン"),
         "Please be aware that you need Pantalaimon to use end-to-end encryption for now.":
             MessageLookupByLibrary.simpleMessage(
                 "現時点では、エンドツーエンドの暗号化を使用するにはPantalaimonが必要であることに注意してください。"),
@@ -381,6 +392,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Unknown encryption algorithm":
             MessageLookupByLibrary.simpleMessage("未知の暗号化アルゴリズム"),
         "Unmute chat": MessageLookupByLibrary.simpleMessage("チャットをミュート解除する"),
+        "Unpin": MessageLookupByLibrary.simpleMessage("ピンを外す"),
         "Use Amoled compatible colors?":
             MessageLookupByLibrary.simpleMessage("有機EL(Amoled)対応の色にしますか？"),
         "Username": MessageLookupByLibrary.simpleMessage("ユーザー名"),
@@ -398,7 +410,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Wednesday": MessageLookupByLibrary.simpleMessage("水曜日"),
         "Welcome to the cutest instant messenger in the matrix network.":
             MessageLookupByLibrary.simpleMessage(
-                "Matrixネットワークで一番かわいいチャットアプリへようこそ。"),
+                "matrixネットワークで一番かわいいチャットアプリへようこそ。"),
         "Who is allowed to join this group":
             MessageLookupByLibrary.simpleMessage("誰がこのチャットに入れますか"),
         "Write a message...":
@@ -420,74 +432,76 @@ class MessageLookup extends MessageLookupByLibrary {
         "acceptedTheInvitation": m0,
         "activatedEndToEndEncryption": m1,
         "alias": MessageLookupByLibrary.simpleMessage("エイリアス"),
+        "answeredTheCall": m2,
         "askSSSSCache": MessageLookupByLibrary.simpleMessage(
             "鍵をキャッシュするためにはパスフレーズやリカバリーキーを入力してください。"),
         "askSSSSSign": MessageLookupByLibrary.simpleMessage(
             "他の人を署名するためにはパスフレーズやリカバリーキーを入力してください。"),
         "askSSSSVerify": MessageLookupByLibrary.simpleMessage(
             "セッションを検証するためにはパスフレーズやリカバリーキーを入力してください。"),
-        "askVerificationRequest": m2,
-        "bannedUser": m3,
-        "byDefaultYouWillBeConnectedTo": m4,
+        "askVerificationRequest": m3,
+        "bannedUser": m4,
+        "byDefaultYouWillBeConnectedTo": m5,
         "cachedKeys": MessageLookupByLibrary.simpleMessage("鍵のキャッシュに成功しました！"),
-        "changedTheChatAvatar": m5,
-        "changedTheChatDescriptionTo": m6,
-        "changedTheChatNameTo": m7,
-        "changedTheChatPermissions": m8,
-        "changedTheDisplaynameTo": m9,
-        "changedTheGuestAccessRules": m10,
-        "changedTheGuestAccessRulesTo": m11,
-        "changedTheHistoryVisibility": m12,
-        "changedTheHistoryVisibilityTo": m13,
-        "changedTheJoinRules": m14,
-        "changedTheJoinRulesTo": m15,
-        "changedTheProfileAvatar": m16,
-        "changedTheRoomAliases": m17,
-        "changedTheRoomInvitationLink": m18,
+        "changedTheChatAvatar": m6,
+        "changedTheChatDescriptionTo": m7,
+        "changedTheChatNameTo": m8,
+        "changedTheChatPermissions": m9,
+        "changedTheDisplaynameTo": m10,
+        "changedTheGuestAccessRules": m11,
+        "changedTheGuestAccessRulesTo": m12,
+        "changedTheHistoryVisibility": m13,
+        "changedTheHistoryVisibilityTo": m14,
+        "changedTheJoinRules": m15,
+        "changedTheJoinRulesTo": m16,
+        "changedTheProfileAvatar": m17,
+        "changedTheRoomAliases": m18,
+        "changedTheRoomInvitationLink": m19,
         "compareEmojiMatch": MessageLookupByLibrary.simpleMessage(
             "表示されている絵文字が他のデバイスで表示されているものと一致するか確認してください:"),
         "compareNumbersMatch": MessageLookupByLibrary.simpleMessage(
             "表示されている数字が他のデバイスで表示されているものと一致するか確認してください:"),
-        "couldNotDecryptMessage": m19,
-        "countParticipants": m20,
-        "createdTheChat": m21,
+        "couldNotDecryptMessage": m20,
+        "countParticipants": m21,
+        "createdTheChat": m22,
         "crossSigningDisabled":
             MessageLookupByLibrary.simpleMessage("相互署名は使えません"),
         "crossSigningEnabled":
             MessageLookupByLibrary.simpleMessage("相互署名が使えます"),
-        "dateAndTimeOfDay": m22,
-        "dateWithYear": m23,
-        "dateWithoutYear": m24,
+        "dateAndTimeOfDay": m23,
+        "dateWithYear": m24,
+        "dateWithoutYear": m25,
         "emoteExists": MessageLookupByLibrary.simpleMessage("Emoteはすでに存在します！"),
         "emoteInvalid":
             MessageLookupByLibrary.simpleMessage("不正なEmoteショートコード！"),
         "emoteWarnNeedToPick":
             MessageLookupByLibrary.simpleMessage("Emoteショートコードと画像を選択してください！"),
-        "groupWith": m25,
-        "hasWithdrawnTheInvitationFor": m26,
+        "endedTheCall": m26,
+        "groupWith": m27,
+        "hasWithdrawnTheInvitationFor": m28,
         "incorrectPassphraseOrKey":
             MessageLookupByLibrary.simpleMessage("パスフレーズかリカバリーキーが間違っています"),
-        "inviteContactToGroup": m27,
-        "inviteText": m28,
-        "invitedUser": m29,
+        "inviteContactToGroup": m29,
+        "inviteText": m30,
+        "invitedUser": m31,
         "is typing...": MessageLookupByLibrary.simpleMessage("入力しています..."),
         "isDeviceKeyCorrect":
             MessageLookupByLibrary.simpleMessage("このデバイスキーは正しいですか？"),
-        "joinedTheChat": m30,
+        "joinedTheChat": m32,
         "keysCached": MessageLookupByLibrary.simpleMessage("鍵はキャッシュされたいます"),
         "keysMissing": MessageLookupByLibrary.simpleMessage("鍵がありません"),
-        "kicked": m31,
-        "kickedAndBanned": m32,
-        "lastActiveAgo": m33,
-        "loadCountMoreParticipants": m34,
-        "logInTo": m35,
+        "kicked": m33,
+        "kickedAndBanned": m34,
+        "lastActiveAgo": m35,
+        "loadCountMoreParticipants": m36,
+        "logInTo": m37,
         "newVerificationRequest":
             MessageLookupByLibrary.simpleMessage("新しい認証リクエスト！"),
         "noCrossSignBootstrap": MessageLookupByLibrary.simpleMessage(
-            "FluffyChatは現在相互署名機能をサポートしていません。Elementから有効化してください。"),
+            "FluffyChatは現在相互署名機能をサポートしていません。Riotから有効化してください。"),
         "noMegolmBootstrap": MessageLookupByLibrary.simpleMessage(
-            "FluffyChatは現在鍵のオンラインバックアップの有効化をサポートしていません。Elementから有効化してください。"),
-        "numberSelected": m36,
+            "FluffyChatは現在鍵のオンラインバックアップの有効化をサポートしていません。Riotから有効化してください。"),
+        "numberSelected": m38,
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "onlineKeyBackupDisabled":
             MessageLookupByLibrary.simpleMessage("オンライン鍵バックアップは使用されていません"),
@@ -495,34 +509,36 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("オンライン鍵バックアップは使用されています"),
         "passphraseOrKey":
             MessageLookupByLibrary.simpleMessage("パスフレーズかリカバリーキー"),
-        "play": m37,
-        "redactedAnEvent": m38,
-        "rejectedTheInvitation": m39,
-        "removedBy": m40,
-        "seenByUser": m41,
-        "seenByUserAndCountOthers": m42,
-        "seenByUserAndUser": m43,
-        "sentAFile": m44,
-        "sentAPicture": m45,
-        "sentASticker": m46,
-        "sentAVideo": m47,
-        "sentAnAudio": m48,
+        "play": m39,
+        "redactedAnEvent": m40,
+        "rejectedTheInvitation": m41,
+        "removedBy": m42,
+        "seenByUser": m43,
+        "seenByUserAndCountOthers": m44,
+        "seenByUserAndUser": m45,
+        "sentAFile": m46,
+        "sentAPicture": m47,
+        "sentASticker": m48,
+        "sentAVideo": m49,
+        "sentAnAudio": m50,
+        "sentCallInformations": m51,
         "sessionVerified": MessageLookupByLibrary.simpleMessage("セッションは確認済みです"),
-        "sharedTheLocation": m49,
-        "timeOfDay": m50,
+        "sharedTheLocation": m52,
+        "startedACall": m53,
+        "timeOfDay": m54,
         "title": MessageLookupByLibrary.simpleMessage("FluffyChat"),
-        "unbannedUser": m51,
-        "unknownEvent": m52,
+        "unbannedUser": m55,
+        "unknownEvent": m56,
         "unknownSessionVerify":
             MessageLookupByLibrary.simpleMessage("未知のセッションです。確認してください。"),
-        "unreadChats": m53,
-        "unreadMessages": m54,
-        "unreadMessagesInChats": m55,
-        "userAndOthersAreTyping": m56,
-        "userAndUserAreTyping": m57,
-        "userIsTyping": m58,
-        "userLeftTheChat": m59,
-        "userSentUnknownEvent": m60,
+        "unreadChats": m57,
+        "unreadMessages": m58,
+        "unreadMessagesInChats": m59,
+        "userAndOthersAreTyping": m60,
+        "userAndUserAreTyping": m61,
+        "userIsTyping": m62,
+        "userLeftTheChat": m63,
+        "userSentUnknownEvent": m64,
         "verifiedSession":
             MessageLookupByLibrary.simpleMessage("セッションの確認ができました！"),
         "verifyManual": MessageLookupByLibrary.simpleMessage("手動で確認"),

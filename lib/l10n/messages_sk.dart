@@ -23,137 +23,137 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m1(username) => "${username} aktivovali koncové šifrovanie";
 
-  static m2(username) => "Akcepovať žiadosť o verifikáciu od ${username}?";
+  static m3(username) => "Akcepovať žiadosť o verifikáciu od ${username}?";
 
-  static m3(username, targetName) => "${username} zabanoval ${targetName}";
+  static m4(username, targetName) => "${username} zabanoval ${targetName}";
 
-  static m4(homeserver) =>
+  static m5(homeserver) =>
       "V základnom nastavení budete pripojený k ${homeserver}";
 
-  static m5(username) => "${username} si zmenili svôj avatar";
+  static m6(username) => "${username} si zmenili svôj avatar";
 
-  static m6(username, description) =>
+  static m7(username, description) =>
       "${username} zmenili popis chatu na: „${description}“";
 
-  static m7(username, chatname) =>
+  static m8(username, chatname) =>
       "${username} zmenili meno chatu na: „${chatname}“";
 
-  static m8(username) => "${username} zmenili nastavenie oprávnení chatu";
+  static m9(username) => "${username} zmenili nastavenie oprávnení chatu";
 
-  static m9(username, displayname) =>
+  static m10(username, displayname) =>
       "${username} si zmenili prezývku na: ${displayname}";
 
-  static m10(username) => "${username} zmenili prístupové práva pre hosťov";
+  static m11(username) => "${username} zmenili prístupové práva pre hosťov";
 
-  static m11(username, rules) =>
+  static m12(username, rules) =>
       "${username} zmenili prístupové práva pro hosťov na: ${rules}";
 
-  static m12(username) =>
+  static m13(username) =>
       "${username} zmenili nastavenie viditelnosti histórie chatu";
 
-  static m13(username, rules) =>
+  static m14(username, rules) =>
       "${username} zmenili nastavenie viditelnosti histórie chatu na: ${rules}";
 
-  static m14(username) => "${username} zmenili nastavenie pravidiel pripojenia";
+  static m15(username) => "${username} zmenili nastavenie pravidiel pripojenia";
 
-  static m15(username, joinRules) =>
+  static m16(username, joinRules) =>
       "${username} zmenili nastavenie pravidiel pripojenia na: ${joinRules}";
 
-  static m16(username) => "${username} si zmenili profilový obrázok";
+  static m17(username) => "${username} si zmenili profilový obrázok";
 
-  static m17(username) => "${username} zmenili nastavenie aliasov chatu";
+  static m18(username) => "${username} zmenili nastavenie aliasov chatu";
 
-  static m18(username) => "${username} zmenili odkaz k pozvánke do miestnosti";
+  static m19(username) => "${username} zmenili odkaz k pozvánke do miestnosti";
 
-  static m19(error) => "Nebolo možné dešifrovať správu: ${error}";
+  static m20(error) => "Nebolo možné dešifrovať správu: ${error}";
 
-  static m20(count) => "${count} účastníkov";
+  static m21(count) => "${count} účastníkov";
 
-  static m21(username) => "${username} založili chat";
+  static m22(username) => "${username} založili chat";
 
-  static m22(date, timeOfDay) => "${date}, ${timeOfDay}";
+  static m23(date, timeOfDay) => "${date}, ${timeOfDay}";
 
-  static m23(year, month, day) => "${day}.${month}.${year}";
+  static m24(year, month, day) => "${day}.${month}.${year}";
 
-  static m24(month, day) => "${day}.${month}.";
+  static m25(month, day) => "${day}.${month}.";
 
-  static m25(displayname) => "Skupina s ${displayname}";
+  static m27(displayname) => "Skupina s ${displayname}";
 
-  static m26(username, targetName) =>
+  static m28(username, targetName) =>
       "${username} vzal späť pozvánku pre ${targetName}";
 
-  static m27(groupName) => "Pozvať kontakt do ${groupName}";
+  static m29(groupName) => "Pozvať kontakt do ${groupName}";
 
-  static m28(username, link) =>
+  static m30(username, link) =>
       "${username} vás pozval na FluffyChat.\n1. Nainštalujte si FluffyChat: https://fluffychat.im\n2. Zaregistrujte sa alebo sa prihláste\n3. Otvorte odkaz na pozvánku: ${link}";
 
-  static m29(username, targetName) => "${username} pozvali ${targetName}";
+  static m31(username, targetName) => "${username} pozvali ${targetName}";
 
-  static m30(username) => "${username} sa pripojili do chatu";
+  static m32(username) => "${username} sa pripojili do chatu";
 
-  static m31(username, targetName) => "${username} vyhodili ${targetName}";
+  static m33(username, targetName) => "${username} vyhodili ${targetName}";
 
-  static m32(username, targetName) =>
+  static m34(username, targetName) =>
       "${username} vyhodili a zabanovali ${targetName}";
 
-  static m33(localizedTimeShort) => "Naposledy prítomní: ${localizedTimeShort}";
+  static m35(localizedTimeShort) => "Naposledy prítomní: ${localizedTimeShort}";
 
-  static m34(count) => "Načítať ďalších ${count} účastníkov";
+  static m36(count) => "Načítať ďalších ${count} účastníkov";
 
-  static m35(homeserver) => "Prihlásenie k ${homeserver}";
+  static m37(homeserver) => "Prihlásenie k ${homeserver}";
 
-  static m36(number) => "${number} označených správ";
+  static m38(number) => "${number} označených správ";
 
-  static m37(fileName) => "Prehrať (fileName}";
+  static m39(fileName) => "Prehrať (fileName}";
 
-  static m38(username) => "${username} odstránili udalosť";
+  static m40(username) => "${username} odstránili udalosť";
 
-  static m39(username) => "${username} odmietli pozvánku";
+  static m41(username) => "${username} odmietli pozvánku";
 
-  static m40(username) => "Odstánené užívateľom ${username}";
+  static m42(username) => "Odstánené užívateľom ${username}";
 
-  static m41(username) => "Videné užívateľom ${username}";
+  static m43(username) => "Videné užívateľom ${username}";
 
-  static m42(username, count) =>
+  static m44(username, count) =>
       "Videné užívateľom ${username} a ${count} dalšími";
 
-  static m43(username, username2) =>
+  static m45(username, username2) =>
       "Videné užívateľmi ${username} a ${username2}";
 
-  static m44(username) => "${username} poslali súbor";
+  static m46(username) => "${username} poslali súbor";
 
-  static m45(username) => "${username} poslali obrázok";
+  static m47(username) => "${username} poslali obrázok";
 
-  static m46(username) => "${username} poslali nálepku";
+  static m48(username) => "${username} poslali nálepku";
 
-  static m47(username) => "${username} poslali video";
+  static m49(username) => "${username} poslali video";
 
-  static m48(username) => "${username} poslali zvukovú nahrávku";
+  static m50(username) => "${username} poslali zvukovú nahrávku";
 
-  static m49(username) => "${username} zdieľa lokáciu";
+  static m52(username) => "${username} zdieľa lokáciu";
 
-  static m50(hours12, hours24, minutes, suffix) => "${hours24}:${minutes}";
+  static m54(hours12, hours24, minutes, suffix) => "${hours24}:${minutes}";
 
-  static m51(username, targetName) => "${username} odbanovali ${targetName}";
+  static m55(username, targetName) => "${username} odbanovali ${targetName}";
 
-  static m52(type) => "Neznáma udalosť „${type}“";
+  static m56(type) => "Neznáma udalosť „${type}“";
 
-  static m53(unreadCount) => "${unreadCount} neprečítaných chatov";
+  static m57(unreadCount) => "${unreadCount} neprečítaných chatov";
 
-  static m54(unreadEvents) => "${unreadEvents} neprečítaných správ";
+  static m58(unreadEvents) => "${unreadEvents} neprečítaných správ";
 
-  static m55(unreadEvents, unreadChats) =>
+  static m59(unreadEvents, unreadChats) =>
       "${unreadEvents} neprečítaných správ v ${unreadChats} chatoch";
 
-  static m56(username, count) => "${username} a ${count} dalších píšu…";
+  static m60(username, count) => "${username} a ${count} dalších píšu…";
 
-  static m57(username, username2) => "${username} a ${username2} píšu…";
+  static m61(username, username2) => "${username} a ${username2} píšu…";
 
-  static m58(username) => "${username} píše…";
+  static m62(username) => "${username} píše…";
 
-  static m59(username) => "${username} opustili chat";
+  static m63(username) => "${username} opustili chat";
 
-  static m60(username, type) => "${username} poslali udalosť ${type}";
+  static m64(username, type) => "${username} poslali udalosť ${type}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function>{
@@ -484,70 +484,70 @@ class MessageLookup extends MessageLookupByLibrary {
             "Na overenie tejto osoby, prosím zadajte prístupovu frázu k \"bezpečému úložisku\" alebo \"klúč na obnovu\"."),
         "askSSSSVerify": MessageLookupByLibrary.simpleMessage(
             "Prosím zadajte vašu prístupovú frázu k \"bezpečnému úložisku\" alebo \"kľúč na obnovu\" pre overenie vašej relácie."),
-        "askVerificationRequest": m2,
-        "bannedUser": m3,
-        "byDefaultYouWillBeConnectedTo": m4,
+        "askVerificationRequest": m3,
+        "bannedUser": m4,
+        "byDefaultYouWillBeConnectedTo": m5,
         "cachedKeys":
             MessageLookupByLibrary.simpleMessage("Klúče sa úspešne uložili!"),
-        "changedTheChatAvatar": m5,
-        "changedTheChatDescriptionTo": m6,
-        "changedTheChatNameTo": m7,
-        "changedTheChatPermissions": m8,
-        "changedTheDisplaynameTo": m9,
-        "changedTheGuestAccessRules": m10,
-        "changedTheGuestAccessRulesTo": m11,
-        "changedTheHistoryVisibility": m12,
-        "changedTheHistoryVisibilityTo": m13,
-        "changedTheJoinRules": m14,
-        "changedTheJoinRulesTo": m15,
-        "changedTheProfileAvatar": m16,
-        "changedTheRoomAliases": m17,
-        "changedTheRoomInvitationLink": m18,
+        "changedTheChatAvatar": m6,
+        "changedTheChatDescriptionTo": m7,
+        "changedTheChatNameTo": m8,
+        "changedTheChatPermissions": m9,
+        "changedTheDisplaynameTo": m10,
+        "changedTheGuestAccessRules": m11,
+        "changedTheGuestAccessRulesTo": m12,
+        "changedTheHistoryVisibility": m13,
+        "changedTheHistoryVisibilityTo": m14,
+        "changedTheJoinRules": m15,
+        "changedTheJoinRulesTo": m16,
+        "changedTheProfileAvatar": m17,
+        "changedTheRoomAliases": m18,
+        "changedTheRoomInvitationLink": m19,
         "compareEmojiMatch": MessageLookupByLibrary.simpleMessage(
             "Porovnajte a uistite sa, že nasledujúce emotikony sa zhodujú na oboch zariadeniach:"),
         "compareNumbersMatch": MessageLookupByLibrary.simpleMessage(
             "Porovnajte a uistite sa, že nasledujúce čísla sa zhodujú na oboch zariadeniach:"),
-        "couldNotDecryptMessage": m19,
-        "countParticipants": m20,
-        "createdTheChat": m21,
+        "couldNotDecryptMessage": m20,
+        "countParticipants": m21,
+        "createdTheChat": m22,
         "crossSigningDisabled": MessageLookupByLibrary.simpleMessage(
             "Vzájomné overenie je vypnuté"),
         "crossSigningEnabled": MessageLookupByLibrary.simpleMessage(
             "Vzájomné overenie je zapnuté"),
-        "dateAndTimeOfDay": m22,
-        "dateWithYear": m23,
-        "dateWithoutYear": m24,
+        "dateAndTimeOfDay": m23,
+        "dateWithYear": m24,
+        "dateWithoutYear": m25,
         "emoteExists":
             MessageLookupByLibrary.simpleMessage("Emotikon už existuje"),
         "emoteInvalid": MessageLookupByLibrary.simpleMessage(
             "Nesprávné označenie emotikonu"),
         "emoteWarnNeedToPick": MessageLookupByLibrary.simpleMessage(
             "Musíte zvoliť kód emotikonu a obrázok"),
-        "groupWith": m25,
-        "hasWithdrawnTheInvitationFor": m26,
+        "groupWith": m27,
+        "hasWithdrawnTheInvitationFor": m28,
         "incorrectPassphraseOrKey": MessageLookupByLibrary.simpleMessage(
             "Nesprávna prístupová fráza alebo kľúč na obnovenie"),
-        "inviteContactToGroup": m27,
-        "inviteText": m28,
-        "invitedUser": m29,
+        "inviteContactToGroup": m29,
+        "inviteText": m30,
+        "invitedUser": m31,
         "is typing...": MessageLookupByLibrary.simpleMessage("píše..."),
         "isDeviceKeyCorrect": MessageLookupByLibrary.simpleMessage(
             "Je nasledujúci kód zariadenia správny?"),
-        "joinedTheChat": m30,
+        "joinedTheChat": m32,
         "keysCached": MessageLookupByLibrary.simpleMessage("Kľúče sú uložené"),
         "keysMissing": MessageLookupByLibrary.simpleMessage("Kľúče chýbaju"),
-        "kicked": m31,
-        "kickedAndBanned": m32,
-        "lastActiveAgo": m33,
-        "loadCountMoreParticipants": m34,
-        "logInTo": m35,
+        "kicked": m33,
+        "kickedAndBanned": m34,
+        "lastActiveAgo": m35,
+        "loadCountMoreParticipants": m36,
+        "logInTo": m37,
         "newVerificationRequest":
             MessageLookupByLibrary.simpleMessage("Nová žiadosť o verifikáciu!"),
         "noCrossSignBootstrap": MessageLookupByLibrary.simpleMessage(
             "Fluffychat v súčasnosti nepodporuje povolenie krížového podpisu. Prosím, povoľte ho z Riot.im."),
         "noMegolmBootstrap": MessageLookupByLibrary.simpleMessage(
             "Fluffychat v súčasnosti nepodporuje povolenie online zálohu klúčov. Prosím, povoľte ho z Riot.im."),
-        "numberSelected": m36,
+        "numberSelected": m38,
         "ok": MessageLookupByLibrary.simpleMessage("ok"),
         "onlineKeyBackupDisabled": MessageLookupByLibrary.simpleMessage(
             "Online záloha kľúčov je vypnutá"),
@@ -555,35 +555,35 @@ class MessageLookup extends MessageLookupByLibrary {
             "Online záloha kľúčov je zapnutá"),
         "passphraseOrKey": MessageLookupByLibrary.simpleMessage(
             "prístupová fráza alebo kľúč na obnovenie"),
-        "play": m37,
-        "redactedAnEvent": m38,
-        "rejectedTheInvitation": m39,
-        "removedBy": m40,
-        "seenByUser": m41,
-        "seenByUserAndCountOthers": m42,
-        "seenByUserAndUser": m43,
-        "sentAFile": m44,
-        "sentAPicture": m45,
-        "sentASticker": m46,
-        "sentAVideo": m47,
-        "sentAnAudio": m48,
+        "play": m39,
+        "redactedAnEvent": m40,
+        "rejectedTheInvitation": m41,
+        "removedBy": m42,
+        "seenByUser": m43,
+        "seenByUserAndCountOthers": m44,
+        "seenByUserAndUser": m45,
+        "sentAFile": m46,
+        "sentAPicture": m47,
+        "sentASticker": m48,
+        "sentAVideo": m49,
+        "sentAnAudio": m50,
         "sessionVerified":
             MessageLookupByLibrary.simpleMessage("Relácia je overená"),
-        "sharedTheLocation": m49,
-        "timeOfDay": m50,
+        "sharedTheLocation": m52,
+        "timeOfDay": m54,
         "title": MessageLookupByLibrary.simpleMessage("FluffyChat"),
-        "unbannedUser": m51,
-        "unknownEvent": m52,
+        "unbannedUser": m55,
+        "unknownEvent": m56,
         "unknownSessionVerify": MessageLookupByLibrary.simpleMessage(
             "Neznáma relácia, prosím verifikujte ju"),
-        "unreadChats": m53,
-        "unreadMessages": m54,
-        "unreadMessagesInChats": m55,
-        "userAndOthersAreTyping": m56,
-        "userAndUserAreTyping": m57,
-        "userIsTyping": m58,
-        "userLeftTheChat": m59,
-        "userSentUnknownEvent": m60,
+        "unreadChats": m57,
+        "unreadMessages": m58,
+        "unreadMessagesInChats": m59,
+        "userAndOthersAreTyping": m60,
+        "userAndUserAreTyping": m61,
+        "userIsTyping": m62,
+        "userLeftTheChat": m63,
+        "userSentUnknownEvent": m64,
         "verifiedSession":
             MessageLookupByLibrary.simpleMessage("Úspešne overenie relácie!"),
         "verifyManual":

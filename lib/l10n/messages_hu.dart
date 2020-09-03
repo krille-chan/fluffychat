@@ -24,139 +24,139 @@ class MessageLookup extends MessageLookupByLibrary {
   static m1(username) =>
       "${username} aktiválta a végpontól-végpontig titkosítást";
 
-  static m2(username) => "Elfogadod ${username} hitelesítési kérelmét?";
+  static m3(username) => "Elfogadod ${username} hitelesítési kérelmét?";
 
-  static m3(username, targetName) => "${username} kitiltotta ${targetName}-t";
+  static m4(username, targetName) => "${username} kitiltotta ${targetName}-t";
 
-  static m4(homeserver) => "Alapértelmezésben ${homeserver}-hoz csatlakozol";
+  static m5(homeserver) => "Alapértelmezésben ${homeserver}-hoz csatlakozol";
 
-  static m5(username) => "${username} módosította a csevegés képét";
+  static m6(username) => "${username} módosította a csevegés képét";
 
-  static m6(username, description) =>
+  static m7(username, description) =>
       "${username} módosította a csevegés leírását erre: \'${description}\'";
 
-  static m7(username, chatname) =>
+  static m8(username, chatname) =>
       "${username} módosította a csevegés nevét erre: \'${chatname}\'";
 
-  static m8(username) => "${username} módosította a csevegési enegedélyeket";
+  static m9(username) => "${username} módosította a csevegési enegedélyeket";
 
-  static m9(username, displayname) =>
+  static m10(username, displayname) =>
       "${username} módosította a megjenelítési nevét erre: ${displayname}";
 
-  static m10(username) =>
+  static m11(username) =>
       "${username} módosította a vendégek hozzáférési jogait";
 
-  static m11(username, rules) =>
+  static m12(username, rules) =>
       "${username} módosította a vendégek hozzáférési jogait, így: ${rules}";
 
-  static m12(username) =>
+  static m13(username) =>
       "${username} módosította a múltbéli események láthatóságát";
 
-  static m13(username, rules) =>
+  static m14(username, rules) =>
       "${username} módosította a múltbéli események láthatóságát, így: ${rules}";
 
-  static m14(username) => "${username} módosított a csatlakozási szabályokat";
+  static m15(username) => "${username} módosított a csatlakozási szabályokat";
 
-  static m15(username, joinRules) =>
+  static m16(username, joinRules) =>
       "${username} módosította a csatlakozási szabályokat, így: ${joinRules}";
 
-  static m16(username) => "${username} módosította a profil képét";
+  static m17(username) => "${username} módosította a profil képét";
 
-  static m17(username) => "${username} módosítottaa szoba álnevét";
+  static m18(username) => "${username} módosítottaa szoba álnevét";
 
-  static m18(username) => "${username} módosította a meghívó linket";
+  static m19(username) => "${username} módosította a meghívó linket";
 
-  static m19(error) =>
+  static m20(error) =>
       "Nem sikerült visszafejteni a titkosított üzenetet: ${error}";
 
-  static m20(count) => "${count} résztvevő";
+  static m21(count) => "${count} résztvevő";
 
-  static m21(username) => "${username} létrehozta a csevegést";
+  static m22(username) => "${username} létrehozta a csevegést";
 
-  static m22(date, timeOfDay) => "${date}, ${timeOfDay}";
+  static m23(date, timeOfDay) => "${date}, ${timeOfDay}";
 
-  static m23(year, month, day) => "${year}-${month}-${day}";
+  static m24(year, month, day) => "${year}-${month}-${day}";
 
-  static m24(month, day) => "${month}-${day}";
+  static m25(month, day) => "${month}-${day}";
 
-  static m25(displayname) => "Csoport ${displayname}-vel";
+  static m27(displayname) => "Csoport ${displayname}-vel";
 
-  static m26(username, targetName) =>
+  static m28(username, targetName) =>
       "${username} visszavonta ${targetName} meghívását";
 
-  static m27(groupName) => "Ismerős meghívása a ${groupName} csoportba";
+  static m29(groupName) => "Ismerős meghívása a ${groupName} csoportba";
 
-  static m28(username, link) =>
+  static m30(username, link) =>
       "${username} meghívott a FluffyChatre. \n1. FluffyChat telepítése: https://fluffychat.im \n2. Jelentkezz be vagy regisztrálj. \n3. Nyisd meg a meghívó linket: ${link}";
 
-  static m29(username, targetName) => "${username} meghívta ${targetName}-t";
+  static m31(username, targetName) => "${username} meghívta ${targetName}-t";
 
-  static m30(username) => "${username} csatalakozott a csevegéshez";
+  static m32(username) => "${username} csatalakozott a csevegéshez";
 
-  static m31(username, targetName) => "${username} kirúgta ${targetName}-t";
+  static m33(username, targetName) => "${username} kirúgta ${targetName}-t";
 
-  static m32(username, targetName) =>
+  static m34(username, targetName) =>
       "${username} kirúgta és kitiltotta ${targetName}-t";
 
-  static m33(localizedTimeShort) => "Utoljára aktív: ${localizedTimeShort}";
+  static m35(localizedTimeShort) => "Utoljára aktív: ${localizedTimeShort}";
 
-  static m34(count) => "További ${count} résztvevő betöltése";
+  static m36(count) => "További ${count} résztvevő betöltése";
 
-  static m35(homeserver) => "Bejelentkezés ${homeserver} Matrix szerverre";
+  static m37(homeserver) => "Bejelentkezés ${homeserver} Matrix szerverre";
 
-  static m36(number) => "${number} kijelölve";
+  static m38(number) => "${number} kijelölve";
 
-  static m37(fileName) => "${fileName} lejátszása";
+  static m39(fileName) => "${fileName} lejátszása";
 
-  static m38(username) => "${username} visszavont egy eseményt";
+  static m40(username) => "${username} visszavont egy eseményt";
 
-  static m39(username) => "${username} elutasította a meghívást";
+  static m41(username) => "${username} elutasította a meghívást";
 
-  static m40(username) => "Törölve ${username} által";
+  static m42(username) => "Törölve ${username} által";
 
-  static m41(username) => "${username} látta";
+  static m43(username) => "${username} látta";
 
-  static m42(username, count) =>
+  static m44(username, count) =>
       "${username} és ${count} másik résztvevő látta";
 
-  static m43(username, username2) => "${username} és ${username2} látta";
+  static m45(username, username2) => "${username} és ${username2} látta";
 
-  static m44(username) => "${username} fájlt küldött";
+  static m46(username) => "${username} fájlt küldött";
 
-  static m45(username) => "${username} képet küldött";
+  static m47(username) => "${username} képet küldött";
 
-  static m46(username) => "${username} matricát küldött";
+  static m48(username) => "${username} matricát küldött";
 
-  static m47(username) => "${username} videót küldött";
+  static m49(username) => "${username} videót küldött";
 
-  static m48(username) => "${username} hangüzenetet küldött";
+  static m50(username) => "${username} hangüzenetet küldött";
 
-  static m49(username) => "${username} megosztotta a pozícióját";
+  static m52(username) => "${username} megosztotta a pozícióját";
 
-  static m50(hours12, hours24, minutes, suffix) => "${hours24}:${minutes}";
+  static m54(hours12, hours24, minutes, suffix) => "${hours24}:${minutes}";
 
-  static m51(username, targetName) =>
+  static m55(username, targetName) =>
       "${username} feloldotta ${targetName} kitiltását";
 
-  static m52(type) => "Ismeretlen esemény \'${type}\'";
+  static m56(type) => "Ismeretlen esemény \'${type}\'";
 
-  static m53(unreadCount) => "${unreadCount} olvasatlan üzenet";
+  static m57(unreadCount) => "${unreadCount} olvasatlan üzenet";
 
-  static m54(unreadEvents) => "${unreadEvents} olvasatlan üzenet";
+  static m58(unreadEvents) => "${unreadEvents} olvasatlan üzenet";
 
-  static m55(unreadEvents, unreadChats) =>
+  static m59(unreadEvents, unreadChats) =>
       "${unreadEvents} olvastlan üzenet van ${unreadChats}-ban";
 
-  static m56(username, count) =>
+  static m60(username, count) =>
       "${username} és ${count} másik résztvevő gépel...";
 
-  static m57(username, username2) => "${username} és ${username2} gépel...";
+  static m61(username, username2) => "${username} és ${username2} gépel...";
 
-  static m58(username) => "${username} gépel...";
+  static m62(username) => "${username} gépel...";
 
-  static m59(username) => "${username} elhagyta a csevegést";
+  static m63(username) => "${username} elhagyta a csevegést";
 
-  static m60(username, type) => "${username} ${type} eseményt küldött";
+  static m64(username, type) => "${username} ${type} eseményt küldött";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function>{
@@ -490,71 +490,71 @@ class MessageLookup extends MessageLookupByLibrary {
             "A másik személy igazolásához, kérlek add meg jelszavadat vagy visszaállítási kulcsodat."),
         "askSSSSVerify": MessageLookupByLibrary.simpleMessage(
             "Add meg a biztonságos tárolóhoz tartozó vagy a visszaállítási jelszavadat, a munkamenet hitelesítéséhez."),
-        "askVerificationRequest": m2,
-        "bannedUser": m3,
-        "byDefaultYouWillBeConnectedTo": m4,
+        "askVerificationRequest": m3,
+        "bannedUser": m4,
+        "byDefaultYouWillBeConnectedTo": m5,
         "cachedKeys": MessageLookupByLibrary.simpleMessage(
             "Sikeresen betöltöttük a kulcsokat!"),
-        "changedTheChatAvatar": m5,
-        "changedTheChatDescriptionTo": m6,
-        "changedTheChatNameTo": m7,
-        "changedTheChatPermissions": m8,
-        "changedTheDisplaynameTo": m9,
-        "changedTheGuestAccessRules": m10,
-        "changedTheGuestAccessRulesTo": m11,
-        "changedTheHistoryVisibility": m12,
-        "changedTheHistoryVisibilityTo": m13,
-        "changedTheJoinRules": m14,
-        "changedTheJoinRulesTo": m15,
-        "changedTheProfileAvatar": m16,
-        "changedTheRoomAliases": m17,
-        "changedTheRoomInvitationLink": m18,
+        "changedTheChatAvatar": m6,
+        "changedTheChatDescriptionTo": m7,
+        "changedTheChatNameTo": m8,
+        "changedTheChatPermissions": m9,
+        "changedTheDisplaynameTo": m10,
+        "changedTheGuestAccessRules": m11,
+        "changedTheGuestAccessRulesTo": m12,
+        "changedTheHistoryVisibility": m13,
+        "changedTheHistoryVisibilityTo": m14,
+        "changedTheJoinRules": m15,
+        "changedTheJoinRulesTo": m16,
+        "changedTheProfileAvatar": m17,
+        "changedTheRoomAliases": m18,
+        "changedTheRoomInvitationLink": m19,
         "compareEmojiMatch": MessageLookupByLibrary.simpleMessage(
             "Hasonlítsd össze a hangulatjeleket a másik eszközön lévőkkel:"),
         "compareNumbersMatch": MessageLookupByLibrary.simpleMessage(
             "Hasonlítsd össze a számokat a másik eszközön lévőkkel:"),
-        "couldNotDecryptMessage": m19,
-        "countParticipants": m20,
-        "createdTheChat": m21,
+        "couldNotDecryptMessage": m20,
+        "countParticipants": m21,
+        "createdTheChat": m22,
         "crossSigningDisabled":
             MessageLookupByLibrary.simpleMessage("Kereszt-Aláírás kikapcsolva"),
         "crossSigningEnabled":
             MessageLookupByLibrary.simpleMessage("Kereszt-Aláírás bekapcsolva"),
-        "dateAndTimeOfDay": m22,
-        "dateWithYear": m23,
-        "dateWithoutYear": m24,
+        "dateAndTimeOfDay": m23,
+        "dateWithYear": m24,
+        "dateWithoutYear": m25,
         "emoteExists":
             MessageLookupByLibrary.simpleMessage("A hangulatjel már létezik!"),
         "emoteInvalid":
             MessageLookupByLibrary.simpleMessage("Érvénytelen rövid kód!"),
         "emoteWarnNeedToPick": MessageLookupByLibrary.simpleMessage(
             "A hangulatjelhez válassz egy képet és egy rövid kód"),
-        "groupWith": m25,
-        "hasWithdrawnTheInvitationFor": m26,
+        "groupWith": m27,
+        "hasWithdrawnTheInvitationFor": m28,
         "incorrectPassphraseOrKey": MessageLookupByLibrary.simpleMessage(
             "Hibás jelszó vagy visszaállítási kulcs"),
-        "inviteContactToGroup": m27,
-        "inviteText": m28,
-        "invitedUser": m29,
+        "inviteContactToGroup": m29,
+        "inviteText": m30,
+        "invitedUser": m31,
         "is typing...": MessageLookupByLibrary.simpleMessage("gépel..."),
         "isDeviceKeyCorrect": MessageLookupByLibrary.simpleMessage(
             "Helyes az alábbi eszköz kulcs?"),
-        "joinedTheChat": m30,
+        "joinedTheChat": m32,
         "keysCached": MessageLookupByLibrary.simpleMessage("Kulcsok betöltve"),
         "keysMissing":
             MessageLookupByLibrary.simpleMessage("Kulcsok hiányoznak"),
-        "kicked": m31,
-        "kickedAndBanned": m32,
-        "lastActiveAgo": m33,
-        "loadCountMoreParticipants": m34,
-        "logInTo": m35,
+        "kicked": m33,
+        "kickedAndBanned": m34,
+        "lastActiveAgo": m35,
+        "loadCountMoreParticipants": m36,
+        "logInTo": m37,
         "newVerificationRequest":
             MessageLookupByLibrary.simpleMessage("Új hitelesítési kérelem!"),
         "noCrossSignBootstrap": MessageLookupByLibrary.simpleMessage(
             "FluffyChat jelenleg nem támogatja a Kereszt-Aláírás bekapcsolását. Kérlek engedélyezd Riot-ból."),
         "noMegolmBootstrap": MessageLookupByLibrary.simpleMessage(
             "FluffyChat jelenleg nem támogatja az Online Kulcs Archívumot (backup). Kérlek engedélyezd Riot-ból."),
-        "numberSelected": m36,
+        "numberSelected": m38,
         "ok": MessageLookupByLibrary.simpleMessage("ok"),
         "onlineKeyBackupDisabled": MessageLookupByLibrary.simpleMessage(
             "Online Kulcs Archívum letiltva"),
@@ -562,35 +562,35 @@ class MessageLookup extends MessageLookupByLibrary {
             "Online Kulcs Archívum engedélyezve"),
         "passphraseOrKey": MessageLookupByLibrary.simpleMessage(
             "Jelszó vagy visszaállítási kulcs"),
-        "play": m37,
-        "redactedAnEvent": m38,
-        "rejectedTheInvitation": m39,
-        "removedBy": m40,
-        "seenByUser": m41,
-        "seenByUserAndCountOthers": m42,
-        "seenByUserAndUser": m43,
-        "sentAFile": m44,
-        "sentAPicture": m45,
-        "sentASticker": m46,
-        "sentAVideo": m47,
-        "sentAnAudio": m48,
+        "play": m39,
+        "redactedAnEvent": m40,
+        "rejectedTheInvitation": m41,
+        "removedBy": m42,
+        "seenByUser": m43,
+        "seenByUserAndCountOthers": m44,
+        "seenByUserAndUser": m45,
+        "sentAFile": m46,
+        "sentAPicture": m47,
+        "sentASticker": m48,
+        "sentAVideo": m49,
+        "sentAnAudio": m50,
         "sessionVerified":
             MessageLookupByLibrary.simpleMessage("Munkamenet hitelesítve"),
-        "sharedTheLocation": m49,
-        "timeOfDay": m50,
+        "sharedTheLocation": m52,
+        "timeOfDay": m54,
         "title": MessageLookupByLibrary.simpleMessage("FluffyChat"),
-        "unbannedUser": m51,
-        "unknownEvent": m52,
+        "unbannedUser": m55,
+        "unknownEvent": m56,
         "unknownSessionVerify": MessageLookupByLibrary.simpleMessage(
             "Ismeretlen munkamenet, kérlek hitelesítsd"),
-        "unreadChats": m53,
-        "unreadMessages": m54,
-        "unreadMessagesInChats": m55,
-        "userAndOthersAreTyping": m56,
-        "userAndUserAreTyping": m57,
-        "userIsTyping": m58,
-        "userLeftTheChat": m59,
-        "userSentUnknownEvent": m60,
+        "unreadChats": m57,
+        "unreadMessages": m58,
+        "unreadMessagesInChats": m59,
+        "userAndOthersAreTyping": m60,
+        "userAndUserAreTyping": m61,
+        "userIsTyping": m62,
+        "userLeftTheChat": m63,
+        "userSentUnknownEvent": m64,
         "verifiedSession": MessageLookupByLibrary.simpleMessage(
             "Sikeresen hitelesítetted a munkamenetedet!"),
         "verifyManual":

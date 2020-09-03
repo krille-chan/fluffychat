@@ -1,5 +1,5 @@
 // DO NOT EDIT. This is code generated via package:intl/generate_localized.dart
-// This is a library that provides messages for a hy locale. All the
+// This is a library that provides messages for a zh_Hans locale. All the
 // messages from the main program should be duplicated here with the same
 // function name.
 
@@ -17,45 +17,47 @@ final messages = new MessageLookup();
 typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 
 class MessageLookup extends MessageLookupByLibrary {
-  String get localeName => 'hy';
+  String get localeName => 'zh_Hans';
 
-  static m0(username) => "${username}-ը ընդունել է հրավերը";
+  static m0(username) => "${username} 已接受邀请";
 
-  static m1(username) => "${username}-ը ակտիվացրել է end to end կոդավորումը";
+  static m1(username) => "${username}已激活端到端加密";
 
-  static m3(username) => "";
+  static m2(senderName) => "${senderName} 已开始通话";
 
-  static m4(username, targetName) => "";
+  static m3(username) => "是否接受来自${username}的验证申请？";
 
-  static m5(homeserver) => "";
+  static m4(username, targetName) => "${username}禁止了${targetName}";
 
-  static m6(username) => "";
+  static m5(homeserver) => "您将会默认连接到${homeserver}";
 
-  static m7(username, description) => "";
+  static m6(username) => "${username} 更改了会话头像";
 
-  static m8(username, chatname) => "";
+  static m7(username, description) => "${username} 更改了会话介绍为：“${description}”";
 
-  static m9(username) => "";
+  static m8(username, chatname) => "${username} 更改了昵称为：“${chatname}”";
 
-  static m10(username, displayname) => "";
+  static m9(username) => "${username} 更改了会话权限";
 
-  static m11(username) => "";
+  static m10(username, displayname) => "${username} 更改了展示名称为：“${displayname}”";
 
-  static m12(username, rules) => "";
+  static m11(username) => "${username} 更改了游客访问规则";
 
-  static m13(username) => "";
+  static m12(username, rules) => "${username} 更改了游客访问规则为：${rules}";
 
-  static m14(username, rules) => "";
+  static m13(username) => "${username} 更改了历史记录观察状态";
 
-  static m15(username) => "";
+  static m14(username, rules) => "${username} 更改了历史记录观察状态到：${rules}";
 
-  static m16(username, joinRules) => "";
+  static m15(username) => "${username} 更改了加入的规则";
 
-  static m17(username) => "";
+  static m16(username, joinRules) => "${username} 更改了加入的规则为：${joinRules}";
 
-  static m18(username) => "";
+  static m17(username) => "${username} 更改了他们的头像";
 
-  static m19(username) => "";
+  static m18(username) => "${username} 更改了房间名";
+
+  static m19(username) => "${username} 更改了邀请链接";
 
   static m20(error) => "";
 
@@ -68,6 +70,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static m24(year, month, day) => "";
 
   static m25(month, day) => "";
+
+  static m26(senderName) => "";
 
   static m27(displayname) => "";
 
@@ -117,7 +121,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m50(username) => "";
 
+  static m51(senderName) => "";
+
   static m52(username) => "";
+
+  static m53(senderName) => "";
 
   static m54(hours12, hours24, minutes, suffix) => "";
 
@@ -144,42 +152,41 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function>{
         "(Optional) Group name": MessageLookupByLibrary.simpleMessage(""),
-        "About": MessageLookupByLibrary.simpleMessage("Հավելվածի մասին"),
-        "Accept": MessageLookupByLibrary.simpleMessage("Ընդունել"),
-        "Account": MessageLookupByLibrary.simpleMessage("Հաշիվ"),
-        "Account informations":
-            MessageLookupByLibrary.simpleMessage("Տեղեկություններ հաշվի մասին"),
-        "Add a group description": MessageLookupByLibrary.simpleMessage(
-            "Ավելացնել խմբի նկարագրություն"),
-        "Admin": MessageLookupByLibrary.simpleMessage("Համակարգող"),
+        "About": MessageLookupByLibrary.simpleMessage("关于"),
+        "Accept": MessageLookupByLibrary.simpleMessage("接受"),
+        "Account": MessageLookupByLibrary.simpleMessage("账户"),
+        "Account informations": MessageLookupByLibrary.simpleMessage("账户信息"),
+        "Add a group description":
+            MessageLookupByLibrary.simpleMessage("添加一条群组介绍"),
+        "Admin": MessageLookupByLibrary.simpleMessage("管理员"),
         "Already have an account?":
-            MessageLookupByLibrary.simpleMessage("Արդեն հաշի՞վ ունեք"),
-        "Anyone can join": MessageLookupByLibrary.simpleMessage(
-            "Յուրաքանչյուրը կարող է միանալ"),
-        "Archive": MessageLookupByLibrary.simpleMessage("Արխիվ"),
-        "Archived Room":
-            MessageLookupByLibrary.simpleMessage("Արխիվացված սենյակ"),
-        "Are guest users allowed to join": MessageLookupByLibrary.simpleMessage(
-            "Արդյո՞ք հյուր օգտատերերին թույլատրվում է միանալ"),
-        "Are you sure?": MessageLookupByLibrary.simpleMessage("Համոզվա՞ծ եք"),
-        "Authentication": MessageLookupByLibrary.simpleMessage(""),
-        "Avatar has been changed": MessageLookupByLibrary.simpleMessage(""),
-        "Ban from chat": MessageLookupByLibrary.simpleMessage(""),
-        "Banned": MessageLookupByLibrary.simpleMessage(""),
-        "Block Device": MessageLookupByLibrary.simpleMessage(""),
-        "Cancel": MessageLookupByLibrary.simpleMessage(""),
-        "Change the homeserver": MessageLookupByLibrary.simpleMessage(""),
+            MessageLookupByLibrary.simpleMessage("已经有账户了？"),
+        "Anyone can join": MessageLookupByLibrary.simpleMessage("任何人可以加入"),
+        "Archive": MessageLookupByLibrary.simpleMessage("存档"),
+        "Archived Room": MessageLookupByLibrary.simpleMessage("已存档的会话"),
+        "Are guest users allowed to join":
+            MessageLookupByLibrary.simpleMessage("是否允许游客用户加入"),
+        "Are you sure?": MessageLookupByLibrary.simpleMessage("你确定吗？"),
+        "Authentication": MessageLookupByLibrary.simpleMessage("身份验证"),
+        "Avatar has been changed":
+            MessageLookupByLibrary.simpleMessage("头像已更改"),
+        "Ban from chat": MessageLookupByLibrary.simpleMessage("已被从对话中禁止"),
+        "Banned": MessageLookupByLibrary.simpleMessage("已被禁止"),
+        "Block Device": MessageLookupByLibrary.simpleMessage("屏蔽设备"),
+        "Cancel": MessageLookupByLibrary.simpleMessage("取消"),
+        "Change the homeserver": MessageLookupByLibrary.simpleMessage("更改主机地址"),
         "Change the name of the group":
-            MessageLookupByLibrary.simpleMessage(""),
-        "Change the server": MessageLookupByLibrary.simpleMessage(""),
-        "Change wallpaper": MessageLookupByLibrary.simpleMessage(""),
+            MessageLookupByLibrary.simpleMessage("更改了群组名称"),
+        "Change the server": MessageLookupByLibrary.simpleMessage("更改服务器"),
+        "Change wallpaper": MessageLookupByLibrary.simpleMessage("更改会话壁纸"),
         "Change your style": MessageLookupByLibrary.simpleMessage(""),
-        "Changelog": MessageLookupByLibrary.simpleMessage(""),
-        "Chat": MessageLookupByLibrary.simpleMessage(""),
-        "Chat details": MessageLookupByLibrary.simpleMessage(""),
-        "Choose a strong password": MessageLookupByLibrary.simpleMessage(""),
-        "Choose a username": MessageLookupByLibrary.simpleMessage(""),
-        "Close": MessageLookupByLibrary.simpleMessage(""),
+        "Changelog": MessageLookupByLibrary.simpleMessage("更改记录"),
+        "Chat": MessageLookupByLibrary.simpleMessage("会话"),
+        "Chat details": MessageLookupByLibrary.simpleMessage("会话详情"),
+        "Choose a strong password":
+            MessageLookupByLibrary.simpleMessage("输入一个强密码"),
+        "Choose a username": MessageLookupByLibrary.simpleMessage("输入一个昵称"),
+        "Close": MessageLookupByLibrary.simpleMessage("关闭"),
         "Confirm": MessageLookupByLibrary.simpleMessage(""),
         "Connect": MessageLookupByLibrary.simpleMessage(""),
         "Connection attempt failed": MessageLookupByLibrary.simpleMessage(""),
@@ -245,6 +252,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Invited users only": MessageLookupByLibrary.simpleMessage(""),
         "It seems that you have no google services on your phone. That\'s a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/":
             MessageLookupByLibrary.simpleMessage(""),
+        "Join room": MessageLookupByLibrary.simpleMessage(""),
         "Kick from chat": MessageLookupByLibrary.simpleMessage(""),
         "Last seen IP": MessageLookupByLibrary.simpleMessage(""),
         "Leave": MessageLookupByLibrary.simpleMessage(""),
@@ -278,6 +286,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Participating user devices": MessageLookupByLibrary.simpleMessage(""),
         "Password": MessageLookupByLibrary.simpleMessage(""),
         "Pick image": MessageLookupByLibrary.simpleMessage(""),
+        "Pin": MessageLookupByLibrary.simpleMessage(""),
         "Please be aware that you need Pantalaimon to use end-to-end encryption for now.":
             MessageLookupByLibrary.simpleMessage(""),
         "Please choose a username": MessageLookupByLibrary.simpleMessage(""),
@@ -323,7 +332,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "System": MessageLookupByLibrary.simpleMessage(""),
         "Tap to show menu": MessageLookupByLibrary.simpleMessage(""),
         "The encryption has been corrupted":
-            MessageLookupByLibrary.simpleMessage(""),
+            MessageLookupByLibrary.simpleMessage("加密已被破坏"),
         "They Don\'t Match": MessageLookupByLibrary.simpleMessage(""),
         "They Match": MessageLookupByLibrary.simpleMessage(""),
         "This room has been archived.":
@@ -336,6 +345,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Unknown encryption algorithm":
             MessageLookupByLibrary.simpleMessage(""),
         "Unmute chat": MessageLookupByLibrary.simpleMessage(""),
+        "Unpin": MessageLookupByLibrary.simpleMessage(""),
         "Use Amoled compatible colors?":
             MessageLookupByLibrary.simpleMessage(""),
         "Username": MessageLookupByLibrary.simpleMessage(""),
@@ -369,14 +379,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "Your own username": MessageLookupByLibrary.simpleMessage(""),
         "acceptedTheInvitation": m0,
         "activatedEndToEndEncryption": m1,
-        "alias": MessageLookupByLibrary.simpleMessage("կեղծանուն"),
-        "askSSSSCache": MessageLookupByLibrary.simpleMessage(""),
+        "alias": MessageLookupByLibrary.simpleMessage("别称"),
+        "answeredTheCall": m2,
+        "askSSSSCache":
+            MessageLookupByLibrary.simpleMessage("请输入您的安全存储密码或恢复密钥以存储密钥。"),
         "askSSSSSign": MessageLookupByLibrary.simpleMessage(""),
-        "askSSSSVerify": MessageLookupByLibrary.simpleMessage(""),
+        "askSSSSVerify":
+            MessageLookupByLibrary.simpleMessage("请输入安全存储密码或恢复密钥以验证您的会话。"),
         "askVerificationRequest": m3,
         "bannedUser": m4,
         "byDefaultYouWillBeConnectedTo": m5,
-        "cachedKeys": MessageLookupByLibrary.simpleMessage(""),
+        "cachedKeys": MessageLookupByLibrary.simpleMessage("成功保存了密钥！"),
         "changedTheChatAvatar": m6,
         "changedTheChatDescriptionTo": m7,
         "changedTheChatNameTo": m8,
@@ -391,7 +404,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "changedTheProfileAvatar": m17,
         "changedTheRoomAliases": m18,
         "changedTheRoomInvitationLink": m19,
-        "compareEmojiMatch": MessageLookupByLibrary.simpleMessage(""),
+        "compareEmojiMatch":
+            MessageLookupByLibrary.simpleMessage("对比并确认这些表情匹配其他那些设备"),
         "compareNumbersMatch": MessageLookupByLibrary.simpleMessage(""),
         "couldNotDecryptMessage": m20,
         "countParticipants": m21,
@@ -404,6 +418,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "emoteExists": MessageLookupByLibrary.simpleMessage(""),
         "emoteInvalid": MessageLookupByLibrary.simpleMessage(""),
         "emoteWarnNeedToPick": MessageLookupByLibrary.simpleMessage(""),
+        "endedTheCall": m26,
         "groupWith": m27,
         "hasWithdrawnTheInvitationFor": m28,
         "incorrectPassphraseOrKey": MessageLookupByLibrary.simpleMessage(""),
@@ -440,8 +455,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "sentASticker": m48,
         "sentAVideo": m49,
         "sentAnAudio": m50,
+        "sentCallInformations": m51,
         "sessionVerified": MessageLookupByLibrary.simpleMessage(""),
         "sharedTheLocation": m52,
+        "startedACall": m53,
         "timeOfDay": m54,
         "title": MessageLookupByLibrary.simpleMessage(""),
         "unbannedUser": m55,

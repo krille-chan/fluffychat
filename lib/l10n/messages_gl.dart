@@ -23,139 +23,147 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m1(username) => "${username} activou o cifrado extremo-a-extremo";
 
-  static m2(username) =>
+  static m2(senderName) => "${senderName} respondeu á chamada";
+
+  static m3(username) =>
       "¿Aceptar a solicitude de verificación de ${username}?";
 
-  static m3(username, targetName) => "${username} vetou a ${targetName}";
+  static m4(username, targetName) => "${username} vetou a ${targetName}";
 
-  static m4(homeserver) => "Por omisión vas conectar con ${homeserver}";
+  static m5(homeserver) => "Por omisión vas conectar con ${homeserver}";
 
-  static m5(username) => "${username} cambiou o avatar do chat";
+  static m6(username) => "${username} cambiou o avatar do chat";
 
-  static m6(username, description) =>
+  static m7(username, description) =>
       "${username} mudou a descrición da conversa a: \'${description}\'";
 
-  static m7(username, chatname) =>
+  static m8(username, chatname) =>
       "${username} mudou o nome da conversa a: \'${chatname}\'";
 
-  static m8(username) => "${username} mudou os permisos da conversa";
+  static m9(username) => "${username} mudou os permisos da conversa";
 
-  static m9(username, displayname) =>
+  static m10(username, displayname) =>
       "${username} cambiou o nome público a: ${displayname}";
 
-  static m10(username) =>
+  static m11(username) =>
       "${username} mudou as regras de acceso para convidadas";
 
-  static m11(username, rules) =>
+  static m12(username, rules) =>
       "${username} mudou as regras de acceso para convidadas a: ${rules}";
 
-  static m12(username) => "${username} mudou a visibilidade do historial";
+  static m13(username) => "${username} mudou a visibilidade do historial";
 
-  static m13(username, rules) =>
+  static m14(username, rules) =>
       "${username} mudou a visibilidade do historial a: ${rules}";
 
-  static m14(username) => "${username} mudou as regras de acceso";
+  static m15(username) => "${username} mudou as regras de acceso";
 
-  static m15(username, joinRules) =>
+  static m16(username, joinRules) =>
       "${username} mudou as regras de acceso a: ${joinRules}";
 
-  static m16(username) => "${username} mudou o avatar";
+  static m17(username) => "${username} mudou o avatar";
 
-  static m17(username) => "${username} mudou os alias da sala";
+  static m18(username) => "${username} mudou os alias da sala";
 
-  static m18(username) => "${username} mudou a ligazón de convite";
+  static m19(username) => "${username} mudou a ligazón de convite";
 
-  static m19(error) => "Non se descifrou a mensaxe: ${error}";
+  static m20(error) => "Non se descifrou a mensaxe: ${error}";
 
-  static m20(count) => "${count} participantes";
+  static m21(count) => "${count} participantes";
 
-  static m21(username) => "${username} creou a conversa";
+  static m22(username) => "${username} creou a conversa";
 
-  static m22(date, timeOfDay) => "${date}, ${timeOfDay}";
+  static m23(date, timeOfDay) => "${date}, ${timeOfDay}";
 
-  static m23(year, month, day) => "${day}-${month}-${year}";
+  static m24(year, month, day) => "${day}-${month}-${year}";
 
-  static m24(month, day) => "${day}-${month}";
+  static m25(month, day) => "${day}-${month}";
 
-  static m25(displayname) => "Grupo con ${displayname}";
+  static m26(senderName) => "${senderName} rematou a chamada";
 
-  static m26(username, targetName) =>
+  static m27(displayname) => "Grupo con ${displayname}";
+
+  static m28(username, targetName) =>
       "${username} retirou o convite para ${targetName}";
 
-  static m27(groupName) => "Convidar contacto a ${groupName}";
+  static m29(groupName) => "Convidar contacto a ${groupName}";
 
-  static m28(username, link) =>
+  static m30(username, link) =>
       "${username} convidoute a FluffyChat.\n1. instala FluffyChat:  https://fluffychat.im \n2. Rexístrate ou conéctate\n3. Abre a ligazón do convite: ${link}";
 
-  static m29(username, targetName) => "${username} convidou a ${targetName}";
+  static m31(username, targetName) => "${username} convidou a ${targetName}";
 
-  static m30(username) => "${username} uníuse ó chat";
+  static m32(username) => "${username} uníuse ó chat";
 
-  static m31(username, targetName) => "${username} expulsou a ${targetName}";
+  static m33(username, targetName) => "${username} expulsou a ${targetName}";
 
-  static m32(username, targetName) =>
+  static m34(username, targetName) =>
       "${username} expulsou e vetou a ${targetName}";
 
-  static m33(localizedTimeShort) => "Última actividade: ${localizedTimeShort}";
+  static m35(localizedTimeShort) => "Última actividade: ${localizedTimeShort}";
 
-  static m34(count) => "Cargar ${count} participantes máis";
+  static m36(count) => "Cargar ${count} participantes máis";
 
-  static m35(homeserver) => "Conectar con ${homeserver}";
+  static m37(homeserver) => "Conectar con ${homeserver}";
 
-  static m36(number) => "${number} seleccionados";
+  static m38(number) => "${number} seleccionados";
 
-  static m37(fileName) => "Reproducir ${fileName}";
+  static m39(fileName) => "Reproducir ${fileName}";
 
-  static m38(username) => "${username} publicou un evento";
+  static m40(username) => "${username} publicou un evento";
 
-  static m39(username) => "${username} rexeitou o convite";
+  static m41(username) => "${username} rexeitou o convite";
 
-  static m40(username) => "Eliminado por ${username}";
+  static m42(username) => "Eliminado por ${username}";
 
-  static m41(username) => "Visto por ${username}";
+  static m43(username) => "Visto por ${username}";
 
-  static m42(username, count) => "Visto por ${username} e ${count} outras";
+  static m44(username, count) => "Visto por ${username} e ${count} outras";
 
-  static m43(username, username2) => "Visto por ${username} e ${username2}";
+  static m45(username, username2) => "Visto por ${username} e ${username2}";
 
-  static m44(username) => "${username} enviou un ficheiro";
+  static m46(username) => "${username} enviou un ficheiro";
 
-  static m45(username) => "${username} enviou unha imaxe";
+  static m47(username) => "${username} enviou unha imaxe";
 
-  static m46(username) => "${username} enviou un adhesivo";
+  static m48(username) => "${username} enviou un adhesivo";
 
-  static m47(username) => "${username} enviou un vídeo";
+  static m49(username) => "${username} enviou un vídeo";
 
-  static m48(username) => "${username} enviou un audio";
+  static m50(username) => "${username} enviou un audio";
 
-  static m49(username) => "${username} compartiu a localización";
+  static m51(senderName) => "${senderName} enviou informacións da chamada";
 
-  static m50(hours12, hours24, minutes, suffix) =>
+  static m52(username) => "${username} compartiu a localización";
+
+  static m53(senderName) => "${senderName} iniciou unha chamada";
+
+  static m54(hours12, hours24, minutes, suffix) =>
       "${hours12}:${minutes} ${suffix}";
 
-  static m51(username, targetName) =>
+  static m55(username, targetName) =>
       "${username} retirou o veto a ${targetName}";
 
-  static m52(type) => "Evento descoñecido \'${type}\'";
+  static m56(type) => "Evento descoñecido \'${type}\'";
 
-  static m53(unreadCount) => "${unreadCount} chats non lidos";
+  static m57(unreadCount) => "${unreadCount} chats non lidos";
 
-  static m54(unreadEvents) => "${unreadEvents} mensaxes non lidas";
+  static m58(unreadEvents) => "${unreadEvents} mensaxes non lidas";
 
-  static m55(unreadEvents, unreadChats) =>
+  static m59(unreadEvents, unreadChats) =>
       "${unreadEvents} mensaxes non lidas en ${unreadChats} conversas";
 
-  static m56(username, count) =>
+  static m60(username, count) =>
       "${username} e ${count} máis están escribindo...";
 
-  static m57(username, username2) =>
+  static m61(username, username2) =>
       "${username} e ${username2} están escribindo...";
 
-  static m58(username) => "${username} está escribindo...";
+  static m62(username) => "${username} está escribindo...";
 
-  static m59(username) => "${username} deixou a conversa";
+  static m63(username) => "${username} deixou a conversa";
 
-  static m60(username, type) => "${username} enviou un evento {type]";
+  static m64(username, type) => "${username} enviou un evento {type]";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function>{
@@ -304,6 +312,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "It seems that you have no google services on your phone. That\'s a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/":
             MessageLookupByLibrary.simpleMessage(
                 "Semella que non tes os servizos de google no teu dispositivo. Ben feito! a túa privacidade agradécecho! Para recibir notificacións push en FluffyChat recomendamos usar microG: https://microg.org/"),
+        "Join room": MessageLookupByLibrary.simpleMessage("Entrar na sala"),
         "Kick from chat":
             MessageLookupByLibrary.simpleMessage("Expulsar da conversa"),
         "Last seen IP": MessageLookupByLibrary.simpleMessage("Última IP vista"),
@@ -352,6 +361,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Password": MessageLookupByLibrary.simpleMessage("Contrasinal"),
         "Pick image":
             MessageLookupByLibrary.simpleMessage("Escolle unha imaxe"),
+        "Pin": MessageLookupByLibrary.simpleMessage("Fixar"),
         "Please be aware that you need Pantalaimon to use end-to-end encryption for now.":
             MessageLookupByLibrary.simpleMessage(
                 "Ten en conta que polo de agora precisas Pantalaimon para o cifrado extremo-a-extremo."),
@@ -434,6 +444,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Unknown encryption algorithm": MessageLookupByLibrary.simpleMessage(
             "Algoritmo de cifrado descoñecido"),
         "Unmute chat": MessageLookupByLibrary.simpleMessage("Reactivar chat"),
+        "Unpin": MessageLookupByLibrary.simpleMessage("Desafixar"),
         "Use Amoled compatible colors?": MessageLookupByLibrary.simpleMessage(
             "¿Usar cores compatibles con Amoled?"),
         "Username": MessageLookupByLibrary.simpleMessage("Nome de usuaria"),
@@ -452,7 +463,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Wednesday": MessageLookupByLibrary.simpleMessage("Mércores"),
         "Welcome to the cutest instant messenger in the matrix network.":
             MessageLookupByLibrary.simpleMessage(
-                "Benvida a mensaxería instantánea más cuquiña da rede Matrix."),
+                "Benvida á mensaxería instantánea más cuquiña da rede matrix."),
         "Who is allowed to join this group":
             MessageLookupByLibrary.simpleMessage(
                 "Quen se pode unir a este grupo"),
@@ -478,78 +489,80 @@ class MessageLookup extends MessageLookupByLibrary {
         "acceptedTheInvitation": m0,
         "activatedEndToEndEncryption": m1,
         "alias": MessageLookupByLibrary.simpleMessage("alias"),
+        "answeredTheCall": m2,
         "askSSSSCache": MessageLookupByLibrary.simpleMessage(
             "Escribe a frase de paso de seguridade ou chave de recuperación para almacenar as chaves."),
         "askSSSSSign": MessageLookupByLibrary.simpleMessage(
             "Para poder conectar a outra persoa, escribe a túa frase de paso ou chave de recuperación."),
         "askSSSSVerify": MessageLookupByLibrary.simpleMessage(
             "Escribe frase de paso de almacenaxe segura ou chave de recuperación para verificar a túa sesión."),
-        "askVerificationRequest": m2,
-        "bannedUser": m3,
-        "byDefaultYouWillBeConnectedTo": m4,
+        "askVerificationRequest": m3,
+        "bannedUser": m4,
+        "byDefaultYouWillBeConnectedTo": m5,
         "cachedKeys": MessageLookupByLibrary.simpleMessage(
             "Almacenaches as chaves correctamente!"),
-        "changedTheChatAvatar": m5,
-        "changedTheChatDescriptionTo": m6,
-        "changedTheChatNameTo": m7,
-        "changedTheChatPermissions": m8,
-        "changedTheDisplaynameTo": m9,
-        "changedTheGuestAccessRules": m10,
-        "changedTheGuestAccessRulesTo": m11,
-        "changedTheHistoryVisibility": m12,
-        "changedTheHistoryVisibilityTo": m13,
-        "changedTheJoinRules": m14,
-        "changedTheJoinRulesTo": m15,
-        "changedTheProfileAvatar": m16,
-        "changedTheRoomAliases": m17,
-        "changedTheRoomInvitationLink": m18,
+        "changedTheChatAvatar": m6,
+        "changedTheChatDescriptionTo": m7,
+        "changedTheChatNameTo": m8,
+        "changedTheChatPermissions": m9,
+        "changedTheDisplaynameTo": m10,
+        "changedTheGuestAccessRules": m11,
+        "changedTheGuestAccessRulesTo": m12,
+        "changedTheHistoryVisibility": m13,
+        "changedTheHistoryVisibilityTo": m14,
+        "changedTheJoinRules": m15,
+        "changedTheJoinRulesTo": m16,
+        "changedTheProfileAvatar": m17,
+        "changedTheRoomAliases": m18,
+        "changedTheRoomInvitationLink": m19,
         "compareEmojiMatch": MessageLookupByLibrary.simpleMessage(
             "Comparar e asegurarse de que estas emoticonas concordan no outro dispositivo:"),
         "compareNumbersMatch": MessageLookupByLibrary.simpleMessage(
             "Compara e asegúrate de que os seguintes números concordan cos do outro dispositivo:"),
-        "couldNotDecryptMessage": m19,
-        "countParticipants": m20,
-        "createdTheChat": m21,
+        "couldNotDecryptMessage": m20,
+        "countParticipants": m21,
+        "createdTheChat": m22,
         "crossSigningDisabled": MessageLookupByLibrary.simpleMessage(
             "A Sinatura-Cruzada está desactivada"),
         "crossSigningEnabled":
             MessageLookupByLibrary.simpleMessage("Sinatura-Cruzada activada"),
-        "dateAndTimeOfDay": m22,
-        "dateWithYear": m23,
-        "dateWithoutYear": m24,
+        "dateAndTimeOfDay": m23,
+        "dateWithYear": m24,
+        "dateWithoutYear": m25,
         "emoteExists":
             MessageLookupByLibrary.simpleMessage("Xa existe ese emote!"),
         "emoteInvalid": MessageLookupByLibrary.simpleMessage(
             "Atallo do emote non é válido!"),
         "emoteWarnNeedToPick": MessageLookupByLibrary.simpleMessage(
             "Escribe un atallo e asocialle unha imaxe!"),
-        "groupWith": m25,
-        "hasWithdrawnTheInvitationFor": m26,
+        "endedTheCall": m26,
+        "groupWith": m27,
+        "hasWithdrawnTheInvitationFor": m28,
         "incorrectPassphraseOrKey": MessageLookupByLibrary.simpleMessage(
             "Frase de paso ou chave de recuperación incorrecta"),
-        "inviteContactToGroup": m27,
-        "inviteText": m28,
-        "invitedUser": m29,
+        "inviteContactToGroup": m29,
+        "inviteText": m30,
+        "invitedUser": m31,
         "is typing...":
             MessageLookupByLibrary.simpleMessage("está escribindo..."),
         "isDeviceKeyCorrect": MessageLookupByLibrary.simpleMessage(
             "¿É correcta esta chave do dispositivo?"),
-        "joinedTheChat": m30,
+        "joinedTheChat": m32,
         "keysCached":
             MessageLookupByLibrary.simpleMessage("Chaves almacenadas"),
         "keysMissing": MessageLookupByLibrary.simpleMessage("Faltan as chaves"),
-        "kicked": m31,
-        "kickedAndBanned": m32,
-        "lastActiveAgo": m33,
-        "loadCountMoreParticipants": m34,
-        "logInTo": m35,
+        "kicked": m33,
+        "kickedAndBanned": m34,
+        "lastActiveAgo": m35,
+        "loadCountMoreParticipants": m36,
+        "logInTo": m37,
         "newVerificationRequest": MessageLookupByLibrary.simpleMessage(
             "Nova solicitude de verificación!"),
         "noCrossSignBootstrap": MessageLookupByLibrary.simpleMessage(
             "Polo momento FluffyChat non soporta a activación da Sinatura-Cruzada. Actívaa desde Element."),
         "noMegolmBootstrap": MessageLookupByLibrary.simpleMessage(
             "Actualmente Fluffychat non soporta a activación da Copia En Liña das Chaves. Actívaa desde Element."),
-        "numberSelected": m36,
+        "numberSelected": m38,
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "onlineKeyBackupDisabled": MessageLookupByLibrary.simpleMessage(
             "Copia de apoio En liña das Chaves desactivada"),
@@ -557,35 +570,37 @@ class MessageLookup extends MessageLookupByLibrary {
             "Copia de Apoio das Chaves activada"),
         "passphraseOrKey": MessageLookupByLibrary.simpleMessage(
             "frase de paso ou chave de recuperación"),
-        "play": m37,
-        "redactedAnEvent": m38,
-        "rejectedTheInvitation": m39,
-        "removedBy": m40,
-        "seenByUser": m41,
-        "seenByUserAndCountOthers": m42,
-        "seenByUserAndUser": m43,
-        "sentAFile": m44,
-        "sentAPicture": m45,
-        "sentASticker": m46,
-        "sentAVideo": m47,
-        "sentAnAudio": m48,
+        "play": m39,
+        "redactedAnEvent": m40,
+        "rejectedTheInvitation": m41,
+        "removedBy": m42,
+        "seenByUser": m43,
+        "seenByUserAndCountOthers": m44,
+        "seenByUserAndUser": m45,
+        "sentAFile": m46,
+        "sentAPicture": m47,
+        "sentASticker": m48,
+        "sentAVideo": m49,
+        "sentAnAudio": m50,
+        "sentCallInformations": m51,
         "sessionVerified":
             MessageLookupByLibrary.simpleMessage("Sesión verificada"),
-        "sharedTheLocation": m49,
-        "timeOfDay": m50,
+        "sharedTheLocation": m52,
+        "startedACall": m53,
+        "timeOfDay": m54,
         "title": MessageLookupByLibrary.simpleMessage("FluffyChat"),
-        "unbannedUser": m51,
-        "unknownEvent": m52,
+        "unbannedUser": m55,
+        "unknownEvent": m56,
         "unknownSessionVerify": MessageLookupByLibrary.simpleMessage(
             "Sesión descoñecida, por favor verifícaa"),
-        "unreadChats": m53,
-        "unreadMessages": m54,
-        "unreadMessagesInChats": m55,
-        "userAndOthersAreTyping": m56,
-        "userAndUserAreTyping": m57,
-        "userIsTyping": m58,
-        "userLeftTheChat": m59,
-        "userSentUnknownEvent": m60,
+        "unreadChats": m57,
+        "unreadMessages": m58,
+        "unreadMessagesInChats": m59,
+        "userAndOthersAreTyping": m60,
+        "userAndUserAreTyping": m61,
+        "userIsTyping": m62,
+        "userLeftTheChat": m63,
+        "userSentUnknownEvent": m64,
         "verifiedSession": MessageLookupByLibrary.simpleMessage(
             "Sesión verificada correctamente!"),
         "verifyManual":
