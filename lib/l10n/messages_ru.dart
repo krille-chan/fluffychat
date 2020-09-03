@@ -23,139 +23,147 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m1(username) => "${username} активировал(а) сквозное шифрование";
 
-  static m2(username) => "Принять этот запрос подтверждения от ${username}?";
+  static m2(senderName) => "${senderName} ответил(а) на звонок";
 
-  static m3(username, targetName) =>
+  static m3(username) => "Принять этот запрос подтверждения от ${username}?";
+
+  static m4(username, targetName) =>
       "${username} заблокировал(а) ${targetName}";
 
-  static m4(homeserver) => "По умолчанию вы будете подключены к ${homeserver}";
+  static m5(homeserver) => "По умолчанию вы будете подключены к ${homeserver}";
 
-  static m5(username) => "${username} изменил(а) аватар чата";
+  static m6(username) => "${username} изменил(а) аватар чата";
 
-  static m6(username, description) =>
+  static m7(username, description) =>
       "${username} изменил(а) описание чата на: \"${description}\"";
 
-  static m7(username, chatname) =>
+  static m8(username, chatname) =>
       "${username} изменил(а) имя чата на: \"${chatname}\"";
 
-  static m8(username) => "${username} изменил(а) права доступа к чату";
+  static m9(username) => "${username} изменил(а) права доступа к чату";
 
-  static m9(username, displayname) =>
+  static m10(username, displayname) =>
       "${username} изменил(а) отображаемое имя на: ${displayname}";
 
-  static m10(username) => "${username} изменил(а) правила гостевого доступа";
+  static m11(username) => "${username} изменил(а) правила гостевого доступа";
 
-  static m11(username, rules) =>
+  static m12(username, rules) =>
       "${username} изменил(а) правила гостевого доступа на: ${rules}";
 
-  static m12(username) => "${username} изменил(а) видимость истории";
+  static m13(username) => "${username} изменил(а) видимость истории";
 
-  static m13(username, rules) =>
+  static m14(username, rules) =>
       "${username} изменил(а) видимость истории на: ${rules}";
 
-  static m14(username) => "${username} изменил(а) правила присоединения";
+  static m15(username) => "${username} изменил(а) правила присоединения";
 
-  static m15(username, joinRules) =>
+  static m16(username, joinRules) =>
       "${username} изменил(а) правила присоединения на: ${joinRules}";
 
-  static m16(username) => "${username} изменил(а) аватар";
+  static m17(username) => "${username} изменил(а) аватар";
 
-  static m17(username) => "${username} изменил(а) псевдонимы комнаты";
+  static m18(username) => "${username} изменил(а) псевдонимы комнаты";
 
-  static m18(username) => "${username} изменил(а) ссылку для приглашения";
+  static m19(username) => "${username} изменил(а) ссылку для приглашения";
 
-  static m19(error) => "Не удалось расшифровать сообщение: ${error}";
+  static m20(error) => "Не удалось расшифровать сообщение: ${error}";
 
-  static m20(count) => "${count} участника(ов)";
+  static m21(count) => "${count} участника(ов)";
 
-  static m21(username) => "${username} создал(а) чат";
+  static m22(username) => "${username} создал(а) чат";
 
-  static m22(date, timeOfDay) => "${date}, ${timeOfDay}";
+  static m23(date, timeOfDay) => "${date}, ${timeOfDay}";
 
-  static m23(year, month, day) => "${day}.${month}.${year}";
+  static m24(year, month, day) => "${day}.${month}.${year}";
 
-  static m24(month, day) => "${day}.${month}";
+  static m25(month, day) => "${day}.${month}";
 
-  static m25(displayname) => "Группа с ${displayname}";
+  static m26(senderName) => "${senderName} завершил(а) звонок";
 
-  static m26(username, targetName) =>
+  static m27(displayname) => "Группа с ${displayname}";
+
+  static m28(username, targetName) =>
       "${username} отозвал(а) приглашение для ${targetName}";
 
-  static m27(groupName) => "Пригласить контакт в ${groupName}";
+  static m29(groupName) => "Пригласить контакт в ${groupName}";
 
-  static m28(username, link) =>
+  static m30(username, link) =>
       "${username} пригласил(а) вас в FluffyChat. \n1. Установите FluffyChat: https://fluffychat.im \n2. Зарегистрируйтесь или войдите \n3. Откройте ссылку приглашения: ${link}";
 
-  static m29(username, targetName) => "${username} пригласил(а) ${targetName}";
+  static m31(username, targetName) => "${username} пригласил(а) ${targetName}";
 
-  static m30(username) => "${username} присоединился(ась) к чату";
+  static m32(username) => "${username} присоединился(ась) к чату";
 
-  static m31(username, targetName) => "${username} исключил(а) ${targetName}";
+  static m33(username, targetName) => "${username} исключил(а) ${targetName}";
 
-  static m32(username, targetName) =>
+  static m34(username, targetName) =>
       "${username} исключил(а) и заблокировал(а) ${targetName}";
 
-  static m33(localizedTimeShort) =>
+  static m35(localizedTimeShort) =>
       "Последнее посещение: ${localizedTimeShort}";
 
-  static m34(count) => "Загрузить еще ${count} участника(ов)";
+  static m36(count) => "Загрузить еще ${count} участника(ов)";
 
-  static m35(homeserver) => "Войти в ${homeserver}";
+  static m37(homeserver) => "Войти в ${homeserver}";
 
-  static m36(number) => "${number} выбран(о)";
+  static m38(number) => "${number} выбран(о)";
 
-  static m37(fileName) => "Проиграть ${fileName}";
+  static m39(fileName) => "Проиграть ${fileName}";
 
-  static m38(username) => "${username} отредактировал(а) событие";
+  static m40(username) => "${username} отредактировал(а) событие";
 
-  static m39(username) => "${username} отклонил(а) приглашение";
+  static m41(username) => "${username} отклонил(а) приглашение";
 
-  static m40(username) => "Удалено пользователем ${username}";
+  static m42(username) => "Удалено пользователем ${username}";
 
-  static m41(username) => "Просмотрено пользователем ${username}";
+  static m43(username) => "Просмотрено пользователем ${username}";
 
-  static m42(username, count) =>
+  static m44(username, count) =>
       "Просмотрено пользователями ${username} и ${count} другими";
 
-  static m43(username, username2) =>
+  static m45(username, username2) =>
       "Просмотрено пользователями ${username} и ${username2}";
 
-  static m44(username) => "${username} отправил(а) файл";
+  static m46(username) => "${username} отправил(а) файл";
 
-  static m45(username) => "${username} отправил(а) изображение";
+  static m47(username) => "${username} отправил(а) изображение";
 
-  static m46(username) => "${username} отправил(а) стикер";
+  static m48(username) => "${username} отправил(а) стикер";
 
-  static m47(username) => "${username} отправил(а) видео";
+  static m49(username) => "${username} отправил(а) видео";
 
-  static m48(username) => "${username} отправил(а) аудио";
+  static m50(username) => "${username} отправил(а) аудио";
 
-  static m49(username) => "${username} поделился(ась) местоположением";
+  static m51(senderName) => "${senderName} отправил(а) информацию о звонке";
 
-  static m50(hours12, hours24, minutes, suffix) => "${hours24}:${minutes}";
+  static m52(username) => "${username} поделился(ась) местоположением";
 
-  static m51(username, targetName) =>
+  static m53(senderName) => "${senderName} начал(а) звонок";
+
+  static m54(hours12, hours24, minutes, suffix) => "${hours24}:${minutes}";
+
+  static m55(username, targetName) =>
       "${username} разблокировал(а) ${targetName}";
 
-  static m52(type) => "Неизвестное событие \"${type}\"";
+  static m56(type) => "Неизвестное событие \"${type}\"";
 
-  static m53(unreadCount) => "${unreadCount} непрочитанных чата(ов)";
+  static m57(unreadCount) => "${unreadCount} непрочитанных чата(ов)";
 
-  static m54(unreadEvents) => "${unreadEvents} непрочитанных сообщения(ий)";
+  static m58(unreadEvents) => "${unreadEvents} непрочитанных сообщения(ий)";
 
-  static m55(unreadEvents, unreadChats) =>
+  static m59(unreadEvents, unreadChats) =>
       "${unreadEvents} непрочитанное(ых) сообщение(ий) в ${unreadChats} чате(ах)";
 
-  static m56(username, count) =>
+  static m60(username, count) =>
       "${username} и ${count} других участников печатают...";
 
-  static m57(username, username2) => "${username} и ${username2} печатают...";
+  static m61(username, username2) => "${username} и ${username2} печатают...";
 
-  static m58(username) => "${username} печатает...";
+  static m62(username) => "${username} печатает...";
 
-  static m59(username) => "${username} покинул(а) чат";
+  static m63(username) => "${username} покинул(а) чат";
 
-  static m60(username, type) =>
+  static m64(username, type) =>
       "${username} отправил(а) событие типа \"${type}\"";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -285,8 +293,8 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Описание группы было изменено"),
         "Group is public":
             MessageLookupByLibrary.simpleMessage("Публичная группа"),
-        "Guests are forbidden":
-            MessageLookupByLibrary.simpleMessage("Гости запрещены"),
+        "Guests are forbidden": MessageLookupByLibrary.simpleMessage(
+            "Гости не могут присоединиться"),
         "Guests can join":
             MessageLookupByLibrary.simpleMessage("Гости могут присоединиться"),
         "Help": MessageLookupByLibrary.simpleMessage("Помощь"),
@@ -304,6 +312,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "It seems that you have no google services on your phone. That\'s a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/":
             MessageLookupByLibrary.simpleMessage(
                 "Похоже, у вас нет служб Google на вашем телефоне. Это хорошее решение для вашей конфиденциальности! Для получения push-уведомлений во FluffyChat мы рекомендуем использовать microG: https://microg.org/"),
+        "Join room":
+            MessageLookupByLibrary.simpleMessage("Присоединиться к комнате"),
         "Kick from chat":
             MessageLookupByLibrary.simpleMessage("Исключить из чата"),
         "Last seen IP": MessageLookupByLibrary.simpleMessage(
@@ -355,6 +365,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Password": MessageLookupByLibrary.simpleMessage("Пароль"),
         "Pick image":
             MessageLookupByLibrary.simpleMessage("Выбрать изображение"),
+        "Pin": MessageLookupByLibrary.simpleMessage("Закрепить"),
         "Please be aware that you need Pantalaimon to use end-to-end encryption for now.":
             MessageLookupByLibrary.simpleMessage(
                 "Помните, что вам нужен Pantalaimon для использования сквозного шифрования."),
@@ -395,7 +406,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Saturday": MessageLookupByLibrary.simpleMessage("Суббота"),
         "Search for a chat": MessageLookupByLibrary.simpleMessage("Поиск чата"),
         "Seen a long time ago":
-            MessageLookupByLibrary.simpleMessage("Был(а) в сети давно"),
+            MessageLookupByLibrary.simpleMessage("был(а) в сети давно"),
         "Send": MessageLookupByLibrary.simpleMessage("Отправить"),
         "Send a message":
             MessageLookupByLibrary.simpleMessage("Отправить сообщение"),
@@ -430,7 +441,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Эта комната была заархивирована."),
         "Thursday": MessageLookupByLibrary.simpleMessage("Четверг"),
         "Try to send again": MessageLookupByLibrary.simpleMessage(
-            "Попробуйте отправить еще раз"),
+            "Попробуйте отправить ещё раз"),
         "Tuesday": MessageLookupByLibrary.simpleMessage("Вторник"),
         "Unblock Device":
             MessageLookupByLibrary.simpleMessage("Разблокировать устройство"),
@@ -440,6 +451,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Неизвестный алгоритм шифрования"),
         "Unmute chat":
             MessageLookupByLibrary.simpleMessage("Включить уведомления"),
+        "Unpin": MessageLookupByLibrary.simpleMessage("Открепить"),
         "Use Amoled compatible colors?":
             MessageLookupByLibrary.simpleMessage("AMOLED-совместимые цвета"),
         "Username": MessageLookupByLibrary.simpleMessage("Имя пользователя"),
@@ -485,78 +497,80 @@ class MessageLookup extends MessageLookupByLibrary {
         "acceptedTheInvitation": m0,
         "activatedEndToEndEncryption": m1,
         "alias": MessageLookupByLibrary.simpleMessage("псевдоним"),
+        "answeredTheCall": m2,
         "askSSSSCache": MessageLookupByLibrary.simpleMessage(
             "Пожалуйста, введите вашу парольную фразу или ключ восстановления для кэширования ключей."),
         "askSSSSSign": MessageLookupByLibrary.simpleMessage(
             "Для подписи ключа другого пользователя, пожалуйста, введите вашу парольную фразу или ключ восстановления."),
         "askSSSSVerify": MessageLookupByLibrary.simpleMessage(
             "Пожалуйста, введите вашу парольную фразу или ключ восстановления для подтвердждения сессии."),
-        "askVerificationRequest": m2,
-        "bannedUser": m3,
-        "byDefaultYouWillBeConnectedTo": m4,
+        "askVerificationRequest": m3,
+        "bannedUser": m4,
+        "byDefaultYouWillBeConnectedTo": m5,
         "cachedKeys":
             MessageLookupByLibrary.simpleMessage("Ключи успешно кэшированы"),
-        "changedTheChatAvatar": m5,
-        "changedTheChatDescriptionTo": m6,
-        "changedTheChatNameTo": m7,
-        "changedTheChatPermissions": m8,
-        "changedTheDisplaynameTo": m9,
-        "changedTheGuestAccessRules": m10,
-        "changedTheGuestAccessRulesTo": m11,
-        "changedTheHistoryVisibility": m12,
-        "changedTheHistoryVisibilityTo": m13,
-        "changedTheJoinRules": m14,
-        "changedTheJoinRulesTo": m15,
-        "changedTheProfileAvatar": m16,
-        "changedTheRoomAliases": m17,
-        "changedTheRoomInvitationLink": m18,
+        "changedTheChatAvatar": m6,
+        "changedTheChatDescriptionTo": m7,
+        "changedTheChatNameTo": m8,
+        "changedTheChatPermissions": m9,
+        "changedTheDisplaynameTo": m10,
+        "changedTheGuestAccessRules": m11,
+        "changedTheGuestAccessRulesTo": m12,
+        "changedTheHistoryVisibility": m13,
+        "changedTheHistoryVisibilityTo": m14,
+        "changedTheJoinRules": m15,
+        "changedTheJoinRulesTo": m16,
+        "changedTheProfileAvatar": m17,
+        "changedTheRoomAliases": m18,
+        "changedTheRoomInvitationLink": m19,
         "compareEmojiMatch": MessageLookupByLibrary.simpleMessage(
             "Сравните и убедитесь, что следующие эмодзи соответствуют эмодзи на другом устройстве:"),
         "compareNumbersMatch": MessageLookupByLibrary.simpleMessage(
             "Сравните и убедитесь, что следующие числа соответствуют числам на другом устройстве:"),
-        "couldNotDecryptMessage": m19,
-        "countParticipants": m20,
-        "createdTheChat": m21,
+        "couldNotDecryptMessage": m20,
+        "countParticipants": m21,
+        "createdTheChat": m22,
         "crossSigningDisabled":
             MessageLookupByLibrary.simpleMessage("Кросс-подпись отключена"),
         "crossSigningEnabled":
             MessageLookupByLibrary.simpleMessage("Кросс-подпись включена"),
-        "dateAndTimeOfDay": m22,
-        "dateWithYear": m23,
-        "dateWithoutYear": m24,
+        "dateAndTimeOfDay": m23,
+        "dateWithYear": m24,
+        "dateWithoutYear": m25,
         "emoteExists":
             MessageLookupByLibrary.simpleMessage("Эмодзи уже существует"),
         "emoteInvalid": MessageLookupByLibrary.simpleMessage(
             "Недопустимый краткий код эмодзи"),
         "emoteWarnNeedToPick": MessageLookupByLibrary.simpleMessage(
             "Выберите краткий код эмодзи и изображение"),
-        "groupWith": m25,
-        "hasWithdrawnTheInvitationFor": m26,
+        "endedTheCall": m26,
+        "groupWith": m27,
+        "hasWithdrawnTheInvitationFor": m28,
         "incorrectPassphraseOrKey": MessageLookupByLibrary.simpleMessage(
             "Неверный пароль или ключ восстановления"),
-        "inviteContactToGroup": m27,
-        "inviteText": m28,
-        "invitedUser": m29,
+        "inviteContactToGroup": m29,
+        "inviteText": m30,
+        "invitedUser": m31,
         "is typing...": MessageLookupByLibrary.simpleMessage("Печатает..."),
         "isDeviceKeyCorrect": MessageLookupByLibrary.simpleMessage(
             "Правильно ли указан следующий ключ устройства?"),
-        "joinedTheChat": m30,
+        "joinedTheChat": m32,
         "keysCached":
             MessageLookupByLibrary.simpleMessage("Ключи сохранены в кэше"),
         "keysMissing":
             MessageLookupByLibrary.simpleMessage("Ключи отсутствуют"),
-        "kicked": m31,
-        "kickedAndBanned": m32,
-        "lastActiveAgo": m33,
-        "loadCountMoreParticipants": m34,
-        "logInTo": m35,
+        "kicked": m33,
+        "kickedAndBanned": m34,
+        "lastActiveAgo": m35,
+        "loadCountMoreParticipants": m36,
+        "logInTo": m37,
         "newVerificationRequest": MessageLookupByLibrary.simpleMessage(
             "Новый запрос на подтверждение"),
         "noCrossSignBootstrap": MessageLookupByLibrary.simpleMessage(
             "FluffyChat в настоящее время не поддерживает включение кросс-подписи. Пожалуйста, включите его в Element."),
         "noMegolmBootstrap": MessageLookupByLibrary.simpleMessage(
             "В настоящее время FluffyChat не поддерживает функцию резервного копирования онлайн-ключей. Пожалуйста, включите её в Element."),
-        "numberSelected": m36,
+        "numberSelected": m38,
         "ok": MessageLookupByLibrary.simpleMessage("ok"),
         "onlineKeyBackupDisabled": MessageLookupByLibrary.simpleMessage(
             "Резервное копирование ключей на сервере отключено"),
@@ -564,35 +578,37 @@ class MessageLookup extends MessageLookupByLibrary {
             "Резервное копирование ключей на сервере включено"),
         "passphraseOrKey": MessageLookupByLibrary.simpleMessage(
             "пароль или ключ восстановления"),
-        "play": m37,
-        "redactedAnEvent": m38,
-        "rejectedTheInvitation": m39,
-        "removedBy": m40,
-        "seenByUser": m41,
-        "seenByUserAndCountOthers": m42,
-        "seenByUserAndUser": m43,
-        "sentAFile": m44,
-        "sentAPicture": m45,
-        "sentASticker": m46,
-        "sentAVideo": m47,
-        "sentAnAudio": m48,
+        "play": m39,
+        "redactedAnEvent": m40,
+        "rejectedTheInvitation": m41,
+        "removedBy": m42,
+        "seenByUser": m43,
+        "seenByUserAndCountOthers": m44,
+        "seenByUserAndUser": m45,
+        "sentAFile": m46,
+        "sentAPicture": m47,
+        "sentASticker": m48,
+        "sentAVideo": m49,
+        "sentAnAudio": m50,
+        "sentCallInformations": m51,
         "sessionVerified":
             MessageLookupByLibrary.simpleMessage("Сессия подтверждена"),
-        "sharedTheLocation": m49,
-        "timeOfDay": m50,
+        "sharedTheLocation": m52,
+        "startedACall": m53,
+        "timeOfDay": m54,
         "title": MessageLookupByLibrary.simpleMessage("FluffyChat"),
-        "unbannedUser": m51,
-        "unknownEvent": m52,
+        "unbannedUser": m55,
+        "unknownEvent": m56,
         "unknownSessionVerify": MessageLookupByLibrary.simpleMessage(
             "Неизвестная сессия, пожалуйста, проверьте"),
-        "unreadChats": m53,
-        "unreadMessages": m54,
-        "unreadMessagesInChats": m55,
-        "userAndOthersAreTyping": m56,
-        "userAndUserAreTyping": m57,
-        "userIsTyping": m58,
-        "userLeftTheChat": m59,
-        "userSentUnknownEvent": m60,
+        "unreadChats": m57,
+        "unreadMessages": m58,
+        "unreadMessagesInChats": m59,
+        "userAndOthersAreTyping": m60,
+        "userAndUserAreTyping": m61,
+        "userIsTyping": m62,
+        "userLeftTheChat": m63,
+        "userSentUnknownEvent": m64,
         "verifiedSession":
             MessageLookupByLibrary.simpleMessage("Сессия успешно проверена"),
         "verifyManual":

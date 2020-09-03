@@ -1,4 +1,6 @@
 # Version 0.18.0 - 2020-09-??
+### Features
+- Added translations: Armenian, Turkish, Chinese (Simplified)
 
 # Version 0.17.0 - 2020-08-31
 ### Features
@@ -16,7 +18,7 @@
 # Version 0.16.0 - 2020-07-24
 ### Features
 - Implement web notifications
-- Implement a connection status header	
+- Implement a connection status header
 ### Changes
 - Switch out database engine for faster performance
 - Greatly improve startup time
