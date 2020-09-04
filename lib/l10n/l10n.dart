@@ -735,9 +735,15 @@ class L10n extends MatrixLocalizations {
 
   String get sendAMessage => Intl.message("Send a message");
 
+  String get sendAudio => Intl.message('Send audio');
+
   String get sendFile => Intl.message('Send file');
 
   String get sendImage => Intl.message('Send image');
+
+  String get sendOriginal => Intl.message('Send original');
+
+  String get sendVideo => Intl.message('Send video');
 
   String sentAFile(String username) => Intl.message(
         "$username sent a file",

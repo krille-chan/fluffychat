@@ -394,8 +394,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "Send": MessageLookupByLibrary.simpleMessage("Send"),
         "Send a message":
             MessageLookupByLibrary.simpleMessage("Send a message"),
+        "Send audio": MessageLookupByLibrary.simpleMessage("Send audio"),
         "Send file": MessageLookupByLibrary.simpleMessage("Send file"),
         "Send image": MessageLookupByLibrary.simpleMessage("Send image"),
+        "Send original": MessageLookupByLibrary.simpleMessage("Send original"),
+        "Send video": MessageLookupByLibrary.simpleMessage("Send video"),
         "Set a profile picture":
             MessageLookupByLibrary.simpleMessage("Set a profile picture"),
         "Set group description":
