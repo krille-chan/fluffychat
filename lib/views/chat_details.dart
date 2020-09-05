@@ -14,9 +14,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:link_text/link_text.dart';
+import 'package:matrix_link_text/link_text.dart';
 import 'package:memoryfilepicker/memoryfilepicker.dart';
 import './settings_emotes.dart';
+import '../utils/url_launcher.dart';
 
 class ChatDetails extends StatefulWidget {
   final Room room;
@@ -222,6 +223,8 @@ class _ChatDetailsState extends State<ChatDetails> {
                                       .bodyText2
                                       .color,
                                 ),
+                                onLinkTap: (url) =>
+                                    UrlLauncher(context, url).launchUrl(),
                               ),
                               onTap: widget.room.canSendEvent('m.room.topic')
                                   ? () => setTopicAction(context)
