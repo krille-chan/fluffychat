@@ -6,6 +6,9 @@
 - Tapping links, pills, etc. now does stuff
 ### Fixes:
 - Various html rendering and url-ifying fixes
+- Added support for blurhashes
+- Use server-side generated thumbnails in cleartext rooms
+- Image viewer now eventually displays the original image, not only the thumbnail
 
 # Version 0.17.0 - 2020-08-31
 ### Features
