@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_advanced_networkimage/provider.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:bot_toast/bot_toast.dart';
@@ -329,11 +329,8 @@ class _EmoteImage extends StatelessWidget {
       height: size * devicePixelRatio,
       method: ThumbnailMethod.scale,
     );
-    return Image(
-      image: AdvancedNetworkImage(
-        url,
-        useDiskCache: !kIsWeb,
-      ),
+    return CachedNetworkImage(
+      imageUrl: url,
       fit: BoxFit.contain,
       width: size,
       height: size,

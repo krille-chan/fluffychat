@@ -1,7 +1,6 @@
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_networkimage/provider.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 import 'matrix.dart';
 
@@ -89,13 +88,11 @@ class _Reaction extends StatelessWidget {
       content = Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Image(
-            image: AdvancedNetworkImage(
-              src,
-              useDiskCache: !kIsWeb,
-            ),
+          CachedNetworkImage(
+            imageUrl: src,
             height: fontSize,
           ),
+          Container(width: 4),
           Text(count.toString(),
               style: TextStyle(
                 color: textColor,

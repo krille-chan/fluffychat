@@ -2,7 +2,7 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/image_bubble.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_networkimage/zoomable.dart';
+import 'package:photo_view/photo_view.dart';
 import '../utils/event_extension.dart';
 
 class ImageView extends StatelessWidget {
@@ -41,7 +41,7 @@ class ImageView extends StatelessWidget {
           ),
         ],
       ),
-      body: ZoomableWidget(
+      body: PhotoView.customChild(
         minScale: 1.0,
         maxScale: 10.0,
         child: ImageBubble(

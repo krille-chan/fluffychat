@@ -5,8 +5,7 @@ import 'package:fluffychat/views/image_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_blurhash/flutter_blurhash.dart';
-import 'package:flutter_advanced_networkimage/provider.dart';
-import 'package:flutter_advanced_networkimage/transition.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class ImageBubble extends StatefulWidget {
   final Event event;
@@ -126,16 +125,13 @@ class _ImageBubbleState extends State<ImageBubble> {
                 fit: widget.fit,
               );
             } else if (isUnencrypted) {
-              renderWidget = TransitionToImage(
-                image: AdvancedNetworkImage(
-                  Uri.parse(widget.event.content['url']).getThumbnail(
-                      widget.event.room.client,
-                      width: 800,
-                      height: 800,
-                      method: ThumbnailMethod.scale),
-                  useDiskCache: !kIsWeb,
-                ),
-                loadingWidget: generatePlaceholderWidget(),
+              renderWidget = CachedNetworkImage(
+                imageUrl: Uri.parse(widget.event.content['url']).getThumbnail(
+                    widget.event.room.client,
+                    width: 800,
+                    height: 800,
+                    method: ThumbnailMethod.scale),
+                placeholder: (context, url) => generatePlaceholderWidget(),
                 fit: widget.fit,
               );
             } else {
