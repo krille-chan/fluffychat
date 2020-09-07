@@ -4,11 +4,12 @@ import 'package:fluffychat/components/image_bubble.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/event_extension.dart';
 import 'package:flutter/material.dart';
-import 'package:link_text/link_text.dart';
+import 'package:matrix_link_text/link_text.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'matrix.dart';
 import 'message_download_content.dart';
 import 'html_message.dart';
+import '../utils/url_launcher.dart';
 
 class MessageContent extends StatelessWidget {
   final Event event;
@@ -84,6 +85,7 @@ class MessageContent extends StatelessWidget {
                 fontSize: DefaultTextStyle.of(context).style.fontSize,
                 decoration: event.redacted ? TextDecoration.lineThrough : null,
               ),
+              onLinkTap: (url) => UrlLauncher(context, url).launchUrl(),
             );
         }
         break;

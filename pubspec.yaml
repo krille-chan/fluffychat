@@ -40,7 +40,7 @@ dependencies:
       ref: master
   firebase_messaging: ^6.0.13
   flutter_local_notifications: ^1.4.3
-  link_text: ^0.1.1
+  matrix_link_text: ^0.1.4
   path_provider: ^1.5.1
   webview_flutter: ^0.3.19+9
   share: ^0.6.3+5
@@ -54,10 +54,7 @@ dependencies:
   open_file: ^3.0.1
   mime_type: ^0.3.0
   bot_toast: ^3.0.0
-  flutter_matrix_html:
-    git:
-      url: https://github.com/Sorunome/flutter_matrix_html
-      ref: 530df434b50002e04cbad63f53d6f0f5d5adbab5
+  flutter_matrix_html: ^0.1.4
   moor: ^3.3.1
   sqlite3: ^0.1.4
   random_string: ^2.0.1

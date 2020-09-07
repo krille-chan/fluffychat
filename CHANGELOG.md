@@ -1,6 +1,11 @@
 # Version 0.18.0 - 2020-09-??
 ### Features
 - Added translations: Armenian, Turkish, Chinese (Simplified)
+- Url-ify matrix identifiers
+### Changes
+- Tapping links, pills, etc. now does stuff
+### Fixes:
+- Various html rendering and url-ifying fixes
 
 # Version 0.17.0 - 2020-08-31
 ### Features

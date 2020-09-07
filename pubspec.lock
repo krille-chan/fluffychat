@@ -78,6 +78,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.9+1"
+  cached_network_image:
+    dependency: transitive
+    description:
+      name: cached_network_image
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.3.1"
   canonical_json:
     dependency: transitive
     description:
@@ -270,12 +277,10 @@ packages:
   flutter_matrix_html:
     dependency: "direct main"
     description:
-      path: "."
-      ref: "530df434b50002e04cbad63f53d6f0f5d5adbab5"
-      resolved-ref: "530df434b50002e04cbad63f53d6f0f5d5adbab5"
-      url: "https://github.com/Sorunome/flutter_matrix_html"
-    source: git
-    version: "0.1.2"
+      name: flutter_matrix_html
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.4"
   flutter_olm:
     dependency: "direct main"
     description:
@@ -426,13 +431,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.3-nullsafety"
-  link_text:
-    dependency: "direct main"
-    description:
-      name: link_text
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.2"
   localstorage:
     dependency: "direct main"
     description:
@@ -468,6 +466,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.4"
+  matrix_link_text:
+    dependency: "direct main"
+    description:
+      name: matrix_link_text
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.4"
   memoryfilepicker:
     dependency: "direct main"
     description:
@@ -524,6 +529,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.4.12"
+  octo_image:
+    dependency: transitive
+    description:
+      name: octo_image
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.1"
   olm:
     dependency: transitive
     description:
@@ -685,6 +697,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.4.0+2"
+  rxdart:
+    dependency: transitive
+    description:
+      name: rxdart
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.24.1"
   share:
     dependency: "direct main"
     description:
@@ -886,6 +905,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.2"
+  uuid:
+    dependency: transitive
+    description:
+      name: uuid
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.2.2"
   vector_math:
     dependency: transitive
     description:

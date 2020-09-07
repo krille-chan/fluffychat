@@ -1,7 +1,7 @@
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:flutter_matrix_html/flutter_html.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+import '../utils/url_launcher.dart';
 
 import 'matrix.dart';
 
@@ -42,12 +42,8 @@ class HtmlMessage extends StatelessWidget {
           ),
       shrinkToFit: true,
       maxLines: maxLines,
-      onLinkTap: (String url) {
-        if (url == null || url.isEmpty) {
-          return;
-        }
-        launch(url);
-      },
+      onLinkTap: (url) => UrlLauncher(context, url).launchUrl(),
+      onPillTap: (url) => UrlLauncher(context, url).launchUrl(),
       getMxcUrl: (String mxc, double width, double height) {
         final ratio = MediaQuery.of(context).devicePixelRatio;
         return Uri.parse(mxc)?.getThumbnail(
