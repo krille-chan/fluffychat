@@ -142,11 +142,15 @@ class _SettingsState extends State<Settings> {
       try {
         handle.unlock(recoveryKey: str);
         valid = true;
-      } catch (_) {
+      } catch (e, s) {
+        debugPrint('Couldn\'t use recovery key: ' + e.toString());
+        debugPrint(s.toString());
         try {
           handle.unlock(passphrase: str);
           valid = true;
-        } catch (_) {
+        } catch (e, s) {
+          debugPrint('Couldn\'t use recovery passphrase: ' + e.toString());
+          debugPrint(s.toString());
           valid = false;
         }
       }
