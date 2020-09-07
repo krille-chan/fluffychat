@@ -508,8 +508,6 @@ class _ChatState extends State<_Chat> {
                             e.type != 'm.reaction')
                         .toList();
 
-                    if (filteredEvents.isEmpty) return Container();
-
                     return ListView.builder(
                         padding: EdgeInsets.symmetric(
                           horizontal: max(
