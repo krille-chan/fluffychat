@@ -70,7 +70,8 @@ class _Reaction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final borderColor = reacted ? Colors.red : Theme.of(context).primaryColor;
+    final borderColor =
+        reacted ? Colors.red : Theme.of(context).secondaryHeaderColor;
     final textColor = Theme.of(context).brightness == Brightness.dark
         ? Colors.white
         : Colors.black;
