@@ -27,7 +27,7 @@ dependencies:
   famedlysdk:
     git:
       url: https://gitlab.com/famedly/famedlysdk.git
-      ref: 5863c8e168d796bcda3556409c46e27b71986862
+      ref: 8899f4c677f6f255db62f34a6ae46f92deaa1c88
 
   localstorage: ^3.0.1+4
   bubble: ^1.1.9+1
@@ -40,7 +40,7 @@ dependencies:
       ref: master
   firebase_messaging: ^6.0.13
   flutter_local_notifications: ^1.4.3
-  matrix_link_text: ^0.1.4
+  matrix_link_text: ^0.1.5
   path_provider: ^1.5.1
   webview_flutter: ^0.3.19+9
   share: ^0.6.3+5
