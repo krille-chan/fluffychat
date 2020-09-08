@@ -174,6 +174,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "Add a group description":
             MessageLookupByLibrary.simpleMessage("Add a group description"),
         "Admin": MessageLookupByLibrary.simpleMessage("Admin"),
+        "Allow sending bug reports with sentry.io":
+            MessageLookupByLibrary.simpleMessage(
+                "Allow sending bug reports with sentry.io"),
         "Already have an account?":
             MessageLookupByLibrary.simpleMessage("Already have an account?"),
         "Anyone can join":
@@ -202,6 +205,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Change your style":
             MessageLookupByLibrary.simpleMessage("Change your style"),
         "Changelog": MessageLookupByLibrary.simpleMessage("Changelog"),
+        "Changes have been saved":
+            MessageLookupByLibrary.simpleMessage("Changes have been saved"),
         "Chat": MessageLookupByLibrary.simpleMessage("Chat"),
         "Chat details": MessageLookupByLibrary.simpleMessage("Chat details"),
         "Choose a strong password":
@@ -297,6 +302,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("How are you today?"),
         "ID": MessageLookupByLibrary.simpleMessage("ID"),
         "Identity": MessageLookupByLibrary.simpleMessage("Identity"),
+        "Informations about your privacy: https://sentry.io/security/":
+            MessageLookupByLibrary.simpleMessage(
+                "Informations about your privacy: https://sentry.io/security/"),
         "Invite contact":
             MessageLookupByLibrary.simpleMessage("Invite contact"),
         "Invited": MessageLookupByLibrary.simpleMessage("Invited"),
@@ -334,6 +342,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("New message in FluffyChat"),
         "New private chat":
             MessageLookupByLibrary.simpleMessage("New private chat"),
+        "No": MessageLookupByLibrary.simpleMessage("No"),
         "No emotes found. 😕":
             MessageLookupByLibrary.simpleMessage("No emotes found. 😕"),
         "No permission": MessageLookupByLibrary.simpleMessage("No permission"),
