@@ -1588,5 +1588,83 @@
   "@Submit": {
     "type": "text",
     "placeholders": {}
+  },
+  "Unpin": "Abpinnen",
+  "@Unpin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "startedACall": "{senderName} hat einen Anruf getätigt",
+  "@startedACall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "sentCallInformations": "{senderName} hat Anrufinformationen geschickt",
+  "@sentCallInformations": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "Send video": "Sende Video",
+  "@Send video": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Send original": "Sende Original",
+  "@Send original": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Send audio": "Sende Audiodatei",
+  "@Send audio": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "No": "Nein",
+  "@No": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Changes have been saved": "Änderungen wurden gespeichert",
+  "@Changes have been saved": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Informations about your privacy: https://sentry.io/security/": "Information über deine Privatsphäre: https://sentry.io/security/",
+  "@Informations about your privacy: https://sentry.io/security/": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Allow sending bug reports with sentry.io": "Erlaube das Senden von Fehlermeldungen via sentry.io",
+  "@Allow sending bug reports with sentry.io": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Pin": "Anpinnen",
+  "@Pin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Join room": "Raum beitreten",
+  "@Join room": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "endedTheCall": "{senderName} hat den Anruf aufgelegt",
+  "@endedTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "answeredTheCall": "{senderName} hat den Anruf abgehoben",
+  "@answeredTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
   }
 }
