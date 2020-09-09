@@ -1631,5 +1631,40 @@
     "placeholders": {
       "senderName": {}
     }
+  },
+  "Send video": "Отправить видео",
+  "@Send video": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Send original": "Отправить оригинал",
+  "@Send original": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Send audio": "Отправить аудио",
+  "@Send audio": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "No": "Нет",
+  "@No": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Changes have been saved": "Изменения были сохранены",
+  "@Changes have been saved": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Informations about your privacy: https://sentry.io/security/": "Информация о вашей конфиденциальности: https://sentry.io/security/",
+  "@Informations about your privacy: https://sentry.io/security/": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Allow sending bug reports with sentry.io": "Разрешить отправку отчетов об ошибках в sentry.io",
+  "@Allow sending bug reports with sentry.io": {
+    "type": "text",
+    "placeholders": {}
   }
 }
