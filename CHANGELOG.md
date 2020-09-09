@@ -1,6 +1,6 @@
 # Version 0.18.0 - 2020-09-??
 ### Features
-- Added translations: Armenian, Turkish, Chinese (Simplified)
+- Added translations: Armenian, Turkish, Chinese (Simplified), Estonian
 - Url-ify matrix identifiers
 - Use server-side generated thumbnails in cleartext rooms
 - Add option to send images in their original resolution

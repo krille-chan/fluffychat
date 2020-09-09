@@ -25,6 +25,7 @@ class AppLocalizationsDelegate extends LocalizationsDelegate<L10n> {
       'hy',
       'tr',
       'zh_Hans',
+      'et',
     ].contains(locale.languageCode);
   }
 

@@ -24,6 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static m1(username) =>
       "${username} hat Ende-zu-Ende Verschlüsselung aktiviert";
 
+  static m2(senderName) => "${senderName} hat den Anruf abgehoben";
+
   static m3(username) => "Diese Bestätigungsanfrage von ${username} annehmen?";
 
   static m4(username, targetName) => "${username} hat ${targetName} verbannt";
@@ -78,6 +80,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m25(month, day) => "${day}. ${month}";
 
+  static m26(senderName) => "${senderName} hat den Anruf aufgelegt";
+
   static m27(displayname) => "Gruppe mit ${displayname}";
 
   static m28(username, targetName) =>
@@ -131,7 +135,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m50(username) => "${username} hat eine Audio-Datei gesendet";
 
+  static m51(senderName) => "${senderName} hat Anrufinformationen geschickt";
+
   static m52(username) => "${username} hat den Standort geteilt";
+
+  static m53(senderName) => "${senderName} hat einen Anruf getätigt";
 
   static m54(hours12, hours24, minutes, suffix) => "${hours24}:${minutes}";
 
@@ -170,6 +178,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "Add a group description": MessageLookupByLibrary.simpleMessage(
             "Eine Beschreibung für die Gruppe hinzufügen"),
         "Admin": MessageLookupByLibrary.simpleMessage("Admin"),
+        "Allow sending bug reports with sentry.io":
+            MessageLookupByLibrary.simpleMessage(
+                "Erlaube das Senden von Fehlermeldungen via sentry.io"),
         "Already have an account?": MessageLookupByLibrary.simpleMessage(
             "Hast du schon einen Account?"),
         "Anyone can join":
@@ -202,6 +213,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Ändere Deinen Style"),
         "Changelog":
             MessageLookupByLibrary.simpleMessage("Protokoll der Änderungen"),
+        "Changes have been saved": MessageLookupByLibrary.simpleMessage(
+            "Änderungen wurden gespeichert"),
         "Chat": MessageLookupByLibrary.simpleMessage("Chat"),
         "Chat details": MessageLookupByLibrary.simpleMessage("Gruppeninfo"),
         "Choose a strong password":
@@ -296,6 +309,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Wie geht es dir heute?"),
         "ID": MessageLookupByLibrary.simpleMessage("ID"),
         "Identity": MessageLookupByLibrary.simpleMessage("Identität"),
+        "Informations about your privacy: https://sentry.io/security/":
+            MessageLookupByLibrary.simpleMessage(
+                "Information über deine Privatsphäre: https://sentry.io/security/"),
         "Invite contact":
             MessageLookupByLibrary.simpleMessage("Kontakt einladen"),
         "Invited": MessageLookupByLibrary.simpleMessage("Eingeladen"),
@@ -304,6 +320,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "It seems that you have no google services on your phone. That\'s a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/":
             MessageLookupByLibrary.simpleMessage(
                 "Es sieht so aus als hättest du keine Google-Dienste auf deinem Gerät. Das ist eine gute Entscheidung für deine Privatsphäre! Um Push Benachrichtigungen in FluffyChat zu erhalten, empfehlen wir die Verwendung von microG: https://microg.org/"),
+        "Join room": MessageLookupByLibrary.simpleMessage("Raum beitreten"),
         "Kick from chat":
             MessageLookupByLibrary.simpleMessage("Aus dem Chat hinauswerfen"),
         "Last seen IP":
@@ -335,6 +352,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Neue Nachricht in FluffyChat"),
         "New private chat":
             MessageLookupByLibrary.simpleMessage("Neuer privater Chat"),
+        "No": MessageLookupByLibrary.simpleMessage("Nein"),
         "No emotes found. 😕":
             MessageLookupByLibrary.simpleMessage("Keine Emotes gefunden. 😕"),
         "No permission":
@@ -353,6 +371,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Teilnehmende Geräte"),
         "Password": MessageLookupByLibrary.simpleMessage("Passwort"),
         "Pick image": MessageLookupByLibrary.simpleMessage("Bild wählen"),
+        "Pin": MessageLookupByLibrary.simpleMessage("Anpinnen"),
         "Please be aware that you need Pantalaimon to use end-to-end encryption for now.":
             MessageLookupByLibrary.simpleMessage(
                 "Bitte beachte, dass du Pantalaimon brauchst, um Ende-zu-Ende-Verschlüsselung benutzen zu können."),
@@ -398,8 +417,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "Send": MessageLookupByLibrary.simpleMessage("Senden"),
         "Send a message":
             MessageLookupByLibrary.simpleMessage("Nachricht schreiben"),
+        "Send audio": MessageLookupByLibrary.simpleMessage("Sende Audiodatei"),
         "Send file": MessageLookupByLibrary.simpleMessage("Datei senden"),
         "Send image": MessageLookupByLibrary.simpleMessage("Bild senden"),
+        "Send original": MessageLookupByLibrary.simpleMessage("Sende Original"),
+        "Send video": MessageLookupByLibrary.simpleMessage("Sende Video"),
         "Set a profile picture":
             MessageLookupByLibrary.simpleMessage("Ein Profilbild festlegen"),
         "Set group description": MessageLookupByLibrary.simpleMessage(
@@ -438,6 +460,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Unknown encryption algorithm": MessageLookupByLibrary.simpleMessage(
             "Unbekannter Verschlüsselungsalgorithmus"),
         "Unmute chat": MessageLookupByLibrary.simpleMessage("Stumm aus"),
+        "Unpin": MessageLookupByLibrary.simpleMessage("Abpinnen"),
         "Use Amoled compatible colors?": MessageLookupByLibrary.simpleMessage(
             "Amoled optimierte Farben verwenden?"),
         "Username": MessageLookupByLibrary.simpleMessage("Benutzername"),
@@ -483,6 +506,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "acceptedTheInvitation": m0,
         "activatedEndToEndEncryption": m1,
         "alias": MessageLookupByLibrary.simpleMessage("Alias"),
+        "answeredTheCall": m2,
         "askSSSSCache": MessageLookupByLibrary.simpleMessage(
             "Bitte gib dein Secure-Store Passwort oder Wiederherstellungsschlüssel ein, um die Keys zu cachen."),
         "askSSSSSign": MessageLookupByLibrary.simpleMessage(
@@ -528,6 +552,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Ungültiges Emote-Kürzel!"),
         "emoteWarnNeedToPick": MessageLookupByLibrary.simpleMessage(
             "Wähle ein Emote-Kürzel und ein Bild!"),
+        "endedTheCall": m26,
         "groupWith": m27,
         "hasWithdrawnTheInvitationFor": m28,
         "incorrectPassphraseOrKey": MessageLookupByLibrary.simpleMessage(
@@ -573,9 +598,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "sentASticker": m48,
         "sentAVideo": m49,
         "sentAnAudio": m50,
+        "sentCallInformations": m51,
         "sessionVerified":
             MessageLookupByLibrary.simpleMessage("Sitzung ist verifiziert"),
         "sharedTheLocation": m52,
+        "startedACall": m53,
         "timeOfDay": m54,
         "title": MessageLookupByLibrary.simpleMessage("FluffyChat"),
         "unbannedUser": m55,
