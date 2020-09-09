@@ -1631,5 +1631,40 @@
   "@Your own username": {
     "type": "text",
     "placeholders": {}
+  },
+  "Send video": "Saada videofail",
+  "@Send video": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Send original": "Saada algupärane fail",
+  "@Send original": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Send audio": "Saada helifail",
+  "@Send audio": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "No": "Ei",
+  "@No": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Changes have been saved": "Salvestasin muudatused",
+  "@Changes have been saved": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Informations about your privacy: https://sentry.io/security/": "Teave sinu privaatsuse kohta: https://sentry.io/security/",
+  "@Informations about your privacy: https://sentry.io/security/": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Allow sending bug reports with sentry.io": "Luba veateadete saatmist sentry.io vahendusel",
+  "@Allow sending bug reports with sentry.io": {
+    "type": "text",
+    "placeholders": {}
   }
 }
