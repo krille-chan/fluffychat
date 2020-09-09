@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
-import 'package:flutter_advanced_networkimage/provider.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'avatar.dart';
 
 class InputBar extends StatelessWidget {
@@ -146,8 +146,8 @@ class InputBar extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Image(
-              image: AdvancedNetworkImage(url, useDiskCache: !kIsWeb),
+            CachedNetworkImage(
+              imageUrl: url,
               width: size,
               height: size,
             ),
