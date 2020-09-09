@@ -17,6 +17,7 @@ import '../components/matrix.dart';
 import '../l10n/l10n.dart';
 import '../utils/app_route.dart';
 import '../utils/url_launcher.dart';
+import '../utils/matrix_file_extension.dart';
 import 'archive.dart';
 import 'homeserver_picker.dart';
 import 'new_group.dart';
@@ -119,7 +120,7 @@ class _ChatListState extends State<ChatList> {
       });
       setState(() => null);
     });
-    _initReceiveSharingINtent();
+    _initReceiveSharingIntent();
     super.initState();
   }
 
@@ -139,7 +140,7 @@ class _ChatListState extends State<ChatList> {
       'file': MatrixFile(
         bytes: file.readAsBytesSync(),
         name: file.path,
-      ),
+      ).detectFileType,
     };
   }
 
@@ -158,7 +159,7 @@ class _ChatListState extends State<ChatList> {
     };
   }
 
-  void _initReceiveSharingINtent() {
+  void _initReceiveSharingIntent() {
     if (kIsWeb) return;
 
     // For sharing images coming from outside the app while the app is in the memory

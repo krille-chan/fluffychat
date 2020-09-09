@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-08-16T12:43:17.825046",
+  "@@last_modified": "2020-09-04T14:58:35.809079",
   "About": "About",
   "@About": {
     "type": "text",
@@ -1184,6 +1184,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "Send audio": "Send audio",
+  "@Send audio": {
+    "type": "text",
+    "placeholders": {}
+  },
   "Send file": "Send file",
   "@Send file": {
     "type": "text",
@@ -1191,6 +1196,16 @@
   },
   "Send image": "Send image",
   "@Send image": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Send original": "Send original",
+  "@Send original": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Send video": "Send video",
+  "@Send video": {
     "type": "text",
     "placeholders": {}
   },

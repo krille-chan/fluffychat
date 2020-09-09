@@ -23,11 +23,13 @@ import 'package:flutter/services.dart';
 import 'package:memoryfilepicker/memoryfilepicker.dart';
 import 'package:pedantic/pedantic.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:file_picker_platform_interface/file_picker_platform_interface.dart';
 
 import 'chat_details.dart';
 import 'chat_list.dart';
 import '../components/input_bar.dart';
-import '../utils/room_send_file_extension.dart';
+import '../components/dialogs/send_file_dialog.dart';
+import '../utils/matrix_file_extension.dart';
 
 class ChatView extends StatelessWidget {
   final String id;
@@ -191,39 +193,36 @@ class _ChatState extends State<_Chat> {
   void sendFileAction(BuildContext context) async {
     var file = await MemoryFilePicker.getFile();
     if (file == null) return;
-    await SimpleDialogs(context).tryRequestWithLoadingDialog(
-      room.sendFileEventWithThumbnail(
-        MatrixFile(bytes: file.bytes, name: file.path),
-      ),
-    );
+    await showDialog(
+        context: context,
+        builder: (context) => SendFileDialog(
+              file:
+                  MatrixFile(bytes: file.bytes, name: file.path).detectFileType,
+              room: room,
+            ));
   }
 
   void sendImageAction(BuildContext context) async {
-    var file = await MemoryFilePicker.getImage(
-        source: ImageSource.gallery,
-        imageQuality: 50,
-        maxWidth: 1600,
-        maxHeight: 1600);
+    var file = await MemoryFilePicker.getFile(type: FileType.image);
     if (file == null) return;
-    await SimpleDialogs(context).tryRequestWithLoadingDialog(
-      room.sendFileEventWithThumbnail(
-        MatrixImageFile(bytes: await file.bytes, name: file.path),
-      ),
-    );
+    final bytes = await file.bytes;
+    await showDialog(
+        context: context,
+        builder: (context) => SendFileDialog(
+              file: MatrixImageFile(bytes: bytes, name: file.path),
+              room: room,
+            ));
   }
 
   void openCameraAction(BuildContext context) async {
-    var file = await MemoryFilePicker.getImage(
-        source: ImageSource.camera,
-        imageQuality: 50,
-        maxWidth: 1600,
-        maxHeight: 1600);
+    var file = await MemoryFilePicker.getImage(source: ImageSource.camera);
     if (file == null) return;
-    await SimpleDialogs(context).tryRequestWithLoadingDialog(
-      room.sendFileEventWithThumbnail(
-        MatrixImageFile(bytes: file.bytes, name: file.path),
-      ),
-    );
+    await showDialog(
+        context: context,
+        builder: (context) => SendFileDialog(
+              file: MatrixImageFile(bytes: file.bytes, name: file.path),
+              room: room,
+            ));
   }
 
   void voiceMessageAction(BuildContext context) async {
@@ -235,12 +234,13 @@ class _ChatState extends State<_Chat> {
             ));
     if (result == null) return;
     final audioFile = File(result);
-    await SimpleDialogs(context).tryRequestWithLoadingDialog(
-      room.sendFileEvent(
-        MatrixAudioFile(
-            bytes: audioFile.readAsBytesSync(), name: audioFile.path),
-      ),
-    );
+    await showDialog(
+        context: context,
+        builder: (context) => SendFileDialog(
+              file: MatrixAudioFile(
+                  bytes: audioFile.readAsBytesSync(), name: audioFile.path),
+              room: room,
+            ));
   }
 
   String _getSelectedEventString(BuildContext context) {

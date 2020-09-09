@@ -13,6 +13,7 @@ import '../theme_switcher.dart';
 import '../avatar.dart';
 import '../dialogs/simple_dialogs.dart';
 import '../matrix.dart';
+import '../dialogs/send_file_dialog.dart';
 
 class ChatListItem extends StatelessWidget {
   final Room room;
@@ -73,11 +74,12 @@ class ChatListItem extends StatelessWidget {
         if (Matrix.of(context).shareContent != null) {
           if (Matrix.of(context).shareContent['msgtype'] ==
               'chat.fluffy.shared_file') {
-            await SimpleDialogs(context).tryRequestWithErrorToast(
-              room.sendFileEvent(
-                Matrix.of(context).shareContent['file'],
-              ),
-            );
+            await showDialog(
+                context: context,
+                builder: (context) => SendFileDialog(
+                      file: Matrix.of(context).shareContent['file'],
+                      room: room,
+                    ));
           } else {
             unawaited(room.sendEvent(Matrix.of(context).shareContent));
           }
