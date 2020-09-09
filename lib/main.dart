@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:famedlysdk/famedlysdk.dart';
@@ -13,11 +14,29 @@ import 'components/theme_switcher.dart';
 import 'components/matrix.dart';
 import 'views/chat_list.dart';
 import 'package:universal_html/prefer_universal/html.dart' as html;
+import 'package:sentry/sentry.dart';
+import 'package:localstorage/localstorage.dart';
+
+final sentry = SentryClient(dsn: '8591d0d863b646feb4f3dda7e5dcab38');
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(statusBarColor: Colors.transparent));
-  runApp(App());
+  runZonedGuarded(
+    () => runApp(App()),
+    (error, stackTrace) async {
+      final storage = LocalStorage('LocalStorage');
+      await storage.ready;
+      debugPrint(error.toString());
+      debugPrint(stackTrace.toString());
+      if (storage.getItem('sentry') == true) {
+        await sentry.captureException(
+          exception: error,
+          stackTrace: stackTrace,
+        );
+      }
+    },
+  );
 }
 
 class App extends StatelessWidget {

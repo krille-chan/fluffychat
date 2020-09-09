@@ -1151,6 +1151,26 @@
     "type": "text",
     "placeholders": {}
   },
+  "Allow sending bug reports with sentry.io": "Allow sending bug reports with sentry.io",
+  "@Allow sending bug reports with sentry.io": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Informations about your privacy: https://sentry.io/security/": "Informations about your privacy: https://sentry.io/security/",
+  "@Informations about your privacy: https://sentry.io/security/": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Changes have been saved": "Changes have been saved",
+  "@Changes have been saved": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "No": "No",
+  "@No": {
+    "type": "text",
+    "placeholders": {}
+  },
   "seenByUser": "Seen by {username}",
   "@seenByUser": {
     "type": "text",

@@ -4,6 +4,7 @@ import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/app_route.dart';
+import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:fluffychat/views/sign_up.dart';
 import 'package:flutter/material.dart';
 
@@ -19,6 +20,10 @@ class HomeserverPicker extends StatelessWidget {
   }
 
   void _checkHomeserverAction(String homeserver, BuildContext context) async {
+    if (await SentryController.getSentryStatus() == null || true) {
+      await SentryController.toggleSentryAction(context);
+    }
+
     if (!homeserver.startsWith('https://')) {
       homeserver = 'https://$homeserver';
     }

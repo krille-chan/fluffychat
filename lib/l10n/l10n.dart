@@ -712,6 +712,16 @@ class L10n extends MatrixLocalizations {
 
   String get lastSeenLongTimeAgo => Intl.message('Seen a long time ago');
 
+  String get sendBugReports =>
+      Intl.message('Allow sending bug reports with sentry.io');
+
+  String get sentryInfo => Intl.message(
+      'Informations about your privacy: https://sentry.io/security/');
+
+  String get changesHaveBeenSaved => Intl.message('Changes have been saved');
+
+  String get no => Intl.message('No');
+
   String seenByUser(String username) => Intl.message(
         "Seen by $username",
         name: "seenByUser",

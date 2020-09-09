@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/settings_themes.dart';
+import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:fluffychat/views/settings_devices.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -340,6 +341,11 @@ class _SettingsState extends State<Settings> {
                   AppInfoView(),
                 ),
               ),
+            ),
+            ListTile(
+              trailing: Icon(Icons.bug_report),
+              title: Text(L10n.of(context).sendBugReports),
+              onTap: () => SentryController.toggleSentryAction(context),
             ),
             ListTile(
               trailing: Icon(Icons.exit_to_app),

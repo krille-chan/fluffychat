@@ -2,6 +2,7 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:bot_toast/bot_toast.dart';
+import 'package:matrix_link_text/link_text.dart';
 
 class SimpleDialogs {
   final BuildContext context;
@@ -84,7 +85,7 @@ class SimpleDialogs {
       context: context,
       builder: (c) => AlertDialog(
         title: Text(titleText ?? L10n.of(context).areYouSure),
-        content: contentText != null ? Text(contentText) : null,
+        content: contentText != null ? LinkText(text: contentText) : null,
         actions: <Widget>[
           FlatButton(
             child: Text(
