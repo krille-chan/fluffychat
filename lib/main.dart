@@ -76,6 +76,7 @@ class App extends StatelessWidget {
                 const Locale('hy'), // Armenian
                 const Locale('tr'), // Turkish
                 const Locale('zh_Hans'), // Chinese (Simplified)
+                const Locale('et'), // Estonian
               ],
               locale: kIsWeb
                   ? Locale(html.window.navigator.language.split('-').first)
