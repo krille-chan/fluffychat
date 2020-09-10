@@ -1631,5 +1631,40 @@
     "placeholders": {
       "senderName": {}
     }
+  },
+  "Send video": "Pošalji video datoteku",
+  "@Send video": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Send audio": "Pošalji audio datoteku",
+  "@Send audio": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Send original": "Pošalji original",
+  "@Send original": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "No": "Ne",
+  "@No": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Changes have been saved": "Promjene nisu spremljene",
+  "@Changes have been saved": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Informations about your privacy: https://sentry.io/security/": "Podaci o tvojoj privatnosti: https://sentry.io/security/",
+  "@Informations about your privacy: https://sentry.io/security/": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Allow sending bug reports with sentry.io": "Dozvoli slanje izvještaja o greškama sa sentry.io",
+  "@Allow sending bug reports with sentry.io": {
+    "type": "text",
+    "placeholders": {}
   }
 }
