@@ -43,9 +43,11 @@ extension LocalizedBody on Event {
       [MessageTypes.Image, MessageTypes.Sticker].contains(messageType) &&
       (kIsWeb ||
           (content['info'] is Map &&
+              content['info']['size'] is int &&
               content['info']['size'] < room.client.database.maxFileSize) ||
           (hasThumbnail &&
               content['info']['thumbnail_info'] is Map &&
+              content['info']['thumbnail_info']['size'] is int &&
               content['info']['thumbnail_info']['size'] <
                   room.client.database.maxFileSize) ||
           (content['url'] is String));
