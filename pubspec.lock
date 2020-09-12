@@ -187,8 +187,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "5863c8e168d796bcda3556409c46e27b71986862"
-      resolved-ref: "5863c8e168d796bcda3556409c46e27b71986862"
+      ref: cb1ec86b32260d5ce0365771ed14911996b7a4fe
+      resolved-ref: cb1ec86b32260d5ce0365771ed14911996b7a4fe
       url: "https://gitlab.com/famedly/famedlysdk.git"
     source: git
     version: "0.0.1"
@@ -422,6 +422,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.4"
+  isolate:
+    dependency: transitive
+    description:
+      name: isolate
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.3"
   js:
     dependency: transitive
     description:

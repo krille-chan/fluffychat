@@ -5,8 +5,12 @@
 - Use server-side generated thumbnails in cleartext rooms
 - Add option to send images in their original resolution
 - Add additional confirmation for sending files & share intents
+- Add option to opt-in to report issues / crashes to sentry
+- Write keys to online key backup, fully implementing online key backup
 ### Changes
 - Tapping links, pills, etc. now does stuff
+- Better handling of sending messages in bad network
+- Better recovery of "keys not cached"
 ### Fixes:
 - Various html rendering and url-ifying fixes
 - Added support for blurhashes
