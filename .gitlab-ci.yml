@@ -124,6 +124,7 @@ upload_to_fdroid_repo:
     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
+    - ssh-keyscan -t rsa fdroid.nordgedanken.dev >> ~/.ssh/known_hosts
   script:
     - export UPDATE_VERSION=$(pcregrep -o1 'version:\\s([0-9]*\\.[0-9]*\\.[0-9]*)\\+[0-9]*' pubspec.yaml)
     - mkdir -p upload
