@@ -1,4 +1,4 @@
-# Version 0.18.0 - 2020-09-??
+# Version 0.18.0 - 2020-09-13
 ### Features
 - Added translations: Armenian, Turkish, Chinese (Simplified), Estonian
 - Url-ify matrix identifiers
