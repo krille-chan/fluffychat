@@ -459,10 +459,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "You won't be able to disable the encryption anymore. Are you sure?": "Du wirst die Verschlüsselung nicht mehr ausstellen können. Bist Du sicher?",
-  "@You won't be able to disable the encryption anymore. Are you sure?": {
-    "type": "text",
-    "placeholders": {}
+  "You won't be able to disable the encryption anymore": {
+    "You won't be able to disable the encryption anymore. Are you sure?": "Du wirst die Verschlüsselung nicht mehr ausstellen können. Bist Du sicher?",
+    "@You won't be able to disable the encryption anymore. Are you sure?": {
+      "type": "text",
+      "placeholders": {}
+    }
   },
   "Encryption algorithm": "Verschlüsselungsalgorithmus",
   "@Encryption algorithm": {
@@ -632,10 +634,16 @@
     "type": "text",
     "placeholders": {}
   },
-  "is typing...": "schreibt...",
-  "@is typing...": {
-    "type": "text",
-    "placeholders": {}
+  "is typing": {
+    "": {
+      "": {
+        "is typing...": "schreibt...",
+        "@is typing...": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
   "Edit Jitsi instance": "Jitsi-Instanz ändern",
   "@Edit Jitsi instance": {
@@ -709,15 +717,27 @@
     "type": "text",
     "placeholders": {}
   },
-  "Loading... Please wait": "Lade... Bitte warten",
-  "@Loading... Please wait": {
-    "type": "text",
-    "placeholders": {}
+  "Loading": {
+    "": {
+      "": {
+        "Loading... Please wait": "Lade... Bitte warten",
+        "@Loading... Please wait": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
-  "Load more...": "Lade mehr...",
-  "@Load more...": {
-    "type": "text",
-    "placeholders": {}
+  "Load more": {
+    "": {
+      "": {
+        "Load more...": "Lade mehr...",
+        "@Load more...": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
   "loadCountMoreParticipants": "{count} weitere Teilnehmer*innen laden",
   "@loadCountMoreParticipants": {
@@ -773,10 +793,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "Please be aware that you need Pantalaimon to use end-to-end encryption for now.": "Bitte beachte, dass du Pantalaimon brauchst, um Ende-zu-Ende-Verschlüsselung benutzen zu können.",
-  "@Please be aware that you need Pantalaimon to use end-to-end encryption for now.": {
-    "type": "text",
-    "placeholders": {}
+  "Please be aware that you need Pantalaimon to use end-to-end encryption for now": {
+    "Please be aware that you need Pantalaimon to use end-to-end encryption for now.": "Bitte beachte, dass du Pantalaimon brauchst, um Ende-zu-Ende-Verschlüsselung benutzen zu können.",
+    "@Please be aware that you need Pantalaimon to use end-to-end encryption for now.": {
+      "type": "text",
+      "placeholders": {}
+    }
   },
   "New message in FluffyChat": "Neue Nachricht in FluffyChat",
   "@New message in FluffyChat": {
@@ -788,30 +810,42 @@
     "type": "text",
     "placeholders": {}
   },
-  "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": "Es sieht so aus als hättest du keine Google-Dienste auf deinem Gerät. Das ist eine gute Entscheidung für deine Privatsphäre! Um Push Benachrichtigungen in FluffyChat zu erhalten, empfehlen wir die Verwendung von microG: https://microg.org/",
-  "@It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": {
-    "type": "text",
-    "placeholders": {}
+  "It seems that you have no google services on your phone": {
+    " That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg": {
+      "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": "Es sieht so aus als hättest du keine Google-Dienste auf deinem Gerät. Das ist eine gute Entscheidung für deine Privatsphäre! Um Push Benachrichtigungen in FluffyChat zu erhalten, empfehlen wir die Verwendung von microG: https://microg.org/",
+      "@It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": {
+        "type": "text",
+        "placeholders": {}
+      }
+    }
   },
   "None": "Keiner",
   "@None": {
     "type": "text",
     "placeholders": {}
   },
-  "No emotes found. 😕": "Keine Emotes gefunden. 😕",
-  "@No emotes found. 😕": {
-    "type": "text",
-    "placeholders": {}
+  "No emotes found": {
+    "No emotes found. 😕": "Keine Emotes gefunden. 😕",
+    "@No emotes found. 😕": {
+      "type": "text",
+      "placeholders": {}
+    }
   },
   "No permission": "Keine Berechtigung",
   "@No permission": {
     "type": "text",
     "placeholders": {}
   },
-  "No rooms found...": "Keine Räume gefunden...",
-  "@No rooms found...": {
-    "type": "text",
-    "placeholders": {}
+  "No rooms found": {
+    "": {
+      "": {
+        "No rooms found...": "Keine Räume gefunden...",
+        "@No rooms found...": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
   "Not supported in web": "Wird in der Web-Version nicht unterstützt",
   "@Not supported in web": {
@@ -830,10 +864,16 @@
     "type": "text",
     "placeholders": {}
   },
-  "Oops something went wrong...": "Hoppla! Da ist etwas schief gelaufen ...",
-  "@Oops something went wrong...": {
-    "type": "text",
-    "placeholders": {}
+  "Oops something went wrong": {
+    "": {
+      "": {
+        "Oops something went wrong...": "Hoppla! Da ist etwas schief gelaufen ...",
+        "@Oops something went wrong...": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
   "Open camera": "Kamera öffnen",
   "@Open camera": {
@@ -1158,10 +1198,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "This room has been archived.": "Dieser Raum wurde archiviert.",
-  "@This room has been archived.": {
-    "type": "text",
-    "placeholders": {}
+  "This room has been archived": {
+    "This room has been archived.": "Dieser Raum wurde archiviert.",
+    "@This room has been archived.": {
+      "type": "text",
+      "placeholders": {}
+    }
   },
   "Thursday": "Donnerstag",
   "@Thursday": {
@@ -1327,20 +1369,28 @@
     "type": "text",
     "placeholders": {}
   },
-  "Welcome to the cutest instant messenger in the matrix network.": "Herzlich willkommen beim knuffigsten Instant Messenger im Matrix-Netwerk.",
-  "@Welcome to the cutest instant messenger in the matrix network.": {
-    "type": "text",
-    "placeholders": {}
+  "Welcome to the cutest instant messenger in the matrix network": {
+    "Welcome to the cutest instant messenger in the matrix network.": "Herzlich willkommen beim knuffigsten Instant Messenger im Matrix-Netzwerk.",
+    "@Welcome to the cutest instant messenger in the matrix network.": {
+      "type": "text",
+      "placeholders": {}
+    }
   },
   "Who is allowed to join this group": "Wer darf der Gruppe beitreten",
   "@Who is allowed to join this group": {
     "type": "text",
     "placeholders": {}
   },
-  "Write a message...": "Schreibe eine Nachricht ...",
-  "@Write a message...": {
-    "type": "text",
-    "placeholders": {}
+  "Write a message": {
+    "": {
+      "": {
+        "Write a message...": "Schreibe eine Nachricht ...",
+        "@Write a message...": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
   "Yes": "Ja",
   "@Yes": {
@@ -1487,12 +1537,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "Fluffychat kann das Online-Schlüssel-Backup noch nicht aktivieren. Bitte schalte es innerhalb von Element an.",
+  "noMegolmBootstrap": "Fluffychat kann das Online-Schlüssel-Backup noch nicht aktivieren. Bitte schalte es innerhalb von Riot an.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "Fluffychat kann Cross-Signing noch nicht einschalten. Bitte schalte es innerhalb Element an.",
+  "noCrossSignBootstrap": "Fluffychat kann Cross-Signing noch nicht einschalten. Bitte schalte es innerhalb Riot an.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -1633,15 +1683,19 @@
     "type": "text",
     "placeholders": {}
   },
-  "Informations about your privacy: https://sentry.io/security/": "Information über deine Privatsphäre: https://sentry.io/security/",
-  "@Informations about your privacy: https://sentry.io/security/": {
-    "type": "text",
-    "placeholders": {}
+  "Informations about your privacy: https://sentry": {
+    "Informations about your privacy: https://sentry.io/security/": "Information über deine Privatsphäre: https://sentry.io/security/",
+    "@Informations about your privacy: https://sentry.io/security/": {
+      "type": "text",
+      "placeholders": {}
+    }
   },
-  "Allow sending bug reports with sentry.io": "Erlaube das Senden von Fehlermeldungen via sentry.io",
-  "@Allow sending bug reports with sentry.io": {
-    "type": "text",
-    "placeholders": {}
+  "Allow sending bug reports with sentry": {
+    "Allow sending bug reports with sentry.io": "Erlaube das Senden von Fehlermeldungen via sentry.io",
+    "@Allow sending bug reports with sentry.io": {
+      "type": "text",
+      "placeholders": {}
+    }
   },
   "Pin": "Anpinnen",
   "@Pin": {
