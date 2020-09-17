@@ -23,7 +23,7 @@ abstract class FirebaseController {
   static const String CHANNEL_ID = 'fluffychat_push';
   static const String CHANNEL_NAME = 'FluffyChat push channel';
   static const String CHANNEL_DESCRIPTION = 'Push notifications for FluffyChat';
-  static const String APP_ID = 'chat.fluffy.fluffychat';
+  static const String APP_ID = 'chat.fluffy.fluffychat.experimental';
   static const String GATEWAY_URL = 'https://janian.de:7023/';
   static const String PUSHER_FORMAT = 'event_id_only';
 
@@ -149,21 +149,29 @@ abstract class FirebaseController {
         return null;
       }
       if (context != null && Matrix.of(context).activeRoomId == roomId) {
+        debugPrint('[Push] New clearing push');
         return null;
       }
+      debugPrint('[Push] New message received');
       final i18n =
           context == null ? L10n(Platform.localeName) : L10n.of(context);
 
       // Get the client
       Client client;
-      if (context != null) {
+      var tempClient = false;
+      try {
         client = Matrix.of(context).client;
-      } else {
+      } catch (_) {
+        client = null;
+      }
+      if (client == null) {
+        tempClient = true;
         final platform = kIsWeb ? 'Web' : Platform.operatingSystem;
         final clientName = 'FluffyChat $platform';
         client = Client(clientName);
         client.database = await getDatabase(client);
         client.connect();
+        debugPrint('[Push] Use a temp client');
         await client.onLoginStateChanged.stream
             .firstWhere((l) => l == LoginState.logged)
             .timeout(
@@ -174,10 +182,12 @@ abstract class FirebaseController {
       // Get the room
       var room = client.getRoomById(roomId);
       if (room == null) {
+        debugPrint('[Push] Wait for the room');
         await client.onRoomUpdate.stream
             .where((u) => u.id == roomId)
             .first
             .timeout(Duration(seconds: 5));
+        debugPrint('[Push] Room found');
         room = client.getRoomById(roomId);
         if (room == null) return null;
       }
@@ -185,10 +195,12 @@ abstract class FirebaseController {
       // Get the event
       var event = await client.database.getEventById(client.id, eventId, room);
       if (event == null) {
+        debugPrint('[Push] Wait for the event');
         final eventUpdate = await client.onEvent.stream
             .where((u) => u.content['event_id'] == eventId)
             .first
             .timeout(Duration(seconds: 5));
+        debugPrint('[Push] Event found');
         event = Event.fromJson(eventUpdate.content, room);
         if (room == null) return null;
       }
@@ -249,6 +261,12 @@ abstract class FirebaseController {
       await _flutterLocalNotificationsPlugin.show(
           0, room.getLocalizedDisplayname(i18n), body, platformChannelSpecifics,
           payload: roomId);
+
+      if (tempClient) {
+        await client.dispose();
+        client = null;
+        debugPrint('[Push] Temp client disposed');
+      }
     } catch (exception) {
       debugPrint('[Push] Error while processing notification: ' +
           exception.toString());
