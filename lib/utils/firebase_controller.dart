@@ -53,7 +53,10 @@ abstract class FirebaseController {
       }
       return;
     }
-    final pushers = await client.requestPushers();
+    final pushers = await client.requestPushers().catchError((e) {
+      debugPrint('[Push] Unable to request pushers: ${e.toString()}');
+      return [];
+    });
     final currentPushers = pushers.where((pusher) => pusher.pushkey == token);
     if (currentPushers.length == 1 &&
         currentPushers.first.kind == 'http' &&
@@ -76,7 +79,8 @@ abstract class FirebaseController {
           debugPrint('[Push] Remove legacy pusher for this device');
         }
       }
-      await client.setPusher(
+      await client
+          .setPusher(
         Pusher(
           token,
           APP_ID,
@@ -90,7 +94,11 @@ abstract class FirebaseController {
           kind: 'http',
         ),
         append: false,
-      );
+      )
+          .catchError((e) {
+        debugPrint('[Push] Unable to set pushers: ${e.toString()}');
+        return [];
+      });
     }
 
     Function goToRoom = (dynamic message) async {
