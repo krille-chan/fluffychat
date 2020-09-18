@@ -19,7 +19,6 @@ import '../utils/app_route.dart';
 
 class Matrix extends StatefulWidget {
   static const String callNamespace = 'chat.fluffy.jitsi_call';
-  static const String defaultHomeserver = 'tchncs.de';
 
   final Widget child;
 

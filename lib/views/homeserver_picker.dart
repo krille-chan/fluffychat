@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/matrix.dart';
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/utils/sentry_controller.dart';
@@ -12,7 +13,7 @@ class HomeserverPicker extends StatelessWidget {
   Future<void> _setHomeserverAction(BuildContext context) async {
     final homeserver = await SimpleDialogs(context).enterText(
         titleText: L10n.of(context).enterYourHomeserver,
-        hintText: Matrix.defaultHomeserver,
+        hintText: AppConfig.defaultHomeserver,
         prefixText: 'https://',
         keyboardType: TextInputType.url);
     if (homeserver?.isEmpty ?? true) return;
@@ -83,7 +84,7 @@ class HomeserverPicker extends StatelessWidget {
                       style: TextStyle(color: Colors.white, fontSize: 16),
                     ),
                     onPressed: () => _checkHomeserverAction(
-                        Matrix.defaultHomeserver, context),
+                        AppConfig.defaultHomeserver, context),
                   ),
                 ),
               ),
@@ -94,7 +95,7 @@ class HomeserverPicker extends StatelessWidget {
                   opacity: 0.75,
                   child: Text(
                     L10n.of(context).byDefaultYouWillBeConnectedTo(
-                        Matrix.defaultHomeserver),
+                        AppConfig.defaultHomeserver),
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 16,

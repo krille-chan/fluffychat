@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/settings_themes.dart';
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:fluffychat/views/settings_devices.dart';
 import 'package:flutter/foundation.dart';
@@ -481,8 +482,12 @@ class _SettingsState extends State<Settings> {
             ListTile(
               trailing: Icon(Icons.code),
               title: Text(L10n.of(context).sourceCode),
-              onTap: () => launch(
-                  'https://gitlab.com/ChristianPauly/fluffychat-flutter'),
+              onTap: () => showLicensePage(
+                context: context,
+                applicationIcon:
+                    Image.asset('assets/logo.png', width: 100, height: 100),
+                applicationName: AppConfig.applicationName,
+              ),
             ),
           ],
         ),
