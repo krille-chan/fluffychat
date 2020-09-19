@@ -176,6 +176,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "Add a group description":
             MessageLookupByLibrary.simpleMessage("Přidat popis skupiny"),
         "Admin": MessageLookupByLibrary.simpleMessage("Administrátor"),
+        "Allow sending bug reports with sentry.io":
+            MessageLookupByLibrary.simpleMessage(
+                "Umožňuje zasílání hlášení o chybách prostřednictvím sentry.io"),
         "Already have an account?":
             MessageLookupByLibrary.simpleMessage("Máte již účet?"),
         "Anyone can join":
@@ -206,6 +209,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Change your style":
             MessageLookupByLibrary.simpleMessage("Nastavte svůj styl"),
         "Changelog": MessageLookupByLibrary.simpleMessage("Historie změn"),
+        "Changes have been saved":
+            MessageLookupByLibrary.simpleMessage("Změny byly uloženy"),
         "Chat": MessageLookupByLibrary.simpleMessage("Diskuze"),
         "Chat details": MessageLookupByLibrary.simpleMessage("Detail diskuze"),
         "Choose a strong password":
@@ -300,6 +305,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Jak se máte?"),
         "ID": MessageLookupByLibrary.simpleMessage("ID"),
         "Identity": MessageLookupByLibrary.simpleMessage("Identita"),
+        "Informations about your privacy: https://sentry.io/security/":
+            MessageLookupByLibrary.simpleMessage(
+                "Informace o vašem soukromí: https://sentry.io/security/"),
         "Invite contact":
             MessageLookupByLibrary.simpleMessage("Pozvat kontakt"),
         "Invited": MessageLookupByLibrary.simpleMessage("Pozváni"),
@@ -340,6 +348,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Nová zpráva ve FluffyChatu"),
         "New private chat":
             MessageLookupByLibrary.simpleMessage("Nová soukromá diskuze"),
+        "No": MessageLookupByLibrary.simpleMessage("Ne"),
         "No emotes found. 😕": MessageLookupByLibrary.simpleMessage(
             "Žádné emotikony nebyly nalezeny. 😕"),
         "No permission":
@@ -404,8 +413,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "Send": MessageLookupByLibrary.simpleMessage("Odeslat"),
         "Send a message":
             MessageLookupByLibrary.simpleMessage("Odeslat zprávu"),
+        "Send audio": MessageLookupByLibrary.simpleMessage("Odeslat audio"),
         "Send file": MessageLookupByLibrary.simpleMessage("Odeslat soubor"),
         "Send image": MessageLookupByLibrary.simpleMessage("Odeslat obrázek"),
+        "Send original":
+            MessageLookupByLibrary.simpleMessage("Odeslat originál"),
+        "Send video": MessageLookupByLibrary.simpleMessage("Odeslat video"),
         "Set a profile picture":
             MessageLookupByLibrary.simpleMessage("Nastavit profilový obrázek"),
         "Set group description":

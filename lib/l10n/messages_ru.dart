@@ -178,6 +178,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "Add a group description":
             MessageLookupByLibrary.simpleMessage("Добавить описание группы"),
         "Admin": MessageLookupByLibrary.simpleMessage("Администратор"),
+        "Allow sending bug reports with sentry.io":
+            MessageLookupByLibrary.simpleMessage(
+                "Разрешить отправку отчетов об ошибках в sentry.io"),
         "Already have an account?":
             MessageLookupByLibrary.simpleMessage("Уже есть учётная запись?"),
         "Anyone can join":
@@ -208,6 +211,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Изменить фон чатов"),
         "Change your style": MessageLookupByLibrary.simpleMessage("Тема"),
         "Changelog": MessageLookupByLibrary.simpleMessage("Журнал изменений"),
+        "Changes have been saved":
+            MessageLookupByLibrary.simpleMessage("Изменения были сохранены"),
         "Chat": MessageLookupByLibrary.simpleMessage("Чат"),
         "Chat details": MessageLookupByLibrary.simpleMessage("Детали чата"),
         "Choose a strong password":
@@ -304,6 +309,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Как у вас сегодня дела?"),
         "ID": MessageLookupByLibrary.simpleMessage("ID"),
         "Identity": MessageLookupByLibrary.simpleMessage("Идентификация"),
+        "Informations about your privacy: https://sentry.io/security/":
+            MessageLookupByLibrary.simpleMessage(
+                "Информация о вашей конфиденциальности: https://sentry.io/security/"),
         "Invite contact":
             MessageLookupByLibrary.simpleMessage("Пригласить контакт"),
         "Invited": MessageLookupByLibrary.simpleMessage("Приглашён"),
@@ -346,6 +354,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Новое сообщение во FluffyChat"),
         "New private chat":
             MessageLookupByLibrary.simpleMessage("Новый приватный чат"),
+        "No": MessageLookupByLibrary.simpleMessage("Нет"),
         "No emotes found. 😕":
             MessageLookupByLibrary.simpleMessage("Эмодзи не найдены 😕"),
         "No permission":
@@ -410,9 +419,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "Send": MessageLookupByLibrary.simpleMessage("Отправить"),
         "Send a message":
             MessageLookupByLibrary.simpleMessage("Отправить сообщение"),
+        "Send audio": MessageLookupByLibrary.simpleMessage("Отправить аудио"),
         "Send file": MessageLookupByLibrary.simpleMessage("Отправить файл"),
         "Send image":
             MessageLookupByLibrary.simpleMessage("Отправить изображение"),
+        "Send original":
+            MessageLookupByLibrary.simpleMessage("Отправить оригинал"),
+        "Send video": MessageLookupByLibrary.simpleMessage("Отправить видео"),
         "Set a profile picture": MessageLookupByLibrary.simpleMessage(
             "Установить изображение профиля"),
         "Set group description":

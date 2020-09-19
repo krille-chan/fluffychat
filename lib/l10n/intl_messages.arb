@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-09-04T14:58:35.809079",
+  "@@last_modified": "2020-09-19T15:27:28.862887",
   "About": "About",
   "@About": {
     "type": "text",
@@ -667,6 +667,21 @@
   },
   "Identity": "Identity",
   "@Identity": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Ignored users": "Ignored users",
+  "@Ignored users": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Ignore username": "Ignore username",
+  "@Ignore username": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "You can ignore users who are disturbing you. You won't be able to receive any messages or room invites from the users on your personal ignore list.": "You can ignore users who are disturbing you. You won't be able to receive any messages or room invites from the users on your personal ignore list.",
+  "@You can ignore users who are disturbing you. You won't be able to receive any messages or room invites from the users on your personal ignore list.": {
     "type": "text",
     "placeholders": {}
   },

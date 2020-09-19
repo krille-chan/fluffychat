@@ -1,3 +1,7 @@
+# Version 0.19.0 - 2020-??-??
+### Features
+- Implemented ignore list
+
 # Version 0.18.0 - 2020-09-13
 ### Features
 - Added translations: Armenian, Turkish, Chinese (Simplified), Estonian

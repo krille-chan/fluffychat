@@ -448,6 +448,13 @@ class L10n extends MatrixLocalizations {
 
   String get identity => Intl.message("Identity");
 
+  String get ignoredUsers => Intl.message('Ignored users');
+
+  String get ignoreUsername => Intl.message('Ignore username');
+
+  String get ignoreListDescription => Intl.message(
+      "You can ignore users who are disturbing you. You won't be able to receive any messages or room invites from the users on your personal ignore list.");
+
   String get incorrectPassphraseOrKey =>
       Intl.message("Incorrect passphrase or recovery key",
           name: "incorrectPassphraseOrKey");

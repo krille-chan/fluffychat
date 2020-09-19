@@ -179,6 +179,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "Add a group description":
             MessageLookupByLibrary.simpleMessage("Lisa rühma kirjeldus"),
         "Admin": MessageLookupByLibrary.simpleMessage("Peakasutaja"),
+        "Allow sending bug reports with sentry.io":
+            MessageLookupByLibrary.simpleMessage(
+                "Luba veateadete saatmist sentry.io vahendusel"),
         "Already have an account?": MessageLookupByLibrary.simpleMessage(
             "Sul juba on kasutajakonto olemas?"),
         "Anyone can join":
@@ -210,6 +213,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Change your style":
             MessageLookupByLibrary.simpleMessage("Muuda oma stiili"),
         "Changelog": MessageLookupByLibrary.simpleMessage("Muudatuste logi"),
+        "Changes have been saved":
+            MessageLookupByLibrary.simpleMessage("Salvestasin muudatused"),
         "Chat": MessageLookupByLibrary.simpleMessage("Vestlus"),
         "Chat details": MessageLookupByLibrary.simpleMessage("Vestluse teave"),
         "Choose a strong password":
@@ -303,6 +308,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Kuidas sul täna läheb?"),
         "ID": MessageLookupByLibrary.simpleMessage("ID"),
         "Identity": MessageLookupByLibrary.simpleMessage("Identiteet"),
+        "Informations about your privacy: https://sentry.io/security/":
+            MessageLookupByLibrary.simpleMessage(
+                "Teave sinu privaatsuse kohta: https://sentry.io/security/"),
         "Invite contact":
             MessageLookupByLibrary.simpleMessage("Kutsu neid, keda sa tead"),
         "Invited": MessageLookupByLibrary.simpleMessage("Kutsutud"),
@@ -343,6 +351,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Uus sõnum FluffyChat\'i vahendusel"),
         "New private chat":
             MessageLookupByLibrary.simpleMessage("Uus privaatne vestlus"),
+        "No": MessageLookupByLibrary.simpleMessage("Ei"),
         "No emotes found. 😕": MessageLookupByLibrary.simpleMessage(
             "Ühtegi emotsioonitegevust ei leidunud. 😕"),
         "No permission":
@@ -404,8 +413,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Nähtud ammu aega tagasi"),
         "Send": MessageLookupByLibrary.simpleMessage("Saada"),
         "Send a message": MessageLookupByLibrary.simpleMessage("Saada sõnum"),
+        "Send audio": MessageLookupByLibrary.simpleMessage("Saada helifail"),
         "Send file": MessageLookupByLibrary.simpleMessage("Saada fail"),
         "Send image": MessageLookupByLibrary.simpleMessage("Saada pilt"),
+        "Send original":
+            MessageLookupByLibrary.simpleMessage("Saada algupärane fail"),
+        "Send video": MessageLookupByLibrary.simpleMessage("Saada videofail"),
         "Set a profile picture":
             MessageLookupByLibrary.simpleMessage("Seadista profiilipilt"),
         "Set group description":

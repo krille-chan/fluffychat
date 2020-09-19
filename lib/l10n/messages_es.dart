@@ -176,6 +176,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "Add a group description": MessageLookupByLibrary.simpleMessage(
             "Agregar una descripción al grupo"),
         "Admin": MessageLookupByLibrary.simpleMessage("Administrador"),
+        "Allow sending bug reports with sentry.io":
+            MessageLookupByLibrary.simpleMessage(
+                "Permite el envió de informes de errores con sentry.io"),
         "Already have an account?":
             MessageLookupByLibrary.simpleMessage("¿Ya tienes una cuenta?"),
         "Anyone can join":
@@ -205,6 +208,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Cambia tu estilo"),
         "Changelog":
             MessageLookupByLibrary.simpleMessage("Registro de cambios"),
+        "Changes have been saved":
+            MessageLookupByLibrary.simpleMessage("Los cambios se han guardado"),
         "Chat": MessageLookupByLibrary.simpleMessage("Chat"),
         "Chat details":
             MessageLookupByLibrary.simpleMessage("Detalles del chat"),
@@ -303,6 +308,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("¿Cómo estás hoy?"),
         "ID": MessageLookupByLibrary.simpleMessage("Identificación"),
         "Identity": MessageLookupByLibrary.simpleMessage("Identidad"),
+        "Informations about your privacy: https://sentry.io/security/":
+            MessageLookupByLibrary.simpleMessage(
+                "Informacion sobre tu privacidad: https://sentry.io/security/"),
         "Invite contact":
             MessageLookupByLibrary.simpleMessage("Invitar contacto"),
         "Invited": MessageLookupByLibrary.simpleMessage("Invitado"),
@@ -343,6 +351,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Nuevo mensaje en FluffyChat"),
         "New private chat":
             MessageLookupByLibrary.simpleMessage("Nuevo chat privado"),
+        "No": MessageLookupByLibrary.simpleMessage("No"),
         "No emotes found. 😕":
             MessageLookupByLibrary.simpleMessage("Ningún emote encontrado. 😕"),
         "No permission":
@@ -406,8 +415,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "Send": MessageLookupByLibrary.simpleMessage("Enviar"),
         "Send a message":
             MessageLookupByLibrary.simpleMessage("Enviar un mensaje"),
+        "Send audio": MessageLookupByLibrary.simpleMessage("Enviar audio"),
         "Send file": MessageLookupByLibrary.simpleMessage("Enviar un archivo"),
         "Send image": MessageLookupByLibrary.simpleMessage("Enviar una imagen"),
+        "Send original":
+            MessageLookupByLibrary.simpleMessage("Enviar el original"),
+        "Send video": MessageLookupByLibrary.simpleMessage("Enviar video"),
         "Set a profile picture": MessageLookupByLibrary.simpleMessage(
             "Establecer una foto de perfil"),
         "Set group description": MessageLookupByLibrary.simpleMessage(

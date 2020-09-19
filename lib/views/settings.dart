@@ -5,6 +5,7 @@ import 'package:fluffychat/components/settings_themes.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:fluffychat/views/settings_devices.dart';
+import 'package:fluffychat/views/settings_ignore_list.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -330,6 +331,16 @@ class _SettingsState extends State<Settings> {
                 AppRoute.defaultRoute(
                   context,
                   DevicesSettingsView(),
+                ),
+              ),
+            ),
+            ListTile(
+              trailing: Icon(Icons.block),
+              title: Text(L10n.of(context).ignoredUsers),
+              onTap: () async => await Navigator.of(context).push(
+                AppRoute.defaultRoute(
+                  context,
+                  SettingsIgnoreListView(),
                 ),
               ),
             ),

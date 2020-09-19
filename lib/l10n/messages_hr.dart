@@ -176,6 +176,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "Add a group description":
             MessageLookupByLibrary.simpleMessage("Dodaj opis grupe"),
         "Admin": MessageLookupByLibrary.simpleMessage("Administrator"),
+        "Allow sending bug reports with sentry.io":
+            MessageLookupByLibrary.simpleMessage(
+                "Dozvoli slanje izvještaja o greškama sa sentry.io"),
         "Already have an account?":
             MessageLookupByLibrary.simpleMessage("Već imaš račun?"),
         "Anyone can join":
@@ -206,6 +209,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Change your style":
             MessageLookupByLibrary.simpleMessage("Promijeni svoj stil"),
         "Changelog": MessageLookupByLibrary.simpleMessage("Zapis promjena"),
+        "Changes have been saved":
+            MessageLookupByLibrary.simpleMessage("Promjene nisu spremljene"),
         "Chat": MessageLookupByLibrary.simpleMessage("Chat"),
         "Chat details": MessageLookupByLibrary.simpleMessage("Detalji chata"),
         "Choose a strong password":
@@ -299,6 +304,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Kako si danas?"),
         "ID": MessageLookupByLibrary.simpleMessage("ID"),
         "Identity": MessageLookupByLibrary.simpleMessage("Identitet"),
+        "Informations about your privacy: https://sentry.io/security/":
+            MessageLookupByLibrary.simpleMessage(
+                "Podaci o tvojoj privatnosti: https://sentry.io/security/"),
         "Invite contact":
             MessageLookupByLibrary.simpleMessage("Pozovi kontakt"),
         "Invited": MessageLookupByLibrary.simpleMessage("Pozvan/a"),
@@ -340,6 +348,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Nova poruka u FluffyChatu"),
         "New private chat":
             MessageLookupByLibrary.simpleMessage("Novi privatni chat"),
+        "No": MessageLookupByLibrary.simpleMessage("Ne"),
         "No emotes found. 😕":
             MessageLookupByLibrary.simpleMessage("Nema emota. 😕"),
         "No permission": MessageLookupByLibrary.simpleMessage("Bez dozvole"),
@@ -398,8 +407,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "Send": MessageLookupByLibrary.simpleMessage("Pošalji"),
         "Send a message":
             MessageLookupByLibrary.simpleMessage("Pošalji poruku"),
+        "Send audio":
+            MessageLookupByLibrary.simpleMessage("Pošalji audio datoteku"),
         "Send file": MessageLookupByLibrary.simpleMessage("Pošalji datoteku"),
         "Send image": MessageLookupByLibrary.simpleMessage("Pošalji sliku"),
+        "Send original":
+            MessageLookupByLibrary.simpleMessage("Pošalji original"),
+        "Send video":
+            MessageLookupByLibrary.simpleMessage("Pošalji video datoteku"),
         "Set a profile picture":
             MessageLookupByLibrary.simpleMessage("Postavi sliku profila"),
         "Set group description":

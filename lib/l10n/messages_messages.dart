@@ -302,6 +302,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("How are you today?"),
         "ID": MessageLookupByLibrary.simpleMessage("ID"),
         "Identity": MessageLookupByLibrary.simpleMessage("Identity"),
+        "Ignore username":
+            MessageLookupByLibrary.simpleMessage("Ignore username"),
+        "Ignored users": MessageLookupByLibrary.simpleMessage("Ignored users"),
         "Informations about your privacy: https://sentry.io/security/":
             MessageLookupByLibrary.simpleMessage(
                 "Informations about your privacy: https://sentry.io/security/"),
@@ -477,6 +480,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "You are no longer participating in this chat":
             MessageLookupByLibrary.simpleMessage(
                 "You are no longer participating in this chat"),
+        "You can ignore users who are disturbing you. You won\'t be able to receive any messages or room invites from the users on your personal ignore list.":
+            MessageLookupByLibrary.simpleMessage(
+                "You can ignore users who are disturbing you. You won\'t be able to receive any messages or room invites from the users on your personal ignore list."),
         "You cannot invite yourself":
             MessageLookupByLibrary.simpleMessage("You cannot invite yourself"),
         "You have been banned from this chat":
