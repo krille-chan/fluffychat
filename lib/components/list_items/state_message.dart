@@ -1,4 +1,3 @@
-import 'package:bubble/bubble.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:flutter/material.dart';
@@ -14,12 +13,14 @@ class StateMessage extends StatelessWidget {
       padding: const EdgeInsets.only(
         left: 8.0,
         right: 8.0,
-        bottom: 8.0,
+        bottom: 16.0,
       ),
-      child: Bubble(
-        elevation: 0,
-        color: Theme.of(context).backgroundColor.withOpacity(0.66),
+      child: Container(
         alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: Theme.of(context).backgroundColor.withOpacity(0.66),
+          borderRadius: BorderRadius.circular(7),
+        ),
         child: Text(
           event.getLocalizedBody(L10n.of(context)),
           textAlign: TextAlign.center,

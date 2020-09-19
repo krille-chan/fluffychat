@@ -1,4 +1,3 @@
-import 'package:bubble/bubble.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/message_content.dart';
@@ -9,7 +8,6 @@ import 'package:fluffychat/utils/event_extension.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:flutter/material.dart';
 
-import '../adaptive_page_layout.dart';
 import '../avatar.dart';
 import '../matrix.dart';
 import '../message_reactions.dart';
@@ -56,9 +54,6 @@ class Message extends StatelessWidget {
             [EventTypes.Message, EventTypes.Sticker].contains(nextEvent.type)
         ? nextEvent.sender.id == event.sender.id
         : false;
-    var nip = sameSender
-        ? BubbleNip.no
-        : ownMessage ? BubbleNip.rightBottom : BubbleNip.leftBottom;
     var textColor = ownMessage
         ? Colors.white
         : Theme.of(context).brightness == Brightness.dark
@@ -70,7 +65,7 @@ class Message extends StatelessWidget {
     final displayEvent = event.getDisplayEvent(timeline);
 
     if (event.showThumbnail) {
-      color = Theme.of(context).scaffoldBackgroundColor.withOpacity(0.66);
+      color = Theme.of(context).scaffoldBackgroundColor;
       textColor = Theme.of(context).textTheme.bodyText2.color;
     } else if (ownMessage) {
       color = displayEvent.status == -1
@@ -78,18 +73,19 @@ class Message extends StatelessWidget {
           : Theme.of(context).primaryColor;
     }
 
+    final radius = 16.0;
+
     var rowChildren = <Widget>[
       Expanded(
-        child: Bubble(
-          elevation: 0,
-          radius: Radius.circular(8),
+        child: Container(
           alignment: alignment,
-          margin: BubbleEdges.symmetric(horizontal: 4),
-          color: color,
-          nip: nip,
           child: Container(
-            constraints:
-                BoxConstraints(maxWidth: AdaptivePageLayout.defaultMinWidth),
+            margin: const EdgeInsets.symmetric(horizontal: 8),
+            padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+            decoration: BoxDecoration(
+              color: color,
+              borderRadius: BorderRadius.circular(radius),
+            ),
             child: Stack(
               children: <Widget>[
                 Column(
@@ -220,15 +216,12 @@ class Message extends StatelessWidget {
       onTap: !useMouse && longPressSelect ? () => null : () => onSelect(event),
       splashColor: Theme.of(context).primaryColor.withAlpha(100),
       onLongPress: !longPressSelect ? null : () => onSelect(event),
-      child: AnimatedContainer(
-        duration: Duration(milliseconds: 300),
-        curve: Curves.fastOutSlowIn,
+      child: Container(
         color: selected
             ? Theme.of(context).primaryColor.withAlpha(100)
             : Theme.of(context).primaryColor.withAlpha(0),
         child: Padding(
-          padding: EdgeInsets.only(
-              left: 8.0, right: 8.0, bottom: sameSender ? 4.0 : 8.0),
+          padding: EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0),
           child: container,
         ),
       ),
@@ -262,22 +255,25 @@ class _MetaRow extends StatelessWidget {
             style: TextStyle(
               fontSize: 11,
               fontWeight: FontWeight.bold,
-              color: displayname.color,
+              color: displayname.color.withAlpha(200),
             ),
           ),
         if (showDisplayname) SizedBox(width: 4),
         Text(
           event.originServerTs.localizedTime(context),
           style: TextStyle(
-            color: color,
+            color: color.withAlpha(200),
             fontSize: 11,
           ),
         ),
         if (event.hasAggregatedEvents(timeline, RelationshipTypes.Edit))
-          Icon(
-            Icons.edit,
-            size: 12,
-            color: color,
+          Padding(
+            padding: const EdgeInsets.only(left: 2.0),
+            child: Icon(
+              Icons.edit,
+              size: 12,
+              color: color,
+            ),
           ),
         if (ownMessage) SizedBox(width: 2),
         if (ownMessage)

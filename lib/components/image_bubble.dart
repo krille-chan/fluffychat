@@ -1,4 +1,3 @@
-import 'package:bubble/bubble.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/views/image_view.dart';
@@ -71,11 +70,8 @@ class _ImageBubbleState extends State<ImageBubble> {
 
   @override
   Widget build(BuildContext context) {
-    return Bubble(
-      padding: BubbleEdges.all(0),
-      radius: Radius.circular(widget.radius),
-      color: widget.backgroundColor ?? Theme.of(context).secondaryHeaderColor,
-      elevation: 0,
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(widget.radius),
       child: Container(
         height: widget.maxSize ? 300 : null,
         width: widget.maxSize ? 400 : null,

@@ -71,13 +71,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1"
-  bubble:
-    dependency: "direct main"
-    description:
-      name: bubble
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.1.9+1"
   cached_network_image:
     dependency: "direct main"
     description:
@@ -187,8 +180,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "510de0530434e392a281f197f77a9c49349e7fc2"
-      resolved-ref: "510de0530434e392a281f197f77a9c49349e7fc2"
+      ref: "864cbfa9068f5bb285336ca73ab2551204e62044"
+      resolved-ref: "864cbfa9068f5bb285336ca73ab2551204e62044"
       url: "https://gitlab.com/famedly/famedlysdk.git"
     source: git
     version: "0.0.1"
