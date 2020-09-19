@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/avatar.dart';
 import 'package:fluffychat/components/chat_settings_popup_menu.dart';
@@ -24,6 +25,7 @@ import 'package:memoryfilepicker/memoryfilepicker.dart';
 import 'package:pedantic/pedantic.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:file_picker_platform_interface/file_picker_platform_interface.dart';
+import 'package:scroll_to_index/scroll_to_index.dart';
 
 import 'chat_details.dart';
 import 'chat_list.dart';
@@ -33,8 +35,9 @@ import '../utils/matrix_file_extension.dart';
 
 class ChatView extends StatelessWidget {
   final String id;
+  final String scrollToEventId;
 
-  const ChatView(this.id, {Key key}) : super(key: key);
+  const ChatView(this.id, {Key key, this.scrollToEventId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,15 +47,16 @@ class ChatView extends StatelessWidget {
       firstScaffold: ChatList(
         activeChat: id,
       ),
-      secondScaffold: _Chat(id),
+      secondScaffold: _Chat(id, scrollToEventId: scrollToEventId),
     );
   }
 }
 
 class _Chat extends StatefulWidget {
   final String id;
+  final String scrollToEventId;
 
-  const _Chat(this.id, {Key key}) : super(key: key);
+  const _Chat(this.id, {Key key, this.scrollToEventId}) : super(key: key);
 
   @override
   _ChatState createState() => _ChatState();
@@ -67,7 +71,7 @@ class _ChatState extends State<_Chat> {
 
   String seenByText = '';
 
-  final ScrollController _scrollController = ScrollController();
+  final AutoScrollController _scrollController = AutoScrollController();
 
   FocusNode inputFocus = FocusNode();
 
@@ -101,28 +105,33 @@ class _ChatState extends State<_Chat> {
         timeline.requestHistory(historyCount: _loadHistoryCount),
       );
 
-      if (mounted) setState(() => _loadingHistory = false);
+      // we do NOT setState() here as then the event order will be wrong.
+      // instead, we just set our variable to false, and rely on timeline update to set the
+      // new state, thus triggering a re-render, for us
+      _loadingHistory = false;
+    }
+  }
+
+  void _updateScrollController() {
+    if (_scrollController.position.pixels ==
+            _scrollController.position.maxScrollExtent &&
+        timeline.events.isNotEmpty &&
+        timeline.events[timeline.events.length - 1].type !=
+            EventTypes.RoomCreate) {
+      requestHistory();
+    }
+    if (_scrollController.position.pixels > 0 &&
+        showScrollDownButton == false) {
+      setState(() => showScrollDownButton = true);
+    } else if (_scrollController.position.pixels == 0 &&
+        showScrollDownButton == true) {
+      setState(() => showScrollDownButton = false);
     }
   }
 
   @override
   void initState() {
-    _scrollController.addListener(() async {
-      if (_scrollController.position.pixels ==
-              _scrollController.position.maxScrollExtent &&
-          timeline.events.isNotEmpty &&
-          timeline.events[timeline.events.length - 1].type !=
-              EventTypes.RoomCreate) {
-        requestHistory();
-      }
-      if (_scrollController.position.pixels > 0 &&
-          showScrollDownButton == false) {
-        setState(() => showScrollDownButton = true);
-      } else if (_scrollController.position.pixels == 0 &&
-          showScrollDownButton == true) {
-        setState(() => showScrollDownButton = false);
-      }
-    });
+    _scrollController.addListener(() => _updateScrollController);
 
     super.initState();
   }
@@ -156,12 +165,22 @@ class _ChatState extends State<_Chat> {
     }
   }
 
-  Future<bool> getTimeline() async {
+  Future<bool> getTimeline(BuildContext context) async {
     if (timeline == null) {
       timeline = await room.getTimeline(onUpdate: updateView);
       if (timeline.events.isNotEmpty) {
         unawaited(room.sendReadReceipt(timeline.events.first.eventId));
       }
+
+      // when the scroll controller is attached we want to scroll to an event id, if specified
+      // and update the scroll controller...which will trigger a request history, if the
+      // "load more" button is visible on the screen
+      SchedulerBinding.instance.addPostFrameCallback((_) async {
+        if (widget.scrollToEventId != null) {
+          _scrollToEventId(widget.scrollToEventId, context: context);
+        }
+        _updateScrollController();
+      });
     }
     updateView();
     return true;
@@ -315,6 +334,66 @@ class _ChatState extends State<_Chat> {
     });
     inputFocus.requestFocus();
   }
+
+  void _scrollToEventId(String eventId, {BuildContext context}) async {
+    var eventIndex =
+        getFilteredEvents().indexWhere((e) => e.eventId == eventId);
+    if (eventIndex == -1) {
+      // event id not found...maybe we can fetch it?
+      // the try...finally is here to start and close the loading dialog reliably
+      try {
+        if (context != null) {
+          SimpleDialogs(context).showLoadingDialog(context);
+        }
+        // okay, we first have to fetch if the event is in the room
+        try {
+          final event = await timeline.getEventById(eventId);
+          if (event == null) {
+            // event is null...meaning something is off
+            return;
+          }
+        } catch (err) {
+          if (err is MatrixException && err.errcode == 'M_NOT_FOUND') {
+            // event wasn't found, as the server gave a 404 or something
+            return;
+          }
+          rethrow;
+        }
+        // okay, we know that the event *is* in the room
+        while (eventIndex == -1) {
+          if (!_canLoadMore) {
+            // we can't load any more events but still haven't found ours yet...better stop here
+            return;
+          }
+          try {
+            await timeline.requestHistory(historyCount: _loadHistoryCount);
+          } catch (err) {
+            if (err is TimeoutException) {
+              // loading the history timed out...so let's do nothing
+              return;
+            }
+            rethrow;
+          }
+          eventIndex =
+              getFilteredEvents().indexWhere((e) => e.eventId == eventId);
+        }
+      } finally {
+        if (context != null) {
+          Navigator.of(context)?.pop();
+        }
+      }
+    }
+    await _scrollController.scrollToIndex(eventIndex,
+        preferPosition: AutoScrollPosition.middle);
+    _updateScrollController();
+  }
+
+  List<Event> getFilteredEvents() => timeline.events
+      .where((e) =>
+          ![RelationshipTypes.Edit, RelationshipTypes.Reaction]
+              .contains(e.relationshipType) &&
+          e.type != 'm.reaction')
+      .toList();
 
   @override
   Widget build(BuildContext context) {
@@ -484,7 +563,7 @@ class _ChatState extends State<_Chat> {
               ConnectionStatusHeader(),
               Expanded(
                 child: FutureBuilder<bool>(
-                  future: getTimeline(),
+                  future: getTimeline(context),
                   builder: (BuildContext context, snapshot) {
                     if (!snapshot.hasData) {
                       return Center(
@@ -500,14 +579,7 @@ class _ChatState extends State<_Chat> {
                       room.sendReadReceipt(timeline.events.first.eventId);
                     }
 
-                    final filteredEvents = timeline.events
-                        .where((e) =>
-                            ![
-                              RelationshipTypes.Edit,
-                              RelationshipTypes.Reaction
-                            ].contains(e.relationshipType) &&
-                            e.type != 'm.reaction')
-                        .toList();
+                    final filteredEvents = getFilteredEvents();
 
                     return ListView.builder(
                         padding: EdgeInsets.symmetric(
@@ -570,34 +642,48 @@ class _ChatState extends State<_Chat> {
                                         bottom: 8,
                                       ),
                                     )
-                                  : Message(filteredEvents[i - 1],
-                                      onAvatarTab: (Event event) {
-                                      sendController.text +=
-                                          ' ${event.senderId}';
-                                    }, onSelect: (Event event) {
-                                      if (!event.redacted) {
-                                        if (selectedEvents.contains(event)) {
-                                          setState(
-                                            () => selectedEvents.remove(event),
-                                          );
-                                        } else {
-                                          setState(
-                                            () => selectedEvents.add(event),
-                                          );
-                                        }
-                                        selectedEvents.sort(
-                                          (a, b) => a.originServerTs
-                                              .compareTo(b.originServerTs),
-                                        );
-                                      }
-                                    },
-                                      longPressSelect: selectedEvents.isEmpty,
-                                      selected: selectedEvents
-                                          .contains(filteredEvents[i - 1]),
-                                      timeline: timeline,
-                                      nextEvent: i >= 2
-                                          ? filteredEvents[i - 2]
-                                          : null);
+                                  : AutoScrollTag(
+                                      key: ValueKey(i - 1),
+                                      index: i - 1,
+                                      controller: _scrollController,
+                                      child: Message(filteredEvents[i - 1],
+                                          onAvatarTab: (Event event) {
+                                            sendController.text +=
+                                                ' ${event.senderId}';
+                                          },
+                                          onSelect: (Event event) {
+                                            if (!event.redacted) {
+                                              if (selectedEvents
+                                                  .contains(event)) {
+                                                setState(
+                                                  () => selectedEvents
+                                                      .remove(event),
+                                                );
+                                              } else {
+                                                setState(
+                                                  () =>
+                                                      selectedEvents.add(event),
+                                                );
+                                              }
+                                              selectedEvents.sort(
+                                                (a, b) => a.originServerTs
+                                                    .compareTo(
+                                                        b.originServerTs),
+                                              );
+                                            }
+                                          },
+                                          scrollToEventId: (String eventId) =>
+                                              _scrollToEventId(eventId,
+                                                  context: context),
+                                          longPressSelect:
+                                              selectedEvents.isEmpty,
+                                          selected: selectedEvents
+                                              .contains(filteredEvents[i - 1]),
+                                          timeline: timeline,
+                                          nextEvent: i >= 2
+                                              ? filteredEvents[i - 2]
+                                              : null),
+                                    );
                         });
                   },
                 ),

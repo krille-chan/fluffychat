@@ -5,6 +5,7 @@ import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/views/chat.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'matrix_identifier_string_extension.dart';
 
 class UrlLauncher {
   final String url;
@@ -23,51 +24,79 @@ class UrlLauncher {
     final matrix = Matrix.of(context);
     final identifier = url.replaceAll('https://matrix.to/#/', '');
     if (identifier[0] == '#' || identifier[0] == '!') {
-      var room = matrix.client.getRoomByAlias(identifier);
-      room ??= matrix.client.getRoomById(identifier);
+      // sometimes we have identifiers which have an event id and additional query parameters
+      // we want to separate those.
+      final identityParts = identifier.parseIdentifierIntoParts();
+      if (identityParts == null) {
+        return; // no match, nothing to do
+      }
+      final roomIdOrAlias = identityParts.roomIdOrAlias;
+      final event = identityParts.eventId;
+      final query = identityParts.queryString;
+      var room = matrix.client.getRoomByAlias(roomIdOrAlias) ??
+          matrix.client.getRoomById(roomIdOrAlias);
       var roomId = room?.id;
-      var servers = <String>[];
-      if (room == null && identifier == '#') {
+      // we make the servers a set and later on convert to a list, so that we can easily
+      // deduplicate servers added via alias lookup and query parameter
+      var servers = <String>{};
+      if (room == null && roomIdOrAlias == '#') {
         // we were unable to find the room locally...so resolve it
         final response =
             await SimpleDialogs(context).tryRequestWithLoadingDialog(
-          matrix.client.requestRoomAliasInformations(identifier),
+          matrix.client.requestRoomAliasInformations(roomIdOrAlias),
         );
         if (response != false) {
           roomId = response.roomId;
-          servers = response.servers;
+          servers.addAll(response.servers);
           room = matrix.client.getRoomById(roomId);
+        }
+      }
+      if (query != null) {
+        // the query information might hold additional servers to try, so let's try them!
+        // as there might be multiple "via" tags we can't just use Uri.splitQueryString, we need to do our own thing
+        for (final parameter in query.split('&')) {
+          final index = parameter.indexOf('=');
+          if (index == -1) {
+            continue;
+          }
+          if (Uri.decodeQueryComponent(parameter.substring(0, index)) !=
+              'via') {
+            continue;
+          }
+          servers.add(Uri.decodeQueryComponent(parameter.substring(index + 1)));
         }
       }
       if (room != null) {
         // we have the room, so....just open it!
         await Navigator.pushAndRemoveUntil(
           context,
-          AppRoute.defaultRoute(context, ChatView(room.id)),
+          AppRoute.defaultRoute(
+              context, ChatView(room.id, scrollToEventId: event)),
           (r) => r.isFirst,
         );
         return;
       }
-      if (identifier == '!') {
-        roomId = identifier;
+      if (roomIdOrAlias[0] == '!') {
+        roomId = roomIdOrAlias;
       }
       if (roomId == null) {
         // we haven't found this room....so let's ignore it
         return;
       }
       if (await SimpleDialogs(context)
-          .askConfirmation(titleText: 'Join room $identifier')) {
+          .askConfirmation(titleText: 'Join room $roomIdOrAlias')) {
         final response =
             await SimpleDialogs(context).tryRequestWithLoadingDialog(
           matrix.client.joinRoomOrAlias(
-            Uri.encodeComponent(roomId),
-            servers: servers,
+            Uri.encodeComponent(roomIdOrAlias),
+            servers: servers.toList(),
           ),
         );
         if (response == false) return;
         await Navigator.pushAndRemoveUntil(
           context,
-          AppRoute.defaultRoute(context, ChatView(response['room_id'])),
+          AppRoute.defaultRoute(
+              context, ChatView(response['room_id'], scrollToEventId: event)),
           (r) => r.isFirst,
         );
       }

@@ -1,6 +1,10 @@
 # Version 0.19.0 - 2020-??-??
 ### Features
 - Implemented ignore list
+- Jump to events in timeline: When tapping on a reply and when tapping a matrix.to link
+### Fixes
+- Timeline randomly resorting while more history is being fetched
+- Automatically request history if the "load more" button is on the screen
 
 # Version 0.18.0 - 2020-09-13
 ### Features

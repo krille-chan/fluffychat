@@ -20,6 +20,7 @@ class Message extends StatelessWidget {
   final Event nextEvent;
   final Function(Event) onSelect;
   final Function(Event) onAvatarTab;
+  final Function(String) scrollToEventId;
   final bool longPressSelect;
   final bool selected;
   final Timeline timeline;
@@ -29,6 +30,7 @@ class Message extends StatelessWidget {
       this.longPressSelect,
       this.onSelect,
       this.onAvatarTab,
+      this.scrollToEventId,
       this.selected,
       this.timeline});
 
@@ -110,10 +112,19 @@ class Message extends StatelessWidget {
                                   status: 1,
                                   originServerTs: DateTime.now(),
                                 );
-                          return Container(
-                            margin: EdgeInsets.symmetric(vertical: 4.0),
-                            child: ReplyContent(replyEvent,
-                                lightText: ownMessage, timeline: timeline),
+                          return InkWell(
+                            child: AbsorbPointer(
+                              child: Container(
+                                margin: EdgeInsets.symmetric(vertical: 4.0),
+                                child: ReplyContent(replyEvent,
+                                    lightText: ownMessage, timeline: timeline),
+                              ),
+                            ),
+                            onTap: () {
+                              if (scrollToEventId != null) {
+                                scrollToEventId(replyEvent.eventId);
+                              }
+                            },
                           );
                         },
                       ),
