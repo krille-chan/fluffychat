@@ -308,7 +308,7 @@
     "type": "text",
     "placeholders": {
       "error": {}
-	}
+    }
   },
   "Could not set avatar": "Nie można ustawić zdjęcia profilowego",
   "@Could not set avatar": {
@@ -424,10 +424,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "You won't be able to disable the encryption anymore. Are you sure?": "Nie będziesz już mógł wyłączyć szyfrowania. Jesteś pewny?",
-  "@You won't be able to disable the encryption anymore. Are you sure?": {
-    "type": "text",
-    "placeholders": {}
+  "You won't be able to disable the encryption anymore": {
+    "You won't be able to disable the encryption anymore. Are you sure?": "Nie będziesz już mógł wyłączyć szyfrowania. Jesteś pewny?",
+    "@You won't be able to disable the encryption anymore. Are you sure?": {
+      "type": "text",
+      "placeholders": {}
+    }
   },
   "Encryption algorithm": "Algorytm szyfrowania",
   "@Encryption algorithm": {
@@ -597,10 +599,16 @@
     "type": "text",
     "placeholders": {}
   },
-  "is typing...": "pisze...",
-  "@is typing...": {
-    "type": "text",
-    "placeholders": {}
+  "is typing": {
+    "": {
+      "": {
+        "is typing...": "pisze...",
+        "@is typing...": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
   "Edit Jitsi instance": "Edytuj instancje Jitsi",
   "@Edit Jitsi instance": {
@@ -635,7 +643,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "Leave": "wyjdź",
+  "Leave": "Wyjdź",
   "@Leave": {
     "type": "text",
     "placeholders": {}
@@ -674,12 +682,18 @@
     "type": "text",
     "placeholders": {}
   },
-  "Loading... Please wait": "Ładowanie... Proszę czekąć",
-  "@Loading... Please wait": {
-    "type": "text",
-    "placeholders": {}
+  "Loading": {
+    "": {
+      "": {
+        "Loading... Please wait": "Ładowanie... Proszę czekąć",
+        "@Loading... Please wait": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
-  "loadCountMoreParticipants": "Załaduj {count} uczestników więcej",
+  "loadCountMoreParticipants": "Załaduj jeszcze {count} uczestników",
   "@loadCountMoreParticipants": {
     "type": "text",
     "placeholders": {
@@ -733,10 +747,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "Please be aware that you need Pantalaimon to use end-to-end encryption for now.": "Należy pamiętać, że Pantalaimon wymaga na razie szyfrowania end-to-end.",
-  "@Please be aware that you need Pantalaimon to use end-to-end encryption for now.": {
-    "type": "text",
-    "placeholders": {}
+  "Please be aware that you need Pantalaimon to use end-to-end encryption for now": {
+    "Please be aware that you need Pantalaimon to use end-to-end encryption for now.": "Należy pamiętać, że Pantalaimon wymaga na razie szyfrowania end-to-end.",
+    "@Please be aware that you need Pantalaimon to use end-to-end encryption for now.": {
+      "type": "text",
+      "placeholders": {}
+    }
   },
   "New message in FluffyChat": "Nowa wiadomość w FluffyChat",
   "@New message in FluffyChat": {
@@ -748,10 +764,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": "Wygląda na to, że nie masz usług Google w swoim telefonie. To dobra decyzja dla twojej prywatności! Aby otrzymywać powiadomienia wysyłane w FluffyChat, zalecamy korzystanie z microG: https://microg.org/",
-  "@It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": {
-    "type": "text",
-    "placeholders": {}
+  "It seems that you have no google services on your phone": {
+    " That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg": {
+      "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": "Wygląda na to, że nie masz usług Google w swoim telefonie. To dobra decyzja dla twojej prywatności! Aby otrzymywać powiadomienia wysyłane w FluffyChat, zalecamy korzystanie z microG: https://microg.org/",
+      "@It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": {
+        "type": "text",
+        "placeholders": {}
+      }
+    }
   },
   "None": "Brak",
   "@None": {
@@ -763,10 +783,16 @@
     "type": "text",
     "placeholders": {}
   },
-  "No rooms found...": "Nie znaleziono pokoi...",
-  "@No rooms found...": {
-    "type": "text",
-    "placeholders": {}
+  "No rooms found": {
+    "": {
+      "": {
+        "No rooms found...": "Nie znaleziono pokoi...",
+        "@No rooms found...": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
   "Not supported in web": "Nie obsługiwane w sieci",
   "@Not supported in web": {
@@ -780,10 +806,16 @@
       "number": {}
     }
   },
-  "Oops something went wrong...": "Ups! Coś poszło nie tak...",
-  "@Oops something went wrong...": {
-    "type": "text",
-    "placeholders": {}
+  "Oops something went wrong": {
+    "": {
+      "": {
+        "Oops something went wrong...": "Ups! Coś poszło nie tak...",
+        "@Oops something went wrong...": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
   "Open app to read messages": "Otwórz aplikację by odczytać wiadomości",
   "@Open app to read messages": {
@@ -1103,10 +1135,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "This room has been archived.": "Ten pokój został przeniesiony do archiwum.",
-  "@This room has been archived.": {
-    "type": "text",
-    "placeholders": {}
+  "This room has been archived": {
+    "This room has been archived.": "Ten pokój został przeniesiony do archiwum.",
+    "@This room has been archived.": {
+      "type": "text",
+      "placeholders": {}
+    }
   },
   "Thursday": "Czwartek",
   "@Thursday": {
@@ -1272,20 +1306,28 @@
     "type": "text",
     "placeholders": {}
   },
-  "Welcome to the cutest instant messenger in the matrix network.": "Witamy w najładniejszym komunikatorze w sieci matrix.",
-  "@Welcome to the cutest instant messenger in the matrix network.": {
-    "type": "text",
-    "placeholders": {}
+  "Welcome to the cutest instant messenger in the matrix network": {
+    "Welcome to the cutest instant messenger in the matrix network.": "Witamy w najładniejszym komunikatorze w sieci matrix.",
+    "@Welcome to the cutest instant messenger in the matrix network.": {
+      "type": "text",
+      "placeholders": {}
+    }
   },
   "Who is allowed to join this group": "Kto może dołączyć do tej grupy",
   "@Who is allowed to join this group": {
     "type": "text",
     "placeholders": {}
   },
-  "Write a message...": "Pisze wiadomość...",
-  "@Write a message...": {
-    "type": "text",
-    "placeholders": {}
+  "Write a message": {
+    "": {
+      "": {
+        "Write a message...": "Napisz wiadomość…",
+        "@Write a message...": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
   "Yes": "Tak",
   "@Yes": {
