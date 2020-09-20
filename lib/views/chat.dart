@@ -131,7 +131,7 @@ class _ChatState extends State<_Chat> {
 
   @override
   void initState() {
-    _scrollController.addListener(() => _updateScrollController);
+    _scrollController.addListener(_updateScrollController);
 
     super.initState();
   }
