@@ -49,7 +49,9 @@ class MessageContent extends StatelessWidget {
               if (event.messageType == MessageTypes.Emote) {
                 html = '* $html';
               }
-              final bigEmotes = event.onlyEmotes && event.numberEmotes <= 10;
+              final bigEmotes = event.onlyEmotes &&
+                  event.numberEmotes > 0 &&
+                  event.numberEmotes <= 10;
               final fontSize = DefaultTextStyle.of(context).style.fontSize;
               return HtmlMessage(
                 html: html,
@@ -81,7 +83,9 @@ class MessageContent extends StatelessWidget {
                 onPressed: () => launch(event.body),
               );
             }
-            final bigEmotes = event.onlyEmotes && event.numberEmotes <= 10;
+            final bigEmotes = event.onlyEmotes &&
+                event.numberEmotes > 0 &&
+                event.numberEmotes <= 10;
             final fontSize = DefaultTextStyle.of(context).style.fontSize;
             return LinkText(
               text: event.getLocalizedBody(L10n.of(context), hideReply: true),
