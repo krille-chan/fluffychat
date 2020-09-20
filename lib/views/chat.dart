@@ -253,13 +253,14 @@ class _ChatState extends State<_Chat> {
             ));
     if (result == null) return;
     final audioFile = File(result);
-    await showDialog(
-        context: context,
-        builder: (context) => SendFileDialog(
-              file: MatrixAudioFile(
-                  bytes: audioFile.readAsBytesSync(), name: audioFile.path),
-              room: room,
-            ));
+    // as we already explicitly say send in the recording dialog,
+    // we do not need the send file dialog anymore. We can just send this straight away.
+    await SimpleDialogs(context).tryRequestWithLoadingDialog(
+      room.sendFileEvent(
+        MatrixAudioFile(
+            bytes: audioFile.readAsBytesSync(), name: audioFile.path),
+      ),
+    );
   }
 
   String _getSelectedEventString(BuildContext context) {
