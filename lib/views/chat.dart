@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:math';
-
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/config/app_emojis.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/avatar.dart';
@@ -687,6 +687,61 @@ class _ChatState extends State<_Chat> {
                                     );
                         });
                   },
+                ),
+              ),
+              AnimatedContainer(
+                duration: Duration(milliseconds: 300),
+                height: (editEvent == null &&
+                        replyEvent == null &&
+                        selectedEvents.length == 1)
+                    ? 56
+                    : 0,
+                child: Material(
+                  color: Theme.of(context).secondaryHeaderColor,
+                  child: Builder(builder: (context) {
+                    if (!(editEvent == null &&
+                        replyEvent == null &&
+                        selectedEvents.length == 1)) {
+                      return Container();
+                    }
+                    var emojis = List<String>.from(AppEmojis.emojis);
+                    final allReactionEvents = selectedEvents.first
+                        .aggregatedEvents(timeline, RelationshipTypes.Reaction)
+                        ?.where((event) =>
+                            event.senderId == event.room.client.userID &&
+                            event.type == 'm.reaction');
+
+                    allReactionEvents.forEach((event) {
+                      try {
+                        emojis.remove(event.content['m.relates_to']['key']);
+                      } catch (_) {}
+                    });
+                    return ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: emojis.length,
+                      itemBuilder: (c, i) => InkWell(
+                        borderRadius: BorderRadius.circular(8),
+                        onTap: () {
+                          SimpleDialogs(context).tryRequestWithLoadingDialog(
+                            room.sendReaction(
+                              selectedEvents.first.eventId,
+                              emojis[i],
+                            ),
+                          );
+                          setState(() => selectedEvents.clear());
+                        },
+                        child: Container(
+                          width: 56,
+                          height: 56,
+                          alignment: Alignment.center,
+                          child: Text(
+                            emojis[i],
+                            style: TextStyle(fontSize: 30),
+                          ),
+                        ),
+                      ),
+                    );
+                  }),
                 ),
               ),
               AnimatedContainer(
