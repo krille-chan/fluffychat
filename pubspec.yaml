@@ -27,7 +27,7 @@ dependencies:
   famedlysdk:
     git:
       url: https://gitlab.com/famedly/famedlysdk.git
-      ref: 864cbfa9068f5bb285336ca73ab2551204e62044
+      ref: ba7a01ddea430a6eec2661e2f9b7714d3719c652
 
   localstorage: ^3.0.1+4
   memoryfilepicker: ^0.1.3
@@ -50,7 +50,7 @@ dependencies:
   open_file: ^3.0.1
   mime_type: ^0.3.0
   bot_toast: ^3.0.0
-  flutter_matrix_html: ^0.1.4
+  flutter_matrix_html: ^0.1.5
   moor: ^3.3.1
   sqlite3: ^0.1.4
   random_string: ^2.0.1

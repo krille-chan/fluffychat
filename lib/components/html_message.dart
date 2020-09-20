@@ -11,13 +11,15 @@ class HtmlMessage extends StatelessWidget {
   final Room room;
   final TextStyle defaultTextStyle;
   final TextStyle linkStyle;
+  final double emoteSize;
 
   const HtmlMessage(
       {this.html,
       this.maxLines,
       this.room,
       this.defaultTextStyle,
-      this.linkStyle});
+      this.linkStyle,
+      this.emoteSize});
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +37,7 @@ class HtmlMessage extends StatelessWidget {
     return Html(
       data: renderHtml,
       defaultTextStyle: defaultTextStyle,
+      emoteSize: emoteSize,
       linkStyle: linkStyle ??
           themeData.textTheme.bodyText2.copyWith(
             color: themeData.accentColor,
