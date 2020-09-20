@@ -300,9 +300,9 @@ class _ChatListState extends State<ChatList> {
                     titleSpacing: 0,
                     title: selectMode == SelectMode.share
                         ? Text(L10n.of(context).share)
-                        : Padding(
-                            padding:
-                                EdgeInsets.only(top: 8, bottom: 8, right: 8),
+                        : Container(
+                            height: 40,
+                            padding: EdgeInsets.only(right: 8),
                             child: Material(
                               color: Theme.of(context).secondaryHeaderColor,
                               borderRadius: BorderRadius.circular(32),
@@ -311,9 +311,14 @@ class _ChatListState extends State<ChatList> {
                                 controller: searchController,
                                 focusNode: _searchFocusNode,
                                 decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.symmetric(
-                                      vertical: 9, horizontal: 16),
-                                  border: InputBorder.none,
+                                  contentPadding: EdgeInsets.only(
+                                    top: 8,
+                                    bottom: 8,
+                                    left: 16,
+                                  ),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(32),
+                                  ),
                                   hintText: L10n.of(context).searchForAChat,
                                   suffixIcon: searchMode
                                       ? IconButton(
