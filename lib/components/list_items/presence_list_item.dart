@@ -30,6 +30,7 @@ class PresenceListItem extends StatelessWidget {
         Matrix.of(context).client.presences[room.directChatMatrixID];
     final hasStatus = presence?.presence?.statusMsg != null;
     return InkWell(
+      borderRadius: BorderRadius.circular(8),
       onTap: () => presence?.presence?.statusMsg == null
           ? _startChatAction(context, user.id)
           : showDialog(
@@ -41,10 +42,10 @@ class PresenceListItem extends StatelessWidget {
               ),
             ),
       child: Container(
-        width: 80,
+        width: 76,
         child: Column(
           children: <Widget>[
-            SizedBox(height: 16),
+            SizedBox(height: 10),
             Container(
               child: Stack(
                 children: [

@@ -289,7 +289,7 @@ class _ChatListState extends State<ChatList> {
                           ),
                         ),
                   appBar: AppBar(
-                    //elevation: _scrolledToTop ? 0 : null,
+                    elevation: _scrolledToTop ? 0 : null,
                     leading: selectMode != SelectMode.share
                         ? null
                         : IconButton(
@@ -303,23 +303,28 @@ class _ChatListState extends State<ChatList> {
                         : Padding(
                             padding:
                                 EdgeInsets.only(top: 8, bottom: 8, right: 8),
-                            child: TextField(
-                              autocorrect: false,
-                              controller: searchController,
-                              focusNode: _searchFocusNode,
-                              decoration: InputDecoration(
-                                contentPadding: EdgeInsets.all(9),
-                                border: InputBorder.none,
-                                hintText: L10n.of(context).searchForAChat,
-                                suffixIcon: searchMode
-                                    ? IconButton(
-                                        icon: Icon(Icons.backspace),
-                                        onPressed: () => setState(() {
-                                          searchController.clear();
-                                          _searchFocusNode.unfocus();
-                                        }),
-                                      )
-                                    : null,
+                            child: Material(
+                              color: Theme.of(context).secondaryHeaderColor,
+                              borderRadius: BorderRadius.circular(32),
+                              child: TextField(
+                                autocorrect: false,
+                                controller: searchController,
+                                focusNode: _searchFocusNode,
+                                decoration: InputDecoration(
+                                  contentPadding: EdgeInsets.symmetric(
+                                      vertical: 9, horizontal: 16),
+                                  border: InputBorder.none,
+                                  hintText: L10n.of(context).searchForAChat,
+                                  suffixIcon: searchMode
+                                      ? IconButton(
+                                          icon: Icon(Icons.backspace),
+                                          onPressed: () => setState(() {
+                                            searchController.clear();
+                                            _searchFocusNode.unfocus();
+                                          }),
+                                        )
+                                      : null,
+                                ),
                               ),
                             ),
                           ),
@@ -434,9 +439,9 @@ class _ChatListState extends State<ChatList> {
                                                     ? Container()
                                                     : PreferredSize(
                                                         preferredSize:
-                                                            Size.fromHeight(90),
+                                                            Size.fromHeight(82),
                                                         child: Container(
-                                                          height: 82,
+                                                          height: 78,
                                                           child:
                                                               ListView.builder(
                                                             scrollDirection:

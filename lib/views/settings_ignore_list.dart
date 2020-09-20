@@ -3,16 +3,16 @@ import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/avatar.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/views/settings.dart';
 import 'package:flutter/material.dart';
 import '../components/matrix.dart';
+import 'chat_list.dart';
 
 class SettingsIgnoreListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AdaptivePageLayout(
       primaryPage: FocusPage.SECOND,
-      firstScaffold: Settings(),
+      firstScaffold: ChatList(),
       secondScaffold: SettingsIgnoreList(),
     );
   }
