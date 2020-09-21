@@ -460,12 +460,13 @@
     "placeholders": {}
   },
   "You won't be able to disable the encryption anymore": {
-    "You won't be able to disable the encryption anymore. Are you sure?": "Vous ne pourrez plus désactiver le chiffrement. Êtez-vous sûr ?",
+    "You won't be able to disable the encryption anymore. Are you sure?": "Vous ne pourrez plus désactiver le chiffrement. Êtes-vous sûr(e) ?",
     "@You won't be able to disable the encryption anymore. Are you sure?": {
       "type": "text",
       "placeholders": {}
     }
   },
+  "@You won't be able to disable the encryption anymore": {},
   "Encryption algorithm": "Algorithme de chiffrement",
   "@Encryption algorithm": {
     "type": "text",
@@ -637,7 +638,7 @@
   "is typing": {
     "": {
       "": {
-        "is typing...": "est en train d'écrire...",
+        "is typing...": "écrit...",
         "@is typing...": {
           "type": "text",
           "placeholders": {}
@@ -645,6 +646,7 @@
       }
     }
   },
+  "@is typing": {},
   "Edit Jitsi instance": "Changer l'instance Jitsi",
   "@Edit Jitsi instance": {
     "type": "text",
@@ -720,7 +722,7 @@
   "Loading": {
     "": {
       "": {
-        "Loading... Please wait": "Chargement... Merci de patienter",
+        "Loading... Please wait": "Chargement... Veuillez patienter",
         "@Loading... Please wait": {
           "type": "text",
           "placeholders": {}
@@ -728,6 +730,7 @@
       }
     }
   },
+  "@Loading": {},
   "Load more": {
     "": {
       "": {
@@ -739,6 +742,7 @@
       }
     }
   },
+  "@Load more": {},
   "loadCountMoreParticipants": "Charger {count} participants de plus",
   "@loadCountMoreParticipants": {
     "type": "text",
@@ -794,12 +798,13 @@
     "placeholders": {}
   },
   "Please be aware that you need Pantalaimon to use end-to-end encryption for now": {
-    "Please be aware that you need Pantalaimon to use end-to-end encryption for now.": "Vous devez installer Pantalaimon pour utiliser le chiffrement de bout en bout pour l'instant.",
+    "Please be aware that you need Pantalaimon to use end-to-end encryption for now.": "Sachez que vous avez besoin de Pantalaimon pour utiliser le chiffrement de bout en bout pour l'instant.",
     "@Please be aware that you need Pantalaimon to use end-to-end encryption for now.": {
       "type": "text",
       "placeholders": {}
     }
   },
+  "@Please be aware that you need Pantalaimon to use end-to-end encryption for now": {},
   "New message in FluffyChat": "Nouveau message dans FluffyChat",
   "@New message in FluffyChat": {
     "type": "text",
@@ -812,25 +817,27 @@
   },
   "It seems that you have no google services on your phone": {
     " That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg": {
-      "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": "On dirait que vous n'avez pas installé les services Google sur votre téléphone. C'est une bonne décision pour votre vie privée ! Pour recevoir les notifications de FluffyChat, nous vous recommendons d'utiliser microG : https://microg.org/",
+      "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": "Il semblerait que vous n'ayez pas de services Google sur votre téléphone. C'est une bonne décision pour votre vie privée ! Pour recevoir des notifications dans FluffyChat, nous vous recommandons d'utiliser microG : https://microg.org/",
       "@It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": {
         "type": "text",
         "placeholders": {}
       }
     }
   },
+  "@It seems that you have no google services on your phone": {},
   "None": "Aucun",
   "@None": {
     "type": "text",
     "placeholders": {}
   },
   "No emotes found": {
-    "No emotes found. 😕": "Aucune émoticône trouvée. 😕",
+    "No emotes found. 😕": "Aucun émote trouvé. 😕",
     "@No emotes found. 😕": {
       "type": "text",
       "placeholders": {}
     }
   },
+  "@No emotes found": {},
   "No permission": "Aucune permission",
   "@No permission": {
     "type": "text",
@@ -847,6 +854,7 @@
       }
     }
   },
+  "@No rooms found": {},
   "Not supported in web": "Non supporté par l'application web",
   "@Not supported in web": {
     "type": "text",
@@ -867,7 +875,7 @@
   "Oops something went wrong": {
     "": {
       "": {
-        "Oops something went wrong...": "Oups, quelque chose s'est mal passé...",
+        "Oops something went wrong...": "Oups, un problème s'est produit...",
         "@Oops something went wrong...": {
           "type": "text",
           "placeholders": {}
@@ -875,6 +883,7 @@
       }
     }
   },
+  "@Oops something went wrong": {},
   "Open app to read messages": "Ouvrez l'application pour lire le message",
   "@Open app to read messages": {
     "type": "text",
@@ -1215,6 +1224,7 @@
       "placeholders": {}
     }
   },
+  "@This room has been archived": {},
   "Thursday": "Jeudi",
   "@Thursday": {
     "type": "text",
@@ -1386,6 +1396,7 @@
       "placeholders": {}
     }
   },
+  "@Welcome to the cutest instant messenger in the matrix network": {},
   "Who is allowed to join this group": "Qui est autorisé à rejoindre ce groupe",
   "@Who is allowed to join this group": {
     "type": "text",
@@ -1394,7 +1405,7 @@
   "Write a message": {
     "": {
       "": {
-        "Write a message...": "Écrivez un message...",
+        "Write a message...": "Écrit un message...",
         "@Write a message...": {
           "type": "text",
           "placeholders": {}
@@ -1402,6 +1413,7 @@
       }
     }
   },
+  "@Write a message": {},
   "Yes": "Oui",
   "@Yes": {
     "type": "text",
@@ -1714,13 +1726,15 @@
       "placeholders": {}
     }
   },
+  "@Informations about your privacy: https://sentry": {},
   "Allow sending bug reports with sentry": {
-    "Allow sending bug reports with sentry.io": "Autoriser l'envoi de rapports de bugs via sentry.io",
+    "Allow sending bug reports with sentry.io": "Autoriser l'envoi de rapports d'anomalies via sentry.io",
     "@Allow sending bug reports with sentry.io": {
       "type": "text",
       "placeholders": {}
     }
   },
+  "@Allow sending bug reports with sentry": {},
   "You can ignore users who are disturbing you": {
     " You won't be able to receive any messages or room invites from the users on your personal ignore list": {
       "You can ignore users who are disturbing you. You won't be able to receive any messages or room invites from the users on your personal ignore list.": "Vous pouvez ignorer les utilisateurs/trices qui vous dérangent. Vous ne pourrez pas recevoir de messages ou d'invitations à participer à un salon de discussion de la part des utilisateurs/trices figurant sur votre liste personnelle.",
@@ -1730,6 +1744,7 @@
       }
     }
   },
+  "@You can ignore users who are disturbing you": {},
   "Ignore username": "Ignorer l'utilisateur/trice",
   "@Ignore username": {
     "type": "text",
@@ -1737,6 +1752,28 @@
   },
   "Ignored users": "Utilisateurs/trices ignoré(e)s",
   "@Ignored users": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Warning!": "Attention !",
+  "@Warning!": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Password has been changed": "Le mot de passe a été modifié",
+  "@Password has been changed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "This will deactivate your user account": {
+    "This will deactivate your user account. This can not be undone! Are you sure?": "Cela désactivera votre compte et ne peut pas être annulé ! Êtes-vous sûr(e) ?",
+    "@This will deactivate your user account. This can not be undone! Are you sure?": {
+      "type": "text",
+      "placeholders": {}
+    }
+  },
+  "Delete account": "Supprimer le compte",
+  "@Delete account": {
     "type": "text",
     "placeholders": {}
   }
