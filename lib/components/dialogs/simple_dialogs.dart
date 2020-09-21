@@ -79,6 +79,7 @@ class SimpleDialogs {
     String contentText,
     String confirmText,
     String cancelText,
+    bool dangerous = false,
   }) async {
     var confirmed = false;
     await showDialog(
@@ -98,6 +99,7 @@ class SimpleDialogs {
             child: Text(
               confirmText?.toUpperCase() ??
                   L10n.of(context).confirm.toUpperCase(),
+              style: TextStyle(color: dangerous ? Colors.red : null),
             ),
             onPressed: () {
               confirmed = true;

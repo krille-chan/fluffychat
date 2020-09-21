@@ -239,6 +239,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Currently active"),
         "Dark": MessageLookupByLibrary.simpleMessage("Dark"),
         "Delete": MessageLookupByLibrary.simpleMessage("Delete"),
+        "Delete account":
+            MessageLookupByLibrary.simpleMessage("Delete account"),
         "Delete message":
             MessageLookupByLibrary.simpleMessage("Delete message"),
         "Deny": MessageLookupByLibrary.simpleMessage("Deny"),
@@ -362,6 +364,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Participating user devices":
             MessageLookupByLibrary.simpleMessage("Participating user devices"),
         "Password": MessageLookupByLibrary.simpleMessage("Password"),
+        "Password has been changed":
+            MessageLookupByLibrary.simpleMessage("Password has been changed"),
         "Pick image": MessageLookupByLibrary.simpleMessage("Pick image"),
         "Pin": MessageLookupByLibrary.simpleMessage("Pin"),
         "Please be aware that you need Pantalaimon to use end-to-end encryption for now.":
@@ -438,6 +442,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "They Match": MessageLookupByLibrary.simpleMessage("They Match"),
         "This room has been archived.": MessageLookupByLibrary.simpleMessage(
             "This room has been archived."),
+        "This will deactivate your user account. This can not be undone! Are you sure?":
+            MessageLookupByLibrary.simpleMessage(
+                "This will deactivate your user account. This can not be undone! Are you sure?"),
         "Thursday": MessageLookupByLibrary.simpleMessage("Thursday"),
         "Try to send again":
             MessageLookupByLibrary.simpleMessage("Try to send again"),
@@ -464,6 +471,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Visible for everyone"),
         "Voice message": MessageLookupByLibrary.simpleMessage("Voice message"),
         "Wallpaper": MessageLookupByLibrary.simpleMessage("Wallpaper"),
+        "Warning!": MessageLookupByLibrary.simpleMessage("Warning!"),
         "Wednesday": MessageLookupByLibrary.simpleMessage("Wednesday"),
         "Welcome to the cutest instant messenger in the matrix network.":
             MessageLookupByLibrary.simpleMessage(

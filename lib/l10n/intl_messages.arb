@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-09-19T15:27:28.862887",
+  "@@last_modified": "2020-09-21T17:49:17.725032",
   "About": "About",
   "@About": {
     "type": "text",
@@ -450,6 +450,16 @@
   },
   "Delete": "Delete",
   "@Delete": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "This will deactivate your user account. This can not be undone! Are you sure?": "This will deactivate your user account. This can not be undone! Are you sure?",
+  "@This will deactivate your user account. This can not be undone! Are you sure?": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Delete account": "Delete account",
+  "@Delete account": {
     "type": "text",
     "placeholders": {}
   },
@@ -1003,6 +1013,11 @@
   },
   "Password": "Password",
   "@Password": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Password has been changed": "Password has been changed",
+  "@Password has been changed": {
     "type": "text",
     "placeholders": {}
   },
@@ -1614,6 +1629,11 @@
   },
   "waitingPartnerNumbers": "Waiting for partner to accept the numbers...",
   "@waitingPartnerNumbers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Warning!": "Warning!",
+  "@Warning!": {
     "type": "text",
     "placeholders": {}
   },

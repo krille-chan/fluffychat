@@ -5,6 +5,8 @@
 - Display messages with up to 10 emotes or emoji bigger
 - New design for the chat list and message bubbles
 - Implement reactions
+- Implement password change
+- Implement deactivate user account
 ### Fixes
 - Timeline randomly resorting while more history is being fetched
 - Automatically request history if the "load more" button is on the screen

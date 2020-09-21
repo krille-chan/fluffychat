@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:bot_toast/bot_toast.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/settings_themes.dart';
 import 'package:fluffychat/config/app_config.dart';
@@ -53,6 +54,52 @@ class _SettingsState extends State<Settings> {
     var matrix = Matrix.of(context);
     await SimpleDialogs(context)
         .tryRequestWithLoadingDialog(matrix.client.logout());
+  }
+
+  void _changePasswordAccountAction(BuildContext context) async {
+    final oldPassword = await SimpleDialogs(context).enterText(
+      password: true,
+      titleText: L10n.of(context).pleaseEnterYourPassword,
+    );
+    if (oldPassword == null) return;
+    final newPassword = await SimpleDialogs(context).enterText(
+      password: true,
+      titleText: L10n.of(context).chooseAStrongPassword,
+    );
+    if (newPassword == null) return;
+    await SimpleDialogs(context).tryRequestWithLoadingDialog(
+      Matrix.of(context)
+          .client
+          .changePassword(newPassword, oldPassword: oldPassword),
+    );
+    BotToast.showText(text: L10n.of(context).passwordHasBeenChanged);
+  }
+
+  void _deleteAccountAction(BuildContext context) async {
+    if (await SimpleDialogs(context).askConfirmation(
+          titleText: L10n.of(context).warning,
+          contentText: L10n.of(context).deactivateAccountWarning,
+          dangerous: true,
+        ) ==
+        false) {
+      return;
+    }
+    if (await SimpleDialogs(context).askConfirmation(dangerous: true) ==
+        false) {
+      return;
+    }
+    final password = await SimpleDialogs(context).enterText(
+      password: true,
+      titleText: L10n.of(context).pleaseEnterYourPassword,
+    );
+    if (password == null) return;
+    await SimpleDialogs(context).tryRequestWithLoadingDialog(
+      Matrix.of(context).client.deactivateAccount(auth: {
+        'type': 'm.login.password',
+        'user': Matrix.of(context).client.userID,
+        'password': password,
+      }),
+    );
   }
 
   void setJitsiInstanceAction(BuildContext context) async {
@@ -359,10 +406,26 @@ class _SettingsState extends State<Settings> {
               title: Text(L10n.of(context).sendBugReports),
               onTap: () => SentryController.toggleSentryAction(context),
             ),
+            Divider(thickness: 1),
+            ListTile(
+              trailing: Icon(Icons.vpn_key),
+              title: Text(
+                'Change password',
+              ),
+              onTap: () => _changePasswordAccountAction(context),
+            ),
             ListTile(
               trailing: Icon(Icons.exit_to_app),
               title: Text(L10n.of(context).logout),
               onTap: () => logoutAction(context),
+            ),
+            ListTile(
+              trailing: Icon(Icons.delete_forever),
+              title: Text(
+                L10n.of(context).deleteAccount,
+                style: TextStyle(color: Colors.red),
+              ),
+              onTap: () => _deleteAccountAction(context),
             ),
             Divider(thickness: 1),
             ListTile(

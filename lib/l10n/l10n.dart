@@ -342,6 +342,11 @@ class L10n extends MatrixLocalizations {
 
   String get delete => Intl.message("Delete");
 
+  String get deactivateAccountWarning => Intl.message(
+      'This will deactivate your user account. This can not be undone! Are you sure?');
+
+  String get deleteAccount => Intl.message('Delete account');
+
   String get deleteMessage => Intl.message("Delete message");
 
   String get deny => Intl.message("Deny");
@@ -635,6 +640,9 @@ class L10n extends MatrixLocalizations {
       Intl.message("passphrase or recovery key", name: "passphraseOrKey");
 
   String get password => Intl.message("Password");
+
+  String get passwordHasBeenChanged =>
+      Intl.message('Password has been changed');
 
   String get pickImage => Intl.message('Pick image');
 
@@ -987,6 +995,8 @@ class L10n extends MatrixLocalizations {
   String get waitingPartnerNumbers =>
       Intl.message("Waiting for partner to accept the numbers...",
           name: "waitingPartnerNumbers");
+
+  String get warning => Intl.message('Warning!');
 
   String get wallpaper => Intl.message("Wallpaper");
 
