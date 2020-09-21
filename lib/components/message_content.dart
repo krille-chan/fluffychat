@@ -43,8 +43,7 @@ class MessageContent extends StatelessWidget {
           case MessageTypes.Emote:
             if (Matrix.of(context).renderHtml &&
                 !event.redacted &&
-                event.content['format'] == 'org.matrix.custom.html' &&
-                event.content['formatted_body'] is String) {
+                event.isRichMessage) {
               String html = event.content['formatted_body'];
               if (event.messageType == MessageTypes.Emote) {
                 html = '* $html';
