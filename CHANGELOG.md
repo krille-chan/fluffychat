@@ -3,6 +3,8 @@
 - Implemented ignore list
 - Jump to events in timeline: When tapping on a reply and when tapping a matrix.to link
 - Display messages with up to 10 emotes or emoji bigger
+- New design for the chat list and message bubbles
+- Implement reactions
 ### Fixes
 - Timeline randomly resorting while more history is being fetched
 - Automatically request history if the "load more" button is on the screen
