@@ -516,10 +516,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "You won't be able to disable the encryption anymore. Are you sure?": "Više nećeš moći deaktivirati šifriranje. Sigurno?",
-  "@You won't be able to disable the encryption anymore. Are you sure?": {
-    "type": "text",
-    "placeholders": {}
+  "You won't be able to disable the encryption anymore": {
+    "You won't be able to disable the encryption anymore. Are you sure?": "Više nećeš moći deaktivirati šifriranje. Sigurno?",
+    "@You won't be able to disable the encryption anymore. Are you sure?": {
+      "type": "text",
+      "placeholders": {}
+    }
   },
   "Encryption": "Šifriranje",
   "@Encryption": {
@@ -704,10 +706,16 @@
     "type": "text",
     "placeholders": {}
   },
-  "is typing...": "piše …",
-  "@is typing...": {
-    "type": "text",
-    "placeholders": {}
+  "is typing": {
+    "": {
+      "": {
+        "is typing...": "piše …",
+        "@is typing...": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
   "Edit Jitsi instance": "Uredi Jitsi primjerak",
   "@Edit Jitsi instance": {
@@ -791,15 +799,27 @@
     "type": "text",
     "placeholders": {}
   },
-  "Loading... Please wait": "Učitava se … Pričekaj",
-  "@Loading... Please wait": {
-    "type": "text",
-    "placeholders": {}
+  "Loading": {
+    "": {
+      "": {
+        "Loading... Please wait": "Učitava se … Pričekaj",
+        "@Loading... Please wait": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
-  "Load more...": "Učitaj više …",
-  "@Load more...": {
-    "type": "text",
-    "placeholders": {}
+  "Load more": {
+    "": {
+      "": {
+        "Load more...": "Učitaj više …",
+        "@Load more...": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
   "loadCountMoreParticipants": "Učitaj još {count} sudionika",
   "@loadCountMoreParticipants": {
@@ -855,10 +875,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "Please be aware that you need Pantalaimon to use end-to-end encryption for now.": "Za sada trebaš Pantalaimon za obostrano šifriranje.",
-  "@Please be aware that you need Pantalaimon to use end-to-end encryption for now.": {
-    "type": "text",
-    "placeholders": {}
+  "Please be aware that you need Pantalaimon to use end-to-end encryption for now": {
+    "Please be aware that you need Pantalaimon to use end-to-end encryption for now.": "Za sada trebaš Pantalaimon za obostrano šifriranje.",
+    "@Please be aware that you need Pantalaimon to use end-to-end encryption for now.": {
+      "type": "text",
+      "placeholders": {}
+    }
   },
   "New message in FluffyChat": "Nova poruka u FluffyChatu",
   "@New message in FluffyChat": {
@@ -885,30 +907,42 @@
     "type": "text",
     "placeholders": {}
   },
-  "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": "Čini se da na mobitelu nemaš google usluge. To je dobra odluka za tvoju privatnost! Za primanje push obavijesti u FluffyChatu preporučujemo upotrebu microG-a: https://microg.org/",
-  "@It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": {
-    "type": "text",
-    "placeholders": {}
+  "It seems that you have no google services on your phone": {
+    " That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg": {
+      "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": "Čini se da na mobitelu nemaš google usluge. To je dobra odluka za tvoju privatnost! Za primanje push obavijesti u FluffyChatu preporučujemo upotrebu microG-a: https://microg.org/",
+      "@It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": {
+        "type": "text",
+        "placeholders": {}
+      }
+    }
   },
   "None": "Ništa",
   "@None": {
     "type": "text",
     "placeholders": {}
   },
-  "No emotes found. 😕": "Nema emota. 😕",
-  "@No emotes found. 😕": {
-    "type": "text",
-    "placeholders": {}
+  "No emotes found": {
+    "No emotes found. 😕": "Nema emota. 😕",
+    "@No emotes found. 😕": {
+      "type": "text",
+      "placeholders": {}
+    }
   },
   "No permission": "Bez dozvole",
   "@No permission": {
     "type": "text",
     "placeholders": {}
   },
-  "No rooms found...": "Nema soba …",
-  "@No rooms found...": {
-    "type": "text",
-    "placeholders": {}
+  "No rooms found": {
+    "": {
+      "": {
+        "No rooms found...": "Nema soba …",
+        "@No rooms found...": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
   "Not supported in web": "Nije podržano u internetu",
   "@Not supported in web": {
@@ -937,10 +971,16 @@
     "type": "text",
     "placeholders": {}
   },
-  "Oops something went wrong...": "Ups, došlo je do neke greške …",
-  "@Oops something went wrong...": {
-    "type": "text",
-    "placeholders": {}
+  "Oops something went wrong": {
+    "": {
+      "": {
+        "Oops something went wrong...": "Ups, došlo je do neke greške …",
+        "@Oops something went wrong...": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
   "Open app to read messages": "Za čitanje poruka, otvori program",
   "@Open app to read messages": {
@@ -1315,10 +1355,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "This room has been archived.": "Ova soba je arhivirana.",
-  "@This room has been archived.": {
-    "type": "text",
-    "placeholders": {}
+  "This room has been archived": {
+    "This room has been archived.": "Ova soba je arhivirana.",
+    "@This room has been archived.": {
+      "type": "text",
+      "placeholders": {}
+    }
   },
   "Thursday": "Četvrtak",
   "@Thursday": {
@@ -1539,20 +1581,28 @@
     "type": "text",
     "placeholders": {}
   },
-  "Welcome to the cutest instant messenger in the matrix network.": "Lijep pozdrav u najslađi program za čavrljanje u mreži matrix.",
-  "@Welcome to the cutest instant messenger in the matrix network.": {
-    "type": "text",
-    "placeholders": {}
+  "Welcome to the cutest instant messenger in the matrix network": {
+    "Welcome to the cutest instant messenger in the matrix network.": "Lijep pozdrav u najslađi program za čavrljanje u mreži matrix.",
+    "@Welcome to the cutest instant messenger in the matrix network.": {
+      "type": "text",
+      "placeholders": {}
+    }
   },
   "Who is allowed to join this group": "Tko se smije pridružiti grupi",
   "@Who is allowed to join this group": {
     "type": "text",
     "placeholders": {}
   },
-  "Write a message...": "Napiši poruku …",
-  "@Write a message...": {
-    "type": "text",
-    "placeholders": {}
+  "Write a message": {
+    "": {
+      "": {
+        "Write a message...": "Napiši poruku …",
+        "@Write a message...": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
   "Yes": "Da",
   "@Yes": {
@@ -1657,14 +1707,59 @@
     "type": "text",
     "placeholders": {}
   },
-  "Informations about your privacy: https://sentry.io/security/": "Podaci o tvojoj privatnosti: https://sentry.io/security/",
-  "@Informations about your privacy: https://sentry.io/security/": {
+  "Informations about your privacy: https://sentry": {
+    "Informations about your privacy: https://sentry.io/security/": "Podaci o tvojoj privatnosti: https://sentry.io/security/",
+    "@Informations about your privacy: https://sentry.io/security/": {
+      "type": "text",
+      "placeholders": {}
+    }
+  },
+  "Allow sending bug reports with sentry": {
+    "Allow sending bug reports with sentry.io": "Dozvoli slanje izvještaja o greškama sa sentry.io",
+    "@Allow sending bug reports with sentry.io": {
+      "type": "text",
+      "placeholders": {}
+    }
+  },
+  "Warning!": "Upozorenje!",
+  "@Warning!": {
     "type": "text",
     "placeholders": {}
   },
-  "Allow sending bug reports with sentry.io": "Dozvoli slanje izvještaja o greškama sa sentry.io",
-  "@Allow sending bug reports with sentry.io": {
+  "Password has been changed": "Lozinka je promijenjena",
+  "@Password has been changed": {
     "type": "text",
     "placeholders": {}
+  },
+  "You can ignore users who are disturbing you": {
+    " You won't be able to receive any messages or room invites from the users on your personal ignore list": {
+      "You can ignore users who are disturbing you. You won't be able to receive any messages or room invites from the users on your personal ignore list.": "Možeš zanemariti korisnike koji te ometaju. Nećeš moći primiti nijednu poruku ili pozivnice u sobe od korisnika koji se nalaze u tvom osobnom popisu zanemarivanja.",
+      "@You can ignore users who are disturbing you. You won't be able to receive any messages or room invites from the users on your personal ignore list.": {
+        "type": "text",
+        "placeholders": {}
+      }
+    }
+  },
+  "Ignore username": "Zanemari korisničko ime",
+  "@Ignore username": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Ignored users": "Zanemareni korisnici",
+  "@Ignored users": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Delete account": "Izbriši račun",
+  "@Delete account": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "This will deactivate your user account": {
+    "This will deactivate your user account. This can not be undone! Are you sure?": "Ovo će nepovratno deaktivirati tvoj korisnički račun. Stvarno to želiš uraditi?",
+    "@This will deactivate your user account. This can not be undone! Are you sure?": {
+      "type": "text",
+      "placeholders": {}
+    }
   }
 }
