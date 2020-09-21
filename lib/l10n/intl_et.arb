@@ -54,7 +54,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "answeredTheCall": "{SENDERNAME} vastas kõnele",
+  "answeredTheCall": "{senderName} vastas kõnele",
   "@answeredTheCall": {
     "type": "text",
     "placeholders": {
@@ -523,11 +523,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "You won't be able to disable the encryption anymore. Are you sure?": "Sa ei saa hiljem enam krüptimist välja lülitada. Kas oled kindel?",
-  "@You won't be able to disable the encryption anymore. Are you sure?": {
-    "type": "text",
-    "placeholders": {}
+  "You won't be able to disable the encryption anymore": {
+    "You won't be able to disable the encryption anymore. Are you sure?": "Sa ei saa hiljem enam krüptimist välja lülitada. Kas oled kindel?",
+    "@You won't be able to disable the encryption anymore. Are you sure?": {
+      "type": "text",
+      "placeholders": {}
+    }
   },
+  "@You won't be able to disable the encryption anymore": {},
   "Encryption": "Krüptimine",
   "@Encryption": {
     "type": "text",
@@ -718,11 +721,18 @@
     "type": "text",
     "placeholders": {}
   },
-  "is typing...": "kirjutab...",
-  "@is typing...": {
-    "type": "text",
-    "placeholders": {}
+  "is typing": {
+    "": {
+      "": {
+        "is typing...": "kirjutab...",
+        "@is typing...": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
+  "@is typing": {},
   "Edit Jitsi instance": "Muuda Jitsi liidestust",
   "@Edit Jitsi instance": {
     "type": "text",
@@ -810,16 +820,30 @@
     "type": "text",
     "placeholders": {}
   },
-  "Loading... Please wait": "Laen andmeid... Palun oota",
-  "@Loading... Please wait": {
-    "type": "text",
-    "placeholders": {}
+  "Loading": {
+    "": {
+      "": {
+        "Loading... Please wait": "Laen andmeid... Palun oota",
+        "@Loading... Please wait": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
-  "Load more...": "Lae veel...",
-  "@Load more...": {
-    "type": "text",
-    "placeholders": {}
+  "@Loading": {},
+  "Load more": {
+    "": {
+      "": {
+        "Load more...": "Lae veel...",
+        "@Load more...": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
+  "@Load more": {},
   "loadCountMoreParticipants": "Lisa veel {count} osalejat",
   "@loadCountMoreParticipants": {
     "type": "text",
@@ -874,11 +898,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "Please be aware that you need Pantalaimon to use end-to-end encryption for now.": "Palun arvesta, et hetkel saad kasutada läbivat krüptimist vaid siis, kui koduserver töötab Pantalaimon'il.",
-  "@Please be aware that you need Pantalaimon to use end-to-end encryption for now.": {
-    "type": "text",
-    "placeholders": {}
+  "Please be aware that you need Pantalaimon to use end-to-end encryption for now": {
+    "Please be aware that you need Pantalaimon to use end-to-end encryption for now.": "Palun arvesta, et sa saad hetkel kasutada läbivat krüptimist vaid siis, kui koduserver kasutab Pantalaimon'it.",
+    "@Please be aware that you need Pantalaimon to use end-to-end encryption for now.": {
+      "type": "text",
+      "placeholders": {}
+    }
   },
+  "@Please be aware that you need Pantalaimon to use end-to-end encryption for now": {},
   "New message in FluffyChat": "Uus sõnum FluffyChat'i vahendusel",
   "@New message in FluffyChat": {
     "type": "text",
@@ -904,31 +931,46 @@
     "type": "text",
     "placeholders": {}
   },
-  "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": "Tundub, et sinu nutiseadmes pole Google teenuseid. Sinu privaatsuse mõttes on see kindlasti hea otsus! Kui sa soovid FluffyChat'is näha tõuketeavitusi, siis soovitame, et selle asemel kasutad microG liidestust https://microg.org/",
-  "@It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": {
-    "type": "text",
-    "placeholders": {}
+  "It seems that you have no google services on your phone": {
+    " That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg": {
+      "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": "Tundub, et sinu nutiseadmes pole Google teenuseid. Sinu privaatsuse mõttes on see kindlasti hea otsus! Kui sa soovid FluffyChat'is näha tõuketeavitusi, siis soovitame, et selle jaoks kasutad microG liidestust https://microg.org/",
+      "@It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": {
+        "type": "text",
+        "placeholders": {}
+      }
+    }
   },
+  "@It seems that you have no google services on your phone": {},
   "None": "Mitte midagi",
   "@None": {
     "type": "text",
     "placeholders": {}
   },
-  "No emotes found. 😕": "Ühtegi emotsioonitegevust ei leidunud. 😕",
-  "@No emotes found. 😕": {
-    "type": "text",
-    "placeholders": {}
+  "No emotes found": {
+    "No emotes found. 😕": "Ühtegi emotsioonitegevust ei leidunud. 😕",
+    "@No emotes found. 😕": {
+      "type": "text",
+      "placeholders": {}
+    }
   },
+  "@No emotes found": {},
   "No permission": "Õigused puuduvad",
   "@No permission": {
     "type": "text",
     "placeholders": {}
   },
-  "No rooms found...": "Jututubasid ei leidunud...",
-  "@No rooms found...": {
-    "type": "text",
-    "placeholders": {}
+  "No rooms found": {
+    "": {
+      "": {
+        "No rooms found...": "Jututubasid ei leidunud...",
+        "@No rooms found...": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
+  "@No rooms found": {},
   "Not supported in web": "See funktsionaalsus ei ole veebiliideses toetatud",
   "@Not supported in web": {
     "type": "text",
@@ -956,11 +998,18 @@
     "type": "text",
     "placeholders": {}
   },
-  "Oops something went wrong...": "Hopsti! Midagi läks nüüd viltu...",
-  "@Oops something went wrong...": {
-    "type": "text",
-    "placeholders": {}
+  "Oops something went wrong": {
+    "": {
+      "": {
+        "Oops something went wrong...": "Hopsti! Midagi läks nüüd viltu...",
+        "@Oops something went wrong...": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
+  "@Oops something went wrong": {},
   "Open app to read messages": "Sõnumite lugemiseks ava rakendus",
   "@Open app to read messages": {
     "type": "text",
@@ -1353,11 +1402,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "This room has been archived.": "See jututuba on arhiveeritud.",
-  "@This room has been archived.": {
-    "type": "text",
-    "placeholders": {}
+  "This room has been archived": {
+    "This room has been archived.": "See jututuba on arhiveeritud.",
+    "@This room has been archived.": {
+      "type": "text",
+      "placeholders": {}
+    }
   },
+  "@This room has been archived": {},
   "Thursday": "Neljapäev",
   "@Thursday": {
     "type": "text",
@@ -1582,21 +1634,31 @@
     "type": "text",
     "placeholders": {}
   },
-  "Welcome to the cutest instant messenger in the matrix network.": "Tere tulemast kasutama kõige vahvamat sõnumiklienti Matrix'i võrgus.",
-  "@Welcome to the cutest instant messenger in the matrix network.": {
-    "type": "text",
-    "placeholders": {}
+  "Welcome to the cutest instant messenger in the matrix network": {
+    "Welcome to the cutest instant messenger in the matrix network.": "Tere tulemast kasutama kõige vahvamat sõnumiklienti Matrix'i võrgus.",
+    "@Welcome to the cutest instant messenger in the matrix network.": {
+      "type": "text",
+      "placeholders": {}
+    }
   },
+  "@Welcome to the cutest instant messenger in the matrix network": {},
   "Who is allowed to join this group": "Kes võivad selle rühmaga liituda",
   "@Who is allowed to join this group": {
     "type": "text",
     "placeholders": {}
   },
-  "Write a message...": "Kirjuta üks sõnum...",
-  "@Write a message...": {
-    "type": "text",
-    "placeholders": {}
+  "Write a message": {
+    "": {
+      "": {
+        "Write a message...": "Kirjuta üks sõnum...",
+        "@Write a message...": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
+  "@Write a message": {},
   "Yes": "Jah",
   "@Yes": {
     "type": "text",
@@ -1657,13 +1719,61 @@
     "type": "text",
     "placeholders": {}
   },
-  "Informations about your privacy: https://sentry.io/security/": "Teave sinu privaatsuse kohta: https://sentry.io/security/",
-  "@Informations about your privacy: https://sentry.io/security/": {
+  "Informations about your privacy: https://sentry": {
+    "Informations about your privacy: https://sentry.io/security/": "Teave sinu privaatsuse kohta: https://sentry.io/security/",
+    "@Informations about your privacy: https://sentry.io/security/": {
+      "type": "text",
+      "placeholders": {}
+    }
+  },
+  "@Informations about your privacy: https://sentry": {},
+  "Allow sending bug reports with sentry": {
+    "Allow sending bug reports with sentry.io": "Luba veateadete saatmist sentry.io vahendusel",
+    "@Allow sending bug reports with sentry.io": {
+      "type": "text",
+      "placeholders": {}
+    }
+  },
+  "@Allow sending bug reports with sentry": {},
+  "Ignored users": "Eiratud kasutajad",
+  "@Ignored users": {
     "type": "text",
     "placeholders": {}
   },
-  "Allow sending bug reports with sentry.io": "Luba veateadete saatmist sentry.io vahendusel",
-  "@Allow sending bug reports with sentry.io": {
+  "Ignore username": "Eira kasutajanime",
+  "@Ignore username": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "You can ignore users who are disturbing you": {
+    " You won't be able to receive any messages or room invites from the users on your personal ignore list": {
+      "You can ignore users who are disturbing you. You won't be able to receive any messages or room invites from the users on your personal ignore list.": "Sul on võimalik eirata neid kasutajaid, kes sind segavad. Oma isiklikku eiramisloendisse lisatud kasutajad ei saa sulle saata sõnumeid ega kutseid.",
+      "@You can ignore users who are disturbing you. You won't be able to receive any messages or room invites from the users on your personal ignore list.": {
+        "type": "text",
+        "placeholders": {}
+      }
+    }
+  },
+  "@You can ignore users who are disturbing you": {},
+  "This will deactivate your user account": {
+    "This will deactivate your user account. This can not be undone! Are you sure?": "Järgnevaga eemaldatakse sinu konto kasutusest. Seda tegevust ei saa tagasi pöörata! Kas sa ikka oled kindel?",
+    "@This will deactivate your user account. This can not be undone! Are you sure?": {
+      "type": "text",
+      "placeholders": {}
+    }
+  },
+  "Warning!": "Hoiatus!",
+  "@Warning!": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Password has been changed": "Salasõna on muudetud",
+  "@Password has been changed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Delete account": "Kustuta kasutajakonto",
+  "@Delete account": {
     "type": "text",
     "placeholders": {}
   }

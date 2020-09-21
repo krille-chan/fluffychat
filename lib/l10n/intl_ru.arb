@@ -516,10 +516,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "You won't be able to disable the encryption anymore. Are you sure?": "Вы больше не сможете отключить шифрование. Вы уверены?",
-  "@You won't be able to disable the encryption anymore. Are you sure?": {
-    "type": "text",
-    "placeholders": {}
+  "You won't be able to disable the encryption anymore": {
+    "You won't be able to disable the encryption anymore. Are you sure?": "Вы больше не сможете отключить шифрование. Вы уверены?",
+    "@You won't be able to disable the encryption anymore. Are you sure?": {
+      "type": "text",
+      "placeholders": {}
+    }
   },
   "Encryption": "Шифрование",
   "@Encryption": {
@@ -704,10 +706,16 @@
     "type": "text",
     "placeholders": {}
   },
-  "is typing...": "Печатает...",
-  "@is typing...": {
-    "type": "text",
-    "placeholders": {}
+  "is typing": {
+    "": {
+      "": {
+        "is typing...": "Печатает...",
+        "@is typing...": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
   "Edit Jitsi instance": "Сервер Jitsi",
   "@Edit Jitsi instance": {
@@ -791,15 +799,27 @@
     "type": "text",
     "placeholders": {}
   },
-  "Loading... Please wait": "Пожалуйста, подождите...",
-  "@Loading... Please wait": {
-    "type": "text",
-    "placeholders": {}
+  "Loading": {
+    "": {
+      "": {
+        "Loading... Please wait": "Пожалуйста, подождите...",
+        "@Loading... Please wait": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
-  "Load more...": "Загрузить больше...",
-  "@Load more...": {
-    "type": "text",
-    "placeholders": {}
+  "Load more": {
+    "": {
+      "": {
+        "Load more...": "Загрузить больше...",
+        "@Load more...": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
   "loadCountMoreParticipants": "Загрузить еще {count} участника(ов)",
   "@loadCountMoreParticipants": {
@@ -855,10 +875,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "Please be aware that you need Pantalaimon to use end-to-end encryption for now.": "Помните, что вам нужен Pantalaimon для использования сквозного шифрования.",
-  "@Please be aware that you need Pantalaimon to use end-to-end encryption for now.": {
-    "type": "text",
-    "placeholders": {}
+  "Please be aware that you need Pantalaimon to use end-to-end encryption for now": {
+    "Please be aware that you need Pantalaimon to use end-to-end encryption for now.": "Помните, что вам нужен Pantalaimon для использования сквозного шифрования.",
+    "@Please be aware that you need Pantalaimon to use end-to-end encryption for now.": {
+      "type": "text",
+      "placeholders": {}
+    }
   },
   "New message in FluffyChat": "Новое сообщение во FluffyChat",
   "@New message in FluffyChat": {
@@ -885,30 +907,42 @@
     "type": "text",
     "placeholders": {}
   },
-  "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": "Похоже, у вас нет служб Google на вашем телефоне. Это хорошее решение для вашей конфиденциальности! Для получения push-уведомлений во FluffyChat мы рекомендуем использовать microG: https://microg.org/",
-  "@It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": {
-    "type": "text",
-    "placeholders": {}
+  "It seems that you have no google services on your phone": {
+    " That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg": {
+      "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": "Похоже, у вас нет служб Google на вашем телефоне. Это хорошее решение для вашей конфиденциальности! Для получения push-уведомлений во FluffyChat мы рекомендуем использовать microG: https://microg.org/",
+      "@It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": {
+        "type": "text",
+        "placeholders": {}
+      }
+    }
   },
   "None": "Ничего",
   "@None": {
     "type": "text",
     "placeholders": {}
   },
-  "No emotes found. 😕": "Эмодзи не найдены 😕",
-  "@No emotes found. 😕": {
-    "type": "text",
-    "placeholders": {}
+  "No emotes found": {
+    "No emotes found. 😕": "Эмодзи не найдены 😕",
+    "@No emotes found. 😕": {
+      "type": "text",
+      "placeholders": {}
+    }
   },
   "No permission": "Нет прав доступа",
   "@No permission": {
     "type": "text",
     "placeholders": {}
   },
-  "No rooms found...": "Комнаты не найдены...",
-  "@No rooms found...": {
-    "type": "text",
-    "placeholders": {}
+  "No rooms found": {
+    "": {
+      "": {
+        "No rooms found...": "Комнаты не найдены...",
+        "@No rooms found...": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
   "Not supported in web": "Не поддерживается в веб-версии",
   "@Not supported in web": {
@@ -937,10 +971,16 @@
     "type": "text",
     "placeholders": {}
   },
-  "Oops something went wrong...": "Упс! Что-то пошло не так...",
-  "@Oops something went wrong...": {
-    "type": "text",
-    "placeholders": {}
+  "Oops something went wrong": {
+    "": {
+      "": {
+        "Oops something went wrong...": "Упс! Что-то пошло не так...",
+        "@Oops something went wrong...": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
   "Open app to read messages": "Откройте приложение для чтения сообщений",
   "@Open app to read messages": {
@@ -1315,10 +1355,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "This room has been archived.": "Эта комната была заархивирована.",
-  "@This room has been archived.": {
-    "type": "text",
-    "placeholders": {}
+  "This room has been archived": {
+    "This room has been archived.": "Эта комната была заархивирована.",
+    "@This room has been archived.": {
+      "type": "text",
+      "placeholders": {}
+    }
   },
   "Thursday": "Четверг",
   "@Thursday": {
@@ -1539,20 +1581,28 @@
     "type": "text",
     "placeholders": {}
   },
-  "Welcome to the cutest instant messenger in the matrix network.": "Добро пожаловать в самый симпатичный мессенджер в сети Matrix.",
-  "@Welcome to the cutest instant messenger in the matrix network.": {
-    "type": "text",
-    "placeholders": {}
+  "Welcome to the cutest instant messenger in the matrix network": {
+    "Welcome to the cutest instant messenger in the matrix network.": "Добро пожаловать в самый симпатичный мессенджер в сети Matrix.",
+    "@Welcome to the cutest instant messenger in the matrix network.": {
+      "type": "text",
+      "placeholders": {}
+    }
   },
   "Who is allowed to join this group": "Кому разрешено вступать в эту группу",
   "@Who is allowed to join this group": {
     "type": "text",
     "placeholders": {}
   },
-  "Write a message...": "Напишите сообщение...",
-  "@Write a message...": {
-    "type": "text",
-    "placeholders": {}
+  "Write a message": {
+    "": {
+      "": {
+        "Write a message...": "Напишите сообщение...",
+        "@Write a message...": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
   "Yes": "Да",
   "@Yes": {
@@ -1657,14 +1707,37 @@
     "type": "text",
     "placeholders": {}
   },
-  "Informations about your privacy: https://sentry.io/security/": "Информация о вашей конфиденциальности: https://sentry.io/security/",
-  "@Informations about your privacy: https://sentry.io/security/": {
+  "Informations about your privacy: https://sentry": {
+    "Informations about your privacy: https://sentry.io/security/": "Информация о вашей конфиденциальности: https://sentry.io/security/",
+    "@Informations about your privacy: https://sentry.io/security/": {
+      "type": "text",
+      "placeholders": {}
+    }
+  },
+  "Allow sending bug reports with sentry": {
+    "Allow sending bug reports with sentry.io": "Разрешить отправку отчетов об ошибках в sentry.io",
+    "@Allow sending bug reports with sentry.io": {
+      "type": "text",
+      "placeholders": {}
+    }
+  },
+  "Ignored users": "Игнорируемые пользователи",
+  "@Ignored users": {
     "type": "text",
     "placeholders": {}
   },
-  "Allow sending bug reports with sentry.io": "Разрешить отправку отчетов об ошибках в sentry.io",
-  "@Allow sending bug reports with sentry.io": {
+  "Ignore username": "Игнорировать имя пользователя",
+  "@Ignore username": {
     "type": "text",
     "placeholders": {}
+  },
+  "You can ignore users who are disturbing you": {
+    " You won't be able to receive any messages or room invites from the users on your personal ignore list": {
+      "You can ignore users who are disturbing you. You won't be able to receive any messages or room invites from the users on your personal ignore list.": "Вы можете игнорировать пользователей, которые вам мешают. Вы не сможете получать сообщения или приглашения в комнату от пользователей из вашего личного списка игнорирования.",
+      "@You can ignore users who are disturbing you. You won't be able to receive any messages or room invites from the users on your personal ignore list.": {
+        "type": "text",
+        "placeholders": {}
+      }
+    }
   }
 }
