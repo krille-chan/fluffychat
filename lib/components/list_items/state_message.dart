@@ -13,20 +13,22 @@ class StateMessage extends StatelessWidget {
       padding: const EdgeInsets.only(
         left: 8.0,
         right: 8.0,
-        bottom: 16.0,
+        bottom: 8.0,
       ),
-      child: Container(
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          color: Theme.of(context).backgroundColor.withOpacity(0.66),
-          borderRadius: BorderRadius.circular(7),
-        ),
-        child: Text(
-          event.getLocalizedBody(L10n.of(context)),
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Theme.of(context).textTheme.bodyText2.color,
-            decoration: event.redacted ? TextDecoration.lineThrough : null,
+      child: Center(
+        child: Container(
+          padding: const EdgeInsets.all(4),
+          decoration: BoxDecoration(
+            color: Theme.of(context).backgroundColor.withOpacity(0.8),
+            borderRadius: BorderRadius.circular(7),
+          ),
+          child: Text(
+            event.getLocalizedBody(L10n.of(context)),
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Theme.of(context).textTheme.bodyText2.color,
+              decoration: event.redacted ? TextDecoration.lineThrough : null,
+            ),
           ),
         ),
       ),

@@ -24,8 +24,11 @@ extension MatrixFileExtension on MatrixFile {
       element.click();
       element.remove();
     } else {
-      var tempDir = await getTemporaryDirectory();
-      final file = File(tempDir.path + '/' + name.split('/').last);
+      final downloadsDir = Platform.isAndroid
+          ? (await getExternalStorageDirectory())
+          : (await getApplicationDocumentsDirectory());
+
+      final file = File(downloadsDir.path + '/' + name.split('/').last);
       file.writeAsBytesSync(bytes);
       await OpenFile.open(file.path);
     }

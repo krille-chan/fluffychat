@@ -629,12 +629,24 @@ class _ChatState extends State<_Chat> {
                                                   client.userID
                                               ? Alignment.topRight
                                               : Alignment.topLeft,
-                                      child: Text(
-                                        seenByText,
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
-                                          color: Theme.of(context).primaryColor,
+                                      child: Container(
+                                        padding:
+                                            EdgeInsets.symmetric(horizontal: 4),
+                                        decoration: BoxDecoration(
+                                          color: Theme.of(context)
+                                              .scaffoldBackgroundColor
+                                              .withOpacity(0.8),
+                                          borderRadius:
+                                              BorderRadius.circular(4),
+                                        ),
+                                        child: Text(
+                                          seenByText,
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                            color:
+                                                Theme.of(context).primaryColor,
+                                          ),
                                         ),
                                       ),
                                       padding: EdgeInsets.only(
