@@ -459,10 +459,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "You won't be able to disable the encryption anymore. Are you sure?": "Šifrování jiš nebude možné vypnout. Jste si tím jisti?",
-  "@You won't be able to disable the encryption anymore. Are you sure?": {
-    "type": "text",
-    "placeholders": {}
+  "You won't be able to disable the encryption anymore": {
+    "You won't be able to disable the encryption anymore. Are you sure?": "Šifrování jiš nebude možné vypnout. Jste si tím jisti?",
+    "@You won't be able to disable the encryption anymore. Are you sure?": {
+      "type": "text",
+      "placeholders": {}
+    }
   },
   "Encryption algorithm": "Šifrovací algoritmus",
   "@Encryption algorithm": {
@@ -632,10 +634,16 @@
     "type": "text",
     "placeholders": {}
   },
-  "is typing...": "píše…",
-  "@is typing...": {
-    "type": "text",
-    "placeholders": {}
+  "is typing": {
+    "": {
+      "": {
+        "is typing...": "píše…",
+        "@is typing...": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
   "Edit Jitsi instance": "Nastavení instance Jitsi",
   "@Edit Jitsi instance": {
@@ -709,15 +717,27 @@
     "type": "text",
     "placeholders": {}
   },
-  "Loading... Please wait": "Načítání… Prosíme počkejte",
-  "@Loading... Please wait": {
-    "type": "text",
-    "placeholders": {}
+  "Loading": {
+    "": {
+      "": {
+        "Loading... Please wait": "Načítání… Prosíme počkejte",
+        "@Loading... Please wait": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
-  "Load more...": "Načíst další…",
-  "@Load more...": {
-    "type": "text",
-    "placeholders": {}
+  "Load more": {
+    "": {
+      "": {
+        "Load more...": "Načíst další…",
+        "@Load more...": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
   "loadCountMoreParticipants": "Načíst dalších {count} účastníků",
   "@loadCountMoreParticipants": {
@@ -773,10 +793,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "Please be aware that you need Pantalaimon to use end-to-end encryption for now.": "Prosím vezměte na vědomí, že pro použití koncového šifrování je prozatím potřeba použít Pantalaimon.",
-  "@Please be aware that you need Pantalaimon to use end-to-end encryption for now.": {
-    "type": "text",
-    "placeholders": {}
+  "Please be aware that you need Pantalaimon to use end-to-end encryption for now": {
+    "Please be aware that you need Pantalaimon to use end-to-end encryption for now.": "Prosím vezměte na vědomí, že pro použití koncového šifrování je prozatím potřeba použít Pantalaimon.",
+    "@Please be aware that you need Pantalaimon to use end-to-end encryption for now.": {
+      "type": "text",
+      "placeholders": {}
+    }
   },
   "New message in FluffyChat": "Nová zpráva ve FluffyChatu",
   "@New message in FluffyChat": {
@@ -788,30 +810,42 @@
     "type": "text",
     "placeholders": {}
   },
-  "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": "Vypadá to, že váš telefon nemá nainstalovány google services. Dobré rozhodnutí pro vaši bezpečnost! Pro příjem notifikací doporučujeme použít miocroG: https://microg.org/",
-  "@It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": {
-    "type": "text",
-    "placeholders": {}
+  "It seems that you have no google services on your phone": {
+    " That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg": {
+      "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": "Vypadá to, že váš telefon nemá nainstalovány google services. Dobré rozhodnutí pro vaši bezpečnost! Pro příjem notifikací doporučujeme použít miocroG: https://microg.org/",
+      "@It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": {
+        "type": "text",
+        "placeholders": {}
+      }
+    }
   },
   "None": "Nic",
   "@None": {
     "type": "text",
     "placeholders": {}
   },
-  "No emotes found. 😕": "Žádné emotikony nebyly nalezeny. 😕",
-  "@No emotes found. 😕": {
-    "type": "text",
-    "placeholders": {}
+  "No emotes found": {
+    "No emotes found. 😕": "Žádné emotikony nebyly nalezeny. 😕",
+    "@No emotes found. 😕": {
+      "type": "text",
+      "placeholders": {}
+    }
   },
   "No permission": "Chybí oprávnění",
   "@No permission": {
     "type": "text",
     "placeholders": {}
   },
-  "No rooms found...": "Žádné místnosti nebyly nalezeny…",
-  "@No rooms found...": {
-    "type": "text",
-    "placeholders": {}
+  "No rooms found": {
+    "": {
+      "": {
+        "No rooms found...": "Žádné místnosti nebyly nalezeny…",
+        "@No rooms found...": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
   "Not supported in web": "Nepodporováno na webu",
   "@Not supported in web": {
@@ -830,10 +864,16 @@
     "type": "text",
     "placeholders": {}
   },
-  "Oops something went wrong...": "Ups! Něco se pokazilo…",
-  "@Oops something went wrong...": {
-    "type": "text",
-    "placeholders": {}
+  "Oops something went wrong": {
+    "": {
+      "": {
+        "Oops something went wrong...": "Ups! Něco se pokazilo…",
+        "@Oops something went wrong...": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
   "Open app to read messages": "Otevřete aplikaci pro přečtení zpráv",
   "@Open app to read messages": {
@@ -1168,10 +1208,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "This room has been archived.": "Tato místnost byla archivována.",
-  "@This room has been archived.": {
-    "type": "text",
-    "placeholders": {}
+  "This room has been archived": {
+    "This room has been archived.": "Tato místnost byla archivována.",
+    "@This room has been archived.": {
+      "type": "text",
+      "placeholders": {}
+    }
   },
   "Thursday": "Čtvrtek",
   "@Thursday": {
@@ -1337,20 +1379,28 @@
     "type": "text",
     "placeholders": {}
   },
-  "Welcome to the cutest instant messenger in the matrix network.": "Vítejte v nejroztomilejší diskuzní aplikaci pro síť matrix.",
-  "@Welcome to the cutest instant messenger in the matrix network.": {
-    "type": "text",
-    "placeholders": {}
+  "Welcome to the cutest instant messenger in the matrix network": {
+    "Welcome to the cutest instant messenger in the matrix network.": "Vítejte v nejroztomilejší diskuzní aplikaci pro síť matrix.",
+    "@Welcome to the cutest instant messenger in the matrix network.": {
+      "type": "text",
+      "placeholders": {}
+    }
   },
   "Who is allowed to join this group": "Kdo se může připojit do této skupiny",
   "@Who is allowed to join this group": {
     "type": "text",
     "placeholders": {}
   },
-  "Write a message...": "Napište zprávu…",
-  "@Write a message...": {
-    "type": "text",
-    "placeholders": {}
+  "Write a message": {
+    "": {
+      "": {
+        "Write a message...": "Napište zprávu…",
+        "@Write a message...": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
   "Yes": "Ano",
   "@Yes": {
@@ -1657,14 +1707,37 @@
     "type": "text",
     "placeholders": {}
   },
-  "Informations about your privacy: https://sentry.io/security/": "Informace o vašem soukromí: https://sentry.io/security/",
-  "@Informations about your privacy: https://sentry.io/security/": {
+  "Informations about your privacy: https://sentry": {
+    "Informations about your privacy: https://sentry.io/security/": "Informace o vašem soukromí: https://sentry.io/security/",
+    "@Informations about your privacy: https://sentry.io/security/": {
+      "type": "text",
+      "placeholders": {}
+    }
+  },
+  "Allow sending bug reports with sentry": {
+    "Allow sending bug reports with sentry.io": "Umožňuje zasílání hlášení o chybách prostřednictvím sentry.io",
+    "@Allow sending bug reports with sentry.io": {
+      "type": "text",
+      "placeholders": {}
+    }
+  },
+  "Ignored users": "Ignorovaní uživatelé",
+  "@Ignored users": {
     "type": "text",
     "placeholders": {}
   },
-  "Allow sending bug reports with sentry.io": "Umožňuje zasílání hlášení o chybách prostřednictvím sentry.io",
-  "@Allow sending bug reports with sentry.io": {
+  "Ignore username": "Ignorovat uživatelské jméno",
+  "@Ignore username": {
     "type": "text",
     "placeholders": {}
+  },
+  "You can ignore users who are disturbing you": {
+    " You won't be able to receive any messages or room invites from the users on your personal ignore list": {
+      "You can ignore users who are disturbing you. You won't be able to receive any messages or room invites from the users on your personal ignore list.": "Můžete ignorovat uživatele, kteří vás znepokojují. Nebudete moci přijímat žádné zprávy nebo pozvánky od uživatelů na vašem osobním seznamu ignorovaných.",
+      "@You can ignore users who are disturbing you. You won't be able to receive any messages or room invites from the users on your personal ignore list.": {
+        "type": "text",
+        "placeholders": {}
+      }
+    }
   }
 }
