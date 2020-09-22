@@ -516,10 +516,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "You won't be able to disable the encryption anymore. Are you sure?": "Non poderás desactivar o cifrado posteriormente, ¿estás certo?",
-  "@You won't be able to disable the encryption anymore. Are you sure?": {
-    "type": "text",
-    "placeholders": {}
+  "You won't be able to disable the encryption anymore": {
+    "You won't be able to disable the encryption anymore. Are you sure?": "Non poderás desactivar o cifrado posteriormente, ¿estás certo?",
+    "@You won't be able to disable the encryption anymore. Are you sure?": {
+      "type": "text",
+      "placeholders": {}
+    }
   },
   "Encryption": "Cifrado",
   "@Encryption": {
@@ -704,10 +706,16 @@
     "type": "text",
     "placeholders": {}
   },
-  "is typing...": "está escribindo...",
-  "@is typing...": {
-    "type": "text",
-    "placeholders": {}
+  "is typing": {
+    "": {
+      "": {
+        "is typing...": "está escribindo...",
+        "@is typing...": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
   "Edit Jitsi instance": "Editar instancia Jitsi",
   "@Edit Jitsi instance": {
@@ -791,15 +799,27 @@
     "type": "text",
     "placeholders": {}
   },
-  "Loading... Please wait": "Cargando... Agarda",
-  "@Loading... Please wait": {
-    "type": "text",
-    "placeholders": {}
+  "Loading": {
+    "": {
+      "": {
+        "Loading... Please wait": "Cargando... Agarda",
+        "@Loading... Please wait": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
-  "Load more...": "Cargar máis...",
-  "@Load more...": {
-    "type": "text",
-    "placeholders": {}
+  "Load more": {
+    "": {
+      "": {
+        "Load more...": "Cargar máis...",
+        "@Load more...": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
   "loadCountMoreParticipants": "Cargar {count} participantes máis",
   "@loadCountMoreParticipants": {
@@ -855,10 +875,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "Please be aware that you need Pantalaimon to use end-to-end encryption for now.": "Ten en conta que polo de agora precisas Pantalaimon para o cifrado extremo-a-extremo.",
-  "@Please be aware that you need Pantalaimon to use end-to-end encryption for now.": {
-    "type": "text",
-    "placeholders": {}
+  "Please be aware that you need Pantalaimon to use end-to-end encryption for now": {
+    "Please be aware that you need Pantalaimon to use end-to-end encryption for now.": "Ten en conta que polo de agora precisas Pantalaimon para o cifrado extremo-a-extremo.",
+    "@Please be aware that you need Pantalaimon to use end-to-end encryption for now.": {
+      "type": "text",
+      "placeholders": {}
+    }
   },
   "New message in FluffyChat": "Nova mensaxe en FluffyChat",
   "@New message in FluffyChat": {
@@ -885,30 +907,42 @@
     "type": "text",
     "placeholders": {}
   },
-  "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": "Semella que non tes os servizos de google no teu dispositivo. Ben feito! a túa privacidade agradécecho! Para recibir notificacións push en FluffyChat recomendamos usar microG: https://microg.org/",
-  "@It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": {
-    "type": "text",
-    "placeholders": {}
+  "It seems that you have no google services on your phone": {
+    " That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg": {
+      "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": "Semella que non tes os servizos de google no teu dispositivo. Ben feito! a túa privacidade agradécecho! Para recibir notificacións push en FluffyChat recomendamos usar microG: https://microg.org/",
+      "@It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": {
+        "type": "text",
+        "placeholders": {}
+      }
+    }
   },
   "None": "Ningún",
   "@None": {
     "type": "text",
     "placeholders": {}
   },
-  "No emotes found. 😕": "Non hai emotes. 😕",
-  "@No emotes found. 😕": {
-    "type": "text",
-    "placeholders": {}
+  "No emotes found": {
+    "No emotes found. 😕": "Non hai emotes. 😕",
+    "@No emotes found. 😕": {
+      "type": "text",
+      "placeholders": {}
+    }
   },
   "No permission": "Sen permiso",
   "@No permission": {
     "type": "text",
     "placeholders": {}
   },
-  "No rooms found...": "Non se atoparon salas...",
-  "@No rooms found...": {
-    "type": "text",
-    "placeholders": {}
+  "No rooms found": {
+    "": {
+      "": {
+        "No rooms found...": "Non se atoparon salas...",
+        "@No rooms found...": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
   "Not supported in web": "Non soportado na web",
   "@Not supported in web": {
@@ -937,10 +971,16 @@
     "type": "text",
     "placeholders": {}
   },
-  "Oops something went wrong...": "Ooooi, algo fallou...",
-  "@Oops something went wrong...": {
-    "type": "text",
-    "placeholders": {}
+  "Oops something went wrong": {
+    "": {
+      "": {
+        "Oops something went wrong...": "Ooooi, algo fallou...",
+        "@Oops something went wrong...": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
   "Open app to read messages": "Abrir a app e ler mensaxes",
   "@Open app to read messages": {
@@ -1315,10 +1355,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "This room has been archived.": "A sala foi arquivada.",
-  "@This room has been archived.": {
-    "type": "text",
-    "placeholders": {}
+  "This room has been archived": {
+    "This room has been archived.": "A sala foi arquivada.",
+    "@This room has been archived.": {
+      "type": "text",
+      "placeholders": {}
+    }
   },
   "Thursday": "Xoves",
   "@Thursday": {
@@ -1539,20 +1581,28 @@
     "type": "text",
     "placeholders": {}
   },
-  "Welcome to the cutest instant messenger in the matrix network.": "Benvida á mensaxería instantánea más cuquiña da rede matrix.",
-  "@Welcome to the cutest instant messenger in the matrix network.": {
-    "type": "text",
-    "placeholders": {}
+  "Welcome to the cutest instant messenger in the matrix network": {
+    "Welcome to the cutest instant messenger in the matrix network.": "Benvida á mensaxería instantánea más cuquiña da rede matrix.",
+    "@Welcome to the cutest instant messenger in the matrix network.": {
+      "type": "text",
+      "placeholders": {}
+    }
   },
   "Who is allowed to join this group": "Quen se pode unir a este grupo",
   "@Who is allowed to join this group": {
     "type": "text",
     "placeholders": {}
   },
-  "Write a message...": "Escribe unha mensaxe...",
-  "@Write a message...": {
-    "type": "text",
-    "placeholders": {}
+  "Write a message": {
+    "": {
+      "": {
+        "Write a message...": "Escribe unha mensaxe...",
+        "@Write a message...": {
+          "type": "text",
+          "placeholders": {}
+        }
+      }
+    }
   },
   "Yes": "Si",
   "@Yes": {
@@ -1657,14 +1707,59 @@
     "type": "text",
     "placeholders": {}
   },
-  "Informations about your privacy: https://sentry.io/security/": "Información sobre privacidade: https://sentry.io/security/",
-  "@Informations about your privacy: https://sentry.io/security/": {
+  "Informations about your privacy: https://sentry": {
+    "Informations about your privacy: https://sentry.io/security/": "Información sobre privacidade: https://sentry.io/security/",
+    "@Informations about your privacy: https://sentry.io/security/": {
+      "type": "text",
+      "placeholders": {}
+    }
+  },
+  "Allow sending bug reports with sentry": {
+    "Allow sending bug reports with sentry.io": "Permitir o envío de informes de fallos con sentry.io",
+    "@Allow sending bug reports with sentry.io": {
+      "type": "text",
+      "placeholders": {}
+    }
+  },
+  "Warning!": "Aviso!",
+  "@Warning!": {
     "type": "text",
     "placeholders": {}
   },
-  "Allow sending bug reports with sentry.io": "Permitir o envío de informes de fallos con sentry.io",
-  "@Allow sending bug reports with sentry.io": {
+  "Password has been changed": "Cambiaches o contrasinal",
+  "@Password has been changed": {
     "type": "text",
     "placeholders": {}
+  },
+  "You can ignore users who are disturbing you": {
+    " You won't be able to receive any messages or room invites from the users on your personal ignore list": {
+      "You can ignore users who are disturbing you. You won't be able to receive any messages or room invites from the users on your personal ignore list.": "Podes ignorar usuarias molestas. Non recibirás ningunha mensaxe nin convites a salas da túa lista personal de usuarias ignoradas.",
+      "@You can ignore users who are disturbing you. You won't be able to receive any messages or room invites from the users on your personal ignore list.": {
+        "type": "text",
+        "placeholders": {}
+      }
+    }
+  },
+  "Ignore username": "Ignorar nome de usuaria",
+  "@Ignore username": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Ignored users": "Usuarias ignoradas",
+  "@Ignored users": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Delete account": "Eliminar conta",
+  "@Delete account": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "This will deactivate your user account": {
+    "This will deactivate your user account. This can not be undone! Are you sure?": "Esto desactivará a conta. Esto non ten volta atrás. Estás segura?",
+    "@This will deactivate your user account. This can not be undone! Are you sure?": {
+      "type": "text",
+      "placeholders": {}
+    }
   }
 }
