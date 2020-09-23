@@ -1666,5 +1666,40 @@
   "@yourOwnUsername": {
     "type": "text",
     "placeholders": {}
+  },
+  "warning": "Achtung!",
+  "@warning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordHasBeenChanged": "Passwort wurde geändert",
+  "@passwordHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignoreListDescription": "Du kannst störende Benutzer ignorieren. DU bist dann nicht mehr in der Lage Nachrichten oder Raumeinladungen von diesen zu erhalten.",
+  "@ignoreListDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignoreUsername": "Ignoriere Benutzername",
+  "@ignoreUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignoredUsers": "Ignorierte Benutzer",
+  "@ignoredUsers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deactivateAccountWarning": "Dies deaktiviert deinen Account. Es kann nicht rückgängig gemacht werden! Bist du sicher?",
+  "@deactivateAccountWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteAccount": "Lösche Account",
+  "@deleteAccount": {
+    "type": "text",
+    "placeholders": {}
   }
 }
