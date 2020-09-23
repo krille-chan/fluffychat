@@ -166,341 +166,28 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function>{
-        "(Optional) Group name":
-            MessageLookupByLibrary.simpleMessage("(Volitelné) Název skupiny"),
-        "About": MessageLookupByLibrary.simpleMessage("O aplikaci"),
-        "Accept": MessageLookupByLibrary.simpleMessage("Přijmout"),
-        "Account": MessageLookupByLibrary.simpleMessage("Účet"),
-        "Account informations":
-            MessageLookupByLibrary.simpleMessage("Informace o účtu"),
-        "Add a group description":
-            MessageLookupByLibrary.simpleMessage("Přidat popis skupiny"),
-        "Admin": MessageLookupByLibrary.simpleMessage("Administrátor"),
-        "Allow sending bug reports with sentry.io":
-            MessageLookupByLibrary.simpleMessage(
-                "Umožňuje zasílání hlášení o chybách prostřednictvím sentry.io"),
-        "Already have an account?":
-            MessageLookupByLibrary.simpleMessage("Máte již účet?"),
-        "Anyone can join":
-            MessageLookupByLibrary.simpleMessage("Kdokoliv se může připojit"),
-        "Archive": MessageLookupByLibrary.simpleMessage("Archiv"),
-        "Archived Room":
-            MessageLookupByLibrary.simpleMessage("Archivované místnosti"),
-        "Are guest users allowed to join":
-            MessageLookupByLibrary.simpleMessage("Mohou se připojit hosté"),
-        "Are you sure?": MessageLookupByLibrary.simpleMessage("Jste si jisti?"),
-        "Authentication": MessageLookupByLibrary.simpleMessage("Autentizace"),
-        "Avatar has been changed":
-            MessageLookupByLibrary.simpleMessage("Avatar byl změněn"),
-        "Ban from chat":
-            MessageLookupByLibrary.simpleMessage("Zabanovat z diskuze"),
-        "Banned": MessageLookupByLibrary.simpleMessage("Zakázán"),
-        "Block Device":
-            MessageLookupByLibrary.simpleMessage("Blokovat zařízení"),
-        "Cancel": MessageLookupByLibrary.simpleMessage("Zrušit"),
-        "Change the homeserver":
-            MessageLookupByLibrary.simpleMessage("Změnit použitý server"),
-        "Change the name of the group":
-            MessageLookupByLibrary.simpleMessage("Změnit název skupiny"),
-        "Change the server":
-            MessageLookupByLibrary.simpleMessage("Změnit server"),
-        "Change wallpaper":
-            MessageLookupByLibrary.simpleMessage("Změnit pozadí"),
-        "Change your style":
-            MessageLookupByLibrary.simpleMessage("Nastavte svůj styl"),
-        "Changelog": MessageLookupByLibrary.simpleMessage("Historie změn"),
-        "Changes have been saved":
-            MessageLookupByLibrary.simpleMessage("Změny byly uloženy"),
-        "Chat": MessageLookupByLibrary.simpleMessage("Diskuze"),
-        "Chat details": MessageLookupByLibrary.simpleMessage("Detail diskuze"),
-        "Choose a strong password":
-            MessageLookupByLibrary.simpleMessage("Vyberte silné heslo"),
-        "Choose a username":
-            MessageLookupByLibrary.simpleMessage("Vyberte uživatelské jméno"),
-        "Close": MessageLookupByLibrary.simpleMessage("Zavřít"),
-        "Confirm": MessageLookupByLibrary.simpleMessage("Potvrdit"),
-        "Connect": MessageLookupByLibrary.simpleMessage("Připojit"),
-        "Connection attempt failed":
-            MessageLookupByLibrary.simpleMessage("Pokus o připojení selhal"),
-        "Contact has been invited to the group":
-            MessageLookupByLibrary.simpleMessage(
-                "Kontakt byl pozván do skupiny"),
-        "Content viewer":
-            MessageLookupByLibrary.simpleMessage("Prohlížeč obsahu"),
-        "Copied to clipboard":
-            MessageLookupByLibrary.simpleMessage("Zkopírováno do schránky"),
-        "Copy": MessageLookupByLibrary.simpleMessage("Kopírovat"),
-        "Could not set avatar": MessageLookupByLibrary.simpleMessage(
-            "Nebylo možné nastavit avatar"),
-        "Could not set displayname": MessageLookupByLibrary.simpleMessage(
-            "Nebylo možné nastavit přezdívku uživatele"),
-        "Create": MessageLookupByLibrary.simpleMessage("Vytvořit"),
-        "Create account now":
-            MessageLookupByLibrary.simpleMessage("Vytvořit účet teď"),
-        "Create new group":
-            MessageLookupByLibrary.simpleMessage("Založit skupinu"),
-        "Currently active":
-            MessageLookupByLibrary.simpleMessage("Momentálně aktivní"),
-        "Dark": MessageLookupByLibrary.simpleMessage("Tmavý"),
-        "Delete": MessageLookupByLibrary.simpleMessage("Smazat"),
-        "Delete message": MessageLookupByLibrary.simpleMessage("Smazat zprávu"),
-        "Deny": MessageLookupByLibrary.simpleMessage("Zakázat"),
-        "Device": MessageLookupByLibrary.simpleMessage("Zařízení"),
-        "Devices": MessageLookupByLibrary.simpleMessage("Zařízení"),
-        "Discard picture":
-            MessageLookupByLibrary.simpleMessage("Vyřadit obrázek"),
-        "Displayname has been changed":
-            MessageLookupByLibrary.simpleMessage("Přezdívka byla změněna"),
-        "Donate": MessageLookupByLibrary.simpleMessage("Přispějte"),
-        "Download file":
-            MessageLookupByLibrary.simpleMessage("Stáhnout soubor"),
-        "Edit Jitsi instance":
-            MessageLookupByLibrary.simpleMessage("Nastavení instance Jitsi"),
-        "Edit displayname":
-            MessageLookupByLibrary.simpleMessage("Změnit přezdívku"),
-        "Emote Settings":
-            MessageLookupByLibrary.simpleMessage("Nastavení emotikon"),
-        "Emote shortcode":
-            MessageLookupByLibrary.simpleMessage("Označení emotikony"),
-        "Empty chat": MessageLookupByLibrary.simpleMessage("Prázdná diskuze"),
-        "Encryption": MessageLookupByLibrary.simpleMessage("Šifrování"),
-        "Encryption algorithm":
-            MessageLookupByLibrary.simpleMessage("Šifrovací algoritmus"),
-        "Encryption is not enabled":
-            MessageLookupByLibrary.simpleMessage("Šifrování není aktivní"),
-        "End to end encryption is currently in Beta! Use at your own risk!":
-            MessageLookupByLibrary.simpleMessage(
-                "Koncové šifrování je momentálně v Beta verzi! Používejte na vlastní nebezpečí!"),
-        "End-to-end encryption settings": MessageLookupByLibrary.simpleMessage(
-            "Nastavení koncového šifrování"),
-        "Enter a group name":
-            MessageLookupByLibrary.simpleMessage("Zadejte jméno skupiny"),
-        "Enter a username":
-            MessageLookupByLibrary.simpleMessage("Zadejte uživatelské jméno"),
-        "Enter your homeserver":
-            MessageLookupByLibrary.simpleMessage("Zadejte adresu serveru"),
-        "File name": MessageLookupByLibrary.simpleMessage("Název souboru"),
-        "File size": MessageLookupByLibrary.simpleMessage("Velikost souboru"),
-        "FluffyChat": MessageLookupByLibrary.simpleMessage("FluffyChat"),
-        "Forward": MessageLookupByLibrary.simpleMessage("Přeposlat"),
-        "Friday": MessageLookupByLibrary.simpleMessage("Pátek"),
-        "From joining": MessageLookupByLibrary.simpleMessage("Od připojení"),
-        "From the invitation":
-            MessageLookupByLibrary.simpleMessage("Od pozvání"),
-        "Group": MessageLookupByLibrary.simpleMessage("Skupina"),
-        "Group description":
-            MessageLookupByLibrary.simpleMessage("Popis skupiny"),
-        "Group description has been changed":
-            MessageLookupByLibrary.simpleMessage("Popis skupiny byl změněn"),
-        "Group is public":
-            MessageLookupByLibrary.simpleMessage("Skupina je veřejná"),
-        "Guests are forbidden":
-            MessageLookupByLibrary.simpleMessage("Hosté jsou zakázáni"),
-        "Guests can join":
-            MessageLookupByLibrary.simpleMessage("Hosté se mohou připojit"),
-        "Help": MessageLookupByLibrary.simpleMessage("Pomoc"),
-        "Homeserver is not compatible":
-            MessageLookupByLibrary.simpleMessage("Server není kompatibilní"),
-        "How are you today?":
-            MessageLookupByLibrary.simpleMessage("Jak se máte?"),
-        "ID": MessageLookupByLibrary.simpleMessage("ID"),
-        "Identity": MessageLookupByLibrary.simpleMessage("Identita"),
-        "Informations about your privacy: https://sentry.io/security/":
-            MessageLookupByLibrary.simpleMessage(
-                "Informace o vašem soukromí: https://sentry.io/security/"),
-        "Invite contact":
-            MessageLookupByLibrary.simpleMessage("Pozvat kontakt"),
-        "Invited": MessageLookupByLibrary.simpleMessage("Pozváni"),
-        "Invited users only":
-            MessageLookupByLibrary.simpleMessage("Pouze pozvaní uživatelé"),
-        "It seems that you have no google services on your phone. That\'s a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/":
-            MessageLookupByLibrary.simpleMessage(
-                "Vypadá to, že váš telefon nemá nainstalovány google services. Dobré rozhodnutí pro vaši bezpečnost! Pro příjem notifikací doporučujeme použít miocroG: https://microg.org/"),
-        "Join room":
-            MessageLookupByLibrary.simpleMessage("Vstoupil do místnosti"),
-        "Kick from chat":
-            MessageLookupByLibrary.simpleMessage("Vyhodit z diskuze"),
-        "Last seen IP":
-            MessageLookupByLibrary.simpleMessage("Naposledy viděná IP"),
-        "Leave": MessageLookupByLibrary.simpleMessage("Odejít"),
-        "Left the chat":
-            MessageLookupByLibrary.simpleMessage("Odešel z diskuze"),
-        "License": MessageLookupByLibrary.simpleMessage("Licence"),
-        "Light": MessageLookupByLibrary.simpleMessage("Světlý"),
-        "Load more...": MessageLookupByLibrary.simpleMessage("Načíst další…"),
-        "Loading... Please wait":
-            MessageLookupByLibrary.simpleMessage("Načítání… Prosíme počkejte"),
-        "Login": MessageLookupByLibrary.simpleMessage("Přihlášení"),
-        "Logout": MessageLookupByLibrary.simpleMessage("Odhlásit"),
-        "Make a moderator":
-            MessageLookupByLibrary.simpleMessage("Učiň moderátorem"),
-        "Make an admin": MessageLookupByLibrary.simpleMessage("Učiň adminem"),
-        "Make sure the identifier is valid":
-            MessageLookupByLibrary.simpleMessage(
-                "Ujistěte se, že je identifikátor validní"),
-        "Message will be removed for all participants":
-            MessageLookupByLibrary.simpleMessage(
-                "Zpráva bude odstraněna pro všechny účastníky"),
-        "Moderator": MessageLookupByLibrary.simpleMessage("Moderátor"),
-        "Monday": MessageLookupByLibrary.simpleMessage("Pondělí"),
-        "Mute chat": MessageLookupByLibrary.simpleMessage("Ztišit diskuzi"),
-        "New message in FluffyChat":
-            MessageLookupByLibrary.simpleMessage("Nová zpráva ve FluffyChatu"),
-        "New private chat":
-            MessageLookupByLibrary.simpleMessage("Nová soukromá diskuze"),
-        "No": MessageLookupByLibrary.simpleMessage("Ne"),
-        "No emotes found. 😕": MessageLookupByLibrary.simpleMessage(
-            "Žádné emotikony nebyly nalezeny. 😕"),
-        "No permission":
-            MessageLookupByLibrary.simpleMessage("Chybí oprávnění"),
-        "No rooms found...": MessageLookupByLibrary.simpleMessage(
-            "Žádné místnosti nebyly nalezeny…"),
-        "None": MessageLookupByLibrary.simpleMessage("Nic"),
-        "Not supported in web":
-            MessageLookupByLibrary.simpleMessage("Nepodporováno na webu"),
-        "Oops something went wrong...":
-            MessageLookupByLibrary.simpleMessage("Ups! Něco se pokazilo…"),
-        "Open app to read messages": MessageLookupByLibrary.simpleMessage(
-            "Otevřete aplikaci pro přečtení zpráv"),
-        "Open camera":
-            MessageLookupByLibrary.simpleMessage("Otevřít fotoaparát"),
-        "Participating user devices": MessageLookupByLibrary.simpleMessage(
-            "Zúčastněná zařízení uživatele"),
-        "Password": MessageLookupByLibrary.simpleMessage("Heslo"),
-        "Pick image": MessageLookupByLibrary.simpleMessage("Zvolit obrázek"),
-        "Pin": MessageLookupByLibrary.simpleMessage("Připnout zprávu"),
-        "Please be aware that you need Pantalaimon to use end-to-end encryption for now.":
-            MessageLookupByLibrary.simpleMessage(
-                "Prosím vezměte na vědomí, že pro použití koncového šifrování je prozatím potřeba použít Pantalaimon."),
-        "Please choose a username": MessageLookupByLibrary.simpleMessage(
-            "Prosíme zvolte si uživatelské jméno"),
-        "Please enter a matrix identifier":
-            MessageLookupByLibrary.simpleMessage(
-                "Prosíme zadejte identifikátor sítě matrix"),
-        "Please enter your password":
-            MessageLookupByLibrary.simpleMessage("Prosíme zadejte heslo"),
-        "Please enter your username": MessageLookupByLibrary.simpleMessage(
-            "Prosíme zadejte uživateslké jméno"),
-        "Public Rooms":
-            MessageLookupByLibrary.simpleMessage("Veřejné místnosti"),
-        "Recording": MessageLookupByLibrary.simpleMessage("Nahrávání"),
-        "Reject": MessageLookupByLibrary.simpleMessage("Zamítnout"),
-        "Rejoin": MessageLookupByLibrary.simpleMessage("Připojit znovu"),
-        "Remove": MessageLookupByLibrary.simpleMessage("Odstranit"),
-        "Remove all other devices": MessageLookupByLibrary.simpleMessage(
-            "Odstranit všechna další zařízení"),
-        "Remove device":
-            MessageLookupByLibrary.simpleMessage("Odstraň zařízení"),
-        "Remove exile": MessageLookupByLibrary.simpleMessage("Odblokovat"),
-        "Remove message":
-            MessageLookupByLibrary.simpleMessage("Odstranit zprávu"),
-        "Render rich message content":
-            MessageLookupByLibrary.simpleMessage("Zobrazit formátovaný obsah"),
-        "Reply": MessageLookupByLibrary.simpleMessage("Odpovědět"),
-        "Request permission":
-            MessageLookupByLibrary.simpleMessage("Vyžádat oprávnění"),
-        "Request to read older messages": MessageLookupByLibrary.simpleMessage(
-            "Vyžádat přečtení starších zpráv"),
-        "Revoke all permissions": MessageLookupByLibrary.simpleMessage(
-            "Vezmi zpět všechna oprávnění"),
-        "Room has been upgraded":
-            MessageLookupByLibrary.simpleMessage("Místnost byla upgradována"),
-        "Saturday": MessageLookupByLibrary.simpleMessage("Sobota"),
-        "Search for a chat":
-            MessageLookupByLibrary.simpleMessage("Hledej diskuzi"),
-        "Seen a long time ago":
-            MessageLookupByLibrary.simpleMessage("Viděni velmi dávno"),
-        "Send": MessageLookupByLibrary.simpleMessage("Odeslat"),
-        "Send a message":
-            MessageLookupByLibrary.simpleMessage("Odeslat zprávu"),
-        "Send audio": MessageLookupByLibrary.simpleMessage("Odeslat audio"),
-        "Send file": MessageLookupByLibrary.simpleMessage("Odeslat soubor"),
-        "Send image": MessageLookupByLibrary.simpleMessage("Odeslat obrázek"),
-        "Send original":
-            MessageLookupByLibrary.simpleMessage("Odeslat originál"),
-        "Send video": MessageLookupByLibrary.simpleMessage("Odeslat video"),
-        "Set a profile picture":
-            MessageLookupByLibrary.simpleMessage("Nastavit profilový obrázek"),
-        "Set group description":
-            MessageLookupByLibrary.simpleMessage("Nastavit popis skupiny"),
-        "Set invitation link":
-            MessageLookupByLibrary.simpleMessage("Nastavit zvací odkaz"),
-        "Set status": MessageLookupByLibrary.simpleMessage("Nastavit status"),
-        "Settings": MessageLookupByLibrary.simpleMessage("Nastavení"),
-        "Share": MessageLookupByLibrary.simpleMessage("Sdílet"),
-        "Sign up": MessageLookupByLibrary.simpleMessage("Registrovat se"),
-        "Skip": MessageLookupByLibrary.simpleMessage("Přeskočit"),
-        "Source code": MessageLookupByLibrary.simpleMessage("Zdrojové kódy"),
-        "Start your first chat :-)": MessageLookupByLibrary.simpleMessage(
-            "Začněte svou první diskuzi :)"),
-        "Submit": MessageLookupByLibrary.simpleMessage("Potvrdit"),
-        "Sunday": MessageLookupByLibrary.simpleMessage("Neděle"),
-        "System": MessageLookupByLibrary.simpleMessage("Systém"),
-        "Tap to show menu":
-            MessageLookupByLibrary.simpleMessage("Klepněte pro zobrazení menu"),
-        "The encryption has been corrupted":
-            MessageLookupByLibrary.simpleMessage("Šifrování bylo poškozeno"),
-        "They Don\'t Match":
-            MessageLookupByLibrary.simpleMessage("Neshodují se"),
-        "They Match": MessageLookupByLibrary.simpleMessage("Shodují se"),
-        "This room has been archived.": MessageLookupByLibrary.simpleMessage(
-            "Tato místnost byla archivována."),
-        "Thursday": MessageLookupByLibrary.simpleMessage("Čtvrtek"),
-        "Try to send again":
-            MessageLookupByLibrary.simpleMessage("Pokusit se odeslat znovu"),
-        "Tuesday": MessageLookupByLibrary.simpleMessage("Úterý"),
-        "Unblock Device":
-            MessageLookupByLibrary.simpleMessage("Odblokovat zařízení"),
-        "Unknown device":
-            MessageLookupByLibrary.simpleMessage("Neznámé zařízení"),
-        "Unknown encryption algorithm": MessageLookupByLibrary.simpleMessage(
-            "Neznámý šifrovací algoritmus"),
-        "Unmute chat": MessageLookupByLibrary.simpleMessage("Zrušit ztišení"),
-        "Unpin": MessageLookupByLibrary.simpleMessage("Odepnout zprávu"),
-        "Use Amoled compatible colors?": MessageLookupByLibrary.simpleMessage(
-            "Použít barvy kompatibilní s Amoled displayem?"),
-        "Username": MessageLookupByLibrary.simpleMessage("Uživatelské jméno"),
-        "Verify": MessageLookupByLibrary.simpleMessage("Ověř"),
-        "Verify User": MessageLookupByLibrary.simpleMessage("Ověřit uživatele"),
-        "Video call": MessageLookupByLibrary.simpleMessage("Video hovor"),
-        "Visibility of the chat history": MessageLookupByLibrary.simpleMessage(
-            "Viditelnost historie diskuze"),
-        "Visible for all participants": MessageLookupByLibrary.simpleMessage(
-            "Viditelné pro všechny účastníky"),
-        "Visible for everyone":
-            MessageLookupByLibrary.simpleMessage("Viditelné pro všechny"),
-        "Voice message": MessageLookupByLibrary.simpleMessage("Hlasová zpráva"),
-        "Wallpaper": MessageLookupByLibrary.simpleMessage("Pozadí"),
-        "Wednesday": MessageLookupByLibrary.simpleMessage("Středa"),
-        "Welcome to the cutest instant messenger in the matrix network.":
-            MessageLookupByLibrary.simpleMessage(
-                "Vítejte v nejroztomilejší diskuzní aplikaci pro síť matrix."),
-        "Who is allowed to join this group":
-            MessageLookupByLibrary.simpleMessage(
-                "Kdo se může připojit do této skupiny"),
-        "Write a message...":
-            MessageLookupByLibrary.simpleMessage("Napište zprávu…"),
-        "Yes": MessageLookupByLibrary.simpleMessage("Ano"),
-        "You": MessageLookupByLibrary.simpleMessage("Ty"),
-        "You are invited to this chat":
-            MessageLookupByLibrary.simpleMessage("Jste zváni do této diskuze"),
-        "You are no longer participating in this chat":
-            MessageLookupByLibrary.simpleMessage(
-                "Této diskuze se nadále neúčastníte"),
-        "You cannot invite yourself":
-            MessageLookupByLibrary.simpleMessage("Nemůžete pozvat sami sebe"),
-        "You have been banned from this chat":
-            MessageLookupByLibrary.simpleMessage(
-                "Byl vám zablokován přístup k tomuto chatu"),
-        "You won\'t be able to disable the encryption anymore. Are you sure?":
-            MessageLookupByLibrary.simpleMessage(
-                "Šifrování jiš nebude možné vypnout. Jste si tím jisti?"),
-        "Your own username": MessageLookupByLibrary.simpleMessage(
-            "Vaše vlastní uživatelské jméno"),
+        "about": MessageLookupByLibrary.simpleMessage("O aplikaci"),
+        "accept": MessageLookupByLibrary.simpleMessage("Přijmout"),
         "acceptedTheInvitation": m0,
+        "account": MessageLookupByLibrary.simpleMessage("Účet"),
+        "accountInformation":
+            MessageLookupByLibrary.simpleMessage("Informace o účtu"),
         "activatedEndToEndEncryption": m1,
+        "addGroupDescription":
+            MessageLookupByLibrary.simpleMessage("Přidat popis skupiny"),
+        "admin": MessageLookupByLibrary.simpleMessage("Administrátor"),
         "alias": MessageLookupByLibrary.simpleMessage("alias"),
+        "alreadyHaveAnAccount":
+            MessageLookupByLibrary.simpleMessage("Máte již účet?"),
         "answeredTheCall": m2,
+        "anyoneCanJoin":
+            MessageLookupByLibrary.simpleMessage("Kdokoliv se může připojit"),
+        "archive": MessageLookupByLibrary.simpleMessage("Archiv"),
+        "archivedRoom":
+            MessageLookupByLibrary.simpleMessage("Archivované místnosti"),
+        "areGuestsAllowedToJoin":
+            MessageLookupByLibrary.simpleMessage("Mohou se připojit hosté"),
+        "areYouSure": MessageLookupByLibrary.simpleMessage("Jste si jisti?"),
         "askSSSSCache": MessageLookupByLibrary.simpleMessage(
             "Prosím zadajte vaší prístupovu frázI k \"bezpečému úložišti\" anebo \"klíč na obnovu\" pro uložení klíčů."),
         "askSSSSSign": MessageLookupByLibrary.simpleMessage(
@@ -508,10 +195,29 @@ class MessageLookup extends MessageLookupByLibrary {
         "askSSSSVerify": MessageLookupByLibrary.simpleMessage(
             "Zadejte prosím vaší přístupovou frází k “bezpečnému úložišti” anebo “klíč pro obnovu” pro ověření vaší relace."),
         "askVerificationRequest": m3,
+        "authentication": MessageLookupByLibrary.simpleMessage("Autentizace"),
+        "avatarHasBeenChanged":
+            MessageLookupByLibrary.simpleMessage("Avatar byl změněn"),
+        "banFromChat":
+            MessageLookupByLibrary.simpleMessage("Zabanovat z diskuze"),
+        "banned": MessageLookupByLibrary.simpleMessage("Zakázán"),
         "bannedUser": m4,
+        "blockDevice":
+            MessageLookupByLibrary.simpleMessage("Blokovat zařízení"),
         "byDefaultYouWillBeConnectedTo": m5,
         "cachedKeys":
             MessageLookupByLibrary.simpleMessage("Klíče byly úspěšně uloženy!"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Zrušit"),
+        "changeTheHomeserver":
+            MessageLookupByLibrary.simpleMessage("Změnit použitý server"),
+        "changeTheNameOfTheGroup":
+            MessageLookupByLibrary.simpleMessage("Změnit název skupiny"),
+        "changeTheServer":
+            MessageLookupByLibrary.simpleMessage("Změnit server"),
+        "changeTheme":
+            MessageLookupByLibrary.simpleMessage("Nastavte svůj styl"),
+        "changeWallpaper":
+            MessageLookupByLibrary.simpleMessage("Změnit pozadí"),
         "changedTheChatAvatar": m6,
         "changedTheChatDescriptionTo": m7,
         "changedTheChatNameTo": m8,
@@ -526,104 +232,384 @@ class MessageLookup extends MessageLookupByLibrary {
         "changedTheProfileAvatar": m17,
         "changedTheRoomAliases": m18,
         "changedTheRoomInvitationLink": m19,
+        "changelog": MessageLookupByLibrary.simpleMessage("Historie změn"),
+        "changesHaveBeenSaved":
+            MessageLookupByLibrary.simpleMessage("Změny byly uloženy"),
+        "channelCorruptedDecryptError":
+            MessageLookupByLibrary.simpleMessage("Šifrování bylo poškozeno"),
+        "chat": MessageLookupByLibrary.simpleMessage("Diskuze"),
+        "chatDetails": MessageLookupByLibrary.simpleMessage("Detail diskuze"),
+        "chooseAStrongPassword":
+            MessageLookupByLibrary.simpleMessage("Vyberte silné heslo"),
+        "chooseAUsername":
+            MessageLookupByLibrary.simpleMessage("Vyberte uživatelské jméno"),
+        "close": MessageLookupByLibrary.simpleMessage("Zavřít"),
         "compareEmojiMatch": MessageLookupByLibrary.simpleMessage(
             "Porovnejte a přesvědčete se, že následující emotikony se shodují na obou zařízeních:"),
         "compareNumbersMatch": MessageLookupByLibrary.simpleMessage(
             "Porovnejte a přesvědčete se, že následující čísla se shodují na obou zařízeních:"),
+        "confirm": MessageLookupByLibrary.simpleMessage("Potvrdit"),
+        "connect": MessageLookupByLibrary.simpleMessage("Připojit"),
+        "connectionAttemptFailed":
+            MessageLookupByLibrary.simpleMessage("Pokus o připojení selhal"),
+        "contactHasBeenInvitedToTheGroup": MessageLookupByLibrary.simpleMessage(
+            "Kontakt byl pozván do skupiny"),
+        "contentViewer":
+            MessageLookupByLibrary.simpleMessage("Prohlížeč obsahu"),
+        "copiedToClipboard":
+            MessageLookupByLibrary.simpleMessage("Zkopírováno do schránky"),
+        "copy": MessageLookupByLibrary.simpleMessage("Kopírovat"),
         "couldNotDecryptMessage": m20,
+        "couldNotSetAvatar": MessageLookupByLibrary.simpleMessage(
+            "Nebylo možné nastavit avatar"),
+        "couldNotSetDisplayname": MessageLookupByLibrary.simpleMessage(
+            "Nebylo možné nastavit přezdívku uživatele"),
         "countParticipants": m21,
+        "create": MessageLookupByLibrary.simpleMessage("Vytvořit"),
+        "createAccountNow":
+            MessageLookupByLibrary.simpleMessage("Vytvořit účet teď"),
+        "createNewGroup":
+            MessageLookupByLibrary.simpleMessage("Založit skupinu"),
         "createdTheChat": m22,
         "crossSigningDisabled":
             MessageLookupByLibrary.simpleMessage("Vzájemné ověření je vypnuté"),
         "crossSigningEnabled":
             MessageLookupByLibrary.simpleMessage("Vzájemné ověření je zapnuté"),
+        "currentlyActive":
+            MessageLookupByLibrary.simpleMessage("Momentálně aktivní"),
+        "darkTheme": MessageLookupByLibrary.simpleMessage("Tmavý"),
         "dateAndTimeOfDay": m23,
         "dateWithYear": m24,
         "dateWithoutYear": m25,
+        "delete": MessageLookupByLibrary.simpleMessage("Smazat"),
+        "deleteMessage": MessageLookupByLibrary.simpleMessage("Smazat zprávu"),
+        "deny": MessageLookupByLibrary.simpleMessage("Zakázat"),
+        "device": MessageLookupByLibrary.simpleMessage("Zařízení"),
+        "devices": MessageLookupByLibrary.simpleMessage("Zařízení"),
+        "discardPicture":
+            MessageLookupByLibrary.simpleMessage("Vyřadit obrázek"),
+        "displaynameHasBeenChanged":
+            MessageLookupByLibrary.simpleMessage("Přezdívka byla změněna"),
+        "donate": MessageLookupByLibrary.simpleMessage("Přispějte"),
+        "downloadFile": MessageLookupByLibrary.simpleMessage("Stáhnout soubor"),
+        "editDisplayname":
+            MessageLookupByLibrary.simpleMessage("Změnit přezdívku"),
+        "editJitsiInstance":
+            MessageLookupByLibrary.simpleMessage("Nastavení instance Jitsi"),
         "emoteExists":
             MessageLookupByLibrary.simpleMessage("Emotikona již existuje!"),
         "emoteInvalid": MessageLookupByLibrary.simpleMessage(
             "Nesprávné označení emotikony!"),
+        "emoteSettings":
+            MessageLookupByLibrary.simpleMessage("Nastavení emotikon"),
+        "emoteShortcode":
+            MessageLookupByLibrary.simpleMessage("Označení emotikony"),
         "emoteWarnNeedToPick": MessageLookupByLibrary.simpleMessage(
             "Musíte zvolit označení emotikony a obrázek!"),
+        "emptyChat": MessageLookupByLibrary.simpleMessage("Prázdná diskuze"),
+        "enableEncryptionWarning": MessageLookupByLibrary.simpleMessage(
+            "Šifrování jiš nebude možné vypnout. Jste si tím jisti?"),
+        "encryption": MessageLookupByLibrary.simpleMessage("Šifrování"),
+        "encryptionAlgorithm":
+            MessageLookupByLibrary.simpleMessage("Šifrovací algoritmus"),
+        "encryptionNotEnabled":
+            MessageLookupByLibrary.simpleMessage("Šifrování není aktivní"),
+        "end2endEncryptionSettings": MessageLookupByLibrary.simpleMessage(
+            "Nastavení koncového šifrování"),
         "endedTheCall": m26,
+        "enterAGroupName":
+            MessageLookupByLibrary.simpleMessage("Zadejte jméno skupiny"),
+        "enterAUsername":
+            MessageLookupByLibrary.simpleMessage("Zadejte uživatelské jméno"),
+        "enterYourHomeserver":
+            MessageLookupByLibrary.simpleMessage("Zadejte adresu serveru"),
+        "fileName": MessageLookupByLibrary.simpleMessage("Název souboru"),
+        "fileSize": MessageLookupByLibrary.simpleMessage("Velikost souboru"),
+        "fluffychat": MessageLookupByLibrary.simpleMessage("FluffyChat"),
+        "forward": MessageLookupByLibrary.simpleMessage("Přeposlat"),
+        "friday": MessageLookupByLibrary.simpleMessage("Pátek"),
+        "fromJoining": MessageLookupByLibrary.simpleMessage("Od připojení"),
+        "fromTheInvitation": MessageLookupByLibrary.simpleMessage("Od pozvání"),
+        "group": MessageLookupByLibrary.simpleMessage("Skupina"),
+        "groupDescription":
+            MessageLookupByLibrary.simpleMessage("Popis skupiny"),
+        "groupDescriptionHasBeenChanged":
+            MessageLookupByLibrary.simpleMessage("Popis skupiny byl změněn"),
+        "groupIsPublic":
+            MessageLookupByLibrary.simpleMessage("Skupina je veřejná"),
         "groupWith": m27,
+        "guestsAreForbidden":
+            MessageLookupByLibrary.simpleMessage("Hosté jsou zakázáni"),
+        "guestsCanJoin":
+            MessageLookupByLibrary.simpleMessage("Hosté se mohou připojit"),
         "hasWithdrawnTheInvitationFor": m28,
+        "help": MessageLookupByLibrary.simpleMessage("Pomoc"),
+        "homeserverIsNotCompatible":
+            MessageLookupByLibrary.simpleMessage("Server není kompatibilní"),
+        "id": MessageLookupByLibrary.simpleMessage("ID"),
+        "identity": MessageLookupByLibrary.simpleMessage("Identita"),
+        "ignoreListDescription": MessageLookupByLibrary.simpleMessage(
+            "Můžete ignorovat uživatele, kteří vás znepokojují. Nebudete moci přijímat žádné zprávy nebo pozvánky od uživatelů na vašem osobním seznamu ignorovaných."),
+        "ignoreUsername":
+            MessageLookupByLibrary.simpleMessage("Ignorovat uživatelské jméno"),
+        "ignoredUsers":
+            MessageLookupByLibrary.simpleMessage("Ignorovaní uživatelé"),
         "incorrectPassphraseOrKey": MessageLookupByLibrary.simpleMessage(
             "Nesprávné přístupové heslo anebo klíč pro obnovu"),
+        "inviteContact": MessageLookupByLibrary.simpleMessage("Pozvat kontakt"),
         "inviteContactToGroup": m29,
         "inviteText": m30,
+        "invited": MessageLookupByLibrary.simpleMessage("Pozváni"),
         "invitedUser": m31,
-        "is typing...": MessageLookupByLibrary.simpleMessage("píše…"),
+        "invitedUsersOnly":
+            MessageLookupByLibrary.simpleMessage("Pouze pozvaní uživatelé"),
         "isDeviceKeyCorrect": MessageLookupByLibrary.simpleMessage(
             "Je následjící kód zařízení správný?"),
+        "isTyping": MessageLookupByLibrary.simpleMessage("píše…"),
+        "joinRoom":
+            MessageLookupByLibrary.simpleMessage("Vstoupil do místnosti"),
         "joinedTheChat": m32,
         "keysCached": MessageLookupByLibrary.simpleMessage(
             "Klíče jsou uloženy v mezipaměti"),
         "keysMissing": MessageLookupByLibrary.simpleMessage("Chybí klíče"),
+        "kickFromChat":
+            MessageLookupByLibrary.simpleMessage("Vyhodit z diskuze"),
         "kicked": m33,
         "kickedAndBanned": m34,
         "lastActiveAgo": m35,
+        "lastSeenIp":
+            MessageLookupByLibrary.simpleMessage("Naposledy viděná IP"),
+        "lastSeenLongTimeAgo":
+            MessageLookupByLibrary.simpleMessage("Viděni velmi dávno"),
+        "leave": MessageLookupByLibrary.simpleMessage("Odejít"),
+        "leftTheChat": MessageLookupByLibrary.simpleMessage("Odešel z diskuze"),
+        "license": MessageLookupByLibrary.simpleMessage("Licence"),
+        "lightTheme": MessageLookupByLibrary.simpleMessage("Světlý"),
         "loadCountMoreParticipants": m36,
+        "loadMore": MessageLookupByLibrary.simpleMessage("Načíst další…"),
+        "loadingPleaseWait":
+            MessageLookupByLibrary.simpleMessage("Načítání… Prosíme počkejte"),
         "logInTo": m37,
+        "login": MessageLookupByLibrary.simpleMessage("Přihlášení"),
+        "logout": MessageLookupByLibrary.simpleMessage("Odhlásit"),
+        "makeAModerator":
+            MessageLookupByLibrary.simpleMessage("Učiň moderátorem"),
+        "makeAnAdmin": MessageLookupByLibrary.simpleMessage("Učiň adminem"),
+        "makeSureTheIdentifierIsValid": MessageLookupByLibrary.simpleMessage(
+            "Ujistěte se, že je identifikátor validní"),
+        "messageWillBeRemovedWarning": MessageLookupByLibrary.simpleMessage(
+            "Zpráva bude odstraněna pro všechny účastníky"),
+        "moderator": MessageLookupByLibrary.simpleMessage("Moderátor"),
+        "monday": MessageLookupByLibrary.simpleMessage("Pondělí"),
+        "muteChat": MessageLookupByLibrary.simpleMessage("Ztišit diskuzi"),
+        "needPantalaimonWarning": MessageLookupByLibrary.simpleMessage(
+            "Prosím vezměte na vědomí, že pro použití koncového šifrování je prozatím potřeba použít Pantalaimon."),
+        "newMessageInFluffyChat":
+            MessageLookupByLibrary.simpleMessage("Nová zpráva ve FluffyChatu"),
+        "newPrivateChat":
+            MessageLookupByLibrary.simpleMessage("Nová soukromá diskuze"),
         "newVerificationRequest":
             MessageLookupByLibrary.simpleMessage("Nová žádost o ověření!"),
+        "no": MessageLookupByLibrary.simpleMessage("Ne"),
         "noCrossSignBootstrap": MessageLookupByLibrary.simpleMessage(
             "Fluffychet momentálně nepodporuje aktivaci křížového podpisu. Prosím aktivujte ho z klientu Riot."),
+        "noEmotesFound": MessageLookupByLibrary.simpleMessage(
+            "Žádné emotikony nebyly nalezeny. 😕"),
+        "noGoogleServicesWarning": MessageLookupByLibrary.simpleMessage(
+            "Vypadá to, že váš telefon nemá nainstalovány google services. Dobré rozhodnutí pro vaši bezpečnost! Pro příjem notifikací doporučujeme použít miocroG: https://microg.org/"),
         "noMegolmBootstrap": MessageLookupByLibrary.simpleMessage(
             "Fluffychet momentálně nepodporuje aktivaci online záloh klíčů. Prosím zapněte ji z klientu Riot."),
+        "noPermission": MessageLookupByLibrary.simpleMessage("Chybí oprávnění"),
+        "noRoomsFound": MessageLookupByLibrary.simpleMessage(
+            "Žádné místnosti nebyly nalezeny…"),
+        "none": MessageLookupByLibrary.simpleMessage("Nic"),
+        "notSupportedInWeb":
+            MessageLookupByLibrary.simpleMessage("Nepodporováno na webu"),
         "numberSelected": m38,
         "ok": MessageLookupByLibrary.simpleMessage("ok"),
         "onlineKeyBackupDisabled": MessageLookupByLibrary.simpleMessage(
             "Online záloha klíčů je vypnutá"),
         "onlineKeyBackupEnabled": MessageLookupByLibrary.simpleMessage(
             "Online záloha kíčů je zapnuta"),
+        "oopsSomethingWentWrong":
+            MessageLookupByLibrary.simpleMessage("Ups! Něco se pokazilo…"),
+        "openAppToReadMessages": MessageLookupByLibrary.simpleMessage(
+            "Otevřete aplikaci pro přečtení zpráv"),
+        "openCamera":
+            MessageLookupByLibrary.simpleMessage("Otevřít fotoaparát"),
+        "optionalGroupName":
+            MessageLookupByLibrary.simpleMessage("(Volitelné) Název skupiny"),
+        "participatingUserDevices": MessageLookupByLibrary.simpleMessage(
+            "Zúčastněná zařízení uživatele"),
         "passphraseOrKey":
             MessageLookupByLibrary.simpleMessage("heslo nebo klíč k ověření"),
+        "password": MessageLookupByLibrary.simpleMessage("Heslo"),
+        "pickImage": MessageLookupByLibrary.simpleMessage("Zvolit obrázek"),
+        "pin": MessageLookupByLibrary.simpleMessage("Připnout zprávu"),
         "play": m39,
+        "pleaseChooseAUsername": MessageLookupByLibrary.simpleMessage(
+            "Prosíme zvolte si uživatelské jméno"),
+        "pleaseEnterAMatrixIdentifier": MessageLookupByLibrary.simpleMessage(
+            "Prosíme zadejte identifikátor sítě matrix"),
+        "pleaseEnterYourPassword":
+            MessageLookupByLibrary.simpleMessage("Prosíme zadejte heslo"),
+        "pleaseEnterYourUsername": MessageLookupByLibrary.simpleMessage(
+            "Prosíme zadejte uživateslké jméno"),
+        "publicRooms":
+            MessageLookupByLibrary.simpleMessage("Veřejné místnosti"),
+        "recording": MessageLookupByLibrary.simpleMessage("Nahrávání"),
         "redactedAnEvent": m40,
+        "reject": MessageLookupByLibrary.simpleMessage("Zamítnout"),
         "rejectedTheInvitation": m41,
+        "rejoin": MessageLookupByLibrary.simpleMessage("Připojit znovu"),
+        "remove": MessageLookupByLibrary.simpleMessage("Odstranit"),
+        "removeAllOtherDevices": MessageLookupByLibrary.simpleMessage(
+            "Odstranit všechna další zařízení"),
+        "removeDevice":
+            MessageLookupByLibrary.simpleMessage("Odstraň zařízení"),
+        "removeExile": MessageLookupByLibrary.simpleMessage("Odblokovat"),
+        "removeMessage":
+            MessageLookupByLibrary.simpleMessage("Odstranit zprávu"),
         "removedBy": m42,
+        "renderRichContent":
+            MessageLookupByLibrary.simpleMessage("Zobrazit formátovaný obsah"),
+        "reply": MessageLookupByLibrary.simpleMessage("Odpovědět"),
+        "requestPermission":
+            MessageLookupByLibrary.simpleMessage("Vyžádat oprávnění"),
+        "requestToReadOlderMessages": MessageLookupByLibrary.simpleMessage(
+            "Vyžádat přečtení starších zpráv"),
+        "revokeAllPermissions": MessageLookupByLibrary.simpleMessage(
+            "Vezmi zpět všechna oprávnění"),
+        "roomHasBeenUpgraded":
+            MessageLookupByLibrary.simpleMessage("Místnost byla upgradována"),
+        "saturday": MessageLookupByLibrary.simpleMessage("Sobota"),
+        "searchForAChat":
+            MessageLookupByLibrary.simpleMessage("Hledej diskuzi"),
         "seenByUser": m43,
         "seenByUserAndCountOthers": m44,
         "seenByUserAndUser": m45,
+        "send": MessageLookupByLibrary.simpleMessage("Odeslat"),
+        "sendAMessage": MessageLookupByLibrary.simpleMessage("Odeslat zprávu"),
+        "sendAudio": MessageLookupByLibrary.simpleMessage("Odeslat audio"),
+        "sendBugReports": MessageLookupByLibrary.simpleMessage(
+            "Umožňuje zasílání hlášení o chybách prostřednictvím sentry.io"),
+        "sendFile": MessageLookupByLibrary.simpleMessage("Odeslat soubor"),
+        "sendImage": MessageLookupByLibrary.simpleMessage("Odeslat obrázek"),
+        "sendOriginal":
+            MessageLookupByLibrary.simpleMessage("Odeslat originál"),
+        "sendVideo": MessageLookupByLibrary.simpleMessage("Odeslat video"),
         "sentAFile": m46,
         "sentAPicture": m47,
         "sentASticker": m48,
         "sentAVideo": m49,
         "sentAnAudio": m50,
         "sentCallInformations": m51,
+        "sentryInfo": MessageLookupByLibrary.simpleMessage(
+            "Informace o vašem soukromí: https://sentry.io/security/"),
         "sessionVerified":
             MessageLookupByLibrary.simpleMessage("Sezení je ověřeno"),
+        "setAProfilePicture":
+            MessageLookupByLibrary.simpleMessage("Nastavit profilový obrázek"),
+        "setGroupDescription":
+            MessageLookupByLibrary.simpleMessage("Nastavit popis skupiny"),
+        "setInvitationLink":
+            MessageLookupByLibrary.simpleMessage("Nastavit zvací odkaz"),
+        "setStatus": MessageLookupByLibrary.simpleMessage("Nastavit status"),
+        "settings": MessageLookupByLibrary.simpleMessage("Nastavení"),
+        "share": MessageLookupByLibrary.simpleMessage("Sdílet"),
         "sharedTheLocation": m52,
+        "signUp": MessageLookupByLibrary.simpleMessage("Registrovat se"),
+        "skip": MessageLookupByLibrary.simpleMessage("Přeskočit"),
+        "sourceCode": MessageLookupByLibrary.simpleMessage("Zdrojové kódy"),
+        "startYourFirstChat": MessageLookupByLibrary.simpleMessage(
+            "Začněte svou první diskuzi :)"),
         "startedACall": m53,
+        "statusExampleMessage":
+            MessageLookupByLibrary.simpleMessage("Jak se máte?"),
+        "submit": MessageLookupByLibrary.simpleMessage("Potvrdit"),
+        "sunday": MessageLookupByLibrary.simpleMessage("Neděle"),
+        "systemTheme": MessageLookupByLibrary.simpleMessage("Systém"),
+        "tapToShowMenu":
+            MessageLookupByLibrary.simpleMessage("Klepněte pro zobrazení menu"),
+        "theyDontMatch": MessageLookupByLibrary.simpleMessage("Neshodují se"),
+        "theyMatch": MessageLookupByLibrary.simpleMessage("Shodují se"),
+        "thisRoomHasBeenArchived": MessageLookupByLibrary.simpleMessage(
+            "Tato místnost byla archivována."),
+        "thursday": MessageLookupByLibrary.simpleMessage("Čtvrtek"),
         "timeOfDay": m54,
         "title": MessageLookupByLibrary.simpleMessage("FluffyChat"),
+        "tryToSendAgain":
+            MessageLookupByLibrary.simpleMessage("Pokusit se odeslat znovu"),
+        "tuesday": MessageLookupByLibrary.simpleMessage("Úterý"),
         "unbannedUser": m55,
+        "unblockDevice":
+            MessageLookupByLibrary.simpleMessage("Odblokovat zařízení"),
+        "unknownDevice":
+            MessageLookupByLibrary.simpleMessage("Neznámé zařízení"),
+        "unknownEncryptionAlgorithm": MessageLookupByLibrary.simpleMessage(
+            "Neznámý šifrovací algoritmus"),
         "unknownEvent": m56,
         "unknownSessionVerify": MessageLookupByLibrary.simpleMessage(
             "Neznámé sezení, prosím o ověření"),
+        "unmuteChat": MessageLookupByLibrary.simpleMessage("Zrušit ztišení"),
+        "unpin": MessageLookupByLibrary.simpleMessage("Odepnout zprávu"),
         "unreadChats": m57,
         "unreadMessages": m58,
         "unreadMessagesInChats": m59,
+        "useAmoledTheme": MessageLookupByLibrary.simpleMessage(
+            "Použít barvy kompatibilní s Amoled displayem?"),
         "userAndOthersAreTyping": m60,
         "userAndUserAreTyping": m61,
         "userIsTyping": m62,
         "userLeftTheChat": m63,
         "userSentUnknownEvent": m64,
+        "username": MessageLookupByLibrary.simpleMessage("Uživatelské jméno"),
         "verifiedSession":
             MessageLookupByLibrary.simpleMessage("Sezení úspěšně ověřeno!"),
+        "verify": MessageLookupByLibrary.simpleMessage("Ověř"),
         "verifyManual": MessageLookupByLibrary.simpleMessage("Ověřit ručně"),
         "verifyStart": MessageLookupByLibrary.simpleMessage("Spustit ověření"),
         "verifySuccess":
             MessageLookupByLibrary.simpleMessage("Ověření proběhlo úspěšně!"),
         "verifyTitle":
             MessageLookupByLibrary.simpleMessage("Ověřuji druhý účet"),
+        "verifyUser": MessageLookupByLibrary.simpleMessage("Ověřit uživatele"),
+        "videoCall": MessageLookupByLibrary.simpleMessage("Video hovor"),
+        "visibilityOfTheChatHistory": MessageLookupByLibrary.simpleMessage(
+            "Viditelnost historie diskuze"),
+        "visibleForAllParticipants": MessageLookupByLibrary.simpleMessage(
+            "Viditelné pro všechny účastníky"),
+        "visibleForEveryone":
+            MessageLookupByLibrary.simpleMessage("Viditelné pro všechny"),
+        "voiceMessage": MessageLookupByLibrary.simpleMessage("Hlasová zpráva"),
         "waitingPartnerAcceptRequest": MessageLookupByLibrary.simpleMessage(
             "Čeká se na potvrzení žádosti partnerem…"),
         "waitingPartnerEmoji": MessageLookupByLibrary.simpleMessage(
             "Čeká se na potvrzení emoji partnerem…"),
         "waitingPartnerNumbers": MessageLookupByLibrary.simpleMessage(
-            "Čeká se na potvrzení čísel partnerem…")
+            "Čeká se na potvrzení čísel partnerem…"),
+        "wallpaper": MessageLookupByLibrary.simpleMessage("Pozadí"),
+        "warningEncryptionInBeta": MessageLookupByLibrary.simpleMessage(
+            "Koncové šifrování je momentálně v Beta verzi! Používejte na vlastní nebezpečí!"),
+        "wednesday": MessageLookupByLibrary.simpleMessage("Středa"),
+        "welcomeText": MessageLookupByLibrary.simpleMessage(
+            "Vítejte v nejroztomilejší diskuzní aplikaci pro síť matrix."),
+        "whoIsAllowedToJoinThisGroup": MessageLookupByLibrary.simpleMessage(
+            "Kdo se může připojit do této skupiny"),
+        "writeAMessage":
+            MessageLookupByLibrary.simpleMessage("Napište zprávu…"),
+        "yes": MessageLookupByLibrary.simpleMessage("Ano"),
+        "you": MessageLookupByLibrary.simpleMessage("Ty"),
+        "youAreInvitedToThisChat":
+            MessageLookupByLibrary.simpleMessage("Jste zváni do této diskuze"),
+        "youAreNoLongerParticipatingInThisChat":
+            MessageLookupByLibrary.simpleMessage(
+                "Této diskuze se nadále neúčastníte"),
+        "youCannotInviteYourself":
+            MessageLookupByLibrary.simpleMessage("Nemůžete pozvat sami sebe"),
+        "youHaveBeenBannedFromThisChat": MessageLookupByLibrary.simpleMessage(
+            "Byl vám zablokován přístup k tomuto chatu"),
+        "yourOwnUsername": MessageLookupByLibrary.simpleMessage(
+            "Vaše vlastní uživatelské jméno")
       };
 }

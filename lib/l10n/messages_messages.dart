@@ -164,347 +164,27 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function>{
-        "(Optional) Group name":
-            MessageLookupByLibrary.simpleMessage("(Optional) Group name"),
-        "About": MessageLookupByLibrary.simpleMessage("About"),
-        "Accept": MessageLookupByLibrary.simpleMessage("Accept"),
-        "Account": MessageLookupByLibrary.simpleMessage("Account"),
-        "Account informations":
-            MessageLookupByLibrary.simpleMessage("Account informations"),
-        "Add a group description":
-            MessageLookupByLibrary.simpleMessage("Add a group description"),
-        "Admin": MessageLookupByLibrary.simpleMessage("Admin"),
-        "Allow sending bug reports with sentry.io":
-            MessageLookupByLibrary.simpleMessage(
-                "Allow sending bug reports with sentry.io"),
-        "Already have an account?":
-            MessageLookupByLibrary.simpleMessage("Already have an account?"),
-        "Anyone can join":
-            MessageLookupByLibrary.simpleMessage("Anyone can join"),
-        "Archive": MessageLookupByLibrary.simpleMessage("Archive"),
-        "Archived Room": MessageLookupByLibrary.simpleMessage("Archived Room"),
-        "Are guest users allowed to join": MessageLookupByLibrary.simpleMessage(
-            "Are guest users allowed to join"),
-        "Are you sure?": MessageLookupByLibrary.simpleMessage("Are you sure?"),
-        "Authentication":
-            MessageLookupByLibrary.simpleMessage("Authentication"),
-        "Avatar has been changed":
-            MessageLookupByLibrary.simpleMessage("Avatar has been changed"),
-        "Ban from chat": MessageLookupByLibrary.simpleMessage("Ban from chat"),
-        "Banned": MessageLookupByLibrary.simpleMessage("Banned"),
-        "Block Device": MessageLookupByLibrary.simpleMessage("Block Device"),
-        "Cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
-        "Change the homeserver":
-            MessageLookupByLibrary.simpleMessage("Change the homeserver"),
-        "Change the name of the group": MessageLookupByLibrary.simpleMessage(
-            "Change the name of the group"),
-        "Change the server":
-            MessageLookupByLibrary.simpleMessage("Change the server"),
-        "Change wallpaper":
-            MessageLookupByLibrary.simpleMessage("Change wallpaper"),
-        "Change your style":
-            MessageLookupByLibrary.simpleMessage("Change your style"),
-        "Changelog": MessageLookupByLibrary.simpleMessage("Changelog"),
-        "Changes have been saved":
-            MessageLookupByLibrary.simpleMessage("Changes have been saved"),
-        "Chat": MessageLookupByLibrary.simpleMessage("Chat"),
-        "Chat details": MessageLookupByLibrary.simpleMessage("Chat details"),
-        "Choose a strong password":
-            MessageLookupByLibrary.simpleMessage("Choose a strong password"),
-        "Choose a username":
-            MessageLookupByLibrary.simpleMessage("Choose a username"),
-        "Close": MessageLookupByLibrary.simpleMessage("Close"),
-        "Confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
-        "Connect": MessageLookupByLibrary.simpleMessage("Connect"),
-        "Connection attempt failed":
-            MessageLookupByLibrary.simpleMessage("Connection attempt failed"),
-        "Contact has been invited to the group":
-            MessageLookupByLibrary.simpleMessage(
-                "Contact has been invited to the group"),
-        "Content viewer":
-            MessageLookupByLibrary.simpleMessage("Content viewer"),
-        "Copied to clipboard":
-            MessageLookupByLibrary.simpleMessage("Copied to clipboard"),
-        "Copy": MessageLookupByLibrary.simpleMessage("Copy"),
-        "Could not set avatar":
-            MessageLookupByLibrary.simpleMessage("Could not set avatar"),
-        "Could not set displayname":
-            MessageLookupByLibrary.simpleMessage("Could not set displayname"),
-        "Create": MessageLookupByLibrary.simpleMessage("Create"),
-        "Create account now":
-            MessageLookupByLibrary.simpleMessage("Create account now"),
-        "Create new group":
-            MessageLookupByLibrary.simpleMessage("Create new group"),
-        "Currently active":
-            MessageLookupByLibrary.simpleMessage("Currently active"),
-        "Dark": MessageLookupByLibrary.simpleMessage("Dark"),
-        "Delete": MessageLookupByLibrary.simpleMessage("Delete"),
-        "Delete account":
-            MessageLookupByLibrary.simpleMessage("Delete account"),
-        "Delete message":
-            MessageLookupByLibrary.simpleMessage("Delete message"),
-        "Deny": MessageLookupByLibrary.simpleMessage("Deny"),
-        "Device": MessageLookupByLibrary.simpleMessage("Device"),
-        "Devices": MessageLookupByLibrary.simpleMessage("Devices"),
-        "Discard picture":
-            MessageLookupByLibrary.simpleMessage("Discard picture"),
-        "Displayname has been changed": MessageLookupByLibrary.simpleMessage(
-            "Displayname has been changed"),
-        "Donate": MessageLookupByLibrary.simpleMessage("Donate"),
-        "Download file": MessageLookupByLibrary.simpleMessage("Download file"),
-        "Edit Jitsi instance":
-            MessageLookupByLibrary.simpleMessage("Edit Jitsi instance"),
-        "Edit displayname":
-            MessageLookupByLibrary.simpleMessage("Edit displayname"),
-        "Emote Settings":
-            MessageLookupByLibrary.simpleMessage("Emote Settings"),
-        "Emote shortcode":
-            MessageLookupByLibrary.simpleMessage("Emote shortcode"),
-        "Empty chat": MessageLookupByLibrary.simpleMessage("Empty chat"),
-        "Encryption": MessageLookupByLibrary.simpleMessage("Encryption"),
-        "Encryption algorithm":
-            MessageLookupByLibrary.simpleMessage("Encryption algorithm"),
-        "Encryption is not enabled":
-            MessageLookupByLibrary.simpleMessage("Encryption is not enabled"),
-        "End to end encryption is currently in Beta! Use at your own risk!":
-            MessageLookupByLibrary.simpleMessage(
-                "End to end encryption is currently in Beta! Use at your own risk!"),
-        "End-to-end encryption settings": MessageLookupByLibrary.simpleMessage(
-            "End-to-end encryption settings"),
-        "Enter a group name":
-            MessageLookupByLibrary.simpleMessage("Enter a group name"),
-        "Enter a username":
-            MessageLookupByLibrary.simpleMessage("Enter a username"),
-        "Enter your homeserver":
-            MessageLookupByLibrary.simpleMessage("Enter your homeserver"),
-        "File name": MessageLookupByLibrary.simpleMessage("File name"),
-        "File size": MessageLookupByLibrary.simpleMessage("File size"),
-        "FluffyChat": MessageLookupByLibrary.simpleMessage("FluffyChat"),
-        "Forward": MessageLookupByLibrary.simpleMessage("Forward"),
-        "Friday": MessageLookupByLibrary.simpleMessage("Friday"),
-        "From joining": MessageLookupByLibrary.simpleMessage("From joining"),
-        "From the invitation":
-            MessageLookupByLibrary.simpleMessage("From the invitation"),
-        "Group": MessageLookupByLibrary.simpleMessage("Group"),
-        "Group description":
-            MessageLookupByLibrary.simpleMessage("Group description"),
-        "Group description has been changed":
-            MessageLookupByLibrary.simpleMessage(
-                "Group description has been changed"),
-        "Group is public":
-            MessageLookupByLibrary.simpleMessage("Group is public"),
-        "Guests are forbidden":
-            MessageLookupByLibrary.simpleMessage("Guests are forbidden"),
-        "Guests can join":
-            MessageLookupByLibrary.simpleMessage("Guests can join"),
-        "Help": MessageLookupByLibrary.simpleMessage("Help"),
-        "Homeserver is not compatible": MessageLookupByLibrary.simpleMessage(
-            "Homeserver is not compatible"),
-        "How are you today?":
-            MessageLookupByLibrary.simpleMessage("How are you today?"),
-        "ID": MessageLookupByLibrary.simpleMessage("ID"),
-        "Identity": MessageLookupByLibrary.simpleMessage("Identity"),
-        "Ignore username":
-            MessageLookupByLibrary.simpleMessage("Ignore username"),
-        "Ignored users": MessageLookupByLibrary.simpleMessage("Ignored users"),
-        "Informations about your privacy: https://sentry.io/security/":
-            MessageLookupByLibrary.simpleMessage(
-                "Informations about your privacy: https://sentry.io/security/"),
-        "Invite contact":
-            MessageLookupByLibrary.simpleMessage("Invite contact"),
-        "Invited": MessageLookupByLibrary.simpleMessage("Invited"),
-        "Invited users only":
-            MessageLookupByLibrary.simpleMessage("Invited users only"),
-        "It seems that you have no google services on your phone. That\'s a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/":
-            MessageLookupByLibrary.simpleMessage(
-                "It seems that you have no google services on your phone. That\'s a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/"),
-        "Join room": MessageLookupByLibrary.simpleMessage("Join room"),
-        "Kick from chat":
-            MessageLookupByLibrary.simpleMessage("Kick from chat"),
-        "Last seen IP": MessageLookupByLibrary.simpleMessage("Last seen IP"),
-        "Leave": MessageLookupByLibrary.simpleMessage("Leave"),
-        "Left the chat": MessageLookupByLibrary.simpleMessage("Left the chat"),
-        "License": MessageLookupByLibrary.simpleMessage("License"),
-        "Light": MessageLookupByLibrary.simpleMessage("Light"),
-        "Load more...": MessageLookupByLibrary.simpleMessage("Load more..."),
-        "Loading... Please wait":
-            MessageLookupByLibrary.simpleMessage("Loading... Please wait"),
-        "Login": MessageLookupByLibrary.simpleMessage("Login"),
-        "Logout": MessageLookupByLibrary.simpleMessage("Logout"),
-        "Make a moderator":
-            MessageLookupByLibrary.simpleMessage("Make a moderator"),
-        "Make an admin": MessageLookupByLibrary.simpleMessage("Make an admin"),
-        "Make sure the identifier is valid":
-            MessageLookupByLibrary.simpleMessage(
-                "Make sure the identifier is valid"),
-        "Message will be removed for all participants":
-            MessageLookupByLibrary.simpleMessage(
-                "Message will be removed for all participants"),
-        "Moderator": MessageLookupByLibrary.simpleMessage("Moderator"),
-        "Monday": MessageLookupByLibrary.simpleMessage("Monday"),
-        "Mute chat": MessageLookupByLibrary.simpleMessage("Mute chat"),
-        "New message in FluffyChat":
-            MessageLookupByLibrary.simpleMessage("New message in FluffyChat"),
-        "New private chat":
-            MessageLookupByLibrary.simpleMessage("New private chat"),
-        "No": MessageLookupByLibrary.simpleMessage("No"),
-        "No emotes found. 😕":
-            MessageLookupByLibrary.simpleMessage("No emotes found. 😕"),
-        "No permission": MessageLookupByLibrary.simpleMessage("No permission"),
-        "No rooms found...":
-            MessageLookupByLibrary.simpleMessage("No rooms found..."),
-        "None": MessageLookupByLibrary.simpleMessage("None"),
-        "Not supported in web":
-            MessageLookupByLibrary.simpleMessage("Not supported in web"),
-        "Oops something went wrong...": MessageLookupByLibrary.simpleMessage(
-            "Oops something went wrong..."),
-        "Open app to read messages":
-            MessageLookupByLibrary.simpleMessage("Open app to read messages"),
-        "Open camera": MessageLookupByLibrary.simpleMessage("Open camera"),
-        "Participating user devices":
-            MessageLookupByLibrary.simpleMessage("Participating user devices"),
-        "Password": MessageLookupByLibrary.simpleMessage("Password"),
-        "Password has been changed":
-            MessageLookupByLibrary.simpleMessage("Password has been changed"),
-        "Pick image": MessageLookupByLibrary.simpleMessage("Pick image"),
-        "Pin": MessageLookupByLibrary.simpleMessage("Pin"),
-        "Please be aware that you need Pantalaimon to use end-to-end encryption for now.":
-            MessageLookupByLibrary.simpleMessage(
-                "Please be aware that you need Pantalaimon to use end-to-end encryption for now."),
-        "Please choose a username":
-            MessageLookupByLibrary.simpleMessage("Please choose a username"),
-        "Please enter a matrix identifier":
-            MessageLookupByLibrary.simpleMessage(
-                "Please enter a matrix identifier"),
-        "Please enter your password":
-            MessageLookupByLibrary.simpleMessage("Please enter your password"),
-        "Please enter your username":
-            MessageLookupByLibrary.simpleMessage("Please enter your username"),
-        "Public Rooms": MessageLookupByLibrary.simpleMessage("Public Rooms"),
-        "Recording": MessageLookupByLibrary.simpleMessage("Recording"),
-        "Reject": MessageLookupByLibrary.simpleMessage("Reject"),
-        "Rejoin": MessageLookupByLibrary.simpleMessage("Rejoin"),
-        "Remove": MessageLookupByLibrary.simpleMessage("Remove"),
-        "Remove all other devices":
-            MessageLookupByLibrary.simpleMessage("Remove all other devices"),
-        "Remove device": MessageLookupByLibrary.simpleMessage("Remove device"),
-        "Remove exile": MessageLookupByLibrary.simpleMessage("Remove exile"),
-        "Remove message":
-            MessageLookupByLibrary.simpleMessage("Remove message"),
-        "Render rich message content":
-            MessageLookupByLibrary.simpleMessage("Render rich message content"),
-        "Reply": MessageLookupByLibrary.simpleMessage("Reply"),
-        "Request permission":
-            MessageLookupByLibrary.simpleMessage("Request permission"),
-        "Request to read older messages": MessageLookupByLibrary.simpleMessage(
-            "Request to read older messages"),
-        "Revoke all permissions":
-            MessageLookupByLibrary.simpleMessage("Revoke all permissions"),
-        "Room has been upgraded":
-            MessageLookupByLibrary.simpleMessage("Room has been upgraded"),
-        "Saturday": MessageLookupByLibrary.simpleMessage("Saturday"),
-        "Search for a chat":
-            MessageLookupByLibrary.simpleMessage("Search for a chat"),
-        "Seen a long time ago":
-            MessageLookupByLibrary.simpleMessage("Seen a long time ago"),
-        "Send": MessageLookupByLibrary.simpleMessage("Send"),
-        "Send a message":
-            MessageLookupByLibrary.simpleMessage("Send a message"),
-        "Send audio": MessageLookupByLibrary.simpleMessage("Send audio"),
-        "Send file": MessageLookupByLibrary.simpleMessage("Send file"),
-        "Send image": MessageLookupByLibrary.simpleMessage("Send image"),
-        "Send original": MessageLookupByLibrary.simpleMessage("Send original"),
-        "Send video": MessageLookupByLibrary.simpleMessage("Send video"),
-        "Set a profile picture":
-            MessageLookupByLibrary.simpleMessage("Set a profile picture"),
-        "Set group description":
-            MessageLookupByLibrary.simpleMessage("Set group description"),
-        "Set invitation link":
-            MessageLookupByLibrary.simpleMessage("Set invitation link"),
-        "Set status": MessageLookupByLibrary.simpleMessage("Set status"),
-        "Settings": MessageLookupByLibrary.simpleMessage("Settings"),
-        "Share": MessageLookupByLibrary.simpleMessage("Share"),
-        "Sign up": MessageLookupByLibrary.simpleMessage("Sign up"),
-        "Skip": MessageLookupByLibrary.simpleMessage("Skip"),
-        "Source code": MessageLookupByLibrary.simpleMessage("Source code"),
-        "Start your first chat :-)":
-            MessageLookupByLibrary.simpleMessage("Start your first chat :-)"),
-        "Submit": MessageLookupByLibrary.simpleMessage("Submit"),
-        "Sunday": MessageLookupByLibrary.simpleMessage("Sunday"),
-        "System": MessageLookupByLibrary.simpleMessage("System"),
-        "Tap to show menu":
-            MessageLookupByLibrary.simpleMessage("Tap to show menu"),
-        "The encryption has been corrupted":
-            MessageLookupByLibrary.simpleMessage(
-                "The encryption has been corrupted"),
-        "They Don\'t Match":
-            MessageLookupByLibrary.simpleMessage("They Don\'t Match"),
-        "They Match": MessageLookupByLibrary.simpleMessage("They Match"),
-        "This room has been archived.": MessageLookupByLibrary.simpleMessage(
-            "This room has been archived."),
-        "This will deactivate your user account. This can not be undone! Are you sure?":
-            MessageLookupByLibrary.simpleMessage(
-                "This will deactivate your user account. This can not be undone! Are you sure?"),
-        "Thursday": MessageLookupByLibrary.simpleMessage("Thursday"),
-        "Try to send again":
-            MessageLookupByLibrary.simpleMessage("Try to send again"),
-        "Tuesday": MessageLookupByLibrary.simpleMessage("Tuesday"),
-        "Unblock Device":
-            MessageLookupByLibrary.simpleMessage("Unblock Device"),
-        "Unknown device":
-            MessageLookupByLibrary.simpleMessage("Unknown device"),
-        "Unknown encryption algorithm": MessageLookupByLibrary.simpleMessage(
-            "Unknown encryption algorithm"),
-        "Unmute chat": MessageLookupByLibrary.simpleMessage("Unmute chat"),
-        "Unpin": MessageLookupByLibrary.simpleMessage("Unpin"),
-        "Use Amoled compatible colors?": MessageLookupByLibrary.simpleMessage(
-            "Use Amoled compatible colors?"),
-        "Username": MessageLookupByLibrary.simpleMessage("Username"),
-        "Verify": MessageLookupByLibrary.simpleMessage("Verify"),
-        "Verify User": MessageLookupByLibrary.simpleMessage("Verify User"),
-        "Video call": MessageLookupByLibrary.simpleMessage("Video call"),
-        "Visibility of the chat history": MessageLookupByLibrary.simpleMessage(
-            "Visibility of the chat history"),
-        "Visible for all participants": MessageLookupByLibrary.simpleMessage(
-            "Visible for all participants"),
-        "Visible for everyone":
-            MessageLookupByLibrary.simpleMessage("Visible for everyone"),
-        "Voice message": MessageLookupByLibrary.simpleMessage("Voice message"),
-        "Wallpaper": MessageLookupByLibrary.simpleMessage("Wallpaper"),
-        "Warning!": MessageLookupByLibrary.simpleMessage("Warning!"),
-        "Wednesday": MessageLookupByLibrary.simpleMessage("Wednesday"),
-        "Welcome to the cutest instant messenger in the matrix network.":
-            MessageLookupByLibrary.simpleMessage(
-                "Welcome to the cutest instant messenger in the matrix network."),
-        "Who is allowed to join this group":
-            MessageLookupByLibrary.simpleMessage(
-                "Who is allowed to join this group"),
-        "Write a message...":
-            MessageLookupByLibrary.simpleMessage("Write a message..."),
-        "Yes": MessageLookupByLibrary.simpleMessage("Yes"),
-        "You": MessageLookupByLibrary.simpleMessage("You"),
-        "You are invited to this chat": MessageLookupByLibrary.simpleMessage(
-            "You are invited to this chat"),
-        "You are no longer participating in this chat":
-            MessageLookupByLibrary.simpleMessage(
-                "You are no longer participating in this chat"),
-        "You can ignore users who are disturbing you. You won\'t be able to receive any messages or room invites from the users on your personal ignore list.":
-            MessageLookupByLibrary.simpleMessage(
-                "You can ignore users who are disturbing you. You won\'t be able to receive any messages or room invites from the users on your personal ignore list."),
-        "You cannot invite yourself":
-            MessageLookupByLibrary.simpleMessage("You cannot invite yourself"),
-        "You have been banned from this chat":
-            MessageLookupByLibrary.simpleMessage(
-                "You have been banned from this chat"),
-        "You won\'t be able to disable the encryption anymore. Are you sure?":
-            MessageLookupByLibrary.simpleMessage(
-                "You won\'t be able to disable the encryption anymore. Are you sure?"),
-        "Your own username":
-            MessageLookupByLibrary.simpleMessage("Your own username"),
+        "about": MessageLookupByLibrary.simpleMessage("About"),
+        "accept": MessageLookupByLibrary.simpleMessage("Accept"),
         "acceptedTheInvitation": m0,
+        "account": MessageLookupByLibrary.simpleMessage("Account"),
+        "accountInformation":
+            MessageLookupByLibrary.simpleMessage("Account informations"),
         "activatedEndToEndEncryption": m1,
+        "addGroupDescription":
+            MessageLookupByLibrary.simpleMessage("Add a group description"),
+        "admin": MessageLookupByLibrary.simpleMessage("Admin"),
         "alias": MessageLookupByLibrary.simpleMessage("alias"),
+        "alreadyHaveAnAccount":
+            MessageLookupByLibrary.simpleMessage("Already have an account?"),
         "answeredTheCall": m2,
+        "anyoneCanJoin":
+            MessageLookupByLibrary.simpleMessage("Anyone can join"),
+        "archive": MessageLookupByLibrary.simpleMessage("Archive"),
+        "archivedRoom": MessageLookupByLibrary.simpleMessage("Archived Room"),
+        "areGuestsAllowedToJoin": MessageLookupByLibrary.simpleMessage(
+            "Are guest users allowed to join"),
+        "areYouSure": MessageLookupByLibrary.simpleMessage("Are you sure?"),
         "askSSSSCache": MessageLookupByLibrary.simpleMessage(
             "Please enter your secure store passphrase or recovery key to cache the keys."),
         "askSSSSSign": MessageLookupByLibrary.simpleMessage(
@@ -512,10 +192,28 @@ class MessageLookup extends MessageLookupByLibrary {
         "askSSSSVerify": MessageLookupByLibrary.simpleMessage(
             "Please enter your secure store passphrase or recovery key to verify your session."),
         "askVerificationRequest": m3,
+        "authentication":
+            MessageLookupByLibrary.simpleMessage("Authentication"),
+        "avatarHasBeenChanged":
+            MessageLookupByLibrary.simpleMessage("Avatar has been changed"),
+        "banFromChat": MessageLookupByLibrary.simpleMessage("Ban from chat"),
+        "banned": MessageLookupByLibrary.simpleMessage("Banned"),
         "bannedUser": m4,
+        "blockDevice": MessageLookupByLibrary.simpleMessage("Block Device"),
         "byDefaultYouWillBeConnectedTo": m5,
         "cachedKeys":
             MessageLookupByLibrary.simpleMessage("Successfully cached keys!"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "changeTheHomeserver":
+            MessageLookupByLibrary.simpleMessage("Change the homeserver"),
+        "changeTheNameOfTheGroup": MessageLookupByLibrary.simpleMessage(
+            "Change the name of the group"),
+        "changeTheServer":
+            MessageLookupByLibrary.simpleMessage("Change the server"),
+        "changeTheme":
+            MessageLookupByLibrary.simpleMessage("Change your style"),
+        "changeWallpaper":
+            MessageLookupByLibrary.simpleMessage("Change wallpaper"),
         "changedTheChatAvatar": m6,
         "changedTheChatDescriptionTo": m7,
         "changedTheChatNameTo": m8,
@@ -530,92 +228,334 @@ class MessageLookup extends MessageLookupByLibrary {
         "changedTheProfileAvatar": m17,
         "changedTheRoomAliases": m18,
         "changedTheRoomInvitationLink": m19,
+        "changelog": MessageLookupByLibrary.simpleMessage("Changelog"),
+        "changesHaveBeenSaved":
+            MessageLookupByLibrary.simpleMessage("Changes have been saved"),
+        "channelCorruptedDecryptError": MessageLookupByLibrary.simpleMessage(
+            "The encryption has been corrupted"),
+        "chat": MessageLookupByLibrary.simpleMessage("Chat"),
+        "chatDetails": MessageLookupByLibrary.simpleMessage("Chat details"),
+        "chooseAStrongPassword":
+            MessageLookupByLibrary.simpleMessage("Choose a strong password"),
+        "chooseAUsername":
+            MessageLookupByLibrary.simpleMessage("Choose a username"),
+        "close": MessageLookupByLibrary.simpleMessage("Close"),
         "compareEmojiMatch": MessageLookupByLibrary.simpleMessage(
             "Compare and make sure the following emoji match those of the other device:"),
         "compareNumbersMatch": MessageLookupByLibrary.simpleMessage(
             "Compare and make sure the following numbers match those of the other device:"),
+        "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
+        "connect": MessageLookupByLibrary.simpleMessage("Connect"),
+        "connectionAttemptFailed":
+            MessageLookupByLibrary.simpleMessage("Connection attempt failed"),
+        "contactHasBeenInvitedToTheGroup": MessageLookupByLibrary.simpleMessage(
+            "Contact has been invited to the group"),
+        "contentViewer": MessageLookupByLibrary.simpleMessage("Content viewer"),
+        "copiedToClipboard":
+            MessageLookupByLibrary.simpleMessage("Copied to clipboard"),
+        "copy": MessageLookupByLibrary.simpleMessage("Copy"),
         "couldNotDecryptMessage": m20,
+        "couldNotSetAvatar":
+            MessageLookupByLibrary.simpleMessage("Could not set avatar"),
+        "couldNotSetDisplayname":
+            MessageLookupByLibrary.simpleMessage("Could not set displayname"),
         "countParticipants": m21,
+        "create": MessageLookupByLibrary.simpleMessage("Create"),
+        "createAccountNow":
+            MessageLookupByLibrary.simpleMessage("Create account now"),
+        "createNewGroup":
+            MessageLookupByLibrary.simpleMessage("Create new group"),
         "createdTheChat": m22,
         "crossSigningDisabled":
             MessageLookupByLibrary.simpleMessage("Cross-Signing is disabled"),
         "crossSigningEnabled":
             MessageLookupByLibrary.simpleMessage("Cross-Signing is enabled"),
+        "currentlyActive":
+            MessageLookupByLibrary.simpleMessage("Currently active"),
+        "darkTheme": MessageLookupByLibrary.simpleMessage("Dark"),
         "dateAndTimeOfDay": m23,
         "dateWithYear": m24,
         "dateWithoutYear": m25,
+        "deactivateAccountWarning": MessageLookupByLibrary.simpleMessage(
+            "This will deactivate your user account. This can not be undone! Are you sure?"),
+        "delete": MessageLookupByLibrary.simpleMessage("Delete"),
+        "deleteAccount": MessageLookupByLibrary.simpleMessage("Delete account"),
+        "deleteMessage": MessageLookupByLibrary.simpleMessage("Delete message"),
+        "deny": MessageLookupByLibrary.simpleMessage("Deny"),
+        "device": MessageLookupByLibrary.simpleMessage("Device"),
+        "devices": MessageLookupByLibrary.simpleMessage("Devices"),
+        "discardPicture":
+            MessageLookupByLibrary.simpleMessage("Discard picture"),
+        "displaynameHasBeenChanged": MessageLookupByLibrary.simpleMessage(
+            "Displayname has been changed"),
+        "donate": MessageLookupByLibrary.simpleMessage("Donate"),
+        "downloadFile": MessageLookupByLibrary.simpleMessage("Download file"),
+        "editDisplayname":
+            MessageLookupByLibrary.simpleMessage("Edit displayname"),
+        "editJitsiInstance":
+            MessageLookupByLibrary.simpleMessage("Edit Jitsi instance"),
         "emoteExists":
             MessageLookupByLibrary.simpleMessage("Emote already exists!"),
         "emoteInvalid":
             MessageLookupByLibrary.simpleMessage("Invalid emote shortcode!"),
+        "emoteSettings": MessageLookupByLibrary.simpleMessage("Emote Settings"),
+        "emoteShortcode":
+            MessageLookupByLibrary.simpleMessage("Emote shortcode"),
         "emoteWarnNeedToPick": MessageLookupByLibrary.simpleMessage(
             "You need to pick an emote shortcode and an image!"),
+        "emptyChat": MessageLookupByLibrary.simpleMessage("Empty chat"),
+        "enableEncryptionWarning": MessageLookupByLibrary.simpleMessage(
+            "You won\'t be able to disable the encryption anymore. Are you sure?"),
+        "encryption": MessageLookupByLibrary.simpleMessage("Encryption"),
+        "encryptionAlgorithm":
+            MessageLookupByLibrary.simpleMessage("Encryption algorithm"),
+        "encryptionNotEnabled":
+            MessageLookupByLibrary.simpleMessage("Encryption is not enabled"),
+        "end2endEncryptionSettings": MessageLookupByLibrary.simpleMessage(
+            "End-to-end encryption settings"),
         "endedTheCall": m26,
+        "enterAGroupName":
+            MessageLookupByLibrary.simpleMessage("Enter a group name"),
+        "enterAUsername":
+            MessageLookupByLibrary.simpleMessage("Enter a username"),
+        "enterYourHomeserver":
+            MessageLookupByLibrary.simpleMessage("Enter your homeserver"),
+        "fileName": MessageLookupByLibrary.simpleMessage("File name"),
+        "fileSize": MessageLookupByLibrary.simpleMessage("File size"),
+        "fluffychat": MessageLookupByLibrary.simpleMessage("FluffyChat"),
+        "forward": MessageLookupByLibrary.simpleMessage("Forward"),
+        "friday": MessageLookupByLibrary.simpleMessage("Friday"),
+        "fromJoining": MessageLookupByLibrary.simpleMessage("From joining"),
+        "fromTheInvitation":
+            MessageLookupByLibrary.simpleMessage("From the invitation"),
+        "group": MessageLookupByLibrary.simpleMessage("Group"),
+        "groupDescription":
+            MessageLookupByLibrary.simpleMessage("Group description"),
+        "groupDescriptionHasBeenChanged": MessageLookupByLibrary.simpleMessage(
+            "Group description has been changed"),
+        "groupIsPublic":
+            MessageLookupByLibrary.simpleMessage("Group is public"),
         "groupWith": m27,
+        "guestsAreForbidden":
+            MessageLookupByLibrary.simpleMessage("Guests are forbidden"),
+        "guestsCanJoin":
+            MessageLookupByLibrary.simpleMessage("Guests can join"),
         "hasWithdrawnTheInvitationFor": m28,
+        "help": MessageLookupByLibrary.simpleMessage("Help"),
+        "homeserverIsNotCompatible": MessageLookupByLibrary.simpleMessage(
+            "Homeserver is not compatible"),
+        "id": MessageLookupByLibrary.simpleMessage("ID"),
+        "identity": MessageLookupByLibrary.simpleMessage("Identity"),
+        "ignoreListDescription": MessageLookupByLibrary.simpleMessage(
+            "You can ignore users who are disturbing you. You won\'t be able to receive any messages or room invites from the users on your personal ignore list."),
+        "ignoreUsername":
+            MessageLookupByLibrary.simpleMessage("Ignore username"),
+        "ignoredUsers": MessageLookupByLibrary.simpleMessage("Ignored users"),
         "incorrectPassphraseOrKey": MessageLookupByLibrary.simpleMessage(
             "Incorrect passphrase or recovery key"),
+        "inviteContact": MessageLookupByLibrary.simpleMessage("Invite contact"),
         "inviteContactToGroup": m29,
         "inviteText": m30,
+        "invited": MessageLookupByLibrary.simpleMessage("Invited"),
         "invitedUser": m31,
-        "is typing...": MessageLookupByLibrary.simpleMessage("is typing..."),
+        "invitedUsersOnly":
+            MessageLookupByLibrary.simpleMessage("Invited users only"),
         "isDeviceKeyCorrect": MessageLookupByLibrary.simpleMessage(
             "Is the following device key correct?"),
+        "isTyping": MessageLookupByLibrary.simpleMessage("is typing..."),
+        "joinRoom": MessageLookupByLibrary.simpleMessage("Join room"),
         "joinedTheChat": m32,
         "keysCached": MessageLookupByLibrary.simpleMessage("Keys are cached"),
         "keysMissing": MessageLookupByLibrary.simpleMessage("Keys are missing"),
+        "kickFromChat": MessageLookupByLibrary.simpleMessage("Kick from chat"),
         "kicked": m33,
         "kickedAndBanned": m34,
         "lastActiveAgo": m35,
+        "lastSeenIp": MessageLookupByLibrary.simpleMessage("Last seen IP"),
+        "lastSeenLongTimeAgo":
+            MessageLookupByLibrary.simpleMessage("Seen a long time ago"),
+        "leave": MessageLookupByLibrary.simpleMessage("Leave"),
+        "leftTheChat": MessageLookupByLibrary.simpleMessage("Left the chat"),
+        "license": MessageLookupByLibrary.simpleMessage("License"),
+        "lightTheme": MessageLookupByLibrary.simpleMessage("Light"),
         "loadCountMoreParticipants": m36,
+        "loadMore": MessageLookupByLibrary.simpleMessage("Load more..."),
+        "loadingPleaseWait":
+            MessageLookupByLibrary.simpleMessage("Loading... Please wait"),
         "logInTo": m37,
+        "login": MessageLookupByLibrary.simpleMessage("Login"),
+        "logout": MessageLookupByLibrary.simpleMessage("Logout"),
+        "makeAModerator":
+            MessageLookupByLibrary.simpleMessage("Make a moderator"),
+        "makeAnAdmin": MessageLookupByLibrary.simpleMessage("Make an admin"),
+        "makeSureTheIdentifierIsValid": MessageLookupByLibrary.simpleMessage(
+            "Make sure the identifier is valid"),
+        "messageWillBeRemovedWarning": MessageLookupByLibrary.simpleMessage(
+            "Message will be removed for all participants"),
+        "moderator": MessageLookupByLibrary.simpleMessage("Moderator"),
+        "monday": MessageLookupByLibrary.simpleMessage("Monday"),
+        "muteChat": MessageLookupByLibrary.simpleMessage("Mute chat"),
+        "needPantalaimonWarning": MessageLookupByLibrary.simpleMessage(
+            "Please be aware that you need Pantalaimon to use end-to-end encryption for now."),
+        "newMessageInFluffyChat":
+            MessageLookupByLibrary.simpleMessage("New message in FluffyChat"),
+        "newPrivateChat":
+            MessageLookupByLibrary.simpleMessage("New private chat"),
         "newVerificationRequest":
             MessageLookupByLibrary.simpleMessage("New verification request!"),
+        "no": MessageLookupByLibrary.simpleMessage("No"),
         "noCrossSignBootstrap": MessageLookupByLibrary.simpleMessage(
             "Fluffychat currently does not support enabling Cross-Signing. Please enable it from within Riot."),
+        "noEmotesFound":
+            MessageLookupByLibrary.simpleMessage("No emotes found. 😕"),
+        "noGoogleServicesWarning": MessageLookupByLibrary.simpleMessage(
+            "It seems that you have no google services on your phone. That\'s a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/"),
         "noMegolmBootstrap": MessageLookupByLibrary.simpleMessage(
             "Fluffychat currently does not support enabling Online Key Backup. Please enable it from within Riot."),
+        "noPermission": MessageLookupByLibrary.simpleMessage("No permission"),
+        "noRoomsFound":
+            MessageLookupByLibrary.simpleMessage("No rooms found..."),
+        "none": MessageLookupByLibrary.simpleMessage("None"),
+        "notSupportedInWeb":
+            MessageLookupByLibrary.simpleMessage("Not supported in web"),
         "numberSelected": m38,
         "ok": MessageLookupByLibrary.simpleMessage("ok"),
         "onlineKeyBackupDisabled": MessageLookupByLibrary.simpleMessage(
             "Online Key Backup is disabled"),
         "onlineKeyBackupEnabled": MessageLookupByLibrary.simpleMessage(
             "Online Key Backup is enabled"),
+        "oopsSomethingWentWrong": MessageLookupByLibrary.simpleMessage(
+            "Oops something went wrong..."),
+        "openAppToReadMessages":
+            MessageLookupByLibrary.simpleMessage("Open app to read messages"),
+        "openCamera": MessageLookupByLibrary.simpleMessage("Open camera"),
+        "optionalGroupName":
+            MessageLookupByLibrary.simpleMessage("(Optional) Group name"),
+        "participatingUserDevices":
+            MessageLookupByLibrary.simpleMessage("Participating user devices"),
         "passphraseOrKey":
             MessageLookupByLibrary.simpleMessage("passphrase or recovery key"),
+        "password": MessageLookupByLibrary.simpleMessage("Password"),
+        "passwordHasBeenChanged":
+            MessageLookupByLibrary.simpleMessage("Password has been changed"),
+        "pickImage": MessageLookupByLibrary.simpleMessage("Pick image"),
+        "pin": MessageLookupByLibrary.simpleMessage("Pin"),
         "play": m39,
+        "pleaseChooseAUsername":
+            MessageLookupByLibrary.simpleMessage("Please choose a username"),
+        "pleaseEnterAMatrixIdentifier": MessageLookupByLibrary.simpleMessage(
+            "Please enter a matrix identifier"),
+        "pleaseEnterYourPassword":
+            MessageLookupByLibrary.simpleMessage("Please enter your password"),
+        "pleaseEnterYourUsername":
+            MessageLookupByLibrary.simpleMessage("Please enter your username"),
+        "publicRooms": MessageLookupByLibrary.simpleMessage("Public Rooms"),
+        "recording": MessageLookupByLibrary.simpleMessage("Recording"),
         "redactedAnEvent": m40,
+        "reject": MessageLookupByLibrary.simpleMessage("Reject"),
         "rejectedTheInvitation": m41,
+        "rejoin": MessageLookupByLibrary.simpleMessage("Rejoin"),
+        "remove": MessageLookupByLibrary.simpleMessage("Remove"),
+        "removeAllOtherDevices":
+            MessageLookupByLibrary.simpleMessage("Remove all other devices"),
+        "removeDevice": MessageLookupByLibrary.simpleMessage("Remove device"),
+        "removeExile": MessageLookupByLibrary.simpleMessage("Remove exile"),
+        "removeMessage": MessageLookupByLibrary.simpleMessage("Remove message"),
         "removedBy": m42,
+        "renderRichContent":
+            MessageLookupByLibrary.simpleMessage("Render rich message content"),
+        "reply": MessageLookupByLibrary.simpleMessage("Reply"),
+        "requestPermission":
+            MessageLookupByLibrary.simpleMessage("Request permission"),
+        "requestToReadOlderMessages": MessageLookupByLibrary.simpleMessage(
+            "Request to read older messages"),
+        "revokeAllPermissions":
+            MessageLookupByLibrary.simpleMessage("Revoke all permissions"),
+        "roomHasBeenUpgraded":
+            MessageLookupByLibrary.simpleMessage("Room has been upgraded"),
+        "saturday": MessageLookupByLibrary.simpleMessage("Saturday"),
+        "searchForAChat":
+            MessageLookupByLibrary.simpleMessage("Search for a chat"),
         "seenByUser": m43,
         "seenByUserAndCountOthers": m44,
         "seenByUserAndUser": m45,
+        "send": MessageLookupByLibrary.simpleMessage("Send"),
+        "sendAMessage": MessageLookupByLibrary.simpleMessage("Send a message"),
+        "sendAudio": MessageLookupByLibrary.simpleMessage("Send audio"),
+        "sendBugReports": MessageLookupByLibrary.simpleMessage(
+            "Allow sending bug reports with sentry.io"),
+        "sendFile": MessageLookupByLibrary.simpleMessage("Send file"),
+        "sendImage": MessageLookupByLibrary.simpleMessage("Send image"),
+        "sendOriginal": MessageLookupByLibrary.simpleMessage("Send original"),
+        "sendVideo": MessageLookupByLibrary.simpleMessage("Send video"),
         "sentAFile": m46,
         "sentAPicture": m47,
         "sentASticker": m48,
         "sentAVideo": m49,
         "sentAnAudio": m50,
         "sentCallInformations": m51,
+        "sentryInfo": MessageLookupByLibrary.simpleMessage(
+            "Informations about your privacy: https://sentry.io/security/"),
         "sessionVerified":
             MessageLookupByLibrary.simpleMessage("Session is verified"),
+        "setAProfilePicture":
+            MessageLookupByLibrary.simpleMessage("Set a profile picture"),
+        "setGroupDescription":
+            MessageLookupByLibrary.simpleMessage("Set group description"),
+        "setInvitationLink":
+            MessageLookupByLibrary.simpleMessage("Set invitation link"),
+        "setStatus": MessageLookupByLibrary.simpleMessage("Set status"),
+        "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "share": MessageLookupByLibrary.simpleMessage("Share"),
         "sharedTheLocation": m52,
+        "signUp": MessageLookupByLibrary.simpleMessage("Sign up"),
+        "skip": MessageLookupByLibrary.simpleMessage("Skip"),
+        "sourceCode": MessageLookupByLibrary.simpleMessage("Source code"),
+        "startYourFirstChat":
+            MessageLookupByLibrary.simpleMessage("Start your first chat :-)"),
         "startedACall": m53,
+        "statusExampleMessage":
+            MessageLookupByLibrary.simpleMessage("How are you today?"),
+        "submit": MessageLookupByLibrary.simpleMessage("Submit"),
+        "sunday": MessageLookupByLibrary.simpleMessage("Sunday"),
+        "systemTheme": MessageLookupByLibrary.simpleMessage("System"),
+        "tapToShowMenu":
+            MessageLookupByLibrary.simpleMessage("Tap to show menu"),
+        "theyDontMatch":
+            MessageLookupByLibrary.simpleMessage("They Don\'t Match"),
+        "theyMatch": MessageLookupByLibrary.simpleMessage("They Match"),
+        "thisRoomHasBeenArchived": MessageLookupByLibrary.simpleMessage(
+            "This room has been archived."),
+        "thursday": MessageLookupByLibrary.simpleMessage("Thursday"),
         "timeOfDay": m54,
         "title": MessageLookupByLibrary.simpleMessage("FluffyChat"),
+        "tryToSendAgain":
+            MessageLookupByLibrary.simpleMessage("Try to send again"),
+        "tuesday": MessageLookupByLibrary.simpleMessage("Tuesday"),
         "unbannedUser": m55,
+        "unblockDevice": MessageLookupByLibrary.simpleMessage("Unblock Device"),
+        "unknownDevice": MessageLookupByLibrary.simpleMessage("Unknown device"),
+        "unknownEncryptionAlgorithm": MessageLookupByLibrary.simpleMessage(
+            "Unknown encryption algorithm"),
         "unknownEvent": m56,
         "unknownSessionVerify": MessageLookupByLibrary.simpleMessage(
             "Unknown session, please verify"),
+        "unmuteChat": MessageLookupByLibrary.simpleMessage("Unmute chat"),
+        "unpin": MessageLookupByLibrary.simpleMessage("Unpin"),
         "unreadChats": m57,
         "unreadMessages": m58,
         "unreadMessagesInChats": m59,
+        "useAmoledTheme": MessageLookupByLibrary.simpleMessage(
+            "Use Amoled compatible colors?"),
         "userAndOthersAreTyping": m60,
         "userAndUserAreTyping": m61,
         "userIsTyping": m62,
         "userLeftTheChat": m63,
         "userSentUnknownEvent": m64,
+        "username": MessageLookupByLibrary.simpleMessage("Username"),
         "verifiedSession": MessageLookupByLibrary.simpleMessage(
             "Successfully verified session!"),
+        "verify": MessageLookupByLibrary.simpleMessage("Verify"),
         "verifyManual": MessageLookupByLibrary.simpleMessage("Verify Manually"),
         "verifyStart":
             MessageLookupByLibrary.simpleMessage("Start Verification"),
@@ -623,11 +563,44 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("You successfully verified!"),
         "verifyTitle":
             MessageLookupByLibrary.simpleMessage("Verifying other account"),
+        "verifyUser": MessageLookupByLibrary.simpleMessage("Verify User"),
+        "videoCall": MessageLookupByLibrary.simpleMessage("Video call"),
+        "visibilityOfTheChatHistory": MessageLookupByLibrary.simpleMessage(
+            "Visibility of the chat history"),
+        "visibleForAllParticipants": MessageLookupByLibrary.simpleMessage(
+            "Visible for all participants"),
+        "visibleForEveryone":
+            MessageLookupByLibrary.simpleMessage("Visible for everyone"),
+        "voiceMessage": MessageLookupByLibrary.simpleMessage("Voice message"),
         "waitingPartnerAcceptRequest": MessageLookupByLibrary.simpleMessage(
             "Waiting for partner to accept the request..."),
         "waitingPartnerEmoji": MessageLookupByLibrary.simpleMessage(
             "Waiting for partner to accept the emoji..."),
         "waitingPartnerNumbers": MessageLookupByLibrary.simpleMessage(
-            "Waiting for partner to accept the numbers...")
+            "Waiting for partner to accept the numbers..."),
+        "wallpaper": MessageLookupByLibrary.simpleMessage("Wallpaper"),
+        "warning": MessageLookupByLibrary.simpleMessage("Warning!"),
+        "warningEncryptionInBeta": MessageLookupByLibrary.simpleMessage(
+            "End to end encryption is currently in Beta! Use at your own risk!"),
+        "wednesday": MessageLookupByLibrary.simpleMessage("Wednesday"),
+        "welcomeText": MessageLookupByLibrary.simpleMessage(
+            "Welcome to the cutest instant messenger in the matrix network."),
+        "whoIsAllowedToJoinThisGroup": MessageLookupByLibrary.simpleMessage(
+            "Who is allowed to join this group"),
+        "writeAMessage":
+            MessageLookupByLibrary.simpleMessage("Write a message..."),
+        "yes": MessageLookupByLibrary.simpleMessage("Yes"),
+        "you": MessageLookupByLibrary.simpleMessage("You"),
+        "youAreInvitedToThisChat": MessageLookupByLibrary.simpleMessage(
+            "You are invited to this chat"),
+        "youAreNoLongerParticipatingInThisChat":
+            MessageLookupByLibrary.simpleMessage(
+                "You are no longer participating in this chat"),
+        "youCannotInviteYourself":
+            MessageLookupByLibrary.simpleMessage("You cannot invite yourself"),
+        "youHaveBeenBannedFromThisChat": MessageLookupByLibrary.simpleMessage(
+            "You have been banned from this chat"),
+        "yourOwnUsername":
+            MessageLookupByLibrary.simpleMessage("Your own username")
       };
 }

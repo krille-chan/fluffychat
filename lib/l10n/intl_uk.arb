@@ -1,12 +1,12 @@
 {
-  "@@last_modified": "2020-06-25T16:02:16.297192",
-  "About": "Про програму",
-  "@About": {
+  "@@last_modified": "2020-09-23 11:46:01.661966",
+  "about": "Про програму",
+  "@about": {
     "type": "text",
     "placeholders": {}
   },
-  "Accept": "Прийняти",
-  "@Accept": {
+  "accept": "Прийняти",
+  "@accept": {
     "type": "text",
     "placeholders": {}
   },
@@ -17,13 +17,13 @@
       "username": {}
     }
   },
-  "Account": "Обліковий запис",
-  "@Account": {
+  "account": "Обліковий запис",
+  "@account": {
     "type": "text",
     "placeholders": {}
   },
-  "Account informations": "Інформація про обліковий запис",
-  "@Account informations": {
+  "accountInformation": "Інформація про обліковий запис",
+  "@accountInformation": {
     "type": "text",
     "placeholders": {}
   },
@@ -34,13 +34,13 @@
       "username": {}
     }
   },
-  "Add a group description": "Додати опис групи",
-  "@Add a group description": {
+  "addGroupDescription": "Додати опис групи",
+  "@addGroupDescription": {
     "type": "text",
     "placeholders": {}
   },
-  "Admin": "Адміністратор",
-  "@Admin": {
+  "admin": "Адміністратор",
+  "@admin": {
     "type": "text",
     "placeholders": {}
   },
@@ -49,33 +49,40 @@
     "type": "text",
     "placeholders": {}
   },
-  "Already have an account?": "Вже маєте обліковий запис?",
-  "@Already have an account?": {
+  "alreadyHaveAnAccount": "Вже маєте обліковий запис?",
+  "@alreadyHaveAnAccount": {
     "type": "text",
     "placeholders": {}
   },
-  "Anyone can join": "Будь-хто може приєднатись",
-  "@Anyone can join": {
+  "answeredTheCall": "{senderName} відповів(ла) на дзвінок",
+  "@answeredTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "anyoneCanJoin": "Будь-хто може приєднатись",
+  "@anyoneCanJoin": {
     "type": "text",
     "placeholders": {}
   },
-  "Archive": "Архів",
-  "@Archive": {
+  "archive": "Архів",
+  "@archive": {
     "type": "text",
     "placeholders": {}
   },
-  "Archived Room": "Заархівована кімната",
-  "@Archived Room": {
+  "archivedRoom": "Заархівована кімната",
+  "@archivedRoom": {
     "type": "text",
     "placeholders": {}
   },
-  "Are guest users allowed to join": "Чи дозволено гостям приєднуватись",
-  "@Are guest users allowed to join": {
+  "areGuestsAllowedToJoin": "Чи дозволено гостям приєднуватись",
+  "@areGuestsAllowedToJoin": {
     "type": "text",
     "placeholders": {}
   },
-  "Are you sure?": "Ви впевнені?",
-  "@Are you sure?": {
+  "areYouSure": "Ви впевнені?",
+  "@areYouSure": {
     "type": "text",
     "placeholders": {}
   },
@@ -101,23 +108,23 @@
       "username": {}
     }
   },
-  "Authentication": "Аутентифікація",
-  "@Authentication": {
+  "authentication": "Аутентифікація",
+  "@authentication": {
     "type": "text",
     "placeholders": {}
   },
-  "Avatar has been changed": "Аватар був змінений",
-  "@Avatar has been changed": {
+  "avatarHasBeenChanged": "Аватар був змінений",
+  "@avatarHasBeenChanged": {
     "type": "text",
     "placeholders": {}
   },
-  "Ban from chat": "Заблокувати в чаті",
-  "@Ban from chat": {
+  "banFromChat": "Заблокувати в чаті",
+  "@banFromChat": {
     "type": "text",
     "placeholders": {}
   },
-  "Banned": "Заблокований(на)",
-  "@Banned": {
+  "banned": "Заблокований(на)",
+  "@banned": {
     "type": "text",
     "placeholders": {}
   },
@@ -129,8 +136,8 @@
       "targetName": {}
     }
   },
-  "Block Device": "Заблокувати пристрій",
-  "@Block Device": {
+  "blockDevice": "Заблокувати пристрій",
+  "@blockDevice": {
     "type": "text",
     "placeholders": {}
   },
@@ -146,8 +153,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "Cancel": "Скасувати",
-  "@Cancel": {
+  "cancel": "Скасувати",
+  "@cancel": {
     "type": "text",
     "placeholders": {}
   },
@@ -158,20 +165,20 @@
       "username": {}
     }
   },
-  "changedTheChatNameTo": "{username} змінив(ла) ім'я чату на: \"{chatname}\"",
-  "@changedTheChatNameTo": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "chatname": {}
-    }
-  },
   "changedTheChatDescriptionTo": "{username} змінив(ла) опис чату на: \"{description}\"",
   "@changedTheChatDescriptionTo": {
     "type": "text",
     "placeholders": {
       "username": {},
       "description": {}
+    }
+  },
+  "changedTheChatNameTo": "{username} змінив(ла) ім'я чату на: \"{chatname}\"",
+  "@changedTheChatNameTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "chatname": {}
     }
   },
   "changedTheChatPermissions": "{username} змінив(ла) права доступу чату",
@@ -188,11 +195,6 @@
       "username": {},
       "displayname": {}
     }
-  },
-  "Change the homeserver": "Змінити сервер Matrix",
-  "@Change the homeserver": {
-    "type": "text",
-    "placeholders": {}
   },
   "changedTheGuestAccessRules": "{username} змінив(ла) правила гостьового доступу",
   "@changedTheGuestAccessRules": {
@@ -260,53 +262,63 @@
       "username": {}
     }
   },
-  "Changelog": "Журнал змін",
-  "@Changelog": {
+  "changelog": "Журнал змін",
+  "@changelog": {
     "type": "text",
     "placeholders": {}
   },
-  "Change the name of the group": "Змінити назву групи",
-  "@Change the name of the group": {
+  "changeTheHomeserver": "Змінити сервер Matrix",
+  "@changeTheHomeserver": {
     "type": "text",
     "placeholders": {}
   },
-  "Change wallpaper": "Змінити фон чатів",
-  "@Change wallpaper": {
+  "changeTheme": "",
+  "@changeTheme": {
     "type": "text",
     "placeholders": {}
   },
-  "Change the server": "Змінити сервер",
-  "@Change the server": {
+  "changeTheNameOfTheGroup": "Змінити назву групи",
+  "@changeTheNameOfTheGroup": {
     "type": "text",
     "placeholders": {}
   },
-  "The encryption has been corrupted": "Шифрування було пошкоджено",
-  "@The encryption has been corrupted": {
+  "changeTheServer": "Змінити сервер",
+  "@changeTheServer": {
     "type": "text",
     "placeholders": {}
   },
-  "Chat": "Чат",
-  "@Chat": {
+  "changeWallpaper": "Змінити фон чатів",
+  "@changeWallpaper": {
     "type": "text",
     "placeholders": {}
   },
-  "Chat details": "Деталі чату",
-  "@Chat details": {
+  "channelCorruptedDecryptError": "Шифрування було пошкоджено",
+  "@channelCorruptedDecryptError": {
     "type": "text",
     "placeholders": {}
   },
-  "Choose a strong password": "Виберіть надійний пароль",
-  "@Choose a strong password": {
+  "chat": "Чат",
+  "@chat": {
     "type": "text",
     "placeholders": {}
   },
-  "Choose a username": "Виберіть ім'я користувача",
-  "@Choose a username": {
+  "chatDetails": "Деталі чату",
+  "@chatDetails": {
     "type": "text",
     "placeholders": {}
   },
-  "Close": "Закрити",
-  "@Close": {
+  "chooseAStrongPassword": "Виберіть надійний пароль",
+  "@chooseAStrongPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseAUsername": "Виберіть ім'я користувача",
+  "@chooseAUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "close": "Закрити",
+  "@close": {
     "type": "text",
     "placeholders": {}
   },
@@ -320,38 +332,38 @@
     "type": "text",
     "placeholders": {}
   },
-  "Confirm": "Підтвердити",
-  "@Confirm": {
+  "confirm": "Підтвердити",
+  "@confirm": {
     "type": "text",
     "placeholders": {}
   },
-  "Connect": "Приєднатись",
-  "@Connect": {
+  "connect": "Приєднатись",
+  "@connect": {
     "type": "text",
     "placeholders": {}
   },
-  "Connection attempt failed": "Спроба підключення не вдалась",
-  "@Connection attempt failed": {
+  "connectionAttemptFailed": "Спроба підключення не вдалась",
+  "@connectionAttemptFailed": {
     "type": "text",
     "placeholders": {}
   },
-  "Contact has been invited to the group": "Контакт був запрошений в групу",
-  "@Contact has been invited to the group": {
+  "contactHasBeenInvitedToTheGroup": "Контакт був запрошений в групу",
+  "@contactHasBeenInvitedToTheGroup": {
     "type": "text",
     "placeholders": {}
   },
-  "Content viewer": "Перегляд вмісту",
-  "@Content viewer": {
+  "contentViewer": "Перегляд вмісту",
+  "@contentViewer": {
     "type": "text",
     "placeholders": {}
   },
-  "Copied to clipboard": "Скопійовано в буфер обміну",
-  "@Copied to clipboard": {
+  "copiedToClipboard": "Скопійовано в буфер обміну",
+  "@copiedToClipboard": {
     "type": "text",
     "placeholders": {}
   },
-  "Copy": "Копіювати",
-  "@Copy": {
+  "copy": "Копіювати",
+  "@copy": {
     "type": "text",
     "placeholders": {}
   },
@@ -362,13 +374,13 @@
       "error": {}
     }
   },
-  "Could not set avatar": "Помилка при встановленні аватара",
-  "@Could not set avatar": {
+  "couldNotSetAvatar": "Помилка при встановленні аватара",
+  "@couldNotSetAvatar": {
     "type": "text",
     "placeholders": {}
   },
-  "Could not set displayname": "Помилка при встановленні відображуваного імені",
-  "@Could not set displayname": {
+  "couldNotSetDisplayname": "Помилка при встановленні відображуваного імені",
+  "@couldNotSetDisplayname": {
     "type": "text",
     "placeholders": {}
   },
@@ -379,13 +391,13 @@
       "count": {}
     }
   },
-  "Create": "Створити",
-  "@Create": {
+  "create": "Створити",
+  "@create": {
     "type": "text",
     "placeholders": {}
   },
-  "Create account now": "Створити обліковий запис зараз",
-  "@Create account now": {
+  "createAccountNow": "Створити обліковий запис зараз",
+  "@createAccountNow": {
     "type": "text",
     "placeholders": {}
   },
@@ -396,8 +408,8 @@
       "username": {}
     }
   },
-  "Create new group": "Нова група",
-  "@Create new group": {
+  "createNewGroup": "Нова група",
+  "@createNewGroup": {
     "type": "text",
     "placeholders": {}
   },
@@ -411,8 +423,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "Currently active": "Зараз активний(на)",
-  "@Currently active": {
+  "currentlyActive": "Зараз активний(на)",
+  "@currentlyActive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "darkTheme": "",
+  "@darkTheme": {
     "type": "text",
     "placeholders": {}
   },
@@ -441,63 +458,58 @@
       "day": {}
     }
   },
-  "Delete": "Видалити",
-  "@Delete": {
+  "delete": "Видалити",
+  "@delete": {
     "type": "text",
     "placeholders": {}
   },
-  "Delete message": "Видалити повідомлення",
-  "@Delete message": {
+  "deleteMessage": "Видалити повідомлення",
+  "@deleteMessage": {
     "type": "text",
     "placeholders": {}
   },
-  "Deny": "Відхилити",
-  "@Deny": {
+  "deny": "Відхилити",
+  "@deny": {
     "type": "text",
     "placeholders": {}
   },
-  "Device": "Пристрій",
-  "@Device": {
+  "device": "Пристрій",
+  "@device": {
     "type": "text",
     "placeholders": {}
   },
-  "Devices": "Пристрої",
-  "@Devices": {
+  "devices": "Пристрої",
+  "@devices": {
     "type": "text",
     "placeholders": {}
   },
-  "Discard picture": "Видалити зображення",
-  "@Discard picture": {
+  "discardPicture": "Видалити зображення",
+  "@discardPicture": {
     "type": "text",
     "placeholders": {}
   },
-  "Displayname has been changed": "Відображуване ім'я було змінено",
-  "@Displayname has been changed": {
+  "displaynameHasBeenChanged": "Відображуване ім'я було змінено",
+  "@displaynameHasBeenChanged": {
     "type": "text",
     "placeholders": {}
   },
-  "Download file": "Завантажити файл",
-  "@Download file": {
+  "donate": "",
+  "@donate": {
     "type": "text",
     "placeholders": {}
   },
-  "Edit displayname": "Змінити відображуване ім'я",
-  "@Edit displayname": {
+  "downloadFile": "Завантажити файл",
+  "@downloadFile": {
     "type": "text",
     "placeholders": {}
   },
-  "Emote Settings": "Налаштування емодзі",
-  "@Emote Settings": {
+  "editDisplayname": "Змінити відображуване ім'я",
+  "@editDisplayname": {
     "type": "text",
     "placeholders": {}
   },
-  "Emote shortcode": "Короткий код для емодзі",
-  "@Emote shortcode": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "emoteWarnNeedToPick": "Виберіть короткий код емодзі і зображення",
-  "@emoteWarnNeedToPick": {
+  "editJitsiInstance": "",
+  "@editJitsiInstance": {
     "type": "text",
     "placeholders": {}
   },
@@ -511,103 +523,125 @@
     "type": "text",
     "placeholders": {}
   },
-  "Empty chat": "Пустий чат",
-  "@Empty chat": {
+  "emoteSettings": "Налаштування емодзі",
+  "@emoteSettings": {
     "type": "text",
     "placeholders": {}
   },
-  "You won't be able to disable the encryption anymore. Are you sure?": "Ви більше не зможете відключити шифрування. Ви впевнені?",
-  "@You won't be able to disable the encryption anymore. Are you sure?": {
+  "emoteShortcode": "Короткий код для емодзі",
+  "@emoteShortcode": {
     "type": "text",
     "placeholders": {}
   },
-  "Encryption": "Шифрування",
-  "@Encryption": {
+  "emoteWarnNeedToPick": "Виберіть короткий код емодзі і зображення",
+  "@emoteWarnNeedToPick": {
     "type": "text",
     "placeholders": {}
   },
-  "Encryption algorithm": "Алгоритм шифрування",
-  "@Encryption algorithm": {
+  "emptyChat": "Пустий чат",
+  "@emptyChat": {
     "type": "text",
     "placeholders": {}
   },
-  "Encryption is not enabled": "Шифрування вимкнено",
-  "@Encryption is not enabled": {
+  "enableEncryptionWarning": "Ви більше не зможете відключити шифрування. Ви впевнені?",
+  "@enableEncryptionWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "End-to-end encryption settings": "Налаштування наскрізного шифрування",
-  "@End-to-end encryption settings": {
+  "encryption": "Шифрування",
+  "@encryption": {
     "type": "text",
     "placeholders": {}
   },
-  "Enter a group name": "Введіть назву групи",
-  "@Enter a group name": {
+  "encryptionAlgorithm": "Алгоритм шифрування",
+  "@encryptionAlgorithm": {
     "type": "text",
     "placeholders": {}
   },
-  "Enter a username": "Введіть ім'я користувача",
-  "@Enter a username": {
+  "encryptionNotEnabled": "Шифрування вимкнено",
+  "@encryptionNotEnabled": {
     "type": "text",
     "placeholders": {}
   },
-  "Enter your homeserver": "Введіть адресу вашого сервера Matrix",
-  "@Enter your homeserver": {
+  "end2endEncryptionSettings": "Налаштування наскрізного шифрування",
+  "@end2endEncryptionSettings": {
     "type": "text",
     "placeholders": {}
   },
-  "File name": "Ім'я файлу",
-  "@File name": {
+  "endedTheCall": "{senderName} завершив(ла) дзвінок",
+  "@endedTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "enterAGroupName": "Введіть назву групи",
+  "@enterAGroupName": {
     "type": "text",
     "placeholders": {}
   },
-  "File size": "Розмір файлу",
-  "@File size": {
+  "enterAUsername": "Введіть ім'я користувача",
+  "@enterAUsername": {
     "type": "text",
     "placeholders": {}
   },
-  "FluffyChat": "FluffyChat",
-  "@FluffyChat": {
+  "enterYourHomeserver": "Введіть адресу вашого сервера Matrix",
+  "@enterYourHomeserver": {
     "type": "text",
     "placeholders": {}
   },
-  "Forward": "Переслати",
-  "@Forward": {
+  "fileName": "Ім'я файлу",
+  "@fileName": {
     "type": "text",
     "placeholders": {}
   },
-  "Friday": "П'ятниця",
-  "@Friday": {
+  "fileSize": "Розмір файлу",
+  "@fileSize": {
     "type": "text",
     "placeholders": {}
   },
-  "From joining": "З моменту приєднання",
-  "@From joining": {
+  "fluffychat": "FluffyChat",
+  "@fluffychat": {
     "type": "text",
     "placeholders": {}
   },
-  "From the invitation": "З моменту запрошення",
-  "@From the invitation": {
+  "forward": "Переслати",
+  "@forward": {
     "type": "text",
     "placeholders": {}
   },
-  "Group": "Група",
-  "@Group": {
+  "friday": "П'ятниця",
+  "@friday": {
     "type": "text",
     "placeholders": {}
   },
-  "Group description": "Опис групи",
-  "@Group description": {
+  "fromJoining": "З моменту приєднання",
+  "@fromJoining": {
     "type": "text",
     "placeholders": {}
   },
-  "Group description has been changed": "Опис групи було змінено",
-  "@Group description has been changed": {
+  "fromTheInvitation": "З моменту запрошення",
+  "@fromTheInvitation": {
     "type": "text",
     "placeholders": {}
   },
-  "Group is public": "Публічна група",
-  "@Group is public": {
+  "group": "Група",
+  "@group": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groupDescription": "Опис групи",
+  "@groupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groupDescriptionHasBeenChanged": "Опис групи було змінено",
+  "@groupDescriptionHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groupIsPublic": "Публічна група",
+  "@groupIsPublic": {
     "type": "text",
     "placeholders": {}
   },
@@ -618,13 +652,13 @@
       "displayname": {}
     }
   },
-  "Guests are forbidden": "Гості не можуть приєднуватись",
-  "@Guests are forbidden": {
+  "guestsAreForbidden": "Гості не можуть приєднуватись",
+  "@guestsAreForbidden": {
     "type": "text",
     "placeholders": {}
   },
-  "Guests can join": "Гості можуть приєднуватись",
-  "@Guests can join": {
+  "guestsCanJoin": "Гості можуть приєднуватись",
+  "@guestsCanJoin": {
     "type": "text",
     "placeholders": {}
   },
@@ -636,23 +670,23 @@
       "targetName": {}
     }
   },
-  "Help": "Допомога",
-  "@Help": {
+  "help": "Допомога",
+  "@help": {
     "type": "text",
     "placeholders": {}
   },
-  "Homeserver is not compatible": "",
-  "@Homeserver is not compatible": {
+  "homeserverIsNotCompatible": "",
+  "@homeserverIsNotCompatible": {
     "type": "text",
     "placeholders": {}
   },
-  "ID": "",
-  "@ID": {
+  "id": "",
+  "@id": {
     "type": "text",
     "placeholders": {}
   },
-  "Identity": "",
-  "@Identity": {
+  "identity": "",
+  "@identity": {
     "type": "text",
     "placeholders": {}
   },
@@ -661,8 +695,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "Invite contact": "",
-  "@Invite contact": {
+  "inviteContact": "",
+  "@inviteContact": {
     "type": "text",
     "placeholders": {}
   },
@@ -673,8 +707,21 @@
       "groupName": {}
     }
   },
-  "Invited": "",
-  "@Invited": {
+  "invited": "",
+  "@invited": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invitedUser": "",
+  "@invitedUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "invitedUsersOnly": "",
+  "@invitedUsersOnly": {
     "type": "text",
     "placeholders": {}
   },
@@ -686,31 +733,13 @@
       "link": {}
     }
   },
-  "invitedUser": "",
-  "@invitedUser": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "targetName": {}
-    }
-  },
-  "Invited users only": "",
-  "@Invited users only": {
-    "type": "text",
-    "placeholders": {}
-  },
   "isDeviceKeyCorrect": "",
   "@isDeviceKeyCorrect": {
     "type": "text",
     "placeholders": {}
   },
-  "is typing...": "",
-  "@is typing...": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Edit Jitsi instance": "",
-  "@Edit Jitsi instance": {
+  "isTyping": "",
+  "@isTyping": {
     "type": "text",
     "placeholders": {}
   },
@@ -747,32 +776,10 @@
       "targetName": {}
     }
   },
-  "Kick from chat": "",
-  "@Kick from chat": {
+  "kickFromChat": "",
+  "@kickFromChat": {
     "type": "text",
     "placeholders": {}
-  },
-  "Leave": "",
-  "@Leave": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Left the chat": "",
-  "@Left the chat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Logout": "",
-  "@Logout": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "userLeftTheChat": "",
-  "@userLeftTheChat": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
   },
   "lastActiveAgo": "",
   "@lastActiveAgo": {
@@ -781,23 +788,33 @@
       "localizedTimeShort": {}
     }
   },
-  "Last seen IP": "",
-  "@Last seen IP": {
+  "lastSeenIp": "",
+  "@lastSeenIp": {
     "type": "text",
     "placeholders": {}
   },
-  "License": "",
-  "@License": {
+  "lastSeenLongTimeAgo": "",
+  "@lastSeenLongTimeAgo": {
     "type": "text",
     "placeholders": {}
   },
-  "Loading... Please wait": "",
-  "@Loading... Please wait": {
+  "leave": "",
+  "@leave": {
     "type": "text",
     "placeholders": {}
   },
-  "Load more...": "",
-  "@Load more...": {
+  "leftTheChat": "",
+  "@leftTheChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "license": "",
+  "@license": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lightTheme": "",
+  "@lightTheme": {
     "type": "text",
     "placeholders": {}
   },
@@ -808,8 +825,18 @@
       "count": {}
     }
   },
-  "Login": "",
-  "@Login": {
+  "loadingPleaseWait": "",
+  "@loadingPleaseWait": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loadMore": "",
+  "@loadMore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "login": "",
+  "@login": {
     "type": "text",
     "placeholders": {}
   },
@@ -820,53 +847,58 @@
       "homeserver": {}
     }
   },
-  "Make a moderator": "",
-  "@Make a moderator": {
+  "logout": "",
+  "@logout": {
     "type": "text",
     "placeholders": {}
   },
-  "Make an admin": "",
-  "@Make an admin": {
+  "makeAModerator": "",
+  "@makeAModerator": {
     "type": "text",
     "placeholders": {}
   },
-  "Make sure the identifier is valid": "",
-  "@Make sure the identifier is valid": {
+  "makeAnAdmin": "",
+  "@makeAnAdmin": {
     "type": "text",
     "placeholders": {}
   },
-  "Message will be removed for all participants": "",
-  "@Message will be removed for all participants": {
+  "makeSureTheIdentifierIsValid": "",
+  "@makeSureTheIdentifierIsValid": {
     "type": "text",
     "placeholders": {}
   },
-  "Moderator": "",
-  "@Moderator": {
+  "messageWillBeRemovedWarning": "",
+  "@messageWillBeRemovedWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "Monday": "",
-  "@Monday": {
+  "moderator": "",
+  "@moderator": {
     "type": "text",
     "placeholders": {}
   },
-  "Mute chat": "",
-  "@Mute chat": {
+  "monday": "",
+  "@monday": {
     "type": "text",
     "placeholders": {}
   },
-  "Please be aware that you need Pantalaimon to use end-to-end encryption for now.": "",
-  "@Please be aware that you need Pantalaimon to use end-to-end encryption for now.": {
+  "muteChat": "",
+  "@muteChat": {
     "type": "text",
     "placeholders": {}
   },
-  "New message in FluffyChat": "",
-  "@New message in FluffyChat": {
+  "needPantalaimonWarning": "",
+  "@needPantalaimonWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "New private chat": "",
-  "@New private chat": {
+  "newMessageInFluffyChat": "",
+  "@newMessageInFluffyChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newPrivateChat": "",
+  "@newPrivateChat": {
     "type": "text",
     "placeholders": {}
   },
@@ -880,38 +912,38 @@
     "type": "text",
     "placeholders": {}
   },
+  "noEmotesFound": "",
+  "@noEmotesFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noGoogleServicesWarning": "",
+  "@noGoogleServicesWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
   "noMegolmBootstrap": "",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
   },
-  "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": "",
-  "@It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": {
+  "none": "",
+  "@none": {
     "type": "text",
     "placeholders": {}
   },
-  "None": "",
-  "@None": {
+  "noPermission": "",
+  "@noPermission": {
     "type": "text",
     "placeholders": {}
   },
-  "No emotes found. 😕": "",
-  "@No emotes found. 😕": {
+  "noRoomsFound": "",
+  "@noRoomsFound": {
     "type": "text",
     "placeholders": {}
   },
-  "No permission": "",
-  "@No permission": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "No rooms found...": "",
-  "@No rooms found...": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Not supported in web": "",
-  "@Not supported in web": {
+  "notSupportedInWeb": "",
+  "@notSupportedInWeb": {
     "type": "text",
     "placeholders": {}
   },
@@ -937,28 +969,28 @@
     "type": "text",
     "placeholders": {}
   },
-  "Oops something went wrong...": "",
-  "@Oops something went wrong...": {
+  "oopsSomethingWentWrong": "",
+  "@oopsSomethingWentWrong": {
     "type": "text",
     "placeholders": {}
   },
-  "Open app to read messages": "",
-  "@Open app to read messages": {
+  "openAppToReadMessages": "",
+  "@openAppToReadMessages": {
     "type": "text",
     "placeholders": {}
   },
-  "Open camera": "",
-  "@Open camera": {
+  "openCamera": "",
+  "@openCamera": {
     "type": "text",
     "placeholders": {}
   },
-  "(Optional) Group name": "",
-  "@(Optional) Group name": {
+  "optionalGroupName": "",
+  "@optionalGroupName": {
     "type": "text",
     "placeholders": {}
   },
-  "Participating user devices": "",
-  "@Participating user devices": {
+  "participatingUserDevices": "",
+  "@participatingUserDevices": {
     "type": "text",
     "placeholders": {}
   },
@@ -967,13 +999,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "Password": "",
-  "@Password": {
+  "password": "",
+  "@password": {
     "type": "text",
     "placeholders": {}
   },
-  "Pick image": "",
-  "@Pick image": {
+  "pickImage": "",
+  "@pickImage": {
     "type": "text",
     "placeholders": {}
   },
@@ -984,48 +1016,33 @@
       "fileName": {}
     }
   },
-  "Please choose a username": "",
-  "@Please choose a username": {
+  "pleaseChooseAUsername": "",
+  "@pleaseChooseAUsername": {
     "type": "text",
     "placeholders": {}
   },
-  "Please enter a matrix identifier": "",
-  "@Please enter a matrix identifier": {
+  "pleaseEnterAMatrixIdentifier": "",
+  "@pleaseEnterAMatrixIdentifier": {
     "type": "text",
     "placeholders": {}
   },
-  "Please enter your password": "",
-  "@Please enter your password": {
+  "pleaseEnterYourPassword": "",
+  "@pleaseEnterYourPassword": {
     "type": "text",
     "placeholders": {}
   },
-  "Please enter your username": "",
-  "@Please enter your username": {
+  "pleaseEnterYourUsername": "",
+  "@pleaseEnterYourUsername": {
     "type": "text",
     "placeholders": {}
   },
-  "Public Rooms": "",
-  "@Public Rooms": {
+  "publicRooms": "",
+  "@publicRooms": {
     "type": "text",
     "placeholders": {}
   },
-  "Reject": "",
-  "@Reject": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Rejoin": "",
-  "@Rejoin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Render rich message content": "",
-  "@Render rich message content": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Recording": "",
-  "@Recording": {
+  "recording": "",
+  "@recording": {
     "type": "text",
     "placeholders": {}
   },
@@ -1036,6 +1053,11 @@
       "username": {}
     }
   },
+  "reject": "",
+  "@reject": {
+    "type": "text",
+    "placeholders": {}
+  },
   "rejectedTheInvitation": "",
   "@rejectedTheInvitation": {
     "type": "text",
@@ -1043,8 +1065,18 @@
       "username": {}
     }
   },
-  "Remove all other devices": "",
-  "@Remove all other devices": {
+  "rejoin": "",
+  "@rejoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "remove": "",
+  "@remove": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeAllOtherDevices": "",
+  "@removeAllOtherDevices": {
     "type": "text",
     "placeholders": {}
   },
@@ -1055,75 +1087,58 @@
       "username": {}
     }
   },
-  "Remove device": "",
-  "@Remove device": {
+  "removeDevice": "",
+  "@removeDevice": {
     "type": "text",
     "placeholders": {}
   },
-  "Remove exile": "",
-  "@Remove exile": {
+  "removeExile": "",
+  "@removeExile": {
     "type": "text",
     "placeholders": {}
   },
-  "Revoke all permissions": "",
-  "@Revoke all permissions": {
+  "removeMessage": "",
+  "@removeMessage": {
     "type": "text",
     "placeholders": {}
   },
-  "Remove": "",
-  "@Remove": {
+  "renderRichContent": "",
+  "@renderRichContent": {
     "type": "text",
     "placeholders": {}
   },
-  "Remove message": "",
-  "@Remove message": {
+  "reply": "",
+  "@reply": {
     "type": "text",
     "placeholders": {}
   },
-  "Reply": "",
-  "@Reply": {
+  "requestPermission": "",
+  "@requestPermission": {
     "type": "text",
     "placeholders": {}
   },
-  "Request permission": "",
-  "@Request permission": {
+  "requestToReadOlderMessages": "",
+  "@requestToReadOlderMessages": {
     "type": "text",
     "placeholders": {}
   },
-  "Request to read older messages": "",
-  "@Request to read older messages": {
+  "revokeAllPermissions": "",
+  "@revokeAllPermissions": {
     "type": "text",
     "placeholders": {}
   },
-  "Room has been upgraded": "",
-  "@Room has been upgraded": {
+  "roomHasBeenUpgraded": "",
+  "@roomHasBeenUpgraded": {
     "type": "text",
     "placeholders": {}
   },
-  "Saturday": "",
-  "@Saturday": {
+  "saturday": "",
+  "@saturday": {
     "type": "text",
     "placeholders": {}
   },
-  "Share": "",
-  "@Share": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sharedTheLocation": "",
-  "@sharedTheLocation": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "Search for a chat": "",
-  "@Search for a chat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Seen a long time ago": "",
-  "@Seen a long time ago": {
+  "searchForAChat": "",
+  "@searchForAChat": {
     "type": "text",
     "placeholders": {}
   },
@@ -1134,14 +1149,6 @@
       "username": {}
     }
   },
-  "seenByUserAndUser": "",
-  "@seenByUserAndUser": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "username2": {}
-    }
-  },
   "seenByUserAndCountOthers": "",
   "@seenByUserAndCountOthers": {
     "type": "text",
@@ -1150,23 +1157,31 @@
       "count": {}
     }
   },
-  "Send": "",
-  "@Send": {
+  "seenByUserAndUser": "",
+  "@seenByUserAndUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "username2": {}
+    }
+  },
+  "send": "",
+  "@send": {
     "type": "text",
     "placeholders": {}
   },
-  "Send a message": "",
-  "@Send a message": {
+  "sendAMessage": "",
+  "@sendAMessage": {
     "type": "text",
     "placeholders": {}
   },
-  "Send file": "",
-  "@Send file": {
+  "sendFile": "",
+  "@sendFile": {
     "type": "text",
     "placeholders": {}
   },
-  "Send image": "",
-  "@Send image": {
+  "sendImage": "",
+  "@sendImage": {
     "type": "text",
     "placeholders": {}
   },
@@ -1210,118 +1225,105 @@
     "type": "text",
     "placeholders": {}
   },
-  "Set a profile picture": "",
-  "@Set a profile picture": {
+  "setAProfilePicture": "",
+  "@setAProfilePicture": {
     "type": "text",
     "placeholders": {}
   },
-  "Set group description": "",
-  "@Set group description": {
+  "setGroupDescription": "",
+  "@setGroupDescription": {
     "type": "text",
     "placeholders": {}
   },
-  "Set invitation link": "",
-  "@Set invitation link": {
+  "setInvitationLink": "",
+  "@setInvitationLink": {
     "type": "text",
     "placeholders": {}
   },
-  "Set status": "",
-  "@Set status": {
+  "setStatus": "",
+  "@setStatus": {
     "type": "text",
     "placeholders": {}
   },
-  "Settings": "",
-  "@Settings": {
+  "settings": "",
+  "@settings": {
     "type": "text",
     "placeholders": {}
   },
-  "Sign up": "",
-  "@Sign up": {
+  "share": "",
+  "@share": {
     "type": "text",
     "placeholders": {}
   },
-  "Skip": "",
-  "@Skip": {
+  "sharedTheLocation": "",
+  "@sharedTheLocation": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "signUp": "",
+  "@signUp": {
     "type": "text",
     "placeholders": {}
   },
-  "Change your style": "",
-  "@Change your style": {
+  "skip": "",
+  "@skip": {
     "type": "text",
     "placeholders": {}
   },
-  "System": "",
-  "@System": {
+  "sourceCode": "",
+  "@sourceCode": {
     "type": "text",
     "placeholders": {}
   },
-  "How are you today?": "",
-  "@How are you today?": {
+  "startYourFirstChat": "",
+  "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
   },
-  "Light": "",
-  "@Light": {
+  "statusExampleMessage": "",
+  "@statusExampleMessage": {
     "type": "text",
     "placeholders": {}
   },
-  "Dark": "",
-  "@Dark": {
+  "submit": "",
+  "@submit": {
     "type": "text",
     "placeholders": {}
   },
-  "Use Amoled compatible colors?": "",
-  "@Use Amoled compatible colors?": {
+  "sunday": "",
+  "@sunday": {
     "type": "text",
     "placeholders": {}
   },
-  "Source code": "",
-  "@Source code": {
+  "systemTheme": "",
+  "@systemTheme": {
     "type": "text",
     "placeholders": {}
   },
-  "Start your first chat :-)": "",
-  "@Start your first chat :-)": {
+  "tapToShowMenu": "",
+  "@tapToShowMenu": {
     "type": "text",
     "placeholders": {}
   },
-  "Submit": "",
-  "@Submit": {
+  "theyDontMatch": "",
+  "@theyDontMatch": {
     "type": "text",
     "placeholders": {}
   },
-  "Sunday": "",
-  "@Sunday": {
+  "theyMatch": "",
+  "@theyMatch": {
     "type": "text",
     "placeholders": {}
   },
-  "Donate": "",
-  "@Donate": {
+  "thisRoomHasBeenArchived": "",
+  "@thisRoomHasBeenArchived": {
     "type": "text",
     "placeholders": {}
   },
-  "Tap to show menu": "",
-  "@Tap to show menu": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "They Don't Match": "",
-  "@They Don't Match": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "They Match": "",
-  "@They Match": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "This room has been archived.": "",
-  "@This room has been archived.": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Thursday": "",
-  "@Thursday": {
+  "thursday": "",
+  "@thursday": {
     "type": "text",
     "placeholders": {}
   },
@@ -1341,13 +1343,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "Try to send again": "",
-  "@Try to send again": {
+  "tryToSendAgain": "",
+  "@tryToSendAgain": {
     "type": "text",
     "placeholders": {}
   },
-  "Tuesday": "",
-  "@Tuesday": {
+  "tuesday": "",
+  "@tuesday": {
     "type": "text",
     "placeholders": {}
   },
@@ -1359,28 +1361,18 @@
       "targetName": {}
     }
   },
-  "Unblock Device": "",
-  "@Unblock Device": {
+  "unblockDevice": "",
+  "@unblockDevice": {
     "type": "text",
     "placeholders": {}
   },
-  "Unmute chat": "",
-  "@Unmute chat": {
+  "unknownDevice": "",
+  "@unknownDevice": {
     "type": "text",
     "placeholders": {}
   },
-  "Unknown device": "",
-  "@Unknown device": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Unknown encryption algorithm": "",
-  "@Unknown encryption algorithm": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "unknownSessionVerify": "",
-  "@unknownSessionVerify": {
+  "unknownEncryptionAlgorithm": "",
+  "@unknownEncryptionAlgorithm": {
     "type": "text",
     "placeholders": {}
   },
@@ -1390,6 +1382,16 @@
     "placeholders": {
       "type": {}
     }
+  },
+  "unknownSessionVerify": "",
+  "@unknownSessionVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unmuteChat": "",
+  "@unmuteChat": {
+    "type": "text",
+    "placeholders": {}
   },
   "unreadChats": "",
   "@unreadChats": {
@@ -1413,6 +1415,11 @@
       "unreadChats": {}
     }
   },
+  "useAmoledTheme": "",
+  "@useAmoledTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
   "userAndOthersAreTyping": "",
   "@userAndOthersAreTyping": {
     "type": "text",
@@ -1429,17 +1436,24 @@
       "username2": {}
     }
   },
-  "Username": "",
-  "@Username": {
-    "type": "text",
-    "placeholders": {}
-  },
   "userIsTyping": "",
   "@userIsTyping": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
+  },
+  "userLeftTheChat": "",
+  "@userLeftTheChat": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "username": "",
+  "@username": {
+    "type": "text",
+    "placeholders": {}
   },
   "userSentUnknownEvent": "",
   "@userSentUnknownEvent": {
@@ -1449,18 +1463,18 @@
       "type": {}
     }
   },
-  "Verify": "",
-  "@Verify": {
+  "verifiedSession": "",
+  "@verifiedSession": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verify": "",
+  "@verify": {
     "type": "text",
     "placeholders": {}
   },
   "verifyManual": "",
   "@verifyManual": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "verifiedSession": "",
-  "@verifiedSession": {
     "type": "text",
     "placeholders": {}
   },
@@ -1479,33 +1493,33 @@
     "type": "text",
     "placeholders": {}
   },
-  "Verify User": "",
-  "@Verify User": {
+  "verifyUser": "",
+  "@verifyUser": {
     "type": "text",
     "placeholders": {}
   },
-  "Video call": "",
-  "@Video call": {
+  "videoCall": "",
+  "@videoCall": {
     "type": "text",
     "placeholders": {}
   },
-  "Visible for all participants": "",
-  "@Visible for all participants": {
+  "visibilityOfTheChatHistory": "",
+  "@visibilityOfTheChatHistory": {
     "type": "text",
     "placeholders": {}
   },
-  "Visible for everyone": "",
-  "@Visible for everyone": {
+  "visibleForAllParticipants": "",
+  "@visibleForAllParticipants": {
     "type": "text",
     "placeholders": {}
   },
-  "Visibility of the chat history": "",
-  "@Visibility of the chat history": {
+  "visibleForEveryone": "",
+  "@visibleForEveryone": {
     "type": "text",
     "placeholders": {}
   },
-  "Voice message": "",
-  "@Voice message": {
+  "voiceMessage": "",
+  "@voiceMessage": {
     "type": "text",
     "placeholders": {}
   },
@@ -1524,83 +1538,69 @@
     "type": "text",
     "placeholders": {}
   },
-  "Wallpaper": "",
-  "@Wallpaper": {
+  "wallpaper": "",
+  "@wallpaper": {
     "type": "text",
     "placeholders": {}
   },
-  "End to end encryption is currently in Beta! Use at your own risk!": "",
-  "@End to end encryption is currently in Beta! Use at your own risk!": {
+  "warningEncryptionInBeta": "",
+  "@warningEncryptionInBeta": {
     "type": "text",
     "placeholders": {}
   },
-  "Wednesday": "",
-  "@Wednesday": {
+  "wednesday": "",
+  "@wednesday": {
     "type": "text",
     "placeholders": {}
   },
-  "Welcome to the cutest instant messenger in the matrix network.": "",
-  "@Welcome to the cutest instant messenger in the matrix network.": {
+  "welcomeText": "",
+  "@welcomeText": {
     "type": "text",
     "placeholders": {}
   },
-  "Who is allowed to join this group": "",
-  "@Who is allowed to join this group": {
+  "whoIsAllowedToJoinThisGroup": "",
+  "@whoIsAllowedToJoinThisGroup": {
     "type": "text",
     "placeholders": {}
   },
-  "Write a message...": "",
-  "@Write a message...": {
+  "writeAMessage": "",
+  "@writeAMessage": {
     "type": "text",
     "placeholders": {}
   },
-  "Yes": "",
-  "@Yes": {
+  "yes": "",
+  "@yes": {
     "type": "text",
     "placeholders": {}
   },
-  "You": "",
-  "@You": {
+  "you": "",
+  "@you": {
     "type": "text",
     "placeholders": {}
   },
-  "You are invited to this chat": "",
-  "@You are invited to this chat": {
+  "youAreInvitedToThisChat": "",
+  "@youAreInvitedToThisChat": {
     "type": "text",
     "placeholders": {}
   },
-  "You are no longer participating in this chat": "",
-  "@You are no longer participating in this chat": {
+  "youAreNoLongerParticipatingInThisChat": "",
+  "@youAreNoLongerParticipatingInThisChat": {
     "type": "text",
     "placeholders": {}
   },
-  "You cannot invite yourself": "",
-  "@You cannot invite yourself": {
+  "youCannotInviteYourself": "",
+  "@youCannotInviteYourself": {
     "type": "text",
     "placeholders": {}
   },
-  "You have been banned from this chat": "Ви були заблоковані в цьому чаті",
-  "@You have been banned from this chat": {
+  "youHaveBeenBannedFromThisChat": "Ви були заблоковані в цьому чаті",
+  "@youHaveBeenBannedFromThisChat": {
     "type": "text",
     "placeholders": {}
   },
-  "Your own username": "",
-  "@Your own username": {
+  "yourOwnUsername": "",
+  "@yourOwnUsername": {
     "type": "text",
     "placeholders": {}
-  },
-  "endedTheCall": "{senderName} завершив(ла) дзвінок",
-  "@endedTheCall": {
-    "type": "text",
-    "placeholders": {
-      "senderName": {}
-    }
-  },
-  "answeredTheCall": "{senderName} відповів(ла) на дзвінок",
-  "@answeredTheCall": {
-    "type": "text",
-    "placeholders": {
-      "senderName": {}
-    }
   }
 }

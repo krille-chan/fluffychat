@@ -158,269 +158,28 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function>{
-        "(Optional) Group name": MessageLookupByLibrary.simpleMessage(""),
-        "About": MessageLookupByLibrary.simpleMessage("Про програму"),
-        "Accept": MessageLookupByLibrary.simpleMessage("Прийняти"),
-        "Account": MessageLookupByLibrary.simpleMessage("Обліковий запис"),
-        "Account informations": MessageLookupByLibrary.simpleMessage(
-            "Інформація про обліковий запис"),
-        "Add a group description":
-            MessageLookupByLibrary.simpleMessage("Додати опис групи"),
-        "Admin": MessageLookupByLibrary.simpleMessage("Адміністратор"),
-        "Already have an account?":
-            MessageLookupByLibrary.simpleMessage("Вже маєте обліковий запис?"),
-        "Anyone can join":
-            MessageLookupByLibrary.simpleMessage("Будь-хто може приєднатись"),
-        "Archive": MessageLookupByLibrary.simpleMessage("Архів"),
-        "Archived Room":
-            MessageLookupByLibrary.simpleMessage("Заархівована кімната"),
-        "Are guest users allowed to join": MessageLookupByLibrary.simpleMessage(
-            "Чи дозволено гостям приєднуватись"),
-        "Are you sure?": MessageLookupByLibrary.simpleMessage("Ви впевнені?"),
-        "Authentication":
-            MessageLookupByLibrary.simpleMessage("Аутентифікація"),
-        "Avatar has been changed":
-            MessageLookupByLibrary.simpleMessage("Аватар був змінений"),
-        "Ban from chat":
-            MessageLookupByLibrary.simpleMessage("Заблокувати в чаті"),
-        "Banned": MessageLookupByLibrary.simpleMessage("Заблокований(на)"),
-        "Block Device":
-            MessageLookupByLibrary.simpleMessage("Заблокувати пристрій"),
-        "Cancel": MessageLookupByLibrary.simpleMessage("Скасувати"),
-        "Change the homeserver":
-            MessageLookupByLibrary.simpleMessage("Змінити сервер Matrix"),
-        "Change the name of the group":
-            MessageLookupByLibrary.simpleMessage("Змінити назву групи"),
-        "Change the server":
-            MessageLookupByLibrary.simpleMessage("Змінити сервер"),
-        "Change wallpaper":
-            MessageLookupByLibrary.simpleMessage("Змінити фон чатів"),
-        "Change your style": MessageLookupByLibrary.simpleMessage(""),
-        "Changelog": MessageLookupByLibrary.simpleMessage("Журнал змін"),
-        "Chat": MessageLookupByLibrary.simpleMessage("Чат"),
-        "Chat details": MessageLookupByLibrary.simpleMessage("Деталі чату"),
-        "Choose a strong password":
-            MessageLookupByLibrary.simpleMessage("Виберіть надійний пароль"),
-        "Choose a username":
-            MessageLookupByLibrary.simpleMessage("Виберіть ім\'я користувача"),
-        "Close": MessageLookupByLibrary.simpleMessage("Закрити"),
-        "Confirm": MessageLookupByLibrary.simpleMessage("Підтвердити"),
-        "Connect": MessageLookupByLibrary.simpleMessage("Приєднатись"),
-        "Connection attempt failed": MessageLookupByLibrary.simpleMessage(
-            "Спроба підключення не вдалась"),
-        "Contact has been invited to the group":
-            MessageLookupByLibrary.simpleMessage(
-                "Контакт був запрошений в групу"),
-        "Content viewer":
-            MessageLookupByLibrary.simpleMessage("Перегляд вмісту"),
-        "Copied to clipboard":
-            MessageLookupByLibrary.simpleMessage("Скопійовано в буфер обміну"),
-        "Copy": MessageLookupByLibrary.simpleMessage("Копіювати"),
-        "Could not set avatar": MessageLookupByLibrary.simpleMessage(
-            "Помилка при встановленні аватара"),
-        "Could not set displayname": MessageLookupByLibrary.simpleMessage(
-            "Помилка при встановленні відображуваного імені"),
-        "Create": MessageLookupByLibrary.simpleMessage("Створити"),
-        "Create account now": MessageLookupByLibrary.simpleMessage(
-            "Створити обліковий запис зараз"),
-        "Create new group": MessageLookupByLibrary.simpleMessage("Нова група"),
-        "Currently active":
-            MessageLookupByLibrary.simpleMessage("Зараз активний(на)"),
-        "Dark": MessageLookupByLibrary.simpleMessage(""),
-        "Delete": MessageLookupByLibrary.simpleMessage("Видалити"),
-        "Delete message":
-            MessageLookupByLibrary.simpleMessage("Видалити повідомлення"),
-        "Deny": MessageLookupByLibrary.simpleMessage("Відхилити"),
-        "Device": MessageLookupByLibrary.simpleMessage("Пристрій"),
-        "Devices": MessageLookupByLibrary.simpleMessage("Пристрої"),
-        "Discard picture":
-            MessageLookupByLibrary.simpleMessage("Видалити зображення"),
-        "Displayname has been changed": MessageLookupByLibrary.simpleMessage(
-            "Відображуване ім\'я було змінено"),
-        "Donate": MessageLookupByLibrary.simpleMessage(""),
-        "Download file":
-            MessageLookupByLibrary.simpleMessage("Завантажити файл"),
-        "Edit Jitsi instance": MessageLookupByLibrary.simpleMessage(""),
-        "Edit displayname":
-            MessageLookupByLibrary.simpleMessage("Змінити відображуване ім\'я"),
-        "Emote Settings":
-            MessageLookupByLibrary.simpleMessage("Налаштування емодзі"),
-        "Emote shortcode":
-            MessageLookupByLibrary.simpleMessage("Короткий код для емодзі"),
-        "Empty chat": MessageLookupByLibrary.simpleMessage("Пустий чат"),
-        "Encryption": MessageLookupByLibrary.simpleMessage("Шифрування"),
-        "Encryption algorithm":
-            MessageLookupByLibrary.simpleMessage("Алгоритм шифрування"),
-        "Encryption is not enabled":
-            MessageLookupByLibrary.simpleMessage("Шифрування вимкнено"),
-        "End to end encryption is currently in Beta! Use at your own risk!":
-            MessageLookupByLibrary.simpleMessage(""),
-        "End-to-end encryption settings": MessageLookupByLibrary.simpleMessage(
-            "Налаштування наскрізного шифрування"),
-        "Enter a group name":
-            MessageLookupByLibrary.simpleMessage("Введіть назву групи"),
-        "Enter a username":
-            MessageLookupByLibrary.simpleMessage("Введіть ім\'я користувача"),
-        "Enter your homeserver": MessageLookupByLibrary.simpleMessage(
-            "Введіть адресу вашого сервера Matrix"),
-        "File name": MessageLookupByLibrary.simpleMessage("Ім\'я файлу"),
-        "File size": MessageLookupByLibrary.simpleMessage("Розмір файлу"),
-        "FluffyChat": MessageLookupByLibrary.simpleMessage("FluffyChat"),
-        "Forward": MessageLookupByLibrary.simpleMessage("Переслати"),
-        "Friday": MessageLookupByLibrary.simpleMessage("П\'ятниця"),
-        "From joining":
-            MessageLookupByLibrary.simpleMessage("З моменту приєднання"),
-        "From the invitation":
-            MessageLookupByLibrary.simpleMessage("З моменту запрошення"),
-        "Group": MessageLookupByLibrary.simpleMessage("Група"),
-        "Group description": MessageLookupByLibrary.simpleMessage("Опис групи"),
-        "Group description has been changed":
-            MessageLookupByLibrary.simpleMessage("Опис групи було змінено"),
-        "Group is public":
-            MessageLookupByLibrary.simpleMessage("Публічна група"),
-        "Guests are forbidden": MessageLookupByLibrary.simpleMessage(
-            "Гості не можуть приєднуватись"),
-        "Guests can join":
-            MessageLookupByLibrary.simpleMessage("Гості можуть приєднуватись"),
-        "Help": MessageLookupByLibrary.simpleMessage("Допомога"),
-        "Homeserver is not compatible":
-            MessageLookupByLibrary.simpleMessage(""),
-        "How are you today?": MessageLookupByLibrary.simpleMessage(""),
-        "ID": MessageLookupByLibrary.simpleMessage(""),
-        "Identity": MessageLookupByLibrary.simpleMessage(""),
-        "Invite contact": MessageLookupByLibrary.simpleMessage(""),
-        "Invited": MessageLookupByLibrary.simpleMessage(""),
-        "Invited users only": MessageLookupByLibrary.simpleMessage(""),
-        "It seems that you have no google services on your phone. That\'s a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/":
-            MessageLookupByLibrary.simpleMessage(""),
-        "Kick from chat": MessageLookupByLibrary.simpleMessage(""),
-        "Last seen IP": MessageLookupByLibrary.simpleMessage(""),
-        "Leave": MessageLookupByLibrary.simpleMessage(""),
-        "Left the chat": MessageLookupByLibrary.simpleMessage(""),
-        "License": MessageLookupByLibrary.simpleMessage(""),
-        "Light": MessageLookupByLibrary.simpleMessage(""),
-        "Load more...": MessageLookupByLibrary.simpleMessage(""),
-        "Loading... Please wait": MessageLookupByLibrary.simpleMessage(""),
-        "Login": MessageLookupByLibrary.simpleMessage(""),
-        "Logout": MessageLookupByLibrary.simpleMessage(""),
-        "Make a moderator": MessageLookupByLibrary.simpleMessage(""),
-        "Make an admin": MessageLookupByLibrary.simpleMessage(""),
-        "Make sure the identifier is valid":
-            MessageLookupByLibrary.simpleMessage(""),
-        "Message will be removed for all participants":
-            MessageLookupByLibrary.simpleMessage(""),
-        "Moderator": MessageLookupByLibrary.simpleMessage(""),
-        "Monday": MessageLookupByLibrary.simpleMessage(""),
-        "Mute chat": MessageLookupByLibrary.simpleMessage(""),
-        "New message in FluffyChat": MessageLookupByLibrary.simpleMessage(""),
-        "New private chat": MessageLookupByLibrary.simpleMessage(""),
-        "No emotes found. 😕": MessageLookupByLibrary.simpleMessage(""),
-        "No permission": MessageLookupByLibrary.simpleMessage(""),
-        "No rooms found...": MessageLookupByLibrary.simpleMessage(""),
-        "None": MessageLookupByLibrary.simpleMessage(""),
-        "Not supported in web": MessageLookupByLibrary.simpleMessage(""),
-        "Oops something went wrong...":
-            MessageLookupByLibrary.simpleMessage(""),
-        "Open app to read messages": MessageLookupByLibrary.simpleMessage(""),
-        "Open camera": MessageLookupByLibrary.simpleMessage(""),
-        "Participating user devices": MessageLookupByLibrary.simpleMessage(""),
-        "Password": MessageLookupByLibrary.simpleMessage(""),
-        "Pick image": MessageLookupByLibrary.simpleMessage(""),
-        "Please be aware that you need Pantalaimon to use end-to-end encryption for now.":
-            MessageLookupByLibrary.simpleMessage(""),
-        "Please choose a username": MessageLookupByLibrary.simpleMessage(""),
-        "Please enter a matrix identifier":
-            MessageLookupByLibrary.simpleMessage(""),
-        "Please enter your password": MessageLookupByLibrary.simpleMessage(""),
-        "Please enter your username": MessageLookupByLibrary.simpleMessage(""),
-        "Public Rooms": MessageLookupByLibrary.simpleMessage(""),
-        "Recording": MessageLookupByLibrary.simpleMessage(""),
-        "Reject": MessageLookupByLibrary.simpleMessage(""),
-        "Rejoin": MessageLookupByLibrary.simpleMessage(""),
-        "Remove": MessageLookupByLibrary.simpleMessage(""),
-        "Remove all other devices": MessageLookupByLibrary.simpleMessage(""),
-        "Remove device": MessageLookupByLibrary.simpleMessage(""),
-        "Remove exile": MessageLookupByLibrary.simpleMessage(""),
-        "Remove message": MessageLookupByLibrary.simpleMessage(""),
-        "Render rich message content": MessageLookupByLibrary.simpleMessage(""),
-        "Reply": MessageLookupByLibrary.simpleMessage(""),
-        "Request permission": MessageLookupByLibrary.simpleMessage(""),
-        "Request to read older messages":
-            MessageLookupByLibrary.simpleMessage(""),
-        "Revoke all permissions": MessageLookupByLibrary.simpleMessage(""),
-        "Room has been upgraded": MessageLookupByLibrary.simpleMessage(""),
-        "Saturday": MessageLookupByLibrary.simpleMessage(""),
-        "Search for a chat": MessageLookupByLibrary.simpleMessage(""),
-        "Seen a long time ago": MessageLookupByLibrary.simpleMessage(""),
-        "Send": MessageLookupByLibrary.simpleMessage(""),
-        "Send a message": MessageLookupByLibrary.simpleMessage(""),
-        "Send file": MessageLookupByLibrary.simpleMessage(""),
-        "Send image": MessageLookupByLibrary.simpleMessage(""),
-        "Set a profile picture": MessageLookupByLibrary.simpleMessage(""),
-        "Set group description": MessageLookupByLibrary.simpleMessage(""),
-        "Set invitation link": MessageLookupByLibrary.simpleMessage(""),
-        "Set status": MessageLookupByLibrary.simpleMessage(""),
-        "Settings": MessageLookupByLibrary.simpleMessage(""),
-        "Share": MessageLookupByLibrary.simpleMessage(""),
-        "Sign up": MessageLookupByLibrary.simpleMessage(""),
-        "Skip": MessageLookupByLibrary.simpleMessage(""),
-        "Source code": MessageLookupByLibrary.simpleMessage(""),
-        "Start your first chat :-)": MessageLookupByLibrary.simpleMessage(""),
-        "Submit": MessageLookupByLibrary.simpleMessage(""),
-        "Sunday": MessageLookupByLibrary.simpleMessage(""),
-        "System": MessageLookupByLibrary.simpleMessage(""),
-        "Tap to show menu": MessageLookupByLibrary.simpleMessage(""),
-        "The encryption has been corrupted":
-            MessageLookupByLibrary.simpleMessage("Шифрування було пошкоджено"),
-        "They Don\'t Match": MessageLookupByLibrary.simpleMessage(""),
-        "They Match": MessageLookupByLibrary.simpleMessage(""),
-        "This room has been archived.":
-            MessageLookupByLibrary.simpleMessage(""),
-        "Thursday": MessageLookupByLibrary.simpleMessage(""),
-        "Try to send again": MessageLookupByLibrary.simpleMessage(""),
-        "Tuesday": MessageLookupByLibrary.simpleMessage(""),
-        "Unblock Device": MessageLookupByLibrary.simpleMessage(""),
-        "Unknown device": MessageLookupByLibrary.simpleMessage(""),
-        "Unknown encryption algorithm":
-            MessageLookupByLibrary.simpleMessage(""),
-        "Unmute chat": MessageLookupByLibrary.simpleMessage(""),
-        "Use Amoled compatible colors?":
-            MessageLookupByLibrary.simpleMessage(""),
-        "Username": MessageLookupByLibrary.simpleMessage(""),
-        "Verify": MessageLookupByLibrary.simpleMessage(""),
-        "Verify User": MessageLookupByLibrary.simpleMessage(""),
-        "Video call": MessageLookupByLibrary.simpleMessage(""),
-        "Visibility of the chat history":
-            MessageLookupByLibrary.simpleMessage(""),
-        "Visible for all participants":
-            MessageLookupByLibrary.simpleMessage(""),
-        "Visible for everyone": MessageLookupByLibrary.simpleMessage(""),
-        "Voice message": MessageLookupByLibrary.simpleMessage(""),
-        "Wallpaper": MessageLookupByLibrary.simpleMessage(""),
-        "Wednesday": MessageLookupByLibrary.simpleMessage(""),
-        "Welcome to the cutest instant messenger in the matrix network.":
-            MessageLookupByLibrary.simpleMessage(""),
-        "Who is allowed to join this group":
-            MessageLookupByLibrary.simpleMessage(""),
-        "Write a message...": MessageLookupByLibrary.simpleMessage(""),
-        "Yes": MessageLookupByLibrary.simpleMessage(""),
-        "You": MessageLookupByLibrary.simpleMessage(""),
-        "You are invited to this chat":
-            MessageLookupByLibrary.simpleMessage(""),
-        "You are no longer participating in this chat":
-            MessageLookupByLibrary.simpleMessage(""),
-        "You cannot invite yourself": MessageLookupByLibrary.simpleMessage(""),
-        "You have been banned from this chat":
-            MessageLookupByLibrary.simpleMessage(
-                "Ви були заблоковані в цьому чаті"),
-        "You won\'t be able to disable the encryption anymore. Are you sure?":
-            MessageLookupByLibrary.simpleMessage(
-                "Ви більше не зможете відключити шифрування. Ви впевнені?"),
-        "Your own username": MessageLookupByLibrary.simpleMessage(""),
+        "about": MessageLookupByLibrary.simpleMessage("Про програму"),
+        "accept": MessageLookupByLibrary.simpleMessage("Прийняти"),
         "acceptedTheInvitation": m0,
+        "account": MessageLookupByLibrary.simpleMessage("Обліковий запис"),
+        "accountInformation": MessageLookupByLibrary.simpleMessage(
+            "Інформація про обліковий запис"),
         "activatedEndToEndEncryption": m1,
+        "addGroupDescription":
+            MessageLookupByLibrary.simpleMessage("Додати опис групи"),
+        "admin": MessageLookupByLibrary.simpleMessage("Адміністратор"),
         "alias": MessageLookupByLibrary.simpleMessage("псевдонім"),
+        "alreadyHaveAnAccount":
+            MessageLookupByLibrary.simpleMessage("Вже маєте обліковий запис?"),
         "answeredTheCall": m2,
+        "anyoneCanJoin":
+            MessageLookupByLibrary.simpleMessage("Будь-хто може приєднатись"),
+        "archive": MessageLookupByLibrary.simpleMessage("Архів"),
+        "archivedRoom":
+            MessageLookupByLibrary.simpleMessage("Заархівована кімната"),
+        "areGuestsAllowedToJoin": MessageLookupByLibrary.simpleMessage(
+            "Чи дозволено гостям приєднуватись"),
+        "areYouSure": MessageLookupByLibrary.simpleMessage("Ви впевнені?"),
         "askSSSSCache": MessageLookupByLibrary.simpleMessage(
             "Будь ласка, введіть вашу парольну фразу або ключ відновлення для кешування ключів."),
         "askSSSSSign": MessageLookupByLibrary.simpleMessage(
@@ -428,10 +187,29 @@ class MessageLookup extends MessageLookupByLibrary {
         "askSSSSVerify": MessageLookupByLibrary.simpleMessage(
             "Будь ласка, введіть вашу парольну фразу або ключ відновлення для підтвердження сесії."),
         "askVerificationRequest": m3,
+        "authentication":
+            MessageLookupByLibrary.simpleMessage("Аутентифікація"),
+        "avatarHasBeenChanged":
+            MessageLookupByLibrary.simpleMessage("Аватар був змінений"),
+        "banFromChat":
+            MessageLookupByLibrary.simpleMessage("Заблокувати в чаті"),
+        "banned": MessageLookupByLibrary.simpleMessage("Заблокований(на)"),
         "bannedUser": m4,
+        "blockDevice":
+            MessageLookupByLibrary.simpleMessage("Заблокувати пристрій"),
         "byDefaultYouWillBeConnectedTo": m5,
         "cachedKeys": MessageLookupByLibrary.simpleMessage(
             "Ключі було успішно збережено в кеші"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Скасувати"),
+        "changeTheHomeserver":
+            MessageLookupByLibrary.simpleMessage("Змінити сервер Matrix"),
+        "changeTheNameOfTheGroup":
+            MessageLookupByLibrary.simpleMessage("Змінити назву групи"),
+        "changeTheServer":
+            MessageLookupByLibrary.simpleMessage("Змінити сервер"),
+        "changeTheme": MessageLookupByLibrary.simpleMessage(""),
+        "changeWallpaper":
+            MessageLookupByLibrary.simpleMessage("Змінити фон чатів"),
         "changedTheChatAvatar": m6,
         "changedTheChatDescriptionTo": m7,
         "changedTheChatNameTo": m8,
@@ -446,84 +224,287 @@ class MessageLookup extends MessageLookupByLibrary {
         "changedTheProfileAvatar": m17,
         "changedTheRoomAliases": m18,
         "changedTheRoomInvitationLink": m19,
+        "changelog": MessageLookupByLibrary.simpleMessage("Журнал змін"),
+        "channelCorruptedDecryptError":
+            MessageLookupByLibrary.simpleMessage("Шифрування було пошкоджено"),
+        "chat": MessageLookupByLibrary.simpleMessage("Чат"),
+        "chatDetails": MessageLookupByLibrary.simpleMessage("Деталі чату"),
+        "chooseAStrongPassword":
+            MessageLookupByLibrary.simpleMessage("Виберіть надійний пароль"),
+        "chooseAUsername":
+            MessageLookupByLibrary.simpleMessage("Виберіть ім\'я користувача"),
+        "close": MessageLookupByLibrary.simpleMessage("Закрити"),
         "compareEmojiMatch": MessageLookupByLibrary.simpleMessage(
             "Порівняйте і переконайтесь, що наступні емодзі відповідають емодзі на іншому пристрої:"),
         "compareNumbersMatch": MessageLookupByLibrary.simpleMessage(
             "Порівняйте і переконайтесь, що наступні числа відповідають числам на іншому пристрої:"),
+        "confirm": MessageLookupByLibrary.simpleMessage("Підтвердити"),
+        "connect": MessageLookupByLibrary.simpleMessage("Приєднатись"),
+        "connectionAttemptFailed": MessageLookupByLibrary.simpleMessage(
+            "Спроба підключення не вдалась"),
+        "contactHasBeenInvitedToTheGroup": MessageLookupByLibrary.simpleMessage(
+            "Контакт був запрошений в групу"),
+        "contentViewer":
+            MessageLookupByLibrary.simpleMessage("Перегляд вмісту"),
+        "copiedToClipboard":
+            MessageLookupByLibrary.simpleMessage("Скопійовано в буфер обміну"),
+        "copy": MessageLookupByLibrary.simpleMessage("Копіювати"),
         "couldNotDecryptMessage": m20,
+        "couldNotSetAvatar": MessageLookupByLibrary.simpleMessage(
+            "Помилка при встановленні аватара"),
+        "couldNotSetDisplayname": MessageLookupByLibrary.simpleMessage(
+            "Помилка при встановленні відображуваного імені"),
         "countParticipants": m21,
+        "create": MessageLookupByLibrary.simpleMessage("Створити"),
+        "createAccountNow": MessageLookupByLibrary.simpleMessage(
+            "Створити обліковий запис зараз"),
+        "createNewGroup": MessageLookupByLibrary.simpleMessage("Нова група"),
         "createdTheChat": m22,
         "crossSigningDisabled":
             MessageLookupByLibrary.simpleMessage("Крос-підпис вимкнено"),
         "crossSigningEnabled":
             MessageLookupByLibrary.simpleMessage("Крос-підпис ввімкнено"),
+        "currentlyActive":
+            MessageLookupByLibrary.simpleMessage("Зараз активний(на)"),
+        "darkTheme": MessageLookupByLibrary.simpleMessage(""),
         "dateAndTimeOfDay": m23,
         "dateWithYear": m24,
         "dateWithoutYear": m25,
+        "delete": MessageLookupByLibrary.simpleMessage("Видалити"),
+        "deleteMessage":
+            MessageLookupByLibrary.simpleMessage("Видалити повідомлення"),
+        "deny": MessageLookupByLibrary.simpleMessage("Відхилити"),
+        "device": MessageLookupByLibrary.simpleMessage("Пристрій"),
+        "devices": MessageLookupByLibrary.simpleMessage("Пристрої"),
+        "discardPicture":
+            MessageLookupByLibrary.simpleMessage("Видалити зображення"),
+        "displaynameHasBeenChanged": MessageLookupByLibrary.simpleMessage(
+            "Відображуване ім\'я було змінено"),
+        "donate": MessageLookupByLibrary.simpleMessage(""),
+        "downloadFile":
+            MessageLookupByLibrary.simpleMessage("Завантажити файл"),
+        "editDisplayname":
+            MessageLookupByLibrary.simpleMessage("Змінити відображуване ім\'я"),
+        "editJitsiInstance": MessageLookupByLibrary.simpleMessage(""),
         "emoteExists": MessageLookupByLibrary.simpleMessage("Емодзі вже існує"),
         "emoteInvalid": MessageLookupByLibrary.simpleMessage(
             "Неприпустимий короткий код емодзі"),
+        "emoteSettings":
+            MessageLookupByLibrary.simpleMessage("Налаштування емодзі"),
+        "emoteShortcode":
+            MessageLookupByLibrary.simpleMessage("Короткий код для емодзі"),
         "emoteWarnNeedToPick": MessageLookupByLibrary.simpleMessage(
             "Виберіть короткий код емодзі і зображення"),
+        "emptyChat": MessageLookupByLibrary.simpleMessage("Пустий чат"),
+        "enableEncryptionWarning": MessageLookupByLibrary.simpleMessage(
+            "Ви більше не зможете відключити шифрування. Ви впевнені?"),
+        "encryption": MessageLookupByLibrary.simpleMessage("Шифрування"),
+        "encryptionAlgorithm":
+            MessageLookupByLibrary.simpleMessage("Алгоритм шифрування"),
+        "encryptionNotEnabled":
+            MessageLookupByLibrary.simpleMessage("Шифрування вимкнено"),
+        "end2endEncryptionSettings": MessageLookupByLibrary.simpleMessage(
+            "Налаштування наскрізного шифрування"),
         "endedTheCall": m26,
+        "enterAGroupName":
+            MessageLookupByLibrary.simpleMessage("Введіть назву групи"),
+        "enterAUsername":
+            MessageLookupByLibrary.simpleMessage("Введіть ім\'я користувача"),
+        "enterYourHomeserver": MessageLookupByLibrary.simpleMessage(
+            "Введіть адресу вашого сервера Matrix"),
+        "fileName": MessageLookupByLibrary.simpleMessage("Ім\'я файлу"),
+        "fileSize": MessageLookupByLibrary.simpleMessage("Розмір файлу"),
+        "fluffychat": MessageLookupByLibrary.simpleMessage("FluffyChat"),
+        "forward": MessageLookupByLibrary.simpleMessage("Переслати"),
+        "friday": MessageLookupByLibrary.simpleMessage("П\'ятниця"),
+        "fromJoining":
+            MessageLookupByLibrary.simpleMessage("З моменту приєднання"),
+        "fromTheInvitation":
+            MessageLookupByLibrary.simpleMessage("З моменту запрошення"),
+        "group": MessageLookupByLibrary.simpleMessage("Група"),
+        "groupDescription": MessageLookupByLibrary.simpleMessage("Опис групи"),
+        "groupDescriptionHasBeenChanged":
+            MessageLookupByLibrary.simpleMessage("Опис групи було змінено"),
+        "groupIsPublic": MessageLookupByLibrary.simpleMessage("Публічна група"),
         "groupWith": m27,
+        "guestsAreForbidden": MessageLookupByLibrary.simpleMessage(
+            "Гості не можуть приєднуватись"),
+        "guestsCanJoin":
+            MessageLookupByLibrary.simpleMessage("Гості можуть приєднуватись"),
         "hasWithdrawnTheInvitationFor": m28,
+        "help": MessageLookupByLibrary.simpleMessage("Допомога"),
+        "homeserverIsNotCompatible": MessageLookupByLibrary.simpleMessage(""),
+        "id": MessageLookupByLibrary.simpleMessage(""),
+        "identity": MessageLookupByLibrary.simpleMessage(""),
         "incorrectPassphraseOrKey": MessageLookupByLibrary.simpleMessage(""),
+        "inviteContact": MessageLookupByLibrary.simpleMessage(""),
         "inviteContactToGroup": m29,
         "inviteText": m30,
+        "invited": MessageLookupByLibrary.simpleMessage(""),
         "invitedUser": m31,
-        "is typing...": MessageLookupByLibrary.simpleMessage(""),
+        "invitedUsersOnly": MessageLookupByLibrary.simpleMessage(""),
         "isDeviceKeyCorrect": MessageLookupByLibrary.simpleMessage(""),
+        "isTyping": MessageLookupByLibrary.simpleMessage(""),
         "joinedTheChat": m32,
         "keysCached": MessageLookupByLibrary.simpleMessage(""),
         "keysMissing": MessageLookupByLibrary.simpleMessage(""),
+        "kickFromChat": MessageLookupByLibrary.simpleMessage(""),
         "kicked": m33,
         "kickedAndBanned": m34,
         "lastActiveAgo": m35,
+        "lastSeenIp": MessageLookupByLibrary.simpleMessage(""),
+        "lastSeenLongTimeAgo": MessageLookupByLibrary.simpleMessage(""),
+        "leave": MessageLookupByLibrary.simpleMessage(""),
+        "leftTheChat": MessageLookupByLibrary.simpleMessage(""),
+        "license": MessageLookupByLibrary.simpleMessage(""),
+        "lightTheme": MessageLookupByLibrary.simpleMessage(""),
         "loadCountMoreParticipants": m36,
+        "loadMore": MessageLookupByLibrary.simpleMessage(""),
+        "loadingPleaseWait": MessageLookupByLibrary.simpleMessage(""),
         "logInTo": m37,
+        "login": MessageLookupByLibrary.simpleMessage(""),
+        "logout": MessageLookupByLibrary.simpleMessage(""),
+        "makeAModerator": MessageLookupByLibrary.simpleMessage(""),
+        "makeAnAdmin": MessageLookupByLibrary.simpleMessage(""),
+        "makeSureTheIdentifierIsValid":
+            MessageLookupByLibrary.simpleMessage(""),
+        "messageWillBeRemovedWarning": MessageLookupByLibrary.simpleMessage(""),
+        "moderator": MessageLookupByLibrary.simpleMessage(""),
+        "monday": MessageLookupByLibrary.simpleMessage(""),
+        "muteChat": MessageLookupByLibrary.simpleMessage(""),
+        "needPantalaimonWarning": MessageLookupByLibrary.simpleMessage(""),
+        "newMessageInFluffyChat": MessageLookupByLibrary.simpleMessage(""),
+        "newPrivateChat": MessageLookupByLibrary.simpleMessage(""),
         "newVerificationRequest": MessageLookupByLibrary.simpleMessage(""),
         "noCrossSignBootstrap": MessageLookupByLibrary.simpleMessage(""),
+        "noEmotesFound": MessageLookupByLibrary.simpleMessage(""),
+        "noGoogleServicesWarning": MessageLookupByLibrary.simpleMessage(""),
         "noMegolmBootstrap": MessageLookupByLibrary.simpleMessage(""),
+        "noPermission": MessageLookupByLibrary.simpleMessage(""),
+        "noRoomsFound": MessageLookupByLibrary.simpleMessage(""),
+        "none": MessageLookupByLibrary.simpleMessage(""),
+        "notSupportedInWeb": MessageLookupByLibrary.simpleMessage(""),
         "numberSelected": m38,
         "ok": MessageLookupByLibrary.simpleMessage(""),
         "onlineKeyBackupDisabled": MessageLookupByLibrary.simpleMessage(""),
         "onlineKeyBackupEnabled": MessageLookupByLibrary.simpleMessage(""),
+        "oopsSomethingWentWrong": MessageLookupByLibrary.simpleMessage(""),
+        "openAppToReadMessages": MessageLookupByLibrary.simpleMessage(""),
+        "openCamera": MessageLookupByLibrary.simpleMessage(""),
+        "optionalGroupName": MessageLookupByLibrary.simpleMessage(""),
+        "participatingUserDevices": MessageLookupByLibrary.simpleMessage(""),
         "passphraseOrKey": MessageLookupByLibrary.simpleMessage(""),
+        "password": MessageLookupByLibrary.simpleMessage(""),
+        "pickImage": MessageLookupByLibrary.simpleMessage(""),
         "play": m39,
+        "pleaseChooseAUsername": MessageLookupByLibrary.simpleMessage(""),
+        "pleaseEnterAMatrixIdentifier":
+            MessageLookupByLibrary.simpleMessage(""),
+        "pleaseEnterYourPassword": MessageLookupByLibrary.simpleMessage(""),
+        "pleaseEnterYourUsername": MessageLookupByLibrary.simpleMessage(""),
+        "publicRooms": MessageLookupByLibrary.simpleMessage(""),
+        "recording": MessageLookupByLibrary.simpleMessage(""),
         "redactedAnEvent": m40,
+        "reject": MessageLookupByLibrary.simpleMessage(""),
         "rejectedTheInvitation": m41,
+        "rejoin": MessageLookupByLibrary.simpleMessage(""),
+        "remove": MessageLookupByLibrary.simpleMessage(""),
+        "removeAllOtherDevices": MessageLookupByLibrary.simpleMessage(""),
+        "removeDevice": MessageLookupByLibrary.simpleMessage(""),
+        "removeExile": MessageLookupByLibrary.simpleMessage(""),
+        "removeMessage": MessageLookupByLibrary.simpleMessage(""),
         "removedBy": m42,
+        "renderRichContent": MessageLookupByLibrary.simpleMessage(""),
+        "reply": MessageLookupByLibrary.simpleMessage(""),
+        "requestPermission": MessageLookupByLibrary.simpleMessage(""),
+        "requestToReadOlderMessages": MessageLookupByLibrary.simpleMessage(""),
+        "revokeAllPermissions": MessageLookupByLibrary.simpleMessage(""),
+        "roomHasBeenUpgraded": MessageLookupByLibrary.simpleMessage(""),
+        "saturday": MessageLookupByLibrary.simpleMessage(""),
+        "searchForAChat": MessageLookupByLibrary.simpleMessage(""),
         "seenByUser": m43,
         "seenByUserAndCountOthers": m44,
         "seenByUserAndUser": m45,
+        "send": MessageLookupByLibrary.simpleMessage(""),
+        "sendAMessage": MessageLookupByLibrary.simpleMessage(""),
+        "sendFile": MessageLookupByLibrary.simpleMessage(""),
+        "sendImage": MessageLookupByLibrary.simpleMessage(""),
         "sentAFile": m46,
         "sentAPicture": m47,
         "sentASticker": m48,
         "sentAVideo": m49,
         "sentAnAudio": m50,
         "sessionVerified": MessageLookupByLibrary.simpleMessage(""),
+        "setAProfilePicture": MessageLookupByLibrary.simpleMessage(""),
+        "setGroupDescription": MessageLookupByLibrary.simpleMessage(""),
+        "setInvitationLink": MessageLookupByLibrary.simpleMessage(""),
+        "setStatus": MessageLookupByLibrary.simpleMessage(""),
+        "settings": MessageLookupByLibrary.simpleMessage(""),
+        "share": MessageLookupByLibrary.simpleMessage(""),
         "sharedTheLocation": m52,
+        "signUp": MessageLookupByLibrary.simpleMessage(""),
+        "skip": MessageLookupByLibrary.simpleMessage(""),
+        "sourceCode": MessageLookupByLibrary.simpleMessage(""),
+        "startYourFirstChat": MessageLookupByLibrary.simpleMessage(""),
+        "statusExampleMessage": MessageLookupByLibrary.simpleMessage(""),
+        "submit": MessageLookupByLibrary.simpleMessage(""),
+        "sunday": MessageLookupByLibrary.simpleMessage(""),
+        "systemTheme": MessageLookupByLibrary.simpleMessage(""),
+        "tapToShowMenu": MessageLookupByLibrary.simpleMessage(""),
+        "theyDontMatch": MessageLookupByLibrary.simpleMessage(""),
+        "theyMatch": MessageLookupByLibrary.simpleMessage(""),
+        "thisRoomHasBeenArchived": MessageLookupByLibrary.simpleMessage(""),
+        "thursday": MessageLookupByLibrary.simpleMessage(""),
         "timeOfDay": m54,
         "title": MessageLookupByLibrary.simpleMessage(""),
+        "tryToSendAgain": MessageLookupByLibrary.simpleMessage(""),
+        "tuesday": MessageLookupByLibrary.simpleMessage(""),
         "unbannedUser": m55,
+        "unblockDevice": MessageLookupByLibrary.simpleMessage(""),
+        "unknownDevice": MessageLookupByLibrary.simpleMessage(""),
+        "unknownEncryptionAlgorithm": MessageLookupByLibrary.simpleMessage(""),
         "unknownEvent": m56,
         "unknownSessionVerify": MessageLookupByLibrary.simpleMessage(""),
+        "unmuteChat": MessageLookupByLibrary.simpleMessage(""),
         "unreadChats": m57,
         "unreadMessages": m58,
         "unreadMessagesInChats": m59,
+        "useAmoledTheme": MessageLookupByLibrary.simpleMessage(""),
         "userAndOthersAreTyping": m60,
         "userAndUserAreTyping": m61,
         "userIsTyping": m62,
         "userLeftTheChat": m63,
         "userSentUnknownEvent": m64,
+        "username": MessageLookupByLibrary.simpleMessage(""),
         "verifiedSession": MessageLookupByLibrary.simpleMessage(""),
+        "verify": MessageLookupByLibrary.simpleMessage(""),
         "verifyManual": MessageLookupByLibrary.simpleMessage(""),
         "verifyStart": MessageLookupByLibrary.simpleMessage(""),
         "verifySuccess": MessageLookupByLibrary.simpleMessage(""),
         "verifyTitle": MessageLookupByLibrary.simpleMessage(""),
+        "verifyUser": MessageLookupByLibrary.simpleMessage(""),
+        "videoCall": MessageLookupByLibrary.simpleMessage(""),
+        "visibilityOfTheChatHistory": MessageLookupByLibrary.simpleMessage(""),
+        "visibleForAllParticipants": MessageLookupByLibrary.simpleMessage(""),
+        "visibleForEveryone": MessageLookupByLibrary.simpleMessage(""),
+        "voiceMessage": MessageLookupByLibrary.simpleMessage(""),
         "waitingPartnerAcceptRequest": MessageLookupByLibrary.simpleMessage(""),
         "waitingPartnerEmoji": MessageLookupByLibrary.simpleMessage(""),
-        "waitingPartnerNumbers": MessageLookupByLibrary.simpleMessage("")
+        "waitingPartnerNumbers": MessageLookupByLibrary.simpleMessage(""),
+        "wallpaper": MessageLookupByLibrary.simpleMessage(""),
+        "warningEncryptionInBeta": MessageLookupByLibrary.simpleMessage(""),
+        "wednesday": MessageLookupByLibrary.simpleMessage(""),
+        "welcomeText": MessageLookupByLibrary.simpleMessage(""),
+        "whoIsAllowedToJoinThisGroup": MessageLookupByLibrary.simpleMessage(""),
+        "writeAMessage": MessageLookupByLibrary.simpleMessage(""),
+        "yes": MessageLookupByLibrary.simpleMessage(""),
+        "you": MessageLookupByLibrary.simpleMessage(""),
+        "youAreInvitedToThisChat": MessageLookupByLibrary.simpleMessage(""),
+        "youAreNoLongerParticipatingInThisChat":
+            MessageLookupByLibrary.simpleMessage(""),
+        "youCannotInviteYourself": MessageLookupByLibrary.simpleMessage(""),
+        "youHaveBeenBannedFromThisChat": MessageLookupByLibrary.simpleMessage(
+            "Ви були заблоковані в цьому чаті"),
+        "yourOwnUsername": MessageLookupByLibrary.simpleMessage("")
       };
 }

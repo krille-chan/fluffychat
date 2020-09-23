@@ -1,12 +1,12 @@
 {
-  "@@last_modified": "2020-06-25T16:02:16.297192",
-  "About": "このアプリについて",
-  "@About": {
+  "@@last_modified": "2020-09-23 11:46:02.146406",
+  "about": "このアプリについて",
+  "@about": {
     "type": "text",
     "placeholders": {}
   },
-  "Accept": "承諾する",
-  "@Accept": {
+  "accept": "承諾する",
+  "@accept": {
     "type": "text",
     "placeholders": {}
   },
@@ -17,13 +17,13 @@
       "username": {}
     }
   },
-  "Account": "アカウント",
-  "@Account": {
+  "account": "アカウント",
+  "@account": {
     "type": "text",
     "placeholders": {}
   },
-  "Account informations": "アカウント情報",
-  "@Account informations": {
+  "accountInformation": "アカウント情報",
+  "@accountInformation": {
     "type": "text",
     "placeholders": {}
   },
@@ -34,13 +34,13 @@
       "username": {}
     }
   },
-  "Add a group description": "グループの説明を追加する",
-  "@Add a group description": {
+  "addGroupDescription": "グループの説明を追加する",
+  "@addGroupDescription": {
     "type": "text",
     "placeholders": {}
   },
-  "Admin": "管理者",
-  "@Admin": {
+  "admin": "管理者",
+  "@admin": {
     "type": "text",
     "placeholders": {}
   },
@@ -49,33 +49,40 @@
     "type": "text",
     "placeholders": {}
   },
-  "Already have an account?": "アカウントをすでにお持ちですか？",
-  "@Already have an account?": {
+  "alreadyHaveAnAccount": "アカウントをすでにお持ちですか？",
+  "@alreadyHaveAnAccount": {
     "type": "text",
     "placeholders": {}
   },
-  "Anyone can join": "誰でも参加できる",
-  "@Anyone can join": {
+  "answeredTheCall": "{senderName}は通話に出ました",
+  "@answeredTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "anyoneCanJoin": "誰でも参加できる",
+  "@anyoneCanJoin": {
     "type": "text",
     "placeholders": {}
   },
-  "Archive": "アーカイブ",
-  "@Archive": {
+  "archive": "アーカイブ",
+  "@archive": {
     "type": "text",
     "placeholders": {}
   },
-  "Archived Room": "アーカイブされた部屋",
-  "@Archived Room": {
+  "archivedRoom": "アーカイブされた部屋",
+  "@archivedRoom": {
     "type": "text",
     "placeholders": {}
   },
-  "Are guest users allowed to join": "ゲストユーザーの参加を許可する",
-  "@Are guest users allowed to join": {
+  "areGuestsAllowedToJoin": "ゲストユーザーの参加を許可する",
+  "@areGuestsAllowedToJoin": {
     "type": "text",
     "placeholders": {}
   },
-  "Are you sure?": "これでよろしいですか？",
-  "@Are you sure?": {
+  "areYouSure": "これでよろしいですか？",
+  "@areYouSure": {
     "type": "text",
     "placeholders": {}
   },
@@ -101,23 +108,23 @@
       "username": {}
     }
   },
-  "Authentication": "認証",
-  "@Authentication": {
+  "authentication": "認証",
+  "@authentication": {
     "type": "text",
     "placeholders": {}
   },
-  "Avatar has been changed": "アバターが変更されました",
-  "@Avatar has been changed": {
+  "avatarHasBeenChanged": "アバターが変更されました",
+  "@avatarHasBeenChanged": {
     "type": "text",
     "placeholders": {}
   },
-  "Ban from chat": "チャットからBANする",
-  "@Ban from chat": {
+  "banFromChat": "チャットからBANする",
+  "@banFromChat": {
     "type": "text",
     "placeholders": {}
   },
-  "Banned": "BANされています",
-  "@Banned": {
+  "banned": "BANされています",
+  "@banned": {
     "type": "text",
     "placeholders": {}
   },
@@ -129,8 +136,8 @@
       "targetName": {}
     }
   },
-  "Block Device": "デバイスをブロックする",
-  "@Block Device": {
+  "blockDevice": "デバイスをブロックする",
+  "@blockDevice": {
     "type": "text",
     "placeholders": {}
   },
@@ -146,8 +153,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "Cancel": "キャンセル",
-  "@Cancel": {
+  "cancel": "キャンセル",
+  "@cancel": {
     "type": "text",
     "placeholders": {}
   },
@@ -158,20 +165,20 @@
       "username": {}
     }
   },
-  "changedTheChatNameTo": "{username}がチャットの名前を「{chatname}」に変更しました",
-  "@changedTheChatNameTo": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "chatname": {}
-    }
-  },
   "changedTheChatDescriptionTo": "{username}がチャットの説明を「{description}」に変更しました",
   "@changedTheChatDescriptionTo": {
     "type": "text",
     "placeholders": {
       "username": {},
       "description": {}
+    }
+  },
+  "changedTheChatNameTo": "{username}がチャットの名前を「{chatname}」に変更しました",
+  "@changedTheChatNameTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "chatname": {}
     }
   },
   "changedTheChatPermissions": "{username}がチャットの権限を変更しました",
@@ -188,11 +195,6 @@
       "username": {},
       "displayname": {}
     }
-  },
-  "Change the homeserver": "ホームサーバーの変更",
-  "@Change the homeserver": {
-    "type": "text",
-    "placeholders": {}
   },
   "changedTheGuestAccessRules": "{username}がゲストのアクセスルールを変更しました",
   "@changedTheGuestAccessRules": {
@@ -260,53 +262,63 @@
       "username": {}
     }
   },
-  "Changelog": "変更履歴",
-  "@Changelog": {
+  "changelog": "変更履歴",
+  "@changelog": {
     "type": "text",
     "placeholders": {}
   },
-  "Change the name of the group": "グループの名前を変更する",
-  "@Change the name of the group": {
+  "changeTheHomeserver": "ホームサーバーの変更",
+  "@changeTheHomeserver": {
     "type": "text",
     "placeholders": {}
   },
-  "Change wallpaper": "壁紙を変更する",
-  "@Change wallpaper": {
+  "changeTheme": "スタイルを変更する",
+  "@changeTheme": {
     "type": "text",
     "placeholders": {}
   },
-  "Change the server": "サーバーを変更する",
-  "@Change the server": {
+  "changeTheNameOfTheGroup": "グループの名前を変更する",
+  "@changeTheNameOfTheGroup": {
     "type": "text",
     "placeholders": {}
   },
-  "The encryption has been corrupted": "暗号が破損しています",
-  "@The encryption has been corrupted": {
+  "changeTheServer": "サーバーを変更する",
+  "@changeTheServer": {
     "type": "text",
     "placeholders": {}
   },
-  "Chat": "チャット",
-  "@Chat": {
+  "changeWallpaper": "壁紙を変更する",
+  "@changeWallpaper": {
     "type": "text",
     "placeholders": {}
   },
-  "Chat details": "チャットの詳細",
-  "@Chat details": {
+  "channelCorruptedDecryptError": "暗号が破損しています",
+  "@channelCorruptedDecryptError": {
     "type": "text",
     "placeholders": {}
   },
-  "Choose a strong password": "強いパスワードを選択してください",
-  "@Choose a strong password": {
+  "chat": "チャット",
+  "@chat": {
     "type": "text",
     "placeholders": {}
   },
-  "Choose a username": "ユーザー名を選択してください",
-  "@Choose a username": {
+  "chatDetails": "チャットの詳細",
+  "@chatDetails": {
     "type": "text",
     "placeholders": {}
   },
-  "Close": "閉じる",
-  "@Close": {
+  "chooseAStrongPassword": "強いパスワードを選択してください",
+  "@chooseAStrongPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseAUsername": "ユーザー名を選択してください",
+  "@chooseAUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "close": "閉じる",
+  "@close": {
     "type": "text",
     "placeholders": {}
   },
@@ -320,38 +332,38 @@
     "type": "text",
     "placeholders": {}
   },
-  "Confirm": "確認",
-  "@Confirm": {
+  "confirm": "確認",
+  "@confirm": {
     "type": "text",
     "placeholders": {}
   },
-  "Connect": "接続",
-  "@Connect": {
+  "connect": "接続",
+  "@connect": {
     "type": "text",
     "placeholders": {}
   },
-  "Connection attempt failed": "接続が失敗しました",
-  "@Connection attempt failed": {
+  "connectionAttemptFailed": "接続が失敗しました",
+  "@connectionAttemptFailed": {
     "type": "text",
     "placeholders": {}
   },
-  "Contact has been invited to the group": "連絡先に登録された人が招待されました",
-  "@Contact has been invited to the group": {
+  "contactHasBeenInvitedToTheGroup": "連絡先に登録された人が招待されました",
+  "@contactHasBeenInvitedToTheGroup": {
     "type": "text",
     "placeholders": {}
   },
-  "Content viewer": "コンテンツビューアー",
-  "@Content viewer": {
+  "contentViewer": "コンテンツビューアー",
+  "@contentViewer": {
     "type": "text",
     "placeholders": {}
   },
-  "Copied to clipboard": "クリップボードにコピーされました",
-  "@Copied to clipboard": {
+  "copiedToClipboard": "クリップボードにコピーされました",
+  "@copiedToClipboard": {
     "type": "text",
     "placeholders": {}
   },
-  "Copy": "コピー",
-  "@Copy": {
+  "copy": "コピー",
+  "@copy": {
     "type": "text",
     "placeholders": {}
   },
@@ -362,13 +374,13 @@
       "error": {}
     }
   },
-  "Could not set avatar": "アバターをセットできませんでした",
-  "@Could not set avatar": {
+  "couldNotSetAvatar": "アバターをセットできませんでした",
+  "@couldNotSetAvatar": {
     "type": "text",
     "placeholders": {}
   },
-  "Could not set displayname": "表示名をセットできませんでした",
-  "@Could not set displayname": {
+  "couldNotSetDisplayname": "表示名をセットできませんでした",
+  "@couldNotSetDisplayname": {
     "type": "text",
     "placeholders": {}
   },
@@ -379,13 +391,13 @@
       "count": {}
     }
   },
-  "Create": "作成",
-  "@Create": {
+  "create": "作成",
+  "@create": {
     "type": "text",
     "placeholders": {}
   },
-  "Create account now": "アカウントを作成する",
-  "@Create account now": {
+  "createAccountNow": "アカウントを作成する",
+  "@createAccountNow": {
     "type": "text",
     "placeholders": {}
   },
@@ -396,8 +408,8 @@
       "username": {}
     }
   },
-  "Create new group": "新しいグループを作成する",
-  "@Create new group": {
+  "createNewGroup": "新しいグループを作成する",
+  "@createNewGroup": {
     "type": "text",
     "placeholders": {}
   },
@@ -411,8 +423,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "Currently active": "現在アクティブです",
-  "@Currently active": {
+  "currentlyActive": "現在アクティブです",
+  "@currentlyActive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "darkTheme": "ダーク",
+  "@darkTheme": {
     "type": "text",
     "placeholders": {}
   },
@@ -441,63 +458,58 @@
       "day": {}
     }
   },
-  "Delete": "削除",
-  "@Delete": {
+  "delete": "削除",
+  "@delete": {
     "type": "text",
     "placeholders": {}
   },
-  "Delete message": "メッセージの削除",
-  "@Delete message": {
+  "deleteMessage": "メッセージの削除",
+  "@deleteMessage": {
     "type": "text",
     "placeholders": {}
   },
-  "Deny": "拒否",
-  "@Deny": {
+  "deny": "拒否",
+  "@deny": {
     "type": "text",
     "placeholders": {}
   },
-  "Device": "デバイス",
-  "@Device": {
+  "device": "デバイス",
+  "@device": {
     "type": "text",
     "placeholders": {}
   },
-  "Devices": "デバイス",
-  "@Devices": {
+  "devices": "デバイス",
+  "@devices": {
     "type": "text",
     "placeholders": {}
   },
-  "Discard picture": "画像を無視する",
-  "@Discard picture": {
+  "discardPicture": "画像を無視する",
+  "@discardPicture": {
     "type": "text",
     "placeholders": {}
   },
-  "Displayname has been changed": "表示名が変更されました",
-  "@Displayname has been changed": {
+  "displaynameHasBeenChanged": "表示名が変更されました",
+  "@displaynameHasBeenChanged": {
     "type": "text",
     "placeholders": {}
   },
-  "Download file": "ファイルのダウンロード",
-  "@Download file": {
+  "donate": "寄付する",
+  "@donate": {
     "type": "text",
     "placeholders": {}
   },
-  "Edit displayname": "表示名を編集",
-  "@Edit displayname": {
+  "downloadFile": "ファイルのダウンロード",
+  "@downloadFile": {
     "type": "text",
     "placeholders": {}
   },
-  "Emote Settings": "Emote設定",
-  "@Emote Settings": {
+  "editDisplayname": "表示名を編集",
+  "@editDisplayname": {
     "type": "text",
     "placeholders": {}
   },
-  "Emote shortcode": "Emoteショートコード",
-  "@Emote shortcode": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "emoteWarnNeedToPick": "Emoteショートコードと画像を選択してください！",
-  "@emoteWarnNeedToPick": {
+  "editJitsiInstance": "Jitsiインスタンスを編集する",
+  "@editJitsiInstance": {
     "type": "text",
     "placeholders": {}
   },
@@ -511,103 +523,125 @@
     "type": "text",
     "placeholders": {}
   },
-  "Empty chat": "空のチャット",
-  "@Empty chat": {
+  "emoteSettings": "Emote設定",
+  "@emoteSettings": {
     "type": "text",
     "placeholders": {}
   },
-  "You won't be able to disable the encryption anymore. Are you sure?": "一度暗号化を有効にするともとに戻せません。よろしいですか？",
-  "@You won't be able to disable the encryption anymore. Are you sure?": {
+  "emoteShortcode": "Emoteショートコード",
+  "@emoteShortcode": {
     "type": "text",
     "placeholders": {}
   },
-  "Encryption": "暗号化",
-  "@Encryption": {
+  "emoteWarnNeedToPick": "Emoteショートコードと画像を選択してください！",
+  "@emoteWarnNeedToPick": {
     "type": "text",
     "placeholders": {}
   },
-  "Encryption algorithm": "暗号化アルゴリズム",
-  "@Encryption algorithm": {
+  "emptyChat": "空のチャット",
+  "@emptyChat": {
     "type": "text",
     "placeholders": {}
   },
-  "Encryption is not enabled": "暗号化されていません",
-  "@Encryption is not enabled": {
+  "enableEncryptionWarning": "一度暗号化を有効にするともとに戻せません。よろしいですか？",
+  "@enableEncryptionWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "End-to-end encryption settings": "エンドツーエンド暗号化設定",
-  "@End-to-end encryption settings": {
+  "encryption": "暗号化",
+  "@encryption": {
     "type": "text",
     "placeholders": {}
   },
-  "Enter a group name": "グループ名を入力してください",
-  "@Enter a group name": {
+  "encryptionAlgorithm": "暗号化アルゴリズム",
+  "@encryptionAlgorithm": {
     "type": "text",
     "placeholders": {}
   },
-  "Enter a username": "ユーザー名を入力してください",
-  "@Enter a username": {
+  "encryptionNotEnabled": "暗号化されていません",
+  "@encryptionNotEnabled": {
     "type": "text",
     "placeholders": {}
   },
-  "Enter your homeserver": "ホームサーバーを入力してください",
-  "@Enter your homeserver": {
+  "end2endEncryptionSettings": "エンドツーエンド暗号化設定",
+  "@end2endEncryptionSettings": {
     "type": "text",
     "placeholders": {}
   },
-  "File name": "ファイル名",
-  "@File name": {
+  "endedTheCall": "{senderName}は通話を切断しました",
+  "@endedTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "enterAGroupName": "グループ名を入力してください",
+  "@enterAGroupName": {
     "type": "text",
     "placeholders": {}
   },
-  "File size": "ファイルサイズ",
-  "@File size": {
+  "enterAUsername": "ユーザー名を入力してください",
+  "@enterAUsername": {
     "type": "text",
     "placeholders": {}
   },
-  "FluffyChat": "FluffyChat",
-  "@FluffyChat": {
+  "enterYourHomeserver": "ホームサーバーを入力してください",
+  "@enterYourHomeserver": {
     "type": "text",
     "placeholders": {}
   },
-  "Forward": "進む",
-  "@Forward": {
+  "fileName": "ファイル名",
+  "@fileName": {
     "type": "text",
     "placeholders": {}
   },
-  "Friday": "金曜日",
-  "@Friday": {
+  "fileSize": "ファイルサイズ",
+  "@fileSize": {
     "type": "text",
     "placeholders": {}
   },
-  "From joining": "参加時点から閲覧可能",
-  "@From joining": {
+  "fluffychat": "FluffyChat",
+  "@fluffychat": {
     "type": "text",
     "placeholders": {}
   },
-  "From the invitation": "招待時点から閲覧可能",
-  "@From the invitation": {
+  "forward": "進む",
+  "@forward": {
     "type": "text",
     "placeholders": {}
   },
-  "Group": "グループ",
-  "@Group": {
+  "friday": "金曜日",
+  "@friday": {
     "type": "text",
     "placeholders": {}
   },
-  "Group description": "グループの説明",
-  "@Group description": {
+  "fromJoining": "参加時点から閲覧可能",
+  "@fromJoining": {
     "type": "text",
     "placeholders": {}
   },
-  "Group description has been changed": "グループの説明が変更されました",
-  "@Group description has been changed": {
+  "fromTheInvitation": "招待時点から閲覧可能",
+  "@fromTheInvitation": {
     "type": "text",
     "placeholders": {}
   },
-  "Group is public": "グループは公開されています",
-  "@Group is public": {
+  "group": "グループ",
+  "@group": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groupDescription": "グループの説明",
+  "@groupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groupDescriptionHasBeenChanged": "グループの説明が変更されました",
+  "@groupDescriptionHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groupIsPublic": "グループは公開されています",
+  "@groupIsPublic": {
     "type": "text",
     "placeholders": {}
   },
@@ -618,13 +652,13 @@
       "displayname": {}
     }
   },
-  "Guests are forbidden": "ゲストは許可されていません",
-  "@Guests are forbidden": {
+  "guestsAreForbidden": "ゲストは許可されていません",
+  "@guestsAreForbidden": {
     "type": "text",
     "placeholders": {}
   },
-  "Guests can join": "ゲストが許可されています",
-  "@Guests can join": {
+  "guestsCanJoin": "ゲストが許可されています",
+  "@guestsCanJoin": {
     "type": "text",
     "placeholders": {}
   },
@@ -636,23 +670,23 @@
       "targetName": {}
     }
   },
-  "Help": "ヘルプ",
-  "@Help": {
+  "help": "ヘルプ",
+  "@help": {
     "type": "text",
     "placeholders": {}
   },
-  "Homeserver is not compatible": "このホームサーバーは互換性がありません",
-  "@Homeserver is not compatible": {
+  "homeserverIsNotCompatible": "このホームサーバーは互換性がありません",
+  "@homeserverIsNotCompatible": {
     "type": "text",
     "placeholders": {}
   },
-  "ID": "ID",
-  "@ID": {
+  "id": "ID",
+  "@id": {
     "type": "text",
     "placeholders": {}
   },
-  "Identity": "アイデンティティ",
-  "@Identity": {
+  "identity": "アイデンティティ",
+  "@identity": {
     "type": "text",
     "placeholders": {}
   },
@@ -661,8 +695,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "Invite contact": "連絡先から招待する",
-  "@Invite contact": {
+  "inviteContact": "連絡先から招待する",
+  "@inviteContact": {
     "type": "text",
     "placeholders": {}
   },
@@ -673,8 +707,21 @@
       "groupName": {}
     }
   },
-  "Invited": "招待されました",
-  "@Invited": {
+  "invited": "招待されました",
+  "@invited": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invitedUser": "{username}が{targetName}を招待しました",
+  "@invitedUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "invitedUsersOnly": "招待されたユーザーのみ",
+  "@invitedUsersOnly": {
     "type": "text",
     "placeholders": {}
   },
@@ -686,31 +733,13 @@
       "link": {}
     }
   },
-  "invitedUser": "{username}が{targetName}を招待しました",
-  "@invitedUser": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "targetName": {}
-    }
-  },
-  "Invited users only": "招待されたユーザーのみ",
-  "@Invited users only": {
-    "type": "text",
-    "placeholders": {}
-  },
   "isDeviceKeyCorrect": "このデバイスキーは正しいですか？",
   "@isDeviceKeyCorrect": {
     "type": "text",
     "placeholders": {}
   },
-  "is typing...": "入力しています...",
-  "@is typing...": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Edit Jitsi instance": "Jitsiインスタンスを編集する",
-  "@Edit Jitsi instance": {
+  "isTyping": "入力しています...",
+  "@isTyping": {
     "type": "text",
     "placeholders": {}
   },
@@ -720,6 +749,11 @@
     "placeholders": {
       "username": {}
     }
+  },
+  "joinRoom": "部屋に参加",
+  "@joinRoom": {
+    "type": "text",
+    "placeholders": {}
   },
   "keysCached": "鍵はキャッシュされたいます",
   "@keysCached": {
@@ -747,32 +781,10 @@
       "targetName": {}
     }
   },
-  "Kick from chat": "チャットからキックする",
-  "@Kick from chat": {
+  "kickFromChat": "チャットからキックする",
+  "@kickFromChat": {
     "type": "text",
     "placeholders": {}
-  },
-  "Leave": "退室する",
-  "@Leave": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Left the chat": "退室しました",
-  "@Left the chat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Logout": "ログアウト",
-  "@Logout": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "userLeftTheChat": "{username}は退室しました",
-  "@userLeftTheChat": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
   },
   "lastActiveAgo": "最終アクティブ: {localizedTimeShort}",
   "@lastActiveAgo": {
@@ -781,23 +793,33 @@
       "localizedTimeShort": {}
     }
   },
-  "Last seen IP": "最終IP",
-  "@Last seen IP": {
+  "lastSeenIp": "最終IP",
+  "@lastSeenIp": {
     "type": "text",
     "placeholders": {}
   },
-  "License": "ライセンス",
-  "@License": {
+  "lastSeenLongTimeAgo": "ずいぶん前",
+  "@lastSeenLongTimeAgo": {
     "type": "text",
     "placeholders": {}
   },
-  "Loading... Please wait": "読み込み中...お待ちください",
-  "@Loading... Please wait": {
+  "leave": "退室する",
+  "@leave": {
     "type": "text",
     "placeholders": {}
   },
-  "Load more...": "更に読み込む...",
-  "@Load more...": {
+  "leftTheChat": "退室しました",
+  "@leftTheChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "license": "ライセンス",
+  "@license": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lightTheme": "ライト",
+  "@lightTheme": {
     "type": "text",
     "placeholders": {}
   },
@@ -808,8 +830,18 @@
       "count": {}
     }
   },
-  "Login": "ログイン",
-  "@Login": {
+  "loadingPleaseWait": "読み込み中...お待ちください",
+  "@loadingPleaseWait": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loadMore": "更に読み込む...",
+  "@loadMore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "login": "ログイン",
+  "@login": {
     "type": "text",
     "placeholders": {}
   },
@@ -820,53 +852,58 @@
       "homeserver": {}
     }
   },
-  "Make a moderator": "モデレータにする",
-  "@Make a moderator": {
+  "logout": "ログアウト",
+  "@logout": {
     "type": "text",
     "placeholders": {}
   },
-  "Make an admin": "管理者にする",
-  "@Make an admin": {
+  "makeAModerator": "モデレータにする",
+  "@makeAModerator": {
     "type": "text",
     "placeholders": {}
   },
-  "Make sure the identifier is valid": "識別子が正しいか確認してください",
-  "@Make sure the identifier is valid": {
+  "makeAnAdmin": "管理者にする",
+  "@makeAnAdmin": {
     "type": "text",
     "placeholders": {}
   },
-  "Message will be removed for all participants": "メッセージはすべての参加者から消去されます",
-  "@Message will be removed for all participants": {
+  "makeSureTheIdentifierIsValid": "識別子が正しいか確認してください",
+  "@makeSureTheIdentifierIsValid": {
     "type": "text",
     "placeholders": {}
   },
-  "Moderator": "モデレータ",
-  "@Moderator": {
+  "messageWillBeRemovedWarning": "メッセージはすべての参加者から消去されます",
+  "@messageWillBeRemovedWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "Monday": "月曜日",
-  "@Monday": {
+  "moderator": "モデレータ",
+  "@moderator": {
     "type": "text",
     "placeholders": {}
   },
-  "Mute chat": "チャットのミュート",
-  "@Mute chat": {
+  "monday": "月曜日",
+  "@monday": {
     "type": "text",
     "placeholders": {}
   },
-  "Please be aware that you need Pantalaimon to use end-to-end encryption for now.": "現時点では、エンドツーエンドの暗号化を使用するにはPantalaimonが必要であることに注意してください。",
-  "@Please be aware that you need Pantalaimon to use end-to-end encryption for now.": {
+  "muteChat": "チャットのミュート",
+  "@muteChat": {
     "type": "text",
     "placeholders": {}
   },
-  "New message in FluffyChat": "FluffyChatに新しいメッセージがあります",
-  "@New message in FluffyChat": {
+  "needPantalaimonWarning": "現時点では、エンドツーエンドの暗号化を使用するにはPantalaimonが必要であることに注意してください。",
+  "@needPantalaimonWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "New private chat": "新しいプライベートチャット",
-  "@New private chat": {
+  "newMessageInFluffyChat": "FluffyChatに新しいメッセージがあります",
+  "@newMessageInFluffyChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newPrivateChat": "新しいプライベートチャット",
+  "@newPrivateChat": {
     "type": "text",
     "placeholders": {}
   },
@@ -880,38 +917,38 @@
     "type": "text",
     "placeholders": {}
   },
+  "noEmotesFound": "Emoteは見つかりませんでした😕",
+  "@noEmotesFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noGoogleServicesWarning": "あなたのスマホにはグーグルサービスがないようですね。プライバシーを保護するための良い選択です！Push通知を受け取るにはmicroGを使うことを推奨しています: https://microg.org/",
+  "@noGoogleServicesWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
   "noMegolmBootstrap": "FluffyChatは現在鍵のオンラインバックアップの有効化をサポートしていません。Riotから有効化してください。",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
   },
-  "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": "あなたのスマホにはグーグルサービスがないようですね。プライバシーを保護するための良い選択です！Push通知を受け取るにはmicroGを使うことを推奨しています: https://microg.org/",
-  "@It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": {
+  "none": "なし",
+  "@none": {
     "type": "text",
     "placeholders": {}
   },
-  "None": "なし",
-  "@None": {
+  "noPermission": "権限がありません",
+  "@noPermission": {
     "type": "text",
     "placeholders": {}
   },
-  "No emotes found. 😕": "Emoteは見つかりませんでした😕",
-  "@No emotes found. 😕": {
+  "noRoomsFound": "部屋は見つかりませんでした...",
+  "@noRoomsFound": {
     "type": "text",
     "placeholders": {}
   },
-  "No permission": "権限がありません",
-  "@No permission": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "No rooms found...": "部屋は見つかりませんでした...",
-  "@No rooms found...": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Not supported in web": "ウェブではサポートされていません",
-  "@Not supported in web": {
+  "notSupportedInWeb": "ウェブではサポートされていません",
+  "@notSupportedInWeb": {
     "type": "text",
     "placeholders": {}
   },
@@ -937,28 +974,28 @@
     "type": "text",
     "placeholders": {}
   },
-  "Oops something went wrong...": "おっと、何かがうまくいきませんでした...",
-  "@Oops something went wrong...": {
+  "oopsSomethingWentWrong": "おっと、何かがうまくいきませんでした...",
+  "@oopsSomethingWentWrong": {
     "type": "text",
     "placeholders": {}
   },
-  "Open app to read messages": "アプリを開いてメッセージを確認してください",
-  "@Open app to read messages": {
+  "openAppToReadMessages": "アプリを開いてメッセージを確認してください",
+  "@openAppToReadMessages": {
     "type": "text",
     "placeholders": {}
   },
-  "Open camera": "カメラを開く",
-  "@Open camera": {
+  "openCamera": "カメラを開く",
+  "@openCamera": {
     "type": "text",
     "placeholders": {}
   },
-  "(Optional) Group name": "(任意)グループ名",
-  "@(Optional) Group name": {
+  "optionalGroupName": "(任意)グループ名",
+  "@optionalGroupName": {
     "type": "text",
     "placeholders": {}
   },
-  "Participating user devices": "ユーザーの使用しているデバイス",
-  "@Participating user devices": {
+  "participatingUserDevices": "ユーザーの使用しているデバイス",
+  "@participatingUserDevices": {
     "type": "text",
     "placeholders": {}
   },
@@ -967,13 +1004,18 @@
     "type": "text",
     "placeholders": {}
   },
-  "Password": "パスワード",
-  "@Password": {
+  "password": "パスワード",
+  "@password": {
     "type": "text",
     "placeholders": {}
   },
-  "Pick image": "画像を選択してください",
-  "@Pick image": {
+  "pickImage": "画像を選択してください",
+  "@pickImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pin": "ピン",
+  "@pin": {
     "type": "text",
     "placeholders": {}
   },
@@ -984,48 +1026,33 @@
       "fileName": {}
     }
   },
-  "Please choose a username": "ユーザー名を選択してください",
-  "@Please choose a username": {
+  "pleaseChooseAUsername": "ユーザー名を選択してください",
+  "@pleaseChooseAUsername": {
     "type": "text",
     "placeholders": {}
   },
-  "Please enter a matrix identifier": "Matrix識別子を入力してください",
-  "@Please enter a matrix identifier": {
+  "pleaseEnterAMatrixIdentifier": "Matrix識別子を入力してください",
+  "@pleaseEnterAMatrixIdentifier": {
     "type": "text",
     "placeholders": {}
   },
-  "Please enter your password": "パスワードを入力してください",
-  "@Please enter your password": {
+  "pleaseEnterYourPassword": "パスワードを入力してください",
+  "@pleaseEnterYourPassword": {
     "type": "text",
     "placeholders": {}
   },
-  "Please enter your username": "ユーザー名を入力してください",
-  "@Please enter your username": {
+  "pleaseEnterYourUsername": "ユーザー名を入力してください",
+  "@pleaseEnterYourUsername": {
     "type": "text",
     "placeholders": {}
   },
-  "Public Rooms": "公開された部屋",
-  "@Public Rooms": {
+  "publicRooms": "公開された部屋",
+  "@publicRooms": {
     "type": "text",
     "placeholders": {}
   },
-  "Reject": "拒否",
-  "@Reject": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Rejoin": "再参加",
-  "@Rejoin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Render rich message content": "リッチメッセージをレンダリングする",
-  "@Render rich message content": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Recording": "録音中",
-  "@Recording": {
+  "recording": "録音中",
+  "@recording": {
     "type": "text",
     "placeholders": {}
   },
@@ -1036,6 +1063,11 @@
       "username": {}
     }
   },
+  "reject": "拒否",
+  "@reject": {
+    "type": "text",
+    "placeholders": {}
+  },
   "rejectedTheInvitation": "{username}は招待を拒否しました",
   "@rejectedTheInvitation": {
     "type": "text",
@@ -1043,8 +1075,18 @@
       "username": {}
     }
   },
-  "Remove all other devices": "他のデバイスをすべて削除",
-  "@Remove all other devices": {
+  "rejoin": "再参加",
+  "@rejoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "remove": "消去",
+  "@remove": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeAllOtherDevices": "他のデバイスをすべて削除",
+  "@removeAllOtherDevices": {
     "type": "text",
     "placeholders": {}
   },
@@ -1055,75 +1097,58 @@
       "username": {}
     }
   },
-  "Remove device": "デバイスの削除",
-  "@Remove device": {
+  "removeDevice": "デバイスの削除",
+  "@removeDevice": {
     "type": "text",
     "placeholders": {}
   },
-  "Remove exile": "追放を取り消し",
-  "@Remove exile": {
+  "removeExile": "追放を取り消し",
+  "@removeExile": {
     "type": "text",
     "placeholders": {}
   },
-  "Revoke all permissions": "すべての権限を取り消す",
-  "@Revoke all permissions": {
+  "removeMessage": "メッセージを削除",
+  "@removeMessage": {
     "type": "text",
     "placeholders": {}
   },
-  "Remove": "消去",
-  "@Remove": {
+  "renderRichContent": "リッチメッセージをレンダリングする",
+  "@renderRichContent": {
     "type": "text",
     "placeholders": {}
   },
-  "Remove message": "メッセージを削除",
-  "@Remove message": {
+  "reply": "返信",
+  "@reply": {
     "type": "text",
     "placeholders": {}
   },
-  "Reply": "返信",
-  "@Reply": {
+  "requestPermission": "権限を要求する",
+  "@requestPermission": {
     "type": "text",
     "placeholders": {}
   },
-  "Request permission": "権限を要求する",
-  "@Request permission": {
+  "requestToReadOlderMessages": "過去のメッセージを読む権限を要求する",
+  "@requestToReadOlderMessages": {
     "type": "text",
     "placeholders": {}
   },
-  "Request to read older messages": "過去のメッセージを読む権限を要求する",
-  "@Request to read older messages": {
+  "revokeAllPermissions": "すべての権限を取り消す",
+  "@revokeAllPermissions": {
     "type": "text",
     "placeholders": {}
   },
-  "Room has been upgraded": "部屋はアップグレードされました",
-  "@Room has been upgraded": {
+  "roomHasBeenUpgraded": "部屋はアップグレードされました",
+  "@roomHasBeenUpgraded": {
     "type": "text",
     "placeholders": {}
   },
-  "Saturday": "土曜日",
-  "@Saturday": {
+  "saturday": "土曜日",
+  "@saturday": {
     "type": "text",
     "placeholders": {}
   },
-  "Share": "共有",
-  "@Share": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sharedTheLocation": "{username}は現在地を共有しました",
-  "@sharedTheLocation": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "Search for a chat": "チャットを検索する",
-  "@Search for a chat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Seen a long time ago": "ずいぶん前",
-  "@Seen a long time ago": {
+  "searchForAChat": "チャットを検索する",
+  "@searchForAChat": {
     "type": "text",
     "placeholders": {}
   },
@@ -1134,14 +1159,6 @@
       "username": {}
     }
   },
-  "seenByUserAndUser": "{username}と{username2}が既読",
-  "@seenByUserAndUser": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "username2": {}
-    }
-  },
   "seenByUserAndCountOthers": "{username}と他{count}名が既読",
   "@seenByUserAndCountOthers": {
     "type": "text",
@@ -1150,23 +1167,31 @@
       "count": {}
     }
   },
-  "Send": "送信",
-  "@Send": {
+  "seenByUserAndUser": "{username}と{username2}が既読",
+  "@seenByUserAndUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "username2": {}
+    }
+  },
+  "send": "送信",
+  "@send": {
     "type": "text",
     "placeholders": {}
   },
-  "Send a message": "メッセージを送信",
-  "@Send a message": {
+  "sendAMessage": "メッセージを送信",
+  "@sendAMessage": {
     "type": "text",
     "placeholders": {}
   },
-  "Send file": "ファイルを送信",
-  "@Send file": {
+  "sendFile": "ファイルを送信",
+  "@sendFile": {
     "type": "text",
     "placeholders": {}
   },
-  "Send image": "画像の送信",
-  "@Send image": {
+  "sendImage": "画像の送信",
+  "@sendImage": {
     "type": "text",
     "placeholders": {}
   },
@@ -1205,123 +1230,124 @@
       "username": {}
     }
   },
+  "sentCallInformations": "{senderName}は通話情報を送信しました",
+  "@sentCallInformations": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
   "sessionVerified": "セッションは確認済みです",
   "@sessionVerified": {
     "type": "text",
     "placeholders": {}
   },
-  "Set a profile picture": "プロフィール画像を設定する",
-  "@Set a profile picture": {
+  "setAProfilePicture": "プロフィール画像を設定する",
+  "@setAProfilePicture": {
     "type": "text",
     "placeholders": {}
   },
-  "Set group description": "グループの説明を設定する",
-  "@Set group description": {
+  "setGroupDescription": "グループの説明を設定する",
+  "@setGroupDescription": {
     "type": "text",
     "placeholders": {}
   },
-  "Set invitation link": "招待リンクを設定する",
-  "@Set invitation link": {
+  "setInvitationLink": "招待リンクを設定する",
+  "@setInvitationLink": {
     "type": "text",
     "placeholders": {}
   },
-  "Set status": "ステータスの設定",
-  "@Set status": {
+  "setStatus": "ステータスの設定",
+  "@setStatus": {
     "type": "text",
     "placeholders": {}
   },
-  "Settings": "設定",
-  "@Settings": {
+  "settings": "設定",
+  "@settings": {
     "type": "text",
     "placeholders": {}
   },
-  "Sign up": "サインアップ",
-  "@Sign up": {
+  "share": "共有",
+  "@share": {
     "type": "text",
     "placeholders": {}
   },
-  "Skip": "スキップ",
-  "@Skip": {
+  "sharedTheLocation": "{username}は現在地を共有しました",
+  "@sharedTheLocation": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "signUp": "サインアップ",
+  "@signUp": {
     "type": "text",
     "placeholders": {}
   },
-  "Change your style": "スタイルを変更する",
-  "@Change your style": {
+  "skip": "スキップ",
+  "@skip": {
     "type": "text",
     "placeholders": {}
   },
-  "System": "システム",
-  "@System": {
+  "sourceCode": "ソースコード",
+  "@sourceCode": {
     "type": "text",
     "placeholders": {}
   },
-  "How are you today?": "お元気ですか？",
-  "@How are you today?": {
+  "startedACall": "{senderName}は通話を開始しました",
+  "@startedACall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "startYourFirstChat": "初めてのチャットを開始してください(^_^)",
+  "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
   },
-  "Light": "ライト",
-  "@Light": {
+  "statusExampleMessage": "お元気ですか？",
+  "@statusExampleMessage": {
     "type": "text",
     "placeholders": {}
   },
-  "Dark": "ダーク",
-  "@Dark": {
+  "submit": "送信",
+  "@submit": {
     "type": "text",
     "placeholders": {}
   },
-  "Use Amoled compatible colors?": "有機EL(Amoled)対応の色にしますか？",
-  "@Use Amoled compatible colors?": {
+  "sunday": "日曜日",
+  "@sunday": {
     "type": "text",
     "placeholders": {}
   },
-  "Source code": "ソースコード",
-  "@Source code": {
+  "systemTheme": "システム",
+  "@systemTheme": {
     "type": "text",
     "placeholders": {}
   },
-  "Start your first chat :-)": "初めてのチャットを開始してください(^_^)",
-  "@Start your first chat :-)": {
+  "tapToShowMenu": "メニューを表示するにはタップしてください",
+  "@tapToShowMenu": {
     "type": "text",
     "placeholders": {}
   },
-  "Submit": "送信",
-  "@Submit": {
+  "theyDontMatch": "違います",
+  "@theyDontMatch": {
     "type": "text",
     "placeholders": {}
   },
-  "Sunday": "日曜日",
-  "@Sunday": {
+  "theyMatch": "一致しています",
+  "@theyMatch": {
     "type": "text",
     "placeholders": {}
   },
-  "Donate": "寄付する",
-  "@Donate": {
+  "thisRoomHasBeenArchived": "この部屋はアーカイブされています。",
+  "@thisRoomHasBeenArchived": {
     "type": "text",
     "placeholders": {}
   },
-  "Tap to show menu": "メニューを表示するにはタップしてください",
-  "@Tap to show menu": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "They Don't Match": "違います",
-  "@They Don't Match": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "They Match": "一致しています",
-  "@They Match": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "This room has been archived.": "この部屋はアーカイブされています。",
-  "@This room has been archived.": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Thursday": "木曜日",
-  "@Thursday": {
+  "thursday": "木曜日",
+  "@thursday": {
     "type": "text",
     "placeholders": {}
   },
@@ -1341,13 +1367,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "Try to send again": "送信し直してみる",
-  "@Try to send again": {
+  "tryToSendAgain": "送信し直してみる",
+  "@tryToSendAgain": {
     "type": "text",
     "placeholders": {}
   },
-  "Tuesday": "火曜日",
-  "@Tuesday": {
+  "tuesday": "火曜日",
+  "@tuesday": {
     "type": "text",
     "placeholders": {}
   },
@@ -1359,28 +1385,18 @@
       "targetName": {}
     }
   },
-  "Unblock Device": "デバイスをブロック解除する",
-  "@Unblock Device": {
+  "unblockDevice": "デバイスをブロック解除する",
+  "@unblockDevice": {
     "type": "text",
     "placeholders": {}
   },
-  "Unmute chat": "チャットをミュート解除する",
-  "@Unmute chat": {
+  "unknownDevice": "未知デバイス",
+  "@unknownDevice": {
     "type": "text",
     "placeholders": {}
   },
-  "Unknown device": "未知デバイス",
-  "@Unknown device": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Unknown encryption algorithm": "未知の暗号化アルゴリズム",
-  "@Unknown encryption algorithm": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "unknownSessionVerify": "未知のセッションです。確認してください。",
-  "@unknownSessionVerify": {
+  "unknownEncryptionAlgorithm": "未知の暗号化アルゴリズム",
+  "@unknownEncryptionAlgorithm": {
     "type": "text",
     "placeholders": {}
   },
@@ -1390,6 +1406,21 @@
     "placeholders": {
       "type": {}
     }
+  },
+  "unknownSessionVerify": "未知のセッションです。確認してください。",
+  "@unknownSessionVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unmuteChat": "チャットをミュート解除する",
+  "@unmuteChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unpin": "ピンを外す",
+  "@unpin": {
+    "type": "text",
+    "placeholders": {}
   },
   "unreadChats": "{unreadCount}の未読メッセージ",
   "@unreadChats": {
@@ -1413,6 +1444,11 @@
       "unreadChats": {}
     }
   },
+  "useAmoledTheme": "有機EL(Amoled)対応の色にしますか？",
+  "@useAmoledTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
   "userAndOthersAreTyping": "{username}と他{count}名が入力しています...",
   "@userAndOthersAreTyping": {
     "type": "text",
@@ -1429,17 +1465,24 @@
       "username2": {}
     }
   },
-  "Username": "ユーザー名",
-  "@Username": {
-    "type": "text",
-    "placeholders": {}
-  },
   "userIsTyping": "{username}が入力しています...",
   "@userIsTyping": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
+  },
+  "userLeftTheChat": "{username}は退室しました",
+  "@userLeftTheChat": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "username": "ユーザー名",
+  "@username": {
+    "type": "text",
+    "placeholders": {}
   },
   "userSentUnknownEvent": "{username}は{type}イベントを送信しました",
   "@userSentUnknownEvent": {
@@ -1449,18 +1492,18 @@
       "type": {}
     }
   },
-  "Verify": "確認",
-  "@Verify": {
+  "verifiedSession": "セッションの確認ができました！",
+  "@verifiedSession": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verify": "確認",
+  "@verify": {
     "type": "text",
     "placeholders": {}
   },
   "verifyManual": "手動で確認",
   "@verifyManual": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "verifiedSession": "セッションの確認ができました！",
-  "@verifiedSession": {
     "type": "text",
     "placeholders": {}
   },
@@ -1479,33 +1522,33 @@
     "type": "text",
     "placeholders": {}
   },
-  "Verify User": "ユーザーの認証",
-  "@Verify User": {
+  "verifyUser": "ユーザーの認証",
+  "@verifyUser": {
     "type": "text",
     "placeholders": {}
   },
-  "Video call": "音声通話",
-  "@Video call": {
+  "videoCall": "音声通話",
+  "@videoCall": {
     "type": "text",
     "placeholders": {}
   },
-  "Visible for all participants": "すべての参加者が閲覧可能",
-  "@Visible for all participants": {
+  "visibilityOfTheChatHistory": "チャット履歴の表示",
+  "@visibilityOfTheChatHistory": {
     "type": "text",
     "placeholders": {}
   },
-  "Visible for everyone": "すべての人が閲覧可能",
-  "@Visible for everyone": {
+  "visibleForAllParticipants": "すべての参加者が閲覧可能",
+  "@visibleForAllParticipants": {
     "type": "text",
     "placeholders": {}
   },
-  "Visibility of the chat history": "チャット履歴の表示",
-  "@Visibility of the chat history": {
+  "visibleForEveryone": "すべての人が閲覧可能",
+  "@visibleForEveryone": {
     "type": "text",
     "placeholders": {}
   },
-  "Voice message": "ボイスメッセージ",
-  "@Voice message": {
+  "voiceMessage": "ボイスメッセージ",
+  "@voiceMessage": {
     "type": "text",
     "placeholders": {}
   },
@@ -1524,112 +1567,69 @@
     "type": "text",
     "placeholders": {}
   },
-  "Wallpaper": "壁紙",
-  "@Wallpaper": {
+  "wallpaper": "壁紙",
+  "@wallpaper": {
     "type": "text",
     "placeholders": {}
   },
-  "End to end encryption is currently in Beta! Use at your own risk!": "エンドツーエンド暗号化は現在ベータ版です！これは自分自身の責任で行ってください！",
-  "@End to end encryption is currently in Beta! Use at your own risk!": {
+  "warningEncryptionInBeta": "エンドツーエンド暗号化は現在ベータ版です！これは自分自身の責任で行ってください！",
+  "@warningEncryptionInBeta": {
     "type": "text",
     "placeholders": {}
   },
-  "Wednesday": "水曜日",
-  "@Wednesday": {
+  "wednesday": "水曜日",
+  "@wednesday": {
     "type": "text",
     "placeholders": {}
   },
-  "Welcome to the cutest instant messenger in the matrix network.": "matrixネットワークで一番かわいいチャットアプリへようこそ。",
-  "@Welcome to the cutest instant messenger in the matrix network.": {
+  "welcomeText": "matrixネットワークで一番かわいいチャットアプリへようこそ。",
+  "@welcomeText": {
     "type": "text",
     "placeholders": {}
   },
-  "Who is allowed to join this group": "誰がこのチャットに入れますか",
-  "@Who is allowed to join this group": {
+  "whoIsAllowedToJoinThisGroup": "誰がこのチャットに入れますか",
+  "@whoIsAllowedToJoinThisGroup": {
     "type": "text",
     "placeholders": {}
   },
-  "Write a message...": "メッセージを入力してください...",
-  "@Write a message...": {
+  "writeAMessage": "メッセージを入力してください...",
+  "@writeAMessage": {
     "type": "text",
     "placeholders": {}
   },
-  "Yes": "はい",
-  "@Yes": {
+  "yes": "はい",
+  "@yes": {
     "type": "text",
     "placeholders": {}
   },
-  "You": "あなた",
-  "@You": {
+  "you": "あなた",
+  "@you": {
     "type": "text",
     "placeholders": {}
   },
-  "You are invited to this chat": "チャットに招待されています",
-  "@You are invited to this chat": {
+  "youAreInvitedToThisChat": "チャットに招待されています",
+  "@youAreInvitedToThisChat": {
     "type": "text",
     "placeholders": {}
   },
-  "You are no longer participating in this chat": "あなたはもうこのチャットの参加者ではありません",
-  "@You are no longer participating in this chat": {
+  "youAreNoLongerParticipatingInThisChat": "あなたはもうこのチャットの参加者ではありません",
+  "@youAreNoLongerParticipatingInThisChat": {
     "type": "text",
     "placeholders": {}
   },
-  "You cannot invite yourself": "自分自身を招待することはできません",
-  "@You cannot invite yourself": {
+  "youCannotInviteYourself": "自分自身を招待することはできません",
+  "@youCannotInviteYourself": {
     "type": "text",
     "placeholders": {}
   },
-  "You have been banned from this chat": "チャットからBANされてしまいました",
-  "@You have been banned from this chat": {
+  "youHaveBeenBannedFromThisChat": "チャットからBANされてしまいました",
+  "@youHaveBeenBannedFromThisChat": {
     "type": "text",
     "placeholders": {}
   },
-  "Your own username": "あなたのユーザー名",
-  "@Your own username": {
+  "yourOwnUsername": "あなたのユーザー名",
+  "@yourOwnUsername": {
     "type": "text",
     "placeholders": {}
-  },
-  "Unpin": "ピンを外す",
-  "@Unpin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Pin": "ピン",
-  "@Pin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "startedACall": "{senderName}は通話を開始しました",
-  "@startedACall": {
-    "type": "text",
-    "placeholders": {
-      "senderName": {}
-    }
-  },
-  "sentCallInformations": "{senderName}は通話情報を送信しました",
-  "@sentCallInformations": {
-    "type": "text",
-    "placeholders": {
-      "senderName": {}
-    }
-  },
-  "Join room": "部屋に参加",
-  "@Join room": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "endedTheCall": "{senderName}は通話を切断しました",
-  "@endedTheCall": {
-    "type": "text",
-    "placeholders": {
-      "senderName": {}
-    }
-  },
-  "answeredTheCall": "{senderName}は通話に出ました",
-  "@answeredTheCall": {
-    "type": "text",
-    "placeholders": {
-      "senderName": {}
-    }
   }
 }

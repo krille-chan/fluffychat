@@ -1,12 +1,12 @@
 {
-  "@@last_modified": "2020-08-16T12:43:17.825046",
-  "About": "Rakenduse teave",
-  "@About": {
+  "@@last_modified": "2020-09-23 11:46:02.671026",
+  "about": "Rakenduse teave",
+  "@about": {
     "type": "text",
     "placeholders": {}
   },
-  "Accept": "Nõustu",
-  "@Accept": {
+  "accept": "Nõustu",
+  "@accept": {
     "type": "text",
     "placeholders": {}
   },
@@ -17,13 +17,13 @@
       "username": {}
     }
   },
-  "Account": "Kasutajakonto",
-  "@Account": {
+  "account": "Kasutajakonto",
+  "@account": {
     "type": "text",
     "placeholders": {}
   },
-  "Account informations": "Kasutajakonto teave",
-  "@Account informations": {
+  "accountInformation": "Kasutajakonto teave",
+  "@accountInformation": {
     "type": "text",
     "placeholders": {}
   },
@@ -34,13 +34,13 @@
       "username": {}
     }
   },
-  "Add a group description": "Lisa rühma kirjeldus",
-  "@Add a group description": {
+  "addGroupDescription": "Lisa rühma kirjeldus",
+  "@addGroupDescription": {
     "type": "text",
     "placeholders": {}
   },
-  "Admin": "Peakasutaja",
-  "@Admin": {
+  "admin": "Peakasutaja",
+  "@admin": {
     "type": "text",
     "placeholders": {}
   },
@@ -49,8 +49,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "Already have an account?": "Sul juba on kasutajakonto olemas?",
-  "@Already have an account?": {
+  "alreadyHaveAnAccount": "Sul juba on kasutajakonto olemas?",
+  "@alreadyHaveAnAccount": {
     "type": "text",
     "placeholders": {}
   },
@@ -61,28 +61,28 @@
       "senderName": {}
     }
   },
-  "Anyone can join": "Kõik võivad liituda",
-  "@Anyone can join": {
+  "anyoneCanJoin": "Kõik võivad liituda",
+  "@anyoneCanJoin": {
     "type": "text",
     "placeholders": {}
   },
-  "Archive": "Arhiiv",
-  "@Archive": {
+  "archive": "Arhiiv",
+  "@archive": {
     "type": "text",
     "placeholders": {}
   },
-  "Archived Room": "Arhiveeritud jututuba",
-  "@Archived Room": {
+  "archivedRoom": "Arhiveeritud jututuba",
+  "@archivedRoom": {
     "type": "text",
     "placeholders": {}
   },
-  "Are guest users allowed to join": "Kas külalised võivad liituda",
-  "@Are guest users allowed to join": {
+  "areGuestsAllowedToJoin": "Kas külalised võivad liituda",
+  "@areGuestsAllowedToJoin": {
     "type": "text",
     "placeholders": {}
   },
-  "Are you sure?": "Kas sa oled kindel?",
-  "@Are you sure?": {
+  "areYouSure": "Kas sa oled kindel?",
+  "@areYouSure": {
     "type": "text",
     "placeholders": {}
   },
@@ -108,23 +108,23 @@
       "username": {}
     }
   },
-  "Authentication": "Autentimine",
-  "@Authentication": {
+  "authentication": "Autentimine",
+  "@authentication": {
     "type": "text",
     "placeholders": {}
   },
-  "Avatar has been changed": "Tunnuspilt on muudetud",
-  "@Avatar has been changed": {
+  "avatarHasBeenChanged": "Tunnuspilt on muudetud",
+  "@avatarHasBeenChanged": {
     "type": "text",
     "placeholders": {}
   },
-  "Ban from chat": "Keela ligipääs vestlusele",
-  "@Ban from chat": {
+  "banFromChat": "Keela ligipääs vestlusele",
+  "@banFromChat": {
     "type": "text",
     "placeholders": {}
   },
-  "Banned": "Ligipääs vestlusele on keelatud",
-  "@Banned": {
+  "banned": "Ligipääs vestlusele on keelatud",
+  "@banned": {
     "type": "text",
     "placeholders": {}
   },
@@ -136,8 +136,8 @@
       "targetName": {}
     }
   },
-  "Block Device": "Blokeeri seade",
-  "@Block Device": {
+  "blockDevice": "Blokeeri seade",
+  "@blockDevice": {
     "type": "text",
     "placeholders": {}
   },
@@ -153,8 +153,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "Cancel": "Tühista",
-  "@Cancel": {
+  "cancel": "Tühista",
+  "@cancel": {
     "type": "text",
     "placeholders": {}
   },
@@ -165,20 +165,20 @@
       "username": {}
     }
   },
-  "changedTheChatNameTo": "{username} muutis oma uueks kuvatavaks nimeks „{chatname}“",
-  "@changedTheChatNameTo": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "chatname": {}
-    }
-  },
   "changedTheChatDescriptionTo": "{username} muutis vestluse uueks kirjelduseks „{description}“",
   "@changedTheChatDescriptionTo": {
     "type": "text",
     "placeholders": {
       "username": {},
       "description": {}
+    }
+  },
+  "changedTheChatNameTo": "{username} muutis oma uueks kuvatavaks nimeks „{chatname}“",
+  "@changedTheChatNameTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "chatname": {}
     }
   },
   "changedTheChatPermissions": "{username} muutis vestlusega seotud õigusi",
@@ -195,11 +195,6 @@
       "username": {},
       "displayname": {}
     }
-  },
-  "Change the homeserver": "Muuda koduserverit",
-  "@Change the homeserver": {
-    "type": "text",
-    "placeholders": {}
   },
   "changedTheGuestAccessRules": "{username} muutis külaliste ligipääsureegleid",
   "@changedTheGuestAccessRules": {
@@ -267,53 +262,68 @@
       "username": {}
     }
   },
-  "Changelog": "Muudatuste logi",
-  "@Changelog": {
+  "changelog": "Muudatuste logi",
+  "@changelog": {
     "type": "text",
     "placeholders": {}
   },
-  "Change the name of the group": "Muuda rühma nime",
-  "@Change the name of the group": {
+  "changesHaveBeenSaved": "Salvestasin muudatused",
+  "@changesHaveBeenSaved": {
     "type": "text",
     "placeholders": {}
   },
-  "Change wallpaper": "Muuda taustapilti",
-  "@Change wallpaper": {
+  "changeTheHomeserver": "Muuda koduserverit",
+  "@changeTheHomeserver": {
     "type": "text",
     "placeholders": {}
   },
-  "Change the server": "Muuda serverit",
-  "@Change the server": {
+  "changeTheme": "Muuda oma stiili",
+  "@changeTheme": {
     "type": "text",
     "placeholders": {}
   },
-  "The encryption has been corrupted": "Kasutatud krüptimine on vigane",
-  "@The encryption has been corrupted": {
+  "changeTheNameOfTheGroup": "Muuda rühma nime",
+  "@changeTheNameOfTheGroup": {
     "type": "text",
     "placeholders": {}
   },
-  "Chat": "Vestlus",
-  "@Chat": {
+  "changeTheServer": "Muuda serverit",
+  "@changeTheServer": {
     "type": "text",
     "placeholders": {}
   },
-  "Chat details": "Vestluse teave",
-  "@Chat details": {
+  "changeWallpaper": "Muuda taustapilti",
+  "@changeWallpaper": {
     "type": "text",
     "placeholders": {}
   },
-  "Choose a strong password": "Vali korralik salasõna",
-  "@Choose a strong password": {
+  "channelCorruptedDecryptError": "Kasutatud krüptimine on vigane",
+  "@channelCorruptedDecryptError": {
     "type": "text",
     "placeholders": {}
   },
-  "Choose a username": "Vali kasutajanimi",
-  "@Choose a username": {
+  "chat": "Vestlus",
+  "@chat": {
     "type": "text",
     "placeholders": {}
   },
-  "Close": "Sulge",
-  "@Close": {
+  "chatDetails": "Vestluse teave",
+  "@chatDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseAStrongPassword": "Vali korralik salasõna",
+  "@chooseAStrongPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseAUsername": "Vali kasutajanimi",
+  "@chooseAUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "close": "Sulge",
+  "@close": {
     "type": "text",
     "placeholders": {}
   },
@@ -327,38 +337,38 @@
     "type": "text",
     "placeholders": {}
   },
-  "Confirm": "Kinnita",
-  "@Confirm": {
+  "confirm": "Kinnita",
+  "@confirm": {
     "type": "text",
     "placeholders": {}
   },
-  "Connect": "Ühenda",
-  "@Connect": {
+  "connect": "Ühenda",
+  "@connect": {
     "type": "text",
     "placeholders": {}
   },
-  "Connection attempt failed": "Ühenduse loomise katse ebaõnnestus",
-  "@Connection attempt failed": {
+  "connectionAttemptFailed": "Ühenduse loomise katse ebaõnnestus",
+  "@connectionAttemptFailed": {
     "type": "text",
     "placeholders": {}
   },
-  "Contact has been invited to the group": "Sinu kontakt on kutsutud liituma rühmaga",
-  "@Contact has been invited to the group": {
+  "contactHasBeenInvitedToTheGroup": "Sinu kontakt on kutsutud liituma rühmaga",
+  "@contactHasBeenInvitedToTheGroup": {
     "type": "text",
     "placeholders": {}
   },
-  "Content viewer": "Sisukuvaja",
-  "@Content viewer": {
+  "contentViewer": "Sisukuvaja",
+  "@contentViewer": {
     "type": "text",
     "placeholders": {}
   },
-  "Copied to clipboard": "Kopeerisin lõikelauale",
-  "@Copied to clipboard": {
+  "copiedToClipboard": "Kopeerisin lõikelauale",
+  "@copiedToClipboard": {
     "type": "text",
     "placeholders": {}
   },
-  "Copy": "Kopeeri",
-  "@Copy": {
+  "copy": "Kopeeri",
+  "@copy": {
     "type": "text",
     "placeholders": {}
   },
@@ -369,13 +379,13 @@
       "error": {}
     }
   },
-  "Could not set avatar": "Tunnuspildi seadmine ei õnnestunud",
-  "@Could not set avatar": {
+  "couldNotSetAvatar": "Tunnuspildi seadmine ei õnnestunud",
+  "@couldNotSetAvatar": {
     "type": "text",
     "placeholders": {}
   },
-  "Could not set displayname": "Kuvatava nime määramine ei õnnestunud",
-  "@Could not set displayname": {
+  "couldNotSetDisplayname": "Kuvatava nime määramine ei õnnestunud",
+  "@couldNotSetDisplayname": {
     "type": "text",
     "placeholders": {}
   },
@@ -386,13 +396,13 @@
       "count": {}
     }
   },
-  "Create": "Loo",
-  "@Create": {
+  "create": "Loo",
+  "@create": {
     "type": "text",
     "placeholders": {}
   },
-  "Create account now": "Tee nüüd kasutajakonto",
-  "@Create account now": {
+  "createAccountNow": "Tee nüüd kasutajakonto",
+  "@createAccountNow": {
     "type": "text",
     "placeholders": {}
   },
@@ -403,8 +413,8 @@
       "username": {}
     }
   },
-  "Create new group": "Loo uus rühm",
-  "@Create new group": {
+  "createNewGroup": "Loo uus rühm",
+  "@createNewGroup": {
     "type": "text",
     "placeholders": {}
   },
@@ -418,8 +428,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "Currently active": "Hetkel aktiivne",
-  "@Currently active": {
+  "currentlyActive": "Hetkel aktiivne",
+  "@currentlyActive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "darkTheme": "Tume",
+  "@darkTheme": {
     "type": "text",
     "placeholders": {}
   },
@@ -448,63 +463,68 @@
       "day": {}
     }
   },
-  "Delete": "Kustuta",
-  "@Delete": {
+  "deactivateAccountWarning": "Järgnevaga eemaldatakse sinu konto kasutusest. Seda tegevust ei saa tagasi pöörata! Kas sa ikka oled kindel?",
+  "@deactivateAccountWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "Delete message": "Kustuta sõnum",
-  "@Delete message": {
+  "delete": "Kustuta",
+  "@delete": {
     "type": "text",
     "placeholders": {}
   },
-  "Deny": "Keela",
-  "@Deny": {
+  "deleteAccount": "Kustuta kasutajakonto",
+  "@deleteAccount": {
     "type": "text",
     "placeholders": {}
   },
-  "Device": "Seade",
-  "@Device": {
+  "deleteMessage": "Kustuta sõnum",
+  "@deleteMessage": {
     "type": "text",
     "placeholders": {}
   },
-  "Devices": "Seadmed",
-  "@Devices": {
+  "deny": "Keela",
+  "@deny": {
     "type": "text",
     "placeholders": {}
   },
-  "Discard picture": "Emalda pilt",
-  "@Discard picture": {
+  "device": "Seade",
+  "@device": {
     "type": "text",
     "placeholders": {}
   },
-  "Displayname has been changed": "Kuvatav nimi on muudetud",
-  "@Displayname has been changed": {
+  "devices": "Seadmed",
+  "@devices": {
     "type": "text",
     "placeholders": {}
   },
-  "Download file": "Lae fail alla",
-  "@Download file": {
+  "discardPicture": "Emalda pilt",
+  "@discardPicture": {
     "type": "text",
     "placeholders": {}
   },
-  "Edit displayname": "Muuda kuvatavat nime",
-  "@Edit displayname": {
+  "displaynameHasBeenChanged": "Kuvatav nimi on muudetud",
+  "@displaynameHasBeenChanged": {
     "type": "text",
     "placeholders": {}
   },
-  "Emote Settings": "Emotsioonitegevuste seadistused",
-  "@Emote Settings": {
+  "donate": "Toeta",
+  "@donate": {
     "type": "text",
     "placeholders": {}
   },
-  "Emote shortcode": "Emotsioonitegevuse lühikood",
-  "@Emote shortcode": {
+  "downloadFile": "Lae fail alla",
+  "@downloadFile": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteWarnNeedToPick": "Sa pead valima emotsioonitegevuse lühikoodi ja pildi!",
-  "@emoteWarnNeedToPick": {
+  "editDisplayname": "Muuda kuvatavat nime",
+  "@editDisplayname": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editJitsiInstance": "Muuda Jitsi liidestust",
+  "@editJitsiInstance": {
     "type": "text",
     "placeholders": {}
   },
@@ -518,36 +538,48 @@
     "type": "text",
     "placeholders": {}
   },
-  "Empty chat": "Vestlust pole olnud",
-  "@Empty chat": {
+  "emoteSettings": "Emotsioonitegevuste seadistused",
+  "@emoteSettings": {
     "type": "text",
     "placeholders": {}
   },
-  "You won't be able to disable the encryption anymore": {
-    "You won't be able to disable the encryption anymore. Are you sure?": "Sa ei saa hiljem enam krüptimist välja lülitada. Kas oled kindel?",
-    "@You won't be able to disable the encryption anymore. Are you sure?": {
-      "type": "text",
-      "placeholders": {}
-    }
-  },
-  "@You won't be able to disable the encryption anymore": {},
-  "Encryption": "Krüptimine",
-  "@Encryption": {
+  "emoteShortcode": "Emotsioonitegevuse lühikood",
+  "@emoteShortcode": {
     "type": "text",
     "placeholders": {}
   },
-  "Encryption algorithm": "Krüptoalgoritm",
-  "@Encryption algorithm": {
+  "emoteWarnNeedToPick": "Sa pead valima emotsioonitegevuse lühikoodi ja pildi!",
+  "@emoteWarnNeedToPick": {
     "type": "text",
     "placeholders": {}
   },
-  "Encryption is not enabled": "Krüptimine ei ole kasutusel",
-  "@Encryption is not enabled": {
+  "emptyChat": "Vestlust pole olnud",
+  "@emptyChat": {
     "type": "text",
     "placeholders": {}
   },
-  "End-to-end encryption settings": "Läbiva krüptimise seadistused",
-  "@End-to-end encryption settings": {
+  "enableEncryptionWarning": "Sa ei saa hiljem enam krüptimist välja lülitada. Kas oled kindel?",
+  "@enableEncryptionWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encryption": "Krüptimine",
+  "@encryption": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encryptionAlgorithm": "Krüptoalgoritm",
+  "@encryptionAlgorithm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encryptionNotEnabled": "Krüptimine ei ole kasutusel",
+  "@encryptionNotEnabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "end2endEncryptionSettings": "Läbiva krüptimise seadistused",
+  "@end2endEncryptionSettings": {
     "type": "text",
     "placeholders": {}
   },
@@ -558,73 +590,73 @@
       "senderName": {}
     }
   },
-  "Enter a group name": "Sisesta rühma nimi",
-  "@Enter a group name": {
+  "enterAGroupName": "Sisesta rühma nimi",
+  "@enterAGroupName": {
     "type": "text",
     "placeholders": {}
   },
-  "Enter a username": "Sisesta kasutajanimi",
-  "@Enter a username": {
+  "enterAUsername": "Sisesta kasutajanimi",
+  "@enterAUsername": {
     "type": "text",
     "placeholders": {}
   },
-  "Enter your homeserver": "Sisesta oma koduserveri aadress",
-  "@Enter your homeserver": {
+  "enterYourHomeserver": "Sisesta oma koduserveri aadress",
+  "@enterYourHomeserver": {
     "type": "text",
     "placeholders": {}
   },
-  "File name": "Faili nimi",
-  "@File name": {
+  "fileName": "Faili nimi",
+  "@fileName": {
     "type": "text",
     "placeholders": {}
   },
-  "File size": "Faili suurus",
-  "@File size": {
+  "fileSize": "Faili suurus",
+  "@fileSize": {
     "type": "text",
     "placeholders": {}
   },
-  "FluffyChat": "FluffyChat",
-  "@FluffyChat": {
+  "fluffychat": "FluffyChat",
+  "@fluffychat": {
     "type": "text",
     "placeholders": {}
   },
-  "Forward": "Edasi",
-  "@Forward": {
+  "forward": "Edasi",
+  "@forward": {
     "type": "text",
     "placeholders": {}
   },
-  "Friday": "Reede",
-  "@Friday": {
+  "friday": "Reede",
+  "@friday": {
     "type": "text",
     "placeholders": {}
   },
-  "From joining": "Alates liitumise hetkest",
-  "@From joining": {
+  "fromJoining": "Alates liitumise hetkest",
+  "@fromJoining": {
     "type": "text",
     "placeholders": {}
   },
-  "From the invitation": "Kutse saamisest",
-  "@From the invitation": {
+  "fromTheInvitation": "Kutse saamisest",
+  "@fromTheInvitation": {
     "type": "text",
     "placeholders": {}
   },
-  "Group": "Rühm",
-  "@Group": {
+  "group": "Rühm",
+  "@group": {
     "type": "text",
     "placeholders": {}
   },
-  "Group description": "Rühma kirjeldus",
-  "@Group description": {
+  "groupDescription": "Rühma kirjeldus",
+  "@groupDescription": {
     "type": "text",
     "placeholders": {}
   },
-  "Group description has been changed": "Rühma kirjeldus on muutunud",
-  "@Group description has been changed": {
+  "groupDescriptionHasBeenChanged": "Rühma kirjeldus on muutunud",
+  "@groupDescriptionHasBeenChanged": {
     "type": "text",
     "placeholders": {}
   },
-  "Group is public": "Rühm on avalik",
-  "@Group is public": {
+  "groupIsPublic": "Rühm on avalik",
+  "@groupIsPublic": {
     "type": "text",
     "placeholders": {}
   },
@@ -635,13 +667,13 @@
       "displayname": {}
     }
   },
-  "Guests are forbidden": "Külalised ei ole lubatud",
-  "@Guests are forbidden": {
+  "guestsAreForbidden": "Külalised ei ole lubatud",
+  "@guestsAreForbidden": {
     "type": "text",
     "placeholders": {}
   },
-  "Guests can join": "Külalised võivad liituda",
-  "@Guests can join": {
+  "guestsCanJoin": "Külalised võivad liituda",
+  "@guestsCanJoin": {
     "type": "text",
     "placeholders": {}
   },
@@ -653,23 +685,38 @@
       "targetName": {}
     }
   },
-  "Help": "Abiteave",
-  "@Help": {
+  "help": "Abiteave",
+  "@help": {
     "type": "text",
     "placeholders": {}
   },
-  "Homeserver is not compatible": "Koduserver ei ole ühilduv",
-  "@Homeserver is not compatible": {
+  "homeserverIsNotCompatible": "Koduserver ei ole ühilduv",
+  "@homeserverIsNotCompatible": {
     "type": "text",
     "placeholders": {}
   },
-  "ID": "ID",
-  "@ID": {
+  "id": "ID",
+  "@id": {
     "type": "text",
     "placeholders": {}
   },
-  "Identity": "Identiteet",
-  "@Identity": {
+  "identity": "Identiteet",
+  "@identity": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignoredUsers": "Eiratud kasutajad",
+  "@ignoredUsers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignoreListDescription": "Sul on võimalik eirata neid kasutajaid, kes sind segavad. Oma isiklikku eiramisloendisse lisatud kasutajad ei saa sulle saata sõnumeid ega kutseid.",
+  "@ignoreListDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignoreUsername": "Eira kasutajanime",
+  "@ignoreUsername": {
     "type": "text",
     "placeholders": {}
   },
@@ -678,8 +725,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "Invite contact": "Kutsu neid, keda sa tead",
-  "@Invite contact": {
+  "inviteContact": "Kutsu neid, keda sa tead",
+  "@inviteContact": {
     "type": "text",
     "placeholders": {}
   },
@@ -690,8 +737,21 @@
       "groupName": {}
     }
   },
-  "Invited": "Kutsutud",
-  "@Invited": {
+  "invited": "Kutsutud",
+  "@invited": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invitedUser": "{username} kutsus kasutajaks {targetName}",
+  "@invitedUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "invitedUsersOnly": "Ainult kutsutud kasutajatele",
+  "@invitedUsersOnly": {
     "type": "text",
     "placeholders": {}
   },
@@ -703,38 +763,13 @@
       "link": {}
     }
   },
-  "invitedUser": "{username} kutsus kasutajaks {targetName}",
-  "@invitedUser": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "targetName": {}
-    }
-  },
-  "Invited users only": "Ainult kutsutud kasutajatele",
-  "@Invited users only": {
-    "type": "text",
-    "placeholders": {}
-  },
   "isDeviceKeyCorrect": "Kas järgnev seadmevõti on õige?",
   "@isDeviceKeyCorrect": {
     "type": "text",
     "placeholders": {}
   },
-  "is typing": {
-    "": {
-      "": {
-        "is typing...": "kirjutab...",
-        "@is typing...": {
-          "type": "text",
-          "placeholders": {}
-        }
-      }
-    }
-  },
-  "@is typing": {},
-  "Edit Jitsi instance": "Muuda Jitsi liidestust",
-  "@Edit Jitsi instance": {
+  "isTyping": "kirjutab...",
+  "@isTyping": {
     "type": "text",
     "placeholders": {}
   },
@@ -745,8 +780,8 @@
       "username": {}
     }
   },
-  "Join room": "Liitu jututoaga",
-  "@Join room": {
+  "joinRoom": "Liitu jututoaga",
+  "@joinRoom": {
     "type": "text",
     "placeholders": {}
   },
@@ -776,32 +811,10 @@
       "targetName": {}
     }
   },
-  "Kick from chat": "Müksa vestlusest välja",
-  "@Kick from chat": {
+  "kickFromChat": "Müksa vestlusest välja",
+  "@kickFromChat": {
     "type": "text",
     "placeholders": {}
-  },
-  "Leave": "Lahku",
-  "@Leave": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Left the chat": "Lahkus vestlusest",
-  "@Left the chat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Logout": "Logi välja",
-  "@Logout": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "userLeftTheChat": "{username} lahkus vestlusest",
-  "@userLeftTheChat": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
   },
   "lastActiveAgo": "Viimati nähtud: {localizedTimeShort}",
   "@lastActiveAgo": {
@@ -810,40 +823,36 @@
       "localizedTimeShort": {}
     }
   },
-  "Last seen IP": "Viimati nähtud IP-aadress",
-  "@Last seen IP": {
+  "lastSeenIp": "Viimati nähtud IP-aadress",
+  "@lastSeenIp": {
     "type": "text",
     "placeholders": {}
   },
-  "License": "Litsents",
-  "@License": {
+  "lastSeenLongTimeAgo": "Nähtud ammu aega tagasi",
+  "@lastSeenLongTimeAgo": {
     "type": "text",
     "placeholders": {}
   },
-  "Loading": {
-    "": {
-      "": {
-        "Loading... Please wait": "Laen andmeid... Palun oota",
-        "@Loading... Please wait": {
-          "type": "text",
-          "placeholders": {}
-        }
-      }
-    }
+  "leave": "Lahku",
+  "@leave": {
+    "type": "text",
+    "placeholders": {}
   },
-  "@Loading": {},
-  "Load more": {
-    "": {
-      "": {
-        "Load more...": "Lae veel...",
-        "@Load more...": {
-          "type": "text",
-          "placeholders": {}
-        }
-      }
-    }
+  "leftTheChat": "Lahkus vestlusest",
+  "@leftTheChat": {
+    "type": "text",
+    "placeholders": {}
   },
-  "@Load more": {},
+  "license": "Litsents",
+  "@license": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lightTheme": "Hele",
+  "@lightTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
   "loadCountMoreParticipants": "Lisa veel {count} osalejat",
   "@loadCountMoreParticipants": {
     "type": "text",
@@ -851,8 +860,18 @@
       "count": {}
     }
   },
-  "Login": "Logi sisse",
-  "@Login": {
+  "loadingPleaseWait": "Laen andmeid... Palun oota",
+  "@loadingPleaseWait": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loadMore": "Lae veel...",
+  "@loadMore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "login": "Logi sisse",
+  "@login": {
     "type": "text",
     "placeholders": {}
   },
@@ -863,56 +882,58 @@
       "homeserver": {}
     }
   },
-  "Make a moderator": "Määra moderaatoriks",
-  "@Make a moderator": {
+  "logout": "Logi välja",
+  "@logout": {
     "type": "text",
     "placeholders": {}
   },
-  "Make an admin": "Määra peakasutajaks",
-  "@Make an admin": {
+  "makeAModerator": "Määra moderaatoriks",
+  "@makeAModerator": {
     "type": "text",
     "placeholders": {}
   },
-  "Make sure the identifier is valid": "Kontrolli, et see tunnus oleks õige",
-  "@Make sure the identifier is valid": {
+  "makeAnAdmin": "Määra peakasutajaks",
+  "@makeAnAdmin": {
     "type": "text",
     "placeholders": {}
   },
-  "Message will be removed for all participants": "Sõnum eemaldatakse kõikidelt kasutajatelt",
-  "@Message will be removed for all participants": {
+  "makeSureTheIdentifierIsValid": "Kontrolli, et see tunnus oleks õige",
+  "@makeSureTheIdentifierIsValid": {
     "type": "text",
     "placeholders": {}
   },
-  "Moderator": "Moderaator",
-  "@Moderator": {
+  "messageWillBeRemovedWarning": "Sõnum eemaldatakse kõikidelt kasutajatelt",
+  "@messageWillBeRemovedWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "Monday": "Esmaspäev",
-  "@Monday": {
+  "moderator": "Moderaator",
+  "@moderator": {
     "type": "text",
     "placeholders": {}
   },
-  "Mute chat": "Summuta vestlus",
-  "@Mute chat": {
+  "monday": "Esmaspäev",
+  "@monday": {
     "type": "text",
     "placeholders": {}
   },
-  "Please be aware that you need Pantalaimon to use end-to-end encryption for now": {
-    "Please be aware that you need Pantalaimon to use end-to-end encryption for now.": "Palun arvesta, et sa saad hetkel kasutada läbivat krüptimist vaid siis, kui koduserver kasutab Pantalaimon'it.",
-    "@Please be aware that you need Pantalaimon to use end-to-end encryption for now.": {
-      "type": "text",
-      "placeholders": {}
-    }
-  },
-  "@Please be aware that you need Pantalaimon to use end-to-end encryption for now": {},
-  "New message in FluffyChat": "Uus sõnum FluffyChat'i vahendusel",
-  "@New message in FluffyChat": {
+  "muteChat": "Summuta vestlus",
+  "@muteChat": {
     "type": "text",
     "placeholders": {}
   },
-  "New private chat": "Uus privaatne vestlus",
-  "@New private chat": {
+  "needPantalaimonWarning": "Palun arvesta, et sa saad hetkel kasutada läbivat krüptimist vaid siis, kui koduserver kasutab Pantalaimon'it.",
+  "@needPantalaimonWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newMessageInFluffyChat": "Uus sõnum FluffyChat'i vahendusel",
+  "@newMessageInFluffyChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newPrivateChat": "Uus privaatne vestlus",
+  "@newPrivateChat": {
     "type": "text",
     "placeholders": {}
   },
@@ -921,8 +942,23 @@
     "type": "text",
     "placeholders": {}
   },
+  "no": "Ei",
+  "@no": {
+    "type": "text",
+    "placeholders": {}
+  },
   "noCrossSignBootstrap": "FluffyChat hetkel ei toeta risttunnustamist. Palun võta ta kasutusele Element'i (vana nimega Riot) vahendusel.",
   "@noCrossSignBootstrap": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noEmotesFound": "Ühtegi emotsioonitegevust ei leidunud. 😕",
+  "@noEmotesFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noGoogleServicesWarning": "Tundub, et sinu nutiseadmes pole Google teenuseid. Sinu privaatsuse mõttes on see kindlasti hea otsus! Kui sa soovid FluffyChat'is näha tõuketeavitusi, siis soovitame, et selle jaoks kasutad microG liidestust https://microg.org/",
+  "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
   },
@@ -931,48 +967,23 @@
     "type": "text",
     "placeholders": {}
   },
-  "It seems that you have no google services on your phone": {
-    " That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg": {
-      "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": "Tundub, et sinu nutiseadmes pole Google teenuseid. Sinu privaatsuse mõttes on see kindlasti hea otsus! Kui sa soovid FluffyChat'is näha tõuketeavitusi, siis soovitame, et selle jaoks kasutad microG liidestust https://microg.org/",
-      "@It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": {
-        "type": "text",
-        "placeholders": {}
-      }
-    }
-  },
-  "@It seems that you have no google services on your phone": {},
-  "None": "Mitte midagi",
-  "@None": {
+  "none": "Mitte midagi",
+  "@none": {
     "type": "text",
     "placeholders": {}
   },
-  "No emotes found": {
-    "No emotes found. 😕": "Ühtegi emotsioonitegevust ei leidunud. 😕",
-    "@No emotes found. 😕": {
-      "type": "text",
-      "placeholders": {}
-    }
-  },
-  "@No emotes found": {},
-  "No permission": "Õigused puuduvad",
-  "@No permission": {
+  "noPermission": "Õigused puuduvad",
+  "@noPermission": {
     "type": "text",
     "placeholders": {}
   },
-  "No rooms found": {
-    "": {
-      "": {
-        "No rooms found...": "Jututubasid ei leidunud...",
-        "@No rooms found...": {
-          "type": "text",
-          "placeholders": {}
-        }
-      }
-    }
+  "noRoomsFound": "Jututubasid ei leidunud...",
+  "@noRoomsFound": {
+    "type": "text",
+    "placeholders": {}
   },
-  "@No rooms found": {},
-  "Not supported in web": "See funktsionaalsus ei ole veebiliideses toetatud",
-  "@Not supported in web": {
+  "notSupportedInWeb": "See funktsionaalsus ei ole veebiliideses toetatud",
+  "@notSupportedInWeb": {
     "type": "text",
     "placeholders": {}
   },
@@ -998,35 +1009,28 @@
     "type": "text",
     "placeholders": {}
   },
-  "Oops something went wrong": {
-    "": {
-      "": {
-        "Oops something went wrong...": "Hopsti! Midagi läks nüüd viltu...",
-        "@Oops something went wrong...": {
-          "type": "text",
-          "placeholders": {}
-        }
-      }
-    }
-  },
-  "@Oops something went wrong": {},
-  "Open app to read messages": "Sõnumite lugemiseks ava rakendus",
-  "@Open app to read messages": {
+  "oopsSomethingWentWrong": "Hopsti! Midagi läks nüüd viltu...",
+  "@oopsSomethingWentWrong": {
     "type": "text",
     "placeholders": {}
   },
-  "Open camera": "Ava kaamera",
-  "@Open camera": {
+  "openAppToReadMessages": "Sõnumite lugemiseks ava rakendus",
+  "@openAppToReadMessages": {
     "type": "text",
     "placeholders": {}
   },
-  "(Optional) Group name": "(Kui soovid) Rühma nimi",
-  "@(Optional) Group name": {
+  "openCamera": "Ava kaamera",
+  "@openCamera": {
     "type": "text",
     "placeholders": {}
   },
-  "Participating user devices": "Kaasatud kasutajate seadmed",
-  "@Participating user devices": {
+  "optionalGroupName": "(Kui soovid) Rühma nimi",
+  "@optionalGroupName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "participatingUserDevices": "Kaasatud kasutajate seadmed",
+  "@participatingUserDevices": {
     "type": "text",
     "placeholders": {}
   },
@@ -1035,18 +1039,23 @@
     "type": "text",
     "placeholders": {}
   },
-  "Password": "Salasõna",
-  "@Password": {
+  "password": "Salasõna",
+  "@password": {
     "type": "text",
     "placeholders": {}
   },
-  "Pick image": "Vali pilt",
-  "@Pick image": {
+  "passwordHasBeenChanged": "Salasõna on muudetud",
+  "@passwordHasBeenChanged": {
     "type": "text",
     "placeholders": {}
   },
-  "Pin": "Klammerda",
-  "@Pin": {
+  "pickImage": "Vali pilt",
+  "@pickImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pin": "Klammerda",
+  "@pin": {
     "type": "text",
     "placeholders": {}
   },
@@ -1057,48 +1066,33 @@
       "fileName": {}
     }
   },
-  "Please choose a username": "Palun vali kasutajanimi",
-  "@Please choose a username": {
+  "pleaseChooseAUsername": "Palun vali kasutajanimi",
+  "@pleaseChooseAUsername": {
     "type": "text",
     "placeholders": {}
   },
-  "Please enter a matrix identifier": "Palun sisesta Matrix'i kasutajatunnus",
-  "@Please enter a matrix identifier": {
+  "pleaseEnterAMatrixIdentifier": "Palun sisesta Matrix'i kasutajatunnus",
+  "@pleaseEnterAMatrixIdentifier": {
     "type": "text",
     "placeholders": {}
   },
-  "Please enter your password": "Palun sisesta oma salasõna",
-  "@Please enter your password": {
+  "pleaseEnterYourPassword": "Palun sisesta oma salasõna",
+  "@pleaseEnterYourPassword": {
     "type": "text",
     "placeholders": {}
   },
-  "Please enter your username": "Palun sisesta oma kasutajanimi",
-  "@Please enter your username": {
+  "pleaseEnterYourUsername": "Palun sisesta oma kasutajanimi",
+  "@pleaseEnterYourUsername": {
     "type": "text",
     "placeholders": {}
   },
-  "Public Rooms": "Avalikud jututoad",
-  "@Public Rooms": {
+  "publicRooms": "Avalikud jututoad",
+  "@publicRooms": {
     "type": "text",
     "placeholders": {}
   },
-  "Reject": "Lükka tagasi",
-  "@Reject": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Rejoin": "Liitu uuesti",
-  "@Rejoin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Render rich message content": "Visualiseeri vormindatud sõnumite sisu",
-  "@Render rich message content": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Recording": "Salvestan",
-  "@Recording": {
+  "recording": "Salvestan",
+  "@recording": {
     "type": "text",
     "placeholders": {}
   },
@@ -1109,6 +1103,11 @@
       "username": {}
     }
   },
+  "reject": "Lükka tagasi",
+  "@reject": {
+    "type": "text",
+    "placeholders": {}
+  },
   "rejectedTheInvitation": "{username} lükkas kutse tagasi",
   "@rejectedTheInvitation": {
     "type": "text",
@@ -1116,8 +1115,18 @@
       "username": {}
     }
   },
-  "Remove all other devices": "Eemalda kõik muud seadmed",
-  "@Remove all other devices": {
+  "rejoin": "Liitu uuesti",
+  "@rejoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "remove": "Eemalda",
+  "@remove": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeAllOtherDevices": "Eemalda kõik muud seadmed",
+  "@removeAllOtherDevices": {
     "type": "text",
     "placeholders": {}
   },
@@ -1128,75 +1137,58 @@
       "username": {}
     }
   },
-  "Remove device": "Eemalda seade",
-  "@Remove device": {
+  "removeDevice": "Eemalda seade",
+  "@removeDevice": {
     "type": "text",
     "placeholders": {}
   },
-  "Remove exile": "Eemalda suhtluskeeld",
-  "@Remove exile": {
+  "removeExile": "Eemalda suhtluskeeld",
+  "@removeExile": {
     "type": "text",
     "placeholders": {}
   },
-  "Revoke all permissions": "Tühista kõik õigused",
-  "@Revoke all permissions": {
+  "removeMessage": "Eemalda sõnum",
+  "@removeMessage": {
     "type": "text",
     "placeholders": {}
   },
-  "Remove": "Eemalda",
-  "@Remove": {
+  "renderRichContent": "Visualiseeri vormindatud sõnumite sisu",
+  "@renderRichContent": {
     "type": "text",
     "placeholders": {}
   },
-  "Remove message": "Eemalda sõnum",
-  "@Remove message": {
+  "reply": "Vasta",
+  "@reply": {
     "type": "text",
     "placeholders": {}
   },
-  "Reply": "Vasta",
-  "@Reply": {
+  "requestPermission": "Palu õigusi",
+  "@requestPermission": {
     "type": "text",
     "placeholders": {}
   },
-  "Request permission": "Palu õigusi",
-  "@Request permission": {
+  "requestToReadOlderMessages": "Palu õigust lugeda vanu sõnumeid",
+  "@requestToReadOlderMessages": {
     "type": "text",
     "placeholders": {}
   },
-  "Request to read older messages": "Palu õigust lugeda vanu sõnumeid",
-  "@Request to read older messages": {
+  "revokeAllPermissions": "Tühista kõik õigused",
+  "@revokeAllPermissions": {
     "type": "text",
     "placeholders": {}
   },
-  "Room has been upgraded": "Jututuba on uuendatud",
-  "@Room has been upgraded": {
+  "roomHasBeenUpgraded": "Jututuba on uuendatud",
+  "@roomHasBeenUpgraded": {
     "type": "text",
     "placeholders": {}
   },
-  "Saturday": "Laupäev",
-  "@Saturday": {
+  "saturday": "Laupäev",
+  "@saturday": {
     "type": "text",
     "placeholders": {}
   },
-  "Share": "Jaga",
-  "@Share": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sharedTheLocation": "{username} jagas asukohta",
-  "@sharedTheLocation": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "Search for a chat": "Otsi vestlust",
-  "@Search for a chat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Seen a long time ago": "Nähtud ammu aega tagasi",
-  "@Seen a long time ago": {
+  "searchForAChat": "Otsi vestlust",
+  "@searchForAChat": {
     "type": "text",
     "placeholders": {}
   },
@@ -1207,14 +1199,6 @@
       "username": {}
     }
   },
-  "seenByUserAndUser": "Nähtud {username} ja {username2} poolt",
-  "@seenByUserAndUser": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "username2": {}
-    }
-  },
   "seenByUserAndCountOthers": "Nähtud {username} ja {count} muu kasutaja poolt",
   "@seenByUserAndCountOthers": {
     "type": "text",
@@ -1223,23 +1207,51 @@
       "count": {}
     }
   },
-  "Send": "Saada",
-  "@Send": {
+  "seenByUserAndUser": "Nähtud {username} ja {username2} poolt",
+  "@seenByUserAndUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "username2": {}
+    }
+  },
+  "send": "Saada",
+  "@send": {
     "type": "text",
     "placeholders": {}
   },
-  "Send a message": "Saada sõnum",
-  "@Send a message": {
+  "sendAMessage": "Saada sõnum",
+  "@sendAMessage": {
     "type": "text",
     "placeholders": {}
   },
-  "Send file": "Saada fail",
-  "@Send file": {
+  "sendAudio": "Saada helifail",
+  "@sendAudio": {
     "type": "text",
     "placeholders": {}
   },
-  "Send image": "Saada pilt",
-  "@Send image": {
+  "sendBugReports": "Luba veateadete saatmist sentry.io vahendusel",
+  "@sendBugReports": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendFile": "Saada fail",
+  "@sendFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendImage": "Saada pilt",
+  "@sendImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendOriginal": "Saada algupärane fail",
+  "@sendOriginal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendVideo": "Saada videofail",
+  "@sendVideo": {
     "type": "text",
     "placeholders": {}
   },
@@ -1285,43 +1297,65 @@
       "senderName": {}
     }
   },
+  "sentryInfo": "Teave sinu privaatsuse kohta: https://sentry.io/security/",
+  "@sentryInfo": {
+    "type": "text",
+    "placeholders": {}
+  },
   "sessionVerified": "Sessioon on verifitseeritud",
   "@sessionVerified": {
     "type": "text",
     "placeholders": {}
   },
-  "Set a profile picture": "Seadista profiilipilt",
-  "@Set a profile picture": {
+  "setAProfilePicture": "Seadista profiilipilt",
+  "@setAProfilePicture": {
     "type": "text",
     "placeholders": {}
   },
-  "Set group description": "Seadista rühma kirjeldus",
-  "@Set group description": {
+  "setGroupDescription": "Seadista rühma kirjeldus",
+  "@setGroupDescription": {
     "type": "text",
     "placeholders": {}
   },
-  "Set invitation link": "Tee kutse link",
-  "@Set invitation link": {
+  "setInvitationLink": "Tee kutse link",
+  "@setInvitationLink": {
     "type": "text",
     "placeholders": {}
   },
-  "Set status": "Määra olek",
-  "@Set status": {
+  "setStatus": "Määra olek",
+  "@setStatus": {
     "type": "text",
     "placeholders": {}
   },
-  "Settings": "Seadistused",
-  "@Settings": {
+  "settings": "Seadistused",
+  "@settings": {
     "type": "text",
     "placeholders": {}
   },
-  "Sign up": "Liitu",
-  "@Sign up": {
+  "share": "Jaga",
+  "@share": {
     "type": "text",
     "placeholders": {}
   },
-  "Skip": "Jäta vahele",
-  "@Skip": {
+  "sharedTheLocation": "{username} jagas asukohta",
+  "@sharedTheLocation": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "signUp": "Liitu",
+  "@signUp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "skip": "Jäta vahele",
+  "@skip": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sourceCode": "Lähtekood",
+  "@sourceCode": {
     "type": "text",
     "placeholders": {}
   },
@@ -1332,86 +1366,53 @@
       "senderName": {}
     }
   },
-  "Change your style": "Muuda oma stiili",
-  "@Change your style": {
+  "startYourFirstChat": "Alusta oma esimest vestlust :-)",
+  "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
   },
-  "System": "Süsteem",
-  "@System": {
+  "statusExampleMessage": "Kuidas sul täna läheb?",
+  "@statusExampleMessage": {
     "type": "text",
     "placeholders": {}
   },
-  "How are you today?": "Kuidas sul täna läheb?",
-  "@How are you today?": {
+  "submit": "Saada",
+  "@submit": {
     "type": "text",
     "placeholders": {}
   },
-  "Light": "Hele",
-  "@Light": {
+  "sunday": "Pühapäev",
+  "@sunday": {
     "type": "text",
     "placeholders": {}
   },
-  "Dark": "Tume",
-  "@Dark": {
+  "systemTheme": "Süsteem",
+  "@systemTheme": {
     "type": "text",
     "placeholders": {}
   },
-  "Use Amoled compatible colors?": "Kas kasutame amoled-tehnoloogiaga ühilduvaid värve?",
-  "@Use Amoled compatible colors?": {
+  "tapToShowMenu": "Menüü kuvamiseks puuduta",
+  "@tapToShowMenu": {
     "type": "text",
     "placeholders": {}
   },
-  "Source code": "Lähtekood",
-  "@Source code": {
+  "theyDontMatch": "Nad ei klapi omavahel",
+  "@theyDontMatch": {
     "type": "text",
     "placeholders": {}
   },
-  "Start your first chat :-)": "Alusta oma esimest vestlust :-)",
-  "@Start your first chat :-)": {
+  "theyMatch": "Nad klapivad omavahel",
+  "@theyMatch": {
     "type": "text",
     "placeholders": {}
   },
-  "Submit": "Saada",
-  "@Submit": {
+  "thisRoomHasBeenArchived": "See jututuba on arhiveeritud.",
+  "@thisRoomHasBeenArchived": {
     "type": "text",
     "placeholders": {}
   },
-  "Sunday": "Pühapäev",
-  "@Sunday": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Donate": "Toeta",
-  "@Donate": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Tap to show menu": "Menüü kuvamiseks puuduta",
-  "@Tap to show menu": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "They Don't Match": "Nad ei klapi omavahel",
-  "@They Don't Match": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "They Match": "Nad klapivad omavahel",
-  "@They Match": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "This room has been archived": {
-    "This room has been archived.": "See jututuba on arhiveeritud.",
-    "@This room has been archived.": {
-      "type": "text",
-      "placeholders": {}
-    }
-  },
-  "@This room has been archived": {},
-  "Thursday": "Neljapäev",
-  "@Thursday": {
+  "thursday": "Neljapäev",
+  "@thursday": {
     "type": "text",
     "placeholders": {}
   },
@@ -1431,13 +1432,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "Try to send again": "Proovi uuesti saata",
-  "@Try to send again": {
+  "tryToSendAgain": "Proovi uuesti saata",
+  "@tryToSendAgain": {
     "type": "text",
     "placeholders": {}
   },
-  "Tuesday": "Teisipäev",
-  "@Tuesday": {
+  "tuesday": "Teisipäev",
+  "@tuesday": {
     "type": "text",
     "placeholders": {}
   },
@@ -1449,28 +1450,18 @@
       "targetName": {}
     }
   },
-  "Unblock Device": "Eemalda seadmelt blokeering",
-  "@Unblock Device": {
+  "unblockDevice": "Eemalda seadmelt blokeering",
+  "@unblockDevice": {
     "type": "text",
     "placeholders": {}
   },
-  "Unmute chat": "Lõpeta vestluse vaigistamine",
-  "@Unmute chat": {
+  "unknownDevice": "Tundmatu seade",
+  "@unknownDevice": {
     "type": "text",
     "placeholders": {}
   },
-  "Unknown device": "Tundmatu seade",
-  "@Unknown device": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Unknown encryption algorithm": "Tundmatu krüptoalgoritm",
-  "@Unknown encryption algorithm": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "unknownSessionVerify": "Tundmatu sessioon, palun verifitseeri",
-  "@unknownSessionVerify": {
+  "unknownEncryptionAlgorithm": "Tundmatu krüptoalgoritm",
+  "@unknownEncryptionAlgorithm": {
     "type": "text",
     "placeholders": {}
   },
@@ -1481,8 +1472,18 @@
       "type": {}
     }
   },
-  "Unpin": "Eemalda klammerdus",
-  "@Unpin": {
+  "unknownSessionVerify": "Tundmatu sessioon, palun verifitseeri",
+  "@unknownSessionVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unmuteChat": "Lõpeta vestluse vaigistamine",
+  "@unmuteChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unpin": "Eemalda klammerdus",
+  "@unpin": {
     "type": "text",
     "placeholders": {}
   },
@@ -1508,6 +1509,11 @@
       "unreadChats": {}
     }
   },
+  "useAmoledTheme": "Kas kasutame amoled-tehnoloogiaga ühilduvaid värve?",
+  "@useAmoledTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
   "userAndOthersAreTyping": "{username} ja {count} muud kirjutavad...",
   "@userAndOthersAreTyping": {
     "type": "text",
@@ -1524,17 +1530,24 @@
       "username2": {}
     }
   },
-  "Username": "Kasutajanimi",
-  "@Username": {
-    "type": "text",
-    "placeholders": {}
-  },
   "userIsTyping": "{username} kirjutab...",
   "@userIsTyping": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
+  },
+  "userLeftTheChat": "{username} lahkus vestlusest",
+  "@userLeftTheChat": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "username": "Kasutajanimi",
+  "@username": {
+    "type": "text",
+    "placeholders": {}
   },
   "userSentUnknownEvent": "{username} saatis {type} sündmuse",
   "@userSentUnknownEvent": {
@@ -1544,18 +1557,18 @@
       "type": {}
     }
   },
-  "Verify": "Verifitseeri",
-  "@Verify": {
+  "verifiedSession": "Sessiooni verifitseerimine õnnestus!",
+  "@verifiedSession": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verify": "Verifitseeri",
+  "@verify": {
     "type": "text",
     "placeholders": {}
   },
   "verifyManual": "Verifitseeri käsitsi",
   "@verifyManual": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "verifiedSession": "Sessiooni verifitseerimine õnnestus!",
-  "@verifiedSession": {
     "type": "text",
     "placeholders": {}
   },
@@ -1574,33 +1587,33 @@
     "type": "text",
     "placeholders": {}
   },
-  "Verify User": "Verifitseeri kasutajat",
-  "@Verify User": {
+  "verifyUser": "Verifitseeri kasutajat",
+  "@verifyUser": {
     "type": "text",
     "placeholders": {}
   },
-  "Video call": "Videokõne",
-  "@Video call": {
+  "videoCall": "Videokõne",
+  "@videoCall": {
     "type": "text",
     "placeholders": {}
   },
-  "Visible for all participants": "Nähtav kõikidele osalejatele",
-  "@Visible for all participants": {
+  "visibilityOfTheChatHistory": "Vestluse ajaloo nähtavus",
+  "@visibilityOfTheChatHistory": {
     "type": "text",
     "placeholders": {}
   },
-  "Visible for everyone": "Nähtav kõikidele",
-  "@Visible for everyone": {
+  "visibleForAllParticipants": "Nähtav kõikidele osalejatele",
+  "@visibleForAllParticipants": {
     "type": "text",
     "placeholders": {}
   },
-  "Visibility of the chat history": "Vestluse ajaloo nähtavus",
-  "@Visibility of the chat history": {
+  "visibleForEveryone": "Nähtav kõikidele",
+  "@visibleForEveryone": {
     "type": "text",
     "placeholders": {}
   },
-  "Voice message": "Häälsõnum",
-  "@Voice message": {
+  "voiceMessage": "Häälsõnum",
+  "@voiceMessage": {
     "type": "text",
     "placeholders": {}
   },
@@ -1619,161 +1632,73 @@
     "type": "text",
     "placeholders": {}
   },
-  "Wallpaper": "Taustapilt",
-  "@Wallpaper": {
+  "wallpaper": "Taustapilt",
+  "@wallpaper": {
     "type": "text",
     "placeholders": {}
   },
-  "End to end encryption is currently in Beta! Use at your own risk!": "Läbiv krüptimine on parasjagu beetatestimise faasis! Kasuta seda omal vastutusel!",
-  "@End to end encryption is currently in Beta! Use at your own risk!": {
+  "warning": "Hoiatus!",
+  "@warning": {
     "type": "text",
     "placeholders": {}
   },
-  "Wednesday": "Kolmapäev",
-  "@Wednesday": {
+  "warningEncryptionInBeta": "Läbiv krüptimine on parasjagu beetatestimise faasis! Kasuta seda omal vastutusel!",
+  "@warningEncryptionInBeta": {
     "type": "text",
     "placeholders": {}
   },
-  "Welcome to the cutest instant messenger in the matrix network": {
-    "Welcome to the cutest instant messenger in the matrix network.": "Tere tulemast kasutama kõige vahvamat sõnumiklienti Matrix'i võrgus.",
-    "@Welcome to the cutest instant messenger in the matrix network.": {
-      "type": "text",
-      "placeholders": {}
-    }
-  },
-  "@Welcome to the cutest instant messenger in the matrix network": {},
-  "Who is allowed to join this group": "Kes võivad selle rühmaga liituda",
-  "@Who is allowed to join this group": {
+  "wednesday": "Kolmapäev",
+  "@wednesday": {
     "type": "text",
     "placeholders": {}
   },
-  "Write a message": {
-    "": {
-      "": {
-        "Write a message...": "Kirjuta üks sõnum...",
-        "@Write a message...": {
-          "type": "text",
-          "placeholders": {}
-        }
-      }
-    }
-  },
-  "@Write a message": {},
-  "Yes": "Jah",
-  "@Yes": {
+  "welcomeText": "Tere tulemast kasutama kõige vahvamat sõnumiklienti Matrix'i võrgus.",
+  "@welcomeText": {
     "type": "text",
     "placeholders": {}
   },
-  "You": "Sina",
-  "@You": {
+  "whoIsAllowedToJoinThisGroup": "Kes võivad selle rühmaga liituda",
+  "@whoIsAllowedToJoinThisGroup": {
     "type": "text",
     "placeholders": {}
   },
-  "You are invited to this chat": "Sa oled kutsutud osalema selles vestluses",
-  "@You are invited to this chat": {
+  "writeAMessage": "Kirjuta üks sõnum...",
+  "@writeAMessage": {
     "type": "text",
     "placeholders": {}
   },
-  "You are no longer participating in this chat": "Sa enam ei osale selles vestluses",
-  "@You are no longer participating in this chat": {
+  "yes": "Jah",
+  "@yes": {
     "type": "text",
     "placeholders": {}
   },
-  "You cannot invite yourself": "Sa ei saa endale kutset saata",
-  "@You cannot invite yourself": {
+  "you": "Sina",
+  "@you": {
     "type": "text",
     "placeholders": {}
   },
-  "You have been banned from this chat": "Sinule on selles vestluses seatud suhtluskeeld",
-  "@You have been banned from this chat": {
+  "youAreInvitedToThisChat": "Sa oled kutsutud osalema selles vestluses",
+  "@youAreInvitedToThisChat": {
     "type": "text",
     "placeholders": {}
   },
-  "Your own username": "Sinu oma kasutajanimi",
-  "@Your own username": {
+  "youAreNoLongerParticipatingInThisChat": "Sa enam ei osale selles vestluses",
+  "@youAreNoLongerParticipatingInThisChat": {
     "type": "text",
     "placeholders": {}
   },
-  "Send video": "Saada videofail",
-  "@Send video": {
+  "youCannotInviteYourself": "Sa ei saa endale kutset saata",
+  "@youCannotInviteYourself": {
     "type": "text",
     "placeholders": {}
   },
-  "Send original": "Saada algupärane fail",
-  "@Send original": {
+  "youHaveBeenBannedFromThisChat": "Sinule on selles vestluses seatud suhtluskeeld",
+  "@youHaveBeenBannedFromThisChat": {
     "type": "text",
     "placeholders": {}
   },
-  "Send audio": "Saada helifail",
-  "@Send audio": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "No": "Ei",
-  "@No": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Changes have been saved": "Salvestasin muudatused",
-  "@Changes have been saved": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Informations about your privacy: https://sentry": {
-    "Informations about your privacy: https://sentry.io/security/": "Teave sinu privaatsuse kohta: https://sentry.io/security/",
-    "@Informations about your privacy: https://sentry.io/security/": {
-      "type": "text",
-      "placeholders": {}
-    }
-  },
-  "@Informations about your privacy: https://sentry": {},
-  "Allow sending bug reports with sentry": {
-    "Allow sending bug reports with sentry.io": "Luba veateadete saatmist sentry.io vahendusel",
-    "@Allow sending bug reports with sentry.io": {
-      "type": "text",
-      "placeholders": {}
-    }
-  },
-  "@Allow sending bug reports with sentry": {},
-  "Ignored users": "Eiratud kasutajad",
-  "@Ignored users": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Ignore username": "Eira kasutajanime",
-  "@Ignore username": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "You can ignore users who are disturbing you": {
-    " You won't be able to receive any messages or room invites from the users on your personal ignore list": {
-      "You can ignore users who are disturbing you. You won't be able to receive any messages or room invites from the users on your personal ignore list.": "Sul on võimalik eirata neid kasutajaid, kes sind segavad. Oma isiklikku eiramisloendisse lisatud kasutajad ei saa sulle saata sõnumeid ega kutseid.",
-      "@You can ignore users who are disturbing you. You won't be able to receive any messages or room invites from the users on your personal ignore list.": {
-        "type": "text",
-        "placeholders": {}
-      }
-    }
-  },
-  "@You can ignore users who are disturbing you": {},
-  "This will deactivate your user account": {
-    "This will deactivate your user account. This can not be undone! Are you sure?": "Järgnevaga eemaldatakse sinu konto kasutusest. Seda tegevust ei saa tagasi pöörata! Kas sa ikka oled kindel?",
-    "@This will deactivate your user account. This can not be undone! Are you sure?": {
-      "type": "text",
-      "placeholders": {}
-    }
-  },
-  "Warning!": "Hoiatus!",
-  "@Warning!": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Password has been changed": "Salasõna on muudetud",
-  "@Password has been changed": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Delete account": "Kustuta kasutajakonto",
-  "@Delete account": {
+  "yourOwnUsername": "Sinu oma kasutajanimi",
+  "@yourOwnUsername": {
     "type": "text",
     "placeholders": {}
   }

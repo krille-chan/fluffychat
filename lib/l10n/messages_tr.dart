@@ -159,283 +159,27 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function>{
-        "(Optional) Group name":
-            MessageLookupByLibrary.simpleMessage("(İsteğe bağlı) Grup adı"),
-        "About": MessageLookupByLibrary.simpleMessage("Hakkında"),
-        "Accept": MessageLookupByLibrary.simpleMessage("Kabul et"),
-        "Account": MessageLookupByLibrary.simpleMessage("Hesap"),
-        "Account informations":
-            MessageLookupByLibrary.simpleMessage("Hesap bilgileri"),
-        "Add a group description":
-            MessageLookupByLibrary.simpleMessage("Grup açıklaması ekle"),
-        "Admin": MessageLookupByLibrary.simpleMessage("Yönetici"),
-        "Already have an account?":
-            MessageLookupByLibrary.simpleMessage("Hesabınız var mı?"),
-        "Anyone can join":
-            MessageLookupByLibrary.simpleMessage("Herkes katılabilir"),
-        "Archive": MessageLookupByLibrary.simpleMessage("Arşiv"),
-        "Archived Room": MessageLookupByLibrary.simpleMessage("Arşiv Odası"),
-        "Are guest users allowed to join": MessageLookupByLibrary.simpleMessage(
-            "Misafir kullanıcıların katılmasına izin veriliyor mu"),
-        "Are you sure?": MessageLookupByLibrary.simpleMessage("Emin misiniz?"),
-        "Authentication": MessageLookupByLibrary.simpleMessage("Doğrulama"),
-        "Avatar has been changed":
-            MessageLookupByLibrary.simpleMessage("Avatar değiştirildi"),
-        "Ban from chat":
-            MessageLookupByLibrary.simpleMessage("Sohbetten engellendiniz"),
-        "Banned": MessageLookupByLibrary.simpleMessage("Engellendi"),
-        "Block Device": MessageLookupByLibrary.simpleMessage("Cihazı Engelle"),
-        "Cancel": MessageLookupByLibrary.simpleMessage("İptal"),
-        "Change the homeserver": MessageLookupByLibrary.simpleMessage(""),
-        "Change the name of the group":
-            MessageLookupByLibrary.simpleMessage("Grubun adını değiştir"),
-        "Change the server":
-            MessageLookupByLibrary.simpleMessage("Sunucuyu değiştir"),
-        "Change wallpaper":
-            MessageLookupByLibrary.simpleMessage("Duvar kağıdını değiştir"),
-        "Change your style":
-            MessageLookupByLibrary.simpleMessage("Sitilinizi değiştirin"),
-        "Changelog": MessageLookupByLibrary.simpleMessage("Değişiklikler"),
-        "Chat": MessageLookupByLibrary.simpleMessage("Sohbet"),
-        "Chat details":
-            MessageLookupByLibrary.simpleMessage("Sohbet ayrıntıları"),
-        "Choose a strong password":
-            MessageLookupByLibrary.simpleMessage("Güçlü bir parola seçin"),
-        "Choose a username":
-            MessageLookupByLibrary.simpleMessage("Bir kullanıcı adı seçin"),
-        "Close": MessageLookupByLibrary.simpleMessage("Kapat"),
-        "Confirm": MessageLookupByLibrary.simpleMessage("Onayla"),
-        "Connect": MessageLookupByLibrary.simpleMessage("Bağlan"),
-        "Connection attempt failed": MessageLookupByLibrary.simpleMessage(
-            "Bağlantı denemesi başarısız oldu"),
-        "Contact has been invited to the group":
-            MessageLookupByLibrary.simpleMessage("Kişi gruba davet edildi"),
-        "Content viewer": MessageLookupByLibrary.simpleMessage(""),
-        "Copied to clipboard":
-            MessageLookupByLibrary.simpleMessage("Panoya kopyalandı"),
-        "Copy": MessageLookupByLibrary.simpleMessage("Kopyala"),
-        "Could not set avatar":
-            MessageLookupByLibrary.simpleMessage("Avatar ayarlanamadı"),
-        "Could not set displayname": MessageLookupByLibrary.simpleMessage(""),
-        "Create": MessageLookupByLibrary.simpleMessage("Oluştur"),
-        "Create account now":
-            MessageLookupByLibrary.simpleMessage("Şimdi hesap oluştur"),
-        "Create new group":
-            MessageLookupByLibrary.simpleMessage("Yeni grup oluştur"),
-        "Currently active": MessageLookupByLibrary.simpleMessage(""),
-        "Dark": MessageLookupByLibrary.simpleMessage("Koyu"),
-        "Delete": MessageLookupByLibrary.simpleMessage("Sil"),
-        "Delete message": MessageLookupByLibrary.simpleMessage("Mesajı sil"),
-        "Deny": MessageLookupByLibrary.simpleMessage(""),
-        "Device": MessageLookupByLibrary.simpleMessage("Cihaz"),
-        "Devices": MessageLookupByLibrary.simpleMessage("Cihazlar"),
-        "Discard picture": MessageLookupByLibrary.simpleMessage(""),
-        "Displayname has been changed":
-            MessageLookupByLibrary.simpleMessage(""),
-        "Donate": MessageLookupByLibrary.simpleMessage("Bağış"),
-        "Download file": MessageLookupByLibrary.simpleMessage(""),
-        "Edit Jitsi instance": MessageLookupByLibrary.simpleMessage(""),
-        "Edit displayname": MessageLookupByLibrary.simpleMessage(""),
-        "Emote Settings": MessageLookupByLibrary.simpleMessage(""),
-        "Emote shortcode": MessageLookupByLibrary.simpleMessage(""),
-        "Empty chat": MessageLookupByLibrary.simpleMessage(""),
-        "Encryption": MessageLookupByLibrary.simpleMessage("Şifreleme"),
-        "Encryption algorithm":
-            MessageLookupByLibrary.simpleMessage("Şifreleme algoritması"),
-        "Encryption is not enabled": MessageLookupByLibrary.simpleMessage(""),
-        "End to end encryption is currently in Beta! Use at your own risk!":
-            MessageLookupByLibrary.simpleMessage(
-                "Uçtan uca şifreleme şimdilik Beta aşamasında! Risk alarak kullanın!"),
-        "End-to-end encryption settings": MessageLookupByLibrary.simpleMessage(
-            "Uçtan uca şifreleme ayarları"),
-        "Enter a group name":
-            MessageLookupByLibrary.simpleMessage("Bir grup adı girin"),
-        "Enter a username":
-            MessageLookupByLibrary.simpleMessage("Bir kullanıcı adı girin"),
-        "Enter your homeserver": MessageLookupByLibrary.simpleMessage(""),
-        "File name": MessageLookupByLibrary.simpleMessage("Dosya adı"),
-        "File size": MessageLookupByLibrary.simpleMessage("Dosya boyutu"),
-        "FluffyChat": MessageLookupByLibrary.simpleMessage("FluffyChat"),
-        "Forward": MessageLookupByLibrary.simpleMessage(""),
-        "Friday": MessageLookupByLibrary.simpleMessage("Cuma"),
-        "From joining": MessageLookupByLibrary.simpleMessage(""),
-        "From the invitation": MessageLookupByLibrary.simpleMessage(""),
-        "Group": MessageLookupByLibrary.simpleMessage("Grup"),
-        "Group description":
-            MessageLookupByLibrary.simpleMessage("Grup açıklaması"),
-        "Group description has been changed":
-            MessageLookupByLibrary.simpleMessage(
-                "Grup açıklaması değiştirildi"),
-        "Group is public": MessageLookupByLibrary.simpleMessage(""),
-        "Guests are forbidden": MessageLookupByLibrary.simpleMessage(""),
-        "Guests can join":
-            MessageLookupByLibrary.simpleMessage("Misafirler katılabilir"),
-        "Help": MessageLookupByLibrary.simpleMessage("Yardım"),
-        "Homeserver is not compatible":
-            MessageLookupByLibrary.simpleMessage(""),
-        "How are you today?":
-            MessageLookupByLibrary.simpleMessage("Bugün nasılsınız?"),
-        "ID": MessageLookupByLibrary.simpleMessage(""),
-        "Identity": MessageLookupByLibrary.simpleMessage(""),
-        "Invite contact": MessageLookupByLibrary.simpleMessage(""),
-        "Invited": MessageLookupByLibrary.simpleMessage(""),
-        "Invited users only": MessageLookupByLibrary.simpleMessage(
-            "Sadece davet edilen kullanıcılar"),
-        "It seems that you have no google services on your phone. That\'s a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/":
-            MessageLookupByLibrary.simpleMessage(""),
-        "Kick from chat": MessageLookupByLibrary.simpleMessage(""),
-        "Last seen IP": MessageLookupByLibrary.simpleMessage(""),
-        "Leave": MessageLookupByLibrary.simpleMessage("Ayrıl"),
-        "Left the chat": MessageLookupByLibrary.simpleMessage(""),
-        "License": MessageLookupByLibrary.simpleMessage("Lisans"),
-        "Light": MessageLookupByLibrary.simpleMessage("Açık"),
-        "Load more...":
-            MessageLookupByLibrary.simpleMessage("Daha fazla yükle..."),
-        "Loading... Please wait": MessageLookupByLibrary.simpleMessage(
-            "Yükleniyor... Lütfen bekleyin"),
-        "Login": MessageLookupByLibrary.simpleMessage("Oturum aç"),
-        "Logout": MessageLookupByLibrary.simpleMessage("Oturumu kapat"),
-        "Make a moderator": MessageLookupByLibrary.simpleMessage(""),
-        "Make an admin": MessageLookupByLibrary.simpleMessage(""),
-        "Make sure the identifier is valid":
-            MessageLookupByLibrary.simpleMessage(""),
-        "Message will be removed for all participants":
-            MessageLookupByLibrary.simpleMessage(
-                "Mesaj tüm katılımcılar için kaldırılacak"),
-        "Moderator": MessageLookupByLibrary.simpleMessage(""),
-        "Monday": MessageLookupByLibrary.simpleMessage("Pazartesi"),
-        "Mute chat": MessageLookupByLibrary.simpleMessage(""),
-        "New message in FluffyChat": MessageLookupByLibrary.simpleMessage(""),
-        "New private chat": MessageLookupByLibrary.simpleMessage(""),
-        "No emotes found. 😕": MessageLookupByLibrary.simpleMessage(""),
-        "No permission": MessageLookupByLibrary.simpleMessage(""),
-        "No rooms found...": MessageLookupByLibrary.simpleMessage(""),
-        "None": MessageLookupByLibrary.simpleMessage(""),
-        "Not supported in web": MessageLookupByLibrary.simpleMessage(""),
-        "Oops something went wrong...":
-            MessageLookupByLibrary.simpleMessage(""),
-        "Open app to read messages": MessageLookupByLibrary.simpleMessage(
-            "Mesajları okumak için uygulamayı aç"),
-        "Open camera": MessageLookupByLibrary.simpleMessage("Kamerayı aç"),
-        "Participating user devices": MessageLookupByLibrary.simpleMessage(""),
-        "Password": MessageLookupByLibrary.simpleMessage("Parola"),
-        "Pick image": MessageLookupByLibrary.simpleMessage(""),
-        "Please be aware that you need Pantalaimon to use end-to-end encryption for now.":
-            MessageLookupByLibrary.simpleMessage(""),
-        "Please choose a username": MessageLookupByLibrary.simpleMessage(
-            "Lütfen bir kullanıcı adı seçin"),
-        "Please enter a matrix identifier":
-            MessageLookupByLibrary.simpleMessage(""),
-        "Please enter your password":
-            MessageLookupByLibrary.simpleMessage("Lütfen parolanızı girin"),
-        "Please enter your username": MessageLookupByLibrary.simpleMessage(
-            "Lütfen kullanıcı adınızı girin"),
-        "Public Rooms": MessageLookupByLibrary.simpleMessage(""),
-        "Recording": MessageLookupByLibrary.simpleMessage(""),
-        "Reject": MessageLookupByLibrary.simpleMessage("Reddet"),
-        "Rejoin": MessageLookupByLibrary.simpleMessage("Yeniden katıl"),
-        "Remove": MessageLookupByLibrary.simpleMessage("Kaldır"),
-        "Remove all other devices":
-            MessageLookupByLibrary.simpleMessage("Diğer tüm cihazları kaldır"),
-        "Remove device": MessageLookupByLibrary.simpleMessage("Cihazı kaldır"),
-        "Remove exile": MessageLookupByLibrary.simpleMessage(""),
-        "Remove message": MessageLookupByLibrary.simpleMessage("Mesajı kaldır"),
-        "Render rich message content": MessageLookupByLibrary.simpleMessage(""),
-        "Reply": MessageLookupByLibrary.simpleMessage(""),
-        "Request permission": MessageLookupByLibrary.simpleMessage("İzin iste"),
-        "Request to read older messages":
-            MessageLookupByLibrary.simpleMessage("Eski mesajları okumayı iste"),
-        "Revoke all permissions":
-            MessageLookupByLibrary.simpleMessage("Tüm izinleri iptal et"),
-        "Room has been upgraded": MessageLookupByLibrary.simpleMessage(""),
-        "Saturday": MessageLookupByLibrary.simpleMessage("Cumartesi"),
-        "Search for a chat": MessageLookupByLibrary.simpleMessage("Sohbet ara"),
-        "Seen a long time ago":
-            MessageLookupByLibrary.simpleMessage("Uzun zaman önce görüldü"),
-        "Send": MessageLookupByLibrary.simpleMessage("Gönder"),
-        "Send a message":
-            MessageLookupByLibrary.simpleMessage("Bir mesaj gönder"),
-        "Send file": MessageLookupByLibrary.simpleMessage("Dosya gönder"),
-        "Send image": MessageLookupByLibrary.simpleMessage(""),
-        "Set a profile picture":
-            MessageLookupByLibrary.simpleMessage("Profil fotoğrafı ekleyin"),
-        "Set group description":
-            MessageLookupByLibrary.simpleMessage("Grup açıklaması ekleyin"),
-        "Set invitation link":
-            MessageLookupByLibrary.simpleMessage("Davet bağlantısı ayarlayın"),
-        "Set status": MessageLookupByLibrary.simpleMessage("Durumu ayarla"),
-        "Settings": MessageLookupByLibrary.simpleMessage("Ayarlar"),
-        "Share": MessageLookupByLibrary.simpleMessage("Paylaş"),
-        "Sign up": MessageLookupByLibrary.simpleMessage("Hesap oluştur"),
-        "Skip": MessageLookupByLibrary.simpleMessage("Geç"),
-        "Source code": MessageLookupByLibrary.simpleMessage("Kaynak kod"),
-        "Start your first chat :-)":
-            MessageLookupByLibrary.simpleMessage("İlk sohbetini başlat :-)"),
-        "Submit": MessageLookupByLibrary.simpleMessage("Gönder"),
-        "Sunday": MessageLookupByLibrary.simpleMessage("Pazar"),
-        "System": MessageLookupByLibrary.simpleMessage("Sistem"),
-        "Tap to show menu":
-            MessageLookupByLibrary.simpleMessage("Menüyü açmak için dokunun"),
-        "The encryption has been corrupted":
-            MessageLookupByLibrary.simpleMessage(""),
-        "They Don\'t Match":
-            MessageLookupByLibrary.simpleMessage("Eşleşme yok"),
-        "They Match": MessageLookupByLibrary.simpleMessage("Eşleştiler"),
-        "This room has been archived.":
-            MessageLookupByLibrary.simpleMessage("Bu sohbet arşivlendi."),
-        "Thursday": MessageLookupByLibrary.simpleMessage("Perşembe"),
-        "Try to send again":
-            MessageLookupByLibrary.simpleMessage("Tekrar göndermeyi deneyin"),
-        "Tuesday": MessageLookupByLibrary.simpleMessage("Salı"),
-        "Unblock Device": MessageLookupByLibrary.simpleMessage(""),
-        "Unknown device":
-            MessageLookupByLibrary.simpleMessage("Bilinmeyen cihaz"),
-        "Unknown encryption algorithm": MessageLookupByLibrary.simpleMessage(
-            "Bilinmeyen şifreleme algoritması"),
-        "Unmute chat":
-            MessageLookupByLibrary.simpleMessage("Sohbeti sessizden çıkart"),
-        "Use Amoled compatible colors?": MessageLookupByLibrary.simpleMessage(
-            "Amolede uyumlu renkler kullanılsın mı?"),
-        "Username": MessageLookupByLibrary.simpleMessage("Kullanıcı adı"),
-        "Verify": MessageLookupByLibrary.simpleMessage("Doğrula"),
-        "Verify User":
-            MessageLookupByLibrary.simpleMessage("Kullanıcıyı Doğrula"),
-        "Video call": MessageLookupByLibrary.simpleMessage("Video arama"),
-        "Visibility of the chat history":
-            MessageLookupByLibrary.simpleMessage("Sohbet geçmişi görünürlüğü"),
-        "Visible for all participants": MessageLookupByLibrary.simpleMessage(
-            "Tüm katılımcılar için görünür"),
-        "Visible for everyone":
-            MessageLookupByLibrary.simpleMessage("Herkes için görünür"),
-        "Voice message": MessageLookupByLibrary.simpleMessage("Sesli mesaj"),
-        "Wallpaper": MessageLookupByLibrary.simpleMessage("Duvar kağıdı"),
-        "Wednesday": MessageLookupByLibrary.simpleMessage("Çarşamba"),
-        "Welcome to the cutest instant messenger in the matrix network.":
-            MessageLookupByLibrary.simpleMessage(
-                "Matrix ağındaki en şirin anlık mesajlaşma uygulamasına hoş geldiniz."),
-        "Who is allowed to join this group":
-            MessageLookupByLibrary.simpleMessage("Bu gruba kimler katılabilir"),
-        "Write a message...":
-            MessageLookupByLibrary.simpleMessage("Mesaj yazın..."),
-        "Yes": MessageLookupByLibrary.simpleMessage("Evet"),
-        "You": MessageLookupByLibrary.simpleMessage("Sen"),
-        "You are invited to this chat":
-            MessageLookupByLibrary.simpleMessage("Sohbete davet edildiniz"),
-        "You are no longer participating in this chat":
-            MessageLookupByLibrary.simpleMessage(
-                "Artık bu sohbette katılımcı değilsiniz"),
-        "You cannot invite yourself":
-            MessageLookupByLibrary.simpleMessage("Kendinizi davet edemezsiniz"),
-        "You have been banned from this chat":
-            MessageLookupByLibrary.simpleMessage("Bu sohbetten engellendiniz"),
-        "You won\'t be able to disable the encryption anymore. Are you sure?":
-            MessageLookupByLibrary.simpleMessage(""),
-        "Your own username":
-            MessageLookupByLibrary.simpleMessage("Kullanıcı adınız"),
+        "about": MessageLookupByLibrary.simpleMessage("Hakkında"),
+        "accept": MessageLookupByLibrary.simpleMessage("Kabul et"),
         "acceptedTheInvitation": m0,
+        "account": MessageLookupByLibrary.simpleMessage("Hesap"),
+        "accountInformation":
+            MessageLookupByLibrary.simpleMessage("Hesap bilgileri"),
         "activatedEndToEndEncryption": m1,
+        "addGroupDescription":
+            MessageLookupByLibrary.simpleMessage("Grup açıklaması ekle"),
+        "admin": MessageLookupByLibrary.simpleMessage("Yönetici"),
         "alias": MessageLookupByLibrary.simpleMessage("takma ad"),
+        "alreadyHaveAnAccount":
+            MessageLookupByLibrary.simpleMessage("Hesabınız var mı?"),
         "answeredTheCall": m2,
+        "anyoneCanJoin":
+            MessageLookupByLibrary.simpleMessage("Herkes katılabilir"),
+        "archive": MessageLookupByLibrary.simpleMessage("Arşiv"),
+        "archivedRoom": MessageLookupByLibrary.simpleMessage("Arşiv Odası"),
+        "areGuestsAllowedToJoin": MessageLookupByLibrary.simpleMessage(
+            "Misafir kullanıcıların katılmasına izin veriliyor mu"),
+        "areYouSure": MessageLookupByLibrary.simpleMessage("Emin misiniz?"),
         "askSSSSCache": MessageLookupByLibrary.simpleMessage(
             "Anahtarları önbelleğe almak için lütfen güvenli depolama parolanızı veya kurtarma anahtarınızı girin."),
         "askSSSSSign": MessageLookupByLibrary.simpleMessage(
@@ -443,10 +187,27 @@ class MessageLookup extends MessageLookupByLibrary {
         "askSSSSVerify": MessageLookupByLibrary.simpleMessage(
             "Lütfen oturumunuzu doğrulamak için güvenli depolama parolanızı veya kurtarma anahtarınızı girin."),
         "askVerificationRequest": m3,
+        "authentication": MessageLookupByLibrary.simpleMessage("Doğrulama"),
+        "avatarHasBeenChanged":
+            MessageLookupByLibrary.simpleMessage("Avatar değiştirildi"),
+        "banFromChat":
+            MessageLookupByLibrary.simpleMessage("Sohbetten engellendiniz"),
+        "banned": MessageLookupByLibrary.simpleMessage("Engellendi"),
         "bannedUser": m4,
+        "blockDevice": MessageLookupByLibrary.simpleMessage("Cihazı Engelle"),
         "byDefaultYouWillBeConnectedTo": m5,
         "cachedKeys": MessageLookupByLibrary.simpleMessage(
             "Anahtarlar başarıyla önbelleğe alındı!"),
+        "cancel": MessageLookupByLibrary.simpleMessage("İptal"),
+        "changeTheHomeserver": MessageLookupByLibrary.simpleMessage(""),
+        "changeTheNameOfTheGroup":
+            MessageLookupByLibrary.simpleMessage("Grubun adını değiştir"),
+        "changeTheServer":
+            MessageLookupByLibrary.simpleMessage("Sunucuyu değiştir"),
+        "changeTheme":
+            MessageLookupByLibrary.simpleMessage("Sitilinizi değiştirin"),
+        "changeWallpaper":
+            MessageLookupByLibrary.simpleMessage("Duvar kağıdını değiştir"),
         "changedTheChatAvatar": m6,
         "changedTheChatDescriptionTo": m7,
         "changedTheChatNameTo": m8,
@@ -461,50 +222,204 @@ class MessageLookup extends MessageLookupByLibrary {
         "changedTheProfileAvatar": m17,
         "changedTheRoomAliases": m18,
         "changedTheRoomInvitationLink": m19,
+        "changelog": MessageLookupByLibrary.simpleMessage("Değişiklikler"),
+        "channelCorruptedDecryptError":
+            MessageLookupByLibrary.simpleMessage(""),
+        "chat": MessageLookupByLibrary.simpleMessage("Sohbet"),
+        "chatDetails":
+            MessageLookupByLibrary.simpleMessage("Sohbet ayrıntıları"),
+        "chooseAStrongPassword":
+            MessageLookupByLibrary.simpleMessage("Güçlü bir parola seçin"),
+        "chooseAUsername":
+            MessageLookupByLibrary.simpleMessage("Bir kullanıcı adı seçin"),
+        "close": MessageLookupByLibrary.simpleMessage("Kapat"),
         "compareEmojiMatch": MessageLookupByLibrary.simpleMessage(""),
         "compareNumbersMatch": MessageLookupByLibrary.simpleMessage(""),
+        "confirm": MessageLookupByLibrary.simpleMessage("Onayla"),
+        "connect": MessageLookupByLibrary.simpleMessage("Bağlan"),
+        "connectionAttemptFailed": MessageLookupByLibrary.simpleMessage(
+            "Bağlantı denemesi başarısız oldu"),
+        "contactHasBeenInvitedToTheGroup":
+            MessageLookupByLibrary.simpleMessage("Kişi gruba davet edildi"),
+        "contentViewer": MessageLookupByLibrary.simpleMessage(""),
+        "copiedToClipboard":
+            MessageLookupByLibrary.simpleMessage("Panoya kopyalandı"),
+        "copy": MessageLookupByLibrary.simpleMessage("Kopyala"),
         "couldNotDecryptMessage": m20,
+        "couldNotSetAvatar":
+            MessageLookupByLibrary.simpleMessage("Avatar ayarlanamadı"),
+        "couldNotSetDisplayname": MessageLookupByLibrary.simpleMessage(""),
         "countParticipants": m21,
+        "create": MessageLookupByLibrary.simpleMessage("Oluştur"),
+        "createAccountNow":
+            MessageLookupByLibrary.simpleMessage("Şimdi hesap oluştur"),
+        "createNewGroup":
+            MessageLookupByLibrary.simpleMessage("Yeni grup oluştur"),
         "createdTheChat": m22,
         "crossSigningDisabled": MessageLookupByLibrary.simpleMessage(""),
         "crossSigningEnabled": MessageLookupByLibrary.simpleMessage(""),
+        "currentlyActive": MessageLookupByLibrary.simpleMessage(""),
+        "darkTheme": MessageLookupByLibrary.simpleMessage("Koyu"),
         "dateAndTimeOfDay": m23,
         "dateWithYear": m24,
         "dateWithoutYear": m25,
+        "delete": MessageLookupByLibrary.simpleMessage("Sil"),
+        "deleteMessage": MessageLookupByLibrary.simpleMessage("Mesajı sil"),
+        "deny": MessageLookupByLibrary.simpleMessage(""),
+        "device": MessageLookupByLibrary.simpleMessage("Cihaz"),
+        "devices": MessageLookupByLibrary.simpleMessage("Cihazlar"),
+        "discardPicture": MessageLookupByLibrary.simpleMessage(""),
+        "displaynameHasBeenChanged": MessageLookupByLibrary.simpleMessage(""),
+        "donate": MessageLookupByLibrary.simpleMessage("Bağış"),
+        "downloadFile": MessageLookupByLibrary.simpleMessage(""),
+        "editDisplayname": MessageLookupByLibrary.simpleMessage(""),
+        "editJitsiInstance": MessageLookupByLibrary.simpleMessage(""),
         "emoteExists": MessageLookupByLibrary.simpleMessage(""),
         "emoteInvalid": MessageLookupByLibrary.simpleMessage(""),
+        "emoteSettings": MessageLookupByLibrary.simpleMessage(""),
+        "emoteShortcode": MessageLookupByLibrary.simpleMessage(""),
         "emoteWarnNeedToPick": MessageLookupByLibrary.simpleMessage(""),
+        "emptyChat": MessageLookupByLibrary.simpleMessage(""),
+        "enableEncryptionWarning": MessageLookupByLibrary.simpleMessage(""),
+        "encryption": MessageLookupByLibrary.simpleMessage("Şifreleme"),
+        "encryptionAlgorithm":
+            MessageLookupByLibrary.simpleMessage("Şifreleme algoritması"),
+        "encryptionNotEnabled": MessageLookupByLibrary.simpleMessage(""),
+        "end2endEncryptionSettings": MessageLookupByLibrary.simpleMessage(
+            "Uçtan uca şifreleme ayarları"),
+        "enterAGroupName":
+            MessageLookupByLibrary.simpleMessage("Bir grup adı girin"),
+        "enterAUsername":
+            MessageLookupByLibrary.simpleMessage("Bir kullanıcı adı girin"),
+        "enterYourHomeserver": MessageLookupByLibrary.simpleMessage(""),
+        "fileName": MessageLookupByLibrary.simpleMessage("Dosya adı"),
+        "fileSize": MessageLookupByLibrary.simpleMessage("Dosya boyutu"),
+        "fluffychat": MessageLookupByLibrary.simpleMessage("FluffyChat"),
+        "forward": MessageLookupByLibrary.simpleMessage(""),
+        "friday": MessageLookupByLibrary.simpleMessage("Cuma"),
+        "fromJoining": MessageLookupByLibrary.simpleMessage(""),
+        "fromTheInvitation": MessageLookupByLibrary.simpleMessage(""),
+        "group": MessageLookupByLibrary.simpleMessage("Grup"),
+        "groupDescription":
+            MessageLookupByLibrary.simpleMessage("Grup açıklaması"),
+        "groupDescriptionHasBeenChanged": MessageLookupByLibrary.simpleMessage(
+            "Grup açıklaması değiştirildi"),
+        "groupIsPublic": MessageLookupByLibrary.simpleMessage(""),
         "groupWith": m27,
+        "guestsAreForbidden": MessageLookupByLibrary.simpleMessage(""),
+        "guestsCanJoin":
+            MessageLookupByLibrary.simpleMessage("Misafirler katılabilir"),
         "hasWithdrawnTheInvitationFor": m28,
+        "help": MessageLookupByLibrary.simpleMessage("Yardım"),
+        "homeserverIsNotCompatible": MessageLookupByLibrary.simpleMessage(""),
+        "id": MessageLookupByLibrary.simpleMessage(""),
+        "identity": MessageLookupByLibrary.simpleMessage(""),
         "incorrectPassphraseOrKey": MessageLookupByLibrary.simpleMessage(""),
+        "inviteContact": MessageLookupByLibrary.simpleMessage(""),
         "inviteContactToGroup": m29,
         "inviteText": m30,
+        "invited": MessageLookupByLibrary.simpleMessage(""),
         "invitedUser": m31,
-        "is typing...": MessageLookupByLibrary.simpleMessage("yazıyor..."),
+        "invitedUsersOnly": MessageLookupByLibrary.simpleMessage(
+            "Sadece davet edilen kullanıcılar"),
         "isDeviceKeyCorrect": MessageLookupByLibrary.simpleMessage(""),
+        "isTyping": MessageLookupByLibrary.simpleMessage("yazıyor..."),
         "joinedTheChat": m32,
         "keysCached": MessageLookupByLibrary.simpleMessage(""),
         "keysMissing": MessageLookupByLibrary.simpleMessage(""),
+        "kickFromChat": MessageLookupByLibrary.simpleMessage(""),
         "kicked": m33,
         "kickedAndBanned": m34,
         "lastActiveAgo": m35,
+        "lastSeenIp": MessageLookupByLibrary.simpleMessage(""),
+        "lastSeenLongTimeAgo":
+            MessageLookupByLibrary.simpleMessage("Uzun zaman önce görüldü"),
+        "leave": MessageLookupByLibrary.simpleMessage("Ayrıl"),
+        "leftTheChat": MessageLookupByLibrary.simpleMessage(""),
+        "license": MessageLookupByLibrary.simpleMessage("Lisans"),
+        "lightTheme": MessageLookupByLibrary.simpleMessage("Açık"),
         "loadCountMoreParticipants": m36,
+        "loadMore": MessageLookupByLibrary.simpleMessage("Daha fazla yükle..."),
+        "loadingPleaseWait": MessageLookupByLibrary.simpleMessage(
+            "Yükleniyor... Lütfen bekleyin"),
         "logInTo": m37,
+        "login": MessageLookupByLibrary.simpleMessage("Oturum aç"),
+        "logout": MessageLookupByLibrary.simpleMessage("Oturumu kapat"),
+        "makeAModerator": MessageLookupByLibrary.simpleMessage(""),
+        "makeAnAdmin": MessageLookupByLibrary.simpleMessage(""),
+        "makeSureTheIdentifierIsValid":
+            MessageLookupByLibrary.simpleMessage(""),
+        "messageWillBeRemovedWarning": MessageLookupByLibrary.simpleMessage(
+            "Mesaj tüm katılımcılar için kaldırılacak"),
+        "moderator": MessageLookupByLibrary.simpleMessage(""),
+        "monday": MessageLookupByLibrary.simpleMessage("Pazartesi"),
+        "muteChat": MessageLookupByLibrary.simpleMessage(""),
+        "needPantalaimonWarning": MessageLookupByLibrary.simpleMessage(""),
+        "newMessageInFluffyChat": MessageLookupByLibrary.simpleMessage(""),
+        "newPrivateChat": MessageLookupByLibrary.simpleMessage(""),
         "newVerificationRequest": MessageLookupByLibrary.simpleMessage(""),
         "noCrossSignBootstrap": MessageLookupByLibrary.simpleMessage(""),
+        "noEmotesFound": MessageLookupByLibrary.simpleMessage(""),
+        "noGoogleServicesWarning": MessageLookupByLibrary.simpleMessage(""),
         "noMegolmBootstrap": MessageLookupByLibrary.simpleMessage(""),
+        "noPermission": MessageLookupByLibrary.simpleMessage(""),
+        "noRoomsFound": MessageLookupByLibrary.simpleMessage(""),
+        "none": MessageLookupByLibrary.simpleMessage(""),
+        "notSupportedInWeb": MessageLookupByLibrary.simpleMessage(""),
         "numberSelected": m38,
         "ok": MessageLookupByLibrary.simpleMessage(""),
         "onlineKeyBackupDisabled": MessageLookupByLibrary.simpleMessage(""),
         "onlineKeyBackupEnabled": MessageLookupByLibrary.simpleMessage(""),
+        "oopsSomethingWentWrong": MessageLookupByLibrary.simpleMessage(""),
+        "openAppToReadMessages": MessageLookupByLibrary.simpleMessage(
+            "Mesajları okumak için uygulamayı aç"),
+        "openCamera": MessageLookupByLibrary.simpleMessage("Kamerayı aç"),
+        "optionalGroupName":
+            MessageLookupByLibrary.simpleMessage("(İsteğe bağlı) Grup adı"),
+        "participatingUserDevices": MessageLookupByLibrary.simpleMessage(""),
         "passphraseOrKey": MessageLookupByLibrary.simpleMessage(""),
+        "password": MessageLookupByLibrary.simpleMessage("Parola"),
+        "pickImage": MessageLookupByLibrary.simpleMessage(""),
         "play": m39,
+        "pleaseChooseAUsername": MessageLookupByLibrary.simpleMessage(
+            "Lütfen bir kullanıcı adı seçin"),
+        "pleaseEnterAMatrixIdentifier":
+            MessageLookupByLibrary.simpleMessage(""),
+        "pleaseEnterYourPassword":
+            MessageLookupByLibrary.simpleMessage("Lütfen parolanızı girin"),
+        "pleaseEnterYourUsername": MessageLookupByLibrary.simpleMessage(
+            "Lütfen kullanıcı adınızı girin"),
+        "publicRooms": MessageLookupByLibrary.simpleMessage(""),
+        "recording": MessageLookupByLibrary.simpleMessage(""),
         "redactedAnEvent": m40,
+        "reject": MessageLookupByLibrary.simpleMessage("Reddet"),
         "rejectedTheInvitation": m41,
+        "rejoin": MessageLookupByLibrary.simpleMessage("Yeniden katıl"),
+        "remove": MessageLookupByLibrary.simpleMessage("Kaldır"),
+        "removeAllOtherDevices":
+            MessageLookupByLibrary.simpleMessage("Diğer tüm cihazları kaldır"),
+        "removeDevice": MessageLookupByLibrary.simpleMessage("Cihazı kaldır"),
+        "removeExile": MessageLookupByLibrary.simpleMessage(""),
+        "removeMessage": MessageLookupByLibrary.simpleMessage("Mesajı kaldır"),
         "removedBy": m42,
+        "renderRichContent": MessageLookupByLibrary.simpleMessage(""),
+        "reply": MessageLookupByLibrary.simpleMessage(""),
+        "requestPermission": MessageLookupByLibrary.simpleMessage("İzin iste"),
+        "requestToReadOlderMessages":
+            MessageLookupByLibrary.simpleMessage("Eski mesajları okumayı iste"),
+        "revokeAllPermissions":
+            MessageLookupByLibrary.simpleMessage("Tüm izinleri iptal et"),
+        "roomHasBeenUpgraded": MessageLookupByLibrary.simpleMessage(""),
+        "saturday": MessageLookupByLibrary.simpleMessage("Cumartesi"),
+        "searchForAChat": MessageLookupByLibrary.simpleMessage("Sohbet ara"),
         "seenByUser": m43,
         "seenByUserAndCountOthers": m44,
         "seenByUserAndUser": m45,
+        "send": MessageLookupByLibrary.simpleMessage("Gönder"),
+        "sendAMessage":
+            MessageLookupByLibrary.simpleMessage("Bir mesaj gönder"),
+        "sendFile": MessageLookupByLibrary.simpleMessage("Dosya gönder"),
+        "sendImage": MessageLookupByLibrary.simpleMessage(""),
         "sentAFile": m46,
         "sentAPicture": m47,
         "sentASticker": m48,
@@ -512,23 +427,63 @@ class MessageLookup extends MessageLookupByLibrary {
         "sentAnAudio": m50,
         "sessionVerified":
             MessageLookupByLibrary.simpleMessage("Oturum doğrulandı"),
+        "setAProfilePicture":
+            MessageLookupByLibrary.simpleMessage("Profil fotoğrafı ekleyin"),
+        "setGroupDescription":
+            MessageLookupByLibrary.simpleMessage("Grup açıklaması ekleyin"),
+        "setInvitationLink":
+            MessageLookupByLibrary.simpleMessage("Davet bağlantısı ayarlayın"),
+        "setStatus": MessageLookupByLibrary.simpleMessage("Durumu ayarla"),
+        "settings": MessageLookupByLibrary.simpleMessage("Ayarlar"),
+        "share": MessageLookupByLibrary.simpleMessage("Paylaş"),
         "sharedTheLocation": m52,
+        "signUp": MessageLookupByLibrary.simpleMessage("Hesap oluştur"),
+        "skip": MessageLookupByLibrary.simpleMessage("Geç"),
+        "sourceCode": MessageLookupByLibrary.simpleMessage("Kaynak kod"),
+        "startYourFirstChat":
+            MessageLookupByLibrary.simpleMessage("İlk sohbetini başlat :-)"),
+        "statusExampleMessage":
+            MessageLookupByLibrary.simpleMessage("Bugün nasılsınız?"),
+        "submit": MessageLookupByLibrary.simpleMessage("Gönder"),
+        "sunday": MessageLookupByLibrary.simpleMessage("Pazar"),
+        "systemTheme": MessageLookupByLibrary.simpleMessage("Sistem"),
+        "tapToShowMenu":
+            MessageLookupByLibrary.simpleMessage("Menüyü açmak için dokunun"),
+        "theyDontMatch": MessageLookupByLibrary.simpleMessage("Eşleşme yok"),
+        "theyMatch": MessageLookupByLibrary.simpleMessage("Eşleştiler"),
+        "thisRoomHasBeenArchived":
+            MessageLookupByLibrary.simpleMessage("Bu sohbet arşivlendi."),
+        "thursday": MessageLookupByLibrary.simpleMessage("Perşembe"),
         "timeOfDay": m54,
         "title": MessageLookupByLibrary.simpleMessage("FluffyChat"),
+        "tryToSendAgain":
+            MessageLookupByLibrary.simpleMessage("Tekrar göndermeyi deneyin"),
+        "tuesday": MessageLookupByLibrary.simpleMessage("Salı"),
         "unbannedUser": m55,
+        "unblockDevice": MessageLookupByLibrary.simpleMessage(""),
+        "unknownDevice":
+            MessageLookupByLibrary.simpleMessage("Bilinmeyen cihaz"),
+        "unknownEncryptionAlgorithm": MessageLookupByLibrary.simpleMessage(
+            "Bilinmeyen şifreleme algoritması"),
         "unknownEvent": m56,
         "unknownSessionVerify": MessageLookupByLibrary.simpleMessage(
             "Bilinmeyen oturum, lütfen doğrulayın"),
+        "unmuteChat":
+            MessageLookupByLibrary.simpleMessage("Sohbeti sessizden çıkart"),
         "unreadChats": m57,
         "unreadMessages": m58,
         "unreadMessagesInChats": m59,
+        "useAmoledTheme": MessageLookupByLibrary.simpleMessage(
+            "Amolede uyumlu renkler kullanılsın mı?"),
         "userAndOthersAreTyping": m60,
         "userAndUserAreTyping": m61,
         "userIsTyping": m62,
         "userLeftTheChat": m63,
         "userSentUnknownEvent": m64,
+        "username": MessageLookupByLibrary.simpleMessage("Kullanıcı adı"),
         "verifiedSession": MessageLookupByLibrary.simpleMessage(
             "Oturum başarıyla doğrulandı!"),
+        "verify": MessageLookupByLibrary.simpleMessage("Doğrula"),
         "verifyManual":
             MessageLookupByLibrary.simpleMessage("Manuel Olarak Doğrula"),
         "verifyStart":
@@ -537,10 +492,42 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Başarıyla doğrulandı!"),
         "verifyTitle":
             MessageLookupByLibrary.simpleMessage("Diğer hesap doğrulanıyor"),
+        "verifyUser":
+            MessageLookupByLibrary.simpleMessage("Kullanıcıyı Doğrula"),
+        "videoCall": MessageLookupByLibrary.simpleMessage("Video arama"),
+        "visibilityOfTheChatHistory":
+            MessageLookupByLibrary.simpleMessage("Sohbet geçmişi görünürlüğü"),
+        "visibleForAllParticipants": MessageLookupByLibrary.simpleMessage(
+            "Tüm katılımcılar için görünür"),
+        "visibleForEveryone":
+            MessageLookupByLibrary.simpleMessage("Herkes için görünür"),
+        "voiceMessage": MessageLookupByLibrary.simpleMessage("Sesli mesaj"),
         "waitingPartnerAcceptRequest": MessageLookupByLibrary.simpleMessage(
             "İsteği kabul etmesi bekleniyor..."),
         "waitingPartnerEmoji": MessageLookupByLibrary.simpleMessage(
             "Emojiyi kabul etmesi bekleniyor..."),
-        "waitingPartnerNumbers": MessageLookupByLibrary.simpleMessage("")
+        "waitingPartnerNumbers": MessageLookupByLibrary.simpleMessage(""),
+        "wallpaper": MessageLookupByLibrary.simpleMessage("Duvar kağıdı"),
+        "warningEncryptionInBeta": MessageLookupByLibrary.simpleMessage(
+            "Uçtan uca şifreleme şimdilik Beta aşamasında! Risk alarak kullanın!"),
+        "wednesday": MessageLookupByLibrary.simpleMessage("Çarşamba"),
+        "welcomeText": MessageLookupByLibrary.simpleMessage(
+            "Matrix ağındaki en şirin anlık mesajlaşma uygulamasına hoş geldiniz."),
+        "whoIsAllowedToJoinThisGroup":
+            MessageLookupByLibrary.simpleMessage("Bu gruba kimler katılabilir"),
+        "writeAMessage": MessageLookupByLibrary.simpleMessage("Mesaj yazın..."),
+        "yes": MessageLookupByLibrary.simpleMessage("Evet"),
+        "you": MessageLookupByLibrary.simpleMessage("Sen"),
+        "youAreInvitedToThisChat":
+            MessageLookupByLibrary.simpleMessage("Sohbete davet edildiniz"),
+        "youAreNoLongerParticipatingInThisChat":
+            MessageLookupByLibrary.simpleMessage(
+                "Artık bu sohbette katılımcı değilsiniz"),
+        "youCannotInviteYourself":
+            MessageLookupByLibrary.simpleMessage("Kendinizi davet edemezsiniz"),
+        "youHaveBeenBannedFromThisChat":
+            MessageLookupByLibrary.simpleMessage("Bu sohbetten engellendiniz"),
+        "yourOwnUsername":
+            MessageLookupByLibrary.simpleMessage("Kullanıcı adınız")
       };
 }

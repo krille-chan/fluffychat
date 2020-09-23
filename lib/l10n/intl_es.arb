@@ -1,12 +1,12 @@
 {
-  "@@last_modified": "2020-06-25T16:02:16.297192",
-  "About": "Acerca de",
-  "@About": {
+  "@@last_modified": "2020-09-23 11:46:02.754339",
+  "about": "Acerca de",
+  "@about": {
     "type": "text",
     "placeholders": {}
   },
-  "Accept": "Aceptar",
-  "@Accept": {
+  "accept": "Aceptar",
+  "@accept": {
     "type": "text",
     "placeholders": {}
   },
@@ -17,13 +17,13 @@
       "username": {}
     }
   },
-  "Account": "Cuenta",
-  "@Account": {
+  "account": "Cuenta",
+  "@account": {
     "type": "text",
     "placeholders": {}
   },
-  "Account informations": "Información de la cuenta",
-  "@Account informations": {
+  "accountInformation": "Información de la cuenta",
+  "@accountInformation": {
     "type": "text",
     "placeholders": {}
   },
@@ -34,13 +34,13 @@
       "username": {}
     }
   },
-  "Add a group description": "Agregar una descripción al grupo",
-  "@Add a group description": {
+  "addGroupDescription": "Agregar una descripción al grupo",
+  "@addGroupDescription": {
     "type": "text",
     "placeholders": {}
   },
-  "Admin": "Administrador",
-  "@Admin": {
+  "admin": "Administrador",
+  "@admin": {
     "type": "text",
     "placeholders": {}
   },
@@ -49,33 +49,40 @@
     "type": "text",
     "placeholders": {}
   },
-  "Already have an account?": "¿Ya tienes una cuenta?",
-  "@Already have an account?": {
+  "alreadyHaveAnAccount": "¿Ya tienes una cuenta?",
+  "@alreadyHaveAnAccount": {
     "type": "text",
     "placeholders": {}
   },
-  "Anyone can join": "Cualquiera puede unirse",
-  "@Anyone can join": {
+  "answeredTheCall": "{senderName} respondió a la llamada",
+  "@answeredTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "anyoneCanJoin": "Cualquiera puede unirse",
+  "@anyoneCanJoin": {
     "type": "text",
     "placeholders": {}
   },
-  "Archive": "Archivo",
-  "@Archive": {
+  "archive": "Archivo",
+  "@archive": {
     "type": "text",
     "placeholders": {}
   },
-  "Archived Room": "Sala archivada",
-  "@Archived Room": {
+  "archivedRoom": "Sala archivada",
+  "@archivedRoom": {
     "type": "text",
     "placeholders": {}
   },
-  "Are guest users allowed to join": "¿Pueden unirse los usuarios visitantes?",
-  "@Are guest users allowed to join": {
+  "areGuestsAllowedToJoin": "¿Pueden unirse los usuarios visitantes?",
+  "@areGuestsAllowedToJoin": {
     "type": "text",
     "placeholders": {}
   },
-  "Are you sure?": "¿Estás seguro?",
-  "@Are you sure?": {
+  "areYouSure": "¿Estás seguro?",
+  "@areYouSure": {
     "type": "text",
     "placeholders": {}
   },
@@ -101,23 +108,23 @@
       "username": {}
     }
   },
-  "Authentication": "Autenticación",
-  "@Authentication": {
+  "authentication": "Autenticación",
+  "@authentication": {
     "type": "text",
     "placeholders": {}
   },
-  "Avatar has been changed": "La imagen de perfil ha sido cambiada",
-  "@Avatar has been changed": {
+  "avatarHasBeenChanged": "La imagen de perfil ha sido cambiada",
+  "@avatarHasBeenChanged": {
     "type": "text",
     "placeholders": {}
   },
-  "Ban from chat": "Vetar del chat",
-  "@Ban from chat": {
+  "banFromChat": "Vetar del chat",
+  "@banFromChat": {
     "type": "text",
     "placeholders": {}
   },
-  "Banned": "Vetado",
-  "@Banned": {
+  "banned": "Vetado",
+  "@banned": {
     "type": "text",
     "placeholders": {}
   },
@@ -129,8 +136,8 @@
       "targetName": {}
     }
   },
-  "Block Device": "Bloquear dispositivo",
-  "@Block Device": {
+  "blockDevice": "Bloquear dispositivo",
+  "@blockDevice": {
     "type": "text",
     "placeholders": {}
   },
@@ -146,8 +153,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "Cancel": "Cancelar",
-  "@Cancel": {
+  "cancel": "Cancelar",
+  "@cancel": {
     "type": "text",
     "placeholders": {}
   },
@@ -158,20 +165,20 @@
       "username": {}
     }
   },
-  "changedTheChatNameTo": "{username} cambió el nombre del chat a: '{chatname}'",
-  "@changedTheChatNameTo": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "chatname": {}
-    }
-  },
   "changedTheChatDescriptionTo": "{username} cambió la descripción del chat a: '{description}'",
   "@changedTheChatDescriptionTo": {
     "type": "text",
     "placeholders": {
       "username": {},
       "description": {}
+    }
+  },
+  "changedTheChatNameTo": "{username} cambió el nombre del chat a: '{chatname}'",
+  "@changedTheChatNameTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "chatname": {}
     }
   },
   "changedTheChatPermissions": "{username} cambió los permisos del chat",
@@ -188,11 +195,6 @@
       "username": {},
       "displayname": {}
     }
-  },
-  "Change the homeserver": "Cambiar el servidor",
-  "@Change the homeserver": {
-    "type": "text",
-    "placeholders": {}
   },
   "changedTheGuestAccessRules": "{username} cambió las reglas de acceso de visitantes",
   "@changedTheGuestAccessRules": {
@@ -260,53 +262,68 @@
       "username": {}
     }
   },
-  "Changelog": "Registro de cambios",
-  "@Changelog": {
+  "changelog": "Registro de cambios",
+  "@changelog": {
     "type": "text",
     "placeholders": {}
   },
-  "Change the name of the group": "Cambiar el nombre del grupo",
-  "@Change the name of the group": {
+  "changesHaveBeenSaved": "Los cambios se han guardado",
+  "@changesHaveBeenSaved": {
     "type": "text",
     "placeholders": {}
   },
-  "Change wallpaper": "Cambiar el fondo de pantalla",
-  "@Change wallpaper": {
+  "changeTheHomeserver": "Cambiar el servidor",
+  "@changeTheHomeserver": {
     "type": "text",
     "placeholders": {}
   },
-  "Change the server": "Cambiar el servidor",
-  "@Change the server": {
+  "changeTheme": "Cambia tu estilo",
+  "@changeTheme": {
     "type": "text",
     "placeholders": {}
   },
-  "The encryption has been corrupted": "El cifrado se ha corrompido",
-  "@The encryption has been corrupted": {
+  "changeTheNameOfTheGroup": "Cambiar el nombre del grupo",
+  "@changeTheNameOfTheGroup": {
     "type": "text",
     "placeholders": {}
   },
-  "Chat": "Chat",
-  "@Chat": {
+  "changeTheServer": "Cambiar el servidor",
+  "@changeTheServer": {
     "type": "text",
     "placeholders": {}
   },
-  "Chat details": "Detalles del chat",
-  "@Chat details": {
+  "changeWallpaper": "Cambiar el fondo de pantalla",
+  "@changeWallpaper": {
     "type": "text",
     "placeholders": {}
   },
-  "Choose a strong password": "Elija una contraseña segura",
-  "@Choose a strong password": {
+  "channelCorruptedDecryptError": "El cifrado se ha corrompido",
+  "@channelCorruptedDecryptError": {
     "type": "text",
     "placeholders": {}
   },
-  "Choose a username": "Elija un nombre de usuario",
-  "@Choose a username": {
+  "chat": "Chat",
+  "@chat": {
     "type": "text",
     "placeholders": {}
   },
-  "Close": "Cerrar",
-  "@Close": {
+  "chatDetails": "Detalles del chat",
+  "@chatDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseAStrongPassword": "Elija una contraseña segura",
+  "@chooseAStrongPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseAUsername": "Elija un nombre de usuario",
+  "@chooseAUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "close": "Cerrar",
+  "@close": {
     "type": "text",
     "placeholders": {}
   },
@@ -320,38 +337,38 @@
     "type": "text",
     "placeholders": {}
   },
-  "Confirm": "Confirmar",
-  "@Confirm": {
+  "confirm": "Confirmar",
+  "@confirm": {
     "type": "text",
     "placeholders": {}
   },
-  "Connect": "Conectar",
-  "@Connect": {
+  "connect": "Conectar",
+  "@connect": {
     "type": "text",
     "placeholders": {}
   },
-  "Connection attempt failed": "Falló el intento de conexión",
-  "@Connection attempt failed": {
+  "connectionAttemptFailed": "Falló el intento de conexión",
+  "@connectionAttemptFailed": {
     "type": "text",
     "placeholders": {}
   },
-  "Contact has been invited to the group": "El contacto ha sido invitado al grupo",
-  "@Contact has been invited to the group": {
+  "contactHasBeenInvitedToTheGroup": "El contacto ha sido invitado al grupo",
+  "@contactHasBeenInvitedToTheGroup": {
     "type": "text",
     "placeholders": {}
   },
-  "Content viewer": "Visor de contenido",
-  "@Content viewer": {
+  "contentViewer": "Visor de contenido",
+  "@contentViewer": {
     "type": "text",
     "placeholders": {}
   },
-  "Copied to clipboard": "Copiado al portapapeles",
-  "@Copied to clipboard": {
+  "copiedToClipboard": "Copiado al portapapeles",
+  "@copiedToClipboard": {
     "type": "text",
     "placeholders": {}
   },
-  "Copy": "Copiar",
-  "@Copy": {
+  "copy": "Copiar",
+  "@copy": {
     "type": "text",
     "placeholders": {}
   },
@@ -362,13 +379,13 @@
       "error": {}
     }
   },
-  "Could not set avatar": "No se pudo establecer la imagen de perfil",
-  "@Could not set avatar": {
+  "couldNotSetAvatar": "No se pudo establecer la imagen de perfil",
+  "@couldNotSetAvatar": {
     "type": "text",
     "placeholders": {}
   },
-  "Could not set displayname": "No se pudo establecer el nombre visible",
-  "@Could not set displayname": {
+  "couldNotSetDisplayname": "No se pudo establecer el nombre visible",
+  "@couldNotSetDisplayname": {
     "type": "text",
     "placeholders": {}
   },
@@ -379,13 +396,13 @@
       "count": {}
     }
   },
-  "Create": "Crear",
-  "@Create": {
+  "create": "Crear",
+  "@create": {
     "type": "text",
     "placeholders": {}
   },
-  "Create account now": "Crear cuenta ahora",
-  "@Create account now": {
+  "createAccountNow": "Crear cuenta ahora",
+  "@createAccountNow": {
     "type": "text",
     "placeholders": {}
   },
@@ -396,8 +413,8 @@
       "username": {}
     }
   },
-  "Create new group": "Crear grupo nuevo",
-  "@Create new group": {
+  "createNewGroup": "Crear grupo nuevo",
+  "@createNewGroup": {
     "type": "text",
     "placeholders": {}
   },
@@ -411,8 +428,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "Currently active": "Actualmente activo",
-  "@Currently active": {
+  "currentlyActive": "Actualmente activo",
+  "@currentlyActive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "darkTheme": "Oscuro",
+  "@darkTheme": {
     "type": "text",
     "placeholders": {}
   },
@@ -441,63 +463,58 @@
       "day": {}
     }
   },
-  "Delete": "Eliminar",
-  "@Delete": {
+  "delete": "Eliminar",
+  "@delete": {
     "type": "text",
     "placeholders": {}
   },
-  "Delete message": "Eliminar mensaje",
-  "@Delete message": {
+  "deleteMessage": "Eliminar mensaje",
+  "@deleteMessage": {
     "type": "text",
     "placeholders": {}
   },
-  "Deny": "Rechazar",
-  "@Deny": {
+  "deny": "Rechazar",
+  "@deny": {
     "type": "text",
     "placeholders": {}
   },
-  "Device": "Dispositivo",
-  "@Device": {
+  "device": "Dispositivo",
+  "@device": {
     "type": "text",
     "placeholders": {}
   },
-  "Devices": "Dispositivos",
-  "@Devices": {
+  "devices": "Dispositivos",
+  "@devices": {
     "type": "text",
     "placeholders": {}
   },
-  "Discard picture": "Descartar imagen",
-  "@Discard picture": {
+  "discardPicture": "Descartar imagen",
+  "@discardPicture": {
     "type": "text",
     "placeholders": {}
   },
-  "Displayname has been changed": "El nombre visible ha cambiado",
-  "@Displayname has been changed": {
+  "displaynameHasBeenChanged": "El nombre visible ha cambiado",
+  "@displaynameHasBeenChanged": {
     "type": "text",
     "placeholders": {}
   },
-  "Download file": "Descargar archivo",
-  "@Download file": {
+  "donate": "Donar",
+  "@donate": {
     "type": "text",
     "placeholders": {}
   },
-  "Edit displayname": "Editar nombre visible",
-  "@Edit displayname": {
+  "downloadFile": "Descargar archivo",
+  "@downloadFile": {
     "type": "text",
     "placeholders": {}
   },
-  "Emote Settings": "Configuración de emotes",
-  "@Emote Settings": {
+  "editDisplayname": "Editar nombre visible",
+  "@editDisplayname": {
     "type": "text",
     "placeholders": {}
   },
-  "Emote shortcode": "Atajo de emote",
-  "@Emote shortcode": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "emoteWarnNeedToPick": "¡Debes elegir un atajo de emote y una imagen!",
-  "@emoteWarnNeedToPick": {
+  "editJitsiInstance": "Cambiar la instancia de Jitsi",
+  "@editJitsiInstance": {
     "type": "text",
     "placeholders": {}
   },
@@ -511,103 +528,125 @@
     "type": "text",
     "placeholders": {}
   },
-  "Empty chat": "Chat vacío",
-  "@Empty chat": {
+  "emoteSettings": "Configuración de emotes",
+  "@emoteSettings": {
     "type": "text",
     "placeholders": {}
   },
-  "You won't be able to disable the encryption anymore. Are you sure?": "Ya no podrá deshabilitar el cifrado. ¿Estás seguro?",
-  "@You won't be able to disable the encryption anymore. Are you sure?": {
+  "emoteShortcode": "Atajo de emote",
+  "@emoteShortcode": {
     "type": "text",
     "placeholders": {}
   },
-  "Encryption": "Cifrado",
-  "@Encryption": {
+  "emoteWarnNeedToPick": "¡Debes elegir un atajo de emote y una imagen!",
+  "@emoteWarnNeedToPick": {
     "type": "text",
     "placeholders": {}
   },
-  "Encryption algorithm": "Algoritmo de cifrado",
-  "@Encryption algorithm": {
+  "emptyChat": "Chat vacío",
+  "@emptyChat": {
     "type": "text",
     "placeholders": {}
   },
-  "Encryption is not enabled": "El cifrado no está habilitado",
-  "@Encryption is not enabled": {
+  "enableEncryptionWarning": "Ya no podrá deshabilitar el cifrado. ¿Estás seguro?",
+  "@enableEncryptionWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "End-to-end encryption settings": "Configuración del cifrado de extremo a extremo",
-  "@End-to-end encryption settings": {
+  "encryption": "Cifrado",
+  "@encryption": {
     "type": "text",
     "placeholders": {}
   },
-  "Enter a group name": "Ingrese un nombre de grupo",
-  "@Enter a group name": {
+  "encryptionAlgorithm": "Algoritmo de cifrado",
+  "@encryptionAlgorithm": {
     "type": "text",
     "placeholders": {}
   },
-  "Enter a username": "Ingrese un nombre de usuario",
-  "@Enter a username": {
+  "encryptionNotEnabled": "El cifrado no está habilitado",
+  "@encryptionNotEnabled": {
     "type": "text",
     "placeholders": {}
   },
-  "Enter your homeserver": "Ingrese su servidor",
-  "@Enter your homeserver": {
+  "end2endEncryptionSettings": "Configuración del cifrado de extremo a extremo",
+  "@end2endEncryptionSettings": {
     "type": "text",
     "placeholders": {}
   },
-  "File name": "Nombre del archivo",
-  "@File name": {
+  "endedTheCall": "{senderName} terminó la llamada",
+  "@endedTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "enterAGroupName": "Ingrese un nombre de grupo",
+  "@enterAGroupName": {
     "type": "text",
     "placeholders": {}
   },
-  "File size": "Tamaño del archivo",
-  "@File size": {
+  "enterAUsername": "Ingrese un nombre de usuario",
+  "@enterAUsername": {
     "type": "text",
     "placeholders": {}
   },
-  "FluffyChat": "FluffyChat",
-  "@FluffyChat": {
+  "enterYourHomeserver": "Ingrese su servidor",
+  "@enterYourHomeserver": {
     "type": "text",
     "placeholders": {}
   },
-  "Forward": "Reenviar",
-  "@Forward": {
+  "fileName": "Nombre del archivo",
+  "@fileName": {
     "type": "text",
     "placeholders": {}
   },
-  "Friday": "Viernes",
-  "@Friday": {
+  "fileSize": "Tamaño del archivo",
+  "@fileSize": {
     "type": "text",
     "placeholders": {}
   },
-  "From joining": "Desde que se unió",
-  "@From joining": {
+  "fluffychat": "FluffyChat",
+  "@fluffychat": {
     "type": "text",
     "placeholders": {}
   },
-  "From the invitation": "Desde la invitación",
-  "@From the invitation": {
+  "forward": "Reenviar",
+  "@forward": {
     "type": "text",
     "placeholders": {}
   },
-  "Group": "Grupo",
-  "@Group": {
+  "friday": "Viernes",
+  "@friday": {
     "type": "text",
     "placeholders": {}
   },
-  "Group description": "Descripción del grupo",
-  "@Group description": {
+  "fromJoining": "Desde que se unió",
+  "@fromJoining": {
     "type": "text",
     "placeholders": {}
   },
-  "Group description has been changed": "La descripción del grupo ha sido cambiada",
-  "@Group description has been changed": {
+  "fromTheInvitation": "Desde la invitación",
+  "@fromTheInvitation": {
     "type": "text",
     "placeholders": {}
   },
-  "Group is public": "El grupo es público",
-  "@Group is public": {
+  "group": "Grupo",
+  "@group": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groupDescription": "Descripción del grupo",
+  "@groupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groupDescriptionHasBeenChanged": "La descripción del grupo ha sido cambiada",
+  "@groupDescriptionHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groupIsPublic": "El grupo es público",
+  "@groupIsPublic": {
     "type": "text",
     "placeholders": {}
   },
@@ -618,13 +657,13 @@
       "displayname": {}
     }
   },
-  "Guests are forbidden": "Los visitantes están prohibidos",
-  "@Guests are forbidden": {
+  "guestsAreForbidden": "Los visitantes están prohibidos",
+  "@guestsAreForbidden": {
     "type": "text",
     "placeholders": {}
   },
-  "Guests can join": "Los visitantes pueden unirse",
-  "@Guests can join": {
+  "guestsCanJoin": "Los visitantes pueden unirse",
+  "@guestsCanJoin": {
     "type": "text",
     "placeholders": {}
   },
@@ -636,23 +675,23 @@
       "targetName": {}
     }
   },
-  "Help": "Ayuda",
-  "@Help": {
+  "help": "Ayuda",
+  "@help": {
     "type": "text",
     "placeholders": {}
   },
-  "Homeserver is not compatible": "El servidor no es compatible",
-  "@Homeserver is not compatible": {
+  "homeserverIsNotCompatible": "El servidor no es compatible",
+  "@homeserverIsNotCompatible": {
     "type": "text",
     "placeholders": {}
   },
-  "ID": "Identificación",
-  "@ID": {
+  "id": "Identificación",
+  "@id": {
     "type": "text",
     "placeholders": {}
   },
-  "Identity": "Identidad",
-  "@Identity": {
+  "identity": "Identidad",
+  "@identity": {
     "type": "text",
     "placeholders": {}
   },
@@ -661,8 +700,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "Invite contact": "Invitar contacto",
-  "@Invite contact": {
+  "inviteContact": "Invitar contacto",
+  "@inviteContact": {
     "type": "text",
     "placeholders": {}
   },
@@ -673,8 +712,21 @@
       "groupName": {}
     }
   },
-  "Invited": "Invitado",
-  "@Invited": {
+  "invited": "Invitado",
+  "@invited": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invitedUser": "{username} invitó a {targetName}",
+  "@invitedUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "invitedUsersOnly": "Sólo usuarios invitados",
+  "@invitedUsersOnly": {
     "type": "text",
     "placeholders": {}
   },
@@ -686,31 +738,13 @@
       "link": {}
     }
   },
-  "invitedUser": "{username} invitó a {targetName}",
-  "@invitedUser": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "targetName": {}
-    }
-  },
-  "Invited users only": "Sólo usuarios invitados",
-  "@Invited users only": {
-    "type": "text",
-    "placeholders": {}
-  },
   "isDeviceKeyCorrect": "¿Es correcta la siguiente clave de dispositivo?",
   "@isDeviceKeyCorrect": {
     "type": "text",
     "placeholders": {}
   },
-  "is typing...": "está escribiendo...",
-  "@is typing...": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Edit Jitsi instance": "Cambiar la instancia de Jitsi",
-  "@Edit Jitsi instance": {
+  "isTyping": "está escribiendo...",
+  "@isTyping": {
     "type": "text",
     "placeholders": {}
   },
@@ -720,6 +754,11 @@
     "placeholders": {
       "username": {}
     }
+  },
+  "joinRoom": "Unirse a la sala",
+  "@joinRoom": {
+    "type": "text",
+    "placeholders": {}
   },
   "keysCached": "Las claves están en caché",
   "@keysCached": {
@@ -747,32 +786,10 @@
       "targetName": {}
     }
   },
-  "Kick from chat": "Echar del chat",
-  "@Kick from chat": {
+  "kickFromChat": "Echar del chat",
+  "@kickFromChat": {
     "type": "text",
     "placeholders": {}
-  },
-  "Leave": "Abandonar",
-  "@Leave": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Left the chat": "Abandonó el chat",
-  "@Left the chat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Logout": "Cerrar sesión",
-  "@Logout": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "userLeftTheChat": "{username} abandonó el chat",
-  "@userLeftTheChat": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
   },
   "lastActiveAgo": "Última vez activo: {localizedTimeShort}",
   "@lastActiveAgo": {
@@ -781,23 +798,33 @@
       "localizedTimeShort": {}
     }
   },
-  "Last seen IP": "Última dirección IP vista",
-  "@Last seen IP": {
+  "lastSeenIp": "Última dirección IP vista",
+  "@lastSeenIp": {
     "type": "text",
     "placeholders": {}
   },
-  "License": "Licencia",
-  "@License": {
+  "lastSeenLongTimeAgo": "Visto hace mucho tiempo",
+  "@lastSeenLongTimeAgo": {
     "type": "text",
     "placeholders": {}
   },
-  "Loading... Please wait": "Cargando... Por favor espere",
-  "@Loading... Please wait": {
+  "leave": "Abandonar",
+  "@leave": {
     "type": "text",
     "placeholders": {}
   },
-  "Load more...": "Mostrar más...",
-  "@Load more...": {
+  "leftTheChat": "Abandonó el chat",
+  "@leftTheChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "license": "Licencia",
+  "@license": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lightTheme": "Claro",
+  "@lightTheme": {
     "type": "text",
     "placeholders": {}
   },
@@ -808,8 +835,18 @@
       "count": {}
     }
   },
-  "Login": "Iniciar sesión",
-  "@Login": {
+  "loadingPleaseWait": "Cargando... Por favor espere",
+  "@loadingPleaseWait": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loadMore": "Mostrar más...",
+  "@loadMore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "login": "Iniciar sesión",
+  "@login": {
     "type": "text",
     "placeholders": {}
   },
@@ -820,53 +857,58 @@
       "homeserver": {}
     }
   },
-  "Make a moderator": "Hacer un moderador/a",
-  "@Make a moderator": {
+  "logout": "Cerrar sesión",
+  "@logout": {
     "type": "text",
     "placeholders": {}
   },
-  "Make an admin": "Hacer un administrador/a",
-  "@Make an admin": {
+  "makeAModerator": "Hacer un moderador/a",
+  "@makeAModerator": {
     "type": "text",
     "placeholders": {}
   },
-  "Make sure the identifier is valid": "Asegúrese de que el identificador es válido",
-  "@Make sure the identifier is valid": {
+  "makeAnAdmin": "Hacer un administrador/a",
+  "@makeAnAdmin": {
     "type": "text",
     "placeholders": {}
   },
-  "Message will be removed for all participants": "El mensaje será eliminado para todos los participantes",
-  "@Message will be removed for all participants": {
+  "makeSureTheIdentifierIsValid": "Asegúrese de que el identificador es válido",
+  "@makeSureTheIdentifierIsValid": {
     "type": "text",
     "placeholders": {}
   },
-  "Moderator": "Moderador",
-  "@Moderator": {
+  "messageWillBeRemovedWarning": "El mensaje será eliminado para todos los participantes",
+  "@messageWillBeRemovedWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "Monday": "Lunes",
-  "@Monday": {
+  "moderator": "Moderador",
+  "@moderator": {
     "type": "text",
     "placeholders": {}
   },
-  "Mute chat": "Silenciar chat",
-  "@Mute chat": {
+  "monday": "Lunes",
+  "@monday": {
     "type": "text",
     "placeholders": {}
   },
-  "Please be aware that you need Pantalaimon to use end-to-end encryption for now.": "Tenga en cuenta que necesita Pantalaimon para utilizar el cifrado de extremo a extremo por ahora.",
-  "@Please be aware that you need Pantalaimon to use end-to-end encryption for now.": {
+  "muteChat": "Silenciar chat",
+  "@muteChat": {
     "type": "text",
     "placeholders": {}
   },
-  "New message in FluffyChat": "Nuevo mensaje en FluffyChat",
-  "@New message in FluffyChat": {
+  "needPantalaimonWarning": "Tenga en cuenta que necesita Pantalaimon para utilizar el cifrado de extremo a extremo por ahora.",
+  "@needPantalaimonWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "New private chat": "Nuevo chat privado",
-  "@New private chat": {
+  "newMessageInFluffyChat": "Nuevo mensaje en FluffyChat",
+  "@newMessageInFluffyChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newPrivateChat": "Nuevo chat privado",
+  "@newPrivateChat": {
     "type": "text",
     "placeholders": {}
   },
@@ -875,8 +917,23 @@
     "type": "text",
     "placeholders": {}
   },
+  "no": "No",
+  "@no": {
+    "type": "text",
+    "placeholders": {}
+  },
   "noCrossSignBootstrap": "Fluffychat actualmente no soporta la activación de Cross-Signing. Por favor, actívelo dentro de Riot.",
   "@noCrossSignBootstrap": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noEmotesFound": "Ningún emote encontrado. 😕",
+  "@noEmotesFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noGoogleServicesWarning": "Parece que no tienes servicios de Google en tu teléfono. ¡Esa es una buena decisión para tu privacidad! Para recibir notificaciones instantáneas en FluffyChat, recomendamos usar microG: https://microg.org/",
+  "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
   },
@@ -885,33 +942,23 @@
     "type": "text",
     "placeholders": {}
   },
-  "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": "Parece que no tienes servicios de Google en tu teléfono. ¡Esa es una buena decisión para tu privacidad! Para recibir notificaciones instantáneas en FluffyChat, recomendamos usar microG: https://microg.org/",
-  "@It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": {
+  "none": "Ninguno",
+  "@none": {
     "type": "text",
     "placeholders": {}
   },
-  "None": "Ninguno",
-  "@None": {
+  "noPermission": "Sin autorización",
+  "@noPermission": {
     "type": "text",
     "placeholders": {}
   },
-  "No emotes found. 😕": "Ningún emote encontrado. 😕",
-  "@No emotes found. 😕": {
+  "noRoomsFound": "Ninguna sala encontrada...",
+  "@noRoomsFound": {
     "type": "text",
     "placeholders": {}
   },
-  "No permission": "Sin autorización",
-  "@No permission": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "No rooms found...": "Ninguna sala encontrada...",
-  "@No rooms found...": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Not supported in web": "No es compatible con la versión web",
-  "@Not supported in web": {
+  "notSupportedInWeb": "No es compatible con la versión web",
+  "@notSupportedInWeb": {
     "type": "text",
     "placeholders": {}
   },
@@ -937,28 +984,28 @@
     "type": "text",
     "placeholders": {}
   },
-  "Oops something went wrong...": "Ups, algo salió mal...",
-  "@Oops something went wrong...": {
+  "oopsSomethingWentWrong": "Ups, algo salió mal...",
+  "@oopsSomethingWentWrong": {
     "type": "text",
     "placeholders": {}
   },
-  "Open app to read messages": "Abrir la aplicación para leer los mensajes",
-  "@Open app to read messages": {
+  "openAppToReadMessages": "Abrir la aplicación para leer los mensajes",
+  "@openAppToReadMessages": {
     "type": "text",
     "placeholders": {}
   },
-  "Open camera": "Abrir la cámara",
-  "@Open camera": {
+  "openCamera": "Abrir la cámara",
+  "@openCamera": {
     "type": "text",
     "placeholders": {}
   },
-  "(Optional) Group name": "(Opcional) Nombre del grupo",
-  "@(Optional) Group name": {
+  "optionalGroupName": "(Opcional) Nombre del grupo",
+  "@optionalGroupName": {
     "type": "text",
     "placeholders": {}
   },
-  "Participating user devices": "Dispositivos de usuario participantes",
-  "@Participating user devices": {
+  "participatingUserDevices": "Dispositivos de usuario participantes",
+  "@participatingUserDevices": {
     "type": "text",
     "placeholders": {}
   },
@@ -967,13 +1014,18 @@
     "type": "text",
     "placeholders": {}
   },
-  "Password": "Contraseña",
-  "@Password": {
+  "password": "Contraseña",
+  "@password": {
     "type": "text",
     "placeholders": {}
   },
-  "Pick image": "Elegir imagen",
-  "@Pick image": {
+  "pickImage": "Elegir imagen",
+  "@pickImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pin": "Pin",
+  "@pin": {
     "type": "text",
     "placeholders": {}
   },
@@ -984,48 +1036,33 @@
       "fileName": {}
     }
   },
-  "Please choose a username": "Por favor, elija un nombre de usuario",
-  "@Please choose a username": {
+  "pleaseChooseAUsername": "Por favor, elija un nombre de usuario",
+  "@pleaseChooseAUsername": {
     "type": "text",
     "placeholders": {}
   },
-  "Please enter a matrix identifier": "Por favor, ingrese un identificador matrix",
-  "@Please enter a matrix identifier": {
+  "pleaseEnterAMatrixIdentifier": "Por favor, ingrese un identificador matrix",
+  "@pleaseEnterAMatrixIdentifier": {
     "type": "text",
     "placeholders": {}
   },
-  "Please enter your password": "Por favor ingrese su contraseña",
-  "@Please enter your password": {
+  "pleaseEnterYourPassword": "Por favor ingrese su contraseña",
+  "@pleaseEnterYourPassword": {
     "type": "text",
     "placeholders": {}
   },
-  "Please enter your username": "Por favor ingrese su nombre de usuario",
-  "@Please enter your username": {
+  "pleaseEnterYourUsername": "Por favor ingrese su nombre de usuario",
+  "@pleaseEnterYourUsername": {
     "type": "text",
     "placeholders": {}
   },
-  "Public Rooms": "Salas públicas",
-  "@Public Rooms": {
+  "publicRooms": "Salas públicas",
+  "@publicRooms": {
     "type": "text",
     "placeholders": {}
   },
-  "Reject": "Rechazar",
-  "@Reject": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Rejoin": "Volver a unirse",
-  "@Rejoin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Render rich message content": "Mostrar el contenido con mensajes enriquecidos",
-  "@Render rich message content": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Recording": "Grabando",
-  "@Recording": {
+  "recording": "Grabando",
+  "@recording": {
     "type": "text",
     "placeholders": {}
   },
@@ -1036,6 +1073,11 @@
       "username": {}
     }
   },
+  "reject": "Rechazar",
+  "@reject": {
+    "type": "text",
+    "placeholders": {}
+  },
   "rejectedTheInvitation": "{username} rechazó la invitación",
   "@rejectedTheInvitation": {
     "type": "text",
@@ -1043,8 +1085,18 @@
       "username": {}
     }
   },
-  "Remove all other devices": "Eliminar todos los otros dispositivos",
-  "@Remove all other devices": {
+  "rejoin": "Volver a unirse",
+  "@rejoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "remove": "Eliminar",
+  "@remove": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeAllOtherDevices": "Eliminar todos los otros dispositivos",
+  "@removeAllOtherDevices": {
     "type": "text",
     "placeholders": {}
   },
@@ -1055,75 +1107,58 @@
       "username": {}
     }
   },
-  "Remove device": "Eliminar dispositivo",
-  "@Remove device": {
+  "removeDevice": "Eliminar dispositivo",
+  "@removeDevice": {
     "type": "text",
     "placeholders": {}
   },
-  "Remove exile": "Eliminar la expulsión",
-  "@Remove exile": {
+  "removeExile": "Eliminar la expulsión",
+  "@removeExile": {
     "type": "text",
     "placeholders": {}
   },
-  "Revoke all permissions": "Revocar todos los permisos",
-  "@Revoke all permissions": {
+  "removeMessage": "Eliminar mensaje",
+  "@removeMessage": {
     "type": "text",
     "placeholders": {}
   },
-  "Remove": "Eliminar",
-  "@Remove": {
+  "renderRichContent": "Mostrar el contenido con mensajes enriquecidos",
+  "@renderRichContent": {
     "type": "text",
     "placeholders": {}
   },
-  "Remove message": "Eliminar mensaje",
-  "@Remove message": {
+  "reply": "Responder",
+  "@reply": {
     "type": "text",
     "placeholders": {}
   },
-  "Reply": "Responder",
-  "@Reply": {
+  "requestPermission": "Solicitar permiso",
+  "@requestPermission": {
     "type": "text",
     "placeholders": {}
   },
-  "Request permission": "Solicitar permiso",
-  "@Request permission": {
+  "requestToReadOlderMessages": "Solicitar poder leer mensajes antiguos",
+  "@requestToReadOlderMessages": {
     "type": "text",
     "placeholders": {}
   },
-  "Request to read older messages": "Solicitar poder leer mensajes antiguos",
-  "@Request to read older messages": {
+  "revokeAllPermissions": "Revocar todos los permisos",
+  "@revokeAllPermissions": {
     "type": "text",
     "placeholders": {}
   },
-  "Room has been upgraded": "La sala ha subido de categoría",
-  "@Room has been upgraded": {
+  "roomHasBeenUpgraded": "La sala ha subido de categoría",
+  "@roomHasBeenUpgraded": {
     "type": "text",
     "placeholders": {}
   },
-  "Saturday": "Sábado",
-  "@Saturday": {
+  "saturday": "Sábado",
+  "@saturday": {
     "type": "text",
     "placeholders": {}
   },
-  "Share": "Compartir",
-  "@Share": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sharedTheLocation": "{username} compartió la ubicación",
-  "@sharedTheLocation": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "Search for a chat": "Buscar un chat",
-  "@Search for a chat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Seen a long time ago": "Visto hace mucho tiempo",
-  "@Seen a long time ago": {
+  "searchForAChat": "Buscar un chat",
+  "@searchForAChat": {
     "type": "text",
     "placeholders": {}
   },
@@ -1134,14 +1169,6 @@
       "username": {}
     }
   },
-  "seenByUserAndUser": "Visto por {username} y {username2}",
-  "@seenByUserAndUser": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "username2": {}
-    }
-  },
   "seenByUserAndCountOthers": "Visto por {username} y {count} más",
   "@seenByUserAndCountOthers": {
     "type": "text",
@@ -1150,23 +1177,51 @@
       "count": {}
     }
   },
-  "Send": "Enviar",
-  "@Send": {
+  "seenByUserAndUser": "Visto por {username} y {username2}",
+  "@seenByUserAndUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "username2": {}
+    }
+  },
+  "send": "Enviar",
+  "@send": {
     "type": "text",
     "placeholders": {}
   },
-  "Send a message": "Enviar un mensaje",
-  "@Send a message": {
+  "sendAMessage": "Enviar un mensaje",
+  "@sendAMessage": {
     "type": "text",
     "placeholders": {}
   },
-  "Send file": "Enviar un archivo",
-  "@Send file": {
+  "sendAudio": "Enviar audio",
+  "@sendAudio": {
     "type": "text",
     "placeholders": {}
   },
-  "Send image": "Enviar una imagen",
-  "@Send image": {
+  "sendBugReports": "Permite el envió de informes de errores con sentry.io",
+  "@sendBugReports": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendFile": "Enviar un archivo",
+  "@sendFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendImage": "Enviar una imagen",
+  "@sendImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendOriginal": "Enviar el original",
+  "@sendOriginal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendVideo": "Enviar video",
+  "@sendVideo": {
     "type": "text",
     "placeholders": {}
   },
@@ -1205,123 +1260,129 @@
       "username": {}
     }
   },
+  "sentCallInformations": "{senderName} envió información de la llamada",
+  "@sentCallInformations": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "sentryInfo": "Informacion sobre tu privacidad: https://sentry.io/security/",
+  "@sentryInfo": {
+    "type": "text",
+    "placeholders": {}
+  },
   "sessionVerified": "La sesión está verificada",
   "@sessionVerified": {
     "type": "text",
     "placeholders": {}
   },
-  "Set a profile picture": "Establecer una foto de perfil",
-  "@Set a profile picture": {
+  "setAProfilePicture": "Establecer una foto de perfil",
+  "@setAProfilePicture": {
     "type": "text",
     "placeholders": {}
   },
-  "Set group description": "Establecer descripción del grupo",
-  "@Set group description": {
+  "setGroupDescription": "Establecer descripción del grupo",
+  "@setGroupDescription": {
     "type": "text",
     "placeholders": {}
   },
-  "Set invitation link": "Establecer enlace de invitación",
-  "@Set invitation link": {
+  "setInvitationLink": "Establecer enlace de invitación",
+  "@setInvitationLink": {
     "type": "text",
     "placeholders": {}
   },
-  "Set status": "Establecer estado",
-  "@Set status": {
+  "setStatus": "Establecer estado",
+  "@setStatus": {
     "type": "text",
     "placeholders": {}
   },
-  "Settings": "Ajustes",
-  "@Settings": {
+  "settings": "Ajustes",
+  "@settings": {
     "type": "text",
     "placeholders": {}
   },
-  "Sign up": "Registrarse",
-  "@Sign up": {
+  "share": "Compartir",
+  "@share": {
     "type": "text",
     "placeholders": {}
   },
-  "Skip": "Omitir",
-  "@Skip": {
+  "sharedTheLocation": "{username} compartió la ubicación",
+  "@sharedTheLocation": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "signUp": "Registrarse",
+  "@signUp": {
     "type": "text",
     "placeholders": {}
   },
-  "Change your style": "Cambia tu estilo",
-  "@Change your style": {
+  "skip": "Omitir",
+  "@skip": {
     "type": "text",
     "placeholders": {}
   },
-  "System": "Sistema",
-  "@System": {
+  "sourceCode": "Código fuente",
+  "@sourceCode": {
     "type": "text",
     "placeholders": {}
   },
-  "How are you today?": "¿Cómo estás hoy?",
-  "@How are you today?": {
+  "startedACall": "{senderName} comenzó una llamada",
+  "@startedACall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "startYourFirstChat": "Comience su primer chat :-)",
+  "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
   },
-  "Light": "Claro",
-  "@Light": {
+  "statusExampleMessage": "¿Cómo estás hoy?",
+  "@statusExampleMessage": {
     "type": "text",
     "placeholders": {}
   },
-  "Dark": "Oscuro",
-  "@Dark": {
+  "submit": "Enviar",
+  "@submit": {
     "type": "text",
     "placeholders": {}
   },
-  "Use Amoled compatible colors?": "¿Usar colores compatibles con AMOLED?",
-  "@Use Amoled compatible colors?": {
+  "sunday": "Domingo",
+  "@sunday": {
     "type": "text",
     "placeholders": {}
   },
-  "Source code": "Código fuente",
-  "@Source code": {
+  "systemTheme": "Sistema",
+  "@systemTheme": {
     "type": "text",
     "placeholders": {}
   },
-  "Start your first chat :-)": "Comience su primer chat :-)",
-  "@Start your first chat :-)": {
+  "tapToShowMenu": "Toca para mostrar el menú",
+  "@tapToShowMenu": {
     "type": "text",
     "placeholders": {}
   },
-  "Submit": "Enviar",
-  "@Submit": {
+  "theyDontMatch": "No coinciden",
+  "@theyDontMatch": {
     "type": "text",
     "placeholders": {}
   },
-  "Sunday": "Domingo",
-  "@Sunday": {
+  "theyMatch": "Coinciden",
+  "@theyMatch": {
     "type": "text",
     "placeholders": {}
   },
-  "Donate": "Donar",
-  "@Donate": {
+  "thisRoomHasBeenArchived": "Esta sala ha sido archivada.",
+  "@thisRoomHasBeenArchived": {
     "type": "text",
     "placeholders": {}
   },
-  "Tap to show menu": "Toca para mostrar el menú",
-  "@Tap to show menu": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "They Don't Match": "No coinciden",
-  "@They Don't Match": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "They Match": "Coinciden",
-  "@They Match": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "This room has been archived.": "Esta sala ha sido archivada.",
-  "@This room has been archived.": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Thursday": "Jueves",
-  "@Thursday": {
+  "thursday": "Jueves",
+  "@thursday": {
     "type": "text",
     "placeholders": {}
   },
@@ -1341,13 +1402,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "Try to send again": "Intentar enviar nuevamente",
-  "@Try to send again": {
+  "tryToSendAgain": "Intentar enviar nuevamente",
+  "@tryToSendAgain": {
     "type": "text",
     "placeholders": {}
   },
-  "Tuesday": "Martes",
-  "@Tuesday": {
+  "tuesday": "Martes",
+  "@tuesday": {
     "type": "text",
     "placeholders": {}
   },
@@ -1359,28 +1420,18 @@
       "targetName": {}
     }
   },
-  "Unblock Device": "Desbloquear dispositivo",
-  "@Unblock Device": {
+  "unblockDevice": "Desbloquear dispositivo",
+  "@unblockDevice": {
     "type": "text",
     "placeholders": {}
   },
-  "Unmute chat": "Dejar de silenciar el chat",
-  "@Unmute chat": {
+  "unknownDevice": "Dispositivo desconocido",
+  "@unknownDevice": {
     "type": "text",
     "placeholders": {}
   },
-  "Unknown device": "Dispositivo desconocido",
-  "@Unknown device": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Unknown encryption algorithm": "Algoritmo de cifrado desconocido",
-  "@Unknown encryption algorithm": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "unknownSessionVerify": "Sesión desconocida, por favor verifíquela",
-  "@unknownSessionVerify": {
+  "unknownEncryptionAlgorithm": "Algoritmo de cifrado desconocido",
+  "@unknownEncryptionAlgorithm": {
     "type": "text",
     "placeholders": {}
   },
@@ -1390,6 +1441,21 @@
     "placeholders": {
       "type": {}
     }
+  },
+  "unknownSessionVerify": "Sesión desconocida, por favor verifíquela",
+  "@unknownSessionVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unmuteChat": "Dejar de silenciar el chat",
+  "@unmuteChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unpin": "Despinchar",
+  "@unpin": {
+    "type": "text",
+    "placeholders": {}
   },
   "unreadChats": "{unreadCount} chats no leídos",
   "@unreadChats": {
@@ -1413,6 +1479,11 @@
       "unreadChats": {}
     }
   },
+  "useAmoledTheme": "¿Usar colores compatibles con AMOLED?",
+  "@useAmoledTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
   "userAndOthersAreTyping": "{username} y {count} más están escribiendo...",
   "@userAndOthersAreTyping": {
     "type": "text",
@@ -1429,17 +1500,24 @@
       "username2": {}
     }
   },
-  "Username": "Nombre de usuario",
-  "@Username": {
-    "type": "text",
-    "placeholders": {}
-  },
   "userIsTyping": "{username} está escribiendo...",
   "@userIsTyping": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
+  },
+  "userLeftTheChat": "{username} abandonó el chat",
+  "@userLeftTheChat": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "username": "Nombre de usuario",
+  "@username": {
+    "type": "text",
+    "placeholders": {}
   },
   "userSentUnknownEvent": "{username} envió un evento {type}",
   "@userSentUnknownEvent": {
@@ -1449,18 +1527,18 @@
       "type": {}
     }
   },
-  "Verify": "Verificar",
-  "@Verify": {
+  "verifiedSession": "¡Sesión verificada exitosamente!",
+  "@verifiedSession": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verify": "Verificar",
+  "@verify": {
     "type": "text",
     "placeholders": {}
   },
   "verifyManual": "Verificar manualmente",
   "@verifyManual": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "verifiedSession": "¡Sesión verificada exitosamente!",
-  "@verifiedSession": {
     "type": "text",
     "placeholders": {}
   },
@@ -1479,33 +1557,33 @@
     "type": "text",
     "placeholders": {}
   },
-  "Verify User": "Verificar usuario",
-  "@Verify User": {
+  "verifyUser": "Verificar usuario",
+  "@verifyUser": {
     "type": "text",
     "placeholders": {}
   },
-  "Video call": "Video llamada",
-  "@Video call": {
+  "videoCall": "Video llamada",
+  "@videoCall": {
     "type": "text",
     "placeholders": {}
   },
-  "Visible for all participants": "Visible para todos los participantes",
-  "@Visible for all participants": {
+  "visibilityOfTheChatHistory": "Visibilidad del historial del chat",
+  "@visibilityOfTheChatHistory": {
     "type": "text",
     "placeholders": {}
   },
-  "Visible for everyone": "Visible para todo el mundo",
-  "@Visible for everyone": {
+  "visibleForAllParticipants": "Visible para todos los participantes",
+  "@visibleForAllParticipants": {
     "type": "text",
     "placeholders": {}
   },
-  "Visibility of the chat history": "Visibilidad del historial del chat",
-  "@Visibility of the chat history": {
+  "visibleForEveryone": "Visible para todo el mundo",
+  "@visibleForEveryone": {
     "type": "text",
     "placeholders": {}
   },
-  "Voice message": "Mensaje de voz",
-  "@Voice message": {
+  "voiceMessage": "Mensaje de voz",
+  "@voiceMessage": {
     "type": "text",
     "placeholders": {}
   },
@@ -1524,146 +1602,68 @@
     "type": "text",
     "placeholders": {}
   },
-  "Wallpaper": "Fondo de pantalla",
-  "@Wallpaper": {
+  "wallpaper": "Fondo de pantalla",
+  "@wallpaper": {
     "type": "text",
     "placeholders": {}
   },
-  "End to end encryption is currently in Beta! Use at your own risk!": "¡El cifrado de extremo a extremo está actualmente en período de prueba! ¡Úselo bajo su propio riesgo!",
-  "@End to end encryption is currently in Beta! Use at your own risk!": {
+  "warningEncryptionInBeta": "¡El cifrado de extremo a extremo está actualmente en período de prueba! ¡Úselo bajo su propio riesgo!",
+  "@warningEncryptionInBeta": {
     "type": "text",
     "placeholders": {}
   },
-  "Wednesday": "Miércoles",
-  "@Wednesday": {
+  "wednesday": "Miércoles",
+  "@wednesday": {
     "type": "text",
     "placeholders": {}
   },
-  "Welcome to the cutest instant messenger in the matrix network.": "Bienvenidos al mensajero instantáneo más lindo de la red matricial.",
-  "@Welcome to the cutest instant messenger in the matrix network.": {
+  "welcomeText": "Bienvenidos al mensajero instantáneo más lindo de la red matricial.",
+  "@welcomeText": {
     "type": "text",
     "placeholders": {}
   },
-  "Who is allowed to join this group": "Quién tiene permitido unirse al grupo",
-  "@Who is allowed to join this group": {
+  "whoIsAllowedToJoinThisGroup": "Quién tiene permitido unirse al grupo",
+  "@whoIsAllowedToJoinThisGroup": {
     "type": "text",
     "placeholders": {}
   },
-  "Write a message...": "Escribe un mensaje...",
-  "@Write a message...": {
+  "writeAMessage": "Escribe un mensaje...",
+  "@writeAMessage": {
     "type": "text",
     "placeholders": {}
   },
-  "Yes": "Sí",
-  "@Yes": {
+  "yes": "Sí",
+  "@yes": {
     "type": "text",
     "placeholders": {}
   },
-  "You": "Tú",
-  "@You": {
+  "you": "Tú",
+  "@you": {
     "type": "text",
     "placeholders": {}
   },
-  "You are invited to this chat": "Estás invitado a este chat",
-  "@You are invited to this chat": {
+  "youAreInvitedToThisChat": "Estás invitado a este chat",
+  "@youAreInvitedToThisChat": {
     "type": "text",
     "placeholders": {}
   },
-  "You are no longer participating in this chat": "Ya no estás participando en este chat",
-  "@You are no longer participating in this chat": {
+  "youAreNoLongerParticipatingInThisChat": "Ya no estás participando en este chat",
+  "@youAreNoLongerParticipatingInThisChat": {
     "type": "text",
     "placeholders": {}
   },
-  "You cannot invite yourself": "No puedes invitarte a tí mismo",
-  "@You cannot invite yourself": {
+  "youCannotInviteYourself": "No puedes invitarte a tí mismo",
+  "@youCannotInviteYourself": {
     "type": "text",
     "placeholders": {}
   },
-  "You have been banned from this chat": "Has sido vetado de este chat",
-  "@You have been banned from this chat": {
+  "youHaveBeenBannedFromThisChat": "Has sido vetado de este chat",
+  "@youHaveBeenBannedFromThisChat": {
     "type": "text",
     "placeholders": {}
   },
-  "Your own username": "Tu nombre de usuario",
-  "@Your own username": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Unpin": "Despinchar",
-  "@Unpin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "startedACall": "{senderName} comenzó una llamada",
-  "@startedACall": {
-    "type": "text",
-    "placeholders": {
-      "senderName": {}
-    }
-  },
-  "sentCallInformations": "{senderName} envió información de la llamada",
-  "@sentCallInformations": {
-    "type": "text",
-    "placeholders": {
-      "senderName": {}
-    }
-  },
-  "Pin": "Pin",
-  "@Pin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Join room": "Unirse a la sala",
-  "@Join room": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "endedTheCall": "{senderName} terminó la llamada",
-  "@endedTheCall": {
-    "type": "text",
-    "placeholders": {
-      "senderName": {}
-    }
-  },
-  "answeredTheCall": "{senderName} respondió a la llamada",
-  "@answeredTheCall": {
-    "type": "text",
-    "placeholders": {
-      "senderName": {}
-    }
-  },
-  "Send video": "Enviar video",
-  "@Send video": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Send original": "Enviar el original",
-  "@Send original": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Send audio": "Enviar audio",
-  "@Send audio": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "No": "No",
-  "@No": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Changes have been saved": "Los cambios se han guardado",
-  "@Changes have been saved": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Informations about your privacy: https://sentry.io/security/": "Informacion sobre tu privacidad: https://sentry.io/security/",
-  "@Informations about your privacy: https://sentry.io/security/": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Allow sending bug reports with sentry.io": "Permite el envió de informes de errores con sentry.io",
-  "@Allow sending bug reports with sentry.io": {
+  "yourOwnUsername": "Tu nombre de usuario",
+  "@yourOwnUsername": {
     "type": "text",
     "placeholders": {}
   }

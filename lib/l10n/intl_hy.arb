@@ -1,12 +1,12 @@
 {
-  "@@last_modified": "2020-06-25T16:02:16.297192",
-  "About": "Հավելվածի մասին",
-  "@About": {
+  "@@last_modified": "2020-09-23 11:46:02.219595",
+  "about": "Հավելվածի մասին",
+  "@about": {
     "type": "text",
     "placeholders": {}
   },
-  "Accept": "Ընդունել",
-  "@Accept": {
+  "accept": "Ընդունել",
+  "@accept": {
     "type": "text",
     "placeholders": {}
   },
@@ -17,13 +17,13 @@
       "username": {}
     }
   },
-  "Account": "Հաշիվ",
-  "@Account": {
+  "account": "Հաշիվ",
+  "@account": {
     "type": "text",
     "placeholders": {}
   },
-  "Account informations": "Տեղեկություններ հաշվի մասին",
-  "@Account informations": {
+  "accountInformation": "Տեղեկություններ հաշվի մասին",
+  "@accountInformation": {
     "type": "text",
     "placeholders": {}
   },
@@ -34,13 +34,13 @@
       "username": {}
     }
   },
-  "Add a group description": "Ավելացնել խմբի նկարագրություն",
-  "@Add a group description": {
+  "addGroupDescription": "Ավելացնել խմբի նկարագրություն",
+  "@addGroupDescription": {
     "type": "text",
     "placeholders": {}
   },
-  "Admin": "Համակարգող",
-  "@Admin": {
+  "admin": "Համակարգող",
+  "@admin": {
     "type": "text",
     "placeholders": {}
   },
@@ -49,33 +49,33 @@
     "type": "text",
     "placeholders": {}
   },
-  "Already have an account?": "Արդեն հաշի՞վ ունեք",
-  "@Already have an account?": {
+  "alreadyHaveAnAccount": "Արդեն հաշի՞վ ունեք",
+  "@alreadyHaveAnAccount": {
     "type": "text",
     "placeholders": {}
   },
-  "Anyone can join": "Յուրաքանչյուրը կարող է միանալ",
-  "@Anyone can join": {
+  "anyoneCanJoin": "Յուրաքանչյուրը կարող է միանալ",
+  "@anyoneCanJoin": {
     "type": "text",
     "placeholders": {}
   },
-  "Archive": "Արխիվ",
-  "@Archive": {
+  "archive": "Արխիվ",
+  "@archive": {
     "type": "text",
     "placeholders": {}
   },
-  "Archived Room": "Արխիվացված սենյակ",
-  "@Archived Room": {
+  "archivedRoom": "Արխիվացված սենյակ",
+  "@archivedRoom": {
     "type": "text",
     "placeholders": {}
   },
-  "Are guest users allowed to join": "Արդյո՞ք հյուր օգտատերերին թույլատրվում է միանալ",
-  "@Are guest users allowed to join": {
+  "areGuestsAllowedToJoin": "Արդյո՞ք հյուր օգտատերերին թույլատրվում է միանալ",
+  "@areGuestsAllowedToJoin": {
     "type": "text",
     "placeholders": {}
   },
-  "Are you sure?": "Համոզվա՞ծ եք",
-  "@Are you sure?": {
+  "areYouSure": "Համոզվա՞ծ եք",
+  "@areYouSure": {
     "type": "text",
     "placeholders": {}
   },
@@ -101,23 +101,23 @@
       "username": {}
     }
   },
-  "Authentication": "",
-  "@Authentication": {
+  "authentication": "",
+  "@authentication": {
     "type": "text",
     "placeholders": {}
   },
-  "Avatar has been changed": "",
-  "@Avatar has been changed": {
+  "avatarHasBeenChanged": "",
+  "@avatarHasBeenChanged": {
     "type": "text",
     "placeholders": {}
   },
-  "Ban from chat": "",
-  "@Ban from chat": {
+  "banFromChat": "",
+  "@banFromChat": {
     "type": "text",
     "placeholders": {}
   },
-  "Banned": "",
-  "@Banned": {
+  "banned": "",
+  "@banned": {
     "type": "text",
     "placeholders": {}
   },
@@ -129,8 +129,8 @@
       "targetName": {}
     }
   },
-  "Block Device": "",
-  "@Block Device": {
+  "blockDevice": "",
+  "@blockDevice": {
     "type": "text",
     "placeholders": {}
   },
@@ -146,8 +146,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "Cancel": "",
-  "@Cancel": {
+  "cancel": "",
+  "@cancel": {
     "type": "text",
     "placeholders": {}
   },
@@ -158,20 +158,20 @@
       "username": {}
     }
   },
-  "changedTheChatNameTo": "",
-  "@changedTheChatNameTo": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "chatname": {}
-    }
-  },
   "changedTheChatDescriptionTo": "",
   "@changedTheChatDescriptionTo": {
     "type": "text",
     "placeholders": {
       "username": {},
       "description": {}
+    }
+  },
+  "changedTheChatNameTo": "",
+  "@changedTheChatNameTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "chatname": {}
     }
   },
   "changedTheChatPermissions": "",
@@ -188,11 +188,6 @@
       "username": {},
       "displayname": {}
     }
-  },
-  "Change the homeserver": "",
-  "@Change the homeserver": {
-    "type": "text",
-    "placeholders": {}
   },
   "changedTheGuestAccessRules": "",
   "@changedTheGuestAccessRules": {
@@ -260,53 +255,63 @@
       "username": {}
     }
   },
-  "Changelog": "",
-  "@Changelog": {
+  "changelog": "",
+  "@changelog": {
     "type": "text",
     "placeholders": {}
   },
-  "Change the name of the group": "",
-  "@Change the name of the group": {
+  "changeTheHomeserver": "",
+  "@changeTheHomeserver": {
     "type": "text",
     "placeholders": {}
   },
-  "Change wallpaper": "",
-  "@Change wallpaper": {
+  "changeTheme": "",
+  "@changeTheme": {
     "type": "text",
     "placeholders": {}
   },
-  "Change the server": "",
-  "@Change the server": {
+  "changeTheNameOfTheGroup": "",
+  "@changeTheNameOfTheGroup": {
     "type": "text",
     "placeholders": {}
   },
-  "The encryption has been corrupted": "",
-  "@The encryption has been corrupted": {
+  "changeTheServer": "",
+  "@changeTheServer": {
     "type": "text",
     "placeholders": {}
   },
-  "Chat": "",
-  "@Chat": {
+  "changeWallpaper": "",
+  "@changeWallpaper": {
     "type": "text",
     "placeholders": {}
   },
-  "Chat details": "",
-  "@Chat details": {
+  "channelCorruptedDecryptError": "",
+  "@channelCorruptedDecryptError": {
     "type": "text",
     "placeholders": {}
   },
-  "Choose a strong password": "",
-  "@Choose a strong password": {
+  "chat": "",
+  "@chat": {
     "type": "text",
     "placeholders": {}
   },
-  "Choose a username": "",
-  "@Choose a username": {
+  "chatDetails": "",
+  "@chatDetails": {
     "type": "text",
     "placeholders": {}
   },
-  "Close": "",
-  "@Close": {
+  "chooseAStrongPassword": "",
+  "@chooseAStrongPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseAUsername": "",
+  "@chooseAUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "close": "",
+  "@close": {
     "type": "text",
     "placeholders": {}
   },
@@ -320,38 +325,38 @@
     "type": "text",
     "placeholders": {}
   },
-  "Confirm": "",
-  "@Confirm": {
+  "confirm": "",
+  "@confirm": {
     "type": "text",
     "placeholders": {}
   },
-  "Connect": "",
-  "@Connect": {
+  "connect": "",
+  "@connect": {
     "type": "text",
     "placeholders": {}
   },
-  "Connection attempt failed": "",
-  "@Connection attempt failed": {
+  "connectionAttemptFailed": "",
+  "@connectionAttemptFailed": {
     "type": "text",
     "placeholders": {}
   },
-  "Contact has been invited to the group": "",
-  "@Contact has been invited to the group": {
+  "contactHasBeenInvitedToTheGroup": "",
+  "@contactHasBeenInvitedToTheGroup": {
     "type": "text",
     "placeholders": {}
   },
-  "Content viewer": "",
-  "@Content viewer": {
+  "contentViewer": "",
+  "@contentViewer": {
     "type": "text",
     "placeholders": {}
   },
-  "Copied to clipboard": "",
-  "@Copied to clipboard": {
+  "copiedToClipboard": "",
+  "@copiedToClipboard": {
     "type": "text",
     "placeholders": {}
   },
-  "Copy": "",
-  "@Copy": {
+  "copy": "",
+  "@copy": {
     "type": "text",
     "placeholders": {}
   },
@@ -362,13 +367,13 @@
       "error": {}
     }
   },
-  "Could not set avatar": "",
-  "@Could not set avatar": {
+  "couldNotSetAvatar": "",
+  "@couldNotSetAvatar": {
     "type": "text",
     "placeholders": {}
   },
-  "Could not set displayname": "",
-  "@Could not set displayname": {
+  "couldNotSetDisplayname": "",
+  "@couldNotSetDisplayname": {
     "type": "text",
     "placeholders": {}
   },
@@ -379,13 +384,13 @@
       "count": {}
     }
   },
-  "Create": "",
-  "@Create": {
+  "create": "",
+  "@create": {
     "type": "text",
     "placeholders": {}
   },
-  "Create account now": "",
-  "@Create account now": {
+  "createAccountNow": "",
+  "@createAccountNow": {
     "type": "text",
     "placeholders": {}
   },
@@ -396,8 +401,8 @@
       "username": {}
     }
   },
-  "Create new group": "",
-  "@Create new group": {
+  "createNewGroup": "",
+  "@createNewGroup": {
     "type": "text",
     "placeholders": {}
   },
@@ -411,8 +416,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "Currently active": "",
-  "@Currently active": {
+  "currentlyActive": "",
+  "@currentlyActive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "darkTheme": "",
+  "@darkTheme": {
     "type": "text",
     "placeholders": {}
   },
@@ -441,63 +451,58 @@
       "day": {}
     }
   },
-  "Delete": "",
-  "@Delete": {
+  "delete": "",
+  "@delete": {
     "type": "text",
     "placeholders": {}
   },
-  "Delete message": "",
-  "@Delete message": {
+  "deleteMessage": "",
+  "@deleteMessage": {
     "type": "text",
     "placeholders": {}
   },
-  "Deny": "",
-  "@Deny": {
+  "deny": "",
+  "@deny": {
     "type": "text",
     "placeholders": {}
   },
-  "Device": "",
-  "@Device": {
+  "device": "",
+  "@device": {
     "type": "text",
     "placeholders": {}
   },
-  "Devices": "",
-  "@Devices": {
+  "devices": "",
+  "@devices": {
     "type": "text",
     "placeholders": {}
   },
-  "Discard picture": "",
-  "@Discard picture": {
+  "discardPicture": "",
+  "@discardPicture": {
     "type": "text",
     "placeholders": {}
   },
-  "Displayname has been changed": "",
-  "@Displayname has been changed": {
+  "displaynameHasBeenChanged": "",
+  "@displaynameHasBeenChanged": {
     "type": "text",
     "placeholders": {}
   },
-  "Download file": "",
-  "@Download file": {
+  "donate": "",
+  "@donate": {
     "type": "text",
     "placeholders": {}
   },
-  "Edit displayname": "",
-  "@Edit displayname": {
+  "downloadFile": "",
+  "@downloadFile": {
     "type": "text",
     "placeholders": {}
   },
-  "Emote Settings": "",
-  "@Emote Settings": {
+  "editDisplayname": "",
+  "@editDisplayname": {
     "type": "text",
     "placeholders": {}
   },
-  "Emote shortcode": "",
-  "@Emote shortcode": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "emoteWarnNeedToPick": "",
-  "@emoteWarnNeedToPick": {
+  "editJitsiInstance": "",
+  "@editJitsiInstance": {
     "type": "text",
     "placeholders": {}
   },
@@ -511,103 +516,118 @@
     "type": "text",
     "placeholders": {}
   },
-  "Empty chat": "",
-  "@Empty chat": {
+  "emoteSettings": "",
+  "@emoteSettings": {
     "type": "text",
     "placeholders": {}
   },
-  "You won't be able to disable the encryption anymore. Are you sure?": "",
-  "@You won't be able to disable the encryption anymore. Are you sure?": {
+  "emoteShortcode": "",
+  "@emoteShortcode": {
     "type": "text",
     "placeholders": {}
   },
-  "Encryption": "",
-  "@Encryption": {
+  "emoteWarnNeedToPick": "",
+  "@emoteWarnNeedToPick": {
     "type": "text",
     "placeholders": {}
   },
-  "Encryption algorithm": "",
-  "@Encryption algorithm": {
+  "emptyChat": "",
+  "@emptyChat": {
     "type": "text",
     "placeholders": {}
   },
-  "Encryption is not enabled": "",
-  "@Encryption is not enabled": {
+  "enableEncryptionWarning": "",
+  "@enableEncryptionWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "End-to-end encryption settings": "",
-  "@End-to-end encryption settings": {
+  "encryption": "",
+  "@encryption": {
     "type": "text",
     "placeholders": {}
   },
-  "Enter a group name": "",
-  "@Enter a group name": {
+  "encryptionAlgorithm": "",
+  "@encryptionAlgorithm": {
     "type": "text",
     "placeholders": {}
   },
-  "Enter a username": "",
-  "@Enter a username": {
+  "encryptionNotEnabled": "",
+  "@encryptionNotEnabled": {
     "type": "text",
     "placeholders": {}
   },
-  "Enter your homeserver": "",
-  "@Enter your homeserver": {
+  "end2endEncryptionSettings": "",
+  "@end2endEncryptionSettings": {
     "type": "text",
     "placeholders": {}
   },
-  "File name": "",
-  "@File name": {
+  "enterAGroupName": "",
+  "@enterAGroupName": {
     "type": "text",
     "placeholders": {}
   },
-  "File size": "",
-  "@File size": {
+  "enterAUsername": "",
+  "@enterAUsername": {
     "type": "text",
     "placeholders": {}
   },
-  "FluffyChat": "",
-  "@FluffyChat": {
+  "enterYourHomeserver": "",
+  "@enterYourHomeserver": {
     "type": "text",
     "placeholders": {}
   },
-  "Forward": "",
-  "@Forward": {
+  "fileName": "",
+  "@fileName": {
     "type": "text",
     "placeholders": {}
   },
-  "Friday": "",
-  "@Friday": {
+  "fileSize": "",
+  "@fileSize": {
     "type": "text",
     "placeholders": {}
   },
-  "From joining": "",
-  "@From joining": {
+  "fluffychat": "",
+  "@fluffychat": {
     "type": "text",
     "placeholders": {}
   },
-  "From the invitation": "",
-  "@From the invitation": {
+  "forward": "",
+  "@forward": {
     "type": "text",
     "placeholders": {}
   },
-  "Group": "",
-  "@Group": {
+  "friday": "",
+  "@friday": {
     "type": "text",
     "placeholders": {}
   },
-  "Group description": "",
-  "@Group description": {
+  "fromJoining": "",
+  "@fromJoining": {
     "type": "text",
     "placeholders": {}
   },
-  "Group description has been changed": "",
-  "@Group description has been changed": {
+  "fromTheInvitation": "",
+  "@fromTheInvitation": {
     "type": "text",
     "placeholders": {}
   },
-  "Group is public": "",
-  "@Group is public": {
+  "group": "",
+  "@group": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groupDescription": "",
+  "@groupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groupDescriptionHasBeenChanged": "",
+  "@groupDescriptionHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groupIsPublic": "",
+  "@groupIsPublic": {
     "type": "text",
     "placeholders": {}
   },
@@ -618,13 +638,13 @@
       "displayname": {}
     }
   },
-  "Guests are forbidden": "",
-  "@Guests are forbidden": {
+  "guestsAreForbidden": "",
+  "@guestsAreForbidden": {
     "type": "text",
     "placeholders": {}
   },
-  "Guests can join": "",
-  "@Guests can join": {
+  "guestsCanJoin": "",
+  "@guestsCanJoin": {
     "type": "text",
     "placeholders": {}
   },
@@ -636,23 +656,23 @@
       "targetName": {}
     }
   },
-  "Help": "",
-  "@Help": {
+  "help": "",
+  "@help": {
     "type": "text",
     "placeholders": {}
   },
-  "Homeserver is not compatible": "",
-  "@Homeserver is not compatible": {
+  "homeserverIsNotCompatible": "",
+  "@homeserverIsNotCompatible": {
     "type": "text",
     "placeholders": {}
   },
-  "ID": "",
-  "@ID": {
+  "id": "",
+  "@id": {
     "type": "text",
     "placeholders": {}
   },
-  "Identity": "",
-  "@Identity": {
+  "identity": "",
+  "@identity": {
     "type": "text",
     "placeholders": {}
   },
@@ -661,8 +681,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "Invite contact": "",
-  "@Invite contact": {
+  "inviteContact": "",
+  "@inviteContact": {
     "type": "text",
     "placeholders": {}
   },
@@ -673,8 +693,21 @@
       "groupName": {}
     }
   },
-  "Invited": "",
-  "@Invited": {
+  "invited": "",
+  "@invited": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invitedUser": "",
+  "@invitedUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "invitedUsersOnly": "",
+  "@invitedUsersOnly": {
     "type": "text",
     "placeholders": {}
   },
@@ -686,31 +719,13 @@
       "link": {}
     }
   },
-  "invitedUser": "",
-  "@invitedUser": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "targetName": {}
-    }
-  },
-  "Invited users only": "",
-  "@Invited users only": {
-    "type": "text",
-    "placeholders": {}
-  },
   "isDeviceKeyCorrect": "",
   "@isDeviceKeyCorrect": {
     "type": "text",
     "placeholders": {}
   },
-  "is typing...": "",
-  "@is typing...": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Edit Jitsi instance": "",
-  "@Edit Jitsi instance": {
+  "isTyping": "",
+  "@isTyping": {
     "type": "text",
     "placeholders": {}
   },
@@ -747,32 +762,10 @@
       "targetName": {}
     }
   },
-  "Kick from chat": "",
-  "@Kick from chat": {
+  "kickFromChat": "",
+  "@kickFromChat": {
     "type": "text",
     "placeholders": {}
-  },
-  "Leave": "",
-  "@Leave": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Left the chat": "",
-  "@Left the chat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Logout": "",
-  "@Logout": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "userLeftTheChat": "",
-  "@userLeftTheChat": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
   },
   "lastActiveAgo": "",
   "@lastActiveAgo": {
@@ -781,23 +774,33 @@
       "localizedTimeShort": {}
     }
   },
-  "Last seen IP": "",
-  "@Last seen IP": {
+  "lastSeenIp": "",
+  "@lastSeenIp": {
     "type": "text",
     "placeholders": {}
   },
-  "License": "",
-  "@License": {
+  "lastSeenLongTimeAgo": "",
+  "@lastSeenLongTimeAgo": {
     "type": "text",
     "placeholders": {}
   },
-  "Loading... Please wait": "",
-  "@Loading... Please wait": {
+  "leave": "",
+  "@leave": {
     "type": "text",
     "placeholders": {}
   },
-  "Load more...": "",
-  "@Load more...": {
+  "leftTheChat": "",
+  "@leftTheChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "license": "",
+  "@license": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lightTheme": "",
+  "@lightTheme": {
     "type": "text",
     "placeholders": {}
   },
@@ -808,8 +811,18 @@
       "count": {}
     }
   },
-  "Login": "",
-  "@Login": {
+  "loadingPleaseWait": "",
+  "@loadingPleaseWait": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loadMore": "",
+  "@loadMore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "login": "",
+  "@login": {
     "type": "text",
     "placeholders": {}
   },
@@ -820,53 +833,58 @@
       "homeserver": {}
     }
   },
-  "Make a moderator": "",
-  "@Make a moderator": {
+  "logout": "",
+  "@logout": {
     "type": "text",
     "placeholders": {}
   },
-  "Make an admin": "",
-  "@Make an admin": {
+  "makeAModerator": "",
+  "@makeAModerator": {
     "type": "text",
     "placeholders": {}
   },
-  "Make sure the identifier is valid": "",
-  "@Make sure the identifier is valid": {
+  "makeAnAdmin": "",
+  "@makeAnAdmin": {
     "type": "text",
     "placeholders": {}
   },
-  "Message will be removed for all participants": "",
-  "@Message will be removed for all participants": {
+  "makeSureTheIdentifierIsValid": "",
+  "@makeSureTheIdentifierIsValid": {
     "type": "text",
     "placeholders": {}
   },
-  "Moderator": "",
-  "@Moderator": {
+  "messageWillBeRemovedWarning": "",
+  "@messageWillBeRemovedWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "Monday": "",
-  "@Monday": {
+  "moderator": "",
+  "@moderator": {
     "type": "text",
     "placeholders": {}
   },
-  "Mute chat": "",
-  "@Mute chat": {
+  "monday": "",
+  "@monday": {
     "type": "text",
     "placeholders": {}
   },
-  "Please be aware that you need Pantalaimon to use end-to-end encryption for now.": "",
-  "@Please be aware that you need Pantalaimon to use end-to-end encryption for now.": {
+  "muteChat": "",
+  "@muteChat": {
     "type": "text",
     "placeholders": {}
   },
-  "New message in FluffyChat": "",
-  "@New message in FluffyChat": {
+  "needPantalaimonWarning": "",
+  "@needPantalaimonWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "New private chat": "",
-  "@New private chat": {
+  "newMessageInFluffyChat": "",
+  "@newMessageInFluffyChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newPrivateChat": "",
+  "@newPrivateChat": {
     "type": "text",
     "placeholders": {}
   },
@@ -880,38 +898,38 @@
     "type": "text",
     "placeholders": {}
   },
+  "noEmotesFound": "",
+  "@noEmotesFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noGoogleServicesWarning": "",
+  "@noGoogleServicesWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
   "noMegolmBootstrap": "",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
   },
-  "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": "",
-  "@It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/": {
+  "none": "",
+  "@none": {
     "type": "text",
     "placeholders": {}
   },
-  "None": "",
-  "@None": {
+  "noPermission": "",
+  "@noPermission": {
     "type": "text",
     "placeholders": {}
   },
-  "No emotes found. 😕": "",
-  "@No emotes found. 😕": {
+  "noRoomsFound": "",
+  "@noRoomsFound": {
     "type": "text",
     "placeholders": {}
   },
-  "No permission": "",
-  "@No permission": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "No rooms found...": "",
-  "@No rooms found...": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Not supported in web": "",
-  "@Not supported in web": {
+  "notSupportedInWeb": "",
+  "@notSupportedInWeb": {
     "type": "text",
     "placeholders": {}
   },
@@ -937,28 +955,28 @@
     "type": "text",
     "placeholders": {}
   },
-  "Oops something went wrong...": "",
-  "@Oops something went wrong...": {
+  "oopsSomethingWentWrong": "",
+  "@oopsSomethingWentWrong": {
     "type": "text",
     "placeholders": {}
   },
-  "Open app to read messages": "",
-  "@Open app to read messages": {
+  "openAppToReadMessages": "",
+  "@openAppToReadMessages": {
     "type": "text",
     "placeholders": {}
   },
-  "Open camera": "",
-  "@Open camera": {
+  "openCamera": "",
+  "@openCamera": {
     "type": "text",
     "placeholders": {}
   },
-  "(Optional) Group name": "",
-  "@(Optional) Group name": {
+  "optionalGroupName": "",
+  "@optionalGroupName": {
     "type": "text",
     "placeholders": {}
   },
-  "Participating user devices": "",
-  "@Participating user devices": {
+  "participatingUserDevices": "",
+  "@participatingUserDevices": {
     "type": "text",
     "placeholders": {}
   },
@@ -967,13 +985,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "Password": "",
-  "@Password": {
+  "password": "",
+  "@password": {
     "type": "text",
     "placeholders": {}
   },
-  "Pick image": "",
-  "@Pick image": {
+  "pickImage": "",
+  "@pickImage": {
     "type": "text",
     "placeholders": {}
   },
@@ -984,48 +1002,33 @@
       "fileName": {}
     }
   },
-  "Please choose a username": "",
-  "@Please choose a username": {
+  "pleaseChooseAUsername": "",
+  "@pleaseChooseAUsername": {
     "type": "text",
     "placeholders": {}
   },
-  "Please enter a matrix identifier": "",
-  "@Please enter a matrix identifier": {
+  "pleaseEnterAMatrixIdentifier": "",
+  "@pleaseEnterAMatrixIdentifier": {
     "type": "text",
     "placeholders": {}
   },
-  "Please enter your password": "",
-  "@Please enter your password": {
+  "pleaseEnterYourPassword": "",
+  "@pleaseEnterYourPassword": {
     "type": "text",
     "placeholders": {}
   },
-  "Please enter your username": "",
-  "@Please enter your username": {
+  "pleaseEnterYourUsername": "",
+  "@pleaseEnterYourUsername": {
     "type": "text",
     "placeholders": {}
   },
-  "Public Rooms": "",
-  "@Public Rooms": {
+  "publicRooms": "",
+  "@publicRooms": {
     "type": "text",
     "placeholders": {}
   },
-  "Reject": "",
-  "@Reject": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Rejoin": "",
-  "@Rejoin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Render rich message content": "",
-  "@Render rich message content": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Recording": "",
-  "@Recording": {
+  "recording": "",
+  "@recording": {
     "type": "text",
     "placeholders": {}
   },
@@ -1036,6 +1039,11 @@
       "username": {}
     }
   },
+  "reject": "",
+  "@reject": {
+    "type": "text",
+    "placeholders": {}
+  },
   "rejectedTheInvitation": "",
   "@rejectedTheInvitation": {
     "type": "text",
@@ -1043,8 +1051,18 @@
       "username": {}
     }
   },
-  "Remove all other devices": "",
-  "@Remove all other devices": {
+  "rejoin": "",
+  "@rejoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "remove": "",
+  "@remove": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeAllOtherDevices": "",
+  "@removeAllOtherDevices": {
     "type": "text",
     "placeholders": {}
   },
@@ -1055,75 +1073,58 @@
       "username": {}
     }
   },
-  "Remove device": "",
-  "@Remove device": {
+  "removeDevice": "",
+  "@removeDevice": {
     "type": "text",
     "placeholders": {}
   },
-  "Remove exile": "",
-  "@Remove exile": {
+  "removeExile": "",
+  "@removeExile": {
     "type": "text",
     "placeholders": {}
   },
-  "Revoke all permissions": "",
-  "@Revoke all permissions": {
+  "removeMessage": "",
+  "@removeMessage": {
     "type": "text",
     "placeholders": {}
   },
-  "Remove": "",
-  "@Remove": {
+  "renderRichContent": "",
+  "@renderRichContent": {
     "type": "text",
     "placeholders": {}
   },
-  "Remove message": "",
-  "@Remove message": {
+  "reply": "",
+  "@reply": {
     "type": "text",
     "placeholders": {}
   },
-  "Reply": "",
-  "@Reply": {
+  "requestPermission": "",
+  "@requestPermission": {
     "type": "text",
     "placeholders": {}
   },
-  "Request permission": "",
-  "@Request permission": {
+  "requestToReadOlderMessages": "",
+  "@requestToReadOlderMessages": {
     "type": "text",
     "placeholders": {}
   },
-  "Request to read older messages": "",
-  "@Request to read older messages": {
+  "revokeAllPermissions": "",
+  "@revokeAllPermissions": {
     "type": "text",
     "placeholders": {}
   },
-  "Room has been upgraded": "",
-  "@Room has been upgraded": {
+  "roomHasBeenUpgraded": "",
+  "@roomHasBeenUpgraded": {
     "type": "text",
     "placeholders": {}
   },
-  "Saturday": "",
-  "@Saturday": {
+  "saturday": "",
+  "@saturday": {
     "type": "text",
     "placeholders": {}
   },
-  "Share": "",
-  "@Share": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sharedTheLocation": "",
-  "@sharedTheLocation": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "Search for a chat": "",
-  "@Search for a chat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Seen a long time ago": "",
-  "@Seen a long time ago": {
+  "searchForAChat": "",
+  "@searchForAChat": {
     "type": "text",
     "placeholders": {}
   },
@@ -1134,14 +1135,6 @@
       "username": {}
     }
   },
-  "seenByUserAndUser": "",
-  "@seenByUserAndUser": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "username2": {}
-    }
-  },
   "seenByUserAndCountOthers": "",
   "@seenByUserAndCountOthers": {
     "type": "text",
@@ -1150,23 +1143,31 @@
       "count": {}
     }
   },
-  "Send": "",
-  "@Send": {
+  "seenByUserAndUser": "",
+  "@seenByUserAndUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "username2": {}
+    }
+  },
+  "send": "",
+  "@send": {
     "type": "text",
     "placeholders": {}
   },
-  "Send a message": "",
-  "@Send a message": {
+  "sendAMessage": "",
+  "@sendAMessage": {
     "type": "text",
     "placeholders": {}
   },
-  "Send file": "",
-  "@Send file": {
+  "sendFile": "",
+  "@sendFile": {
     "type": "text",
     "placeholders": {}
   },
-  "Send image": "",
-  "@Send image": {
+  "sendImage": "",
+  "@sendImage": {
     "type": "text",
     "placeholders": {}
   },
@@ -1210,118 +1211,105 @@
     "type": "text",
     "placeholders": {}
   },
-  "Set a profile picture": "",
-  "@Set a profile picture": {
+  "setAProfilePicture": "",
+  "@setAProfilePicture": {
     "type": "text",
     "placeholders": {}
   },
-  "Set group description": "",
-  "@Set group description": {
+  "setGroupDescription": "",
+  "@setGroupDescription": {
     "type": "text",
     "placeholders": {}
   },
-  "Set invitation link": "",
-  "@Set invitation link": {
+  "setInvitationLink": "",
+  "@setInvitationLink": {
     "type": "text",
     "placeholders": {}
   },
-  "Set status": "",
-  "@Set status": {
+  "setStatus": "",
+  "@setStatus": {
     "type": "text",
     "placeholders": {}
   },
-  "Settings": "",
-  "@Settings": {
+  "settings": "",
+  "@settings": {
     "type": "text",
     "placeholders": {}
   },
-  "Sign up": "",
-  "@Sign up": {
+  "share": "",
+  "@share": {
     "type": "text",
     "placeholders": {}
   },
-  "Skip": "",
-  "@Skip": {
+  "sharedTheLocation": "",
+  "@sharedTheLocation": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "signUp": "",
+  "@signUp": {
     "type": "text",
     "placeholders": {}
   },
-  "Change your style": "",
-  "@Change your style": {
+  "skip": "",
+  "@skip": {
     "type": "text",
     "placeholders": {}
   },
-  "System": "",
-  "@System": {
+  "sourceCode": "",
+  "@sourceCode": {
     "type": "text",
     "placeholders": {}
   },
-  "How are you today?": "",
-  "@How are you today?": {
+  "startYourFirstChat": "",
+  "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
   },
-  "Light": "",
-  "@Light": {
+  "statusExampleMessage": "",
+  "@statusExampleMessage": {
     "type": "text",
     "placeholders": {}
   },
-  "Dark": "",
-  "@Dark": {
+  "submit": "",
+  "@submit": {
     "type": "text",
     "placeholders": {}
   },
-  "Use Amoled compatible colors?": "",
-  "@Use Amoled compatible colors?": {
+  "sunday": "",
+  "@sunday": {
     "type": "text",
     "placeholders": {}
   },
-  "Source code": "",
-  "@Source code": {
+  "systemTheme": "",
+  "@systemTheme": {
     "type": "text",
     "placeholders": {}
   },
-  "Start your first chat :-)": "",
-  "@Start your first chat :-)": {
+  "tapToShowMenu": "",
+  "@tapToShowMenu": {
     "type": "text",
     "placeholders": {}
   },
-  "Submit": "",
-  "@Submit": {
+  "theyDontMatch": "",
+  "@theyDontMatch": {
     "type": "text",
     "placeholders": {}
   },
-  "Sunday": "",
-  "@Sunday": {
+  "theyMatch": "",
+  "@theyMatch": {
     "type": "text",
     "placeholders": {}
   },
-  "Donate": "",
-  "@Donate": {
+  "thisRoomHasBeenArchived": "",
+  "@thisRoomHasBeenArchived": {
     "type": "text",
     "placeholders": {}
   },
-  "Tap to show menu": "",
-  "@Tap to show menu": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "They Don't Match": "",
-  "@They Don't Match": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "They Match": "",
-  "@They Match": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "This room has been archived.": "",
-  "@This room has been archived.": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Thursday": "",
-  "@Thursday": {
+  "thursday": "",
+  "@thursday": {
     "type": "text",
     "placeholders": {}
   },
@@ -1341,13 +1329,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "Try to send again": "",
-  "@Try to send again": {
+  "tryToSendAgain": "",
+  "@tryToSendAgain": {
     "type": "text",
     "placeholders": {}
   },
-  "Tuesday": "",
-  "@Tuesday": {
+  "tuesday": "",
+  "@tuesday": {
     "type": "text",
     "placeholders": {}
   },
@@ -1359,28 +1347,18 @@
       "targetName": {}
     }
   },
-  "Unblock Device": "",
-  "@Unblock Device": {
+  "unblockDevice": "",
+  "@unblockDevice": {
     "type": "text",
     "placeholders": {}
   },
-  "Unmute chat": "",
-  "@Unmute chat": {
+  "unknownDevice": "",
+  "@unknownDevice": {
     "type": "text",
     "placeholders": {}
   },
-  "Unknown device": "",
-  "@Unknown device": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "Unknown encryption algorithm": "",
-  "@Unknown encryption algorithm": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "unknownSessionVerify": "",
-  "@unknownSessionVerify": {
+  "unknownEncryptionAlgorithm": "",
+  "@unknownEncryptionAlgorithm": {
     "type": "text",
     "placeholders": {}
   },
@@ -1390,6 +1368,16 @@
     "placeholders": {
       "type": {}
     }
+  },
+  "unknownSessionVerify": "",
+  "@unknownSessionVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unmuteChat": "",
+  "@unmuteChat": {
+    "type": "text",
+    "placeholders": {}
   },
   "unreadChats": "",
   "@unreadChats": {
@@ -1413,6 +1401,11 @@
       "unreadChats": {}
     }
   },
+  "useAmoledTheme": "",
+  "@useAmoledTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
   "userAndOthersAreTyping": "",
   "@userAndOthersAreTyping": {
     "type": "text",
@@ -1429,17 +1422,24 @@
       "username2": {}
     }
   },
-  "Username": "",
-  "@Username": {
-    "type": "text",
-    "placeholders": {}
-  },
   "userIsTyping": "",
   "@userIsTyping": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
+  },
+  "userLeftTheChat": "",
+  "@userLeftTheChat": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "username": "",
+  "@username": {
+    "type": "text",
+    "placeholders": {}
   },
   "userSentUnknownEvent": "",
   "@userSentUnknownEvent": {
@@ -1449,18 +1449,18 @@
       "type": {}
     }
   },
-  "Verify": "",
-  "@Verify": {
+  "verifiedSession": "",
+  "@verifiedSession": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verify": "",
+  "@verify": {
     "type": "text",
     "placeholders": {}
   },
   "verifyManual": "",
   "@verifyManual": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "verifiedSession": "",
-  "@verifiedSession": {
     "type": "text",
     "placeholders": {}
   },
@@ -1479,33 +1479,33 @@
     "type": "text",
     "placeholders": {}
   },
-  "Verify User": "",
-  "@Verify User": {
+  "verifyUser": "",
+  "@verifyUser": {
     "type": "text",
     "placeholders": {}
   },
-  "Video call": "",
-  "@Video call": {
+  "videoCall": "",
+  "@videoCall": {
     "type": "text",
     "placeholders": {}
   },
-  "Visible for all participants": "",
-  "@Visible for all participants": {
+  "visibilityOfTheChatHistory": "",
+  "@visibilityOfTheChatHistory": {
     "type": "text",
     "placeholders": {}
   },
-  "Visible for everyone": "",
-  "@Visible for everyone": {
+  "visibleForAllParticipants": "",
+  "@visibleForAllParticipants": {
     "type": "text",
     "placeholders": {}
   },
-  "Visibility of the chat history": "",
-  "@Visibility of the chat history": {
+  "visibleForEveryone": "",
+  "@visibleForEveryone": {
     "type": "text",
     "placeholders": {}
   },
-  "Voice message": "",
-  "@Voice message": {
+  "voiceMessage": "",
+  "@voiceMessage": {
     "type": "text",
     "placeholders": {}
   },
@@ -1524,68 +1524,68 @@
     "type": "text",
     "placeholders": {}
   },
-  "Wallpaper": "",
-  "@Wallpaper": {
+  "wallpaper": "",
+  "@wallpaper": {
     "type": "text",
     "placeholders": {}
   },
-  "End to end encryption is currently in Beta! Use at your own risk!": "",
-  "@End to end encryption is currently in Beta! Use at your own risk!": {
+  "warningEncryptionInBeta": "",
+  "@warningEncryptionInBeta": {
     "type": "text",
     "placeholders": {}
   },
-  "Wednesday": "",
-  "@Wednesday": {
+  "wednesday": "",
+  "@wednesday": {
     "type": "text",
     "placeholders": {}
   },
-  "Welcome to the cutest instant messenger in the matrix network.": "",
-  "@Welcome to the cutest instant messenger in the matrix network.": {
+  "welcomeText": "",
+  "@welcomeText": {
     "type": "text",
     "placeholders": {}
   },
-  "Who is allowed to join this group": "",
-  "@Who is allowed to join this group": {
+  "whoIsAllowedToJoinThisGroup": "",
+  "@whoIsAllowedToJoinThisGroup": {
     "type": "text",
     "placeholders": {}
   },
-  "Write a message...": "",
-  "@Write a message...": {
+  "writeAMessage": "",
+  "@writeAMessage": {
     "type": "text",
     "placeholders": {}
   },
-  "Yes": "",
-  "@Yes": {
+  "yes": "",
+  "@yes": {
     "type": "text",
     "placeholders": {}
   },
-  "You": "",
-  "@You": {
+  "you": "",
+  "@you": {
     "type": "text",
     "placeholders": {}
   },
-  "You are invited to this chat": "",
-  "@You are invited to this chat": {
+  "youAreInvitedToThisChat": "",
+  "@youAreInvitedToThisChat": {
     "type": "text",
     "placeholders": {}
   },
-  "You are no longer participating in this chat": "",
-  "@You are no longer participating in this chat": {
+  "youAreNoLongerParticipatingInThisChat": "",
+  "@youAreNoLongerParticipatingInThisChat": {
     "type": "text",
     "placeholders": {}
   },
-  "You cannot invite yourself": "",
-  "@You cannot invite yourself": {
+  "youCannotInviteYourself": "",
+  "@youCannotInviteYourself": {
     "type": "text",
     "placeholders": {}
   },
-  "You have been banned from this chat": "",
-  "@You have been banned from this chat": {
+  "youHaveBeenBannedFromThisChat": "",
+  "@youHaveBeenBannedFromThisChat": {
     "type": "text",
     "placeholders": {}
   },
-  "Your own username": "",
-  "@Your own username": {
+  "yourOwnUsername": "",
+  "@yourOwnUsername": {
     "type": "text",
     "placeholders": {}
   }

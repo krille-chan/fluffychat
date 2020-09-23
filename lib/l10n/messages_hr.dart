@@ -166,340 +166,27 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function>{
-        "(Optional) Group name":
-            MessageLookupByLibrary.simpleMessage("(Opcionalno) Ime grupe"),
-        "About": MessageLookupByLibrary.simpleMessage("Informacije"),
-        "Accept": MessageLookupByLibrary.simpleMessage("Prihvati"),
-        "Account": MessageLookupByLibrary.simpleMessage("Račun"),
-        "Account informations":
-            MessageLookupByLibrary.simpleMessage("Podaci računa"),
-        "Add a group description":
-            MessageLookupByLibrary.simpleMessage("Dodaj opis grupe"),
-        "Admin": MessageLookupByLibrary.simpleMessage("Administrator"),
-        "Allow sending bug reports with sentry.io":
-            MessageLookupByLibrary.simpleMessage(
-                "Dozvoli slanje izvještaja o greškama sa sentry.io"),
-        "Already have an account?":
-            MessageLookupByLibrary.simpleMessage("Već imaš račun?"),
-        "Anyone can join":
-            MessageLookupByLibrary.simpleMessage("Svatko se može pridružiti"),
-        "Archive": MessageLookupByLibrary.simpleMessage("Arhiva"),
-        "Archived Room":
-            MessageLookupByLibrary.simpleMessage("Arhivirana soba"),
-        "Are guest users allowed to join": MessageLookupByLibrary.simpleMessage(
-            "Smiju li se gosti pridružiti grupi"),
-        "Are you sure?": MessageLookupByLibrary.simpleMessage("Sigurno?"),
-        "Authentication":
-            MessageLookupByLibrary.simpleMessage("Autentifikacija"),
-        "Avatar has been changed":
-            MessageLookupByLibrary.simpleMessage("Avatar je promijenjen"),
-        "Ban from chat":
-            MessageLookupByLibrary.simpleMessage("Isključi iz chata"),
-        "Banned": MessageLookupByLibrary.simpleMessage("Isključen"),
-        "Block Device": MessageLookupByLibrary.simpleMessage("Blokiraj uređaj"),
-        "Cancel": MessageLookupByLibrary.simpleMessage("Odustani"),
-        "Change the homeserver": MessageLookupByLibrary.simpleMessage(
-            "Promijeni domaćeg poslužitelja"),
-        "Change the name of the group":
-            MessageLookupByLibrary.simpleMessage("Promijeni ime grupe"),
-        "Change the server":
-            MessageLookupByLibrary.simpleMessage("Promijeni poslužitelja"),
-        "Change wallpaper":
-            MessageLookupByLibrary.simpleMessage("Promijeni sliku pozadine"),
-        "Change your style":
-            MessageLookupByLibrary.simpleMessage("Promijeni svoj stil"),
-        "Changelog": MessageLookupByLibrary.simpleMessage("Zapis promjena"),
-        "Changes have been saved":
-            MessageLookupByLibrary.simpleMessage("Promjene nisu spremljene"),
-        "Chat": MessageLookupByLibrary.simpleMessage("Chat"),
-        "Chat details": MessageLookupByLibrary.simpleMessage("Detalji chata"),
-        "Choose a strong password":
-            MessageLookupByLibrary.simpleMessage("Odaberi snažnu lozinku"),
-        "Choose a username":
-            MessageLookupByLibrary.simpleMessage("Odaberi korisničko ime"),
-        "Close": MessageLookupByLibrary.simpleMessage("Zatvori"),
-        "Confirm": MessageLookupByLibrary.simpleMessage("Potvrdi"),
-        "Connect": MessageLookupByLibrary.simpleMessage("Spoji"),
-        "Connection attempt failed":
-            MessageLookupByLibrary.simpleMessage("Neuspio pokušaj povezivanja"),
-        "Contact has been invited to the group":
-            MessageLookupByLibrary.simpleMessage("Kontakt je pozvan u grupu"),
-        "Content viewer":
-            MessageLookupByLibrary.simpleMessage("Prikazivač sadržaja"),
-        "Copied to clipboard":
-            MessageLookupByLibrary.simpleMessage("Kopirano u međuspremnik"),
-        "Copy": MessageLookupByLibrary.simpleMessage("Kopiraj"),
-        "Could not set avatar": MessageLookupByLibrary.simpleMessage(
-            "Neuspjelo postavljanje avatara"),
-        "Could not set displayname": MessageLookupByLibrary.simpleMessage(
-            "Neuspjelo postavljanje prikaznog imena"),
-        "Create": MessageLookupByLibrary.simpleMessage("Stvori"),
-        "Create account now":
-            MessageLookupByLibrary.simpleMessage("Stvori račun sada"),
-        "Create new group":
-            MessageLookupByLibrary.simpleMessage("Stvori novu grupu"),
-        "Currently active":
-            MessageLookupByLibrary.simpleMessage("Trenutačno aktivni"),
-        "Dark": MessageLookupByLibrary.simpleMessage("Tamna"),
-        "Delete": MessageLookupByLibrary.simpleMessage("Izbriži"),
-        "Delete message":
-            MessageLookupByLibrary.simpleMessage("Izbriži poruku"),
-        "Deny": MessageLookupByLibrary.simpleMessage("Odbij"),
-        "Device": MessageLookupByLibrary.simpleMessage("Uređaj"),
-        "Devices": MessageLookupByLibrary.simpleMessage("Uređaji"),
-        "Discard picture": MessageLookupByLibrary.simpleMessage("Odbaci sliku"),
-        "Displayname has been changed": MessageLookupByLibrary.simpleMessage(
-            "Prikazno ime je promijenjeno"),
-        "Donate": MessageLookupByLibrary.simpleMessage("Doniraj"),
-        "Download file":
-            MessageLookupByLibrary.simpleMessage("Preuzmi datoteku"),
-        "Edit Jitsi instance":
-            MessageLookupByLibrary.simpleMessage("Uredi Jitsi primjerak"),
-        "Edit displayname":
-            MessageLookupByLibrary.simpleMessage("Uredi prikazano ime"),
-        "Emote Settings":
-            MessageLookupByLibrary.simpleMessage("Postavke emojija"),
-        "Emote shortcode":
-            MessageLookupByLibrary.simpleMessage("Kratica emota"),
-        "Empty chat": MessageLookupByLibrary.simpleMessage("Prazan chat"),
-        "Encryption": MessageLookupByLibrary.simpleMessage("Šifriranje"),
-        "Encryption algorithm":
-            MessageLookupByLibrary.simpleMessage("Algoritam šifriranja"),
-        "Encryption is not enabled":
-            MessageLookupByLibrary.simpleMessage("Šifriranje nije aktivirano"),
-        "End to end encryption is currently in Beta! Use at your own risk!":
-            MessageLookupByLibrary.simpleMessage(
-                "Obostrano šifriranje je trenutačno u beta stanju! Koriti na vlastitu odgovornost!"),
-        "End-to-end encryption settings": MessageLookupByLibrary.simpleMessage(
-            "Postavke obostranog šifriranja"),
-        "Enter a group name":
-            MessageLookupByLibrary.simpleMessage("Upiši ime grupe"),
-        "Enter a username":
-            MessageLookupByLibrary.simpleMessage("Upiši korisničko ime"),
-        "Enter your homeserver": MessageLookupByLibrary.simpleMessage(
-            "Upiši svog domaćeg poslužitelja"),
-        "File name": MessageLookupByLibrary.simpleMessage("Ime datoteke"),
-        "File size": MessageLookupByLibrary.simpleMessage("Veličina datoteke"),
-        "FluffyChat": MessageLookupByLibrary.simpleMessage("FluffyChat"),
-        "Forward": MessageLookupByLibrary.simpleMessage("Proslijedi"),
-        "Friday": MessageLookupByLibrary.simpleMessage("Petak"),
-        "From joining":
-            MessageLookupByLibrary.simpleMessage("Od pridruživanja"),
-        "From the invitation":
-            MessageLookupByLibrary.simpleMessage("Od poziva"),
-        "Group": MessageLookupByLibrary.simpleMessage("Grupiraj"),
-        "Group description": MessageLookupByLibrary.simpleMessage("Opis grupe"),
-        "Group description has been changed":
-            MessageLookupByLibrary.simpleMessage("Opis grupe je promijenjen"),
-        "Group is public":
-            MessageLookupByLibrary.simpleMessage("Grupa je javna"),
-        "Guests are forbidden":
-            MessageLookupByLibrary.simpleMessage("Gosti su zabranjeni"),
-        "Guests can join":
-            MessageLookupByLibrary.simpleMessage("Gosti se mogu pridružiti"),
-        "Help": MessageLookupByLibrary.simpleMessage("Pomoć"),
-        "Homeserver is not compatible": MessageLookupByLibrary.simpleMessage(
-            "Domaći poslužitelj nije kompatibilan"),
-        "How are you today?":
-            MessageLookupByLibrary.simpleMessage("Kako si danas?"),
-        "ID": MessageLookupByLibrary.simpleMessage("ID"),
-        "Identity": MessageLookupByLibrary.simpleMessage("Identitet"),
-        "Informations about your privacy: https://sentry.io/security/":
-            MessageLookupByLibrary.simpleMessage(
-                "Podaci o tvojoj privatnosti: https://sentry.io/security/"),
-        "Invite contact":
-            MessageLookupByLibrary.simpleMessage("Pozovi kontakt"),
-        "Invited": MessageLookupByLibrary.simpleMessage("Pozvan/a"),
-        "Invited users only":
-            MessageLookupByLibrary.simpleMessage("Samo pozvani korisnici"),
-        "It seems that you have no google services on your phone. That\'s a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/":
-            MessageLookupByLibrary.simpleMessage(
-                "Čini se da na mobitelu nemaš google usluge. To je dobra odluka za tvoju privatnost! Za primanje push obavijesti u FluffyChatu preporučujemo upotrebu microG-a: https://microg.org/"),
-        "Join room": MessageLookupByLibrary.simpleMessage("Pridruži se sobi"),
-        "Kick from chat":
-            MessageLookupByLibrary.simpleMessage("Izbaci iz chata"),
-        "Last seen IP":
-            MessageLookupByLibrary.simpleMessage("Zadnji viđeni IP"),
-        "Leave": MessageLookupByLibrary.simpleMessage("Napusti"),
-        "Left the chat":
-            MessageLookupByLibrary.simpleMessage("Napustio/la je chat"),
-        "License": MessageLookupByLibrary.simpleMessage("Licenca"),
-        "Light": MessageLookupByLibrary.simpleMessage("Svjetla"),
-        "Load more...": MessageLookupByLibrary.simpleMessage("Učitaj više …"),
-        "Loading... Please wait":
-            MessageLookupByLibrary.simpleMessage("Učitava se … Pričekaj"),
-        "Login": MessageLookupByLibrary.simpleMessage("Prijava"),
-        "Logout": MessageLookupByLibrary.simpleMessage("Odjava"),
-        "Make a moderator":
-            MessageLookupByLibrary.simpleMessage("Postavi kao voditelja"),
-        "Make an admin":
-            MessageLookupByLibrary.simpleMessage("Postavi kao administratora"),
-        "Make sure the identifier is valid":
-            MessageLookupByLibrary.simpleMessage(
-                "Provjeri je li identifikator ispravan"),
-        "Message will be removed for all participants":
-            MessageLookupByLibrary.simpleMessage(
-                "Poruke će se ukloniti za sve sudionike"),
-        "Moderator": MessageLookupByLibrary.simpleMessage("Voditelj"),
-        "Monday": MessageLookupByLibrary.simpleMessage("Ponedjeljak"),
-        "Mute chat":
-            MessageLookupByLibrary.simpleMessage("Isključi zvuk chata"),
-        "New message in FluffyChat":
-            MessageLookupByLibrary.simpleMessage("Nova poruka u FluffyChatu"),
-        "New private chat":
-            MessageLookupByLibrary.simpleMessage("Novi privatni chat"),
-        "No": MessageLookupByLibrary.simpleMessage("Ne"),
-        "No emotes found. 😕":
-            MessageLookupByLibrary.simpleMessage("Nema emota. 😕"),
-        "No permission": MessageLookupByLibrary.simpleMessage("Bez dozvole"),
-        "No rooms found...":
-            MessageLookupByLibrary.simpleMessage("Nema soba …"),
-        "None": MessageLookupByLibrary.simpleMessage("Ništa"),
-        "Not supported in web":
-            MessageLookupByLibrary.simpleMessage("Nije podržano u internetu"),
-        "Oops something went wrong...": MessageLookupByLibrary.simpleMessage(
-            "Ups, došlo je do neke greške …"),
-        "Open app to read messages": MessageLookupByLibrary.simpleMessage(
-            "Za čitanje poruka, otvori program"),
-        "Open camera": MessageLookupByLibrary.simpleMessage("Otvori kameru"),
-        "Participating user devices": MessageLookupByLibrary.simpleMessage(
-            "Sudjelujući korisnički uređaji"),
-        "Password": MessageLookupByLibrary.simpleMessage("Lozinka"),
-        "Pick image": MessageLookupByLibrary.simpleMessage("Odaberi sliku"),
-        "Pin": MessageLookupByLibrary.simpleMessage("Prikvači"),
-        "Please be aware that you need Pantalaimon to use end-to-end encryption for now.":
-            MessageLookupByLibrary.simpleMessage(
-                "Za sada trebaš Pantalaimon za obostrano šifriranje."),
-        "Please choose a username":
-            MessageLookupByLibrary.simpleMessage("Odaberi korisničko ime"),
-        "Please enter a matrix identifier":
-            MessageLookupByLibrary.simpleMessage("Upiši identifikator matrice"),
-        "Please enter your password":
-            MessageLookupByLibrary.simpleMessage("Upiši svoju lozinku"),
-        "Please enter your username":
-            MessageLookupByLibrary.simpleMessage("Upiši svoje korisničko ime"),
-        "Public Rooms": MessageLookupByLibrary.simpleMessage("Javne sobe"),
-        "Recording": MessageLookupByLibrary.simpleMessage("Snimanje"),
-        "Reject": MessageLookupByLibrary.simpleMessage("Odbij"),
-        "Rejoin": MessageLookupByLibrary.simpleMessage("Ponovo se pridruži"),
-        "Remove": MessageLookupByLibrary.simpleMessage("Ukloni"),
-        "Remove all other devices":
-            MessageLookupByLibrary.simpleMessage("Ukloni sve druge uređaje"),
-        "Remove device": MessageLookupByLibrary.simpleMessage("Ukloni uređaj"),
-        "Remove exile":
-            MessageLookupByLibrary.simpleMessage("Ukloni izbacivanje"),
-        "Remove message": MessageLookupByLibrary.simpleMessage("Ukloni poruku"),
-        "Render rich message content": MessageLookupByLibrary.simpleMessage(
-            "Prikaži formatirani sadržaj poruke"),
-        "Reply": MessageLookupByLibrary.simpleMessage("Odgovori"),
-        "Request permission":
-            MessageLookupByLibrary.simpleMessage("Zatraži dozvolu"),
-        "Request to read older messages": MessageLookupByLibrary.simpleMessage(
-            "Zahtjev za čitanje starijih poruka"),
-        "Revoke all permissions":
-            MessageLookupByLibrary.simpleMessage("Opozovi sve dozvole"),
-        "Room has been upgraded":
-            MessageLookupByLibrary.simpleMessage("Soba je nadograđena"),
-        "Saturday": MessageLookupByLibrary.simpleMessage("Subota"),
-        "Search for a chat": MessageLookupByLibrary.simpleMessage("Traži chat"),
-        "Seen a long time ago":
-            MessageLookupByLibrary.simpleMessage("Viđeno prije dugo vremena"),
-        "Send": MessageLookupByLibrary.simpleMessage("Pošalji"),
-        "Send a message":
-            MessageLookupByLibrary.simpleMessage("Pošalji poruku"),
-        "Send audio":
-            MessageLookupByLibrary.simpleMessage("Pošalji audio datoteku"),
-        "Send file": MessageLookupByLibrary.simpleMessage("Pošalji datoteku"),
-        "Send image": MessageLookupByLibrary.simpleMessage("Pošalji sliku"),
-        "Send original":
-            MessageLookupByLibrary.simpleMessage("Pošalji original"),
-        "Send video":
-            MessageLookupByLibrary.simpleMessage("Pošalji video datoteku"),
-        "Set a profile picture":
-            MessageLookupByLibrary.simpleMessage("Postavi sliku profila"),
-        "Set group description":
-            MessageLookupByLibrary.simpleMessage("Postavi opis grupe"),
-        "Set invitation link": MessageLookupByLibrary.simpleMessage(
-            "Pošalji poveznicu za pozivnicu"),
-        "Set status": MessageLookupByLibrary.simpleMessage("Postavi stanje"),
-        "Settings": MessageLookupByLibrary.simpleMessage("Postavke"),
-        "Share": MessageLookupByLibrary.simpleMessage("Dijeli"),
-        "Sign up": MessageLookupByLibrary.simpleMessage("Prijavi se"),
-        "Skip": MessageLookupByLibrary.simpleMessage("Preskoči"),
-        "Source code": MessageLookupByLibrary.simpleMessage("Izvorni kȏd"),
-        "Start your first chat :-)":
-            MessageLookupByLibrary.simpleMessage("Počni svoj prvi chat :-)"),
-        "Submit": MessageLookupByLibrary.simpleMessage("Pošalji"),
-        "Sunday": MessageLookupByLibrary.simpleMessage("Nedjelja"),
-        "System": MessageLookupByLibrary.simpleMessage("Sustav"),
-        "Tap to show menu":
-            MessageLookupByLibrary.simpleMessage("Dodirni za prikaz izbornika"),
-        "The encryption has been corrupted":
-            MessageLookupByLibrary.simpleMessage("Šifriranje je oštećeno"),
-        "They Don\'t Match":
-            MessageLookupByLibrary.simpleMessage("Ne poklapaju se"),
-        "They Match": MessageLookupByLibrary.simpleMessage("Poklapaju se"),
-        "This room has been archived.":
-            MessageLookupByLibrary.simpleMessage("Ova soba je arhivirana."),
-        "Thursday": MessageLookupByLibrary.simpleMessage("Četvrtak"),
-        "Try to send again":
-            MessageLookupByLibrary.simpleMessage("Pokušaj ponovo poslati"),
-        "Tuesday": MessageLookupByLibrary.simpleMessage("Utorak"),
-        "Unblock Device":
-            MessageLookupByLibrary.simpleMessage("Deblokiraj uređaj"),
-        "Unknown device":
-            MessageLookupByLibrary.simpleMessage("Nepoznat uređaj"),
-        "Unknown encryption algorithm": MessageLookupByLibrary.simpleMessage(
-            "Nepoznat algoritam šifriranja"),
-        "Unmute chat":
-            MessageLookupByLibrary.simpleMessage("Uključi zvuk chata"),
-        "Unpin": MessageLookupByLibrary.simpleMessage("Otkvači"),
-        "Use Amoled compatible colors?": MessageLookupByLibrary.simpleMessage(
-            "Koristiti Amoled kompatibilne boje?"),
-        "Username": MessageLookupByLibrary.simpleMessage("Korisničko ime"),
-        "Verify": MessageLookupByLibrary.simpleMessage("Provjeri"),
-        "Verify User":
-            MessageLookupByLibrary.simpleMessage("Provjeri korisnika"),
-        "Video call": MessageLookupByLibrary.simpleMessage("Video poziv"),
-        "Visibility of the chat history": MessageLookupByLibrary.simpleMessage(
-            "Vidljivost kronologije chata"),
-        "Visible for all participants":
-            MessageLookupByLibrary.simpleMessage("Vidljivo za sve sudionike"),
-        "Visible for everyone":
-            MessageLookupByLibrary.simpleMessage("Vidljivo za sve"),
-        "Voice message":
-            MessageLookupByLibrary.simpleMessage("Glasovna poruka"),
-        "Wallpaper": MessageLookupByLibrary.simpleMessage("Slika pozadine"),
-        "Wednesday": MessageLookupByLibrary.simpleMessage("Srijeda"),
-        "Welcome to the cutest instant messenger in the matrix network.":
-            MessageLookupByLibrary.simpleMessage(
-                "Lijep pozdrav u najslađi program za čavrljanje u mreži matrix."),
-        "Who is allowed to join this group":
-            MessageLookupByLibrary.simpleMessage(
-                "Tko se smije pridružiti grupi"),
-        "Write a message...":
-            MessageLookupByLibrary.simpleMessage("Napiši poruku …"),
-        "Yes": MessageLookupByLibrary.simpleMessage("Da"),
-        "You": MessageLookupByLibrary.simpleMessage("Ti"),
-        "You are invited to this chat":
-            MessageLookupByLibrary.simpleMessage("Pozvan/a si u ovaj chat"),
-        "You are no longer participating in this chat":
-            MessageLookupByLibrary.simpleMessage(
-                "Više ne sudjeluješ u ovom chatu"),
-        "You cannot invite yourself":
-            MessageLookupByLibrary.simpleMessage("Sebe ne možeš pozvati"),
-        "You have been banned from this chat":
-            MessageLookupByLibrary.simpleMessage(
-                "Isključen/a si iz ovog chata"),
-        "You won\'t be able to disable the encryption anymore. Are you sure?":
-            MessageLookupByLibrary.simpleMessage(
-                "Više nećeš moći deaktivirati šifriranje. Sigurno?"),
-        "Your own username":
-            MessageLookupByLibrary.simpleMessage("Tvoje korisničko ime"),
+        "about": MessageLookupByLibrary.simpleMessage("Informacije"),
+        "accept": MessageLookupByLibrary.simpleMessage("Prihvati"),
         "acceptedTheInvitation": m0,
+        "account": MessageLookupByLibrary.simpleMessage("Račun"),
+        "accountInformation":
+            MessageLookupByLibrary.simpleMessage("Podaci računa"),
         "activatedEndToEndEncryption": m1,
+        "addGroupDescription":
+            MessageLookupByLibrary.simpleMessage("Dodaj opis grupe"),
+        "admin": MessageLookupByLibrary.simpleMessage("Administrator"),
         "alias": MessageLookupByLibrary.simpleMessage("pseudonim"),
+        "alreadyHaveAnAccount":
+            MessageLookupByLibrary.simpleMessage("Već imaš račun?"),
         "answeredTheCall": m2,
+        "anyoneCanJoin":
+            MessageLookupByLibrary.simpleMessage("Svatko se može pridružiti"),
+        "archive": MessageLookupByLibrary.simpleMessage("Arhiva"),
+        "archivedRoom": MessageLookupByLibrary.simpleMessage("Arhivirana soba"),
+        "areGuestsAllowedToJoin": MessageLookupByLibrary.simpleMessage(
+            "Smiju li se gosti pridružiti grupi"),
+        "areYouSure": MessageLookupByLibrary.simpleMessage("Sigurno?"),
         "askSSSSCache": MessageLookupByLibrary.simpleMessage(
             "Upiši svoju sigurnosnu lozinku ili ključ za obnavljanje, kako bi se ključevi spremili u predmemoriju."),
         "askSSSSSign": MessageLookupByLibrary.simpleMessage(
@@ -507,10 +194,29 @@ class MessageLookup extends MessageLookupByLibrary {
         "askSSSSVerify": MessageLookupByLibrary.simpleMessage(
             "Za potvrđivanje tvoje sesije, upiši svoju sigurnosnu lozinku ili ključ za obnavljanje."),
         "askVerificationRequest": m3,
+        "authentication":
+            MessageLookupByLibrary.simpleMessage("Autentifikacija"),
+        "avatarHasBeenChanged":
+            MessageLookupByLibrary.simpleMessage("Avatar je promijenjen"),
+        "banFromChat":
+            MessageLookupByLibrary.simpleMessage("Isključi iz chata"),
+        "banned": MessageLookupByLibrary.simpleMessage("Isključen"),
         "bannedUser": m4,
+        "blockDevice": MessageLookupByLibrary.simpleMessage("Blokiraj uređaj"),
         "byDefaultYouWillBeConnectedTo": m5,
         "cachedKeys": MessageLookupByLibrary.simpleMessage(
             "Uspješno međuspremljeni ključevi!"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Odustani"),
+        "changeTheHomeserver": MessageLookupByLibrary.simpleMessage(
+            "Promijeni domaćeg poslužitelja"),
+        "changeTheNameOfTheGroup":
+            MessageLookupByLibrary.simpleMessage("Promijeni ime grupe"),
+        "changeTheServer":
+            MessageLookupByLibrary.simpleMessage("Promijeni poslužitelja"),
+        "changeTheme":
+            MessageLookupByLibrary.simpleMessage("Promijeni svoj stil"),
+        "changeWallpaper":
+            MessageLookupByLibrary.simpleMessage("Promijeni sliku pozadine"),
         "changedTheChatAvatar": m6,
         "changedTheChatDescriptionTo": m7,
         "changedTheChatNameTo": m8,
@@ -525,105 +231,386 @@ class MessageLookup extends MessageLookupByLibrary {
         "changedTheProfileAvatar": m17,
         "changedTheRoomAliases": m18,
         "changedTheRoomInvitationLink": m19,
+        "changelog": MessageLookupByLibrary.simpleMessage("Zapis promjena"),
+        "changesHaveBeenSaved":
+            MessageLookupByLibrary.simpleMessage("Promjene nisu spremljene"),
+        "channelCorruptedDecryptError":
+            MessageLookupByLibrary.simpleMessage("Šifriranje je oštećeno"),
+        "chat": MessageLookupByLibrary.simpleMessage("Chat"),
+        "chatDetails": MessageLookupByLibrary.simpleMessage("Detalji chata"),
+        "chooseAStrongPassword":
+            MessageLookupByLibrary.simpleMessage("Odaberi snažnu lozinku"),
+        "chooseAUsername":
+            MessageLookupByLibrary.simpleMessage("Odaberi korisničko ime"),
+        "close": MessageLookupByLibrary.simpleMessage("Zatvori"),
         "compareEmojiMatch": MessageLookupByLibrary.simpleMessage(
             "Usporedi i provjeri, poklapaju li se sljedeći emojiji s onima drugog uređaja:"),
         "compareNumbersMatch": MessageLookupByLibrary.simpleMessage(
             "Usporedi i provjeri, poklapaju li se sljedeći brojevi s onima drugog uređaja:"),
+        "confirm": MessageLookupByLibrary.simpleMessage("Potvrdi"),
+        "connect": MessageLookupByLibrary.simpleMessage("Spoji"),
+        "connectionAttemptFailed":
+            MessageLookupByLibrary.simpleMessage("Neuspio pokušaj povezivanja"),
+        "contactHasBeenInvitedToTheGroup":
+            MessageLookupByLibrary.simpleMessage("Kontakt je pozvan u grupu"),
+        "contentViewer":
+            MessageLookupByLibrary.simpleMessage("Prikazivač sadržaja"),
+        "copiedToClipboard":
+            MessageLookupByLibrary.simpleMessage("Kopirano u međuspremnik"),
+        "copy": MessageLookupByLibrary.simpleMessage("Kopiraj"),
         "couldNotDecryptMessage": m20,
+        "couldNotSetAvatar": MessageLookupByLibrary.simpleMessage(
+            "Neuspjelo postavljanje avatara"),
+        "couldNotSetDisplayname": MessageLookupByLibrary.simpleMessage(
+            "Neuspjelo postavljanje prikaznog imena"),
         "countParticipants": m21,
+        "create": MessageLookupByLibrary.simpleMessage("Stvori"),
+        "createAccountNow":
+            MessageLookupByLibrary.simpleMessage("Stvori račun sada"),
+        "createNewGroup":
+            MessageLookupByLibrary.simpleMessage("Stvori novu grupu"),
         "createdTheChat": m22,
         "crossSigningDisabled": MessageLookupByLibrary.simpleMessage(
             "Unakrsno potpisivanje je deaktivirano"),
         "crossSigningEnabled": MessageLookupByLibrary.simpleMessage(
             "Unakrsno potpisivanje je aktivirano"),
+        "currentlyActive":
+            MessageLookupByLibrary.simpleMessage("Trenutačno aktivni"),
+        "darkTheme": MessageLookupByLibrary.simpleMessage("Tamna"),
         "dateAndTimeOfDay": m23,
         "dateWithYear": m24,
         "dateWithoutYear": m25,
+        "deactivateAccountWarning": MessageLookupByLibrary.simpleMessage(
+            "Ovo će nepovratno deaktivirati tvoj korisnički račun. Stvarno to želiš uraditi?"),
+        "delete": MessageLookupByLibrary.simpleMessage("Izbriži"),
+        "deleteAccount": MessageLookupByLibrary.simpleMessage("Izbriši račun"),
+        "deleteMessage": MessageLookupByLibrary.simpleMessage("Izbriži poruku"),
+        "deny": MessageLookupByLibrary.simpleMessage("Odbij"),
+        "device": MessageLookupByLibrary.simpleMessage("Uređaj"),
+        "devices": MessageLookupByLibrary.simpleMessage("Uređaji"),
+        "discardPicture": MessageLookupByLibrary.simpleMessage("Odbaci sliku"),
+        "displaynameHasBeenChanged": MessageLookupByLibrary.simpleMessage(
+            "Prikazno ime je promijenjeno"),
+        "donate": MessageLookupByLibrary.simpleMessage("Doniraj"),
+        "downloadFile":
+            MessageLookupByLibrary.simpleMessage("Preuzmi datoteku"),
+        "editDisplayname":
+            MessageLookupByLibrary.simpleMessage("Uredi prikazano ime"),
+        "editJitsiInstance":
+            MessageLookupByLibrary.simpleMessage("Uredi Jitsi primjerak"),
         "emoteExists":
             MessageLookupByLibrary.simpleMessage("Emot već postoji!"),
         "emoteInvalid":
             MessageLookupByLibrary.simpleMessage("Neispravna kratica emota!"),
+        "emoteSettings":
+            MessageLookupByLibrary.simpleMessage("Postavke emojija"),
+        "emoteShortcode": MessageLookupByLibrary.simpleMessage("Kratica emota"),
         "emoteWarnNeedToPick": MessageLookupByLibrary.simpleMessage(
             "Moraš odabrati jednu kraticu emota i sliku!"),
+        "emptyChat": MessageLookupByLibrary.simpleMessage("Prazan chat"),
+        "enableEncryptionWarning": MessageLookupByLibrary.simpleMessage(
+            "Više nećeš moći deaktivirati šifriranje. Sigurno?"),
+        "encryption": MessageLookupByLibrary.simpleMessage("Šifriranje"),
+        "encryptionAlgorithm":
+            MessageLookupByLibrary.simpleMessage("Algoritam šifriranja"),
+        "encryptionNotEnabled":
+            MessageLookupByLibrary.simpleMessage("Šifriranje nije aktivirano"),
+        "end2endEncryptionSettings": MessageLookupByLibrary.simpleMessage(
+            "Postavke obostranog šifriranja"),
         "endedTheCall": m26,
+        "enterAGroupName":
+            MessageLookupByLibrary.simpleMessage("Upiši ime grupe"),
+        "enterAUsername":
+            MessageLookupByLibrary.simpleMessage("Upiši korisničko ime"),
+        "enterYourHomeserver": MessageLookupByLibrary.simpleMessage(
+            "Upiši svog domaćeg poslužitelja"),
+        "fileName": MessageLookupByLibrary.simpleMessage("Ime datoteke"),
+        "fileSize": MessageLookupByLibrary.simpleMessage("Veličina datoteke"),
+        "fluffychat": MessageLookupByLibrary.simpleMessage("FluffyChat"),
+        "forward": MessageLookupByLibrary.simpleMessage("Proslijedi"),
+        "friday": MessageLookupByLibrary.simpleMessage("Petak"),
+        "fromJoining": MessageLookupByLibrary.simpleMessage("Od pridruživanja"),
+        "fromTheInvitation": MessageLookupByLibrary.simpleMessage("Od poziva"),
+        "group": MessageLookupByLibrary.simpleMessage("Grupiraj"),
+        "groupDescription": MessageLookupByLibrary.simpleMessage("Opis grupe"),
+        "groupDescriptionHasBeenChanged":
+            MessageLookupByLibrary.simpleMessage("Opis grupe je promijenjen"),
+        "groupIsPublic": MessageLookupByLibrary.simpleMessage("Grupa je javna"),
         "groupWith": m27,
+        "guestsAreForbidden":
+            MessageLookupByLibrary.simpleMessage("Gosti su zabranjeni"),
+        "guestsCanJoin":
+            MessageLookupByLibrary.simpleMessage("Gosti se mogu pridružiti"),
         "hasWithdrawnTheInvitationFor": m28,
+        "help": MessageLookupByLibrary.simpleMessage("Pomoć"),
+        "homeserverIsNotCompatible": MessageLookupByLibrary.simpleMessage(
+            "Domaći poslužitelj nije kompatibilan"),
+        "id": MessageLookupByLibrary.simpleMessage("ID"),
+        "identity": MessageLookupByLibrary.simpleMessage("Identitet"),
+        "ignoreListDescription": MessageLookupByLibrary.simpleMessage(
+            "Možeš zanemariti korisnike koji te ometaju. Nećeš moći primiti nijednu poruku ili pozivnice u sobe od korisnika koji se nalaze u tvom osobnom popisu zanemarivanja."),
+        "ignoreUsername":
+            MessageLookupByLibrary.simpleMessage("Zanemari korisničko ime"),
+        "ignoredUsers":
+            MessageLookupByLibrary.simpleMessage("Zanemareni korisnici"),
         "incorrectPassphraseOrKey": MessageLookupByLibrary.simpleMessage(
             "Neispravna lozinka ili ključ za obnavljanje"),
+        "inviteContact": MessageLookupByLibrary.simpleMessage("Pozovi kontakt"),
         "inviteContactToGroup": m29,
         "inviteText": m30,
+        "invited": MessageLookupByLibrary.simpleMessage("Pozvan/a"),
         "invitedUser": m31,
-        "is typing...": MessageLookupByLibrary.simpleMessage("piše …"),
+        "invitedUsersOnly":
+            MessageLookupByLibrary.simpleMessage("Samo pozvani korisnici"),
         "isDeviceKeyCorrect": MessageLookupByLibrary.simpleMessage(
             "Je li sljedeći ključ uređaja ispravan?"),
+        "isTyping": MessageLookupByLibrary.simpleMessage("piše …"),
+        "joinRoom": MessageLookupByLibrary.simpleMessage("Pridruži se sobi"),
         "joinedTheChat": m32,
         "keysCached": MessageLookupByLibrary.simpleMessage(
             "Ključevi su spremljeni u predmemoriji"),
         "keysMissing":
             MessageLookupByLibrary.simpleMessage("Nedostaju ključevi"),
+        "kickFromChat": MessageLookupByLibrary.simpleMessage("Izbaci iz chata"),
         "kicked": m33,
         "kickedAndBanned": m34,
         "lastActiveAgo": m35,
+        "lastSeenIp": MessageLookupByLibrary.simpleMessage("Zadnji viđeni IP"),
+        "lastSeenLongTimeAgo":
+            MessageLookupByLibrary.simpleMessage("Viđeno prije dugo vremena"),
+        "leave": MessageLookupByLibrary.simpleMessage("Napusti"),
+        "leftTheChat":
+            MessageLookupByLibrary.simpleMessage("Napustio/la je chat"),
+        "license": MessageLookupByLibrary.simpleMessage("Licenca"),
+        "lightTheme": MessageLookupByLibrary.simpleMessage("Svjetla"),
         "loadCountMoreParticipants": m36,
+        "loadMore": MessageLookupByLibrary.simpleMessage("Učitaj više …"),
+        "loadingPleaseWait":
+            MessageLookupByLibrary.simpleMessage("Učitava se … Pričekaj"),
         "logInTo": m37,
+        "login": MessageLookupByLibrary.simpleMessage("Prijava"),
+        "logout": MessageLookupByLibrary.simpleMessage("Odjava"),
+        "makeAModerator":
+            MessageLookupByLibrary.simpleMessage("Postavi kao voditelja"),
+        "makeAnAdmin":
+            MessageLookupByLibrary.simpleMessage("Postavi kao administratora"),
+        "makeSureTheIdentifierIsValid": MessageLookupByLibrary.simpleMessage(
+            "Provjeri je li identifikator ispravan"),
+        "messageWillBeRemovedWarning": MessageLookupByLibrary.simpleMessage(
+            "Poruke će se ukloniti za sve sudionike"),
+        "moderator": MessageLookupByLibrary.simpleMessage("Voditelj"),
+        "monday": MessageLookupByLibrary.simpleMessage("Ponedjeljak"),
+        "muteChat": MessageLookupByLibrary.simpleMessage("Isključi zvuk chata"),
+        "needPantalaimonWarning": MessageLookupByLibrary.simpleMessage(
+            "Za sada trebaš Pantalaimon za obostrano šifriranje."),
+        "newMessageInFluffyChat":
+            MessageLookupByLibrary.simpleMessage("Nova poruka u FluffyChatu"),
+        "newPrivateChat":
+            MessageLookupByLibrary.simpleMessage("Novi privatni chat"),
         "newVerificationRequest":
             MessageLookupByLibrary.simpleMessage("Novi zahtjev za provjeru!"),
+        "no": MessageLookupByLibrary.simpleMessage("Ne"),
         "noCrossSignBootstrap": MessageLookupByLibrary.simpleMessage(
             "Fluffychat trenutačno ne podržava unakrsno potpisivanje. Aktiviraj je u Riot."),
+        "noEmotesFound": MessageLookupByLibrary.simpleMessage("Nema emota. 😕"),
+        "noGoogleServicesWarning": MessageLookupByLibrary.simpleMessage(
+            "Čini se da na mobitelu nemaš google usluge. To je dobra odluka za tvoju privatnost! Za primanje push obavijesti u FluffyChatu preporučujemo upotrebu microG-a: https://microg.org/"),
         "noMegolmBootstrap": MessageLookupByLibrary.simpleMessage(
             "Fluffychat trenutačno ne podržava aktiviranje online sigurnosnu kopiju ključeva. Aktiviraj je u Riot."),
+        "noPermission": MessageLookupByLibrary.simpleMessage("Bez dozvole"),
+        "noRoomsFound": MessageLookupByLibrary.simpleMessage("Nema soba …"),
+        "none": MessageLookupByLibrary.simpleMessage("Ništa"),
+        "notSupportedInWeb":
+            MessageLookupByLibrary.simpleMessage("Nije podržano u internetu"),
         "numberSelected": m38,
         "ok": MessageLookupByLibrary.simpleMessage("u redu"),
         "onlineKeyBackupDisabled": MessageLookupByLibrary.simpleMessage(
             "Online sigurnosna kopija ključeva je deaktivirana"),
         "onlineKeyBackupEnabled": MessageLookupByLibrary.simpleMessage(
             "Online sigurnosna kopija ključeva je aktivirana"),
+        "oopsSomethingWentWrong": MessageLookupByLibrary.simpleMessage(
+            "Ups, došlo je do neke greške …"),
+        "openAppToReadMessages": MessageLookupByLibrary.simpleMessage(
+            "Za čitanje poruka, otvori program"),
+        "openCamera": MessageLookupByLibrary.simpleMessage("Otvori kameru"),
+        "optionalGroupName":
+            MessageLookupByLibrary.simpleMessage("(Opcionalno) Ime grupe"),
+        "participatingUserDevices": MessageLookupByLibrary.simpleMessage(
+            "Sudjelujući korisnički uređaji"),
         "passphraseOrKey": MessageLookupByLibrary.simpleMessage(
             "Lozinka ili ključ za obnavljanje"),
+        "password": MessageLookupByLibrary.simpleMessage("Lozinka"),
+        "passwordHasBeenChanged":
+            MessageLookupByLibrary.simpleMessage("Lozinka je promijenjena"),
+        "pickImage": MessageLookupByLibrary.simpleMessage("Odaberi sliku"),
+        "pin": MessageLookupByLibrary.simpleMessage("Prikvači"),
         "play": m39,
+        "pleaseChooseAUsername":
+            MessageLookupByLibrary.simpleMessage("Odaberi korisničko ime"),
+        "pleaseEnterAMatrixIdentifier":
+            MessageLookupByLibrary.simpleMessage("Upiši identifikator matrice"),
+        "pleaseEnterYourPassword":
+            MessageLookupByLibrary.simpleMessage("Upiši svoju lozinku"),
+        "pleaseEnterYourUsername":
+            MessageLookupByLibrary.simpleMessage("Upiši svoje korisničko ime"),
+        "publicRooms": MessageLookupByLibrary.simpleMessage("Javne sobe"),
+        "recording": MessageLookupByLibrary.simpleMessage("Snimanje"),
         "redactedAnEvent": m40,
+        "reject": MessageLookupByLibrary.simpleMessage("Odbij"),
         "rejectedTheInvitation": m41,
+        "rejoin": MessageLookupByLibrary.simpleMessage("Ponovo se pridruži"),
+        "remove": MessageLookupByLibrary.simpleMessage("Ukloni"),
+        "removeAllOtherDevices":
+            MessageLookupByLibrary.simpleMessage("Ukloni sve druge uređaje"),
+        "removeDevice": MessageLookupByLibrary.simpleMessage("Ukloni uređaj"),
+        "removeExile":
+            MessageLookupByLibrary.simpleMessage("Ukloni izbacivanje"),
+        "removeMessage": MessageLookupByLibrary.simpleMessage("Ukloni poruku"),
         "removedBy": m42,
+        "renderRichContent": MessageLookupByLibrary.simpleMessage(
+            "Prikaži formatirani sadržaj poruke"),
+        "reply": MessageLookupByLibrary.simpleMessage("Odgovori"),
+        "requestPermission":
+            MessageLookupByLibrary.simpleMessage("Zatraži dozvolu"),
+        "requestToReadOlderMessages": MessageLookupByLibrary.simpleMessage(
+            "Zahtjev za čitanje starijih poruka"),
+        "revokeAllPermissions":
+            MessageLookupByLibrary.simpleMessage("Opozovi sve dozvole"),
+        "roomHasBeenUpgraded":
+            MessageLookupByLibrary.simpleMessage("Soba je nadograđena"),
+        "saturday": MessageLookupByLibrary.simpleMessage("Subota"),
+        "searchForAChat": MessageLookupByLibrary.simpleMessage("Traži chat"),
         "seenByUser": m43,
         "seenByUserAndCountOthers": m44,
         "seenByUserAndUser": m45,
+        "send": MessageLookupByLibrary.simpleMessage("Pošalji"),
+        "sendAMessage": MessageLookupByLibrary.simpleMessage("Pošalji poruku"),
+        "sendAudio":
+            MessageLookupByLibrary.simpleMessage("Pošalji audio datoteku"),
+        "sendBugReports": MessageLookupByLibrary.simpleMessage(
+            "Dozvoli slanje izvještaja o greškama sa sentry.io"),
+        "sendFile": MessageLookupByLibrary.simpleMessage("Pošalji datoteku"),
+        "sendImage": MessageLookupByLibrary.simpleMessage("Pošalji sliku"),
+        "sendOriginal":
+            MessageLookupByLibrary.simpleMessage("Pošalji original"),
+        "sendVideo":
+            MessageLookupByLibrary.simpleMessage("Pošalji video datoteku"),
         "sentAFile": m46,
         "sentAPicture": m47,
         "sentASticker": m48,
         "sentAVideo": m49,
         "sentAnAudio": m50,
         "sentCallInformations": m51,
+        "sentryInfo": MessageLookupByLibrary.simpleMessage(
+            "Podaci o tvojoj privatnosti: https://sentry.io/security/"),
         "sessionVerified":
             MessageLookupByLibrary.simpleMessage("Sesija je provjerena"),
+        "setAProfilePicture":
+            MessageLookupByLibrary.simpleMessage("Postavi sliku profila"),
+        "setGroupDescription":
+            MessageLookupByLibrary.simpleMessage("Postavi opis grupe"),
+        "setInvitationLink": MessageLookupByLibrary.simpleMessage(
+            "Pošalji poveznicu za pozivnicu"),
+        "setStatus": MessageLookupByLibrary.simpleMessage("Postavi stanje"),
+        "settings": MessageLookupByLibrary.simpleMessage("Postavke"),
+        "share": MessageLookupByLibrary.simpleMessage("Dijeli"),
         "sharedTheLocation": m52,
+        "signUp": MessageLookupByLibrary.simpleMessage("Prijavi se"),
+        "skip": MessageLookupByLibrary.simpleMessage("Preskoči"),
+        "sourceCode": MessageLookupByLibrary.simpleMessage("Izvorni kȏd"),
+        "startYourFirstChat":
+            MessageLookupByLibrary.simpleMessage("Počni svoj prvi chat :-)"),
         "startedACall": m53,
+        "statusExampleMessage":
+            MessageLookupByLibrary.simpleMessage("Kako si danas?"),
+        "submit": MessageLookupByLibrary.simpleMessage("Pošalji"),
+        "sunday": MessageLookupByLibrary.simpleMessage("Nedjelja"),
+        "systemTheme": MessageLookupByLibrary.simpleMessage("Sustav"),
+        "tapToShowMenu":
+            MessageLookupByLibrary.simpleMessage("Dodirni za prikaz izbornika"),
+        "theyDontMatch":
+            MessageLookupByLibrary.simpleMessage("Ne poklapaju se"),
+        "theyMatch": MessageLookupByLibrary.simpleMessage("Poklapaju se"),
+        "thisRoomHasBeenArchived":
+            MessageLookupByLibrary.simpleMessage("Ova soba je arhivirana."),
+        "thursday": MessageLookupByLibrary.simpleMessage("Četvrtak"),
         "timeOfDay": m54,
         "title": MessageLookupByLibrary.simpleMessage("FluffyChat"),
+        "tryToSendAgain":
+            MessageLookupByLibrary.simpleMessage("Pokušaj ponovo poslati"),
+        "tuesday": MessageLookupByLibrary.simpleMessage("Utorak"),
         "unbannedUser": m55,
+        "unblockDevice":
+            MessageLookupByLibrary.simpleMessage("Deblokiraj uređaj"),
+        "unknownDevice":
+            MessageLookupByLibrary.simpleMessage("Nepoznat uređaj"),
+        "unknownEncryptionAlgorithm": MessageLookupByLibrary.simpleMessage(
+            "Nepoznat algoritam šifriranja"),
         "unknownEvent": m56,
         "unknownSessionVerify":
             MessageLookupByLibrary.simpleMessage("Nepoznata sesija, provjeri"),
+        "unmuteChat":
+            MessageLookupByLibrary.simpleMessage("Uključi zvuk chata"),
+        "unpin": MessageLookupByLibrary.simpleMessage("Otkvači"),
         "unreadChats": m57,
         "unreadMessages": m58,
         "unreadMessagesInChats": m59,
+        "useAmoledTheme": MessageLookupByLibrary.simpleMessage(
+            "Koristiti Amoled kompatibilne boje?"),
         "userAndOthersAreTyping": m60,
         "userAndUserAreTyping": m61,
         "userIsTyping": m62,
         "userLeftTheChat": m63,
         "userSentUnknownEvent": m64,
+        "username": MessageLookupByLibrary.simpleMessage("Korisničko ime"),
         "verifiedSession":
             MessageLookupByLibrary.simpleMessage("Uspješno provjerena sesija!"),
+        "verify": MessageLookupByLibrary.simpleMessage("Provjeri"),
         "verifyManual": MessageLookupByLibrary.simpleMessage("Provjeri ručno"),
         "verifyStart": MessageLookupByLibrary.simpleMessage("Pokreni provjeru"),
         "verifySuccess":
             MessageLookupByLibrary.simpleMessage("Uspješno si provjerio/la!"),
         "verifyTitle":
             MessageLookupByLibrary.simpleMessage("Provjeravanje drugog računa"),
+        "verifyUser":
+            MessageLookupByLibrary.simpleMessage("Provjeri korisnika"),
+        "videoCall": MessageLookupByLibrary.simpleMessage("Video poziv"),
+        "visibilityOfTheChatHistory": MessageLookupByLibrary.simpleMessage(
+            "Vidljivost kronologije chata"),
+        "visibleForAllParticipants":
+            MessageLookupByLibrary.simpleMessage("Vidljivo za sve sudionike"),
+        "visibleForEveryone":
+            MessageLookupByLibrary.simpleMessage("Vidljivo za sve"),
+        "voiceMessage": MessageLookupByLibrary.simpleMessage("Glasovna poruka"),
         "waitingPartnerAcceptRequest": MessageLookupByLibrary.simpleMessage(
             "Čekanje na partnera, da prihvati zahtjeva …"),
         "waitingPartnerEmoji": MessageLookupByLibrary.simpleMessage(
             "Čekanje na partnera, da prihvati emoji …"),
         "waitingPartnerNumbers": MessageLookupByLibrary.simpleMessage(
-            "Čekanje na partnera, da prihvati brojeve …")
+            "Čekanje na partnera, da prihvati brojeve …"),
+        "wallpaper": MessageLookupByLibrary.simpleMessage("Slika pozadine"),
+        "warning": MessageLookupByLibrary.simpleMessage("Upozorenje!"),
+        "warningEncryptionInBeta": MessageLookupByLibrary.simpleMessage(
+            "Obostrano šifriranje je trenutačno u beta stanju! Koriti na vlastitu odgovornost!"),
+        "wednesday": MessageLookupByLibrary.simpleMessage("Srijeda"),
+        "welcomeText": MessageLookupByLibrary.simpleMessage(
+            "Lijep pozdrav u najslađi program za čavrljanje u mreži matrix."),
+        "whoIsAllowedToJoinThisGroup": MessageLookupByLibrary.simpleMessage(
+            "Tko se smije pridružiti grupi"),
+        "writeAMessage":
+            MessageLookupByLibrary.simpleMessage("Napiši poruku …"),
+        "yes": MessageLookupByLibrary.simpleMessage("Da"),
+        "you": MessageLookupByLibrary.simpleMessage("Ti"),
+        "youAreInvitedToThisChat":
+            MessageLookupByLibrary.simpleMessage("Pozvan/a si u ovaj chat"),
+        "youAreNoLongerParticipatingInThisChat":
+            MessageLookupByLibrary.simpleMessage(
+                "Više ne sudjeluješ u ovom chatu"),
+        "youCannotInviteYourself":
+            MessageLookupByLibrary.simpleMessage("Sebe ne možeš pozvati"),
+        "youHaveBeenBannedFromThisChat": MessageLookupByLibrary.simpleMessage(
+            "Isključen/a si iz ovog chata"),
+        "yourOwnUsername":
+            MessageLookupByLibrary.simpleMessage("Tvoje korisničko ime")
       };
 }

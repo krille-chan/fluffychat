@@ -393,7 +393,7 @@ class _SettingsState extends State<Settings> {
             ),
             ListTile(
               trailing: Icon(Icons.account_circle),
-              title: Text(L10n.of(context).accountInformations),
+              title: Text(L10n.of(context).accountInformation),
               onTap: () => Navigator.of(context).push(
                 AppRoute.defaultRoute(
                   context,

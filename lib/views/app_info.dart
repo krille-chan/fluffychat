@@ -23,7 +23,7 @@ class AppInfo extends StatelessWidget {
     var client = Matrix.of(context).client;
     return Scaffold(
       appBar: AppBar(
-        title: Text(L10n.of(context).accountInformations),
+        title: Text(L10n.of(context).accountInformation),
       ),
       body: ListView(
         children: <Widget>[

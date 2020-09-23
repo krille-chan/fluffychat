@@ -156,283 +156,25 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function>{
-        "(Optional) Group name":
-            MessageLookupByLibrary.simpleMessage("(任意)グループ名"),
-        "About": MessageLookupByLibrary.simpleMessage("このアプリについて"),
-        "Accept": MessageLookupByLibrary.simpleMessage("承諾する"),
-        "Account": MessageLookupByLibrary.simpleMessage("アカウント"),
-        "Account informations": MessageLookupByLibrary.simpleMessage("アカウント情報"),
-        "Add a group description":
-            MessageLookupByLibrary.simpleMessage("グループの説明を追加する"),
-        "Admin": MessageLookupByLibrary.simpleMessage("管理者"),
-        "Already have an account?":
-            MessageLookupByLibrary.simpleMessage("アカウントをすでにお持ちですか？"),
-        "Anyone can join": MessageLookupByLibrary.simpleMessage("誰でも参加できる"),
-        "Archive": MessageLookupByLibrary.simpleMessage("アーカイブ"),
-        "Archived Room": MessageLookupByLibrary.simpleMessage("アーカイブされた部屋"),
-        "Are guest users allowed to join":
-            MessageLookupByLibrary.simpleMessage("ゲストユーザーの参加を許可する"),
-        "Are you sure?": MessageLookupByLibrary.simpleMessage("これでよろしいですか？"),
-        "Authentication": MessageLookupByLibrary.simpleMessage("認証"),
-        "Avatar has been changed":
-            MessageLookupByLibrary.simpleMessage("アバターが変更されました"),
-        "Ban from chat": MessageLookupByLibrary.simpleMessage("チャットからBANする"),
-        "Banned": MessageLookupByLibrary.simpleMessage("BANされています"),
-        "Block Device": MessageLookupByLibrary.simpleMessage("デバイスをブロックする"),
-        "Cancel": MessageLookupByLibrary.simpleMessage("キャンセル"),
-        "Change the homeserver":
-            MessageLookupByLibrary.simpleMessage("ホームサーバーの変更"),
-        "Change the name of the group":
-            MessageLookupByLibrary.simpleMessage("グループの名前を変更する"),
-        "Change the server": MessageLookupByLibrary.simpleMessage("サーバーを変更する"),
-        "Change wallpaper": MessageLookupByLibrary.simpleMessage("壁紙を変更する"),
-        "Change your style": MessageLookupByLibrary.simpleMessage("スタイルを変更する"),
-        "Changelog": MessageLookupByLibrary.simpleMessage("変更履歴"),
-        "Chat": MessageLookupByLibrary.simpleMessage("チャット"),
-        "Chat details": MessageLookupByLibrary.simpleMessage("チャットの詳細"),
-        "Choose a strong password":
-            MessageLookupByLibrary.simpleMessage("強いパスワードを選択してください"),
-        "Choose a username":
-            MessageLookupByLibrary.simpleMessage("ユーザー名を選択してください"),
-        "Close": MessageLookupByLibrary.simpleMessage("閉じる"),
-        "Confirm": MessageLookupByLibrary.simpleMessage("確認"),
-        "Connect": MessageLookupByLibrary.simpleMessage("接続"),
-        "Connection attempt failed":
-            MessageLookupByLibrary.simpleMessage("接続が失敗しました"),
-        "Contact has been invited to the group":
-            MessageLookupByLibrary.simpleMessage("連絡先に登録された人が招待されました"),
-        "Content viewer": MessageLookupByLibrary.simpleMessage("コンテンツビューアー"),
-        "Copied to clipboard":
-            MessageLookupByLibrary.simpleMessage("クリップボードにコピーされました"),
-        "Copy": MessageLookupByLibrary.simpleMessage("コピー"),
-        "Could not set avatar":
-            MessageLookupByLibrary.simpleMessage("アバターをセットできませんでした"),
-        "Could not set displayname":
-            MessageLookupByLibrary.simpleMessage("表示名をセットできませんでした"),
-        "Create": MessageLookupByLibrary.simpleMessage("作成"),
-        "Create account now":
-            MessageLookupByLibrary.simpleMessage("アカウントを作成する"),
-        "Create new group":
-            MessageLookupByLibrary.simpleMessage("新しいグループを作成する"),
-        "Currently active": MessageLookupByLibrary.simpleMessage("現在アクティブです"),
-        "Dark": MessageLookupByLibrary.simpleMessage("ダーク"),
-        "Delete": MessageLookupByLibrary.simpleMessage("削除"),
-        "Delete message": MessageLookupByLibrary.simpleMessage("メッセージの削除"),
-        "Deny": MessageLookupByLibrary.simpleMessage("拒否"),
-        "Device": MessageLookupByLibrary.simpleMessage("デバイス"),
-        "Devices": MessageLookupByLibrary.simpleMessage("デバイス"),
-        "Discard picture": MessageLookupByLibrary.simpleMessage("画像を無視する"),
-        "Displayname has been changed":
-            MessageLookupByLibrary.simpleMessage("表示名が変更されました"),
-        "Donate": MessageLookupByLibrary.simpleMessage("寄付する"),
-        "Download file": MessageLookupByLibrary.simpleMessage("ファイルのダウンロード"),
-        "Edit Jitsi instance":
-            MessageLookupByLibrary.simpleMessage("Jitsiインスタンスを編集する"),
-        "Edit displayname": MessageLookupByLibrary.simpleMessage("表示名を編集"),
-        "Emote Settings": MessageLookupByLibrary.simpleMessage("Emote設定"),
-        "Emote shortcode": MessageLookupByLibrary.simpleMessage("Emoteショートコード"),
-        "Empty chat": MessageLookupByLibrary.simpleMessage("空のチャット"),
-        "Encryption": MessageLookupByLibrary.simpleMessage("暗号化"),
-        "Encryption algorithm":
-            MessageLookupByLibrary.simpleMessage("暗号化アルゴリズム"),
-        "Encryption is not enabled":
-            MessageLookupByLibrary.simpleMessage("暗号化されていません"),
-        "End to end encryption is currently in Beta! Use at your own risk!":
-            MessageLookupByLibrary.simpleMessage(
-                "エンドツーエンド暗号化は現在ベータ版です！これは自分自身の責任で行ってください！"),
-        "End-to-end encryption settings":
-            MessageLookupByLibrary.simpleMessage("エンドツーエンド暗号化設定"),
-        "Enter a group name":
-            MessageLookupByLibrary.simpleMessage("グループ名を入力してください"),
-        "Enter a username":
-            MessageLookupByLibrary.simpleMessage("ユーザー名を入力してください"),
-        "Enter your homeserver":
-            MessageLookupByLibrary.simpleMessage("ホームサーバーを入力してください"),
-        "File name": MessageLookupByLibrary.simpleMessage("ファイル名"),
-        "File size": MessageLookupByLibrary.simpleMessage("ファイルサイズ"),
-        "FluffyChat": MessageLookupByLibrary.simpleMessage("FluffyChat"),
-        "Forward": MessageLookupByLibrary.simpleMessage("進む"),
-        "Friday": MessageLookupByLibrary.simpleMessage("金曜日"),
-        "From joining": MessageLookupByLibrary.simpleMessage("参加時点から閲覧可能"),
-        "From the invitation":
-            MessageLookupByLibrary.simpleMessage("招待時点から閲覧可能"),
-        "Group": MessageLookupByLibrary.simpleMessage("グループ"),
-        "Group description": MessageLookupByLibrary.simpleMessage("グループの説明"),
-        "Group description has been changed":
-            MessageLookupByLibrary.simpleMessage("グループの説明が変更されました"),
-        "Group is public":
-            MessageLookupByLibrary.simpleMessage("グループは公開されています"),
-        "Guests are forbidden":
-            MessageLookupByLibrary.simpleMessage("ゲストは許可されていません"),
-        "Guests can join": MessageLookupByLibrary.simpleMessage("ゲストが許可されています"),
-        "Help": MessageLookupByLibrary.simpleMessage("ヘルプ"),
-        "Homeserver is not compatible":
-            MessageLookupByLibrary.simpleMessage("このホームサーバーは互換性がありません"),
-        "How are you today?": MessageLookupByLibrary.simpleMessage("お元気ですか？"),
-        "ID": MessageLookupByLibrary.simpleMessage("ID"),
-        "Identity": MessageLookupByLibrary.simpleMessage("アイデンティティ"),
-        "Invite contact": MessageLookupByLibrary.simpleMessage("連絡先から招待する"),
-        "Invited": MessageLookupByLibrary.simpleMessage("招待されました"),
-        "Invited users only":
-            MessageLookupByLibrary.simpleMessage("招待されたユーザーのみ"),
-        "It seems that you have no google services on your phone. That\'s a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/":
-            MessageLookupByLibrary.simpleMessage(
-                "あなたのスマホにはグーグルサービスがないようですね。プライバシーを保護するための良い選択です！Push通知を受け取るにはmicroGを使うことを推奨しています: https://microg.org/"),
-        "Join room": MessageLookupByLibrary.simpleMessage("部屋に参加"),
-        "Kick from chat": MessageLookupByLibrary.simpleMessage("チャットからキックする"),
-        "Last seen IP": MessageLookupByLibrary.simpleMessage("最終IP"),
-        "Leave": MessageLookupByLibrary.simpleMessage("退室する"),
-        "Left the chat": MessageLookupByLibrary.simpleMessage("退室しました"),
-        "License": MessageLookupByLibrary.simpleMessage("ライセンス"),
-        "Light": MessageLookupByLibrary.simpleMessage("ライト"),
-        "Load more...": MessageLookupByLibrary.simpleMessage("更に読み込む..."),
-        "Loading... Please wait":
-            MessageLookupByLibrary.simpleMessage("読み込み中...お待ちください"),
-        "Login": MessageLookupByLibrary.simpleMessage("ログイン"),
-        "Logout": MessageLookupByLibrary.simpleMessage("ログアウト"),
-        "Make a moderator": MessageLookupByLibrary.simpleMessage("モデレータにする"),
-        "Make an admin": MessageLookupByLibrary.simpleMessage("管理者にする"),
-        "Make sure the identifier is valid":
-            MessageLookupByLibrary.simpleMessage("識別子が正しいか確認してください"),
-        "Message will be removed for all participants":
-            MessageLookupByLibrary.simpleMessage("メッセージはすべての参加者から消去されます"),
-        "Moderator": MessageLookupByLibrary.simpleMessage("モデレータ"),
-        "Monday": MessageLookupByLibrary.simpleMessage("月曜日"),
-        "Mute chat": MessageLookupByLibrary.simpleMessage("チャットのミュート"),
-        "New message in FluffyChat":
-            MessageLookupByLibrary.simpleMessage("FluffyChatに新しいメッセージがあります"),
-        "New private chat":
-            MessageLookupByLibrary.simpleMessage("新しいプライベートチャット"),
-        "No emotes found. 😕":
-            MessageLookupByLibrary.simpleMessage("Emoteは見つかりませんでした😕"),
-        "No permission": MessageLookupByLibrary.simpleMessage("権限がありません"),
-        "No rooms found...":
-            MessageLookupByLibrary.simpleMessage("部屋は見つかりませんでした..."),
-        "None": MessageLookupByLibrary.simpleMessage("なし"),
-        "Not supported in web":
-            MessageLookupByLibrary.simpleMessage("ウェブではサポートされていません"),
-        "Oops something went wrong...":
-            MessageLookupByLibrary.simpleMessage("おっと、何かがうまくいきませんでした..."),
-        "Open app to read messages":
-            MessageLookupByLibrary.simpleMessage("アプリを開いてメッセージを確認してください"),
-        "Open camera": MessageLookupByLibrary.simpleMessage("カメラを開く"),
-        "Participating user devices":
-            MessageLookupByLibrary.simpleMessage("ユーザーの使用しているデバイス"),
-        "Password": MessageLookupByLibrary.simpleMessage("パスワード"),
-        "Pick image": MessageLookupByLibrary.simpleMessage("画像を選択してください"),
-        "Pin": MessageLookupByLibrary.simpleMessage("ピン"),
-        "Please be aware that you need Pantalaimon to use end-to-end encryption for now.":
-            MessageLookupByLibrary.simpleMessage(
-                "現時点では、エンドツーエンドの暗号化を使用するにはPantalaimonが必要であることに注意してください。"),
-        "Please choose a username":
-            MessageLookupByLibrary.simpleMessage("ユーザー名を選択してください"),
-        "Please enter a matrix identifier":
-            MessageLookupByLibrary.simpleMessage("Matrix識別子を入力してください"),
-        "Please enter your password":
-            MessageLookupByLibrary.simpleMessage("パスワードを入力してください"),
-        "Please enter your username":
-            MessageLookupByLibrary.simpleMessage("ユーザー名を入力してください"),
-        "Public Rooms": MessageLookupByLibrary.simpleMessage("公開された部屋"),
-        "Recording": MessageLookupByLibrary.simpleMessage("録音中"),
-        "Reject": MessageLookupByLibrary.simpleMessage("拒否"),
-        "Rejoin": MessageLookupByLibrary.simpleMessage("再参加"),
-        "Remove": MessageLookupByLibrary.simpleMessage("消去"),
-        "Remove all other devices":
-            MessageLookupByLibrary.simpleMessage("他のデバイスをすべて削除"),
-        "Remove device": MessageLookupByLibrary.simpleMessage("デバイスの削除"),
-        "Remove exile": MessageLookupByLibrary.simpleMessage("追放を取り消し"),
-        "Remove message": MessageLookupByLibrary.simpleMessage("メッセージを削除"),
-        "Render rich message content":
-            MessageLookupByLibrary.simpleMessage("リッチメッセージをレンダリングする"),
-        "Reply": MessageLookupByLibrary.simpleMessage("返信"),
-        "Request permission": MessageLookupByLibrary.simpleMessage("権限を要求する"),
-        "Request to read older messages":
-            MessageLookupByLibrary.simpleMessage("過去のメッセージを読む権限を要求する"),
-        "Revoke all permissions":
-            MessageLookupByLibrary.simpleMessage("すべての権限を取り消す"),
-        "Room has been upgraded":
-            MessageLookupByLibrary.simpleMessage("部屋はアップグレードされました"),
-        "Saturday": MessageLookupByLibrary.simpleMessage("土曜日"),
-        "Search for a chat": MessageLookupByLibrary.simpleMessage("チャットを検索する"),
-        "Seen a long time ago": MessageLookupByLibrary.simpleMessage("ずいぶん前"),
-        "Send": MessageLookupByLibrary.simpleMessage("送信"),
-        "Send a message": MessageLookupByLibrary.simpleMessage("メッセージを送信"),
-        "Send file": MessageLookupByLibrary.simpleMessage("ファイルを送信"),
-        "Send image": MessageLookupByLibrary.simpleMessage("画像の送信"),
-        "Set a profile picture":
-            MessageLookupByLibrary.simpleMessage("プロフィール画像を設定する"),
-        "Set group description":
-            MessageLookupByLibrary.simpleMessage("グループの説明を設定する"),
-        "Set invitation link":
-            MessageLookupByLibrary.simpleMessage("招待リンクを設定する"),
-        "Set status": MessageLookupByLibrary.simpleMessage("ステータスの設定"),
-        "Settings": MessageLookupByLibrary.simpleMessage("設定"),
-        "Share": MessageLookupByLibrary.simpleMessage("共有"),
-        "Sign up": MessageLookupByLibrary.simpleMessage("サインアップ"),
-        "Skip": MessageLookupByLibrary.simpleMessage("スキップ"),
-        "Source code": MessageLookupByLibrary.simpleMessage("ソースコード"),
-        "Start your first chat :-)":
-            MessageLookupByLibrary.simpleMessage("初めてのチャットを開始してください(^_^)"),
-        "Submit": MessageLookupByLibrary.simpleMessage("送信"),
-        "Sunday": MessageLookupByLibrary.simpleMessage("日曜日"),
-        "System": MessageLookupByLibrary.simpleMessage("システム"),
-        "Tap to show menu":
-            MessageLookupByLibrary.simpleMessage("メニューを表示するにはタップしてください"),
-        "The encryption has been corrupted":
-            MessageLookupByLibrary.simpleMessage("暗号が破損しています"),
-        "They Don\'t Match": MessageLookupByLibrary.simpleMessage("違います"),
-        "They Match": MessageLookupByLibrary.simpleMessage("一致しています"),
-        "This room has been archived.":
-            MessageLookupByLibrary.simpleMessage("この部屋はアーカイブされています。"),
-        "Thursday": MessageLookupByLibrary.simpleMessage("木曜日"),
-        "Try to send again": MessageLookupByLibrary.simpleMessage("送信し直してみる"),
-        "Tuesday": MessageLookupByLibrary.simpleMessage("火曜日"),
-        "Unblock Device": MessageLookupByLibrary.simpleMessage("デバイスをブロック解除する"),
-        "Unknown device": MessageLookupByLibrary.simpleMessage("未知デバイス"),
-        "Unknown encryption algorithm":
-            MessageLookupByLibrary.simpleMessage("未知の暗号化アルゴリズム"),
-        "Unmute chat": MessageLookupByLibrary.simpleMessage("チャットをミュート解除する"),
-        "Unpin": MessageLookupByLibrary.simpleMessage("ピンを外す"),
-        "Use Amoled compatible colors?":
-            MessageLookupByLibrary.simpleMessage("有機EL(Amoled)対応の色にしますか？"),
-        "Username": MessageLookupByLibrary.simpleMessage("ユーザー名"),
-        "Verify": MessageLookupByLibrary.simpleMessage("確認"),
-        "Verify User": MessageLookupByLibrary.simpleMessage("ユーザーの認証"),
-        "Video call": MessageLookupByLibrary.simpleMessage("音声通話"),
-        "Visibility of the chat history":
-            MessageLookupByLibrary.simpleMessage("チャット履歴の表示"),
-        "Visible for all participants":
-            MessageLookupByLibrary.simpleMessage("すべての参加者が閲覧可能"),
-        "Visible for everyone":
-            MessageLookupByLibrary.simpleMessage("すべての人が閲覧可能"),
-        "Voice message": MessageLookupByLibrary.simpleMessage("ボイスメッセージ"),
-        "Wallpaper": MessageLookupByLibrary.simpleMessage("壁紙"),
-        "Wednesday": MessageLookupByLibrary.simpleMessage("水曜日"),
-        "Welcome to the cutest instant messenger in the matrix network.":
-            MessageLookupByLibrary.simpleMessage(
-                "matrixネットワークで一番かわいいチャットアプリへようこそ。"),
-        "Who is allowed to join this group":
-            MessageLookupByLibrary.simpleMessage("誰がこのチャットに入れますか"),
-        "Write a message...":
-            MessageLookupByLibrary.simpleMessage("メッセージを入力してください..."),
-        "Yes": MessageLookupByLibrary.simpleMessage("はい"),
-        "You": MessageLookupByLibrary.simpleMessage("あなた"),
-        "You are invited to this chat":
-            MessageLookupByLibrary.simpleMessage("チャットに招待されています"),
-        "You are no longer participating in this chat":
-            MessageLookupByLibrary.simpleMessage("あなたはもうこのチャットの参加者ではありません"),
-        "You cannot invite yourself":
-            MessageLookupByLibrary.simpleMessage("自分自身を招待することはできません"),
-        "You have been banned from this chat":
-            MessageLookupByLibrary.simpleMessage("チャットからBANされてしまいました"),
-        "You won\'t be able to disable the encryption anymore. Are you sure?":
-            MessageLookupByLibrary.simpleMessage(
-                "一度暗号化を有効にするともとに戻せません。よろしいですか？"),
-        "Your own username": MessageLookupByLibrary.simpleMessage("あなたのユーザー名"),
+        "about": MessageLookupByLibrary.simpleMessage("このアプリについて"),
+        "accept": MessageLookupByLibrary.simpleMessage("承諾する"),
         "acceptedTheInvitation": m0,
+        "account": MessageLookupByLibrary.simpleMessage("アカウント"),
+        "accountInformation": MessageLookupByLibrary.simpleMessage("アカウント情報"),
         "activatedEndToEndEncryption": m1,
+        "addGroupDescription":
+            MessageLookupByLibrary.simpleMessage("グループの説明を追加する"),
+        "admin": MessageLookupByLibrary.simpleMessage("管理者"),
         "alias": MessageLookupByLibrary.simpleMessage("エイリアス"),
+        "alreadyHaveAnAccount":
+            MessageLookupByLibrary.simpleMessage("アカウントをすでにお持ちですか？"),
         "answeredTheCall": m2,
+        "anyoneCanJoin": MessageLookupByLibrary.simpleMessage("誰でも参加できる"),
+        "archive": MessageLookupByLibrary.simpleMessage("アーカイブ"),
+        "archivedRoom": MessageLookupByLibrary.simpleMessage("アーカイブされた部屋"),
+        "areGuestsAllowedToJoin":
+            MessageLookupByLibrary.simpleMessage("ゲストユーザーの参加を許可する"),
+        "areYouSure": MessageLookupByLibrary.simpleMessage("これでよろしいですか？"),
         "askSSSSCache": MessageLookupByLibrary.simpleMessage(
             "鍵をキャッシュするためにはパスフレーズやリカバリーキーを入力してください。"),
         "askSSSSSign": MessageLookupByLibrary.simpleMessage(
@@ -440,9 +182,23 @@ class MessageLookup extends MessageLookupByLibrary {
         "askSSSSVerify": MessageLookupByLibrary.simpleMessage(
             "セッションを検証するためにはパスフレーズやリカバリーキーを入力してください。"),
         "askVerificationRequest": m3,
+        "authentication": MessageLookupByLibrary.simpleMessage("認証"),
+        "avatarHasBeenChanged":
+            MessageLookupByLibrary.simpleMessage("アバターが変更されました"),
+        "banFromChat": MessageLookupByLibrary.simpleMessage("チャットからBANする"),
+        "banned": MessageLookupByLibrary.simpleMessage("BANされています"),
         "bannedUser": m4,
+        "blockDevice": MessageLookupByLibrary.simpleMessage("デバイスをブロックする"),
         "byDefaultYouWillBeConnectedTo": m5,
         "cachedKeys": MessageLookupByLibrary.simpleMessage("鍵のキャッシュに成功しました！"),
+        "cancel": MessageLookupByLibrary.simpleMessage("キャンセル"),
+        "changeTheHomeserver":
+            MessageLookupByLibrary.simpleMessage("ホームサーバーの変更"),
+        "changeTheNameOfTheGroup":
+            MessageLookupByLibrary.simpleMessage("グループの名前を変更する"),
+        "changeTheServer": MessageLookupByLibrary.simpleMessage("サーバーを変更する"),
+        "changeTheme": MessageLookupByLibrary.simpleMessage("スタイルを変更する"),
+        "changeWallpaper": MessageLookupByLibrary.simpleMessage("壁紙を変更する"),
         "changedTheChatAvatar": m6,
         "changedTheChatDescriptionTo": m7,
         "changedTheChatNameTo": m8,
@@ -457,65 +213,230 @@ class MessageLookup extends MessageLookupByLibrary {
         "changedTheProfileAvatar": m17,
         "changedTheRoomAliases": m18,
         "changedTheRoomInvitationLink": m19,
+        "changelog": MessageLookupByLibrary.simpleMessage("変更履歴"),
+        "channelCorruptedDecryptError":
+            MessageLookupByLibrary.simpleMessage("暗号が破損しています"),
+        "chat": MessageLookupByLibrary.simpleMessage("チャット"),
+        "chatDetails": MessageLookupByLibrary.simpleMessage("チャットの詳細"),
+        "chooseAStrongPassword":
+            MessageLookupByLibrary.simpleMessage("強いパスワードを選択してください"),
+        "chooseAUsername":
+            MessageLookupByLibrary.simpleMessage("ユーザー名を選択してください"),
+        "close": MessageLookupByLibrary.simpleMessage("閉じる"),
         "compareEmojiMatch": MessageLookupByLibrary.simpleMessage(
             "表示されている絵文字が他のデバイスで表示されているものと一致するか確認してください:"),
         "compareNumbersMatch": MessageLookupByLibrary.simpleMessage(
             "表示されている数字が他のデバイスで表示されているものと一致するか確認してください:"),
+        "confirm": MessageLookupByLibrary.simpleMessage("確認"),
+        "connect": MessageLookupByLibrary.simpleMessage("接続"),
+        "connectionAttemptFailed":
+            MessageLookupByLibrary.simpleMessage("接続が失敗しました"),
+        "contactHasBeenInvitedToTheGroup":
+            MessageLookupByLibrary.simpleMessage("連絡先に登録された人が招待されました"),
+        "contentViewer": MessageLookupByLibrary.simpleMessage("コンテンツビューアー"),
+        "copiedToClipboard":
+            MessageLookupByLibrary.simpleMessage("クリップボードにコピーされました"),
+        "copy": MessageLookupByLibrary.simpleMessage("コピー"),
         "couldNotDecryptMessage": m20,
+        "couldNotSetAvatar":
+            MessageLookupByLibrary.simpleMessage("アバターをセットできませんでした"),
+        "couldNotSetDisplayname":
+            MessageLookupByLibrary.simpleMessage("表示名をセットできませんでした"),
         "countParticipants": m21,
+        "create": MessageLookupByLibrary.simpleMessage("作成"),
+        "createAccountNow": MessageLookupByLibrary.simpleMessage("アカウントを作成する"),
+        "createNewGroup": MessageLookupByLibrary.simpleMessage("新しいグループを作成する"),
         "createdTheChat": m22,
         "crossSigningDisabled":
             MessageLookupByLibrary.simpleMessage("相互署名は使えません"),
         "crossSigningEnabled":
             MessageLookupByLibrary.simpleMessage("相互署名が使えます"),
+        "currentlyActive": MessageLookupByLibrary.simpleMessage("現在アクティブです"),
+        "darkTheme": MessageLookupByLibrary.simpleMessage("ダーク"),
         "dateAndTimeOfDay": m23,
         "dateWithYear": m24,
         "dateWithoutYear": m25,
+        "delete": MessageLookupByLibrary.simpleMessage("削除"),
+        "deleteMessage": MessageLookupByLibrary.simpleMessage("メッセージの削除"),
+        "deny": MessageLookupByLibrary.simpleMessage("拒否"),
+        "device": MessageLookupByLibrary.simpleMessage("デバイス"),
+        "devices": MessageLookupByLibrary.simpleMessage("デバイス"),
+        "discardPicture": MessageLookupByLibrary.simpleMessage("画像を無視する"),
+        "displaynameHasBeenChanged":
+            MessageLookupByLibrary.simpleMessage("表示名が変更されました"),
+        "donate": MessageLookupByLibrary.simpleMessage("寄付する"),
+        "downloadFile": MessageLookupByLibrary.simpleMessage("ファイルのダウンロード"),
+        "editDisplayname": MessageLookupByLibrary.simpleMessage("表示名を編集"),
+        "editJitsiInstance":
+            MessageLookupByLibrary.simpleMessage("Jitsiインスタンスを編集する"),
         "emoteExists": MessageLookupByLibrary.simpleMessage("Emoteはすでに存在します！"),
         "emoteInvalid":
             MessageLookupByLibrary.simpleMessage("不正なEmoteショートコード！"),
+        "emoteSettings": MessageLookupByLibrary.simpleMessage("Emote設定"),
+        "emoteShortcode": MessageLookupByLibrary.simpleMessage("Emoteショートコード"),
         "emoteWarnNeedToPick":
             MessageLookupByLibrary.simpleMessage("Emoteショートコードと画像を選択してください！"),
+        "emptyChat": MessageLookupByLibrary.simpleMessage("空のチャット"),
+        "enableEncryptionWarning": MessageLookupByLibrary.simpleMessage(
+            "一度暗号化を有効にするともとに戻せません。よろしいですか？"),
+        "encryption": MessageLookupByLibrary.simpleMessage("暗号化"),
+        "encryptionAlgorithm":
+            MessageLookupByLibrary.simpleMessage("暗号化アルゴリズム"),
+        "encryptionNotEnabled":
+            MessageLookupByLibrary.simpleMessage("暗号化されていません"),
+        "end2endEncryptionSettings":
+            MessageLookupByLibrary.simpleMessage("エンドツーエンド暗号化設定"),
         "endedTheCall": m26,
+        "enterAGroupName":
+            MessageLookupByLibrary.simpleMessage("グループ名を入力してください"),
+        "enterAUsername":
+            MessageLookupByLibrary.simpleMessage("ユーザー名を入力してください"),
+        "enterYourHomeserver":
+            MessageLookupByLibrary.simpleMessage("ホームサーバーを入力してください"),
+        "fileName": MessageLookupByLibrary.simpleMessage("ファイル名"),
+        "fileSize": MessageLookupByLibrary.simpleMessage("ファイルサイズ"),
+        "fluffychat": MessageLookupByLibrary.simpleMessage("FluffyChat"),
+        "forward": MessageLookupByLibrary.simpleMessage("進む"),
+        "friday": MessageLookupByLibrary.simpleMessage("金曜日"),
+        "fromJoining": MessageLookupByLibrary.simpleMessage("参加時点から閲覧可能"),
+        "fromTheInvitation": MessageLookupByLibrary.simpleMessage("招待時点から閲覧可能"),
+        "group": MessageLookupByLibrary.simpleMessage("グループ"),
+        "groupDescription": MessageLookupByLibrary.simpleMessage("グループの説明"),
+        "groupDescriptionHasBeenChanged":
+            MessageLookupByLibrary.simpleMessage("グループの説明が変更されました"),
+        "groupIsPublic": MessageLookupByLibrary.simpleMessage("グループは公開されています"),
         "groupWith": m27,
+        "guestsAreForbidden":
+            MessageLookupByLibrary.simpleMessage("ゲストは許可されていません"),
+        "guestsCanJoin": MessageLookupByLibrary.simpleMessage("ゲストが許可されています"),
         "hasWithdrawnTheInvitationFor": m28,
+        "help": MessageLookupByLibrary.simpleMessage("ヘルプ"),
+        "homeserverIsNotCompatible":
+            MessageLookupByLibrary.simpleMessage("このホームサーバーは互換性がありません"),
+        "id": MessageLookupByLibrary.simpleMessage("ID"),
+        "identity": MessageLookupByLibrary.simpleMessage("アイデンティティ"),
         "incorrectPassphraseOrKey":
             MessageLookupByLibrary.simpleMessage("パスフレーズかリカバリーキーが間違っています"),
+        "inviteContact": MessageLookupByLibrary.simpleMessage("連絡先から招待する"),
         "inviteContactToGroup": m29,
         "inviteText": m30,
+        "invited": MessageLookupByLibrary.simpleMessage("招待されました"),
         "invitedUser": m31,
-        "is typing...": MessageLookupByLibrary.simpleMessage("入力しています..."),
+        "invitedUsersOnly": MessageLookupByLibrary.simpleMessage("招待されたユーザーのみ"),
         "isDeviceKeyCorrect":
             MessageLookupByLibrary.simpleMessage("このデバイスキーは正しいですか？"),
+        "isTyping": MessageLookupByLibrary.simpleMessage("入力しています..."),
+        "joinRoom": MessageLookupByLibrary.simpleMessage("部屋に参加"),
         "joinedTheChat": m32,
         "keysCached": MessageLookupByLibrary.simpleMessage("鍵はキャッシュされたいます"),
         "keysMissing": MessageLookupByLibrary.simpleMessage("鍵がありません"),
+        "kickFromChat": MessageLookupByLibrary.simpleMessage("チャットからキックする"),
         "kicked": m33,
         "kickedAndBanned": m34,
         "lastActiveAgo": m35,
+        "lastSeenIp": MessageLookupByLibrary.simpleMessage("最終IP"),
+        "lastSeenLongTimeAgo": MessageLookupByLibrary.simpleMessage("ずいぶん前"),
+        "leave": MessageLookupByLibrary.simpleMessage("退室する"),
+        "leftTheChat": MessageLookupByLibrary.simpleMessage("退室しました"),
+        "license": MessageLookupByLibrary.simpleMessage("ライセンス"),
+        "lightTheme": MessageLookupByLibrary.simpleMessage("ライト"),
         "loadCountMoreParticipants": m36,
+        "loadMore": MessageLookupByLibrary.simpleMessage("更に読み込む..."),
+        "loadingPleaseWait":
+            MessageLookupByLibrary.simpleMessage("読み込み中...お待ちください"),
         "logInTo": m37,
+        "login": MessageLookupByLibrary.simpleMessage("ログイン"),
+        "logout": MessageLookupByLibrary.simpleMessage("ログアウト"),
+        "makeAModerator": MessageLookupByLibrary.simpleMessage("モデレータにする"),
+        "makeAnAdmin": MessageLookupByLibrary.simpleMessage("管理者にする"),
+        "makeSureTheIdentifierIsValid":
+            MessageLookupByLibrary.simpleMessage("識別子が正しいか確認してください"),
+        "messageWillBeRemovedWarning":
+            MessageLookupByLibrary.simpleMessage("メッセージはすべての参加者から消去されます"),
+        "moderator": MessageLookupByLibrary.simpleMessage("モデレータ"),
+        "monday": MessageLookupByLibrary.simpleMessage("月曜日"),
+        "muteChat": MessageLookupByLibrary.simpleMessage("チャットのミュート"),
+        "needPantalaimonWarning": MessageLookupByLibrary.simpleMessage(
+            "現時点では、エンドツーエンドの暗号化を使用するにはPantalaimonが必要であることに注意してください。"),
+        "newMessageInFluffyChat":
+            MessageLookupByLibrary.simpleMessage("FluffyChatに新しいメッセージがあります"),
+        "newPrivateChat": MessageLookupByLibrary.simpleMessage("新しいプライベートチャット"),
         "newVerificationRequest":
             MessageLookupByLibrary.simpleMessage("新しい認証リクエスト！"),
         "noCrossSignBootstrap": MessageLookupByLibrary.simpleMessage(
             "FluffyChatは現在相互署名機能をサポートしていません。Riotから有効化してください。"),
+        "noEmotesFound":
+            MessageLookupByLibrary.simpleMessage("Emoteは見つかりませんでした😕"),
+        "noGoogleServicesWarning": MessageLookupByLibrary.simpleMessage(
+            "あなたのスマホにはグーグルサービスがないようですね。プライバシーを保護するための良い選択です！Push通知を受け取るにはmicroGを使うことを推奨しています: https://microg.org/"),
         "noMegolmBootstrap": MessageLookupByLibrary.simpleMessage(
             "FluffyChatは現在鍵のオンラインバックアップの有効化をサポートしていません。Riotから有効化してください。"),
+        "noPermission": MessageLookupByLibrary.simpleMessage("権限がありません"),
+        "noRoomsFound":
+            MessageLookupByLibrary.simpleMessage("部屋は見つかりませんでした..."),
+        "none": MessageLookupByLibrary.simpleMessage("なし"),
+        "notSupportedInWeb":
+            MessageLookupByLibrary.simpleMessage("ウェブではサポートされていません"),
         "numberSelected": m38,
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "onlineKeyBackupDisabled":
             MessageLookupByLibrary.simpleMessage("オンライン鍵バックアップは使用されていません"),
         "onlineKeyBackupEnabled":
             MessageLookupByLibrary.simpleMessage("オンライン鍵バックアップは使用されています"),
+        "oopsSomethingWentWrong":
+            MessageLookupByLibrary.simpleMessage("おっと、何かがうまくいきませんでした..."),
+        "openAppToReadMessages":
+            MessageLookupByLibrary.simpleMessage("アプリを開いてメッセージを確認してください"),
+        "openCamera": MessageLookupByLibrary.simpleMessage("カメラを開く"),
+        "optionalGroupName": MessageLookupByLibrary.simpleMessage("(任意)グループ名"),
+        "participatingUserDevices":
+            MessageLookupByLibrary.simpleMessage("ユーザーの使用しているデバイス"),
         "passphraseOrKey":
             MessageLookupByLibrary.simpleMessage("パスフレーズかリカバリーキー"),
+        "password": MessageLookupByLibrary.simpleMessage("パスワード"),
+        "pickImage": MessageLookupByLibrary.simpleMessage("画像を選択してください"),
+        "pin": MessageLookupByLibrary.simpleMessage("ピン"),
         "play": m39,
+        "pleaseChooseAUsername":
+            MessageLookupByLibrary.simpleMessage("ユーザー名を選択してください"),
+        "pleaseEnterAMatrixIdentifier":
+            MessageLookupByLibrary.simpleMessage("Matrix識別子を入力してください"),
+        "pleaseEnterYourPassword":
+            MessageLookupByLibrary.simpleMessage("パスワードを入力してください"),
+        "pleaseEnterYourUsername":
+            MessageLookupByLibrary.simpleMessage("ユーザー名を入力してください"),
+        "publicRooms": MessageLookupByLibrary.simpleMessage("公開された部屋"),
+        "recording": MessageLookupByLibrary.simpleMessage("録音中"),
         "redactedAnEvent": m40,
+        "reject": MessageLookupByLibrary.simpleMessage("拒否"),
         "rejectedTheInvitation": m41,
+        "rejoin": MessageLookupByLibrary.simpleMessage("再参加"),
+        "remove": MessageLookupByLibrary.simpleMessage("消去"),
+        "removeAllOtherDevices":
+            MessageLookupByLibrary.simpleMessage("他のデバイスをすべて削除"),
+        "removeDevice": MessageLookupByLibrary.simpleMessage("デバイスの削除"),
+        "removeExile": MessageLookupByLibrary.simpleMessage("追放を取り消し"),
+        "removeMessage": MessageLookupByLibrary.simpleMessage("メッセージを削除"),
         "removedBy": m42,
+        "renderRichContent":
+            MessageLookupByLibrary.simpleMessage("リッチメッセージをレンダリングする"),
+        "reply": MessageLookupByLibrary.simpleMessage("返信"),
+        "requestPermission": MessageLookupByLibrary.simpleMessage("権限を要求する"),
+        "requestToReadOlderMessages":
+            MessageLookupByLibrary.simpleMessage("過去のメッセージを読む権限を要求する"),
+        "revokeAllPermissions":
+            MessageLookupByLibrary.simpleMessage("すべての権限を取り消す"),
+        "roomHasBeenUpgraded":
+            MessageLookupByLibrary.simpleMessage("部屋はアップグレードされました"),
+        "saturday": MessageLookupByLibrary.simpleMessage("土曜日"),
+        "searchForAChat": MessageLookupByLibrary.simpleMessage("チャットを検索する"),
         "seenByUser": m43,
         "seenByUserAndCountOthers": m44,
         "seenByUserAndUser": m45,
+        "send": MessageLookupByLibrary.simpleMessage("送信"),
+        "sendAMessage": MessageLookupByLibrary.simpleMessage("メッセージを送信"),
+        "sendFile": MessageLookupByLibrary.simpleMessage("ファイルを送信"),
+        "sendImage": MessageLookupByLibrary.simpleMessage("画像の送信"),
         "sentAFile": m46,
         "sentAPicture": m47,
         "sentASticker": m48,
@@ -523,33 +444,99 @@ class MessageLookup extends MessageLookupByLibrary {
         "sentAnAudio": m50,
         "sentCallInformations": m51,
         "sessionVerified": MessageLookupByLibrary.simpleMessage("セッションは確認済みです"),
+        "setAProfilePicture":
+            MessageLookupByLibrary.simpleMessage("プロフィール画像を設定する"),
+        "setGroupDescription":
+            MessageLookupByLibrary.simpleMessage("グループの説明を設定する"),
+        "setInvitationLink": MessageLookupByLibrary.simpleMessage("招待リンクを設定する"),
+        "setStatus": MessageLookupByLibrary.simpleMessage("ステータスの設定"),
+        "settings": MessageLookupByLibrary.simpleMessage("設定"),
+        "share": MessageLookupByLibrary.simpleMessage("共有"),
         "sharedTheLocation": m52,
+        "signUp": MessageLookupByLibrary.simpleMessage("サインアップ"),
+        "skip": MessageLookupByLibrary.simpleMessage("スキップ"),
+        "sourceCode": MessageLookupByLibrary.simpleMessage("ソースコード"),
+        "startYourFirstChat":
+            MessageLookupByLibrary.simpleMessage("初めてのチャットを開始してください(^_^)"),
         "startedACall": m53,
+        "statusExampleMessage": MessageLookupByLibrary.simpleMessage("お元気ですか？"),
+        "submit": MessageLookupByLibrary.simpleMessage("送信"),
+        "sunday": MessageLookupByLibrary.simpleMessage("日曜日"),
+        "systemTheme": MessageLookupByLibrary.simpleMessage("システム"),
+        "tapToShowMenu":
+            MessageLookupByLibrary.simpleMessage("メニューを表示するにはタップしてください"),
+        "theyDontMatch": MessageLookupByLibrary.simpleMessage("違います"),
+        "theyMatch": MessageLookupByLibrary.simpleMessage("一致しています"),
+        "thisRoomHasBeenArchived":
+            MessageLookupByLibrary.simpleMessage("この部屋はアーカイブされています。"),
+        "thursday": MessageLookupByLibrary.simpleMessage("木曜日"),
         "timeOfDay": m54,
         "title": MessageLookupByLibrary.simpleMessage("FluffyChat"),
+        "tryToSendAgain": MessageLookupByLibrary.simpleMessage("送信し直してみる"),
+        "tuesday": MessageLookupByLibrary.simpleMessage("火曜日"),
         "unbannedUser": m55,
+        "unblockDevice": MessageLookupByLibrary.simpleMessage("デバイスをブロック解除する"),
+        "unknownDevice": MessageLookupByLibrary.simpleMessage("未知デバイス"),
+        "unknownEncryptionAlgorithm":
+            MessageLookupByLibrary.simpleMessage("未知の暗号化アルゴリズム"),
         "unknownEvent": m56,
         "unknownSessionVerify":
             MessageLookupByLibrary.simpleMessage("未知のセッションです。確認してください。"),
+        "unmuteChat": MessageLookupByLibrary.simpleMessage("チャットをミュート解除する"),
+        "unpin": MessageLookupByLibrary.simpleMessage("ピンを外す"),
         "unreadChats": m57,
         "unreadMessages": m58,
         "unreadMessagesInChats": m59,
+        "useAmoledTheme":
+            MessageLookupByLibrary.simpleMessage("有機EL(Amoled)対応の色にしますか？"),
         "userAndOthersAreTyping": m60,
         "userAndUserAreTyping": m61,
         "userIsTyping": m62,
         "userLeftTheChat": m63,
         "userSentUnknownEvent": m64,
+        "username": MessageLookupByLibrary.simpleMessage("ユーザー名"),
         "verifiedSession":
             MessageLookupByLibrary.simpleMessage("セッションの確認ができました！"),
+        "verify": MessageLookupByLibrary.simpleMessage("確認"),
         "verifyManual": MessageLookupByLibrary.simpleMessage("手動で確認"),
         "verifyStart": MessageLookupByLibrary.simpleMessage("確認を始める"),
         "verifySuccess": MessageLookupByLibrary.simpleMessage("確認が完了しました！"),
         "verifyTitle": MessageLookupByLibrary.simpleMessage("他のアカウントを確認中"),
+        "verifyUser": MessageLookupByLibrary.simpleMessage("ユーザーの認証"),
+        "videoCall": MessageLookupByLibrary.simpleMessage("音声通話"),
+        "visibilityOfTheChatHistory":
+            MessageLookupByLibrary.simpleMessage("チャット履歴の表示"),
+        "visibleForAllParticipants":
+            MessageLookupByLibrary.simpleMessage("すべての参加者が閲覧可能"),
+        "visibleForEveryone":
+            MessageLookupByLibrary.simpleMessage("すべての人が閲覧可能"),
+        "voiceMessage": MessageLookupByLibrary.simpleMessage("ボイスメッセージ"),
         "waitingPartnerAcceptRequest":
             MessageLookupByLibrary.simpleMessage("パートナーのリクエスト承諾待ちです..."),
         "waitingPartnerEmoji":
             MessageLookupByLibrary.simpleMessage("パートナーの絵文字承諾待ちです..."),
         "waitingPartnerNumbers":
-            MessageLookupByLibrary.simpleMessage("パートナーの数字承諾待ちです...")
+            MessageLookupByLibrary.simpleMessage("パートナーの数字承諾待ちです..."),
+        "wallpaper": MessageLookupByLibrary.simpleMessage("壁紙"),
+        "warningEncryptionInBeta": MessageLookupByLibrary.simpleMessage(
+            "エンドツーエンド暗号化は現在ベータ版です！これは自分自身の責任で行ってください！"),
+        "wednesday": MessageLookupByLibrary.simpleMessage("水曜日"),
+        "welcomeText": MessageLookupByLibrary.simpleMessage(
+            "matrixネットワークで一番かわいいチャットアプリへようこそ。"),
+        "whoIsAllowedToJoinThisGroup":
+            MessageLookupByLibrary.simpleMessage("誰がこのチャットに入れますか"),
+        "writeAMessage":
+            MessageLookupByLibrary.simpleMessage("メッセージを入力してください..."),
+        "yes": MessageLookupByLibrary.simpleMessage("はい"),
+        "you": MessageLookupByLibrary.simpleMessage("あなた"),
+        "youAreInvitedToThisChat":
+            MessageLookupByLibrary.simpleMessage("チャットに招待されています"),
+        "youAreNoLongerParticipatingInThisChat":
+            MessageLookupByLibrary.simpleMessage("あなたはもうこのチャットの参加者ではありません"),
+        "youCannotInviteYourself":
+            MessageLookupByLibrary.simpleMessage("自分自身を招待することはできません"),
+        "youHaveBeenBannedFromThisChat":
+            MessageLookupByLibrary.simpleMessage("チャットからBANされてしまいました"),
+        "yourOwnUsername": MessageLookupByLibrary.simpleMessage("あなたのユーザー名")
       };
 }
