@@ -34,8 +34,11 @@ extension DateTimeExtension on DateTime {
   /// Returns a simple time String.
   /// TODO: Add localization
   String localizedTimeOfDay(BuildContext context) {
-    return L10n.of(context).timeOfDay(_z(hour % 12 == 0 ? 12 : hour % 12),
-        _z(hour), _z(minute), hour > 11 ? 'pm' : 'am');
+    if (MediaQuery.of(context).alwaysUse24HourFormat) {
+      return '${_z(hour)}:${_z(minute)}';
+    } else {
+      return '${_z(hour % 12 == 0 ? 12 : hour % 12)}:${_z(minute)} ${hour > 11 ? "pm" : "am"}';
+    }
   }
 
   /// Returns [localizedTimeOfDay()] if the ChatTime is today, the name of the week
