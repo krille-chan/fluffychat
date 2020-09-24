@@ -1681,5 +1681,25 @@
   "@yourOwnUsername": {
     "type": "text",
     "placeholders": {}
+  },
+  "warning": "Varování!",
+  "@warning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordHasBeenChanged": "Heslo bylo změněno",
+  "@passwordHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteAccount": "Smazat účet",
+  "@deleteAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deactivateAccountWarning": "Tímto krokem se deaktivuje váš uživatelský účet. Akci nelze vrátit zpět! Jste si jistí?",
+  "@deactivateAccountWarning": {
+    "type": "text",
+    "placeholders": {}
   }
 }
