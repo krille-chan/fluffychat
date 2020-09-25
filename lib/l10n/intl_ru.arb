@@ -1681,5 +1681,25 @@
   "@yourOwnUsername": {
     "type": "text",
     "placeholders": {}
+  },
+  "warning": "Предупреждение!",
+  "@warning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordHasBeenChanged": "Пароль был изменён",
+  "@passwordHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteAccount": "Удалить аккаунт",
+  "@deleteAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deactivateAccountWarning": "Это деактивирует вашу учётную запись пользователя. Это не может быть отменено! Вы уверены?",
+  "@deactivateAccountWarning": {
+    "type": "text",
+    "placeholders": {}
   }
 }
