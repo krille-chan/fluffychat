@@ -1697,7 +1697,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "deleteAccount": "Lösche Account",
+  "deleteAccount": "Account löschen",
   "@deleteAccount": {
     "type": "text",
     "placeholders": {}
