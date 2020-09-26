@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -201,10 +202,10 @@ class Store {
 
   Store()
       : storage = LocalStorage('LocalStorage'),
-        secureStorage = kIsWeb ? null : FlutterSecureStorage();
+        secureStorage = PlatformInfos.isMobile ? FlutterSecureStorage() : null;
 
   Future<dynamic> getItem(String key) async {
-    if (kIsWeb) {
+    if (!PlatformInfos.isMobile) {
       await storage.ready;
       try {
         return await storage.getItem(key);
@@ -220,7 +221,7 @@ class Store {
   }
 
   Future<void> setItem(String key, String value) async {
-    if (kIsWeb) {
+    if (!PlatformInfos.isMobile) {
       await storage.ready;
       return await storage.setItem(key, value);
     }
@@ -232,7 +233,7 @@ class Store {
   }
 
   Future<Map<String, dynamic>> getAllItems() async {
-    if (kIsWeb) {
+    if (!PlatformInfos.isMobile) {
       try {
         final rawStorage = await getLocalstorage('LocalStorage');
         return json.decode(rawStorage);

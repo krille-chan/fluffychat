@@ -5,6 +5,7 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:famedlysdk/encryption.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/utils/firebase_controller.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
@@ -78,7 +79,7 @@ class MatrixState extends State<Matrix> {
     var initLoginState = client.onLoginStateChanged.stream.first;
     client.database = await getDatabase(client);
     client.connect();
-    if (await initLoginState == LoginState.logged && !kIsWeb) {
+    if (await initLoginState == LoginState.logged && PlatformInfos.isMobile) {
       await FirebaseController.setupFirebase(
         this,
         widget.clientName,

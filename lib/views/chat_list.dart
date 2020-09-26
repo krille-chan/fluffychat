@@ -7,6 +7,7 @@ import 'package:fluffychat/components/connection_status_header.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/list_items/presence_list_item.dart';
 import 'package:fluffychat/components/list_items/public_room_list_item.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
@@ -160,7 +161,7 @@ class _ChatListState extends State<ChatList> {
   }
 
   void _initReceiveSharingIntent() {
-    if (kIsWeb) return;
+    if (!PlatformInfos.isMobile) return;
 
     // For sharing images coming from outside the app while the app is in the memory
     _intentFileStreamSubscription = ReceiveSharingIntent.getMediaStream()
