@@ -689,7 +689,7 @@
       "count": {}
     }
   },
-  "loadingPleaseWait": "Ładowanie... Proszę czekąć",
+  "loadingPleaseWait": "Ładowanie… Proszę czekać",
   "@loadingPleaseWait": {
     "type": "text",
     "placeholders": {}
@@ -803,7 +803,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "openCamera": "Otwarta kamera",
+  "openCamera": "Otwórz aparat",
   "@openCamera": {
     "type": "text",
     "placeholders": {}
@@ -1319,6 +1319,61 @@
   },
   "yourOwnUsername": "Twój nick",
   "@yourOwnUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "no": "Nie",
+  "@no": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loadMore": "Załaduj więcej…",
+  "@loadMore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "accept": "Akceptuj",
+  "@accept": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastSeenLongTimeAgo": "Widziany/-a dawno temu",
+  "@lastSeenLongTimeAgo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "currentlyActive": "Obecnie aktywny/-a",
+  "@currentlyActive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encryption": "Szyfrowanie",
+  "@encryption": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteAccount": "Usuń konto",
+  "@deleteAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordHasBeenChanged": "Hasło zostało zmienione",
+  "@passwordHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignoredUsers": "Ignorowani użytkownicy",
+  "@ignoredUsers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unpin": "Odepnij",
+  "@unpin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pin": "Przypnij",
+  "@pin": {
     "type": "text",
     "placeholders": {}
   }
