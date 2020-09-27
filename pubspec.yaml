@@ -52,6 +52,7 @@ dependencies:
   bot_toast: ^3.0.0
   flutter_matrix_html: ^0.1.5
   moor: ^3.3.1
+  sqlite3_flutter_libs: ^0.2.0
   sqlite3: ^0.1.4
   random_string: ^2.0.1
   flutter_typeahead: ^1.8.1

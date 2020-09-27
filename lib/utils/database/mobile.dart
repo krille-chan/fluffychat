@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'dart:io';
 import 'dart:isolate';
 import 'package:famedlysdk/famedlysdk.dart';
@@ -6,7 +7,10 @@ import 'package:path/path.dart' as p;
 import 'package:flutter/material.dart';
 import 'package:moor/moor.dart';
 import 'package:moor/isolate.dart';
+import '../platform_infos.dart';
 import 'cipher_db.dart' as cipher;
+import 'package:moor/ffi.dart' as moor;
+import 'package:sqlite3/open.dart';
 
 bool _inited = false;
 
@@ -47,17 +51,39 @@ Future<Database> constructDb(
     {bool logStatements = false,
     String filename = 'database.sqlite',
     String password = ''}) async {
-  debugPrint('[Moor] using encrypted moor');
-  final dbFolder = await getDatabasesPath();
-  final targetPath = p.join(dbFolder, filename);
-  final receivePort = ReceivePort();
-  await Isolate.spawn(
-    _startBackground,
-    _IsolateStartRequest(
-        receivePort.sendPort, targetPath, password, logStatements),
-  );
-  final isolate = (await receivePort.first as MoorIsolate);
-  return Database.connect(await isolate.connect());
+  if (PlatformInfos.isMobile || Platform.isMacOS) {
+    debugPrint('[Moor] using encrypted moor');
+    final dbFolder = await getDatabasesPath();
+    final targetPath = p.join(dbFolder, filename);
+    final receivePort = ReceivePort();
+    await Isolate.spawn(
+      _startBackground,
+      _IsolateStartRequest(
+          receivePort.sendPort, targetPath, password, logStatements),
+    );
+    final isolate = (await receivePort.first as MoorIsolate);
+    return Database.connect(await isolate.connect());
+  } else if (Platform.isLinux) {
+    debugPrint('[Moor] using desktop moor');
+    open.overrideFor(OperatingSystem.linux, _openOnLinux);
+    return Database(moor.VmDatabase.memory());
+  } else if (Platform.isWindows) {
+    debugPrint('[Moor] using desktop moor');
+    open.overrideFor(OperatingSystem.linux, _openOnWindows);
+    return Database(moor.VmDatabase.memory());
+  }
+  throw Exception('Platform not supported');
+}
+
+DynamicLibrary _openOnLinux() {
+  final libraryNextToScript = File('/usr/lib/x86_64-linux-gnu/libsqlite3.so');
+  return DynamicLibrary.open(libraryNextToScript.path);
+}
+
+DynamicLibrary _openOnWindows() {
+  final script = File(Platform.script.toFilePath());
+  final libraryNextToScript = File('${script.path}/sqlite3.dll');
+  return DynamicLibrary.open(libraryNextToScript.path);
 }
 
 Future<String> getLocalstorage(String key) async {
