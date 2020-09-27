@@ -367,7 +367,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "copy": "Скопировать",
+  "copy": "Копировать",
   "@copy": {
     "type": "text",
     "placeholders": {}
