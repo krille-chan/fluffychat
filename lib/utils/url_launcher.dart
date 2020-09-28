@@ -39,7 +39,7 @@ class UrlLauncher {
       // we make the servers a set and later on convert to a list, so that we can easily
       // deduplicate servers added via alias lookup and query parameter
       var servers = <String>{};
-      if (room == null && roomIdOrAlias == '#') {
+      if (room == null && roomIdOrAlias.startsWith('#')) {
         // we were unable to find the room locally...so resolve it
         final response =
             await SimpleDialogs(context).tryRequestWithLoadingDialog(
@@ -79,24 +79,23 @@ class UrlLauncher {
       if (roomIdOrAlias[0] == '!') {
         roomId = roomIdOrAlias;
       }
-      if (roomId == null) {
-        // we haven't found this room....so let's ignore it
-        return;
-      }
       if (await SimpleDialogs(context)
           .askConfirmation(titleText: 'Join room $roomIdOrAlias')) {
         final response =
             await SimpleDialogs(context).tryRequestWithLoadingDialog(
           matrix.client.joinRoomOrAlias(
-            Uri.encodeComponent(roomIdOrAlias),
-            servers: servers.toList(),
+            roomIdOrAlias,
+            servers: servers.isNotEmpty ? servers.toList() : null,
           ),
         );
         if (response == false) return;
+        // wait for two seconds so that it probably came down /sync
+        await SimpleDialogs(context).tryRequestWithLoadingDialog(
+            Future.delayed(const Duration(seconds: 2)));
         await Navigator.pushAndRemoveUntil(
           context,
           AppRoute.defaultRoute(
-              context, ChatView(response['room_id'], scrollToEventId: event)),
+              context, ChatView(response, scrollToEventId: event)),
           (r) => r.isFirst,
         );
       }
