@@ -8,7 +8,7 @@
   <img height="66px" src="https://christianpauly.gitlab.io/fluffychat-website/assets/images/fdroid_button.png " />
   </a>
   <br>
-  <a href="https://web.fluffychat.im" target="new">Open FluffyChat in the browser</a> - <a href="https://matrix.to/#/#fluffychat:matrix.org" target="new">Join the community</a> - <a href="https://metalhead.club/@krille" target="new">Follow me on Mastodon</a> - <a href="https://hosted.weblate.org/projects/fluffychat/" target="new">Translate FluffyChat</a> - <a href="https://gitlab.com/ChristianPauly/fluffychat-website" target="new">Translate the website</a> - <a href="https://christianpauly.gitlab.io/fluffychat-website/faq.html" target="new">FAQ</a> - <a href="https://christianpauly.gitlab.io/fluffychat-website/" target="new">Website</a>
+  <a href="https://web.fluffychat.im" target="new">Open FluffyChat in the browser</a> - <a href="https://matrix.to/#/#fluffychat:matrix.org" target="new">Join the community</a> - <a href="https://metalhead.club/@krille" target="new">Follow me on Mastodon</a> - <a href="https://hosted.weblate.org/projects/fluffychat/" target="new">Translate FluffyChat</a> - <a href="https://gitlab.com/ChristianPauly/fluffychat-website" target="new">Translate the website</a> - <a href="https://christianpauly.gitlab.io/fluffychat-website/faq.html" target="new">FAQ</a> - <a href="https://christianpauly.gitlab.io/fluffychat-website/" target="new">Website</a> - <a href="https://gitlab.com/ChristianPauly/fluffychat-flutter/-/jobs/artifacts/main/browse?job=build_android_apk" target="new">Download latest APK</a>
  </p>
 <br>
 <br>
@@ -16,6 +16,7 @@
 # Features
  * Single and group chats
  * Send images and files
+ * Voice messages
  * Offline chat history
  * Push Notifications
  * Account settings
@@ -29,6 +30,9 @@
  * Archived chats
  * Discover public chats on the user's homeserver
  * Registration
+ * Disable account
+ * Change password
+ * End-To-End-Encryption
 
 ## How to build
 
