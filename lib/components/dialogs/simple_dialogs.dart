@@ -138,11 +138,26 @@ class SimpleDialogs {
 
   Future<dynamic> tryRequestWithLoadingDialog(Future<dynamic> request,
       {Function(MatrixException) onAdditionalAuth}) async {
-    showLoadingDialog(context);
-    final dynamic = await tryRequestWithErrorToast(request,
-        onAdditionalAuth: onAdditionalAuth);
-    Navigator.of(context)?.pop();
-    return dynamic;
+    var completed = false;
+    final futureResult = tryRequestWithErrorToast(
+      request,
+      onAdditionalAuth: onAdditionalAuth,
+    ).whenComplete(() => completed = true);
+    await Future.delayed(Duration(seconds: 1));
+    if (completed) return futureResult;
+    return showDialog<dynamic>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        futureResult.then(
+          (result) => Navigator.of(context).pop<dynamic>(result),
+        );
+        return AlertDialog(
+          title: Text(L10n.of(context).loadingPleaseWait),
+          content: LinearProgressIndicator(),
+        );
+      },
+    );
   }
 
   Future<dynamic> tryRequestWithErrorToast(Future<dynamic> request,
@@ -167,18 +182,8 @@ class SimpleDialogs {
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) => AlertDialog(
-        content: Row(
-          children: <Widget>[
-            CircularProgressIndicator(),
-            SizedBox(width: 16),
-            Expanded(
-                child: Text(
-              L10n.of(context).loadingPleaseWait,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 1,
-            )),
-          ],
-        ),
+        title: Text(L10n.of(context).loadingPleaseWait),
+        content: LinearProgressIndicator(),
       ),
     );
   }
