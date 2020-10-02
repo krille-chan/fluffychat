@@ -550,18 +550,18 @@ class _SettingsState extends State<Settings> {
             ListTile(
               trailing: Icon(Icons.link),
               title: Text(L10n.of(context).license),
-              onTap: () => launch(
-                  'https://gitlab.com/ChristianPauly/fluffychat-flutter/raw/master/LICENSE'),
-            ),
-            ListTile(
-              trailing: Icon(Icons.code),
-              title: Text(L10n.of(context).sourceCode),
               onTap: () => showLicensePage(
                 context: context,
                 applicationIcon:
                     Image.asset('assets/logo.png', width: 100, height: 100),
                 applicationName: AppConfig.applicationName,
               ),
+            ),
+            ListTile(
+              trailing: Icon(Icons.code),
+              title: Text(L10n.of(context).sourceCode),
+              onTap: () => launch(
+                  'https://gitlab.com/ChristianPauly/fluffychat-flutter'),
             ),
           ],
         ),

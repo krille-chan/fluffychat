@@ -98,11 +98,13 @@ class _InvitationSelectionState extends State<InvitationSelection> {
               Profile.fromJson({'user_id': '@$text'}),
             ]);
       }
+      final participants = widget.room
+          .getParticipants()
+          .where((user) =>
+              [Membership.join, Membership.invite].contains(user.membership))
+          .toList();
       foundProfiles.removeWhere((profile) =>
-          widget.room
-              .getParticipants()
-              .indexWhere((u) => u.id == profile.userId) !=
-          -1);
+          participants.indexWhere((u) => u.id == profile.userId) != -1);
     });
   }
 
