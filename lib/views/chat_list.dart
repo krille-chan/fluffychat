@@ -25,7 +25,7 @@ import 'new_group.dart';
 import 'new_private_chat.dart';
 import 'settings.dart';
 
-enum SelectMode { normal, share }
+enum SelectMode { normal, share, select }
 
 class ChatListView extends StatelessWidget {
   @override
@@ -59,8 +59,14 @@ class _ChatListState extends State<ChatList> {
   PublicRoomsResponse publicRoomsResponse;
   bool loadingPublicRooms = false;
   String searchServer;
+  final _selectedRoomIds = <String>{};
 
   final ScrollController _scrollController = ScrollController();
+
+  void _toggleSelection(String roomId) =>
+      setState(() => _selectedRoomIds.contains(roomId)
+          ? _selectedRoomIds.remove(roomId)
+          : _selectedRoomIds.add(roomId));
 
   Future<void> waitForFirstSync(BuildContext context) async {
     var client = Matrix.of(context).client;
@@ -215,6 +221,39 @@ class _ChatListState extends State<ChatList> {
     super.dispose();
   }
 
+  Future<void> _toggleFavouriteRoom(BuildContext context) {
+    final room = Matrix.of(context).client.getRoomById(_selectedRoomIds.single);
+    return SimpleDialogs(context).tryRequestWithLoadingDialog(
+      room.setFavourite(!room.isFavourite),
+    );
+  }
+
+  Future<void> _toggleMuted(BuildContext context) {
+    final room = Matrix.of(context).client.getRoomById(_selectedRoomIds.single);
+    return SimpleDialogs(context).tryRequestWithLoadingDialog(
+      room.setPushRuleState(room.pushRuleState == PushRuleState.notify
+          ? PushRuleState.mentions_only
+          : PushRuleState.notify),
+    );
+  }
+
+  Future<void> _archiveAction(BuildContext context) async {
+    final confirmed = await SimpleDialogs(context).askConfirmation();
+    if (!confirmed) return;
+    await SimpleDialogs(context)
+        .tryRequestWithLoadingDialog(_archiveSelectedRooms(context));
+    setState(() => null);
+  }
+
+  Future<void> _archiveSelectedRooms(BuildContext context) async {
+    final client = Matrix.of(context).client;
+    while (_selectedRoomIds.isNotEmpty) {
+      final roomId = _selectedRoomIds.first;
+      await client.getRoomById(roomId).leave();
+      _selectedRoomIds.remove(roomId);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<LoginState>(
@@ -232,10 +271,15 @@ class _ChatListState extends State<ChatList> {
               stream: Matrix.of(context).onShareContentChanged.stream,
               builder: (context, snapshot) {
                 final selectMode = Matrix.of(context).shareContent == null
-                    ? SelectMode.normal
+                    ? _selectedRoomIds.isEmpty
+                        ? SelectMode.normal
+                        : SelectMode.select
                     : SelectMode.share;
+                if (selectMode == SelectMode.share) {
+                  _selectedRoomIds.clear();
+                }
                 return Scaffold(
-                  drawer: selectMode == SelectMode.share
+                  drawer: selectMode != SelectMode.normal
                       ? null
                       : Drawer(
                           child: SafeArea(
@@ -290,54 +334,81 @@ class _ChatListState extends State<ChatList> {
                           ),
                         ),
                   appBar: AppBar(
+                    centerTitle: false,
                     elevation: _scrolledToTop ? 0 : null,
-                    leading: selectMode != SelectMode.share
-                        ? null
-                        : IconButton(
+                    leading: selectMode == SelectMode.share
+                        ? IconButton(
                             icon: Icon(Icons.close),
                             onPressed: () =>
                                 Matrix.of(context).shareContent = null,
-                          ),
+                          )
+                        : selectMode == SelectMode.select
+                            ? IconButton(
+                                icon: Icon(Icons.close),
+                                onPressed: () =>
+                                    setState(_selectedRoomIds.clear),
+                              )
+                            : null,
                     titleSpacing: 0,
+                    actions: selectMode != SelectMode.select
+                        ? null
+                        : [
+                            if (_selectedRoomIds.length == 1)
+                              IconButton(
+                                icon: Icon(Icons.favorite_border_outlined),
+                                onPressed: () => _toggleFavouriteRoom(context),
+                              ),
+                            if (_selectedRoomIds.length == 1)
+                              IconButton(
+                                icon: Icon(Icons.notifications_none),
+                                onPressed: () => _toggleMuted(context),
+                              ),
+                            IconButton(
+                              icon: Icon(Icons.archive),
+                              onPressed: () => _archiveAction(context),
+                            ),
+                          ],
                     title: selectMode == SelectMode.share
                         ? Text(L10n.of(context).share)
-                        : Container(
-                            height: 40,
-                            padding: EdgeInsets.only(right: 8),
-                            child: Material(
-                              color: Theme.of(context).secondaryHeaderColor,
-                              borderRadius: BorderRadius.circular(32),
-                              child: TextField(
-                                autocorrect: false,
-                                controller: searchController,
-                                focusNode: _searchFocusNode,
-                                decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.only(
-                                    top: 8,
-                                    bottom: 8,
-                                    left: 16,
+                        : selectMode == SelectMode.select
+                            ? Text(_selectedRoomIds.length.toString())
+                            : Container(
+                                height: 40,
+                                padding: EdgeInsets.only(right: 8),
+                                child: Material(
+                                  color: Theme.of(context).secondaryHeaderColor,
+                                  borderRadius: BorderRadius.circular(32),
+                                  child: TextField(
+                                    autocorrect: false,
+                                    controller: searchController,
+                                    focusNode: _searchFocusNode,
+                                    decoration: InputDecoration(
+                                      contentPadding: EdgeInsets.only(
+                                        top: 8,
+                                        bottom: 8,
+                                        left: 16,
+                                      ),
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(32),
+                                      ),
+                                      hintText: L10n.of(context).searchForAChat,
+                                      suffixIcon: searchMode
+                                          ? IconButton(
+                                              icon: Icon(Icons.backspace),
+                                              onPressed: () => setState(() {
+                                                searchController.clear();
+                                                _searchFocusNode.unfocus();
+                                              }),
+                                            )
+                                          : null,
+                                    ),
                                   ),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(32),
-                                  ),
-                                  hintText: L10n.of(context).searchForAChat,
-                                  suffixIcon: searchMode
-                                      ? IconButton(
-                                          icon: Icon(Icons.backspace),
-                                          onPressed: () => setState(() {
-                                            searchController.clear();
-                                            _searchFocusNode.unfocus();
-                                          }),
-                                        )
-                                      : null,
                                 ),
                               ),
-                            ),
-                          ),
                   ),
                   floatingActionButton:
                       (AdaptivePageLayout.columnMode(context) ||
-                              selectMode == SelectMode.share)
+                              selectMode != SelectMode.normal)
                           ? null
                           : FloatingActionButton(
                               child: Icon(Icons.add),
@@ -436,34 +507,32 @@ class _ChatListState extends State<ChatList> {
                                         itemBuilder:
                                             (BuildContext context, int i) {
                                           if (i == 0) {
+                                            final displayPresences = directChats
+                                                    .isNotEmpty &&
+                                                selectMode == SelectMode.normal;
                                             return Column(
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
-                                                (directChats.isEmpty ||
-                                                        selectMode ==
-                                                            SelectMode.share)
-                                                    ? Container()
-                                                    : PreferredSize(
-                                                        preferredSize:
-                                                            Size.fromHeight(82),
-                                                        child: Container(
-                                                          height: 78,
-                                                          child:
-                                                              ListView.builder(
-                                                            scrollDirection:
-                                                                Axis.horizontal,
-                                                            itemCount:
-                                                                directChats
-                                                                    .length,
-                                                            itemBuilder: (BuildContext
-                                                                        context,
-                                                                    int i) =>
-                                                                PresenceListItem(
-                                                                    directChats[
-                                                                        i]),
-                                                          ),
+                                                AnimatedContainer(
+                                                  duration: Duration(
+                                                      milliseconds: 500),
+                                                  height:
+                                                      displayPresences ? 78 : 0,
+                                                  child: !displayPresences
+                                                      ? null
+                                                      : ListView.builder(
+                                                          scrollDirection:
+                                                              Axis.horizontal,
+                                                          itemCount: directChats
+                                                              .length,
+                                                          itemBuilder: (BuildContext
+                                                                      context,
+                                                                  int i) =>
+                                                              PresenceListItem(
+                                                                  directChats[
+                                                                      i]),
                                                         ),
-                                                      ),
+                                                ),
                                               ],
                                             );
                                           }
@@ -471,6 +540,18 @@ class _ChatListState extends State<ChatList> {
                                           return i < rooms.length
                                               ? ChatListItem(
                                                   rooms[i],
+                                                  selected: _selectedRoomIds
+                                                      .contains(rooms[i].id),
+                                                  onTap: selectMode ==
+                                                          SelectMode.select
+                                                      ? () => _toggleSelection(
+                                                          rooms[i].id)
+                                                      : null,
+                                                  onLongPress: selectMode !=
+                                                          SelectMode.share
+                                                      ? () => _toggleSelection(
+                                                          rooms[i].id)
+                                                      : null,
                                                   activeChat:
                                                       widget.activeChat ==
                                                           rooms[i].id,
