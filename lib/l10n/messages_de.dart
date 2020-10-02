@@ -282,7 +282,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "dateAndTimeOfDay": m23,
         "dateWithYear": m24,
         "dateWithoutYear": m25,
+        "deactivateAccountWarning": MessageLookupByLibrary.simpleMessage(
+            "Dies deaktiviert deinen Account. Es kann nicht rückgängig gemacht werden! Bist du sicher?"),
         "delete": MessageLookupByLibrary.simpleMessage("Löschen"),
+        "deleteAccount":
+            MessageLookupByLibrary.simpleMessage("Account löschen"),
         "deleteMessage":
             MessageLookupByLibrary.simpleMessage("Nachricht löschen"),
         "deny": MessageLookupByLibrary.simpleMessage("Ablehnen"),
@@ -351,6 +355,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "Homeserver ist nicht kompatibel"),
         "id": MessageLookupByLibrary.simpleMessage("ID"),
         "identity": MessageLookupByLibrary.simpleMessage("Identität"),
+        "ignoreListDescription": MessageLookupByLibrary.simpleMessage(
+            "Du kannst störende Benutzer ignorieren. DU bist dann nicht mehr in der Lage Nachrichten oder Raumeinladungen von diesen zu erhalten."),
+        "ignoreUsername":
+            MessageLookupByLibrary.simpleMessage("Ignoriere Benutzername"),
+        "ignoredUsers":
+            MessageLookupByLibrary.simpleMessage("Ignorierte Benutzer"),
         "incorrectPassphraseOrKey": MessageLookupByLibrary.simpleMessage(
             "Falsches Passwort oder Wiederherstellungsschlüssel"),
         "inviteContact":
@@ -443,6 +453,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "passphraseOrKey": MessageLookupByLibrary.simpleMessage(
             "Passwort oder Wiederherstellungsschlüssel"),
         "password": MessageLookupByLibrary.simpleMessage("Passwort"),
+        "passwordHasBeenChanged":
+            MessageLookupByLibrary.simpleMessage("Passwort wurde geändert"),
         "pickImage": MessageLookupByLibrary.simpleMessage("Bild wählen"),
         "pin": MessageLookupByLibrary.simpleMessage("Anpinnen"),
         "play": m39,
@@ -591,6 +603,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "waitingPartnerNumbers": MessageLookupByLibrary.simpleMessage(
             "Warte darauf, dass der Partner die Zahlen annimmt..."),
         "wallpaper": MessageLookupByLibrary.simpleMessage("Hintergrund"),
+        "warning": MessageLookupByLibrary.simpleMessage("Achtung!"),
         "warningEncryptionInBeta": MessageLookupByLibrary.simpleMessage(
             "Ende-zu-Ende-Verschlüsselung ist im Beta-Status. Benutzung auf eigene Gefahr!"),
         "wednesday": MessageLookupByLibrary.simpleMessage("Mittwoch"),

@@ -1454,7 +1454,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unbannedUser": "ألغى {senderName} حظر {targetName}",
+  "unbannedUser": "ألغى {username} حظر {targetName}",
   "@unbannedUser": {
     "type": "text",
     "placeholders": {

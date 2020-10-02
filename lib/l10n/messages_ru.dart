@@ -260,7 +260,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Просмотр содержимого"),
         "copiedToClipboard":
             MessageLookupByLibrary.simpleMessage("Скопировано в буфер обмена"),
-        "copy": MessageLookupByLibrary.simpleMessage("Скопировать"),
+        "copy": MessageLookupByLibrary.simpleMessage("Копировать"),
         "couldNotDecryptMessage": m20,
         "couldNotSetAvatar": MessageLookupByLibrary.simpleMessage(
             "Не удалось установить аватар"),
@@ -282,7 +282,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "dateAndTimeOfDay": m23,
         "dateWithYear": m24,
         "dateWithoutYear": m25,
+        "deactivateAccountWarning": MessageLookupByLibrary.simpleMessage(
+            "Это деактивирует вашу учётную запись пользователя. Это не может быть отменено! Вы уверены?"),
         "delete": MessageLookupByLibrary.simpleMessage("Удалить"),
+        "deleteAccount":
+            MessageLookupByLibrary.simpleMessage("Удалить аккаунт"),
         "deleteMessage":
             MessageLookupByLibrary.simpleMessage("Удалить сообщение"),
         "deny": MessageLookupByLibrary.simpleMessage("Отклонить"),
@@ -452,6 +456,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "passphraseOrKey": MessageLookupByLibrary.simpleMessage(
             "пароль или ключ восстановления"),
         "password": MessageLookupByLibrary.simpleMessage("Пароль"),
+        "passwordHasBeenChanged":
+            MessageLookupByLibrary.simpleMessage("Пароль был изменён"),
         "pickImage":
             MessageLookupByLibrary.simpleMessage("Выбрать изображение"),
         "pin": MessageLookupByLibrary.simpleMessage("Закрепить"),
@@ -605,6 +611,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "waitingPartnerNumbers": MessageLookupByLibrary.simpleMessage(
             "В ожидании партнёра, чтобы принять числа..."),
         "wallpaper": MessageLookupByLibrary.simpleMessage("Обои"),
+        "warning": MessageLookupByLibrary.simpleMessage("Предупреждение!"),
         "warningEncryptionInBeta": MessageLookupByLibrary.simpleMessage(
             "Сквозное шифрование в настоящее время в бета-версии! Используйте на свой риск!"),
         "wednesday": MessageLookupByLibrary.simpleMessage("Среда"),

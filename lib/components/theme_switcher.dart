@@ -114,7 +114,9 @@ final ThemeData amoledTheme = ThemeData.dark().copyWith(
 
 Color chatListItemColor(BuildContext context, bool activeChat) =>
     Theme.of(context).brightness == Brightness.light
-        ? activeChat ? Color(0xFFE8E8E8) : Colors.white
+        ? activeChat
+            ? Color(0xFFE8E8E8)
+            : Colors.white
         : activeChat
             ? ThemeSwitcherWidget.of(context).amoledEnabled
                 ? Color(0xff121212)

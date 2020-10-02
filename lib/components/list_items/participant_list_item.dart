@@ -71,7 +71,9 @@ class ParticipantListItem extends StatelessWidget {
     };
     final permissionBatch = user.powerLevel == 100
         ? L10n.of(context).admin
-        : user.powerLevel >= 50 ? L10n.of(context).moderator : '';
+        : user.powerLevel >= 50
+            ? L10n.of(context).moderator
+            : '';
     var items = <PopupMenuEntry<String>>[];
 
     if (user.id != Matrix.of(context).client.userID) {

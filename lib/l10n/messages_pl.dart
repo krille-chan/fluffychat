@@ -155,6 +155,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function>{
         "about": MessageLookupByLibrary.simpleMessage("O nas"),
+        "accept": MessageLookupByLibrary.simpleMessage("Akceptuj"),
         "acceptedTheInvitation": m0,
         "account": MessageLookupByLibrary.simpleMessage("Konto"),
         "accountInformation":
@@ -234,11 +235,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "createNewGroup":
             MessageLookupByLibrary.simpleMessage("Stwórz nową grupę"),
         "createdTheChat": m22,
+        "currentlyActive":
+            MessageLookupByLibrary.simpleMessage("Obecnie aktywny/-a"),
         "darkTheme": MessageLookupByLibrary.simpleMessage("Ciemny"),
         "dateAndTimeOfDay": m23,
         "dateWithYear": m24,
         "dateWithoutYear": m25,
         "delete": MessageLookupByLibrary.simpleMessage("Usuń"),
+        "deleteAccount": MessageLookupByLibrary.simpleMessage("Usuń konto"),
         "deleteMessage": MessageLookupByLibrary.simpleMessage("Usuń wiadomość"),
         "deny": MessageLookupByLibrary.simpleMessage("Odrzuć"),
         "device": MessageLookupByLibrary.simpleMessage("Urządzenie"),
@@ -256,6 +260,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "emptyChat": MessageLookupByLibrary.simpleMessage("Pusty czat"),
         "enableEncryptionWarning": MessageLookupByLibrary.simpleMessage(
             "Nie będziesz już mógł wyłączyć szyfrowania. Jesteś pewny?"),
+        "encryption": MessageLookupByLibrary.simpleMessage("Szyfrowanie"),
         "encryptionAlgorithm":
             MessageLookupByLibrary.simpleMessage("Algorytm szyfrowania"),
         "encryptionNotEnabled": MessageLookupByLibrary.simpleMessage(
@@ -292,6 +297,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Serwer domowy nie jest kompatybilny"),
         "id": MessageLookupByLibrary.simpleMessage("ID"),
         "identity": MessageLookupByLibrary.simpleMessage("Tożsamość"),
+        "ignoredUsers":
+            MessageLookupByLibrary.simpleMessage("Ignorowani użytkownicy"),
         "inviteContact":
             MessageLookupByLibrary.simpleMessage("Zaproś kontakty"),
         "inviteContactToGroup": m29,
@@ -308,13 +315,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "lastActiveAgo": m35,
         "lastSeenIp":
             MessageLookupByLibrary.simpleMessage("Ostatnie widziane IP"),
+        "lastSeenLongTimeAgo":
+            MessageLookupByLibrary.simpleMessage("Widziany/-a dawno temu"),
         "leave": MessageLookupByLibrary.simpleMessage("Wyjdź"),
         "leftTheChat": MessageLookupByLibrary.simpleMessage("Opuścił/-a czat"),
         "license": MessageLookupByLibrary.simpleMessage("Licencja"),
         "lightTheme": MessageLookupByLibrary.simpleMessage("Jasny"),
         "loadCountMoreParticipants": m36,
+        "loadMore": MessageLookupByLibrary.simpleMessage("Załaduj więcej…"),
         "loadingPleaseWait":
-            MessageLookupByLibrary.simpleMessage("Ładowanie... Proszę czekąć"),
+            MessageLookupByLibrary.simpleMessage("Ładowanie… Proszę czekać"),
         "logInTo": m37,
         "login": MessageLookupByLibrary.simpleMessage("Zaloguj"),
         "logout": MessageLookupByLibrary.simpleMessage("Wyloguj"),
@@ -334,6 +344,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Nowa wiadomość w FluffyChat"),
         "newPrivateChat":
             MessageLookupByLibrary.simpleMessage("Nowy prywatny czat"),
+        "no": MessageLookupByLibrary.simpleMessage("Nie"),
         "noGoogleServicesWarning": MessageLookupByLibrary.simpleMessage(
             "Wygląda na to, że nie masz usług Google w swoim telefonie. To dobra decyzja dla twojej prywatności! Aby otrzymywać powiadomienia wysyłane w FluffyChat, zalecamy korzystanie z microG: https://microg.org/"),
         "noPermission": MessageLookupByLibrary.simpleMessage("Brak uprawnień"),
@@ -347,12 +358,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Ups! Coś poszło nie tak..."),
         "openAppToReadMessages": MessageLookupByLibrary.simpleMessage(
             "Otwórz aplikację by odczytać wiadomości"),
-        "openCamera": MessageLookupByLibrary.simpleMessage("Otwarta kamera"),
+        "openCamera": MessageLookupByLibrary.simpleMessage("Otwórz aparat"),
         "optionalGroupName":
             MessageLookupByLibrary.simpleMessage("(Opcjonalnie) Nazwa grupy"),
         "participatingUserDevices":
             MessageLookupByLibrary.simpleMessage("Urządzenia użytkowników"),
         "password": MessageLookupByLibrary.simpleMessage("Hasło"),
+        "passwordHasBeenChanged":
+            MessageLookupByLibrary.simpleMessage("Hasło zostało zmienione"),
+        "pin": MessageLookupByLibrary.simpleMessage("Przypnij"),
         "play": m39,
         "pleaseChooseAUsername":
             MessageLookupByLibrary.simpleMessage("Wybierz nick"),
@@ -432,6 +446,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Nieznany algorytm szyfrowania"),
         "unknownEvent": m56,
         "unmuteChat": MessageLookupByLibrary.simpleMessage("Wyłącz wyciszenie"),
+        "unpin": MessageLookupByLibrary.simpleMessage("Odepnij"),
         "unreadChats": m57,
         "unreadMessages": m58,
         "unreadMessagesInChats": m59,

@@ -281,7 +281,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "dateAndTimeOfDay": m23,
         "dateWithYear": m24,
         "dateWithoutYear": m25,
+        "deactivateAccountWarning": MessageLookupByLibrary.simpleMessage(
+            "Tímto krokem se deaktivuje váš uživatelský účet. Akci nelze vrátit zpět! Jste si jistí?"),
         "delete": MessageLookupByLibrary.simpleMessage("Smazat"),
+        "deleteAccount": MessageLookupByLibrary.simpleMessage("Smazat účet"),
         "deleteMessage": MessageLookupByLibrary.simpleMessage("Smazat zprávu"),
         "deny": MessageLookupByLibrary.simpleMessage("Zakázat"),
         "device": MessageLookupByLibrary.simpleMessage("Zařízení"),
@@ -444,6 +447,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "passphraseOrKey":
             MessageLookupByLibrary.simpleMessage("heslo nebo klíč k ověření"),
         "password": MessageLookupByLibrary.simpleMessage("Heslo"),
+        "passwordHasBeenChanged":
+            MessageLookupByLibrary.simpleMessage("Heslo bylo změněno"),
         "pickImage": MessageLookupByLibrary.simpleMessage("Zvolit obrázek"),
         "pin": MessageLookupByLibrary.simpleMessage("Připnout zprávu"),
         "play": m39,
@@ -589,6 +594,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "waitingPartnerNumbers": MessageLookupByLibrary.simpleMessage(
             "Čeká se na potvrzení čísel partnerem…"),
         "wallpaper": MessageLookupByLibrary.simpleMessage("Pozadí"),
+        "warning": MessageLookupByLibrary.simpleMessage("Varování!"),
         "warningEncryptionInBeta": MessageLookupByLibrary.simpleMessage(
             "Koncové šifrování je momentálně v Beta verzi! Používejte na vlastní nebezpečí!"),
         "wednesday": MessageLookupByLibrary.simpleMessage("Středa"),
