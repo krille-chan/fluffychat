@@ -14,23 +14,25 @@ import 'chat_list.dart';
 
 class EmotesSettingsView extends StatelessWidget {
   final Room room;
+  final String stateKey;
 
-  EmotesSettingsView({this.room});
+  EmotesSettingsView({this.room, this.stateKey});
 
   @override
   Widget build(BuildContext context) {
     return AdaptivePageLayout(
       primaryPage: FocusPage.SECOND,
       firstScaffold: ChatList(),
-      secondScaffold: EmotesSettings(room: room),
+      secondScaffold: EmotesSettings(room: room, stateKey: stateKey),
     );
   }
 }
 
 class EmotesSettings extends StatefulWidget {
   final Room room;
+  final String stateKey;
 
-  EmotesSettings({this.room});
+  EmotesSettings({this.room, this.stateKey});
 
   @override
   _EmotesSettingsState createState() => _EmotesSettingsState();
@@ -59,21 +61,42 @@ class _EmotesSettingsState extends State<EmotesSettings> {
     // be sure to preserve any data not in "short"
     Map<String, dynamic> content;
     if (widget.room != null) {
-      content = widget.room.getState('im.ponies.room_emotes')?.content ??
+      content = widget.room
+              .getState('im.ponies.room_emotes', widget.stateKey ?? '')
+              ?.content ??
           <String, dynamic>{};
     } else {
       content = client.accountData['im.ponies.user_emotes']?.content ??
           <String, dynamic>{};
     }
     debugPrint(content.toString());
-    content['short'] = <String, String>{};
-    for (final emote in emotes) {
-      content['short'][emote.emote] = emote.mxc;
+    if (!(content['emoticons'] is Map)) {
+      content['emoticons'] = <String, dynamic>{};
     }
+    // add / update changed emotes
+    final allowedShortcodes = <String>{};
+    for (final emote in emotes) {
+      allowedShortcodes.add(emote.emote);
+      if (!(content['emoticons'][emote.emote] is Map)) {
+        content['emoticons'][emote.emote] = <String, dynamic>{};
+      }
+      content['emoticons'][emote.emote]['url'] = emote.mxc;
+    }
+    // remove emotes no more needed
+    // we make the iterator .toList() here so that we don't get into trouble modifying the very
+    // thing we are iterating over
+    for (final shortcode in content['emoticons'].keys.toList()) {
+      if (!allowedShortcodes.contains(shortcode)) {
+        content['emoticons'].remove(shortcode);
+      }
+    }
+    // remove the old "short" key
+    content.remove('short');
     debugPrint(content.toString());
     if (widget.room != null) {
       await SimpleDialogs(context).tryRequestWithLoadingDialog(
-        client.sendState(widget.room.id, 'im.ponies.room_emotes', content),
+        client.sendState(widget.room.id, 'im.ponies.room_emotes', content,
+            widget.stateKey ?? ''),
       );
     } else {
       await SimpleDialogs(context).tryRequestWithLoadingDialog(
@@ -81,6 +104,43 @@ class _EmotesSettingsState extends State<EmotesSettings> {
       );
     }
   }
+
+  Future<void> _setIsGloballyActive(BuildContext context, bool active) async {
+    if (widget.room == null) {
+      return;
+    }
+    final client = Matrix.of(context).client;
+    final content = client.accountData['im.ponies.emote_rooms']?.content ??
+        <String, dynamic>{};
+    if (active) {
+      if (!(content['rooms'] is Map)) {
+        content['rooms'] = <String, dynamic>{};
+      }
+      if (!(content['rooms'][widget.room.id] is Map)) {
+        content['rooms'][widget.room.id] = <String, dynamic>{};
+      }
+      if (!(content['rooms'][widget.room.id][widget.stateKey ?? ''] is Map)) {
+        content['rooms'][widget.room.id]
+            [widget.stateKey ?? ''] = <String, dynamic>{};
+      }
+    } else if (content['rooms'] is Map &&
+        content['rooms'][widget.room.id] is Map) {
+      content['rooms'][widget.room.id].remove(widget.stateKey ?? '');
+    }
+    // and save
+    await SimpleDialogs(context).tryRequestWithLoadingDialog(
+      client.setAccountData(client.userID, 'im.ponies.emote_rooms', content),
+    );
+  }
+
+  bool isGloballyActive(Client client) =>
+      widget.room != null &&
+      client.accountData['im.ponies.emote_rooms']?.content is Map &&
+      client.accountData['im.ponies.emote_rooms'].content['rooms'] is Map &&
+      client.accountData['im.ponies.emote_rooms'].content['rooms']
+          [widget.room.id] is Map &&
+      client.accountData['im.ponies.emote_rooms'].content['rooms']
+          [widget.room.id][widget.stateKey ?? ''] is Map;
 
   bool get readonly => widget.room == null
       ? false
@@ -93,16 +153,31 @@ class _EmotesSettingsState extends State<EmotesSettings> {
       emotes = <_EmoteEntry>[];
       Map<String, dynamic> emoteSource;
       if (widget.room != null) {
-        emoteSource = widget.room.getState('im.ponies.room_emotes')?.content;
+        emoteSource = widget.room
+            .getState('im.ponies.room_emotes', widget.stateKey ?? '')
+            ?.content;
       } else {
         emoteSource = client.accountData['im.ponies.user_emotes']?.content;
       }
-      if (emoteSource != null && emoteSource['short'] is Map) {
-        emoteSource['short'].forEach((key, value) {
-          if (key is String && value is String && value.startsWith('mxc://')) {
-            emotes.add(_EmoteEntry(emote: key, mxc: value));
-          }
-        });
+      if (emoteSource != null) {
+        if (emoteSource['emoticons'] is Map) {
+          emoteSource['emoticons'].forEach((key, value) {
+            if (key is String &&
+                value is Map &&
+                value['url'] is String &&
+                value['url'].startsWith('mxc://')) {
+              emotes.add(_EmoteEntry(emote: key, mxc: value['url']));
+            }
+          });
+        } else if (emoteSource['short'] is Map) {
+          emoteSource['short'].forEach((key, value) {
+            if (key is String &&
+                value is String &&
+                value.startsWith('mxc://')) {
+              emotes.add(_EmoteEntry(emote: key, mxc: value));
+            }
+          });
+        }
       }
     }
     return Scaffold(
@@ -166,7 +241,6 @@ class _EmotesSettingsState extends State<EmotesSettings> {
                           size: 32.0,
                         ),
                         onTap: () async {
-                          debugPrint('blah');
                           if (newEmoteController.text == null ||
                               newEmoteController.text.isEmpty ||
                               newMxcController.text == null ||
@@ -204,7 +278,19 @@ class _EmotesSettingsState extends State<EmotesSettings> {
                       vertical: 8.0,
                     ),
                   ),
-                if (!readonly)
+                if (widget.room != null)
+                  ListTile(
+                    title: Text(L10n.of(context).enableEmotesGlobally),
+                    trailing: Switch(
+                      value: isGloballyActive(client),
+                      activeColor: Theme.of(context).primaryColor,
+                      onChanged: (bool newValue) async {
+                        await _setIsGloballyActive(context, newValue);
+                        setState(() => null);
+                      },
+                    ),
+                  ),
+                if (!readonly || widget.room != null)
                   Divider(
                     height: 2,
                     thickness: 2,

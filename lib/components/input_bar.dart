@@ -237,22 +237,10 @@ class InputBar extends StatelessWidget {
     }
     if (insertText.isNotEmpty && startText.isNotEmpty) {
       controller.text = startText + afterText;
-      if (startText == insertText) {
-        // stupid fix for now
-        FocusScope.of(context).requestFocus(FocusNode());
-        Future.delayed(Duration(milliseconds: 1)).then((res) {
-          focusNode.requestFocus();
-          controller.selection = TextSelection(
-            baseOffset: startText.length,
-            extentOffset: startText.length,
-          );
-        });
-      } else {
-        controller.selection = TextSelection(
-          baseOffset: startText.length,
-          extentOffset: startText.length,
-        );
-      }
+      controller.selection = TextSelection(
+        baseOffset: startText.length,
+        extentOffset: startText.length,
+      );
     }
   }
 

@@ -19,6 +19,7 @@ import 'package:matrix_link_text/link_text.dart';
 import 'package:memoryfilepicker/memoryfilepicker.dart';
 
 import './settings_emotes.dart';
+import './settings_multiple_emotes.dart';
 import '../utils/url_launcher.dart';
 
 class ChatDetails extends StatefulWidget {
@@ -285,13 +286,31 @@ class _ChatDetailsState extends State<ChatDetails> {
                                 child: Icon(Icons.insert_emoticon),
                               ),
                               title: Text(L10n.of(context).emoteSettings),
-                              onTap: () async =>
+                              onTap: () async {
+                                // okay, we need to test if there are any emote state events other than the default one
+                                // if so, we need to be directed to a selection screen for which pack we want to look at
+                                // otherwise, we just open the normal one.
+                                if ((widget.room.states
+                                            .states['im.ponies.room_emotes'] ??
+                                        <String, Event>{})
+                                    .keys
+                                    .any((String s) => s.isNotEmpty)) {
                                   await Navigator.of(context).push(
-                                AppRoute.defaultRoute(
-                                  context,
-                                  EmotesSettingsView(room: widget.room),
-                                ),
-                              ),
+                                    AppRoute.defaultRoute(
+                                      context,
+                                      MultipleEmotesSettingsView(
+                                          room: widget.room),
+                                    ),
+                                  );
+                                } else {
+                                  await Navigator.of(context).push(
+                                    AppRoute.defaultRoute(
+                                      context,
+                                      EmotesSettingsView(room: widget.room),
+                                    ),
+                                  );
+                                }
+                              },
                             ),
                             PopupMenuButton(
                               child: ListTile(

@@ -529,8 +529,18 @@
     "type": "text",
     "placeholders": {}
   },
+  "emotePacks": "Emote packs for room",
+  "@emotePacks": {
+    "type": "text",
+    "placeholders": {}
+  },
   "emptyChat": "Empty chat",
   "@emptyChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEmotesGlobally": "Enable emote pack globally",
+  "@enableEmotesGlobally": {
     "type": "text",
     "placeholders": {}
   },
