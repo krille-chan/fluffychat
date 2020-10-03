@@ -1,49 +1,90 @@
-<span style="font-family:'Open Sans';font-size:31px;color:#24292e;">**Understand how your data is used**</span>
+# Privacy
 
-<span style="font-family:'Open Sans';font-size:14px;color:#24292e;">The Matrix protocol is designed with your privacy and data sovereignty in mind. Because it is a decentralised, federated service with cryptographically-validated message integrity, there are a few important things to know before you use the Service.</span>
+FluffyChat is available on Android, iOS and as a web version. Desktop versions for Windows, Linux and macOS may follow.
 
-<span style="font-family:'Open Sans';font-size:14px;color:#24292e;">This app can communicate with any matrix homeserver which supports the matrix specification by the homeserver. The user is free to choose the homeserver and has to accept the privacy policy of this homeserver before using it.</span>
+## Matrix
+FluffyChat uses the Matrix protocol. This means that FluffyChat is just a client that can be connected to any compatible matrix server. The respective data protection agreement of the server selected by the user then applies.
 
-<span style="font-family:'Open Sans';font-size:23px;color:#24292e;">**Federation**</span>
+For convenience, one or more servers are set as default that the FluffyChat developers consider trustworthy. The developers of FluffyChat do not guarantee their trustworthiness. Before the first communication, users are informed which server they are connecting to.
 
-<span style="font-family:'Open Sans';font-size:14px;color:#24292e;">Services using the Matrix protocol rely on Matrix homeservers which share user data with the wider ecosystem over federation.</span>
+FluffyChat only communicates with the selected server and with sentry.io if enabled.
 
-*   <span style="font-family:'Open Sans';font-size:14px;color:#24292e;">When you send messages or files in a room, a copy of the data is sent to all participants in the room. If these participants are registered on remote homeservers, your username, display name, messages and files may be replicated across each participating h</span><span style="font-family:'Open Sans';font-size:14px;color:#24292e;">omeserver.</span>
+More information is available at: https://matrix.org
 
-*   <span style="font-family:'Open Sans';font-size:14px;color:#24292e;">We will forget your copy of your data upon your request. We will also forward your request onto federated homeservers. However - these homeservers are outside our span of control, so we cannot guarantee they will forget your data.</span>
+## Sentry
+FluffyChat uses Sentry for crash reports if the user allows it.
 
-*   <span style="font-family:'Open Sans';font-size:14px;color:#24292e;">Federated homeservers can be located anywhere in the world, and are subject to local laws and regulations.</span>
+More information is available at: https://sentry.io
 
-<span style="font-family:'Open Sans';font-size:23px;color:#24292e;">**Bridging**</span>
+## Database
+FluffyChat caches some data received from the server in a local database on the device of the user.
 
-<span style="font-family:'Open Sans';font-size:14px;color:#24292e;">Some Matrix rooms are bridged to third-party services, such as IRC networks, twitter or email. When a room has been bridged, your messages and media may be copied onto the bridged service.</span>
+More information is available at: https://pub.dev/packages/moor
 
-*   <span style="font-family:'Open Sans';font-size:14px;color:#24292e;">It may not be technically possible to support your management of your data once it has been copied onto a bridged service.</span>
+## Encryption
+All communication of substantive content between Fluffychat and any server is done in secure way, using transport encryption to protect it.
 
-*   <span style="font-family:'Open Sans';font-size:14px;color:#24292e;">Bridged services can be located anywhere in the world, and are subject to local laws and regulations.</span>
+FluffyChat is able to use End-To-End-Encryption as a tech preview.
 
-<span style="font-family:'Open Sans';font-size:19px;color:#24292e;">**Integration Services (Bots and Widgets)**</span>
+## App Permissions
 
-<span style="font-family:'Open Sans';font-size:14px;color:#24292e;">The homeserver the user is using may provide a range of integrations in the form of Widgets (web applications accessed as part of the Matrix Client webapp) and Bots (automated participants in rooms). Bots and Widgets have access to the messages and files in rooms in</span><span style="font-family:'Open Sans';font-size:14px;color:#24292e;"> which they participate.</span>
+The permissions are the same on Android and iOS but may differ in the name. This are the Android Permissions:
 
-<span style="font-family:'Open Sans';font-size:23px;color:#24292e;">**Forgetting your Data**</span>
+#### Internet Access
+FluffyChat needs to have internet access to communicate with the Matrix Server.
 
-<span style="font-family:'Open Sans';font-size:14px;color:#24292e;">You can request that we forget your data if you deactivate your account. Each user in a Matrix conversation receives their own copy of all messages and files in that conversation (similar to email), so we ensure data is forgotten by ensuring that your data</span><span style="font-family:'Open Sans';font-size:14px;color:#24292e;"> is not shared further and is not visible to future users. Once all users’ copies have been forgotten the messages and files will be deleted from the homeserver database. For full details, please see the </span>[<span style="font-family:'Open Sans';font-size:14px;color:#0000ee;"><u>full privacy notice</u></span>](https://matrix.org/legal/privacy-notice/ "https://matrix.org/legal/privacy-notice/")<span style="font-family:'Open Sans';font-size:14px;color:#24292e;">.</span>
+#### Vibrate
+FluffyChat uses vibration for local notifications. More informations about this are at the used package:
+https://pub.dev/packages/flutter_local_notifications
 
-<span style="font-family:'Open Sans';font-size:14px;color:#24292e;">If you remove (redact) a message, the message content will no longer be accessible to users. Redactions only remove message content, your display name and avatar - your username will still be visible. Federated homeservers and some matrix clients may not h</span><span style="font-family:'Open Sans';font-size:14px;color:#24292e;">onour the redaction request.</span>
+#### Record Audio
+FluffyChat can send voice messages in a chat and therefore needs to have the permission to record audio.
 
-<span style="font-family:'Open Sans';font-size:23px;color:#24292e;">**Legal Basis for Processing**</span>
+#### Write External Storage
+The user is able to save received files and therefore app needs this permission.
 
-<span style="font-family:'Open Sans';font-size:14px;color:#24292e;">New Vector processes your data under Legitimate Interest. This means that we process your data only as necessary to deliver the Service, and in a manner that you understand and expect.</span>
+#### Read External Storage
+The user is able to send files from the device's file system.
 
-<span style="font-family:'Open Sans';font-size:14px;color:#24292e;">The Legitimate Interest of our Service is the provision of decentralised, openly-federated and (optionally) end-to-end encrypted communication services. The processing of user data we undertake is necessary to provide the Service. The nature of the Service</span><span style="font-family:'Open Sans';font-size:14px;color:#24292e;"> and its implementation results in some caveats concerning this processing, particularly in terms of GDPR Article 17 Right to Erasure (Right to be Forgotten). We believe these caveats are in line with the broader societal interests served by providing the </span><span style="font-family:'Open Sans';font-size:14px;color:#24292e;">Service. These caveats are discussed in detail in the full privacy notice, but the most important restriction is that your username will still be publicly associated with rooms in which you have participated even if you deactivate your account and ask us t</span><span style="font-family:'Open Sans';font-size:14px;color:#24292e;">o forget your data.</span>
+## Push Notifications
+FluffyChat uses the Firebase Cloud Messaging service for push notifications on Android and iOS. This takes place in the following steps:
+1. The matrix server sends the push notification to the FluffyChat Push Gateway
+2. The FluffyChat Push Gateway forwards the message in a different format to Firebase Cloud Messaging
+3. Firebase Cloud Messaging waits until the user's device is online again
+4. The device receives the push notification from Firebase Cloud Messaging and displays it as a notification
 
-<span style="font-family:'Open Sans';font-size:14px;color:#24292e;">In situations where the interests of the individual appear to be in conflict with the broader societal interests, we will seek to reconcile those differences in accordance with our policy.</span>
+The source code of the push gateway can be viewed here:
+https://gitlab.com/famedly/services/famedly-push-gateway
 
-<span style="font-family:'Open Sans';font-size:14px;color:#24292e;">If any of the above are unacceptable to you, </span><span style="font-family:'Open Sans';font-size:14px;color:#24292e;">**please do not use the Service.**</span>
+`event_id_only` is used as the format for the push notification. A typical push notification therefore only contains:
+- Event ID
+- Room ID
+- Unread Count
+- Information about the device that is to receive the message
 
-<span style="font-family:'Open Sans';font-size:14px;color:#24292e;">Please review the </span>[<span style="font-family:'Open Sans';font-size:14px;color:#0000ee;"><u>full privacy notice</u></span>](https://matrix.org/legal/privacy-notice/ "https://matrix.org/legal/privacy-notice/")<span style="font-family:'Open Sans';font-size:14px;color:#24292e;"> and </span>[<span style="font-family:'Open Sans';font-size:14px;color:#0000ee;"><u>code of conduct</u></span>](https://matrix.org/legal/code-of-conduct/ "https://matrix.org/legal/code-of-conduct/")<span style="font-family:'Open Sans';font-size:14px;color:#24292e;"> before using this Service.</span>
+A typical push notification could look like this:
+```
+{
+  "notification": {
+    "event_id": "$3957tyerfgewrf384",
+    "room_id": "!slw48wfj34rtnrf:example.com",
+    "counts": {
+      "unread": 2,
+      "missed_calls": 1
+    },
+    "devices": [
+      {
+        "app_id": "chat.fluffy.fluffychat",
+        "pushkey": "V2h5IG9uIGVhcnRoIGRpZCB5b3UgZGVjb2RlIHRoaXM/",
+        "pushkey_ts": 12345678,
+        "data": {},
+        "tweaks": {
+          "sound": "bing"
+        }
+      }
+    ]
+  }
+}
+```
 
-<span style="font-family:'Open Sans';font-size:14px;color:#24292e;">Please review the </span>[<span style="font-family:'Open Sans';font-size:14px;color:#0000ee;"><u>terms and conditions</u></span>](https://matrix.org/legal/terms-and-conditions/ "https://matrix.org/legal/terms-and-conditions/")<span style="font-family:'Open Sans';font-size:14px;color:#24292e;"> before using this Service.</span>
-
-<span style="font-family:'Open Sans';font-size:14px;color:#24292e;">You must be at least 16 years old to use this Service.</span>
+FluffyChat sets the `event_id_only` flag at the Matrix Server. This server is then responsible to send the correct data.
