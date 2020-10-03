@@ -1,9 +1,9 @@
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/app_route.dart';
+import 'package:fluffychat/utils/presence_extension.dart';
 import 'package:fluffychat/views/chat.dart';
 import 'package:flutter/material.dart';
-import 'package:fluffychat/utils/presence_extension.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import '../avatar.dart';
 import '../matrix.dart';

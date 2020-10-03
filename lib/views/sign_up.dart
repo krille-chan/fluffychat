@@ -2,12 +2,12 @@ import 'dart:math';
 
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/matrix.dart';
-import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/views/login.dart';
 import 'package:fluffychat/views/sign_up_password.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:memoryfilepicker/memoryfilepicker.dart';
 

@@ -1,18 +1,19 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/utils/matrix_locals.dart';
 import 'package:fluffychat/views/chat.dart';
 import 'package:flutter/material.dart';
-import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:pedantic/pedantic.dart';
 
-import '../../l10n/l10n.dart';
 import '../../utils/app_route.dart';
 import '../../utils/date_time_extension.dart';
 import '../../views/chat.dart';
-import '../theme_switcher.dart';
 import '../avatar.dart';
+import '../dialogs/send_file_dialog.dart';
 import '../dialogs/simple_dialogs.dart';
 import '../matrix.dart';
-import '../dialogs/send_file_dialog.dart';
+import '../theme_switcher.dart';
 
 class ChatListItem extends StatelessWidget {
   final Room room;
@@ -132,7 +133,7 @@ class ChatListItem extends StatelessWidget {
             children: <Widget>[
               Expanded(
                 child: Text(
-                  room.getLocalizedDisplayname(L10n.of(context)),
+                  room.getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   softWrap: false,
@@ -184,7 +185,7 @@ class ChatListItem extends StatelessWidget {
                       )
                     : Text(
                         room.lastEvent?.getLocalizedBody(
-                              L10n.of(context),
+                              MatrixLocals(L10n.of(context)),
                               withSenderNamePrefix: !room.isDirectChat ||
                                   room.lastEvent.senderId == room.client.userID,
                               hideReply: true,

@@ -10,15 +10,16 @@ import 'package:fluffychat/components/list_items/public_room_list_item.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 import 'package:share/share.dart';
+
 import '../components/adaptive_page_layout.dart';
 import '../components/list_items/chat_list_item.dart';
 import '../components/matrix.dart';
-import '../l10n/l10n.dart';
 import '../utils/app_route.dart';
-import '../utils/url_launcher.dart';
 import '../utils/matrix_file_extension.dart';
+import '../utils/url_launcher.dart';
 import 'archive.dart';
 import 'homeserver_picker.dart';
 import 'new_group.dart';

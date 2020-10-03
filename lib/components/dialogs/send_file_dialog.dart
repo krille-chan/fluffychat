@@ -1,14 +1,14 @@
 import 'dart:typed_data';
 import 'dart:ui';
 
-import 'package:flutter/material.dart';
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:native_imaging/native_imaging.dart' as native;
 
+import '../../components/dialogs/simple_dialogs.dart';
 import '../../utils/matrix_file_extension.dart';
 import '../../utils/room_send_file_extension.dart';
-import '../../components/dialogs/simple_dialogs.dart';
-import '../../l10n/l10n.dart';
 
 class SendFileDialog extends StatefulWidget {
   final Room room;

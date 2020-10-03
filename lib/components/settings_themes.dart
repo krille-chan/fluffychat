@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import '../components/theme_switcher.dart';
 import '../components/matrix.dart';
-import '../l10n/l10n.dart';
+import '../components/theme_switcher.dart';
 
 class ThemesSettings extends StatefulWidget {
   @override

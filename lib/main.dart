@@ -1,21 +1,20 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:bot_toast/bot_toast.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/views/homeserver_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:bot_toast/bot_toast.dart';
-
-import 'l10n/l10n.dart';
-import 'components/theme_switcher.dart';
-import 'components/matrix.dart';
-import 'views/chat_list.dart';
-import 'package:universal_html/prefer_universal/html.dart' as html;
-import 'package:sentry/sentry.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:localstorage/localstorage.dart';
+import 'package:sentry/sentry.dart';
+import 'package:universal_html/prefer_universal/html.dart' as html;
+
+import 'components/matrix.dart';
+import 'components/theme_switcher.dart';
+import 'views/chat_list.dart';
 
 final sentry = SentryClient(dsn: '8591d0d863b646feb4f3dda7e5dcab38');
 
@@ -53,31 +52,8 @@ class App extends StatelessWidget {
               builder: BotToastInit(),
               navigatorObservers: [BotToastNavigatorObserver()],
               theme: ThemeSwitcherWidget.of(context).themeData,
-              localizationsDelegates: [
-                AppLocalizationsDelegate(),
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              supportedLocales: [
-                const Locale('en'), // English
-                const Locale('de'), // German
-                const Locale('hu'), // Hungarian
-                const Locale('pl'), // Polish
-                const Locale('fr'), // French
-                const Locale('cs'), // Czech
-                const Locale('es'), // Spanish
-                const Locale('sk'), // Slovakian
-                const Locale('gl'), // Galician
-                const Locale('hr'), // Croatian
-                const Locale('ja'), // Japanese
-                const Locale('ru'), // Russian
-                const Locale('uk'), // Ukrainian
-                const Locale('hy'), // Armenian
-                const Locale('tr'), // Turkish
-                const Locale('zh_Hans'), // Chinese (Simplified)
-                const Locale('et'), // Estonian
-              ],
+              localizationsDelegates: L10n.localizationsDelegates,
+              supportedLocales: L10n.supportedLocales,
               locale: kIsWeb
                   ? Locale(html.window.navigator.language.split('-').first)
                   : null,

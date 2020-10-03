@@ -1,19 +1,22 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:bot_toast/bot_toast.dart';
+import 'package:famedlysdk/famedlysdk.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:fluffychat/components/matrix.dart';
-import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/views/chat.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:flutter_gen/gen_l10n/l10n_en.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:bot_toast/bot_toast.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:famedlysdk/famedlysdk.dart';
-import 'famedlysdk_store.dart';
+
 import '../components/matrix.dart';
+import 'famedlysdk_store.dart';
+import 'matrix_locals.dart';
 
 abstract class FirebaseController {
   static final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
@@ -161,8 +164,9 @@ abstract class FirebaseController {
         return null;
       }
       debugPrint('[Push] New message received');
-      final i18n =
-          context == null ? L10n(Platform.localeName) : L10n.of(context);
+      // FIXME unable to init without context currently https://github.com/flutter/flutter/issues/67092
+      // Locked on EN until issue resolved
+      final i18n = context == null ? L10nEn() : L10n.of(context);
 
       // Get the client
       Client client;
@@ -226,14 +230,14 @@ abstract class FirebaseController {
 
       // Calculate the body
       final body = event.getLocalizedBody(
-        i18n,
+        MatrixLocals(i18n),
         withSenderNamePrefix: true,
         hideReply: true,
       );
 
       // The person object for the android message style notification
       final person = Person(
-        name: room.getLocalizedDisplayname(i18n),
+        name: room.getLocalizedDisplayname(MatrixLocals(i18n)),
         icon: room.avatar == null
             ? null
             : BitmapFilePathAndroidIcon(
@@ -267,7 +271,10 @@ abstract class FirebaseController {
       var platformChannelSpecifics = NotificationDetails(
           androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
       await _flutterLocalNotificationsPlugin.show(
-          0, room.getLocalizedDisplayname(i18n), body, platformChannelSpecifics,
+          0,
+          room.getLocalizedDisplayname(MatrixLocals(i18n)),
+          body,
+          platformChannelSpecifics,
           payload: roomId);
 
       if (tempClient) {
@@ -294,7 +301,11 @@ abstract class FirebaseController {
       var initializationSettings = InitializationSettings(
           initializationSettingsAndroid, initializationSettingsIOS);
       await flutterLocalNotificationsPlugin.initialize(initializationSettings);
-      final l10n = L10n(Platform.localeName);
+
+      // FIXME unable to init without context currently https://github.com/flutter/flutter/issues/67092
+      // Locked on en for now
+      //final l10n = L10n(Platform.localeName);
+      final l10n = L10nEn();
 
       // Notification data and matrix data
       Map<dynamic, dynamic> data = message['data'] ?? message;

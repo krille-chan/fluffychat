@@ -1,14 +1,14 @@
 import 'dart:async';
 
+import 'package:bot_toast/bot_toast.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:famedlysdk/matrix_api.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/avatar.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/matrix.dart';
-import 'package:fluffychat/l10n/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'chat_list.dart';
 

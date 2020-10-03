@@ -57,7 +57,7 @@ dependencies:
   random_string: ^2.0.1
   flutter_typeahead: ^1.8.1
   flutter_olm: ^1.0.1
-  intl: ^0.16.0
+  intl: ^0.16.1
   intl_translation: ^0.17.9
   flutter_localizations:
     sdk: flutter
@@ -87,6 +87,9 @@ flutter_icons:
 
 # The following section is specific to Flutter.
 flutter:
+  # Adds code generation (synthetic package) support 
+  generate: true
+
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

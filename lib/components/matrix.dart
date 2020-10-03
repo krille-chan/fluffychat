@@ -1,22 +1,24 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:famedlysdk/famedlysdk.dart';
 import 'package:famedlysdk/encryption.dart';
+import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/utils/firebase_controller.dart';
+import 'package:fluffychat/utils/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:localstorage/localstorage.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:universal_html/prefer_universal/html.dart' as html;
-import '../l10n/l10n.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import '../utils/app_route.dart';
 import '../utils/beautify_string_extension.dart';
 import '../utils/famedlysdk_store.dart';
-import 'avatar.dart';
 import '../views/key_verification.dart';
-import '../utils/app_route.dart';
+import 'avatar.dart';
 
 class Matrix extends StatefulWidget {
   static const String callNamespace = 'chat.fluffy.jitsi_call';
@@ -168,7 +170,7 @@ class MatrixState extends State<Matrix> {
     if (room.notificationCount == 0) return;
     final event = Event.fromJson(eventUpdate.content, room);
     final body = event.getLocalizedBody(
-      L10n.of(context),
+      MatrixLocals(L10n.of(context)),
       withSenderNamePrefix:
           !room.isDirectChat || room.lastEvent.senderId == client.userID,
     );
@@ -177,7 +179,7 @@ class MatrixState extends State<Matrix> {
       ..autoplay = true
       ..load();
     html.Notification(
-      room.getLocalizedDisplayname(L10n.of(context)),
+      room.getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
       body: body,
       icon: event.sender.avatarUrl?.getThumbnail(client,
               width: 64, height: 64, method: ThumbnailMethod.crop) ??

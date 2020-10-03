@@ -1,6 +1,7 @@
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/utils/matrix_locals.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class StateMessage extends StatelessWidget {
   final Event event;
@@ -23,7 +24,7 @@ class StateMessage extends StatelessWidget {
             borderRadius: BorderRadius.circular(7),
           ),
           child: Text(
-            event.getLocalizedBody(L10n.of(context)),
+            event.getLocalizedBody(MatrixLocals(L10n.of(context))),
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Theme.of(context).textTheme.bodyText2.color,

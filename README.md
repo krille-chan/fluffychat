@@ -84,25 +84,40 @@ with a method call:
 ```
 Text(L10n.of(context).helloWorld),
 ```
-And add the method to `/lib/l10n/l10n.dart`:
+
+and add the following import if missing:
+
 ```
-String get helloWorld => Intl.message('Hello world');
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 ```
 
-2. Add the string to the .arb files with this command:
+2. Add the string to `/lib/l10n/l10n_en.arb`:
+
+(The following example need to be sorounded by the usual json `{}` and after the `@@locale` key)
+
+Example A:
 ```
-flutter pub run intl_translation:extract_to_arb --output-dir=lib/l10n lib/l10n/l10n.dart
+"helloWorld": "Hello World!",
+"@helloWorld": {
+  "description": "The conventional newborn programmer greeting"
+}
 ```
 
-3. Copy the new translation objects from `/lib/l10n/intl_message.arb` to `/lib/l10n/intl_<yourlanguage>.arb` and translate it or create a new file for your language by copying `intl_message.arb`.
-
-4. Update the translations with this command:
+Example B:
 ```
-flutter pub pub run intl_translation:generate_from_arb --output-dir=lib/l10n --no-use-deferred-loading lib/l10n/l10n.dart lib/l10n/intl_*.arb
+"hello": "Hello {userName}",
+"@hello": {
+  "description": "A message with a single parameter",
+  "placeholders": {
+    "userName": {
+      "type": “String”,
+      “example”: “Bob”
+    }
+  }
+}
 ```
 
-5. Make sure your language is in `supportedLocales` in `/lib/main.dart` and in the List at `https://gitlab.com/ChristianPauly/fluffychat-flutter/-/blob/main/lib/l10n/l10n.dart#L11`.
-
+3. For testing just run a regular build without extras
 
 # Special thanks to
 

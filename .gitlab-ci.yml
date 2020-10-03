@@ -38,7 +38,6 @@ build_web:
     - cd web/ && rm sqljs-wasm.zip && cd ../
     - flutter clean
     - flutter pub get
-    - flutter pub pub run intl_translation:generate_from_arb --output-dir=lib/l10n --no-use-deferred-loading lib/l10n/l10n.dart lib/l10n/intl_*.arb
     - flutter build web --release --verbose
     # upload elsewhere, if wanted
   artifacts:
@@ -69,7 +68,6 @@ build_android_apk:
     - cd android && echo "storeFile=../key.jks" >> key.properties && cd ..
     - cd android/app && echo $GOOGLE_SERVICES >> google-services.json && cd ../..
     - flutter pub get
-    - flutter pub pub run intl_translation:generate_from_arb --output-dir=lib/l10n --no-use-deferred-loading lib/l10n/l10n.dart lib/l10n/intl_*.arb
     - flutter build apk --release
     - mkdir -p build/android
     - cp build/app/outputs/apk/release/app-release.apk build/android/

@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:math';
+
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/config/app_emojis.dart';
-import 'package:flutter/scheduler.dart';
+import 'package:file_picker_platform_interface/file_picker_platform_interface.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/avatar.dart';
 import 'package:fluffychat/components/chat_settings_popup_menu.dart';
@@ -15,23 +15,25 @@ import 'package:fluffychat/components/encryption_button.dart';
 import 'package:fluffychat/components/list_items/message.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/components/reply_content.dart';
-import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/config/app_emojis.dart';
 import 'package:fluffychat/utils/app_route.dart';
+import 'package:fluffychat/utils/matrix_locals.dart';
 import 'package:fluffychat/utils/room_status_extension.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:memoryfilepicker/memoryfilepicker.dart';
 import 'package:pedantic/pedantic.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:file_picker_platform_interface/file_picker_platform_interface.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 
+import '../components/dialogs/send_file_dialog.dart';
+import '../components/input_bar.dart';
+import '../utils/matrix_file_extension.dart';
 import 'chat_details.dart';
 import 'chat_list.dart';
-import '../components/input_bar.dart';
-import '../components/dialogs/send_file_dialog.dart';
-import '../utils/matrix_file_extension.dart';
 
 class ChatView extends StatelessWidget {
   final String id;
@@ -266,12 +268,13 @@ class _ChatState extends State<_Chat> {
   String _getSelectedEventString(BuildContext context) {
     var copyString = '';
     if (selectedEvents.length == 1) {
-      return selectedEvents.first.getLocalizedBody(L10n.of(context));
+      return selectedEvents.first
+          .getLocalizedBody(MatrixLocals(L10n.of(context)));
     }
     for (var event in selectedEvents) {
       if (copyString.isNotEmpty) copyString += '\n\n';
-      copyString +=
-          event.getLocalizedBody(L10n.of(context), withSenderNamePrefix: true);
+      copyString += event.getLocalizedBody(MatrixLocals(L10n.of(context)),
+          withSenderNamePrefix: true);
     }
     return copyString;
   }
@@ -475,7 +478,9 @@ class _ChatState extends State<_Chat> {
                                       ChatDetails(room),
                                     ),
                                   ),
-                    title: Text(room.getLocalizedDisplayname(L10n.of(context)),
+                    title: Text(
+                        room.getLocalizedDisplayname(
+                            MatrixLocals(L10n.of(context))),
                         maxLines: 1),
                     subtitle: typingText.isEmpty
                         ? Text(
@@ -515,7 +520,7 @@ class _ChatState extends State<_Chat> {
                         editEvent = selectedEvents.first;
                         sendController.text = editEvent
                             .getDisplayEvent(timeline)
-                            .getLocalizedBody(L10n.of(context),
+                            .getLocalizedBody(MatrixLocals(L10n.of(context)),
                                 withSenderNamePrefix: false, hideReply: true);
                         selectedEvents.clear();
                       });
@@ -1026,7 +1031,7 @@ class _EditContent extends StatelessWidget {
         Container(width: 15.0),
         Text(
           event?.getLocalizedBody(
-                L10n.of(context),
+                MatrixLocals(L10n.of(context)),
                 withSenderNamePrefix: false,
                 hideReply: true,
               ) ??

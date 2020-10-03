@@ -1,16 +1,16 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:bot_toast/bot_toast.dart';
 import 'package:memoryfilepicker/memoryfilepicker.dart';
 
-import 'chat_list.dart';
 import '../components/adaptive_page_layout.dart';
-import '../components/matrix.dart';
 import '../components/dialogs/simple_dialogs.dart';
-import '../l10n/l10n.dart';
+import '../components/matrix.dart';
+import 'chat_list.dart';
 
 class EmotesSettingsView extends StatelessWidget {
   final Room room;

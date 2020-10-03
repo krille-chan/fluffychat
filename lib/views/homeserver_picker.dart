@@ -3,11 +3,11 @@ import 'dart:math';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:fluffychat/views/sign_up.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class HomeserverPicker extends StatelessWidget {
   Future<void> _setHomeserverAction(BuildContext context) async {

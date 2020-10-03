@@ -2,11 +2,11 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/message_content.dart';
 import 'package:fluffychat/components/reply_content.dart';
-import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/event_extension.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import '../avatar.dart';
 import '../matrix.dart';

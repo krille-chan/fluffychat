@@ -1,11 +1,11 @@
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import '../utils/date_time_extension.dart';
 import '../components/adaptive_page_layout.dart';
 import '../components/matrix.dart';
-import '../l10n/l10n.dart';
+import '../utils/date_time_extension.dart';
 import 'chat_list.dart';
 
 class DevicesSettingsView extends StatelessWidget {

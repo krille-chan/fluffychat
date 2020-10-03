@@ -1,12 +1,12 @@
 import 'dart:math';
 
+import 'package:bot_toast/bot_toast.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/matrix.dart';
-import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/views/auth_web_view.dart';
 import 'package:flutter/material.dart';
-import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:memoryfilepicker/memoryfilepicker.dart';
 
 import 'chat_list.dart';

@@ -1,15 +1,17 @@
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/audio_player.dart';
 import 'package:fluffychat/components/image_bubble.dart';
-import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/event_extension.dart';
+import 'package:fluffychat/utils/matrix_locals.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix_link_text/link_text.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../utils/url_launcher.dart';
+import 'html_message.dart';
 import 'matrix.dart';
 import 'message_download_content.dart';
-import 'html_message.dart';
-import '../utils/url_launcher.dart';
 
 class MessageContent extends StatelessWidget {
   final Event event;
@@ -87,7 +89,8 @@ class MessageContent extends StatelessWidget {
                 event.numberEmotes <= 10;
             final fontSize = DefaultTextStyle.of(context).style.fontSize;
             return LinkText(
-              text: event.getLocalizedBody(L10n.of(context), hideReply: true),
+              text: event.getLocalizedBody(MatrixLocals(L10n.of(context)),
+                  hideReply: true),
               textStyle: TextStyle(
                 color: textColor,
                 fontSize: bigEmotes ? fontSize * 3 : fontSize,
