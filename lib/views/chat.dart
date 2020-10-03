@@ -8,7 +8,6 @@ import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/avatar.dart';
 import 'package:fluffychat/components/chat_settings_popup_menu.dart';
 import 'package:fluffychat/components/connection_status_header.dart';
-import 'package:fluffychat/components/dialogs/presence_dialog.dart';
 import 'package:fluffychat/components/dialogs/recording_dialog.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/encryption_button.dart';
@@ -460,24 +459,16 @@ class _ChatState extends State<_Chat> {
                   return ListTile(
                     leading: Avatar(room.avatar, room.displayname),
                     contentPadding: EdgeInsets.zero,
-                    onTap: () =>
-                        room.isDirectChat && room.directChatPresence == null
+                    onTap: room.isDirectChat && room.directChatPresence == null
+                        ? null
+                        : room.isDirectChat
                             ? null
-                            : room.isDirectChat
-                                ? showDialog(
-                                    context: context,
-                                    builder: (c) => PresenceDialog(
-                                      room.directChatPresence,
-                                      avatarUrl: room.avatar,
-                                      displayname: room.displayname,
-                                    ),
-                                  )
-                                : Navigator.of(context).push(
-                                    AppRoute.defaultRoute(
-                                      context,
-                                      ChatDetails(room),
-                                    ),
+                            : () => Navigator.of(context).push(
+                                  AppRoute.defaultRoute(
+                                    context,
+                                    ChatDetails(room),
                                   ),
+                                ),
                     title: Text(
                         room.getLocalizedDisplayname(
                             MatrixLocals(L10n.of(context))),

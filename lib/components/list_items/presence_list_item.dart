@@ -1,7 +1,7 @@
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/components/dialogs/presence_dialog.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/views/chat.dart';
+import 'package:fluffychat/views/presence_view.dart';
 import 'package:flutter/material.dart';
 import '../avatar.dart';
 import '../matrix.dart';
@@ -33,12 +33,21 @@ class PresenceListItem extends StatelessWidget {
       borderRadius: BorderRadius.circular(8),
       onTap: () => presence?.presence?.statusMsg == null
           ? _startChatAction(context, user.id)
-          : showDialog(
+          : /*showDialog(
               context: context,
               builder: (_) => PresenceDialog(
                 presence,
                 avatarUrl: user.avatarUrl,
                 displayname: user.calcDisplayname(),
+              ),
+            ),*/
+          Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => PresenceView(
+                  presence: presence,
+                  avatarUrl: user.avatarUrl,
+                  displayname: user.calcDisplayname(),
+                ),
               ),
             ),
       child: Container(

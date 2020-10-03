@@ -8,6 +8,7 @@ import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/list_items/presence_list_item.dart';
 import 'package:fluffychat/components/list_items/public_room_list_item.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/views/presence_view.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -198,18 +199,20 @@ class _ChatListState extends State<ChatList> {
 
   void _setStatus(BuildContext context) async {
     Navigator.of(context).pop();
-    final status = await SimpleDialogs(context).enterText(
-      multiLine: true,
-      titleText: L10n.of(context).setStatus,
-      labelText: L10n.of(context).setStatus,
-      hintText: L10n.of(context).statusExampleMessage,
-    );
-    if (status?.isEmpty ?? true) return;
-    await SimpleDialogs(context).tryRequestWithLoadingDialog(
-      Matrix.of(context).client.sendPresence(
-          Matrix.of(context).client.userID, PresenceType.online,
-          statusMsg: status),
-    );
+    final ownProfile = await SimpleDialogs(context)
+        .tryRequestWithLoadingDialog(Matrix.of(context).client.ownProfile);
+    if (ownProfile is Profile) {
+      await Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) => PresenceView(
+            composeMode: true,
+            avatarUrl: ownProfile.avatarUrl,
+            displayname: ownProfile.displayname,
+          ),
+        ),
+      );
+    }
+    return;
   }
 
   @override
