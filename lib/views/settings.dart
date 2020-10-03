@@ -544,8 +544,12 @@ class _SettingsState extends State<Settings> {
             ListTile(
               trailing: Icon(Icons.help),
               title: Text(L10n.of(context).help),
-              onTap: () => launch(
-                  'https://gitlab.com/ChristianPauly/fluffychat-flutter/issues'),
+              onTap: () => launch(AppConfig.supportUrl),
+            ),
+            ListTile(
+              trailing: Icon(Icons.privacy_tip_rounded),
+              title: Text(L10n.of(context).privacy),
+              onTap: () => launch(AppConfig.privacyUrl),
             ),
             ListTile(
               trailing: Icon(Icons.link),
@@ -560,8 +564,7 @@ class _SettingsState extends State<Settings> {
             ListTile(
               trailing: Icon(Icons.code),
               title: Text(L10n.of(context).sourceCode),
-              onTap: () => launch(
-                  'https://gitlab.com/ChristianPauly/fluffychat-flutter'),
+              onTap: () => launch(AppConfig.sourceCodeUrl),
             ),
           ],
         ),

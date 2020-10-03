@@ -3,11 +3,12 @@ import 'dart:math';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/config/app_config.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:fluffychat/views/sign_up.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeserverPicker extends StatelessWidget {
   Future<void> _setHomeserverAction(BuildContext context) async {
@@ -54,7 +55,21 @@ class HomeserverPicker extends StatelessWidget {
             children: <Widget>[
               Hero(
                 tag: 'loginBanner',
-                child: Image.asset('assets/fluffychat-banner.png'),
+                child: InkWell(
+                  onTap: () => showAboutDialog(
+                    context: context,
+                    children: [
+                      RaisedButton(
+                        child: Text(L10n.of(context).privacy),
+                        onPressed: () => launch(AppConfig.privacyUrl),
+                      )
+                    ],
+                    applicationIcon:
+                        Image.asset('assets/logo.png', width: 100, height: 100),
+                    applicationName: AppConfig.applicationName,
+                  ),
+                  child: Image.asset('assets/fluffychat-banner.png'),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -91,15 +106,12 @@ class HomeserverPicker extends StatelessWidget {
               Padding(
                 padding:
                     const EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
-                child: Opacity(
-                  opacity: 0.75,
-                  child: Text(
-                    L10n.of(context).byDefaultYouWillBeConnectedTo(
-                        AppConfig.defaultHomeserver),
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 16,
-                    ),
+                child: Text(
+                  L10n.of(context).byDefaultYouWillBeConnectedTo(
+                      AppConfig.defaultHomeserver),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 16,
                   ),
                 ),
               ),
