@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:famedlysdk/encryption.dart';
@@ -7,6 +8,7 @@ import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/utils/firebase_controller.dart';
 import 'package:fluffychat/utils/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/user_status.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -17,6 +19,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../utils/app_route.dart';
 import '../utils/beautify_string_extension.dart';
 import '../utils/famedlysdk_store.dart';
+import '../utils/presence_extension.dart';
 import '../views/key_verification.dart';
 import 'avatar.dart';
 
@@ -106,6 +109,7 @@ class MatrixState extends State<Matrix> {
   StreamSubscription onNotification;
   StreamSubscription<html.Event> onFocusSub;
   StreamSubscription<html.Event> onBlurSub;
+  StreamSubscription onPresenceSub;
 
   void onJitsiCall(EventUpdate eventUpdate) {
     final event = Event.fromJson(
@@ -191,6 +195,16 @@ class MatrixState extends State<Matrix> {
   @override
   void initState() {
     store = widget.store ?? Store();
+    store.getItem('fluffychat.user_statuses').then(
+      (json) {
+        userStatuses = json == null
+            ? []
+            : (jsonDecode(json)['user_statuses'] as List)
+                .map((j) => UserStatus.fromJson(j))
+                .toList();
+        _cleanUpUserStatus();
+      },
+    );
     if (widget.client == null) {
       debugPrint('[Matrix] Init matrix client');
       final Set verificationMethods = <KeyVerificationMethod>{
@@ -206,6 +220,9 @@ class MatrixState extends State<Matrix> {
           importantStateEvents: <String>{
             'im.ponies.room_emotes', // we want emotes to work properly
           });
+      onPresenceSub ??= client.onPresence.stream
+          .where((p) => p.isUserStatus)
+          .listen(_storeUserStatus);
       onJitsiCallSub ??= client.onEvent.stream
           .where((e) =>
               e.type == 'timeline' &&
@@ -213,6 +230,7 @@ class MatrixState extends State<Matrix> {
               e.content['content']['msgtype'] == Matrix.callNamespace &&
               e.content['sender'] != client.userID)
           .listen(onJitsiCall);
+
       onRoomKeyRequestSub ??=
           client.onRoomKeyRequest.stream.listen((RoomKeyRequest request) async {
         final room = request.room;
@@ -285,11 +303,54 @@ class MatrixState extends State<Matrix> {
     super.initState();
   }
 
+  List<UserStatus> userStatuses = [];
+
+  void _storeUserStatus(Presence presence) {
+    final currentStatusIndex =
+        userStatuses.indexWhere((u) => u.userId == presence.senderId);
+    final newUserStatus = UserStatus()
+      ..receivedAt = DateTime.now().millisecondsSinceEpoch
+      ..statusMsg = presence.presence.statusMsg
+      ..userId = presence.senderId;
+    if (currentStatusIndex == -1) {
+      userStatuses.add(newUserStatus);
+    } else if (userStatuses[currentStatusIndex].statusMsg !=
+        presence.presence.statusMsg) {
+      if (presence.presence.statusMsg.trim().isEmpty) {
+        userStatuses.removeAt(currentStatusIndex);
+      } else {
+        userStatuses[currentStatusIndex] = newUserStatus;
+      }
+    } else {
+      return;
+    }
+    _cleanUpUserStatus();
+  }
+
+  void _cleanUpUserStatus() {
+    final now = DateTime.now().millisecondsSinceEpoch;
+    userStatuses
+        .removeWhere((u) => (now - u.receivedAt) > (1000 * 60 * 60 * 24));
+    userStatuses.sort((a, b) => b.receivedAt.compareTo(a.receivedAt));
+    if (userStatuses.length > 40) {
+      userStatuses.removeRange(40, userStatuses.length);
+    }
+    store.setItem(
+      'fluffychat.user_statuses',
+      jsonEncode(
+        {
+          'user_statuses': userStatuses.map((i) => i.toJson()).toList(),
+        },
+      ),
+    );
+  }
+
   @override
   void dispose() {
     onRoomKeyRequestSub?.cancel();
     onKeyVerificationRequestSub?.cancel();
     onJitsiCallSub?.cancel();
+    onPresenceSub?.cancel();
     onNotification?.cancel();
     onFocusSub?.cancel();
     onBlurSub?.cancel();

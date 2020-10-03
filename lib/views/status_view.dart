@@ -2,32 +2,37 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/avatar.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/matrix.dart';
+import 'package:fluffychat/utils/url_launcher.dart';
+import 'package:fluffychat/utils/user_status.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:flutter/material.dart';
-import 'package:fluffychat/utils/presence_extension.dart';
+import 'package:matrix_link_text/link_text.dart';
 
 import 'chat.dart';
 
-class PresenceView extends StatelessWidget {
+class StatusView extends StatelessWidget {
   final Uri avatarUrl;
   final String displayname;
-  final Presence presence;
+  final UserStatus status;
   final bool composeMode;
-  final TextEditingController _composeController = TextEditingController();
+  final String composeText;
+  final TextEditingController _composeController;
 
-  PresenceView({
+  StatusView({
     this.composeMode = false,
-    this.presence,
+    this.status,
     this.avatarUrl,
     this.displayname,
+    this.composeText,
     Key key,
-  }) : super(key: key);
+  })  : _composeController = TextEditingController(text: composeText),
+        super(key: key);
 
   void _sendMessageAction(BuildContext context) async {
     final roomId = await User(
-      presence.senderId,
+      status.userId,
       room: Room(id: '', client: Matrix.of(context).client),
     ).startDirectChat();
     await Navigator.of(context).pushAndRemoveUntil(
@@ -48,9 +53,22 @@ class PresenceView extends StatelessWidget {
     await Navigator.of(context).popUntil((Route r) => r.isFirst);
   }
 
+  void _removeStatusAction(BuildContext context) async {
+    final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
+      Matrix.of(context).client.sendPresence(
+            Matrix.of(context).client.userID,
+            PresenceType.online,
+            statusMsg:
+                ' ', // Send this empty String make sure that all other devices will get an update
+          ),
+    );
+    if (success == false) return;
+    await Navigator.of(context).popUntil((Route r) => r.isFirst);
+  }
+
   @override
   Widget build(BuildContext context) {
-    if (composeMode == false && presence == null) {
+    if (composeMode == false && status == null) {
       throw ('If composeMode is null then the presence must be not null!');
     }
     final padding = const EdgeInsets.only(
@@ -81,10 +99,20 @@ class PresenceView extends StatelessWidget {
             style: TextStyle(color: Colors.white),
           ),
           subtitle: Text(
-            presence?.senderId ?? Matrix.of(context).client.userID,
+            status?.userId ?? Matrix.of(context).client.userID,
             style: TextStyle(color: Colors.white),
           ),
         ),
+        actions:
+            !composeMode && status.userId == Matrix.of(context).client.userID
+                ? [
+                    IconButton(
+                      icon: Icon(Icons.archive),
+                      onPressed: () => _removeStatusAction(context),
+                      color: Colors.white,
+                    ),
+                  ]
+                : null,
       ),
       body: Container(
         alignment: Alignment.center,
@@ -121,27 +149,36 @@ class PresenceView extends StatelessWidget {
                 shrinkWrap: true,
                 padding: padding,
                 children: [
-                  Text(
-                    presence.getLocalizedStatusMessage(context),
+                  LinkText(
+                    text: status.statusMsg,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    textStyle: TextStyle(
                       fontSize: 30,
                       color: Colors.white,
                     ),
+                    linkStyle: TextStyle(
+                      fontSize: 30,
+                      color: Colors.white70,
+                      decoration: TextDecoration.underline,
+                    ),
+                    onLinkTap: (url) => UrlLauncher(context, url).launchUrl(),
                   ),
                 ],
               ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        backgroundColor: Theme.of(context).primaryColor,
-        icon: Icon(composeMode ? Icons.edit : Icons.message_outlined),
-        label: Text(composeMode
-            ? L10n.of(context).setStatus
-            : L10n.of(context).sendAMessage),
-        onPressed: () => composeMode
-            ? _setStatusAction(context)
-            : _sendMessageAction(context),
-      ),
+      floatingActionButton:
+          !composeMode && status.userId == Matrix.of(context).client.userID
+              ? null
+              : FloatingActionButton.extended(
+                  backgroundColor: Theme.of(context).primaryColor,
+                  icon: Icon(composeMode ? Icons.edit : Icons.message_outlined),
+                  label: Text(composeMode
+                      ? L10n.of(context).setStatus
+                      : L10n.of(context).sendAMessage),
+                  onPressed: () => composeMode
+                      ? _setStatusAction(context)
+                      : _sendMessageAction(context),
+                ),
     );
   }
 }

@@ -5,6 +5,8 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'date_time_extension.dart';
 
 extension PresenceExtension on Presence {
+  bool get isUserStatus => presence?.statusMsg?.isNotEmpty ?? false;
+
   String getLocalizedStatusMessage(BuildContext context) {
     if (presence.statusMsg?.isNotEmpty ?? false) {
       return presence.statusMsg;

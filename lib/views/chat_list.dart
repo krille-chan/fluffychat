@@ -3,12 +3,13 @@ import 'dart:io';
 
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:famedlysdk/matrix_api.dart';
+import 'package:fluffychat/components/avatar.dart';
 import 'package:fluffychat/components/connection_status_header.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
-import 'package:fluffychat/components/list_items/presence_list_item.dart';
+import 'package:fluffychat/components/list_items/status_list_item.dart';
 import 'package:fluffychat/components/list_items/public_room_list_item.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/views/presence_view.dart';
+import 'package:fluffychat/views/status_view.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -197,17 +198,25 @@ class _ChatListState extends State<ChatList> {
     );
   }
 
-  void _setStatus(BuildContext context) async {
-    Navigator.of(context).pop();
+  void _setStatus(BuildContext context, {bool fromDrawer = false}) async {
+    if (fromDrawer) Navigator.of(context).pop();
     final ownProfile = await SimpleDialogs(context)
         .tryRequestWithLoadingDialog(Matrix.of(context).client.ownProfile);
+    String composeText;
+    if (Matrix.of(context).shareContent != null &&
+        Matrix.of(context).shareContent['msgtype'] == 'm.text') {
+      composeText = Matrix.of(context).shareContent['body'];
+      Matrix.of(context).shareContent = null;
+    }
     if (ownProfile is Profile) {
       await Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (_) => PresenceView(
+          builder: (_) => StatusView(
             composeMode: true,
             avatarUrl: ownProfile.avatarUrl,
-            displayname: ownProfile.displayname,
+            displayname: ownProfile.displayname ??
+                Matrix.of(context).client.userID.localpart,
+            composeText: composeText,
           ),
         ),
       );
@@ -293,7 +302,8 @@ class _ChatListState extends State<ChatList> {
                                 ListTile(
                                   leading: Icon(Icons.edit),
                                   title: Text(L10n.of(context).setStatus),
-                                  onTap: () => _setStatus(context),
+                                  onTap: () =>
+                                      _setStatus(context, fromDrawer: true),
                                 ),
                                 Divider(height: 1),
                                 ListTile(
@@ -414,14 +424,32 @@ class _ChatListState extends State<ChatList> {
                       (AdaptivePageLayout.columnMode(context) ||
                               selectMode != SelectMode.normal)
                           ? null
-                          : FloatingActionButton(
-                              child: Icon(Icons.add),
-                              backgroundColor: Theme.of(context).primaryColor,
-                              onPressed: () => Navigator.of(context)
-                                  .pushAndRemoveUntil(
-                                      AppRoute.defaultRoute(
-                                          context, NewPrivateChatView()),
-                                      (r) => r.isFirst),
+                          : Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                FloatingActionButton(
+                                  heroTag: null,
+                                  child: Icon(
+                                    Icons.edit,
+                                    color: Theme.of(context).primaryColor,
+                                  ),
+                                  elevation: 1,
+                                  backgroundColor:
+                                      Theme.of(context).secondaryHeaderColor,
+                                  onPressed: () => _setStatus(context),
+                                ),
+                                SizedBox(height: 16.0),
+                                FloatingActionButton(
+                                  child: Icon(Icons.add),
+                                  backgroundColor:
+                                      Theme.of(context).primaryColor,
+                                  onPressed: () => Navigator.of(context)
+                                      .pushAndRemoveUntil(
+                                          AppRoute.defaultRoute(
+                                              context, NewPrivateChatView()),
+                                          (r) => r.isFirst),
+                                ),
+                              ],
                             ),
                   body: Column(
                     children: [
@@ -432,7 +460,8 @@ class _ChatListState extends State<ChatList> {
                                 .client
                                 .onSync
                                 .stream
-                                .where((s) => s.hasRoomUpdate),
+                                .where((s) =>
+                                    s.hasRoomUpdate || s.hasPresenceUpdate),
                             builder: (context, snapshot) {
                               return FutureBuilder<void>(
                                 future: waitForFirstSync(context),
@@ -475,19 +504,6 @@ class _ChatListState extends State<ChatList> {
                                             0);
                                     final totalCount =
                                         rooms.length + publicRoomsCount;
-                                    final directChats = rooms
-                                        .where((r) => r.isDirectChat)
-                                        .toList();
-                                    final presences =
-                                        Matrix.of(context).client.presences;
-                                    directChats.sort((a, b) => presences[
-                                                    b.directChatMatrixID]
-                                                ?.presence
-                                                ?.statusMsg !=
-                                            null
-                                        ? 1
-                                        : b.lastEvent.originServerTs.compareTo(
-                                            a.lastEvent.originServerTs));
                                     return ListView.separated(
                                         controller: _scrollController,
                                         separatorBuilder: (BuildContext context,
@@ -511,31 +527,70 @@ class _ChatListState extends State<ChatList> {
                                         itemBuilder:
                                             (BuildContext context, int i) {
                                           if (i == 0) {
-                                            final displayPresences = directChats
-                                                    .isNotEmpty &&
-                                                selectMode == SelectMode.normal;
+                                            final displayPresences =
+                                                Matrix.of(context)
+                                                        .userStatuses
+                                                        .isNotEmpty &&
+                                                    selectMode ==
+                                                        SelectMode.normal;
+                                            final displayShareStatus =
+                                                selectMode ==
+                                                        SelectMode.share &&
+                                                    Matrix.of(context)
+                                                                .shareContent[
+                                                            'msgtype'] ==
+                                                        'm.text';
                                             return Column(
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
                                                 AnimatedContainer(
                                                   duration: Duration(
                                                       milliseconds: 500),
-                                                  height:
-                                                      displayPresences ? 78 : 0,
-                                                  child: !displayPresences
-                                                      ? null
-                                                      : ListView.builder(
+                                                  height: displayPresences
+                                                      ? 78
+                                                      : displayShareStatus
+                                                          ? 56
+                                                          : 0,
+                                                  child: displayPresences
+                                                      ? ListView.builder(
                                                           scrollDirection:
                                                               Axis.horizontal,
-                                                          itemCount: directChats
-                                                              .length,
+                                                          itemCount:
+                                                              Matrix.of(context)
+                                                                  .userStatuses
+                                                                  .length,
                                                           itemBuilder: (BuildContext
                                                                       context,
                                                                   int i) =>
-                                                              PresenceListItem(
-                                                                  directChats[
-                                                                      i]),
-                                                        ),
+                                                              StatusListItem(Matrix
+                                                                      .of(context)
+                                                                  .userStatuses[i]),
+                                                        )
+                                                      : displayShareStatus
+                                                          ? ListTile(
+                                                              leading:
+                                                                  CircleAvatar(
+                                                                radius: Avatar
+                                                                        .defaultSize /
+                                                                    2,
+                                                                backgroundColor:
+                                                                    Theme.of(
+                                                                            context)
+                                                                        .secondaryHeaderColor,
+                                                                child: Icon(
+                                                                  Icons.edit,
+                                                                  color: Theme.of(
+                                                                          context)
+                                                                      .primaryColor,
+                                                                ),
+                                                              ),
+                                                              title: Text(L10n.of(
+                                                                      context)
+                                                                  .setStatus),
+                                                              onTap: () =>
+                                                                  _setStatus(
+                                                                      context))
+                                                          : null,
                                                 ),
                                               ],
                                             );

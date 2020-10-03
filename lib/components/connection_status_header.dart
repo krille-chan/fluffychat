@@ -11,7 +11,7 @@ class ConnectionStatusHeader extends StatefulWidget {
 class _ConnectionStatusHeaderState extends State<ConnectionStatusHeader> {
   StreamSubscription _onSyncSub;
   StreamSubscription _onSyncErrorSub;
-  static bool _connected = false;
+  static bool _connected = true;
 
   set connected(bool connected) {
     if (mounted) {
