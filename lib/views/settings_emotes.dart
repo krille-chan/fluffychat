@@ -1,6 +1,7 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -415,12 +416,19 @@ class _EmoteImage extends StatelessWidget {
       height: size * devicePixelRatio,
       method: ThumbnailMethod.scale,
     );
-    return CachedNetworkImage(
-      imageUrl: url,
-      fit: BoxFit.contain,
-      width: size,
-      height: size,
-    );
+    return PlatformInfos.isBetaDesktop
+        ? Image.network(
+            url,
+            fit: BoxFit.contain,
+            width: size,
+            height: size,
+          )
+        : CachedNetworkImage(
+            imageUrl: url,
+            fit: BoxFit.contain,
+            width: size,
+            height: size,
+          );
   }
 }
 

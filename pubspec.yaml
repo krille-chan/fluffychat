@@ -33,7 +33,7 @@ dependencies:
   memoryfilepicker: ^0.1.3
   url_launcher: ^5.4.1
   url_launcher_web: ^0.1.0
-  cached_network_image: ^2.3.1
+  cached_network_image: ^2.3.2+1
   firebase_messaging: ^7.0.2
   flutter_local_notifications: ^1.4.3
   matrix_link_text: ^0.1.5

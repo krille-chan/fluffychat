@@ -1,4 +1,5 @@
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -48,11 +49,17 @@ class ContentBanner extends StatelessWidget {
               opacity: 0.75,
               child: !loading
                   ? mxContent != null
-                      ? CachedNetworkImage(
-                          imageUrl: src,
-                          height: 300,
-                          fit: BoxFit.cover,
-                        )
+                      ? PlatformInfos.isBetaDesktop
+                          ? Image.network(
+                              src,
+                              height: 300,
+                              fit: BoxFit.cover,
+                            )
+                          : CachedNetworkImage(
+                              imageUrl: src,
+                              height: 300,
+                              fit: BoxFit.cover,
+                            )
                       : Icon(defaultIcon, size: 300)
                   : Icon(defaultIcon, size: 300),
             ),

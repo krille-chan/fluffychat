@@ -1,4 +1,5 @@
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +42,11 @@ class Avatar extends StatelessWidget {
       onTap: onTap,
       child: CircleAvatar(
         radius: size / 2,
-        backgroundImage: !noPic ? CachedNetworkImageProvider(src) : null,
+        backgroundImage: !noPic
+            ? PlatformInfos.isBetaDesktop
+                ? NetworkImage(src)
+                : CachedNetworkImageProvider(src)
+            : null,
         backgroundColor: noPic
             ? name?.lightColor ?? Theme.of(context).secondaryHeaderColor
             : Theme.of(context).secondaryHeaderColor,
