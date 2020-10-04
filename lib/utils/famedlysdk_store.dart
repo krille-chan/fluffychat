@@ -31,6 +31,8 @@ Future<Database> getDatabase(Client client) async {
       filename: 'moor.sqlite',
       password: password,
     );
+    // Check if database is open:
+    debugPrint((await _db.customSelect('SELECT 1').get()).toString());
     if (needMigration) {
       debugPrint('[Moor] Start migration');
       await migrate(client.clientName, _db, store);
