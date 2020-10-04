@@ -23,7 +23,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "accountInformation": "Informations du compte",
+  "accountInformation": "Informations sur le compte",
   "@accountInformation": {
     "type": "text",
     "placeholders": {}
@@ -1700,6 +1700,21 @@
   },
   "yourOwnUsername": "Votre propre nom d'utilisateur",
   "@yourOwnUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "privacy": "Vie privée",
+  "@privacy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEmotesGlobally": "Activer globalement le pack d'émoticônes",
+  "@enableEmotesGlobally": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emotePacks": "Packs d'émoticônes pour le salon",
+  "@emotePacks": {
     "type": "text",
     "placeholders": {}
   }
