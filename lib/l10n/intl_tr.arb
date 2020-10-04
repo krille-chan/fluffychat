@@ -102,7 +102,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "askVerificationRequest": "{username}'den gelen doğrulama talebini kabul etmek istiyor musunuz?",
+  "askVerificationRequest": "{username} kişisinden gelen bu doğrulama isteği kabul edilsin mi?",
   "@askVerificationRequest": {
     "type": "text",
     "placeholders": {
@@ -119,7 +119,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "banFromChat": "Sohbetten engellendiniz",
+  "banFromChat": "Sohbetten engelle",
   "@banFromChat": {
     "type": "text",
     "placeholders": {}
@@ -129,7 +129,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "bannedUser": "{username} engelledi: {targetName}",
+  "bannedUser": "{username}, {targetName} kişisini engelledi",
   "@bannedUser": {
     "type": "text",
     "placeholders": {
@@ -249,7 +249,7 @@
       "username": {}
     }
   },
-  "changedTheRoomAliases": "",
+  "changedTheRoomAliases": "{username} oda takma adlarını değiştirdi",
   "@changedTheRoomAliases": {
     "type": "text",
     "placeholders": {
@@ -268,7 +268,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changeTheHomeserver": "",
+  "changeTheHomeserver": "Ana sunucuyu değiştir",
   "@changeTheHomeserver": {
     "type": "text",
     "placeholders": {}
@@ -293,7 +293,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "channelCorruptedDecryptError": "",
+  "channelCorruptedDecryptError": "Şifreleme bozuldu",
   "@channelCorruptedDecryptError": {
     "type": "text",
     "placeholders": {}
@@ -323,12 +323,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "compareEmojiMatch": "",
+  "compareEmojiMatch": "Karşılaştırın ve aşağıdaki emojilerin diğer cihazdakilerle eşleştiğinden emin olun:",
   "@compareEmojiMatch": {
     "type": "text",
     "placeholders": {}
   },
-  "compareNumbersMatch": "",
+  "compareNumbersMatch": "Karşılaştırın ve aşağıdaki numaraların diğer cihazdakilerle eşleştiğinden emin olun:",
   "@compareNumbersMatch": {
     "type": "text",
     "placeholders": {}
@@ -353,7 +353,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "contentViewer": "",
+  "contentViewer": "İçerik görüntüleyici",
   "@contentViewer": {
     "type": "text",
     "placeholders": {}
@@ -380,7 +380,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "couldNotSetDisplayname": "",
+  "couldNotSetDisplayname": "Görünen ad ayarlanamadı",
   "@couldNotSetDisplayname": {
     "type": "text",
     "placeholders": {}
@@ -414,17 +414,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "crossSigningDisabled": "",
+  "crossSigningDisabled": "Çapraz imzalama devre dışı bırakıldı",
   "@crossSigningDisabled": {
     "type": "text",
     "placeholders": {}
   },
-  "crossSigningEnabled": "",
+  "crossSigningEnabled": "Çapraz imzalama etkinleştirildi",
   "@crossSigningEnabled": {
     "type": "text",
     "placeholders": {}
   },
-  "currentlyActive": "",
+  "currentlyActive": "Şu anda etkin",
   "@currentlyActive": {
     "type": "text",
     "placeholders": {}
@@ -469,7 +469,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "deny": "",
+  "deny": "Reddet",
   "@deny": {
     "type": "text",
     "placeholders": {}
@@ -484,12 +484,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "discardPicture": "",
+  "discardPicture": "Resmi at",
   "@discardPicture": {
     "type": "text",
     "placeholders": {}
   },
-  "displaynameHasBeenChanged": "",
+  "displaynameHasBeenChanged": "Görünen ad değiştirildi",
   "@displaynameHasBeenChanged": {
     "type": "text",
     "placeholders": {}
@@ -499,52 +499,52 @@
     "type": "text",
     "placeholders": {}
   },
-  "downloadFile": "",
+  "downloadFile": "Dosyayı indir",
   "@downloadFile": {
     "type": "text",
     "placeholders": {}
   },
-  "editDisplayname": "",
+  "editDisplayname": "Görünen adı düzenle",
   "@editDisplayname": {
     "type": "text",
     "placeholders": {}
   },
-  "editJitsiInstance": "",
+  "editJitsiInstance": "Jitsi örneğini düzenle",
   "@editJitsiInstance": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteExists": "",
+  "emoteExists": "İfade zaten var!",
   "@emoteExists": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteInvalid": "",
+  "emoteInvalid": "Geçersiz ifade kısa kodu!",
   "@emoteInvalid": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteSettings": "",
+  "emoteSettings": "İfade Ayarları",
   "@emoteSettings": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteShortcode": "",
+  "emoteShortcode": "İfade kısa kodu",
   "@emoteShortcode": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteWarnNeedToPick": "",
+  "emoteWarnNeedToPick": "Bir ifade kısa kodu ve bir resim seçmeniz gerekiyor!",
   "@emoteWarnNeedToPick": {
     "type": "text",
     "placeholders": {}
   },
-  "emptyChat": "",
+  "emptyChat": "Boş sohbet",
   "@emptyChat": {
     "type": "text",
     "placeholders": {}
   },
-  "enableEncryptionWarning": "",
+  "enableEncryptionWarning": "Artık şifrelemeyi devre dışı bırakamayacaksınız. Emin misiniz?",
   "@enableEncryptionWarning": {
     "type": "text",
     "placeholders": {}
@@ -559,7 +559,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "encryptionNotEnabled": "",
+  "encryptionNotEnabled": "Şifreleme etkinleştirilmedi",
   "@encryptionNotEnabled": {
     "type": "text",
     "placeholders": {}
@@ -579,7 +579,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enterYourHomeserver": "",
+  "enterYourHomeserver": "Ana sunucunuzu girin",
   "@enterYourHomeserver": {
     "type": "text",
     "placeholders": {}
@@ -599,7 +599,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "forward": "",
+  "forward": "İlet",
   "@forward": {
     "type": "text",
     "placeholders": {}
@@ -609,12 +609,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "fromJoining": "",
+  "fromJoining": "Katılmadan",
   "@fromJoining": {
     "type": "text",
     "placeholders": {}
   },
-  "fromTheInvitation": "",
+  "fromTheInvitation": "Davetten",
   "@fromTheInvitation": {
     "type": "text",
     "placeholders": {}
@@ -634,19 +634,19 @@
     "type": "text",
     "placeholders": {}
   },
-  "groupIsPublic": "",
+  "groupIsPublic": "Grup herkese açık",
   "@groupIsPublic": {
     "type": "text",
     "placeholders": {}
   },
-  "groupWith": "",
+  "groupWith": "{displayname} ile grup",
   "@groupWith": {
     "type": "text",
     "placeholders": {
       "displayname": {}
     }
   },
-  "guestsAreForbidden": "",
+  "guestsAreForbidden": "Misafirlere izin verilmiyor",
   "@guestsAreForbidden": {
     "type": "text",
     "placeholders": {}
@@ -656,7 +656,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "hasWithdrawnTheInvitationFor": "",
+  "hasWithdrawnTheInvitationFor": "{username}, {targetName} için daveti geri çekti",
   "@hasWithdrawnTheInvitationFor": {
     "type": "text",
     "placeholders": {
@@ -669,44 +669,44 @@
     "type": "text",
     "placeholders": {}
   },
-  "homeserverIsNotCompatible": "",
+  "homeserverIsNotCompatible": "Ana sunucu uyumlu değil",
   "@homeserverIsNotCompatible": {
     "type": "text",
     "placeholders": {}
   },
-  "id": "",
+  "id": "Kimlik",
   "@id": {
     "type": "text",
     "placeholders": {}
   },
-  "identity": "",
+  "identity": "Kimlik",
   "@identity": {
     "type": "text",
     "placeholders": {}
   },
-  "incorrectPassphraseOrKey": "",
+  "incorrectPassphraseOrKey": "Yanlış parola veya kurtarma anahtarı",
   "@incorrectPassphraseOrKey": {
     "type": "text",
     "placeholders": {}
   },
-  "inviteContact": "",
+  "inviteContact": "Kişi davet et",
   "@inviteContact": {
     "type": "text",
     "placeholders": {}
   },
-  "inviteContactToGroup": "",
+  "inviteContactToGroup": "Kişiyi {groupName} grubuna davet et",
   "@inviteContactToGroup": {
     "type": "text",
     "placeholders": {
       "groupName": {}
     }
   },
-  "invited": "",
+  "invited": "Davet edildi",
   "@invited": {
     "type": "text",
     "placeholders": {}
   },
-  "invitedUser": "",
+  "invitedUser": "{username}, {targetName} kişisini davet etti",
   "@invitedUser": {
     "type": "text",
     "placeholders": {
@@ -719,7 +719,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "",
+  "inviteText": "{username} sizi FluffyChat'e davet etti. \n1. FluffyChat kurun: https://fluffychat.im \n2. Kaydolun veya giriş yapın \n3. Davet bağlantısını açın: {link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {
@@ -727,7 +727,7 @@
       "link": {}
     }
   },
-  "isDeviceKeyCorrect": "",
+  "isDeviceKeyCorrect": "Aşağıdaki cihaz anahtarı doğru mu?",
   "@isDeviceKeyCorrect": {
     "type": "text",
     "placeholders": {}
@@ -744,17 +744,17 @@
       "username": {}
     }
   },
-  "keysCached": "",
+  "keysCached": "Anahtarlar önbelleğe alındı",
   "@keysCached": {
     "type": "text",
     "placeholders": {}
   },
-  "keysMissing": "",
+  "keysMissing": "Anahtarlar eksik",
   "@keysMissing": {
     "type": "text",
     "placeholders": {}
   },
-  "kicked": "",
+  "kicked": "{username}, {targetName} kişisini attı",
   "@kicked": {
     "type": "text",
     "placeholders": {
@@ -762,7 +762,7 @@
       "targetName": {}
     }
   },
-  "kickedAndBanned": "",
+  "kickedAndBanned": "{username}, {targetName} kişisini attı ve engelledi",
   "@kickedAndBanned": {
     "type": "text",
     "placeholders": {
@@ -770,19 +770,19 @@
       "targetName": {}
     }
   },
-  "kickFromChat": "",
+  "kickFromChat": "Sohbetten at",
   "@kickFromChat": {
     "type": "text",
     "placeholders": {}
   },
-  "lastActiveAgo": "",
+  "lastActiveAgo": "Son görülen: {localizedTimeShort}",
   "@lastActiveAgo": {
     "type": "text",
     "placeholders": {
       "localizedTimeShort": {}
     }
   },
-  "lastSeenIp": "",
+  "lastSeenIp": "Son görülen IP",
   "@lastSeenIp": {
     "type": "text",
     "placeholders": {}
@@ -797,7 +797,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "leftTheChat": "",
+  "leftTheChat": "Sohbetten ayrıldı",
   "@leftTheChat": {
     "type": "text",
     "placeholders": {}
@@ -812,7 +812,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "loadCountMoreParticipants": "",
+  "loadCountMoreParticipants": "{count} katılımcı daha yükle",
   "@loadCountMoreParticipants": {
     "type": "text",
     "placeholders": {
@@ -834,7 +834,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "logInTo": "",
+  "logInTo": "{homeserver} üzerinde oturum aç",
   "@logInTo": {
     "type": "text",
     "placeholders": {
@@ -846,17 +846,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "makeAModerator": "",
+  "makeAModerator": "Moderatör yap",
   "@makeAModerator": {
     "type": "text",
     "placeholders": {}
   },
-  "makeAnAdmin": "",
+  "makeAnAdmin": "Yönetici yap",
   "@makeAnAdmin": {
     "type": "text",
     "placeholders": {}
   },
-  "makeSureTheIdentifierIsValid": "",
+  "makeSureTheIdentifierIsValid": "Tanımlayıcının geçerli olduğundan emin olun",
   "@makeSureTheIdentifierIsValid": {
     "type": "text",
     "placeholders": {}
@@ -866,7 +866,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "moderator": "",
+  "moderator": "Moderatör",
   "@moderator": {
     "type": "text",
     "placeholders": {}
@@ -876,94 +876,94 @@
     "type": "text",
     "placeholders": {}
   },
-  "muteChat": "",
+  "muteChat": "Sohbeti sessize al",
   "@muteChat": {
     "type": "text",
     "placeholders": {}
   },
-  "needPantalaimonWarning": "",
+  "needPantalaimonWarning": "Uçtan uca şifreleme kullanmak için şimdilik Pantalaimon'a ihtiyacınız olduğunu lütfen unutmayın.",
   "@needPantalaimonWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "newMessageInFluffyChat": "",
+  "newMessageInFluffyChat": "FluffyChat'te yeni mesaj",
   "@newMessageInFluffyChat": {
     "type": "text",
     "placeholders": {}
   },
-  "newPrivateChat": "",
+  "newPrivateChat": "Yeni özel sohbet",
   "@newPrivateChat": {
     "type": "text",
     "placeholders": {}
   },
-  "newVerificationRequest": "",
+  "newVerificationRequest": "Yeni doğrulama isteği!",
   "@newVerificationRequest": {
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "",
+  "noCrossSignBootstrap": "FluffyChat şu anda çapraz imzalamanın etkinleştirilmesini desteklemiyor. Lütfen Riot içinden etkinleştirin.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
   },
-  "noEmotesFound": "",
+  "noEmotesFound": "İfade bulunamadı. 😕",
   "@noEmotesFound": {
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "",
+  "noGoogleServicesWarning": "Görünüşe göre telefonunuzda Google hizmetleri yok. Bu, mahremiyetiniz için iyi bir karar! FluffyChat'te anlık bildirimler almak için microG kullanmanızı tavsiye ediyoruz: https://microg.org/",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "",
+  "noMegolmBootstrap": "FluffyChat şu anda çevrim içi anahtar yedeklemenin etkinleştirilmesini desteklemiyor. Lütfen Riot içinden etkinleştirin.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
   },
-  "none": "",
+  "none": "Yok",
   "@none": {
     "type": "text",
     "placeholders": {}
   },
-  "noPermission": "",
+  "noPermission": "İzin yok",
   "@noPermission": {
     "type": "text",
     "placeholders": {}
   },
-  "noRoomsFound": "",
+  "noRoomsFound": "Oda bulunamadı...",
   "@noRoomsFound": {
     "type": "text",
     "placeholders": {}
   },
-  "notSupportedInWeb": "",
+  "notSupportedInWeb": "Web'de desteklenmiyor",
   "@notSupportedInWeb": {
     "type": "text",
     "placeholders": {}
   },
-  "numberSelected": "",
+  "numberSelected": "{number} seçildi",
   "@numberSelected": {
     "type": "text",
     "placeholders": {
       "number": {}
     }
   },
-  "ok": "",
+  "ok": "tamam",
   "@ok": {
     "type": "text",
     "placeholders": {}
   },
-  "onlineKeyBackupDisabled": "",
+  "onlineKeyBackupDisabled": "Çevrim içi anahtar yedekleme devre dışı bırakıldı",
   "@onlineKeyBackupDisabled": {
     "type": "text",
     "placeholders": {}
   },
-  "onlineKeyBackupEnabled": "",
+  "onlineKeyBackupEnabled": "Çevrim içi anahtar yedekleme etkinleştirildi",
   "@onlineKeyBackupEnabled": {
     "type": "text",
     "placeholders": {}
   },
-  "oopsSomethingWentWrong": "",
+  "oopsSomethingWentWrong": "Tüh, bir şeyler yanlış gitti...",
   "@oopsSomethingWentWrong": {
     "type": "text",
     "placeholders": {}
@@ -983,12 +983,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "participatingUserDevices": "",
+  "participatingUserDevices": "Katılan kullanıcı cihazları",
   "@participatingUserDevices": {
     "type": "text",
     "placeholders": {}
   },
-  "passphraseOrKey": "",
+  "passphraseOrKey": "parola veya kurtarma anahtarı",
   "@passphraseOrKey": {
     "type": "text",
     "placeholders": {}
@@ -998,12 +998,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "pickImage": "",
+  "pickImage": "Resim seç",
   "@pickImage": {
     "type": "text",
     "placeholders": {}
   },
-  "play": "",
+  "play": "{fileName} dosyasını oynat",
   "@play": {
     "type": "text",
     "placeholders": {
@@ -1015,7 +1015,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterAMatrixIdentifier": "",
+  "pleaseEnterAMatrixIdentifier": "Lütfen bir matrix tanımlayıcısı girin",
   "@pleaseEnterAMatrixIdentifier": {
     "type": "text",
     "placeholders": {}
@@ -1030,17 +1030,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "publicRooms": "",
+  "publicRooms": "Herkese Açık Odalar",
   "@publicRooms": {
     "type": "text",
     "placeholders": {}
   },
-  "recording": "",
+  "recording": "Kaydediliyor",
   "@recording": {
     "type": "text",
     "placeholders": {}
   },
-  "redactedAnEvent": "",
+  "redactedAnEvent": "{username} bir etkinliği düzenledi",
   "@redactedAnEvent": {
     "type": "text",
     "placeholders": {
@@ -1086,7 +1086,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "removeExile": "",
+  "removeExile": "Engeli kaldır",
   "@removeExile": {
     "type": "text",
     "placeholders": {}
@@ -1096,12 +1096,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "renderRichContent": "",
+  "renderRichContent": "Zengin mesaj içeriğini görüntüle",
   "@renderRichContent": {
     "type": "text",
     "placeholders": {}
   },
-  "reply": "",
+  "reply": "Yanıtla",
   "@reply": {
     "type": "text",
     "placeholders": {}
@@ -1121,7 +1121,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "roomHasBeenUpgraded": "",
+  "roomHasBeenUpgraded": "Oda yükseltildi",
   "@roomHasBeenUpgraded": {
     "type": "text",
     "placeholders": {}
@@ -1174,7 +1174,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sendImage": "",
+  "sendImage": "Resim gönder",
   "@sendImage": {
     "type": "text",
     "placeholders": {}
@@ -1347,7 +1347,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unbannedUser": "{username} engeli kaldırdı: {targetName}",
+  "unbannedUser": "{username}, {targetName} kişisinin engelini kaldırdı",
   "@unbannedUser": {
     "type": "text",
     "placeholders": {
@@ -1355,7 +1355,7 @@
       "targetName": {}
     }
   },
-  "unblockDevice": "",
+  "unblockDevice": "Cihazın Engellemesini Kaldır",
   "@unblockDevice": {
     "type": "text",
     "placeholders": {}
@@ -1370,7 +1370,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unknownEvent": "",
+  "unknownEvent": "Bilinmeyen etkinlik '{type}'",
   "@unknownEvent": {
     "type": "text",
     "placeholders": {
@@ -1449,7 +1449,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "userSentUnknownEvent": "",
+  "userSentUnknownEvent": "{username} bir {type} etkinliği gönderdi",
   "@userSentUnknownEvent": {
     "type": "text",
     "placeholders": {
@@ -1527,7 +1527,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerNumbers": "",
+  "waitingPartnerNumbers": "Ortağın numaraları kabul etmesi bekleniyor...",
   "@waitingPartnerNumbers": {
     "type": "text",
     "placeholders": {}
@@ -1594,6 +1594,127 @@
   },
   "yourOwnUsername": "Kullanıcı adınız",
   "@yourOwnUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "warning": "Uyarı!",
+  "@warning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unpin": "Sabitlemeyi kaldır",
+  "@unpin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "startedACall": "{senderName} bir arama başlattı",
+  "@startedACall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "sentCallInformations": "{senderName} arama bilgilerini gönderdi",
+  "@sentCallInformations": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "sendVideo": "Video gönder",
+  "@sendVideo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendOriginal": "Orijinali gönder",
+  "@sendOriginal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendAudio": "Ses gönder",
+  "@sendAudio": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changesHaveBeenSaved": "Değişiklikler kaydedildi",
+  "@changesHaveBeenSaved": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sentryInfo": "Gizliliğiniz hakkında bilgiler: https://sentry.io/security/",
+  "@sentryInfo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendBugReports": "sentry.io ile hata raporları göndermeye izin ver",
+  "@sendBugReports": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pin": "Sabitle",
+  "@pin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordHasBeenChanged": "Parola değiştirildi",
+  "@passwordHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "privacy": "Gizlilik",
+  "@privacy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "no": "Hayır",
+  "@no": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "joinRoom": "Odaya katıl",
+  "@joinRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignoreListDescription": "Sizi rahatsız eden kullanıcıları yok sayabilirsiniz. Kişisel yok sayma listenizdeki kullanıcılardan herhangi bir mesaj veya oda daveti alamayacaksınız.",
+  "@ignoreListDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignoreUsername": "Kullanıcıyı yok say",
+  "@ignoreUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignoredUsers": "Yok sayılan kullanıcılar",
+  "@ignoredUsers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "endedTheCall": "{senderName} aramayı sonlandırdı",
+  "@endedTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "enableEmotesGlobally": "İfade paketini küresel olarak etkinleştir",
+  "@enableEmotesGlobally": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emotePacks": "Oda için ifade paketleri",
+  "@emotePacks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteAccount": "Hesabı sil",
+  "@deleteAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deactivateAccountWarning": "Bu, kullanıcı hesabınızı devre dışı bırakacak. Bu geri alınamaz! Emin misiniz?",
+  "@deactivateAccountWarning": {
     "type": "text",
     "placeholders": {}
   }
