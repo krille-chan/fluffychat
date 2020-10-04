@@ -37,7 +37,9 @@ class AppInfo extends StatelessWidget {
           ),
           ListTile(
             title: Text('Device name:'),
-            subtitle: Text(client.deviceName),
+            subtitle: Text(client.userDeviceKeys[client.userID]
+                    ?.deviceKeys[client.deviceID]?.deviceDisplayName ??
+                L10n.of(context).unknownDevice),
           ),
           ListTile(
             title: Text('Device ID:'),
