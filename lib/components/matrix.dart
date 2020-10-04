@@ -87,13 +87,16 @@ class MatrixState extends State<Matrix> {
     try {
       client.database = await getDatabase(client);
       await client.connect();
-      if (await initLoginState == LoginState.logged && PlatformInfos.isMobile) {
-        await FirebaseController.setupFirebase(
-          this,
-          widget.clientName,
-        );
+      final firstLoginState = await initLoginState;
+      if (firstLoginState == LoginState.logged) {
+        _cleanUpUserStatus(userStatuses);
+        if (PlatformInfos.isMobile) {
+          await FirebaseController.setupFirebase(
+            this,
+            widget.clientName,
+          );
+        }
       }
-      _cleanUpUserStatus(userStatuses);
     } catch (e, s) {
       client.onLoginStateChanged.sink.addError(e, s);
       captureException(e, s);
