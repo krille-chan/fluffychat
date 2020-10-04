@@ -176,8 +176,9 @@ class ThemeSwitcherWidgetState extends State<ThemeSwitcherWidget> {
 
   Future loadSelection(MatrixState matrix) async {
     String item = await matrix.store.getItem('theme') ?? 'light';
-    selectedTheme =
-        Themes.values.firstWhere((e) => e.toString() == 'Themes.' + item);
+    selectedTheme = Themes.values.firstWhere(
+        (e) => e.toString() == 'Themes.' + item,
+        orElse: () => Themes.system);
 
     amoledEnabled = (await matrix.store.getItem('amoled_enabled') ?? 'false')
             .toLowerCase() ==
@@ -238,26 +239,6 @@ class ThemeSwitcherWidgetState extends State<ThemeSwitcherWidget> {
   void setup() async {
     final matrix = Matrix.of(context);
     await loadSelection(matrix);
-
-    if (selectedTheme == null) {
-      switchTheme(matrix, Themes.light, false);
-    } else {
-      switch (selectedTheme) {
-        case Themes.light:
-          switchTheme(matrix, Themes.light, false);
-          break;
-        case Themes.dark:
-          if (amoledEnabled) {
-            switchTheme(matrix, Themes.dark, true);
-          } else {
-            switchTheme(matrix, Themes.dark, false);
-          }
-          break;
-        case Themes.system:
-          switchTheme(matrix, Themes.system, false);
-          break;
-      }
-    }
   }
 
   @override
