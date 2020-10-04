@@ -969,7 +969,7 @@ packages:
     source: hosted
     version: "1.0.8"
   url_launcher_web:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: url_launcher_web
       url: "https://pub.dartlang.org"

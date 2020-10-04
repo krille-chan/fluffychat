@@ -32,8 +32,7 @@ dependencies:
   localstorage: ^3.0.1+4
   file_picker_cross: ^4.2.2
   image_picker: ^0.6.7+11
-  url_launcher: ^5.4.1
-  url_launcher_web: ^0.1.0
+  url_launcher: ^5.7.2
   cached_network_image: ^2.3.2+1
   firebase_messaging: ^7.0.2
   flutter_local_notifications: ^1.4.3
