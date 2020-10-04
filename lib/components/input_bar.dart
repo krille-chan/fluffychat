@@ -16,6 +16,7 @@ class InputBar extends StatelessWidget {
   final TextEditingController controller;
   final InputDecoration decoration;
   final ValueChanged<String> onChanged;
+  final bool autofocus;
 
   InputBar({
     this.room,
@@ -27,6 +28,7 @@ class InputBar extends StatelessWidget {
     this.controller,
     this.decoration,
     this.onChanged,
+    this.autofocus,
   });
 
   List<Map<String, String>> getSuggestions(String text) {
@@ -265,6 +267,7 @@ class InputBar extends StatelessWidget {
         minLines: minLines,
         maxLines: maxLines,
         keyboardType: keyboardType,
+        autofocus: autofocus,
         onSubmitted: (text) {
           // fix for library for now
           onSubmitted(text);

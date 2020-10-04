@@ -961,7 +961,8 @@ class _ChatState extends State<_Chat> {
                                       room: room,
                                       minLines: 1,
                                       maxLines: kIsWeb ? 1 : 8,
-                                      keyboardType: kIsWeb
+                                      autofocus: !PlatformInfos.isMobile,
+                                      keyboardType: !PlatformInfos.isMobile
                                           ? TextInputType.text
                                           : TextInputType.multiline,
                                       onSubmitted: (String text) {
