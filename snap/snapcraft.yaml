@@ -1,0 +1,25 @@
+name: fluffychat
+version: 0.1.0
+summary: Chat with your friends.
+description: Chat with your friends.
+icon: assets/logo.png
+confinement: strict
+base: core18
+grade: stable
+
+apps:
+  fluffychat:
+    command: fluffychat
+    extensions: [flutter-dev]
+    plugs:
+    - network
+    - home
+
+parts:
+  fluffychat:
+    source: .
+    plugin: flutter
+    flutter-target: lib/main.dart
+  stage-packages:
+    - libsqlite3-0
+    - libolm3
