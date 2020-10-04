@@ -15,6 +15,7 @@ import 'package:localstorage/localstorage.dart';
 import 'package:universal_html/prefer_universal/html.dart' as html;
 import 'package:url_launcher/url_launcher.dart';
 
+import '../main.dart';
 import '../utils/app_route.dart';
 import '../utils/beautify_string_extension.dart';
 import '../utils/famedlysdk_store.dart';
@@ -83,15 +84,20 @@ class MatrixState extends State<Matrix> {
 
   void _initWithStore() async {
     var initLoginState = client.onLoginStateChanged.stream.first;
-    client.database = await getDatabase(client);
-    client.connect();
-    if (await initLoginState == LoginState.logged && PlatformInfos.isMobile) {
-      await FirebaseController.setupFirebase(
-        this,
-        widget.clientName,
-      );
+    try {
+      client.database = await getDatabase(client);
+      client.connect();
+      if (await initLoginState == LoginState.logged && PlatformInfos.isMobile) {
+        await FirebaseController.setupFirebase(
+          this,
+          widget.clientName,
+        );
+      }
+      _cleanUpUserStatus(userStatuses);
+    } catch (e, s) {
+      client.onLoginStateChanged.sink.addError(e, s);
+      captureException(e, s);
     }
-    _cleanUpUserStatus(userStatuses);
   }
 
   Map<String, dynamic> getAuthByPassword(String password, [String session]) => {

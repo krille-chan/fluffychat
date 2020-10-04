@@ -18,23 +18,25 @@ import 'views/chat_list.dart';
 
 final sentry = SentryClient(dsn: '8591d0d863b646feb4f3dda7e5dcab38');
 
+void captureException(error, stackTrace) async {
+  final storage = LocalStorage('LocalStorage');
+  await storage.ready;
+  debugPrint(error.toString());
+  debugPrint(stackTrace.toString());
+  if (storage.getItem('sentry') == true) {
+    await sentry.captureException(
+      exception: error,
+      stackTrace: stackTrace,
+    );
+  }
+}
+
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(statusBarColor: Colors.transparent));
   runZonedGuarded(
     () => runApp(App()),
-    (error, stackTrace) async {
-      final storage = LocalStorage('LocalStorage');
-      await storage.ready;
-      debugPrint(error.toString());
-      debugPrint(stackTrace.toString());
-      if (storage.getItem('sentry') == true) {
-        await sentry.captureException(
-          exception: error,
-          stackTrace: stackTrace,
-        );
-      }
-    },
+    captureException,
   );
 }
 
