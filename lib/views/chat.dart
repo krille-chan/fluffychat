@@ -134,7 +134,6 @@ class _ChatState extends State<_Chat> {
   @override
   void initState() {
     _scrollController.addListener(_updateScrollController);
-
     super.initState();
   }
 
@@ -997,7 +996,10 @@ class _ChatState extends State<_Chat> {
                                               timeout: Duration(seconds: 30)
                                                   .inMilliseconds);
                                         }
-                                        setState(() => inputText = text);
+                                        // Workaround for a current desktop bug
+                                        if (!PlatformInfos.isBetaDesktop) {
+                                          setState(() => inputText = text);
+                                        }
                                       },
                                     ),
                                   ),
@@ -1012,7 +1014,8 @@ class _ChatState extends State<_Chat> {
                                           voiceMessageAction(context),
                                     ),
                                   ),
-                                if (kIsWeb || inputText.isNotEmpty)
+                                if (!PlatformInfos.isMobile ||
+                                    inputText.isNotEmpty)
                                   Container(
                                     height: 56,
                                     alignment: Alignment.center,
