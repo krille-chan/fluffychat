@@ -183,7 +183,7 @@ pages:
     - main
 
 snap:amd64:
-  stage: build
+  stage: coverage
   image: ubuntu:20.04
   except:
     - coverage
