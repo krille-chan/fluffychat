@@ -1,6 +1,8 @@
 import 'dart:math';
 
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:file_picker_cross/file_picker_cross.dart';
+
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/views/login.dart';
@@ -8,8 +10,6 @@ import 'package:fluffychat/views/sign_up_password.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:memoryfilepicker/memoryfilepicker.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -20,16 +20,19 @@ class _SignUpState extends State<SignUp> {
   final TextEditingController usernameController = TextEditingController();
   String usernameError;
   bool loading = false;
-  MemoryFile avatar;
+  MatrixFile avatar;
 
   void setAvatarAction() async {
-    var file = await MemoryFilePicker.getImage(
-      source: ImageSource.gallery,
-      maxHeight: 512,
-      maxWidth: 512,
-      imageQuality: 50,
-    );
-    if (file != null) setState(() => avatar = file);
+    var file =
+        await FilePickerCross.importFromStorage(type: FileTypeCross.image);
+    if (file != null) {
+      setState(
+        () => avatar = MatrixFile(
+          bytes: file.toUint8List(),
+          name: file.fileName,
+        ),
+      );
+    }
   }
 
   void signUpAction(BuildContext context) async {

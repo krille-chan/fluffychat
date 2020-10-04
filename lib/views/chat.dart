@@ -3,7 +3,8 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:file_picker_platform_interface/file_picker_platform_interface.dart';
+
+import 'package:file_picker_cross/file_picker_cross.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/avatar.dart';
 import 'package:fluffychat/components/chat_settings_popup_menu.dart';
@@ -17,6 +18,7 @@ import 'package:fluffychat/components/reply_content.dart';
 import 'package:fluffychat/config/app_emojis.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/utils/matrix_locals.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/room_status_extension.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +26,6 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:memoryfilepicker/memoryfilepicker.dart';
 import 'package:pedantic/pedantic.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 
@@ -211,38 +212,66 @@ class _ChatState extends State<_Chat> {
   }
 
   void sendFileAction(BuildContext context) async {
-    var file = await MemoryFilePicker.getFile();
-    if (file == null) return;
+    final result =
+        await FilePickerCross.importFromStorage(type: FileTypeCross.any);
+    if (result == null) return;
     await showDialog(
-        context: context,
-        builder: (context) => SendFileDialog(
-              file:
-                  MatrixFile(bytes: file.bytes, name: file.path).detectFileType,
-              room: room,
-            ));
+      context: context,
+      builder: (context) => SendFileDialog(
+        file: MatrixFile(
+          bytes: result.toUint8List(),
+          name: result.fileName,
+        ).detectFileType,
+        room: room,
+      ),
+    );
   }
 
   void sendImageAction(BuildContext context) async {
-    var file = await MemoryFilePicker.getFile(type: FileType.image);
-    if (file == null) return;
-    final bytes = await file.bytes;
+    MatrixFile file;
+    if (PlatformInfos.isMobile) {
+      final result = await ImagePicker().getImage(
+          source: ImageSource.gallery,
+          imageQuality: 50,
+          maxWidth: 1600,
+          maxHeight: 1600);
+      if (result == null) return;
+      file = MatrixFile(
+        bytes: await result.readAsBytes(),
+        name: result.path,
+      );
+    } else {
+      final result =
+          await FilePickerCross.importFromStorage(type: FileTypeCross.image);
+      if (result == null) return;
+      file = MatrixFile(
+        bytes: result.toUint8List(),
+        name: result.fileName,
+      );
+    }
     await showDialog(
-        context: context,
-        builder: (context) => SendFileDialog(
-              file: MatrixImageFile(bytes: bytes, name: file.path),
-              room: room,
-            ));
+      context: context,
+      builder: (context) => SendFileDialog(
+        file: file,
+        room: room,
+      ),
+    );
   }
 
   void openCameraAction(BuildContext context) async {
-    var file = await MemoryFilePicker.getImage(source: ImageSource.camera);
+    var file = await ImagePicker().getImage(source: ImageSource.camera);
     if (file == null) return;
+    final bytes = await file.readAsBytes();
     await showDialog(
-        context: context,
-        builder: (context) => SendFileDialog(
-              file: MatrixImageFile(bytes: file.bytes, name: file.path),
-              room: room,
-            ));
+      context: context,
+      builder: (context) => SendFileDialog(
+        file: MatrixImageFile(
+          bytes: bytes,
+          name: file.path,
+        ),
+        room: room,
+      ),
+    );
   }
 
   void voiceMessageAction(BuildContext context) async {
@@ -888,7 +917,7 @@ class _ChatState extends State<_Chat> {
                                             contentPadding: EdgeInsets.all(0),
                                           ),
                                         ),
-                                        if (!kIsWeb)
+                                        if (PlatformInfos.isMobile)
                                           PopupMenuItem<String>(
                                             value: 'camera',
                                             child: ListTile(
@@ -902,7 +931,7 @@ class _ChatState extends State<_Chat> {
                                               contentPadding: EdgeInsets.all(0),
                                             ),
                                           ),
-                                        if (!kIsWeb)
+                                        if (PlatformInfos.isMobile)
                                           PopupMenuItem<String>(
                                             value: 'voice',
                                             child: ListTile(
@@ -972,7 +1001,7 @@ class _ChatState extends State<_Chat> {
                                     ),
                                   ),
                                 ),
-                                if (!kIsWeb && inputText.isEmpty)
+                                if (PlatformInfos.isMobile && inputText.isEmpty)
                                   Container(
                                     height: 56,
                                     alignment: Alignment.center,

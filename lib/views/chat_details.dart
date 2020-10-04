@@ -1,6 +1,8 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:famedlysdk/matrix_api.dart';
+
+import 'package:file_picker_cross/file_picker_cross.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/chat_settings_popup_menu.dart';
 import 'package:fluffychat/components/content_banner.dart';
@@ -8,6 +10,7 @@ import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/list_items/participant_list_item.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/utils/matrix_locals.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/views/chat_list.dart';
 import 'package:fluffychat/views/invitation_selection.dart';
 import 'package:flutter/foundation.dart';
@@ -16,7 +19,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:matrix_link_text/link_text.dart';
-import 'package:memoryfilepicker/memoryfilepicker.dart';
 
 import './settings_emotes.dart';
 import './settings_multiple_emotes.dart';
@@ -104,19 +106,31 @@ class _ChatDetailsState extends State<ChatDetails> {
   }
 
   void setAvatarAction(BuildContext context) async {
-    final tempFile = await MemoryFilePicker.getImage(
-        source: ImageSource.gallery,
-        imageQuality: 50,
-        maxWidth: 1600,
-        maxHeight: 1600);
-    if (tempFile == null) return;
+    MatrixFile file;
+    if (PlatformInfos.isMobile) {
+      final result = await ImagePicker().getImage(
+          source: ImageSource.gallery,
+          imageQuality: 50,
+          maxWidth: 1600,
+          maxHeight: 1600);
+      if (result == null) return;
+      file = MatrixFile(
+        bytes: await result.readAsBytes(),
+        name: result.path,
+      );
+    } else {
+      final result = await FilePickerCross.importFromStorage(
+        type: FileTypeCross.image,
+      );
+      if (result == null) return;
+      file = MatrixFile(
+        bytes: result.toUint8List(),
+        name: result.fileName,
+      );
+    }
+
     final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
-      widget.room.setAvatar(
-        MatrixFile(
-          bytes: tempFile.bytes,
-          name: tempFile.path,
-        ),
-      ),
+      widget.room.setAvatar(file),
     );
     if (success != false) {
       BotToast.showText(text: L10n.of(context).avatarHasBeenChanged);

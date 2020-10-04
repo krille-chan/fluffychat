@@ -2,8 +2,11 @@ import 'dart:io';
 
 import 'package:bot_toast/bot_toast.dart';
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:file_picker_cross/file_picker_cross.dart';
+
 import 'package:fluffychat/components/settings_themes.dart';
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:fluffychat/views/settings_devices.dart';
 import 'package:fluffychat/views/settings_ignore_list.dart';
@@ -11,7 +14,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:memoryfilepicker/memoryfilepicker.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../components/adaptive_page_layout.dart';
@@ -138,20 +140,30 @@ class _SettingsState extends State<Settings> {
   }
 
   void setAvatarAction(BuildContext context) async {
-    final tempFile = await MemoryFilePicker.getImage(
-        source: ImageSource.gallery,
-        imageQuality: 50,
-        maxWidth: 1600,
-        maxHeight: 1600);
-    if (tempFile == null) return;
+    MatrixFile file;
+    if (PlatformInfos.isMobile) {
+      final result = await ImagePicker().getImage(
+          source: ImageSource.gallery,
+          imageQuality: 50,
+          maxWidth: 1600,
+          maxHeight: 1600);
+      if (result == null) return;
+      file = MatrixFile(
+        bytes: await result.readAsBytes(),
+        name: result.path,
+      );
+    } else {
+      final result =
+          await FilePickerCross.importFromStorage(type: FileTypeCross.image);
+      if (result == null) return;
+      file = MatrixFile(
+        bytes: result.toUint8List(),
+        name: result.fileName,
+      );
+    }
     final matrix = Matrix.of(context);
     final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
-      matrix.client.setAvatar(
-        MatrixFile(
-          bytes: tempFile.bytes,
-          name: tempFile.path,
-        ),
-      ),
+      matrix.client.setAvatar(file),
     );
     if (success != false) {
       setState(() {

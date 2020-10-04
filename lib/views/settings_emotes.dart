@@ -1,12 +1,13 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:file_picker_cross/file_picker_cross.dart';
+
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:memoryfilepicker/memoryfilepicker.dart';
 
 import '../components/adaptive_page_layout.dart';
 import '../components/dialogs/simple_dialogs.dart';
@@ -458,16 +459,30 @@ class _EmoteImagePickerState extends State<_EmoteImagePicker> {
             BotToast.showText(text: L10n.of(context).notSupportedInWeb);
             return;
           }
-          var file = await MemoryFilePicker.getImage(
-              source: ImageSource.gallery,
-              imageQuality: 50,
-              maxWidth: 128,
-              maxHeight: 128);
-          if (file == null) return;
-          final matrixFile = MatrixFile(bytes: file.bytes, name: file.path);
+          MatrixFile file;
+          if (PlatformInfos.isMobile) {
+            final result = await ImagePicker().getImage(
+                source: ImageSource.gallery,
+                imageQuality: 50,
+                maxWidth: 1600,
+                maxHeight: 1600);
+            if (result == null) return;
+            file = MatrixFile(
+              bytes: await result.readAsBytes(),
+              name: result.path,
+            );
+          } else {
+            final result = await FilePickerCross.importFromStorage(
+                type: FileTypeCross.image);
+            if (result == null) return;
+            file = MatrixFile(
+              bytes: result.toUint8List(),
+              name: result.fileName,
+            );
+          }
           final uploadResp =
               await SimpleDialogs(context).tryRequestWithLoadingDialog(
-            Matrix.of(context).client.upload(matrixFile.bytes, matrixFile.name),
+            Matrix.of(context).client.upload(file.bytes, file.name),
           );
           setState(() {
             widget.controller.text = uploadResp;

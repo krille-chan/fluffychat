@@ -2,17 +2,17 @@ import 'dart:math';
 
 import 'package:bot_toast/bot_toast.dart';
 import 'package:famedlysdk/famedlysdk.dart';
+
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/views/auth_web_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:memoryfilepicker/memoryfilepicker.dart';
 
 import 'chat_list.dart';
 
 class SignUpPassword extends StatefulWidget {
-  final MemoryFile avatar;
+  final MatrixFile avatar;
   final String username;
   final String displayname;
   const SignUpPassword(this.username, {this.avatar, this.displayname});
@@ -99,12 +99,7 @@ class _SignUpPasswordState extends State<SignUpPassword> {
     }
     if (widget.avatar != null) {
       try {
-        await matrix.client.setAvatar(
-          MatrixFile(
-            bytes: widget.avatar.bytes,
-            name: widget.avatar.path,
-          ),
-        );
+        await matrix.client.setAvatar(widget.avatar);
       } catch (exception) {
         BotToast.showText(text: L10n.of(context).couldNotSetAvatar);
       }
