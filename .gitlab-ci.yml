@@ -184,12 +184,10 @@ pages:
   
 snap:publish-candidate:
   stage: publish
-  image: ubuntu:20.04
+  image: "cibuilds/snapcraft:core18"
   only:
     - main
   script:
-    - apt-get update -qy
-    - apt-get install -y snapcraft curl
     - snapcraft
     - echo $SNAPCRAFT_LOGIN_FILE | base64 --decode --ignore-garbage > snapcraft.login
     - snapcraft login --with snapcraft.login
@@ -203,12 +201,10 @@ snap:publish-candidate:
   
 snap:publish:
   stage: publish
-  image: ubuntu:20.04
+  image: "cibuilds/snapcraft:core18"
   only:
     - tags
   script:
-    - apt-get update -qy
-    - apt-get install -y snapcraft curl
     - snapcraft
     - echo $SNAPCRAFT_LOGIN_FILE | base64 --decode --ignore-garbage > snapcraft.login
     - snapcraft login --with snapcraft.login
