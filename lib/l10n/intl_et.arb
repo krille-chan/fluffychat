@@ -1702,5 +1702,10 @@
   "@yourOwnUsername": {
     "type": "text",
     "placeholders": {}
+  },
+  "privacy": "Privaatsus",
+  "@privacy": {
+    "type": "text",
+    "placeholders": {}
   }
 }
