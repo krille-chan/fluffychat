@@ -22,9 +22,10 @@ parts:
     plugin: cmake
     build-packages:
     - build-essential
+    stage-packages:
+    - libsqlite3-0
     override-build: |
-      rm -r olm
-      git clone https://gitlab.matrix.org/matrix-org/olm.git
+      if cd olm; then git pull; else git clone https://gitlab.matrix.org/matrix-org/olm.git; fi
       cd olm
       cmake . -Bbuild
       cmake --build build
@@ -33,6 +34,4 @@ parts:
     source: .
     plugin: flutter
     flutter-target: lib/main.dart
-    stage-packages:
-    - libsqlite3-0
     after: [olm]
