@@ -36,7 +36,7 @@ class _ConnectionStatusHeaderState extends State<ConnectionStatusHeader> {
         );
 
     return AnimatedContainer(
-      duration: Duration(milliseconds: 500),
+      duration: Duration(milliseconds: 300),
       height: _connected ? 0 : 5,
       child: LinearProgressIndicator(),
     );

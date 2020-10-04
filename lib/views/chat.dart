@@ -619,7 +619,7 @@ class _ChatState extends State<_Chat> {
                                       height: seenByText.isEmpty ? 0 : 24,
                                       duration: seenByText.isEmpty
                                           ? Duration(milliseconds: 0)
-                                          : Duration(milliseconds: 500),
+                                          : Duration(milliseconds: 300),
                                       alignment:
                                           filteredEvents.first.senderId ==
                                                   client.userID

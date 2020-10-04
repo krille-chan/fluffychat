@@ -545,7 +545,7 @@ class _ChatListState extends State<ChatList> {
                                               children: [
                                                 AnimatedContainer(
                                                   duration: Duration(
-                                                      milliseconds: 500),
+                                                      milliseconds: 300),
                                                   height: displayPresences
                                                       ? 78
                                                       : displayShareStatus

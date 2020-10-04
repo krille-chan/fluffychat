@@ -143,8 +143,7 @@ class ChatListItem extends StatelessWidget {
                   ? Padding(
                       padding: const EdgeInsets.only(left: 4.0),
                       child: Icon(
-                        Icons.favorite,
-                        color: Colors.grey[400],
+                        Icons.favorite_outline_rounded,
                         size: 16,
                       ),
                     )
@@ -153,8 +152,7 @@ class ChatListItem extends StatelessWidget {
                   ? Padding(
                       padding: const EdgeInsets.only(left: 4.0),
                       child: Icon(
-                        Icons.notifications_off,
-                        color: Colors.grey[400],
+                        Icons.notifications_off_outlined,
                         size: 16,
                       ),
                     )
@@ -164,7 +162,6 @@ class ChatListItem extends StatelessWidget {
                 child: Text(
                   room.timeCreated.localizedTimeShort(context),
                   style: TextStyle(
-                    color: Color(0xFF555555),
                     fontSize: 13,
                   ),
                 ),
