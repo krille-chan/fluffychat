@@ -16,10 +16,24 @@ apps:
     - home
 
 parts:
+  olm:
+    source: .
+    source-type: git
+    plugin: cmake
+    build-packages:
+    - build-essential
+    override-build: |
+      rm -r olm
+      git clone https://gitlab.matrix.org/matrix-org/olm.git
+      cd olm
+      cmake . -Bbuild
+      cmake --build build
+      sudo make install
   fluffychat:
     source: .
     plugin: flutter
     flutter-target: lib/main.dart
-  stage-packages:
+    stage-packages:
     - libsqlite3-0
-    - libolm3
+    override-build: sudo apt install libolm3
+    after: [olm]

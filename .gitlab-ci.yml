@@ -181,21 +181,6 @@ pages:
       - public
   only:
     - main
-
-snap:amd64:
-  stage: coverage
-  image: ubuntu:20.04
-  except:
-    - coverage
-  script:
-    - apt-get update -qy
-    - apt-get install -y snapcraft
-    - snapcraft --debug
-  artifacts:
-    paths:
-      - './*.snap'
-    when: on_success
-    expire_in: 1 week
   
 snap:publish-candidate:
   stage: publish
