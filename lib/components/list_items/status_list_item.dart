@@ -17,7 +17,7 @@ class StatusListItem extends StatelessWidget {
         future: client.getProfileFromUserId(status.userId),
         builder: (context, snapshot) {
           final profile =
-              snapshot.data ?? Profile(client.userID, Uri.parse(''));
+              snapshot.data ?? Profile(status.userId.localpart, null);
           return InkWell(
             borderRadius: BorderRadius.circular(8),
             onTap: () => Navigator.of(context).push(
