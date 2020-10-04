@@ -23,7 +23,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "accountInformation": "Account informations",
+  "accountInformation": "Account information",
   "@accountInformation": {
     "type": "text",
     "placeholders": {}
@@ -1207,7 +1207,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sentryInfo": "Informations about your privacy: https://sentry.io/security/",
+  "sentryInfo": "Information about your privacy: https://sentry.io/security/",
   "@sentryInfo": {
     "type": "text",
     "placeholders": {}
@@ -1315,7 +1315,7 @@
       "username": {}
     }
   },
-  "sentCallInformations": "{senderName} sent call informations",
+  "sentCallInformations": "{senderName} sent call information",
   "@sentCallInformations": {
     "type": "text",
     "placeholders": {
