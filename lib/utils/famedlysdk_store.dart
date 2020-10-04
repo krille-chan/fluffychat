@@ -168,7 +168,7 @@ Future<void> migrate(String clientName, Database db, Store store) async {
           roomId,
           pickle,
           json.encode(devices),
-          DateTime.now(),
+          DateTime.now().millisecondsSinceEpoch,
           0,
         );
       }
