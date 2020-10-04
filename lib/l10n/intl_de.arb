@@ -1702,5 +1702,20 @@
   "@deleteAccount": {
     "type": "text",
     "placeholders": {}
+  },
+  "privacy": "Privatsphäre",
+  "@privacy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEmotesGlobally": "Aktiviere Emotikon-Bündel global",
+  "@enableEmotesGlobally": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emotePacks": "Emoticon-Bündel für Raum",
+  "@emotePacks": {
+    "type": "text",
+    "placeholders": {}
   }
 }
