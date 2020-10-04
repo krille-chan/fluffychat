@@ -81,6 +81,7 @@ class StatusView extends StatelessWidget {
       backgroundColor: displayname.color,
       extendBody: true,
       appBar: AppBar(
+        titleSpacing: 0.0,
         brightness: Brightness.dark,
         leading: IconButton(
           icon: Icon(
@@ -100,6 +101,7 @@ class StatusView extends StatelessWidget {
           ),
           subtitle: Text(
             status?.userId ?? Matrix.of(context).client.userID,
+            maxLines: 1,
             style: TextStyle(color: Colors.white),
           ),
         ),

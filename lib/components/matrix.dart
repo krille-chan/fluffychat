@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:famedlysdk/encryption.dart';
@@ -55,6 +54,8 @@ class MatrixState extends State<Matrix> {
   @override
   BuildContext context;
 
+  static const String userStatusesType = 'chat.fluffy.user_statuses';
+
   Map<String, dynamic> get shareContent => _shareContent;
   set shareContent(Map<String, dynamic> content) {
     _shareContent = content;
@@ -90,6 +91,7 @@ class MatrixState extends State<Matrix> {
         widget.clientName,
       );
     }
+    _cleanUpUserStatus(userStatuses);
   }
 
   Map<String, dynamic> getAuthByPassword(String password, [String session]) => {
@@ -195,16 +197,6 @@ class MatrixState extends State<Matrix> {
   @override
   void initState() {
     store = widget.store ?? Store();
-    store.getItem('fluffychat.user_statuses').then(
-      (json) {
-        userStatuses = json == null
-            ? []
-            : (jsonDecode(json)['user_statuses'] as List)
-                .map((j) => UserStatus.fromJson(j))
-                .toList();
-        _cleanUpUserStatus();
-      },
-    );
     if (widget.client == null) {
       debugPrint('[Matrix] Init matrix client');
       final Set verificationMethods = <KeyVerificationMethod>{
@@ -303,9 +295,18 @@ class MatrixState extends State<Matrix> {
     super.initState();
   }
 
-  List<UserStatus> userStatuses = [];
+  List<UserStatus> get userStatuses {
+    try {
+      return (client.accountData[userStatusesType].content['user_statuses']
+              as List)
+          .map((json) => UserStatus.fromJson(json))
+          .toList();
+    } catch (_) {}
+    return [];
+  }
 
   void _storeUserStatus(Presence presence) {
+    final tmpUserStatuses = List<UserStatus>.from(userStatuses);
     final currentStatusIndex =
         userStatuses.indexWhere((u) => u.userId == presence.senderId);
     final newUserStatus = UserStatus()
@@ -313,36 +314,37 @@ class MatrixState extends State<Matrix> {
       ..statusMsg = presence.presence.statusMsg
       ..userId = presence.senderId;
     if (currentStatusIndex == -1) {
-      userStatuses.add(newUserStatus);
-    } else if (userStatuses[currentStatusIndex].statusMsg !=
+      tmpUserStatuses.add(newUserStatus);
+    } else if (tmpUserStatuses[currentStatusIndex].statusMsg !=
         presence.presence.statusMsg) {
       if (presence.presence.statusMsg.trim().isEmpty) {
-        userStatuses.removeAt(currentStatusIndex);
+        tmpUserStatuses.removeAt(currentStatusIndex);
       } else {
-        userStatuses[currentStatusIndex] = newUserStatus;
+        tmpUserStatuses[currentStatusIndex] = newUserStatus;
       }
     } else {
       return;
     }
-    _cleanUpUserStatus();
+    _cleanUpUserStatus(tmpUserStatuses);
   }
 
-  void _cleanUpUserStatus() {
+  void _cleanUpUserStatus(List<UserStatus> tmpUserStatuses) {
     final now = DateTime.now().millisecondsSinceEpoch;
-    userStatuses
+    tmpUserStatuses
         .removeWhere((u) => (now - u.receivedAt) > (1000 * 60 * 60 * 24));
-    userStatuses.sort((a, b) => b.receivedAt.compareTo(a.receivedAt));
-    if (userStatuses.length > 40) {
-      userStatuses.removeRange(40, userStatuses.length);
+    tmpUserStatuses.sort((a, b) => b.receivedAt.compareTo(a.receivedAt));
+    if (tmpUserStatuses.length > 40) {
+      tmpUserStatuses.removeRange(40, tmpUserStatuses.length);
     }
-    store.setItem(
-      'fluffychat.user_statuses',
-      jsonEncode(
+    if (tmpUserStatuses != userStatuses) {
+      client.setAccountData(
+        client.userID,
+        userStatusesType,
         {
-          'user_statuses': userStatuses.map((i) => i.toJson()).toList(),
+          'user_statuses': tmpUserStatuses.map((i) => i.toJson()).toList(),
         },
-      ),
-    );
+      );
+    }
   }
 
   @override
