@@ -35,5 +35,4 @@ parts:
     flutter-target: lib/main.dart
     stage-packages:
     - libsqlite3-0
-    override-build: sudo apt install libolm3
     after: [olm]
