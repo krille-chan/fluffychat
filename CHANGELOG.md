@@ -2,6 +2,8 @@
 ### Features
 - Add ability to enable / disable emotes globally
 - Add ability to manage emote packs with different state keys
+### Fixes
+- Fix amoled / theme settings not always saving properly
 
 # Version 0.19.0 - 2020-09-21
 ### Features
