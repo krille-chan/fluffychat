@@ -2,6 +2,7 @@ import 'dart:ffi';
 import 'dart:io';
 import 'dart:isolate';
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart' show getDatabasesPath;
 import 'package:path/path.dart' as p;
 import 'package:flutter/material.dart';
@@ -64,20 +65,15 @@ Future<Database> constructDb(
     final isolate = (await receivePort.first as MoorIsolate);
     return Database.connect(await isolate.connect());
   } else if (Platform.isLinux) {
-    debugPrint('[Moor] using desktop moor');
-    open.overrideFor(OperatingSystem.linux, _openOnLinux);
-    return Database(moor.VmDatabase.memory());
+    debugPrint('[Moor] using Linux desktop moor');
+    final appDocDir = await getApplicationSupportDirectory();
+    return Database(moor.VmDatabase(File('${appDocDir.path}/$filename')));
   } else if (Platform.isWindows) {
-    debugPrint('[Moor] using desktop moor');
-    open.overrideFor(OperatingSystem.linux, _openOnWindows);
+    debugPrint('[Moor] using Windows desktop moor');
+    open.overrideFor(OperatingSystem.windows, _openOnWindows);
     return Database(moor.VmDatabase.memory());
   }
   throw Exception('Platform not supported');
-}
-
-DynamicLibrary _openOnLinux() {
-  final libraryNextToScript = File('/usr/lib/x86_64-linux-gnu/libsqlite3.so');
-  return DynamicLibrary.open(libraryNextToScript.path);
 }
 
 DynamicLibrary _openOnWindows() {
