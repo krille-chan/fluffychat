@@ -85,7 +85,9 @@ class MatrixState extends State<Matrix> {
   void _initWithStore() async {
     var initLoginState = client.onLoginStateChanged.stream.first;
     try {
-      client.database = await getDatabase(client);
+      client.database = await getDatabase(client).timeout(
+        Duration(seconds: 15),
+      );
       client.connect();
       if (await initLoginState == LoginState.logged && PlatformInfos.isMobile) {
         await FirebaseController.setupFirebase(
@@ -97,6 +99,7 @@ class MatrixState extends State<Matrix> {
     } catch (e, s) {
       client.onLoginStateChanged.sink.addError(e, s);
       captureException(e, s);
+      rethrow;
     }
   }
 

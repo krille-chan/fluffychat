@@ -31,7 +31,9 @@ Future<Database> getDatabase(Client client) async {
       filename: 'moor.sqlite',
       password: password,
     );
+    debugPrint('[Moor] Database has been created');
     if (needMigration) {
+      debugPrint('[Moor] Start migration');
       await migrate(client.clientName, _db, store);
       await store.setItem('database-password', password);
     }
