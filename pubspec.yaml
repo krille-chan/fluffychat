@@ -50,7 +50,7 @@ dependencies:
   open_file: ^3.0.1
   mime_type: ^0.3.0
   bot_toast: ^3.0.0
-  flutter_matrix_html: ^0.1.5
+  flutter_matrix_html: ^0.1.7
   moor: ^3.3.1
   sqlite3_flutter_libs: ^0.2.0
   sqlite3: ^0.1.4
@@ -87,7 +87,7 @@ flutter_icons:
 
 # The following section is specific to Flutter.
 flutter:
-  # Adds code generation (synthetic package) support 
+  # Adds code generation (synthetic package) support
   generate: true
 
 

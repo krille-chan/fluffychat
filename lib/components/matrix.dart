@@ -21,6 +21,7 @@ import '../utils/beautify_string_extension.dart';
 import '../utils/famedlysdk_store.dart';
 import '../utils/presence_extension.dart';
 import '../views/key_verification.dart';
+import '../utils/platform_infos.dart';
 import 'avatar.dart';
 
 class Matrix extends StatefulWidget {
@@ -212,7 +213,7 @@ class MatrixState extends State<Matrix> {
       final Set verificationMethods = <KeyVerificationMethod>{
         KeyVerificationMethod.numbers
       };
-      if (!kIsWeb) {
+      if (PlatformInfos.isMobile) {
         // emojis don't show in web somehow
         verificationMethods.add(KeyVerificationMethod.emoji);
       }
