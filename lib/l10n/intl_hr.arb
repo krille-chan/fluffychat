@@ -1702,5 +1702,20 @@
   "@yourOwnUsername": {
     "type": "text",
     "placeholders": {}
+  },
+  "enableEmotesGlobally": "Aktiviraj paket emotikona globalno",
+  "@enableEmotesGlobally": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emotePacks": "Paketi emotikona za sobu",
+  "@emotePacks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "privacy": "Privatnost",
+  "@privacy": {
+    "type": "text",
+    "placeholders": {}
   }
 }
