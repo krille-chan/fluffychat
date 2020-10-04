@@ -36,6 +36,8 @@ Future<Database> getDatabase(Client client) async {
       await store.setItem('database-password', password);
     }
     return _db;
+  } catch (_) {
+    rethrow;
   } finally {
     _generateDatabaseLock = false;
   }
