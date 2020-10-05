@@ -227,7 +227,7 @@ class _ChatState extends State<_Chat> {
   }
 
   void sendImageAction(BuildContext context) async {
-    MatrixFile file;
+    MatrixImageFile file;
     if (PlatformInfos.isMobile) {
       final result = await ImagePicker().getImage(
           source: ImageSource.gallery,
@@ -235,7 +235,7 @@ class _ChatState extends State<_Chat> {
           maxWidth: 1600,
           maxHeight: 1600);
       if (result == null) return;
-      file = MatrixFile(
+      file = MatrixImageFile(
         bytes: await result.readAsBytes(),
         name: result.path,
       );
@@ -243,7 +243,7 @@ class _ChatState extends State<_Chat> {
       final result =
           await FilePickerCross.importFromStorage(type: FileTypeCross.image);
       if (result == null) return;
-      file = MatrixFile(
+      file = MatrixImageFile(
         bytes: result.toUint8List(),
         name: result.fileName,
       );
