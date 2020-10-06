@@ -16,11 +16,9 @@
  *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import 'dart:typed_data';
-import 'dart:ui';
-
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:native_imaging/native_imaging.dart' as native;
+
+import 'resize_image.dart';
 
 extension RoomSendFileExtension on Room {
   Future<String> sendFileEventWithThumbnail(
@@ -33,50 +31,7 @@ extension RoomSendFileExtension on Room {
     MatrixFile thumbnail;
     try {
       if (file is MatrixImageFile) {
-        await native.init();
-        var nativeImg = native.Image();
-        try {
-          await nativeImg.loadEncoded(file.bytes);
-          file.width = nativeImg.width();
-          file.height = nativeImg.height();
-        } on UnsupportedError {
-          final dartCodec = await instantiateImageCodec(file.bytes);
-          final dartFrame = await dartCodec.getNextFrame();
-          file.width = dartFrame.image.width;
-          file.height = dartFrame.image.height;
-          final rgbaData = await dartFrame.image.toByteData();
-          final rgba = Uint8List.view(
-              rgbaData.buffer, rgbaData.offsetInBytes, rgbaData.lengthInBytes);
-          dartFrame.image.dispose();
-          dartCodec.dispose();
-          nativeImg.loadRGBA(file.width, file.height, rgba);
-        }
-
-        const max = 800;
-        if (file.width > max || file.height > max) {
-          var w = max, h = max;
-          if (file.width > file.height) {
-            h = max * file.height ~/ file.width;
-          } else {
-            w = max * file.width ~/ file.height;
-          }
-
-          final scaledImg = nativeImg.resample(w, h, native.Transform.lanczos);
-          nativeImg.free();
-          nativeImg = scaledImg;
-        }
-        final jpegBytes = await nativeImg.toJpeg(75);
-        file.blurhash = nativeImg.toBlurhash(3, 3);
-
-        thumbnail = MatrixImageFile(
-          bytes: jpegBytes,
-          name: 'thumbnail.jpg',
-          mimeType: 'image/jpeg',
-          width: nativeImg.width(),
-          height: nativeImg.height(),
-        );
-
-        nativeImg.free();
+        thumbnail = await resizeImage(file);
 
         if (thumbnail.size > file.size ~/ 2) {
           thumbnail = null;

@@ -1,14 +1,11 @@
-import 'dart:typed_data';
-import 'dart:ui';
-
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:native_imaging/native_imaging.dart' as native;
 
 import '../../components/dialogs/simple_dialogs.dart';
 import '../../utils/matrix_file_extension.dart';
 import '../../utils/room_send_file_extension.dart';
+import '../../utils/resize_image.dart';
 
 class SendFileDialog extends StatefulWidget {
   final Room room;
@@ -26,46 +23,8 @@ class _SendFileDialogState extends State<SendFileDialog> {
   Future<void> _send() async {
     var file = widget.file;
     if (file is MatrixImageFile && !origImage) {
-      final imgFile = file as MatrixImageFile;
-      // resize to max 1600 x 1600
       try {
-        await native.init();
-        var nativeImg = native.Image();
-        try {
-          await nativeImg.loadEncoded(imgFile.bytes);
-          imgFile.width = nativeImg.width();
-          imgFile.height = nativeImg.height();
-        } on UnsupportedError {
-          final dartCodec = await instantiateImageCodec(imgFile.bytes);
-          final dartFrame = await dartCodec.getNextFrame();
-          imgFile.width = dartFrame.image.width;
-          imgFile.height = dartFrame.image.height;
-          final rgbaData = await dartFrame.image.toByteData();
-          final rgba = Uint8List.view(
-              rgbaData.buffer, rgbaData.offsetInBytes, rgbaData.lengthInBytes);
-          dartFrame.image.dispose();
-          dartCodec.dispose();
-          nativeImg.loadRGBA(imgFile.width, imgFile.height, rgba);
-        }
-
-        const max = 1600;
-        if (imgFile.width > max || imgFile.height > max) {
-          var w = max, h = max;
-          if (imgFile.width > imgFile.height) {
-            h = max * imgFile.height ~/ imgFile.width;
-          } else {
-            w = max * imgFile.width ~/ imgFile.height;
-          }
-
-          final scaledImg = nativeImg.resample(w, h, native.Transform.lanczos);
-          nativeImg.free();
-          nativeImg = scaledImg;
-        }
-        final jpegBytes = await nativeImg.toJpeg(75);
-        file = MatrixImageFile(
-            bytes: jpegBytes,
-            name: 'scaled_' + imgFile.name.split('.').first + '.jpg');
-        nativeImg.free();
+        file = await resizeImage(file, max: 1600);
       } catch (e) {
         // couldn't resize
       }
