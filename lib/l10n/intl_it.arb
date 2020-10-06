@@ -1,1 +1,198 @@
-{}
+{
+  "changedTheGuestAccessRules": "{username} ha cambiato le regole di accesso per ospiti",
+  "@changedTheGuestAccessRules": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changeTheHomeserver": "Cambia l'homeserver",
+  "@changeTheHomeserver": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changedTheDisplaynameTo": "{username} ha cambiato nome in: {displayname}",
+  "@changedTheDisplaynameTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "displayname": {}
+    }
+  },
+  "changedTheChatPermissions": "{username} ha cambiato i permessi della chat",
+  "@changedTheChatPermissions": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheChatDescriptionTo": "{username} ha cambiato la descrizione della chat in: '{description}'",
+  "@changedTheChatDescriptionTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "description": {}
+    }
+  },
+  "changedTheChatNameTo": "{username} ha cambiato il nome della chat in: '{chatname}'",
+  "@changedTheChatNameTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "chatname": {}
+    }
+  },
+  "changeDeviceName": "Cambia nome dispositivo",
+  "@changeDeviceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "Cancella",
+  "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cachedKeys": "Chiavi salvate in cache con successo!",
+  "@cachedKeys": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "byDefaultYouWillBeConnectedTo": "Di default sarai connesso a {homeserver}",
+  "@byDefaultYouWillBeConnectedTo": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "blockDevice": "Blocca dispositivo",
+  "@blockDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bannedUser": "{username} ha bannato {targetName}",
+  "@bannedUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "banned": "Bannato",
+  "@banned": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "banFromChat": "Bannato dalla chat",
+  "@banFromChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "avatarHasBeenChanged": "L'avatar è stato cambiato",
+  "@avatarHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "authentication": "Autenticazione",
+  "@authentication": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askVerificationRequest": "Accettare questa richiesta di verifica da {username}?",
+  "@askVerificationRequest": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "askSSSSVerify": "Per favore inserisci la tua passphrase o recovery key per verificare la sessione.",
+  "@askSSSSVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSure": "Sicuro?",
+  "@areYouSure": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areGuestsAllowedToJoin": "Gli utenti guest possono partecipare",
+  "@areGuestsAllowedToJoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "archivedRoom": "Stanza Archiviata",
+  "@archivedRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "archive": "Archivia",
+  "@archive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "anyoneCanJoin": "Tutti possono partecipare",
+  "@anyoneCanJoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "answeredTheCall": "{senderName} ha risposto alla chiamata",
+  "@answeredTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "alreadyHaveAnAccount": "Hai già un account?",
+  "@alreadyHaveAnAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "alias": "alias",
+  "@alias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "admin": "Admin",
+  "@admin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addGroupDescription": "Aggiungi descrizione al gruppo",
+  "@addGroupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "activatedEndToEndEncryption": "{username} Ha abilitato la crittografia end to end",
+  "@activatedEndToEndEncryption": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "accountInformation": "Informazioni account",
+  "@accountInformation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "account": "Account",
+  "@account": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "acceptedTheInvitation": "{username} ha accettato l'invito",
+  "@acceptedTheInvitation": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "accept": "Accetta",
+  "@accept": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about": "Informazioni",
+  "@about": {
+    "type": "text",
+    "placeholders": {}
+  }
+}
