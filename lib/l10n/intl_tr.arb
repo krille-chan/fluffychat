@@ -1717,5 +1717,10 @@
   "@deactivateAccountWarning": {
     "type": "text",
     "placeholders": {}
+  },
+  "changeDeviceName": "Cihaz adını değiştir",
+  "@changeDeviceName": {
+    "type": "text",
+    "placeholders": {}
   }
 }
