@@ -1717,5 +1717,10 @@
   "@privacy": {
     "type": "text",
     "placeholders": {}
+  },
+  "changeDeviceName": "Promijeni ime uređaja",
+  "@changeDeviceName": {
+    "type": "text",
+    "placeholders": {}
   }
 }
