@@ -4,6 +4,7 @@
 - Add ability to manage emote packs with different state keys
 ### Fixes
 - Fix amoled / theme settings not always saving properly
+- Show device name in account information correctly
 
 # Version 0.19.0 - 2020-09-21
 ### Features
