@@ -3,6 +3,7 @@
 *.log
 *.pyc
 *.swp
+*.snap
 .DS_Store
 .atom/
 .buildlog/

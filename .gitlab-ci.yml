@@ -181,23 +181,20 @@ pages:
       - public
   only:
     - main
-  
-snap:publish-candidate:
-  stage: publish
-  image: "cibuilds/snapcraft:core18"
+
+build_linux:
+  stage: coverage
+  script:
+    - flutter channel dev
+    - flutter upgrade
+    - flutter config --enable-linux-desktop
+    - flutter build linux --release
+  artifacts:
+    when: on_success
+    paths:
+      - build/linux/release/bundle/
   only:
     - main
-  script:
-    - snapcraft
-    - echo $SNAPCRAFT_LOGIN_FILE | base64 --decode --ignore-garbage > snapcraft.login
-    - snapcraft login --with snapcraft.login
-    - snapcraft push --release=candidate *.snap
-    - snapcraft logout
-  artifacts:
-    paths:
-      - './*.snap'
-    when: on_success
-    expire_in: 1 week
   
 snap:publish:
   stage: publish
