@@ -227,31 +227,16 @@ class _ChatState extends State<_Chat> {
   }
 
   void sendImageAction(BuildContext context) async {
-    MatrixImageFile file;
-    if (PlatformInfos.isMobile) {
-      final result = await ImagePicker().getImage(
-          source: ImageSource.gallery,
-          imageQuality: 50,
-          maxWidth: 1600,
-          maxHeight: 1600);
-      if (result == null) return;
-      file = MatrixImageFile(
-        bytes: await result.readAsBytes(),
-        name: result.path,
-      );
-    } else {
-      final result =
-          await FilePickerCross.importFromStorage(type: FileTypeCross.image);
-      if (result == null) return;
-      file = MatrixImageFile(
-        bytes: result.toUint8List(),
-        name: result.fileName,
-      );
-    }
+    final result =
+        await FilePickerCross.importFromStorage(type: FileTypeCross.image);
+    if (result == null) return;
     await showDialog(
       context: context,
       builder: (context) => SendFileDialog(
-        file: file,
+        file: MatrixImageFile(
+          bytes: result.toUint8List(),
+          name: result.fileName,
+        ),
         room: room,
       ),
     );
