@@ -184,7 +184,7 @@ pages:
 
 build_linux:
   stage: coverage
-  image:: registry.gitlab.com/famedly/containers/flutter-dockerimages:dev
+  image: registry.gitlab.com/famedly/containers/flutter-dockerimages:dev
   dependencies: []
   script:
     - flutter config --enable-linux-desktop
