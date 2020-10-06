@@ -1717,5 +1717,10 @@
   "@emotePacks": {
     "type": "text",
     "placeholders": {}
+  },
+  "changeDeviceName": "Gerätename ändern",
+  "@changeDeviceName": {
+    "type": "text",
+    "placeholders": {}
   }
 }
