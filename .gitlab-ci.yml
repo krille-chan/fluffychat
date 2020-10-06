@@ -187,6 +187,8 @@ build_linux:
   image: registry.gitlab.com/famedly/containers/flutter-dockerimages:dev
   dependencies: []
   script:
+    - sudo apt update
+    - sudo apt install clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev
     - flutter config --enable-linux-desktop
     - flutter pub get
     - flutter build linux --release
