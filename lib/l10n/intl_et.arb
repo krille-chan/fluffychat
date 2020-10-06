@@ -1707,5 +1707,20 @@
   "@privacy": {
     "type": "text",
     "placeholders": {}
+  },
+  "enableEmotesGlobally": "Võta emotsioonitegevuste pakid läbivalt kasutusele",
+  "@enableEmotesGlobally": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emotePacks": "Emotsioonitegevuste pakid jututoa jaoks",
+  "@emotePacks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeDeviceName": "Muuda seadme nime",
+  "@changeDeviceName": {
+    "type": "text",
+    "placeholders": {}
   }
 }
