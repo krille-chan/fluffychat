@@ -159,6 +159,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "changeDeviceName": "Change device name",
+  "@changeDeviceName": {
+    "type": "text",
+    "placeholders": {}
+  },
   "changedTheChatAvatar": "{username} changed the chat avatar",
   "@changedTheChatAvatar": {
     "type": "text",
