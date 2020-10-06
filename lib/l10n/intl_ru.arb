@@ -1702,5 +1702,25 @@
   "@deactivateAccountWarning": {
     "type": "text",
     "placeholders": {}
+  },
+  "privacy": "Конфиденциальность",
+  "@privacy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEmotesGlobally": "Включить набор эмоджи глобально",
+  "@enableEmotesGlobally": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emotePacks": "Наборы эмоджи для комнаты",
+  "@emotePacks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeDeviceName": "Изменить имя устройства",
+  "@changeDeviceName": {
+    "type": "text",
+    "placeholders": {}
   }
 }
