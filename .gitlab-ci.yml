@@ -184,10 +184,11 @@ pages:
 
 build_linux:
   stage: coverage
+  image:: registry.gitlab.com/famedly/containers/flutter-dockerimages:dev
+  dependencies: []
   script:
-    - flutter channel dev
-    - flutter upgrade
     - flutter config --enable-linux-desktop
+    - flutter pub get
     - flutter build linux --release
   artifacts:
     when: on_success
