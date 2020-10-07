@@ -199,9 +199,30 @@ Future<void> migrate(String clientName, Database db, Store store) async {
   });
 }
 
+// see https://github.com/mogol/flutter_secure_storage/issues/161#issuecomment-704578453
+class AsyncMutex {
+  Completer<void> _completer;
+
+  Future<void> lock() async {
+    while (_completer != null) {
+      await _completer.future;
+    }
+
+    _completer = Completer<void>();
+  }
+
+  void unlock() {
+    assert(_completer != null);
+    final completer = _completer;
+    _completer = null;
+    completer.complete();
+  }
+}
+
 class Store {
   final LocalStorage storage;
   final FlutterSecureStorage secureStorage;
+  static final _mutex = AsyncMutex();
 
   Store()
       : storage = LocalStorage('LocalStorage'),
@@ -217,9 +238,12 @@ class Store {
       }
     }
     try {
+      await _mutex.lock();
       return await secureStorage.read(key: key);
     } catch (_) {
       return null;
+    } finally {
+      _mutex.unlock();
     }
   }
 
@@ -231,7 +255,12 @@ class Store {
     if (value == null) {
       return await secureStorage.delete(key: key);
     } else {
-      return await secureStorage.write(key: key, value: value);
+      try {
+        await _mutex.lock();
+        return await secureStorage.write(key: key, value: value);
+      } finally {
+        _mutex.unlock();
+      }
     }
   }
 
@@ -245,9 +274,12 @@ class Store {
       }
     }
     try {
+      await _mutex.lock();
       return await secureStorage.readAll();
     } catch (_) {
       return {};
+    } finally {
+      _mutex.unlock();
     }
   }
 }
