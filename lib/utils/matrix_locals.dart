@@ -250,7 +250,7 @@ class MatrixLocals extends MatrixLocalizations {
 
   @override
   String userLeftTheChat(String targetName) {
-    return l10n.userLeftTheChat(userLeftTheChat);
+    return l10n.userLeftTheChat(targetName);
   }
 
   @override
