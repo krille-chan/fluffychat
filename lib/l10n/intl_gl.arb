@@ -1291,7 +1291,7 @@
       "username": {}
     }
   },
-  "sentCallInformations": "{senderName} enviou informacións da chamada",
+  "sentCallInformations": "{senderName} enviou información da chamada",
   "@sentCallInformations": {
     "type": "text",
     "placeholders": {
@@ -1700,6 +1700,26 @@
   },
   "yourOwnUsername": "O teu nome de usuaria",
   "@yourOwnUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "privacy": "Privacidade",
+  "@privacy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEmotesGlobally": "Activar paquete emote globalmente",
+  "@enableEmotesGlobally": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emotePacks": "Paquetes de Emotes para a sala",
+  "@emotePacks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeDeviceName": "Cambiar nome do dispositivo",
+  "@changeDeviceName": {
     "type": "text",
     "placeholders": {}
   }
