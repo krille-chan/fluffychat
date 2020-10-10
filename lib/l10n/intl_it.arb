@@ -194,5 +194,272 @@
   "@about": {
     "type": "text",
     "placeholders": {}
+  },
+  "deleteMessage": "Cancella messaggio",
+  "@deleteMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteAccount": "Elimina account",
+  "@deleteAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deactivateAccountWarning": "Disabiliterà il tuo account. Non puoi tornare indietro! Sei sicuro?",
+  "@deactivateAccountWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "delete": "Cancella",
+  "@delete": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dateWithYear": "{day}-{month}-{year}",
+  "@dateWithYear": {
+    "type": "text",
+    "placeholders": {
+      "year": {},
+      "month": {},
+      "day": {}
+    }
+  },
+  "dateWithoutYear": "{month}-{day}",
+  "@dateWithoutYear": {
+    "type": "text",
+    "placeholders": {
+      "month": {},
+      "day": {}
+    }
+  },
+  "dateAndTimeOfDay": "{date}, {timeOfDay}",
+  "@dateAndTimeOfDay": {
+    "type": "text",
+    "placeholders": {
+      "date": {},
+      "timeOfDay": {}
+    }
+  },
+  "currentlyActive": "Attualmente attivo",
+  "@currentlyActive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createNewGroup": "Crea un nuovo gruppo",
+  "@createNewGroup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createdTheChat": "{username} ha creato la chat",
+  "@createdTheChat": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "createAccountNow": "Crea ora un account",
+  "@createAccountNow": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "create": "Crea",
+  "@create": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "countParticipants": "{count} partecipanti",
+  "@countParticipants": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "couldNotSetDisplayname": "Impossibile impostare nome",
+  "@couldNotSetDisplayname": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "couldNotSetAvatar": "Impossibile impostare avatar",
+  "@couldNotSetAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "couldNotDecryptMessage": "Impossibile decriptare messaggio: {error}",
+  "@couldNotDecryptMessage": {
+    "type": "text",
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "copy": "Copia",
+  "@copy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copiedToClipboard": "Copiato negli Appunti",
+  "@copiedToClipboard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contentViewer": "Visualizzatore contenuti",
+  "@contentViewer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contactHasBeenInvitedToTheGroup": "Il contatto è stato invitato nel gruppo",
+  "@contactHasBeenInvitedToTheGroup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "connectionAttemptFailed": "Tentativo di connessione fallito",
+  "@connectionAttemptFailed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "connect": "Connetti",
+  "@connect": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirm": "Conferma",
+  "@confirm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "compareNumbersMatch": "Confronta e assicurati che le seguenti emoji corrispondano a quelle dell'altro dispositivo:",
+  "@compareNumbersMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "compareEmojiMatch": "Confronta e assicurati che le seguenti emoji corrispondano a quelle dell'altro dispositivo:",
+  "@compareEmojiMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "close": "Chiudi",
+  "@close": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseAUsername": "Scegli un username",
+  "@chooseAUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseAStrongPassword": "Scegli una password complessa",
+  "@chooseAStrongPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatDetails": "Dettagli chat",
+  "@chatDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chat": "Chat",
+  "@chat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "channelCorruptedDecryptError": "La crittografia è corrotta",
+  "@channelCorruptedDecryptError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeTheServer": "Cambia server",
+  "@changeTheServer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeWallpaper": "Cambia sfondo",
+  "@changeWallpaper": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeTheNameOfTheGroup": "Cambia il nome del gruppo",
+  "@changeTheNameOfTheGroup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changelog": "Registro cambiamenti",
+  "@changelog": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changedTheRoomInvitationLink": "{username} ha cambiato il link di invito",
+  "@changedTheRoomInvitationLink": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheRoomAliases": "{username} ha cambiato il nome delle stanze",
+  "@changedTheRoomAliases": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheProfileAvatar": "{username} ha cambiato il loro avatar",
+  "@changedTheProfileAvatar": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheJoinRulesTo": "{username} ha cambiato le regole per unirsi in: {joinRules}",
+  "@changedTheJoinRulesTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "joinRules": {}
+    }
+  },
+  "changedTheJoinRules": "{username} ha cambiato le regole per unirsi",
+  "@changedTheJoinRules": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheHistoryVisibilityTo": "{username} ha cambiato la visibilità della cronologia in: {rules}",
+  "@changedTheHistoryVisibilityTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "rules": {}
+    }
+  },
+  "changedTheHistoryVisibility": "{username} ha cambiato la visibilità della cronologia",
+  "@changedTheHistoryVisibility": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheGuestAccessRulesTo": "{username} ha cambiato le regole di accesso per ospiti con: {rules}",
+  "@changedTheGuestAccessRulesTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "rules": {}
+    }
+  },
+  "changedTheChatAvatar": "{username} ha cambiato avatar",
+  "@changedTheChatAvatar": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "askSSSSSign": "Per entrare con l'altro utente, per favore inserisci la tua passphrase o recovery key.",
+  "@askSSSSSign": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askSSSSCache": "Per favore inserisci la tua passphrase o recovery key per la cache delle chiavi.",
+  "@askSSSSCache": {
+    "type": "text",
+    "placeholders": {}
   }
 }
