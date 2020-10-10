@@ -189,7 +189,7 @@
       "username": {}
     }
   },
-  "changedTheDisplaynameTo": "{username} غيّر اسمه الى {displayname}",
+  "changedTheDisplaynameTo": "{username} غيّر اسمه العلني الى {displayname}",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -375,7 +375,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "couldNotSetDisplayname": "تعذر تعيين الاسم",
+  "couldNotSetDisplayname": "تعذر تعيين الاسم العلني",
   "@couldNotSetDisplayname": {
     "type": "text",
     "placeholders": {}
@@ -489,7 +489,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "displaynameHasBeenChanged": "غُيِّر الاسم",
+  "displaynameHasBeenChanged": "غُيِّر الاسم العلني",
   "@displaynameHasBeenChanged": {
     "type": "text",
     "placeholders": {}
@@ -499,7 +499,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "editDisplayname": "حرر الاسم",
+  "editDisplayname": "حرر الاسم العلني",
   "@editDisplayname": {
     "type": "text",
     "placeholders": {}
@@ -514,7 +514,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteWarnNeedToPick": "اختر صورة ورمزا للانفعالة",
+  "emoteWarnNeedToPick": "اختر صورة ورمزا للانفعالة!",
   "@emoteWarnNeedToPick": {
     "type": "text",
     "placeholders": {}
@@ -1374,7 +1374,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "useAmoledTheme": "",
+  "useAmoledTheme": "هل تريد استخدم ألوان متوافقة مع Amoled؟",
   "@useAmoledTheme": {
     "type": "text",
     "placeholders": {}
@@ -1507,14 +1507,14 @@
       "unreadCount": {}
     }
   },
-  "unreadMessages": "",
+  "unreadMessages": "{unreadEvents} رسالة غير مقروءة",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
       "unreadEvents": {}
     }
   },
-  "unreadMessagesInChats": "",
+  "unreadMessagesInChats": "{unreadEvents} رسالة غير مقروءة من {unreadChats} محادثة",
   "@unreadMessagesInChats": {
     "type": "text",
     "placeholders": {
@@ -1700,6 +1700,11 @@
   },
   "yourOwnUsername": "اسم المستخدم الخاص بك",
   "@yourOwnUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "privacy": "الخصوصية",
+  "@privacy": {
     "type": "text",
     "placeholders": {}
   }
