@@ -34,7 +34,7 @@
  * Change password
  * End-To-End-Encryption
 
-## How to build
+# How to build
 
 1. [Install flutter](https://flutter.dev)
 
@@ -44,29 +44,47 @@ git clone --recurse-submodules https://gitlab.com/ChristianPauly/fluffychat-flut
 cd fluffychat-flutter
 ```
 
-### Android / iOS
+3. Choose your target platform below and enable support for it.
 
-3. For Android install CMake from the SDK Manager
+4. Debug with: `flutter run`
 
-4. Install ninja:
+### Android
+
+* Install CMake from the SDK Manager
+
+* Install ninja:
 ```
 sudo apt install ninja-build
 ```
 
-5. Outcomment the Google Services plugin at the end of the file `android/app/build.gradle`:
+* Outcomment the Google Services plugin at the end of the file `android/app/build.gradle`:
 ```
 // apply plugin: "com.google.gms.google-services"
 ```
 
-6. `flutter run`
+* Build with: `flutter build apk`
+
+### iOS / iPadOS
+
+* With xcode you can't build a release version without our cert. :-/ Use `flutter run --profile` to have a working version on your iOS device.
 
 ### Web
 
-3. `flutter channel beta && flutter upgrade`
+* Enable web support in Flutter: https://flutter.dev/docs/get-started/web
 
-4. `flutter config --enable-web`
+* Build with: `flutter build web --release`
 
-5. `flutter run`
+### Desktop (Linux, Windows, macOS)
+
+* Enable Desktop support in Flutter: https://flutter.dev/desktop
+
+* Build with one of these: 
+```
+flutter build linux --release
+flutter build windows --release
+flutter build macos --release
+```
+
 
 ## How to add translations for your language
 
