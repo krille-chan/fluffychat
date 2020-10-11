@@ -131,7 +131,6 @@ class _LoginState extends State<Login> {
                 readOnly: loading,
                 autocorrect: false,
                 autofocus: true,
-                keyboardType: TextInputType.emailAddress,
                 onChanged: (t) => _checkWellKnownWithCoolDown(t, context),
                 controller: usernameController,
                 decoration: InputDecoration(
