@@ -158,8 +158,7 @@ upload_to_fdroid_repo:
     - export UPDATE_VERSION=$(pcregrep -o1 'version:\\s([0-9]*\\.[0-9]*\\.[0-9]*)\\+[0-9]*' pubspec.yaml) && mv app-release.apk "${UPDATE_VERSION}.apk"
     - rsync -rav -e ssh ./ fluffy@fdroid.nordgedanken.dev:/fdroid/repo
     - ssh fluffy@fdroid.nordgedanken.dev "cd fdroid && mount binfmt_misc -t binfmt_misc /proc/sys/fs/binfmt_misc && fdroid update"
-  dependencies:
-    - build_android_apk
+  needs: ["build_android_apk"]
   only:
     - tags
 
@@ -174,8 +173,7 @@ pages:
     - cd build/web/ && bundle install && cd ../../
     - cd build/web/ && bundle exec jekyll build -d public && cd ../../
     - mv build/web/public ./
-  dependencies:
-    - build_web
+  needs: ["build_web"]
   artifacts:
     paths:
       - public
@@ -215,3 +213,4 @@ snap:publish:
       - './*.snap'
     when: on_success
     expire_in: 1 week
+  needs: []
