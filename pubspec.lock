@@ -553,7 +553,7 @@ packages:
     description:
       path: "."
       ref: master
-      resolved-ref: bd24832f96537447174aa34ba78eaed7ff05bb8e
+      resolved-ref: "7fef2565e4ab0c3f6a0e0ac19a77c30ea6778e16"
       url: "https://gitlab.com/famedly/libraries/native_imaging.git"
     source: git
     version: "0.0.1"

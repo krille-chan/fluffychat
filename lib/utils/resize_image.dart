@@ -18,8 +18,8 @@ Future<MatrixImageFile> resizeImage(MatrixImageFile file,
   try {
     final nativeImg = native.Image();
     await nativeImg.loadEncoded(file.bytes);
-    file.width = nativeImg.width();
-    file.height = nativeImg.height();
+    file.width = nativeImg.width;
+    file.height = nativeImg.height;
     args = _IsolateArgs(
         width: file.width, height: file.height, bytes: file.bytes, max: max);
     nativeImg.free();
@@ -96,8 +96,8 @@ Future<_IsolateResponse> _isolateFunction(_IsolateArgs args) async {
   final ret = _IsolateResponse(
       blurhash: blurhash,
       jpegBytes: jpegBytes,
-      width: nativeImg.width(),
-      height: nativeImg.height());
+      width: nativeImg.width,
+      height: nativeImg.height);
 
   nativeImg.free();
 
