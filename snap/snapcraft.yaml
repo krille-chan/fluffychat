@@ -1,0 +1,59 @@
+name: fluffychat
+base: core18 # the base snap is the execution environment for this snap
+version: git # just for humans, typically '1.2+git' or '1.3.2'
+summary: Open. Nonprofit. Cute ♥
+description: |
+  FluffyChat - Chat with your friends
+  
+  9 greatest FluffyChat features:
+  1. Opensource and open development where everyone can join.
+  2. Nonprofit - FluffyChat is donation funded.
+  3. Cute design and many theme settings including a dark mode.
+  4. Unlimited groups and direct chats.
+  5. FluffyChat is made as simple to use as possible.
+  6. Free to use for everyone without ads.
+  7. FluffyChat can use your addressbook to find your friends or you can use
+  usernames.
+  8. There is no "FluffyChat server" you are forced to use. Use the server
+  you find trustworthy or host your own.
+  9. Compatible with Riot, Fractal, Nekho and all matrix messengers.
+  
+  Join the community: fluffychat://+ubports_community:matrix.org
+  Website: http://fluffy.chat
+  Microblog: https://metalhead.club/@krille
+
+grade: devel # must be 'stable' to release into candidate/stable channels
+confinement: strict # use 'strict' once you have the right plugs and slots
+
+parts:
+  olm:
+    plugin: cmake
+    source: https://gitlab.matrix.org/matrix-org/olm.git
+    source-type: git
+    source-tag: 3.2.1
+  fluffychat:
+    plugin: flutter
+    source: .
+    flutter-target: lib/main.dart
+    stage-packages:
+      - libsqlite3-0
+    override-prime: |
+      snapcraftctl prime
+      ln -sf libsqlite3.so.0 ${SNAPCRAFT_PRIME}/usr/lib/x86_64-linux-gnu/libsqlite3.so
+
+slots:
+  dbus-svc:
+    interface: dbus
+    bus: session
+    name: chat.fluffy.fluffychat
+
+apps:
+  fluffychat:
+    command: fluffychat
+    extensions:
+      - flutter-dev
+    plugs:
+      - network
+      - home
+    slots:
+      - dbus-svc
