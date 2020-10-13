@@ -11,7 +11,6 @@ import 'package:fluffychat/utils/user_status.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:localstorage/localstorage.dart';
 import 'package:universal_html/prefer_universal/html.dart' as html;
 import 'package:url_launcher/url_launcher.dart';
 
@@ -78,8 +77,7 @@ class MatrixState extends State<Matrix> {
   void clean() async {
     if (!kIsWeb) return;
 
-    final storage = LocalStorage('LocalStorage');
-    await storage.ready;
+    final storage = await getLocalStorage();
     await storage.deleteItem(widget.clientName);
   }
 

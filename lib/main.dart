@@ -8,12 +8,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:localstorage/localstorage.dart';
 import 'package:sentry/sentry.dart';
 import 'package:universal_html/prefer_universal/html.dart' as html;
 
 import 'components/matrix.dart';
 import 'components/theme_switcher.dart';
+import 'utils/famedlysdk_store.dart';
 import 'views/chat_list.dart';
 
 final sentry = SentryClient(dsn: '8591d0d863b646feb4f3dda7e5dcab38');
@@ -21,8 +21,7 @@ final sentry = SentryClient(dsn: '8591d0d863b646feb4f3dda7e5dcab38');
 void captureException(error, stackTrace) async {
   debugPrint(error.toString());
   debugPrint(stackTrace.toString());
-  final storage = LocalStorage('LocalStorage');
-  await storage.ready;
+  final storage = await getLocalStorage();
   if (storage.getItem('sentry') == true) {
     await sentry.captureException(
       exception: error,
