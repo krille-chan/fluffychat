@@ -6,11 +6,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:localstorage/localstorage.dart';
+import 'package:path_provider/path_provider.dart';
 import 'dart:async';
 import 'dart:core';
 import './database/shared.dart';
 import 'package:olm/olm.dart' as olm; // needed for migration
 import 'package:random_string/random_string.dart';
+
+Future<LocalStorage> getLocalStorage() async {
+  final directory = PlatformInfos.isBetaDesktop
+      ? await getApplicationSupportDirectory()
+      : await getApplicationDocumentsDirectory();
+  final localStorage = LocalStorage('LocalStorage', directory.path);
+  await localStorage.ready;
+  return localStorage;
+}
 
 Future<Database> getDatabase(Client client) async {
   while (_generateDatabaseLock) {
