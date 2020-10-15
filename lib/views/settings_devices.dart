@@ -62,11 +62,14 @@ class DevicesSettingsState extends State<DevicesSettings> {
       labelText: L10n.of(context).changeDeviceName,
     );
     if (displayName == null) return;
-    await SimpleDialogs(context).tryRequestWithLoadingDialog(
+    final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
       Matrix.of(context)
           .client
           .setDeviceMetadata(device.deviceId, displayName: displayName),
     );
+    if (success != false) {
+      reload();
+    }
   }
 
   @override
@@ -101,6 +104,7 @@ class DevicesSettingsState extends State<DevicesSettings> {
               if (thisDevice != null)
                 UserDeviceListItem(
                   thisDevice,
+                  rename: (d) => _renameDeviceAction(context, d),
                   remove: (d) => _removeDevicesAction(context, [d]),
                 ),
               Divider(height: 1),
