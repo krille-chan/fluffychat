@@ -560,14 +560,11 @@ class _ChatState extends State<_Chat> {
       body: Stack(
         children: <Widget>[
           if (Matrix.of(context).wallpaper != null)
-            Opacity(
-              opacity: 0.66,
-              child: Image.file(
-                Matrix.of(context).wallpaper,
-                height: double.infinity,
-                width: double.infinity,
-                fit: BoxFit.cover,
-              ),
+            Image.file(
+              Matrix.of(context).wallpaper,
+              height: double.infinity,
+              width: double.infinity,
+              fit: BoxFit.cover,
             ),
           Column(
             children: <Widget>[
@@ -812,8 +809,7 @@ class _ChatState extends State<_Chat> {
               room.canSendDefaultMessages && room.membership == Membership.join
                   ? Container(
                       decoration: BoxDecoration(
-                        color:
-                            Theme.of(context).backgroundColor.withOpacity(0.8),
+                        color: Theme.of(context).backgroundColor,
                       ),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.end,
