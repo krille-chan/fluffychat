@@ -60,6 +60,7 @@ dependencies:
   flutter_olm: ^1.0.1
   intl: ^0.16.1
   intl_translation: ^0.17.9
+  circular_check_box: ^1.0.4
   flutter_localizations:
     sdk: flutter
   sqflite: ^1.1.7 # Still used to obtain the database location
