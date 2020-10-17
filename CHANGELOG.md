@@ -1,13 +1,18 @@
 # Version 0.20.0 - 2020-??-??
 ### Features
+- Added translations: Arabic
 - Add ability to enable / disable emotes globally
 - Add ability to manage emote packs with different state keys
+- Add swipe to reply - Thanks @inexcode
+- Initial support for compiling to desktop
+- Initial snap metadata - Thanks @RAOF_47
 ### Changes
 - Re-scale images in a separate isolate to prevent the UI from freezing
 - URLs without https:// now linkify
 ### Fixes
 - Fix amoled / theme settings not always saving properly
 - Show device name in account information correctly
+- Fix tapping on aliases / room pills not always working
 
 # Version 0.19.0 - 2020-09-21
 ### Features
