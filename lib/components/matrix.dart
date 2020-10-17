@@ -13,6 +13,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:universal_html/prefer_universal/html.dart' as html;
 import 'package:url_launcher/url_launcher.dart';
+/*import 'package:fluffychat/views/chat.dart';
+import 'package:fluffychat/config/app_config.dart';
+import 'package:dbus/dbus.dart';
+import 'package:desktop_notifications/desktop_notifications.dart';*/
 
 import '../main.dart';
 import '../utils/app_route.dart';
@@ -179,9 +183,10 @@ class MatrixState extends State<Matrix> {
 
   bool webHasFocus = true;
 
-  void _showWebNotification(EventUpdate eventUpdate) async {
-    if (webHasFocus && activeRoomId == eventUpdate.roomID) return;
-    final room = client.getRoomById(eventUpdate.roomID);
+  void _showLocalNotification(EventUpdate eventUpdate) async {
+    final roomId = eventUpdate.roomID;
+    if (webHasFocus && activeRoomId == roomId) return;
+    final room = client.getRoomById(roomId);
     if (room.notificationCount == 0) return;
     final event = Event.fromJson(eventUpdate.content, room);
     final body = event.getLocalizedBody(
@@ -189,19 +194,40 @@ class MatrixState extends State<Matrix> {
       withSenderNamePrefix:
           !room.isDirectChat || room.lastEvent.senderId == client.userID,
     );
-    html.AudioElement()
-      ..src = 'assets/assets/sounds/notification.wav'
-      ..autoplay = true
-      ..load();
-    html.Notification(
-      room.getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
-      body: body,
-      icon: event.sender.avatarUrl?.getThumbnail(client,
-              width: 64, height: 64, method: ThumbnailMethod.crop) ??
-          room.avatar?.getThumbnail(client,
-              width: 64, height: 64, method: ThumbnailMethod.crop),
-    );
+    final icon = event.sender.avatarUrl?.getThumbnail(client,
+            width: 64, height: 64, method: ThumbnailMethod.crop) ??
+        room.avatar?.getThumbnail(client,
+            width: 64, height: 64, method: ThumbnailMethod.crop);
+    if (kIsWeb) {
+      html.AudioElement()
+        ..src = 'assets/assets/sounds/notification.wav'
+        ..autoplay = true
+        ..load();
+      html.Notification(
+        room.getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
+        body: body,
+        icon: icon,
+      );
+    } else if (Platform.isLinux) {
+      /*var sessionBus = DBusClient.session();
+      var client = NotificationClient(sessionBus);
+      _linuxNotificationIds[roomId] = await client.notify(
+        room.getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
+        body: body,
+        replacesID: _linuxNotificationIds[roomId] ?? -1,
+        appName: AppConfig.applicationName,
+        actionCallback: (_) => Navigator.of(context).pushAndRemoveUntil(
+            AppRoute.defaultRoute(
+              context,
+              ChatView(roomId),
+            ),
+            (r) => r.isFirst),
+      );
+      await sessionBus.close();*/
+    }
   }
+
+  //final Map<String, int> _linuxNotificationIds = {};
 
   @override
   void initState() {
@@ -289,7 +315,8 @@ class MatrixState extends State<Matrix> {
     if (kIsWeb) {
       onFocusSub = html.window.onFocus.listen((_) => webHasFocus = true);
       onBlurSub = html.window.onBlur.listen((_) => webHasFocus = false);
-
+    }
+    if (kIsWeb || Platform.isLinux) {
       client.onSync.stream.first.then((s) {
         html.Notification.requestPermission();
         onNotification ??= client.onEvent.stream
@@ -298,7 +325,7 @@ class MatrixState extends State<Matrix> {
                 [EventTypes.Message, EventTypes.Sticker, EventTypes.Encrypted]
                     .contains(e.eventType) &&
                 e.content['sender'] != client.userID)
-            .listen(_showWebNotification);
+            .listen(_showLocalNotification);
       });
     }
     super.initState();

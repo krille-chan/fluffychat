@@ -33,9 +33,10 @@ dependencies:
   file_picker_cross: ^4.2.2
   image_picker: ^0.6.7+11
   url_launcher: ^5.7.2
-  cached_network_image: ^2.3.2+1
+  cached_network_image: ^2.3.3
   firebase_messaging: ^7.0.2
   flutter_local_notifications: ^1.4.3
+  # desktop_notifications: ^0.0.0-dev.4  // Currently blocked by: https://github.com/canonical/desktop_notifications.dart/issues/5
   matrix_link_text: ^0.1.5
   path_provider: ^1.5.1
   webview_flutter: ^0.3.19+9

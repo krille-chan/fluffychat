@@ -417,19 +417,12 @@ class _EmoteImage extends StatelessWidget {
       height: size * devicePixelRatio,
       method: ThumbnailMethod.scale,
     );
-    return PlatformInfos.isBetaDesktop
-        ? Image.network(
-            url,
-            fit: BoxFit.contain,
-            width: size,
-            height: size,
-          )
-        : CachedNetworkImage(
-            imageUrl: url,
-            fit: BoxFit.contain,
-            width: size,
-            height: size,
-          );
+    return CachedNetworkImage(
+      imageUrl: url,
+      fit: BoxFit.contain,
+      width: size,
+      height: size,
+    );
   }
 }
 
