@@ -877,6 +877,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0-nullsafety.1"
+  swipe_to_action:
+    dependency: "direct main"
+    description:
+      name: swipe_to_action
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.0"
   synchronized:
     dependency: transitive
     description:

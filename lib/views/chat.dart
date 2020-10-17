@@ -28,6 +28,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pedantic/pedantic.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
+import 'package:swipe_to_action/swipe_to_action.dart';
 
 import '../components/dialogs/send_file_dialog.dart';
 import '../components/input_bar.dart';
@@ -343,9 +344,9 @@ class _ChatState extends State<_Chat> {
     setState(() => selectedEvents.clear());
   }
 
-  void replyAction() {
+  void replyAction({Event replyTo}) {
     setState(() {
-      replyEvent = selectedEvents.first;
+      replyEvent = replyTo ?? selectedEvents.first;
       selectedEvents.clear();
     });
     inputFocus.requestFocus();
@@ -668,43 +669,67 @@ class _ChatState extends State<_Chat> {
                                       key: ValueKey(i - 1),
                                       index: i - 1,
                                       controller: _scrollController,
-                                      child: Message(filteredEvents[i - 1],
-                                          onAvatarTab: (Event event) {
-                                            sendController.text +=
-                                                ' ${event.senderId}';
-                                          },
-                                          onSelect: (Event event) {
-                                            if (!event.redacted) {
-                                              if (selectedEvents
-                                                  .contains(event)) {
-                                                setState(
-                                                  () => selectedEvents
-                                                      .remove(event),
-                                                );
-                                              } else {
-                                                setState(
-                                                  () =>
-                                                      selectedEvents.add(event),
+                                      child: Swipeable(
+                                        key: ValueKey(
+                                            filteredEvents[i - 1].eventId),
+                                        background: Container(
+                                          color: Theme.of(context)
+                                              .primaryColor
+                                              .withAlpha(100),
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 12.0),
+                                          alignment: Alignment.centerLeft,
+                                          child: Row(
+                                            children: [
+                                              Icon(Icons.reply),
+                                              SizedBox(width: 2.0),
+                                              Text(L10n.of(context).reply)
+                                            ],
+                                          ),
+                                        ),
+                                        direction: SwipeDirection.startToEnd,
+                                        onSwipe: (direction) {
+                                          replyAction(
+                                              replyTo: filteredEvents[i - 1]);
+                                        },
+                                        child: Message(filteredEvents[i - 1],
+                                            onAvatarTab: (Event event) {
+                                              sendController.text +=
+                                                  ' ${event.senderId}';
+                                            },
+                                            onSelect: (Event event) {
+                                              if (!event.redacted) {
+                                                if (selectedEvents
+                                                    .contains(event)) {
+                                                  setState(
+                                                    () => selectedEvents
+                                                        .remove(event),
+                                                  );
+                                                } else {
+                                                  setState(
+                                                    () => selectedEvents
+                                                        .add(event),
+                                                  );
+                                                }
+                                                selectedEvents.sort(
+                                                  (a, b) => a.originServerTs
+                                                      .compareTo(
+                                                          b.originServerTs),
                                                 );
                                               }
-                                              selectedEvents.sort(
-                                                (a, b) => a.originServerTs
-                                                    .compareTo(
-                                                        b.originServerTs),
-                                              );
-                                            }
-                                          },
-                                          scrollToEventId: (String eventId) =>
-                                              _scrollToEventId(eventId,
-                                                  context: context),
-                                          longPressSelect:
-                                              selectedEvents.isEmpty,
-                                          selected: selectedEvents
-                                              .contains(filteredEvents[i - 1]),
-                                          timeline: timeline,
-                                          nextEvent: i >= 2
-                                              ? filteredEvents[i - 2]
-                                              : null),
+                                            },
+                                            scrollToEventId: (String eventId) =>
+                                                _scrollToEventId(eventId,
+                                                    context: context),
+                                            longPressSelect:
+                                                selectedEvents.isEmpty,
+                                            selected: selectedEvents.contains(
+                                                filteredEvents[i - 1]),
+                                            timeline: timeline,
+                                            nextEvent: i >= 2
+                                                ? filteredEvents[i - 2]
+                                                : null),
+                                      ),
                                     );
                         });
                   },
