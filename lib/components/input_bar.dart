@@ -1,4 +1,3 @@
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:famedlysdk/famedlysdk.dart';
@@ -149,17 +148,11 @@ class InputBar extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            PlatformInfos.isBetaDesktop
-                ? Image.network(
-                    url,
-                    width: size,
-                    height: size,
-                  )
-                : CachedNetworkImage(
-                    imageUrl: url,
-                    width: size,
-                    height: size,
-                  ),
+            CachedNetworkImage(
+              imageUrl: url,
+              width: size,
+              height: size,
+            ),
             SizedBox(width: 6),
             Text(suggestion['name']),
             Expanded(

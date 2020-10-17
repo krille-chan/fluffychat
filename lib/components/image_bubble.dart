@@ -1,6 +1,5 @@
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/utils/app_route.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/views/image_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
@@ -127,17 +126,11 @@ class _ImageBubbleState extends State<ImageBubble> {
                   width: 800,
                   height: 800,
                   method: ThumbnailMethod.scale);
-              renderWidget = PlatformInfos.isBetaDesktop
-                  ? Image.network(
-                      src,
-                      fit: widget.fit,
-                    )
-                  : CachedNetworkImage(
-                      imageUrl: src,
-                      placeholder: (context, url) =>
-                          generatePlaceholderWidget(),
-                      fit: widget.fit,
-                    );
+              renderWidget = CachedNetworkImage(
+                imageUrl: src,
+                placeholder: (context, url) => generatePlaceholderWidget(),
+                fit: widget.fit,
+              );
             } else {
               renderWidget = generatePlaceholderWidget();
             }

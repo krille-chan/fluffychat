@@ -77,7 +77,7 @@ packages:
       name: cached_network_image
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.3.2+1"
+    version: "2.3.3"
   canonical_json:
     dependency: transitive
     description:
@@ -287,7 +287,7 @@ packages:
       name: flutter_cache_manager
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.4.2"
+    version: "2.0.0"
   flutter_keyboard_visibility:
     dependency: transitive
     description:

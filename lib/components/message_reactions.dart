@@ -1,5 +1,4 @@
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
@@ -93,15 +92,10 @@ class _Reaction extends StatelessWidget {
       content = Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          PlatformInfos.isBetaDesktop
-              ? Image.network(
-                  src,
-                  height: fontSize,
-                )
-              : CachedNetworkImage(
-                  imageUrl: src,
-                  height: fontSize,
-                ),
+          CachedNetworkImage(
+            imageUrl: src,
+            height: fontSize,
+          ),
           Container(width: 4),
           Text(count.toString(),
               style: TextStyle(
