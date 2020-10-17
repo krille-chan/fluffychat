@@ -672,26 +672,16 @@ class _ChatState extends State<_Chat> {
                                       child: Swipeable(
                                         key: ValueKey(
                                             filteredEvents[i - 1].eventId),
-                                        background: Container(
-                                          color: Theme.of(context)
-                                              .primaryColor
-                                              .withAlpha(100),
+                                        background: Padding(
                                           padding: EdgeInsets.symmetric(
                                               horizontal: 12.0),
-                                          alignment: Alignment.centerLeft,
-                                          child: Row(
-                                            children: [
-                                              Icon(Icons.reply),
-                                              SizedBox(width: 2.0),
-                                              Text(L10n.of(context).reply)
-                                            ],
+                                          child: Center(
+                                            child: Icon(Icons.reply),
                                           ),
                                         ),
-                                        direction: SwipeDirection.startToEnd,
-                                        onSwipe: (direction) {
-                                          replyAction(
-                                              replyTo: filteredEvents[i - 1]);
-                                        },
+                                        direction: SwipeDirection.endToStart,
+                                        onSwipe: (direction) => replyAction(
+                                            replyTo: filteredEvents[i - 1]),
                                         child: Message(filteredEvents[i - 1],
                                             onAvatarTab: (Event event) {
                                               sendController.text +=

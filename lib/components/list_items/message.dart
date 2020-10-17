@@ -8,6 +8,7 @@ import 'package:fluffychat/utils/string_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
+import '../adaptive_page_layout.dart';
 import '../avatar.dart';
 import '../matrix.dart';
 import '../message_reactions.dart';
@@ -86,6 +87,8 @@ class Message extends StatelessWidget {
               color: color,
               borderRadius: BorderRadius.circular(radius),
             ),
+            constraints:
+                BoxConstraints(maxWidth: AdaptivePageLayout.defaultMinWidth),
             child: Stack(
               children: <Widget>[
                 Column(
