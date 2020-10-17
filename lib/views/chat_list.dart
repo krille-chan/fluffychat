@@ -420,37 +420,34 @@ class _ChatListState extends State<ChatList> {
                                 ),
                               ),
                   ),
-                  floatingActionButton:
-                      (AdaptivePageLayout.columnMode(context) ||
-                              selectMode != SelectMode.normal)
-                          ? null
-                          : Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                FloatingActionButton(
-                                  heroTag: null,
-                                  child: Icon(
-                                    Icons.edit,
-                                    color: Theme.of(context).primaryColor,
-                                  ),
-                                  elevation: 1,
-                                  backgroundColor:
-                                      Theme.of(context).secondaryHeaderColor,
-                                  onPressed: () => _setStatus(context),
-                                ),
-                                SizedBox(height: 16.0),
-                                FloatingActionButton(
-                                  child: Icon(Icons.add),
-                                  backgroundColor:
-                                      Theme.of(context).primaryColor,
-                                  onPressed: () => Navigator.of(context)
-                                      .pushAndRemoveUntil(
-                                          AppRoute.defaultRoute(
-                                              context, NewPrivateChatView()),
-                                          (r) => r.isFirst),
-                                ),
-                              ],
+                  floatingActionButton: AdaptivePageLayout.columnMode(context)
+                      ? null
+                      : Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            FloatingActionButton(
+                              heroTag: null,
+                              child: Icon(
+                                Icons.edit,
+                                color: Theme.of(context).primaryColor,
+                              ),
+                              elevation: 1,
+                              backgroundColor:
+                                  Theme.of(context).secondaryHeaderColor,
+                              onPressed: () => _setStatus(context),
                             ),
+                            SizedBox(height: 16.0),
+                            FloatingActionButton(
+                              child: Icon(Icons.add),
+                              backgroundColor: Theme.of(context).primaryColor,
+                              onPressed: () => Navigator.of(context)
+                                  .pushAndRemoveUntil(
+                                      AppRoute.defaultRoute(
+                                          context, NewPrivateChatView()),
+                                      (r) => r.isFirst),
+                            ),
+                          ],
+                        ),
                   body: Column(
                     children: [
                       ConnectionStatusHeader(),
@@ -532,11 +529,7 @@ class _ChatListState extends State<ChatList> {
                                             (BuildContext context, int i) {
                                           if (i == 0) {
                                             final displayPresences =
-                                                Matrix.of(context)
-                                                        .userStatuses
-                                                        .isNotEmpty &&
-                                                    selectMode ==
-                                                        SelectMode.normal;
+                                                selectMode != SelectMode.share;
                                             final displayShareStatus =
                                                 selectMode ==
                                                         SelectMode.share &&
