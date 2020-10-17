@@ -519,7 +519,7 @@ packages:
       name: matrix_link_text
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.5"
+    version: "0.2.0"
   meta:
     dependency: transitive
     description:
@@ -1074,5 +1074,5 @@ packages:
     source: hosted
     version: "0.1.2"
 sdks:
-  dart: ">=2.10.0-110 <2.11.0"
+  dart: ">=2.10.0-110 <=2.11.0-161.0.dev"
   flutter: ">=1.20.0 <2.0.0"
