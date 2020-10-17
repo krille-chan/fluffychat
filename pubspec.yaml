@@ -69,6 +69,7 @@ dependencies:
   flutter_blurhash: ^0.5.0
   sentry: ">=3.0.0 <4.0.0"
   scroll_to_index: ^1.0.6
+  swipe_to_action: ^0.1.0
 
 dev_dependencies:
   flutter_test:
