@@ -4,6 +4,7 @@
 - Add ability to manage emote packs with different state keys
 ### Changes
 - Re-scale images in a separate isolate to prevent the UI from freezing
+- URLs without https:// now linkify
 ### Fixes
 - Fix amoled / theme settings not always saving properly
 - Show device name in account information correctly
