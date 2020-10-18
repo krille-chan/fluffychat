@@ -9,6 +9,8 @@
 ### Changes
 - Re-scale images in a separate isolate to prevent the UI from freezing
 - URLs without https:// now linkify
+- Parse all URIs, not just URLs
+- emails will linkify now
 ### Fixes
 - Fix amoled / theme settings not always saving properly
 - Show device name in account information correctly
