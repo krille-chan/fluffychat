@@ -1,6 +1,6 @@
 name: fluffychat
-base: core18 # the base snap is the execution environment for this snap
-version: git # just for humans, typically '1.2+git' or '1.3.2'
+base: core18
+version: script
 summary: Open. Nonprofit. Cute ♥
 description: |
   FluffyChat - Chat with your friends
@@ -22,24 +22,28 @@ description: |
   Website: http://fluffy.chat
   Microblog: https://metalhead.club/@krille
 
-grade: devel # must be 'stable' to release into candidate/stable channels
-confinement: strict # use 'strict' once you have the right plugs and slots
+grade: devel
+icon: assets/logo.png
+confinement: devmode
 
 parts:
-  olm:
-    plugin: cmake
+  olm:  # FIXME
     source: https://gitlab.matrix.org/matrix-org/olm.git
     source-type: git
     source-tag: 3.2.1
+    plugin: cmake
+    build-packages:
+    - build-essential
+    override-build: |
+      cd /root/parts/olm/src
+      cmake . -Bbuild
+      cmake --build build
   fluffychat:
-    plugin: flutter
-    source: .
-    flutter-target: lib/main.dart
+    after: [olm]
+    plugin: dump
+    source: ./build/linux/release/bundle
     stage-packages:
-      - libsqlite3-0
-    override-prime: |
-      snapcraftctl prime
-      ln -sf libsqlite3.so.0 ${SNAPCRAFT_PRIME}/usr/lib/x86_64-linux-gnu/libsqlite3.so
+      - libsqlite3-dev
 
 slots:
   dbus-svc:
@@ -51,7 +55,7 @@ apps:
   fluffychat:
     command: fluffychat
     extensions:
-      - flutter-dev
+      - gnome-3-28
     plugs:
       - network
       - home
