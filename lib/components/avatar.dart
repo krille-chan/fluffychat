@@ -30,9 +30,9 @@ class Avatar extends StatelessWidget {
     );
     final src = thumbnail;
     var fallbackLetters = '@';
-    if ((name?.length ?? 0) >= 2) {
+    if ((name?.runes?.length ?? 0) >= 2) {
       fallbackLetters = String.fromCharCodes(name.runes, 0, 2);
-    } else if ((name?.length ?? 0) == 1) {
+    } else if ((name?.runes?.length ?? 0) == 1) {
       fallbackLetters = name;
     }
     final textWidget = Center(
