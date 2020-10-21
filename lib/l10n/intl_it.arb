@@ -461,5 +461,122 @@
   "@askSSSSCache": {
     "type": "text",
     "placeholders": {}
+  },
+  "enterAUsername": "Inserisci un username",
+  "@enterAUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterAGroupName": "Inserisci un nome del gruppo",
+  "@enterAGroupName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "endedTheCall": "{senderName} è entrato in chiamata",
+  "@endedTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "end2endEncryptionSettings": "Impostazioni crittografia end-to-end",
+  "@end2endEncryptionSettings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encryptionNotEnabled": "Crittografia non abilitata",
+  "@encryptionNotEnabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encryptionAlgorithm": "Algoritmo crittografia",
+  "@encryptionAlgorithm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encryption": "Crittografia",
+  "@encryption": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEncryptionWarning": "Non potrai disabilitare la crittografia in futuro. Sei sicuro?",
+  "@enableEncryptionWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEmotesGlobally": "Abilita i pacchetti emotes globalmente",
+  "@enableEmotesGlobally": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emptyChat": "Chat vuota",
+  "@emptyChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emotePacks": "Pacchetti emotes della stanza",
+  "@emotePacks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteInvalid": "Shortcode emote invalido!",
+  "@emoteInvalid": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteExists": "L'emote già esiste!",
+  "@emoteExists": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteWarnNeedToPick": "Devi scegliere uno shortcode emote e aggiungere un immagine!",
+  "@emoteWarnNeedToPick": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteShortcode": "Shortcode Emotes",
+  "@emoteShortcode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteSettings": "Impostazioni Emotes",
+  "@emoteSettings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editDisplayname": "Modifica nominativo",
+  "@editDisplayname": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "downloadFile": "Scarica file",
+  "@downloadFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "displaynameHasBeenChanged": "Il nominativo è stato cambiato",
+  "@displaynameHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discardPicture": "Rimuovi immagine",
+  "@discardPicture": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "devices": "Dispositivi",
+  "@devices": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "device": "Dispositivo",
+  "@device": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deny": "Declina",
+  "@deny": {
+    "type": "text",
+    "placeholders": {}
   }
 }
