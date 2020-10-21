@@ -85,6 +85,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  catex:
+    dependency: transitive
+    description:
+      name: catex
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.1+6"
   characters:
     dependency: transitive
     description:
@@ -194,8 +201,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "74bd1d331b77f45ab0793af7c9e607795b8c16f0"
-      resolved-ref: "74bd1d331b77f45ab0793af7c9e607795b8c16f0"
+      ref: be6824b7465b2bda7e5b769254be5cddd207b479
+      resolved-ref: be6824b7465b2bda7e5b769254be5cddd207b479
       url: "https://gitlab.com/famedly/famedlysdk.git"
     source: git
     version: "0.0.1"
@@ -334,7 +341,7 @@ packages:
       name: flutter_matrix_html
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.7"
+    version: "0.1.9"
   flutter_olm:
     dependency: "direct main"
     description:
@@ -526,7 +533,7 @@ packages:
       name: matrix_link_text
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.0"
+    version: "0.3.1"
   meta:
     dependency: transitive
     description:
