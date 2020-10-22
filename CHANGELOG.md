@@ -6,15 +6,18 @@
 - Add swipe to reply - Thanks @inexcode
 - Initial support for compiling to desktop
 - Initial snap metadata - Thanks @RAOF_47
+- Add latex parsing as per [MSC2191](https://github.com/matrix-org/matrix-doc/pull/2191) - `$tex$` for inline and `$$` for blocks
 ### Changes
 - Re-scale images in a separate isolate to prevent the UI from freezing
 - URLs without https:// now linkify
 - Parse all URIs, not just URLs
 - emails will linkify now
+- Make sure login to dendrite is working properly
 ### Fixes
 - Fix amoled / theme settings not always saving properly
 - Show device name in account information correctly
 - Fix tapping on aliases / room pills not always working
+- Link clicking in web not always working
 
 # Version 0.19.0 - 2020-09-21
 ### Features
