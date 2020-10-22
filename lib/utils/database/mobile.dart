@@ -77,8 +77,9 @@ Future<Database> constructDb(
 }
 
 DynamicLibrary _openOnWindows() {
-  final script = File(Platform.script.toFilePath());
-  final libraryNextToScript = File('${script.path}/sqlite3.dll');
+  final exe_path = File(
+      Platform.resolvedExecutable.replaceAll(RegExp(r'fluffychat.exe'), ''));
+  final libraryNextToScript = File('${exe_path.path}/sqlite3.dll');
   return DynamicLibrary.open(libraryNextToScript.path);
 }
 
