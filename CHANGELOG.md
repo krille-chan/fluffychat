@@ -1,4 +1,4 @@
-# Version 0.20.0 - 2020-??-??
+# Version 0.20.0 - 2020-10-23
 ### Features
 - Added translations: Arabic
 - Add ability to enable / disable emotes globally
