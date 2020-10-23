@@ -98,6 +98,8 @@ class _ChatState extends State<_Chat> {
 
   String inputText = '';
 
+  String pendingText = '';
+
   bool get _canLoadMore => timeline.events.last.type != EventTypes.RoomCreate;
 
   void requestHistory() async {
@@ -202,12 +204,13 @@ class _ChatState extends State<_Chat> {
     if (sendController.text.isEmpty) return;
     room.sendTextEvent(sendController.text,
         inReplyTo: replyEvent, editEventId: editEvent?.eventId);
-    sendController.text = '';
+    sendController.text = pendingText;
 
     setState(() {
-      inputText = '';
+      inputText = pendingText;
       replyEvent = null;
       editEvent = null;
+      pendingText = '';
     });
   }
 
@@ -522,8 +525,9 @@ class _ChatState extends State<_Chat> {
                     icon: Icon(Icons.edit),
                     onPressed: () {
                       setState(() {
+                        pendingText = sendController.text;
                         editEvent = selectedEvents.first;
-                        sendController.text = editEvent
+                        inputText = sendController.text = editEvent
                             .getDisplayEvent(timeline)
                             .getLocalizedBody(MatrixLocals(L10n.of(context)),
                                 withSenderNamePrefix: false, hideReply: true);
@@ -787,6 +791,10 @@ class _ChatState extends State<_Chat> {
                       IconButton(
                         icon: Icon(Icons.close),
                         onPressed: () => setState(() {
+                          if (editEvent != null) {
+                            inputText = sendController.text = pendingText;
+                            pendingText = '';
+                          }
                           replyEvent = null;
                           editEvent = null;
                         }),

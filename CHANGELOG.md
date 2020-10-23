@@ -18,6 +18,7 @@
 - Show device name in account information correctly
 - Fix tapping on aliases / room pills not always working
 - Link clicking in web not always working
+- Return message input field to previous state after editing message - Thanks @inexcode
 
 # Version 0.19.0 - 2020-09-21
 ### Features
