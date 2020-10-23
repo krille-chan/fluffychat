@@ -1698,7 +1698,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "deactivateAccountWarning": "Это деактивирует вашу учётную запись пользователя. Это не может быть отменено! Вы уверены?",
+  "deactivateAccountWarning": "Это деактивирует вашу учётную запись пользователя. Данное действие не может быть отменено! Вы уверены?",
   "@deactivateAccountWarning": {
     "type": "text",
     "placeholders": {}
@@ -1708,12 +1708,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "enableEmotesGlobally": "Включить набор эмоджи глобально",
+  "enableEmotesGlobally": "Включить набор эмодзи глобально",
   "@enableEmotesGlobally": {
     "type": "text",
     "placeholders": {}
   },
-  "emotePacks": "Наборы эмоджи для комнаты",
+  "emotePacks": "Наборы эмодзи для комнаты",
   "@emotePacks": {
     "type": "text",
     "placeholders": {}
