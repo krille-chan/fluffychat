@@ -9,12 +9,7 @@
 	.st3{fill:#FFFFFF;}
 </style>
 <g id="Capa_1">
-	<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="90.891" y1="0.2799" x2="90.891" y2="181.8763">
-		<stop  offset="0" style="stop-color:#F6BFD9"/>
-		<stop  offset="0.9951" style="stop-color:#F3A8CA"/>
-	</linearGradient>
-	<rect x="0.1" y="0.3" class="st0" width="181.6" height="181.6"/>
-	<path class="st1" d="M181.7,37.6v144.3H0.1v-37.3c0,0,2-1.4,5.5-3.8C36,119.6,181.7,19.2,181.7,37.6z"/>
+	<rect x="0" y="0" style="color:#FFFFFF" width="181.4" height="181.9" class="st3"/>
 </g>
 <g id="Capa_2">
 	<g>
