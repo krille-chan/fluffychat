@@ -175,7 +175,7 @@ class ThemeSwitcherWidgetState extends State<ThemeSwitcherWidget> {
   BuildContext context;
 
   Future loadSelection(MatrixState matrix) async {
-    String item = await matrix.store.getItem('theme') ?? 'system';
+    var item = await matrix.store.getItem('theme') ?? 'system';
     selectedTheme = Themes.values.firstWhere(
         (e) => e.toString() == 'Themes.' + item,
         orElse: () => Themes.system);

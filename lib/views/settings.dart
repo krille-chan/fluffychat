@@ -185,7 +185,7 @@ class _SettingsState extends State<Settings> {
 
   void deleteWallpaperAction(BuildContext context) async {
     Matrix.of(context).wallpaper = null;
-    await Matrix.of(context).store.setItem('chat.fluffy.wallpaper', null);
+    await Matrix.of(context).store.deleteItem('chat.fluffy.wallpaper');
     setState(() => null);
   }
 
