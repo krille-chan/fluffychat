@@ -68,6 +68,11 @@ class Avatar extends StatelessWidget {
                       textWidget,
                     ],
                   ),
+                  errorWidget: (c, s, d) => Stack(
+                    children: [
+                      textWidget,
+                    ],
+                  ),
                 ),
         ),
       ),
