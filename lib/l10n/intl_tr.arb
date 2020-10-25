@@ -137,7 +137,7 @@
       "targetName": {}
     }
   },
-  "blockDevice": "Cihazı Engelle",
+  "blockDevice": "Aygıtı Engelle",
   "@blockDevice": {
     "type": "text",
     "placeholders": {}
@@ -323,12 +323,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "compareEmojiMatch": "Karşılaştırın ve aşağıdaki emojilerin diğer cihazdakilerle eşleştiğinden emin olun:",
+  "compareEmojiMatch": "Karşılaştırın ve aşağıdaki emojilerin diğer aygıttaki emojilerle eşleştiğinden emin olun:",
   "@compareEmojiMatch": {
     "type": "text",
     "placeholders": {}
   },
-  "compareNumbersMatch": "Karşılaştırın ve aşağıdaki numaraların diğer cihazdakilerle eşleştiğinden emin olun:",
+  "compareNumbersMatch": "Karşılaştırın ve aşağıdaki numaraların diğer aygıttaki numaralarla eşleştiğinden emin olun:",
   "@compareNumbersMatch": {
     "type": "text",
     "placeholders": {}
@@ -474,12 +474,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "device": "Cihaz",
+  "device": "Aygıt",
   "@device": {
     "type": "text",
     "placeholders": {}
   },
-  "devices": "Cihazlar",
+  "devices": "Aygıtlar",
   "@devices": {
     "type": "text",
     "placeholders": {}
@@ -727,7 +727,7 @@
       "link": {}
     }
   },
-  "isDeviceKeyCorrect": "Aşağıdaki cihaz anahtarı doğru mu?",
+  "isDeviceKeyCorrect": "Aşağıdaki aygıt anahtarı doğru mu?",
   "@isDeviceKeyCorrect": {
     "type": "text",
     "placeholders": {}
@@ -983,7 +983,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "participatingUserDevices": "Katılan kullanıcı cihazları",
+  "participatingUserDevices": "Katılan kullanıcı aygıtları",
   "@participatingUserDevices": {
     "type": "text",
     "placeholders": {}
@@ -1069,7 +1069,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "removeAllOtherDevices": "Diğer tüm cihazları kaldır",
+  "removeAllOtherDevices": "Diğer tüm aygıtları kaldır",
   "@removeAllOtherDevices": {
     "type": "text",
     "placeholders": {}
@@ -1081,7 +1081,7 @@
       "username": {}
     }
   },
-  "removeDevice": "Cihazı kaldır",
+  "removeDevice": "Aygıtı kaldır",
   "@removeDevice": {
     "type": "text",
     "placeholders": {}
@@ -1355,12 +1355,12 @@
       "targetName": {}
     }
   },
-  "unblockDevice": "Cihazın Engellemesini Kaldır",
+  "unblockDevice": "Aygıtın Engellemesini Kaldır",
   "@unblockDevice": {
     "type": "text",
     "placeholders": {}
   },
-  "unknownDevice": "Bilinmeyen cihaz",
+  "unknownDevice": "Bilinmeyen aygıt",
   "@unknownDevice": {
     "type": "text",
     "placeholders": {}
@@ -1718,7 +1718,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changeDeviceName": "Cihaz adını değiştir",
+  "changeDeviceName": "Aygıt adını değiştir",
   "@changeDeviceName": {
     "type": "text",
     "placeholders": {}
