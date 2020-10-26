@@ -1,1 +1,98 @@
-{}
+{
+  "blockDevice": "Thiết bị bị chặn",
+  "@blockDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askSSSSCache": "Vui lòng nhập cụm mật khẩu hoặc khóa khôi phục để lưu khóa vào bộ nhớ cache.",
+  "@askSSSSCache": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSure": "Bạn chắc chứ?",
+  "@areYouSure": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areGuestsAllowedToJoin": "Khách vãng lai có được tham gia không",
+  "@areGuestsAllowedToJoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "archivedRoom": "Phòng hội thảo đã lưu trữ",
+  "@archivedRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "archive": "Lưu trữ",
+  "@archive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "anyoneCanJoin": "Mọi người đều có thể gia nhập",
+  "@anyoneCanJoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "answeredTheCall": "{senderName} đã trả lời cuộc gọi",
+  "@answeredTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "alreadyHaveAnAccount": "Bạn đã có tài khoản?",
+  "@alreadyHaveAnAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "alias": "bí danh",
+  "@alias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "admin": "Quản trị viên",
+  "@admin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addGroupDescription": "Thêm mô tả cho nhóm",
+  "@addGroupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "activatedEndToEndEncryption": "{username} đã kích hoạt mã hóa đầu cuối 2 chiều",
+  "@activatedEndToEndEncryption": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "accountInformation": "Thông tin tài khoản",
+  "@accountInformation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "account": "Tài khoản",
+  "@account": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "acceptedTheInvitation": "{username} đã đồng ý lời mời",
+  "@acceptedTheInvitation": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "accept": "Đồng ý",
+  "@accept": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about": "Giới thiệu",
+  "@about": {
+    "type": "text",
+    "placeholders": {}
+  }
+}
