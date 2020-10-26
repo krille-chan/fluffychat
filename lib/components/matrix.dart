@@ -81,8 +81,7 @@ class MatrixState extends State<Matrix> {
   void clean() async {
     if (!kIsWeb) return;
 
-    final storage = await getLocalStorage();
-    await storage.deleteItem(widget.clientName);
+    await store.deleteItem(widget.clientName);
   }
 
   void _initWithStore() async {

@@ -21,8 +21,8 @@ final sentry = SentryClient(dsn: '8591d0d863b646feb4f3dda7e5dcab38');
 void captureException(error, stackTrace) async {
   debugPrint(error.toString());
   debugPrint(stackTrace.toString());
-  final storage = await getLocalStorage();
-  if (storage.getItem('sentry') == true) {
+  final storage = Store();
+  if (await storage.getItem('sentry') == 'true') {
     await sentry.captureException(
       exception: error,
       stackTrace: stackTrace,

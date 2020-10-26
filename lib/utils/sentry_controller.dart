@@ -13,14 +13,14 @@ abstract class SentryController {
       confirmText: L10n.of(context).ok,
       cancelText: L10n.of(context).no,
     );
-    final storage = await getLocalStorage();
-    await storage.setItem('sentry', enableSentry);
+    final storage = Store();
+    await storage.setItem('sentry', enableSentry.toString());
     BotToast.showText(text: L10n.of(context).changesHaveBeenSaved);
     return;
   }
 
   static Future<bool> getSentryStatus() async {
-    final storage = await getLocalStorage();
-    return storage.getItem('sentry') as bool;
+    final storage = Store();
+    return await storage.getItem('sentry') == 'true';
   }
 }
