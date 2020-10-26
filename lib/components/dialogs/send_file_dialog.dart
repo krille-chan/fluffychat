@@ -19,7 +19,7 @@ class SendFileDialog extends StatefulWidget {
 
 class _SendFileDialogState extends State<SendFileDialog> {
   bool origImage = false;
-
+  bool _isSending = false;
   Future<void> _send() async {
     var file = widget.file;
     if (file is MatrixImageFile && !origImage) {
@@ -82,10 +82,16 @@ class _SendFileDialogState extends State<SendFileDialog> {
         ),
         FlatButton(
           child: Text(L10n.of(context).send),
-          onPressed: () async {
-            await SimpleDialogs(context).tryRequestWithLoadingDialog(_send());
-            await Navigator.of(context).pop();
-          },
+          onPressed: _isSending
+              ? null
+              : () async {
+                  setState(() {
+                    _isSending = true;
+                  });
+                  await SimpleDialogs(context)
+                      .tryRequestWithLoadingDialog(_send());
+                  await Navigator.of(context).pop();
+                },
         ),
       ],
     );
