@@ -87,4 +87,6 @@ dependencies {
     implementation "net.zetetic:android-database-sqlcipher:4.4.0" // needed for moor_ffi w/ sqlcipher
 }
 
-apply plugin: "com.google.gms.google-services"
+if(file("google-services.json").exists() || System.getenv('CI')){
+    apply plugin: 'com.google.gms.google-services'
+}
