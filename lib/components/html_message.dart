@@ -33,6 +33,8 @@ class HtmlMessage extends StatelessWidget {
 
     // there is no need to pre-validate the html, as we validate it while rendering
 
+    final matrix = Matrix.of(context);
+
     final themeData = Theme.of(context);
     return Html(
       data: renderHtml,
@@ -50,11 +52,17 @@ class HtmlMessage extends StatelessWidget {
       getMxcUrl: (String mxc, double width, double height) {
         final ratio = MediaQuery.of(context).devicePixelRatio;
         return Uri.parse(mxc)?.getThumbnail(
-          Matrix.of(context).client,
+          matrix.client,
           width: (width ?? 800) * ratio,
           height: (height ?? 800) * ratio,
           method: ThumbnailMethod.scale,
         );
+      },
+      setCodeLanguage: (String key, String value) async {
+        await matrix.store.setItem('code_language.$key', value);
+      },
+      getCodeLanguage: (String key) async {
+        return await matrix.store.getItem('code_language.$key');
       },
       getPillInfo: (String identifier) async {
         if (room == null) {

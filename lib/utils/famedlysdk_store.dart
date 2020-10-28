@@ -62,7 +62,7 @@ class Store {
     if (!PlatformInfos.isMobile) {
       await _setupLocalStorage();
       try {
-        return await storage.getItem(key).toString();
+        return await storage.getItem(key)?.toString();
       } catch (_) {
         return null;
       }
