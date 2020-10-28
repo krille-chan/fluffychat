@@ -173,7 +173,7 @@ class UserBottomSheet extends StatelessWidget {
                       subtitle:
                           Text(presence.getLocalizedLastActiveAgo(context)),
                       trailing: Icon(Icons.circle,
-                          color: presence.presence.currentlyActive
+                          color: presence.presence.currentlyActive ?? false
                               ? Colors.green
                               : Colors.grey),
                     ),

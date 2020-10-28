@@ -18,6 +18,8 @@ import 'views/chat_list.dart';
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+  FlutterError.onError = (FlutterErrorDetails details) =>
+      Zone.current.handleUncaughtError(details.exception, details.stack);
   runZonedGuarded(
     () => runApp(App()),
     SentryController.captureException,

@@ -2,6 +2,7 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:sentry/sentry.dart';
 
@@ -31,8 +32,7 @@ abstract class SentryController {
   static void captureException(error, stackTrace) async {
     debugPrint(error.toString());
     debugPrint(stackTrace.toString());
-    final storage = Store();
-    if (await storage.getItem('sentry') == 'true') {
+    if (!kDebugMode && await getSentryStatus()) {
       await sentry.captureException(
         exception: error,
         stackTrace: stackTrace,
