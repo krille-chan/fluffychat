@@ -32,7 +32,7 @@ extension PresenceExtension on Presence {
     if (presence.statusMsg?.isNotEmpty ?? false) {
       return presence.statusMsg;
     }
-    if (presence.currentlyActive) {
+    if (presence.currentlyActive ?? false) {
       return L10n.of(context).currentlyActive;
     }
     return presence.presence.getLocalized(context);
