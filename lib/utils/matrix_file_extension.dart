@@ -1,11 +1,14 @@
 import 'dart:io';
 
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:universal_html/prefer_universal/html.dart' as html;
 import 'package:mime_type/mime_type.dart';
+import 'package:downloads_path_provider_28/downloads_path_provider_28.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 extension MatrixFileExtension on MatrixFile {
   void open() async {
@@ -24,9 +27,12 @@ extension MatrixFileExtension on MatrixFile {
       element.click();
       element.remove();
     } else {
-      final downloadsDir = Platform.isAndroid
-          ? (await getExternalStorageDirectory())
-          : (await getApplicationDocumentsDirectory());
+      if (!(await Permission.storage.request()).isGranted) return;
+      final downloadsDir = PlatformInfos.isDesktop
+          ? (await getDownloadsDirectory())
+          : Platform.isAndroid
+              ? (await DownloadsPathProvider.downloadsDirectory)
+              : (await getApplicationDocumentsDirectory());
 
       final file = File(downloadsDir.path + '/' + name.split('/').last);
       file.writeAsBytesSync(bytes);
