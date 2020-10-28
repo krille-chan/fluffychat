@@ -244,7 +244,7 @@ class MatrixState extends State<Matrix> {
           });
       onJitsiCallSub ??= client.onEvent.stream
           .where((e) =>
-              e.type == 'timeline' &&
+              e.type == EventUpdateType.timeline &&
               e.eventType == 'm.room.message' &&
               e.content['content']['msgtype'] == Matrix.callNamespace &&
               e.content['sender'] != client.userID)
@@ -313,7 +313,7 @@ class MatrixState extends State<Matrix> {
         html.Notification.requestPermission();
         onNotification ??= client.onEvent.stream
             .where((e) =>
-                e.type == 'timeline' &&
+                e.type == EventUpdateType.timeline &&
                 [EventTypes.Message, EventTypes.Sticker, EventTypes.Encrypted]
                     .contains(e.eventType) &&
                 e.content['sender'] != client.userID)
