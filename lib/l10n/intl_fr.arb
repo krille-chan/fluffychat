@@ -1722,5 +1722,25 @@
   "@changeDeviceName": {
     "type": "text",
     "placeholders": {}
+  },
+  "unavailable": "Indisponible",
+  "@unavailable": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offline": "Hors ligne",
+  "@offline": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "online": "En ligne",
+  "@online": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "mention": "Mention",
+  "@mention": {
+    "type": "text",
+    "placeholders": {}
   }
 }
