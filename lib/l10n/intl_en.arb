@@ -895,6 +895,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "mention": "Mention",
+  "@mention": {
+    "type": "text",
+    "placeholders": {}
+  },
   "messageWillBeRemovedWarning": "Message will be removed for all participants",
   "@messageWillBeRemovedWarning": {
     "type": "text",
@@ -989,6 +994,21 @@
   },
   "onlineKeyBackupDisabled": "Online Key Backup is disabled",
   "@onlineKeyBackupDisabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "online": "Online",
+  "@online": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offline": "Offline",
+  "@offline": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unavailable": "Unavailable",
+  "@unavailable": {
     "type": "text",
     "placeholders": {}
   },

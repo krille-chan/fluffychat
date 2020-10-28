@@ -7,9 +7,9 @@ import 'package:fluffychat/components/avatar.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/utils/app_route.dart';
+import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:share/share.dart';
 
 import 'chat.dart';
 import 'chat_list.dart';
@@ -204,9 +204,10 @@ class _NewPrivateChatState extends State<_NewPrivateChat> {
                 Icons.share,
                 size: 16,
               ),
-              onTap: () => Share.share(L10n.of(context).inviteText(
-                  Matrix.of(context).client.userID,
-                  'https://matrix.to/#/${Matrix.of(context).client.userID}')),
+              onTap: () => FluffyShare.share(
+                  L10n.of(context).inviteText(Matrix.of(context).client.userID,
+                      'https://matrix.to/#/${Matrix.of(context).client.userID}'),
+                  context),
               title: Text(
                 '${L10n.of(context).yourOwnUsername}:',
                 style: TextStyle(
