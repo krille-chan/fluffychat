@@ -27,7 +27,7 @@ dependencies:
   famedlysdk:
     git:
       url: https://gitlab.com/famedly/famedlysdk.git
-      ref: 412da6ae0cf3aa8139a29381c4f07910d541deab
+      ref: 955fb747c29eab76b17eb9a13ebc15026e917fb8
 
   localstorage: ^3.0.1+4
   file_picker_cross: ^4.2.2
