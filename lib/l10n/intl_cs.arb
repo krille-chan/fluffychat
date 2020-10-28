@@ -1702,5 +1702,45 @@
   "@deactivateAccountWarning": {
     "type": "text",
     "placeholders": {}
+  },
+  "privacy": "Soukromí",
+  "@privacy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unavailable": "Nedostupní",
+  "@unavailable": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "online": "Připojeni",
+  "@online": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offline": "Odpojeni",
+  "@offline": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "mention": "Zmiň",
+  "@mention": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEmotesGlobally": "Aktivuj balíček emotikon všude",
+  "@enableEmotesGlobally": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emotePacks": "Balíček emotikon pro místnost",
+  "@emotePacks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeDeviceName": "Změnit název zařízení",
+  "@changeDeviceName": {
+    "type": "text",
+    "placeholders": {}
   }
 }
