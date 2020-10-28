@@ -15,6 +15,7 @@ import 'package:fluffychat/components/encryption_button.dart';
 import 'package:fluffychat/components/list_items/message.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/components/reply_content.dart';
+import 'package:fluffychat/components/user_bottom_sheet.dart';
 import 'package:fluffychat/config/app_emojis.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/utils/matrix_locals.dart';
@@ -476,16 +477,22 @@ class _ChatState extends State<_Chat> {
                   return ListTile(
                     leading: Avatar(room.avatar, room.displayname),
                     contentPadding: EdgeInsets.zero,
-                    onTap: room.isDirectChat && room.directChatPresence == null
-                        ? null
-                        : room.isDirectChat
-                            ? null
-                            : () => Navigator.of(context).push(
-                                  AppRoute.defaultRoute(
-                                    context,
-                                    ChatDetails(room),
-                                  ),
-                                ),
+                    onTap: room.isDirectChat
+                        ? () => showModalBottomSheet(
+                              context: context,
+                              builder: (context) => UserBottomSheet(
+                                user: room
+                                    .getUserByMXIDSync(room.directChatMatrixID),
+                                onMention: () => sendController.text +=
+                                    ' ${room.directChatMatrixID}',
+                              ),
+                            )
+                        : () => Navigator.of(context).push(
+                              AppRoute.defaultRoute(
+                                context,
+                                ChatDetails(room),
+                              ),
+                            ),
                     title: Text(
                         room.getLocalizedDisplayname(
                             MatrixLocals(L10n.of(context))),
@@ -684,10 +691,17 @@ class _ChatState extends State<_Chat> {
                                         onSwipe: (direction) => replyAction(
                                             replyTo: filteredEvents[i - 1]),
                                         child: Message(filteredEvents[i - 1],
-                                            onAvatarTab: (Event event) {
-                                              sendController.text +=
-                                                  ' ${event.senderId}';
-                                            },
+                                            onAvatarTab: (Event event) =>
+                                                showModalBottomSheet(
+                                                  context: context,
+                                                  builder: (context) =>
+                                                      UserBottomSheet(
+                                                    user: event.sender,
+                                                    onMention: () =>
+                                                        sendController.text +=
+                                                            ' ${event.senderId}',
+                                                  ),
+                                                ),
                                             onSelect: (Event event) {
                                               if (!event.redacted) {
                                                 if (selectedEvents

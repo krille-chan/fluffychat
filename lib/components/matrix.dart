@@ -7,7 +7,6 @@ import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/utils/firebase_controller.dart';
 import 'package:fluffychat/utils/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/utils/user_status.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -22,7 +21,6 @@ import '../main.dart';
 import '../utils/app_route.dart';
 import '../utils/beautify_string_extension.dart';
 import '../utils/famedlysdk_store.dart';
-import '../utils/presence_extension.dart';
 import '../views/key_verification.dart';
 import '../utils/platform_infos.dart';
 import 'avatar.dart';
@@ -91,7 +89,6 @@ class MatrixState extends State<Matrix> {
       await client.connect();
       final firstLoginState = await initLoginState;
       if (firstLoginState == LoginState.logged) {
-        _cleanUpUserStatus(userStatuses);
         if (PlatformInfos.isMobile) {
           await FirebaseController.setupFirebase(
             this,
@@ -123,7 +120,6 @@ class MatrixState extends State<Matrix> {
   StreamSubscription onNotification;
   StreamSubscription<html.Event> onFocusSub;
   StreamSubscription<html.Event> onBlurSub;
-  StreamSubscription onPresenceSub;
 
   void onJitsiCall(EventUpdate eventUpdate) {
     final event = Event.fromJson(
@@ -246,9 +242,6 @@ class MatrixState extends State<Matrix> {
           importantStateEvents: <String>{
             'im.ponies.room_emotes', // we want emotes to work properly
           });
-      onPresenceSub ??= client.onPresence.stream
-          .where((p) => p.isUserStatus)
-          .listen(_storeUserStatus);
       onJitsiCallSub ??= client.onEvent.stream
           .where((e) =>
               e.type == 'timeline' &&
@@ -330,64 +323,11 @@ class MatrixState extends State<Matrix> {
     super.initState();
   }
 
-  List<UserStatus> get userStatuses {
-    try {
-      return (client.accountData[userStatusesType].content['user_statuses']
-              as List)
-          .map((json) => UserStatus.fromJson(json))
-          .toList();
-    } catch (_) {}
-    return [];
-  }
-
-  void _storeUserStatus(Presence presence) {
-    final tmpUserStatuses = List<UserStatus>.from(userStatuses);
-    final currentStatusIndex =
-        userStatuses.indexWhere((u) => u.userId == presence.senderId);
-    final newUserStatus = UserStatus()
-      ..receivedAt = DateTime.now().millisecondsSinceEpoch
-      ..statusMsg = presence.presence.statusMsg
-      ..userId = presence.senderId;
-    if (currentStatusIndex == -1) {
-      tmpUserStatuses.add(newUserStatus);
-    } else if (tmpUserStatuses[currentStatusIndex].statusMsg !=
-        presence.presence.statusMsg) {
-      if (presence.presence.statusMsg.trim().isEmpty) {
-        tmpUserStatuses.removeAt(currentStatusIndex);
-      } else {
-        tmpUserStatuses[currentStatusIndex] = newUserStatus;
-      }
-    } else {
-      return;
-    }
-    _cleanUpUserStatus(tmpUserStatuses);
-  }
-
-  void _cleanUpUserStatus(List<UserStatus> tmpUserStatuses) {
-    final now = DateTime.now().millisecondsSinceEpoch;
-    tmpUserStatuses
-        .removeWhere((u) => (now - u.receivedAt) > (1000 * 60 * 60 * 24));
-    tmpUserStatuses.sort((a, b) => b.receivedAt.compareTo(a.receivedAt));
-    if (tmpUserStatuses.length > 40) {
-      tmpUserStatuses.removeRange(40, tmpUserStatuses.length);
-    }
-    if (tmpUserStatuses != userStatuses) {
-      client.setAccountData(
-        client.userID,
-        userStatusesType,
-        {
-          'user_statuses': tmpUserStatuses.map((i) => i.toJson()).toList(),
-        },
-      );
-    }
-  }
-
   @override
   void dispose() {
     onRoomKeyRequestSub?.cancel();
     onKeyVerificationRequestSub?.cancel();
     onJitsiCallSub?.cancel();
-    onPresenceSub?.cancel();
     onNotification?.cancel();
     onFocusSub?.cancel();
     onBlurSub?.cancel();

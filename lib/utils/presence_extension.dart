@@ -4,21 +4,37 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'date_time_extension.dart';
 
+extension on PresenceType {
+  String getLocalized(BuildContext context) {
+    switch (this) {
+      case PresenceType.online:
+        return L10n.of(context).online;
+      case PresenceType.unavailable:
+        return L10n.of(context).unavailable;
+      case PresenceType.offline:
+      default:
+        return L10n.of(context).offline;
+    }
+  }
+}
+
 extension PresenceExtension on Presence {
-  bool get isUserStatus => presence?.statusMsg?.isNotEmpty ?? false;
+  String getLocalizedLastActiveAgo(BuildContext context) {
+    if (presence.lastActiveAgo != null && presence.lastActiveAgo != 0) {
+      return L10n.of(context).lastActiveAgo(DateTime.fromMillisecondsSinceEpoch(
+              DateTime.now().millisecondsSinceEpoch - presence.lastActiveAgo)
+          .localizedTimeShort(context));
+    }
+    return L10n.of(context).lastSeenLongTimeAgo;
+  }
 
   String getLocalizedStatusMessage(BuildContext context) {
     if (presence.statusMsg?.isNotEmpty ?? false) {
       return presence.statusMsg;
     }
-    if (presence.lastActiveAgo != null ?? presence.lastActiveAgo != 0) {
-      return L10n.of(context).lastActiveAgo(
-          DateTime.fromMillisecondsSinceEpoch(presence.lastActiveAgo)
-              .localizedTimeShort(context));
-    }
     if (presence.currentlyActive) {
       return L10n.of(context).currentlyActive;
     }
-    return L10n.of(context).lastSeenLongTimeAgo;
+    return presence.presence.getLocalized(context);
   }
 }
