@@ -1722,5 +1722,25 @@
   "@changeDeviceName": {
     "type": "text",
     "placeholders": {}
+  },
+  "mention": "Bahset",
+  "@mention": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unavailable": "Yok",
+  "@unavailable": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offline": "Çevrim dışı",
+  "@offline": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "online": "Çevrim içi",
+  "@online": {
+    "type": "text",
+    "placeholders": {}
   }
 }
