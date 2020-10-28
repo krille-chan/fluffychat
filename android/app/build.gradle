@@ -45,7 +45,7 @@ android {
     defaultConfig {
         applicationId "chat.fluffy.fluffychat"
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
