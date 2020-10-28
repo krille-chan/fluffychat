@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/config/app_config.dart';
@@ -31,10 +32,15 @@ class HomeserverPicker extends StatelessWidget {
     }
 
     final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
-        Matrix.of(context).client.checkServer(homeserver));
-    if (success != false) {
+        checkHomeserver(homeserver, Matrix.of(context).client));
+    if (success == true) {
       await Navigator.of(context).push(AppRoute(SignUp()));
     }
+  }
+
+  Future<bool> checkHomeserver(dynamic homeserver, Client client) async {
+    await client.checkHomeserver(homeserver);
+    return true;
   }
 
   @override
