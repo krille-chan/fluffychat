@@ -153,11 +153,13 @@ class UserBottomSheet extends StatelessWidget {
                     ),
                 ],
               ),
-              body: ListView(
+              body: Column(
                 children: [
-                  ContentBanner(
-                    user.avatarUrl,
-                    defaultIcon: Icons.person_outline,
+                  Expanded(
+                    child: ContentBanner(
+                      user.avatarUrl,
+                      defaultIcon: Icons.person_outline,
+                    ),
                   ),
                   ListTile(
                     title: Text(L10n.of(context).username),
