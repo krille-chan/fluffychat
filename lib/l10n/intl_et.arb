@@ -1722,5 +1722,25 @@
   "@changeDeviceName": {
     "type": "text",
     "placeholders": {}
+  },
+  "mention": "Märgi ära",
+  "@mention": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offline": "Väljas",
+  "@offline": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unavailable": "Eemal",
+  "@unavailable": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "online": "Saadaval",
+  "@online": {
+    "type": "text",
+    "placeholders": {}
   }
 }
