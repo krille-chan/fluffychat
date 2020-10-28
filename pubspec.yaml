@@ -30,7 +30,7 @@ dependencies:
       ref: 955fb747c29eab76b17eb9a13ebc15026e917fb8
 
   localstorage: ^3.0.3+6
-  file_picker_cross: ^4.2.6
+  file_picker_cross: 4.2.2
   image_picker: ^0.6.7+12
   url_launcher: ^5.7.8
   cached_network_image: ^2.3.3
