@@ -44,7 +44,7 @@ android {
 
     defaultConfig {
         applicationId "chat.fluffy.fluffychat"
-        minSdkVersion 18
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
@@ -87,6 +87,4 @@ dependencies {
     implementation "net.zetetic:android-database-sqlcipher:4.4.0" // needed for moor_ffi w/ sqlcipher
 }
 
-if(file("google-services.json").exists() || System.getenv('CI')){
-    apply plugin: 'com.google.gms.google-services'
-}
+apply plugin: 'com.google.gms.google-services'

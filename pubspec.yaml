@@ -39,6 +39,8 @@ dependencies:
   # desktop_notifications: ^0.0.0-dev.4  // Currently blocked by: https://github.com/canonical/desktop_notifications.dart/issues/5
   matrix_link_text: ^0.3.1
   path_provider: ^1.5.1
+  downloads_path_provider_28: ^0.1.0
+  permission_handler: ^5.0.1+1
   webview_flutter: ^0.3.19+9
   share: ^0.6.3+5
   flutter_secure_storage: ^3.3.5

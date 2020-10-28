@@ -11,5 +11,8 @@ abstract class PlatformInfos {
   static bool get isBetaDesktop =>
       !kIsWeb && (Platform.isWindows || Platform.isLinux);
 
+  static bool get isDesktop =>
+      !kIsWeb && (Platform.isLinux || Platform.isWindows || Platform.isMacOS);
+
   static bool get usesTouchscreen => !isMobile;
 }
