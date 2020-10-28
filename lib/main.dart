@@ -3,39 +3,24 @@ import 'dart:io';
 
 import 'package:bot_toast/bot_toast.dart';
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:fluffychat/views/homeserver_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:sentry/sentry.dart';
 import 'package:universal_html/prefer_universal/html.dart' as html;
 
 import 'components/matrix.dart';
 import 'components/theme_switcher.dart';
-import 'utils/famedlysdk_store.dart';
 import 'views/chat_list.dart';
-
-final sentry = SentryClient(dsn: '8591d0d863b646feb4f3dda7e5dcab38');
-
-void captureException(error, stackTrace) async {
-  debugPrint(error.toString());
-  debugPrint(stackTrace.toString());
-  final storage = Store();
-  if (await storage.getItem('sentry') == 'true') {
-    await sentry.captureException(
-      exception: error,
-      stackTrace: stackTrace,
-    );
-  }
-}
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(statusBarColor: Colors.transparent));
   runZonedGuarded(
     () => runApp(App()),
-    captureException,
+    SentryController.captureException,
   );
 }
 

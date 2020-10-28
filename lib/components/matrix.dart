@@ -7,6 +7,7 @@ import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/utils/firebase_controller.dart';
 import 'package:fluffychat/utils/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -17,7 +18,6 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:dbus/dbus.dart';
 import 'package:desktop_notifications/desktop_notifications.dart';*/
 
-import '../main.dart';
 import '../utils/app_route.dart';
 import '../utils/beautify_string_extension.dart';
 import '../utils/famedlysdk_store.dart';
@@ -98,7 +98,7 @@ class MatrixState extends State<Matrix> {
       }
     } catch (e, s) {
       client.onLoginStateChanged.sink.addError(e, s);
-      captureException(e, s);
+      SentryController.captureException(e, s);
       rethrow;
     }
   }
