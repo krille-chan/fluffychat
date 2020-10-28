@@ -1,3 +1,15 @@
+# Version 0.21.0 - 2020-10-28
+### Features
+- New user viewer
+- Add code syntax highlighting in messages
+- Updated translations: Thanks to all helpers
+### Changes
+- Stories feature removed
+### Fixes
+- Fixes sentry
+- Fixes Android download
+- Minor fixes
+
 # Version 0.20.0 - 2020-10-23
 ### Features
 - Added translations: Arabic
