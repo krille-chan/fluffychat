@@ -87,22 +87,22 @@
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSCache": "Prosím zadajte vaší prístupovu frázI k \"bezpečému úložišti\" anebo \"klíč na obnovu\" pro uložení klíčů.",
+  "askSSSSCache": "Prosím zadajte vaší přístupovu frázi k „bezpečému úložišti“ anebo „klíč na obnovu“ pro uložení klíčů.",
   "@askSSSSCache": {
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSSign": "Pro ověření této osoby, zadejte prosím přístupovou frází k “bezpečnému úložišti” anebo “klíč pro obnovu”.",
+  "askSSSSSign": "Pro ověření této osoby, zadejte prosím přístupovou frázi k „bezpečnému úložišti“ anebo „klíč pro obnovu“.",
   "@askSSSSSign": {
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSVerify": "Zadejte prosím vaší přístupovou frází k “bezpečnému úložišti” anebo “klíč pro obnovu” pro ověření vaší relace.",
+  "askSSSSVerify": "Zadejte prosím vaší přístupovou frází k „bezpečnému úložišti“ anebo „klíč pro obnovu“ pro ověření vaší relace.",
   "@askSSSSVerify": {
     "type": "text",
     "placeholders": {}
   },
-  "askVerificationRequest": "Přijmout žádost o ověření od (username)?",
+  "askVerificationRequest": "Přijmout žádost o ověření od {username}?",
   "@askVerificationRequest": {
     "type": "text",
     "placeholders": {
@@ -549,7 +549,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enableEncryptionWarning": "Šifrování jiš nebude možné vypnout. Jste si tím jisti?",
+  "enableEncryptionWarning": "Šifrování již nebude možné vypnout. Jste si tím jisti?",
   "@enableEncryptionWarning": {
     "type": "text",
     "placeholders": {}
@@ -948,7 +948,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Vypadá to, že váš telefon nemá nainstalovány google services. Dobré rozhodnutí pro vaši bezpečnost! Pro příjem notifikací doporučujeme použít miocroG: https://microg.org/",
+  "noGoogleServicesWarning": "Vypadá to, že váš telefon nemá nainstalovány google services. Dobré rozhodnutí pro vaši bezpečnost! Pro příjem notifikací doporučujeme použít microG: https://microg.org/",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -1653,7 +1653,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "you": "Ty",
+  "you": "Vy",
   "@you": {
     "type": "text",
     "placeholders": {}
