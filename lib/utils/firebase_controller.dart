@@ -58,7 +58,7 @@ abstract class FirebaseController {
     }
     final pushers = await client.requestPushers().catchError((e) {
       debugPrint('[Push] Unable to request pushers: ${e.toString()}');
-      return [];
+      return <Pusher>[];
     });
     final currentPushers = pushers.where((pusher) => pusher.pushkey == token);
     if (currentPushers.length == 1 &&
