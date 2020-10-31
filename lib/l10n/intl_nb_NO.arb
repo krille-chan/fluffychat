@@ -1,1 +1,766 @@
-{}
+{
+  "yourOwnUsername": "Ditt eget brukernavn",
+  "@yourOwnUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youHaveBeenBannedFromThisChat": "Du har blitt bannlyst fra denne sludringen",
+  "@youHaveBeenBannedFromThisChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youAreInvitedToThisChat": "Du er invitert til denne sludringen",
+  "@youAreInvitedToThisChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "you": "Deg",
+  "@you": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unpin": "Løsne",
+  "@unpin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknownEncryptionAlgorithm": "Ukjent krypteringsalgoritme",
+  "@unknownEncryptionAlgorithm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknownDevice": "Ukjent enhet",
+  "@unknownDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unmuteChat": "Opphev forstumming av sludring",
+  "@unmuteChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tuesday": "Tirsdag",
+  "@tuesday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tryToSendAgain": "Prøv å sende igjen",
+  "@tryToSendAgain": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "title": "FluffyChat",
+  "@title": {
+    "description": "Title for the application",
+    "type": "text",
+    "placeholders": {}
+  },
+  "thursday": "Torsdag",
+  "@thursday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapToShowMenu": "Trykk for å vise meny",
+  "@tapToShowMenu": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "donate": "Doner",
+  "@donate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sunday": "Søndag",
+  "@sunday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "submit": "Send inn",
+  "@submit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sourceCode": "Kildekode",
+  "@sourceCode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "darkTheme": "Mørk",
+  "@darkTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lightTheme": "Lys",
+  "@lightTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statusExampleMessage": "Hvordan har du det i dag?",
+  "@statusExampleMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "systemTheme": "System",
+  "@systemTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeTheme": "Endre din stil",
+  "@changeTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "skip": "Hopp over",
+  "@skip": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "signUp": "Registrer deg",
+  "@signUp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "settings": "Innstilinger",
+  "@settings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setStatus": "Angi status",
+  "@setStatus": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setGroupDescription": "Sett gruppebeskrivelse",
+  "@setGroupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setAProfilePicture": "Sett et profilbilde",
+  "@setAProfilePicture": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sentAVideo": "{username} sendte en video",
+  "@sentAVideo": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "sentAPicture": "{username} sendte et bilde",
+  "@sentAPicture": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "sentAnAudio": "{username} sendte lyd",
+  "@sentAnAudio": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "sentAFile": "{username} sendte en fil",
+  "@sentAFile": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "sendVideo": "Send video",
+  "@sendVideo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendOriginal": "Send original",
+  "@sendOriginal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendImage": "Send bilde",
+  "@sendImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendFile": "Send fil",
+  "@sendFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendAudio": "Send lyd",
+  "@sendAudio": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendAMessage": "Send en melding",
+  "@sendAMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "send": "Send",
+  "@send": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "seenByUserAndUser": "Sett av {username} og {username2}",
+  "@seenByUserAndUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "username2": {}
+    }
+  },
+  "seenByUser": "Sett av {username}",
+  "@seenByUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "no": "Nei",
+  "@no": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastSeenLongTimeAgo": "Sett for lenge siden",
+  "@lastSeenLongTimeAgo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "searchForAChat": "Søk etter en sludring",
+  "@searchForAChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "share": "Del",
+  "@share": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saturday": "Lørdag",
+  "@saturday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "requestPermission": "Forespør tilgang",
+  "@requestPermission": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reply": "Svar",
+  "@reply": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeMessage": "Fjern melding",
+  "@removeMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "revokeAllPermissions": "Trekk tilbake alle tilganger",
+  "@revokeAllPermissions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "remove": "Fjern",
+  "@remove": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeDevice": "Fjern enhet",
+  "@removeDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removedBy": "Fjernet av {username}",
+  "@removedBy": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "removeAllOtherDevices": "Fjern alle andre enheter",
+  "@removeAllOtherDevices": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicRooms": "Offentlige rom",
+  "@publicRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "privacy": "Personvern",
+  "@privacy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterYourUsername": "Skriv inn brukernavnet ditt",
+  "@pleaseEnterYourUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterYourPassword": "Skriv inn passordet ditt",
+  "@pleaseEnterYourPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChooseAUsername": "Velg et brukernavn",
+  "@pleaseChooseAUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "play": "Spill av {fileName}",
+  "@play": {
+    "type": "text",
+    "placeholders": {
+      "fileName": {}
+    }
+  },
+  "pin": "Fest",
+  "@pin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pickImage": "Velg bilde",
+  "@pickImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordHasBeenChanged": "Passord endret",
+  "@passwordHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "password": "Passord",
+  "@password": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "optionalGroupName": "Gruppenavn (valgfritt)",
+  "@optionalGroupName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openCamera": "Åpne kamera",
+  "@openCamera": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unavailable": "Utilgjengelig",
+  "@unavailable": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offline": "Frakoblet",
+  "@offline": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "online": "Pålogget",
+  "@online": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ok": "OK",
+  "@ok": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "login": "Logg inn",
+  "@login": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "license": "Lisens",
+  "@license": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userLeftTheChat": "{username} har forlatt sludringen",
+  "@userLeftTheChat": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "logout": "Logg ut",
+  "@logout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "leftTheChat": "Forlat sludringen",
+  "@leftTheChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "leave": "Forlat",
+  "@leave": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "joinRoom": "Ta del i rom",
+  "@joinRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "joinedTheChat": "{username} tok del i sludringen",
+  "@joinedTheChat": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "editJitsiInstance": "Skriv inn Jitsi-instans",
+  "@editJitsiInstance": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invitedUsersOnly": "Kun inviterte brukere",
+  "@invitedUsersOnly": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invited": "Invitert",
+  "@invited": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteContact": "Inviter kontakt",
+  "@inviteContact": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignoreUsername": "Ignorer brukernavn",
+  "@ignoreUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignoredUsers": "Ignorerte brukere",
+  "@ignoredUsers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "identity": "Identitet",
+  "@identity": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "id": "ID",
+  "@id": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "help": "Hjelp",
+  "@help": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "guestsAreForbidden": "Gjester forbudt",
+  "@guestsAreForbidden": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "guestsCanJoin": "Gjester kan ta del",
+  "@guestsCanJoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groupIsPublic": "Gruppen er offentlig",
+  "@groupIsPublic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groupDescription": "Gruppebeskrivelse",
+  "@groupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "group": "Gruppe",
+  "@group": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromTheInvitation": "Fra invitasjonen",
+  "@fromTheInvitation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "friday": "Fredag",
+  "@friday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "forward": "Videre",
+  "@forward": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fluffychat": "FluffyChat",
+  "@fluffychat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fileSize": "Filstørrelse",
+  "@fileSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fileName": "Filnavn",
+  "@fileName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterYourHomeserver": "Skriv inn din hjemmetjener",
+  "@enterYourHomeserver": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterAUsername": "Skriv inn et brukernavn",
+  "@enterAUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterAGroupName": "Skriv inn et gruppenavn",
+  "@enterAGroupName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "end2endEncryptionSettings": "Ende-til-ende -krypteringsinnstillinger",
+  "@end2endEncryptionSettings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encryptionAlgorithm": "Krypteringsalgoritme",
+  "@encryptionAlgorithm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encryption": "Kryptering",
+  "@encryption": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editDisplayname": "Rediger visningsnavn",
+  "@editDisplayname": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "downloadFile": "Last ned fil",
+  "@downloadFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "devices": "Enheter",
+  "@devices": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "device": "Enhet",
+  "@device": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deny": "Nekt",
+  "@deny": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteMessage": "Slett melding",
+  "@deleteMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteAccount": "Slett konto",
+  "@deleteAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "delete": "Slett",
+  "@delete": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createAccountNow": "Opprett konto nå",
+  "@createAccountNow": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "create": "Opprett",
+  "@create": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "countParticipants": "{count} deltagere",
+  "@countParticipants": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "couldNotSetDisplayname": "Kunne ikke sette visningsnavn",
+  "@couldNotSetDisplayname": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "couldNotDecryptMessage": "Kunne ikke dekryptere melding: {error}",
+  "@couldNotDecryptMessage": {
+    "type": "text",
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "copy": "Kopier",
+  "@copy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copiedToClipboard": "Kopiert til utklippstavle",
+  "@copiedToClipboard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contentViewer": "Innholdsviser",
+  "@contentViewer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "connect": "Koble til",
+  "@connect": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirm": "Bekreft",
+  "@confirm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "close": "Lukk",
+  "@close": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseAUsername": "Velg et brukernavn",
+  "@chooseAUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseAStrongPassword": "Velg et sterkt passord",
+  "@chooseAStrongPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeTheServer": "Endre tjeneren",
+  "@changeTheServer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeWallpaper": "Endre bakgrunnsbilde",
+  "@changeWallpaper": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeTheNameOfTheGroup": "Endre gruppens navn",
+  "@changeTheNameOfTheGroup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changelog": "Endringslogg",
+  "@changelog": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changedTheGuestAccessRules": "{username} endret gjestetilgangsreglene",
+  "@changedTheGuestAccessRules": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changeTheHomeserver": "Endre hjemmetjener",
+  "@changeTheHomeserver": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSure": "Er du sikker?",
+  "@areYouSure": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areGuestsAllowedToJoin": "Skal gjester tillates å ta del",
+  "@areGuestsAllowedToJoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "archivedRoom": "Arkivert rom",
+  "@archivedRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "anyoneCanJoin": "Hvem som helst kan delta",
+  "@anyoneCanJoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "answeredTheCall": "{senderName} besvarte anropet",
+  "@answeredTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "alreadyHaveAnAccount": "Har du allerede en konto?",
+  "@alreadyHaveAnAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "alias": "alias",
+  "@alias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "admin": "Administrator",
+  "@admin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addGroupDescription": "Legg til gruppebeskrivelse",
+  "@addGroupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "activatedEndToEndEncryption": "{username} skrudde på ende-til-ende -kryptering",
+  "@activatedEndToEndEncryption": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "accountInformation": "Kontoinfo",
+  "@accountInformation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "account": "Konto",
+  "@account": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "acceptedTheInvitation": "{username} godtok invitasjonen",
+  "@acceptedTheInvitation": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "accept": "Godta",
+  "@accept": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about": "Om",
+  "@about": {
+    "type": "text",
+    "placeholders": {}
+  }
+}
