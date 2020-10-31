@@ -1,3 +1,11 @@
+# Version 0.22.0
+### Features
+- Broadcast self-verification
+### Changes
+- Undecryptable events have a "verify" button, if you haven't verified yet
+- User bottom sheet lists verified status
+- Lock icon next to input bar can now be red
+
 # Version 0.21.0 - 2020-10-28
 ### Features
 - New user viewer

@@ -62,20 +62,30 @@ class _EncryptionButtonState extends State<EncryptionButton> {
         .onSync
         .stream
         .listen((s) => setState(() => null));
-    return FutureBuilder<List<DeviceKeys>>(
-        future: widget.room.encrypted ? widget.room.getUserDeviceKeys() : null,
+    return FutureBuilder<List<User>>(
+        future:
+            widget.room.encrypted ? widget.room.requestParticipants() : null,
         builder: (BuildContext context, snapshot) {
           Color color;
           if (widget.room.encrypted && snapshot.hasData) {
-            var data = snapshot.data;
-            final deviceKeysList = data;
-            color = Colors.orange;
-            if (deviceKeysList.indexWhere((DeviceKeys deviceKeys) =>
-                    deviceKeys.verified == false &&
-                    deviceKeys.blocked == false) ==
-                -1) {
-              color = Colors.black.withGreen(220).withOpacity(0.75);
+            final users = snapshot.data;
+            users.removeWhere((u) =>
+                !{Membership.invite, Membership.join}.contains(u.membership) ||
+                !widget.room.client.userDeviceKeys.containsKey(u.id));
+            var allUsersValid = true;
+            var oneUserInvalid = false;
+            for (final u in users) {
+              final status = widget.room.client.userDeviceKeys[u.id].verified;
+              if (status != UserVerifiedStatus.verified) {
+                allUsersValid = false;
+              }
+              if (status == UserVerifiedStatus.unknownDevice) {
+                oneUserInvalid = true;
+              }
             }
+            color = oneUserInvalid
+                ? Colors.red
+                : (allUsersValid ? Colors.green : Colors.orange);
           } else if (!widget.room.encrypted &&
               widget.room.joinRules != JoinRules.public) {
             color = null;
