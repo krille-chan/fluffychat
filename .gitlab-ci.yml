@@ -235,3 +235,35 @@ snap:publish:
     when: on_success
     expire_in: 1 week
   needs: []
+
+update-dependencies:
+  stage: coverage
+  needs: []
+  tags:
+    - docker
+  only:
+    - schedules
+  variables:
+    HOST: ${CI_PROJECT_URL}
+    UPDATE_BRANCH: ci-bot/dependency-updates
+    PRIVATE_TOKEN: ${GITLAB_API_TOKEN}
+  before_script:
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_BOT_KEY" | tr -d '\r' | ssh-add - > /dev/null
+
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+
+    - ssh-keyscan "https://gitlab.com" >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+
+    - git config --global user.email "bot@fluffy.chat"
+    - git config --global user.name "Dependency Update Bot"
+    - sudo apt-get update && sudo apt-get install -y curl
+  script:
+    - flutter pub get
+    - flutter pub pub run dapackages:dapackages.dart ./pubspec.yaml
+    - flutter pub get
+    - git remote set-url --push origin git@gitlab.com:$CI_PROJECT_PATH
+    - 'git diff --exit-code || (git checkout -B ${UPDATE_BRANCH} && git add . && git commit -m "chore: Update dependencies" && git push -f origin ${UPDATE_BRANCH} && ./scripts/open-mr.sh)'
+
