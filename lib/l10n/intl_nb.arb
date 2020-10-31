@@ -762,5 +762,344 @@
   "@about": {
     "type": "text",
     "placeholders": {}
+  },
+  "youCannotInviteYourself": "Du kan ikke invitere deg selv",
+  "@youCannotInviteYourself": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youAreNoLongerParticipatingInThisChat": "Du deltar ikke lenger i denne sludringen",
+  "@youAreNoLongerParticipatingInThisChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wednesday": "Onsdag",
+  "@wednesday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wallpaper": "Bakgrunnsbilde",
+  "@wallpaper": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "warning": "Advarsel!",
+  "@warning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "visibleForEveryone": "Synlig for alle",
+  "@visibleForEveryone": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "visibleForAllParticipants": "Synlig for alle deltagere",
+  "@visibleForAllParticipants": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "videoCall": "Videosamtale",
+  "@videoCall": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyUser": "Bekreft bruker",
+  "@verifyUser": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyStart": "Start bekreftelse",
+  "@verifyStart": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyManual": "Bekreft manuelt",
+  "@verifyManual": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verify": "Bekreft",
+  "@verify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userSentUnknownEvent": "{username} sendte en {type}-hendelse",
+  "@userSentUnknownEvent": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "type": {}
+    }
+  },
+  "userIsTyping": "{username} skriver…",
+  "@userIsTyping": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "username": "Brukernavn",
+  "@username": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userAndUserAreTyping": "{username} og {username2} skriver…",
+  "@userAndUserAreTyping": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "username2": {}
+    }
+  },
+  "userAndOthersAreTyping": "{username} og {count} andre skriver…",
+  "@userAndOthersAreTyping": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "count": {}
+    }
+  },
+  "unreadMessagesInChats": "{unreadEvents} uleste meldinger i {unreadChats} sludringer",
+  "@unreadMessagesInChats": {
+    "type": "text",
+    "placeholders": {
+      "unreadEvents": {},
+      "unreadChats": {}
+    }
+  },
+  "unreadMessages": "{unreadEvents} uleste meldinger",
+  "@unreadMessages": {
+    "type": "text",
+    "placeholders": {
+      "unreadEvents": {}
+    }
+  },
+  "unreadChats": "{unreadCount} uleste sludringer",
+  "@unreadChats": {
+    "type": "text",
+    "placeholders": {
+      "unreadCount": {}
+    }
+  },
+  "newVerificationRequest": "Ny bekreftelsesforespørsel.",
+  "@newVerificationRequest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newPrivateChat": "Ny privat sludring",
+  "@newPrivateChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newMessageInFluffyChat": "Ny melding i FluffyChat",
+  "@newMessageInFluffyChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "muteChat": "Forstum sludring",
+  "@muteChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "monday": "Mandag",
+  "@monday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "logInTo": "Logg inn på {homeserver}",
+  "@logInTo": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "loadCountMoreParticipants": "Last inn {count} deltagere til",
+  "@loadCountMoreParticipants": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "loadMore": "Last inn mer…",
+  "@loadMore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loadingPleaseWait": "Laster inn… Vent.",
+  "@loadingPleaseWait": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changedTheRoomInvitationLink": "{username} endret invitasjonslenken",
+  "@changedTheRoomInvitationLink": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheRoomAliases": "{username} endret rom-aliasene",
+  "@changedTheRoomAliases": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheJoinRulesTo": "{username} endret tilgangsreglene til: {joinRules}",
+  "@changedTheJoinRulesTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "joinRules": {}
+    }
+  },
+  "changedTheJoinRules": "{username} endret tilgangsreglene",
+  "@changedTheJoinRules": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheGuestAccessRulesTo": "{username} endret gjestetilgangsregler til: {rules}",
+  "@changedTheGuestAccessRulesTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "rules": {}
+    }
+  },
+  "encryptionNotEnabled": "Kryptering er ikke påskrudd",
+  "@encryptionNotEnabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discardPicture": "Forkast bilde",
+  "@discardPicture": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dateWithYear": "{day} {month} {year}",
+  "@dateWithYear": {
+    "type": "text",
+    "placeholders": {
+      "year": {},
+      "month": {},
+      "day": {}
+    }
+  },
+  "dateWithoutYear": "{day} {month}",
+  "@dateWithoutYear": {
+    "type": "text",
+    "placeholders": {
+      "month": {},
+      "day": {}
+    }
+  },
+  "dateAndTimeOfDay": "{timeOfDay}, {date}",
+  "@dateAndTimeOfDay": {
+    "type": "text",
+    "placeholders": {
+      "date": {},
+      "timeOfDay": {}
+    }
+  },
+  "createNewGroup": "Opprett ny gruppe",
+  "@createNewGroup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "couldNotSetAvatar": "Kunne ikke sette avatar",
+  "@couldNotSetAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changedTheProfileAvatar": "{username} endret avataren sin",
+  "@changedTheProfileAvatar": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheHistoryVisibilityTo": "{username} endret historikksynlighet til: {rules}",
+  "@changedTheHistoryVisibilityTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "rules": {}
+    }
+  },
+  "changedTheHistoryVisibility": "{username} endret historikksynlighet",
+  "@changedTheHistoryVisibility": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheDisplaynameTo": "{username} endret visningsnavn til: {displayname}",
+  "@changedTheDisplaynameTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "displayname": {}
+    }
+  },
+  "changedTheChatPermissions": "{username} endret sludretilgangene",
+  "@changedTheChatPermissions": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheChatDescriptionTo": "{username} endret sludrebeskrivelse til: «{description}»",
+  "@changedTheChatDescriptionTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "description": {}
+    }
+  },
+  "changedTheChatNameTo": "{username} endret sludringsnavn til: «{chatname}»",
+  "@changedTheChatNameTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "chatname": {}
+    }
+  },
+  "changedTheChatAvatar": "{username} endret sludreavatar",
+  "@changedTheChatAvatar": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changeDeviceName": "Endre enhetsnavn",
+  "@changeDeviceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "Avbryt",
+  "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "byDefaultYouWillBeConnectedTo": "Som forvalg vil du bli tilkoblet via {homeserver}",
+  "@byDefaultYouWillBeConnectedTo": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "blockDevice": "Blokker enhet",
+  "@blockDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bannedUser": "{username} bannlyste {targetName}",
+  "@bannedUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
   }
 }
