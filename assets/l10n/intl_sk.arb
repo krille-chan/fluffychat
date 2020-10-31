@@ -2604,5 +2604,37 @@
   "iUnderstand": "",
   "@iUnderstand": {},
   "screenSharingDetail": "",
-  "@screenSharingDetail": {}
+  "@screenSharingDetail": {},
+  "passwordHasBeenChanged": "",
+  "@passwordHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "withTheseAddressesRecoveryDescription": "",
+  "@withTheseAddressesRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPasswordRecoveryDescription": "",
+  "@noPasswordRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sentCallInformations": "",
+  "@sentCallInformations": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "containsUserName": "",
+  "@containsUserName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordForgotten": "",
+  "@passwordForgotten": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
