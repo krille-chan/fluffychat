@@ -194,7 +194,7 @@
       "username": {}
     }
   },
-  "changedTheDisplaynameTo": "{username} changed the displayname to: {displayname}",
+  "changedTheDisplaynameTo": "{username} changed the displayname to: '{displayname}'",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -759,7 +759,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "isTyping": "is typing...",
+  "isTyping": "is typing…",
   "@isTyping": {
     "type": "text",
     "placeholders": {}
@@ -851,12 +851,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "loadingPleaseWait": "Loading... Please wait",
+  "loadingPleaseWait": "Loading… Please wait.",
   "@loadingPleaseWait": {
     "type": "text",
     "placeholders": {}
   },
-  "loadMore": "Load more...",
+  "loadMore": "Load more…",
   "@loadMore": {
     "type": "text",
     "placeholders": {}
@@ -970,7 +970,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noRoomsFound": "No rooms found...",
+  "noRoomsFound": "No rooms found…",
   "@noRoomsFound": {
     "type": "text",
     "placeholders": {}
@@ -1017,7 +1017,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "oopsSomethingWentWrong": "Oops something went wrong...",
+  "oopsSomethingWentWrong": "Oops, something went wrong…",
   "@oopsSomethingWentWrong": {
     "type": "text",
     "placeholders": {}
@@ -1562,7 +1562,7 @@
       "unreadChats": {}
     }
   },
-  "userAndOthersAreTyping": "{username} and {count} others are typing...",
+  "userAndOthersAreTyping": "{username} and {count} others are typing…",
   "@userAndOthersAreTyping": {
     "type": "text",
     "placeholders": {
@@ -1570,7 +1570,7 @@
       "count": {}
     }
   },
-  "userAndUserAreTyping": "{username} and {username2} are typing...",
+  "userAndUserAreTyping": "{username} and {username2} are typing…",
   "@userAndUserAreTyping": {
     "type": "text",
     "placeholders": {
@@ -1583,7 +1583,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "userIsTyping": "{username} is typing...",
+  "userIsTyping": "{username} is typing…",
   "@userIsTyping": {
     "type": "text",
     "placeholders": {
@@ -1658,17 +1658,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerAcceptRequest": "Waiting for partner to accept the request...",
+  "waitingPartnerAcceptRequest": "Waiting for partner to accept the request…",
   "@waitingPartnerAcceptRequest": {
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerEmoji": "Waiting for partner to accept the emoji...",
+  "waitingPartnerEmoji": "Waiting for partner to accept the emoji…",
   "@waitingPartnerEmoji": {
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerNumbers": "Waiting for partner to accept the numbers...",
+  "waitingPartnerNumbers": "Waiting for partner to accept the numbers…",
   "@waitingPartnerNumbers": {
     "type": "text",
     "placeholders": {}
@@ -1693,7 +1693,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "welcomeText": "Welcome to the cutest instant messenger in the matrix network.",
+  "welcomeText": "Welcome to the cutest instant messenger in the Matrix network.",
   "@welcomeText": {
     "type": "text",
     "placeholders": {}
@@ -1703,7 +1703,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "writeAMessage": "Write a message...",
+  "writeAMessage": "Write a message…",
   "@writeAMessage": {
     "type": "text",
     "placeholders": {}
