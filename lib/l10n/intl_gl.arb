@@ -769,7 +769,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "isTyping": "está escribindo...",
+  "isTyping": "está escribindo…",
   "@isTyping": {
     "type": "text",
     "placeholders": {}
@@ -861,12 +861,12 @@
       "count": {}
     }
   },
-  "loadingPleaseWait": "Cargando... Agarda",
+  "loadingPleaseWait": "Cargando... Agarda.",
   "@loadingPleaseWait": {
     "type": "text",
     "placeholders": {}
   },
-  "loadMore": "Cargar máis...",
+  "loadMore": "Cargar máis…",
   "@loadMore": {
     "type": "text",
     "placeholders": {}
@@ -978,7 +978,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noRoomsFound": "Non se atoparon salas...",
+  "noRoomsFound": "Non se atoparon salas…",
   "@noRoomsFound": {
     "type": "text",
     "placeholders": {}
@@ -1010,7 +1010,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "oopsSomethingWentWrong": "Ooooi, algo fallou...",
+  "oopsSomethingWentWrong": "Ooooi, algo fallou…",
   "@oopsSomethingWentWrong": {
     "type": "text",
     "placeholders": {}
@@ -1515,7 +1515,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "userAndOthersAreTyping": "{username} e {count} máis están escribindo...",
+  "userAndOthersAreTyping": "{username} e {count} máis están escribindo…",
   "@userAndOthersAreTyping": {
     "type": "text",
     "placeholders": {
@@ -1523,7 +1523,7 @@
       "count": {}
     }
   },
-  "userAndUserAreTyping": "{username} e {username2} están escribindo...",
+  "userAndUserAreTyping": "{username} e {username2} están escribindo…",
   "@userAndUserAreTyping": {
     "type": "text",
     "placeholders": {
@@ -1531,7 +1531,7 @@
       "username2": {}
     }
   },
-  "userIsTyping": "{username} está escribindo...",
+  "userIsTyping": "{username} está escribindo…",
   "@userIsTyping": {
     "type": "text",
     "placeholders": {
@@ -1628,7 +1628,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerNumbers": "Agardando a que a outra parte acepte os números...",
+  "waitingPartnerNumbers": "Agardando a que a outra parte acepte os números…",
   "@waitingPartnerNumbers": {
     "type": "text",
     "placeholders": {}
@@ -1653,7 +1653,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "welcomeText": "Benvida á mensaxería instantánea más cuquiña da rede matrix.",
+  "welcomeText": "Benvida á mensaxería instantánea más cuquiña da rede Matrix.",
   "@welcomeText": {
     "type": "text",
     "placeholders": {}
@@ -1663,7 +1663,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "writeAMessage": "Escribe unha mensaxe...",
+  "writeAMessage": "Escribe unha mensaxe…",
   "@writeAMessage": {
     "type": "text",
     "placeholders": {}
