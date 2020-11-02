@@ -759,7 +759,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "isTyping": "Печатает...",
+  "isTyping": "Печатает…",
   "@isTyping": {
     "type": "text",
     "placeholders": {}
@@ -851,12 +851,12 @@
       "count": {}
     }
   },
-  "loadingPleaseWait": "Пожалуйста, подождите...",
+  "loadingPleaseWait": "Пожалуйста, подождите…",
   "@loadingPleaseWait": {
     "type": "text",
     "placeholders": {}
   },
-  "loadMore": "Загрузить больше...",
+  "loadMore": "Загрузить больше…",
   "@loadMore": {
     "type": "text",
     "placeholders": {}
@@ -968,7 +968,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noRoomsFound": "Комнаты не найдены...",
+  "noRoomsFound": "Комнаты не найдены…",
   "@noRoomsFound": {
     "type": "text",
     "placeholders": {}
@@ -1000,7 +1000,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "oopsSomethingWentWrong": "Упс! Что-то пошло не так...",
+  "oopsSomethingWentWrong": "Упс! Что-то пошло не так…",
   "@oopsSomethingWentWrong": {
     "type": "text",
     "placeholders": {}
@@ -1500,7 +1500,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "userAndOthersAreTyping": "{username} и {count} других участников печатают...",
+  "userAndOthersAreTyping": "{username} и {count} других участников печатают…",
   "@userAndOthersAreTyping": {
     "type": "text",
     "placeholders": {
@@ -1508,7 +1508,7 @@
       "count": {}
     }
   },
-  "userAndUserAreTyping": "{username} и {username2} печатают...",
+  "userAndUserAreTyping": "{username} и {username2} печатают…",
   "@userAndUserAreTyping": {
     "type": "text",
     "placeholders": {
@@ -1516,7 +1516,7 @@
       "username2": {}
     }
   },
-  "userIsTyping": "{username} печатает...",
+  "userIsTyping": "{username} печатает…",
   "@userIsTyping": {
     "type": "text",
     "placeholders": {
@@ -1613,7 +1613,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerNumbers": "В ожидании партнёра, чтобы принять числа...",
+  "waitingPartnerNumbers": "В ожидании партнёра, чтобы принять числа…",
   "@waitingPartnerNumbers": {
     "type": "text",
     "placeholders": {}
@@ -1643,7 +1643,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "writeAMessage": "Напишите сообщение...",
+  "writeAMessage": "Напишите сообщение…",
   "@writeAMessage": {
     "type": "text",
     "placeholders": {}
