@@ -744,7 +744,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "isTyping": "schreibt...",
+  "isTyping": "schreibt …",
   "@isTyping": {
     "type": "text",
     "placeholders": {}
@@ -836,12 +836,12 @@
       "count": {}
     }
   },
-  "loadingPleaseWait": "Lade... Bitte warten",
+  "loadingPleaseWait": "Ladevorgang … Bitte warten.",
   "@loadingPleaseWait": {
     "type": "text",
     "placeholders": {}
   },
-  "loadMore": "Lade mehr...",
+  "loadMore": "Mehr laden …",
   "@loadMore": {
     "type": "text",
     "placeholders": {}
@@ -953,7 +953,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noRoomsFound": "Keine Räume gefunden...",
+  "noRoomsFound": "Keine Räume gefunden …",
   "@noRoomsFound": {
     "type": "text",
     "placeholders": {}
@@ -985,7 +985,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "oopsSomethingWentWrong": "Hoppla! Da ist etwas schief gelaufen ...",
+  "oopsSomethingWentWrong": "Hoppla! Etwas ist schief gelaufen …",
   "@oopsSomethingWentWrong": {
     "type": "text",
     "placeholders": {}
@@ -1485,7 +1485,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "userAndOthersAreTyping": "{username} und {count} andere schreiben...",
+  "userAndOthersAreTyping": "{username} und {count} andere schreiben …",
   "@userAndOthersAreTyping": {
     "type": "text",
     "placeholders": {
@@ -1493,7 +1493,7 @@
       "count": {}
     }
   },
-  "userAndUserAreTyping": "{username} und {username2} schreiben...",
+  "userAndUserAreTyping": "{username} und {username2} schreiben …",
   "@userAndUserAreTyping": {
     "type": "text",
     "placeholders": {
@@ -1501,7 +1501,7 @@
       "username2": {}
     }
   },
-  "userIsTyping": "{username} schreibt ...",
+  "userIsTyping": "{username} schreibt …",
   "@userIsTyping": {
     "type": "text",
     "placeholders": {
@@ -1598,7 +1598,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerNumbers": "Warte darauf, dass der Partner die Zahlen annimmt...",
+  "waitingPartnerNumbers": "Warten, dass der Partner die Zahlen annimmt …",
   "@waitingPartnerNumbers": {
     "type": "text",
     "placeholders": {}
@@ -1618,7 +1618,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "welcomeText": "Herzlich willkommen beim knuffigsten Instant Messenger im Matrix-Netwerk.",
+  "welcomeText": "Herzlich willkommen beim knuffigsten Instant Messenger im Matrix-Netzwerk.",
   "@welcomeText": {
     "type": "text",
     "placeholders": {}
@@ -1628,7 +1628,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "writeAMessage": "Schreibe eine Nachricht ...",
+  "writeAMessage": "Schreibe eine Nachricht …",
   "@writeAMessage": {
     "type": "text",
     "placeholders": {}
