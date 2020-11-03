@@ -861,12 +861,12 @@
       "count": {}
     }
   },
-  "loadingPleaseWait": "Učitava se … Pričekaj",
+  "loadingPleaseWait": "Učitava se … Pričekaj.",
   "@loadingPleaseWait": {
     "type": "text",
     "placeholders": {}
   },
-  "loadMore": "Učitaj više …",
+  "loadMore": "Učitaj još …",
   "@loadMore": {
     "type": "text",
     "placeholders": {}
@@ -923,7 +923,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "needPantalaimonWarning": "Za sada trebaš Pantalaimon za obostrano šifriranje.",
+  "needPantalaimonWarning": "Za trenutačno korištenje obostranog šifriranja trebaš Pantalaimon.",
   "@needPantalaimonWarning": {
     "type": "text",
     "placeholders": {}
@@ -948,7 +948,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "Fluffychat trenutačno ne podržava unakrsno potpisivanje. Aktiviraj je u Riot.",
+  "noCrossSignBootstrap": "Fluffychat trenutačno ne podržava mogućnost unakrsnog potpisivanja. Aktiviraj je u Riotu.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -963,7 +963,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "Fluffychat trenutačno ne podržava aktiviranje online sigurnosnu kopiju ključeva. Aktiviraj je u Riot.",
+  "noMegolmBootstrap": "Fluffychat trenutačno ne podržava mogućnost aktiviranja internetskog ključa sigurnosnih kopija. Aktiviraj je u Riotu.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -1000,12 +1000,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "onlineKeyBackupDisabled": "Online sigurnosna kopija ključeva je deaktivirana",
+  "onlineKeyBackupDisabled": "Internetski ključ sigurnosnih kopija je deaktiviran",
   "@onlineKeyBackupDisabled": {
     "type": "text",
     "placeholders": {}
   },
-  "onlineKeyBackupEnabled": "Online sigurnosna kopija ključeva je aktivirana",
+  "onlineKeyBackupEnabled": "Internetski ključ sigurnosnih kopija je aktiviran",
   "@onlineKeyBackupEnabled": {
     "type": "text",
     "placeholders": {}
@@ -1628,7 +1628,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerNumbers": "Čekanje na partnera, da prihvati brojeve …",
+  "waitingPartnerNumbers": "Čeka se, da partner prihvati brojeve …",
   "@waitingPartnerNumbers": {
     "type": "text",
     "placeholders": {}
@@ -1653,7 +1653,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "welcomeText": "Lijep pozdrav u najslađi program za čavrljanje u mreži matrix.",
+  "welcomeText": "Lijep pozdrav u najslađem programu za čavrljanje u mreži Matrix.",
   "@welcomeText": {
     "type": "text",
     "placeholders": {}
@@ -1720,6 +1720,26 @@
   },
   "changeDeviceName": "Promijeni ime uređaja",
   "@changeDeviceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offline": "Nepovezano s internetom",
+  "@offline": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "online": "Povezano s internetom",
+  "@online": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unavailable": "Nedostupno",
+  "@unavailable": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "mention": "Spominjanje",
+  "@mention": {
     "type": "text",
     "placeholders": {}
   }
