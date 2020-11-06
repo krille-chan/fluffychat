@@ -452,7 +452,7 @@
       "username": {}
     }
   },
-  "askSSSSSign": "Per far accedere l'altra persona, per favore inserisci la tua passphrase o recovery key.",
+  "askSSSSSign": "Per far accedere l'altra persona, per favore inserisci la tua frase segreta o chiave di recupero.",
   "@askSSSSSign": {
     "type": "text",
     "placeholders": {}
