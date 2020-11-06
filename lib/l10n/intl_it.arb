@@ -457,7 +457,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSCache": "Per favore inserisci la tua passphrase o recovery key per mettere in cache le chiavi.",
+  "askSSSSCache": "Per favore inserisci la tua frase segrata o chiave di recuparo per mettere in cache le chiavi.",
   "@askSSSSCache": {
     "type": "text",
     "placeholders": {}
