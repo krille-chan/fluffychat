@@ -224,7 +224,7 @@
       "day": {}
     }
   },
-  "dateWithoutYear": "{month}-{day}",
+  "dateWithoutYear": "{day}/{month}",
   "@dateWithoutYear": {
     "type": "text",
     "placeholders": {
@@ -579,8 +579,163 @@
     "type": "text",
     "placeholders": {}
   },
-  "crossSigningDisabled": "Il Cross-Signing è disabilitato",
+  "crossSigningDisabled": "La firma incrociata è disabilitata",
   "@crossSigningDisabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteText": "{username} ti ha invitato/a a FluffyChat.\n1. Installa FluffyChat: https://fluffychat.im\n2. Iscriviti o accedi\n3. Apri il collegamento di invito: {link}",
+  "@inviteText": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "link": {}
+    }
+  },
+  "invited": "Invitato/a",
+  "@invited": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteContactToGroup": "Invita un contatto a {groupName}",
+  "@inviteContactToGroup": {
+    "type": "text",
+    "placeholders": {
+      "groupName": {}
+    }
+  },
+  "inviteContact": "Invita contatto",
+  "@inviteContact": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "incorrectPassphraseOrKey": "Frase segrata o chiave di ripristino errate",
+  "@incorrectPassphraseOrKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignoreListDescription": "Puoi ignorare gli utenti che ti stanno disturbando. Non sarai in grado di ricevere messaggi o inviti a stanze virtuali dagli utenti nel tuo elenco personale da ignorare.",
+  "@ignoreListDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignoreUsername": "Ignora il nome utente",
+  "@ignoreUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignoredUsers": "Utenti ignorati",
+  "@ignoredUsers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "identity": "Identità",
+  "@identity": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "id": "ID",
+  "@id": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "homeserverIsNotCompatible": "Il server principale non è compatibile",
+  "@homeserverIsNotCompatible": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "help": "Aiuto",
+  "@help": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hasWithdrawnTheInvitationFor": "{username} ha ritirato l'invito per {targetName}",
+  "@hasWithdrawnTheInvitationFor": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "guestsCanJoin": "Gli ospiti possono partecipare",
+  "@guestsCanJoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "guestsAreForbidden": "Gli ospiti sono vietati",
+  "@guestsAreForbidden": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groupWith": "Gruppo con {displayname}",
+  "@groupWith": {
+    "type": "text",
+    "placeholders": {
+      "displayname": {}
+    }
+  },
+  "groupIsPublic": "Il gruppo è pubblico",
+  "@groupIsPublic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groupDescriptionHasBeenChanged": "La descrizione del gruppo è stata modificata",
+  "@groupDescriptionHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groupDescription": "Descrizione del gruppo",
+  "@groupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "group": "Gruppo",
+  "@group": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromTheInvitation": "Dall'invito",
+  "@fromTheInvitation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromJoining": "Dall'adesione",
+  "@fromJoining": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "friday": "venerdì",
+  "@friday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "forward": "Inoltra",
+  "@forward": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fluffychat": "FluffyChat",
+  "@fluffychat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fileSize": "Dimensione del file",
+  "@fileSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fileName": "Nome del file",
+  "@fileName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterYourHomeserver": "Inserisci il tuo server principale",
+  "@enterYourHomeserver": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "crossSigningEnabled": "La firma incrociata è abilitata",
+  "@crossSigningEnabled": {
     "type": "text",
     "placeholders": {}
   }
