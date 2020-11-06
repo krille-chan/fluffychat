@@ -445,7 +445,7 @@
       "rules": {}
     }
   },
-  "changedTheChatAvatar": "{username} ha cambiato avatar",
+  "changedTheChatAvatar": "{username} ha cambiato l'avatar della chat",
   "@changedTheChatAvatar": {
     "type": "text",
     "placeholders": {
