@@ -578,5 +578,10 @@
   "@deny": {
     "type": "text",
     "placeholders": {}
+  },
+  "crossSigningDisabled": "Il Cross-Signing è disabilitato",
+  "@crossSigningDisabled": {
+    "type": "text",
+    "placeholders": {}
   }
 }
