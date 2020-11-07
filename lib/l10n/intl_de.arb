@@ -50,7 +50,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "alreadyHaveAnAccount": "Hast du schon einen Account?",
+  "alreadyHaveAnAccount": "Hast du schon ein Konto?",
   "@alreadyHaveAnAccount": {
     "type": "text",
     "placeholders": {}
@@ -82,7 +82,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "areYouSure": "Bist Du sicher?",
+  "areYouSure": "Bist du sicher?",
   "@areYouSure": {
     "type": "text",
     "placeholders": {}
@@ -402,7 +402,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "createAccountNow": "Account jetzt erstellen",
+  "createAccountNow": "Konto jetzt erstellen",
   "@createAccountNow": {
     "type": "text",
     "placeholders": {}
@@ -447,7 +447,7 @@
       "timeOfDay": {}
     }
   },
-  "dateWithoutYear": "{day}. {month}",
+  "dateWithoutYear": "{day}.{month}",
   "@dateWithoutYear": {
     "type": "text",
     "placeholders": {
@@ -455,7 +455,7 @@
       "day": {}
     }
   },
-  "dateWithYear": "{day}. {month}. {year}",
+  "dateWithYear": "{day}.{month}.{year}",
   "@dateWithYear": {
     "type": "text",
     "placeholders": {
@@ -846,7 +846,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "login": "Login",
+  "login": "Anmelden",
   "@login": {
     "type": "text",
     "placeholders": {}
@@ -938,7 +938,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "Fluffychat kann das Online-Schlüssel-Backup noch nicht aktivieren. Bitte schalte es innerhalb von Element an.",
+  "noMegolmBootstrap": "Fluffychat kann das Online-Schlüsselsicherung noch nicht aktivieren. Bitte schalte es innerhalb von Element an.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -970,17 +970,17 @@
       "number": {}
     }
   },
-  "ok": "ok",
+  "ok": "OK",
   "@ok": {
     "type": "text",
     "placeholders": {}
   },
-  "onlineKeyBackupDisabled": "Online Key Backup ist deaktiviert",
+  "onlineKeyBackupDisabled": "Online-Schlüsselsicherung ist deaktiviert",
   "@onlineKeyBackupDisabled": {
     "type": "text",
     "placeholders": {}
   },
-  "onlineKeyBackupEnabled": "Online Key Backup ist aktiviert",
+  "onlineKeyBackupEnabled": "Online-Schlüsselsicherung ist aktiviert",
   "@onlineKeyBackupEnabled": {
     "type": "text",
     "placeholders": {}
@@ -1067,7 +1067,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "redactedAnEvent": "{username} hat ein Event entfernt",
+  "redactedAnEvent": "{username} hat ein Ereignis entfernt",
   "@redactedAnEvent": {
     "type": "text",
     "placeholders": {
@@ -1436,7 +1436,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unknownEvent": "Unbekanntes Ereignis '{type}'",
+  "unknownEvent": "Unbekanntes Ereignis „{type}“",
   "@unknownEvent": {
     "type": "text",
     "placeholders": {
@@ -1520,7 +1520,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "userSentUnknownEvent": "{username} hat {type} Event gesendet",
+  "userSentUnknownEvent": "{username} hat ein {type}-Ereignis gesendet",
   "@userSentUnknownEvent": {
     "type": "text",
     "placeholders": {
@@ -1553,7 +1553,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "verifyTitle": "Verifiziere anderen Benutzer",
+  "verifyTitle": "Verifiziere das anderes Konto …",
   "@verifyTitle": {
     "type": "text",
     "placeholders": {}
@@ -1693,12 +1693,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "deactivateAccountWarning": "Dies deaktiviert deinen Account. Es kann nicht rückgängig gemacht werden! Bist du sicher?",
+  "deactivateAccountWarning": "Dies deaktiviert dein Konto. Es kann nicht rückgängig gemacht werden! Bist du sicher?",
   "@deactivateAccountWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "deleteAccount": "Account löschen",
+  "deleteAccount": "Konto löschen",
   "@deleteAccount": {
     "type": "text",
     "placeholders": {}
