@@ -23,7 +23,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "accountInformation": "Información de la cuenta",
+  "accountInformation": "Informaciones de la cuenta",
   "@accountInformation": {
     "type": "text",
     "placeholders": {}
@@ -1665,6 +1665,11 @@
   },
   "yourOwnUsername": "Tu nombre de usuario",
   "@yourOwnUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeDeviceName": "Cambiar el nombre del dispositivo",
+  "@changeDeviceName": {
     "type": "text",
     "placeholders": {}
   }
