@@ -6,6 +6,7 @@ import 'package:path_provider/path_provider.dart';
 import 'dart:async';
 import 'dart:core';
 import './database/shared.dart';
+import '../config/setting_keys.dart';
 import 'package:random_string/random_string.dart';
 
 Future<Database> getDatabase(Client client) async {
@@ -16,7 +17,7 @@ Future<Database> getDatabase(Client client) async {
   try {
     if (_db != null) return _db;
     final store = Store();
-    var password = await store.getItem('database-password');
+    var password = await store.getItem(SettingKeys.databasePassword);
     var newPassword = false;
     if (password == null || password.isEmpty) {
       newPassword = true;
@@ -28,7 +29,7 @@ Future<Database> getDatabase(Client client) async {
       password: password,
     );
     if (newPassword) {
-      await store.setItem('database-password', password);
+      await store.setItem(SettingKeys.databasePassword, password);
     }
     return _db;
   } finally {
@@ -72,6 +73,15 @@ class Store {
     } catch (_) {
       return null;
     }
+  }
+
+  Future<bool> getItemBool(String key, [bool defaultValue]) async {
+    final value = await getItem(key);
+    if (value == null) {
+      return defaultValue ?? false;
+    }
+    // we also check for '1' for legacy reasons, some booleans were stored that way
+    return value == '1' || value.toLowerCase() == 'true';
   }
 
   Future<void> setItem(String key, String value) async {

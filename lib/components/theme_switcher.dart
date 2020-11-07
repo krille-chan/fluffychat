@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'matrix.dart';
+import '../config/setting_keys.dart';
 
 enum Themes {
   light,
@@ -175,14 +176,12 @@ class ThemeSwitcherWidgetState extends State<ThemeSwitcherWidget> {
   BuildContext context;
 
   Future loadSelection(MatrixState matrix) async {
-    var item = await matrix.store.getItem('theme') ?? 'system';
+    var item = await matrix.store.getItem(SettingKeys.theme) ?? 'system';
     selectedTheme = Themes.values.firstWhere(
         (e) => e.toString() == 'Themes.' + item,
         orElse: () => Themes.system);
 
-    amoledEnabled = (await matrix.store.getItem('amoled_enabled') ?? 'false')
-            .toLowerCase() ==
-        'true';
+    amoledEnabled = await matrix.store.getItemBool(SettingKeys.amoledEnabled);
 
     switchTheme(matrix, selectedTheme, amoledEnabled);
     return;
@@ -229,11 +228,12 @@ class ThemeSwitcherWidgetState extends State<ThemeSwitcherWidget> {
   }
 
   Future saveThemeValue(MatrixState matrix, Themes value) async {
-    await matrix.store.setItem('theme', value.toString().split('.').last);
+    await matrix.store
+        .setItem(SettingKeys.theme, value.toString().split('.').last);
   }
 
   Future saveAmoledEnabledValue(MatrixState matrix, bool value) async {
-    await matrix.store.setItem('amoled_enabled', value.toString());
+    await matrix.store.setItem(SettingKeys.amoledEnabled, value.toString());
   }
 
   void setup() async {

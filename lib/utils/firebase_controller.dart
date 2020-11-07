@@ -15,6 +15,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../components/matrix.dart';
+import '../config/setting_keys.dart';
 import 'famedlysdk_store.dart';
 import 'matrix_locals.dart';
 
@@ -42,8 +43,7 @@ abstract class FirebaseController {
       token = null;
     }
     if (token?.isEmpty ?? true) {
-      final storeItem =
-          await matrix.store.getItem('chat.fluffy.show_no_google');
+      final storeItem = await matrix.store.getItem(SettingKeys.showNoGoogle);
       final configOptionMissing = storeItem == null || storeItem.isEmpty;
       if (configOptionMissing || (!configOptionMissing && storeItem == '1')) {
         BotToast.showText(
@@ -51,7 +51,7 @@ abstract class FirebaseController {
           duration: Duration(seconds: 15),
         );
         if (configOptionMissing) {
-          await matrix.store.setItem('chat.fluffy.show_no_google', '0');
+          await matrix.store.setItem(SettingKeys.showNoGoogle, '0');
         }
       }
       return;

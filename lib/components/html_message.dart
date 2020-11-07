@@ -2,6 +2,7 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:flutter_matrix_html/flutter_html.dart';
 import 'package:flutter/material.dart';
 import '../utils/url_launcher.dart';
+import '../config/setting_keys.dart';
 
 import 'matrix.dart';
 
@@ -59,10 +60,10 @@ class HtmlMessage extends StatelessWidget {
         );
       },
       setCodeLanguage: (String key, String value) async {
-        await matrix.store.setItem('code_language.$key', value);
+        await matrix.store.setItem('${SettingKeys.codeLanguage}.$key', value);
       },
       getCodeLanguage: (String key) async {
-        return await matrix.store.getItem('code_language.$key');
+        return await matrix.store.getItem('${SettingKeys.codeLanguage}.$key');
       },
       getPillInfo: (String identifier) async {
         if (room == null) {
