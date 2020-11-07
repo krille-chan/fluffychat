@@ -710,7 +710,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "loadingPleaseWait": "Enlegante… bonvolu atendi",
+  "loadingPleaseWait": "Enlegante… bonvolu atendi.",
   "@loadingPleaseWait": {
     "type": "text",
     "placeholders": {}
@@ -1515,7 +1515,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerNumbers": "Atendante akcepton de la numeroj de la kunulo…",
+  "waitingPartnerNumbers": "Atendante akcepton de la numeroj, de la kunulo…",
   "@waitingPartnerNumbers": {
     "type": "text",
     "placeholders": {}
