@@ -769,7 +769,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "isTyping": "kirjutab...",
+  "isTyping": "kirjutab…",
   "@isTyping": {
     "type": "text",
     "placeholders": {}
@@ -861,12 +861,12 @@
       "count": {}
     }
   },
-  "loadingPleaseWait": "Laen andmeid... Palun oota",
+  "loadingPleaseWait": "Laen andmeid… Palun oota.",
   "@loadingPleaseWait": {
     "type": "text",
     "placeholders": {}
   },
-  "loadMore": "Lae veel...",
+  "loadMore": "Lae veel…",
   "@loadMore": {
     "type": "text",
     "placeholders": {}
@@ -978,7 +978,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noRoomsFound": "Jututubasid ei leidunud...",
+  "noRoomsFound": "Jututubasid ei leidunud…",
   "@noRoomsFound": {
     "type": "text",
     "placeholders": {}
@@ -1010,7 +1010,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "oopsSomethingWentWrong": "Hopsti! Midagi läks nüüd viltu...",
+  "oopsSomethingWentWrong": "Hopsti! Midagi läks nüüd viltu…",
   "@oopsSomethingWentWrong": {
     "type": "text",
     "placeholders": {}
@@ -1515,7 +1515,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "userAndOthersAreTyping": "{username} ja {count} muud kirjutavad...",
+  "userAndOthersAreTyping": "{username} ja {count} muud kirjutavad…",
   "@userAndOthersAreTyping": {
     "type": "text",
     "placeholders": {
@@ -1523,7 +1523,7 @@
       "count": {}
     }
   },
-  "userAndUserAreTyping": "{username} ja {username2} kirjutavad...",
+  "userAndUserAreTyping": "{username} ja {username2} kirjutavad…",
   "@userAndUserAreTyping": {
     "type": "text",
     "placeholders": {
@@ -1531,7 +1531,7 @@
       "username2": {}
     }
   },
-  "userIsTyping": "{username} kirjutab...",
+  "userIsTyping": "{username} kirjutab…",
   "@userIsTyping": {
     "type": "text",
     "placeholders": {
@@ -1628,7 +1628,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerNumbers": "Ootan teise osapoole kinnitust, et tegemist on samade numbritega...",
+  "waitingPartnerNumbers": "Ootan teise osapoole kinnitust, et tegemist on samade numbritega…",
   "@waitingPartnerNumbers": {
     "type": "text",
     "placeholders": {}
@@ -1663,7 +1663,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "writeAMessage": "Kirjuta üks sõnum...",
+  "writeAMessage": "Kirjuta üks sõnum…",
   "@writeAMessage": {
     "type": "text",
     "placeholders": {}
