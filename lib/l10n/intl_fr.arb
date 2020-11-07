@@ -50,7 +50,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "alreadyHaveAnAccount": "Vous avez déjà un compte ?",
+  "alreadyHaveAnAccount": "Vous avez déjà un compte ?",
   "@alreadyHaveAnAccount": {
     "type": "text",
     "placeholders": {}
@@ -82,7 +82,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "areYouSure": "Êtes-vous sûr ?",
+  "areYouSure": "Êtes-vous sûr·e ?",
   "@areYouSure": {
     "type": "text",
     "placeholders": {}
@@ -166,7 +166,7 @@
       "username": {}
     }
   },
-  "changedTheChatDescriptionTo": "{username} a changé la description de la discussion en : '{description}'",
+  "changedTheChatDescriptionTo": "{username} a changé la description de la discussion en : « {description} »",
   "@changedTheChatDescriptionTo": {
     "type": "text",
     "placeholders": {
@@ -174,7 +174,7 @@
       "description": {}
     }
   },
-  "changedTheChatNameTo": "{username} a renommé la discussion en : '{chatname}'",
+  "changedTheChatNameTo": "{username} a renommé la discussion en : « {chatname} »",
   "@changedTheChatNameTo": {
     "type": "text",
     "placeholders": {
@@ -464,7 +464,7 @@
       "day": {}
     }
   },
-  "deactivateAccountWarning": "Cela désactivera votre compte et ne peut pas être annulé ! Êtes-vous sûr(e) ?",
+  "deactivateAccountWarning": "Ceci désactivera votre compte et ne peut pas être annulé ! Êtes-vous sûr·e ?",
   "@deactivateAccountWarning": {
     "type": "text",
     "placeholders": {}
@@ -529,12 +529,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteExists": "Cette émoticône existe déjà !",
+  "emoteExists": "Cette émoticône existe déjà !",
   "@emoteExists": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteInvalid": "Raccourci d'émoticône invalide !",
+  "emoteInvalid": "Raccourci d'émoticône invalide !",
   "@emoteInvalid": {
     "type": "text",
     "placeholders": {}
@@ -549,7 +549,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteWarnNeedToPick": "Vous devez sélectionner un raccourci d'émoticône et une image !",
+  "emoteWarnNeedToPick": "Vous devez sélectionner un raccourci d'émoticône et une image !",
   "@emoteWarnNeedToPick": {
     "type": "text",
     "placeholders": {}
@@ -756,7 +756,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "{username} vous a invité sur FluffyChat. \n1. Installez FluffyChat : https://fluffychat.im \n2. Inscrivez-vous ou connectez-vous \n3. Ouvrez le lien d'invitation : {link}",
+  "inviteText": "{username} vous a invité·e sur FluffyChat. \n1. Installez FluffyChat : https://fluffychat.im \n2. Inscrivez-vous ou connectez-vous \n3. Ouvrez le lien d'invitation : {link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {
@@ -769,7 +769,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "isTyping": "écrit...",
+  "isTyping": "écrit…",
   "@isTyping": {
     "type": "text",
     "placeholders": {}
@@ -861,17 +861,17 @@
       "count": {}
     }
   },
-  "loadingPleaseWait": "Chargement... Veuillez patienter",
+  "loadingPleaseWait": "Chargement… Veuillez patienter.",
   "@loadingPleaseWait": {
     "type": "text",
     "placeholders": {}
   },
-  "loadMore": "Charger plus...",
+  "loadMore": "Charger plus…",
   "@loadMore": {
     "type": "text",
     "placeholders": {}
   },
-  "login": "Connexion",
+  "login": "Se connecter",
   "@login": {
     "type": "text",
     "placeholders": {}
@@ -978,7 +978,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noRoomsFound": "Aucun salon trouvé...",
+  "noRoomsFound": "Aucun salon trouvé…",
   "@noRoomsFound": {
     "type": "text",
     "placeholders": {}
@@ -995,7 +995,7 @@
       "number": {}
     }
   },
-  "ok": "ok",
+  "ok": "OK",
   "@ok": {
     "type": "text",
     "placeholders": {}
@@ -1010,7 +1010,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "oopsSomethingWentWrong": "Oups, un problème s'est produit...",
+  "oopsSomethingWentWrong": "Oups, un problème est survenu…",
   "@oopsSomethingWentWrong": {
     "type": "text",
     "placeholders": {}
@@ -1097,7 +1097,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "redactedAnEvent": "{username} a supprimé un message",
+  "redactedAnEvent": "{username} a expurgé un évènement",
   "@redactedAnEvent": {
     "type": "text",
     "placeholders": {
@@ -1277,7 +1277,7 @@
       "username": {}
     }
   },
-  "sentASticker": "{username} a envoyé un sticker",
+  "sentASticker": "{username} a envoyé un autocollant",
   "@sentASticker": {
     "type": "text",
     "placeholders": {
@@ -1466,7 +1466,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unknownEvent": "Événement de type inconnu '{type}'",
+  "unknownEvent": "Évènement de type inconnu « {type} »",
   "@unknownEvent": {
     "type": "text",
     "placeholders": {
@@ -1515,7 +1515,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "userAndOthersAreTyping": "{username} et {count} autres sont en train d'écrire...",
+  "userAndOthersAreTyping": "{username} et {count} autres sont en train d'écrire…",
   "@userAndOthersAreTyping": {
     "type": "text",
     "placeholders": {
@@ -1523,7 +1523,7 @@
       "count": {}
     }
   },
-  "userAndUserAreTyping": "{username} et {username2} sont en train d'écrire...",
+  "userAndUserAreTyping": "{username} et {username2} sont en train d'écrire…",
   "@userAndUserAreTyping": {
     "type": "text",
     "placeholders": {
@@ -1531,7 +1531,7 @@
       "username2": {}
     }
   },
-  "userIsTyping": "{username} est en train d'écrire...",
+  "userIsTyping": "{username} écrit…",
   "@userIsTyping": {
     "type": "text",
     "placeholders": {
@@ -1550,7 +1550,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "userSentUnknownEvent": "{username} a envoyé un événement de type {type}",
+  "userSentUnknownEvent": "{username} a envoyé un évènement de type {type}",
   "@userSentUnknownEvent": {
     "type": "text",
     "placeholders": {
@@ -1628,7 +1628,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerNumbers": "En attente de l'acceptation des nombres par le partenaire...",
+  "waitingPartnerNumbers": "En attente de l'acceptation des nombres par le partenaire…",
   "@waitingPartnerNumbers": {
     "type": "text",
     "placeholders": {}
@@ -1663,7 +1663,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "writeAMessage": "Écrit un message...",
+  "writeAMessage": "Écris un message…",
   "@writeAMessage": {
     "type": "text",
     "placeholders": {}
