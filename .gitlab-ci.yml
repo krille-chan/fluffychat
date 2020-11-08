@@ -13,6 +13,7 @@ variables:
 stages:
 - coverage
 - publish
+- release
 
 code_analyze:
   stage: coverage
@@ -68,7 +69,7 @@ build_windows:
   artifacts:
     paths:
       - build/windows/runner/Release/
-    name: "Binairies"
+    name: "Binaries"
   allow_failure: true
 
 build_android_debug:
@@ -266,3 +267,52 @@ update-dependencies:
     - git remote set-url --push origin git@gitlab.com:$CI_PROJECT_PATH
     - 'git diff --exit-code || (git checkout -B ${UPDATE_BRANCH} && git add . && git commit -m "chore: Update dependencies" && git push -f origin ${UPDATE_BRANCH} && ./scripts/open-mr.sh)'
 
+.release:
+  stage: release
+  image: curlimages/curl:latest
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^v\d+\.\d+\.\d+$/'
+  before_script:
+    - export RELEASE_VERSION=$(echo $CI_COMMIT_TAG | grep -oE "\d+\.\d+\.\d+")
+    - export PACKAGE_REGISTRY_URL="${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/fluffychat/${RELEASE_VERSION}"
+
+upload-android:
+  extends: .release
+  script:
+    - |
+      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file build/android/app-release.apk ${PACKAGE_REGISTRY_URL}/fluffychat.apk
+      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file build/android/app-release.aab ${PACKAGE_REGISTRY_URL}/fluffychat.aab
+
+upload-web:
+  extends: .release
+  script:
+    - tar czf package.tar.gz -C build/web/ .
+    - |
+      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file package.tar.gz ${PACKAGE_REGISTRY_URL}/fluffychat-web.tar.gz
+
+upload-linux:
+  extends: .release
+  script:
+    - tar czf package.tar.gz -C build/linux/release/bundle/ .
+    - |
+      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file package.tar.gz ${PACKAGE_REGISTRY_URL}/fluffychat-linux.tar.gz
+
+upload-windows:
+  extends: .release
+  script:
+    - tar czf package.tar.gz -C build/windows/runner/Release/ .
+    - |
+      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file package.tar.gz ${PACKAGE_REGISTRY_URL}/fluffychat-windows.tar.gz
+
+release:
+  extends: .release
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+
+  script:
+    - |
+      release-cli create --name "Release ${CI_COMMIT_TAG}" --tag-name $CI_COMMIT_TAG \
+        --assets-link "{\"name\":\"fluffychat.apk\",\"url\":\"${PACKAGE_REGISTRY_URL}/fluffychat.apk\"}" \
+        --assets-link "{\"name\":\"fluffychat.aab\",\"url\":\"${PACKAGE_REGISTRY_URL}/fluffychat.aab\"}" \
+        --assets-link "{\"name\":\"fluffychat-linux.tar.gz\",\"url\":\"${PACKAGE_REGISTRY_URL}/fluffychat-linux.tar.gz\"}" \
+        --assets-link "{\"name\":\"fluffychat-windows.tar.gz\",\"url\":\"${PACKAGE_REGISTRY_URL}/fluffychat-windows.tar.gz\"}" \
+        --assets-link "{\"name\":\"fluffychat-web.tar.gz\",\"url\":\"${PACKAGE_REGISTRY_URL}/fluffychat-web.tar.gz\"}"
