@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:convert';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:famedlysdk/encryption.dart';
@@ -13,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:universal_html/prefer_universal/html.dart' as html;
 import 'package:url_launcher/url_launcher.dart';
+import 'package:path_provider/path_provider.dart';
 /*import 'package:fluffychat/views/chat.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:dbus/dbus.dart';
@@ -26,6 +28,8 @@ import '../utils/platform_infos.dart';
 import '../config/app_config.dart';
 import '../config/setting_keys.dart';
 import 'avatar.dart';
+
+import 'package:http/http.dart' as http;
 
 class Matrix extends StatefulWidget {
   static const String callNamespace = 'chat.fluffy.jitsi_call';
@@ -227,6 +231,38 @@ class MatrixState extends State<Matrix> {
 
   @override
   void initState() {
+    super.initState();
+    initMatrix();
+    initConfig().then((_) => initSettings());
+  }
+
+  Future<void> initConfig() async {
+    if (PlatformInfos.isMobile) {
+      return;
+    }
+    try {
+      var configJsonString = '';
+      if (PlatformInfos.isWeb) {
+        configJsonString =
+            utf8.decode((await http.get('config.json')).bodyBytes);
+      } else if (PlatformInfos.isBetaDesktop) {
+        final appDocDir = await getApplicationSupportDirectory();
+        configJsonString =
+            await File('${appDocDir.path}/config.json').readAsString();
+      } else {
+        final appDocDir = await getApplicationDocumentsDirectory();
+        configJsonString =
+            await File('${appDocDir.path}/config.json').readAsString();
+      }
+      final configJson = json.decode(configJsonString);
+      AppConfig.loadFromJson(configJson);
+    } catch (error) {
+      debugPrint(
+          '[ConfigLoader] Failed to load config.json: ' + error.toString());
+    }
+  }
+
+  void initMatrix() {
     store = widget.store ?? Store();
     if (widget.client == null) {
       debugPrint('[Matrix] Init matrix client');
@@ -307,6 +343,25 @@ class MatrixState extends State<Matrix> {
       client = widget.client;
       client.connect();
     }
+    if (kIsWeb) {
+      onFocusSub = html.window.onFocus.listen((_) => webHasFocus = true);
+      onBlurSub = html.window.onBlur.listen((_) => webHasFocus = false);
+    }
+    if (kIsWeb || Platform.isLinux) {
+      client.onSync.stream.first.then((s) {
+        html.Notification.requestPermission();
+        onNotification ??= client.onEvent.stream
+            .where((e) =>
+                e.type == EventUpdateType.timeline &&
+                [EventTypes.Message, EventTypes.Sticker, EventTypes.Encrypted]
+                    .contains(e.eventType) &&
+                e.content['sender'] != client.userID)
+            .listen(_showLocalNotification);
+      });
+    }
+  }
+
+  void initSettings() {
     if (store != null) {
       store
           .getItem(SettingKeys.jitsiInstance)
@@ -330,23 +385,6 @@ class MatrixState extends State<Matrix> {
               SettingKeys.hideUnknownEvents, AppConfig.hideUnknownEvents)
           .then((value) => AppConfig.hideUnknownEvents = value);
     }
-    if (kIsWeb) {
-      onFocusSub = html.window.onFocus.listen((_) => webHasFocus = true);
-      onBlurSub = html.window.onBlur.listen((_) => webHasFocus = false);
-    }
-    if (kIsWeb || Platform.isLinux) {
-      client.onSync.stream.first.then((s) {
-        html.Notification.requestPermission();
-        onNotification ??= client.onEvent.stream
-            .where((e) =>
-                e.type == EventUpdateType.timeline &&
-                [EventTypes.Message, EventTypes.Sticker, EventTypes.Encrypted]
-                    .contains(e.eventType) &&
-                e.content['sender'] != client.userID)
-            .listen(_showLocalNotification);
-      });
-    }
-    super.initState();
   }
 
   @override

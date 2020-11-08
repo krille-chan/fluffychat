@@ -1,0 +1,11 @@
+{
+  "application_name": "FluffyChat",
+  "default_homeserver": "matrix.tchncsde",
+  "privacy_url": "https://fluffychat.im/en/privacy.html",
+  "source_code_url": "https://gitlab.com/ChristianPauly/fluffychat-flutter",
+  "support_url": "https://gitlab.com/ChristianPauly/fluffychat-flutter/issues",
+  "sentry_dns": "https://8591d0d863b646feb4f3dda7e5dcab38@o256755.ingest.sentry.io/5243143",
+  "render_html": false,
+  "hide_redacted_events": false,
+  "hide_unknown_events": false
+}
