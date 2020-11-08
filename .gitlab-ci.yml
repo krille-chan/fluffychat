@@ -53,7 +53,7 @@ build_web:
 build_windows:
   extends:
     - .shared_windows_runners
-  stage: publish
+  stage: coverage
   script:
     # Install chocolately
     - Set-ExecutionPolicy Bypass -Scope Process
@@ -69,9 +69,7 @@ build_windows:
     paths:
       - build/windows/runner/Release/
     name: "Binairies"
-  only:
-    - main
-    - tags
+  allow_failure: true
 
 build_android_debug:
   stage: coverage
@@ -187,13 +185,12 @@ build_linux:
     - sudo apt install clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev
     - flutter config --enable-linux-desktop
     - flutter pub get
-    - flutter build linux --release
+    - flutter build linux --release -v
   artifacts:
     when: on_success
     paths:
       - build/linux/release/bundle/
-  only:
-    - main
+  allow_failure: true
 
 snap:edge:
   stage: publish
@@ -217,6 +214,7 @@ snap:edge:
     paths:
       - './*.snap'
     when: on_success
+  allow_failure: true
   
 snap:publish:
   stage: publish
@@ -235,6 +233,7 @@ snap:publish:
     when: on_success
     expire_in: 1 week
   needs: []
+  allow_failure: true
 
 update-dependencies:
   stage: coverage
