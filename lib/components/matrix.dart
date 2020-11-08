@@ -269,10 +269,21 @@ class MatrixState extends State<Matrix> {
       });
       onKeyVerificationRequestSub ??= client.onKeyVerificationRequest.stream
           .listen((KeyVerification request) async {
+        var hidPopup = false;
+        request.onUpdate = () {
+          if (!hidPopup &&
+              {KeyVerificationState.done, KeyVerificationState.error}
+                  .contains(request.state)) {
+            Navigator.of(context, rootNavigator: true).pop('dialog');
+          }
+          hidPopup = true;
+        };
         if (await SimpleDialogs(context).askConfirmation(
           titleText: L10n.of(context).newVerificationRequest,
           contentText: L10n.of(context).askVerificationRequest(request.userId),
         )) {
+          request.onUpdate = null;
+          hidPopup = true;
           await request.acceptVerification();
           await Navigator.of(context).push(
             AppRoute.defaultRoute(
@@ -281,6 +292,8 @@ class MatrixState extends State<Matrix> {
             ),
           );
         } else {
+          request.onUpdate = null;
+          hidPopup = true;
           await request.rejectVerification();
         }
       });

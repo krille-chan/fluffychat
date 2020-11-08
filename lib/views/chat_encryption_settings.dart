@@ -143,11 +143,10 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
                             itemBuilder: (c) {
                               var items = <PopupMenuEntry<String>>[];
                               if (room
-                                          .client
-                                          .userDeviceKeys[deviceKeys[i].userId]
-                                          .verified ==
-                                      UserVerifiedStatus.unknown &&
-                                  deviceKeys[i].userId != room.client.userID) {
+                                      .client
+                                      .userDeviceKeys[deviceKeys[i].userId]
+                                      .verified ==
+                                  UserVerifiedStatus.unknown) {
                                 items.add(PopupMenuItem(
                                   child: Text(L10n.of(context).verifyUser),
                                   value: 'verify_user',
@@ -211,7 +210,7 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
                         },
                         child: ListTile(
                           title: Text(
-                            "${deviceKeys[i].unsigned["device_display_name"] ?? L10n.of(context).unknownDevice} - ${deviceKeys[i].deviceId}",
+                            '${deviceKeys[i].deviceDisplayName ?? L10n.of(context).unknownDevice} - ${deviceKeys[i].deviceId}',
                             style: TextStyle(
                                 color: deviceKeys[i].blocked
                                     ? Colors.red
@@ -220,9 +219,7 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
                                         : Colors.orange),
                           ),
                           subtitle: Text(
-                            deviceKeys[i]
-                                .keys['ed25519:${deviceKeys[i].deviceId}']
-                                .beautified,
+                            deviceKeys[i].ed25519Key.beautified,
                             style: TextStyle(
                                 color: Theme.of(context)
                                     .textTheme
