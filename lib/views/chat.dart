@@ -601,19 +601,26 @@ class _ChatState extends State<_Chat> {
 
                       final filteredEvents = getFilteredEvents();
 
-                      return ListView.builder(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: max(
-                                0,
-                                (MediaQuery.of(context).size.width -
-                                        AdaptivePageLayout.defaultMinWidth *
-                                            3.5) /
-                                    2),
-                          ),
-                          reverse: true,
-                          itemCount: filteredEvents.length + 2,
-                          controller: _scrollController,
-                          itemBuilder: (BuildContext context, int i) {
+                      // create a map of eventId --> index to greatly improve performance of
+                      // ListView's findChildIndexCallback
+                      final thisEventsKeyMap = <String, int>{};
+                      for (var i = 0; i < filteredEvents.length; i++) {
+                        thisEventsKeyMap[filteredEvents[i].eventId] = i;
+                      }
+
+                      return ListView.custom(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: max(
+                              0,
+                              (MediaQuery.of(context).size.width -
+                                      AdaptivePageLayout.defaultMinWidth *
+                                          3.5) /
+                                  2),
+                        ),
+                        reverse: true,
+                        controller: _scrollController,
+                        childrenDelegate: SliverChildBuilderDelegate(
+                          (BuildContext context, int i) {
                             return i == filteredEvents.length + 1
                                 ? _loadingHistory
                                     ? Container(
@@ -675,7 +682,8 @@ class _ChatState extends State<_Chat> {
                                         ),
                                       )
                                     : AutoScrollTag(
-                                        key: ValueKey(i - 1),
+                                        key: ValueKey(
+                                            filteredEvents[i - 1].eventId),
                                         index: i - 1,
                                         controller: _scrollController,
                                         child: Swipeable(
@@ -738,7 +746,27 @@ class _ChatState extends State<_Chat> {
                                                   : null),
                                         ),
                                       );
-                          });
+                          },
+                          childCount: filteredEvents.length + 2,
+                          findChildIndexCallback: (Key key) {
+                            // this method is called very often. As such, it has to be optimized for speed.
+                            if (!(key is ValueKey)) {
+                              return null;
+                            }
+                            final eventId = (key as ValueKey).value;
+                            if (!(eventId is String)) {
+                              return null;
+                            }
+                            // first fetch the last index the event was at
+                            final index = thisEventsKeyMap[eventId];
+                            if (index == null) {
+                              return null;
+                            }
+                            // we need to +1 as 0 is the typing thing at the bottom
+                            return index + 1;
+                          },
+                        ),
+                      );
                     },
                   ),
                 ),
