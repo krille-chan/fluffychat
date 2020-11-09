@@ -744,7 +744,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "isTyping": "está escribiendo...",
+  "isTyping": "está escribiendo…",
   "@isTyping": {
     "type": "text",
     "placeholders": {}
@@ -836,12 +836,12 @@
       "count": {}
     }
   },
-  "loadingPleaseWait": "Cargando... Por favor espere",
+  "loadingPleaseWait": "Cargando… Por favor espere.",
   "@loadingPleaseWait": {
     "type": "text",
     "placeholders": {}
   },
-  "loadMore": "Mostrar más...",
+  "loadMore": "Mostrar más…",
   "@loadMore": {
     "type": "text",
     "placeholders": {}
@@ -953,7 +953,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noRoomsFound": "Ninguna sala encontrada...",
+  "noRoomsFound": "Ninguna sala encontrada…",
   "@noRoomsFound": {
     "type": "text",
     "placeholders": {}
@@ -985,7 +985,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "oopsSomethingWentWrong": "Ups, algo salió mal...",
+  "oopsSomethingWentWrong": "Ups, algo salió mal…",
   "@oopsSomethingWentWrong": {
     "type": "text",
     "placeholders": {}
@@ -1268,7 +1268,7 @@
       "senderName": {}
     }
   },
-  "sentryInfo": "Informacion sobre tu privacidad: https://sentry.io/security/",
+  "sentryInfo": "Información sobre tu privacidad: https://sentry.io/security/",
   "@sentryInfo": {
     "type": "text",
     "placeholders": {}
@@ -1485,7 +1485,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "userAndOthersAreTyping": "{username} y {count} más están escribiendo...",
+  "userAndOthersAreTyping": "{username} y {count} más están escribiendo…",
   "@userAndOthersAreTyping": {
     "type": "text",
     "placeholders": {
@@ -1493,7 +1493,7 @@
       "count": {}
     }
   },
-  "userAndUserAreTyping": "{username} y {username2} están escribiendo...",
+  "userAndUserAreTyping": "{username} y {username2} están escribiendo…",
   "@userAndUserAreTyping": {
     "type": "text",
     "placeholders": {
@@ -1501,7 +1501,7 @@
       "username2": {}
     }
   },
-  "userIsTyping": "{username} está escribiendo...",
+  "userIsTyping": "{username} está escribiendo…",
   "@userIsTyping": {
     "type": "text",
     "placeholders": {
@@ -1598,7 +1598,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerNumbers": "Esperando a que el socio acepte los números...",
+  "waitingPartnerNumbers": "Esperando a que el socio acepte los números…",
   "@waitingPartnerNumbers": {
     "type": "text",
     "placeholders": {}
@@ -1618,7 +1618,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "welcomeText": "Bienvenidos al mensajero instantáneo más lindo de la red matricial.",
+  "welcomeText": "Bienvenidos al mensajero instantáneo más lindo de la red de Matrix.",
   "@welcomeText": {
     "type": "text",
     "placeholders": {}
@@ -1628,7 +1628,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "writeAMessage": "Escribe un mensaje...",
+  "writeAMessage": "Escribe un mensaje…",
   "@writeAMessage": {
     "type": "text",
     "placeholders": {}
@@ -1670,6 +1670,86 @@
   },
   "changeDeviceName": "Cambiar el nombre del dispositivo",
   "@changeDeviceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignoreListDescription": "Puede ignorar a los usuarios que le molesten. No podrá recibir mensajes ni invitaciones a salas de los usuarios de su lista personal de ignorados.",
+  "@ignoreListDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deactivateAccountWarning": "Se desactivará su cuenta de usuario.  ¡La operación no se puede cancelar! ¿Está seguro?",
+  "@deactivateAccountWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "warning": "¡Advertencia!",
+  "@warning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "privacy": "Privacidad",
+  "@privacy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordHasBeenChanged": "La contraseña ha sido cambiada",
+  "@passwordHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unavailable": "Indisponible",
+  "@unavailable": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offline": "Desconectado",
+  "@offline": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "online": "Conectado",
+  "@online": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "mention": "Mencionar",
+  "@mention": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignoreUsername": "Ignorar nombre de usuario",
+  "@ignoreUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignoredUsers": "Usuarios Ignorados",
+  "@ignoredUsers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideUnknownEvents": "Ocultar eventos desconocidos",
+  "@hideUnknownEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideRedactedEvents": "Ocultar eventos redactados",
+  "@hideRedactedEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEmotesGlobally": "Habilitar paquete de emoticonos a nivel general",
+  "@enableEmotesGlobally": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emotePacks": "Paquetes de emoticonos para la habitación",
+  "@emotePacks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteAccount": "Cancelar cuenta",
+  "@deleteAccount": {
     "type": "text",
     "placeholders": {}
   }
