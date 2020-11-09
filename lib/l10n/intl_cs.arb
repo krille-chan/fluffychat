@@ -851,7 +851,7 @@
       "count": {}
     }
   },
-  "loadingPleaseWait": "Načítání… Prosíme počkejte",
+  "loadingPleaseWait": "Načítání… Prosíme vyčkejte.",
   "@loadingPleaseWait": {
     "type": "text",
     "placeholders": {}
@@ -1000,7 +1000,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "oopsSomethingWentWrong": "Ups! Něco se pokazilo…",
+  "oopsSomethingWentWrong": "Jejda, Něco se pokazilo…",
   "@oopsSomethingWentWrong": {
     "type": "text",
     "placeholders": {}
@@ -1613,7 +1613,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerNumbers": "Čeká se na potvrzení čísel partnerem…",
+  "waitingPartnerNumbers": "Čekání na partnera až přijme čísla…",
   "@waitingPartnerNumbers": {
     "type": "text",
     "placeholders": {}
@@ -1633,7 +1633,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "welcomeText": "Vítejte v nejroztomilejší diskuzní aplikaci pro síť matrix.",
+  "welcomeText": "Vítejte v nejroztomilejší diskuzní aplikaci pro síť Matrix.",
   "@welcomeText": {
     "type": "text",
     "placeholders": {}
@@ -1740,6 +1740,16 @@
   },
   "changeDeviceName": "Změnit název zařízení",
   "@changeDeviceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideUnknownEvents": "Skrýt neznámé události",
+  "@hideUnknownEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideRedactedEvents": "Skrýt redigované události",
+  "@hideRedactedEvents": {
     "type": "text",
     "placeholders": {}
   }
