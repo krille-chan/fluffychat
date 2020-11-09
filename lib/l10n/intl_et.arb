@@ -1742,5 +1742,15 @@
   "@online": {
     "type": "text",
     "placeholders": {}
+  },
+  "hideUnknownEvents": "Peida tundmatud sündmused",
+  "@hideUnknownEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideRedactedEvents": "Peida muudetud sündmused",
+  "@hideRedactedEvents": {
+    "type": "text",
+    "placeholders": {}
   }
 }
