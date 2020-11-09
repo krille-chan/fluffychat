@@ -7,7 +7,7 @@ We always need help with social media stuff. We don't have much time and the tim
 Just contact us at [#fluffychat:matrix.org](https://matrix.to/#/#fluffychat:matrix.org).
 
 ## Translations:
-You can add translations for your language easily. Just download this file [intl_messages.arb](https://gitlab.com/ChristianPauly/fluffychat-flutter/-/raw/master/lib/l10n/intl_messages.arb) and translate it to your language. Then you can either send us the file and we add it to the project or you can do this by yourself in these steps (for mor experienced users):
+You can add translations for your language easily. Just download this file [intl_messages.arb](https://gitlab.com/ChristianPauly/fluffychat-flutter/-/raw/master/lib/l10n/intl_messages.arb) and translate it to your language. Then you can either send us the file and we add it to the project or you can do this by yourself in these steps (for more experienced users):
 
 1. Create a GitLab account if you don't have one.
 2. Fork the project.
