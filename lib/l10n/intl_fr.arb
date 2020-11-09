@@ -1742,5 +1742,15 @@
   "@mention": {
     "type": "text",
     "placeholders": {}
+  },
+  "hideUnknownEvents": "Cacher les événements inconnus",
+  "@hideUnknownEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideRedactedEvents": "Cacher les événements supprimés",
+  "@hideRedactedEvents": {
+    "type": "text",
+    "placeholders": {}
   }
 }
