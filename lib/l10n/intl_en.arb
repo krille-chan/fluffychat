@@ -681,6 +681,16 @@
     "type": "text",
     "placeholders": {}
   },
+  "hideRedactedEvents": "Hide redacted events",
+  "@hideRedactedEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideUnknownEvents": "Hide unknown events",
+  "@hideUnknownEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
   "homeserverIsNotCompatible": "Homeserver is not compatible",
   "@homeserverIsNotCompatible": {
     "type": "text",

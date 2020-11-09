@@ -34,6 +34,7 @@ import 'package:swipe_to_action/swipe_to_action.dart';
 import '../components/dialogs/send_file_dialog.dart';
 import '../components/input_bar.dart';
 import '../utils/matrix_file_extension.dart';
+import '../config/app_config.dart';
 import 'chat_details.dart';
 import 'chat_list.dart';
 
@@ -411,9 +412,15 @@ class _ChatState extends State<_Chat> {
 
   List<Event> getFilteredEvents() => timeline.events
       .where((e) =>
-          ![RelationshipTypes.Edit, RelationshipTypes.Reaction]
+          // always filter out edit and reaction relationships
+          !{RelationshipTypes.Edit, RelationshipTypes.Reaction}
               .contains(e.relationshipType) &&
-          e.type != 'm.reaction')
+          // if a reaction has been redacted we also want it to appear in the timeline
+          e.type != EventTypes.Reaction &&
+          // if we enabled to hide all redacted events, don't show those
+          (!AppConfig.hideRedactedEvents || !e.redacted) &&
+          // if we enabled to hide all unknown events, don't show those
+          (!AppConfig.hideUnknownEvents || e.isEventTypeKnown))
       .toList();
 
   @override

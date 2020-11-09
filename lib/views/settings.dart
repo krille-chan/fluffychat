@@ -21,6 +21,8 @@ import '../components/content_banner.dart';
 import '../components/dialogs/simple_dialogs.dart';
 import '../components/matrix.dart';
 import '../utils/app_route.dart';
+import '../config/app_config.dart';
+import '../config/setting_keys.dart';
 import 'app_info.dart';
 import 'chat_list.dart';
 import 'settings_emotes.dart';
@@ -115,7 +117,7 @@ class _SettingsState extends State<Settings> {
       jitsi += '/';
     }
     final matrix = Matrix.of(context);
-    await matrix.store.setItem('chat.fluffy.jitsi_instance', jitsi);
+    await matrix.store.setItem(SettingKeys.jitsiInstance, jitsi);
     matrix.jitsiInstance = jitsi;
   }
 
@@ -179,13 +181,13 @@ class _SettingsState extends State<Settings> {
     Matrix.of(context).wallpaper = File(wallpaper.path);
     await Matrix.of(context)
         .store
-        .setItem('chat.fluffy.wallpaper', wallpaper.path);
+        .setItem(SettingKeys.wallpaper, wallpaper.path);
     setState(() => null);
   }
 
   void deleteWallpaperAction(BuildContext context) async {
     Matrix.of(context).wallpaper = null;
-    await Matrix.of(context).store.deleteItem('chat.fluffy.wallpaper');
+    await Matrix.of(context).store.deleteItem(SettingKeys.wallpaper);
     setState(() => null);
   }
 
@@ -340,13 +342,39 @@ class _SettingsState extends State<Settings> {
             ListTile(
               title: Text(L10n.of(context).renderRichContent),
               trailing: Switch(
-                value: Matrix.of(context).renderHtml,
+                value: AppConfig.renderHtml,
                 activeColor: Theme.of(context).primaryColor,
                 onChanged: (bool newValue) async {
-                  Matrix.of(context).renderHtml = newValue;
+                  AppConfig.renderHtml = newValue;
                   await Matrix.of(context)
                       .store
-                      .setItem('chat.fluffy.renderHtml', newValue ? '1' : '0');
+                      .setItem(SettingKeys.renderHtml, newValue.toString());
+                  setState(() => null);
+                },
+              ),
+            ),
+            ListTile(
+              title: Text(L10n.of(context).hideRedactedEvents),
+              trailing: Switch(
+                value: AppConfig.hideRedactedEvents,
+                activeColor: Theme.of(context).primaryColor,
+                onChanged: (bool newValue) async {
+                  AppConfig.hideRedactedEvents = newValue;
+                  await Matrix.of(context).store.setItem(
+                      SettingKeys.hideRedactedEvents, newValue.toString());
+                  setState(() => null);
+                },
+              ),
+            ),
+            ListTile(
+              title: Text(L10n.of(context).hideUnknownEvents),
+              trailing: Switch(
+                value: AppConfig.hideUnknownEvents,
+                activeColor: Theme.of(context).primaryColor,
+                onChanged: (bool newValue) async {
+                  AppConfig.hideUnknownEvents = newValue;
+                  await Matrix.of(context).store.setItem(
+                      SettingKeys.hideUnknownEvents, newValue.toString());
                   setState(() => null);
                 },
               ),

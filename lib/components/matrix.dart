@@ -23,6 +23,8 @@ import '../utils/beautify_string_extension.dart';
 import '../utils/famedlysdk_store.dart';
 import '../views/key_verification.dart';
 import '../utils/platform_infos.dart';
+import '../config/app_config.dart';
+import '../config/setting_keys.dart';
 import 'avatar.dart';
 
 class Matrix extends StatefulWidget {
@@ -72,7 +74,6 @@ class MatrixState extends State<Matrix> {
 
   String activeRoomId;
   File wallpaper;
-  bool renderHtml = false;
 
   String jitsiInstance = 'https://meet.jit.si/';
 
@@ -304,18 +305,26 @@ class MatrixState extends State<Matrix> {
     }
     if (store != null) {
       store
-          .getItem('chat.fluffy.jitsi_instance')
+          .getItem(SettingKeys.jitsiInstance)
           .then((final instance) => jitsiInstance = instance ?? jitsiInstance);
-      store.getItem('chat.fluffy.wallpaper').then((final path) async {
+      store.getItem(SettingKeys.wallpaper).then((final path) async {
         if (path == null) return;
         final file = File(path);
         if (await file.exists()) {
           wallpaper = file;
         }
       });
-      store.getItem('chat.fluffy.renderHtml').then((final render) async {
-        renderHtml = render == '1';
-      });
+      store
+          .getItemBool(SettingKeys.renderHtml, AppConfig.renderHtml)
+          .then((value) => AppConfig.renderHtml = value);
+      store
+          .getItemBool(
+              SettingKeys.hideRedactedEvents, AppConfig.hideRedactedEvents)
+          .then((value) => AppConfig.hideRedactedEvents = value);
+      store
+          .getItemBool(
+              SettingKeys.hideUnknownEvents, AppConfig.hideUnknownEvents)
+          .then((value) => AppConfig.hideUnknownEvents = value);
     }
     if (kIsWeb) {
       onFocusSub = html.window.onFocus.listen((_) => webHasFocus = true);

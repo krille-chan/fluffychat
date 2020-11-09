@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'html_message.dart';
-import 'matrix.dart';
+import '../config/app_config.dart';
 
 class ReplyContent extends StatelessWidget {
   final Event replyEvent;
@@ -22,7 +22,7 @@ class ReplyContent extends StatelessWidget {
         ? replyEvent.getDisplayEvent(timeline)
         : replyEvent;
     if (displayEvent != null &&
-        Matrix.of(context).renderHtml &&
+        AppConfig.renderHtml &&
         [EventTypes.Message, EventTypes.Encrypted]
             .contains(displayEvent.type) &&
         [MessageTypes.Text, MessageTypes.Notice, MessageTypes.Emote]

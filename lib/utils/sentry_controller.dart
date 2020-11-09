@@ -7,6 +7,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:sentry/sentry.dart';
 
 import 'famedlysdk_store.dart';
+import '../config/setting_keys.dart';
 
 abstract class SentryController {
   static Future<void> toggleSentryAction(BuildContext context) async {
@@ -17,14 +18,14 @@ abstract class SentryController {
       cancelText: L10n.of(context).no,
     );
     final storage = Store();
-    await storage.setItem('sentry', enableSentry.toString());
+    await storage.setItem(SettingKeys.sentry, enableSentry.toString());
     BotToast.showText(text: L10n.of(context).changesHaveBeenSaved);
     return;
   }
 
   static Future<bool> getSentryStatus() async {
     final storage = Store();
-    return await storage.getItem('sentry') == 'true';
+    return await storage.getItemBool(SettingKeys.sentry);
   }
 
   static final sentry = SentryClient(dsn: AppConfig.sentryDsn);
