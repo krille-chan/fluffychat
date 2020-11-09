@@ -732,7 +732,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "isTyping": "yazıyor...",
+  "isTyping": "yazıyor…",
   "@isTyping": {
     "type": "text",
     "placeholders": {}
@@ -819,12 +819,12 @@
       "count": {}
     }
   },
-  "loadingPleaseWait": "Yükleniyor... Lütfen bekleyin",
+  "loadingPleaseWait": "Yükleniyor… Lütfen bekleyin.",
   "@loadingPleaseWait": {
     "type": "text",
     "placeholders": {}
   },
-  "loadMore": "Daha fazla yükle...",
+  "loadMore": "Daha fazla yükle…",
   "@loadMore": {
     "type": "text",
     "placeholders": {}
@@ -931,7 +931,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noRoomsFound": "Oda bulunamadı...",
+  "noRoomsFound": "Oda bulunamadı…",
   "@noRoomsFound": {
     "type": "text",
     "placeholders": {}
@@ -963,7 +963,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "oopsSomethingWentWrong": "Tüh, bir şeyler yanlış gitti...",
+  "oopsSomethingWentWrong": "Tüh, bir şeyler yanlış gitti…",
   "@oopsSomethingWentWrong": {
     "type": "text",
     "placeholders": {}
@@ -1414,7 +1414,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "userAndOthersAreTyping": "{username} ve {count} diğer kişi yazıyor...",
+  "userAndOthersAreTyping": "{username} ve {count} diğer kişi yazıyor…",
   "@userAndOthersAreTyping": {
     "type": "text",
     "placeholders": {
@@ -1422,7 +1422,7 @@
       "count": {}
     }
   },
-  "userAndUserAreTyping": "{username} ve {username2} yazıyor...",
+  "userAndUserAreTyping": "{username} ve {username2} yazıyor…",
   "@userAndUserAreTyping": {
     "type": "text",
     "placeholders": {
@@ -1430,7 +1430,7 @@
       "username2": {}
     }
   },
-  "userIsTyping": "{username} yazıyor...",
+  "userIsTyping": "{username} yazıyor…",
   "@userIsTyping": {
     "type": "text",
     "placeholders": {
@@ -1527,7 +1527,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerNumbers": "Ortağın numaraları kabul etmesi bekleniyor...",
+  "waitingPartnerNumbers": "Ortağın numaraları kabul etmesi bekleniyor…",
   "@waitingPartnerNumbers": {
     "type": "text",
     "placeholders": {}
@@ -1557,7 +1557,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "writeAMessage": "Mesaj yazın...",
+  "writeAMessage": "Bir mesaj yaz…",
   "@writeAMessage": {
     "type": "text",
     "placeholders": {}
@@ -1740,6 +1740,16 @@
   },
   "online": "Çevrim içi",
   "@online": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideUnknownEvents": "Bilinmeyen etkinlikleri gizle",
+  "@hideUnknownEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideRedactedEvents": "Düzenlenmiş etkinlikleri gizle",
+  "@hideRedactedEvents": {
     "type": "text",
     "placeholders": {}
   }
