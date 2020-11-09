@@ -1722,5 +1722,15 @@
   "@accept": {
     "type": "text",
     "placeholders": {}
+  },
+  "hideRedactedEvents": "Amaga esdeveniments editats",
+  "@hideRedactedEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideUnknownEvents": "Amaga esdeveniments desconeguts",
+  "@hideUnknownEvents": {
+    "type": "text",
+    "placeholders": {}
   }
 }
