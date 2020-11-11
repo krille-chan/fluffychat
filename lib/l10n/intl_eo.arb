@@ -1740,5 +1740,10 @@
   "@welcomeText": {
     "type": "text",
     "placeholders": {}
+  },
+  "hideUnknownEvents": "Kaŝi nekonatajn eventojn",
+  "@hideUnknownEvents": {
+    "type": "text",
+    "placeholders": {}
   }
 }
