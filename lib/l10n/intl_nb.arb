@@ -1101,5 +1101,20 @@
       "username": {},
       "targetName": {}
     }
+  },
+  "chatDetails": "Sludringsdetaljer",
+  "@chatDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chat": "Sludring",
+  "@chat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askSSSSSign": "For å kunne signere den andre personen, skriv inn ditt sikre lagerpassord eller gjenopprettingsnøkkel.",
+  "@askSSSSSign": {
+    "type": "text",
+    "placeholders": {}
   }
 }
