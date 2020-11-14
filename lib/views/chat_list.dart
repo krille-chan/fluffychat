@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:famedlysdk/matrix_api.dart';
 import 'package:fluffychat/components/connection_status_header.dart';
@@ -197,19 +198,22 @@ class _ChatListState extends State<ChatList> {
 
   void _setStatus(BuildContext context) async {
     Navigator.of(context).pop();
-    final statusMsg = await SimpleDialogs(context).enterText(
-      titleText: L10n.of(context).setStatus,
-      labelText: L10n.of(context).setStatus,
-      hintText: L10n.of(context).statusExampleMessage,
-      multiLine: true,
+    final input = await showTextInputDialog(
+      title: L10n.of(context).setStatus,
+      context: context,
+      textFields: [
+        DialogTextField(
+          hintText: L10n.of(context).statusExampleMessage,
+        )
+      ],
     );
-    if (statusMsg?.isEmpty ?? true) return;
+    if (input == null || input.single.isEmpty) return;
     final client = Matrix.of(context).client;
     await SimpleDialogs(context).tryRequestWithLoadingDialog(
       client.sendPresence(
         client.userID,
         PresenceType.online,
-        statusMsg: statusMsg,
+        statusMsg: input.single,
       ),
     );
     return;
@@ -242,7 +246,11 @@ class _ChatListState extends State<ChatList> {
   }
 
   Future<void> _archiveAction(BuildContext context) async {
-    final confirmed = await SimpleDialogs(context).askConfirmation();
+    final confirmed = await showOkCancelAlertDialog(
+          context: context,
+          title: L10n.of(context).areYouSure,
+        ) ==
+        OkCancelResult.ok;
     if (!confirmed) return;
     await SimpleDialogs(context)
         .tryRequestWithLoadingDialog(_archiveSelectedRooms(context));

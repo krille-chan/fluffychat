@@ -1,3 +1,4 @@
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:famedlysdk/matrix_api.dart';
@@ -36,16 +37,22 @@ class ChatDetails extends StatefulWidget {
 class _ChatDetailsState extends State<ChatDetails> {
   List<User> members;
   void setDisplaynameAction(BuildContext context) async {
-    var enterText = SimpleDialogs(context).enterText(
-      titleText: L10n.of(context).changeTheNameOfTheGroup,
-      labelText: L10n.of(context).changeTheNameOfTheGroup,
-      hintText:
-          widget.room.getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
+    final input = await showTextInputDialog(
+      context: context,
+      title: L10n.of(context).changeTheNameOfTheGroup,
+      textFields: [
+        DialogTextField(
+          initialText: widget.room.getLocalizedDisplayname(
+            MatrixLocals(
+              L10n.of(context),
+            ),
+          ),
+        )
+      ],
     );
-    final displayname = await enterText;
-    if (displayname == null) return;
+    if (input == null) return;
     final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
-      widget.room.setName(displayname),
+      widget.room.setName(input.single),
     );
     if (success != false) {
       await FlushbarHelper.createSuccess(
@@ -55,16 +62,19 @@ class _ChatDetailsState extends State<ChatDetails> {
   }
 
   void setCanonicalAliasAction(context) async {
-    final s = await SimpleDialogs(context).enterText(
-      titleText: L10n.of(context).setInvitationLink,
-      labelText: L10n.of(context).setInvitationLink,
-      hintText: L10n.of(context).alias.toLowerCase(),
-      prefixText: '#',
-      suffixText: ':' + widget.room.client.userID.domain,
+    final input = await showTextInputDialog(
+      context: context,
+      title: L10n.of(context).setInvitationLink,
+      textFields: [
+        DialogTextField(
+          hintText: '#localpart:domain',
+          initialText: L10n.of(context).alias.toLowerCase(),
+        )
+      ],
     );
-    if (s == null) return;
+    if (input == null) return;
     final domain = widget.room.client.userID.domain;
-    final canonicalAlias = '%23' + s + '%3A' + domain;
+    final canonicalAlias = '%23' + input.single + '%3A' + domain;
     final aliasEvent = widget.room.getState('m.room.aliases', domain);
     final aliases =
         aliasEvent != null ? aliasEvent.content['aliases'] ?? [] : [];
@@ -84,23 +94,25 @@ class _ChatDetailsState extends State<ChatDetails> {
     }
     await SimpleDialogs(context).tryRequestWithLoadingDialog(
       widget.room.client.sendState(widget.room.id, 'm.room.canonical_alias', {
-        'alias': '#$s:$domain',
+        'alias': input.single,
       }),
     );
   }
 
   void setTopicAction(BuildContext context) async {
-    final displayname = await SimpleDialogs(context).enterText(
-      titleText: L10n.of(context).setGroupDescription,
-      labelText: L10n.of(context).setGroupDescription,
-      hintText: (widget.room.topic?.isNotEmpty ?? false)
-          ? widget.room.topic
-          : L10n.of(context).addGroupDescription,
-      multiLine: true,
+    final input = await showTextInputDialog(
+      context: context,
+      title: L10n.of(context).setGroupDescription,
+      textFields: [
+        DialogTextField(
+          hintText: L10n.of(context).setGroupDescription,
+          initialText: widget.room.topic,
+        )
+      ],
     );
-    if (displayname == null) return;
+    if (input == null) return;
     final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
-      widget.room.setDescription(displayname),
+      widget.room.setDescription(input.single),
     );
     if (success != false) {
       await FlushbarHelper.createSuccess(

@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/matrix.dart';
@@ -13,13 +14,17 @@ import 'package:url_launcher/url_launcher.dart';
 
 class HomeserverPicker extends StatelessWidget {
   Future<void> _setHomeserverAction(BuildContext context) async {
-    final homeserver = await SimpleDialogs(context).enterText(
-        titleText: L10n.of(context).enterYourHomeserver,
-        hintText: AppConfig.defaultHomeserver,
-        prefixText: 'https://',
-        keyboardType: TextInputType.url);
-    if (homeserver?.isEmpty ?? true) return;
-    _checkHomeserverAction(homeserver, context);
+    final homeserver = await showTextInputDialog(
+      title: L10n.of(context).enterYourHomeserver,
+      context: context,
+      textFields: [
+        DialogTextField(
+          hintText: AppConfig.defaultHomeserver,
+        )
+      ],
+    );
+    if (homeserver?.single?.isEmpty ?? true) return;
+    _checkHomeserverAction(homeserver.single, context);
   }
 
   void _checkHomeserverAction(String homeserver, BuildContext context) async {

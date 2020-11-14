@@ -1,3 +1,4 @@
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:famedlysdk/encryption.dart';
 import 'package:famedlysdk/matrix_api.dart';
 import 'package:flutter/material.dart';
@@ -77,25 +78,28 @@ class _KeyVerificationPageState extends State<KeyVerificationPage> {
           if (input == null) {
             return;
           }
-          SimpleDialogs(context).showLoadingDialog(context);
-          // make sure the loading spinner shows before we test the keys
-          await Future.delayed(Duration(milliseconds: 100));
-          var valid = false;
-          try {
-            await widget.request.openSSSS(recoveryKey: input);
-            valid = true;
-          } catch (_) {
+          final valid = await SimpleDialogs(context)
+              .tryRequestWithLoadingDialog(Future.microtask(() async {
+            // make sure the loading spinner shows before we test the keys
+            await Future.delayed(Duration(milliseconds: 100));
+            var valid = false;
             try {
-              await widget.request.openSSSS(passphrase: input);
+              await widget.request.openSSSS(recoveryKey: input);
               valid = true;
             } catch (_) {
-              valid = false;
+              try {
+                await widget.request.openSSSS(passphrase: input);
+                valid = true;
+              } catch (_) {
+                valid = false;
+              }
             }
-          }
-          await Navigator.of(context)?.pop();
-          if (!valid) {
-            await SimpleDialogs(context).inform(
-              contentText: L10n.of(context).incorrectPassphraseOrKey,
+            return valid;
+          }));
+          if (valid == false) {
+            await showOkAlertDialog(
+              context: context,
+              message: L10n.of(context).incorrectPassphraseOrKey,
             );
           }
         };

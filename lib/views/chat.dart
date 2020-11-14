@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:math';
 
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 
 import 'package:file_picker_cross/file_picker_cross.dart';
@@ -303,10 +304,12 @@ class _ChatState extends State<_Chat> {
   }
 
   void redactEventsAction(BuildContext context) async {
-    var confirmed = await SimpleDialogs(context).askConfirmation(
-      titleText: L10n.of(context).messageWillBeRemovedWarning,
-      confirmText: L10n.of(context).remove,
-    );
+    var confirmed = await showOkCancelAlertDialog(
+          context: context,
+          title: L10n.of(context).messageWillBeRemovedWarning,
+          okLabel: L10n.of(context).remove,
+        ) ==
+        OkCancelResult.ok;
     if (!confirmed) return;
     for (var event in selectedEvents) {
       await SimpleDialogs(context).tryRequestWithLoadingDialog(
@@ -363,10 +366,7 @@ class _ChatState extends State<_Chat> {
     if (eventIndex == -1) {
       // event id not found...maybe we can fetch it?
       // the try...finally is here to start and close the loading dialog reliably
-      try {
-        if (context != null) {
-          SimpleDialogs(context).showLoadingDialog(context);
-        }
+      final task = Future.microtask(() async {
         // okay, we first have to fetch if the event is in the room
         try {
           final event = await timeline.getEventById(eventId);
@@ -399,10 +399,11 @@ class _ChatState extends State<_Chat> {
           eventIndex =
               getFilteredEvents().indexWhere((e) => e.eventId == eventId);
         }
-      } finally {
-        if (context != null) {
-          Navigator.of(context)?.pop();
-        }
+      });
+      if (context != null) {
+        await SimpleDialogs(context).tryRequestWithLoadingDialog(task);
+      } else {
+        await task;
       }
     }
     await _scrollController.scrollToIndex(eventIndex,

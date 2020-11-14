@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:famedlysdk/encryption.dart';
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/utils/firebase_controller.dart';
 import 'package:fluffychat/utils/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -258,13 +258,15 @@ class MatrixState extends State<Matrix> {
           return; // ignore share requests by others
         }
         final sender = room.getUserByMXIDSync(request.sender);
-        if (await SimpleDialogs(context).askConfirmation(
-          titleText: L10n.of(context).requestToReadOlderMessages,
-          contentText:
-              '${sender.id}\n\n${L10n.of(context).device}:\n${request.requestingDevice.deviceId}\n\n${L10n.of(context).identity}:\n${request.requestingDevice.curve25519Key.beautified}',
-          confirmText: L10n.of(context).verify,
-          cancelText: L10n.of(context).deny,
-        )) {
+        if (await showOkCancelAlertDialog(
+              context: context,
+              title: L10n.of(context).requestToReadOlderMessages,
+              message:
+                  '${sender.id}\n\n${L10n.of(context).device}:\n${request.requestingDevice.deviceId}\n\n${L10n.of(context).identity}:\n${request.requestingDevice.curve25519Key.beautified}',
+              okLabel: L10n.of(context).verify,
+              cancelLabel: L10n.of(context).deny,
+            ) ==
+            OkCancelResult.ok) {
           await request.forwardKey();
         }
       });
@@ -279,10 +281,12 @@ class MatrixState extends State<Matrix> {
           }
           hidPopup = true;
         };
-        if (await SimpleDialogs(context).askConfirmation(
-          titleText: L10n.of(context).newVerificationRequest,
-          contentText: L10n.of(context).askVerificationRequest(request.userId),
-        )) {
+        if (await showOkCancelAlertDialog(
+              context: context,
+              title: L10n.of(context).newVerificationRequest,
+              message: L10n.of(context).askVerificationRequest(request.userId),
+            ) ==
+            OkCancelResult.ok) {
           request.onUpdate = null;
           hidPopup = true;
           await request.acceptVerification();
