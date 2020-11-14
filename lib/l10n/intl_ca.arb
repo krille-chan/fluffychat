@@ -1732,5 +1732,10 @@
   "@hideUnknownEvents": {
     "type": "text",
     "placeholders": {}
+  },
+  "changePassword": "Canvia la contrasenya",
+  "@changePassword": {
+    "type": "text",
+    "placeholders": {}
   }
 }
