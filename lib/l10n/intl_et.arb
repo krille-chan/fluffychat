@@ -1752,5 +1752,10 @@
   "@hideRedactedEvents": {
     "type": "text",
     "placeholders": {}
+  },
+  "changePassword": "Muuda salasõna",
+  "@changePassword": {
+    "type": "text",
+    "placeholders": {}
   }
 }
