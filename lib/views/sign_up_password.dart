@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:bot_toast/bot_toast.dart';
+import 'package:flushbar/flushbar_helper.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 
 import 'package:fluffychat/components/matrix.dart';
@@ -95,13 +95,17 @@ class _SignUpPasswordState extends State<SignUpPassword> {
       await matrix.client
           .setDisplayname(matrix.client.userID, widget.displayname);
     } catch (exception) {
-      BotToast.showText(text: L10n.of(context).couldNotSetDisplayname);
+      await FlushbarHelper.createError(
+              message: L10n.of(context).couldNotSetDisplayname)
+          .show(context);
     }
     if (widget.avatar != null) {
       try {
         await matrix.client.setAvatar(widget.avatar);
       } catch (exception) {
-        BotToast.showText(text: L10n.of(context).couldNotSetAvatar);
+        await FlushbarHelper.createError(
+                message: L10n.of(context).couldNotSetAvatar)
+            .show(context);
       }
     }
     await Navigator.of(context).pushAndRemoveUntil(

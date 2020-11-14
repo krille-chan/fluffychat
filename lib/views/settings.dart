@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:bot_toast/bot_toast.dart';
+import 'package:flushbar/flushbar_helper.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
 
@@ -76,7 +76,9 @@ class _SettingsState extends State<Settings> {
           .client
           .changePassword(newPassword, oldPassword: oldPassword),
     );
-    BotToast.showText(text: L10n.of(context).passwordHasBeenChanged);
+    await FlushbarHelper.createSuccess(
+            message: L10n.of(context).passwordHasBeenChanged)
+        .show(context);
   }
 
   void _deleteAccountAction(BuildContext context) async {
