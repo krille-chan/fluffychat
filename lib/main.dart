@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:bot_toast/bot_toast.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:fluffychat/views/homeserver_picker.dart';
@@ -37,8 +36,6 @@ class App extends StatelessWidget {
           child: Builder(
             builder: (BuildContext context) => MaterialApp(
               title: 'FluffyChat',
-              builder: BotToastInit(),
-              navigatorObservers: [BotToastNavigatorObserver()],
               theme: ThemeSwitcherWidget.of(context).themeData,
               localizationsDelegates: L10n.localizationsDelegates,
               supportedLocales: L10n.supportedLocales,

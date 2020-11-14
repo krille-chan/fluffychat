@@ -1,4 +1,4 @@
-import 'package:bot_toast/bot_toast.dart';
+import 'package:flushbar/flushbar_helper.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:famedlysdk/matrix_api.dart';
 
@@ -48,7 +48,9 @@ class _ChatDetailsState extends State<ChatDetails> {
       widget.room.setName(displayname),
     );
     if (success != false) {
-      BotToast.showText(text: L10n.of(context).displaynameHasBeenChanged);
+      await FlushbarHelper.createSuccess(
+              message: L10n.of(context).displaynameHasBeenChanged)
+          .show(context);
     }
   }
 
@@ -101,7 +103,9 @@ class _ChatDetailsState extends State<ChatDetails> {
       widget.room.setDescription(displayname),
     );
     if (success != false) {
-      BotToast.showText(text: L10n.of(context).groupDescriptionHasBeenChanged);
+      await FlushbarHelper.createSuccess(
+              message: L10n.of(context).groupDescriptionHasBeenChanged)
+          .show(context);
     }
   }
 
@@ -133,7 +137,9 @@ class _ChatDetailsState extends State<ChatDetails> {
       widget.room.setAvatar(file),
     );
     if (success != false) {
-      BotToast.showText(text: L10n.of(context).avatarHasBeenChanged);
+      await FlushbarHelper.createSuccess(
+              message: L10n.of(context).avatarHasBeenChanged)
+          .show(context);
     }
   }
 
@@ -184,8 +190,9 @@ class _ChatDetailsState extends State<ChatDetails> {
                             Clipboard.setData(
                               ClipboardData(text: widget.room.canonicalAlias),
                             );
-                            BotToast.showText(
-                                text: L10n.of(context).copiedToClipboard);
+                            FlushbarHelper.createSuccess(
+                                    message: L10n.of(context).copiedToClipboard)
+                                .show(context);
                           },
                         ),
                       ChatSettingsPopupMenu(widget.room, false)

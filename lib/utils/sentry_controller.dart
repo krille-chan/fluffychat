@@ -1,4 +1,4 @@
-import 'package:bot_toast/bot_toast.dart';
+import 'package:flushbar/flushbar_helper.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +19,9 @@ abstract class SentryController {
     );
     final storage = Store();
     await storage.setItem(SettingKeys.sentry, enableSentry.toString());
-    BotToast.showText(text: L10n.of(context).changesHaveBeenSaved);
+    await FlushbarHelper.createSuccess(
+            message: L10n.of(context).changesHaveBeenSaved)
+        .show(context);
     return;
   }
 

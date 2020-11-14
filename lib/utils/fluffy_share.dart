@@ -1,4 +1,4 @@
-import 'package:bot_toast/bot_toast.dart';
+import 'package:flushbar/flushbar_helper.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,7 +13,9 @@ abstract class FluffyShare {
     await Clipboard.setData(
       ClipboardData(text: text),
     );
-    BotToast.showText(text: L10n.of(context).copiedToClipboard);
+    await FlushbarHelper.createSuccess(
+            message: L10n.of(context).copiedToClipboard)
+        .show(context);
     return;
   }
 }
