@@ -1752,5 +1752,10 @@
   "@hideRedactedEvents": {
     "type": "text",
     "placeholders": {}
+  },
+  "changePassword": "Změnit heslo",
+  "@changePassword": {
+    "type": "text",
+    "placeholders": {}
   }
 }
