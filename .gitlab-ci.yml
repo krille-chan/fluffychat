@@ -263,6 +263,7 @@ update-dependencies:
   script:
     - flutter pub get
     - flutter pub pub run dapackages:dapackages.dart ./pubspec.yaml
+    - flutter pub upgrade
     - flutter pub get
     - git remote set-url --push origin git@gitlab.com:$CI_PROJECT_PATH
     - 'git diff --exit-code || (git checkout -B ${UPDATE_BRANCH} && git add . && git commit -m "chore: Update dependencies" && git push -f origin ${UPDATE_BRANCH} && ./scripts/open-mr.sh)'
