@@ -18,6 +18,8 @@ import '../matrix.dart';
 import '../mouse_over_builder.dart';
 import '../theme_switcher.dart';
 
+enum ArchivedRoomAction { delete, rejoin }
+
 class ChatListItem extends StatelessWidget {
   final Room room;
   final bool activeChat;
@@ -51,37 +53,33 @@ class ChatListItem extends StatelessWidget {
       }
 
       if (room.membership == Membership.leave) {
-        await showDialog(
+        final action = await showModalActionSheet<ArchivedRoomAction>(
           context: context,
-          builder: (BuildContext context) => AlertDialog(
-            title: Text(L10n.of(context).archivedRoom),
-            content: Text(L10n.of(context).thisRoomHasBeenArchived),
-            actions: <Widget>[
-              FlatButton(
-                child: Text(L10n.of(context).close.toUpperCase(),
-                    style: TextStyle(color: Colors.blueGrey)),
-                onPressed: () => Navigator.of(context).pop(),
-              ),
-              FlatButton(
-                child: Text(L10n.of(context).delete.toUpperCase(),
-                    style: TextStyle(color: Colors.red)),
-                onPressed: () async {
-                  await archiveAction(context);
-                  await Navigator.of(context).pop();
-                },
-              ),
-              FlatButton(
-                child: Text(L10n.of(context).rejoin.toUpperCase(),
-                    style: TextStyle(color: Colors.blue)),
-                onPressed: () async {
-                  await SimpleDialogs(context)
-                      .tryRequestWithLoadingDialog(room.join());
-                  await Navigator.of(context).pop();
-                },
-              ),
-            ],
-          ),
+          title: L10n.of(context).archivedRoom,
+          message: L10n.of(context).thisRoomHasBeenArchived,
+          actions: [
+            SheetAction(
+              label: L10n.of(context).rejoin,
+              key: ArchivedRoomAction.rejoin,
+            ),
+            SheetAction(
+              label: L10n.of(context).delete,
+              key: ArchivedRoomAction.delete,
+              isDestructiveAction: true,
+            ),
+          ],
         );
+        if (action != null) {
+          switch (action) {
+            case ArchivedRoomAction.delete:
+              await archiveAction(context);
+              break;
+            case ArchivedRoomAction.rejoin:
+              await SimpleDialogs(context)
+                  .tryRequestWithLoadingDialog(room.join());
+              break;
+          }
+        }
       }
 
       if (room.membership == Membership.join) {
