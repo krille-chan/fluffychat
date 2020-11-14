@@ -254,7 +254,7 @@ update-dependencies:
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
 
-    - ssh-keyscan "https://gitlab.com" >> ~/.ssh/known_hosts
+    - ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
 
     - git config --global user.email "bot@fluffy.chat"
