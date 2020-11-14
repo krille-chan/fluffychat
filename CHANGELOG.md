@@ -1,291 +1,165 @@
-# Version 0.22.0
-### Features
-- Broadcast self-verification
-### Changes
-- Undecryptable events have a "verify" button, if you haven't verified yet
-- User bottom sheet lists verified status
-- Lock icon next to input bar can now be red
+# Change Log for fluffychat
+Chat with your friends.
 
-# Version 0.21.0 - 2020-10-28
-### Features
-- New user viewer
-- Add code syntax highlighting in messages
-- Updated translations: Thanks to all helpers
-### Changes
-- Stories feature removed
+## Unreleased
+
+### Chore
+* Switch to adaptive dialogs [9ea7afc]
+* Switch from bottoast to flushbar [e219593]
+* Clean up CI [7e84675]
+* Remove unused dependency [d12de2d]
+
+### Feature
+* persistent upload of release artifacts [1b2481b]
+* Option to hide redacted and unknown events [36315a4]
+* Better encryption / verification [1ff986e]
+
 ### Fixes
-- Fixes sentry
-- Fixes Android download
-- Minor fixes
+* Don't re-render message widgets on insertion of new messages, making e.g. audio playing not stop [25b2997]
+* Add missing safearea [caab868]
+* no pushers enpdoint [b3942ad]
+* Sentry and small null fix [5dc22be]
 
-# Version 0.20.0 - 2020-10-23
-### Features
-- Added translations: Arabic
-- Add ability to enable / disable emotes globally
-- Add ability to manage emote packs with different state keys
-- Add swipe to reply - Thanks @inexcode
-- Initial support for compiling to desktop
-- Initial snap metadata - Thanks @RAOF_47
-- Add latex parsing as per [MSC2191](https://github.com/matrix-org/matrix-doc/pull/2191) - `$tex$` for inline and `$$` for blocks
-### Changes
-- Re-scale images in a separate isolate to prevent the UI from freezing
-- URLs without https:// now linkify
-- Parse all URIs, not just URLs
-- emails will linkify now
-- Make sure login to dendrite is working properly
+## v0.21.1 - 2020-10-28
+
+### Chore
+* update version code [d1dfa9c]
+
+## v0.21.0 - 2020-10-28
+
+### Chore
+* Change compileSdkVersion again [f93f9c2]
+* Update packages [b471bd0]
+* Update SDK [86a385d]
+* New version [40d00b0]
+* Update flutter_matrix_html [4981cf4]
+* Update sdk [8773770]
+* Only load google services if needed [051ec8f]
+* release [844b4a8]
+
 ### Fixes
-- Fix amoled / theme settings not always saving properly
-- Show device name in account information correctly
-- Fix tapping on aliases / room pills not always working
-- Link clicking in web not always working
-- Return message input field to previous state after editing message - Thanks @inexcode
+* CompileSDKVersion [bcf75fc]
+* Target sdk [c3e23b6]
+* File picker issue [aa191c1]
+* Sentry [b903ea9]
+* user bottom sheet design [7876164]
+* Android Download [8a542bf]
+* Avatar Border Radius [a8b617e]
+* loading spinner stuck on broken images [e917879]
+* send file dialog - prevent multiple file sending [941b211]
+* Multiple related store things [36405f8]
+* Logo background color [42a927e]
 
-# Version 0.19.0 - 2020-09-21
-### Features
-- Implemented ignore list
-- Jump to events in timeline: When tapping on a reply and when tapping a matrix.to link
-- Display messages with up to 10 emotes or emoji bigger
-- New design for the chat list and message bubbles
-- Implement reactions
-- Implement password change
-- Implement deactivate user account
+## v0.20.0 - 2020-10-23
+
+### Chore
+* update dependencies [427cdc0]
+* upate matrix link text [0892ca9]
+* Change default linux window size [719323a]
+* Update changelog [ef22778]
+* Update matrix_link_text [fc2a0c0]
+* update flutter_secure_store [61c6aec]
+* Minor snap fix [daf9969]
+* Add privacy informations to app [e569be7]
+* Make app ready for flutter 1 22 [e5b23fa]
+
+### Feature
+* Implement mouse select chat list items [6d41136]
+* Implement linux desktop notifications [75cd6f1]
+* Implement change device name [bfd3888]
+* Publish as snap [46590d7]
+* Enhance emote experience [cafd639]
+* Implement new status feature [090795f]
+* More beautiful status [d9c2d4f]
+* Enhance roomlist context menu [493b700]
+* Implement basic windows linux support [7fad316]
+* Enable macOS build [a845209]
+
 ### Fixes
-- Timeline randomly resorting while more history is being fetched
-- Automatically request history if the "load more" button is on the screen
+* return text field to the previous state after editing message [08e61c0]
+* Web server picker [4cb19be]
+* Some single-emoji names crashing [b29ebce]
+* Snapcraft [c1eebc1]
+* Minor design fix [a713a2f]
+* Minor design fixes [e9aa285]
+* Change device displayname [c5c7ee7]
+* LocalStorage location on desktop [81e32c5]
+* fixed mxid input method, removed code redundancy [060156c]
+* overgo issues with flutter_secure_store [6d0f344]
+* resize images in a separate isolate [56967a9]
+* Build Linux CI [a941356]
+* Build Linux CI [2a6b5d8]
+* send images as images, not files [751dcb7]
+* Show device name in account information correctly [468c258]
+* Minor fixes [aee854e]
+* Make theme loading work properly [f6ab1e0]
+* CI [6b7d21d]
+* User Status crash [0413b0c]
+* small desktop fixes [540ff68]
+* Desktop url launcher [4dfd0db]
+* Snap [ec7dd2b]
+* Snap [4648466]
+* CI [4345df3]
+* Linux database [772ff33]
+* TextField [7ec349b]
+* Inputbar focus [5e673c6]
+* Desktop file picker [662e2f1]
+* Desktop images [5409fe8]
+* Try with select 1 [6e924cb]
+* More debug logs [9b572f5]
+* Minor design bugs [6ffbf16]
+* Minor user status bugs [f84ac1d]
+* Improve loading dialogs [41ceb84]
+* Invite left members [fe649e5]
+* tapping on aliases not always working [c0390ca]
+* determine 12h/24h time based on settings, not locale [ca19e9f]
+* fix up translations to use keys and fix arb files [74b15dd]
 
-# Version 0.18.0 - 2020-09-13
-### Features
-- Added translations: Armenian, Turkish, Chinese (Simplified), Estonian
-- Url-ify matrix identifiers
-- Use server-side generated thumbnails in cleartext rooms
-- Add option to send images in their original resolution
-- Add additional confirmation for sending files & share intents
-- Add option to opt-in to report issues / crashes to sentry
-- Write keys to online key backup, fully implementing online key backup
-### Changes
-- Tapping links, pills, etc. now does stuff
-- Better handling of sending messages in bad network
-- Better recovery of "keys not cached"
-### Fixes:
-- Various html rendering and url-ifying fixes
-- Added support for blurhashes
-- Image viewer now eventually displays the original image, not only the thumbnail
+## v0.19.0 - 2020-09-21
 
-# Version 0.17.0 - 2020-08-31
-### Features
-- Pin and unpin chats
-- Implement event aggregations
-- Implement message edits
-- Render reactions
-- Add / Remove reactions by tapping on existing reactions
-### Fixes:
-- Don't re-render the room list nearly as often, increasing performance
-- Various fixes for sending messages on bad networks
-- Design tweeks and fixes
-- Various performance fixes and improvements
+### Chore
+* Version update & olm-CI [0f805a2]
+* Update SDK & Changelog [1825543]
+* Add new language [c6d67ad]
+* master --> main [1de3c54]
+* switch to cached_network_image [bbca0c2]
+* update dependencies [2a62cf8]
+* Add more debugging logs to debug key decrypt issues [20d3ea9]
+* Update SDK, re-enable transactions on mobile [1f4c2a1]
+* update languages [40e9544]
+* Updat changelog [d1e898c]
+* update sdk [954eedb]
 
-# Version 0.16.0 - 2020-07-24
-### Features
-- Implement web notifications
-- Implement a connection status header
-### Changes
-- Switch out database engine for faster performance
-- Greatly improve startup time
-- Added languages: Galician, Croatian, Japanese, Russian, Ukrainian - Thanks a lot to all the weblate users!
-- Only show the microg toast once, if you have play services disabled
-- Homeserver URL input now strips trailing whitespace and slash - Thanks @kate_shine
-- Also use prev_content to determine profile of a user: This allows the username and avatar of people who left a group to still be displayed
-### Fixes:
-- Fix not being able to initiate key verification properly
-- Fix message sending being weird on slow networks
-- Fix a few HTML rendering bugs
-- Various other fixes
-- Fix the 12h clock showing 00:15am, instead of 12:15am	- Thanks @not_chicken
-- Fix an issue with replies and invalid HTML
-- Fix messages getting lost when retrieving chat history
-- Fix a bug where an incorrect string encoding from the server is assumed
-- Fix a bug where people couldn't log in if they had email notifications enabled
+### Feature
+* Implement send reactions [6bf25b7]
+* Improve design [c8a63c6]
+* Display emotes/emojis bigger [9cccd07]
+* Add scroll-to-event [8547422]
+* Implement ignore list [b2fa88c]
+* Add license page [dcf4c4c]
+* Implement rich push notifications on android [f4e4b90]
+* Implement sentry [705ced8]
+* Send image / video / file dialog [80114df]
+* Blurhashes and better thumbnails [2321829]
+* open links better [04cbf0c]
+* Implement web audio player [0f6b46d]
+* New notification sound [8a5be21]
 
-# Version 0.15.1 - 2020-06-26
-### Fixes:
-- Fix a big with account data being stored incorrectly
-
-# Version 0.15.0 - 2020-06-26
-### Features:
-- New room list app bar design
-- Chat app bar transparent
-- Implement web file picker
-- Minor design and UX improvements
-- Implement Cross Signing
-- Restore keys from online key backup
-- Added translations: Czech, Spanish, Slovakian
-### Changes:
-- Show presences of users sharing a direct chat
-- Big refactoring
-### Fixes:
-- Various fixes, including e2ee fixes and olm session recovery
-
-# Version 0.14.0 - 2020-05-20
-### Features:
-- Implement image viewer
-- Implement room pills
-- New chat appBar showing presences and room avatars
-- Implement well-known support
-### Fixes:
-- Minor fixes, refactoring and performance improvements
-
-# Version 0.13.2 - 2020-05-13
-### Fixes:
-- Fix textfields copy&paste
-- Clean up pushers on server
-- Show rich notifications
-
-# Version 0.13.1 - 2020-05-11
-### Fixes:
-- Fix share content
-
-# Version 0.13.0 - 2020-05-10
-### Features:
-- New status feature
-- HTML rendering of messages
-- Markdown support
-- Enhanced chat list design
-- New translations (Polish, Hungarian)
-### Fixes:
-- Lots of minor fixes and refactoring
-
-# Version 0.12.4 - 2020-04-17
-### Fixed
-- Login without google services
-
-# Version 0.12.2 - 2020-04-12
-### Changes:
-- New set homeserver UX
-### Fixed
-- Fix toasts when switching views
-- Fix image flickering
-- Fix login without google services
-- Fix toasts
-
-# Version 0.12.0 - 2020-04-10
-### Features:
-- Implement custom wallpapers
-- Lightweight Jitsi integration for video calls
-- Use SKIA for web
-### Fixes:
-- Fix image scaling
-- Minor bugfixes
-
-# Version 0.11.0 - 2020-04-02
-### Features:
-- Share content with FluffyChat
-### Fixes:
-- Minor bugfixes
-
-# Version 0.10.1 - 2020-03-29
-### Fixes:
-- Fix a lazy loading bug
-- Improve app icon
-
-# Version 0.10.0 - 2020-03-29
-### New features
-- Voice messages
-- New message bubble design
-### Changes:
-- Use SnackBars instead of Toasts
-### Fixes:
-- Minor fixes in the SDK
-- Loading dialog when sending files is displayed too long
-- Fixed device settings list
-
-# Version 0.9.0 - 2020-03-13
-### New features
-- Improved design
-- End2End encryption for normal messages (not yet files)
-- Key sharing
-- Device keys verification UI
 ### Fixes
-- Minor bug fixes
+* Last bits for the release [1db9bdd]
+* Small stuff [9d3f272]
+* Search bar [eca25de]
+* font size being too large accidentally in some places [43dd222]
+* Scroll down button not showing [8cd8f90]
+* Don't double-confirm sending audio messages [168b8b0]
+* Hotfix ignore list [94f8f34]
+* Push on conduit [e5cd144]
+* Images with an info block but no size crashing [5f58789]
+* Allow requesting past messages if all events in the current timeline are filtered [0f9ff4a]
+* annoying notification sound [739a70c]
+* Status design [f7930fe]
+* Send read receipt only on focus [98316f1]
+* Desktop notifications [b05bfa6]
 
-# Version 0.8.2 - 2020-02-17
-### Fixes
-- SpeedDial labels not visible in light mode
 
-# Version 0.8.1 - 2020-02-16
-### New features
-- Dark mode
-
-# Version 0.8.0 - 2020-02-16
-### New features
-- Image Viewer
-- Improved UX design
-- Experimental End-to-end encryption in the web version
-
-# Version 0.7.2 - 2020-02-10
-### Changed
-- Invite link text
-### Fixed
-- Replies on replies fixed
-
-# Version 0.7.1 - 2020-02-10
-- Replies with correct sender id
-
-# Version 0.7.0 - 2020-02-10
-### New features
-- Select mode in chat
-- Implement replies
-- Add scroll down button in chat
-
-# Version 0.6.0 - 2020-02-09
-### New features
-- Add e2ee settings
-- Minor design improvements
-### Fixes
-- Minor bugs fixed
-
-# Version 0.5.2 - 2020-01-29
-### Changes
-- New default homeserver: tchncs.de
-### Fixes
-- Translation fixed
-- Parsing of m.room.aliases events
-
-# Version 0.5.1 - 2020-01-28
-### Changes
-- Refactoring under the hood
-### Fixes
-- Fixed the bug that when revoking permissions for a user makes the user an admin
-- Fixed the Kick user when user has already left the group
-
-# Version 0.5.0 - 2020-01-20
-### New features
-- Localizations
-- Enhanced group settings
-- Username search
-### Fixes
-- Minor bug fixes
-- Invite to direct chat
-
-# Version 0.4.0 - 2020-01-18
-### New features
-- Registration
-- Avatars with name letters
-- Calc username colors
-### Fixes
-
-# Version 0.3.0 - 2020-01-17
-### New features
-- Improved design
-- Implement signing up (Still needs a matrix.org fix)
-- Forward messages
-- Content viewer
-### Fixes
-- Chat textfield isn't scrollable on large text
-- Text disappears in textfield on resuming the app
-
-# Version 0.2.3 - 2020-01-08
-### New features
-- Added changelog
-- Added copy button
-### Fixes
-- Groups without name now have a "Group with" prefix
+This CHANGELOG.md was generated with [**Changelog for Dart**](https://pub.dartlang.org/packages/changelog)
