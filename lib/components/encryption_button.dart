@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/utils/app_route.dart';
@@ -36,14 +37,15 @@ class _EncryptionButtonState extends State<EncryptionButton> {
           .show(context);
       return;
     }
-    if (await SimpleDialogs(context).askConfirmation(
-          titleText: L10n.of(context).enableEncryptionWarning,
-          contentText: widget.room.client.encryptionEnabled
+    if (await showOkCancelAlertDialog(
+          context: context,
+          title: L10n.of(context).enableEncryptionWarning,
+          message: widget.room.client.encryptionEnabled
               ? L10n.of(context).warningEncryptionInBeta
               : L10n.of(context).needPantalaimonWarning,
-          confirmText: L10n.of(context).yes,
+          okLabel: L10n.of(context).yes,
         ) ==
-        true) {
+        OkCancelResult.ok) {
       await SimpleDialogs(context).tryRequestWithLoadingDialog(
         widget.room.enableEncryption(),
       );

@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/utils/app_route.dart';
@@ -23,41 +24,45 @@ class UserBottomSheet extends StatelessWidget {
       : super(key: key);
 
   void participantAction(BuildContext context, String action) async {
+    final Function _askConfirmation = () async =>
+        (await showOkCancelAlertDialog(
+                context: context, title: L10n.of(context).areYouSure) ==
+            OkCancelResult.ok);
     switch (action) {
       case 'mention':
         Navigator.of(context).pop();
         onMention();
         break;
       case 'ban':
-        if (await SimpleDialogs(context).askConfirmation()) {
+        if (await _askConfirmation()) {
           await SimpleDialogs(context).tryRequestWithLoadingDialog(user.ban());
         }
         break;
       case 'unban':
-        if (await SimpleDialogs(context).askConfirmation()) {
+        if (await _askConfirmation()) {
           await SimpleDialogs(context)
               .tryRequestWithLoadingDialog(user.unban());
         }
         break;
       case 'kick':
-        if (await SimpleDialogs(context).askConfirmation()) {
+        if (await _askConfirmation()) {
           await SimpleDialogs(context).tryRequestWithLoadingDialog(user.kick());
         }
         break;
       case 'admin':
-        if (await SimpleDialogs(context).askConfirmation()) {
+        if (await _askConfirmation()) {
           await SimpleDialogs(context)
               .tryRequestWithLoadingDialog(user.setPower(100));
         }
         break;
       case 'moderator':
-        if (await SimpleDialogs(context).askConfirmation()) {
+        if (await _askConfirmation()) {
           await SimpleDialogs(context)
               .tryRequestWithLoadingDialog(user.setPower(50));
         }
         break;
       case 'user':
-        if (await SimpleDialogs(context).askConfirmation()) {
+        if (await _askConfirmation()) {
           await SimpleDialogs(context)
               .tryRequestWithLoadingDialog(user.setPower(0));
         }

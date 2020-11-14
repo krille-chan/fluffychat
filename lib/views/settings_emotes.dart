@@ -1,3 +1,4 @@
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:famedlysdk/famedlysdk.dart';
@@ -247,9 +248,9 @@ class _EmotesSettingsState extends State<EmotesSettings> {
                               newEmoteController.text.isEmpty ||
                               newMxcController.text == null ||
                               newMxcController.text.isEmpty) {
-                            await SimpleDialogs(context).inform(
-                                contentText:
-                                    L10n.of(context).emoteWarnNeedToPick);
+                            await showOkAlertDialog(
+                                context: context,
+                                message: L10n.of(context).emoteWarnNeedToPick);
                             return;
                           }
                           final emoteCode = ':${newEmoteController.text}:';
@@ -257,13 +258,15 @@ class _EmotesSettingsState extends State<EmotesSettings> {
                           if (emotes.indexWhere((e) =>
                                   e.emote == emoteCode && e.mxc != mxc) !=
                               -1) {
-                            await SimpleDialogs(context).inform(
-                                contentText: L10n.of(context).emoteExists);
+                            await showOkAlertDialog(
+                                context: context,
+                                message: L10n.of(context).emoteExists);
                             return;
                           }
                           if (!RegExp(r'^:[-\w]+:$').hasMatch(emoteCode)) {
-                            await SimpleDialogs(context).inform(
-                                contentText: L10n.of(context).emoteInvalid);
+                            await showOkAlertDialog(
+                                context: context,
+                                message: L10n.of(context).emoteInvalid);
                             return;
                           }
                           emotes.add(_EmoteEntry(emote: emoteCode, mxc: mxc));
@@ -357,16 +360,18 @@ class _EmotesSettingsState extends State<EmotesSettings> {
                                             e.mxc != emote.mxc) !=
                                         -1) {
                                       controller.text = emote.emoteClean;
-                                      SimpleDialogs(context).inform(
-                                          contentText:
+                                      showOkAlertDialog(
+                                          context: context,
+                                          message:
                                               L10n.of(context).emoteExists);
                                       return;
                                     }
                                     if (!RegExp(r'^:[-\w]+:$')
                                         .hasMatch(emoteCode)) {
                                       controller.text = emote.emoteClean;
-                                      SimpleDialogs(context).inform(
-                                          contentText:
+                                      showOkAlertDialog(
+                                          context: context,
+                                          message:
                                               L10n.of(context).emoteInvalid);
                                       return;
                                     }

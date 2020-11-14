@@ -1,3 +1,4 @@
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:flutter/material.dart';
@@ -35,37 +36,51 @@ class DevicesSettingsState extends State<DevicesSettings> {
   void reload() => setState(() => devices = null);
 
   void _removeDevicesAction(BuildContext context, List<Device> devices) async {
-    if (await SimpleDialogs(context).askConfirmation() == false) return;
+    if (await showOkCancelAlertDialog(
+          context: context,
+          title: L10n.of(context).areYouSure,
+        ) ==
+        OkCancelResult.cancel) return;
     var matrix = Matrix.of(context);
     var deviceIds = <String>[];
     for (var userDevice in devices) {
       deviceIds.add(userDevice.deviceId);
     }
-    final password = await SimpleDialogs(context).enterText(
-        titleText: L10n.of(context).pleaseEnterYourPassword,
-        labelText: L10n.of(context).pleaseEnterYourPassword,
-        hintText: '******',
-        password: true);
+    final password = await showTextInputDialog(
+      title: L10n.of(context).pleaseEnterYourPassword,
+      context: context,
+      textFields: [
+        DialogTextField(
+          hintText: '******',
+          obscureText: true,
+        )
+      ],
+    );
     if (password == null) return;
 
     final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
         matrix.client.deleteDevices(deviceIds,
-            auth: matrix.getAuthByPassword(password)));
+            auth: matrix.getAuthByPassword(password.single)));
     if (success != false) {
       reload();
     }
   }
 
   void _renameDeviceAction(BuildContext context, Device device) async {
-    final displayName = await SimpleDialogs(context).enterText(
-      hintText: device.displayName,
-      labelText: L10n.of(context).changeDeviceName,
+    final displayName = await showTextInputDialog(
+      context: context,
+      title: L10n.of(context).changeDeviceName,
+      textFields: [
+        DialogTextField(
+          hintText: device.displayName,
+        )
+      ],
     );
     if (displayName == null) return;
     final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
       Matrix.of(context)
           .client
-          .setDeviceMetadata(device.deviceId, displayName: displayName),
+          .setDeviceMetadata(device.deviceId, displayName: displayName.single),
     );
     if (success != false) {
       reload();

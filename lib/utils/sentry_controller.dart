@@ -1,5 +1,5 @@
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flushbar/flushbar_helper.dart';
-import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
@@ -11,16 +11,18 @@ import '../config/setting_keys.dart';
 
 abstract class SentryController {
   static Future<void> toggleSentryAction(BuildContext context) async {
-    final enableSentry = await SimpleDialogs(context).askConfirmation(
-      titleText: L10n.of(context).sendBugReports,
-      contentText: L10n.of(context).sentryInfo,
-      confirmText: L10n.of(context).ok,
-      cancelText: L10n.of(context).no,
-    );
+    final enableSentry = await showOkCancelAlertDialog(
+          context: context,
+          title: L10n.of(context).sendBugReports,
+          message: L10n.of(context).sentryInfo,
+          okLabel: L10n.of(context).ok,
+          cancelLabel: L10n.of(context).no,
+        ) ==
+        OkCancelResult.ok;
     final storage = Store();
     await storage.setItem(SettingKeys.sentry, enableSentry.toString());
-    await FlushbarHelper.createSuccess(
-            message: L10n.of(context).changesHaveBeenSaved)
+    // ignore: unawaited_futures
+    FlushbarHelper.createSuccess(message: L10n.of(context).changesHaveBeenSaved)
         .show(context);
     return;
   }

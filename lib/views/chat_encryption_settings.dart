@@ -1,3 +1,4 @@
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:famedlysdk/encryption.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
@@ -8,8 +9,6 @@ import 'package:fluffychat/views/chat_list.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-
-import '../components/dialogs/simple_dialogs.dart';
 import '../utils/app_route.dart';
 import 'key_verification.dart';
 
@@ -64,10 +63,12 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
         );
         break;
       case 'verify_manual':
-        if (await SimpleDialogs(context).askConfirmation(
-          titleText: L10n.of(context).isDeviceKeyCorrect,
-          contentText: key.ed25519Key.beautified,
-        )) {
+        if (await showOkCancelAlertDialog(
+              context: context,
+              title: L10n.of(context).isDeviceKeyCorrect,
+              message: key.ed25519Key.beautified,
+            ) ==
+            OkCancelResult.ok) {
           await unblock();
           await key.setVerified(true);
           setState(() => null);

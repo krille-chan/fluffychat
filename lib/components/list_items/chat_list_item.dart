@@ -1,3 +1,4 @@
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:circular_check_box/circular_check_box.dart';
 import 'package:famedlysdk/famedlysdk.dart';
@@ -117,8 +118,11 @@ class ChatListItem extends StatelessWidget {
         }
         return success;
       }
-      final confirmed = await SimpleDialogs(context).askConfirmation();
-      if (!confirmed) return;
+      final confirmed = await showOkCancelAlertDialog(
+        context: context,
+        title: L10n.of(context).areYouSure,
+      );
+      if (confirmed == OkCancelResult.cancel) return;
       await SimpleDialogs(context).tryRequestWithLoadingDialog(room.leave());
       return;
     }

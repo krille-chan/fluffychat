@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
@@ -52,7 +53,11 @@ class _SettingsState extends State<Settings> {
   bool megolmBackupCached;
 
   void logoutAction(BuildContext context) async {
-    if (await SimpleDialogs(context).askConfirmation() == false) {
+    if (await showOkCancelAlertDialog(
+          context: context,
+          title: L10n.of(context).areYouSure,
+        ) ==
+        OkCancelResult.cancel) {
       return;
     }
     var matrix = Matrix.of(context);
@@ -61,20 +66,25 @@ class _SettingsState extends State<Settings> {
   }
 
   void _changePasswordAccountAction(BuildContext context) async {
-    final oldPassword = await SimpleDialogs(context).enterText(
-      password: true,
-      titleText: L10n.of(context).pleaseEnterYourPassword,
+    final input = await showTextInputDialog(
+      context: context,
+      title: L10n.of(context).changePassword,
+      textFields: [
+        DialogTextField(
+          hintText: L10n.of(context).pleaseEnterYourPassword,
+          obscureText: true,
+        ),
+        DialogTextField(
+          hintText: L10n.of(context).chooseAStrongPassword,
+          obscureText: true,
+        ),
+      ],
     );
-    if (oldPassword == null) return;
-    final newPassword = await SimpleDialogs(context).enterText(
-      password: true,
-      titleText: L10n.of(context).chooseAStrongPassword,
-    );
-    if (newPassword == null) return;
+    if (input == null) return;
     await SimpleDialogs(context).tryRequestWithLoadingDialog(
       Matrix.of(context)
           .client
-          .changePassword(newPassword, oldPassword: oldPassword),
+          .changePassword(input.last, oldPassword: input.first),
     );
     await FlushbarHelper.createSuccess(
             message: L10n.of(context).passwordHasBeenChanged)
@@ -82,39 +92,44 @@ class _SettingsState extends State<Settings> {
   }
 
   void _deleteAccountAction(BuildContext context) async {
-    if (await SimpleDialogs(context).askConfirmation(
-          titleText: L10n.of(context).warning,
-          contentText: L10n.of(context).deactivateAccountWarning,
-          dangerous: true,
+    if (await showOkCancelAlertDialog(
+          context: context,
+          title: L10n.of(context).warning,
+          message: L10n.of(context).deactivateAccountWarning,
         ) ==
-        false) {
+        OkCancelResult.cancel) {
       return;
     }
-    if (await SimpleDialogs(context).askConfirmation(dangerous: true) ==
-        false) {
+    if (await showOkCancelAlertDialog(
+            context: context, title: L10n.of(context).areYouSure) ==
+        OkCancelResult.cancel) {
       return;
     }
-    final password = await SimpleDialogs(context).enterText(
-      password: true,
-      titleText: L10n.of(context).pleaseEnterYourPassword,
+    final input = await showTextInputDialog(
+      context: context,
+      title: L10n.of(context).pleaseEnterYourPassword,
+      textFields: [DialogTextField(obscureText: true, hintText: '******')],
     );
-    if (password == null) return;
+    if (input == null) return;
     await SimpleDialogs(context).tryRequestWithLoadingDialog(
       Matrix.of(context).client.deactivateAccount(auth: {
         'type': 'm.login.password',
         'user': Matrix.of(context).client.userID,
-        'password': password,
+        'password': input.single,
       }),
     );
   }
 
   void setJitsiInstanceAction(BuildContext context) async {
-    var jitsi = await SimpleDialogs(context).enterText(
-      titleText: L10n.of(context).editJitsiInstance,
-      hintText: Matrix.of(context).jitsiInstance,
-      labelText: L10n.of(context).editJitsiInstance,
+    var input = await showTextInputDialog(
+      context: context,
+      title: L10n.of(context).editJitsiInstance,
+      textFields: [
+        DialogTextField(initialText: Matrix.of(context).jitsiInstance),
+      ],
     );
-    if (jitsi == null) return;
+    if (input == null) return;
+    var jitsi = input.single;
     if (!jitsi.endsWith('/')) {
       jitsi += '/';
     }
@@ -124,16 +139,20 @@ class _SettingsState extends State<Settings> {
   }
 
   void setDisplaynameAction(BuildContext context) async {
-    final displayname = await SimpleDialogs(context).enterText(
-      titleText: L10n.of(context).editDisplayname,
-      hintText:
-          profile?.displayname ?? Matrix.of(context).client.userID.localpart,
-      labelText: L10n.of(context).enterAUsername,
+    final input = await showTextInputDialog(
+      context: context,
+      title: L10n.of(context).editDisplayname,
+      textFields: [
+        DialogTextField(
+          initialText: profile?.displayname ??
+              Matrix.of(context).client.userID.localpart,
+        )
+      ],
     );
-    if (displayname == null) return;
+    if (input == null) return;
     final matrix = Matrix.of(context);
     final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
-      matrix.client.setDisplayname(matrix.client.userID, displayname),
+      matrix.client.setDisplayname(matrix.client.userID, input.single),
     );
     if (success != false) {
       setState(() {
@@ -195,36 +214,43 @@ class _SettingsState extends State<Settings> {
 
   Future<void> requestSSSSCache(BuildContext context) async {
     final handle = Matrix.of(context).client.encryption.ssss.open();
-    final str = await SimpleDialogs(context).enterText(
-      titleText: L10n.of(context).askSSSSCache,
-      hintText: L10n.of(context).passphraseOrKey,
-      password: true,
+    final input = await showTextInputDialog(
+      context: context,
+      title: L10n.of(context).askSSSSCache,
+      textFields: [
+        DialogTextField(
+            hintText: L10n.of(context).passphraseOrKey, obscureText: true)
+      ],
     );
-    if (str != null) {
-      SimpleDialogs(context).showLoadingDialog(context);
-      // make sure the loading spinner shows before we test the keys
-      await Future.delayed(Duration(milliseconds: 100));
-      var valid = false;
-      try {
-        handle.unlock(recoveryKey: str);
-        valid = true;
-      } catch (e, s) {
-        debugPrint('Couldn\'t use recovery key: ' + e.toString());
-        debugPrint(s.toString());
+    if (input != null) {
+      final valid = await SimpleDialogs(context)
+          .tryRequestWithLoadingDialog(Future.microtask(() async {
+        // make sure the loading spinner shows before we test the keys
+        await Future.delayed(Duration(milliseconds: 100));
+        var valid = false;
         try {
-          handle.unlock(passphrase: str);
+          handle.unlock(recoveryKey: input.single);
           valid = true;
         } catch (e, s) {
-          debugPrint('Couldn\'t use recovery passphrase: ' + e.toString());
+          debugPrint('Couldn\'t use recovery key: ' + e.toString());
           debugPrint(s.toString());
-          valid = false;
+          try {
+            handle.unlock(passphrase: input.single);
+            valid = true;
+          } catch (e, s) {
+            debugPrint('Couldn\'t use recovery passphrase: ' + e.toString());
+            debugPrint(s.toString());
+            valid = false;
+          }
         }
-      }
-      await Navigator.of(context)?.pop();
-      if (valid) {
+        return valid;
+      }));
+
+      if (valid == true) {
         await handle.maybeCacheAll();
-        await SimpleDialogs(context).inform(
-          contentText: L10n.of(context).cachedKeys,
+        await showOkAlertDialog(
+          context: context,
+          message: L10n.of(context).cachedKeys,
         );
         setState(() {
           crossSigningCachedFuture = null;
@@ -233,8 +259,9 @@ class _SettingsState extends State<Settings> {
           megolmBackupCached = null;
         });
       } else {
-        await SimpleDialogs(context).inform(
-          contentText: L10n.of(context).incorrectPassphraseOrKey,
+        await showOkAlertDialog(
+          context: context,
+          message: L10n.of(context).incorrectPassphraseOrKey,
         );
       }
     }
@@ -452,7 +479,7 @@ class _SettingsState extends State<Settings> {
             ListTile(
               trailing: Icon(Icons.vpn_key),
               title: Text(
-                'Change password',
+                L10n.of(context).changePassword,
               ),
               onTap: () => _changePasswordAccountAction(context),
             ),
@@ -497,39 +524,48 @@ class _SettingsState extends State<Settings> {
                   : null,
               onTap: () async {
                 if (!client.encryption.crossSigning.enabled) {
-                  await SimpleDialogs(context).inform(
-                    contentText: L10n.of(context).noCrossSignBootstrap,
+                  await showOkAlertDialog(
+                    context: context,
+                    message: L10n.of(context).noCrossSignBootstrap,
                   );
                   return;
                 }
                 if (client.isUnknownSession) {
-                  final str = await SimpleDialogs(context).enterText(
-                    titleText: L10n.of(context).askSSSSVerify,
-                    hintText: L10n.of(context).passphraseOrKey,
-                    password: true,
+                  final input = await showTextInputDialog(
+                    context: context,
+                    title: L10n.of(context).askSSSSVerify,
+                    textFields: [
+                      DialogTextField(
+                          hintText: L10n.of(context).passphraseOrKey,
+                          obscureText: true)
+                    ],
                   );
-                  if (str != null) {
-                    SimpleDialogs(context).showLoadingDialog(context);
-                    // make sure the loading spinner shows before we test the keys
-                    await Future.delayed(Duration(milliseconds: 100));
-                    var valid = false;
-                    try {
-                      await client.encryption.crossSigning
-                          .selfSign(recoveryKey: str);
-                      valid = true;
-                    } catch (_) {
+                  if (input != null) {
+                    final valid = await SimpleDialogs(context)
+                        .tryRequestWithLoadingDialog(Future.microtask(() async {
+                      // make sure the loading spinner shows before we test the keys
+                      await Future.delayed(Duration(milliseconds: 100));
+                      var valid = false;
                       try {
                         await client.encryption.crossSigning
-                            .selfSign(passphrase: str);
+                            .selfSign(recoveryKey: input.single);
                         valid = true;
                       } catch (_) {
-                        valid = false;
+                        try {
+                          await client.encryption.crossSigning
+                              .selfSign(passphrase: input.single);
+                          valid = true;
+                        } catch (_) {
+                          valid = false;
+                        }
                       }
-                    }
-                    await Navigator.of(context)?.pop();
-                    if (valid) {
-                      await SimpleDialogs(context).inform(
-                        contentText: L10n.of(context).verifiedSession,
+                      return valid;
+                    }));
+
+                    if (valid == true) {
+                      await showOkAlertDialog(
+                        context: context,
+                        message: L10n.of(context).verifiedSession,
                       );
                       setState(() {
                         crossSigningCachedFuture = null;
@@ -538,8 +574,9 @@ class _SettingsState extends State<Settings> {
                         megolmBackupCached = null;
                       });
                     } else {
-                      await SimpleDialogs(context).inform(
-                        contentText: L10n.of(context).incorrectPassphraseOrKey,
+                      await showOkAlertDialog(
+                        context: context,
+                        message: L10n.of(context).incorrectPassphraseOrKey,
                       );
                     }
                   }
@@ -563,8 +600,9 @@ class _SettingsState extends State<Settings> {
                   : null,
               onTap: () async {
                 if (!client.encryption.keyManager.enabled) {
-                  await SimpleDialogs(context).inform(
-                    contentText: L10n.of(context).noMegolmBootstrap,
+                  await showOkAlertDialog(
+                    context: context,
+                    message: L10n.of(context).noMegolmBootstrap,
                   );
                   return;
                 }
