@@ -1742,5 +1742,20 @@
   "@mention": {
     "type": "text",
     "placeholders": {}
+  },
+  "hideUnknownEvents": "Unbekannte Ereignisse ausblenden",
+  "@hideUnknownEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideRedactedEvents": "Gelöschte Nachrichten ausblenden",
+  "@hideRedactedEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changePassword": "Passwort ändern",
+  "@changePassword": {
+    "type": "text",
+    "placeholders": {}
   }
 }
