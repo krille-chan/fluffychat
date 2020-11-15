@@ -67,14 +67,25 @@ sudo apt install ninja-build
 
 * Enable web support in Flutter: https://flutter.dev/docs/get-started/web
 
-* Build with: `flutter build web --release`
+* Build with:
+```bash
+./scripts/prepare-web.sh
+flutter clean
+flutter pub get
+flutter build web --release --verbose
+```
+
+* Optionally configure by serving a `config.json` at the same path as fluffychat.
+  An example can be found at `config.sample.json`. None of these
+  values have to exist, the ones stated here are the default ones. If you e.g. only want
+  to change the default homeserver, then only modify the `default_homeserver` key.
 
 ### Desktop (Linux, Windows, macOS)
 
 * Enable Desktop support in Flutter: https://flutter.dev/desktop
 
-* Build with one of these: 
-```
+* Build with one of these:
+```bash
 flutter build linux --release
 flutter build windows --release
 flutter build macos --release
