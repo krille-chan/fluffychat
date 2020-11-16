@@ -86,16 +86,24 @@ class _ImageBubbleState extends State<ImageBubble> {
             }
             if (_thumbnail == null && !_requestedThumbnail && !isUnencrypted) {
               _getThumbnail().then((MatrixFile thumbnail) {
-                setState(() => _thumbnail = thumbnail);
+                if (mounted) {
+                  setState(() => _thumbnail = thumbnail);
+                }
               }, onError: (error, stacktrace) {
-                setState(() => _error = error);
+                if (mounted) {
+                  setState(() => _error = error);
+                }
               });
             }
             if (_file == null && !widget.thumbnailOnly && !_requestedFile) {
               _getFile().then((MatrixFile file) {
-                setState(() => _file = file);
+                if (mounted) {
+                  setState(() => _file = file);
+                }
               }, onError: (error, stacktrace) {
-                setState(() => _error = error);
+                if (mounted) {
+                  setState(() => _error = error);
+                }
               });
             }
             final display = _file ?? _thumbnail;
