@@ -1742,5 +1742,20 @@
   "@unavailable": {
     "type": "text",
     "placeholders": {}
+  },
+  "hideUnknownEvents": "Скрыть неизвестные события",
+  "@hideUnknownEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideRedactedEvents": "Скрыть отредактированные события",
+  "@hideRedactedEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changePassword": "Изменить пароль",
+  "@changePassword": {
+    "type": "text",
+    "placeholders": {}
   }
 }
