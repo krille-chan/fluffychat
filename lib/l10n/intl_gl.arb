@@ -1752,5 +1752,10 @@
   "@hideRedactedEvents": {
     "type": "text",
     "placeholders": {}
+  },
+  "changePassword": "Cambiar contrasinal",
+  "@changePassword": {
+    "type": "text",
+    "placeholders": {}
   }
 }
