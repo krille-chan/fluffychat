@@ -74,7 +74,7 @@ abstract class FirebaseController {
       if (currentPushers.isNotEmpty) {
         for (final currentPusher in currentPushers) {
           currentPusher.pushkey = token;
-          currentPusher.kind = 'null';
+          currentPusher.kind = null;
           await client.setPusher(
             currentPusher,
             append: true,
