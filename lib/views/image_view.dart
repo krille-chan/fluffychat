@@ -7,8 +7,9 @@ import '../utils/event_extension.dart';
 
 class ImageView extends StatelessWidget {
   final Event event;
+  final void Function() onLoaded;
 
-  const ImageView(this.event, {Key key}) : super(key: key);
+  const ImageView(this.event, {Key key, this.onLoaded}) : super(key: key);
 
   void _forwardAction(BuildContext context) async {
     Matrix.of(context).shareContent = event.content;
@@ -47,6 +48,7 @@ class ImageView extends StatelessWidget {
         child: ImageBubble(
           event,
           tapToView: false,
+          onLoaded: onLoaded,
           fit: BoxFit.contain,
           backgroundColor: Colors.black,
           maxSize: false,
