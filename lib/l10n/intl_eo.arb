@@ -1745,5 +1745,10 @@
   "@hideUnknownEvents": {
     "type": "text",
     "placeholders": {}
+  },
+  "changePassword": "Ŝanĝi pasvorton",
+  "@changePassword": {
+    "type": "text",
+    "placeholders": {}
   }
 }
