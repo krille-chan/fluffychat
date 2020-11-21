@@ -1,16 +1,6 @@
 name: fluffychat
 description: Chat with your friends.
-
-# The following defines the version and build number for your application.
-# A version number is three numbers separated by dots, like 1.2.43
-# followed by an optional build number separated by a +.
-# Both the version and the builder number may be overridden in flutter
-# build by specifying --build-name and --build-number, respectively.
-# In Android, build-name is used as versionName while build-number used as versionCode.
-# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
-# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
-# Read more about iOS versioning at
-# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+publish_to: none
 version: 0.22.0+49
 
 environment:
@@ -23,7 +13,7 @@ dependencies:
   famedlysdk:
     git:
       url: https://gitlab.com/famedly/famedlysdk.git
-      ref: b1709ca8c3409f58ed711cff3fbe329e9b3c3a9c
+      ref: 0697d47cc2791419ecf5dbc8840ac95bb6689e68
 
   localstorage: ^3.0.3+6
   file_picker_cross: 4.2.2
@@ -50,7 +40,7 @@ dependencies:
   mime_type: ^0.3.2
   flushbar: ^1.10.4
   adaptive_dialog: ^0.9.0+1
-  flutter_matrix_html: ^0.1.13
+  flutter_matrix_html: ^0.1.12
   moor: ^3.4.0
   sqlite3_flutter_libs: ^0.2.0
   sqlite3: ^0.1.8
@@ -71,7 +61,7 @@ dependencies:
   sentry: ">=3.0.0 <4.0.0"
   scroll_to_index: ^1.0.6
   swipe_to_action: ^0.1.0
-  flutter_svg: ^0.19.1
+  flutter_svg: 0.19.1 # Because fluffychat depends on flutter_svg >=0.19.2 which requires Flutter SDK version >=1.24.0-6.0.pre <2.0.0, version solving failed.
   flutter_cache_manager: ^2.0.0
 
 dev_dependencies:
@@ -87,49 +77,11 @@ flutter_icons:
   ios: false
   image_path: "assets/logo.png"
 
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
-
-# The following section is specific to Flutter.
 flutter:
-  # Adds code generation (synthetic package) support
   generate: true
-
-
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
   uses-material-design: true
-
-  # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
     - assets/sounds/
     - assets/js/
     - assets/js/package/
-
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware.
-
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
-
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages

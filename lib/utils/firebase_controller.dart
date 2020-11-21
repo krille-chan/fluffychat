@@ -183,9 +183,7 @@ abstract class FirebaseController {
         tempClient = true;
         final platform = kIsWeb ? 'Web' : Platform.operatingSystem;
         final clientName = 'FluffyChat $platform';
-        client = Client(clientName);
-        client.database = await getDatabase(client);
-        client.connect();
+        client = Client(clientName, databaseBuilder: getDatabase)..init();
         debugPrint('[Push] Use a temp client');
         await client.onLoginStateChanged.stream
             .firstWhere((l) => l == LoginState.logged)
