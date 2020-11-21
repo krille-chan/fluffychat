@@ -717,12 +717,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "Ara per ara FluffyChat no és compatible amb la còpia de seguretat de claus en línia. Activa-la des de Riot.",
+  "noMegolmBootstrap": "Ara per ara FluffyChat no és compatible amb la còpia de seguretat de claus en línia. Activa-la des d'Element.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "Ara per ara FluffyChat no és compatible amb la signatura creuada. Activa-la des de Riot.",
+  "noCrossSignBootstrap": "Ara per ara FluffyChat no és compatible amb la signatura creuada. Activa-la des d'Element.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
