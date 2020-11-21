@@ -12,7 +12,6 @@ variables:
 
 stages:
 - coverage
-- publish
 - release
 - deploy
 
@@ -96,7 +95,7 @@ build_android_appbundle:
     - main
     
 upload_to_fdroid_repo:
-  stage: publish
+  stage: release
   before_script:
     ##
     ## Install ssh-agent if not already installed.
@@ -149,7 +148,7 @@ build_linux:
   allow_failure: true
 
 snap:edge:
-  stage: publish
+  stage: release
   image: "cibuilds/snapcraft:core18"
   variables:
     SNAPCRAFT_LOGIN_FILE: ${SNAPCRAFT_LOGIN_FILE}
@@ -163,7 +162,7 @@ snap:edge:
   allow_failure: true
 
 snap:publish:
-  stage: publish
+  stage: release
   image: "cibuilds/snapcraft:core18"
   variables:
     SNAPCRAFT_LOGIN_FILE: ${SNAPCRAFT_LOGIN_FILE}
