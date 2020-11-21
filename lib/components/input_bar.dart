@@ -261,11 +261,19 @@ class InputBar extends StatelessWidget {
         maxLines: maxLines,
         keyboardType: keyboardType,
         autofocus: autofocus,
-        onSubmitted: onSubmitted,
+        onSubmitted: (text) {
+          // fix for library for now
+          // it sets the types for the callback incorrectly
+          onSubmitted(text);
+        },
         focusNode: focusNode,
         controller: controller,
         decoration: decoration,
-        onChanged: onChanged,
+        onChanged: (text) {
+          // fix for the library for now
+          // it sets the types for the callback incorrectly
+          onChanged(text);
+        },
         textCapitalization: TextCapitalization.sentences,
       ),
       suggestionsCallback: getSuggestions,
