@@ -63,7 +63,7 @@ packages:
       name: asn1lib
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.5"
+    version: "0.8.1"
   async:
     dependency: transitive
     description:
@@ -99,6 +99,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  catex:
+    dependency: transitive
+    description:
+      name: catex
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.1+6"
   characters:
     dependency: transitive
     description:
@@ -196,7 +203,7 @@ packages:
       name: encrypt
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.2"
+    version: "4.1.0"
   fake_async:
     dependency: transitive
     description:
@@ -208,8 +215,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: b1709ca8c3409f58ed711cff3fbe329e9b3c3a9c
-      resolved-ref: b1709ca8c3409f58ed711cff3fbe329e9b3c3a9c
+      ref: "0697d47cc2791419ecf5dbc8840ac95bb6689e68"
+      resolved-ref: "0697d47cc2791419ecf5dbc8840ac95bb6689e68"
       url: "https://gitlab.com/famedly/famedlysdk.git"
     source: git
     version: "0.0.1"
@@ -356,20 +363,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_math:
-    dependency: transitive
-    description:
-      name: flutter_math
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.2.0+2"
   flutter_matrix_html:
     dependency: "direct main"
     description:
       name: flutter_matrix_html
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.13"
+    version: "0.1.12"
   flutter_olm:
     dependency: "direct main"
     description:
@@ -554,7 +554,7 @@ packages:
       name: markdown
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.8"
+    version: "3.0.0"
   matcher:
     dependency: transitive
     description:
@@ -568,7 +568,7 @@ packages:
       name: matrix_file_e2ee
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.4"
+    version: "1.0.5"
   matrix_link_text:
     dependency: "direct main"
     description:
@@ -613,13 +613,6 @@ packages:
       url: "https://gitlab.com/famedly/libraries/native_imaging.git"
     source: git
     version: "0.0.1"
-  nested:
-    dependency: transitive
-    description:
-      name: nested
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.4"
   node_interop:
     dependency: transitive
     description:
@@ -745,7 +738,7 @@ packages:
       name: pedantic
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.10.0-nullsafety.1"
+    version: "1.10.0-nullsafety.2"
   permission_handler:
     dependency: "direct main"
     description:
@@ -794,14 +787,14 @@ packages:
       name: pointycastle
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.2"
+    version: "2.0.0"
   pool:
     dependency: transitive
     description:
       name: pool
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.5.0-nullsafety.1"
+    version: "1.5.0-nullsafety.2"
   process:
     dependency: transitive
     description:
@@ -809,13 +802,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.13"
-  provider:
-    dependency: transitive
-    description:
-      name: provider
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "4.3.2+2"
   pub_semver:
     dependency: transitive
     description:
@@ -911,14 +897,14 @@ packages:
       name: source_map_stack_trace
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.0-nullsafety.2"
+    version: "2.1.0-nullsafety.3"
   source_maps:
     dependency: transitive
     description:
       name: source_maps
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.10.10-nullsafety.1"
+    version: "0.10.10-nullsafety.2"
   source_span:
     dependency: transitive
     description:
@@ -1024,13 +1010,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.5.9"
-  tuple:
-    dependency: transitive
-    description:
-      name: tuple
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.3"
   typed_data:
     dependency: transitive
     description:
@@ -1193,5 +1172,5 @@ packages:
     source: hosted
     version: "0.1.2"
 sdks:
-  dart: ">=2.10.2 <=2.11.0-161.0.dev"
+  dart: ">=2.10.2 <2.11.0"
   flutter: ">=1.22.2 <2.0.0"

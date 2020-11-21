@@ -38,12 +38,9 @@ class Matrix extends StatefulWidget {
 
   final String clientName;
 
-  final Client client;
-
   final Store store;
 
-  Matrix({this.child, this.clientName, this.client, this.store, Key key})
-      : super(key: key);
+  Matrix({this.child, this.clientName, this.store, Key key}) : super(key: key);
 
   @override
   MatrixState createState() => MatrixState();
@@ -90,8 +87,7 @@ class MatrixState extends State<Matrix> {
   void _initWithStore() async {
     var initLoginState = client.onLoginStateChanged.stream.first;
     try {
-      client.database = await getDatabase(client);
-      await client.connect();
+      client.init();
       final firstLoginState = await initLoginState;
       if (firstLoginState == LoginState.logged) {
         if (PlatformInfos.isMobile) {
@@ -264,85 +260,84 @@ class MatrixState extends State<Matrix> {
 
   void initMatrix() {
     store = widget.store ?? Store();
-    if (widget.client == null) {
-      debugPrint('[Matrix] Init matrix client');
-      final Set verificationMethods = <KeyVerificationMethod>{
-        KeyVerificationMethod.numbers
-      };
-      if (PlatformInfos.isMobile) {
-        // emojis don't show in web somehow
-        verificationMethods.add(KeyVerificationMethod.emoji);
-      }
-      client = Client(widget.clientName,
-          enableE2eeRecovery: true,
-          verificationMethods: verificationMethods,
-          importantStateEvents: <String>{
-            'im.ponies.room_emotes', // we want emotes to work properly
-          });
-      onJitsiCallSub ??= client.onEvent.stream
-          .where((e) =>
-              e.type == EventUpdateType.timeline &&
-              e.eventType == 'm.room.message' &&
-              e.content['content']['msgtype'] == Matrix.callNamespace &&
-              e.content['sender'] != client.userID)
-          .listen(onJitsiCall);
 
-      onRoomKeyRequestSub ??=
-          client.onRoomKeyRequest.stream.listen((RoomKeyRequest request) async {
-        final room = request.room;
-        if (request.sender != room.client.userID) {
-          return; // ignore share requests by others
-        }
-        final sender = room.getUserByMXIDSync(request.sender);
-        if (await showOkCancelAlertDialog(
-              context: context,
-              title: L10n.of(context).requestToReadOlderMessages,
-              message:
-                  '${sender.id}\n\n${L10n.of(context).device}:\n${request.requestingDevice.deviceId}\n\n${L10n.of(context).identity}:\n${request.requestingDevice.curve25519Key.beautified}',
-              okLabel: L10n.of(context).verify,
-              cancelLabel: L10n.of(context).deny,
-            ) ==
-            OkCancelResult.ok) {
-          await request.forwardKey();
-        }
-      });
-      onKeyVerificationRequestSub ??= client.onKeyVerificationRequest.stream
-          .listen((KeyVerification request) async {
-        var hidPopup = false;
-        request.onUpdate = () {
-          if (!hidPopup &&
-              {KeyVerificationState.done, KeyVerificationState.error}
-                  .contains(request.state)) {
-            Navigator.of(context, rootNavigator: true).pop('dialog');
-          }
-          hidPopup = true;
-        };
-        if (await showOkCancelAlertDialog(
-              context: context,
-              title: L10n.of(context).newVerificationRequest,
-              message: L10n.of(context).askVerificationRequest(request.userId),
-            ) ==
-            OkCancelResult.ok) {
-          request.onUpdate = null;
-          hidPopup = true;
-          await request.acceptVerification();
-          await Navigator.of(context).push(
-            AppRoute.defaultRoute(
-              context,
-              KeyVerificationView(request: request),
-            ),
-          );
-        } else {
-          request.onUpdate = null;
-          hidPopup = true;
-          await request.rejectVerification();
-        }
-      });
-      _initWithStore();
-    } else {
-      client = widget.client;
-      client.connect();
+    final Set verificationMethods = <KeyVerificationMethod>{
+      KeyVerificationMethod.numbers
+    };
+    if (PlatformInfos.isMobile) {
+      // emojis don't show in web somehow
+      verificationMethods.add(KeyVerificationMethod.emoji);
     }
+    client = Client(
+      widget.clientName,
+      enableE2eeRecovery: true,
+      verificationMethods: verificationMethods,
+      importantStateEvents: <String>{
+        'im.ponies.room_emotes', // we want emotes to work properly
+      },
+      databaseBuilder: getDatabase,
+    );
+    onJitsiCallSub ??= client.onEvent.stream
+        .where((e) =>
+            e.type == EventUpdateType.timeline &&
+            e.eventType == 'm.room.message' &&
+            e.content['content']['msgtype'] == Matrix.callNamespace &&
+            e.content['sender'] != client.userID)
+        .listen(onJitsiCall);
+
+    onRoomKeyRequestSub ??=
+        client.onRoomKeyRequest.stream.listen((RoomKeyRequest request) async {
+      final room = request.room;
+      if (request.sender != room.client.userID) {
+        return; // ignore share requests by others
+      }
+      final sender = room.getUserByMXIDSync(request.sender);
+      if (await showOkCancelAlertDialog(
+            context: context,
+            title: L10n.of(context).requestToReadOlderMessages,
+            message:
+                '${sender.id}\n\n${L10n.of(context).device}:\n${request.requestingDevice.deviceId}\n\n${L10n.of(context).identity}:\n${request.requestingDevice.curve25519Key.beautified}',
+            okLabel: L10n.of(context).verify,
+            cancelLabel: L10n.of(context).deny,
+          ) ==
+          OkCancelResult.ok) {
+        await request.forwardKey();
+      }
+    });
+    onKeyVerificationRequestSub ??= client.onKeyVerificationRequest.stream
+        .listen((KeyVerification request) async {
+      var hidPopup = false;
+      request.onUpdate = () {
+        if (!hidPopup &&
+            {KeyVerificationState.done, KeyVerificationState.error}
+                .contains(request.state)) {
+          Navigator.of(context, rootNavigator: true).pop('dialog');
+        }
+        hidPopup = true;
+      };
+      if (await showOkCancelAlertDialog(
+            context: context,
+            title: L10n.of(context).newVerificationRequest,
+            message: L10n.of(context).askVerificationRequest(request.userId),
+          ) ==
+          OkCancelResult.ok) {
+        request.onUpdate = null;
+        hidPopup = true;
+        await request.acceptVerification();
+        await Navigator.of(context).push(
+          AppRoute.defaultRoute(
+            context,
+            KeyVerificationView(request: request),
+          ),
+        );
+      } else {
+        request.onUpdate = null;
+        hidPopup = true;
+        await request.rejectVerification();
+      }
+    });
+    _initWithStore();
+
     if (kIsWeb) {
       onFocusSub = html.window.onFocus.listen((_) => webHasFocus = true);
       onBlurSub = html.window.onBlur.listen((_) => webHasFocus = false);
