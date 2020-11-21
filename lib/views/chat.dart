@@ -4,7 +4,6 @@ import 'dart:math';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:famedlysdk/famedlysdk.dart';
-
 import 'package:file_picker_cross/file_picker_cross.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/avatar.dart';
@@ -34,8 +33,8 @@ import 'package:swipe_to_action/swipe_to_action.dart';
 
 import '../components/dialogs/send_file_dialog.dart';
 import '../components/input_bar.dart';
-import '../utils/matrix_file_extension.dart';
 import '../config/app_config.dart';
+import '../utils/matrix_file_extension.dart';
 import 'chat_details.dart';
 import 'chat_list.dart';
 
@@ -181,9 +180,7 @@ class _ChatState extends State<_Chat> {
     if (timeline == null) {
       timeline = await room.getTimeline(onUpdate: updateView);
       if (timeline.events.isNotEmpty) {
-        unawaited(room
-            .sendReadReceipt(timeline.events.first.eventId)
-            .catchError((err) {
+        unawaited(room.setUnread(false).catchError((err) {
           if (err is MatrixException && err.errcode == 'M_FORBIDDEN') {
             // ignore if the user is not in the room (still joining)
             return;
@@ -484,7 +481,6 @@ class _ChatState extends State<_Chat> {
     }
 
     final typingText = room.getLocalizedTypingText(context);
-
     return Scaffold(
       appBar: AppBar(
         leading: selectMode
@@ -624,7 +620,7 @@ class _ChatState extends State<_Chat> {
                           timeline != null &&
                           timeline.events.isNotEmpty &&
                           Matrix.of(context).webHasFocus) {
-                        room.sendReadReceipt(timeline.events.first.eventId);
+                        room.sendReadMarker(timeline.events.first.eventId);
                       }
 
                       final filteredEvents = getFilteredEvents();
