@@ -24,10 +24,28 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Play audio and voice messages in the app.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Share calendar dates with your contacts in FluffyChat.</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Share photos with your contacts</string>
+	<string>Open the camera and take a picture to share them with your contacts on FluffyChat.</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Share contacts with your contacts in FluffyChat.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>FluffyChat uses an app lock for an additional security level</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Share your location with your contacts in FluffyChat.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Share your location with your contacts in FluffyChat.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Record voice message and share them with your contacts on FluffyChat.</string>
+	<key>NSMotionUsageDescription</key>
+	<string>Share motions with your contacts in FluffyChat.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Share photos with your contacts</string>
+	<string>Open photos from your gallery and share them with your contacts on FluffyChat.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Share data with your contacts in FluffyChat.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>
@@ -52,7 +70,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>FluffyChat uses the microphone to record voice messages.</string>
 </dict>
 </plist>

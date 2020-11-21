@@ -99,13 +99,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
-  catex:
-    dependency: transitive
-    description:
-      name: catex
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.1+6"
   characters:
     dependency: transitive
     description:
@@ -350,26 +343,33 @@ packages:
       name: flutter_local_notifications
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.1+3"
+    version: "3.0.1+5"
   flutter_local_notifications_platform_interface:
     dependency: transitive
     description:
       name: flutter_local_notifications_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.0+1"
   flutter_localizations:
     dependency: "direct main"
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_math:
+    dependency: transitive
+    description:
+      name: flutter_math
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.0+2"
   flutter_matrix_html:
     dependency: "direct main"
     description:
       name: flutter_matrix_html
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.12"
+    version: "0.1.13"
   flutter_olm:
     dependency: "direct main"
     description:
@@ -613,6 +613,13 @@ packages:
       url: "https://gitlab.com/famedly/libraries/native_imaging.git"
     source: git
     version: "0.0.1"
+  nested:
+    dependency: transitive
+    description:
+      name: nested
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.4"
   node_interop:
     dependency: transitive
     description:
@@ -766,7 +773,7 @@ packages:
       name: photo_view
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.10.2"
+    version: "0.10.3"
   platform:
     dependency: transitive
     description:
@@ -802,6 +809,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.13"
+  provider:
+    dependency: transitive
+    description:
+      name: provider
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.3.2+2"
   pub_semver:
     dependency: transitive
     description:
@@ -1010,6 +1024,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.5.9"
+  tuple:
+    dependency: transitive
+    description:
+      name: tuple
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.3"
   typed_data:
     dependency: transitive
     description:
