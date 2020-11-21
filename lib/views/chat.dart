@@ -301,11 +301,13 @@ class _ChatState extends State<_Chat> {
     var copyString = '';
     if (selectedEvents.length == 1) {
       return selectedEvents.first
+          .getDisplayEvent(timeline)
           .getLocalizedBody(MatrixLocals(L10n.of(context)));
     }
     for (var event in selectedEvents) {
       if (copyString.isNotEmpty) copyString += '\n\n';
-      copyString += event.getLocalizedBody(MatrixLocals(L10n.of(context)),
+      copyString += event.getDisplayEvent(timeline).getLocalizedBody(
+          MatrixLocals(L10n.of(context)),
           withSenderNamePrefix: true);
     }
     return copyString;
