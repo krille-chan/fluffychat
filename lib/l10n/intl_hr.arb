@@ -948,7 +948,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "Fluffychat trenutačno ne podržava mogućnost unakrsnog potpisivanja. Aktiviraj je u Riotu.",
+  "noCrossSignBootstrap": "Fluffychat trenutačno ne podržava mogućnost unakrsnog potpisivanja. Aktiviraj je u programu Element.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -963,7 +963,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "Fluffychat trenutačno ne podržava mogućnost aktiviranja internetskog ključa sigurnosnih kopija. Aktiviraj je u Riotu.",
+  "noMegolmBootstrap": "Fluffychat trenutačno ne podržava mogućnost aktiviranja internetskog spremanja sigurnosnih kopija ključa. Aktiviraj je u programu Element.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
