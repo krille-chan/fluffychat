@@ -901,7 +901,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "FluffyChat şu anda çapraz imzalamanın etkinleştirilmesini desteklemiyor. Lütfen Riot içinden etkinleştirin.",
+  "noCrossSignBootstrap": "FluffyChat şu anda çapraz imzalamanın etkinleştirilmesini desteklemiyor. Lütfen Element içinden etkinleştirin.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -916,7 +916,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "FluffyChat şu anda çevrim içi anahtar yedeklemenin etkinleştirilmesini desteklemiyor. Lütfen Riot içinden etkinleştirin.",
+  "noMegolmBootstrap": "FluffyChat şu anda çevrim içi anahtar yedeklemenin etkinleştirilmesini desteklemiyor. Lütfen Element içinden etkinleştirin.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
