@@ -27,7 +27,7 @@ test:
 build_web:
   stage: coverage
   image: registry.gitlab.com/famedly/containers/flutter-dockerimages:beta
-  before_script: [sudo apt update && sudo apt install curl -y]
+  before_script: [sudo apt update && sudo apt install curl -y, ./scripts/prepare-web.sh]
   script: [./scripts/build-web.sh]
   artifacts:
     paths:
@@ -66,6 +66,7 @@ build_android_debug:
 
 build_android_apk:
   stage: coverage
+  before_script: [./scripts/prepare-android-release.sh]
   script: [./scripts/build-android-apk.sh]
   variables:
     FDROID_KEY: ${FDROID_KEY}
@@ -81,6 +82,7 @@ build_android_apk:
 
 build_android_appbundle:
   stage: coverage
+  before_script: [./scripts/prepare-android-release.sh]
   script: [./scripts/build-android-appbundle.sh]
   variables:
     FDROID_KEY: ${FDROID_KEY}

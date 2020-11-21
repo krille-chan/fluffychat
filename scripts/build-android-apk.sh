@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-/bin/bash ./scripts/prepare-android-release.sh
 flutter channel stable
 flutter upgrade
 flutter pub get
