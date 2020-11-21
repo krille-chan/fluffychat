@@ -103,19 +103,24 @@ class InputBar extends StatelessWidget {
     if (roomMatch != null) {
       final roomSearch = roomMatch[1].toLowerCase();
       for (final r in room.client.rooms) {
-        final state = r.getState('m.room.canonical_alias');
-        if (state != null &&
-            ((state.content['alias'] is String &&
-                    state.content['alias']
-                        .split(':')[0]
-                        .toLowerCase()
-                        .contains(roomSearch)) ||
-                (state.content['alt_aliases'] is List &&
-                    state.content['alt_aliases'].any((l) =>
-                        l is String &&
-                        l.split(':')[0].toLowerCase().contains(roomSearch))) ||
-                (room.name != null &&
-                    room.name.toLowerCase().contains(roomSearch)))) {
+        if (r.getState(EventTypes.RoomTombstone) != null) {
+          continue; // we don't care about tombstoned rooms
+        }
+        final state = r.getState(EventTypes.RoomCanonicalAlias);
+        if ((state != null &&
+                ((state.content['alias'] is String &&
+                        state.content['alias']
+                            .split(':')[0]
+                            .toLowerCase()
+                            .contains(roomSearch)) ||
+                    (state.content['alt_aliases'] is List &&
+                        state.content['alt_aliases'].any((l) =>
+                            l is String &&
+                            l
+                                .split(':')[0]
+                                .toLowerCase()
+                                .contains(roomSearch))))) ||
+            (r.name != null && r.name.toLowerCase().contains(roomSearch))) {
           ret.add({
             'type': 'room',
             'mxid': (r.canonicalAlias != null && r.canonicalAlias.isNotEmpty)
