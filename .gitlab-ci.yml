@@ -14,31 +14,21 @@ stages:
 - coverage
 - publish
 - release
+- deploy
 
 code_analyze:
   stage: coverage
-  dependencies: []
-  script:
-    - flutter format lib/ test/ test_driver/ --set-exit-if-changed
-    - flutter analyze
+  script: [./scripts/code_analyze.sh]
 
 test:
   stage: coverage
-  dependencies: []
-  script:
-    - flutter test
+  script: [flutter test]
 
 build_web:
   stage: coverage
   image: registry.gitlab.com/famedly/containers/flutter-dockerimages:beta
-  script:
-    - sudo apt update
-    - sudo apt install curl -y
-    - ./scripts/prepare-web.sh
-    - flutter clean
-    - flutter pub get
-    - flutter build web --release --verbose
-    # upload elsewhere, if wanted
+  before_script: [sudo apt update && sudo apt install curl -y]
+  script: [./scripts/build-web.sh]
   artifacts:
     paths:
       - build/web/
@@ -66,9 +56,7 @@ build_windows:
 
 build_android_debug:
   stage: coverage
-  script:
-    - truncate -s $(head -n -2 android/app/build.gradle | wc -c) android/app/build.gradle
-    - flutter build apk --debug -v
+  script: [./scripts/build-android-debug.sh]
   artifacts:
     when: on_success
     paths:
@@ -76,20 +64,9 @@ build_android_debug:
   except:
     - main
 
-
 build_android_apk:
   stage: coverage
-  script:
-    - cd android && echo $FDROID_KEY | base64 --decode --ignore-garbage > key.jks && cd ..
-    - cd android && echo "storePassword=${FDROID_KEY_PASS}" >> key.properties && cd ..
-    - cd android && echo "keyPassword=${FDROID_KEY_PASS}" >> key.properties && cd ..
-    - cd android && echo "keyAlias=key" >> key.properties && cd ..
-    - cd android && echo "storeFile=../key.jks" >> key.properties && cd ..
-    - cd android/app && echo $GOOGLE_SERVICES >> google-services.json && cd ../..
-    - flutter pub get
-    - flutter build apk --release
-    - mkdir -p build/android
-    - cp build/app/outputs/apk/release/app-release.apk build/android/
+  script: [./scripts/build-android-apk.sh]
   artifacts:
     when: on_success
     paths:
@@ -98,27 +75,16 @@ build_android_apk:
     - main
     - tags
 
-
 build_android_appbundle:
   stage: coverage
-  script:
-    - cd android && echo $FDROID_KEY | base64 --decode --ignore-garbage > key.jks && cd ..
-    - cd android && echo "storePassword=${FDROID_KEY_PASS}" >> key.properties && cd ..
-    - cd android && echo "keyPassword=${FDROID_KEY_PASS}" >> key.properties && cd ..
-    - cd android && echo "keyAlias=key" >> key.properties && cd ..
-    - cd android && echo "storeFile=../key.jks" >> key.properties && cd ..
-    - cd android/app && echo $GOOGLE_SERVICES >> google-services.json && cd ../..
-    - flutter build appbundle --target-platform android-arm,android-arm64,android-x64
-    - mkdir -p build/android
-    - cp build/app/outputs/bundle/release/app-release.aab build/android/
+  script: [./scripts/build-android-appbundle.sh]
   artifacts:
     when: on_success
     paths:
       - build/android/app-release.aab
   only:
     - main
-
-
+    
 upload_to_fdroid_repo:
   stage: publish
   before_script:
@@ -152,17 +118,9 @@ upload_to_fdroid_repo:
     - tags
 
 pages:
-  stage: publish
-  image: ruby:2.3
-  script:
-    - rm assets -r
-    - cp _config.yml ./build/web/
-    - cp Gemfile ./build/web/
-    - cp Gemfile.lock ./build/web/
-    - cd build/web/ && bundle install && cd ../../
-    - cd build/web/ && bundle exec jekyll build -d public && cd ../../
-    - mv build/web/public ./
-  needs: ["build_web"]
+  stage: deploy
+  image: alpine:latest
+  script: [mv build/web/ public]
   artifacts:
     paths:
       - public
@@ -172,13 +130,8 @@ pages:
 build_linux:
   stage: coverage
   image: registry.gitlab.com/famedly/containers/flutter-dockerimages:dev
-  dependencies: []
-  script:
-    - sudo apt update
-    - sudo apt install clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev
-    - flutter config --enable-linux-desktop
-    - flutter pub get
-    - flutter build linux --release -v
+  before_script: [sudo apt update && sudo apt install clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev -y]
+  script: [./scripts/build-linux.sh]
   artifacts:
     when: on_success
     paths:
@@ -190,19 +143,7 @@ snap:edge:
   image: "cibuilds/snapcraft:core18"
   only:
     - main
-  script:
-    ## Manually install the flutter-dev snap, so we can use the flutter extension
-    - 'curl -L $(curl -H "X-Ubuntu-Series: 16" "https://api.snapcraft.io/api/v1/snaps/details/flutter?channel=latest/stable" | jq ".download_url" -r) --output flutter.snap'
-    - sudo mkdir -p /snap/flutter
-    - sudo unsquashfs -d /snap/flutter/current flutter.snap
-    - rm -f flutter.snap
-    - sudo ln -sf /snap/flutter/current/flutter.sh /snap/bin/flutter
-    - sudo ln -sf /snap/flutter/current/env.sh /snap/bin/env.sh
-    - snapcraft
-    - echo $SNAPCRAFT_LOGIN_FILE | base64 --decode --ignore-garbage > snapcraft.login
-    - snapcraft login --with snapcraft.login
-    - snapcraft push --release=edge *.snap
-    - snapcraft logout
+  script: [./scripts/publish-snap-edge.sh]
   artifacts:
     paths:
       - './*.snap'
@@ -214,12 +155,7 @@ snap:publish:
   image: "cibuilds/snapcraft:core18"
   only:
     - tags
-  script:
-    - snapcraft
-    - echo $SNAPCRAFT_LOGIN_FILE | base64 --decode --ignore-garbage > snapcraft.login
-    - snapcraft login --with snapcraft.login
-    - snapcraft push --release=stable *.snap
-    - snapcraft logout
+  script: [./scripts/publish-snap-stable.sh]
   artifacts:
     paths:
       - './*.snap'
@@ -242,20 +178,15 @@ update-dependencies:
   before_script:
     - eval $(ssh-agent -s)
     - echo "$SSH_PRIVATE_BOT_KEY" | tr -d '\r' | ssh-add - > /dev/null
-
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
-
-    - ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+    - ssh-keyscan -t rsa gitlab.com >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
-
     - git config --global user.email "bot@fluffy.chat"
     - git config --global user.name "Dependency Update Bot"
     - sudo apt-get update && sudo apt-get install -y curl
   script:
-    - flutter pub get
-    - flutter pub pub run dapackages:dapackages.dart ./pubspec.yaml
-    - flutter pub get
+    - ./scripts/update-dependencies.sh
     - git remote set-url --push origin git@gitlab.com:$CI_PROJECT_PATH
     - 'git diff --exit-code || (git checkout -B ${UPDATE_BRANCH} && git add . && git commit -m "chore: Update dependencies" && git push -f origin ${UPDATE_BRANCH} && ./scripts/open-mr.sh)'
 
