@@ -4,21 +4,36 @@ Chat with your friends.
 ## Unreleased
 
 ### Chore
+* update flutter_matrix_html [ed27bee]
+* update flutter_matrix_html [af36533]
+* Update dependencies [57256fb]
+* Update dependencies [40825e1]
 * Switch to adaptive dialogs [9ea7afc]
 * Switch from bottoast to flushbar [e219593]
 * Clean up CI [7e84675]
 * Remove unused dependency [d12de2d]
 
 ### Feature
+* Add svg support and better image handling [f70bbc3]
+* add config.json [4b7fb6b]
 * persistent upload of release artifacts [1b2481b]
 * Option to hide redacted and unknown events [36315a4]
 * Better encryption / verification [1ff986e]
 
 ### Fixes
+* iOS [26731ab]
+* resolve some sentry issues [61f35e8]
+* resolve some sentry issues [2c3693e]
+* iOS build [9fee409]
+* Automatic update deps job [255c05d]
 * Don't re-render message widgets on insertion of new messages, making e.g. audio playing not stop [25b2997]
 * Add missing safearea [caab868]
 * no pushers enpdoint [b3942ad]
 * Sentry and small null fix [5dc22be]
+
+### Refactor
+* CI [5ac773e]
+* SDK update [7e23280]
 
 ## v0.21.1 - 2020-10-28
 
