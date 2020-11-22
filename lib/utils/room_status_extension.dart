@@ -28,4 +28,27 @@ extension RoomStatusExtension on Room {
     }
     return L10n.of(context).countParticipants(mJoinedMemberCount.toString());
   }
+
+  String getLocalizedTypingText(BuildContext context) {
+    var typingText = '';
+    var typingUsers = this.typingUsers;
+    typingUsers.removeWhere((User u) => u.id == client.userID);
+
+    if (typingUsers.length == 1) {
+      typingText = L10n.of(context).isTyping;
+      if (typingUsers.first.id != directChatMatrixID) {
+        typingText =
+            L10n.of(context).userIsTyping(typingUsers.first.calcDisplayname());
+      }
+    } else if (typingUsers.length == 2) {
+      typingText = L10n.of(context).userAndUserAreTyping(
+          typingUsers.first.calcDisplayname(),
+          typingUsers[1].calcDisplayname());
+    } else if (typingUsers.length > 2) {
+      typingText = L10n.of(context).userAndOthersAreTyping(
+          typingUsers.first.calcDisplayname(),
+          (typingUsers.length - 1).toString());
+    }
+    return typingText;
+  }
 }
