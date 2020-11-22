@@ -163,25 +163,14 @@ class ChatListItem extends StatelessWidget {
                   softWrap: false,
                 ),
               ),
-              room.isFavourite
-                  ? Padding(
-                      padding: const EdgeInsets.only(left: 4.0),
-                      child: Icon(
-                        Icons.favorite_rounded,
-                        size: 16,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                    )
-                  : Container(),
-              isMuted
-                  ? Padding(
-                      padding: const EdgeInsets.only(left: 4.0),
-                      child: Icon(
-                        Icons.notifications_off_outlined,
-                        size: 16,
-                      ),
-                    )
-                  : Container(),
+              if (isMuted)
+                Padding(
+                  padding: const EdgeInsets.only(left: 4.0),
+                  child: Icon(
+                    Icons.notifications_off_outlined,
+                    size: 16,
+                  ),
+                ),
               Padding(
                 padding: const EdgeInsets.only(left: 4.0),
                 child: Text(
@@ -250,26 +239,35 @@ class ChatListItem extends StatelessWidget {
                           ),
               ),
               SizedBox(width: 8),
-              room.notificationCount > 0
-                  ? Container(
-                      padding: EdgeInsets.symmetric(horizontal: 7),
-                      height: 20,
-                      decoration: BoxDecoration(
-                        color: room.highlightCount > 0
-                            ? Colors.red
-                            : Theme.of(context).primaryColor,
-                        borderRadius: BorderRadius.circular(20),
+              if (room.isFavourite)
+                Padding(
+                  padding: EdgeInsets.only(
+                      right: room.notificationCount > 0 ? 4.0 : 0.0),
+                  child: Icon(
+                    Icons.favorite_rounded,
+                    size: 20,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                ),
+              if (room.notificationCount > 0)
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 7),
+                  height: 20,
+                  decoration: BoxDecoration(
+                    color: room.highlightCount > 0
+                        ? Colors.red
+                        : Theme.of(context).primaryColor,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Center(
+                    child: Text(
+                      room.notificationCount.toString(),
+                      style: TextStyle(
+                        color: Colors.white,
                       ),
-                      child: Center(
-                        child: Text(
-                          room.notificationCount.toString(),
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    )
-                  : Text(' '),
+                    ),
+                  ),
+                ),
             ],
           ),
           onTap: () => clickAction(context),

@@ -10,13 +10,10 @@ class SimpleDialogs {
 
   Future<dynamic> tryRequestWithLoadingDialog(Future<dynamic> request,
       {Function(MatrixException) onAdditionalAuth}) async {
-    var completed = false;
     final futureResult = tryRequestWithErrorToast(
       request,
       onAdditionalAuth: onAdditionalAuth,
-    ).whenComplete(() => completed = true);
-    await Future.delayed(Duration(seconds: 1));
-    if (completed) return futureResult;
+    );
     return showDialog<dynamic>(
       context: context,
       barrierDismissible: false,
