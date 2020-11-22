@@ -7,6 +7,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import '../components/adaptive_page_layout.dart';
 import '../components/avatar.dart';
 import '../components/dialogs/simple_dialogs.dart';
+import '../utils/string_color.dart';
 import 'chat_list.dart';
 
 class KeyVerificationView extends StatelessWidget {
@@ -180,8 +181,11 @@ class _KeyVerificationPageState extends State<KeyVerificationPage> {
         body = Column(
           children: <Widget>[
             CircularProgressIndicator(),
-            Container(height: 10),
-            Text(L10n.of(context).waitingPartnerAcceptRequest),
+            SizedBox(height: 10),
+            Text(
+              L10n.of(context).waitingPartnerAcceptRequest,
+              textAlign: TextAlign.center,
+            ),
           ],
           mainAxisSize: MainAxisSize.min,
         );
@@ -207,16 +211,14 @@ class _KeyVerificationPageState extends State<KeyVerificationPage> {
         }
         body = Column(
           children: <Widget>[
-            Container(
-              alignment: Alignment.center,
+            Center(
               child: Text(
                 compareText,
                 style: TextStyle(fontSize: 20),
                 textAlign: TextAlign.center,
               ),
-              padding: const EdgeInsets.all(16.0),
             ),
-            Container(height: 10),
+            SizedBox(height: 10),
             Text.rich(
               compareWidget,
               textAlign: TextAlign.center,
@@ -252,8 +254,11 @@ class _KeyVerificationPageState extends State<KeyVerificationPage> {
         body = Column(
           children: <Widget>[
             CircularProgressIndicator(),
-            Container(height: 10),
-            Text(acceptText),
+            SizedBox(height: 10),
+            Text(
+              acceptText,
+              textAlign: TextAlign.center,
+            ),
           ],
           mainAxisSize: MainAxisSize.min,
         );
@@ -262,8 +267,11 @@ class _KeyVerificationPageState extends State<KeyVerificationPage> {
         body = Column(
           children: <Widget>[
             Icon(Icons.check_circle, color: Colors.green, size: 200.0),
-            Container(height: 10),
-            Text(L10n.of(context).verifySuccess),
+            SizedBox(height: 10),
+            Text(
+              L10n.of(context).verifySuccess,
+              textAlign: TextAlign.center,
+            ),
           ],
           mainAxisSize: MainAxisSize.min,
         );
@@ -282,9 +290,11 @@ class _KeyVerificationPageState extends State<KeyVerificationPage> {
         body = Column(
           children: <Widget>[
             Icon(Icons.cancel, color: Colors.red, size: 200.0),
-            Container(height: 10),
+            SizedBox(height: 10),
             Text(
-                'Error ${widget.request.canceledCode}: ${widget.request.canceledReason}'),
+              'Error ${widget.request.canceledCode}: ${widget.request.canceledReason}',
+              textAlign: TextAlign.center,
+            ),
           ],
           mainAxisSize: MainAxisSize.min,
         );
@@ -323,12 +333,25 @@ class _KeyVerificationPageState extends State<KeyVerificationPage> {
         title: ListTile(
           leading: Avatar(profile?.avatarUrl, otherName),
           contentPadding: EdgeInsets.zero,
-          title: Text(L10n.of(context).verifyTitle, maxLines: 1),
-          subtitle: Row(
+          subtitle: Text(L10n.of(context).verifyTitle, maxLines: 1),
+          title: Row(
             children: <Widget>[
-              Text(otherName, maxLines: 1),
+              Text(
+                otherName,
+                maxLines: 1,
+                style: TextStyle(
+                  color: otherName.color,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               if (otherName != widget.request.userId)
-                Text(' -> ' + widget.request.userId, maxLines: 1),
+                Text(
+                  ' - ' + widget.request.userId,
+                  maxLines: 1,
+                  style: TextStyle(
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
             ],
             crossAxisAlignment: CrossAxisAlignment.start,
           ),
@@ -340,10 +363,13 @@ class _KeyVerificationPageState extends State<KeyVerificationPage> {
           children: [
             Expanded(
               child: Center(
-                child: body,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: body,
+                ),
               ),
             ),
-            bottom,
+            if (bottom != null) bottom,
           ],
         ),
       ),
