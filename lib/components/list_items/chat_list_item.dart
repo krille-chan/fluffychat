@@ -132,6 +132,8 @@ class ChatListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final isMuted = room.pushRuleState != PushRuleState.notify;
     final typingText = room.getLocalizedTypingText(context);
+    final ownMessage =
+        room.lastEvent?.senderId == Matrix.of(context).client.userID;
     return Center(
       child: Material(
         color: chatListItemColor(context, activeChat, selected),
@@ -196,9 +198,7 @@ class ChatListItem extends StatelessWidget {
           subtitle: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              if (room.typingUsers.isEmpty &&
-                  room.lastEvent?.senderId ==
-                      Matrix.of(context).client.userID) ...{
+              if (room.typingUsers.isEmpty && ownMessage) ...{
                 Icon(
                   room.lastEvent.statusIcon,
                   size: 14,
@@ -225,6 +225,7 @@ class ChatListItem extends StatelessWidget {
                         : Text(
                             room.lastEvent?.getLocalizedBody(
                                   MatrixLocals(L10n.of(context)),
+                                  withSenderNamePrefix: !ownMessage,
                                   hideReply: true,
                                 ) ??
                                 '',
