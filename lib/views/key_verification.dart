@@ -208,8 +208,13 @@ class _KeyVerificationPageState extends State<KeyVerificationPage> {
         body = Column(
           children: <Widget>[
             Container(
-              child: Text(compareText, style: TextStyle(fontSize: 20)),
-              margin: EdgeInsets.only(left: 8.0, right: 8.0),
+              alignment: Alignment.center,
+              child: Text(
+                compareText,
+                style: TextStyle(fontSize: 20),
+                textAlign: TextAlign.center,
+              ),
+              padding: const EdgeInsets.all(16.0),
             ),
             Container(height: 10),
             Text.rich(
@@ -221,14 +226,20 @@ class _KeyVerificationPageState extends State<KeyVerificationPage> {
         );
         buttons.add(RaisedButton(
           color: Theme.of(context).primaryColor,
-          elevation: 5,
+          elevation: 7,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(6),
+          ),
           textColor: Colors.white,
           child: Text(L10n.of(context).theyMatch),
           onPressed: () => widget.request.acceptSas(),
         ));
         buttons.add(RaisedButton(
           textColor: Theme.of(context).primaryColor,
-          elevation: 5,
+          elevation: 7,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(6),
+          ),
           color: Colors.white,
           child: Text(L10n.of(context).theyDontMatch),
           onPressed: () => widget.request.rejectSas(),
@@ -258,7 +269,10 @@ class _KeyVerificationPageState extends State<KeyVerificationPage> {
         );
         buttons.add(RaisedButton(
           color: Theme.of(context).primaryColor,
-          elevation: 5,
+          elevation: 7,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(6),
+          ),
           textColor: Colors.white,
           child: Text(L10n.of(context).close),
           onPressed: () => Navigator.of(context).pop(),
@@ -276,7 +290,10 @@ class _KeyVerificationPageState extends State<KeyVerificationPage> {
         );
         buttons.add(RaisedButton(
           color: Theme.of(context).primaryColor,
-          elevation: 5,
+          elevation: 7,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(6),
+          ),
           textColor: Colors.white,
           child: Text(L10n.of(context).close),
           onPressed: () => Navigator.of(context).pop(),
@@ -294,10 +311,11 @@ class _KeyVerificationPageState extends State<KeyVerificationPage> {
               ?.deviceKeys[widget.request.deviceId]
               ?.deviceDisplayName ??
           '';
-      bottom = PreferredSize(
+      bottom = Container(
+        alignment: Alignment.center,
+        padding: EdgeInsets.all(16.0),
         child: Text('$deviceName (${widget.request.deviceId})',
             style: TextStyle(color: Theme.of(context).textTheme.caption.color)),
-        preferredSize: Size(0.0, 20.0),
       );
     }
     return Scaffold(
@@ -305,24 +323,29 @@ class _KeyVerificationPageState extends State<KeyVerificationPage> {
         title: ListTile(
           leading: Avatar(profile?.avatarUrl, otherName),
           contentPadding: EdgeInsets.zero,
-          title: Text(L10n.of(context).verifyTitle),
-          isThreeLine: otherName != widget.request.userId,
-          subtitle: Column(
+          title: Text(L10n.of(context).verifyTitle, maxLines: 1),
+          subtitle: Row(
             children: <Widget>[
-              Text(otherName),
+              Text(otherName, maxLines: 1),
               if (otherName != widget.request.userId)
-                Text(widget.request.userId),
+                Text(' -> ' + widget.request.userId, maxLines: 1),
             ],
             crossAxisAlignment: CrossAxisAlignment.start,
           ),
         ),
         elevation: 0,
-        bottom: bottom,
       ),
-      extendBody: true,
-      extendBodyBehindAppBar: true,
-      body: Center(
-        child: body,
+      body: SafeArea(
+        child: Column(
+          children: [
+            Expanded(
+              child: Center(
+                child: body,
+              ),
+            ),
+            bottom,
+          ],
+        ),
       ),
       persistentFooterButtons: buttons.isEmpty ? null : buttons,
     );

@@ -166,8 +166,8 @@ class UserBottomSheet extends StatelessWidget {
                 title: Text(user.calcDisplayname()),
                 actions: [
                   if (verificationStatus != null)
-                    InkWell(
-                      child: Icon(
+                    IconButton(
+                      icon: Icon(
                         Icons.lock,
                         color: {
                               UserVerifiedStatus.unknownDevice: Colors.red,
@@ -175,7 +175,7 @@ class UserBottomSheet extends StatelessWidget {
                             }[verificationStatus] ??
                             Colors.orange,
                       ),
-                      onTap: () =>
+                      onPressed: () =>
                           verificationStatus == UserVerifiedStatus.unknown
                               ? _verifyAction(context)
                               : null,
