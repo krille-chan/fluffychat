@@ -48,4 +48,6 @@ lib/generated_plugin_registrant.dart
 /android/key.properties
 **/android/app/.cxx
 android/key.jks
+android/keys.json
+android/Gemfile.lock
 lib/l10n_old

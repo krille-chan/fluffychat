@@ -62,15 +62,12 @@ build_android_debug:
       - build/app/outputs/apk/debug/app-debug.apk
   except:
     - main
+    - tags
 
 build_android_apk:
   stage: coverage
   before_script: [./scripts/prepare-android-release.sh]
   script: [./scripts/build-android-apk.sh]
-  variables:
-    FDROID_KEY: ${FDROID_KEY}
-    FDROID_KEY_PASS: ${FDROID_KEY_PASS}
-    GOOGLE_SERVICES: ${GOOGLE_SERVICES}
   artifacts:
     when: on_success
     paths:
@@ -82,36 +79,21 @@ build_android_apk:
 build_android_appbundle:
   stage: coverage
   before_script: [./scripts/prepare-android-release.sh]
-  script: [./scripts/build-android-appbundle.sh]
-  variables:
-    FDROID_KEY: ${FDROID_KEY}
-    FDROID_KEY_PASS: ${FDROID_KEY_PASS}
-    GOOGLE_SERVICES: ${GOOGLE_SERVICES}
+  script: [./scripts/release-playstore-beta.sh]
   artifacts:
     when: on_success
     paths:
       - build/android/app-release.aab
+  resource_group: playstore_release
   only:
     - main
     
 upload_to_fdroid_repo:
   stage: release
   before_script:
-    ##
-    ## Install ssh-agent if not already installed.
-    ##
     - 'which ssh-agent || (sudo apt-get update -y && sudo apt-get install openssh-client -y )'
-    ##
-    ## Install rsync if not already installed.
-    ##
     - 'which rsync || (sudo apt-get update -y && sudo apt-get install rsync -y )'
-    ##
-    ## Install pcregrep if not already installed.
-    ##
     - 'which pcregrep || (sudo apt-get update -y && sudo apt-get install pcregrep -y )'
-    ##
-    ## Run ssh-agent (inside the build environment)
-    ##
     - eval $(ssh-agent -s)
     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
     - mkdir -p ~/.ssh
@@ -123,8 +105,10 @@ upload_to_fdroid_repo:
     - rsync -rav -e ssh ./ fluffy@fdroid.nordgedanken.dev:/fdroid/repo
     - ssh fluffy@fdroid.nordgedanken.dev "cd fdroid && fdroid update"
   needs: ["build_android_apk"]
+  resource_group: playstore_release
+  allow_failure: true
   only:
-    - tags
+    - main
 
 pages:
   stage: deploy
@@ -238,6 +222,12 @@ upload-windows:
     - tar czf package.tar.gz -C build/windows/runner/Release/ .
     - |
       curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file package.tar.gz ${PACKAGE_REGISTRY_URL}/fluffychat-windows.tar.gz
+
+upload-playstore:
+  extends: .release
+  stage: deploy
+  script: [./scripts/release-playstore.sh]
+  resource_group: playstore_release
 
 release:
   extends: .release
