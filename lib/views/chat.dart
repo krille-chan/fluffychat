@@ -434,6 +434,8 @@ class _ChatState extends State<_Chat> {
           // always filter out edit and reaction relationships
           !{RelationshipTypes.Edit, RelationshipTypes.Reaction}
               .contains(e.relationshipType) &&
+          // always filter out m.key.* events
+          !e.type.startsWith('m.key.verification.') &&
           // if a reaction has been redacted we also want it to appear in the timeline
           e.type != EventTypes.Reaction &&
           // if we enabled to hide all redacted events, don't show those

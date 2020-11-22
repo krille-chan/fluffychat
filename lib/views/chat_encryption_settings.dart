@@ -222,7 +222,7 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
                         },
                         child: ListTile(
                           title: Text(
-                            '${deviceKeys[i].deviceDisplayName ?? L10n.of(context).unknownDevice} - ${deviceKeys[i].deviceId}',
+                            '${deviceKeys[i].deviceDisplayName ?? L10n.of(context).unknownDevice}',
                             style: TextStyle(
                                 color: deviceKeys[i].blocked
                                     ? Colors.red
@@ -231,12 +231,7 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
                                         : Colors.orange),
                           ),
                           subtitle: Text(
-                            deviceKeys[i].ed25519Key.beautified,
-                            style: TextStyle(
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .bodyText2
-                                    .color),
+                            '${L10n.of(context).deviceId}: ${deviceKeys[i].deviceId}',
                           ),
                         ),
                       ),

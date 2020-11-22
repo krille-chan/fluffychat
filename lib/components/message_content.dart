@@ -1,8 +1,13 @@
+import 'package:famedlysdk/encryption/utils/key_verification.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/audio_player.dart';
+import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/image_bubble.dart';
+import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/utils/event_extension.dart';
 import 'package:fluffychat/utils/matrix_locals.dart';
+import 'package:fluffychat/views/key_verification.dart';
+import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix_link_text/link_text.dart';
@@ -19,6 +24,54 @@ class MessageContent extends StatelessWidget {
   final Color textColor;
 
   const MessageContent(this.event, {this.textColor});
+
+  void _verifyOrRequestKey(BuildContext context) async {
+    if (event.content['can_request_session'] != true) {
+      FlushbarHelper.createError(
+        message: event.type == EventTypes.Encrypted
+            ? L10n.of(context).needPantalaimonWarning
+            : event.getLocalizedBody(
+                MatrixLocals(L10n.of(context)),
+              ),
+      );
+      return;
+    }
+    final client = Matrix.of(context).client;
+    if (client.isUnknownSession && client.encryption.crossSigning.enabled) {
+      final req =
+          await client.userDeviceKeys[client.userID].startVerification();
+      req.onUpdate = () async {
+        if (req.state == KeyVerificationState.done) {
+          for (var i = 0; i < 12; i++) {
+            if (await client.encryption.keyManager.isCached()) {
+              break;
+            }
+            await Future.delayed(Duration(seconds: 1));
+          }
+          final timeline = await event.room.getTimeline();
+          timeline.requestKeys();
+          timeline.cancelSubscriptions();
+        }
+      };
+      await Navigator.of(context).push(
+        AppRoute.defaultRoute(
+          context,
+          KeyVerificationView(request: req),
+        ),
+      );
+    } else {
+      final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
+        event.requestKey(),
+      );
+      if (success != false) {
+        await FlushbarHelper.createLoading(
+          title: L10n.of(context).loadingPleaseWait,
+          message: L10n.of(context).requestToReadOlderMessages,
+          linearProgressIndicator: LinearProgressIndicator(),
+        ).show(context);
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +121,23 @@ class MessageContent extends StatelessWidget {
             // else we fall through to the normal message rendering
             continue textmessage;
           case MessageTypes.BadEncrypted:
+          case EventTypes.Encrypted:
+            return RaisedButton(
+              elevation: 7,
+              color: Theme.of(context).scaffoldBackgroundColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(6),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.lock_outline),
+                  SizedBox(width: 8),
+                  Text(L10n.of(context).encrypted),
+                ],
+              ),
+              onPressed: () => _verifyOrRequestKey(context),
+            );
           case MessageTypes.Location:
           case MessageTypes.None:
           textmessage:
