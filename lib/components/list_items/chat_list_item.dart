@@ -5,6 +5,8 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/utils/matrix_locals.dart';
 import 'package:fluffychat/views/chat.dart';
 import 'package:flutter/material.dart';
+import 'package:fluffychat/utils/event_extension.dart';
+import 'package:fluffychat/utils/room_status_extension.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:pedantic/pedantic.dart';
 
@@ -129,6 +131,7 @@ class ChatListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isMuted = room.pushRuleState != PushRuleState.notify;
+    final typingText = room.getLocalizedTypingText(context);
     return Center(
       child: Material(
         color: chatListItemColor(context, activeChat, selected),
@@ -182,6 +185,9 @@ class ChatListItem extends StatelessWidget {
                   room.timeCreated.localizedTimeShort(context),
                   style: TextStyle(
                     fontSize: 13,
+                    color: room.notificationCount > 0
+                        ? Theme.of(context).primaryColor
+                        : null,
                   ),
                 ),
               ),
@@ -190,37 +196,52 @@ class ChatListItem extends StatelessWidget {
           subtitle: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              if (room.typingUsers.isEmpty &&
+                  room.lastEvent?.senderId ==
+                      Matrix.of(context).client.userID) ...{
+                Icon(
+                  room.lastEvent.statusIcon,
+                  size: 14,
+                ),
+                SizedBox(width: 4),
+              },
               Expanded(
-                child: room.membership == Membership.invite
+                child: typingText.isNotEmpty
                     ? Text(
-                        L10n.of(context).youAreInvitedToThisChat,
+                        typingText,
                         style: TextStyle(
                           color: Theme.of(context).primaryColor,
                         ),
                         softWrap: false,
                       )
-                    : Text(
-                        room.lastEvent?.getLocalizedBody(
-                              MatrixLocals(L10n.of(context)),
-                              withSenderNamePrefix: !room.isDirectChat ||
-                                  room.lastEvent.senderId == room.client.userID,
-                              hideReply: true,
-                            ) ??
-                            '',
-                        softWrap: false,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          decoration: room.lastEvent?.redacted == true
-                              ? TextDecoration.lineThrough
-                              : null,
-                        ),
-                      ),
+                    : room.membership == Membership.invite
+                        ? Text(
+                            L10n.of(context).youAreInvitedToThisChat,
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                            ),
+                            softWrap: false,
+                          )
+                        : Text(
+                            room.lastEvent?.getLocalizedBody(
+                                  MatrixLocals(L10n.of(context)),
+                                  hideReply: true,
+                                ) ??
+                                '',
+                            softWrap: false,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              decoration: room.lastEvent?.redacted == true
+                                  ? TextDecoration.lineThrough
+                                  : null,
+                            ),
+                          ),
               ),
               SizedBox(width: 8),
               room.notificationCount > 0
                   ? Container(
-                      padding: EdgeInsets.symmetric(horizontal: 5),
+                      padding: EdgeInsets.symmetric(horizontal: 7),
                       height: 20,
                       decoration: BoxDecoration(
                         color: room.highlightCount > 0
@@ -231,7 +252,9 @@ class ChatListItem extends StatelessWidget {
                       child: Center(
                         child: Text(
                           room.notificationCount.toString(),
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     )

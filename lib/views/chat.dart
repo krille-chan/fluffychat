@@ -465,25 +465,7 @@ class _ChatState extends State<_Chat> {
       SimpleDialogs(context).tryRequestWithLoadingDialog(room.join());
     }
 
-    var typingText = '';
-    var typingUsers = room.typingUsers;
-    typingUsers.removeWhere((User u) => u.id == client.userID);
-
-    if (typingUsers.length == 1) {
-      typingText = L10n.of(context).isTyping;
-      if (typingUsers.first.id != room.directChatMatrixID) {
-        typingText =
-            L10n.of(context).userIsTyping(typingUsers.first.calcDisplayname());
-      }
-    } else if (typingUsers.length == 2) {
-      typingText = L10n.of(context).userAndUserAreTyping(
-          typingUsers.first.calcDisplayname(),
-          typingUsers[1].calcDisplayname());
-    } else if (typingUsers.length > 2) {
-      typingText = L10n.of(context).userAndOthersAreTyping(
-          typingUsers.first.calcDisplayname(),
-          (typingUsers.length - 1).toString());
-    }
+    final typingText = room.getLocalizedTypingText(context);
 
     return Scaffold(
       appBar: AppBar(
