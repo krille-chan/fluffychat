@@ -167,8 +167,9 @@ class ChatListItem extends StatelessWidget {
                   ? Padding(
                       padding: const EdgeInsets.only(left: 4.0),
                       child: Icon(
-                        Icons.favorite_outline_rounded,
+                        Icons.favorite_rounded,
                         size: 16,
+                        color: Theme.of(context).primaryColor,
                       ),
                     )
                   : Container(),
@@ -198,9 +199,17 @@ class ChatListItem extends StatelessWidget {
           subtitle: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              if (room.typingUsers.isEmpty && ownMessage) ...{
+              if (typingText.isEmpty && ownMessage) ...{
                 Icon(
                   room.lastEvent.statusIcon,
+                  size: 14,
+                ),
+                SizedBox(width: 4),
+              },
+              if (typingText.isNotEmpty) ...{
+                Icon(
+                  Icons.edit,
+                  color: Theme.of(context).primaryColor,
                   size: 14,
                 ),
                 SizedBox(width: 4),
