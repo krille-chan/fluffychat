@@ -10,5 +10,5 @@ bundle install
 bundle update fastlane
 bundle exec fastlane set_build_code_internal
 cd app
-echo $GOOGLE_SERVICES >> google-services.json/..
+echo $GOOGLE_SERVICES >> google-services.json
 cd ../..
