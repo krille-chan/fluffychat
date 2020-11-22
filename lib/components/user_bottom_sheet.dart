@@ -177,13 +177,13 @@ class UserBottomSheet extends StatelessWidget {
             ),
             value: 'ban'),
       );
-    } else if (user.room.canBan &&
-        user.powerLevel < user.room.ownPowerLevel &&
-        user.membership == Membership.ban) {
+    } else if (user.canBan && user.membership == Membership.ban) {
       items.add(
         PopupMenuItem(
             child: _TextWithIcon(
-                L10n.of(context).removeExile, Icons.warning_outlined),
+              L10n.of(context).removeExile,
+              Icons.warning_outlined,
+            ),
             value: 'unban'),
       );
     }
