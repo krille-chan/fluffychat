@@ -9,8 +9,7 @@ import 'package:fluffychat/views/chat_list.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import '../utils/app_route.dart';
-import 'key_verification.dart';
+import '../components/dialogs/key_verification_dialog.dart';
 
 class ChatEncryptionSettingsView extends StatelessWidget {
   final String id;
@@ -55,12 +54,7 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
             setState(() => null);
           }
         };
-        await Navigator.of(context).push(
-          AppRoute.defaultRoute(
-            context,
-            KeyVerificationView(request: req),
-          ),
-        );
+        await KeyVerificationDialog(request: req).show(context);
         break;
       case 'verify_manual':
         if (await showOkCancelAlertDialog(
@@ -83,12 +77,7 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
             setState(() => null);
           }
         };
-        await Navigator.of(context).push(
-          AppRoute.defaultRoute(
-            context,
-            KeyVerificationView(request: req),
-          ),
-        );
+        await KeyVerificationDialog(request: req).show(context);
         break;
       case 'block':
         if (key.directVerified) {

@@ -1,40 +1,28 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:famedlysdk/encryption.dart';
 import 'package:famedlysdk/matrix_api.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import '../avatar.dart';
+import 'simple_dialogs.dart';
+import '../../utils/string_color.dart';
 
-import '../components/adaptive_page_layout.dart';
-import '../components/avatar.dart';
-import '../components/dialogs/simple_dialogs.dart';
-import '../utils/string_color.dart';
-import 'chat_list.dart';
+class KeyVerificationDialog extends StatefulWidget {
+  Future<void> show(BuildContext context) => PlatformInfos.isCupertinoStyle
+      ? showCupertinoDialog(context: context, builder: (context) => this)
+      : showDialog(context: context, builder: (context) => this);
 
-class KeyVerificationView extends StatelessWidget {
   final KeyVerification request;
 
-  KeyVerificationView({this.request});
-
-  @override
-  Widget build(BuildContext context) {
-    return AdaptivePageLayout(
-      primaryPage: FocusPage.SECOND,
-      firstScaffold: ChatList(),
-      secondScaffold: KeyVerificationPage(request: request),
-    );
-  }
-}
-
-class KeyVerificationPage extends StatefulWidget {
-  final KeyVerification request;
-
-  KeyVerificationPage({this.request});
+  KeyVerificationDialog({this.request});
 
   @override
   _KeyVerificationPageState createState() => _KeyVerificationPageState();
 }
 
-class _KeyVerificationPageState extends State<KeyVerificationPage> {
+class _KeyVerificationPageState extends State<KeyVerificationDialog> {
   void Function() originalOnUpdate;
 
   @override
@@ -133,20 +121,14 @@ class _KeyVerificationPageState extends State<KeyVerificationPage> {
             mainAxisSize: MainAxisSize.min,
           ),
         );
-        buttons.add(RaisedButton(
-          color: Theme.of(context).primaryColor,
-          elevation: 5,
-          textColor: Colors.white,
+        buttons.add(_AdaptiveFlatButton(
           child: Text(L10n.of(context).submit),
           onPressed: () {
             input = textEditingController.text;
             checkInput();
           },
         ));
-        buttons.add(RaisedButton(
-          textColor: Theme.of(context).primaryColor,
-          elevation: 5,
-          color: Colors.white,
+        buttons.add(_AdaptiveFlatButton(
           child: Text(L10n.of(context).skip),
           onPressed: () => widget.request.openSSSS(skip: true),
         ));
@@ -158,17 +140,11 @@ class _KeyVerificationPageState extends State<KeyVerificationPage> {
               style: TextStyle(fontSize: 20)),
           margin: EdgeInsets.only(left: 8.0, right: 8.0),
         );
-        buttons.add(RaisedButton(
-          color: Theme.of(context).primaryColor,
-          elevation: 5,
-          textColor: Colors.white,
+        buttons.add(_AdaptiveFlatButton(
           child: Text(L10n.of(context).accept),
           onPressed: () => widget.request.acceptVerification(),
         ));
-        buttons.add(RaisedButton(
-          textColor: Theme.of(context).primaryColor,
-          elevation: 5,
-          color: Colors.white,
+        buttons.add(_AdaptiveFlatButton(
           child: Text(L10n.of(context).reject),
           onPressed: () {
             widget.request.rejectVerification().then((_) {
@@ -180,7 +156,9 @@ class _KeyVerificationPageState extends State<KeyVerificationPage> {
       case KeyVerificationState.waitingAccept:
         body = Column(
           children: <Widget>[
-            CircularProgressIndicator(),
+            PlatformInfos.isCupertinoStyle
+                ? CupertinoActivityIndicator()
+                : CircularProgressIndicator(),
             SizedBox(height: 10),
             Text(
               L10n.of(context).waitingPartnerAcceptRequest,
@@ -214,7 +192,7 @@ class _KeyVerificationPageState extends State<KeyVerificationPage> {
             Center(
               child: Text(
                 compareText,
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(fontSize: 16),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -226,23 +204,12 @@ class _KeyVerificationPageState extends State<KeyVerificationPage> {
           ],
           mainAxisSize: MainAxisSize.min,
         );
-        buttons.add(RaisedButton(
-          color: Theme.of(context).primaryColor,
-          elevation: 7,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(6),
-          ),
-          textColor: Colors.white,
+        buttons.add(_AdaptiveFlatButton(
           child: Text(L10n.of(context).theyMatch),
           onPressed: () => widget.request.acceptSas(),
         ));
-        buttons.add(RaisedButton(
-          textColor: Theme.of(context).primaryColor,
-          elevation: 7,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(6),
-          ),
-          color: Colors.white,
+        buttons.add(_AdaptiveFlatButton(
+          textColor: Colors.red,
           child: Text(L10n.of(context).theyDontMatch),
           onPressed: () => widget.request.rejectSas(),
         ));
@@ -253,7 +220,9 @@ class _KeyVerificationPageState extends State<KeyVerificationPage> {
             : L10n.of(context).waitingPartnerNumbers;
         body = Column(
           children: <Widget>[
-            CircularProgressIndicator(),
+            PlatformInfos.isCupertinoStyle
+                ? CupertinoActivityIndicator()
+                : CircularProgressIndicator(),
             SizedBox(height: 10),
             Text(
               acceptText,
@@ -275,13 +244,7 @@ class _KeyVerificationPageState extends State<KeyVerificationPage> {
           ],
           mainAxisSize: MainAxisSize.min,
         );
-        buttons.add(RaisedButton(
-          color: Theme.of(context).primaryColor,
-          elevation: 7,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(6),
-          ),
-          textColor: Colors.white,
+        buttons.add(_AdaptiveFlatButton(
           child: Text(L10n.of(context).close),
           onPressed: () => Navigator.of(context).pop(),
         ));
@@ -298,13 +261,7 @@ class _KeyVerificationPageState extends State<KeyVerificationPage> {
           ],
           mainAxisSize: MainAxisSize.min,
         );
-        buttons.add(RaisedButton(
-          color: Theme.of(context).primaryColor,
-          elevation: 7,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(6),
-          ),
-          textColor: Colors.white,
+        buttons.add(FlatButton(
           child: Text(L10n.of(context).close),
           onPressed: () => Navigator.of(context).pop(),
         ));
@@ -328,52 +285,59 @@ class _KeyVerificationPageState extends State<KeyVerificationPage> {
             style: TextStyle(color: Theme.of(context).textTheme.caption.color)),
       );
     }
-    return Scaffold(
-      appBar: AppBar(
-        title: ListTile(
-          leading: Avatar(profile?.avatarUrl, otherName),
-          contentPadding: EdgeInsets.zero,
-          subtitle: Text(L10n.of(context).verifyTitle, maxLines: 1),
-          title: Row(
-            children: <Widget>[
-              Text(
-                otherName,
-                maxLines: 1,
-                style: TextStyle(
-                  color: otherName.color,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              if (otherName != widget.request.userId)
-                Text(
-                  ' - ' + widget.request.userId,
-                  maxLines: 1,
-                  style: TextStyle(
-                    fontStyle: FontStyle.italic,
-                  ),
-                ),
-            ],
-            crossAxisAlignment: CrossAxisAlignment.start,
+    final userNameTitle = Row(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        Text(
+          otherName,
+          maxLines: 1,
+          style: TextStyle(
+            color: otherName.color,
+            fontWeight: FontWeight.bold,
           ),
         ),
-        elevation: 0,
-      ),
-      body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: body,
-                ),
-              ),
+        if (otherName != widget.request.userId)
+          Text(
+            ' - ' + widget.request.userId,
+            maxLines: 1,
+            style: TextStyle(
+              fontStyle: FontStyle.italic,
             ),
-            if (bottom != null) bottom,
-          ],
-        ),
-      ),
-      persistentFooterButtons: buttons.isEmpty ? null : buttons,
+          ),
+      ],
+      crossAxisAlignment: CrossAxisAlignment.start,
+    );
+    final title = PlatformInfos.isCupertinoStyle
+        ? Text(L10n.of(context).verifyTitle)
+        : ListTile(
+            leading: Avatar(profile?.avatarUrl, otherName),
+            contentPadding: EdgeInsets.zero,
+            subtitle: Text(L10n.of(context).verifyTitle, maxLines: 1),
+            title: userNameTitle,
+          );
+    final content = Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        if (PlatformInfos.isCupertinoStyle) ...{
+          SizedBox(height: 8),
+          Center(child: userNameTitle),
+          SizedBox(height: 12),
+        },
+        body,
+        if (bottom != null) bottom,
+      ],
+    );
+    if (PlatformInfos.isCupertinoStyle) {
+      return CupertinoAlertDialog(
+        title: title,
+        content: content,
+        actions: buttons,
+      );
+    }
+    return AlertDialog(
+      title: title,
+      content: content,
+      actions: buttons,
     );
   }
 }
@@ -392,6 +356,35 @@ class _Emoji extends StatelessWidget {
         Text(emoji.name),
         Container(height: 10, width: 5),
       ],
+    );
+  }
+}
+
+class _AdaptiveFlatButton extends StatelessWidget {
+  final Widget child;
+  final Color textColor;
+  final Function onPressed;
+
+  const _AdaptiveFlatButton({
+    Key key,
+    this.child,
+    this.textColor,
+    this.onPressed,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    if (PlatformInfos.isCupertinoStyle) {
+      return CupertinoDialogAction(
+        child: child,
+        onPressed: onPressed,
+        textStyle: textColor != null ? TextStyle(color: textColor) : null,
+      );
+    }
+    return FlatButton(
+      child: child,
+      textColor: textColor,
+      onPressed: onPressed,
     );
   }
 }

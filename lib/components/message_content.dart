@@ -3,10 +3,9 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/audio_player.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/image_bubble.dart';
-import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/utils/event_extension.dart';
 import 'package:fluffychat/utils/matrix_locals.dart';
-import 'package:fluffychat/views/key_verification.dart';
+import 'package:fluffychat/components/dialogs/key_verification_dialog.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -53,12 +52,7 @@ class MessageContent extends StatelessWidget {
           timeline.cancelSubscriptions();
         }
       };
-      await Navigator.of(context).push(
-        AppRoute.defaultRoute(
-          context,
-          KeyVerificationView(request: req),
-        ),
-      );
+        await KeyVerificationDialog(request: req).show(context);
     } else {
       final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
         event.requestKey(),
