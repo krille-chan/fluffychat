@@ -144,11 +144,16 @@ class MessageContent extends StatelessWidget {
           default:
             if (event.content['msgtype'] == Matrix.callNamespace) {
               return RaisedButton(
-                color: Theme.of(context).backgroundColor,
+                elevation: 7,
+                color: Theme.of(context).scaffoldBackgroundColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(6),
+                ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Icon(Icons.phone),
+                    SizedBox(width: 8),
                     Text(L10n.of(context).videoCall),
                   ],
                 ),

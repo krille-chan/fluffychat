@@ -20,17 +20,23 @@ class MessageDownloadContent extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           RaisedButton(
-            color: textColor,
-            elevation: 10,
+            elevation: 7,
+            color: Theme.of(context).scaffoldBackgroundColor,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8.0),
+              borderRadius: BorderRadius.circular(6),
             ),
-            child: Text(
-              filename,
-              overflow: TextOverflow.fade,
-              softWrap: false,
-              maxLines: 1,
-              style: TextStyle(color: Theme.of(context).primaryColor),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(Icons.download_outlined),
+                SizedBox(width: 8),
+                Text(
+                  filename,
+                  overflow: TextOverflow.fade,
+                  softWrap: false,
+                  maxLines: 1,
+                ),
+              ],
             ),
             onPressed: () => event.openFile(context),
           ),
