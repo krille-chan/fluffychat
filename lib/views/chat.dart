@@ -87,6 +87,8 @@ class _ChatState extends State<_Chat> {
 
   List<Event> selectedEvents = [];
 
+  bool _collapseRoomCreate = true;
+
   Event replyEvent;
 
   Event editEvent;
@@ -429,20 +431,35 @@ class _ChatState extends State<_Chat> {
     _updateScrollController();
   }
 
-  List<Event> getFilteredEvents() => timeline.events
-      .where((e) =>
-          // always filter out edit and reaction relationships
-          !{RelationshipTypes.Edit, RelationshipTypes.Reaction}
-              .contains(e.relationshipType) &&
-          // always filter out m.key.* events
-          !e.type.startsWith('m.key.verification.') &&
-          // if a reaction has been redacted we also want it to appear in the timeline
-          e.type != EventTypes.Reaction &&
-          // if we enabled to hide all redacted events, don't show those
-          (!AppConfig.hideRedactedEvents || !e.redacted) &&
-          // if we enabled to hide all unknown events, don't show those
-          (!AppConfig.hideUnknownEvents || e.isEventTypeKnown))
-      .toList();
+  List<Event> getFilteredEvents() {
+    final filteredEvents = timeline.events
+        .where((e) =>
+            // always filter out edit and reaction relationships
+            !{RelationshipTypes.Edit, RelationshipTypes.Reaction}
+                .contains(e.relationshipType) &&
+            // always filter out m.key.* events
+            !e.type.startsWith('m.key.verification.') &&
+            // if a reaction has been redacted we also want it to appear in the timeline
+            e.type != EventTypes.Reaction &&
+            // if we enabled to hide all redacted events, don't show those
+            (!AppConfig.hideRedactedEvents || !e.redacted) &&
+            // if we enabled to hide all unknown events, don't show those
+            (!AppConfig.hideUnknownEvents || e.isEventTypeKnown))
+        .toList();
+
+    // Hide state events from the room creater right after the room created event
+    if (_collapseRoomCreate &&
+        filteredEvents[filteredEvents.length - 1].type ==
+            EventTypes.RoomCreate) {
+      while (filteredEvents[filteredEvents.length - 2].senderId ==
+              filteredEvents[filteredEvents.length - 1].senderId &&
+          ![EventTypes.Message, EventTypes.Sticker, EventTypes.Encrypted]
+              .contains(filteredEvents[filteredEvents.length - 2].type)) {
+        filteredEvents.removeAt(filteredEvents.length - 2);
+      }
+    }
+    return filteredEvents;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -722,6 +739,12 @@ class _ChatState extends State<_Chat> {
                                                     ),
                                                   ),
                                               onSelect: (Event event) {
+                                                if (event.type ==
+                                                    EventTypes.RoomCreate) {
+                                                  return setState(() =>
+                                                      _collapseRoomCreate =
+                                                          false);
+                                                }
                                                 if (!event.redacted) {
                                                   if (selectedEvents
                                                       .contains(event)) {

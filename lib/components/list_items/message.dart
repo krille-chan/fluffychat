@@ -37,6 +37,12 @@ class Message extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (event.type == EventTypes.RoomCreate) {
+      return InkWell(
+        onTap: () => onSelect(event),
+        child: StateMessage(event),
+      );
+    }
     if (![EventTypes.Message, EventTypes.Sticker, EventTypes.Encrypted]
         .contains(event.type)) {
       return StateMessage(event);
