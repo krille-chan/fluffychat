@@ -2,6 +2,7 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/matrix.dart';
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/views/chat.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class UrlLauncher {
   const UrlLauncher(this.context, this.url);
 
   void launchUrl() {
-    if (url.startsWith('https://matrix.to/#/') ||
+    if (url.startsWith(AppConfig.matrixToLinkPrefix) ||
         {'#', '@', '!', '+', '\$'}.contains(url[0])) {
       return openMatrixToUrl();
     }
@@ -23,7 +24,7 @@ class UrlLauncher {
 
   void openMatrixToUrl() async {
     final matrix = Matrix.of(context);
-    final identifier = url.replaceAll('https://matrix.to/#/', '');
+    final identifier = url.replaceAll(AppConfig.matrixToLinkPrefix, '');
     if (identifier[0] == '#' || identifier[0] == '!') {
       // sometimes we have identifiers which have an event id and additional query parameters
       // we want to separate those.

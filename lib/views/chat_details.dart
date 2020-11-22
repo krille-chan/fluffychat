@@ -1,4 +1,6 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:famedlysdk/matrix_api.dart';
@@ -16,7 +18,6 @@ import 'package:fluffychat/views/chat_list.dart';
 import 'package:fluffychat/views/invitation_selection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:matrix_link_text/link_text.dart';
@@ -198,14 +199,10 @@ class _ChatDetailsState extends State<ChatDetails> {
                       if (widget.room.canonicalAlias?.isNotEmpty ?? false)
                         IconButton(
                           icon: Icon(Icons.share),
-                          onPressed: () {
-                            Clipboard.setData(
-                              ClipboardData(text: widget.room.canonicalAlias),
-                            );
-                            FlushbarHelper.createSuccess(
-                                    message: L10n.of(context).copiedToClipboard)
-                                .show(context);
-                          },
+                          onPressed: () => FluffyShare.share(
+                              AppConfig.matrixToLinkPrefix +
+                                  widget.room.canonicalAlias,
+                              context),
                         ),
                       ChatSettingsPopupMenu(widget.room, false)
                     ],

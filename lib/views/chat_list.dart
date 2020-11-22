@@ -7,6 +7,7 @@ import 'package:famedlysdk/matrix_api.dart';
 import 'package:fluffychat/components/connection_status_header.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/list_items/public_room_list_item.dart';
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
@@ -157,7 +158,7 @@ class _ChatListState extends State<ChatList> {
     if (Navigator.of(context).canPop()) {
       Navigator.of(context).popUntil((r) => r.isFirst);
     }
-    if (text.startsWith('https://matrix.to/#/')) {
+    if (text.startsWith(AppConfig.matrixToLinkPrefix)) {
       UrlLauncher(context, text).openMatrixToUrl();
       return;
     }

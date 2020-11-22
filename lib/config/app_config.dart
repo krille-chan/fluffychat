@@ -18,6 +18,7 @@ abstract class AppConfig {
   static bool renderHtml = false;
   static bool hideRedactedEvents = false;
   static bool hideUnknownEvents = false;
+  static String matrixToLinkPrefix = 'https://matrix.to/#/';
 
   static void loadFromJson(Map<String, dynamic> json) {
     if (json['application_name'] is String) {
