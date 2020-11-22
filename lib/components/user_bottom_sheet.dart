@@ -13,7 +13,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import '../utils/presence_extension.dart';
 import 'dialogs/simple_dialogs.dart';
 import 'matrix.dart';
-import '../views/key_verification.dart';
+import 'dialogs/key_verification_dialog.dart';
 import '../utils/app_route.dart';
 
 class UserBottomSheet extends StatelessWidget {
@@ -88,12 +88,7 @@ class UserBottomSheet extends StatelessWidget {
   void _verifyAction(BuildContext context) async {
     final client = Matrix.of(context).client;
     final req = await client.userDeviceKeys[user.id].startVerification();
-    await Navigator.of(context).push(
-      AppRoute.defaultRoute(
-        context,
-        KeyVerificationView(request: req),
-      ),
-    );
+    await KeyVerificationDialog(request: req).show(context);
   }
 
   @override
