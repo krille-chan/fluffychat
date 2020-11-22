@@ -160,10 +160,30 @@ class MessageContent extends StatelessWidget {
                 onPressed: () => launch(event.body),
               );
             }
+            final fontSize = DefaultTextStyle.of(context).style.fontSize;
+            if (event.redacted) {
+              return Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.delete_forever_outlined),
+                  SizedBox(width: 4),
+                  Text(
+                    event.getLocalizedBody(MatrixLocals(L10n.of(context)),
+                        hideReply: true),
+                    style: TextStyle(
+                      color: textColor,
+                      fontSize: fontSize,
+                      fontWeight: FontWeight.bold,
+                      decoration: TextDecoration.lineThrough,
+                      decorationThickness: 0.5,
+                    ),
+                  ),
+                ],
+              );
+            }
             final bigEmotes = event.onlyEmotes &&
                 event.numberEmotes > 0 &&
                 event.numberEmotes <= 10;
-            final fontSize = DefaultTextStyle.of(context).style.fontSize;
             return LinkText(
               text: event.getLocalizedBody(MatrixLocals(L10n.of(context)),
                   hideReply: true),
