@@ -1737,5 +1737,15 @@
   "@changePassword": {
     "type": "text",
     "placeholders": {}
+  },
+  "encrypted": "Xifrat",
+  "@encrypted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceId": "ID de dispositiu",
+  "@deviceId": {
+    "type": "text",
+    "placeholders": {}
   }
 }
