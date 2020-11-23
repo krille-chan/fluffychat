@@ -52,7 +52,7 @@ class MessageContent extends StatelessWidget {
           timeline.cancelSubscriptions();
         }
       };
-        await KeyVerificationDialog(request: req).show(context);
+      await KeyVerificationDialog(request: req).show(context);
     } else {
       final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
         event.requestKey(),
@@ -159,7 +159,7 @@ class MessageContent extends StatelessWidget {
               return Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.delete_forever_outlined),
+                  Icon(Icons.delete_forever_outlined, color: textColor),
                   SizedBox(width: 4),
                   Text(
                     event.getLocalizedBody(MatrixLocals(L10n.of(context)),
