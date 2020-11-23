@@ -451,7 +451,8 @@ class _ChatState extends State<_Chat> {
     if (_collapseRoomCreate &&
         filteredEvents[filteredEvents.length - 1].type ==
             EventTypes.RoomCreate) {
-      while (filteredEvents[filteredEvents.length - 2].senderId ==
+      while (filteredEvents.length >= 3 &&
+          filteredEvents[filteredEvents.length - 2].senderId ==
               filteredEvents[filteredEvents.length - 1].senderId &&
           ![EventTypes.Message, EventTypes.Sticker, EventTypes.Encrypted]
               .contains(filteredEvents[filteredEvents.length - 2].type)) {

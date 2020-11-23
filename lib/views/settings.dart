@@ -121,15 +121,20 @@ class _SettingsState extends State<Settings> {
   }
 
   void setJitsiInstanceAction(BuildContext context) async {
+    const prefix = 'https://';
     var input = await showTextInputDialog(
       context: context,
       title: L10n.of(context).editJitsiInstance,
       textFields: [
-        DialogTextField(initialText: Matrix.of(context).jitsiInstance),
+        DialogTextField(
+          initialText:
+              Matrix.of(context).jitsiInstance.replaceFirst(prefix, ''),
+          prefixText: prefix,
+        ),
       ],
     );
     if (input == null) return;
-    var jitsi = input.single;
+    var jitsi = prefix + input.single;
     if (!jitsi.endsWith('/')) {
       jitsi += '/';
     }
