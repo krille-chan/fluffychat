@@ -948,7 +948,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "FluffyChat hetkel ei toeta risttunnustamist. Palun võta ta kasutusele Element'i (vana nimega Riot) vahendusel.",
+  "noCrossSignBootstrap": "FluffyChat hetkel ei toeta risttunnustamist. Palun võta ta kasutusele Element'i vahendusel.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -963,7 +963,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "FluffyChat hetkel ei toeta krüptovõtmete võrgupõhise varunduse kasutusele võtmist. Palun võta ta kasutusele Element'i (vana nimega Riot) vahendusel.",
+  "noMegolmBootstrap": "FluffyChat hetkel ei toeta krüptovõtmete võrgupõhise varunduse pruukimist. Palun võta ta kasutusele Element'i vahendusel.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -1755,6 +1755,16 @@
   },
   "changePassword": "Muuda salasõna",
   "@changePassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encrypted": "Krüptitud",
+  "@encrypted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceId": "Seadme tunnus",
+  "@deviceId": {
     "type": "text",
     "placeholders": {}
   }

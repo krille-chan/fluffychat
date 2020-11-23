@@ -1757,5 +1757,15 @@
   "@changePassword": {
     "type": "text",
     "placeholders": {}
+  },
+  "encrypted": "Şifreli",
+  "@encrypted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceId": "Aygıt kimliği",
+  "@deviceId": {
+    "type": "text",
+    "placeholders": {}
   }
 }
