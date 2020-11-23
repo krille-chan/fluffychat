@@ -14,17 +14,20 @@ import 'package:url_launcher/url_launcher.dart';
 
 class HomeserverPicker extends StatelessWidget {
   Future<void> _setHomeserverAction(BuildContext context) async {
+    const prefix = 'https://';
     final homeserver = await showTextInputDialog(
       title: L10n.of(context).enterYourHomeserver,
       context: context,
       textFields: [
         DialogTextField(
           hintText: AppConfig.defaultHomeserver,
+          prefixText: prefix,
+          keyboardType: TextInputType.url,
         )
       ],
     );
     if (homeserver?.single?.isEmpty ?? true) return;
-    _checkHomeserverAction(homeserver.single, context);
+    _checkHomeserverAction(prefix + homeserver.single, context);
   }
 
   void _checkHomeserverAction(String homeserver, BuildContext context) async {
