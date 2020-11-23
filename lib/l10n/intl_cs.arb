@@ -938,7 +938,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "Fluffychet momentálně nepodporuje aktivaci křížového podpisu. Prosím aktivujte ho z klientu Riot.",
+  "noCrossSignBootstrap": "Fluffychet momentálně nepodporuje aktivaci křížového podpisu. Prosím aktivujte ho z klienta Element.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -953,7 +953,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "Fluffychet momentálně nepodporuje aktivaci online záloh klíčů. Prosím zapněte ji z klientu Riot.",
+  "noMegolmBootstrap": "Fluffychet momentálně nepodporuje aktivaci online záloh klíčů. Prosím zapněte ji z klienta Element.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -1755,6 +1755,16 @@
   },
   "changePassword": "Změnit heslo",
   "@changePassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encrypted": "Šifrováno",
+  "@encrypted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceId": "ID zařízení",
+  "@deviceId": {
     "type": "text",
     "placeholders": {}
   }
