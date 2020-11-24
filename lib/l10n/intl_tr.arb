@@ -149,7 +149,7 @@
       "homeserver": {}
     }
   },
-  "cachedKeys": "Anahtarlar başarıyla önbelleğe alındı!",
+  "cachedKeys": "Önbelleğe alınan anahtarlar",
   "@cachedKeys": {
     "type": "text",
     "placeholders": {}
@@ -414,12 +414,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "crossSigningDisabled": "Çapraz imzalama devre dışı bırakıldı",
+  "crossSigningDisabled": "Çapraz imzalama kapalı",
   "@crossSigningDisabled": {
     "type": "text",
     "placeholders": {}
   },
-  "crossSigningEnabled": "Çapraz imzalama etkinleştirildi",
+  "crossSigningEnabled": "Çapraz imzalama açık",
   "@crossSigningEnabled": {
     "type": "text",
     "placeholders": {}
@@ -1765,6 +1765,51 @@
   },
   "deviceId": "Aygıt kimliği",
   "@deviceId": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "withTheseAddressesRecoveryDescription": "Bu adresler ile ihtiyacınız olursa parolanızı kurtarabilirsiniz.",
+  "@withTheseAddressesRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "weSentYouAnEmail": "Size bir e-posta gönderdik",
+  "@weSentYouAnEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseClickOnLink": "Lütfen e-postadaki bağlantıya tıklayın ve devam edin.",
+  "@pleaseClickOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordForgotten": "Parola unutuldu",
+  "@passwordForgotten": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordRecovery": "Parola kurtarma",
+  "@passwordRecovery": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iHaveClickedOnLink": "Bağlantıya tıkladım",
+  "@iHaveClickedOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "edit": "Düzenle",
+  "@edit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterAnEmailAddress": "Bir e-posta adresi girin",
+  "@enterAnEmailAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPasswordRecoveryDescription": "Henüz parolanızı kurtarmak için bir yol eklemediniz.",
+  "@noPasswordRecoveryDescription": {
     "type": "text",
     "placeholders": {}
   }
