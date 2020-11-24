@@ -559,7 +559,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "encryptionNotEnabled": "Şifreleme etkinleştirilmedi",
+  "encryptionNotEnabled": "Şifreleme kapalı",
   "@encryptionNotEnabled": {
     "type": "text",
     "placeholders": {}
@@ -634,7 +634,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "groupIsPublic": "Grup herkese açık",
+  "groupIsPublic": "Herkese açık grup",
   "@groupIsPublic": {
     "type": "text",
     "placeholders": {}
@@ -861,7 +861,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "messageWillBeRemovedWarning": "Mesaj tüm katılımcılar için kaldırılacak",
+  "messageWillBeRemovedWarning": "Mesaj tüm katılımcılar için kaldırılacak.",
   "@messageWillBeRemovedWarning": {
     "type": "text",
     "placeholders": {}
@@ -901,7 +901,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "FluffyChat şu anda çapraz imzalamanın etkinleştirilmesini desteklemiyor. Lütfen Element içinden etkinleştirin.",
+  "noCrossSignBootstrap": "FluffyChat henüz çapraz imzalamayı açamıyor. Lütfen bunu Element içinden açın.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -911,12 +911,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Görünüşe göre telefonunuzda Google hizmetleri yok. Bu, mahremiyetiniz için iyi bir karar! FluffyChat'te anlık bildirimler almak için microG kullanmanızı tavsiye ediyoruz: https://microg.org/",
+  "noGoogleServicesWarning": "Aygıtınızda hiçbir Google hizmeti yok. Bu, gizliliğiniz için iyi bir karar! FluffyChat'te anlık bildirimleri almak için microG kullanın: https://microg.org/",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "FluffyChat şu anda çevrim içi anahtar yedeklemenin etkinleştirilmesini desteklemiyor. Lütfen Element içinden etkinleştirin.",
+  "noMegolmBootstrap": "FluffyChat henüz çevrim içi anahtar yedeklemeyi açamıyor. Lütfen bunu Element içinden açın.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -948,7 +948,7 @@
       "number": {}
     }
   },
-  "ok": "tamam",
+  "ok": "Tamam",
   "@ok": {
     "type": "text",
     "placeholders": {}
@@ -958,7 +958,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "onlineKeyBackupEnabled": "Çevrim içi anahtar yedekleme etkinleştirildi",
+  "onlineKeyBackupEnabled": "Çevrim içi anahtar yedekleme açık",
   "@onlineKeyBackupEnabled": {
     "type": "text",
     "placeholders": {}
@@ -1015,7 +1015,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterAMatrixIdentifier": "Lütfen bir matrix tanımlayıcısı girin",
+  "pleaseEnterAMatrixIdentifier": "Lütfen bir Matrix kimliği girin",
   "@pleaseEnterAMatrixIdentifier": {
     "type": "text",
     "placeholders": {}
@@ -1377,7 +1377,7 @@
       "type": {}
     }
   },
-  "unknownSessionVerify": "Bilinmeyen oturum, lütfen doğrulayın",
+  "unknownSessionVerify": "Bilinmeyen oturum. Lütfen doğrulayın.",
   "@unknownSessionVerify": {
     "type": "text",
     "placeholders": {}
@@ -1409,7 +1409,7 @@
       "unreadChats": {}
     }
   },
-  "useAmoledTheme": "AMOLEDe uyumlu renkler kullanılsın mı?",
+  "useAmoledTheme": "AMOLED uyumlu renkler kullanılsın mı?",
   "@useAmoledTheme": {
     "type": "text",
     "placeholders": {}
@@ -1765,6 +1765,46 @@
   },
   "deviceId": "Aygıt kimliği",
   "@deviceId": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "withTheseAddressesRecoveryDescription": "Bu adresler ile ihtiyacınız olursa parolanızı kurtarabilirsiniz.",
+  "@withTheseAddressesRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "weSentYouAnEmail": "Size bir e-posta gönderdik",
+  "@weSentYouAnEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseClickOnLink": "Lütfen e-postadaki bağlantıya tıklayın ve devam edin.",
+  "@pleaseClickOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordForgotten": "Unutulan parola",
+  "@passwordForgotten": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordRecovery": "Parola kurtarma",
+  "@passwordRecovery": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPasswordRecoveryDescription": "Henüz parolanızı kurtarmak için bir yol eklemediniz.",
+  "@noPasswordRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iHaveClickedOnLink": "Bağlantıya tıkladım",
+  "@iHaveClickedOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterAnEmailAddress": "Bir e-posta adresi girin",
+  "@enterAnEmailAddress": {
     "type": "text",
     "placeholders": {}
   }
