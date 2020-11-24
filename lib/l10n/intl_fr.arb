@@ -1510,7 +1510,7 @@
       "unreadChats": {}
     }
   },
-  "useAmoledTheme": "Utiliser des couleurs compatibles Amoled ?",
+  "useAmoledTheme": "Utiliser des couleurs compatibles AMOLED ?",
   "@useAmoledTheme": {
     "type": "text",
     "placeholders": {}
