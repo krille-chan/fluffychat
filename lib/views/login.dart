@@ -1,11 +1,13 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/utils/firebase_controller.dart';
+import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -102,6 +104,64 @@ class _LoginState extends State<Login> {
     }
   }
 
+  void _passwordForgotten(BuildContext context) async {
+    final input = await showTextInputDialog(
+      context: context,
+      title: L10n.of(context).enterAnEmailAddress,
+      textFields: [
+        DialogTextField(
+          hintText: L10n.of(context).enterAnEmailAddress,
+          keyboardType: TextInputType.emailAddress,
+        ),
+      ],
+    );
+    if (input == null) return;
+    final clientSecret = DateTime.now().millisecondsSinceEpoch.toString();
+    final response = await SimpleDialogs(context).tryRequestWithLoadingDialog(
+      Matrix.of(context).client.resetPasswordUsingEmail(
+            input.single,
+            clientSecret,
+            sendAttempt++,
+          ),
+    );
+    if (response == false) return;
+    final ok = await showOkAlertDialog(
+      context: context,
+      title: L10n.of(context).weSentYouAnEmail,
+      message: L10n.of(context).pleaseClickOnLink,
+      okLabel: L10n.of(context).iHaveClickedOnLink,
+    );
+    if (ok == null) return;
+    final password = await showTextInputDialog(
+      context: context,
+      title: L10n.of(context).chooseAStrongPassword,
+      textFields: [
+        DialogTextField(
+          hintText: '******',
+          obscureText: true,
+        ),
+      ],
+    );
+    if (password == null) return;
+    final threepidCreds = {
+      'client_secret': clientSecret,
+      'sid': (response as RequestTokenResponse).sid,
+    };
+    final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
+      Matrix.of(context).client.changePassword(password.single, auth: {
+        'type': 'm.login.email.identity',
+        'threepidCreds': threepidCreds, // Don't ask... >.<
+        'threepid_creds': threepidCreds,
+      }),
+    );
+    if (success != false) {
+      FlushbarHelper.createSuccess(
+          message: L10n.of(context).passwordHasBeenChanged);
+    }
+  }
+
+  static int sendAttempt = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -186,6 +246,18 @@ class _LoginState extends State<Login> {
                         ),
                   onPressed: loading ? null : () => login(context),
                 ),
+              ),
+            ),
+            Center(
+              child: FlatButton(
+                child: Text(
+                  L10n.of(context).passwordForgotten,
+                  style: TextStyle(
+                    color: Colors.blue,
+                    decoration: TextDecoration.underline,
+                  ),
+                ),
+                onPressed: () => _passwordForgotten(context),
               ),
             ),
           ],

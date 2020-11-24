@@ -534,6 +534,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "enterAnEmailAddress": "Enter an email address",
+  "@enterAnEmailAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
   "emoteExists": "Emote already exists!",
   "@emoteExists": {
     "type": "text",
@@ -789,6 +794,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "iHaveClickedOnLink": "I have clicked on the link",
+  "@iHaveClickedOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
   "editJitsiInstance": "Edit Jitsi instance",
   "@editJitsiInstance": {
     "type": "text",
@@ -965,6 +975,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "noPasswordRecoveryDescription": "You have added no way to recover you password yet.",
+  "@noPasswordRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
   "noCrossSignBootstrap": "Fluffychat currently does not support enabling Cross-Signing. Please enable it from within Element.",
   "@noCrossSignBootstrap": {
     "type": "text",
@@ -1082,6 +1097,16 @@
     "type": "text",
     "placeholders": {}
   },
+  "passwordRecovery": "Password recovery",
+  "@passwordRecovery": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordForgotten": "Password forgotten",
+  "@passwordForgotten": {
+    "type": "text",
+    "placeholders": {}
+  },
   "pickImage": "Pick image",
   "@pickImage": {
     "type": "text",
@@ -1101,6 +1126,11 @@
   },
   "pleaseChooseAUsername": "Please choose a username",
   "@pleaseChooseAUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseClickOnLink": "Please click on the link in the email and then proceed.",
+  "@pleaseClickOnLink": {
     "type": "text",
     "placeholders": {}
   },
@@ -1718,8 +1748,18 @@
     "type": "text",
     "placeholders": {}
   },
+  "weSentYouAnEmail": "We sent you an email",
+  "@weSentYouAnEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
   "welcomeText": "Welcome to the cutest instant messenger in the Matrix network.",
   "@welcomeText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "withTheseAddressesRecoveryDescription": "With these addresses you can recover you password if you need.",
+  "@withTheseAddressesRecoveryDescription": {
     "type": "text",
     "placeholders": {}
   },
