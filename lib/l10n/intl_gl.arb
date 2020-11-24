@@ -1510,7 +1510,7 @@
       "unreadChats": {}
     }
   },
-  "useAmoledTheme": "¿Usar cores compatibles con Amoled?",
+  "useAmoledTheme": "¿Usar cores compatibles con AMOLED?",
   "@useAmoledTheme": {
     "type": "text",
     "placeholders": {}
