@@ -23,7 +23,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "accountInformation": "Account information",
+  "accountInformation": "Account info",
   "@accountInformation": {
     "type": "text",
     "placeholders": {}
@@ -584,7 +584,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "encryptionNotEnabled": "Encryption is not enabled",
+  "encryptionNotEnabled": "Encryption off",
   "@encryptionNotEnabled": {
     "type": "text",
     "placeholders": {}
@@ -621,7 +621,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "fileName": "File name",
+  "fileName": "Filename",
   "@fileName": {
     "type": "text",
     "placeholders": {}
@@ -671,7 +671,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "groupIsPublic": "Group is public",
+  "groupIsPublic": "Public group",
   "@groupIsPublic": {
     "type": "text",
     "placeholders": {}
@@ -862,7 +862,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "logout": "Logout",
+  "logout": "Log out",
   "@logout": {
     "type": "text",
     "placeholders": {}
@@ -908,7 +908,7 @@
       "count": {}
     }
   },
-  "login": "Login",
+  "login": "Log in",
   "@login": {
     "type": "text",
     "placeholders": {}
@@ -940,7 +940,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "messageWillBeRemovedWarning": "Message will be removed for all participants",
+  "messageWillBeRemovedWarning": "The message will be removed for all participants.",
   "@messageWillBeRemovedWarning": {
     "type": "text",
     "placeholders": {}
@@ -985,17 +985,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "Fluffychat currently does not support enabling Cross-Signing. Please enable it from within Element.",
+  "noCrossSignBootstrap": "FluffyChat can not turn on cross-signing yet. Please turn it on from within Element.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "Fluffychat currently does not support enabling Online Key Backup. Please enable it from within Element.",
+  "noMegolmBootstrap": "FluffyChat can not turn on online key backup yet. Please turn it on from within Element.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/",
+  "noGoogleServicesWarning": "You have no Google services on your device. That's a good decision for your privacy! Use microG to receive push notifications in FluffyChat: https://microg.org/",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -1032,7 +1032,7 @@
       "number": {}
     }
   },
-  "ok": "ok",
+  "ok": "OK",
   "@ok": {
     "type": "text",
     "placeholders": {}
@@ -1057,7 +1057,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "onlineKeyBackupEnabled": "Online Key Backup is enabled",
+  "onlineKeyBackupEnabled": "Online key backup on",
   "@onlineKeyBackupEnabled": {
     "type": "text",
     "placeholders": {}
@@ -1097,7 +1097,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "passwordHasBeenChanged": "Password has been changed",
+  "passwordHasBeenChanged": "Password changed",
   "@passwordHasBeenChanged": {
     "type": "text",
     "placeholders": {}
@@ -1107,7 +1107,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "passwordForgotten": "Password forgotten",
+  "passwordForgotten": "Forgotten password",
   "@passwordForgotten": {
     "type": "text",
     "placeholders": {}
@@ -1139,7 +1139,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterAMatrixIdentifier": "Please enter a matrix identifier",
+  "pleaseEnterAMatrixIdentifier": "Please enter a Matrix ID",
   "@pleaseEnterAMatrixIdentifier": {
     "type": "text",
     "placeholders": {}
@@ -1287,7 +1287,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sentryInfo": "Information about your privacy: https://sentry.io/security/",
+  "sentryInfo": "Info about your privacy: https://sentry.io/security/",
   "@sentryInfo": {
     "type": "text",
     "placeholders": {}
@@ -1395,7 +1395,7 @@
       "username": {}
     }
   },
-  "sentCallInformations": "{senderName} sent call information",
+  "sentCallInformations": "{senderName} sent call info",
   "@sentCallInformations": {
     "type": "text",
     "placeholders": {
@@ -1583,7 +1583,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unknownSessionVerify": "Unknown session, please verify",
+  "unknownSessionVerify": "Unknown session. Please verify.",
   "@unknownSessionVerify": {
     "type": "text",
     "placeholders": {}
