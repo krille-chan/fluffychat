@@ -963,7 +963,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "Fluffychat ne prend pas actuellement en charge l'activation de la sauvegarde des clés en ligne. Veuillez l'activer à partir de Riot.",
+  "noMegolmBootstrap": "Fluffychat ne prend pas actuellement en charge l'activation de la sauvegarde des clés en ligne. Veuillez l'activer à partir d'Element.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -1763,7 +1763,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "deviceId": "ID de l'appareil",
+  "deviceId": "Identifiant de l'appareil",
   "@deviceId": {
     "type": "text",
     "placeholders": {}
