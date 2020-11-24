@@ -948,7 +948,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "Fluffychat ne permet pas actuellement d'activer la signature croisée. Veuillez l'activer à partir de Riot.",
+  "noCrossSignBootstrap": "Fluffychat ne permet pas actuellement d'activer la signature croisée. Veuillez l'activer à partir d'Element.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
