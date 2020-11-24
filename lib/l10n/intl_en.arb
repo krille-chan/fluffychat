@@ -559,6 +559,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "edit": "Edit",
+  "@edit": {
+    "type": "text",
+    "placeholders": {}
+  },
   "enableEmotesGlobally": "Enable emote pack globally",
   "@enableEmotesGlobally": {
     "type": "text",

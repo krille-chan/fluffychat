@@ -100,7 +100,7 @@ class MatrixState extends State<Matrix> {
           );
         }
       }
-      final storeItem = null; //await store.getItem(SettingKeys.showNoPid);
+      final storeItem = await store.getItem(SettingKeys.showNoPid);
       final configOptionMissing = storeItem == null || storeItem.isEmpty;
       if (configOptionMissing || (!configOptionMissing && storeItem == '1')) {
         if (configOptionMissing) {
@@ -120,7 +120,7 @@ class MatrixState extends State<Matrix> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(6),
                 ),
-                child: Text(L10n.of(context).passwordRecovery),
+                child: Text(L10n.of(context).edit),
                 onPressed: () => Navigator.of(context).push(
                   AppRoute.defaultRoute(
                     context,
