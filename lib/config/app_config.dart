@@ -2,7 +2,7 @@ abstract class AppConfig {
   static String get applicationName => _applicationName;
   static String _applicationName = 'FluffyChat';
   static String get defaultHomeserver => _defaultHomeserver;
-  static String _defaultHomeserver = 'matrix.tchncs.de';
+  static String _defaultHomeserver = 'matrix-client.matrix.org';
   static String get privacyUrl => _privacyUrl;
   static String _privacyUrl = 'https://fluffychat.im/en/privacy.html';
   static String get sourceCodeUrl => _sourceCodeUrl;

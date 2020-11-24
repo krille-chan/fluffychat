@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:fluffychat/views/settings_3pid.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
@@ -487,6 +488,16 @@ class _SettingsState extends State<Settings> {
                 L10n.of(context).changePassword,
               ),
               onTap: () => _changePasswordAccountAction(context),
+            ),
+            ListTile(
+              trailing: Icon(Icons.email),
+              title: Text(L10n.of(context).passwordRecovery),
+              onTap: () => Navigator.of(context).push(
+                AppRoute.defaultRoute(
+                  context,
+                  Settings3PidView(),
+                ),
+              ),
             ),
             ListTile(
               trailing: Icon(Icons.exit_to_app),
