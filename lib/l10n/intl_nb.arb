@@ -1116,5 +1116,186 @@
   "@askSSSSSign": {
     "type": "text",
     "placeholders": {}
+  },
+  "startedACall": "{senderName} startet en samtale",
+  "@startedACall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "setInvitationLink": "Sett invitasjonslenke",
+  "@setInvitationLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sessionVerified": "Økt bekreftet",
+  "@sessionVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changesHaveBeenSaved": "Endringer lagret",
+  "@changesHaveBeenSaved": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "roomHasBeenUpgraded": "Rommet har blitt oppgradert",
+  "@roomHasBeenUpgraded": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "requestToReadOlderMessages": "Forespørsel om å lese eldre meldinger",
+  "@requestToReadOlderMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "rejoin": "Ta del igjen",
+  "@rejoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openAppToReadMessages": "Åpne programmet for å lese meldinger",
+  "@openAppToReadMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oopsSomethingWentWrong": "Oida, noe gikk galt …",
+  "@oopsSomethingWentWrong": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "numberSelected": "{number} valgt",
+  "@numberSelected": {
+    "type": "text",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "noRoomsFound": "Fant ingen rom …",
+  "@noRoomsFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPermission": "Ingen tilgang",
+  "@noPermission": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "moderator": "Moderator",
+  "@moderator": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "mention": "Nevn",
+  "@mention": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "makeAnAdmin": "Gjør til admin",
+  "@makeAnAdmin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "makeAModerator": "Gjør til moderator",
+  "@makeAModerator": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastSeenIp": "Sist kjente IP",
+  "@lastSeenIp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "kickFromChat": "Kast ut av sludringen",
+  "@kickFromChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iHaveClickedOnLink": "Jeg har klikket på lenken",
+  "@iHaveClickedOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invitedUser": "{username} inviterte {targetName}",
+  "@invitedUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "inviteContactToGroup": "Inviter kontakt til {groupName}",
+  "@inviteContactToGroup": {
+    "type": "text",
+    "placeholders": {
+      "groupName": {}
+    }
+  },
+  "homeserverIsNotCompatible": "Hjemmetjener ukompatibel",
+  "@homeserverIsNotCompatible": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideUnknownEvents": "Skjul ukjente hendelser",
+  "@hideUnknownEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encrypted": "Kryptert",
+  "@encrypted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emptyChat": "Tom sludring",
+  "@emptyChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterAnEmailAddress": "Skriv inn en e-postadresse",
+  "@enterAnEmailAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "displaynameHasBeenChanged": "Visningsnavn endret",
+  "@displaynameHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceId": "Enhets-ID",
+  "@deviceId": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createdTheChat": "{username} opprettet sludringen",
+  "@createdTheChat": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "contactHasBeenInvitedToTheGroup": "Kontakt invitert til gruppen",
+  "@contactHasBeenInvitedToTheGroup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "connectionAttemptFailed": "Kunne ikke koble til",
+  "@connectionAttemptFailed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changePassword": "Endre passord",
+  "@changePassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "banned": "Bannlyst",
+  "@banned": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "banFromChat": "Bannlys fra sludring",
+  "@banFromChat": {
+    "type": "text",
+    "placeholders": {}
   }
 }
