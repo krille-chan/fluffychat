@@ -149,7 +149,7 @@
       "homeserver": {}
     }
   },
-  "cachedKeys": "Clés mises en cache avec succès !",
+  "cachedKeys": "Clés mises en cache",
   "@cachedKeys": {
     "type": "text",
     "placeholders": {}
@@ -574,7 +574,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "encryptionNotEnabled": "Le chiffrement n'est pas actif",
+  "encryptionNotEnabled": "Le chiffrement n'est pas activé",
   "@encryptionNotEnabled": {
     "type": "text",
     "placeholders": {}
@@ -651,7 +651,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "groupDescriptionHasBeenChanged": "La description du groupe a été changée",
+  "groupDescriptionHasBeenChanged": "La description du groupe a été modifiée",
   "@groupDescriptionHasBeenChanged": {
     "type": "text",
     "placeholders": {}
@@ -995,7 +995,7 @@
       "number": {}
     }
   },
-  "ok": "OK",
+  "ok": "Valider",
   "@ok": {
     "type": "text",
     "placeholders": {}
@@ -1072,7 +1072,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterAMatrixIdentifier": "Renseignez un identifiant Matrix",
+  "pleaseEnterAMatrixIdentifier": "Veuillez renseigner un identifiant Matrix",
   "@pleaseEnterAMatrixIdentifier": {
     "type": "text",
     "placeholders": {}
@@ -1765,6 +1765,51 @@
   },
   "deviceId": "Identifiant de l'appareil",
   "@deviceId": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "withTheseAddressesRecoveryDescription": "Grâce à ces adresses, vous pouvez récupérer votre mot de passe si vous en avez besoin.",
+  "@withTheseAddressesRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "weSentYouAnEmail": "Nous vous avons envoyé un courriel",
+  "@weSentYouAnEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseClickOnLink": "Veuillez cliquer sur le lien contenu dans le courriel puis continuez.",
+  "@pleaseClickOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordForgotten": "Mot de passe oublié",
+  "@passwordForgotten": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordRecovery": "Récupération du mot de passe",
+  "@passwordRecovery": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPasswordRecoveryDescription": "Vous n'avez pas encore ajouté de moyen pour récupérer votre mot de passe.",
+  "@noPasswordRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iHaveClickedOnLink": "J'ai cliqué sur le lien",
+  "@iHaveClickedOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "edit": "Modifier",
+  "@edit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterAnEmailAddress": "Saisissez une adresse de courriel",
+  "@enterAnEmailAddress": {
     "type": "text",
     "placeholders": {}
   }
