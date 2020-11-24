@@ -1480,7 +1480,7 @@
       "unreadChats": {}
     }
   },
-  "useAmoledTheme": "Amoled optimierte Farben verwenden?",
+  "useAmoledTheme": "AMOLED-optimierte Farben verwenden?",
   "@useAmoledTheme": {
     "type": "text",
     "placeholders": {}
