@@ -1445,7 +1445,7 @@
       "unreadChats": {}
     }
   },
-  "useAmoledTheme": "有機EL(Amoled)対応の色にしますか？",
+  "useAmoledTheme": "有機EL(AMOLED)対応の色にしますか？",
   "@useAmoledTheme": {
     "type": "text",
     "placeholders": {}
