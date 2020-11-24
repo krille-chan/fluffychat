@@ -928,7 +928,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "Fluffychat attualmente non supporta l'abilitazione della firma incrociata. Abilitala da Riot.",
+  "noCrossSignBootstrap": "Fluffychat attualmente non supporta l'abilitazione della firma incrociata. Abilitala da Element.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -1623,7 +1623,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "Fluffychat attualmente non supporta l'attivazione del backup delle chiavi in linea. Abilitalo da Riot.",
+  "noMegolmBootstrap": "Fluffychat attualmente non supporta l'attivazione del backup delle chiavi in linea. Abilitalo da Element.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -1730,5 +1730,30 @@
       "username": {},
       "targetName": {}
     }
+  },
+  "deviceId": "ID del dispositivo",
+  "@deviceId": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideUnknownEvents": "Nascondi gli eventi sconosciuti",
+  "@hideUnknownEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideRedactedEvents": "Nascondi gli eventi eliminati",
+  "@hideRedactedEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encrypted": "Crittografato",
+  "@encrypted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changePassword": "Cambia la password",
+  "@changePassword": {
+    "type": "text",
+    "placeholders": {}
   }
 }
