@@ -1297,5 +1297,100 @@
   "@banFromChat": {
     "type": "text",
     "placeholders": {}
+  },
+  "noPasswordRecoveryDescription": "Du har ikke lagt til en måte å gjenopprette passordet ditt på.",
+  "@noPasswordRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "needPantalaimonWarning": "Merk at du trenger Pantalaimon for å bruke ende-til-ende -kryptering inntil videre.",
+  "@needPantalaimonWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "kickedAndBanned": "{username} kastet ut og bannlyste {targetName}",
+  "@kickedAndBanned": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "kicked": "{username} kastet ut {targetName}",
+  "@kicked": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "keysMissing": "Nøkler mangler",
+  "@keysMissing": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "keysCached": "Nøkler hurtiglagret",
+  "@keysCached": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "isDeviceKeyCorrect": "Er følgende enhetsnøkkel riktig?",
+  "@isDeviceKeyCorrect": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteText": "{username} har invitert deg til FluffyChat. \n1. Installer FluffyChat: https://fluffychat.im \n2. Registrer deg eller logg inn \n3. Åpne invitasjonslenken: {link}",
+  "@inviteText": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "link": {}
+    }
+  },
+  "groupWith": "Gruppe med {displayname}",
+  "@groupWith": {
+    "type": "text",
+    "placeholders": {
+      "displayname": {}
+    }
+  },
+  "endedTheCall": "{senderName} avsluttet samtalen",
+  "@endedTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "edit": "Rediger",
+  "@edit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cachedKeys": "Nøkler hurtiglagret",
+  "@cachedKeys": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "avatarHasBeenChanged": "Avatar endret",
+  "@avatarHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askVerificationRequest": "Godta denne bekreftelsesforespørselen fra {username}?",
+  "@askVerificationRequest": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "askSSSSCache": "Skriv inn ditt sikre lagerpassord eller gjenopprettingsnøkkel for å hurtiglagre nøklene.",
+  "@askSSSSCache": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askSSSSVerify": "Skriv inn ditt sikre lagerpassord eller gjenopprettingsnøkkel for å bekrefte økten din.",
+  "@askSSSSVerify": {
+    "type": "text",
+    "placeholders": {}
   }
 }
