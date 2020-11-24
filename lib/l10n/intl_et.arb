@@ -1510,7 +1510,7 @@
       "unreadChats": {}
     }
   },
-  "useAmoledTheme": "Kas kasutame amoled-tehnoloogiaga ühilduvaid värve?",
+  "useAmoledTheme": "Kas kasutame AMOLED-tehnoloogiaga ühilduvaid värve?",
   "@useAmoledTheme": {
     "type": "text",
     "placeholders": {}
