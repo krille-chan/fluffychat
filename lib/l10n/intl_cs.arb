@@ -1495,7 +1495,7 @@
       "unreadChats": {}
     }
   },
-  "useAmoledTheme": "Použít barvy kompatibilní s Amoled displayem?",
+  "useAmoledTheme": "Použít barvy kompatibilní s AMOLED displayem?",
   "@useAmoledTheme": {
     "type": "text",
     "placeholders": {}
