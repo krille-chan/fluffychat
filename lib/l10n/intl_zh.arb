@@ -1445,7 +1445,7 @@
       "unreadChats": {}
     }
   },
-  "useAmoledTheme": "使用适合Amoled屏的颜色？",
+  "useAmoledTheme": "使用适合AMOLED屏的颜色？",
   "@useAmoledTheme": {
     "type": "text",
     "placeholders": {}
