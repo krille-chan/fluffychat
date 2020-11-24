@@ -466,7 +466,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "groupIsPublic": "Gruppen er offentlig",
+  "groupIsPublic": "Offentlig gruppe",
   "@groupIsPublic": {
     "type": "text",
     "placeholders": {}
@@ -967,7 +967,7 @@
       "rules": {}
     }
   },
-  "encryptionNotEnabled": "Kryptering er ikke påskrudd",
+  "encryptionNotEnabled": "Kryptering av",
   "@encryptionNotEnabled": {
     "type": "text",
     "placeholders": {}
@@ -1295,6 +1295,106 @@
   },
   "banFromChat": "Bannlys fra sludring",
   "@banFromChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknownSessionVerify": "Ukjent økt. Bekreft den.",
+  "@unknownSessionVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "messageWillBeRemovedWarning": "Meldingen vil bli fjernet for alle deltagere.",
+  "@messageWillBeRemovedWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yes": "Ja",
+  "@yes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "writeAMessage": "Skriv en melding …",
+  "@writeAMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whoIsAllowedToJoinThisGroup": "Hvem tillates å ta del i denne gruppen",
+  "@whoIsAllowedToJoinThisGroup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknownEvent": "Ukjent hendelse «{type}»",
+  "@unknownEvent": {
+    "type": "text",
+    "placeholders": {
+      "type": {}
+    }
+  },
+  "unbannedUser": "{username} opphevet bannlysningen av {targetName}",
+  "@unbannedUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "timeOfDay": "{hours24}:{minutes}",
+  "@timeOfDay": {
+    "type": "text",
+    "placeholders": {
+      "hours12": {},
+      "hours24": {},
+      "minutes": {},
+      "suffix": {}
+    }
+  },
+  "thisRoomHasBeenArchived": "Rommet har blitt arkivert.",
+  "@thisRoomHasBeenArchived": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "theyMatch": "De samsvarer",
+  "@theyMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "theyDontMatch": "De samsvarer ikke",
+  "@theyDontMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "startYourFirstChat": "Start din første sludring :-)",
+  "@startYourFirstChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "useAmoledTheme": "Bruk AMOLED-kompatible farger?",
+  "@useAmoledTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sentASticker": "{username} sendte et klistremerke",
+  "@sentASticker": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "seenByUserAndCountOthers": "Sett av {username} og {count} andre",
+  "@seenByUserAndCountOthers": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "count": {}
+    }
+  },
+  "sendBugReports": "Tillat forsendelse av feilrapporter med sentry.io",
+  "@sendBugReports": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordRecovery": "Passordgjenoppretting",
+  "@passwordRecovery": {
     "type": "text",
     "placeholders": {}
   }
