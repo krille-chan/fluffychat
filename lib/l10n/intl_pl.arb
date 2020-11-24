@@ -1180,7 +1180,7 @@
       "unreadChats": {}
     }
   },
-  "useAmoledTheme": "Użyć kolorów kompatybilnych z ekranami Amoled?",
+  "useAmoledTheme": "Użyć kolorów kompatybilnych z ekranami AMOLED?",
   "@useAmoledTheme": {
     "type": "text",
     "placeholders": {}
