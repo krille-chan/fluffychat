@@ -1374,7 +1374,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "useAmoledTheme": "هل تريد استخدم ألوان متوافقة مع Amoled؟",
+  "useAmoledTheme": "هل تريد استخدم ألوان متوافقة مع AMOLED؟",
   "@useAmoledTheme": {
     "type": "text",
     "placeholders": {}
