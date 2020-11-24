@@ -114,7 +114,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "avatarHasBeenChanged": "Avatar has been changed",
+  "avatarHasBeenChanged": "Avatar changed",
   "@avatarHasBeenChanged": {
     "type": "text",
     "placeholders": {}
@@ -149,7 +149,7 @@
       "homeserver": {}
     }
   },
-  "cachedKeys": "Successfully cached keys!",
+  "cachedKeys": "Keys cached",
   "@cachedKeys": {
     "type": "text",
     "placeholders": {}
@@ -419,12 +419,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "crossSigningDisabled": "Cross-Signing is disabled",
+  "crossSigningDisabled": "Cross-signing off",
   "@crossSigningDisabled": {
     "type": "text",
     "placeholders": {}
   },
-  "crossSigningEnabled": "Cross-Signing is enabled",
+  "crossSigningEnabled": "Cross-signing on",
   "@crossSigningEnabled": {
     "type": "text",
     "placeholders": {}
@@ -666,7 +666,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "groupDescriptionHasBeenChanged": "Group description has been changed",
+  "groupDescriptionHasBeenChanged": "Group description changed",
   "@groupDescriptionHasBeenChanged": {
     "type": "text",
     "placeholders": {}
@@ -980,7 +980,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noPasswordRecoveryDescription": "You have added no way to recover you password yet.",
+  "noPasswordRecoveryDescription": "You have not added a way to recover your password yet.",
   "@noPasswordRecoveryDescription": {
     "type": "text",
     "placeholders": {}
