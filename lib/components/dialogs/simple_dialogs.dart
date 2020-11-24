@@ -44,7 +44,7 @@ class SimpleDialogs {
     } catch (exception) {
       await FlushbarHelper.createError(message: exception.toString())
           .show(context);
-      return false;
     }
+    return false;
   }
 }
