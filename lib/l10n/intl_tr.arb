@@ -1409,7 +1409,7 @@
       "unreadChats": {}
     }
   },
-  "useAmoledTheme": "Amolede uyumlu renkler kullanılsın mı?",
+  "useAmoledTheme": "AMOLEDe uyumlu renkler kullanılsın mı?",
   "@useAmoledTheme": {
     "type": "text",
     "placeholders": {}
