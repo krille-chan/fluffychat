@@ -1402,7 +1402,7 @@
       "unreadChats": {}
     }
   },
-  "useAmoledTheme": "Použiť Amoled kompatibilné farby?",
+  "useAmoledTheme": "Použiť AMOLED kompatibilné farby?",
   "@useAmoledTheme": {
     "type": "text",
     "placeholders": {}
