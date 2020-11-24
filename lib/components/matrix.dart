@@ -5,10 +5,13 @@ import 'dart:convert';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:famedlysdk/encryption.dart';
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/utils/firebase_controller.dart';
 import 'package:fluffychat/utils/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/sentry_controller.dart';
+import 'package:fluffychat/views/settings_3pid.dart';
+import 'package:flushbar/flushbar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -87,6 +90,7 @@ class MatrixState extends State<Matrix> {
     var initLoginState = client.onLoginStateChanged.stream.first;
     try {
       client.init();
+
       final firstLoginState = await initLoginState;
       if (firstLoginState == LoginState.logged) {
         if (PlatformInfos.isMobile) {
@@ -95,6 +99,39 @@ class MatrixState extends State<Matrix> {
             widget.clientName,
           );
         }
+      }
+      final storeItem = null; //await store.getItem(SettingKeys.showNoPid);
+      final configOptionMissing = storeItem == null || storeItem.isEmpty;
+      if (configOptionMissing || (!configOptionMissing && storeItem == '1')) {
+        if (configOptionMissing) {
+          await store.setItem(SettingKeys.showNoPid, '0');
+        }
+        await Matrix.of(context)
+            .client
+            .requestThirdPartyIdentifiers()
+            .then((l) {
+          if (l.isEmpty) {
+            Flushbar(
+              title: L10n.of(context).warning,
+              message: L10n.of(context).noPasswordRecoveryDescription,
+              mainButton: RaisedButton(
+                elevation: 7,
+                color: Theme.of(context).scaffoldBackgroundColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: Text(L10n.of(context).passwordRecovery),
+                onPressed: () => Navigator.of(context).push(
+                  AppRoute.defaultRoute(
+                    context,
+                    Settings3PidView(),
+                  ),
+                ),
+              ),
+              flushbarStyle: FlushbarStyle.FLOATING,
+            ).show(context);
+          }
+        }).catchError((_) => null);
       }
     } catch (e, s) {
       client.onLoginStateChanged.sink.addError(e, s);

@@ -7,8 +7,8 @@ import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/utils/firebase_controller.dart';
+import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:flushbar/flushbar_helper.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -57,19 +57,11 @@ class _LoginState extends State<Login> {
       setState(() => passwordError = exception.toString());
       return setState(() => loading = false);
     }
-    if (!kIsWeb) {
-      try {
-        await FirebaseController.setupFirebase(
-          matrix,
-          matrix.widget.clientName,
-        );
-      } catch (exception) {
-        await matrix.client.logout();
-        matrix.clean();
-        setState(() => passwordError = exception.toString());
-        return setState(() => loading = false);
-      }
-    }
+    await FirebaseController.setupFirebase(
+      matrix,
+      matrix.widget.clientName,
+    ).catchError(SentryController.captureException);
+
     setState(() => loading = false);
     await Navigator.of(context).pushAndRemoveUntil(
         AppRoute.defaultRoute(context, ChatListView()), (r) => false);
