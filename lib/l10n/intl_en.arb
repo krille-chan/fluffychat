@@ -1469,7 +1469,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "useAmoledTheme": "Use Amoled compatible colors?",
+  "useAmoledTheme": "Use AMOLED compatible colors?",
   "@useAmoledTheme": {
     "type": "text",
     "placeholders": {}
