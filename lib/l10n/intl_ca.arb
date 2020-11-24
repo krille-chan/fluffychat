@@ -588,7 +588,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Sembla que no tens els Serveis de Google al telèfon. Això és una bona decisió per a la teva privadesa! Per a rebre notificacions push de FluffyChat, et recomanem utilitzar microG: https://microg.org/",
+  "noGoogleServicesWarning": "Sembla que no tens els Serveis de Google al telèfon. Això és una bona decisió respecte a la teva privadesa! Per a rebre notificacions push de FluffyChat, et recomanem utilitzar microG: https://microg.org/",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -717,12 +717,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "Ara per ara FluffyChat no és compatible amb la còpia de seguretat de claus en línia. Activa-la des d'Element.",
+  "noMegolmBootstrap": "De moment FluffyChat no és compatible amb la còpia de seguretat de claus en línia. Activa-la des d'Element.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "Ara per ara FluffyChat no és compatible amb la signatura creuada. Activa-la des d'Element.",
+  "noCrossSignBootstrap": "De moment FluffyChat no és compatible amb la signatura creuada. Activa-la des d'Element.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -840,7 +840,7 @@
       "username": {}
     }
   },
-  "logout": "Tanca la sessió",
+  "logout": "Tanca sessió",
   "@logout": {
     "type": "text",
     "placeholders": {}
@@ -1011,7 +1011,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "groupDescriptionHasBeenChanged": "La descripció del grup ha canviat",
+  "groupDescriptionHasBeenChanged": "Descripció de grup canviada",
   "@groupDescriptionHasBeenChanged": {
     "type": "text",
     "placeholders": {}
@@ -1158,7 +1158,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "avatarHasBeenChanged": "La imatge de perfil ha canviat",
+  "avatarHasBeenChanged": "Imatge de perfil canviada",
   "@avatarHasBeenChanged": {
     "type": "text",
     "placeholders": {}
@@ -1238,12 +1238,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "crossSigningEnabled": "La signatura creuada està activada",
+  "crossSigningEnabled": "Signatura creuada activada",
   "@crossSigningEnabled": {
     "type": "text",
     "placeholders": {}
   },
-  "crossSigningDisabled": "La signatura creuada està desactivada",
+  "crossSigningDisabled": "Signatura creuada desactivada",
   "@crossSigningDisabled": {
     "type": "text",
     "placeholders": {}
@@ -1453,7 +1453,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "cachedKeys": "Claus desades a la memòria cau amb èxit!",
+  "cachedKeys": "Claus desades a la memòria cau",
   "@cachedKeys": {
     "type": "text",
     "placeholders": {}
@@ -1745,6 +1745,51 @@
   },
   "deviceId": "ID de dispositiu",
   "@deviceId": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "withTheseAddressesRecoveryDescription": "Amb aquestes adreçes, si ho necessites, pots recuperar la teva contrasenya.",
+  "@withTheseAddressesRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "weSentYouAnEmail": "T'hem enviat un correu electrònic",
+  "@weSentYouAnEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseClickOnLink": "Fes clic a l'enllaç del correu i, després, segueix.",
+  "@pleaseClickOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordForgotten": "Contrasenya oblidada",
+  "@passwordForgotten": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordRecovery": "Recuperació de contrassenya",
+  "@passwordRecovery": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iHaveClickedOnLink": "He fet clic a l'enllaç",
+  "@iHaveClickedOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "edit": "Edita",
+  "@edit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterAnEmailAddress": "Introdueix una adreça de correu electrònic",
+  "@enterAnEmailAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPasswordRecoveryDescription": "Encara no has afegit cap mètode per poder recuperar la teva contrasenya.",
+  "@noPasswordRecoveryDescription": {
     "type": "text",
     "placeholders": {}
   }
