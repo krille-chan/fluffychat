@@ -1553,7 +1553,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "verifyTitle": "Verifiziere das anderes Konto …",
+  "verifyTitle": "Verifiziere das andere Konto",
   "@verifyTitle": {
     "type": "text",
     "placeholders": {}
