@@ -832,7 +832,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "useAmoledTheme": "Usare i colori compatibili con Amoled?",
+  "useAmoledTheme": "Usare i colori compatibili con AMOLED?",
   "@useAmoledTheme": {
     "type": "text",
     "placeholders": {}
