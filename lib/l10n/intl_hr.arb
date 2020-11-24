@@ -1510,7 +1510,7 @@
       "unreadChats": {}
     }
   },
-  "useAmoledTheme": "Koristiti Amoled kompatibilne boje?",
+  "useAmoledTheme": "Koristiti AMOLED kompatibilne boje?",
   "@useAmoledTheme": {
     "type": "text",
     "placeholders": {}
