@@ -225,6 +225,7 @@ upload-windows:
 
 upload-playstore:
   extends: .release
+  image: registry.gitlab.com/famedly/containers/flutter-dockerimages:stable
   script: [./scripts/release-playstore.sh]
   resource_group: playstore_release
 
