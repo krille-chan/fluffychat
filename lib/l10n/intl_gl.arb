@@ -149,7 +149,7 @@
       "homeserver": {}
     }
   },
-  "cachedKeys": "Almacenaches as chaves correctamente!",
+  "cachedKeys": "Chaves almacenadas",
   "@cachedKeys": {
     "type": "text",
     "placeholders": {}
@@ -419,7 +419,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "crossSigningDisabled": "A Sinatura-Cruzada está desactivada",
+  "crossSigningDisabled": "Sinatura-Cruzada desactivada",
   "@crossSigningDisabled": {
     "type": "text",
     "placeholders": {}
@@ -574,7 +574,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "encryptionNotEnabled": "Cifrado desactivado",
+  "encryptionNotEnabled": "O cifrado non está activado",
   "@encryptionNotEnabled": {
     "type": "text",
     "placeholders": {}
@@ -651,7 +651,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "groupDescriptionHasBeenChanged": "Mudou a descrición do grupo",
+  "groupDescriptionHasBeenChanged": "Cambiouse a descrición do grupo",
   "@groupDescriptionHasBeenChanged": {
     "type": "text",
     "placeholders": {}
@@ -871,7 +871,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "login": "Conexión",
+  "login": "Conectar",
   "@login": {
     "type": "text",
     "placeholders": {}
@@ -903,7 +903,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "messageWillBeRemovedWarning": "A mensaxe eliminarase para todas as participantes",
+  "messageWillBeRemovedWarning": "Vai ser eliminada a mensaxe para todas as participantes",
   "@messageWillBeRemovedWarning": {
     "type": "text",
     "placeholders": {}
@@ -995,7 +995,7 @@
       "number": {}
     }
   },
-  "ok": "OK",
+  "ok": "ok",
   "@ok": {
     "type": "text",
     "placeholders": {}
@@ -1005,7 +1005,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "onlineKeyBackupEnabled": "Copia de Apoio das Chaves activada",
+  "onlineKeyBackupEnabled": "Copia de Apoio en liña das Chaves activada",
   "@onlineKeyBackupEnabled": {
     "type": "text",
     "placeholders": {}
@@ -1045,7 +1045,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "passwordHasBeenChanged": "Cambiaches o contrasinal",
+  "passwordHasBeenChanged": "Cambiouse o contrasinal",
   "@passwordHasBeenChanged": {
     "type": "text",
     "placeholders": {}
@@ -1765,6 +1765,51 @@
   },
   "deviceId": "ID do dispositivo",
   "@deviceId": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "withTheseAddressesRecoveryDescription": "Con estes enderezos podes recuperar o teu contrasinal se o precisas.",
+  "@withTheseAddressesRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "weSentYouAnEmail": "Enviamosche un email",
+  "@weSentYouAnEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseClickOnLink": "Preme na ligazón do email e segue as instrucións.",
+  "@pleaseClickOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordForgotten": "Contrasinal esquecido",
+  "@passwordForgotten": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordRecovery": "Recuperación do contrasinal",
+  "@passwordRecovery": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPasswordRecoveryDescription": "Aínda non engaiches ningún xeito de recuperar o contrasinal.",
+  "@noPasswordRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iHaveClickedOnLink": "Premín na ligazón",
+  "@iHaveClickedOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "edit": "Editar",
+  "@edit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterAnEmailAddress": "Escribe un enderezo de email",
+  "@enterAnEmailAddress": {
     "type": "text",
     "placeholders": {}
   }
