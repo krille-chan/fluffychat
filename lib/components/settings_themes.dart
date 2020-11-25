@@ -64,20 +64,18 @@ class ThemesSettingsState extends State<ThemesSettings> {
             });
           },
         ),
-        ListTile(
+        SwitchListTile(
           title: Text(
             L10n.of(context).useAmoledTheme,
           ),
-          trailing: Switch(
-            value: _amoledEnabled,
-            activeColor: Theme.of(context).primaryColor,
-            onChanged: (bool value) {
-              setState(() {
-                _amoledEnabled = value;
-                themeEngine.switchTheme(matrix, _selectedTheme, value);
-              });
-            },
-          ),
+          value: _amoledEnabled,
+          activeColor: Theme.of(context).primaryColor,
+          onChanged: (bool value) {
+            setState(() {
+              _amoledEnabled = value;
+              themeEngine.switchTheme(matrix, _selectedTheme, value);
+            });
+          },
         ),
       ],
     );

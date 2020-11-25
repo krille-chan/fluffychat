@@ -559,6 +559,51 @@
     "type": "text",
     "placeholders": {}
   },
+  "directChats": "Direct Chats",
+  "@directChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsDisplayName": "Contains display name",
+  "@containsDisplayName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsUserName": "Contains user name",
+  "@containsUserName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteForMe": "Invite for me",
+  "@inviteForMe": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "memberChanges": "Member changes",
+  "@memberChanges": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "botMessages": "Bot messages",
+  "@botMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pushRules": "Push rules",
+  "@pushRules": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notifications": "Notifications",
+  "@notifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationsEnabledForThisAccount": "Notifications enabled for this account",
+  "@notificationsEnabledForThisAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
   "edit": "Edit",
   "@edit": {
     "type": "text",

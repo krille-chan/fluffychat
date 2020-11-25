@@ -1,12 +1,11 @@
-import 'dart:io';
-
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:fluffychat/views/settings_3pid.dart';
+import 'package:fluffychat/views/settings_notifications.dart';
+import 'package:fluffychat/views/settings_style.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
 
-import 'package:fluffychat/components/settings_themes.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/sentry_controller.dart';
@@ -202,22 +201,6 @@ class _SettingsState extends State<Settings> {
     }
   }
 
-  void setWallpaperAction(BuildContext context) async {
-    final wallpaper = await ImagePicker().getImage(source: ImageSource.gallery);
-    if (wallpaper == null) return;
-    Matrix.of(context).wallpaper = File(wallpaper.path);
-    await Matrix.of(context)
-        .store
-        .setItem(SettingKeys.wallpaper, wallpaper.path);
-    setState(() => null);
-  }
-
-  void deleteWallpaperAction(BuildContext context) async {
-    Matrix.of(context).wallpaper = null;
-    await Matrix.of(context).store.deleteItem(SettingKeys.wallpaper);
-    setState(() => null);
-  }
-
   Future<void> requestSSSSCache(BuildContext context) async {
     final handle = Matrix.of(context).client.encryption.ssss.open();
     final input = await showTextInputDialog(
@@ -323,48 +306,23 @@ class _SettingsState extends State<Settings> {
           children: <Widget>[
             ListTile(
               title: Text(
-                L10n.of(context).changeTheme,
+                L10n.of(context).notifications,
                 style: TextStyle(
                   color: Theme.of(context).primaryColor,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-            ThemesSettings(),
-            if (!kIsWeb && Matrix.of(context).store != null)
-              Divider(thickness: 1),
-            if (!kIsWeb && Matrix.of(context).store != null)
-              ListTile(
-                title: Text(
-                  L10n.of(context).wallpaper,
-                  style: TextStyle(
-                    color: Theme.of(context).primaryColor,
-                    fontWeight: FontWeight.bold,
-                  ),
+            ListTile(
+              trailing: Icon(Icons.notifications),
+              title: Text(L10n.of(context).notifications),
+              onTap: () async => await Navigator.of(context).push(
+                AppRoute.defaultRoute(
+                  context,
+                  SettingsNotificationsView(),
                 ),
               ),
-            if (Matrix.of(context).wallpaper != null)
-              ListTile(
-                title: Image.file(
-                  Matrix.of(context).wallpaper,
-                  height: 38,
-                  fit: BoxFit.cover,
-                ),
-                trailing: Icon(
-                  Icons.delete_forever,
-                  color: Colors.red,
-                ),
-                onTap: () => deleteWallpaperAction(context),
-              ),
-            if (!kIsWeb && Matrix.of(context).store != null)
-              Builder(builder: (context) {
-                return ListTile(
-                  title: Text(L10n.of(context).changeWallpaper),
-                  trailing: Icon(Icons.wallpaper),
-                  onTap: () => setWallpaperAction(context),
-                );
-              }),
-            Divider(thickness: 1),
+            ),
             ListTile(
               title: Text(
                 L10n.of(context).chat,
@@ -375,44 +333,45 @@ class _SettingsState extends State<Settings> {
               ),
             ),
             ListTile(
+              title: Text(L10n.of(context).changeTheme),
+              onTap: () async => await Navigator.of(context).push(
+                AppRoute.defaultRoute(
+                  context,
+                  SettingsStyleView(),
+                ),
+              ),
+              trailing: Icon(Icons.wallpaper),
+            ),
+            SwitchListTile(
               title: Text(L10n.of(context).renderRichContent),
-              trailing: Switch(
-                value: AppConfig.renderHtml,
-                activeColor: Theme.of(context).primaryColor,
-                onChanged: (bool newValue) async {
-                  AppConfig.renderHtml = newValue;
-                  await Matrix.of(context)
-                      .store
-                      .setItem(SettingKeys.renderHtml, newValue.toString());
-                  setState(() => null);
-                },
-              ),
+              value: AppConfig.renderHtml,
+              onChanged: (bool newValue) async {
+                AppConfig.renderHtml = newValue;
+                await Matrix.of(context)
+                    .store
+                    .setItem(SettingKeys.renderHtml, newValue.toString());
+                setState(() => null);
+              },
             ),
-            ListTile(
+            SwitchListTile(
               title: Text(L10n.of(context).hideRedactedEvents),
-              trailing: Switch(
-                value: AppConfig.hideRedactedEvents,
-                activeColor: Theme.of(context).primaryColor,
-                onChanged: (bool newValue) async {
-                  AppConfig.hideRedactedEvents = newValue;
-                  await Matrix.of(context).store.setItem(
-                      SettingKeys.hideRedactedEvents, newValue.toString());
-                  setState(() => null);
-                },
-              ),
+              value: AppConfig.hideRedactedEvents,
+              onChanged: (bool newValue) async {
+                AppConfig.hideRedactedEvents = newValue;
+                await Matrix.of(context).store.setItem(
+                    SettingKeys.hideRedactedEvents, newValue.toString());
+                setState(() => null);
+              },
             ),
-            ListTile(
+            SwitchListTile(
               title: Text(L10n.of(context).hideUnknownEvents),
-              trailing: Switch(
-                value: AppConfig.hideUnknownEvents,
-                activeColor: Theme.of(context).primaryColor,
-                onChanged: (bool newValue) async {
-                  AppConfig.hideUnknownEvents = newValue;
-                  await Matrix.of(context).store.setItem(
-                      SettingKeys.hideUnknownEvents, newValue.toString());
-                  setState(() => null);
-                },
-              ),
+              value: AppConfig.hideUnknownEvents,
+              onChanged: (bool newValue) async {
+                AppConfig.hideUnknownEvents = newValue;
+                await Matrix.of(context).store.setItem(
+                    SettingKeys.hideUnknownEvents, newValue.toString());
+                setState(() => null);
+              },
             ),
             ListTile(
               title: Text(L10n.of(context).emoteSettings),
