@@ -923,7 +923,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "Fluffychat kann Cross-Signing noch nicht einschalten. Bitte schalte es innerhalb Element an.",
+  "noCrossSignBootstrap": "FluffyChat kann Cross-Signing noch nicht einschalten. Bitte schalte es innerhalb Element an.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -938,7 +938,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "Fluffychat kann die Online-Schlüsselsicherung noch nicht aktivieren. Bitte schalte es innerhalb von Element an.",
+  "noMegolmBootstrap": "FluffyChat kann die Online-Schlüsselsicherung noch nicht aktivieren. Bitte schalte es innerhalb von Element an.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -1805,6 +1805,11 @@
   },
   "weSentYouAnEmail": "Wir haben dir eine E-Mail gesendet",
   "@weSentYouAnEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "edit": "Bearbeiten",
+  "@edit": {
     "type": "text",
     "placeholders": {}
   }
