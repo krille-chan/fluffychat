@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -33,6 +34,7 @@ abstract class FirebaseController {
 
   static Future<void> setupFirebase(
       MatrixState matrix, String clientName) async {
+    if (!PlatformInfos.isMobile) return;
     final client = matrix.client;
     if (Platform.isIOS) iOS_Permission();
 

@@ -4,6 +4,52 @@ Chat with your friends.
 ## Unreleased
 
 ### Chore
+* Update adaptive dialogs [0061660]
+* Prettier redacted events [d1e291e]
+* Minor design changes in user viewer [b4fb283]
+* Minor design changes in chatlist item [6977112]
+* Implement playstore CD [4c5760c]
+* Only load google services if needed [bae779a]
+
+### Feature
+* Annoy user with dialog to add a recovery method [d9ec9f6]
+* Implement password recovery [4b2fef5]
+* Collapse room create states [fc0c038]
+* Minor design improvements [0b8cc24]
+* Improved encryption UI [2516848]
+
+### Fixes
+* Broken dialog [97bb692]
+* set email dialog [72e325a]
+* Minor fixes [11e2dd5]
+* redacted icon color [d60709b]
+* Unban [f056e65]
+* Minor design issues [d9590dd]
+* Buttons in chatlist [7d08817]
+* Sendername prefix [a6b60ad]
+* Sendername prefix [8aaff6f]
+* Minor key request design fix [0ed29b6]
+* removal of appbundle from the release artifacts [b1c248f]
+* Copying an event did not obey edits [0cb262c]
+* Suggest correct rooms [59ec9de]
+
+### Refactor
+* Make verification in dialogs [1f9e953]
+* matrix to link prefix [1aa9c08]
+
+## v0.22.1 - 2020-11-21
+
+### Chore
+* fix CI [00ed0d6]
+* fix CI [bb4bb9f]
+* Fix CI variables [d3822b0]
+
+### Fixes
+* Input bar not working, making app unusable [10773b4]
+
+## v0.22.0 - 2020-11-21
+
+### Chore
 * update flutter_matrix_html [ed27bee]
 * update flutter_matrix_html [af36533]
 * Update dependencies [57256fb]
@@ -32,7 +78,7 @@ Chat with your friends.
 * Sentry and small null fix [5dc22be]
 
 ### Refactor
-* CI [5ac773e]
+* CI [34d7fdd]
 * SDK update [7e23280]
 
 ## v0.21.1 - 2020-10-28
