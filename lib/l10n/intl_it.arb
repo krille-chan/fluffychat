@@ -52,7 +52,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "cachedKeys": "Chiavi salvate in cache con successo!",
+  "cachedKeys": "Chiavi in cache",
   "@cachedKeys": {
     "type": "text",
     "placeholders": {}
@@ -87,7 +87,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "avatarHasBeenChanged": "L'avatar è stato cambiato",
+  "avatarHasBeenChanged": "Avatar cambiato",
   "@avatarHasBeenChanged": {
     "type": "text",
     "placeholders": {}
@@ -579,7 +579,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "crossSigningDisabled": "La firma incrociata è disabilitata",
+  "crossSigningDisabled": "Firma incrociata disabilitata",
   "@crossSigningDisabled": {
     "type": "text",
     "placeholders": {}
@@ -679,7 +679,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "groupDescriptionHasBeenChanged": "La descrizione del gruppo è stata modificata",
+  "groupDescriptionHasBeenChanged": "Descrizione del gruppo modificata",
   "@groupDescriptionHasBeenChanged": {
     "type": "text",
     "placeholders": {}
@@ -734,7 +734,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "crossSigningEnabled": "La firma incrociata è abilitata",
+  "crossSigningEnabled": "Firma incrociata abilitata",
   "@crossSigningEnabled": {
     "type": "text",
     "placeholders": {}
@@ -1753,6 +1753,51 @@
   },
   "changePassword": "Cambia la password",
   "@changePassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "withTheseAddressesRecoveryDescription": "Con questi indirizzi puoi recuperare la tua password se necessario.",
+  "@withTheseAddressesRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "weSentYouAnEmail": "Ti abbiamo inviato un'e-mail",
+  "@weSentYouAnEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseClickOnLink": "Clicca sul collegamenti nell'e-mail e poi procedi.",
+  "@pleaseClickOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordForgotten": "Password dimenticata",
+  "@passwordForgotten": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordRecovery": "Recupero della password",
+  "@passwordRecovery": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPasswordRecoveryDescription": "Non hai ancora aggiunto un modo per recuperare la tua password.",
+  "@noPasswordRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iHaveClickedOnLink": "Ho cliccato sul collegamento",
+  "@iHaveClickedOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "edit": "Modifica",
+  "@edit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterAnEmailAddress": "Inserisci un indirizzo e-mail",
+  "@enterAnEmailAddress": {
     "type": "text",
     "placeholders": {}
   }
