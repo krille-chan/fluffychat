@@ -569,7 +569,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "containsUserName": "Contains user name",
+  "containsUserName": "Contains username",
   "@containsUserName": {
     "type": "text",
     "placeholders": {}
