@@ -1752,5 +1752,20 @@
   "@deleteAccount": {
     "type": "text",
     "placeholders": {}
+  },
+  "weSentYouAnEmail": "Te enviamos un correo electrónico",
+  "@weSentYouAnEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseClickOnLink": "Haga clic en el enlace del correo electrónico y luego continúe.",
+  "@pleaseClickOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterAnEmailAddress": "Introducir una dirección de correo electrónico",
+  "@enterAnEmailAddress": {
+    "type": "text",
+    "placeholders": {}
   }
 }
