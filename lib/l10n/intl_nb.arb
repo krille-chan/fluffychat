@@ -1392,5 +1392,37 @@
   "@askSSSSVerify": {
     "type": "text",
     "placeholders": {}
+  },
+  "lastActiveAgo": "Sist aktiv: {localizedTimeShort}",
+  "@lastActiveAgo": {
+    "type": "text",
+    "placeholders": {
+      "localizedTimeShort": {}
+    }
+  },
+  "groupDescriptionHasBeenChanged": "Gruppebeskrivelse endret",
+  "@groupDescriptionHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notifications": "Merknader",
+  "@notifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsUserName": "Inneholder brukernavn",
+  "@containsUserName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsDisplayName": "Inneholder visningsnavn",
+  "@containsDisplayName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "directChats": "Direktesludringer",
+  "@directChats": {
+    "type": "text",
+    "placeholders": {}
   }
 }
