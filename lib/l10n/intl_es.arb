@@ -1678,7 +1678,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "deactivateAccountWarning": "Se desactivará su cuenta de usuario.  ¡La operación no se puede cancelar! ¿Está seguro?",
+  "deactivateAccountWarning": "Se desactivará su cuenta de usuario. ¡La operación no se puede cancelar! ¿Está seguro?",
   "@deactivateAccountWarning": {
     "type": "text",
     "placeholders": {}
