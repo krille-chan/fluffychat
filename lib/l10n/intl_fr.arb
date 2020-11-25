@@ -102,7 +102,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "askVerificationRequest": "Accepter cette demande de vérification de {username} ?",
+  "askVerificationRequest": "Accepter cette demande de vérification de la part de {username} ?",
   "@askVerificationRequest": {
     "type": "text",
     "placeholders": {
