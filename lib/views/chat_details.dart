@@ -218,8 +218,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                     backgroundColor: Theme.of(context).appBarTheme.color,
                     flexibleSpace: FlexibleSpaceBar(
                       background: ContentBanner(widget.room.avatar,
-                          onEdit: widget.room.canSendEvent('m.room.avatar') &&
-                                  !kIsWeb
+                          onEdit: widget.room.canSendEvent('m.room.avatar')
                               ? () => setAvatarAction(context)
                               : null),
                     ),
