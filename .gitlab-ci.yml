@@ -225,7 +225,6 @@ upload-windows:
 
 upload-playstore:
   extends: .release
-  stage: deploy
   script: [./scripts/release-playstore.sh]
   resource_group: playstore_release
 
