@@ -1768,7 +1768,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseClickOnLink": "Bitte auf den Link in der E-Mail kicken und dann fortfahren.",
+  "pleaseClickOnLink": "Bitte auf den Link in der E-Mail klicken und dann fortfahren.",
   "@pleaseClickOnLink": {
     "type": "text",
     "placeholders": {}
