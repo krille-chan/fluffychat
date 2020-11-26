@@ -559,7 +559,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enableEncryptionWarning": "Vous ne pourrez plus désactiver le chiffrement. Êtes-vous sûr(e) ?",
+  "enableEncryptionWarning": "Vous ne pourrez plus désactiver le chiffrement. Êtes-vous sûr(e) ?",
   "@enableEncryptionWarning": {
     "type": "text",
     "placeholders": {}
@@ -1638,7 +1638,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "warning": "Attention !",
+  "warning": "Attention !",
   "@warning": {
     "type": "text",
     "placeholders": {}
@@ -1810,6 +1810,36 @@
   },
   "enterAnEmailAddress": "Saisissez une adresse de courriel",
   "@enterAnEmailAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsUserName": "Contient un nom d'utilisateur",
+  "@containsUserName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsDisplayName": "Contient un nom d'affichage",
+  "@containsDisplayName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationsEnabledForThisAccount": "Notifications activées pour ce compte",
+  "@notificationsEnabledForThisAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notifications": "Notifications",
+  "@notifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "botMessages": "Messages de bot",
+  "@botMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "directChats": "Discussions directes",
+  "@directChats": {
     "type": "text",
     "placeholders": {}
   }
