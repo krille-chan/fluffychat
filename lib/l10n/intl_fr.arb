@@ -1842,5 +1842,20 @@
   "@directChats": {
     "type": "text",
     "placeholders": {}
+  },
+  "pushRules": "Règles de notifications",
+  "@pushRules": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "memberChanges": "Changements de membres",
+  "@memberChanges": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteForMe": "Inviter pour moi",
+  "@inviteForMe": {
+    "type": "text",
+    "placeholders": {}
   }
 }
