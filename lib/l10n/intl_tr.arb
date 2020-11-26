@@ -1812,5 +1812,50 @@
   "@noPasswordRecoveryDescription": {
     "type": "text",
     "placeholders": {}
+  },
+  "notificationsEnabledForThisAccount": "Bu hesap için bildirimler etkinleştirildi",
+  "@notificationsEnabledForThisAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notifications": "Bildirimler",
+  "@notifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pushRules": "Gönderme kuralları",
+  "@pushRules": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "botMessages": "Bot mesajları",
+  "@botMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "memberChanges": "Üye değişiklikleri",
+  "@memberChanges": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteForMe": "Benim için davet et",
+  "@inviteForMe": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsUserName": "Kullanıcı adı içerir",
+  "@containsUserName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsDisplayName": "Görünen ad içerir",
+  "@containsDisplayName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "directChats": "Doğrudan Sohbetler",
+  "@directChats": {
+    "type": "text",
+    "placeholders": {}
   }
 }
