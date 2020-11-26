@@ -263,7 +263,7 @@
       "username": {}
     }
   },
-  "changelog": "Journal des changements",
+  "changelog": "Journal des modifications",
   "@changelog": {
     "type": "text",
     "placeholders": {}
@@ -293,7 +293,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changeWallpaper": "Changer d'image de fond",
+  "changeWallpaper": "Changer l'image de fond",
   "@changeWallpaper": {
     "type": "text",
     "placeholders": {}
@@ -328,12 +328,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "compareEmojiMatch": "Comparez et assurez-vous que les emojis suivants correspondent à ceux de l'autre appareil :",
+  "compareEmojiMatch": "Comparez les emojis suivants avec ceux de l'autre appareil et assurez-vous qu'ils correspondent :",
   "@compareEmojiMatch": {
     "type": "text",
     "placeholders": {}
   },
-  "compareNumbersMatch": "Comparez et assurez-vous que les chiffres suivants correspondent à ceux de l'autre appareil :",
+  "compareNumbersMatch": "Comparez les chiffres suivants avec ceux de l'autre appareil et assurez-vous qu'ils correspondent :",
   "@compareNumbersMatch": {
     "type": "text",
     "placeholders": {}
@@ -385,7 +385,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "couldNotSetDisplayname": "Impossible de changer de nom",
+  "couldNotSetDisplayname": "Impossible de changer de nom d'affichage",
   "@couldNotSetDisplayname": {
     "type": "text",
     "placeholders": {}
@@ -464,7 +464,7 @@
       "day": {}
     }
   },
-  "deactivateAccountWarning": "Ceci désactivera votre compte et ne peut pas être annulé ! Êtes-vous sûr·e ?",
+  "deactivateAccountWarning": "Cette opération va désactiver votre compte. Une fois cette action effectuée, aucun retour en arrière n'est possible ! Êtes-vous sûr·e ?",
   "@deactivateAccountWarning": {
     "type": "text",
     "placeholders": {}
@@ -489,12 +489,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "device": "Périphérique",
+  "device": "Appareil",
   "@device": {
     "type": "text",
     "placeholders": {}
   },
-  "devices": "Périphériques",
+  "devices": "Appareils",
   "@devices": {
     "type": "text",
     "placeholders": {}
@@ -519,7 +519,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "editDisplayname": "Changer de nom",
+  "editDisplayname": "Changer de nom d'affichage",
   "@editDisplayname": {
     "type": "text",
     "placeholders": {}
@@ -544,7 +544,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteShortcode": "Raccourci d'émoticône",
+  "emoteShortcode": "Raccourci de l'émoticône",
   "@emoteShortcode": {
     "type": "text",
     "placeholders": {}
