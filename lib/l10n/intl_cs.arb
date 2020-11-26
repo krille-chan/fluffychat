@@ -149,7 +149,7 @@
       "homeserver": {}
     }
   },
-  "cachedKeys": "Klíče byly úspěšně uloženy!",
+  "cachedKeys": "Klíče v mezipaměti",
   "@cachedKeys": {
     "type": "text",
     "placeholders": {}
@@ -419,12 +419,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "crossSigningDisabled": "Vzájemné ověření je vypnuté",
+  "crossSigningDisabled": "Křížové ověření je vypnuté",
   "@crossSigningDisabled": {
     "type": "text",
     "placeholders": {}
   },
-  "crossSigningEnabled": "Vzájemné ověření je zapnuté",
+  "crossSigningEnabled": "Křížové ověření je zapnuté",
   "@crossSigningEnabled": {
     "type": "text",
     "placeholders": {}
@@ -861,7 +861,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "login": "Přihlášení",
+  "login": "Přihlásit",
   "@login": {
     "type": "text",
     "placeholders": {}
@@ -938,7 +938,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "Fluffychet momentálně nepodporuje aktivaci křížového podpisu. Prosím aktivujte ho z klienta Element.",
+  "noCrossSignBootstrap": "Fluffychet momentálně nepodporuje aktivaci křížového podpisu. Prosím aktivujte si ho z klienta Element.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -1057,7 +1057,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterAMatrixIdentifier": "Prosíme zadejte identifikátor sítě matrix",
+  "pleaseEnterAMatrixIdentifier": "Prosím zadejte identifikátor sítě matrix",
   "@pleaseEnterAMatrixIdentifier": {
     "type": "text",
     "placeholders": {}
@@ -1458,7 +1458,7 @@
       "type": {}
     }
   },
-  "unknownSessionVerify": "Neznámé sezení, prosím o ověření",
+  "unknownSessionVerify": "Neznámé sezení, prosíme o ověření",
   "@unknownSessionVerify": {
     "type": "text",
     "placeholders": {}
@@ -1765,6 +1765,96 @@
   },
   "deviceId": "ID zařízení",
   "@deviceId": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "withTheseAddressesRecoveryDescription": "S těmito adresami můžete v případě potřeby obnovit své heslo.",
+  "@withTheseAddressesRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "weSentYouAnEmail": "Zaslali jsme vám e-mail",
+  "@weSentYouAnEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseClickOnLink": "Klikněte na odkaz v e-mailu a pokračujte.",
+  "@pleaseClickOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordForgotten": "Zapomenuté heslo",
+  "@passwordForgotten": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordRecovery": "Obnova hesla",
+  "@passwordRecovery": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPasswordRecoveryDescription": "Dosud jste nepřidali způsob, jak obnovit své heslo.",
+  "@noPasswordRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iHaveClickedOnLink": "Klikl jsem na odkaz",
+  "@iHaveClickedOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "edit": "Upravit",
+  "@edit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationsEnabledForThisAccount": "Povolená onámení pro tento účet",
+  "@notificationsEnabledForThisAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notifications": "Oznámení",
+  "@notifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pushRules": "Pravidla push",
+  "@pushRules": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "botMessages": "Bot zprávy",
+  "@botMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "memberChanges": "Změny členů",
+  "@memberChanges": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteForMe": "Pozvánka pro mě",
+  "@inviteForMe": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsUserName": "Obsahuje uživatelské jméno",
+  "@containsUserName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsDisplayName": "Obsahuje zobrazovaný název",
+  "@containsDisplayName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "directChats": "Přímé chaty",
+  "@directChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterAnEmailAddress": "Zadejte e-mailovou adresu",
+  "@enterAnEmailAddress": {
     "type": "text",
     "placeholders": {}
   }
