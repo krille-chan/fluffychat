@@ -1812,5 +1812,50 @@
   "@enterAnEmailAddress": {
     "type": "text",
     "placeholders": {}
+  },
+  "notificationsEnabledForThisAccount": "Notificacións activadas para a conta",
+  "@notificationsEnabledForThisAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notifications": "Notificacións",
+  "@notifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pushRules": "Regras de envío",
+  "@pushRules": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "botMessages": "Mensaxes de Bot",
+  "@botMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "memberChanges": "Cambios de participantes",
+  "@memberChanges": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteForMe": "Convite para min",
+  "@inviteForMe": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsUserName": "Contén nome de usuaria",
+  "@containsUserName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsDisplayName": "Contén nome público",
+  "@containsDisplayName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "directChats": "Chats Directos",
+  "@directChats": {
+    "type": "text",
+    "placeholders": {}
   }
 }
