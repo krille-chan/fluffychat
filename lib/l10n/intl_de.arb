@@ -1598,7 +1598,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerNumbers": "Warten, dass der Partner die Zahlen annimmt …",
+  "waitingPartnerNumbers": "Warten, dass der Partner die Zahlen annimmt …",
   "@waitingPartnerNumbers": {
     "type": "text",
     "placeholders": {}
@@ -1618,7 +1618,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "welcomeText": "Herzlich willkommen beim knuffigsten Instant Messenger im Matrix-Netzwerk.",
+  "welcomeText": "Herzlich willkommen beim knuffigsten Instant-Messenger im Matrix-Netzwerk.",
   "@welcomeText": {
     "type": "text",
     "placeholders": {}
@@ -1810,6 +1810,41 @@
   },
   "edit": "Bearbeiten",
   "@edit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "memberChanges": "Mitgliederänderungen",
+  "@memberChanges": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationsEnabledForThisAccount": "Benachrichtigungen für dieses Konto aktiviert",
+  "@notificationsEnabledForThisAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notifications": "Benachrichtigungen",
+  "@notifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "botMessages": "Bot-Nachrichten",
+  "@botMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsUserName": "Enthält Benutzernamen",
+  "@containsUserName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsDisplayName": "Enthält Anzeigenamen",
+  "@containsDisplayName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "directChats": "Direkte Chats",
+  "@directChats": {
     "type": "text",
     "placeholders": {}
   }
