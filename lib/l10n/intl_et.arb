@@ -1812,5 +1812,50 @@
   "@edit": {
     "type": "text",
     "placeholders": {}
+  },
+  "containsUserName": "Sisaldab kasutajanime",
+  "@containsUserName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationsEnabledForThisAccount": "Teavitused on sellel kontol kasutusel",
+  "@notificationsEnabledForThisAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notifications": "Teavitused",
+  "@notifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pushRules": "Tõukereeglid",
+  "@pushRules": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "botMessages": "Robotite sõnumid",
+  "@botMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "memberChanges": "Muudatused liikmeskonnas",
+  "@memberChanges": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteForMe": "Kutse minu jaoks",
+  "@inviteForMe": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsDisplayName": "Sisaldab kuvatavat nime",
+  "@containsDisplayName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "directChats": "Otsevestlused",
+  "@directChats": {
+    "type": "text",
+    "placeholders": {}
   }
 }
