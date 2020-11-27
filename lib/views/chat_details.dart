@@ -107,6 +107,8 @@ class _ChatDetailsState extends State<ChatDetails> {
         DialogTextField(
           hintText: L10n.of(context).setGroupDescription,
           initialText: widget.room.topic,
+          minLines: 1,
+          maxLines: 4,
         )
       ],
     );
