@@ -149,7 +149,7 @@
       "homeserver": {}
     }
   },
-  "cachedKeys": "Keys erfolgreich gecached!",
+  "cachedKeys": "Schlüssel zwischengespeichert",
   "@cachedKeys": {
     "type": "text",
     "placeholders": {}
@@ -1553,7 +1553,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "verifyTitle": "Verifiziere das anderes Konto …",
+  "verifyTitle": "Anderes Konto wird verifiziert",
   "@verifyTitle": {
     "type": "text",
     "placeholders": {}
@@ -1845,6 +1845,16 @@
   },
   "directChats": "Direkte Chats",
   "@directChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pushRules": "Push-Regeln",
+  "@pushRules": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteForMe": "Einladung für mich",
+  "@inviteForMe": {
     "type": "text",
     "placeholders": {}
   }
