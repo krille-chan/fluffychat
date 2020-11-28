@@ -67,7 +67,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "archive": "Arhiva",
+  "archive": "Arhiv",
   "@archive": {
     "type": "text",
     "placeholders": {}
@@ -77,12 +77,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "areGuestsAllowedToJoin": "Smiju li se gosti pridružiti grupi",
+  "areGuestsAllowedToJoin": "Smiju li se gosti pridružiti",
   "@areGuestsAllowedToJoin": {
     "type": "text",
     "placeholders": {}
   },
-  "areYouSure": "Sigurno?",
+  "areYouSure": "Stvarno to želiš?",
   "@areYouSure": {
     "type": "text",
     "placeholders": {}
@@ -92,7 +92,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSSign": "Za potpisivanje druge osobe, upiši svoju sigurnosnu lozinku ili ključ za obnavljanje.",
+  "askSSSSSign": "Za potpisivanje druge osobe, upiši svoju sigurnosnu lozinku ili ključ za oporavak.",
   "@askSSSSSign": {
     "type": "text",
     "placeholders": {}
@@ -114,7 +114,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "avatarHasBeenChanged": "Avatar je promijenjen",
+  "avatarHasBeenChanged": "Avatar promijenjen",
   "@avatarHasBeenChanged": {
     "type": "text",
     "placeholders": {}
@@ -149,7 +149,7 @@
       "homeserver": {}
     }
   },
-  "cachedKeys": "Uspješno međuspremljeni ključevi!",
+  "cachedKeys": "Međuspremljeni ključevi",
   "@cachedKeys": {
     "type": "text",
     "placeholders": {}
@@ -278,7 +278,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changeTheme": "Promijeni svoj stil",
+  "changeTheme": "Promijeni tvoj stil",
   "@changeTheme": {
     "type": "text",
     "placeholders": {}
@@ -419,12 +419,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "crossSigningDisabled": "Unakrsno potpisivanje je deaktivirano",
+  "crossSigningDisabled": "Unakrsno potpisivanje isključeno",
   "@crossSigningDisabled": {
     "type": "text",
     "placeholders": {}
   },
-  "crossSigningEnabled": "Unakrsno potpisivanje je aktivirano",
+  "crossSigningEnabled": "Unakrsno potpisivanje uključeno",
   "@crossSigningEnabled": {
     "type": "text",
     "placeholders": {}
@@ -464,12 +464,12 @@
       "day": {}
     }
   },
-  "deactivateAccountWarning": "Ovo će nepovratno deaktivirati tvoj korisnički račun. Stvarno to želiš uraditi?",
+  "deactivateAccountWarning": "Ovo će nepovratno deaktivirati tvoj korisnički račun. Stvarno to želiš?",
   "@deactivateAccountWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "delete": "Izbriži",
+  "delete": "Izbriši",
   "@delete": {
     "type": "text",
     "placeholders": {}
@@ -479,7 +479,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "deleteMessage": "Izbriži poruku",
+  "deleteMessage": "Izbriši poruku",
   "@deleteMessage": {
     "type": "text",
     "placeholders": {}
@@ -529,27 +529,27 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteExists": "Emot već postoji!",
+  "emoteExists": "Emotikon već postoji!",
   "@emoteExists": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteInvalid": "Neispravna kratica emota!",
+  "emoteInvalid": "Neispravna kratica emotikona!",
   "@emoteInvalid": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteSettings": "Postavke emojija",
+  "emoteSettings": "Postavke emotikona",
   "@emoteSettings": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteShortcode": "Kratica emota",
+  "emoteShortcode": "Kratica emotikona",
   "@emoteShortcode": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteWarnNeedToPick": "Moraš odabrati jednu kraticu emota i sliku!",
+  "emoteWarnNeedToPick": "Moraš odabrati jednu kraticu emotikona i sliku!",
   "@emoteWarnNeedToPick": {
     "type": "text",
     "placeholders": {}
@@ -559,7 +559,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enableEncryptionWarning": "Više nećeš moći deaktivirati šifriranje. Sigurno?",
+  "enableEncryptionWarning": "Više nećeš moći deaktivirati šifriranje. Stvarno to želiš?",
   "@enableEncryptionWarning": {
     "type": "text",
     "placeholders": {}
@@ -651,7 +651,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "groupDescriptionHasBeenChanged": "Opis grupe je promijenjen",
+  "groupDescriptionHasBeenChanged": "Opis grupe promijenjen",
   "@groupDescriptionHasBeenChanged": {
     "type": "text",
     "placeholders": {}
@@ -898,7 +898,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "makeSureTheIdentifierIsValid": "Provjeri je li identifikator ispravan",
+  "makeSureTheIdentifierIsValid": "Provjeri ispravnost identifikator",
   "@makeSureTheIdentifierIsValid": {
     "type": "text",
     "placeholders": {}
@@ -948,22 +948,22 @@
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "Fluffychat trenutačno ne podržava mogućnost unakrsnog potpisivanja. Aktiviraj je u programu Element.",
+  "noCrossSignBootstrap": "Fluffychat trenutačno ne podržava unakrsno potpisivanje. Aktiviraj potpisivanje u programu Element.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
   },
-  "noEmotesFound": "Nema emota. 😕",
+  "noEmotesFound": "Nema emotikona. 😕",
   "@noEmotesFound": {
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Čini se da na mobitelu nemaš google usluge. To je dobra odluka za tvoju privatnost! Za primanje push obavijesti u FluffyChatu preporučujemo upotrebu microG-a: https://microg.org/",
+  "noGoogleServicesWarning": "Čini se da na mobitelu nemaš google usluge. To je dobra odluka za tvoju privatnost! Za primanje poslanih obavijesti u FluffyChatu preporučujemo upotrebu microG-a: https://microg.org/",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "Fluffychat trenutačno ne podržava mogućnost aktiviranja internetskog spremanja sigurnosnih kopija ključa. Aktiviraj je u programu Element.",
+  "noMegolmBootstrap": "Fluffychat trenutačno ne podržava aktiviranje internetskog spremanja sigurnosnih kopija ključa. Aktiviraj spremanje u programu Element.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -1010,7 +1010,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "oopsSomethingWentWrong": "Ups, došlo je do neke greške …",
+  "oopsSomethingWentWrong": "Ups, dogodila se greška …",
   "@oopsSomethingWentWrong": {
     "type": "text",
     "placeholders": {}
@@ -1035,7 +1035,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "passphraseOrKey": "Lozinka ili ključ za obnavljanje",
+  "passphraseOrKey": "tajni izraz ili ključ za obnavljanje",
   "@passphraseOrKey": {
     "type": "text",
     "placeholders": {}
@@ -1072,7 +1072,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterAMatrixIdentifier": "Upiši identifikator matrice",
+  "pleaseEnterAMatrixIdentifier": "Upiši matrix-identifikatora",
   "@pleaseEnterAMatrixIdentifier": {
     "type": "text",
     "placeholders": {}
@@ -1510,7 +1510,7 @@
       "unreadChats": {}
     }
   },
-  "useAmoledTheme": "Koristiti AMOLED kompatibilne boje?",
+  "useAmoledTheme": "Koristiti kompatibilne boje AMOLED-a?",
   "@useAmoledTheme": {
     "type": "text",
     "placeholders": {}
@@ -1628,7 +1628,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerNumbers": "Čeka se, da partner prihvati brojeve …",
+  "waitingPartnerNumbers": "Čeka se na partnera da prihvati brojeve …",
   "@waitingPartnerNumbers": {
     "type": "text",
     "placeholders": {}
@@ -1643,7 +1643,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "warningEncryptionInBeta": "Obostrano šifriranje je trenutačno u beta stanju! Koriti na vlastitu odgovornost!",
+  "warningEncryptionInBeta": "Obostrano šifriranje se trenutačno nalazi u beta stanju! Koriti na vlastitu odgovornost!",
   "@warningEncryptionInBeta": {
     "type": "text",
     "placeholders": {}
@@ -1755,6 +1755,106 @@
   },
   "changePassword": "Promijeni lozinku",
   "@changePassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "weSentYouAnEmail": "Poslali smo ti e-poruku",
+  "@weSentYouAnEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseClickOnLink": "Pritisni poveznicu u e-poruci, zatim nastavi.",
+  "@pleaseClickOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordForgotten": "Zaboravljena lozinka",
+  "@passwordForgotten": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "withTheseAddressesRecoveryDescription": "Ako trebaš, lozinku možeš obnoviti pomoću ovih adresa.",
+  "@withTheseAddressesRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordRecovery": "Obnavljanje lozinke",
+  "@passwordRecovery": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPasswordRecoveryDescription": "Još nisi dodao/la način za obnavljanje lozinke.",
+  "@noPasswordRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iHaveClickedOnLink": "Pritisnuo/la sam poveznicu",
+  "@iHaveClickedOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encrypted": "Šifrirano",
+  "@encrypted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pushRules": "Pravila slanja",
+  "@pushRules": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "edit": "Uredi",
+  "@edit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationsEnabledForThisAccount": "Obavijesti su aktivirane za ovaj račun",
+  "@notificationsEnabledForThisAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notifications": "Obavijesti",
+  "@notifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "botMessages": "Poruke bota",
+  "@botMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "memberChanges": "Promjene člana",
+  "@memberChanges": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteForMe": "Poziv za mene",
+  "@inviteForMe": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsUserName": "Sadržava korisničko ime",
+  "@containsUserName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsDisplayName": "Sadržava prikazano ime",
+  "@containsDisplayName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "directChats": "Izravni chatovi",
+  "@directChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterAnEmailAddress": "Upiši e-adressu",
+  "@enterAnEmailAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceId": "ID oznaka uređaja",
+  "@deviceId": {
     "type": "text",
     "placeholders": {}
   }
