@@ -21,7 +21,7 @@ dependencies:
   url_launcher: ^5.7.10
   cached_network_image: ^2.3.3
   firebase_messaging: ^7.0.3
-  flutter_local_notifications: ^3.0.1+5
+  flutter_local_notifications: ^3.0.1+6
   # desktop_notifications: ^0.0.0-dev.4  // Currently blocked by: https://github.com/canonical/desktop_notifications.dart/issues/5
   matrix_link_text: ^0.3.2
   path_provider: ^1.6.24
