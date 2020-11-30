@@ -1800,5 +1800,50 @@
   "@enterAnEmailAddress": {
     "type": "text",
     "placeholders": {}
+  },
+  "pushRules": "Regole notifiche",
+  "@pushRules": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "memberChanges": "Cambiamenti di membri",
+  "@memberChanges": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteForMe": "Invita per me",
+  "@inviteForMe": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsUserName": "Contiene nome utente",
+  "@containsUserName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsDisplayName": "Contiene nome visibile",
+  "@containsDisplayName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "directChats": "Discussioni dirette",
+  "@directChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationsEnabledForThisAccount": "Notifiche abilitate per questo account",
+  "@notificationsEnabledForThisAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notifications": "Notifiche",
+  "@notifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "botMessages": "Messaggi bot",
+  "@botMessages": {
+    "type": "text",
+    "placeholders": {}
   }
 }
