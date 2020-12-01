@@ -65,7 +65,7 @@ dependencies:
   flutter_cache_manager: ^2.0.0
   open_noti_settings:
     git:
-      url: https://github.com/ChristianPauly/flutter_open_notification_settings.git
+      url: https://github.com/kdy1/flutter_open_notification_settings.git
       ref: master
 
 dev_dependencies:
