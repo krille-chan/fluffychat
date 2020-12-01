@@ -1857,5 +1857,10 @@
   "@directChats": {
     "type": "text",
     "placeholders": {}
+  },
+  "soundVibrationLedColor": "Son, vibración, cor LED",
+  "@soundVibrationLedColor": {
+    "type": "text",
+    "placeholders": {}
   }
 }
