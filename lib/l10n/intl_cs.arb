@@ -1857,5 +1857,10 @@
   "@enterAnEmailAddress": {
     "type": "text",
     "placeholders": {}
+  },
+  "soundVibrationLedColor": "Zvuk, vibrace LED barvy",
+  "@soundVibrationLedColor": {
+    "type": "text",
+    "placeholders": {}
   }
 }
