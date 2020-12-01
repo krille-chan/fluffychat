@@ -1857,5 +1857,10 @@
   "@directChats": {
     "type": "text",
     "placeholders": {}
+  },
+  "soundVibrationLedColor": "Heli, värin, LED-värvid",
+  "@soundVibrationLedColor": {
+    "type": "text",
+    "placeholders": {}
   }
 }
