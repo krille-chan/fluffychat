@@ -1845,5 +1845,10 @@
   "@botMessages": {
     "type": "text",
     "placeholders": {}
+  },
+  "soundVibrationLedColor": "Suono, vibrazione, colore diodo",
+  "@soundVibrationLedColor": {
+    "type": "text",
+    "placeholders": {}
   }
 }
