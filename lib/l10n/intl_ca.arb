@@ -1793,48 +1793,53 @@
     "type": "text",
     "placeholders": {}
   },
-  "notificationsEnabledForThisAccount": "",
+  "notificationsEnabledForThisAccount": "Notificacions activades per aquest compte",
   "@notificationsEnabledForThisAccount": {
     "type": "text",
     "placeholders": {}
   },
-  "notifications": "",
+  "notifications": "Notificacions",
   "@notifications": {
     "type": "text",
     "placeholders": {}
   },
-  "pushRules": "",
+  "pushRules": "Regles push",
   "@pushRules": {
     "type": "text",
     "placeholders": {}
   },
-  "botMessages": "",
+  "botMessages": "Missatges del bot",
   "@botMessages": {
     "type": "text",
     "placeholders": {}
   },
-  "memberChanges": "",
+  "memberChanges": "Canvis de participants",
   "@memberChanges": {
     "type": "text",
     "placeholders": {}
   },
-  "inviteForMe": "",
+  "inviteForMe": "Invitació per a mi",
   "@inviteForMe": {
     "type": "text",
     "placeholders": {}
   },
-  "containsUserName": "",
+  "containsUserName": "Conté nom d'usuari",
   "@containsUserName": {
     "type": "text",
     "placeholders": {}
   },
-  "containsDisplayName": "",
+  "containsDisplayName": "Conté nom de visualització",
   "@containsDisplayName": {
     "type": "text",
     "placeholders": {}
   },
-  "directChats": "",
+  "directChats": "Xats directes",
   "@directChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "soundVibrationLedColor": "So, vibració color LED",
+  "@soundVibrationLedColor": {
     "type": "text",
     "placeholders": {}
   }
