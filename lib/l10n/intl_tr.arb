@@ -1857,5 +1857,10 @@
   "@directChats": {
     "type": "text",
     "placeholders": {}
+  },
+  "soundVibrationLedColor": "Ses, titreşim, LED rengi",
+  "@soundVibrationLedColor": {
+    "type": "text",
+    "placeholders": {}
   }
 }
