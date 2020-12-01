@@ -146,7 +146,7 @@ class SettingsNotifications extends StatelessWidget {
                 if (!Matrix.of(context).client.allPushNotificationsMuted) ...{
                   if (!kIsWeb && Platform.isAndroid)
                     ListTile(
-                      title: Text('Ton, Vibration, LED-Farbe'),
+                      title: Text(L10n.of(context).soundVibrationLedColor),
                       trailing: CircleAvatar(
                         backgroundColor:
                             Theme.of(context).scaffoldBackgroundColor,
