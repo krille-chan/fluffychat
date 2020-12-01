@@ -1857,5 +1857,10 @@
   "@inviteForMe": {
     "type": "text",
     "placeholders": {}
+  },
+  "soundVibrationLedColor": "Ton, Vibration LED-Farbe",
+  "@soundVibrationLedColor": {
+    "type": "text",
+    "placeholders": {}
   }
 }
