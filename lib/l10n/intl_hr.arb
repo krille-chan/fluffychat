@@ -1857,5 +1857,10 @@
   "@deviceId": {
     "type": "text",
     "placeholders": {}
+  },
+  "soundVibrationLedColor": "Zvuk, vibracija LED-boja",
+  "@soundVibrationLedColor": {
+    "type": "text",
+    "placeholders": {}
   }
 }
