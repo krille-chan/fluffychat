@@ -665,12 +665,10 @@ packages:
   open_noti_settings:
     dependency: "direct main"
     description:
-      path: "."
-      ref: master
-      resolved-ref: ff18b3917672ff64b3882a184df96d008f87bbcd
-      url: "https://github.com/ChristianPauly/flutter_open_notification_settings.git"
-    source: git
-    version: "0.0.2+5"
+      name: open_noti_settings
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.3"
   package_config:
     dependency: transitive
     description:
