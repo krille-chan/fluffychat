@@ -63,9 +63,7 @@ dependencies:
   swipe_to_action: ^0.1.0
   flutter_svg: 0.19.1 # Because fluffychat depends on flutter_svg >=0.19.2 which requires Flutter SDK version >=1.24.0-6.0.pre <2.0.0, version solving failed.
   flutter_cache_manager: ^2.0.0
-  open_noti_settings:
-    git:
-      url: https://github.com/ChristianPauly/flutter_open_notification_settings.git
+  open_noti_settings: ^0.0.4
 
 dev_dependencies:
   flutter_test:
