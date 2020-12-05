@@ -1030,17 +1030,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "Fluffychat currently does not support enabling Cross-Signing. Please enable it from within Element.",
+  "noCrossSignBootstrap": "Please turn on cross-signing from within Element instead.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "Fluffychat currently does not support enabling Online Key Backup. Please enable it from within Element.",
+  "noMegolmBootstrap": "Please turn on online key backup from within Element instead.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/",
+  "noGoogleServicesWarning": "Use https://microg.org/ to get Google services (without losing your privacy) to get push notifications in FluffyChat:",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -1184,7 +1184,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterAMatrixIdentifier": "Please enter a matrix identifier",
+  "pleaseEnterAMatrixIdentifier": "Please enter a Matrix ID.",
   "@pleaseEnterAMatrixIdentifier": {
     "type": "text",
     "placeholders": {}
@@ -1873,7 +1873,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "withTheseAddressesRecoveryDescription": "With these addresses you can recover you password if you need.",
+  "withTheseAddressesRecoveryDescription": "With these addresses you can recover your password.",
   "@withTheseAddressesRecoveryDescription": {
     "type": "text",
     "placeholders": {}
