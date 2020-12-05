@@ -1370,8 +1370,68 @@
       "count": {}
     }
   },
+  "editBlockedServers": "Edit blocked servers",
+  "@editBlockedServers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEncryption": "Enable encryption",
+  "@enableEncryption": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "replaceRoomWithNewerVersion": "Replace room with newer version",
+  "@replaceRoomWithNewerVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAvatar": "Edit room avatar",
+  "@editRoomAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "defaultPermissionLevel": "Default permission level",
+  "@defaultPermissionLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendMessages": "Send messages",
+  "@sendMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "configureChat": "Configure chat",
+  "@configureChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "participant": "Participant",
+  "@participant": {
+    "type": "text",
+    "placeholders": {}
+  },
   "send": "Send",
   "@send": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whoCanPerformWhichAction": "Who can perform which action",
+  "@whoCanPerformWhichAction": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editChatPermissions": "Edit chat permissions",
+  "@editChatPermissions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setCustomEmotes": "Set custom emotes",
+  "@setCustomEmotes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setPermissionsLevel": "Set permissions level",
+  "@setPermissionsLevel": {
     "type": "text",
     "placeholders": {}
   },

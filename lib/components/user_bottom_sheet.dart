@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
+import 'package:fluffychat/components/dialogs/permission_slider_dialog.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/views/chat.dart';
@@ -52,24 +53,14 @@ class UserBottomSheet extends StatelessWidget {
           Navigator.of(context).pop();
         }
         break;
-      case 'admin':
-        if (await _askConfirmation()) {
+      case 'permission':
+        final newPermission =
+            await PermissionSliderDialog(initialPermission: user.powerLevel)
+                .show(context);
+        if (newPermission != null) {
+          if (newPermission == 100 && await _askConfirmation() == false) break;
           await SimpleDialogs(context)
-              .tryRequestWithLoadingDialog(user.setPower(100));
-          Navigator.of(context).pop();
-        }
-        break;
-      case 'moderator':
-        if (await _askConfirmation()) {
-          await SimpleDialogs(context)
-              .tryRequestWithLoadingDialog(user.setPower(50));
-          Navigator.of(context).pop();
-        }
-        break;
-      case 'user':
-        if (await _askConfirmation()) {
-          await SimpleDialogs(context)
-              .tryRequestWithLoadingDialog(user.setPower(0));
+              .tryRequestWithLoadingDialog(user.setPower(newPermission));
           Navigator.of(context).pop();
         }
         break;
@@ -119,38 +110,14 @@ class UserBottomSheet extends StatelessWidget {
             value: 'message'),
       );
     }
-    if (user.canChangePowerLevel &&
-        user.room.ownPowerLevel == 100 &&
-        user.powerLevel != 100) {
+    if (user.canChangePowerLevel) {
       items.add(
         PopupMenuItem(
             child: _TextWithIcon(
-              L10n.of(context).makeAnAdmin,
-              Icons.arrow_upward,
+              L10n.of(context).setPermissionsLevel,
+              Icons.edit_attributes_outlined,
             ),
-            value: 'admin'),
-      );
-    }
-    if (user.canChangePowerLevel &&
-        user.room.ownPowerLevel >= 50 &&
-        user.powerLevel != 50) {
-      items.add(
-        PopupMenuItem(
-            child: _TextWithIcon(
-              L10n.of(context).makeAModerator,
-              Icons.arrow_upward_outlined,
-            ),
-            value: 'moderator'),
-      );
-    }
-    if (user.canChangePowerLevel && user.powerLevel != 0) {
-      items.add(
-        PopupMenuItem(
-            child: _TextWithIcon(
-              L10n.of(context).revokeAllPermissions,
-              Icons.arrow_downward_outlined,
-            ),
-            value: 'user'),
+            value: 'permission'),
       );
     }
     if (user.canKick) {

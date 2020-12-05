@@ -1,6 +1,7 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
+import 'package:fluffychat/views/chat_permissions_settings.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:famedlysdk/matrix_api.dart';
@@ -316,6 +317,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                                 child: Icon(Icons.insert_emoticon),
                               ),
                               title: Text(L10n.of(context).emoteSettings),
+                              subtitle: Text(L10n.of(context).setCustomEmotes),
                               onTap: () async {
                                 // okay, we need to test if there are any emote state events other than the default one
                                 // if so, we need to be directed to a selection screen for which pack we want to look at
@@ -476,6 +478,24 @@ class _ChatDetailsState extends State<ChatDetails> {
                                     ),
                                 ],
                               ),
+                            ListTile(
+                              title: Text(L10n.of(context).editChatPermissions),
+                              subtitle: Text(
+                                  L10n.of(context).whoCanPerformWhichAction),
+                              leading: CircleAvatar(
+                                backgroundColor:
+                                    Theme.of(context).scaffoldBackgroundColor,
+                                foregroundColor: Colors.grey,
+                                child: Icon(Icons.edit_attributes_outlined),
+                              ),
+                              onTap: () => Navigator.of(context).push(
+                                AppRoute.defaultRoute(
+                                  context,
+                                  ChatPermissionsSettingsView(
+                                      roomId: widget.room.id),
+                                ),
+                              ),
+                            ),
                             Divider(thickness: 1),
                             ListTile(
                               title: Text(
