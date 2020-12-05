@@ -67,12 +67,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "archive": "Archiv",
+  "archive": "Archivovat",
   "@archive": {
     "type": "text",
     "placeholders": {}
   },
-  "archivedRoom": "Archivované místnosti",
+  "archivedRoom": "Archivovaná místnost",
   "@archivedRoom": {
     "type": "text",
     "placeholders": {}
@@ -87,12 +87,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSCache": "Prosím zadajte vaší přístupovu frázi k „bezpečému úložišti“ anebo „klíč na obnovu“ pro uložení klíčů.",
+  "askSSSSCache": "Prosím zadejte vaší přístupovu frázi k „bezpečému úložišti“ anebo „klíč na obnovu“ pro uložení klíčů.",
   "@askSSSSCache": {
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSSign": "Pro ověření této osoby, zadejte prosím přístupovou frázi k „bezpečnému úložišti“ anebo „klíč pro obnovu“.",
+  "askSSSSSign": "Pro ověření této osoby zadejte prosím přístupovou frázi k „bezpečnému úložišti“ anebo „klíč pro obnovu“.",
   "@askSSSSSign": {
     "type": "text",
     "placeholders": {}
@@ -119,7 +119,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "banFromChat": "Zabanovat z diskuze",
+  "banFromChat": "Zakázat chat",
   "@banFromChat": {
     "type": "text",
     "placeholders": {}
@@ -159,14 +159,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "changedTheChatAvatar": "{username} změnili svůj avatar",
+  "changedTheChatAvatar": "{username} změnil avatar chatu",
   "@changedTheChatAvatar": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheChatDescriptionTo": "{username} změnili popis diskuze na: „{description}“",
+  "changedTheChatDescriptionTo": "{username} změnili popis chatu na: „{description}“",
   "@changedTheChatDescriptionTo": {
     "type": "text",
     "placeholders": {
@@ -174,7 +174,7 @@
       "description": {}
     }
   },
-  "changedTheChatNameTo": "{username} změnili jméno diskuze na: „{chatname}“",
+  "changedTheChatNameTo": "{username} změnili jméno chatu na: „{chatname}“",
   "@changedTheChatNameTo": {
     "type": "text",
     "placeholders": {
@@ -182,7 +182,7 @@
       "chatname": {}
     }
   },
-  "changedTheChatPermissions": "{username} změnili nastavení oprávnění v diskuzi",
+  "changedTheChatPermissions": "{username} změnili nastavení oprávnění v chatu",
   "@changedTheChatPermissions": {
     "type": "text",
     "placeholders": {
@@ -273,7 +273,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changeTheHomeserver": "Změnit použitý server",
+  "changeTheHomeserver": "Změňte domovský server",
   "@changeTheHomeserver": {
     "type": "text",
     "placeholders": {}
@@ -288,7 +288,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changeTheServer": "Změnit server",
+  "changeTheServer": "Změňte server",
   "@changeTheServer": {
     "type": "text",
     "placeholders": {}
@@ -303,12 +303,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "chat": "Diskuze",
+  "chat": "Chat",
   "@chat": {
     "type": "text",
     "placeholders": {}
   },
-  "chatDetails": "Detail diskuze",
+  "chatDetails": "Bližší údaje o chatu",
   "@chatDetails": {
     "type": "text",
     "placeholders": {}
@@ -407,14 +407,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "createdTheChat": "{username} založil diskuzi",
+  "createdTheChat": "{username} založil chat",
   "@createdTheChat": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "createNewGroup": "Založit skupinu",
+  "createNewGroup": "Založit novou skupinu",
   "@createNewGroup": {
     "type": "text",
     "placeholders": {}
@@ -429,7 +429,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "currentlyActive": "Momentálně aktivní",
+  "currentlyActive": "Aktuálně aktivní",
   "@currentlyActive": {
     "type": "text",
     "placeholders": {}
@@ -474,7 +474,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "deny": "Zakázat",
+  "deny": "Odmítnout",
   "@deny": {
     "type": "text",
     "placeholders": {}
@@ -489,7 +489,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "discardPicture": "Vyřadit obrázek",
+  "discardPicture": "Zahodit obrázek",
   "@discardPicture": {
     "type": "text",
     "placeholders": {}
@@ -534,17 +534,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteShortcode": "Označení emotikony",
+  "emoteShortcode": "Kód emotikonu",
   "@emoteShortcode": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteWarnNeedToPick": "Musíte zvolit označení emotikony a obrázek!",
+  "emoteWarnNeedToPick": "Musíte si vybrat kód emoce a obrázek!",
   "@emoteWarnNeedToPick": {
     "type": "text",
     "placeholders": {}
   },
-  "emptyChat": "Prázdná diskuze",
+  "emptyChat": "Prázdný chat",
   "@emptyChat": {
     "type": "text",
     "placeholders": {}
@@ -581,7 +581,7 @@
       "senderName": {}
     }
   },
-  "enterAGroupName": "Zadejte jméno skupiny",
+  "enterAGroupName": "Zadejte název skupiny",
   "@enterAGroupName": {
     "type": "text",
     "placeholders": {}
@@ -591,7 +591,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enterYourHomeserver": "Zadejte adresu serveru",
+  "enterYourHomeserver": "Zadejte svůj domovský server",
   "@enterYourHomeserver": {
     "type": "text",
     "placeholders": {}
@@ -621,7 +621,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "fromJoining": "Od připojení",
+  "fromJoining": "Od vstupu",
   "@fromJoining": {
     "type": "text",
     "placeholders": {}
@@ -668,7 +668,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "hasWithdrawnTheInvitationFor": "{username} vzal zpět pozvání pro {targetName}",
+  "hasWithdrawnTheInvitationFor": "{username} stáhl pozvánku pro {targetName}",
   "@hasWithdrawnTheInvitationFor": {
     "type": "text",
     "placeholders": {
@@ -681,7 +681,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "homeserverIsNotCompatible": "Server není kompatibilní",
+  "homeserverIsNotCompatible": "Domácí server není kompatibilní",
   "@homeserverIsNotCompatible": {
     "type": "text",
     "placeholders": {}
@@ -728,7 +728,7 @@
       "groupName": {}
     }
   },
-  "invited": "Pozváni",
+  "invited": "Pozvaný",
   "@invited": {
     "type": "text",
     "placeholders": {}
@@ -1728,7 +1728,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enableEmotesGlobally": "Aktivuj balíček emotikon všude",
+  "enableEmotesGlobally": "Povolit balíček emotikon všude",
   "@enableEmotesGlobally": {
     "type": "text",
     "placeholders": {}
@@ -1808,7 +1808,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "notificationsEnabledForThisAccount": "Povolená onámení pro tento účet",
+  "notificationsEnabledForThisAccount": "Oznámení povolena pro tento účet",
   "@notificationsEnabledForThisAccount": {
     "type": "text",
     "placeholders": {}
@@ -1823,7 +1823,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "botMessages": "Bot zprávy",
+  "botMessages": "Zprávy od bota",
   "@botMessages": {
     "type": "text",
     "placeholders": {}
@@ -1833,7 +1833,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteForMe": "Pozvánka pro mě",
+  "inviteForMe": "Pozvěte mě",
   "@inviteForMe": {
     "type": "text",
     "placeholders": {}
@@ -1848,7 +1848,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "directChats": "Přímé chaty",
+  "directChats": "Přímé chatování",
   "@directChats": {
     "type": "text",
     "placeholders": {}
@@ -1860,6 +1860,66 @@
   },
   "soundVibrationLedColor": "Zvuk, vibrace LED barvy",
   "@soundVibrationLedColor": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setPermissionsLevel": "Nastavit úroveň oprávnění",
+  "@setPermissionsLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setCustomEmotes": "Nastavit vlastní emoce",
+  "@setCustomEmotes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editChatPermissions": "Upravit oprávnění chatu",
+  "@editChatPermissions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whoCanPerformWhichAction": "Kdo může provést jakou akci",
+  "@whoCanPerformWhichAction": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "participant": "Účastník",
+  "@participant": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "configureChat": "Nastavení chatu",
+  "@configureChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendMessages": "Odeslat zprávy",
+  "@sendMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "defaultPermissionLevel": "Výchozí úroveň oprávnění",
+  "@defaultPermissionLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAvatar": "Upravit avatara místnosti",
+  "@editRoomAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "replaceRoomWithNewerVersion": "Nahradit místnost novou verzí",
+  "@replaceRoomWithNewerVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEncryption": "Povolit šifrování",
+  "@enableEncryption": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editBlockedServers": "Upravit blokované servery",
+  "@editBlockedServers": {
     "type": "text",
     "placeholders": {}
   }
