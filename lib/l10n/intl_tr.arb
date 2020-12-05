@@ -142,7 +142,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "byDefaultYouWillBeConnectedTo": "Varsayılan olarak {homeserver} sunucusuna bağlanacaksınız",
+  "byDefaultYouWillBeConnectedTo": "Öntanımlı olarak {homeserver} sunucusuna bağlanacaksınız",
   "@byDefaultYouWillBeConnectedTo": {
     "type": "text",
     "placeholders": {
@@ -159,7 +159,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changedTheChatAvatar": "{username} sohbet resmini değiştirdi",
+  "changedTheChatAvatar": "{username} sohbet avatarını değiştirdi",
   "@changedTheChatAvatar": {
     "type": "text",
     "placeholders": {
@@ -901,7 +901,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "FluffyChat şu anda çapraz imzalamanın etkinleştirilmesini desteklemiyor. Lütfen Element içinden etkinleştirin.",
+  "noCrossSignBootstrap": "Lütfen bunun yerine Element içinden çapraz imzalamayı açın.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -911,12 +911,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Görünüşe göre telefonunuzda Google hizmetleri yok. Bu, mahremiyetiniz için iyi bir karar! FluffyChat'te anlık bildirimler almak için microG kullanmanızı tavsiye ediyoruz: https://microg.org/",
+  "noGoogleServicesWarning": "FluffyChat'te anlık bildirimleri almak üzere Google hizmetlerini (gizliliğinizi kaybetmeden) almak için https://microg.org/ kullanın:",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "FluffyChat şu anda çevrim içi anahtar yedeklemenin etkinleştirilmesini desteklemiyor. Lütfen Element içinden etkinleştirin.",
+  "noMegolmBootstrap": "Lütfen bunun yerine Element içinden çevrim içi anahtar yedeklemeyi açın.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -1015,7 +1015,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterAMatrixIdentifier": "Lütfen bir matrix tanımlayıcısı girin",
+  "pleaseEnterAMatrixIdentifier": "Lütfen bir Matrix kimliği girin.",
   "@pleaseEnterAMatrixIdentifier": {
     "type": "text",
     "placeholders": {}
@@ -1768,7 +1768,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "withTheseAddressesRecoveryDescription": "Bu adresler ile ihtiyacınız olursa parolanızı kurtarabilirsiniz.",
+  "withTheseAddressesRecoveryDescription": "Bu adresler ile parolanızı kurtarabilirsiniz.",
   "@withTheseAddressesRecoveryDescription": {
     "type": "text",
     "placeholders": {}
@@ -1860,6 +1860,66 @@
   },
   "soundVibrationLedColor": "Ses, titreşim, LED rengi",
   "@soundVibrationLedColor": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setPermissionsLevel": "İzin seviyesini ayarla",
+  "@setPermissionsLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setCustomEmotes": "Özel ifadeler ayarla",
+  "@setCustomEmotes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editChatPermissions": "Sohbet izinlerini düzenle",
+  "@editChatPermissions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whoCanPerformWhichAction": "Kim hangi eylemi gerçekleştirebilir",
+  "@whoCanPerformWhichAction": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "participant": "Katılımcı",
+  "@participant": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "configureChat": "Sohbeti yapılandır",
+  "@configureChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendMessages": "Mesaj gönder",
+  "@sendMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "defaultPermissionLevel": "Öntanımlı izin seviyesi",
+  "@defaultPermissionLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAvatar": "Oda avatarını düzenle",
+  "@editRoomAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "replaceRoomWithNewerVersion": "Odayı yeni sürümle değiştir",
+  "@replaceRoomWithNewerVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEncryption": "Şifrelemeyi etkinleştir",
+  "@enableEncryption": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editBlockedServers": "Engellenen sunucuları düzenle",
+  "@editBlockedServers": {
     "type": "text",
     "placeholders": {}
   }
