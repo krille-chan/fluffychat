@@ -2590,5 +2590,20 @@
     "placeholders": {
       "unreadCount": {}
     }
+  },
+  "pleaseEnterAMatrixIdentifier": "",
+  "@pleaseEnterAMatrixIdentifier": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pickImage": "",
+  "@pickImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "withTheseAddressesRecoveryDescription": "",
+  "@withTheseAddressesRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
   }
 }
