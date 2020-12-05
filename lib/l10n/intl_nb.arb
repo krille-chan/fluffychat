@@ -1424,5 +1424,481 @@
   "@directChats": {
     "type": "text",
     "placeholders": {}
+  },
+  "pleaseEnterAMatrixIdentifier": "Skriv inn en Matrix-ID.",
+  "@pleaseEnterAMatrixIdentifier": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noCrossSignBootstrap": "Skru på videreformidling av tillit fra Element istedenfor.",
+  "@noCrossSignBootstrap": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "crossSigningEnabled": "Videreformidling av tillit på",
+  "@crossSigningEnabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noGoogleServicesWarning": "Bruk https://microg.org/ for å få Google-tjenester (uten at det går ut over personvernet) for å få push-merknader i FluffyChat:",
+  "@noGoogleServicesWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noMegolmBootstrap": "Skru på nettbasert sikkerhetskopiering av nøkler fra Element istedenfor.",
+  "@noMegolmBootstrap": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "crossSigningDisabled": "Videreformidling av tillit på",
+  "@crossSigningDisabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "withTheseAddressesRecoveryDescription": "Med disse adressene kan du gjenopprette passordet ditt hvis du trenger det.",
+  "@withTheseAddressesRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "welcomeText": "Velkommen til det søteste lynmeldingsprogrammet i Matrix-nettverket",
+  "@welcomeText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "weSentYouAnEmail": "Du har fått en e-post",
+  "@weSentYouAnEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "warningEncryptionInBeta": "Ende-til-ende -kryptering er i beta. Bruk på egen risiko.",
+  "@warningEncryptionInBeta": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "waitingPartnerNumbers": "Venter på at samtalepartner skal godta tallene …",
+  "@waitingPartnerNumbers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "voiceMessage": "Lydmelding",
+  "@voiceMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyTitle": "Bekrefter annen konto",
+  "@verifyTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifySuccess": "Du har bekreftet.",
+  "@verifySuccess": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifiedSession": "Økt bekreftet.",
+  "@verifiedSession": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknownEvent": "Ukjent hendelse «{type}».",
+  "@unknownEvent": {
+    "type": "text",
+    "placeholders": {
+      "type": {}
+    }
+  },
+  "unknownSessionVerify": "Ukjent økt. Bekreft den.",
+  "@unknownSessionVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sentCallInformations": "{senderName} sendte anropsinfo",
+  "@sentCallInformations": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "soundVibrationLedColor": "Lyd, LED-farge for vibrasjon",
+  "@soundVibrationLedColor": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setPermissionsLevel": "Sett tilgangsnivå",
+  "@setPermissionsLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setCustomEmotes": "Sett tilpassede smilefjes",
+  "@setCustomEmotes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editChatPermissions": "Rediger sludringstilganger",
+  "@editChatPermissions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whoCanPerformWhichAction": "Hvem kan utføre hvilken handling",
+  "@whoCanPerformWhichAction": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "participant": "Deltager",
+  "@participant": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "defaultPermissionLevel": "Forvalgt tilgangsnivå",
+  "@defaultPermissionLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAvatar": "Rediger romavatar",
+  "@editRoomAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "replaceRoomWithNewerVersion": "Erstatt rom med nyere versjon",
+  "@replaceRoomWithNewerVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEncryption": "Skru på kryptering",
+  "@enableEncryption": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editBlockedServers": "Rediger blokkerte tjenere",
+  "@editBlockedServers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "seenByUserAndCountOthers": "Sett av {username} og {count} andre",
+  "@seenByUserAndCountOthers": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "count": {}
+    }
+  },
+  "sentryInfo": "Personvernsinfo: https://sentry.io/security/",
+  "@sentryInfo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendBugReports": "Tillat forsendelse av feilrapporter med sentry.io",
+  "@sendBugReports": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sharedTheLocation": "{username} delte posisjonen",
+  "@sharedTheLocation": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "removeExile": "Opphev bannlysning",
+  "@removeExile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "recording": "Opptak",
+  "@recording": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "renderRichContent": "Tegn rikt meldingsinnhold",
+  "@renderRichContent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reject": "Avslå",
+  "@reject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseClickOnLink": "Klikk på lenken i e-posten og fortsett.",
+  "@pleaseClickOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordForgotten": "Passord glemt",
+  "@passwordForgotten": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passphraseOrKey": "Passord eller gjenopprettingsnøkkel",
+  "@passphraseOrKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "participatingUserDevices": "Deltagende brukerenheter",
+  "@participatingUserDevices": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "onlineKeyBackupEnabled": "Nettbasert sikkerhetskopiering av nøkler på",
+  "@onlineKeyBackupEnabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "onlineKeyBackupDisabled": "Nettbasert sikkerhetskopiering av nøkler avskrudd",
+  "@onlineKeyBackupDisabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notSupportedInWeb": "Ikke støttet på vev-versjonen",
+  "@notSupportedInWeb": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noEmotesFound": "Fant ingen smilefjes. 😕",
+  "@noEmotesFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "none": "Ingen",
+  "@none": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "messageWillBeRemovedWarning": "Meldingen vil bli fjernet for alle deltagere",
+  "@messageWillBeRemovedWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "makeSureTheIdentifierIsValid": "Forsikre deg om at identifikatoren er gyldig",
+  "@makeSureTheIdentifierIsValid": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "incorrectPassphraseOrKey": "Feilaktig passord eller gjenopprettingsnøkkel",
+  "@incorrectPassphraseOrKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignoreListDescription": "Du kan ignorere brukere som forstyrrer deg. Du vil ikke lenger kunne motta meldinger eller rominvitasjoner fra brukere på din personlige ignoreringsliste.",
+  "@ignoreListDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEncryptionWarning": "Du vil ikke kunne skru av kryptering lenger. Er du sikker?",
+  "@enableEncryptionWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromJoining": "Fra å ta del",
+  "@fromJoining": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEmotesGlobally": "Skru på smilefjespakke for hele programmet",
+  "@enableEmotesGlobally": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteForMe": "Invitasjon for meg",
+  "@inviteForMe": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deactivateAccountWarning": "Dette vil skru av din brukerkonto for godt, og kan ikke angres! Er du sikker?",
+  "@deactivateAccountWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "currentlyActive": "Aktiv nå",
+  "@currentlyActive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "compareNumbersMatch": "Sammenlign og forsikre at følgende tall samsvarer med de på den andre enheten:",
+  "@compareNumbersMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "compareEmojiMatch": "Sammenlign og forsikre at følgende smilefjes samsvarer med de på den andre enheten:",
+  "@compareEmojiMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hasWithdrawnTheInvitationFor": "{username} har trukket tilbake invitasjonen til {targetName}",
+  "@hasWithdrawnTheInvitationFor": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "notificationsEnabledForThisAccount": "Merknader påslått for denne kontoen",
+  "@notificationsEnabledForThisAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pushRules": "Dyttingsregler",
+  "@pushRules": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "botMessages": "Bot-meldinger",
+  "@botMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "memberChanges": "Medlemsendringer",
+  "@memberChanges": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emotePacks": "Smilefjespakker for rommet",
+  "@emotePacks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteInvalid": "Ugyldig smilefjes-kode.",
+  "@emoteInvalid": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteExists": "Smilefjeset finnes allerede.",
+  "@emoteExists": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteWarnNeedToPick": "Du må velge en smilefjes-kode og et bilde.",
+  "@emoteWarnNeedToPick": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteShortcode": "Smilefjes-kode",
+  "@emoteShortcode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteSettings": "Smilefjes-innstillinger",
+  "@emoteSettings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "channelCorruptedDecryptError": "Krypteringen er skadet",
+  "@channelCorruptedDecryptError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "archive": "Arkiv",
+  "@archive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yes": "Ja",
+  "@yes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "writeAMessage": "Skriv en melding …",
+  "@writeAMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whoIsAllowedToJoinThisGroup": "Hvem tillates å ta del i denne gruppen",
+  "@whoIsAllowedToJoinThisGroup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "visibilityOfTheChatHistory": "Sludrehistorikkens synlighet",
+  "@visibilityOfTheChatHistory": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unblockDevice": "Opphev blokkering av enhet",
+  "@unblockDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unbannedUser": "{username} opphevet bannlysning av {targetName}",
+  "@unbannedUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "thisRoomHasBeenArchived": "Dette rommet har blitt arkivert.",
+  "@thisRoomHasBeenArchived": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "theyMatch": "Samsvarer",
+  "@theyMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "theyDontMatch": "Samsvarer ikke",
+  "@theyDontMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "startYourFirstChat": "Start din første sludring :-)",
+  "@startYourFirstChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "useAmoledTheme": "Bruk AMOLED-kompatible farger?",
+  "@useAmoledTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sentASticker": "{username} sendte et klistremerke",
+  "@sentASticker": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "configureChat": "Sett opp sludring",
+  "@configureChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendMessages": "Send meldinger",
+  "@sendMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "rejectedTheInvitation": "{username} avslo invitasjonen",
+  "@rejectedTheInvitation": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "redactedAnEvent": "{username} har trukket tilbake en hendelse",
+  "@redactedAnEvent": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "passwordRecovery": "Passordgjenoppretting",
+  "@passwordRecovery": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "isTyping": "Du kjenner blott blodets hvisken og benpipernes bøn fra det ubevisste sjeleliv …",
+  "@isTyping": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideRedactedEvents": "Skjul tilbaketrukne hendelser",
+  "@hideRedactedEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "authentication": "Identitetsbekreftelse",
+  "@authentication": {
+    "type": "text",
+    "placeholders": {}
   }
 }
