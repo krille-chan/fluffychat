@@ -2607,5 +2607,10 @@
     "placeholders": {}
   },
   "placeCall": "",
-  "@placeCall": {}
+  "@placeCall": {},
+  "noGoogleServicesWarning": "",
+  "@noGoogleServicesWarning": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
