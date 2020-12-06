@@ -948,7 +948,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "Fluffychat ne permet pas actuellement d'activer la signature croisée. Veuillez l'activer à partir d'Element.",
+  "noCrossSignBootstrap": "Fluffychat ne prend actuellement pas en charge l'activation de la signature croisée. Veuillez l'activer depuis Element.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -958,7 +958,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Utilisez https://microg.org/ pour accéder aux services de Google (sans pour autant compromettre votre vie privée) et recevoir des notifications dans FluffyChat :",
+  "noGoogleServicesWarning": "Il semble que vous n'ayez aucun service Google sur votre téléphone. C'est une bonne décision pour votre vie privée ! Pour recevoir des notifications push dans FluffyChat, nous vous recommandons d'utiliser microG : https://microg.org/",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -1920,6 +1920,16 @@
   },
   "editBlockedServers": "Modifier les serveurs bloqués",
   "@editBlockedServers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noDescription": "Pas de description",
+  "@noDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discoverGroups": "Découvrez des groupes",
+  "@discoverGroups": {
     "type": "text",
     "placeholders": {}
   }
