@@ -1370,6 +1370,16 @@
       "count": {}
     }
   },
+  "discoverGroups": "Discover groups",
+  "@discoverGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noDescription": "No description",
+  "@noDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
   "editBlockedServers": "Edit blocked servers",
   "@editBlockedServers": {
     "type": "text",
