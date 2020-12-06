@@ -958,7 +958,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Il semblerait que vous n'ayez pas de services Google sur votre téléphone. C'est une bonne décision pour votre vie privée ! Pour recevoir des notifications dans FluffyChat, nous vous recommandons d'utiliser microG : https://microg.org/",
+  "noGoogleServicesWarning": "Utilisez https://microg.org/ pour accéder aux services de Google (sans pour autant compromettre votre vie privée) et recevoir des notifications dans FluffyChat :",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -1072,7 +1072,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterAMatrixIdentifier": "Veuillez renseigner un identifiant Matrix",
+  "pleaseEnterAMatrixIdentifier": "Veuillez renseigner un identifiant Matrix.",
   "@pleaseEnterAMatrixIdentifier": {
     "type": "text",
     "placeholders": {}
@@ -1863,62 +1863,62 @@
     "type": "text",
     "placeholders": {}
   },
-  "setPermissionsLevel": "",
+  "setPermissionsLevel": "Définir le niveau de permissions",
   "@setPermissionsLevel": {
     "type": "text",
     "placeholders": {}
   },
-  "setCustomEmotes": "",
+  "setCustomEmotes": "Définir des émoticônes personnalisées",
   "@setCustomEmotes": {
     "type": "text",
     "placeholders": {}
   },
-  "editChatPermissions": "",
+  "editChatPermissions": "Modifier les permissions de la conversation",
   "@editChatPermissions": {
     "type": "text",
     "placeholders": {}
   },
-  "whoCanPerformWhichAction": "",
+  "whoCanPerformWhichAction": "Qui peur faire quelle action",
   "@whoCanPerformWhichAction": {
     "type": "text",
     "placeholders": {}
   },
-  "participant": "",
+  "participant": "Participant(e)",
   "@participant": {
     "type": "text",
     "placeholders": {}
   },
-  "configureChat": "",
+  "configureChat": "Configurer la conversation",
   "@configureChat": {
     "type": "text",
     "placeholders": {}
   },
-  "sendMessages": "",
+  "sendMessages": "Envoyer des messages",
   "@sendMessages": {
     "type": "text",
     "placeholders": {}
   },
-  "defaultPermissionLevel": "",
+  "defaultPermissionLevel": "Niveau d'autorisation par défaut",
   "@defaultPermissionLevel": {
     "type": "text",
     "placeholders": {}
   },
-  "editRoomAvatar": "",
+  "editRoomAvatar": "Modifier l'avatar du salon",
   "@editRoomAvatar": {
     "type": "text",
     "placeholders": {}
   },
-  "replaceRoomWithNewerVersion": "",
+  "replaceRoomWithNewerVersion": "Remplacer le salon par une nouvelle version",
   "@replaceRoomWithNewerVersion": {
     "type": "text",
     "placeholders": {}
   },
-  "enableEncryption": "",
+  "enableEncryption": "Activer le chiffrement",
   "@enableEncryption": {
     "type": "text",
     "placeholders": {}
   },
-  "editBlockedServers": "",
+  "editBlockedServers": "Modifier les serveurs bloqués",
   "@editBlockedServers": {
     "type": "text",
     "placeholders": {}
