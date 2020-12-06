@@ -94,8 +94,12 @@ class _EncryptionButtonState extends State<EncryptionButton> {
             color = null;
           }
           return IconButton(
-            icon: Icon(widget.room.encrypted ? Icons.lock : Icons.lock_open,
-                size: 20, color: color),
+            icon: Icon(
+                widget.room.encrypted
+                    ? Icons.lock_outlined
+                    : Icons.lock_open_outlined,
+                size: 20,
+                color: color),
             onPressed: _enableEncryptionAction,
           );
         });

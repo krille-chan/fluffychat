@@ -31,12 +31,12 @@ class ImageView extends StatelessWidget {
         backgroundColor: Color(0x44000000),
         actions: [
           IconButton(
-            icon: Icon(Icons.reply),
+            icon: Icon(Icons.reply_outlined),
             onPressed: () => _forwardAction(context),
             color: Colors.white,
           ),
           IconButton(
-            icon: Icon(Icons.file_download),
+            icon: Icon(Icons.download_outlined),
             onPressed: () => event.openFile(context, downloadOnly: true),
             color: Colors.white,
           ),

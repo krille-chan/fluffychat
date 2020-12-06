@@ -145,7 +145,7 @@ class _InvitationSelectionState extends State<InvitationSelection> {
                             height: 12,
                             child: CircularProgressIndicator(),
                           )
-                        : Icon(Icons.search),
+                        : Icon(Icons.search_outlined),
                   ),
                 ),
               ),

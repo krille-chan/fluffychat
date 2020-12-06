@@ -53,7 +53,7 @@ class SettingsIgnoreList extends StatelessWidget {
                     prefixText: '@',
                     labelText: L10n.of(context).ignoreUsername,
                     suffixIcon: IconButton(
-                      icon: Icon(Icons.done),
+                      icon: Icon(Icons.done_outlined),
                       onPressed: () => _ignoreUser(context),
                     ),
                   ),
@@ -85,7 +85,7 @@ class SettingsIgnoreList extends StatelessWidget {
                         title:
                             Text(s.data?.displayname ?? client.ignoredUsers[i]),
                         trailing: IconButton(
-                          icon: Icon(Icons.delete_forever),
+                          icon: Icon(Icons.delete_forever_outlined),
                           onPressed: () => SimpleDialogs(context)
                               .tryRequestWithLoadingDialog(
                             client.unignoreUser(client.ignoredUsers[i]),

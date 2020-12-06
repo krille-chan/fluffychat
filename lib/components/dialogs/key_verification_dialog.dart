@@ -236,7 +236,7 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
       case KeyVerificationState.done:
         body = Column(
           children: <Widget>[
-            Icon(Icons.check_circle, color: Colors.green, size: 200.0),
+            Icon(Icons.check_circle_outlined, color: Colors.green, size: 200.0),
             SizedBox(height: 10),
             Text(
               L10n.of(context).verifySuccess,

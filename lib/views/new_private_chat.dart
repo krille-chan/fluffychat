@@ -156,7 +156,7 @@ class _NewPrivateChatState extends State<_NewPrivateChat> {
                                 size: 12,
                               ),
                             )
-                          : Icon(Icons.account_circle),
+                          : Icon(Icons.account_circle_outlined),
                   prefixText: '@',
                   hintText: '${L10n.of(context).username.toLowerCase()}',
                 ),
@@ -200,10 +200,7 @@ class _NewPrivateChatState extends State<_NewPrivateChat> {
             ),
           if (foundProfiles.isEmpty || correctMxId)
             ListTile(
-              trailing: Icon(
-                Icons.share,
-                size: 16,
-              ),
+              trailing: Icon(Icons.share_outlined),
               onTap: () => FluffyShare.share(
                   L10n.of(context).inviteText(Matrix.of(context).client.userID,
                       'https://matrix.to/#/${Matrix.of(context).client.userID}'),
@@ -231,7 +228,7 @@ class _NewPrivateChatState extends State<_NewPrivateChat> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => submitAction(context),
-        child: Icon(Icons.arrow_forward),
+        child: Icon(Icons.arrow_forward_outlined),
         foregroundColor: Colors.white,
         backgroundColor: Theme.of(context).primaryColor,
       ),

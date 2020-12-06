@@ -33,7 +33,7 @@ class AuthWebView extends StatelessWidget {
           LinearProgressIndicator(),
           Expanded(
             child: kIsWeb
-                ? Center(child: Icon(Icons.link))
+                ? Center(child: Icon(Icons.link_outlined))
                 : WebView(
                     initialUrl: url,
                     javascriptMode: JavascriptMode.unrestricted,

@@ -87,7 +87,7 @@ class _NewGroupState extends State<_NewGroup> {
               decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: L10n.of(context).optionalGroupName,
-                  prefixIcon: Icon(Icons.people),
+                  prefixIcon: Icon(Icons.people_outlined),
                   hintText: L10n.of(context).enterAGroupName),
             ),
           ),
@@ -105,7 +105,7 @@ class _NewGroupState extends State<_NewGroup> {
         foregroundColor: Colors.white,
         backgroundColor: Theme.of(context).primaryColor,
         onPressed: () => submitAction(context),
-        child: Icon(Icons.arrow_forward),
+        child: Icon(Icons.arrow_forward_outlined),
       ),
     );
   }

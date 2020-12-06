@@ -200,7 +200,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                     actions: <Widget>[
                       if (widget.room.canonicalAlias?.isNotEmpty ?? false)
                         IconButton(
-                          icon: Icon(Icons.share),
+                          icon: Icon(Icons.share_outlined),
                           onPressed: () => FluffyShare.share(
                               AppConfig.matrixToLinkPrefix +
                                   widget.room.canonicalAlias,
@@ -239,7 +239,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                                       backgroundColor: Theme.of(context)
                                           .scaffoldBackgroundColor,
                                       foregroundColor: Colors.grey,
-                                      child: Icon(Icons.edit),
+                                      child: Icon(Icons.edit_outlined),
                                     )
                                   : null,
                               title: Text(
@@ -282,7 +282,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                                   backgroundColor:
                                       Theme.of(context).scaffoldBackgroundColor,
                                   foregroundColor: Colors.grey,
-                                  child: Icon(Icons.people),
+                                  child: Icon(Icons.people_outlined),
                                 ),
                                 title: Text(
                                     L10n.of(context).changeTheNameOfTheGroup),
@@ -299,7 +299,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                                   backgroundColor:
                                       Theme.of(context).scaffoldBackgroundColor,
                                   foregroundColor: Colors.grey,
-                                  child: Icon(Icons.link),
+                                  child: Icon(Icons.link_outlined),
                                 ),
                                 onTap: () => setCanonicalAliasAction(context),
                                 title: Text(L10n.of(context).setInvitationLink),
@@ -314,7 +314,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                                 backgroundColor:
                                     Theme.of(context).scaffoldBackgroundColor,
                                 foregroundColor: Colors.grey,
-                                child: Icon(Icons.insert_emoticon),
+                                child: Icon(Icons.insert_emoticon_outlined),
                               ),
                               title: Text(L10n.of(context).emoteSettings),
                               subtitle: Text(L10n.of(context).setCustomEmotes),
@@ -350,7 +350,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                                     backgroundColor: Theme.of(context)
                                         .scaffoldBackgroundColor,
                                     foregroundColor: Colors.grey,
-                                    child: Icon(Icons.public)),
+                                    child: Icon(Icons.public_outlined)),
                                 title: Text(L10n.of(context)
                                     .whoIsAllowedToJoinThisGroup),
                                 subtitle: Text(
@@ -387,7 +387,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                                   backgroundColor:
                                       Theme.of(context).scaffoldBackgroundColor,
                                   foregroundColor: Colors.grey,
-                                  child: Icon(Icons.visibility),
+                                  child: Icon(Icons.visibility_outlined),
                                 ),
                                 title: Text(L10n.of(context)
                                     .visibilityOfTheChatHistory),
@@ -513,7 +513,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                                 ? ListTile(
                                     title: Text(L10n.of(context).inviteContact),
                                     leading: CircleAvatar(
-                                      child: Icon(Icons.add),
+                                      child: Icon(Icons.add_outlined),
                                       backgroundColor:
                                           Theme.of(context).primaryColor,
                                       foregroundColor: Colors.white,

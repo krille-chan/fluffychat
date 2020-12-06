@@ -70,7 +70,7 @@ class _SettingsStyleState extends State<SettingsStyle> {
                 fit: BoxFit.cover,
               ),
               trailing: Icon(
-                Icons.delete_forever,
+                Icons.delete_forever_outlined,
                 color: Colors.red,
               ),
               onTap: () => deleteWallpaperAction(context),
@@ -78,7 +78,7 @@ class _SettingsStyleState extends State<SettingsStyle> {
           Builder(builder: (context) {
             return ListTile(
               title: Text(L10n.of(context).changeWallpaper),
-              trailing: Icon(Icons.wallpaper),
+              trailing: Icon(Icons.wallpaper_outlined),
               onTap: () => setWallpaperAction(context),
             );
           }),

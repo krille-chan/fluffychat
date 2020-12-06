@@ -30,13 +30,13 @@ extension LocalizedBody on Event {
       case -1:
         return Icons.error_outline;
       case 0:
-        return Icons.timer;
+        return Icons.timer_outlined;
       case 1:
-        return Icons.done;
+        return Icons.done_outlined;
       case 2:
-        return Icons.done_all;
+        return Icons.done_all_outlined;
       default:
-        return Icons.done;
+        return Icons.done_outlined;
     }
   }
 

@@ -130,7 +130,7 @@ class _SignUpPasswordState extends State<SignUpPassword> {
           ListTile(
             leading: CircleAvatar(
               backgroundColor: Colors.white,
-              child: Icon(Icons.lock, color: Theme.of(context).primaryColor),
+              child: Icon(Icons.lock_outlined, color: Theme.of(context).primaryColor),
             ),
             title: TextField(
               controller: passwordController,
@@ -143,7 +143,7 @@ class _SignUpPasswordState extends State<SignUpPassword> {
                   errorText: passwordError,
                   suffixIcon: IconButton(
                     icon: Icon(
-                        showPassword ? Icons.visibility_off : Icons.visibility),
+                        showPassword ? Icons.visibility_off_outlined : Icons.visibility_outlined),
                     onPressed: () =>
                         setState(() => showPassword = !showPassword),
                   ),

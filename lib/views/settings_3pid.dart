@@ -126,7 +126,7 @@ class _Settings3PidState extends State<Settings3Pid> {
         title: Text(L10n.of(context).passwordRecovery),
         actions: [
           IconButton(
-            icon: Icon(Icons.add),
+            icon: Icon(Icons.add_outlined),
             onPressed: () => _add3PidAction(context),
           )
         ],
@@ -155,7 +155,9 @@ class _Settings3PidState extends State<Settings3Pid> {
                   foregroundColor:
                       identifier.isEmpty ? Colors.orange : Colors.grey,
                   child: Icon(
-                    identifier.isEmpty ? Icons.warning : Icons.info,
+                    identifier.isEmpty
+                        ? Icons.warning_outlined
+                        : Icons.info_outlined,
                   ),
                 ),
                 title: Text(
@@ -176,7 +178,7 @@ class _Settings3PidState extends State<Settings3Pid> {
                         child: Icon(identifier[i].iconData)),
                     title: Text(identifier[i].address),
                     trailing: IconButton(
-                      icon: Icon(Icons.delete_forever),
+                      icon: Icon(Icons.delete_forever_outlined),
                       color: Colors.red,
                       onPressed: () => _delete3Pid(context, identifier[i]),
                     ),

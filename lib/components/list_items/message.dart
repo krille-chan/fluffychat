@@ -261,7 +261,7 @@ class _MetaRow extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 2.0),
             child: Icon(
-              Icons.edit,
+              Icons.edit_outlined,
               size: 12,
               color: color,
             ),

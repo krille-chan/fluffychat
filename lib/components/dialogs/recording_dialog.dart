@@ -90,7 +90,7 @@ class _RecordingDialogState extends State<RecordingDialog> {
             children: <Widget>[
               Text(L10n.of(context).send.toUpperCase()),
               SizedBox(width: 4),
-              Icon(Icons.send, size: 15),
+              Icon(Icons.send_outlined, size: 15),
             ],
           ),
           onPressed: () async {

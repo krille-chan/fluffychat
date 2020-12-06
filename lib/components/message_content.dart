@@ -146,7 +146,7 @@ class MessageContent extends StatelessWidget {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    Icon(Icons.phone),
+                    Icon(Icons.phone_outlined),
                     SizedBox(width: 8),
                     Text(L10n.of(context).videoCall),
                   ],

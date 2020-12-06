@@ -197,7 +197,7 @@ class ChatListItem extends StatelessWidget {
               },
               if (typingText.isNotEmpty) ...{
                 Icon(
-                  Icons.edit,
+                  Icons.edit_outlined,
                   color: Theme.of(context).primaryColor,
                   size: 14,
                 ),

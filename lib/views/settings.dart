@@ -295,7 +295,7 @@ class _SettingsState extends State<Settings> {
               background: ContentBanner(
                 profile?.avatarUrl,
                 height: 300,
-                defaultIcon: Icons.account_circle,
+                defaultIcon: Icons.account_circle_outlined,
                 loading: profile == null,
                 onEdit: () => setAvatarAction(context),
               ),
@@ -314,7 +314,7 @@ class _SettingsState extends State<Settings> {
               ),
             ),
             ListTile(
-              trailing: Icon(Icons.notifications),
+              trailing: Icon(Icons.notifications_outlined),
               title: Text(L10n.of(context).notifications),
               onTap: () async => await Navigator.of(context).push(
                 AppRoute.defaultRoute(
@@ -340,7 +340,7 @@ class _SettingsState extends State<Settings> {
                   SettingsStyleView(),
                 ),
               ),
-              trailing: Icon(Icons.wallpaper),
+              trailing: Icon(Icons.style_outlined),
             ),
             SwitchListTile(
               title: Text(L10n.of(context).renderRichContent),
@@ -381,7 +381,7 @@ class _SettingsState extends State<Settings> {
                   EmotesSettingsView(),
                 ),
               ),
-              trailing: Icon(Icons.insert_emoticon),
+              trailing: Icon(Icons.insert_emoticon_outlined),
             ),
             Divider(thickness: 1),
             ListTile(
@@ -394,19 +394,19 @@ class _SettingsState extends State<Settings> {
               ),
             ),
             ListTile(
-              trailing: Icon(Icons.edit),
+              trailing: Icon(Icons.edit_outlined),
               title: Text(L10n.of(context).editDisplayname),
               subtitle: Text(profile?.displayname ?? client.userID.localpart),
               onTap: () => setDisplaynameAction(context),
             ),
             ListTile(
-              trailing: Icon(Icons.phone),
+              trailing: Icon(Icons.phone_outlined),
               title: Text(L10n.of(context).editJitsiInstance),
               subtitle: Text(Matrix.of(context).jitsiInstance),
               onTap: () => setJitsiInstanceAction(context),
             ),
             ListTile(
-              trailing: Icon(Icons.devices_other),
+              trailing: Icon(Icons.devices_other_outlined),
               title: Text(L10n.of(context).devices),
               onTap: () async => await Navigator.of(context).push(
                 AppRoute.defaultRoute(
@@ -416,7 +416,7 @@ class _SettingsState extends State<Settings> {
               ),
             ),
             ListTile(
-              trailing: Icon(Icons.block),
+              trailing: Icon(Icons.block_outlined),
               title: Text(L10n.of(context).ignoredUsers),
               onTap: () async => await Navigator.of(context).push(
                 AppRoute.defaultRoute(
@@ -426,7 +426,7 @@ class _SettingsState extends State<Settings> {
               ),
             ),
             ListTile(
-              trailing: Icon(Icons.account_circle),
+              trailing: Icon(Icons.account_circle_outlined),
               title: Text(L10n.of(context).accountInformation),
               onTap: () => Navigator.of(context).push(
                 AppRoute.defaultRoute(
@@ -436,20 +436,20 @@ class _SettingsState extends State<Settings> {
               ),
             ),
             ListTile(
-              trailing: Icon(Icons.bug_report),
+              trailing: Icon(Icons.bug_report_outlined),
               title: Text(L10n.of(context).sendBugReports),
               onTap: () => SentryController.toggleSentryAction(context),
             ),
             Divider(thickness: 1),
             ListTile(
-              trailing: Icon(Icons.vpn_key),
+              trailing: Icon(Icons.vpn_key_outlined),
               title: Text(
                 L10n.of(context).changePassword,
               ),
               onTap: () => _changePasswordAccountAction(context),
             ),
             ListTile(
-              trailing: Icon(Icons.email),
+              trailing: Icon(Icons.email_outlined),
               title: Text(L10n.of(context).passwordRecovery),
               onTap: () => Navigator.of(context).push(
                 AppRoute.defaultRoute(
@@ -459,12 +459,12 @@ class _SettingsState extends State<Settings> {
               ),
             ),
             ListTile(
-              trailing: Icon(Icons.exit_to_app),
+              trailing: Icon(Icons.exit_to_app_outlined),
               title: Text(L10n.of(context).logout),
               onTap: () => logoutAction(context),
             ),
             ListTile(
-              trailing: Icon(Icons.delete_forever),
+              trailing: Icon(Icons.delete_forever_outlined),
               title: Text(
                 L10n.of(context).deleteAccount,
                 style: TextStyle(color: Colors.red),
@@ -482,7 +482,7 @@ class _SettingsState extends State<Settings> {
               ),
             ),
             ListTile(
-              trailing: Icon(Icons.compare_arrows),
+              trailing: Icon(Icons.compare_arrows_outlined),
               title: Text(client.encryption.crossSigning.enabled
                   ? L10n.of(context).crossSigningEnabled
                   : L10n.of(context).crossSigningDisabled),
@@ -562,7 +562,7 @@ class _SettingsState extends State<Settings> {
               },
             ),
             ListTile(
-              trailing: Icon(Icons.wb_cloudy),
+              trailing: Icon(Icons.wb_cloudy_outlined),
               title: Text(client.encryption.keyManager.enabled
                   ? L10n.of(context).onlineKeyBackupEnabled
                   : L10n.of(context).onlineKeyBackupDisabled),
@@ -597,17 +597,17 @@ class _SettingsState extends State<Settings> {
               ),
             ),
             ListTile(
-              trailing: Icon(Icons.help),
+              trailing: Icon(Icons.help_outlined),
               title: Text(L10n.of(context).help),
               onTap: () => launch(AppConfig.supportUrl),
             ),
             ListTile(
-              trailing: Icon(Icons.privacy_tip_rounded),
+              trailing: Icon(Icons.privacy_tip_outlined),
               title: Text(L10n.of(context).privacy),
               onTap: () => launch(AppConfig.privacyUrl),
             ),
             ListTile(
-              trailing: Icon(Icons.link),
+              trailing: Icon(Icons.link_outlined),
               title: Text(L10n.of(context).license),
               onTap: () => showLicensePage(
                 context: context,
@@ -617,7 +617,7 @@ class _SettingsState extends State<Settings> {
               ),
             ),
             ListTile(
-              trailing: Icon(Icons.code),
+              trailing: Icon(Icons.code_outlined),
               title: Text(L10n.of(context).sourceCode),
               onTap: () => launch(AppConfig.sourceCodeUrl),
             ),

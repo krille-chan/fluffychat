@@ -99,7 +99,7 @@ class DevicesSettingsState extends State<DevicesSettings> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  Icon(Icons.error),
+                  Icon(Icons.error_outlined),
                   Text(snapshot.error.toString()),
                 ],
               ),

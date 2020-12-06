@@ -191,13 +191,13 @@ class MatrixState extends State<Matrix> {
                 Spacer(),
                 FloatingActionButton(
                   backgroundColor: Colors.red,
-                  child: Icon(Icons.phone_missed),
+                  child: Icon(Icons.phone_missed_outlined),
                   onPressed: () => Navigator.of(context).pop(),
                 ),
                 Spacer(),
                 FloatingActionButton(
                   backgroundColor: Colors.green,
-                  child: Icon(Icons.phone),
+                  child: Icon(Icons.phone_outlined),
                   onPressed: () {
                     Navigator.of(context).pop();
                     launch(event.body);

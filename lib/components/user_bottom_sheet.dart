@@ -105,7 +105,7 @@ class UserBottomSheet extends StatelessWidget {
         PopupMenuItem(
             child: _TextWithIcon(
               L10n.of(context).sendAMessage,
-              Icons.send,
+              Icons.send_outlined,
             ),
             value: 'message'),
       );
@@ -171,7 +171,7 @@ class UserBottomSheet extends StatelessWidget {
                   if (verificationStatus != null)
                     IconButton(
                       icon: Icon(
-                        Icons.lock,
+                        Icons.lock_outlined,
                         color: {
                               UserVerifiedStatus.unknownDevice: Colors.red,
                               UserVerifiedStatus.verified: Colors.green,
@@ -202,7 +202,7 @@ class UserBottomSheet extends StatelessWidget {
                   ListTile(
                     title: Text(L10n.of(context).username),
                     subtitle: Text(user.id),
-                    trailing: Icon(Icons.share),
+                    trailing: Icon(Icons.share_outlined),
                     onTap: () => FluffyShare.share(user.id, context),
                   ),
                   if (presence != null)

@@ -64,7 +64,7 @@ class ContentBanner extends StatelessWidget {
               child: FloatingActionButton(
                 mini: true,
                 backgroundColor: Theme.of(context).primaryColor,
-                child: Icon(Icons.camera_alt),
+                child: Icon(Icons.camera_alt_outlined),
                 onPressed: onEdit,
               ),
             ),

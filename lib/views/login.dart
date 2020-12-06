@@ -176,7 +176,7 @@ class _LoginState extends State<Login> {
           children: <Widget>[
             ListTile(
               leading: CircleAvatar(
-                child: Icon(Icons.account_box,
+                child: Icon(Icons.account_box_outlined,
                     color: Theme.of(context).primaryColor),
               ),
               title: TextField(
@@ -197,7 +197,8 @@ class _LoginState extends State<Login> {
                 backgroundColor: Theme.of(context).brightness == Brightness.dark
                     ? Color(0xff121212)
                     : Colors.white,
-                child: Icon(Icons.lock, color: Theme.of(context).primaryColor),
+                child: Icon(Icons.lock_outlined,
+                    color: Theme.of(context).primaryColor),
               ),
               title: TextField(
                 readOnly: loading,
@@ -210,8 +211,8 @@ class _LoginState extends State<Login> {
                     errorText: passwordError,
                     suffixIcon: IconButton(
                       icon: Icon(showPassword
-                          ? Icons.visibility_off
-                          : Icons.visibility),
+                          ? Icons.visibility_off_outlined
+                          : Icons.visibility_outlined),
                       onPressed: () =>
                           setState(() => showPassword = !showPassword),
                     ),

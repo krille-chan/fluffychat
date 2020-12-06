@@ -300,7 +300,7 @@ class _ChatListState extends State<ChatList> {
                               padding: EdgeInsets.zero,
                               children: <Widget>[
                                 ListTile(
-                                  leading: Icon(Icons.edit),
+                                  leading: Icon(Icons.edit_outlined),
                                   title: Text(L10n.of(context).setStatus),
                                   onTap: () => _setStatus(context),
                                 ),
@@ -311,21 +311,21 @@ class _ChatListState extends State<ChatList> {
                                   onTap: () => _drawerTapAction(NewGroupView()),
                                 ),
                                 ListTile(
-                                  leading: Icon(Icons.person_add),
+                                  leading: Icon(Icons.person_add_outlined),
                                   title: Text(L10n.of(context).newPrivateChat),
                                   onTap: () =>
                                       _drawerTapAction(NewPrivateChatView()),
                                 ),
                                 Divider(height: 1),
                                 ListTile(
-                                  leading: Icon(Icons.archive),
+                                  leading: Icon(Icons.archive_outlined),
                                   title: Text(L10n.of(context).archive),
                                   onTap: () => _drawerTapAction(
                                     Archive(),
                                   ),
                                 ),
                                 ListTile(
-                                  leading: Icon(Icons.settings),
+                                  leading: Icon(Icons.settings_outlined),
                                   title: Text(L10n.of(context).settings),
                                   onTap: () => _drawerTapAction(
                                     SettingsView(),
@@ -333,7 +333,7 @@ class _ChatListState extends State<ChatList> {
                                 ),
                                 Divider(height: 1),
                                 ListTile(
-                                  leading: Icon(Icons.share),
+                                  leading: Icon(Icons.share_outlined),
                                   title: Text(L10n.of(context).inviteContact),
                                   onTap: () {
                                     Navigator.of(context).pop();
@@ -375,11 +375,11 @@ class _ChatListState extends State<ChatList> {
                               ),
                             if (_selectedRoomIds.length == 1)
                               IconButton(
-                                icon: Icon(Icons.notifications_none),
+                                icon: Icon(Icons.notifications_none_outlined),
                                 onPressed: () => _toggleMuted(context),
                               ),
                             IconButton(
-                              icon: Icon(Icons.archive),
+                              icon: Icon(Icons.archive_outlined),
                               onPressed: () => _archiveAction(context),
                             ),
                           ],
@@ -409,7 +409,8 @@ class _ChatListState extends State<ChatList> {
                                       hintText: L10n.of(context).searchForAChat,
                                       suffixIcon: searchMode
                                           ? IconButton(
-                                              icon: Icon(Icons.backspace),
+                                              icon: Icon(
+                                                  Icons.backspace_outlined),
                                               onPressed: () => setState(() {
                                                 searchController.clear();
                                                 _searchFocusNode.unfocus();
@@ -424,7 +425,7 @@ class _ChatListState extends State<ChatList> {
                   floatingActionButton: AdaptivePageLayout.columnMode(context)
                       ? null
                       : FloatingActionButton(
-                          child: Icon(Icons.add),
+                          child: Icon(Icons.add_outlined),
                           backgroundColor: Theme.of(context).primaryColor,
                           onPressed: () => Navigator.of(context)
                               .pushAndRemoveUntil(
@@ -471,7 +472,7 @@ class _ChatListState extends State<ChatList> {
                                           children: <Widget>[
                                             Icon(
                                               searchMode
-                                                  ? Icons.search
+                                                  ? Icons.search_outlined
                                                   : Icons.chat_bubble_outline,
                                               size: 80,
                                               color: Colors.grey,
