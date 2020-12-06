@@ -1922,5 +1922,15 @@
   "@editBlockedServers": {
     "type": "text",
     "placeholders": {}
+  },
+  "noDescription": "Açıklama yok",
+  "@noDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discoverGroups": "Grupları keşfet",
+  "@discoverGroups": {
+    "type": "text",
+    "placeholders": {}
   }
 }
