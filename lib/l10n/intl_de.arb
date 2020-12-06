@@ -1922,5 +1922,15 @@
   "@editBlockedServers": {
     "type": "text",
     "placeholders": {}
+  },
+  "noDescription": "Keine Beschreibung",
+  "@noDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discoverGroups": "Gruppen entdecken",
+  "@discoverGroups": {
+    "type": "text",
+    "placeholders": {}
   }
 }
