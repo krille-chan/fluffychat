@@ -901,7 +901,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "Lütfen bunun yerine Element içinden çapraz imzalamayı açın.",
+  "noCrossSignBootstrap": "FluffyChat şu anda çapraz imzalamanın etkinleştirilmesini desteklemiyor. Lütfen bunu Element içinden etkinleştirin.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -911,7 +911,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "FluffyChat'te anlık bildirimleri almak üzere Google hizmetlerini (gizliliğinizi kaybetmeden) almak için https://microg.org/ kullanın:",
+  "noGoogleServicesWarning": "Görünüşe göre telefonunuzda Google hizmetleri yok. Bu, gizliliğiniz için iyi bir karar! FluffyChat'te anlık bildirimler almak için microG kullanmanızı tavsiye ediyoruz: https://microg.org/",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
