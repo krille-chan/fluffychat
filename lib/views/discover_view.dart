@@ -66,15 +66,22 @@ class _DiscoverPageState extends State<DiscoverPage> {
     });
   }
 
-  Future<String> _joinRoomAndWait(BuildContext context, String roomId) async {
-    final newRoomId = await Matrix.of(context).client.joinRoomOrAlias(roomId);
-    if (Matrix.of(context).client.getRoomById(newRoomId) == null) {
-      await Matrix.of(context)
-          .client
-          .onRoomUpdate
-          .stream
-          .firstWhere((r) => r.id == newRoomId);
+  Future<String> _joinRoomAndWait(
+    BuildContext context,
+    String roomId,
+    String alias,
+  ) async {
+    if (Matrix.of(context).client.getRoomById(roomId) != null) {
+      return roomId;
     }
+    final newRoomId = await Matrix.of(context)
+        .client
+        .joinRoomOrAlias(alias?.isNotEmpty ?? false ? alias : roomId);
+    await Matrix.of(context)
+        .client
+        .onRoomUpdate
+        .stream
+        .firstWhere((r) => r.id == newRoomId);
     return newRoomId;
   }
 
@@ -88,8 +95,13 @@ class _DiscoverPageState extends State<DiscoverPage> {
         OkCancelResult.cancel) {
       return;
     }
-    final success = await SimpleDialogs(context)
-        .tryRequestWithLoadingDialog(_joinRoomAndWait(context, room.roomId));
+    final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
+      _joinRoomAndWait(
+        context,
+        room.roomId,
+        room.canonicalAlias ?? room.aliases.first,
+      ),
+    );
     if (success != false) {
       await Navigator.of(context).push(
         AppRoute.defaultRoute(
