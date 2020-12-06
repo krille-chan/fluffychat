@@ -18,12 +18,28 @@ class _ArchiveState extends State<Archive> {
     return await Matrix.of(context).client.archive;
   }
 
+  final ScrollController _scrollController = ScrollController();
+  bool _scrolledToTop = true;
+
+  @override
+  void initState() {
+    _scrollController.addListener(() async {
+      if (_scrollController.position.pixels > 0 && _scrolledToTop) {
+        setState(() => _scrolledToTop = false);
+      } else if (_scrollController.position.pixels == 0 && !_scrolledToTop) {
+        setState(() => _scrolledToTop = true);
+      }
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return AdaptivePageLayout(
       firstScaffold: Scaffold(
         appBar: AppBar(
           title: Text(L10n.of(context).archive),
+          elevation: _scrolledToTop ? 0 : null,
         ),
         body: FutureBuilder<List<Room>>(
           future: getArchive(context),
@@ -33,6 +49,7 @@ class _ArchiveState extends State<Archive> {
             } else {
               archive = snapshot.data;
               return ListView.builder(
+                controller: _scrollController,
                 itemCount: archive.length,
                 itemBuilder: (BuildContext context, int i) => ChatListItem(
                     archive[i],

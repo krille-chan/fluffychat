@@ -13,6 +13,9 @@ extension RoomStatusExtension on Room {
           directChatPresence.presence != null &&
           (directChatPresence.presence.lastActiveAgo != null ||
               directChatPresence.presence.currentlyActive != null)) {
+        if (directChatPresence.presence.statusMsg?.isNotEmpty ?? false) {
+          return directChatPresence.presence.statusMsg;
+        }
         if (directChatPresence.presence.currentlyActive == true) {
           return L10n.of(context).currentlyActive;
         }
