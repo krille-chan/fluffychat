@@ -286,12 +286,10 @@ packages:
   firebase_messaging:
     dependency: "direct main"
     description:
-      path: "packages/firebase_messaging"
-      ref: master
-      resolved-ref: f60943a60a6a09b5afce2b7dfe04a8c094037a32
-      url: "git@gitlab.com:famedly/libraries/flutterfire.git"
-    source: git
-    version: "7.0.2"
+      name: firebase_messaging
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "7.0.3"
   flushbar:
     dependency: "direct main"
     description:
