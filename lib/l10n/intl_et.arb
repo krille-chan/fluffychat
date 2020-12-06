@@ -963,7 +963,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "FluffyChat hetkel ei toeta krüptovõtmete võrgupõhise varunduse pruukimist. Palun võta ta kasutusele Element'i vahendusel.",
+  "noMegolmBootstrap": "Palun võta krüptovõtmete võrgupõhine varundus kasutusele vestusrakenduse Element vahendusel.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -1072,7 +1072,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterAMatrixIdentifier": "Palun sisesta Matrix'i kasutajatunnus",
+  "pleaseEnterAMatrixIdentifier": "Palun sisesta Matrix'i kasutajatunnus.",
   "@pleaseEnterAMatrixIdentifier": {
     "type": "text",
     "placeholders": {}
@@ -1768,7 +1768,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "withTheseAddressesRecoveryDescription": "Nende e-posti aadresside abil saad vajadusel taastada oma salasõna.",
+  "withTheseAddressesRecoveryDescription": "Nende e-posti aadresside abil saad taastada oma salasõna.",
   "@withTheseAddressesRecoveryDescription": {
     "type": "text",
     "placeholders": {}
@@ -1920,6 +1920,16 @@
   },
   "editBlockedServers": "Muuda blokeeritud serverite loendit",
   "@editBlockedServers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noDescription": "Kirjeldus puudub",
+  "@noDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discoverGroups": "Otsi gruppe",
+  "@discoverGroups": {
     "type": "text",
     "placeholders": {}
   }
