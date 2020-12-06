@@ -1030,7 +1030,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "Please turn on cross-signing from within Element instead.",
+  "noCrossSignBootstrap": "Fluffychat currently does not support enabling Cross-Signing. Please enable it from within Element.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -1040,7 +1040,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Use https://microg.org/ to get Google services (without losing your privacy) to get push notifications in FluffyChat:",
+  "noGoogleServicesWarning": "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
