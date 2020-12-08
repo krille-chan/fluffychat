@@ -963,7 +963,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "Fluffychat trenutačno ne podržava aktiviranje internetskog spremanja sigurnosnih kopija ključa. Aktiviraj spremanje u programu Element.",
+  "noMegolmBootstrap": "Umjesto toga uključi internetsko spremanje sigurnosnih kopija ključa u programu Element.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -1072,7 +1072,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterAMatrixIdentifier": "Upiši matrix-identifikatora",
+  "pleaseEnterAMatrixIdentifier": "Upiši Matrix-ID.",
   "@pleaseEnterAMatrixIdentifier": {
     "type": "text",
     "placeholders": {}
@@ -1773,7 +1773,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "withTheseAddressesRecoveryDescription": "Ako trebaš, lozinku možeš obnoviti pomoću ovih adresa.",
+  "withTheseAddressesRecoveryDescription": "Lozinku možeš obnoviti pomoću ovih adresa.",
   "@withTheseAddressesRecoveryDescription": {
     "type": "text",
     "placeholders": {}
@@ -1860,6 +1860,76 @@
   },
   "soundVibrationLedColor": "Zvuk, vibracija LED-boja",
   "@soundVibrationLedColor": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setPermissionsLevel": "Postavi razinu dozvola",
+  "@setPermissionsLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setCustomEmotes": "Postavi prilagođene emotikone",
+  "@setCustomEmotes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editChatPermissions": "Uredi dozvole za chat",
+  "@editChatPermissions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whoCanPerformWhichAction": "Tko može izvršiti koju radnju",
+  "@whoCanPerformWhichAction": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "participant": "Sudionik",
+  "@participant": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "configureChat": "Konfiguriraj chat",
+  "@configureChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendMessages": "Šalji poruke",
+  "@sendMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "defaultPermissionLevel": "Standardna razina dozvole",
+  "@defaultPermissionLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAvatar": "Uredi avatar sobe",
+  "@editRoomAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "replaceRoomWithNewerVersion": "Zamijeni sobu s novom verzijom",
+  "@replaceRoomWithNewerVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEncryption": "Aktiviraj šifriranje",
+  "@enableEncryption": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editBlockedServers": "Uredi blokirane poslužitelje",
+  "@editBlockedServers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noDescription": "Bez opisa",
+  "@noDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discoverGroups": "Otkrij grupe",
+  "@discoverGroups": {
     "type": "text",
     "placeholders": {}
   }
