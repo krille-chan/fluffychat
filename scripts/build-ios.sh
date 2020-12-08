@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh -ve
 flutter channel stable
 flutter upgrade
 flutter clean

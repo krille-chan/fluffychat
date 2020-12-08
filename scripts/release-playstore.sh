@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh -ve
 cd android
 bundle install
 bundle update fastlane

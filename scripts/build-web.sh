@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh -ve
 flutter channel beta
 flutter upgrade
 flutter config --enable-web

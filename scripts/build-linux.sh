@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh -ve
 flutter channel dev
 flutter upgrade
 flutter config --enable-linux-desktop
