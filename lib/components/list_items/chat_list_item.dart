@@ -1,12 +1,12 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:flushbar/flushbar_helper.dart';
 import 'package:circular_check_box/circular_check_box.dart';
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/utils/matrix_locals.dart';
-import 'package:fluffychat/views/chat.dart';
-import 'package:flutter/material.dart';
 import 'package:fluffychat/utils/event_extension.dart';
+import 'package:fluffychat/utils/matrix_locals.dart';
 import 'package:fluffychat/utils/room_status_extension.dart';
+import 'package:fluffychat/views/chat.dart';
+import 'package:flushbar/flushbar_helper.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:pedantic/pedantic.dart';
 
@@ -249,23 +249,25 @@ class ChatListItem extends StatelessWidget {
                     color: Theme.of(context).primaryColor,
                   ),
                 ),
-              if (room.notificationCount > 0)
+              if (room.isUnread)
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 7),
-                  height: 20,
+                  height: room.notificationCount > 0 ? 20 : 14,
                   decoration: BoxDecoration(
-                    color: room.highlightCount > 0
+                    color: room.highlightCount > 0 || room.markedUnread
                         ? Colors.red
                         : Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Center(
-                    child: Text(
-                      room.notificationCount.toString(),
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
+                    child: room.notificationCount > 0
+                        ? Text(
+                            room.notificationCount.toString(),
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          )
+                        : Container(),
                   ),
                 ),
             ],

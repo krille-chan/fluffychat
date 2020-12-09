@@ -1665,6 +1665,21 @@
     "type": "text",
     "placeholders": {}
   },
+  "toggleFavorite": "Toggle Favorite",
+  "@toggleFavorite": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleMuted": "Toggle Muted",
+  "@toggleMuted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleUnread": "Mark Read/Unread",
+  "@toggleUnread": {
+    "type": "text",
+    "placeholders": {}
+  },
   "tryToSendAgain": "Try to send again",
   "@tryToSendAgain": {
     "type": "text",

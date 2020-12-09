@@ -140,6 +140,13 @@ class _ChatListState extends State<ChatList> {
     super.dispose();
   }
 
+  Future<void> _toggleUnread(BuildContext context) {
+    final room = Matrix.of(context).client.getRoomById(_selectedRoomIds.single);
+    return SimpleDialogs(context).tryRequestWithLoadingDialog(
+      room.setUnread(!room.isUnread),
+    );
+  }
+
   Future<void> _toggleFavouriteRoom(BuildContext context) {
     final room = Matrix.of(context).client.getRoomById(_selectedRoomIds.single);
     return SimpleDialogs(context).tryRequestWithLoadingDialog(
@@ -226,16 +233,25 @@ class _ChatListState extends State<ChatList> {
                         : [
                             if (_selectedRoomIds.length == 1)
                               IconButton(
+                                tooltip: L10n.of(context).toggleUnread,
+                                icon: Icon(Icons.mark_chat_unread_outlined),
+                                onPressed: () => _toggleUnread(context),
+                              ),
+                            if (_selectedRoomIds.length == 1)
+                              IconButton(
+                                tooltip: L10n.of(context).toggleFavorite,
                                 icon: Icon(Icons.favorite_border_outlined),
                                 onPressed: () => _toggleFavouriteRoom(context),
                               ),
                             if (_selectedRoomIds.length == 1)
                               IconButton(
                                 icon: Icon(Icons.notifications_none_outlined),
+                                tooltip: L10n.of(context).toggleMuted,
                                 onPressed: () => _toggleMuted(context),
                               ),
                             IconButton(
                               icon: Icon(Icons.archive_outlined),
+                              tooltip: L10n.of(context).archive,
                               onPressed: () => _archiveAction(context),
                             ),
                           ],
