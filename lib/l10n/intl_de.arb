@@ -1932,5 +1932,20 @@
   "@discoverGroups": {
     "type": "text",
     "placeholders": {}
+  },
+  "toggleUnread": "Markieren als gelesen/ungelesen",
+  "@toggleUnread": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleMuted": "Stummgeschaltete umschalten",
+  "@toggleMuted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleFavorite": "Favorite umschalten",
+  "@toggleFavorite": {
+    "type": "text",
+    "placeholders": {}
   }
 }
