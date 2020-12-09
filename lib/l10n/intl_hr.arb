@@ -1932,5 +1932,20 @@
   "@discoverGroups": {
     "type": "text",
     "placeholders": {}
+  },
+  "toggleUnread": "Označi kao pročitano/nepročitano",
+  "@toggleUnread": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleMuted": "Uklj/Isklj isključene",
+  "@toggleMuted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleFavorite": "Uklj/Isklj favorite",
+  "@toggleFavorite": {
+    "type": "text",
+    "placeholders": {}
   }
 }
