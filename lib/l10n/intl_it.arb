@@ -1920,5 +1920,20 @@
   "@discoverGroups": {
     "type": "text",
     "placeholders": {}
+  },
+  "toggleUnread": "Segna come letto / non letto",
+  "@toggleUnread": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleMuted": "Attiva/disattiva il silenziatore",
+  "@toggleMuted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleFavorite": "Attiva/disattiva preferito",
+  "@toggleFavorite": {
+    "type": "text",
+    "placeholders": {}
   }
 }
