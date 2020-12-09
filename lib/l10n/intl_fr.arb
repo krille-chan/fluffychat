@@ -1932,5 +1932,20 @@
   "@discoverGroups": {
     "type": "text",
     "placeholders": {}
+  },
+  "toggleUnread": "Marquer comme lu / non lu",
+  "@toggleUnread": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleMuted": "Activer/désactiver la sourdine",
+  "@toggleMuted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleFavorite": "Activer/désactiver en favori",
+  "@toggleFavorite": {
+    "type": "text",
+    "placeholders": {}
   }
 }
