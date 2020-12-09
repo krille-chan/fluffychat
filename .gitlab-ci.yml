@@ -101,7 +101,7 @@ upload_to_fdroid_repo:
     - ssh-keyscan -t rsa fdroid.nordgedanken.dev >> ~/.ssh/known_hosts
   script:
     - cd build/android/
-    - export UPDATE_VERSION=$(pcregrep -o1 'version:\\s([0-9]*\\.[0-9]*\\.[0-9]*)\\+[0-9]*' ../../pubspec.yaml) && mv app-release.apk "${UPDATE_VERSION}.apk"
+    - export UPDATE_VERSION=$(pcregrep -o1 'version:\s([0-9]*\.[0-9]*\.[0-9]*)\+[0-9]*' ../../pubspec.yaml) && mv app-release.apk "${UPDATE_VERSION}.apk"
     - rsync -rav -e ssh ./ fluffy@fdroid.nordgedanken.dev:/fdroid/repo
     - ssh fluffy@fdroid.nordgedanken.dev "cd fdroid && fdroid update"
   needs: ["build_android_apk"]
