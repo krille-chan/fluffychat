@@ -5,7 +5,7 @@ class EmptyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Image.asset('assets/logo.png', width: 100, height: 100),
+        child: Image.asset('assets/favicon.png', width: 100, height: 100),
       ),
     );
   }

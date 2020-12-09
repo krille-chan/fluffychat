@@ -69,14 +69,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_launcher_icons: "^0.7.4"
   pedantic: ^1.9.2
   dapackages: ^1.4.0
-
-flutter_icons:
-  android: "launcher_icon"
-  ios: false
-  image_path: "assets/logo.png"
 
 flutter:
   generate: true
