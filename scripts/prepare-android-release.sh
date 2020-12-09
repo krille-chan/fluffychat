@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -ve
+#!/usr/bin/env bash -v
 cd android
 echo $FDROID_KEY | base64 --decode --ignore-garbage > key.jks
 echo "storePassword=${FDROID_KEY_PASS}" >> key.properties
