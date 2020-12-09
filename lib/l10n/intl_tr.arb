@@ -1382,7 +1382,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unmuteChat": "Sohbeti sessizden çıkart",
+  "unmuteChat": "Sohbeti sessizden çıkar",
   "@unmuteChat": {
     "type": "text",
     "placeholders": {}
@@ -1930,6 +1930,21 @@
   },
   "discoverGroups": "Grupları keşfet",
   "@discoverGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleUnread": "Okundu/Okunmadı Olarak İşaretle",
+  "@toggleUnread": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleMuted": "Sessize Al/Sessizden Çıkar",
+  "@toggleMuted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleFavorite": "Sık Kullanılanlara Ekle/Çıkar",
+  "@toggleFavorite": {
     "type": "text",
     "placeholders": {}
   }
