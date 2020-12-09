@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -v
+#!/usr/bin/env bash
 flutter channel stable
 flutter upgrade
 flutter pub get
