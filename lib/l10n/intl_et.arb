@@ -1932,5 +1932,20 @@
   "@discoverGroups": {
     "type": "text",
     "placeholders": {}
+  },
+  "toggleUnread": "Märgi loetuks / lugemata",
+  "@toggleUnread": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleMuted": "Lülita summutamine sisse või välja",
+  "@toggleMuted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleFavorite": "Muuda olekut lemmikuna",
+  "@toggleFavorite": {
+    "type": "text",
+    "placeholders": {}
   }
 }
