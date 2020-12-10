@@ -218,13 +218,13 @@ class _SettingsState extends State<Settings> {
         await Future.delayed(Duration(milliseconds: 100));
         var valid = false;
         try {
-          handle.unlock(recoveryKey: input.single);
+          await handle.unlock(recoveryKey: input.single);
           valid = true;
         } catch (e, s) {
           debugPrint('Couldn\'t use recovery key: ' + e.toString());
           debugPrint(s.toString());
           try {
-            handle.unlock(passphrase: input.single);
+            await handle.unlock(passphrase: input.single);
             valid = true;
           } catch (e, s) {
             debugPrint('Couldn\'t use recovery passphrase: ' + e.toString());
