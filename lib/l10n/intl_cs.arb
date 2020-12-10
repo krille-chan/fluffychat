@@ -1932,5 +1932,20 @@
   "@discoverGroups": {
     "type": "text",
     "placeholders": {}
+  },
+  "toggleUnread": "Označit jako přečtené/nepřečtené",
+  "@toggleUnread": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleMuted": "Přepnout ztlumené",
+  "@toggleMuted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleFavorite": "Přepnout Oblíbené",
+  "@toggleFavorite": {
+    "type": "text",
+    "placeholders": {}
   }
 }
