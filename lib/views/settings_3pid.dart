@@ -62,6 +62,8 @@ class _Settings3PidState extends State<Settings3Pid> {
         DialogTextField(
           hintText: '******',
           obscureText: true,
+          minLines: 1,
+          maxLines: 1,
         ),
       ],
     );

@@ -1,4 +1,5 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:fluffychat/components/dialogs/bootstrap_dialog.dart';
 import 'package:fluffychat/views/settings_3pid.dart';
 import 'package:fluffychat/views/settings_notifications.dart';
 import 'package:fluffychat/views/settings_style.dart';
@@ -11,7 +12,6 @@ import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:fluffychat/views/settings_devices.dart';
 import 'package:fluffychat/views/settings_ignore_list.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:image_picker/image_picker.dart';
@@ -73,10 +73,14 @@ class _SettingsState extends State<Settings> {
         DialogTextField(
           hintText: L10n.of(context).pleaseEnterYourPassword,
           obscureText: true,
+          minLines: 1,
+          maxLines: 1,
         ),
         DialogTextField(
           hintText: L10n.of(context).chooseAStrongPassword,
           obscureText: true,
+          minLines: 1,
+          maxLines: 1,
         ),
       ],
     );
@@ -108,7 +112,14 @@ class _SettingsState extends State<Settings> {
     final input = await showTextInputDialog(
       context: context,
       title: L10n.of(context).pleaseEnterYourPassword,
-      textFields: [DialogTextField(obscureText: true, hintText: '******')],
+      textFields: [
+        DialogTextField(
+          obscureText: true,
+          hintText: '******',
+          minLines: 1,
+          maxLines: 1,
+        )
+      ],
     );
     if (input == null) return;
     await SimpleDialogs(context).tryRequestWithLoadingDialog(
@@ -208,7 +219,11 @@ class _SettingsState extends State<Settings> {
       title: L10n.of(context).askSSSSCache,
       textFields: [
         DialogTextField(
-            hintText: L10n.of(context).passphraseOrKey, obscureText: true)
+          hintText: L10n.of(context).passphraseOrKey,
+          obscureText: true,
+          minLines: 1,
+          maxLines: 1,
+        )
       ],
     );
     if (input != null) {
@@ -221,16 +236,7 @@ class _SettingsState extends State<Settings> {
           await handle.unlock(recoveryKey: input.single);
           valid = true;
         } catch (e, s) {
-          debugPrint('Couldn\'t use recovery key: ' + e.toString());
-          debugPrint(s.toString());
-          try {
-            await handle.unlock(passphrase: input.single);
-            valid = true;
-          } catch (e, s) {
-            debugPrint('Couldn\'t use recovery passphrase: ' + e.toString());
-            debugPrint(s.toString());
-            valid = false;
-          }
+          SentryController.captureException(e, s);
         }
         return valid;
       }));
@@ -499,11 +505,7 @@ class _SettingsState extends State<Settings> {
                   : null,
               onTap: () async {
                 if (!client.encryption.crossSigning.enabled) {
-                  await showOkAlertDialog(
-                    context: context,
-                    message: L10n.of(context).noCrossSignBootstrap,
-                  );
-                  return;
+                  return BootstrapDialog().show(context);
                 }
                 if (client.isUnknownSession) {
                   final input = await showTextInputDialog(
@@ -511,8 +513,11 @@ class _SettingsState extends State<Settings> {
                     title: L10n.of(context).askSSSSVerify,
                     textFields: [
                       DialogTextField(
-                          hintText: L10n.of(context).passphraseOrKey,
-                          obscureText: true)
+                        hintText: L10n.of(context).passphraseOrKey,
+                        obscureText: true,
+                        minLines: 1,
+                        maxLines: 1,
+                      )
                     ],
                   );
                   if (input != null) {
@@ -575,11 +580,7 @@ class _SettingsState extends State<Settings> {
                   : null,
               onTap: () async {
                 if (!client.encryption.keyManager.enabled) {
-                  await showOkAlertDialog(
-                    context: context,
-                    message: L10n.of(context).noMegolmBootstrap,
-                  );
-                  return;
+                  return BootstrapDialog().show(context);
                 }
                 if (!(await client.encryption.keyManager.isCached())) {
                   await requestSSSSCache(context);

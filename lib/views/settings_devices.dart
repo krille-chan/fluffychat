@@ -53,6 +53,8 @@ class DevicesSettingsState extends State<DevicesSettings> {
         DialogTextField(
           hintText: '******',
           obscureText: true,
+          minLines: 1,
+          maxLines: 1,
         )
       ],
     );

@@ -155,8 +155,42 @@ class MatrixState extends State<Matrix> {
   StreamSubscription onKeyVerificationRequestSub;
   StreamSubscription onJitsiCallSub;
   StreamSubscription onNotification;
+  StreamSubscription<UiaRequest> onUiaRequest;
   StreamSubscription<html.Event> onFocusSub;
   StreamSubscription<html.Event> onBlurSub;
+
+  void _onUiaRequest(UiaRequest uiaRequest) async {
+    uiaRequest.onUpdate = () => _onUiaRequest(uiaRequest);
+    if (uiaRequest.loading || uiaRequest.done || uiaRequest.fail) return;
+    final stage = uiaRequest.nextStages.first;
+    switch (stage) {
+      case 'm.login.password':
+        final input = await showTextInputDialog(context: context, textFields: [
+          DialogTextField(
+            minLines: 1,
+            maxLines: 1,
+            obscureText: true,
+          )
+        ]);
+        if (input?.isEmpty ?? true) return;
+        return uiaRequest.completeStage(
+          'm.login.password',
+          {
+            'type': 'm.login.password',
+            'identifier': {
+              'type': 'm.id.user',
+              'user': client.userID,
+            },
+            'user': client.userID,
+            'password': input.single,
+            'session': uiaRequest.session,
+          },
+        );
+      default:
+        debugPrint('Warning! Cannot handle the stage "$stage"');
+        return;
+    }
+  }
 
   void onJitsiCall(EventUpdate eventUpdate) {
     final event = Event.fromJson(
@@ -373,6 +407,7 @@ class MatrixState extends State<Matrix> {
       onFocusSub = html.window.onFocus.listen((_) => webHasFocus = true);
       onBlurSub = html.window.onBlur.listen((_) => webHasFocus = false);
     }
+    onUiaRequest ??= client.onUiaRequest.stream.listen(_onUiaRequest);
     if (kIsWeb || Platform.isLinux) {
       client.onSync.stream.first.then((s) {
         html.Notification.requestPermission();
