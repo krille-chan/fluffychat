@@ -33,7 +33,7 @@ import 'package:swipe_to_action/swipe_to_action.dart';
 
 import '../components/dialogs/send_file_dialog.dart';
 import '../components/input_bar.dart';
-import '../config/app_config.dart';
+import '../app_config.dart';
 import '../utils/matrix_file_extension.dart';
 import 'chat_details.dart';
 import 'chat_list.dart';

@@ -1,6 +1,6 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flushbar/flushbar_helper.dart';
-import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/app_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -11,6 +11,7 @@ import '../config/setting_keys.dart';
 
 abstract class SentryController {
   static Future<void> toggleSentryAction(BuildContext context) async {
+    if (!AppConfig.enableSentry) return;
     final enableSentry = await showOkCancelAlertDialog(
           context: context,
           title: L10n.of(context).sendBugReports,
@@ -28,11 +29,12 @@ abstract class SentryController {
   }
 
   static Future<bool> getSentryStatus() async {
+    if (!AppConfig.enableSentry) return false;
     final storage = Store();
     return await storage.getItemBool(SettingKeys.sentry);
   }
 
-  static final sentry = SentryClient(dsn: AppConfig.sentryDsn);
+  static final sentry = SentryClient(dsn: AppConfig.sentryDns);
 
   static void captureException(error, stackTrace) async {
     debugPrint(error.toString());

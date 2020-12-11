@@ -90,7 +90,7 @@ class _SignUpState extends State<SignUp> {
           children: <Widget>[
             Hero(
               tag: 'loginBanner',
-              child: Image.asset('assets/fluffychat-banner.png'),
+              child: Image.asset('assets/banner.png'),
             ),
             ListTile(
               leading: CircleAvatar(

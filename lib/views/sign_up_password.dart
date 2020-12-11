@@ -44,7 +44,7 @@ class _SignUpPasswordState extends State<SignUpPassword> {
       await matrix.client.register(
         username: widget.username,
         password: passwordController.text,
-        initialDeviceDisplayName: matrix.widget.clientName,
+        initialDeviceDisplayName: matrix.clientName,
         auth: auth,
       );
       await waitForLogin;

@@ -7,7 +7,7 @@ import 'package:flushbar/flushbar_helper.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
 
-import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/app_config.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:fluffychat/views/settings_devices.dart';
@@ -22,7 +22,7 @@ import '../components/content_banner.dart';
 import '../components/dialogs/simple_dialogs.dart';
 import '../components/matrix.dart';
 import '../utils/app_route.dart';
-import '../config/app_config.dart';
+import '../app_config.dart';
 import '../config/setting_keys.dart';
 import 'app_info.dart';
 import 'chat_list.dart';
@@ -141,8 +141,7 @@ class _SettingsState extends State<Settings> {
       title: L10n.of(context).editJitsiInstance,
       textFields: [
         DialogTextField(
-          initialText:
-              Matrix.of(context).jitsiInstance.replaceFirst(prefix, ''),
+          initialText: AppConfig.jitsiInstance.replaceFirst(prefix, ''),
           prefixText: prefix,
         ),
       ],
@@ -154,7 +153,7 @@ class _SettingsState extends State<Settings> {
     }
     final matrix = Matrix.of(context);
     await matrix.store.setItem(SettingKeys.jitsiInstance, jitsi);
-    matrix.jitsiInstance = jitsi;
+    AppConfig.jitsiInstance = jitsi;
   }
 
   void setDisplaynameAction(BuildContext context) async {
@@ -411,7 +410,7 @@ class _SettingsState extends State<Settings> {
             ListTile(
               trailing: Icon(Icons.phone_outlined),
               title: Text(L10n.of(context).editJitsiInstance),
-              subtitle: Text(Matrix.of(context).jitsiInstance),
+              subtitle: Text(AppConfig.jitsiInstance),
               onTap: () => setJitsiInstanceAction(context),
             ),
             ListTile(

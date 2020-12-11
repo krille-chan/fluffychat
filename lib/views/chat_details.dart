@@ -1,5 +1,5 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/app_config.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/views/chat_permissions_settings.dart';
 import 'package:flushbar/flushbar_helper.dart';
@@ -202,7 +202,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                         IconButton(
                           icon: Icon(Icons.share_outlined),
                           onPressed: () => FluffyShare.share(
-                              AppConfig.matrixToLinkPrefix +
+                              AppConfig.inviteLinkPrefix +
                                   widget.room.canonicalAlias,
                               context),
                         ),

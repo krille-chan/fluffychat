@@ -7,7 +7,7 @@ import 'package:fluffychat/components/connection_status_header.dart';
 import 'package:fluffychat/components/default_app_bar_search_field.dart';
 import 'package:fluffychat/components/default_drawer.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
-import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/app_config.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -105,7 +105,7 @@ class _ChatListState extends State<ChatList> {
     if (Navigator.of(context).canPop()) {
       Navigator.of(context).popUntil((r) => r.isFirst);
     }
-    if (text.startsWith(AppConfig.matrixToLinkPrefix)) {
+    if (text.startsWith(AppConfig.inviteLinkPrefix)) {
       UrlLauncher(context, text).openMatrixToUrl();
       return;
     }
