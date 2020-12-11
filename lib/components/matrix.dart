@@ -140,17 +140,6 @@ class MatrixState extends State<Matrix> {
     }
   }
 
-  Map<String, dynamic> getAuthByPassword(String password, [String session]) => {
-        'type': 'm.login.password',
-        'identifier': {
-          'type': 'm.id.user',
-          'user': client.userID,
-        },
-        'user': client.userID,
-        'password': password,
-        if (session != null) 'session': session,
-      };
-
   StreamSubscription onRoomKeyRequestSub;
   StreamSubscription onKeyVerificationRequestSub;
   StreamSubscription onJitsiCallSub;
@@ -160,11 +149,12 @@ class MatrixState extends State<Matrix> {
   StreamSubscription<html.Event> onBlurSub;
 
   void _onUiaRequest(UiaRequest uiaRequest) async {
-    uiaRequest.onUpdate = () => _onUiaRequest(uiaRequest);
-    if (uiaRequest.loading || uiaRequest.done || uiaRequest.fail) return;
+    uiaRequest.onUpdate = (_) => _onUiaRequest(uiaRequest);
+    if (uiaRequest.state != UiaRequestState.waitForUser ||
+        uiaRequest.nextStages.isEmpty) return;
     final stage = uiaRequest.nextStages.first;
     switch (stage) {
-      case 'm.login.password':
+      case AuthenticationTypes.password:
         final input = await showTextInputDialog(context: context, textFields: [
           DialogTextField(
             minLines: 1,
@@ -174,17 +164,12 @@ class MatrixState extends State<Matrix> {
         ]);
         if (input?.isEmpty ?? true) return;
         return uiaRequest.completeStage(
-          'm.login.password',
-          {
-            'type': 'm.login.password',
-            'identifier': {
-              'type': 'm.id.user',
-              'user': client.userID,
-            },
-            'user': client.userID,
-            'password': input.single,
-            'session': uiaRequest.session,
-          },
+          AuthenticationPassword(
+            session: uiaRequest.session,
+            user: client.userID,
+            password: input.single,
+            identifier: AuthenticationUserIdentifier(user: client.userID),
+          ),
         );
       default:
         debugPrint('Warning! Cannot handle the stage "$stage"');

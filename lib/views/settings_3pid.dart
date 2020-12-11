@@ -69,32 +69,13 @@ class _Settings3PidState extends State<Settings3Pid> {
     );
     if (password == null) return;
     final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
-      Future.microtask(() async {
-        final Function request = ({Map<String, dynamic> auth}) async =>
-            Matrix.of(context).client.addThirdPartyIdentifier(
+      Matrix.of(context).client.uiaRequestBackground(
+            (auth) => Matrix.of(context).client.addThirdPartyIdentifier(
                   clientSecret,
                   (response as RequestTokenResponse).sid,
                   auth: auth,
-                );
-        try {
-          await request();
-        } on MatrixException catch (exception) {
-          if (!exception.requireAdditionalAuthentication) rethrow;
-          await request(
-            auth: {
-              'type': 'm.login.password',
-              'identifier': {
-                'type': 'm.id.user',
-                'user': Matrix.of(context).client.userID,
-              },
-              'user': Matrix.of(context).client.userID,
-              'password': password.single,
-              'session': exception.session,
-            },
-          );
-        }
-        return;
-      }),
+                ),
+          ),
     );
     if (success == false) return;
     setState(() => _request = null);

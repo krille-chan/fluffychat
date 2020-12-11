@@ -137,16 +137,19 @@ class _LoginState extends State<Login> {
       ],
     );
     if (password == null) return;
-    final threepidCreds = {
-      'client_secret': clientSecret,
-      'sid': (response as RequestTokenResponse).sid,
-    };
     final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
-      Matrix.of(context).client.changePassword(password.single, auth: {
-        'type': 'm.login.email.identity',
-        'threepidCreds': threepidCreds, // Don't ask... >.<
-        'threepid_creds': threepidCreds,
-      }),
+      Matrix.of(context).client.changePassword(
+            password.single,
+            auth: AuthenticationThreePidCreds(
+              type: AuthenticationTypes.emailIdentity,
+              threepidCreds: [
+                ThreepidCreds(
+                  sid: (response as RequestTokenResponse).sid,
+                  clientSecret: clientSecret,
+                ),
+              ],
+            ),
+          ),
     );
     if (success != false) {
       FlushbarHelper.createSuccess(
