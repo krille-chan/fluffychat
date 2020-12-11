@@ -61,8 +61,15 @@ class DevicesSettingsState extends State<DevicesSettings> {
     if (password == null) return;
 
     final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
-        matrix.client.deleteDevices(deviceIds,
-            auth: matrix.getAuthByPassword(password.single)));
+      matrix.client.deleteDevices(
+        deviceIds,
+        auth: AuthenticationPassword(
+          password: password.single,
+          user: matrix.client.userID,
+          identifier: AuthenticationUserIdentifier(user: matrix.client.userID),
+        ),
+      ),
+    );
     if (success != false) {
       reload();
     }
