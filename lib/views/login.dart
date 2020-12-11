@@ -49,7 +49,7 @@ class _LoginState extends State<Login> {
       await matrix.client.login(
           user: usernameController.text,
           password: passwordController.text,
-          initialDeviceDisplayName: matrix.widget.clientName);
+          initialDeviceDisplayName: matrix.clientName);
     } on MatrixException catch (exception) {
       setState(() => passwordError = exception.errorMessage);
       return setState(() => loading = false);
@@ -59,7 +59,7 @@ class _LoginState extends State<Login> {
     }
     await FirebaseController.setupFirebase(
       matrix,
-      matrix.widget.clientName,
+      matrix.clientName,
     ).catchError(SentryController.captureException);
 
     setState(() => loading = false);

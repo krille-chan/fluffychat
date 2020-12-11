@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
-import 'package:fluffychat/utils/firebase_controller.dart';
+import 'package:fluffychat/app_config.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -68,9 +68,9 @@ class SettingsNotifications extends StatelessWidget {
     await NotificationSetting.configureChannel(
       NotificationDetails(
         android: AndroidNotificationDetails(
-          FirebaseController.CHANNEL_ID,
-          FirebaseController.CHANNEL_NAME,
-          FirebaseController.CHANNEL_DESCRIPTION,
+          AppConfig.pushNotificationsChannelId,
+          AppConfig.pushNotificationsChannelName,
+          AppConfig.pushNotificationsChannelDescription,
         ),
       ),
     );

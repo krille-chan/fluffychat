@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-import 'dart:convert';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:famedlysdk/encryption.dart';
@@ -17,9 +16,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:universal_html/prefer_universal/html.dart' as html;
 import 'package:url_launcher/url_launcher.dart';
-import 'package:path_provider/path_provider.dart';
 /*import 'package:fluffychat/views/chat.dart';
-import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/app_config.dart';
 import 'package:dbus/dbus.dart';
 import 'package:desktop_notifications/desktop_notifications.dart';*/
 
@@ -27,22 +25,16 @@ import '../utils/beautify_string_extension.dart';
 import '../utils/famedlysdk_store.dart';
 import 'dialogs/key_verification_dialog.dart';
 import '../utils/platform_infos.dart';
-import '../config/app_config.dart';
+import '../app_config.dart';
 import '../config/setting_keys.dart';
 import 'avatar.dart';
-
-import 'package:http/http.dart' as http;
 
 class Matrix extends StatefulWidget {
   static const String callNamespace = 'chat.fluffy.jitsi_call';
 
   final Widget child;
 
-  final String clientName;
-
-  final Store store;
-
-  Matrix({this.child, this.clientName, this.store, Key key}) : super(key: key);
+  Matrix({this.child, Key key}) : super(key: key);
 
   @override
   MatrixState createState() => MatrixState();
@@ -58,7 +50,7 @@ class Matrix extends StatefulWidget {
 
 class MatrixState extends State<Matrix> {
   Client client;
-  Store store;
+  Store store = Store();
   @override
   BuildContext context;
 
@@ -77,13 +69,12 @@ class MatrixState extends State<Matrix> {
 
   String activeRoomId;
   File wallpaper;
-
-  String jitsiInstance = 'https://meet.jit.si/';
+  String clientName;
 
   void clean() async {
     if (!kIsWeb) return;
 
-    await store.deleteItem(widget.clientName);
+    await store.deleteItem(clientName);
   }
 
   void _initWithStore() async {
@@ -96,7 +87,7 @@ class MatrixState extends State<Matrix> {
         if (PlatformInfos.isMobile) {
           await FirebaseController.setupFirebase(
             this,
-            widget.clientName,
+            clientName,
           );
         }
       }
@@ -284,38 +275,11 @@ class MatrixState extends State<Matrix> {
   void initState() {
     super.initState();
     initMatrix();
-    initConfig().then((_) => initSettings());
-  }
-
-  Future<void> initConfig() async {
-    if (PlatformInfos.isMobile) {
-      return;
-    }
-    try {
-      var configJsonString = '';
-      if (PlatformInfos.isWeb) {
-        configJsonString =
-            utf8.decode((await http.get('config.json')).bodyBytes);
-      } else if (PlatformInfos.isBetaDesktop) {
-        final appDocDir = await getApplicationSupportDirectory();
-        configJsonString =
-            await File('${appDocDir.path}/config.json').readAsString();
-      } else {
-        final appDocDir = await getApplicationDocumentsDirectory();
-        configJsonString =
-            await File('${appDocDir.path}/config.json').readAsString();
-      }
-      final configJson = json.decode(configJsonString);
-      AppConfig.loadFromJson(configJson);
-    } catch (error) {
-      debugPrint(
-          '[ConfigLoader] Failed to load config.json: ' + error.toString());
-    }
   }
 
   void initMatrix() {
-    store = widget.store ?? Store();
-
+    clientName =
+        '${AppConfig.applicationName} ${kIsWeb ? 'Web' : Platform.operatingSystem}';
     final Set verificationMethods = <KeyVerificationMethod>{
       KeyVerificationMethod.numbers
     };
@@ -324,7 +288,7 @@ class MatrixState extends State<Matrix> {
       verificationMethods.add(KeyVerificationMethod.emoji);
     }
     client = Client(
-      widget.clientName,
+      clientName,
       enableE2eeRecovery: true,
       verificationMethods: verificationMethods,
       importantStateEvents: <String>{
@@ -405,13 +369,13 @@ class MatrixState extends State<Matrix> {
             .listen(_showLocalNotification);
       });
     }
+    initSettings();
   }
 
   void initSettings() {
     if (store != null) {
-      store
-          .getItem(SettingKeys.jitsiInstance)
-          .then((final instance) => jitsiInstance = instance ?? jitsiInstance);
+      store.getItem(SettingKeys.jitsiInstance).then((final instance) =>
+          AppConfig.jitsiInstance = instance ?? AppConfig.jitsiInstance);
       store.getItem(SettingKeys.wallpaper).then((final path) async {
         if (path == null) return;
         final file = File(path);

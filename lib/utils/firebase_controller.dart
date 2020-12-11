@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:fluffychat/app_config.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:famedlysdk/famedlysdk.dart';
@@ -25,12 +26,6 @@ abstract class FirebaseController {
   static final FlutterLocalNotificationsPlugin
       _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
   static BuildContext context;
-  static const String CHANNEL_ID = 'fluffychat_push';
-  static const String CHANNEL_NAME = 'FluffyChat push channel';
-  static const String CHANNEL_DESCRIPTION = 'Push notifications for FluffyChat';
-  static const String APP_ID = 'chat.fluffy.fluffychat';
-  static const String GATEWAY_URL = 'https://janian.de:7023/';
-  static const String PUSHER_FORMAT = 'event_id_only';
 
   static Future<void> setupFirebase(
       MatrixState matrix, String clientName) async {
@@ -65,12 +60,14 @@ abstract class FirebaseController {
     final currentPushers = pushers.where((pusher) => pusher.pushkey == token);
     if (currentPushers.length == 1 &&
         currentPushers.first.kind == 'http' &&
-        currentPushers.first.appId == APP_ID &&
+        currentPushers.first.appId == AppConfig.pushNotificationsAppId &&
         currentPushers.first.appDisplayName == clientName &&
         currentPushers.first.deviceDisplayName == client.deviceName &&
         currentPushers.first.lang == 'en' &&
-        currentPushers.first.data.url.toString() == GATEWAY_URL &&
-        currentPushers.first.data.format == PUSHER_FORMAT) {
+        currentPushers.first.data.url.toString() ==
+            AppConfig.pushNotificationsGatewayUrl &&
+        currentPushers.first.data.format ==
+            AppConfig.pushNotificationsPusherFormat) {
       debugPrint('[Push] Pusher already set');
     } else {
       if (currentPushers.isNotEmpty) {
@@ -88,13 +85,13 @@ abstract class FirebaseController {
           .setPusher(
         Pusher(
           token,
-          APP_ID,
+          AppConfig.pushNotificationsAppId,
           clientName,
           client.deviceName,
           'en',
           PusherData(
-            url: Uri.parse(GATEWAY_URL),
-            format: PUSHER_FORMAT,
+            url: Uri.parse(AppConfig.pushNotificationsGatewayUrl),
+            format: AppConfig.pushNotificationsPusherFormat,
           ),
           kind: 'http',
         ),
@@ -255,7 +252,9 @@ abstract class FirebaseController {
 
       // Show notification
       var androidPlatformChannelSpecifics = AndroidNotificationDetails(
-          CHANNEL_ID, CHANNEL_NAME, CHANNEL_DESCRIPTION,
+          AppConfig.pushNotificationsChannelId,
+          AppConfig.pushNotificationsChannelName,
+          AppConfig.pushNotificationsChannelDescription,
           styleInformation: MessagingStyleInformation(
             person,
             conversationTitle: title,
@@ -328,8 +327,11 @@ abstract class FirebaseController {
 
       // Display notification
       var androidPlatformChannelSpecifics = AndroidNotificationDetails(
-          CHANNEL_ID, CHANNEL_NAME, CHANNEL_DESCRIPTION,
-          importance: Importance.max, priority: Priority.high);
+          AppConfig.pushNotificationsChannelId,
+          AppConfig.pushNotificationsChannelName,
+          AppConfig.pushNotificationsChannelDescription,
+          importance: Importance.max,
+          priority: Priority.high);
       var iOSPlatformChannelSpecifics = IOSNotificationDetails();
       var platformChannelSpecifics = NotificationDetails(
         android: androidPlatformChannelSpecifics,
