@@ -114,7 +114,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "avatarHasBeenChanged": "Аватар был изменён",
+  "avatarHasBeenChanged": "Аватар изменён",
   "@avatarHasBeenChanged": {
     "type": "text",
     "placeholders": {}
@@ -149,7 +149,7 @@
       "homeserver": {}
     }
   },
-  "cachedKeys": "Ключи успешно кэшированы",
+  "cachedKeys": "Ключи кэшированы",
   "@cachedKeys": {
     "type": "text",
     "placeholders": {}
@@ -641,7 +641,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "groupDescriptionHasBeenChanged": "Описание группы было изменено",
+  "groupDescriptionHasBeenChanged": "Описание группы изменено",
   "@groupDescriptionHasBeenChanged": {
     "type": "text",
     "placeholders": {}
@@ -1057,7 +1057,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterAMatrixIdentifier": "Пожалуйста, введите идентификатор Matrix",
+  "pleaseEnterAMatrixIdentifier": "Пожалуйста, введите Matrix ID",
   "@pleaseEnterAMatrixIdentifier": {
     "type": "text",
     "placeholders": {}
@@ -1765,6 +1765,186 @@
   },
   "deviceId": "Идентификатор устройства",
   "@deviceId": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendMessages": "Отправить сообщения",
+  "@sendMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteForMe": "Приглашение для меня",
+  "@inviteForMe": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "withTheseAddressesRecoveryDescription": "По этим адресам вы можете восстановить свой пароль.",
+  "@withTheseAddressesRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "weSentYouAnEmail": "Мы отправили вам электронное письмо",
+  "@weSentYouAnEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleUnread": "Отметить как прочитанное/непрочитанное",
+  "@toggleUnread": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleMuted": "Переключить без звука",
+  "@toggleMuted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleFavorite": "Переключить избранное",
+  "@toggleFavorite": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "soundVibrationLedColor": "Звук, вибрация, цвет светодиода",
+  "@soundVibrationLedColor": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setPermissionsLevel": "Установить уровень разрешений",
+  "@setPermissionsLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setCustomEmotes": "Установить пользовательские эмоции",
+  "@setCustomEmotes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editChatPermissions": "Изменить разрешения чата",
+  "@editChatPermissions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whoCanPerformWhichAction": "Кто и какое действие может выполнять",
+  "@whoCanPerformWhichAction": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "participant": "Участник",
+  "@participant": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "configureChat": "Настроить чат",
+  "@configureChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "defaultPermissionLevel": "Уровень разрешений по умолчанию",
+  "@defaultPermissionLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAvatar": "Изменить аватар комнаты",
+  "@editRoomAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "replaceRoomWithNewerVersion": "Заменить комнату более новой версией",
+  "@replaceRoomWithNewerVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEncryption": "Включить шифрование",
+  "@enableEncryption": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editBlockedServers": "Редактировать заблокированные серверы",
+  "@editBlockedServers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noDescription": "Нет описания",
+  "@noDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discoverGroups": "Обзор групп",
+  "@discoverGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseClickOnLink": "Пожалуйста, нажмите на ссылку в электронной почте, для того чтобы продолжить.",
+  "@pleaseClickOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordForgotten": "Забыли пароль",
+  "@passwordForgotten": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordRecovery": "Восстановление пароля",
+  "@passwordRecovery": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPasswordRecoveryDescription": "Вы ещё не добавили способ восстановления пароля.",
+  "@noPasswordRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iHaveClickedOnLink": "Я перешёл по ссылке",
+  "@iHaveClickedOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "edit": "Редактировать",
+  "@edit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationsEnabledForThisAccount": "Уведомления включены для этой учётной записи",
+  "@notificationsEnabledForThisAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notifications": "Уведомления",
+  "@notifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pushRules": "Правила push",
+  "@pushRules": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "botMessages": "Сообщения ботов",
+  "@botMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "memberChanges": "Изменения участников",
+  "@memberChanges": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsUserName": "Содержит имя пользователя",
+  "@containsUserName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsDisplayName": "Содержит отображаемое имя",
+  "@containsDisplayName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "directChats": "Прямые чаты",
+  "@directChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterAnEmailAddress": "Введите адрес электронной почты",
+  "@enterAnEmailAddress": {
     "type": "text",
     "placeholders": {}
   }
