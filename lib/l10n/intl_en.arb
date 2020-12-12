@@ -1757,6 +1757,13 @@
       "unreadChats": {}
     }
   },
+  "numUsersTyping": "{count} users are typing…",
+  "@numUsersTyping": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
   "userAndOthersAreTyping": "{username} and {count} others are typing…",
   "@userAndOthersAreTyping": {
     "type": "text",

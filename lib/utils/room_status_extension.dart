@@ -2,6 +2,7 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
+import '../app_config.dart';
 import 'date_time_extension.dart';
 
 extension RoomStatusExtension on Room {
@@ -37,7 +38,13 @@ extension RoomStatusExtension on Room {
     var typingUsers = this.typingUsers;
     typingUsers.removeWhere((User u) => u.id == client.userID);
 
-    if (typingUsers.length == 1) {
+    if (AppConfig.hideTypingUsernames) {
+      typingText = L10n.of(context).isTyping;
+      if (typingUsers.first.id != directChatMatrixID) {
+        typingText =
+            L10n.of(context).numUsersTyping(typingUsers.length.toString());
+      }
+    } else if (typingUsers.length == 1) {
       typingText = L10n.of(context).isTyping;
       if (typingUsers.first.id != directChatMatrixID) {
         typingText =
