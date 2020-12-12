@@ -1947,5 +1947,12 @@
   "@toggleFavorite": {
     "type": "text",
     "placeholders": {}
+  },
+  "numUsersTyping": "{count} kullanıcı yazıyor…",
+  "@numUsersTyping": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
   }
 }
