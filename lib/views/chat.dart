@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:emoji_picker/emoji_picker.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
@@ -459,6 +460,34 @@ class _ChatState extends State<_Chat> {
     return filteredEvents;
   }
 
+  void _pickEmojiAction(BuildContext context) async {
+    final emoji = await showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) => Column(
+        children: [
+          Spacer(),
+          EmojiPicker(
+            onEmojiSelected: (emoji, category) =>
+                Navigator.of(context).pop<Emoji>(emoji),
+          ),
+        ],
+      ),
+    );
+    if (emoji == null) return;
+    return _sendEmojiAction(context, emoji.emoji);
+  }
+
+  void _sendEmojiAction(BuildContext context, String emoji) {
+    SimpleDialogs(context).tryRequestWithLoadingDialog(
+      room.sendReaction(
+        selectedEvents.first.eventId,
+        emoji,
+      ),
+    );
+    setState(() => selectedEvents.clear());
+  }
+
   @override
   Widget build(BuildContext context) {
     matrix = Matrix.of(context);
@@ -830,28 +859,32 @@ class _ChatState extends State<_Chat> {
                       });
                       return ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        itemCount: emojis.length,
-                        itemBuilder: (c, i) => InkWell(
-                          borderRadius: BorderRadius.circular(8),
-                          onTap: () {
-                            SimpleDialogs(context).tryRequestWithLoadingDialog(
-                              room.sendReaction(
-                                selectedEvents.first.eventId,
-                                emojis[i],
+                        itemCount: emojis.length + 1,
+                        itemBuilder: (c, i) => i == emojis.length
+                            ? InkWell(
+                                borderRadius: BorderRadius.circular(8),
+                                child: Container(
+                                  width: 56,
+                                  height: 56,
+                                  alignment: Alignment.center,
+                                  child: Icon(Icons.add_outlined),
+                                ),
+                                onTap: () => _pickEmojiAction(context),
+                              )
+                            : InkWell(
+                                borderRadius: BorderRadius.circular(8),
+                                onTap: () =>
+                                    _sendEmojiAction(context, emojis[i]),
+                                child: Container(
+                                  width: 56,
+                                  height: 56,
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    emojis[i],
+                                    style: TextStyle(fontSize: 30),
+                                  ),
+                                ),
                               ),
-                            );
-                            setState(() => selectedEvents.clear());
-                          },
-                          child: Container(
-                            width: 56,
-                            height: 56,
-                            alignment: Alignment.center,
-                            child: Text(
-                              emojis[i],
-                              style: TextStyle(fontSize: 30),
-                            ),
-                          ),
-                        ),
                       );
                     }),
                   ),
