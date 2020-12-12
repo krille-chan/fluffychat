@@ -1935,5 +1935,12 @@
   "@toggleFavorite": {
     "type": "text",
     "placeholders": {}
+  },
+  "numUsersTyping": "{count} utenti stanno scrivendo…",
+  "@numUsersTyping": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
   }
 }
