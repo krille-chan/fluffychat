@@ -16,6 +16,7 @@ abstract class AppConfig {
   static bool renderHtml = false;
   static bool hideRedactedEvents = false;
   static bool hideUnknownEvents = false;
+  static const bool hideAllStateEvents = false;
   static const String inviteLinkPrefix = 'https://matrix.to/#/';
   static const String pushNotificationsChannelId = 'fluffychat_push';
   static const String pushNotificationsChannelName = 'FluffyChat push channel';
