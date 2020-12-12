@@ -1767,5 +1767,10 @@
   "@enterAnEmailAddress": {
     "type": "text",
     "placeholders": {}
+  },
+  "changePassword": "Cambiar la contraseña",
+  "@changePassword": {
+    "type": "text",
+    "placeholders": {}
   }
 }
