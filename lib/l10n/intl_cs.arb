@@ -524,7 +524,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteInvalid": "Neplatný krátký kód emotikonu!",
+  "emoteInvalid": "Neplatná klávesová zkratka emotikonu!",
   "@emoteInvalid": {
     "type": "text",
     "placeholders": {}
@@ -534,12 +534,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteShortcode": "Kód emotikonu",
+  "emoteShortcode": "Klávesová zkratka emotikonu",
   "@emoteShortcode": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteWarnNeedToPick": "Musíte si vybrat kód emoce a obrázek!",
+  "emoteWarnNeedToPick": "Musíte si vybrat klávesovou zkratku emotikonu a obrázek!",
   "@emoteWarnNeedToPick": {
     "type": "text",
     "placeholders": {}
@@ -1868,7 +1868,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "setCustomEmotes": "Nastavit vlastní emoce",
+  "setCustomEmotes": "Nastavit vlastní emotikony",
   "@setCustomEmotes": {
     "type": "text",
     "placeholders": {}
@@ -1947,5 +1947,12 @@
   "@toggleFavorite": {
     "type": "text",
     "placeholders": {}
+  },
+  "numUsersTyping": "{count} uživatelé píší…",
+  "@numUsersTyping": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
   }
 }
