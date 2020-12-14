@@ -491,7 +491,7 @@ packages:
       name: image_picker
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.7+14"
+    version: "0.6.7+15"
   image_picker_platform_interface:
     dependency: transitive
     description:
@@ -1002,7 +1002,7 @@ packages:
       name: sqlite3_flutter_libs
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.0"
+    version: "0.3.0"
   stack_trace:
     dependency: transitive
     description:
