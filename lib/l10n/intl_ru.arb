@@ -953,7 +953,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "В настоящее время FluffyChat не поддерживает функцию резервного копирования онлайн-ключей. Пожалуйста, включите её в Element.",
+  "noMegolmBootstrap": "Вместо этого включите онлайн-резервное копирование ключей из Element.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -1947,5 +1947,12 @@
   "@enterAnEmailAddress": {
     "type": "text",
     "placeholders": {}
+  },
+  "numUsersTyping": "{count} пользователей печатают…",
+  "@numUsersTyping": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
   }
 }
