@@ -521,59 +521,60 @@ class _ChatState extends State<_Chat> {
         titleSpacing: 0,
         title: selectedEvents.isEmpty
             ? StreamBuilder<Object>(
-                stream: Matrix.of(context)
-                    .client
-                    .onPresence
-                    .stream
-                    .where((p) => p.senderId == room.directChatMatrixID),
-                builder: (context, snapshot) {
-                  return ListTile(
-                    leading: Avatar(room.avatar, room.displayname),
-                    contentPadding: EdgeInsets.zero,
-                    onTap: room.isDirectChat
-                        ? () => showModalBottomSheet(
-                              context: context,
-                              builder: (context) => UserBottomSheet(
-                                user: room
-                                    .getUserByMXIDSync(room.directChatMatrixID),
-                                onMention: () => sendController.text +=
-                                    ' ${room.directChatMatrixID}',
-                              ),
-                            )
-                        : () => Navigator.of(context).push(
-                              AppRoute.defaultRoute(
-                                context,
-                                ChatDetails(room),
-                              ),
-                            ),
-                    title: Text(
-                        room.getLocalizedDisplayname(
-                            MatrixLocals(L10n.of(context))),
-                        maxLines: 1),
-                    subtitle: typingText.isEmpty
-                        ? Text(
-                            room.getLocalizedStatus(context),
-                            maxLines: 1,
-                          )
-                        : Row(
-                            children: <Widget>[
-                              Icon(Icons.edit_outlined,
-                                  color: Theme.of(context).primaryColor,
-                                  size: 13),
-                              SizedBox(width: 4),
-                              Text(
-                                typingText,
-                                maxLines: 1,
-                                style: TextStyle(
-                                  color: Theme.of(context).primaryColor,
-                                  fontStyle: FontStyle.italic,
-                                  fontSize: 16,
+                stream: room.onUpdate.stream,
+                builder: (context, snapshot) => ListTile(
+                      leading: Avatar(room.avatar, room.displayname),
+                      contentPadding: EdgeInsets.zero,
+                      onTap: room.isDirectChat
+                          ? () => showModalBottomSheet(
+                                context: context,
+                                builder: (context) => UserBottomSheet(
+                                  user: room.getUserByMXIDSync(
+                                      room.directChatMatrixID),
+                                  onMention: () => sendController.text +=
+                                      ' ${room.directChatMatrixID}',
+                                ),
+                              )
+                          : () => Navigator.of(context).push(
+                                AppRoute.defaultRoute(
+                                  context,
+                                  ChatDetails(room),
                                 ),
                               ),
-                            ],
-                          ),
-                  );
-                })
+                      title: Text(
+                          room.getLocalizedDisplayname(
+                              MatrixLocals(L10n.of(context))),
+                          maxLines: 1),
+                      subtitle: typingText.isEmpty
+                          ? StreamBuilder<Object>(
+                              stream: Matrix.of(context)
+                                  .client
+                                  .onPresence
+                                  .stream
+                                  .where((p) =>
+                                      p.senderId == room.directChatMatrixID),
+                              builder: (context, snapshot) => Text(
+                                    room.getLocalizedStatus(context),
+                                    maxLines: 1,
+                                  ))
+                          : Row(
+                              children: <Widget>[
+                                Icon(Icons.edit_outlined,
+                                    color: Theme.of(context).primaryColor,
+                                    size: 13),
+                                SizedBox(width: 4),
+                                Text(
+                                  typingText,
+                                  maxLines: 1,
+                                  style: TextStyle(
+                                    color: Theme.of(context).primaryColor,
+                                    fontStyle: FontStyle.italic,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ],
+                            ),
+                    ))
             : Text(L10n.of(context)
                 .numberSelected(selectedEvents.length.toString())),
         actions: selectMode
