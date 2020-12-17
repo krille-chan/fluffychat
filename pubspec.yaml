@@ -47,8 +47,7 @@ dependencies:
   random_string: ^2.1.0
   flutter_typeahead: ^1.9.1
   flutter_olm: ^1.0.1
-  intl: ^0.16.1
-  intl_translation: ^0.17.10+1
+  intl: any
   circular_check_box: ^1.0.4
   flutter_localizations:
     sdk: flutter
