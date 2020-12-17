@@ -108,7 +108,7 @@ upload_to_fdroid_repo:
   resource_group: playstore_release
   allow_failure: true
   only:
-    - main
+    - tags
 
 pages:
   stage: deploy
