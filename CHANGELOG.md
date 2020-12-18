@@ -4,6 +4,54 @@ Chat with your friends.
 ## Unreleased
 
 ### Chore
+* Update dependencies [550cb4a]
+* Update SDK [775a33b]
+* Update dependencies [644433c]
+* Switch to upstream noti settings [5cc4265]
+* Go back to upstream open noti settings [6effebe]
+* Update dependencies [5af4eab]
+
+### Feature
+* Bring back config.json [b6a0d37]
+* Implement emojipicker for reactions [20b3157]
+* Add config hideTypingUsernames [19c0440]
+* Implement hideAllStateEvents [721c0b2]
+* Enhanced configuration [1e7bac3]
+* Implement experimental bootstrapping [f6945f7]
+* add ability to mark a room as unread [fe2b391]
+* Try out new firebase [41a471e]
+* Implement discover groups page [e728ccc]
+* Add chat permissions settings [bf4b439]
+* Multiline dialog text field [8d05a83]
+* Implement rich notification settings [87a73dd]
+
+### Fixes
+* Update typing [3d70b1e]
+* Build in dev [f892a9f]
+* Fix that damn regex [8961bff]
+* CI [ebb114d]
+* CI [0adeb09]
+* Format [9e5fb70]
+* CI scripts [46b886f]
+* join public room [30883e5]
+* CI [7f44982]
+* open_noti_settings [f4c1202]
+* Missing localization [cb191e2]
+* Analyzer bug [be428dd]
+* Set chat avatar on web [621fcb7]
+* CI [da5bc56]
+
+### Refactor
+* Update sdk [32acc21]
+
+## v0.23.1 - 2020-11-25
+
+### Fixes
+* Release CI [14d8c80]
+
+## v0.23.0 - 2020-11-25
+
+### Chore
 * Update adaptive dialogs [0061660]
 * Prettier redacted events [d1e291e]
 * Minor design changes in user viewer [b4fb283]
@@ -12,6 +60,7 @@ Chat with your friends.
 * Only load google services if needed [bae779a]
 
 ### Feature
+* Next version [1af048e]
 * Annoy user with dialog to add a recovery method [d9ec9f6]
 * Implement password recovery [4b2fef5]
 * Collapse room create states [fc0c038]
@@ -39,17 +88,15 @@ Chat with your friends.
 
 ## v0.22.1 - 2020-11-21
 
-### Chore
-* fix CI [00ed0d6]
-* fix CI [bb4bb9f]
-* Fix CI variables [d3822b0]
-
 ### Fixes
 * Input bar not working, making app unusable [10773b4]
 
 ## v0.22.0 - 2020-11-21
 
 ### Chore
+* fix CI [00ed0d6]
+* fix CI [bb4bb9f]
+* Fix CI variables [d3822b0]
 * update flutter_matrix_html [ed27bee]
 * update flutter_matrix_html [af36533]
 * Update dependencies [57256fb]
