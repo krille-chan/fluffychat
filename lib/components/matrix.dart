@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:convert';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:famedlysdk/encryption.dart';
@@ -16,6 +17,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:universal_html/prefer_universal/html.dart' as html;
 import 'package:url_launcher/url_launcher.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:http/http.dart' as http;
 /*import 'package:fluffychat/views/chat.dart';
 import 'package:fluffychat/app_config.dart';
 import 'package:dbus/dbus.dart';
@@ -275,6 +278,33 @@ class MatrixState extends State<Matrix> {
   void initState() {
     super.initState();
     initMatrix();
+    initConfig().then((_) => initSettings());
+  }
+
+  Future<void> initConfig() async {
+    if (PlatformInfos.isMobile) {
+      return;
+    }
+    try {
+      var configJsonString = '';
+      if (PlatformInfos.isWeb) {
+        configJsonString =
+            utf8.decode((await http.get('config.json')).bodyBytes);
+      } else if (PlatformInfos.isBetaDesktop) {
+        final appDocDir = await getApplicationSupportDirectory();
+        configJsonString =
+            await File('${appDocDir.path}/config.json').readAsString();
+      } else {
+        final appDocDir = await getApplicationDocumentsDirectory();
+        configJsonString =
+            await File('${appDocDir.path}/config.json').readAsString();
+      }
+      final configJson = json.decode(configJsonString);
+      AppConfig.loadFromJson(configJson);
+    } catch (error) {
+      debugPrint(
+          '[ConfigLoader] Failed to load config.json: ' + error.toString());
+    }
   }
 
   void initMatrix() {
@@ -369,7 +399,6 @@ class MatrixState extends State<Matrix> {
             .listen(_showLocalNotification);
       });
     }
-    initSettings();
   }
 
   void initSettings() {

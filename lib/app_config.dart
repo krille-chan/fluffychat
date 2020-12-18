@@ -1,11 +1,15 @@
 abstract class AppConfig {
-  static const String applicationName = 'FluffyChat';
-  static const String applicationWelcomeMessage = null;
-  static const String defaultHomeserver = 'matrix.org';
+  static String _applicationName = 'FluffyChat';
+  static String get applicationName => _applicationName;
+  static String _applicationWelcomeMessage;
+  static String get applicationWelcomeMessage => _applicationWelcomeMessage;
+  static String _defaultHomeserver = 'matrix.org';
+  static String get defaultHomeserver => _defaultHomeserver;
   static String jitsiInstance = 'https://meet.jit.si/';
   static const bool allowOtherHomeservers = true;
   static const bool enableRegistration = true;
-  static const String privacyUrl = 'https://fluffychat.im/en/privacy.html';
+  static String _privacyUrl = 'https://fluffychat.im/en/privacy.html';
+  static String get privacyUrl => _privacyUrl;
   static const String sourceCodeUrl =
       'https://gitlab.com/ChristianPauly/fluffychat-flutter';
   static const String supportUrl =
@@ -26,4 +30,31 @@ abstract class AppConfig {
   static const String pushNotificationsAppId = 'chat.fluffy.fluffychat';
   static const String pushNotificationsGatewayUrl = 'https://janian.de:7023/';
   static const String pushNotificationsPusherFormat = 'event_id_only';
+
+  static void loadFromJson(Map<String, dynamic> json) {
+    if (json['application_name'] is String) {
+      _applicationName = json['application_name'];
+    }
+    if (json['application_welcome_message'] is String) {
+      _applicationWelcomeMessage = json['application_welcome_message'];
+    }
+    if (json['default_homeserver'] is String) {
+      _defaultHomeserver = json['default_homeserver'];
+    }
+    if (json['jitsi_instance'] is String) {
+      jitsiInstance = json['jitsi_instance'];
+    }
+    if (json['privacy_url'] is String) {
+      _privacyUrl = json['privacy_url'];
+    }
+    if (json['render_html'] is bool) {
+      renderHtml = json['render_html'];
+    }
+    if (json['hide_redacted_events'] is bool) {
+      hideRedactedEvents = json['hide_redacted_events'];
+    }
+    if (json['hide_unknown_events'] is bool) {
+      hideUnknownEvents = json['hide_unknown_events'];
+    }
+  }
 }

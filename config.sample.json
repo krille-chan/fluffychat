@@ -1,0 +1,10 @@
+{
+  "application_name": "FluffyChat",
+  "application_welcome_message": null,
+  "default_homeserver": "matrix.org",
+  "jitsi_instance": "https://meet.jit.si/",
+  "privacy_url": "https://fluffychat.im/en/privacy.html",
+  "render_html": false,
+  "hide_redacted_events": false,
+  "hide_unknown_events": false
+}
