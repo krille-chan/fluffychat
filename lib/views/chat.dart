@@ -546,7 +546,7 @@ class _ChatState extends State<_Chat> {
                                   user: room.getUserByMXIDSync(
                                       room.directChatMatrixID),
                                   onMention: () => sendController.text +=
-                                      ' ${room.directChatMatrixID}',
+                                      '${room.directChatMatrixID} ',
                                 ),
                               )
                           : () => Navigator.of(context).push(
@@ -776,7 +776,7 @@ class _ChatState extends State<_Chat> {
                                                       user: event.sender,
                                                       onMention: () =>
                                                           sendController.text +=
-                                                              ' ${event.senderId}',
+                                                              '${event.senderId} ',
                                                     ),
                                                   ),
                                               onSelect: (Event event) {
