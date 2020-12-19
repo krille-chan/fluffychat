@@ -1919,5 +1919,10 @@
     "placeholders": {
       "count": {}
     }
+  },
+  "toggleUnread": "Marcar Lido/Não Lido",
+  "@toggleUnread": {
+    "type": "text",
+    "placeholders": {}
   }
 }
