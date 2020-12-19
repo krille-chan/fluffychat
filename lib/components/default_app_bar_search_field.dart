@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-class DefaultAppBarSearchField extends StatelessWidget {
+class DefaultAppBarSearchField extends StatefulWidget {
   final TextEditingController searchController;
   final void Function(String) onChanged;
   final Widget suffix;
@@ -14,8 +14,44 @@ class DefaultAppBarSearchField extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  _DefaultAppBarSearchFieldState createState() =>
+      _DefaultAppBarSearchFieldState();
+}
+
+class _DefaultAppBarSearchFieldState extends State<DefaultAppBarSearchField> {
+  final FocusNode _focusNode = FocusNode();
+  TextEditingController _searchController;
+  bool _lastTextWasEmpty = false;
+
+  void _updateSearchController() {
+    final thisTextIsEmpty = _searchController.text?.isEmpty ?? false;
+    if (_lastTextWasEmpty != thisTextIsEmpty) {
+      setState(() => _lastTextWasEmpty = thisTextIsEmpty);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _searchController = widget.searchController ?? TextEditingController();
+    // we need to remove the listener in the dispose method, so we need a reference to the callback
+    _searchController.addListener(_updateSearchController);
+    _focusNode.addListener(() => setState(() => null));
+  }
+
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    _searchController.removeListener(_updateSearchController);
+    if (widget.searchController == null) {
+      // we need to dispose our own created searchController
+      _searchController.dispose();
+    }
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final focusNode = FocusNode();
     return Container(
       height: 40,
       padding: EdgeInsets.only(right: 16),
@@ -24,9 +60,9 @@ class DefaultAppBarSearchField extends StatelessWidget {
         borderRadius: BorderRadius.circular(32),
         child: TextField(
           autocorrect: false,
-          controller: searchController,
-          onChanged: onChanged,
-          focusNode: focusNode,
+          controller: _searchController,
+          onChanged: widget.onChanged,
+          focusNode: _focusNode,
           decoration: InputDecoration(
             contentPadding: EdgeInsets.only(
               top: 8,
@@ -37,15 +73,17 @@ class DefaultAppBarSearchField extends StatelessWidget {
               borderRadius: BorderRadius.circular(32),
             ),
             hintText: L10n.of(context).searchForAChat,
-            suffixIcon: focusNode.hasFocus
+            suffixIcon: _focusNode.hasFocus ||
+                    (widget.suffix == null &&
+                        (_searchController.text?.isNotEmpty ?? false))
                 ? IconButton(
                     icon: Icon(Icons.backspace_outlined),
                     onPressed: () {
-                      searchController.clear();
-                      focusNode.unfocus();
+                      _searchController.clear();
+                      _focusNode.unfocus();
                     },
                   )
-                : suffix,
+                : widget.suffix,
           ),
         ),
       ),
