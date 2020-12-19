@@ -31,6 +31,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:pedantic/pedantic.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:swipe_to_action/swipe_to_action.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../components/dialogs/send_file_dialog.dart';
 import '../components/input_bar.dart';
@@ -460,7 +461,8 @@ class _ChatState extends State<_Chat> {
     return filteredEvents;
   }
 
-  void _pickEmojiAction(BuildContext context) async {
+  void _pickEmojiAction(
+      BuildContext context, Iterable<Event> allReactionEvents) async {
     final emoji = await showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
@@ -468,13 +470,25 @@ class _ChatState extends State<_Chat> {
         children: [
           Spacer(),
           EmojiPicker(
-            onEmojiSelected: (emoji, category) =>
-                Navigator.of(context).pop<Emoji>(emoji),
+            onEmojiSelected: (emoji, category) {
+              // recent emojis don't work, so we sadly have to re-implement them
+              // https://github.com/JeffG05/emoji_picker/issues/31
+              SharedPreferences.getInstance().then((prefs) {
+                final recents = prefs.getStringList('recents') ?? <String>[];
+                recents.insert(0, emoji.name);
+                // make sure we remove duplicates
+                prefs.setStringList('recents', recents.toSet().toList());
+              });
+              Navigator.of(context).pop<Emoji>(emoji);
+            },
           ),
         ],
       ),
     );
     if (emoji == null) return;
+    // make sure we don't send the same emoji twice
+    if (allReactionEvents
+        .any((e) => e.content['m.relates_to']['key'] == emoji.emoji)) return;
     return _sendEmojiAction(context, emoji.emoji);
   }
 
@@ -870,7 +884,8 @@ class _ChatState extends State<_Chat> {
                                   alignment: Alignment.center,
                                   child: Icon(Icons.add_outlined),
                                 ),
-                                onTap: () => _pickEmojiAction(context),
+                                onTap: () => _pickEmojiAction(
+                                    context, allReactionEvents),
                               )
                             : InkWell(
                                 borderRadius: BorderRadius.circular(8),
