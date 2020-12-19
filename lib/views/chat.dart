@@ -153,20 +153,28 @@ class _ChatState extends State<_Chat> {
 
     var seenByText = '';
     if (timeline.events.isNotEmpty) {
-      var lastReceipts = List.from(timeline.events.first.receipts);
-      lastReceipts.removeWhere((r) =>
-          r.user.id == room.client.userID ||
-          r.user.id == timeline.events.first.senderId);
+      final filteredEvents = getFilteredEvents();
+      final lastReceipts = <User>{};
+      // now we iterate the timeline events until we hit the first rendered event
+      for (final event in timeline.events) {
+        lastReceipts.addAll(event.receipts.map((r) => r.user));
+        if (event.eventId == filteredEvents.first.eventId) {
+          break;
+        }
+      }
+      lastReceipts.removeWhere((user) =>
+          user.id == room.client.userID ||
+          user.id == filteredEvents.first.senderId);
       if (lastReceipts.length == 1) {
-        seenByText = L10n.of(context)
-            .seenByUser(lastReceipts.first.user.calcDisplayname());
+        seenByText =
+            L10n.of(context).seenByUser(lastReceipts.first.calcDisplayname());
       } else if (lastReceipts.length == 2) {
         seenByText = seenByText = L10n.of(context).seenByUserAndUser(
-            lastReceipts.first.user.calcDisplayname(),
-            lastReceipts[1].user.calcDisplayname());
+            lastReceipts.first.calcDisplayname(),
+            lastReceipts.last.calcDisplayname());
       } else if (lastReceipts.length > 2) {
         seenByText = L10n.of(context).seenByUserAndCountOthers(
-            lastReceipts.first.user.calcDisplayname(),
+            lastReceipts.first.calcDisplayname(),
             (lastReceipts.length - 1).toString());
       }
     }
@@ -437,12 +445,17 @@ class _ChatState extends State<_Chat> {
                 .contains(e.relationshipType) &&
             // always filter out m.key.* events
             !e.type.startsWith('m.key.verification.') &&
-            // if a reaction has been redacted we also want it to appear in the timeline
-            e.type != EventTypes.Reaction &&
+            // event types to hide: redaction and reaction events
+            // if a reaction has been redacted we also want it to be hidden in the timeline
+            !{EventTypes.Reaction, EventTypes.Redaction}.contains(e.type) &&
             // if we enabled to hide all redacted events, don't show those
             (!AppConfig.hideRedactedEvents || !e.redacted) &&
             // if we enabled to hide all unknown events, don't show those
-            (!AppConfig.hideUnknownEvents || e.isEventTypeKnown))
+            (!AppConfig.hideUnknownEvents || e.isEventTypeKnown) &&
+            // remove state events that we don't want to render
+            (!{EventTypes.Message, EventTypes.Sticker, EventTypes.Encrypted}
+                    .contains(e.type) ||
+                !AppConfig.hideAllStateEvents))
         .toList();
 
     // Hide state events from the room creater right after the room created event
