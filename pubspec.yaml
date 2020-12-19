@@ -16,7 +16,7 @@ dependencies:
       ref: main
 
   localstorage: ^3.0.3+6
-  file_picker_cross: ^4.2.6
+  file_picker_cross: 4.2.2
   image_picker: ^0.6.7+15
   url_launcher: ^5.7.10
   cached_network_image: ^2.4.1
