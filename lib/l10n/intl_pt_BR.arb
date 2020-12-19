@@ -1913,7 +1913,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "numUsersTyping": "{count} os usuários estão digitando…",
+  "numUsersTyping": "{count} usuários estão digitando…",
   "@numUsersTyping": {
     "type": "text",
     "placeholders": {
