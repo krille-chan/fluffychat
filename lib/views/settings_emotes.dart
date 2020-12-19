@@ -59,7 +59,6 @@ class _EmotesSettingsState extends State<EmotesSettings> {
     if (readonly) {
       return;
     }
-    debugPrint('Saving....');
     final client = Matrix.of(context).client;
     // be sure to preserve any data not in "short"
     Map<String, dynamic> content;
@@ -72,7 +71,6 @@ class _EmotesSettingsState extends State<EmotesSettings> {
       content = client.accountData['im.ponies.user_emotes']?.content ??
           <String, dynamic>{};
     }
-    debugPrint(content.toString());
     if (!(content['emoticons'] is Map)) {
       content['emoticons'] = <String, dynamic>{};
     }
@@ -95,7 +93,6 @@ class _EmotesSettingsState extends State<EmotesSettings> {
     }
     // remove the old "short" key
     content.remove('short');
-    debugPrint(content.toString());
     if (widget.room != null) {
       await SimpleDialogs(context).tryRequestWithLoadingDialog(
         client.sendState(widget.room.id, 'im.ponies.room_emotes', content,

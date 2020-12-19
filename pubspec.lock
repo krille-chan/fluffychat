@@ -36,13 +36,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.2"
-  ansicolor:
-    dependency: transitive
-    description:
-      name: ansicolor
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.1.1"
   args:
     dependency: transitive
     description:
@@ -202,7 +195,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "59d5849acc2d165fef6b96bac21ec5073c939778"
+      resolved-ref: efadef4f3ea2b11d1d2b78c4bcaad50250a643e4
       url: "https://gitlab.com/famedly/famedlysdk.git"
     source: git
     version: "0.0.1"
@@ -527,6 +520,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.3+6"
+  logger:
+    dependency: transitive
+    description:
+      name: logger
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.7.0"
+  logger_flutter:
+    dependency: "direct main"
+    description:
+      name: logger_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.7.1"
   logging:
     dependency: transitive
     description:
@@ -851,6 +858,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.6"
+  sensors:
+    dependency: transitive
+    description:
+      name: sensors
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.2+6"
   sentry:
     dependency: "direct main"
     description:

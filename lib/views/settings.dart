@@ -6,6 +6,7 @@ import 'package:fluffychat/views/settings_style.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
+import 'package:fluffychat/utils/beautify_string_extension.dart';
 
 import 'package:fluffychat/app_config.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -16,6 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:logger_flutter/logger_flutter.dart';
 
 import '../components/adaptive_page_layout.dart';
 import '../components/content_banner.dart';
@@ -24,7 +26,6 @@ import '../components/matrix.dart';
 import '../utils/app_route.dart';
 import '../app_config.dart';
 import '../config/setting_keys.dart';
-import 'app_info.dart';
 import 'chat_list.dart';
 import 'settings_emotes.dart';
 
@@ -434,23 +435,13 @@ class _SettingsState extends State<Settings> {
               ),
             ),
             ListTile(
-              trailing: Icon(Icons.account_circle_outlined),
-              title: Text(L10n.of(context).accountInformation),
-              onTap: () => Navigator.of(context).push(
-                AppRoute.defaultRoute(
-                  context,
-                  AppInfoView(),
-                ),
-              ),
-            ),
-            ListTile(
               trailing: Icon(Icons.bug_report_outlined),
               title: Text(L10n.of(context).sendBugReports),
               onTap: () => SentryController.toggleSentryAction(context),
             ),
             Divider(thickness: 1),
             ListTile(
-              trailing: Icon(Icons.vpn_key_outlined),
+              trailing: Icon(Icons.security_outlined),
               title: Text(
                 L10n.of(context).changePassword,
               ),
@@ -589,6 +580,15 @@ class _SettingsState extends State<Settings> {
                 }
               },
             ),
+            ListTile(
+              title: Text(L10n.of(context).yourPublicKey),
+              onTap: () => showOkAlertDialog(
+                context: context,
+                title: L10n.of(context).yourPublicKey,
+                message: client.fingerprintKey.beautified,
+              ),
+              trailing: Icon(Icons.vpn_key_outlined),
+            ),
             Divider(thickness: 1),
             ListTile(
               title: Text(
@@ -596,6 +596,14 @@ class _SettingsState extends State<Settings> {
                 style: TextStyle(
                   color: Theme.of(context).primaryColor,
                   fontWeight: FontWeight.bold,
+                ),
+              ),
+              onTap: () => Navigator.of(context).push(
+                AppRoute.defaultRoute(
+                  context,
+                  LogConsole(
+                    showCloseButton: true,
+                  ),
                 ),
               ),
             ),

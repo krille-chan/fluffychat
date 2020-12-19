@@ -5,7 +5,6 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart' show getDatabasesPath;
 import 'package:path/path.dart' as p;
-import 'package:flutter/material.dart';
 import 'package:moor/moor.dart';
 import 'package:moor/isolate.dart';
 import '../platform_infos.dart';
@@ -53,7 +52,7 @@ Future<Database> constructDb(
     String filename = 'database.sqlite',
     String password = ''}) async {
   if (PlatformInfos.isMobile || Platform.isMacOS) {
-    debugPrint('[Moor] using encrypted moor');
+    Logs().v('[Moor] using encrypted moor');
     final dbFolder = await getDatabasesPath();
     final targetPath = p.join(dbFolder, filename);
     final receivePort = ReceivePort();
@@ -65,11 +64,11 @@ Future<Database> constructDb(
     final isolate = (await receivePort.first as MoorIsolate);
     return Database.connect(await isolate.connect());
   } else if (Platform.isLinux) {
-    debugPrint('[Moor] using Linux desktop moor');
+    Logs().v('[Moor] using Linux desktop moor');
     final appDocDir = await getApplicationSupportDirectory();
     return Database(moor.VmDatabase(File('${appDocDir.path}/$filename')));
   } else if (Platform.isWindows) {
-    debugPrint('[Moor] using Windows desktop moor');
+    Logs().v('[Moor] using Windows desktop moor');
     open.overrideFor(OperatingSystem.windows, _openOnWindows);
     return Database(moor.VmDatabase.memory());
   }
