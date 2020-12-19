@@ -1959,5 +1959,10 @@
   "@yourPublicKey": {
     "type": "text",
     "placeholders": {}
+  },
+  "publicKey": "Clé publique",
+  "@publicKey": {
+    "type": "text",
+    "placeholders": {}
   }
 }
