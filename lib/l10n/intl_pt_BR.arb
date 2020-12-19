@@ -54,7 +54,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "weSentYouAnEmail": "Enviamos um email para você",
+  "weSentYouAnEmail": "Enviamos um e-mail para você",
   "@weSentYouAnEmail": {
     "type": "text",
     "placeholders": {}
@@ -738,7 +738,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseClickOnLink": "Por favor, clique o link no email para prosseguir.",
+  "pleaseClickOnLink": "Por favor, clique a ligação no e-mail para prosseguir.",
   "@pleaseClickOnLink": {
     "type": "text",
     "placeholders": {}
@@ -857,7 +857,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noRoomsFound": "Nenhuma sala encontrada",
+  "noRoomsFound": "Nenhuma sala encontrada…",
   "@noRoomsFound": {
     "type": "text",
     "placeholders": {}
@@ -897,7 +897,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "newVerificationRequest": "Nova solicitação de verificação",
+  "newVerificationRequest": "Nova solicitação de verificação!",
   "@newVerificationRequest": {
     "type": "text",
     "placeholders": {}
@@ -1383,7 +1383,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enterAnEmailAddress": "Inserir endereço de email",
+  "enterAnEmailAddress": "Inserir endereço de e-mail",
   "@enterAnEmailAddress": {
     "type": "text",
     "placeholders": {}
@@ -1832,7 +1832,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "areGuestsAllowedToJoin": "Usuários convidados podem participar?",
+  "areGuestsAllowedToJoin": "Usuários convidados podem participar",
   "@areGuestsAllowedToJoin": {
     "type": "text",
     "placeholders": {}
@@ -1920,7 +1920,7 @@
       "count": {}
     }
   },
-  "toggleUnread": "Marcar Lido/Não Lido",
+  "toggleUnread": "Marcar lido/não lido",
   "@toggleUnread": {
     "type": "text",
     "placeholders": {}
