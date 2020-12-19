@@ -347,7 +347,7 @@ class MatrixState extends State<Matrix> {
             context: context,
             title: L10n.of(context).requestToReadOlderMessages,
             message:
-                '${sender.id}\n\n${L10n.of(context).device}:\n${request.requestingDevice.deviceId}\n\n${L10n.of(context).identity}:\n${request.requestingDevice.curve25519Key.beautified}',
+                '${sender.id}\n\n${L10n.of(context).device}:\n${request.requestingDevice.deviceId}\n\n${L10n.of(context).publicKey}:\n${request.requestingDevice.ed25519Key.beautified}',
             okLabel: L10n.of(context).verify,
             cancelLabel: L10n.of(context).deny,
           ) ==

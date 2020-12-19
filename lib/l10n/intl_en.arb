@@ -1204,6 +1204,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "publicKey": "Public Key",
+  "@publicKey": {
+    "type": "text",
+    "placeholders": {}
+  },
   "publicRooms": "Public Rooms",
   "@publicRooms": {
     "type": "text",
