@@ -1954,5 +1954,15 @@
     "placeholders": {
       "count": {}
     }
+  },
+  "yourPublicKey": "Váš veřejný klíč",
+  "@yourPublicKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicKey": "Veřejný klíč",
+  "@publicKey": {
+    "type": "text",
+    "placeholders": {}
   }
 }
