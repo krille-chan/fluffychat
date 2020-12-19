@@ -20,7 +20,6 @@ import 'package:universal_html/prefer_universal/html.dart' as html;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart' as http;
-import 'package:logger/logger.dart';
 /*import 'package:fluffychat/views/chat.dart';
 import 'package:fluffychat/app_config.dart';
 import 'package:dbus/dbus.dart';
