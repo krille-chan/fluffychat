@@ -1954,5 +1954,15 @@
     "placeholders": {
       "count": {}
     }
+  },
+  "yourPublicKey": "Sinu avalik võti",
+  "@yourPublicKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicKey": "Avalik võti",
+  "@publicKey": {
+    "type": "text",
+    "placeholders": {}
   }
 }
