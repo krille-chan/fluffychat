@@ -20,6 +20,7 @@ import 'package:universal_html/prefer_universal/html.dart' as html;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart' as http;
+import 'package:logger/logger.dart';
 /*import 'package:fluffychat/views/chat.dart';
 import 'package:fluffychat/app_config.dart';
 import 'package:dbus/dbus.dart';
@@ -308,6 +309,7 @@ class MatrixState extends State<Matrix> {
   }
 
   void initMatrix() {
+    Logs().level = Level.verbose;
     LogConsole.init();
     clientName =
         '${AppConfig.applicationName} ${kIsWeb ? 'Web' : Platform.operatingSystem}';
@@ -440,9 +442,13 @@ class MatrixState extends State<Matrix> {
 
   @override
   Widget build(BuildContext context) {
-    return _InheritedMatrix(
-      data: this,
-      child: widget.child,
+    return LogConsoleOnShake(
+      dark: true,
+      debugOnly: false,
+      child: _InheritedMatrix(
+        data: this,
+        child: widget.child,
+      ),
     );
   }
 }
