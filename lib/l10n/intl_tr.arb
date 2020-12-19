@@ -1959,5 +1959,10 @@
   "@yourPublicKey": {
     "type": "text",
     "placeholders": {}
+  },
+  "publicKey": "Ortak Anahtar",
+  "@publicKey": {
+    "type": "text",
+    "placeholders": {}
   }
 }
