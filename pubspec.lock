@@ -195,7 +195,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: efadef4f3ea2b11d1d2b78c4bcaad50250a643e4
+      resolved-ref: b5cf8cacb6d9f96f04d110091e879e88249ec3ca
       url: "https://gitlab.com/famedly/famedlysdk.git"
     source: git
     version: "0.0.1"
