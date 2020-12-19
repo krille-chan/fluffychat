@@ -54,7 +54,7 @@ abstract class FirebaseController {
       return;
     }
     final pushers = await client.requestPushers().catchError((e) {
-      debugPrint('[Push] Unable to request pushers: ${e.toString()}');
+      Logs().w('[Push] Unable to request pushers', e);
       return <Pusher>[];
     });
     final currentPushers = pushers.where((pusher) => pusher.pushkey == token);
@@ -68,7 +68,7 @@ abstract class FirebaseController {
             AppConfig.pushNotificationsGatewayUrl &&
         currentPushers.first.data.format ==
             AppConfig.pushNotificationsPusherFormat) {
-      debugPrint('[Push] Pusher already set');
+      Logs().i('[Push] Pusher already set');
     } else {
       if (currentPushers.isNotEmpty) {
         for (final currentPusher in currentPushers) {
@@ -78,7 +78,7 @@ abstract class FirebaseController {
             currentPusher,
             append: true,
           );
-          debugPrint('[Push] Remove legacy pusher for this device');
+          Logs().i('[Push] Remove legacy pusher for this device');
         }
       }
       await client
@@ -97,8 +97,8 @@ abstract class FirebaseController {
         ),
         append: false,
       )
-          .catchError((e) {
-        debugPrint('[Push] Unable to set pushers: ${e.toString()}');
+          .catchError((e, s) {
+        Logs().e('[Push] Unable to set pushers', e, s);
         return [];
       });
     }
@@ -121,7 +121,7 @@ abstract class FirebaseController {
       } catch (_) {
         await FlushbarHelper.createError(message: 'Failed to open chat...')
             .show(context);
-        debugPrint(_);
+        rethrow;
       }
     };
 
@@ -145,7 +145,7 @@ abstract class FirebaseController {
       onResume: goToRoom,
       onLaunch: goToRoom,
     );
-    debugPrint('[Push] Firebase initialized');
+    Logs().i('[Push] Firebase initialized');
     return;
   }
 
@@ -162,10 +162,10 @@ abstract class FirebaseController {
         return null;
       }
       if (context != null && Matrix.of(context).activeRoomId == roomId) {
-        debugPrint('[Push] New clearing push');
+        Logs().i('[Push] New clearing push');
         return null;
       }
-      debugPrint('[Push] New message received');
+      Logs().i('[Push] New message received');
       // FIXME unable to init without context currently https://github.com/flutter/flutter/issues/67092
       // Locked on EN until issue resolved
       final i18n = context == null ? L10nEn() : L10n.of(context);
@@ -183,7 +183,7 @@ abstract class FirebaseController {
         final platform = kIsWeb ? 'Web' : Platform.operatingSystem;
         final clientName = 'FluffyChat $platform';
         client = Client(clientName, databaseBuilder: getDatabase)..init();
-        debugPrint('[Push] Use a temp client');
+        Logs().i('[Push] Use a temp client');
         await client.onLoginStateChanged.stream
             .firstWhere((l) => l == LoginState.logged)
             .timeout(
@@ -194,12 +194,12 @@ abstract class FirebaseController {
       // Get the room
       var room = client.getRoomById(roomId);
       if (room == null) {
-        debugPrint('[Push] Wait for the room');
+        Logs().i('[Push] Wait for the room');
         await client.onRoomUpdate.stream
             .where((u) => u.id == roomId)
             .first
             .timeout(Duration(seconds: 5));
-        debugPrint('[Push] Room found');
+        Logs().i('[Push] Room found');
         room = client.getRoomById(roomId);
         if (room == null) return null;
       }
@@ -207,12 +207,12 @@ abstract class FirebaseController {
       // Get the event
       var event = await client.database.getEventById(client.id, eventId, room);
       if (event == null) {
-        debugPrint('[Push] Wait for the event');
+        Logs().i('[Push] Wait for the event');
         final eventUpdate = await client.onEvent.stream
             .where((u) => u.content['event_id'] == eventId)
             .first
             .timeout(Duration(seconds: 5));
-        debugPrint('[Push] Event found');
+        Logs().i('[Push] Event found');
         event = Event.fromJson(eventUpdate.content, room);
         if (room == null) return null;
       }
@@ -284,11 +284,10 @@ abstract class FirebaseController {
       if (tempClient) {
         await client.dispose();
         client = null;
-        debugPrint('[Push] Temp client disposed');
+        Logs().i('[Push] Temp client disposed');
       }
-    } catch (exception) {
-      debugPrint('[Push] Error while processing notification: ' +
-          exception.toString());
+    } catch (e, s) {
+      Logs().e('[Push] Error while processing notification', e, s);
       await _showDefaultNotification(message);
     }
     return null;
@@ -341,9 +340,8 @@ abstract class FirebaseController {
       await flutterLocalNotificationsPlugin.show(
           1, title, l10n.openAppToReadMessages, platformChannelSpecifics,
           payload: roomID);
-    } catch (exception) {
-      debugPrint('[Push] Error while processing background notification: ' +
-          exception.toString());
+    } catch (e, s) {
+      Logs().e('[Push] Error while processing background notification', e, s);
     }
     return Future<void>.value();
   }
@@ -374,7 +372,7 @@ abstract class FirebaseController {
         IosNotificationSettings(sound: true, badge: true, alert: true));
     _firebaseMessaging.onIosSettingsRegistered
         .listen((IosNotificationSettings settings) {
-      debugPrint('Settings registered: $settings');
+      Logs().i('Settings registered: $settings');
     });
   }
 }

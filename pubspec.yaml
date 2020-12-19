@@ -64,6 +64,7 @@ dependencies:
   flutter_cache_manager: ^2.0.0
   open_noti_settings: ^0.0.4
   emoji_picker: ^0.1.0
+  logger_flutter: ^0.7.1
 
 dev_dependencies:
   flutter_test:

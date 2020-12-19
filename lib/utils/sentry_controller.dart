@@ -1,4 +1,5 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:famedlysdk/famedlysdk.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:fluffychat/app_config.dart';
 import 'package:flutter/material.dart';
@@ -37,8 +38,7 @@ abstract class SentryController {
   static final sentry = SentryClient(dsn: AppConfig.sentryDns);
 
   static void captureException(error, stackTrace) async {
-    debugPrint(error.toString());
-    debugPrint(stackTrace.toString());
+    Logs().e('Capture exception', error, stackTrace);
     if (!kDebugMode && await getSentryStatus()) {
       await sentry.captureException(
         exception: error,

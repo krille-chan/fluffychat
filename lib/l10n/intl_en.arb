@@ -1757,6 +1757,11 @@
       "unreadChats": {}
     }
   },
+  "yourPublicKey": "Your public key",
+  "@yourPublicKey": {
+    "type": "text",
+    "placeholders": {}
+  },
   "numUsersTyping": "{count} users are typing…",
   "@numUsersTyping": {
     "type": "text",
