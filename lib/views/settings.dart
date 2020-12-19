@@ -603,6 +603,7 @@ class _SettingsState extends State<Settings> {
                   context,
                   LogConsole(
                     showCloseButton: true,
+                    dark: true,
                   ),
                 ),
               ),

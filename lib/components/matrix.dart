@@ -309,7 +309,6 @@ class MatrixState extends State<Matrix> {
   }
 
   void initMatrix() {
-    Logs().level = Level.verbose;
     LogConsole.init();
     clientName =
         '${AppConfig.applicationName} ${kIsWeb ? 'Web' : Platform.operatingSystem}';
@@ -442,13 +441,9 @@ class MatrixState extends State<Matrix> {
 
   @override
   Widget build(BuildContext context) {
-    return LogConsoleOnShake(
-      dark: true,
-      debugOnly: false,
-      child: _InheritedMatrix(
-        data: this,
-        child: widget.child,
-      ),
+    return _InheritedMatrix(
+      data: this,
+      child: widget.child,
     );
   }
 }
