@@ -1942,5 +1942,15 @@
     "placeholders": {
       "count": {}
     }
+  },
+  "yourPublicKey": "La tua chiave pubblica",
+  "@yourPublicKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicKey": "Chiave pubblica",
+  "@publicKey": {
+    "type": "text",
+    "placeholders": {}
   }
 }
