@@ -1954,5 +1954,15 @@
     "placeholders": {
       "count": {}
     }
+  },
+  "yourPublicKey": "Ihr öffentlicher Schlüssel",
+  "@yourPublicKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicKey": "Öffentlicher Schlüssel",
+  "@publicKey": {
+    "type": "text",
+    "placeholders": {}
   }
 }
