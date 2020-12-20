@@ -272,6 +272,7 @@ class _ChatListState extends State<ChatList> {
                             ? Text(_selectedRoomIds.length.toString())
                             : DefaultAppBarSearchField(
                                 searchController: searchController,
+                                hintText: L10n.of(context).searchForAChat,
                                 onChanged: (_) => setState(() => null),
                               ),
                   ),

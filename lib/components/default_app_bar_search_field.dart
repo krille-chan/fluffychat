@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class DefaultAppBarSearchField extends StatefulWidget {
   final TextEditingController searchController;
   final void Function(String) onChanged;
   final Widget suffix;
+  final bool autofocus;
+  final String prefixText;
+  final String hintText;
 
   const DefaultAppBarSearchField({
     Key key,
     this.searchController,
     this.onChanged,
     this.suffix,
+    this.autofocus = false,
+    this.prefixText,
+    this.hintText,
   }) : super(key: key);
 
   @override
@@ -59,11 +64,13 @@ class _DefaultAppBarSearchFieldState extends State<DefaultAppBarSearchField> {
         color: Theme.of(context).secondaryHeaderColor,
         borderRadius: BorderRadius.circular(32),
         child: TextField(
+          autofocus: widget.autofocus,
           autocorrect: false,
           controller: _searchController,
           onChanged: widget.onChanged,
           focusNode: _focusNode,
           decoration: InputDecoration(
+            prefixText: widget.prefixText,
             contentPadding: EdgeInsets.only(
               top: 8,
               bottom: 8,
@@ -72,7 +79,7 @@ class _DefaultAppBarSearchFieldState extends State<DefaultAppBarSearchField> {
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(32),
             ),
-            hintText: L10n.of(context).searchForAChat,
+            hintText: widget.hintText,
             suffixIcon: _focusNode.hasFocus ||
                     (widget.suffix == null &&
                         (_searchController.text?.isNotEmpty ?? false))

@@ -146,6 +146,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
         elevation: _scrolledToTop ? 0 : null,
         title: DefaultAppBarSearchField(
           onChanged: (text) => _search(context, text),
+          hintText: L10n.of(context).searchForAChat,
           suffix: IconButton(
             icon: Icon(Icons.edit_outlined),
             onPressed: () => _setServer(context),
