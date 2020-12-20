@@ -5,6 +5,7 @@ import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/app_config.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/views/chat.dart';
+import 'package:fluffychat/views/discover_view.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'matrix_identifier_string_extension.dart';
@@ -78,14 +79,8 @@ class UrlLauncher {
         );
         return;
       }
-      if (roomIdOrAlias[0] == '!') {
+      if (roomIdOrAlias.sigil == '!') {
         roomId = roomIdOrAlias;
-      }
-      if (await showOkCancelAlertDialog(
-            context: context,
-            title: 'Join room $roomIdOrAlias',
-          ) ==
-          OkCancelResult.ok) {
         final response =
             await SimpleDialogs(context).tryRequestWithLoadingDialog(
           matrix.client.joinRoomOrAlias(
@@ -103,37 +98,45 @@ class UrlLauncher {
               context, ChatView(response, scrollToEventId: event)),
           (r) => r.isFirst,
         );
-      }
-    } else if (identifier[0] == '@') {
-      final user = User(
-        identifier,
-        room: Room(id: '', client: matrix.client),
-      );
-      var roomId = matrix.client.getDirectChatFromUserId(identifier);
-      if (roomId != null) {
-        await Navigator.pushAndRemoveUntil(
-          context,
-          AppRoute.defaultRoute(context, ChatView(roomId)),
+      } else if (identifier.sigil == '#') {
+        await Navigator.of(context).pushAndRemoveUntil(
+          AppRoute.defaultRoute(
+            context,
+            DiscoverView(alias: identifier),
+          ),
           (r) => r.isFirst,
         );
-        return;
-      }
-
-      if (await showOkCancelAlertDialog(
-            context: context,
-            title: 'Message user $identifier',
-          ) ==
-          OkCancelResult.ok) {
-        roomId = await SimpleDialogs(context)
-            .tryRequestWithLoadingDialog(user.startDirectChat());
-        Navigator.of(context).pop();
-
+      } else if (identifier.sigil == '@') {
+        final user = User(
+          identifier,
+          room: Room(id: '', client: matrix.client),
+        );
+        var roomId = matrix.client.getDirectChatFromUserId(identifier);
         if (roomId != null) {
           await Navigator.pushAndRemoveUntil(
             context,
             AppRoute.defaultRoute(context, ChatView(roomId)),
             (r) => r.isFirst,
           );
+          return;
+        }
+
+        if (await showOkCancelAlertDialog(
+              context: context,
+              title: 'Message user $identifier',
+            ) ==
+            OkCancelResult.ok) {
+          roomId = await SimpleDialogs(context)
+              .tryRequestWithLoadingDialog(user.startDirectChat());
+          Navigator.of(context).pop();
+
+          if (roomId != null) {
+            await Navigator.pushAndRemoveUntil(
+              context,
+              AppRoute.defaultRoute(context, ChatView(roomId)),
+              (r) => r.isFirst,
+            );
+          }
         }
       }
     }

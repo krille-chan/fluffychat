@@ -80,6 +80,7 @@ class _DefaultAppBarSearchFieldState extends State<DefaultAppBarSearchField> {
                     icon: Icon(Icons.backspace_outlined),
                     onPressed: () {
                       _searchController.clear();
+                      widget.onChanged?.call('');
                       _focusNode.unfocus();
                     },
                   )
