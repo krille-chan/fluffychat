@@ -244,7 +244,7 @@ class ChatListItem extends StatelessWidget {
                   padding: EdgeInsets.only(
                       right: room.notificationCount > 0 ? 4.0 : 0.0),
                   child: Icon(
-                    Icons.favorite_rounded,
+                    Icons.push_pin_outlined,
                     size: 20,
                     color: Theme.of(context).primaryColor,
                   ),

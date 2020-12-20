@@ -208,6 +208,12 @@ class _ChatListState extends State<ChatList> {
                 if (selectMode == SelectMode.share) {
                   _selectedRoomIds.clear();
                 }
+                Room selectedRoom;
+                if (_selectedRoomIds.length == 1) {
+                  selectedRoom = Matrix.of(context)
+                      .client
+                      .getRoomById(_selectedRoomIds.single);
+                }
                 return Scaffold(
                   drawer:
                       selectMode != SelectMode.normal ? null : DefaultDrawer(),
@@ -234,18 +240,23 @@ class _ChatListState extends State<ChatList> {
                             if (_selectedRoomIds.length == 1)
                               IconButton(
                                 tooltip: L10n.of(context).toggleUnread,
-                                icon: Icon(Icons.mark_chat_unread_outlined),
+                                icon: Icon(selectedRoom.isUnread
+                                    ? Icons.mark_chat_read_outlined
+                                    : Icons.mark_chat_unread_outlined),
                                 onPressed: () => _toggleUnread(context),
                               ),
                             if (_selectedRoomIds.length == 1)
                               IconButton(
                                 tooltip: L10n.of(context).toggleFavorite,
-                                icon: Icon(Icons.favorite_border_outlined),
+                                icon: Icon(Icons.push_pin_outlined),
                                 onPressed: () => _toggleFavouriteRoom(context),
                               ),
                             if (_selectedRoomIds.length == 1)
                               IconButton(
-                                icon: Icon(Icons.notifications_none_outlined),
+                                icon: Icon(selectedRoom.pushRuleState ==
+                                        PushRuleState.notify
+                                    ? Icons.notifications_off_outlined
+                                    : Icons.notifications_outlined),
                                 tooltip: L10n.of(context).toggleMuted,
                                 onPressed: () => _toggleMuted(context),
                               ),
