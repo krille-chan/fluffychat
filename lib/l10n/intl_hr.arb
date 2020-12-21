@@ -1954,5 +1954,15 @@
     "placeholders": {
       "count": {}
     }
+  },
+  "yourPublicKey": "Tvoj javni ključ",
+  "@yourPublicKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicKey": "Javni ključ",
+  "@publicKey": {
+    "type": "text",
+    "placeholders": {}
   }
 }
