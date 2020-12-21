@@ -1955,7 +1955,7 @@
       "count": {}
     }
   },
-  "yourPublicKey": "Ihr öffentlicher Schlüssel",
+  "yourPublicKey": "Dein öffentlicher Schlüssel",
   "@yourPublicKey": {
     "type": "text",
     "placeholders": {}
