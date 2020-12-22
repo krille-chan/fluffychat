@@ -195,7 +195,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: b5cf8cacb6d9f96f04d110091e879e88249ec3ca
+      resolved-ref: "0ed5c449190362b1334bdc586c0a672881703053"
       url: "https://gitlab.com/famedly/famedlysdk.git"
     source: git
     version: "0.0.1"
@@ -526,14 +526,7 @@ packages:
       name: logger
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.7.0"
-  logger_flutter:
-    dependency: "direct main"
-    description:
-      name: logger_flutter
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.7.1"
+    version: "0.9.4"
   logging:
     dependency: transitive
     description:
@@ -858,13 +851,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.6"
-  sensors:
-    dependency: transitive
-    description:
-      name: sensors
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.4.2+6"
   sentry:
     dependency: "direct main"
     description:

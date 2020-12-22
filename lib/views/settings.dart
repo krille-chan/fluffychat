@@ -1,5 +1,6 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:fluffychat/components/dialogs/bootstrap_dialog.dart';
+import 'package:fluffychat/views/log_view.dart';
 import 'package:fluffychat/views/settings_3pid.dart';
 import 'package:fluffychat/views/settings_notifications.dart';
 import 'package:fluffychat/views/settings_style.dart';
@@ -17,7 +18,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:logger_flutter/logger_flutter.dart';
 
 import '../components/adaptive_page_layout.dart';
 import '../components/content_banner.dart';
@@ -599,13 +599,7 @@ class _SettingsState extends State<Settings> {
                 ),
               ),
               onTap: () => Navigator.of(context).push(
-                AppRoute.defaultRoute(
-                  context,
-                  LogConsole(
-                    showCloseButton: true,
-                    dark: true,
-                  ),
-                ),
+                AppRoute.defaultRoute(context, LogViewer()),
               ),
             ),
             ListTile(
