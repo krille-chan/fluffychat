@@ -49,6 +49,8 @@ class _EncryptionButtonState extends State<EncryptionButton> {
       await SimpleDialogs(context).tryRequestWithLoadingDialog(
         widget.room.enableEncryption(),
       );
+      // we want to enable the lock icon
+      setState(() => null);
     }
   }
 
@@ -60,11 +62,14 @@ class _EncryptionButtonState extends State<EncryptionButton> {
 
   @override
   Widget build(BuildContext context) {
-    _onSyncSub ??= Matrix.of(context)
-        .client
-        .onSync
-        .stream
-        .listen((s) => setState(() => null));
+    if (widget.room.encrypted) {
+      _onSyncSub ??= Matrix.of(context)
+          .client
+          .onSync
+          .stream
+          .where((s) => s.deviceLists != null)
+          .listen((s) => setState(() => null));
+    }
     return FutureBuilder<List<User>>(
         future:
             widget.room.encrypted ? widget.room.requestParticipants() : null,
