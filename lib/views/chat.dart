@@ -35,7 +35,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../components/dialogs/send_file_dialog.dart';
 import '../components/input_bar.dart';
-import '../app_config.dart';
+import '../utils/filtered_timeline_extension.dart';
 import '../utils/matrix_file_extension.dart';
 import 'chat_details.dart';
 import 'chat_list.dart';
@@ -87,6 +87,8 @@ class _ChatState extends State<_Chat> {
   bool currentlyTyping = false;
 
   List<Event> selectedEvents = [];
+
+  List<Event> filteredEvents;
 
   bool _collapseRoomCreate = true;
 
@@ -151,39 +153,14 @@ class _ChatState extends State<_Chat> {
 
   void updateView() {
     if (!mounted) return;
-
-    var seenByText = '';
-    if (timeline.events.isNotEmpty) {
-      final filteredEvents = getFilteredEvents();
-      final lastReceipts = <User>{};
-      // now we iterate the timeline events until we hit the first rendered event
-      for (final event in timeline.events) {
-        lastReceipts.addAll(event.receipts.map((r) => r.user));
-        if (event.eventId == filteredEvents.first.eventId) {
-          break;
-        }
-      }
-      lastReceipts.removeWhere((user) =>
-          user.id == room.client.userID ||
-          user.id == filteredEvents.first.senderId);
-      if (lastReceipts.length == 1) {
+    setState(
+      () {
+        filteredEvents =
+            timeline.getFilteredEvents(collapseRoomCreate: _collapseRoomCreate);
         seenByText =
-            L10n.of(context).seenByUser(lastReceipts.first.calcDisplayname());
-      } else if (lastReceipts.length == 2) {
-        seenByText = seenByText = L10n.of(context).seenByUserAndUser(
-            lastReceipts.first.calcDisplayname(),
-            lastReceipts.last.calcDisplayname());
-      } else if (lastReceipts.length > 2) {
-        seenByText = L10n.of(context).seenByUserAndCountOthers(
-            lastReceipts.first.calcDisplayname(),
-            (lastReceipts.length - 1).toString());
-      }
-    }
-    if (timeline != null) {
-      setState(() {
-        this.seenByText = seenByText;
-      });
-    }
+            room.getLocalizedSeenByText(context, timeline, filteredEvents);
+      },
+    );
   }
 
   Future<bool> getTimeline(BuildContext context) async {
@@ -385,8 +362,7 @@ class _ChatState extends State<_Chat> {
   }
 
   void _scrollToEventId(String eventId, {BuildContext context}) async {
-    var eventIndex =
-        getFilteredEvents().indexWhere((e) => e.eventId == eventId);
+    var eventIndex = filteredEvents.indexWhere((e) => e.eventId == eventId);
     if (eventIndex == -1) {
       // event id not found...maybe we can fetch it?
       // the try...finally is here to start and close the loading dialog reliably
@@ -420,8 +396,7 @@ class _ChatState extends State<_Chat> {
             }
             rethrow;
           }
-          eventIndex =
-              getFilteredEvents().indexWhere((e) => e.eventId == eventId);
+          eventIndex = filteredEvents.indexWhere((e) => e.eventId == eventId);
         }
       });
       if (context != null) {
@@ -436,42 +411,6 @@ class _ChatState extends State<_Chat> {
     await _scrollController.scrollToIndex(eventIndex,
         preferPosition: AutoScrollPosition.middle);
     _updateScrollController();
-  }
-
-  List<Event> getFilteredEvents() {
-    final filteredEvents = timeline.events
-        .where((e) =>
-            // always filter out edit and reaction relationships
-            !{RelationshipTypes.Edit, RelationshipTypes.Reaction}
-                .contains(e.relationshipType) &&
-            // always filter out m.key.* events
-            !e.type.startsWith('m.key.verification.') &&
-            // event types to hide: redaction and reaction events
-            // if a reaction has been redacted we also want it to be hidden in the timeline
-            !{EventTypes.Reaction, EventTypes.Redaction}.contains(e.type) &&
-            // if we enabled to hide all redacted events, don't show those
-            (!AppConfig.hideRedactedEvents || !e.redacted) &&
-            // if we enabled to hide all unknown events, don't show those
-            (!AppConfig.hideUnknownEvents || e.isEventTypeKnown) &&
-            // remove state events that we don't want to render
-            (!{EventTypes.Message, EventTypes.Sticker, EventTypes.Encrypted}
-                    .contains(e.type) ||
-                !AppConfig.hideAllStateEvents))
-        .toList();
-
-    // Hide state events from the room creater right after the room created event
-    if (_collapseRoomCreate &&
-        filteredEvents[filteredEvents.length - 1].type ==
-            EventTypes.RoomCreate) {
-      while (filteredEvents.length >= 3 &&
-          filteredEvents[filteredEvents.length - 2].senderId ==
-              filteredEvents[filteredEvents.length - 1].senderId &&
-          ![EventTypes.Message, EventTypes.Sticker, EventTypes.Encrypted]
-              .contains(filteredEvents[filteredEvents.length - 2].type)) {
-        filteredEvents.removeAt(filteredEvents.length - 2);
-      }
-    }
-    return filteredEvents;
   }
 
   void _pickEmojiAction(
@@ -677,10 +616,12 @@ class _ChatState extends State<_Chat> {
                           timeline != null &&
                           timeline.events.isNotEmpty &&
                           Matrix.of(context).webHasFocus) {
-                        room.sendReadMarker(timeline.events.first.eventId);
+                        room.sendReadMarker(
+                          timeline.events.first.eventId,
+                          readReceiptLocationEventId:
+                              timeline.events.first.eventId,
+                        );
                       }
-
-                      final filteredEvents = getFilteredEvents();
 
                       // create a map of eventId --> index to greatly improve performance of
                       // ListView's findChildIndexCallback

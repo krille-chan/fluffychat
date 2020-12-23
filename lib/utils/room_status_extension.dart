@@ -1,7 +1,7 @@
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-
+import 'filtered_timeline_extension.dart';
 import '../app_config.dart';
 import 'date_time_extension.dart';
 
@@ -60,5 +60,37 @@ extension RoomStatusExtension on Room {
           (typingUsers.length - 1).toString());
     }
     return typingText;
+  }
+
+  String getLocalizedSeenByText(
+      BuildContext context, Timeline timeline, List<Event> filteredEvents) {
+    var seenByText = '';
+    if (timeline.events.isNotEmpty) {
+      final filteredEvents =
+          timeline.getFilteredEvents(collapseRoomCreate: false);
+      final lastReceipts = <User>{};
+      // now we iterate the timeline events until we hit the first rendered event
+      for (final event in timeline.events) {
+        lastReceipts.addAll(event.receipts.map((r) => r.user));
+        if (event.eventId == filteredEvents.first.eventId) {
+          break;
+        }
+      }
+      lastReceipts.removeWhere((user) =>
+          user.id == client.userID || user.id == filteredEvents.first.senderId);
+      if (lastReceipts.length == 1) {
+        seenByText =
+            L10n.of(context).seenByUser(lastReceipts.first.calcDisplayname());
+      } else if (lastReceipts.length == 2) {
+        seenByText = seenByText = L10n.of(context).seenByUserAndUser(
+            lastReceipts.first.calcDisplayname(),
+            lastReceipts.last.calcDisplayname());
+      } else if (lastReceipts.length > 2) {
+        seenByText = L10n.of(context).seenByUserAndCountOthers(
+            lastReceipts.first.calcDisplayname(),
+            (lastReceipts.length - 1).toString());
+      }
+    }
+    return seenByText;
   }
 }
