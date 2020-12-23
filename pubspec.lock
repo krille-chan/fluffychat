@@ -36,6 +36,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.2"
+  archive:
+    dependency: transitive
+    description:
+      name: archive
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.13"
   args:
     dependency: transitive
     description:
@@ -77,7 +84,7 @@ packages:
       name: cached_network_image
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.4.1"
+    version: "2.5.0"
   canonical_json:
     dependency: transitive
     description:
@@ -195,7 +202,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "bce0c1d4856030e31338ea96218e9d8f11645dfb"
+      resolved-ref: bce0c1d4856030e31338ea96218e9d8f11645dfb
       url: "https://gitlab.com/famedly/famedlysdk.git"
     source: git
     version: "0.0.1"
@@ -301,7 +308,7 @@ packages:
       name: flutter_cache_manager
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "2.1.0"
   flutter_highlight:
     dependency: transitive
     description:
@@ -362,7 +369,7 @@ packages:
       name: flutter_matrix_html
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.13"
+    version: "0.1.14"
   flutter_olm:
     dependency: "direct main"
     description:
@@ -471,13 +478,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.4"
+  image:
+    dependency: transitive
+    description:
+      name: image
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.19"
   image_picker:
     dependency: "direct main"
     description:
       name: image_picker
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.7+15"
+    version: "0.6.7+17"
   image_picker_platform_interface:
     dependency: transitive
     description:
@@ -519,7 +533,7 @@ packages:
       name: localstorage
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.3+6"
+    version: "3.0.6+9"
   logger:
     dependency: transitive
     description:
