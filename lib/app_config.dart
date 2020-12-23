@@ -11,9 +11,9 @@ abstract class AppConfig {
   static String _privacyUrl = 'https://fluffychat.im/en/privacy.html';
   static String get privacyUrl => _privacyUrl;
   static const String sourceCodeUrl =
-      'https://gitlab.com/ChristianPauly/fluffychat-flutter';
+      'https://gitlab.com/famedly/fluffychat';
   static const String supportUrl =
-      'https://gitlab.com/ChristianPauly/fluffychat-flutter/issues';
+      'https://gitlab.com/famedly/fluffychat/issues';
   static const bool enableSentry = true;
   static const String sentryDns =
       'https://8591d0d863b646feb4f3dda7e5dcab38@o256755.ingest.sentry.io/5243143';
