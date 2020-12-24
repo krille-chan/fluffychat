@@ -135,14 +135,13 @@ pages:
 
 build_linux:
   stage: coverage
-  image: registry.gitlab.com/famedly/containers/flutter-dockerimages:dev
-  before_script: [sudo apt update && sudo apt install curl clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev -y]
+  image: cirrusci/flutter:dev
+  before_script: [sudo apt update && sudo apt install curl clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev liblzma-dev -y]
   script: [./scripts/build-linux.sh]
   artifacts:
     when: on_success
     paths:
       - build/linux/release/bundle/
-  allow_failure: true
 
 snap:edge:
   stage: release
