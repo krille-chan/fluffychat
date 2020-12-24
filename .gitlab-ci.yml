@@ -116,8 +116,15 @@ upload_to_fdroid_repo:
 
 pages:
   stage: deploy
-  image: alpine:latest
-  script: [mv build/web/ public]
+  image: ruby:latest
+  script:
+    - cp PRIVACY.md docs/_includes/privacy.md
+    - cp CHANGELOG.md docs/_includes/changelog.md
+    - cd docs
+    - bundle exec jekyll build -d public
+    - cd ..
+    - mv docs/public/ ./
+    - mv build/web/ public/web/
   artifacts:
     paths:
       - public
