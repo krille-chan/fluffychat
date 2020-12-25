@@ -1,6 +1,6 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -60,8 +60,9 @@ class DevicesSettingsState extends State<DevicesSettings> {
     );
     if (password == null) return;
 
-    final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
-      matrix.client.deleteDevices(
+    final success = await showFutureLoadingDialog(
+      context: context,
+      future: () => matrix.client.deleteDevices(
         deviceIds,
         auth: AuthenticationPassword(
           password: password.single,
@@ -70,7 +71,7 @@ class DevicesSettingsState extends State<DevicesSettings> {
         ),
       ),
     );
-    if (success != false) {
+    if (success.error == null) {
       reload();
     }
   }
@@ -86,12 +87,13 @@ class DevicesSettingsState extends State<DevicesSettings> {
       ],
     );
     if (displayName == null) return;
-    final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
-      Matrix.of(context)
+    final success = await showFutureLoadingDialog(
+      context: context,
+      future: () => Matrix.of(context)
           .client
           .setDeviceMetadata(device.deviceId, displayName: displayName.single),
     );
-    if (success != false) {
+    if (success.error == null) {
       reload();
     }
   }

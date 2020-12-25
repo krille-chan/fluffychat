@@ -6,11 +6,12 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:famedlysdk/matrix_api.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/avatar.dart';
-import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
+import '../utils/localized_exception_extension.dart';
 import 'chat_list.dart';
 
 class InvitationSelection extends StatefulWidget {
@@ -57,10 +58,11 @@ class _InvitationSelectionState extends State<InvitationSelection> {
   }
 
   void inviteAction(BuildContext context, String id) async {
-    final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
-      widget.room.invite(id),
+    final success = await showFutureLoadingDialog(
+      context: context,
+      future: () => widget.room.invite(id),
     );
-    if (success != false) {
+    if (success.error == null) {
       await FlushbarHelper.createSuccess(
               message: L10n.of(context).contactHasBeenInvitedToTheGroup)
           .show(context);
@@ -87,11 +89,16 @@ class _InvitationSelectionState extends State<InvitationSelection> {
     if (loading) return;
     setState(() => loading = true);
     final matrix = Matrix.of(context);
-    final response = await SimpleDialogs(context).tryRequestWithErrorToast(
-      matrix.client.searchUser(text, limit: 10),
-    );
-    setState(() => loading = false);
-    if (response == false || (response?.results == null)) return;
+    UserSearchResult response;
+    try {
+      response = await matrix.client.searchUser(text, limit: 10);
+    } catch (e) {
+      FlushbarHelper.createError(
+          message: (e as Object).toLocalizedString(context));
+      return;
+    } finally {
+      setState(() => loading = false);
+    }
     setState(() {
       foundProfiles = List<Profile>.from(response.results);
       if ('@$text'.isValidMatrixId &&

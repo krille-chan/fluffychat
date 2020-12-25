@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/dialogs/permission_slider_dialog.dart';
-import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
@@ -55,8 +55,10 @@ class ChatPermissionsSettings extends StatelessWidget {
       content[key] = newLevel;
     }
     inspect(content);
-    await SimpleDialogs(context).tryRequestWithLoadingDialog(
-      room.client.sendState(room.id, EventTypes.RoomPowerLevels, content),
+    await showFutureLoadingDialog(
+      context: context,
+      future: () =>
+          room.client.sendState(room.id, EventTypes.RoomPowerLevels, content),
     );
   }
 

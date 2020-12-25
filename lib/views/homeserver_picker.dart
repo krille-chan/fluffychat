@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/app_config.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -41,9 +41,10 @@ class HomeserverPicker extends StatelessWidget {
       homeserver = 'https://$homeserver';
     }
 
-    final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
-        checkHomeserver(homeserver, Matrix.of(context).client));
-    if (success == true) {
+    final success = await showFutureLoadingDialog(
+        context: context,
+        future: () => checkHomeserver(homeserver, Matrix.of(context).client));
+    if (success.result == true) {
       await Navigator.of(context)
           .push(AppRoute(AppConfig.enableRegistration ? SignUp() : Login()));
     }

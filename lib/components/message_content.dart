@@ -1,7 +1,7 @@
 import 'package:famedlysdk/encryption/utils/key_verification.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/audio_player.dart';
-import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/components/image_bubble.dart';
 import 'package:fluffychat/utils/event_extension.dart';
 import 'package:fluffychat/utils/matrix_locals.dart';
@@ -54,10 +54,11 @@ class MessageContent extends StatelessWidget {
       };
       await KeyVerificationDialog(request: req).show(context);
     } else {
-      final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
-        event.requestKey(),
+      final success = await showFutureLoadingDialog(
+        context: context,
+        future: () => event.requestKey(),
       );
-      if (success != false) {
+      if (success.error == null) {
         await FlushbarHelper.createLoading(
           title: L10n.of(context).loadingPleaseWait,
           message: L10n.of(context).requestToReadOlderMessages,

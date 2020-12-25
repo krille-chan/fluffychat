@@ -6,7 +6,7 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/connection_status_header.dart';
 import 'package:fluffychat/components/default_app_bar_search_field.dart';
 import 'package:fluffychat/components/default_drawer.dart';
-import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/app_config.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
@@ -142,24 +142,28 @@ class _ChatListState extends State<ChatList> {
 
   Future<void> _toggleUnread(BuildContext context) {
     final room = Matrix.of(context).client.getRoomById(_selectedRoomIds.single);
-    return SimpleDialogs(context).tryRequestWithLoadingDialog(
-      room.setUnread(!room.isUnread),
+    return showFutureLoadingDialog(
+      context: context,
+      future: () => room.setUnread(!room.isUnread),
     );
   }
 
   Future<void> _toggleFavouriteRoom(BuildContext context) {
     final room = Matrix.of(context).client.getRoomById(_selectedRoomIds.single);
-    return SimpleDialogs(context).tryRequestWithLoadingDialog(
-      room.setFavourite(!room.isFavourite),
+    return showFutureLoadingDialog(
+      context: context,
+      future: () => room.setFavourite(!room.isFavourite),
     );
   }
 
   Future<void> _toggleMuted(BuildContext context) {
     final room = Matrix.of(context).client.getRoomById(_selectedRoomIds.single);
-    return SimpleDialogs(context).tryRequestWithLoadingDialog(
-      room.setPushRuleState(room.pushRuleState == PushRuleState.notify
-          ? PushRuleState.mentions_only
-          : PushRuleState.notify),
+    return showFutureLoadingDialog(
+      context: context,
+      future: () => room.setPushRuleState(
+          room.pushRuleState == PushRuleState.notify
+              ? PushRuleState.mentions_only
+              : PushRuleState.notify),
     );
   }
 
@@ -170,8 +174,10 @@ class _ChatListState extends State<ChatList> {
         ) ==
         OkCancelResult.ok;
     if (!confirmed) return;
-    await SimpleDialogs(context)
-        .tryRequestWithLoadingDialog(_archiveSelectedRooms(context));
+    await showFutureLoadingDialog(
+      context: context,
+      future: () => _archiveSelectedRooms(context),
+    );
     setState(() => null);
   }
 

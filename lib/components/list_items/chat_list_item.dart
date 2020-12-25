@@ -15,7 +15,7 @@ import '../../utils/date_time_extension.dart';
 import '../../views/chat.dart';
 import '../avatar.dart';
 import '../dialogs/send_file_dialog.dart';
-import '../dialogs/simple_dialogs.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
 import '../matrix.dart';
 import '../mouse_over_builder.dart';
 import '../theme_switcher.dart';
@@ -41,9 +41,10 @@ class ChatListItem extends StatelessWidget {
     if (onTap != null) return onTap();
     if (!activeChat) {
       if (room.membership == Membership.invite &&
-          await SimpleDialogs(context)
-                  .tryRequestWithLoadingDialog(room.join()) ==
-              false) {
+          (await showFutureLoadingDialog(
+                      context: context, future: () => room.join()))
+                  .error !=
+              null) {
         return;
       }
 
@@ -77,8 +78,10 @@ class ChatListItem extends StatelessWidget {
               await archiveAction(context);
               break;
             case ArchivedRoomAction.rejoin:
-              await SimpleDialogs(context)
-                  .tryRequestWithLoadingDialog(room.join());
+              await showFutureLoadingDialog(
+                context: context,
+                future: () => room.join(),
+              );
               break;
           }
         }
@@ -111,9 +114,11 @@ class ChatListItem extends StatelessWidget {
   Future<void> archiveAction(BuildContext context) async {
     {
       if ([Membership.leave, Membership.ban].contains(room.membership)) {
-        final success = await SimpleDialogs(context)
-            .tryRequestWithLoadingDialog(room.forget());
-        if (success != false) {
+        final success = await showFutureLoadingDialog(
+          context: context,
+          future: () => room.forget(),
+        );
+        if (success.error == null) {
           if (onForget != null) onForget();
         }
         return success;
@@ -123,7 +128,8 @@ class ChatListItem extends StatelessWidget {
         title: L10n.of(context).areYouSure,
       );
       if (confirmed == OkCancelResult.cancel) return;
-      await SimpleDialogs(context).tryRequestWithLoadingDialog(room.leave());
+      await showFutureLoadingDialog(
+          context: context, future: () => room.leave());
       return;
     }
   }

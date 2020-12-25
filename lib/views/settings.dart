@@ -21,7 +21,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../components/adaptive_page_layout.dart';
 import '../components/content_banner.dart';
-import '../components/dialogs/simple_dialogs.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
 import '../components/matrix.dart';
 import '../utils/app_route.dart';
 import '../app_config.dart';
@@ -62,8 +62,10 @@ class _SettingsState extends State<Settings> {
       return;
     }
     var matrix = Matrix.of(context);
-    await SimpleDialogs(context)
-        .tryRequestWithLoadingDialog(matrix.client.logout());
+    await showFutureLoadingDialog(
+      context: context,
+      future: () => matrix.client.logout(),
+    );
   }
 
   void _changePasswordAccountAction(BuildContext context) async {
@@ -86,8 +88,9 @@ class _SettingsState extends State<Settings> {
       ],
     );
     if (input == null) return;
-    await SimpleDialogs(context).tryRequestWithLoadingDialog(
-      Matrix.of(context)
+    await showFutureLoadingDialog(
+      context: context,
+      future: () => Matrix.of(context)
           .client
           .changePassword(input.last, oldPassword: input.first),
     );
@@ -123,8 +126,9 @@ class _SettingsState extends State<Settings> {
       ],
     );
     if (input == null) return;
-    await SimpleDialogs(context).tryRequestWithLoadingDialog(
-      Matrix.of(context).client.deactivateAccount(
+    await showFutureLoadingDialog(
+      context: context,
+      future: () => Matrix.of(context).client.deactivateAccount(
             auth: AuthenticationPassword(
               password: input.single,
               user: Matrix.of(context).client.userID,
@@ -170,10 +174,12 @@ class _SettingsState extends State<Settings> {
     );
     if (input == null) return;
     final matrix = Matrix.of(context);
-    final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
-      matrix.client.setDisplayname(matrix.client.userID, input.single),
+    final success = await showFutureLoadingDialog(
+      context: context,
+      future: () =>
+          matrix.client.setDisplayname(matrix.client.userID, input.single),
     );
-    if (success != false) {
+    if (success.error == null) {
       setState(() {
         profileFuture = null;
         profile = null;
@@ -204,10 +210,11 @@ class _SettingsState extends State<Settings> {
       );
     }
     final matrix = Matrix.of(context);
-    final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
-      matrix.client.setAvatar(file),
+    final success = await showFutureLoadingDialog(
+      context: context,
+      future: () => matrix.client.setAvatar(file),
     );
-    if (success != false) {
+    if (success.error == null) {
       setState(() {
         profileFuture = null;
         profile = null;
@@ -230,21 +237,22 @@ class _SettingsState extends State<Settings> {
       ],
     );
     if (input != null) {
-      final valid = await SimpleDialogs(context)
-          .tryRequestWithLoadingDialog(Future.microtask(() async {
-        // make sure the loading spinner shows before we test the keys
-        await Future.delayed(Duration(milliseconds: 100));
-        var valid = false;
-        try {
-          await handle.unlock(recoveryKey: input.single);
-          valid = true;
-        } catch (e, s) {
-          SentryController.captureException(e, s);
-        }
-        return valid;
-      }));
+      final valid = await showFutureLoadingDialog(
+          context: context,
+          future: () async {
+            // make sure the loading spinner shows before we test the keys
+            await Future.delayed(Duration(milliseconds: 100));
+            var valid = false;
+            try {
+              await handle.unlock(recoveryKey: input.single);
+              valid = true;
+            } catch (e, s) {
+              SentryController.captureException(e, s);
+            }
+            return valid;
+          });
 
-      if (valid == true) {
+      if (valid.result == true) {
         await handle.maybeCacheAll();
         await showOkAlertDialog(
           context: context,
@@ -514,28 +522,29 @@ class _SettingsState extends State<Settings> {
                     ],
                   );
                   if (input != null) {
-                    final valid = await SimpleDialogs(context)
-                        .tryRequestWithLoadingDialog(Future.microtask(() async {
-                      // make sure the loading spinner shows before we test the keys
-                      await Future.delayed(Duration(milliseconds: 100));
-                      var valid = false;
-                      try {
-                        await client.encryption.crossSigning
-                            .selfSign(recoveryKey: input.single);
-                        valid = true;
-                      } catch (_) {
-                        try {
-                          await client.encryption.crossSigning
-                              .selfSign(passphrase: input.single);
-                          valid = true;
-                        } catch (_) {
-                          valid = false;
-                        }
-                      }
-                      return valid;
-                    }));
+                    final valid = await showFutureLoadingDialog(
+                        context: context,
+                        future: () async {
+                          // make sure the loading spinner shows before we test the keys
+                          await Future.delayed(Duration(milliseconds: 100));
+                          var valid = false;
+                          try {
+                            await client.encryption.crossSigning
+                                .selfSign(recoveryKey: input.single);
+                            valid = true;
+                          } catch (_) {
+                            try {
+                              await client.encryption.crossSigning
+                                  .selfSign(passphrase: input.single);
+                              valid = true;
+                            } catch (_) {
+                              valid = false;
+                            }
+                          }
+                          return valid;
+                        });
 
-                    if (valid == true) {
+                    if (valid.result == true) {
                       await showOkAlertDialog(
                         context: context,
                         message: L10n.of(context).verifiedSession,

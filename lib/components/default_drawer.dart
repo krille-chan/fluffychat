@@ -9,7 +9,7 @@ import 'package:fluffychat/views/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import 'dialogs/simple_dialogs.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'matrix.dart';
 
 class DefaultDrawer extends StatelessWidget {
@@ -37,8 +37,9 @@ class DefaultDrawer extends StatelessWidget {
     );
     if (input == null || input.single.isEmpty) return;
     final client = Matrix.of(context).client;
-    await SimpleDialogs(context).tryRequestWithLoadingDialog(
-      client.sendPresence(
+    await showFutureLoadingDialog(
+      context: context,
+      future: () => client.sendPresence(
         client.userID,
         PresenceType.online,
         statusMsg: input.single,

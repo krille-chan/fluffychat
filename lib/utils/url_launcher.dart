@@ -1,6 +1,6 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/app_config.dart';
 import 'package:fluffychat/utils/app_route.dart';
@@ -44,13 +44,14 @@ class UrlLauncher {
       var servers = <String>{};
       if (room == null && roomIdOrAlias.startsWith('#')) {
         // we were unable to find the room locally...so resolve it
-        final response =
-            await SimpleDialogs(context).tryRequestWithLoadingDialog(
-          matrix.client.requestRoomAliasInformations(roomIdOrAlias),
+        final response = await showFutureLoadingDialog(
+          context: context,
+          future: () =>
+              matrix.client.requestRoomAliasInformations(roomIdOrAlias),
         );
-        if (response != false) {
-          roomId = response.roomId;
-          servers.addAll(response.servers);
+        if (response.error == null) {
+          roomId = response.result.roomId;
+          servers.addAll(response.result.servers);
           room = matrix.client.getRoomById(roomId);
         }
       }
@@ -81,21 +82,22 @@ class UrlLauncher {
       }
       if (roomIdOrAlias.sigil == '!') {
         roomId = roomIdOrAlias;
-        final response =
-            await SimpleDialogs(context).tryRequestWithLoadingDialog(
-          matrix.client.joinRoomOrAlias(
+        final response = await showFutureLoadingDialog(
+          context: context,
+          future: () => matrix.client.joinRoomOrAlias(
             roomIdOrAlias,
             servers: servers.isNotEmpty ? servers.toList() : null,
           ),
         );
-        if (response == false) return;
+        if (response.error != null) return;
         // wait for two seconds so that it probably came down /sync
-        await SimpleDialogs(context).tryRequestWithLoadingDialog(
-            Future.delayed(const Duration(seconds: 2)));
+        await showFutureLoadingDialog(
+            context: context,
+            future: () => Future.delayed(const Duration(seconds: 2)));
         await Navigator.pushAndRemoveUntil(
           context,
           AppRoute.defaultRoute(
-              context, ChatView(response, scrollToEventId: event)),
+              context, ChatView(response.result, scrollToEventId: event)),
           (r) => r.isFirst,
         );
       } else if (identifier.sigil == '#') {
@@ -126,8 +128,11 @@ class UrlLauncher {
               title: 'Message user $identifier',
             ) ==
             OkCancelResult.ok) {
-          roomId = await SimpleDialogs(context)
-              .tryRequestWithLoadingDialog(user.startDirectChat());
+          roomId = (await showFutureLoadingDialog(
+            context: context,
+            future: () => user.startDirectChat(),
+          ))
+              .result;
           Navigator.of(context).pop();
 
           if (roomId != null) {

@@ -2,7 +2,7 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
-import 'dialogs/simple_dialogs.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'matrix.dart';
 
 class MessageReactions extends StatelessWidget {
@@ -48,12 +48,16 @@ class MessageReactions extends StatelessWidget {
                             e.content['m.relates_to']['key'] == r.key,
                         orElse: () => null);
                     if (evt != null) {
-                      SimpleDialogs(context)
-                          .tryRequestWithLoadingDialog(evt.redact());
+                      showFutureLoadingDialog(
+                        context: context,
+                        future: () => evt.redact(),
+                      );
                     }
                   } else {
-                    SimpleDialogs(context).tryRequestWithLoadingDialog(
-                        event.room.sendReaction(event.eventId, r.key));
+                    showFutureLoadingDialog(
+                        context: context,
+                        future: () =>
+                            event.room.sendReaction(event.eventId, r.key));
                   }
                 },
               ))

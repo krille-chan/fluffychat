@@ -2,7 +2,7 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:famedlysdk/encryption.dart';
 import 'package:famedlysdk/encryption/utils/bootstrap.dart';
 import 'package:fluffychat/components/dialogs/adaptive_flat_button.dart';
-import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -119,11 +119,12 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
                 )
               ]);
               if (input?.isEmpty ?? true) return;
-              final valid =
-                  await SimpleDialogs(context).tryRequestWithLoadingDialog(
-                bootstrap.newSsssKey.unlock(keyOrPassphrase: input.single),
+              final valid = await showFutureLoadingDialog(
+                context: context,
+                future: () =>
+                    bootstrap.newSsssKey.unlock(keyOrPassphrase: input.single),
               );
-              if (valid != false) bootstrap.openExistingSsss();
+              if (valid.error == null) bootstrap.openExistingSsss();
             }));
         break;
       case BootstrapState.askWipeCrossSigning:
@@ -237,9 +238,12 @@ class _AskUnlockOldSsssState extends State<_AskUnlockOldSsss> {
       return;
     }
 
-    valid = await SimpleDialogs(context).tryRequestWithLoadingDialog(
-      widget.ssssKey.unlock(keyOrPassphrase: input),
-    );
+    valid = (await showFutureLoadingDialog(
+          context: context,
+          future: () => widget.ssssKey.unlock(keyOrPassphrase: input),
+        ))
+            .error ==
+        null;
     setState(() => null);
   }
 

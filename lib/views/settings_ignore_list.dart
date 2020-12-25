@@ -1,7 +1,7 @@
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/avatar.dart';
-import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -24,8 +24,9 @@ class SettingsIgnoreList extends StatelessWidget {
 
   void _ignoreUser(BuildContext context) {
     if (controller.text.isEmpty) return;
-    SimpleDialogs(context).tryRequestWithLoadingDialog(
-      Matrix.of(context).client.ignoreUser('@${controller.text}'),
+    showFutureLoadingDialog(
+      context: context,
+      future: () => Matrix.of(context).client.ignoreUser('@${controller.text}'),
     );
     controller.clear();
   }
@@ -86,9 +87,10 @@ class SettingsIgnoreList extends StatelessWidget {
                             Text(s.data?.displayname ?? client.ignoredUsers[i]),
                         trailing: IconButton(
                           icon: Icon(Icons.delete_forever_outlined),
-                          onPressed: () => SimpleDialogs(context)
-                              .tryRequestWithLoadingDialog(
-                            client.unignoreUser(client.ignoredUsers[i]),
+                          onPressed: () => showFutureLoadingDialog(
+                            context: context,
+                            future: () =>
+                                client.unignoreUser(client.ignoredUsers[i]),
                           ),
                         ),
                       ),

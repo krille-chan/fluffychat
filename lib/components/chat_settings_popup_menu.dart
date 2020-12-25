@@ -10,7 +10,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../app_config.dart';
-import 'dialogs/simple_dialogs.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'matrix.dart';
 
 class ChatSettingsPopupMenu extends StatefulWidget {
@@ -35,12 +35,13 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
   void startCallAction(BuildContext context) async {
     final url =
         '${AppConfig.jitsiInstance}${Uri.encodeComponent(widget.room.id.localpart)}';
-    final success = await SimpleDialogs(context)
-        .tryRequestWithLoadingDialog(widget.room.sendEvent({
-      'msgtype': Matrix.callNamespace,
-      'body': url,
-    }));
-    if (success == false) return;
+    final success = await showFutureLoadingDialog(
+        context: context,
+        future: () => widget.room.sendEvent({
+              'msgtype': Matrix.callNamespace,
+              'body': url,
+            }));
+    if (success.error != null) return;
     await launch(url);
   }
 
@@ -91,9 +92,9 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
               title: L10n.of(context).areYouSure,
             );
             if (confirmed == OkCancelResult.ok) {
-              final success = await SimpleDialogs(context)
-                  .tryRequestWithLoadingDialog(widget.room.leave());
-              if (success != false) {
+              final success = await showFutureLoadingDialog(
+                  context: context, future: () => widget.room.leave());
+              if (success.error == null) {
                 await Navigator.of(context).pushAndRemoveUntil(
                     AppRoute.defaultRoute(context, ChatListView()),
                     (Route r) => false);
@@ -101,12 +102,16 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
             }
             break;
           case 'mute':
-            await SimpleDialogs(context).tryRequestWithLoadingDialog(
-                widget.room.setPushRuleState(PushRuleState.mentions_only));
+            await showFutureLoadingDialog(
+                context: context,
+                future: () =>
+                    widget.room.setPushRuleState(PushRuleState.mentions_only));
             break;
           case 'unmute':
-            await SimpleDialogs(context).tryRequestWithLoadingDialog(
-                widget.room.setPushRuleState(PushRuleState.notify));
+            await showFutureLoadingDialog(
+                context: context,
+                future: () =>
+                    widget.room.setPushRuleState(PushRuleState.notify));
             break;
           case 'call':
             startCallAction(context);
