@@ -2,7 +2,7 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import '../../components/dialogs/simple_dialogs.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
 import '../../utils/matrix_file_extension.dart';
 import '../../utils/room_send_file_extension.dart';
 import '../../utils/resize_image.dart';
@@ -88,8 +88,8 @@ class _SendFileDialogState extends State<SendFileDialog> {
                   setState(() {
                     _isSending = true;
                   });
-                  await SimpleDialogs(context)
-                      .tryRequestWithLoadingDialog(_send());
+                  await showFutureLoadingDialog(
+                      context: context, future: () => _send());
                   await Navigator.of(context).pop();
                 },
         ),

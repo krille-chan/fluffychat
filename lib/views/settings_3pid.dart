@@ -1,7 +1,7 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
-import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -40,14 +40,15 @@ class _Settings3PidState extends State<Settings3Pid> {
     );
     if (input == null) return;
     final clientSecret = DateTime.now().millisecondsSinceEpoch.toString();
-    final response = await SimpleDialogs(context).tryRequestWithLoadingDialog(
-      Matrix.of(context).client.requestEmailToken(
+    final response = await showFutureLoadingDialog(
+      context: context,
+      future: () => Matrix.of(context).client.requestEmailToken(
             input.single,
             clientSecret,
             Settings3Pid.sendAttempt++,
           ),
     );
-    if (response == false) return;
+    if (response.error != null) return;
     final ok = await showOkAlertDialog(
       context: context,
       title: L10n.of(context).weSentYouAnEmail,
@@ -68,8 +69,9 @@ class _Settings3PidState extends State<Settings3Pid> {
       ],
     );
     if (password == null) return;
-    final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
-      Matrix.of(context).client.uiaRequestBackground(
+    final success = await showFutureLoadingDialog(
+      context: context,
+      future: () => Matrix.of(context).client.uiaRequestBackground(
             (auth) => Matrix.of(context).client.addThirdPartyIdentifier(
                   clientSecret,
                   (response as RequestTokenResponse).sid,
@@ -77,7 +79,7 @@ class _Settings3PidState extends State<Settings3Pid> {
                 ),
           ),
     );
-    if (success == false) return;
+    if (success.error != null) return;
     setState(() => _request = null);
   }
 
@@ -92,12 +94,13 @@ class _Settings3PidState extends State<Settings3Pid> {
         OkCancelResult.ok) {
       return;
     }
-    final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
-        Matrix.of(context).client.deleteThirdPartyIdentifier(
+    final success = await showFutureLoadingDialog(
+        context: context,
+        future: () => Matrix.of(context).client.deleteThirdPartyIdentifier(
               identifier.address,
               identifier.medium,
             ));
-    if (success == false) return;
+    if (success.error != null) return;
     setState(() => _request = null);
   }
 

@@ -3,12 +3,12 @@ import 'dart:typed_data';
 
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/message_download_content.dart';
+import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:intl/intl.dart';
 import 'package:universal_html/prefer_universal/html.dart' as html;
-import 'dialogs/simple_dialogs.dart';
 import '../utils/ui_fake.dart' if (dart.library.html) 'dart:ui' as ui;
 import 'matrix.dart';
 import '../utils/event_extension.dart';
@@ -68,13 +68,19 @@ class _AudioPlayerState extends State<AudioPlayer> {
   Future<void> _downloadAction() async {
     if (status != AudioPlayerStatus.NOT_DOWNLOADED) return;
     setState(() => status = AudioPlayerStatus.DOWNLOADING);
-    final matrixFile = await SimpleDialogs(context).tryRequestWithErrorToast(
-        widget.event.downloadAndDecryptAttachmentCached());
-    setState(() {
-      audioFile = matrixFile.bytes;
-      status = AudioPlayerStatus.DOWNLOADED;
-    });
-    _playAction();
+    try {
+      final matrixFile =
+          await widget.event.downloadAndDecryptAttachmentCached();
+      setState(() {
+        audioFile = matrixFile.bytes;
+        status = AudioPlayerStatus.DOWNLOADED;
+      });
+      _playAction();
+    } catch (e, s) {
+      Logs().v('Could not download audio file', e, s);
+      await FlushbarHelper.createError(message: e.toLocalizedString(context))
+          .show(context);
+    }
   }
 
   void _playAction() async {

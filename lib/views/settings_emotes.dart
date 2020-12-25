@@ -11,7 +11,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../components/adaptive_page_layout.dart';
-import '../components/dialogs/simple_dialogs.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
 import '../components/matrix.dart';
 import 'chat_list.dart';
 
@@ -94,13 +94,16 @@ class _EmotesSettingsState extends State<EmotesSettings> {
     // remove the old "short" key
     content.remove('short');
     if (widget.room != null) {
-      await SimpleDialogs(context).tryRequestWithLoadingDialog(
-        client.sendState(widget.room.id, 'im.ponies.room_emotes', content,
-            widget.stateKey ?? ''),
+      await showFutureLoadingDialog(
+        context: context,
+        future: () => client.sendState(widget.room.id, 'im.ponies.room_emotes',
+            content, widget.stateKey ?? ''),
       );
     } else {
-      await SimpleDialogs(context).tryRequestWithLoadingDialog(
-        client.setAccountData(client.userID, 'im.ponies.user_emotes', content),
+      await showFutureLoadingDialog(
+        context: context,
+        future: () => client.setAccountData(
+            client.userID, 'im.ponies.user_emotes', content),
       );
     }
   }
@@ -128,8 +131,10 @@ class _EmotesSettingsState extends State<EmotesSettings> {
       content['rooms'][widget.room.id].remove(widget.stateKey ?? '');
     }
     // and save
-    await SimpleDialogs(context).tryRequestWithLoadingDialog(
-      client.setAccountData(client.userID, 'im.ponies.emote_rooms', content),
+    await showFutureLoadingDialog(
+      context: context,
+      future: () => client.setAccountData(
+          client.userID, 'im.ponies.emote_rooms', content),
     );
   }
 
@@ -477,13 +482,16 @@ class _EmoteImagePickerState extends State<_EmoteImagePicker> {
               name: result.fileName,
             );
           }
-          final uploadResp =
-              await SimpleDialogs(context).tryRequestWithLoadingDialog(
-            Matrix.of(context).client.upload(file.bytes, file.name),
+          final uploadResp = await showFutureLoadingDialog(
+            context: context,
+            future: () =>
+                Matrix.of(context).client.upload(file.bytes, file.name),
           );
-          setState(() {
-            widget.controller.text = uploadResp;
-          });
+          if (uploadResp.error == null) {
+            setState(() {
+              widget.controller.text = uploadResp.result;
+            });
+          }
         },
       );
     } else {

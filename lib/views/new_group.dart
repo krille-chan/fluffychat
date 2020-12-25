@@ -1,6 +1,6 @@
 import 'package:famedlysdk/matrix_api.dart' as api;
 import 'package:fluffychat/components/adaptive_page_layout.dart';
-import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:flutter/material.dart';
@@ -33,9 +33,9 @@ class _NewGroupState extends State<_NewGroup> {
 
   void submitAction(BuildContext context) async {
     final matrix = Matrix.of(context);
-    final String roomID =
-        await SimpleDialogs(context).tryRequestWithLoadingDialog(
-      matrix.client.createRoom(
+    final roomID = await showFutureLoadingDialog(
+      context: context,
+      future: () => matrix.client.createRoom(
         preset: publicGroup
             ? api.CreateRoomPreset.public_chat
             : api.CreateRoomPreset.private_chat,
@@ -51,7 +51,7 @@ class _NewGroupState extends State<_NewGroup> {
         Navigator.of(context).push(
           AppRoute.defaultRoute(
             context,
-            ChatView(roomID),
+            ChatView(roomID.result),
           ),
         ),
       );
@@ -59,7 +59,7 @@ class _NewGroupState extends State<_NewGroup> {
         context,
         MaterialPageRoute(
           builder: (context) => InvitationSelection(
-            matrix.client.getRoomById(roomID),
+            matrix.client.getRoomById(roomID.result),
           ),
         ),
       );

@@ -5,7 +5,7 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/avatar.dart';
 import 'package:fluffychat/components/default_app_bar_search_field.dart';
-import 'package:fluffychat/components/dialogs/simple_dialogs.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/views/chat.dart';
@@ -101,18 +101,19 @@ class _DiscoverPageState extends State<DiscoverPage> {
         OkCancelResult.cancel) {
       return;
     }
-    final success = await SimpleDialogs(context).tryRequestWithLoadingDialog(
-      _joinRoomAndWait(
+    final success = await showFutureLoadingDialog(
+      context: context,
+      future: () => _joinRoomAndWait(
         context,
         room.roomId,
         room.canonicalAlias ?? room.aliases.first,
       ),
     );
-    if (success != false) {
+    if (success.error == null) {
       await Navigator.of(context).push(
         AppRoute.defaultRoute(
           context,
-          ChatView(success),
+          ChatView(success.result),
         ),
       );
     }
