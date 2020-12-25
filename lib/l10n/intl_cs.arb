@@ -1964,5 +1964,15 @@
   "@publicKey": {
     "type": "text",
     "placeholders": {}
+  },
+  "tooManyRequestsWarning": "Příliš mnoho požadavků. Prosím zkuste to znovu později!",
+  "@tooManyRequestsWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noConnectionToTheServer": "Žádné připojení k serveru",
+  "@noConnectionToTheServer": {
+    "type": "text",
+    "placeholders": {}
   }
 }
