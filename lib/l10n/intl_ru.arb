@@ -953,7 +953,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "Вместо этого включите онлайн-резервное копирование ключей из Element.",
+  "noMegolmBootstrap": "Пожалуйста, включите резервное копирование онлайн-ключей из Element.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
