@@ -30,7 +30,10 @@ class HtmlMessage extends StatelessWidget {
     // We do *not* do this in an AST and just with simple regex here, as riot-web tends to create
     // miss-matching tags, and this way we actually correctly identify what we want to strip and, well,
     // strip it.
-    final renderHtml = html.replaceAll(RegExp('<mx-reply>.*<\/mx-reply>'), '');
+    final renderHtml = html.replaceAll(
+        RegExp('<mx-reply>.*<\/mx-reply>',
+            caseSensitive: false, multiLine: false, dotAll: true),
+        '');
 
     // there is no need to pre-validate the html, as we validate it while rendering
 
