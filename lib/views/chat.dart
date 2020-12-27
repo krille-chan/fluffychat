@@ -11,6 +11,7 @@ import 'package:fluffychat/components/avatar.dart';
 import 'package:fluffychat/components/chat_settings_popup_menu.dart';
 import 'package:fluffychat/components/connection_status_header.dart';
 import 'package:fluffychat/components/dialogs/recording_dialog.dart';
+import 'package:flushbar/flushbar_helper.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/components/encryption_button.dart';
 import 'package:fluffychat/components/list_items/message.dart';
@@ -114,10 +115,13 @@ class _ChatState extends State<_Chat> {
     if (_canLoadMore) {
       setState(() => _loadingHistory = true);
 
-      await showFutureLoadingDialog(
-        context: context,
-        future: () => timeline.requestHistory(historyCount: _loadHistoryCount),
-      );
+      try {
+        await timeline.requestHistory(historyCount: _loadHistoryCount);
+      } catch (err) {
+        await FlushbarHelper.createError(
+                message: err.toLocalizedString(context))
+            .show(context);
+      }
 
       // we do NOT setState() here as then the event order will be wrong.
       // instead, we just set our variable to false, and rely on timeline update to set the
