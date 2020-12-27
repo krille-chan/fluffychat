@@ -34,16 +34,18 @@ class ReplyContent extends StatelessWidget {
       if (displayEvent.messageType == MessageTypes.Emote) {
         html = '* $html';
       }
+      final fontSize = DefaultTextStyle.of(context).style.fontSize;
       replyBody = HtmlMessage(
         html: html,
         defaultTextStyle: TextStyle(
           color: lightText
               ? Colors.white
               : Theme.of(context).textTheme.bodyText2.color,
-          fontSize: DefaultTextStyle.of(context).style.fontSize,
+          fontSize: fontSize,
         ),
         maxLines: 1,
         room: displayEvent.room,
+        emoteSize: fontSize * 1.5,
       );
     } else {
       replyBody = Text(
