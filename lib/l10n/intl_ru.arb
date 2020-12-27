@@ -1964,5 +1964,15 @@
   "@publicKey": {
     "type": "text",
     "placeholders": {}
+  },
+  "tooManyRequestsWarning": "Слишком много запросов. Пожалуйста, повторите попытку позже!",
+  "@tooManyRequestsWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noConnectionToTheServer": "Нет соединения с сервером",
+  "@noConnectionToTheServer": {
+    "type": "text",
+    "placeholders": {}
   }
 }
