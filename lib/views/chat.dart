@@ -451,11 +451,11 @@ class _ChatState extends State<_Chat> {
     return _sendEmojiAction(context, emoji.emoji);
   }
 
-  void _sendEmojiAction(BuildContext context, String emoji) {
-    showFutureLoadingDialog(
+  void _sendEmojiAction(BuildContext context, String emoji) async {
+    await showFutureLoadingDialog(
       context: context,
       future: () => room.sendReaction(
-        selectedEvents.first.eventId,
+        selectedEvents.single.eventId,
         emoji,
       ),
     );
