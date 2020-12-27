@@ -25,16 +25,18 @@ class UrlLauncher {
 
   void openMatrixToUrl() async {
     final matrix = Matrix.of(context);
-    final identifier = url.replaceAll(AppConfig.inviteLinkPrefix, '');
-    if (identifier[0] == '#' || identifier[0] == '!') {
-      // sometimes we have identifiers which have an event id and additional query parameters
-      // we want to separate those.
-      final identityParts = identifier.parseIdentifierIntoParts();
-      if (identityParts == null) {
-        return; // no match, nothing to do
-      }
-      final roomIdOrAlias = identityParts.roomIdOrAlias;
-      final event = identityParts.eventId;
+    // The identifier might be a matrix.to url and needs escaping. Or, it might have multiple
+    // identifiers (room id & event id), or it might also have a query part.
+    // All this needs parsing.
+    final identityParts = url.parseIdentifierIntoParts();
+    if (identityParts == null) {
+      return; // no match, nothing to do
+    }
+    if (identityParts.primaryIdentifier.sigil == '#' ||
+        identityParts.primaryIdentifier.sigil == '!') {
+      // we got a room! Let's open that one
+      final roomIdOrAlias = identityParts.primaryIdentifier;
+      final event = identityParts.secondaryIdentifier;
       final query = identityParts.queryString;
       var room = matrix.client.getRoomByAlias(roomIdOrAlias) ??
           matrix.client.getRoomById(roomIdOrAlias);
@@ -42,7 +44,7 @@ class UrlLauncher {
       // we make the servers a set and later on convert to a list, so that we can easily
       // deduplicate servers added via alias lookup and query parameter
       var servers = <String>{};
-      if (room == null && roomIdOrAlias.startsWith('#')) {
+      if (room == null && roomIdOrAlias.sigil == '#') {
         // we were unable to find the room locally...so resolve it
         final response = await showFutureLoadingDialog(
           context: context,
@@ -81,67 +83,73 @@ class UrlLauncher {
         return;
       }
       if (roomIdOrAlias.sigil == '!') {
-        roomId = roomIdOrAlias;
-        final response = await showFutureLoadingDialog(
-          context: context,
-          future: () => matrix.client.joinRoomOrAlias(
-            roomIdOrAlias,
-            servers: servers.isNotEmpty ? servers.toList() : null,
-          ),
-        );
-        if (response.error != null) return;
-        // wait for two seconds so that it probably came down /sync
-        await showFutureLoadingDialog(
+        if (await showOkCancelAlertDialog(
+              context: context,
+              title: 'Join room $roomIdOrAlias',
+            ) ==
+            OkCancelResult.ok) {
+          roomId = roomIdOrAlias;
+          final response = await showFutureLoadingDialog(
             context: context,
-            future: () => Future.delayed(const Duration(seconds: 2)));
-        await Navigator.pushAndRemoveUntil(
-          context,
-          AppRoute.defaultRoute(
-              context, ChatView(response.result, scrollToEventId: event)),
-          (r) => r.isFirst,
-        );
-      } else if (identifier.sigil == '#') {
+            future: () => matrix.client.joinRoomOrAlias(
+              roomIdOrAlias,
+              servers: servers.isNotEmpty ? servers.toList() : null,
+            ),
+          );
+          if (response.error != null) return;
+          // wait for two seconds so that it probably came down /sync
+          await showFutureLoadingDialog(
+              context: context,
+              future: () => Future.delayed(const Duration(seconds: 2)));
+          await Navigator.pushAndRemoveUntil(
+            context,
+            AppRoute.defaultRoute(
+                context, ChatView(response.result, scrollToEventId: event)),
+            (r) => r.isFirst,
+          );
+        }
+      } else {
         await Navigator.of(context).pushAndRemoveUntil(
           AppRoute.defaultRoute(
             context,
-            DiscoverView(alias: identifier),
+            DiscoverView(alias: roomIdOrAlias),
           ),
           (r) => r.isFirst,
         );
-      } else if (identifier.sigil == '@') {
-        final user = User(
-          identifier,
-          room: Room(id: '', client: matrix.client),
+      }
+    } else if (identityParts.primaryIdentifier.sigil == '@') {
+      final user = User(
+        identityParts.primaryIdentifier,
+        room: Room(id: '', client: matrix.client),
+      );
+      var roomId = matrix.client.getDirectChatFromUserId(user.id);
+      if (roomId != null) {
+        await Navigator.pushAndRemoveUntil(
+          context,
+          AppRoute.defaultRoute(context, ChatView(roomId)),
+          (r) => r.isFirst,
         );
-        var roomId = matrix.client.getDirectChatFromUserId(identifier);
+        return;
+      }
+
+      if (await showOkCancelAlertDialog(
+            context: context,
+            title: 'Message user ${user.id}',
+          ) ==
+          OkCancelResult.ok) {
+        roomId = (await showFutureLoadingDialog(
+          context: context,
+          future: () => user.startDirectChat(),
+        ))
+            .result;
+        Navigator.of(context).pop();
+
         if (roomId != null) {
           await Navigator.pushAndRemoveUntil(
             context,
             AppRoute.defaultRoute(context, ChatView(roomId)),
             (r) => r.isFirst,
           );
-          return;
-        }
-
-        if (await showOkCancelAlertDialog(
-              context: context,
-              title: 'Message user $identifier',
-            ) ==
-            OkCancelResult.ok) {
-          roomId = (await showFutureLoadingDialog(
-            context: context,
-            future: () => user.startDirectChat(),
-          ))
-              .result;
-          Navigator.of(context).pop();
-
-          if (roomId != null) {
-            await Navigator.pushAndRemoveUntil(
-              context,
-              AppRoute.defaultRoute(context, ChatView(roomId)),
-              (r) => r.isFirst,
-            );
-          }
         }
       }
     }
