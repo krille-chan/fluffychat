@@ -1964,5 +1964,15 @@
   "@publicKey": {
     "type": "text",
     "placeholders": {}
+  },
+  "tooManyRequestsWarning": "Previše zahtjeva. Pokušaj ponovo kasnije!",
+  "@tooManyRequestsWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noConnectionToTheServer": "Ne postoji veza s poslužiteljem",
+  "@noConnectionToTheServer": {
+    "type": "text",
+    "placeholders": {}
   }
 }
