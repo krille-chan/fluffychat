@@ -147,6 +147,7 @@ class InputBar extends StatelessWidget {
         width: size * ratio,
         height: size * ratio,
         method: ThumbnailMethod.scale,
+        animated: true,
       );
       return Container(
         padding: EdgeInsets.all(4.0),

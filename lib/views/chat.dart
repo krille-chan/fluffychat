@@ -1084,7 +1084,7 @@ class _ChatState extends State<_Chat> {
                                               Timer(Duration(seconds: 2), () {
                                             typingCoolDown = null;
                                             currentlyTyping = false;
-                                            room.sendTypingInfo(false);
+                                            room.sendTypingNotification(false);
                                           });
                                           typingTimeout ??=
                                               Timer(Duration(seconds: 30), () {
@@ -1093,7 +1093,7 @@ class _ChatState extends State<_Chat> {
                                           });
                                           if (!currentlyTyping) {
                                             currentlyTyping = true;
-                                            room.sendTypingInfo(true,
+                                            room.sendTypingNotification(true,
                                                 timeout: Duration(seconds: 30)
                                                     .inMilliseconds);
                                           }

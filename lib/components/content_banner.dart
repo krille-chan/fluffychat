@@ -30,6 +30,7 @@ class ContentBanner extends StatelessWidget {
       width: bannerSize,
       height: bannerSize,
       method: ThumbnailMethod.scale,
+      animated: true,
     );
     return Container(
       height: 300,
