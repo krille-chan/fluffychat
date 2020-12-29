@@ -60,6 +60,7 @@ class HtmlMessage extends StatelessWidget {
           width: (width ?? 800) * ratio,
           height: (height ?? 800) * ratio,
           method: ThumbnailMethod.scale,
+          animated: true,
         );
       },
       setCodeLanguage: (String key, String value) async {
