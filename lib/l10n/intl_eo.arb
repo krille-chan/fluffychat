@@ -46,7 +46,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "FluffyChat ankoraŭ ne subtenas ŝaltadon de delegaj subskriboj. Bonvolu ŝalti ilin per Riot (Element).",
+  "noCrossSignBootstrap": "FluffyChat ankoraŭ ne subtenas ŝaltadon de delegaj subskriboj. Bonvolu ŝalti ilin per Element.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -613,7 +613,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterAMatrixIdentifier": "Bonvolu enigi identigilon de Matrix",
+  "pleaseEnterAMatrixIdentifier": "Bonvolu enigi identigilon de Matrix.",
   "@pleaseEnterAMatrixIdentifier": {
     "type": "text",
     "placeholders": {}
@@ -1288,7 +1288,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "cachedKeys": "Sukcese kaŝmemoris ŝlosilojn!",
+  "cachedKeys": "Kaŝmemoris ŝlosilojn",
   "@cachedKeys": {
     "type": "text",
     "placeholders": {}
@@ -1488,7 +1488,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "FluffyChat ankoraŭ ne subtenas ŝaltadon de Enreta savkopiado de ŝlosiloj. Bonvolu ŝalti ĝin per Riot (Element).",
+  "noMegolmBootstrap": "FluffyChat ankoraŭ ne subtenas ŝaltadon de enreta savkopiado de ŝlosiloj. Bonvolu ŝalti ĝin per Element.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -1748,6 +1748,228 @@
   },
   "changePassword": "Ŝanĝi pasvorton",
   "@changePassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "memberChanges": "Ŝanĝoj de anoj",
+  "@memberChanges": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteForMe": "Invito por mi",
+  "@inviteForMe": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "withTheseAddressesRecoveryDescription": "Per tiuj ĉi adresoj vi povas rehavi vian pasvorton.",
+  "@withTheseAddressesRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "weSentYouAnEmail": "Ni sendis retleteron al vi",
+  "@weSentYouAnEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "numUsersTyping": "{count} uzantoj tajpas…",
+  "@numUsersTyping": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "yourPublicKey": "Via publika ŝlosilo",
+  "@yourPublicKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tooManyRequestsWarning": "Tro multaj petoj. Bonvolu reprovi poste!",
+  "@tooManyRequestsWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noConnectionToTheServer": "Neniu konekto al la servilo",
+  "@noConnectionToTheServer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleUnread": "Baskuli legitecon",
+  "@toggleUnread": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleMuted": "Basklui silentigon",
+  "@toggleMuted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleFavorite": "Baskuli elstarigon",
+  "@toggleFavorite": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "soundVibrationLedColor": "Sono, LED-koloro de vibrado",
+  "@soundVibrationLedColor": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setPermissionsLevel": "Agordi nivelon de permesoj",
+  "@setPermissionsLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setCustomEmotes": "Agordi proprajn mienetojn",
+  "@setCustomEmotes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editChatPermissions": "Redakti permesojn de babilo",
+  "@editChatPermissions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whoCanPerformWhichAction": "Kiu povas kion",
+  "@whoCanPerformWhichAction": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "participant": "Partoprenanto",
+  "@participant": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "configureChat": "Agordi babilon",
+  "@configureChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendMessages": "Sendi mesaĝojn",
+  "@sendMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "defaultPermissionLevel": "Norma nivelo de permesoj",
+  "@defaultPermissionLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAvatar": "Redakti bildon de ĉambro",
+  "@editRoomAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "replaceRoomWithNewerVersion": "Anstataŭigi ĉambron per nova versio",
+  "@replaceRoomWithNewerVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEncryption": "Ŝalti ĉifradon",
+  "@enableEncryption": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editBlockedServers": "Redakti blokitajn servilojn",
+  "@editBlockedServers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noDescription": "Sen priskribo",
+  "@noDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discoverGroups": "Trovu grupojn",
+  "@discoverGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicKey": "Publika ŝlosilo",
+  "@publicKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseClickOnLink": "Bonvolu klaki la ligilon en la retletero kaj pluiĝi.",
+  "@pleaseClickOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordForgotten": "Forgesita pasvorto",
+  "@passwordForgotten": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordRecovery": "Rehavo de pasvorto",
+  "@passwordRecovery": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPasswordRecoveryDescription": "Vi ankoraŭ ne aldonis manieron rehavi vian pasvorton.",
+  "@noPasswordRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iHaveClickedOnLink": "Mi klakis la ligilon",
+  "@iHaveClickedOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideRedactedEvents": "Kaŝi redaktitajn eventojn",
+  "@hideRedactedEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encrypted": "Ĉifrite",
+  "@encrypted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "edit": "Redakti",
+  "@edit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationsEnabledForThisAccount": "Sciigoj ŝaltiĝis por ĉi tiu konto",
+  "@notificationsEnabledForThisAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notifications": "Sciigoj",
+  "@notifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pushRules": "Reguloj de pasivaj sciigoj",
+  "@pushRules": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "botMessages": "Mesaĝoj de robotoj",
+  "@botMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsUserName": "Enhavas uzantonomon",
+  "@containsUserName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsDisplayName": "Enhavas prezentan nomon",
+  "@containsDisplayName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "directChats": "Rektaj babiloj",
+  "@directChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterAnEmailAddress": "Enigu retpoŝtadreson",
+  "@enterAnEmailAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceId": "Identigilo de aparato",
+  "@deviceId": {
     "type": "text",
     "placeholders": {}
   }
