@@ -1924,5 +1924,15 @@
   "@toggleUnread": {
     "type": "text",
     "placeholders": {}
+  },
+  "toggleFavorite": "Alternar favorito",
+  "@toggleFavorite": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleMuted": "Alternar Silenciado",
+  "@toggleMuted": {
+    "type": "text",
+    "placeholders": {}
   }
 }
