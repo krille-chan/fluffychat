@@ -67,7 +67,7 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
         final textEditingController = TextEditingController();
         String input;
         final checkInput = () async {
-          if (input == null) {
+          if (input == null || input.isEmpty) {
             return;
           }
           final valid = await showFutureLoadingDialog(
@@ -77,15 +77,10 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
                 await Future.delayed(Duration(milliseconds: 100));
                 var valid = false;
                 try {
-                  await widget.request.openSSSS(recoveryKey: input);
+                  await widget.request.openSSSS(keyOrPassphrase: input);
                   valid = true;
                 } catch (_) {
-                  try {
-                    await widget.request.openSSSS(passphrase: input);
-                    valid = true;
-                  } catch (_) {
-                    valid = false;
-                  }
+                  valid = false;
                 }
                 return valid;
               });
