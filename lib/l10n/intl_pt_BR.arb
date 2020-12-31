@@ -482,7 +482,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "setCustomEmotes": "Implantar emotes personalizados",
+  "setCustomEmotes": "Implantar emojis personalizados",
   "@setCustomEmotes": {
     "type": "text",
     "placeholders": {}
@@ -867,7 +867,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noEmotesFound": "Nenhum emote encontrado. 😕",
+  "noEmotesFound": "Nenhum emoji encontrado. 😕",
   "@noEmotesFound": {
     "type": "text",
     "placeholders": {}
@@ -1308,7 +1308,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enableEmotesGlobally": "Habilitar globalmente o pacote de emote",
+  "enableEmotesGlobally": "Habilitar globalmente o pacote de emoji",
   "@enableEmotesGlobally": {
     "type": "text",
     "placeholders": {}
@@ -1368,17 +1368,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "emotePacks": "Pacote de emote para a sala",
+  "emotePacks": "Pacote de emoji para a sala",
   "@emotePacks": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteInvalid": "Código emote inválido!",
+  "emoteInvalid": "Código emoji inválido!",
   "@emoteInvalid": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteExists": "Emote já existe!",
+  "emoteExists": "Emoji já existe!",
   "@emoteExists": {
     "type": "text",
     "placeholders": {}
@@ -1388,17 +1388,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteWarnNeedToPick": "Você tem que escolher um código emote e uma imagem!",
+  "emoteWarnNeedToPick": "Você tem que escolher um código emoji e uma imagem!",
   "@emoteWarnNeedToPick": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteShortcode": "Código Emote",
+  "emoteShortcode": "Código Emoji",
   "@emoteShortcode": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteSettings": "Configuração dos Emote",
+  "emoteSettings": "Configuração dos Emoji",
   "@emoteSettings": {
     "type": "text",
     "placeholders": {}
@@ -1937,6 +1937,21 @@
   },
   "publicKey": "Chave Pública",
   "@publicKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourPublicKey": "Sua chave pública",
+  "@yourPublicKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tooManyRequestsWarning": "Demasiadas requisições. Por favor, tente novamente mais tarde!",
+  "@tooManyRequestsWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noConnectionToTheServer": "Sem conexão com o servidor",
+  "@noConnectionToTheServer": {
     "type": "text",
     "placeholders": {}
   }
