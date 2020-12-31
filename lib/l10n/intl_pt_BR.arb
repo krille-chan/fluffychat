@@ -348,7 +348,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changeTheme": "Alterar o estilo",
+  "changeTheme": "Alterar o tema",
   "@changeTheme": {
     "type": "text",
     "placeholders": {}
@@ -698,7 +698,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "renderRichContent": "Exiba o conteúdo formatado",
+  "renderRichContent": "Exibir conteúdo formatado",
   "@renderRichContent": {
     "type": "text",
     "placeholders": {}
@@ -1161,12 +1161,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "hideUnknownEvents": "Esconder eventos desconhecidos",
+  "hideUnknownEvents": "Ocultar eventos desconhecidos",
   "@hideUnknownEvents": {
     "type": "text",
     "placeholders": {}
   },
-  "hideRedactedEvents": "Esconder eventos removidos",
+  "hideRedactedEvents": "Ocultar eventos removidos",
   "@hideRedactedEvents": {
     "type": "text",
     "placeholders": {}
@@ -1932,6 +1932,11 @@
   },
   "toggleMuted": "Alternar Silenciado",
   "@toggleMuted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicKey": "Chave Pública",
+  "@publicKey": {
     "type": "text",
     "placeholders": {}
   }
