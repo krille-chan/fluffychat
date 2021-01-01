@@ -40,8 +40,8 @@
 
 2. Clone the repo:
 ```
-git clone --recurse-submodules https://gitlab.com/ChristianPauly/fluffychat-flutter
-cd fluffychat-flutter
+git clone --recurse-submodules https://gitlab.com/famedly/fluffychat
+cd fluffychat
 ```
 
 3. Choose your target platform below and enable support for it.
