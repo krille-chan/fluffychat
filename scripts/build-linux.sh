@@ -1,5 +1,5 @@
 #!/bin/sh -ve
-flutter channel dev
+flutter channel master
 flutter upgrade
 flutter config --enable-linux-desktop
 echo "dependency_overrides:\n  intl: 0.17.0-nullsafety.2" >> pubspec.yaml
