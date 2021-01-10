@@ -8,7 +8,6 @@ import 'package:fluffychat/views/chat.dart';
 import 'package:fluffychat/views/discover_view.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'matrix_identifier_string_extension.dart';
 
 class UrlLauncher {
   final String url;
@@ -16,8 +15,9 @@ class UrlLauncher {
   const UrlLauncher(this.context, this.url);
 
   void launchUrl() {
-    if (url.startsWith(AppConfig.inviteLinkPrefix) ||
-        {'#', '@', '!', '+', '\$'}.contains(url[0])) {
+    if (url.toLowerCase().startsWith(AppConfig.inviteLinkPrefix) ||
+        {'#', '@', '!', '+', '\$'}.contains(url[0]) ||
+        url.toLowerCase().startsWith(AppConfig.schemePrefix)) {
       return openMatrixToUrl();
     }
     launch(url);

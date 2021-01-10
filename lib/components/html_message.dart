@@ -53,14 +53,15 @@ class HtmlMessage extends StatelessWidget {
       maxLines: maxLines,
       onLinkTap: (url) => UrlLauncher(context, url).launchUrl(),
       onPillTap: (url) => UrlLauncher(context, url).launchUrl(),
-      getMxcUrl: (String mxc, double width, double height) {
+      getMxcUrl: (String mxc, double width, double height,
+          {bool animated = false}) {
         final ratio = MediaQuery.of(context).devicePixelRatio;
         return Uri.parse(mxc)?.getThumbnail(
           matrix.client,
           width: (width ?? 800) * ratio,
           height: (height ?? 800) * ratio,
           method: ThumbnailMethod.scale,
-          animated: true,
+          animated: animated,
         );
       },
       setCodeLanguage: (String key, String value) async {
@@ -69,11 +70,16 @@ class HtmlMessage extends StatelessWidget {
       getCodeLanguage: (String key) async {
         return await matrix.store.getItem('${SettingKeys.codeLanguage}.$key');
       },
-      getPillInfo: (String identifier) async {
+      getPillInfo: (String url) async {
         if (room == null) {
           return null;
         }
-        if (identifier[0] == '@') {
+        final identityParts = url.parseIdentifierIntoParts();
+        final identifier = identityParts?.primaryIdentifier;
+        if (identifier == null) {
+          return null;
+        }
+        if (identifier.sigil == '@') {
           // we have a user pill
           final user = room.getState('m.room.member', identifier);
           if (user != null) {
@@ -89,7 +95,7 @@ class HtmlMessage extends StatelessWidget {
           }
           return null;
         }
-        if (identifier[0] == '#') {
+        if (identifier.sigil == '#') {
           // we have an alias pill
           for (final r in room.client.rooms) {
             final state = r.getState('m.room.canonical_alias');
@@ -107,7 +113,7 @@ class HtmlMessage extends StatelessWidget {
           }
           return null;
         }
-        if (identifier[0] == '!') {
+        if (identifier.sigil == '!') {
           // we have a room ID pill
           final r = room.client.getRoomById(identifier);
           if (r == null) {

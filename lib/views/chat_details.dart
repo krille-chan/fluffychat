@@ -4,7 +4,6 @@ import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/views/chat_permissions_settings.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:famedlysdk/matrix_api.dart';
 
 import 'package:file_picker_cross/file_picker_cross.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';

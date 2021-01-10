@@ -202,7 +202,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: ed8af418f0ed6087ec5378433281c5ba39585c6f
+      resolved-ref: "0a89ac5564e1a8a98236960aac8eaa251118a051"
       url: "https://gitlab.com/famedly/famedlysdk.git"
     source: git
     version: "0.0.1"
@@ -369,7 +369,7 @@ packages:
       name: flutter_matrix_html
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.14"
+    version: "0.2.0"
   flutter_olm:
     dependency: "direct main"
     description:
@@ -569,6 +569,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.12.10-nullsafety.1"
+  matrix_api_lite:
+    dependency: transitive
+    description:
+      name: matrix_api_lite
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.4"
   matrix_file_e2ee:
     dependency: transitive
     description:

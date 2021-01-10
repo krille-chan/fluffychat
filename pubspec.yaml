@@ -40,7 +40,7 @@ dependencies:
   mime_type: ^0.3.2
   flushbar: ^1.10.4
   adaptive_dialog: ^0.9.3
-  flutter_matrix_html: ^0.1.14
+  flutter_matrix_html: ^0.2.0
   moor: ^3.4.0
   sqlite3_flutter_libs: ^0.3.0
   sqlite3: ^0.1.8

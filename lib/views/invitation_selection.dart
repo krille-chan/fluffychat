@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:fluffychat/components/default_app_bar_search_field.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:famedlysdk/matrix_api.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/avatar.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
