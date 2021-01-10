@@ -105,7 +105,9 @@ class _ChatListState extends State<ChatList> {
     if (Navigator.of(context).canPop()) {
       Navigator.of(context).popUntil((r) => r.isFirst);
     }
-    if (text.startsWith(AppConfig.inviteLinkPrefix)) {
+    if (text.toLowerCase().startsWith(AppConfig.inviteLinkPrefix) ||
+        (text.toLowerCase().startsWith(AppConfig.schemePrefix) &&
+            !RegExp(r'\s').hasMatch(text))) {
       UrlLauncher(context, text).openMatrixToUrl();
       return;
     }
