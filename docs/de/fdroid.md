@@ -10,7 +10,7 @@ lang: de
 Der einfachste Weg die Paketquelle in F-Droid hinzuzufügen ist den QR-Code zu scannen oder direkt auf dem Handy anzuklickken.
 
 {::nomarkdown}
-<a href="fdroidrepos://fdroid.nordgedanken.dev/?fingerprint=8E2637AEF6697CC6DD486AF044A6EE45B1A742AE3EF56566E748CDE8BC65C1FB" >
+<a href="fdroidrepos://fdroid.fluffychat.im/?fingerprint=8E2637AEF6697CC6DD486AF044A6EE45B1A742AE3EF56566E748CDE8BC65C1FB" >
     <img src="{{site.assets}}/images/qr-code.svg" width="300" height="300"/>
 </a>
 {:/}
@@ -26,7 +26,7 @@ Falls es weitherhin nicht funktioniert folge den nächsten Schritten:
 2. Gehe zum `Optionen` Tab in der unteren Leiste
 3. Klicke auf `Paketquellen`
 4. Drücke auf das Plus Symbol in der oberen Leiste
-5. Trag in das erste Feld `https://fdroid.nordgedanken.dev` und in das zweite Feld `8E2637AEF6697CC6DD486AF044A6EE45B1A742AE3EF56566E748CDE8BC65C1FB` ein
+5. Trag in das erste Feld `https://fdroid.fluffychat.im` und in das zweite Feld `8E2637AEF6697CC6DD486AF044A6EE45B1A742AE3EF56566E748CDE8BC65C1FB` ein
 
 ## Wie lautet der Fingerabdruck?
 
