@@ -1,7 +1,7 @@
 import 'dart:io';
 
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:fluffychat/components/adaptive_page_layout.dart';
-import 'package:fluffychat/components/settings_themes.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -43,6 +43,23 @@ class _SettingsStyleState extends State<SettingsStyle> {
     setState(() => null);
   }
 
+  AdaptiveThemeMode _currentTheme;
+
+  void _switchTheme(AdaptiveThemeMode newTheme, BuildContext context) {
+    switch (newTheme) {
+      case AdaptiveThemeMode.light:
+        AdaptiveTheme.of(context).setLight();
+        break;
+      case AdaptiveThemeMode.dark:
+        AdaptiveTheme.of(context).setDark();
+        break;
+      case AdaptiveThemeMode.system:
+        AdaptiveTheme.of(context).setSystem();
+        break;
+    }
+    setState(() => _currentTheme = newTheme);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +68,24 @@ class _SettingsStyleState extends State<SettingsStyle> {
       ),
       body: ListView(
         children: [
-          ThemesSettings(),
+          RadioListTile<AdaptiveThemeMode>(
+            groupValue: _currentTheme,
+            value: AdaptiveThemeMode.system,
+            title: Text(L10n.of(context).systemTheme),
+            onChanged: (t) => _switchTheme(t, context),
+          ),
+          RadioListTile<AdaptiveThemeMode>(
+            groupValue: _currentTheme,
+            value: AdaptiveThemeMode.light,
+            title: Text(L10n.of(context).lightTheme),
+            onChanged: (t) => _switchTheme(t, context),
+          ),
+          RadioListTile<AdaptiveThemeMode>(
+            groupValue: _currentTheme,
+            value: AdaptiveThemeMode.dark,
+            title: Text(L10n.of(context).darkTheme),
+            onChanged: (t) => _switchTheme(t, context),
+          ),
           Divider(thickness: 1),
           ListTile(
             title: Text(

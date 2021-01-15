@@ -1,6 +1,7 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:circular_check_box/circular_check_box.dart';
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/event_extension.dart';
 import 'package:fluffychat/utils/matrix_locals.dart';
 import 'package:fluffychat/utils/room_status_extension.dart';
@@ -18,7 +19,6 @@ import '../dialogs/send_file_dialog.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import '../matrix.dart';
 import '../mouse_over_builder.dart';
-import '../theme_switcher.dart';
 
 enum ArchivedRoomAction { delete, rejoin }
 
@@ -142,7 +142,7 @@ class ChatListItem extends StatelessWidget {
         room.lastEvent?.senderId == Matrix.of(context).client.userID;
     return Center(
       child: Material(
-        color: chatListItemColor(context, activeChat, selected),
+        color: FluffyThemes.chatListItemColor(context, activeChat, selected),
         child: ListTile(
           onLongPress: onLongPress,
           leading: MouseOverBuilder(
