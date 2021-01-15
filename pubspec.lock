@@ -15,6 +15,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.9.3"
+  adaptive_page_layout:
+    dependency: "direct main"
+    description:
+      name: adaptive_page_layout
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.6"
+  adaptive_theme:
+    dependency: "direct main"
+    description:
+      name: adaptive_theme
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
   analyzer:
     dependency: transitive
     description:
@@ -831,12 +845,12 @@ packages:
     source: hosted
     version: "3.0.13"
   provider:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: provider
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.3.2+2"
+    version: "4.3.2+4"
   pub_semver:
     dependency: transitive
     description:

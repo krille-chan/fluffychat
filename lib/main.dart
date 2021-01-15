@@ -1,6 +1,7 @@
 // @dart=2.9
 import 'dart:async';
 
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:fluffychat/views/homeserver_picker.dart';
@@ -13,7 +14,7 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:universal_html/prefer_universal/html.dart' as html;
 
 import 'components/matrix.dart';
-import 'components/theme_switcher.dart';
+import 'config/themes.dart';
 import 'utils/localized_exception_extension.dart';
 import 'app_config.dart';
 import 'views/chat_list.dart';
@@ -34,51 +35,49 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return Matrix(
       child: Builder(
-        builder: (BuildContext context) => ThemeSwitcherWidget(
-          child: Builder(
-              builder: (context) => MaterialApp(
-                    title: '${AppConfig.applicationName}',
-                    theme: ThemeSwitcherWidget.of(context).themeData,
-                    localizationsDelegates: L10n.localizationsDelegates,
-                    supportedLocales: L10n.supportedLocales,
-                    locale: kIsWeb
-                        ? Locale(
-                            html.window.navigator.language.split('-').first)
-                        : null,
-                    home: FutureBuilder<LoginState>(
-                      future: Matrix.of(context)
-                          .client
-                          .onLoginStateChanged
-                          .stream
-                          .first,
-                      builder: (context, snapshot) {
-                        LoadingDialog.defaultTitle =
-                            L10n.of(context).loadingPleaseWait;
-                        LoadingDialog.defaultBackLabel = L10n.of(context).close;
-                        LoadingDialog.defaultOnError =
-                            (Object e) => e.toLocalizedString(context);
-                        if (snapshot.hasError) {
-                          WidgetsBinding.instance.addPostFrameCallback((_) =>
-                              FlushbarHelper.createError(
-                                title: L10n.of(context).oopsSomethingWentWrong,
-                                message: snapshot.error.toString(),
-                              ).show(context));
-                          return HomeserverPicker();
-                        }
-                        if (!snapshot.hasData) {
-                          return Scaffold(
-                            body: Center(
-                              child: CircularProgressIndicator(),
-                            ),
-                          );
-                        }
-                        if (Matrix.of(context).client.isLogged()) {
-                          return ChatListView();
-                        }
-                        return HomeserverPicker();
-                      },
+        builder: (BuildContext context) => AdaptiveTheme(
+          light: FluffyThemes.light,
+          dark: FluffyThemes.dark,
+          initial: AdaptiveThemeMode.system,
+          builder: (theme, darkTheme) => MaterialApp(
+            title: '${AppConfig.applicationName}',
+            theme: theme,
+            darkTheme: darkTheme,
+            localizationsDelegates: L10n.localizationsDelegates,
+            supportedLocales: L10n.supportedLocales,
+            locale: kIsWeb
+                ? Locale(html.window.navigator.language.split('-').first)
+                : null,
+            home: FutureBuilder<LoginState>(
+              future:
+                  Matrix.of(context).client.onLoginStateChanged.stream.first,
+              builder: (context, snapshot) {
+                LoadingDialog.defaultTitle = L10n.of(context).loadingPleaseWait;
+                LoadingDialog.defaultBackLabel = L10n.of(context).close;
+                LoadingDialog.defaultOnError =
+                    (Object e) => e.toLocalizedString(context);
+                if (snapshot.hasError) {
+                  WidgetsBinding.instance
+                      .addPostFrameCallback((_) => FlushbarHelper.createError(
+                            title: L10n.of(context).oopsSomethingWentWrong,
+                            message: snapshot.error.toString(),
+                          ).show(context));
+                  return HomeserverPicker();
+                }
+                if (!snapshot.hasData) {
+                  return Scaffold(
+                    body: Center(
+                      child: CircularProgressIndicator(),
                     ),
-                  )),
+                  );
+                }
+                if (Matrix.of(context).client.isLogged()) {
+                  return ChatListView();
+                }
+                return HomeserverPicker();
+              },
+            ),
+          ),
         ),
       ),
     );
