@@ -300,16 +300,11 @@ class _ChatListState extends State<ChatList> {
                       ConnectionStatusHeader(),
                       Expanded(
                         child: StreamBuilder(
-                            stream:
-                                Matrix.of(context).client.onSync.stream.where(
-                                      (s) =>
-                                          s.hasRoomUpdate ||
-                                          s.accountData
-                                              .where((a) =>
-                                                  a.type ==
-                                                  MatrixState.userStatusesType)
-                                              .isNotEmpty,
-                                    ),
+                            stream: Matrix.of(context)
+                                .client
+                                .onSync
+                                .stream
+                                .where((s) => s.hasRoomUpdate),
                             builder: (context, snapshot) {
                               return FutureBuilder<void>(
                                 future: waitForFirstSync(context),
