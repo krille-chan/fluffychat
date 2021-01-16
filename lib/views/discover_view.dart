@@ -154,7 +154,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
             );
           }
           return GridView.builder(
-            padding: EdgeInsets.all(16),
+            padding: EdgeInsets.all(12),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               childAspectRatio: 1,

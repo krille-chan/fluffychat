@@ -59,7 +59,7 @@ class _DefaultAppBarSearchFieldState extends State<DefaultAppBarSearchField> {
   Widget build(BuildContext context) {
     return Container(
       height: 40,
-      padding: EdgeInsets.only(right: 16),
+      padding: EdgeInsets.only(right: 12),
       child: Material(
         color: Theme.of(context).secondaryHeaderColor,
         borderRadius: BorderRadius.circular(32),

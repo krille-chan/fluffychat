@@ -308,23 +308,8 @@ class _ChatListState extends State<ChatList> {
                                 );
                               }
                               final totalCount = rooms.length;
-                              return ListView.separated(
+                              return ListView.builder(
                                 controller: _scrollController,
-                                separatorBuilder:
-                                    (BuildContext context, int i) =>
-                                        i == totalCount
-                                            ? ListTile(
-                                                title: Text(
-                                                  L10n.of(context).publicRooms +
-                                                      ':',
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Theme.of(context)
-                                                        .primaryColor,
-                                                  ),
-                                                ),
-                                              )
-                                            : Container(),
                                 itemCount: totalCount,
                                 itemBuilder: (BuildContext context, int i) =>
                                     ChatListItem(
