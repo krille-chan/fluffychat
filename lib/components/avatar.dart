@@ -39,7 +39,9 @@ class Avatar extends StatelessWidget {
       child: Text(
         fallbackLetters,
         style: TextStyle(
-          color: Colors.white,
+          color: Theme.of(context).brightness == Brightness.light
+              ? name?.darkColor
+              : name?.lightColor ?? Colors.white,
           fontSize: 18,
         ),
       ),
@@ -55,7 +57,9 @@ class Avatar extends StatelessWidget {
           width: size,
           height: size,
           color: noPic
-              ? name?.lightColor ?? Theme.of(context).secondaryHeaderColor
+              ? Theme.of(context).brightness == Brightness.light
+                  ? name?.lightColor
+                  : name?.darkColor ?? Theme.of(context).secondaryHeaderColor
               : Theme.of(context).secondaryHeaderColor,
           child: noPic
               ? textWidget

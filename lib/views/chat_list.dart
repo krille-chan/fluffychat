@@ -248,6 +248,7 @@ class _ChatListState extends State<ChatList> {
                           searchController: searchController,
                           hintText: L10n.of(context).searchForAChat,
                           onChanged: (_) => setState(() => null),
+                          suffix: Icon(Icons.search_outlined),
                         ),
             ),
             floatingActionButton:
