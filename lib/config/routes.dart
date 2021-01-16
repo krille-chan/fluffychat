@@ -127,7 +127,7 @@ class FluffyRoutes {
         case 'archive':
           return ViewData(
             mainView: (_) => Archive(),
-            emptyView: (_) => Chat(parts[2]),
+            emptyView: (_) => EmptyPage(),
           );
         case 'discover':
           return ViewData(
