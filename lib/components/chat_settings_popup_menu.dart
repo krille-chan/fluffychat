@@ -49,10 +49,6 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
               child: Text(L10n.of(context).unmuteChat),
             ),
       PopupMenuItem<String>(
-        value: 'call',
-        child: Text(L10n.of(context).videoCall),
-      ),
-      PopupMenuItem<String>(
         value: 'leave',
         child: Text(L10n.of(context).leave),
       ),
