@@ -5,7 +5,6 @@ import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import '../avatar.dart';
 import 'adaptive_flat_button.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import '../../utils/string_color.dart';
@@ -306,14 +305,7 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
       ],
       crossAxisAlignment: CrossAxisAlignment.start,
     );
-    final title = PlatformInfos.isCupertinoStyle
-        ? Text(L10n.of(context).verifyTitle)
-        : ListTile(
-            leading: Avatar(profile?.avatarUrl, otherName),
-            contentPadding: EdgeInsets.zero,
-            subtitle: Text(L10n.of(context).verifyTitle, maxLines: 1),
-            title: userNameTitle,
-          );
+    final title = Text(L10n.of(context).verifyTitle);
     final content = Scrollbar(
       isAlwaysShown: true,
       controller: _scrollController,
