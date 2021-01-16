@@ -135,6 +135,7 @@ class HomeserverPicker extends StatelessWidget {
                 children: [
                   if (AppConfig.allowOtherHomeservers)
                     FlatButton(
+                      padding: EdgeInsets.all(8),
                       child: Text(
                         L10n.of(context).changeTheHomeserver,
                         style: TextStyle(
@@ -146,6 +147,7 @@ class HomeserverPicker extends StatelessWidget {
                       onPressed: () => _setHomeserverAction(context),
                     ),
                   FlatButton(
+                    padding: EdgeInsets.all(8),
                     child: Text(
                       L10n.of(context).privacy,
                       style: TextStyle(

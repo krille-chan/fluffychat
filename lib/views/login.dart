@@ -230,7 +230,7 @@ class _LoginState extends State<Login> {
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: loading
-                      ? CircularProgressIndicator()
+                      ? LinearProgressIndicator()
                       : Text(
                           L10n.of(context).login.toUpperCase(),
                           style: TextStyle(color: Colors.white, fontSize: 16),

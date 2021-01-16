@@ -67,7 +67,7 @@ class _SignUpPasswordState extends State<SignUpPassword> {
           );
         } else {
           await AdaptivePageLayout.of(context).pushNamed(
-            '/authwebview',
+            '/authwebview/$currentStage/${exception.session}',
             arguments: () => _signUpAction(
               context,
               auth: AuthenticationData(session: exception.session),
@@ -157,7 +157,7 @@ class _SignUpPasswordState extends State<SignUpPassword> {
                   borderRadius: BorderRadius.circular(6),
                 ),
                 child: loading
-                    ? CircularProgressIndicator()
+                    ? LinearProgressIndicator()
                     : Text(
                         L10n.of(context).createAccountNow.toUpperCase(),
                         style: TextStyle(color: Colors.white, fontSize: 16),
