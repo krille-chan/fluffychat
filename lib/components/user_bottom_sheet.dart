@@ -1,12 +1,11 @@
 import 'dart:math';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/dialogs/permission_slider_dialog.dart';
-import 'package:fluffychat/utils/app_route.dart';
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
-import 'package:fluffychat/views/chat.dart';
 import 'package:flutter/material.dart';
 import 'content_banner.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -15,7 +14,6 @@ import '../utils/presence_extension.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'matrix.dart';
 import 'dialogs/key_verification_dialog.dart';
-import '../utils/app_route.dart';
 
 class UserBottomSheet extends StatelessWidget {
   final User user;
@@ -76,12 +74,8 @@ class UserBottomSheet extends StatelessWidget {
         break;
       case 'message':
         final roomId = await user.startDirectChat();
-        await Navigator.of(context).pushAndRemoveUntil(
-            AppRoute.defaultRoute(
-              context,
-              ChatView(roomId),
-            ),
-            (Route r) => r.isFirst);
+        await AdaptivePageLayout.of(context)
+            .pushNamedAndRemoveUntilIsFirst('/rooms/${roomId}');
         break;
     }
   }
@@ -161,8 +155,8 @@ class UserBottomSheet extends StatelessWidget {
     }
     return Center(
       child: Container(
-        width: min(MediaQuery.of(context).size.width,
-            AdaptivePageLayout.defaultMinWidth * 1.5),
+        width: min(
+            MediaQuery.of(context).size.width, FluffyThemes.columnWidth * 1.5),
         child: SafeArea(
           child: Material(
             elevation: 4,

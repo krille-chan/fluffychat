@@ -1,11 +1,9 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/app_config.dart';
-import 'package:fluffychat/utils/app_route.dart';
-import 'package:fluffychat/views/chat.dart';
-import 'package:fluffychat/views/discover_view.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -74,12 +72,8 @@ class UrlLauncher {
       }
       if (room != null) {
         // we have the room, so....just open it!
-        await Navigator.pushAndRemoveUntil(
-          context,
-          AppRoute.defaultRoute(
-              context, ChatView(room.id, scrollToEventId: event)),
-          (r) => r.isFirst,
-        );
+        await AdaptivePageLayout.of(context)
+            .pushNamedAndRemoveUntilIsFirst('/rooms/${room.id}/$event');
         return;
       }
       if (roomIdOrAlias.sigil == '!') {
@@ -101,21 +95,12 @@ class UrlLauncher {
           await showFutureLoadingDialog(
               context: context,
               future: () => Future.delayed(const Duration(seconds: 2)));
-          await Navigator.pushAndRemoveUntil(
-            context,
-            AppRoute.defaultRoute(
-                context, ChatView(response.result, scrollToEventId: event)),
-            (r) => r.isFirst,
-          );
+          await AdaptivePageLayout.of(context).pushNamedAndRemoveUntilIsFirst(
+              '/rooms/${response.result}/$event');
         }
       } else {
-        await Navigator.of(context).pushAndRemoveUntil(
-          AppRoute.defaultRoute(
-            context,
-            DiscoverView(alias: roomIdOrAlias),
-          ),
-          (r) => r.isFirst,
-        );
+        await AdaptivePageLayout.of(context)
+            .pushNamedAndRemoveUntilIsFirst('/discover/${roomIdOrAlias}');
       }
     } else if (identityParts.primaryIdentifier.sigil == '@') {
       final user = User(
@@ -124,11 +109,9 @@ class UrlLauncher {
       );
       var roomId = matrix.client.getDirectChatFromUserId(user.id);
       if (roomId != null) {
-        await Navigator.pushAndRemoveUntil(
-          context,
-          AppRoute.defaultRoute(context, ChatView(roomId)),
-          (r) => r.isFirst,
-        );
+        await AdaptivePageLayout.of(context)
+            .pushNamedAndRemoveUntilIsFirst('/rooms/${roomId}');
+
         return;
       }
 
@@ -142,14 +125,10 @@ class UrlLauncher {
           future: () => user.startDirectChat(),
         ))
             .result;
-        Navigator.of(context).pop();
 
         if (roomId != null) {
-          await Navigator.pushAndRemoveUntil(
-            context,
-            AppRoute.defaultRoute(context, ChatView(roomId)),
-            (r) => r.isFirst,
-          );
+          await AdaptivePageLayout.of(context)
+              .pushNamedAndRemoveUntilIsFirst('/rooms/${roomId}');
         }
       }
     }

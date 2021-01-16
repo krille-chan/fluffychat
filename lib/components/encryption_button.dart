@@ -1,10 +1,9 @@
 import 'dart:async';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/utils/app_route.dart';
-import 'package:fluffychat/views/chat_encryption_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -23,12 +22,8 @@ class _EncryptionButtonState extends State<EncryptionButton> {
 
   void _enableEncryptionAction() async {
     if (widget.room.encrypted) {
-      await Navigator.of(context).push(
-        AppRoute.defaultRoute(
-          context,
-          ChatEncryptionSettingsView(widget.room.id),
-        ),
-      );
+      await AdaptivePageLayout.of(context)
+          .pushNamed('/rooms/${widget.room.id}/encryption');
       return;
     }
     if (!widget.room.client.encryptionEnabled) {

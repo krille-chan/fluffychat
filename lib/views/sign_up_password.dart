@@ -1,15 +1,12 @@
 import 'dart:math';
 
+import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 
 import 'package:fluffychat/components/matrix.dart';
-import 'package:fluffychat/utils/app_route.dart';
-import 'package:fluffychat/views/auth_web_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-
-import 'chat_list.dart';
 
 class SignUpPassword extends StatefulWidget {
   final MatrixFile avatar;
@@ -69,17 +66,11 @@ class _SignUpPasswordState extends State<SignUpPassword> {
             ),
           );
         } else {
-          await Navigator.of(context).push(
-            AppRoute.defaultRoute(
+          await AdaptivePageLayout.of(context).pushNamed(
+            '/authwebview',
+            arguments: () => _signUpAction(
               context,
-              AuthWebView(
-                currentStage,
-                exception.session,
-                () => _signUpAction(
-                  context,
-                  auth: AuthenticationData(session: exception.session),
-                ),
-              ),
+              auth: AuthenticationData(session: exception.session),
             ),
           );
           return;
@@ -111,9 +102,7 @@ class _SignUpPasswordState extends State<SignUpPassword> {
             .show(context);
       }
     }
-    await Navigator.of(context).pushAndRemoveUntil(
-        AppRoute.defaultRoute(context, ChatListView()), (r) => false);
-    setState(() => loading = false);
+    if (mounted) setState(() => loading = false);
   }
 
   @override

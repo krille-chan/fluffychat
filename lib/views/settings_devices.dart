@@ -4,21 +4,8 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import '../components/adaptive_page_layout.dart';
 import '../components/matrix.dart';
 import '../utils/date_time_extension.dart';
-import 'chat_list.dart';
-
-class DevicesSettingsView extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return AdaptivePageLayout(
-      primaryPage: FocusPage.SECOND,
-      firstScaffold: ChatList(),
-      secondScaffold: DevicesSettings(),
-    );
-  }
-}
 
 class DevicesSettings extends StatefulWidget {
   @override

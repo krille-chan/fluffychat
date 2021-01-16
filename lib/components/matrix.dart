@@ -3,14 +3,13 @@ import 'dart:io';
 import 'dart:convert';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/encryption.dart';
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/utils/firebase_controller.dart';
 import 'package:fluffychat/utils/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/sentry_controller.dart';
-import 'package:fluffychat/views/settings_3pid.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +37,16 @@ class Matrix extends StatefulWidget {
 
   final Widget child;
 
-  Matrix({this.child, Key key}) : super(key: key);
+  final GlobalKey<AdaptivePageLayoutState> apl;
+
+  final BuildContext context;
+
+  Matrix({
+    this.child,
+    @required this.apl,
+    @required this.context,
+    Key key,
+  }) : super(key: key);
 
   @override
   MatrixState createState() => MatrixState();
@@ -52,7 +60,7 @@ class MatrixState extends State<Matrix> {
   Client client;
   Store store = Store();
   @override
-  BuildContext context;
+  BuildContext get context => widget.context;
 
   Map<String, dynamic> get shareContent => _shareContent;
   set shareContent(Map<String, dynamic> content) {
@@ -76,29 +84,16 @@ class MatrixState extends State<Matrix> {
   }
 
   void _initWithStore() async {
-    var initLoginState = client.onLoginStateChanged.stream.first;
     try {
       client.init();
 
-      final firstLoginState = await initLoginState;
-      if (firstLoginState == LoginState.logged) {
-        if (PlatformInfos.isMobile) {
-          await FirebaseController.setupFirebase(
-            this,
-            clientName,
-          );
-        }
-      }
       final storeItem = await store.getItem(SettingKeys.showNoPid);
       final configOptionMissing = storeItem == null || storeItem.isEmpty;
       if (configOptionMissing || (!configOptionMissing && storeItem == '1')) {
         if (configOptionMissing) {
           await store.setItem(SettingKeys.showNoPid, '0');
         }
-        await Matrix.of(context)
-            .client
-            .requestThirdPartyIdentifiers()
-            .then((l) {
+        await client.requestThirdPartyIdentifiers().then((l) {
           if (l.isEmpty) {
             Flushbar(
               title: L10n.of(context).warning,
@@ -110,12 +105,8 @@ class MatrixState extends State<Matrix> {
                   borderRadius: BorderRadius.circular(6),
                 ),
                 child: Text(L10n.of(context).edit),
-                onPressed: () => Navigator.of(context).push(
-                  AppRoute.defaultRoute(
-                    context,
-                    Settings3PidView(),
-                  ),
-                ),
+                onPressed: () =>
+                    AdaptivePageLayout.of(context).pushNamed('/settings/3pid'),
               ),
               flushbarStyle: FlushbarStyle.FLOATING,
             ).show(context);
@@ -133,6 +124,7 @@ class MatrixState extends State<Matrix> {
   StreamSubscription onKeyVerificationRequestSub;
   StreamSubscription onJitsiCallSub;
   StreamSubscription onNotification;
+  StreamSubscription<LoginState> onLoginStateChanged;
   StreamSubscription<UiaRequest> onUiaRequest;
   StreamSubscription<html.Event> onFocusSub;
   StreamSubscription<html.Event> onBlurSub;
@@ -301,6 +293,8 @@ class MatrixState extends State<Matrix> {
     }
   }
 
+  LoginState loginState;
+
   void initMatrix() {
     clientName =
         '${AppConfig.applicationName} ${kIsWeb ? 'Web' : Platform.operatingSystem}';
@@ -380,6 +374,19 @@ class MatrixState extends State<Matrix> {
       onFocusSub = html.window.onFocus.listen((_) => webHasFocus = true);
       onBlurSub = html.window.onBlur.listen((_) => webHasFocus = false);
     }
+    onLoginStateChanged ??= client.onLoginStateChanged.stream.listen((state) {
+      if (loginState != state) {
+        loginState = state;
+        widget.apl.currentState.pushNamedAndRemoveAllOthers('/');
+        if (loginState == LoginState.logged) {
+          FirebaseController.context = context;
+          FirebaseController.setupFirebase(
+            this,
+            clientName,
+          ).catchError(SentryController.captureException);
+        }
+      }
+    });
     onUiaRequest ??= client.onUiaRequest.stream.listen(_onUiaRequest);
     if (kIsWeb || Platform.isLinux) {
       client.onSync.stream.first.then((s) {

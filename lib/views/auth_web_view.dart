@@ -1,3 +1,4 @@
+import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,7 @@ class AuthWebView extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.close),
           onPressed: () {
-            Navigator.of(context).pop();
+            AdaptivePageLayout.of(context).pop();
             onAuthDone();
           },
         ),

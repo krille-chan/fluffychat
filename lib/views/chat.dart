@@ -3,14 +3,15 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:emoji_picker/emoji_picker.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
-import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/avatar.dart';
 import 'package:fluffychat/components/chat_settings_popup_menu.dart';
 import 'package:fluffychat/components/connection_status_header.dart';
 import 'package:fluffychat/components/dialogs/recording_dialog.dart';
+import 'package:fluffychat/config/themes.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/components/encryption_button.dart';
@@ -19,7 +20,6 @@ import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/components/reply_content.dart';
 import 'package:fluffychat/components/user_bottom_sheet.dart';
 import 'package:fluffychat/config/app_emojis.dart';
-import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/utils/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/room_status_extension.dart';
@@ -38,39 +38,19 @@ import '../components/dialogs/send_file_dialog.dart';
 import '../components/input_bar.dart';
 import '../utils/filtered_timeline_extension.dart';
 import '../utils/matrix_file_extension.dart';
-import 'chat_details.dart';
-import 'chat_list.dart';
 
-class ChatView extends StatelessWidget {
+class Chat extends StatefulWidget {
   final String id;
   final String scrollToEventId;
 
-  const ChatView(this.id, {Key key, this.scrollToEventId}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return AdaptivePageLayout(
-      primaryPage: FocusPage.SECOND,
-      firstScaffold: ChatList(
-        activeChat: id,
-      ),
-      secondScaffold: _Chat(id, scrollToEventId: scrollToEventId),
-    );
-  }
-}
-
-class _Chat extends StatefulWidget {
-  final String id;
-  final String scrollToEventId;
-
-  const _Chat(this.id, {Key key, this.scrollToEventId}) : super(key: key);
+  Chat(this.id, {Key key, this.scrollToEventId})
+      : super(key: key ?? Key('chatroom-$id'));
 
   @override
   _ChatState createState() => _ChatState();
 }
 
-class _ChatState extends State<_Chat> {
+class _ChatState extends State<Chat> {
   Room room;
 
   Timeline timeline;
@@ -343,7 +323,7 @@ class _ChatState extends State<_Chat> {
       };
     }
     setState(() => selectedEvents.clear());
-    Navigator.of(context).popUntil((r) => r.isFirst);
+    AdaptivePageLayout.of(context).popUntilIsFirst();
   }
 
   void sendAgainAction(Timeline timeline) {
@@ -509,12 +489,8 @@ class _ChatState extends State<_Chat> {
                                       '${room.directChatMatrixID} ',
                                 ),
                               )
-                          : () => Navigator.of(context).push(
-                                AppRoute.defaultRoute(
-                                  context,
-                                  ChatDetails(room),
-                                ),
-                              ),
+                          : () => AdaptivePageLayout.of(context)
+                              .pushNamed('/rooms/${room.id}/details'),
                       title: Text(
                           room.getLocalizedDisplayname(
                               MatrixLocals(L10n.of(context))),
@@ -643,8 +619,7 @@ class _ChatState extends State<_Chat> {
                           horizontal: max(
                               0,
                               (MediaQuery.of(context).size.width -
-                                      AdaptivePageLayout.defaultMinWidth *
-                                          3.5) /
+                                      FluffyThemes.columnWidth * 3.5) /
                                   2),
                         ),
                         reverse: true,

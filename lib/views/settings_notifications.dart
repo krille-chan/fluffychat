@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/app_config.dart';
 import 'package:flutter/foundation.dart';
@@ -11,24 +10,12 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:open_noti_settings/open_noti_settings.dart';
 
 import '../components/matrix.dart';
-import 'chat_list.dart';
 
 class NotificationSettingsItem {
   final PushRuleKind type;
   final String key;
   final String Function(BuildContext) title;
   NotificationSettingsItem(this.type, this.key, this.title);
-}
-
-class SettingsNotificationsView extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return AdaptivePageLayout(
-      primaryPage: FocusPage.SECOND,
-      firstScaffold: ChatList(),
-      secondScaffold: SettingsNotifications(),
-    );
-  }
 }
 
 class SettingsNotifications extends StatelessWidget {

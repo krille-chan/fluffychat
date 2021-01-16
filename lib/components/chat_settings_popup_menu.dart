@@ -1,10 +1,8 @@
 import 'dart:async';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/utils/app_route.dart';
-import 'package:fluffychat/views/chat_details.dart';
-import 'package:fluffychat/views/chat_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -95,9 +93,8 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
               final success = await showFutureLoadingDialog(
                   context: context, future: () => widget.room.leave());
               if (success.error == null) {
-                await Navigator.of(context).pushAndRemoveUntil(
-                    AppRoute.defaultRoute(context, ChatListView()),
-                    (Route r) => false);
+                await AdaptivePageLayout.of(context)
+                    .pushNamedAndRemoveAllOthers('/');
               }
             }
             break;
@@ -117,12 +114,9 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
             startCallAction(context);
             break;
           case 'details':
-            await Navigator.of(context).push(
-              AppRoute.defaultRoute(
-                context,
-                ChatDetails(widget.room),
-              ),
-            );
+            await AdaptivePageLayout.of(context).pushNamedAndRemoveAllOthers(
+                '/rooms/${widget.room.id}/details');
+
             break;
         }
       },

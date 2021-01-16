@@ -1,19 +1,17 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:circular_check_box/circular_check_box.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/event_extension.dart';
 import 'package:fluffychat/utils/matrix_locals.dart';
 import 'package:fluffychat/utils/room_status_extension.dart';
-import 'package:fluffychat/views/chat.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:pedantic/pedantic.dart';
 
-import '../../utils/app_route.dart';
 import '../../utils/date_time_extension.dart';
-import '../../views/chat.dart';
 import '../avatar.dart';
 import '../dialogs/send_file_dialog.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
@@ -102,11 +100,8 @@ class ChatListItem extends StatelessWidget {
           }
           Matrix.of(context).shareContent = null;
         }
-        await Navigator.pushAndRemoveUntil(
-          context,
-          AppRoute.defaultRoute(context, ChatView(room.id)),
-          (r) => r.isFirst,
-        );
+        await AdaptivePageLayout.of(context)
+            .pushNamedAndRemoveUntilIsFirst('/rooms/${room.id}');
       }
     }
   }

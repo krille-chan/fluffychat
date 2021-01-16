@@ -1,18 +1,15 @@
 import 'dart:math';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/app_config.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/utils/sentry_controller.dart';
-import 'package:fluffychat/views/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-import 'login.dart';
 
 class HomeserverPicker extends StatelessWidget {
   Future<void> _setHomeserverAction(BuildContext context) async {
@@ -45,8 +42,8 @@ class HomeserverPicker extends StatelessWidget {
         context: context,
         future: () => checkHomeserver(homeserver, Matrix.of(context).client));
     if (success.result == true) {
-      await Navigator.of(context)
-          .push(AppRoute(AppConfig.enableRegistration ? SignUp() : Login()));
+      await AdaptivePageLayout.of(context)
+          .pushNamed(AppConfig.enableRegistration ? '/signup' : '/login');
     }
   }
 

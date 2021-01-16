@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 abstract class FluffyThemes {
+  static const double columnWidth = 360.0;
   static ThemeData light = ThemeData(
     primaryColorDark: Colors.white,
     primaryColorLight: Color(0xff121212),
