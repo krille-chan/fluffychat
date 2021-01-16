@@ -638,7 +638,12 @@ class _ChatState extends State<Chat> {
                           horizontal: max(
                               0,
                               (MediaQuery.of(context).size.width -
-                                      FluffyThemes.columnWidth * 3.5) /
+                                      FluffyThemes.columnWidth *
+                                          (2.5 +
+                                              (AdaptivePageLayout.of(context)
+                                                      .threeColumnMode(context)
+                                                  ? 0
+                                                  : 1))) /
                                   2),
                         ),
                         reverse: true,
