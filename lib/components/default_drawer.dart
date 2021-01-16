@@ -15,7 +15,6 @@ class DefaultDrawer extends StatelessWidget {
 
   void _setStatus(BuildContext context) async {
     final client = Matrix.of(context).client;
-    Navigator.of(context).pop();
     final input = await showTextInputDialog(
       title: L10n.of(context).setStatus,
       context: context,
@@ -34,6 +33,7 @@ class DefaultDrawer extends StatelessWidget {
         statusMsg: input.single,
       ),
     );
+    Navigator.of(context).pop();
     return;
   }
 
