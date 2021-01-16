@@ -319,6 +319,7 @@ class _SettingsState extends State<Settings> {
               onTap: () => AdaptivePageLayout.of(context)
                   .pushNamed('/settings/notifications'),
             ),
+            Divider(thickness: 1),
             ListTile(
               title: Text(
                 L10n.of(context).chat,
