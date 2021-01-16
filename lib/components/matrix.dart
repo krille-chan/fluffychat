@@ -14,6 +14,7 @@ import 'package:flushbar/flushbar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:provider/provider.dart';
 import 'package:universal_html/prefer_universal/html.dart' as html;
 import 'package:url_launcher/url_launcher.dart';
@@ -25,6 +26,7 @@ import 'package:dbus/dbus.dart';
 import 'package:desktop_notifications/desktop_notifications.dart';*/
 
 import '../utils/beautify_string_extension.dart';
+import '../utils/localized_exception_extension.dart';
 import '../utils/famedlysdk_store.dart';
 import 'dialogs/key_verification_dialog.dart';
 import '../utils/platform_infos.dart';
@@ -314,6 +316,10 @@ class MatrixState extends State<Matrix> {
       },
       databaseBuilder: getDatabase,
     );
+    LoadingDialog.defaultTitle = L10n.of(context).loadingPleaseWait;
+    LoadingDialog.defaultBackLabel = L10n.of(context).close;
+    LoadingDialog.defaultOnError = (Object e) => e.toLocalizedString(context);
+
     onJitsiCallSub ??= client.onEvent.stream
         .where((e) =>
             e.type == EventUpdateType.timeline &&
