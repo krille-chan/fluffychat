@@ -1367,7 +1367,7 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "Alusta oma esimest vestlust :-)",
+  "startYourFirstChat": "Alusta oma esimest vestlust kohe nüüd 🙂\n- Klõpsi „+“ ikooni\n- Sisesta teise osapoole kasutajanimi\n- Ja lase vestlusel kulgeda",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
