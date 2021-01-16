@@ -7,15 +7,17 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import '../components/matrix.dart';
 
 class SettingsIgnoreList extends StatelessWidget {
-  final controller = TextEditingController();
+  final TextEditingController _controller = TextEditingController();
 
   void _ignoreUser(BuildContext context) {
-    if (controller.text.isEmpty) return;
+    if (_controller.text.isEmpty) return;
+    final userId = '@${_controller.text}';
+
     showFutureLoadingDialog(
       context: context,
-      future: () => Matrix.of(context).client.ignoreUser('@${controller.text}'),
+      future: () => Matrix.of(context).client.ignoreUser(userId),
     );
-    controller.clear();
+    _controller.clear();
   }
 
   @override
@@ -34,7 +36,7 @@ class SettingsIgnoreList extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 TextField(
-                  controller: controller,
+                  controller: _controller,
                   autocorrect: false,
                   textInputAction: TextInputAction.done,
                   onSubmitted: (_) => _ignoreUser(context),
