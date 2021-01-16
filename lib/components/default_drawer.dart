@@ -14,6 +14,7 @@ class DefaultDrawer extends StatelessWidget {
   }
 
   void _setStatus(BuildContext context) async {
+    final client = Matrix.of(context).client;
     Navigator.of(context).pop();
     final input = await showTextInputDialog(
       title: L10n.of(context).setStatus,
@@ -25,7 +26,6 @@ class DefaultDrawer extends StatelessWidget {
       ],
     );
     if (input == null || input.single.isEmpty) return;
-    final client = Matrix.of(context).client;
     await showFutureLoadingDialog(
       context: context,
       future: () => client.sendPresence(
