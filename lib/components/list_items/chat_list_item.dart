@@ -91,7 +91,7 @@ class ChatListItem extends StatelessWidget {
               'chat.fluffy.shared_file') {
             await showDialog(
                 context: context,
-                builder: (context) => SendFileDialog(
+                builder: (c) => SendFileDialog(
                       file: Matrix.of(context).shareContent['file'],
                       room: room,
                     ));
