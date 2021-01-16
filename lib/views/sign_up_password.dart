@@ -110,7 +110,7 @@ class _SignUpPasswordState extends State<SignUpPassword> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        leading: loading ? Container() : null,
+        leading: loading ? Container() : BackButton(),
         title: Text(
           L10n.of(context).chooseAStrongPassword,
         ),

@@ -172,6 +172,7 @@ class _ChatDetailsState extends State<ChatDetails> {
     if (room == null) {
       return Scaffold(
         appBar: AppBar(
+          leading: BackButton(),
           title: Text(L10n.of(context).oopsSomethingWentWrong),
         ),
         body: Center(
@@ -192,6 +193,7 @@ class _ChatDetailsState extends State<ChatDetails> {
               headerSliverBuilder:
                   (BuildContext context, bool innerBoxIsScrolled) => <Widget>[
                 SliverAppBar(
+                  leading: BackButton(),
                   expandedHeight: 300.0,
                   floating: true,
                   pinned: true,

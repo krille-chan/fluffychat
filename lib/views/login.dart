@@ -156,7 +156,7 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: loading ? Container() : null,
+        leading: loading ? Container() : BackButton(),
         elevation: 0,
         title: Text(
           L10n.of(context).logInTo(Matrix.of(context)

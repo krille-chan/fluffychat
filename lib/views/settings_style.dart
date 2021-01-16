@@ -51,6 +51,7 @@ class _SettingsStyleState extends State<SettingsStyle> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: BackButton(),
         title: Text(L10n.of(context).changeTheme),
       ),
       body: ListView(

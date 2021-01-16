@@ -472,7 +472,8 @@ class _ChatState extends State<Chat> {
                 onPressed: () => setState(() => selectedEvents.clear()),
               )
             : null,
-        titleSpacing: 0,
+        titleSpacing:
+            AdaptivePageLayout.of(context).columnMode(context) ? null : 0,
         title: selectedEvents.isEmpty
             ? StreamBuilder<Object>(
                 stream: room.onUpdate.stream,
@@ -490,7 +491,12 @@ class _ChatState extends State<Chat> {
                                 ),
                               )
                           : () => AdaptivePageLayout.of(context)
-                              .pushNamed('/rooms/${room.id}/details'),
+                                      .viewDataStack
+                                      .length <
+                                  3
+                              ? AdaptivePageLayout.of(context)
+                                  .pushNamed('/rooms/${room.id}/details')
+                              : null,
                       title: Text(
                           room.getLocalizedDisplayname(
                               MatrixLocals(L10n.of(context))),

@@ -22,7 +22,10 @@ class SettingsIgnoreList extends StatelessWidget {
   Widget build(BuildContext context) {
     final client = Matrix.of(context).client;
     return Scaffold(
-      appBar: AppBar(title: Text(L10n.of(context).ignoredUsers)),
+      appBar: AppBar(
+        leading: BackButton(),
+        title: Text(L10n.of(context).ignoredUsers),
+      ),
       body: Column(
         children: [
           Padding(

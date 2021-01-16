@@ -169,6 +169,7 @@ class _EmotesSettingsState extends State<EmotesSettings> {
     }
     return Scaffold(
       appBar: AppBar(
+        leading: BackButton(),
         title: Text(L10n.of(context).emoteSettings),
       ),
       floatingActionButton: showSave

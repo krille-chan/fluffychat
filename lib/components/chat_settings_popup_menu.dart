@@ -114,8 +114,10 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
             startCallAction(context);
             break;
           case 'details':
-            await AdaptivePageLayout.of(context).pushNamedAndRemoveAllOthers(
-                '/rooms/${widget.room.id}/details');
+            if (AdaptivePageLayout.of(context).viewDataStack.length < 3) {
+              await AdaptivePageLayout.of(context)
+                  .pushNamed('/rooms/${widget.room.id}/details');
+            }
 
             break;
         }

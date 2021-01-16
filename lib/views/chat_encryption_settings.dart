@@ -91,6 +91,7 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
 
     return Scaffold(
       appBar: AppBar(
+        leading: BackButton(),
         title: Text(L10n.of(context).participatingUserDevices),
       ),
       body: StreamBuilder(

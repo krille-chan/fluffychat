@@ -14,6 +14,7 @@ class MultipleEmotesSettings extends StatelessWidget {
     final room = Matrix.of(context).client.getRoomById(roomId);
     return Scaffold(
       appBar: AppBar(
+        leading: BackButton(),
         title: Text(L10n.of(context).emotePacks),
       ),
       body: StreamBuilder(

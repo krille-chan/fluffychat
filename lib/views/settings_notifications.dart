@@ -109,6 +109,7 @@ class SettingsNotifications extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: BackButton(),
         title: Text(L10n.of(context).notifications),
       ),
       body: StreamBuilder(

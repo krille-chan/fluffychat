@@ -85,6 +85,7 @@ class _NewPrivateChatState extends State<NewPrivateChat> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: BackButton(),
         title: Text(L10n.of(context).newPrivateChat),
         elevation: 0,
       ),

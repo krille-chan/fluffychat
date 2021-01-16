@@ -40,6 +40,7 @@ class _NewGroupState extends State<NewGroup> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: BackButton(),
         title: Text(L10n.of(context).createNewGroup),
         elevation: 0,
       ),

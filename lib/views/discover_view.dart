@@ -122,6 +122,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
         );
     return Scaffold(
       appBar: AppBar(
+        leading: BackButton(),
         titleSpacing: 0,
         elevation: _scrolledToTop ? 0 : null,
         title: DefaultAppBarSearchField(

@@ -36,6 +36,7 @@ class _ArchiveState extends State<Archive> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: BackButton(),
         title: Text(L10n.of(context).archive),
         elevation: _scrolledToTop ? 0 : null,
       ),

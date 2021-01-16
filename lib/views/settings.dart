@@ -260,21 +260,24 @@ class _SettingsState extends State<Settings> {
       if (mounted) setState(() => profile = p);
       return p;
     });
-    crossSigningCachedFuture ??=
-        client.encryption.crossSigning.isCached().then((c) {
-      if (mounted) setState(() => crossSigningCached = c);
-      return c;
-    });
-    megolmBackupCachedFuture ??=
-        client.encryption.keyManager.isCached().then((c) {
-      if (mounted) setState(() => megolmBackupCached = c);
-      return c;
-    });
+    if (client.encryption != null) {
+      crossSigningCachedFuture ??=
+          client.encryption.crossSigning.isCached().then((c) {
+        if (mounted) setState(() => crossSigningCached = c);
+        return c;
+      });
+      megolmBackupCachedFuture ??=
+          client.encryption.keyManager.isCached().then((c) {
+        if (mounted) setState(() => megolmBackupCached = c);
+        return c;
+      });
+    }
     return Scaffold(
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) =>
             <Widget>[
           SliverAppBar(
+            leading: BackButton(),
             expandedHeight: 300.0,
             floating: true,
             pinned: true,
@@ -434,126 +437,128 @@ class _SettingsState extends State<Settings> {
               ),
               onTap: () => _deleteAccountAction(context),
             ),
-            Divider(thickness: 1),
-            ListTile(
-              title: Text(
-                L10n.of(context).encryption,
-                style: TextStyle(
-                  color: Theme.of(context).primaryColor,
-                  fontWeight: FontWeight.bold,
+            if (client.encryption != null) ...{
+              Divider(thickness: 1),
+              ListTile(
+                title: Text(
+                  L10n.of(context).encryption,
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-            ),
-            ListTile(
-              trailing: Icon(Icons.compare_arrows_outlined),
-              title: Text(client.encryption.crossSigning.enabled
-                  ? L10n.of(context).crossSigningEnabled
-                  : L10n.of(context).crossSigningDisabled),
-              subtitle: client.encryption.crossSigning.enabled
-                  ? Text(client.isUnknownSession
-                      ? L10n.of(context).unknownSessionVerify
-                      : L10n.of(context).sessionVerified +
-                          ', ' +
-                          (crossSigningCached == null
-                              ? '⌛'
-                              : (crossSigningCached
-                                  ? L10n.of(context).keysCached
-                                  : L10n.of(context).keysMissing)))
-                  : null,
-              onTap: () async {
-                if (!client.encryption.crossSigning.enabled) {
-                  return BootstrapDialog().show(context);
-                }
-                if (client.isUnknownSession) {
-                  final input = await showTextInputDialog(
-                    context: context,
-                    title: L10n.of(context).askSSSSVerify,
-                    textFields: [
-                      DialogTextField(
-                        hintText: L10n.of(context).passphraseOrKey,
-                        obscureText: true,
-                        minLines: 1,
-                        maxLines: 1,
-                      )
-                    ],
-                  );
-                  if (input != null) {
-                    final valid = await showFutureLoadingDialog(
-                        context: context,
-                        future: () async {
-                          // make sure the loading spinner shows before we test the keys
-                          await Future.delayed(Duration(milliseconds: 100));
-                          var valid = false;
-                          try {
-                            await client.encryption.crossSigning
-                                .selfSign(recoveryKey: input.single);
-                            valid = true;
-                          } catch (_) {
+              ListTile(
+                trailing: Icon(Icons.compare_arrows_outlined),
+                title: Text(client.encryption.crossSigning.enabled
+                    ? L10n.of(context).crossSigningEnabled
+                    : L10n.of(context).crossSigningDisabled),
+                subtitle: client.encryption.crossSigning.enabled
+                    ? Text(client.isUnknownSession
+                        ? L10n.of(context).unknownSessionVerify
+                        : L10n.of(context).sessionVerified +
+                            ', ' +
+                            (crossSigningCached == null
+                                ? '⌛'
+                                : (crossSigningCached
+                                    ? L10n.of(context).keysCached
+                                    : L10n.of(context).keysMissing)))
+                    : null,
+                onTap: () async {
+                  if (!client.encryption.crossSigning.enabled) {
+                    return BootstrapDialog().show(context);
+                  }
+                  if (client.isUnknownSession) {
+                    final input = await showTextInputDialog(
+                      context: context,
+                      title: L10n.of(context).askSSSSVerify,
+                      textFields: [
+                        DialogTextField(
+                          hintText: L10n.of(context).passphraseOrKey,
+                          obscureText: true,
+                          minLines: 1,
+                          maxLines: 1,
+                        )
+                      ],
+                    );
+                    if (input != null) {
+                      final valid = await showFutureLoadingDialog(
+                          context: context,
+                          future: () async {
+                            // make sure the loading spinner shows before we test the keys
+                            await Future.delayed(Duration(milliseconds: 100));
+                            var valid = false;
                             try {
                               await client.encryption.crossSigning
-                                  .selfSign(passphrase: input.single);
+                                  .selfSign(recoveryKey: input.single);
                               valid = true;
                             } catch (_) {
-                              valid = false;
+                              try {
+                                await client.encryption.crossSigning
+                                    .selfSign(passphrase: input.single);
+                                valid = true;
+                              } catch (_) {
+                                valid = false;
+                              }
                             }
-                          }
-                          return valid;
-                        });
+                            return valid;
+                          });
 
-                    if (valid.result == true) {
-                      await showOkAlertDialog(
-                        context: context,
-                        message: L10n.of(context).verifiedSession,
-                      );
-                      setState(() {
-                        crossSigningCachedFuture = null;
-                        crossSigningCached = null;
-                        megolmBackupCachedFuture = null;
-                        megolmBackupCached = null;
-                      });
-                    } else {
-                      await showOkAlertDialog(
-                        context: context,
-                        message: L10n.of(context).incorrectPassphraseOrKey,
-                      );
+                      if (valid.result == true) {
+                        await showOkAlertDialog(
+                          context: context,
+                          message: L10n.of(context).verifiedSession,
+                        );
+                        setState(() {
+                          crossSigningCachedFuture = null;
+                          crossSigningCached = null;
+                          megolmBackupCachedFuture = null;
+                          megolmBackupCached = null;
+                        });
+                      } else {
+                        await showOkAlertDialog(
+                          context: context,
+                          message: L10n.of(context).incorrectPassphraseOrKey,
+                        );
+                      }
                     }
                   }
-                }
-                if (!(await client.encryption.crossSigning.isCached())) {
-                  await requestSSSSCache(context);
-                }
-              },
-            ),
-            ListTile(
-              trailing: Icon(Icons.wb_cloudy_outlined),
-              title: Text(client.encryption.keyManager.enabled
-                  ? L10n.of(context).onlineKeyBackupEnabled
-                  : L10n.of(context).onlineKeyBackupDisabled),
-              subtitle: client.encryption.keyManager.enabled
-                  ? Text(megolmBackupCached == null
-                      ? '⌛'
-                      : (megolmBackupCached
-                          ? L10n.of(context).keysCached
-                          : L10n.of(context).keysMissing))
-                  : null,
-              onTap: () async {
-                if (!client.encryption.keyManager.enabled) {
-                  return BootstrapDialog().show(context);
-                }
-                if (!(await client.encryption.keyManager.isCached())) {
-                  await requestSSSSCache(context);
-                }
-              },
-            ),
-            ListTile(
-              title: Text(L10n.of(context).yourPublicKey),
-              onTap: () => showOkAlertDialog(
-                context: context,
-                title: L10n.of(context).yourPublicKey,
-                message: client.fingerprintKey.beautified,
+                  if (!(await client.encryption.crossSigning.isCached())) {
+                    await requestSSSSCache(context);
+                  }
+                },
               ),
-              trailing: Icon(Icons.vpn_key_outlined),
-            ),
+              ListTile(
+                trailing: Icon(Icons.wb_cloudy_outlined),
+                title: Text(client.encryption.keyManager.enabled
+                    ? L10n.of(context).onlineKeyBackupEnabled
+                    : L10n.of(context).onlineKeyBackupDisabled),
+                subtitle: client.encryption.keyManager.enabled
+                    ? Text(megolmBackupCached == null
+                        ? '⌛'
+                        : (megolmBackupCached
+                            ? L10n.of(context).keysCached
+                            : L10n.of(context).keysMissing))
+                    : null,
+                onTap: () async {
+                  if (!client.encryption.keyManager.enabled) {
+                    return BootstrapDialog().show(context);
+                  }
+                  if (!(await client.encryption.keyManager.isCached())) {
+                    await requestSSSSCache(context);
+                  }
+                },
+              ),
+              ListTile(
+                title: Text(L10n.of(context).yourPublicKey),
+                onTap: () => showOkAlertDialog(
+                  context: context,
+                  title: L10n.of(context).yourPublicKey,
+                  message: client.fingerprintKey.beautified,
+                ),
+                trailing: Icon(Icons.vpn_key_outlined),
+              ),
+            },
             Divider(thickness: 1),
             ListTile(
               title: Text(
