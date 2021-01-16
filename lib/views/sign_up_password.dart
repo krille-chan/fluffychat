@@ -68,6 +68,7 @@ class _SignUpPasswordState extends State<SignUpPassword> {
           );
         } else {
           if (_lastAuthWebViewStage == currentStage) {
+            _lastAuthWebViewStage = null;
             setState(
                 () => passwordError = L10n.of(context).oopsSomethingWentWrong);
             return setState(() => loading = false);
