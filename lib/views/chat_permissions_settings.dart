@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/dialogs/permission_slider_dialog.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/components/matrix.dart';
@@ -9,29 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 
-import 'chat_list.dart';
-
-class ChatPermissionsSettingsView extends StatelessWidget {
-  final String roomId;
-
-  const ChatPermissionsSettingsView({Key key, this.roomId}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return AdaptivePageLayout(
-      firstScaffold: ChatList(
-        activeChat: roomId,
-      ),
-      secondScaffold: ChatPermissionsSettings(roomId: roomId),
-      primaryPage: FocusPage.SECOND,
-    );
-  }
-}
-
 class ChatPermissionsSettings extends StatelessWidget {
   final String roomId;
 
-  const ChatPermissionsSettings({Key key, @required this.roomId})
-      : super(key: key);
+  const ChatPermissionsSettings(this.roomId, {Key key}) : super(key: key);
 
   void _editPowerLevel(BuildContext context, String key, int currentLevel,
       {String category}) async {

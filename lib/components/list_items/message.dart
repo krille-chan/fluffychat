@@ -1,12 +1,12 @@
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/message_content.dart';
 import 'package:fluffychat/components/reply_content.dart';
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/event_extension.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:flutter/material.dart';
 
-import '../adaptive_page_layout.dart';
 import '../avatar.dart';
 import '../matrix.dart';
 import '../message_reactions.dart';
@@ -88,8 +88,7 @@ class Message extends StatelessWidget {
               color: color,
               borderRadius: BorderRadius.circular(radius),
             ),
-            constraints:
-                BoxConstraints(maxWidth: AdaptivePageLayout.defaultMinWidth),
+            constraints: BoxConstraints(maxWidth: FluffyThemes.columnWidth),
             child: Stack(
               children: <Widget>[
                 Column(

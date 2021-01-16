@@ -7,8 +7,6 @@ import 'package:flushbar/flushbar_helper.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:fluffychat/components/matrix.dart';
-import 'package:fluffychat/utils/app_route.dart';
-import 'package:fluffychat/views/chat.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -112,12 +110,8 @@ abstract class FirebaseController {
           roomId = (message['data'] ?? message)['room_id'];
         }
         if (roomId?.isEmpty ?? true) throw ('Bad roomId');
-        await Navigator.of(context).pushAndRemoveUntil(
-            AppRoute.defaultRoute(
-              context,
-              ChatView(roomId),
-            ),
-            (r) => r.isFirst);
+        await matrix.widget.apl.currentState
+            .pushNamedAndRemoveUntilIsFirst('/rooms/${roomId}');
       } catch (_) {
         await FlushbarHelper.createError(message: 'Failed to open chat...')
             .show(context);

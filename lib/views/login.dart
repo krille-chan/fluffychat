@@ -5,14 +5,9 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/components/matrix.dart';
-import 'package:fluffychat/utils/app_route.dart';
-import 'package:fluffychat/utils/firebase_controller.dart';
-import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-
-import 'chat_list.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -57,14 +52,8 @@ class _LoginState extends State<Login> {
       setState(() => passwordError = exception.toString());
       return setState(() => loading = false);
     }
-    await FirebaseController.setupFirebase(
-      matrix,
-      matrix.clientName,
-    ).catchError(SentryController.captureException);
 
-    setState(() => loading = false);
-    await Navigator.of(context).pushAndRemoveUntil(
-        AppRoute.defaultRoute(context, ChatListView()), (r) => false);
+    if (mounted) setState(() => loading = false);
   }
 
   Timer _coolDown;

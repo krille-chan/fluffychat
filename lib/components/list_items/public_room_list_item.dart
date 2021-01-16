@@ -1,10 +1,9 @@
+import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import '../../utils/app_route.dart';
-import '../../views/chat.dart';
 import '../avatar.dart';
 import '../matrix.dart';
 
@@ -19,12 +18,8 @@ class PublicRoomListItem extends StatelessWidget {
       future: () => _joinRoomAndWait(context),
     );
     if (success.error == null) {
-      await Navigator.of(context).push(
-        AppRoute.defaultRoute(
-          context,
-          ChatView(success.result),
-        ),
-      );
+      await AdaptivePageLayout.of(context)
+          .pushNamed('/rooms/${success.result}');
     }
   }
 

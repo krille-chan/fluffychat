@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/connection_status_header.dart';
 import 'package:fluffychat/components/default_app_bar_search_field.dart';
@@ -14,28 +15,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 
-import '../components/adaptive_page_layout.dart';
 import '../components/list_items/chat_list_item.dart';
 import '../components/matrix.dart';
-import '../utils/app_route.dart';
 import '../utils/matrix_file_extension.dart';
 import '../utils/url_launcher.dart';
-import 'empty_page.dart';
-import 'homeserver_picker.dart';
-import 'new_private_chat.dart';
 
 enum SelectMode { normal, share, select }
-
-class ChatListView extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return AdaptivePageLayout(
-      primaryPage: FocusPage.FIRST,
-      firstScaffold: ChatList(),
-      secondScaffold: EmptyPage(),
-    );
-  }
-}
 
 class ChatList extends StatefulWidget {
   final String activeChat;
@@ -86,9 +71,7 @@ class _ChatListState extends State<ChatList> {
 
   void _processIncomingSharedFiles(List<SharedMediaFile> files) {
     if (files?.isEmpty ?? true) return;
-    if (Navigator.of(context).canPop()) {
-      Navigator.of(context).popUntil((r) => r.isFirst);
-    }
+    AdaptivePageLayout.of(context).popUntilIsFirst();
     final file = File(files.first.path);
 
     Matrix.of(context).shareContent = {
@@ -102,9 +85,7 @@ class _ChatListState extends State<ChatList> {
 
   void _processIncomingSharedText(String text) {
     if (text == null) return;
-    if (Navigator.of(context).canPop()) {
-      Navigator.of(context).popUntil((r) => r.isFirst);
-    }
+    AdaptivePageLayout.of(context).popUntilIsFirst();
     if (text.toLowerCase().startsWith(AppConfig.inviteLinkPrefix) ||
         (text.toLowerCase().startsWith(AppConfig.schemePrefix) &&
             !RegExp(r'\s').hasMatch(text))) {
@@ -194,205 +175,178 @@ class _ChatListState extends State<ChatList> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<LoginState>(
-        stream: Matrix.of(context).client.onLoginStateChanged.stream,
+    return StreamBuilder(
+        stream: Matrix.of(context).onShareContentChanged.stream,
         builder: (context, snapshot) {
-          if (snapshot.data == LoginState.loggedOut) {
-            Timer(Duration(seconds: 1), () {
-              Matrix.of(context).clean();
-              Navigator.of(context).pushAndRemoveUntil(
-                  AppRoute.defaultRoute(context, HomeserverPicker()),
-                  (r) => false);
-            });
+          final selectMode = Matrix.of(context).shareContent == null
+              ? _selectedRoomIds.isEmpty
+                  ? SelectMode.normal
+                  : SelectMode.select
+              : SelectMode.share;
+          if (selectMode == SelectMode.share) {
+            _selectedRoomIds.clear();
           }
-          return StreamBuilder(
-              stream: Matrix.of(context).onShareContentChanged.stream,
-              builder: (context, snapshot) {
-                final selectMode = Matrix.of(context).shareContent == null
-                    ? _selectedRoomIds.isEmpty
-                        ? SelectMode.normal
-                        : SelectMode.select
-                    : SelectMode.share;
-                if (selectMode == SelectMode.share) {
-                  _selectedRoomIds.clear();
-                }
-                Room selectedRoom;
-                if (_selectedRoomIds.length == 1) {
-                  selectedRoom = Matrix.of(context)
-                      .client
-                      .getRoomById(_selectedRoomIds.single);
-                }
-                return Scaffold(
-                  drawer:
-                      selectMode != SelectMode.normal ? null : DefaultDrawer(),
-                  appBar: AppBar(
-                    centerTitle: false,
-                    elevation: _scrolledToTop ? 0 : null,
-                    leading: selectMode == SelectMode.share
-                        ? IconButton(
-                            icon: Icon(Icons.close),
-                            onPressed: () =>
-                                Matrix.of(context).shareContent = null,
-                          )
-                        : selectMode == SelectMode.select
-                            ? IconButton(
-                                icon: Icon(Icons.close),
-                                onPressed: () =>
-                                    setState(_selectedRoomIds.clear),
-                              )
-                            : null,
-                    titleSpacing: 0,
-                    actions: selectMode != SelectMode.select
-                        ? null
-                        : [
-                            if (_selectedRoomIds.length == 1)
-                              IconButton(
-                                tooltip: L10n.of(context).toggleUnread,
-                                icon: Icon(selectedRoom.isUnread
-                                    ? Icons.mark_chat_read_outlined
-                                    : Icons.mark_chat_unread_outlined),
-                                onPressed: () => _toggleUnread(context),
-                              ),
-                            if (_selectedRoomIds.length == 1)
-                              IconButton(
-                                tooltip: L10n.of(context).toggleFavorite,
-                                icon: Icon(Icons.push_pin_outlined),
-                                onPressed: () => _toggleFavouriteRoom(context),
-                              ),
-                            if (_selectedRoomIds.length == 1)
-                              IconButton(
-                                icon: Icon(selectedRoom.pushRuleState ==
-                                        PushRuleState.notify
-                                    ? Icons.notifications_off_outlined
-                                    : Icons.notifications_outlined),
-                                tooltip: L10n.of(context).toggleMuted,
-                                onPressed: () => _toggleMuted(context),
-                              ),
-                            IconButton(
-                              icon: Icon(Icons.archive_outlined),
-                              tooltip: L10n.of(context).archive,
-                              onPressed: () => _archiveAction(context),
-                            ),
-                          ],
-                    title: selectMode == SelectMode.share
-                        ? Text(L10n.of(context).share)
-                        : selectMode == SelectMode.select
-                            ? Text(_selectedRoomIds.length.toString())
-                            : DefaultAppBarSearchField(
-                                searchController: searchController,
-                                hintText: L10n.of(context).searchForAChat,
-                                onChanged: (_) => setState(() => null),
-                              ),
-                  ),
-                  floatingActionButton: AdaptivePageLayout.columnMode(context)
-                      ? null
-                      : FloatingActionButton(
-                          child: Icon(Icons.add_outlined),
-                          backgroundColor: Theme.of(context).primaryColor,
-                          onPressed: () => Navigator.of(context)
-                              .pushAndRemoveUntil(
-                                  AppRoute.defaultRoute(
-                                      context, NewPrivateChatView()),
-                                  (r) => r.isFirst),
+          Room selectedRoom;
+          if (_selectedRoomIds.length == 1) {
+            selectedRoom =
+                Matrix.of(context).client.getRoomById(_selectedRoomIds.single);
+          }
+          return Scaffold(
+            drawer: selectMode != SelectMode.normal ? null : DefaultDrawer(),
+            appBar: AppBar(
+              centerTitle: false,
+              elevation: _scrolledToTop ? 0 : null,
+              leading: selectMode == SelectMode.share
+                  ? IconButton(
+                      icon: Icon(Icons.close),
+                      onPressed: () => Matrix.of(context).shareContent = null,
+                    )
+                  : selectMode == SelectMode.select
+                      ? IconButton(
+                          icon: Icon(Icons.close),
+                          onPressed: () => setState(_selectedRoomIds.clear),
+                        )
+                      : null,
+              titleSpacing: 0,
+              actions: selectMode != SelectMode.select
+                  ? null
+                  : [
+                      if (_selectedRoomIds.length == 1)
+                        IconButton(
+                          tooltip: L10n.of(context).toggleUnread,
+                          icon: Icon(selectedRoom.isUnread
+                              ? Icons.mark_chat_read_outlined
+                              : Icons.mark_chat_unread_outlined),
+                          onPressed: () => _toggleUnread(context),
                         ),
-                  body: Column(
-                    children: [
-                      ConnectionStatusHeader(),
-                      Expanded(
-                        child: StreamBuilder(
-                            stream: Matrix.of(context)
-                                .client
-                                .onSync
-                                .stream
-                                .where((s) => s.hasRoomUpdate),
-                            builder: (context, snapshot) {
-                              return FutureBuilder<void>(
-                                future: waitForFirstSync(context),
-                                builder: (BuildContext context, snapshot) {
-                                  if (snapshot.hasData) {
-                                    var rooms = List<Room>.from(
-                                        Matrix.of(context).client.rooms);
-                                    rooms.removeWhere((Room room) =>
-                                        room.lastEvent == null ||
-                                        (searchMode &&
-                                            !room.displayname
-                                                .toLowerCase()
-                                                .contains(searchController.text
-                                                        .toLowerCase() ??
-                                                    '')));
-                                    if (rooms.isEmpty && (!searchMode)) {
-                                      return Center(
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: <Widget>[
-                                            Icon(
-                                              searchMode
-                                                  ? Icons.search_outlined
-                                                  : Icons.chat_bubble_outline,
-                                              size: 80,
-                                              color: Colors.grey,
-                                            ),
-                                            Text(searchMode
-                                                ? L10n.of(context).noRoomsFound
-                                                : L10n.of(context)
-                                                    .startYourFirstChat),
-                                          ],
-                                        ),
-                                      );
-                                    }
-                                    final totalCount = rooms.length;
-                                    return ListView.separated(
-                                      controller: _scrollController,
-                                      separatorBuilder: (BuildContext context,
-                                              int i) =>
-                                          i == totalCount
-                                              ? ListTile(
-                                                  title: Text(
-                                                    L10n.of(context)
-                                                            .publicRooms +
-                                                        ':',
-                                                    style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color: Theme.of(context)
-                                                          .primaryColor,
-                                                    ),
-                                                  ),
-                                                )
-                                              : Container(),
-                                      itemCount: totalCount,
-                                      itemBuilder:
-                                          (BuildContext context, int i) =>
-                                              ChatListItem(
-                                        rooms[i],
-                                        selected: _selectedRoomIds
-                                            .contains(rooms[i].id),
-                                        onTap: selectMode == SelectMode.select
-                                            ? () =>
-                                                _toggleSelection(rooms[i].id)
-                                            : null,
-                                        onLongPress: selectMode !=
-                                                SelectMode.share
-                                            ? () =>
-                                                _toggleSelection(rooms[i].id)
-                                            : null,
-                                        activeChat:
-                                            widget.activeChat == rooms[i].id,
-                                      ),
-                                    );
-                                  } else {
-                                    return Center(
-                                      child: CircularProgressIndicator(),
-                                    );
-                                  }
-                                },
-                              );
-                            }),
+                      if (_selectedRoomIds.length == 1)
+                        IconButton(
+                          tooltip: L10n.of(context).toggleFavorite,
+                          icon: Icon(Icons.push_pin_outlined),
+                          onPressed: () => _toggleFavouriteRoom(context),
+                        ),
+                      if (_selectedRoomIds.length == 1)
+                        IconButton(
+                          icon: Icon(
+                              selectedRoom.pushRuleState == PushRuleState.notify
+                                  ? Icons.notifications_off_outlined
+                                  : Icons.notifications_outlined),
+                          tooltip: L10n.of(context).toggleMuted,
+                          onPressed: () => _toggleMuted(context),
+                        ),
+                      IconButton(
+                        icon: Icon(Icons.archive_outlined),
+                        tooltip: L10n.of(context).archive,
+                        onPressed: () => _archiveAction(context),
                       ),
                     ],
-                  ),
-                );
-              });
+              title: selectMode == SelectMode.share
+                  ? Text(L10n.of(context).share)
+                  : selectMode == SelectMode.select
+                      ? Text(_selectedRoomIds.length.toString())
+                      : DefaultAppBarSearchField(
+                          searchController: searchController,
+                          hintText: L10n.of(context).searchForAChat,
+                          onChanged: (_) => setState(() => null),
+                        ),
+            ),
+            floatingActionButton:
+                AdaptivePageLayout.of(context).columnMode(context)
+                    ? null
+                    : FloatingActionButton(
+                        child: Icon(Icons.add_outlined),
+                        backgroundColor: Theme.of(context).primaryColor,
+                        onPressed: () => AdaptivePageLayout.of(context)
+                            .pushNamedAndRemoveUntilIsFirst('/newprivatechat'),
+                      ),
+            body: Column(
+              children: [
+                ConnectionStatusHeader(),
+                Expanded(
+                  child: StreamBuilder(
+                      stream: Matrix.of(context)
+                          .client
+                          .onSync
+                          .stream
+                          .where((s) => s.hasRoomUpdate),
+                      builder: (context, snapshot) {
+                        return FutureBuilder<void>(
+                          future: waitForFirstSync(context),
+                          builder: (BuildContext context, snapshot) {
+                            if (snapshot.hasData) {
+                              var rooms = List<Room>.from(
+                                  Matrix.of(context).client.rooms);
+                              rooms.removeWhere((Room room) =>
+                                  room.lastEvent == null ||
+                                  (searchMode &&
+                                      !room.displayname.toLowerCase().contains(
+                                          searchController.text.toLowerCase() ??
+                                              '')));
+                              if (rooms.isEmpty && (!searchMode)) {
+                                return Center(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: <Widget>[
+                                      Icon(
+                                        searchMode
+                                            ? Icons.search_outlined
+                                            : Icons.chat_bubble_outline,
+                                        size: 80,
+                                        color: Colors.grey,
+                                      ),
+                                      Text(searchMode
+                                          ? L10n.of(context).noRoomsFound
+                                          : L10n.of(context)
+                                              .startYourFirstChat),
+                                    ],
+                                  ),
+                                );
+                              }
+                              final totalCount = rooms.length;
+                              return ListView.separated(
+                                controller: _scrollController,
+                                separatorBuilder:
+                                    (BuildContext context, int i) =>
+                                        i == totalCount
+                                            ? ListTile(
+                                                title: Text(
+                                                  L10n.of(context).publicRooms +
+                                                      ':',
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
+                                                  ),
+                                                ),
+                                              )
+                                            : Container(),
+                                itemCount: totalCount,
+                                itemBuilder: (BuildContext context, int i) =>
+                                    ChatListItem(
+                                  rooms[i],
+                                  selected:
+                                      _selectedRoomIds.contains(rooms[i].id),
+                                  onTap: selectMode == SelectMode.select
+                                      ? () => _toggleSelection(rooms[i].id)
+                                      : null,
+                                  onLongPress: selectMode != SelectMode.share
+                                      ? () => _toggleSelection(rooms[i].id)
+                                      : null,
+                                  activeChat: widget.activeChat == rooms[i].id,
+                                ),
+                              );
+                            } else {
+                              return Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            }
+                          },
+                        );
+                      }),
+                ),
+              ],
+            ),
+          );
         });
   }
 }

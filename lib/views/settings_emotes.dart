@@ -10,26 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../components/adaptive_page_layout.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import '../components/matrix.dart';
-import 'chat_list.dart';
-
-class EmotesSettingsView extends StatelessWidget {
-  final Room room;
-  final String stateKey;
-
-  EmotesSettingsView({this.room, this.stateKey});
-
-  @override
-  Widget build(BuildContext context) {
-    return AdaptivePageLayout(
-      primaryPage: FocusPage.SECOND,
-      firstScaffold: ChatList(),
-      secondScaffold: EmotesSettings(room: room, stateKey: stateKey),
-    );
-  }
-}
 
 class EmotesSettings extends StatefulWidget {
   final Room room;

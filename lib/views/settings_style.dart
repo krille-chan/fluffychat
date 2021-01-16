@@ -1,25 +1,12 @@
 import 'dart:io';
 
 import 'package:adaptive_theme/adaptive_theme.dart';
-import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../components/matrix.dart';
-import 'chat_list.dart';
-
-class SettingsStyleView extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return AdaptivePageLayout(
-      primaryPage: FocusPage.SECOND,
-      firstScaffold: ChatList(),
-      secondScaffold: SettingsStyle(),
-    );
-  }
-}
 
 class SettingsStyle extends StatefulWidget {
   @override

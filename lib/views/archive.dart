@@ -1,5 +1,4 @@
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/list_items/chat_list_item.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:flutter/material.dart';
@@ -35,36 +34,28 @@ class _ArchiveState extends State<Archive> {
 
   @override
   Widget build(BuildContext context) {
-    return AdaptivePageLayout(
-      firstScaffold: Scaffold(
-        appBar: AppBar(
-          title: Text(L10n.of(context).archive),
-          elevation: _scrolledToTop ? 0 : null,
-        ),
-        body: FutureBuilder<List<Room>>(
-          future: getArchive(context),
-          builder: (BuildContext context, snapshot) {
-            if (!snapshot.hasData) {
-              return Center(child: CircularProgressIndicator());
-            } else {
-              archive = snapshot.data;
-              return ListView.builder(
-                controller: _scrollController,
-                itemCount: archive.length,
-                itemBuilder: (BuildContext context, int i) => ChatListItem(
-                    archive[i],
-                    onForget: () => setState(() => archive.removeAt(i))),
-              );
-            }
-          },
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(L10n.of(context).archive),
+        elevation: _scrolledToTop ? 0 : null,
       ),
-      secondScaffold: Scaffold(
-        body: Center(
-          child: Image.asset('assets/logo.png', width: 100, height: 100),
-        ),
+      body: FutureBuilder<List<Room>>(
+        future: getArchive(context),
+        builder: (BuildContext context, snapshot) {
+          if (!snapshot.hasData) {
+            return Center(child: CircularProgressIndicator());
+          } else {
+            archive = snapshot.data;
+            return ListView.builder(
+              controller: _scrollController,
+              itemCount: archive.length,
+              itemBuilder: (BuildContext context, int i) => ChatListItem(
+                  archive[i],
+                  onForget: () => setState(() => archive.removeAt(i))),
+            );
+          }
+        },
       ),
-      primaryPage: FocusPage.FIRST,
     );
   }
 }

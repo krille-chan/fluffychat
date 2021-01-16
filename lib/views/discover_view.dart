@@ -1,31 +1,14 @@
 import 'dart:async';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:fluffychat/components/avatar.dart';
 import 'package:fluffychat/components/default_app_bar_search_field.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/components/matrix.dart';
-import 'package:fluffychat/utils/app_route.dart';
-import 'package:fluffychat/views/chat.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-
-import 'empty_page.dart';
-
-class DiscoverView extends StatelessWidget {
-  final String alias;
-
-  const DiscoverView({Key key, this.alias}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return AdaptivePageLayout(
-      firstScaffold: DiscoverPage(alias: alias),
-      secondScaffold: EmptyPage(),
-    );
-  }
-}
 
 class DiscoverPage extends StatefulWidget {
   final String alias;
@@ -110,12 +93,8 @@ class _DiscoverPageState extends State<DiscoverPage> {
       ),
     );
     if (success.error == null) {
-      await Navigator.of(context).push(
-        AppRoute.defaultRoute(
-          context,
-          ChatView(success.result),
-        ),
-      );
+      await AdaptivePageLayout.of(context)
+          .pushNamedAndRemoveUntilIsFirst('/rooms/${success.result}');
     }
   }
 

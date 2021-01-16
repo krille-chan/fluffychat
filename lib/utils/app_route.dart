@@ -1,10 +1,11 @@
-import 'package:fluffychat/components/adaptive_page_layout.dart';
+import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AppRoute extends PageRouteBuilder {
   static Route defaultRoute(BuildContext context, Widget page) {
-    return context != null && !AdaptivePageLayout.columnMode(context)
+    return context != null &&
+            !AdaptivePageLayout.of(context).columnMode(context)
         ? CupertinoPageRoute(
             builder: (BuildContext context) => page,
           )

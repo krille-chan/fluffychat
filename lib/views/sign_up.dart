@@ -1,12 +1,10 @@
 import 'dart:math';
 
+import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
 
 import 'package:fluffychat/components/matrix.dart';
-import 'package:fluffychat/utils/app_route.dart';
-import 'package:fluffychat/views/login.dart';
-import 'package:fluffychat/views/sign_up_password.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -61,11 +59,9 @@ class _SignUpState extends State<SignUp> {
       return setState(() => loading = false);
     }
     setState(() => loading = false);
-    await Navigator.of(context).push(
-      AppRoute(
-        SignUpPassword(preferredUsername,
-            avatar: avatar, displayname: usernameController.text),
-      ),
+    await AdaptivePageLayout.of(context).pushNamed(
+      '/signup/password/${Uri.encodeComponent(preferredUsername)}/${Uri.encodeComponent(usernameController.text)}',
+      arguments: avatar,
     );
   }
 
@@ -171,9 +167,8 @@ class _SignUpState extends State<SignUp> {
                     fontSize: 16,
                   ),
                 ),
-                onPressed: () => Navigator.of(context).push(
-                  AppRoute(Login()),
-                ),
+                onPressed: () =>
+                    AdaptivePageLayout.of(context).pushNamed('/login'),
               ),
             ),
           ]),

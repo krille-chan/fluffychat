@@ -1,33 +1,16 @@
+import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart' as sdk;
-import 'package:fluffychat/components/adaptive_page_layout.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/components/matrix.dart';
-import 'package:fluffychat/utils/app_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:pedantic/pedantic.dart';
 
-import 'chat.dart';
-import 'chat_list.dart';
-import 'invitation_selection.dart';
-
-class NewGroupView extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return AdaptivePageLayout(
-      primaryPage: FocusPage.SECOND,
-      firstScaffold: ChatList(),
-      secondScaffold: _NewGroup(),
-    );
-  }
-}
-
-class _NewGroup extends StatefulWidget {
+class NewGroup extends StatefulWidget {
   @override
   _NewGroupState createState() => _NewGroupState();
 }
 
-class _NewGroupState extends State<_NewGroup> {
+class _NewGroupState extends State<NewGroup> {
   TextEditingController controller = TextEditingController();
   bool publicGroup = false;
 
@@ -45,24 +28,11 @@ class _NewGroupState extends State<_NewGroup> {
         name: controller.text.isNotEmpty ? controller.text : null,
       ),
     );
-    Navigator.of(context).pop();
+    AdaptivePageLayout.of(context).popUntilIsFirst();
     if (roomID != null) {
-      unawaited(
-        Navigator.of(context).push(
-          AppRoute.defaultRoute(
-            context,
-            ChatView(roomID.result),
-          ),
-        ),
-      );
-      await Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => InvitationSelection(
-            matrix.client.getRoomById(roomID.result),
-          ),
-        ),
-      );
+      await AdaptivePageLayout.of(context).pushNamed('/rooms/${roomID.result}');
+      await AdaptivePageLayout.of(context)
+          .pushNamed('/rooms/${roomID.result}/invite');
     }
   }
 

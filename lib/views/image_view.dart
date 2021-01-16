@@ -1,3 +1,4 @@
+import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/image_bubble.dart';
 import 'package:fluffychat/components/matrix.dart';
@@ -13,7 +14,7 @@ class ImageView extends StatelessWidget {
 
   void _forwardAction(BuildContext context) async {
     Matrix.of(context).shareContent = event.content;
-    Navigator.of(context).popUntil((r) => r.isFirst);
+    AdaptivePageLayout.of(context).popUntilIsFirst();
   }
 
   @override

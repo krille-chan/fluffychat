@@ -1,9 +1,6 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:fluffychat/components/dialogs/bootstrap_dialog.dart';
-import 'package:fluffychat/views/log_view.dart';
-import 'package:fluffychat/views/settings_3pid.dart';
-import 'package:fluffychat/views/settings_notifications.dart';
-import 'package:fluffychat/views/settings_style.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
@@ -12,33 +9,16 @@ import 'package:fluffychat/utils/beautify_string_extension.dart';
 import 'package:fluffychat/app_config.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/sentry_controller.dart';
-import 'package:fluffychat/views/settings_devices.dart';
-import 'package:fluffychat/views/settings_ignore_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../components/adaptive_page_layout.dart';
 import '../components/content_banner.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import '../components/matrix.dart';
-import '../utils/app_route.dart';
 import '../app_config.dart';
 import '../config/setting_keys.dart';
-import 'chat_list.dart';
-import 'settings_emotes.dart';
-
-class SettingsView extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return AdaptivePageLayout(
-      primaryPage: FocusPage.SECOND,
-      firstScaffold: ChatList(),
-      secondScaffold: Settings(),
-    );
-  }
-}
 
 class Settings extends StatefulWidget {
   @override
@@ -333,12 +313,8 @@ class _SettingsState extends State<Settings> {
             ListTile(
               trailing: Icon(Icons.notifications_outlined),
               title: Text(L10n.of(context).notifications),
-              onTap: () async => await Navigator.of(context).push(
-                AppRoute.defaultRoute(
-                  context,
-                  SettingsNotificationsView(),
-                ),
-              ),
+              onTap: () => AdaptivePageLayout.of(context)
+                  .pushNamed('/settings/notifications'),
             ),
             ListTile(
               title: Text(
@@ -351,12 +327,8 @@ class _SettingsState extends State<Settings> {
             ),
             ListTile(
               title: Text(L10n.of(context).changeTheme),
-              onTap: () async => await Navigator.of(context).push(
-                AppRoute.defaultRoute(
-                  context,
-                  SettingsStyleView(),
-                ),
-              ),
+              onTap: () =>
+                  AdaptivePageLayout.of(context).pushNamed('/settings/style'),
               trailing: Icon(Icons.style_outlined),
             ),
             SwitchListTile(
@@ -392,12 +364,8 @@ class _SettingsState extends State<Settings> {
             ),
             ListTile(
               title: Text(L10n.of(context).emoteSettings),
-              onTap: () async => await Navigator.of(context).push(
-                AppRoute.defaultRoute(
-                  context,
-                  EmotesSettingsView(),
-                ),
-              ),
+              onTap: () =>
+                  AdaptivePageLayout.of(context).pushNamed('/settings/emotes'),
               trailing: Icon(Icons.insert_emoticon_outlined),
             ),
             Divider(thickness: 1),
@@ -425,22 +393,14 @@ class _SettingsState extends State<Settings> {
             ListTile(
               trailing: Icon(Icons.devices_other_outlined),
               title: Text(L10n.of(context).devices),
-              onTap: () async => await Navigator.of(context).push(
-                AppRoute.defaultRoute(
-                  context,
-                  DevicesSettingsView(),
-                ),
-              ),
+              onTap: () =>
+                  AdaptivePageLayout.of(context).pushNamed('/settings/devices'),
             ),
             ListTile(
               trailing: Icon(Icons.block_outlined),
               title: Text(L10n.of(context).ignoredUsers),
-              onTap: () async => await Navigator.of(context).push(
-                AppRoute.defaultRoute(
-                  context,
-                  SettingsIgnoreListView(),
-                ),
-              ),
+              onTap: () =>
+                  AdaptivePageLayout.of(context).pushNamed('/settings/ignore'),
             ),
             ListTile(
               trailing: Icon(Icons.bug_report_outlined),
@@ -458,12 +418,8 @@ class _SettingsState extends State<Settings> {
             ListTile(
               trailing: Icon(Icons.email_outlined),
               title: Text(L10n.of(context).passwordRecovery),
-              onTap: () => Navigator.of(context).push(
-                AppRoute.defaultRoute(
-                  context,
-                  Settings3PidView(),
-                ),
-              ),
+              onTap: () =>
+                  AdaptivePageLayout.of(context).pushNamed('/settings/3pid'),
             ),
             ListTile(
               trailing: Icon(Icons.exit_to_app_outlined),
@@ -607,9 +563,7 @@ class _SettingsState extends State<Settings> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              onTap: () => Navigator.of(context).push(
-                AppRoute.defaultRoute(context, LogViewer()),
-              ),
+              onTap: () => AdaptivePageLayout.of(context).pushNamed('/logs'),
             ),
             ListTile(
               trailing: Icon(Icons.help_outlined),
