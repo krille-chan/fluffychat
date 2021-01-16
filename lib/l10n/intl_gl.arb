@@ -1367,7 +1367,7 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "Abre a primeira conversa :-)",
+  "startYourFirstChat": "Comeza un chat! 🙂\n- Toca en  \"+\"\n- Escribe o nome de usuaria dunha amiga\n- Desfruta da conversa",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}

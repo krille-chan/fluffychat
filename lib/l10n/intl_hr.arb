@@ -1367,7 +1367,7 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "Počni svoj prvi chat :-)",
+  "startYourFirstChat": "Započni svoj prvi chat! 🙂\n- Dodirni znak „+”\n- Upiši korisničko ime prijatelja\n- Želimo ti dobru zabavu",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
