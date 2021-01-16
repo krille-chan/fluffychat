@@ -283,23 +283,27 @@ class _ChatListState extends State<ChatList> {
                                           searchController.text.toLowerCase() ??
                                               '')));
                               if (rooms.isEmpty && (!searchMode)) {
-                                return Center(
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: <Widget>[
-                                      Icon(
-                                        searchMode
-                                            ? Icons.search_outlined
-                                            : Icons.chat_bubble_outline,
-                                        size: 80,
-                                        color: Colors.grey,
-                                      ),
-                                      Text(searchMode
+                                return Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+                                    Icon(
+                                      searchMode
+                                          ? Icons.search_outlined
+                                          : Icons.maps_ugc_outlined,
+                                      size: 80,
+                                      color: Colors.grey,
+                                    ),
+                                    Text(
+                                      searchMode
                                           ? L10n.of(context).noRoomsFound
-                                          : L10n.of(context)
-                                              .startYourFirstChat),
-                                    ],
-                                  ),
+                                          : L10n.of(context).startYourFirstChat,
+                                      style: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ],
                                 );
                               }
                               final totalCount = rooms.length;
