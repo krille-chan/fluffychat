@@ -88,7 +88,10 @@ class DevicesSettingsState extends State<DevicesSettings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(L10n.of(context).devices)),
+      appBar: AppBar(
+        leading: BackButton(),
+        title: Text(L10n.of(context).devices),
+      ),
       body: FutureBuilder<bool>(
         future: _loadUserDevices(context),
         builder: (BuildContext context, snapshot) {

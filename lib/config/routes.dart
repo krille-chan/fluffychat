@@ -82,7 +82,7 @@ class FluffyRoutes {
         case 'rooms':
           if (parts.length == 3) {
             return ViewData(
-              leftView: (_) => ChatList(),
+              leftView: (_) => ChatList(activeChat: parts[2]),
               mainView: (_) => Chat(parts[2]),
             );
           } else if (parts.length == 4) {
@@ -91,31 +91,31 @@ class FluffyRoutes {
             switch (action) {
               case 'details':
                 return ViewData(
-                  leftView: (_) => ChatList(),
+                  leftView: (_) => ChatList(activeChat: parts[2]),
                   mainView: (_) => Chat(parts[2]),
                   rightView: (_) => ChatDetails(roomId),
                 );
               case 'encryption':
                 return ViewData(
-                  leftView: (_) => ChatList(),
+                  leftView: (_) => ChatList(activeChat: parts[2]),
                   mainView: (_) => Chat(parts[2]),
                   rightView: (_) => ChatEncryptionSettings(roomId),
                 );
               case 'permissions':
                 return ViewData(
-                  leftView: (_) => ChatList(),
+                  leftView: (_) => ChatList(activeChat: parts[2]),
                   mainView: (_) => Chat(parts[2]),
                   rightView: (_) => ChatPermissionsSettings(roomId),
                 );
               case 'invite':
                 return ViewData(
-                  leftView: (_) => ChatList(),
+                  leftView: (_) => ChatList(activeChat: parts[2]),
                   mainView: (_) => Chat(parts[2]),
                   rightView: (_) => InvitationSelection(roomId),
                 );
               case 'emotes':
                 return ViewData(
-                  leftView: (_) => ChatList(),
+                  leftView: (_) => ChatList(activeChat: parts[2]),
                   mainView: (_) => Chat(parts[2]),
                   rightView: (_) => MultipleEmotesSettings(roomId),
                 );

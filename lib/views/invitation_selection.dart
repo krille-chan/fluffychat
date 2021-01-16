@@ -123,6 +123,7 @@ class _InvitationSelectionState extends State<InvitationSelection> {
         room.name?.isEmpty ?? false ? L10n.of(context).group : room.name;
     return Scaffold(
       appBar: AppBar(
+        leading: BackButton(),
         titleSpacing: 0,
         title: DefaultAppBarSearchField(
           autofocus: true,

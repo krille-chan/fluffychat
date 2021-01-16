@@ -70,7 +70,7 @@ class _SignUpState extends State<SignUp> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        leading: loading ? Container() : null,
+        leading: loading ? Container() : BackButton(),
         title: Text(
           Matrix.of(context)
               .client

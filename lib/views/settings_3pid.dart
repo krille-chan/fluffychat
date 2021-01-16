@@ -95,6 +95,7 @@ class _Settings3PidState extends State<Settings3Pid> {
     _request ??= Matrix.of(context).client.requestThirdPartyIdentifiers();
     return Scaffold(
       appBar: AppBar(
+        leading: BackButton(),
         title: Text(L10n.of(context).passwordRecovery),
         actions: [
           IconButton(

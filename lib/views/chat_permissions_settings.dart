@@ -45,7 +45,10 @@ class ChatPermissionsSettings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(L10n.of(context).editChatPermissions)),
+      appBar: AppBar(
+        leading: BackButton(),
+        title: Text(L10n.of(context).editChatPermissions),
+      ),
       body: StreamBuilder(
         stream: Matrix.of(context).client.onSync.stream.where(
               (e) =>
