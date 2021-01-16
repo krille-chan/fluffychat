@@ -36,7 +36,6 @@ class FluffyRoutes {
 
   ViewData onGenerateRoute(RouteSettings settings) {
     final parts = settings.name.split('/');
-    Logs().v(settings.name);
 
     // Routes if the app is loading
     if (Matrix.of(context).loginState == null) {
