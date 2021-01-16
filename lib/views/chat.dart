@@ -81,8 +81,6 @@ class _ChatState extends State<Chat> {
 
   bool get selectMode => selectedEvents.isNotEmpty;
 
-  bool _loadingHistory = false;
-
   final int _loadHistoryCount = 100;
 
   String inputText = '';
@@ -93,8 +91,6 @@ class _ChatState extends State<Chat> {
 
   void requestHistory() async {
     if (_canLoadMore) {
-      setState(() => _loadingHistory = true);
-
       try {
         await timeline.requestHistory(historyCount: _loadHistoryCount);
       } catch (err) {
@@ -102,11 +98,6 @@ class _ChatState extends State<Chat> {
                 message: err.toLocalizedString(context))
             .show(context);
       }
-
-      // we do NOT setState() here as then the event order will be wrong.
-      // instead, we just set our variable to false, and rely on timeline update to set the
-      // new state, thus triggering a re-render, for us
-      _loadingHistory = false;
     }
   }
 
@@ -633,7 +624,7 @@ class _ChatState extends State<Chat> {
                         childrenDelegate: SliverChildBuilderDelegate(
                           (BuildContext context, int i) {
                             return i == filteredEvents.length + 1
-                                ? _loadingHistory
+                                ? timeline.isRequestingHistory
                                     ? Container(
                                         height: 50,
                                         alignment: Alignment.center,
