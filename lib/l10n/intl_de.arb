@@ -1337,7 +1337,7 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "Starte jetzt deinen ersten Chat! 🙂\n- Tippe auf \"+\"\n- Gib den Benutzernamen eines Freundes ein\n- Viel Spaß beim chatten",
+  "startYourFirstChat": "Starte jetzt deinen ersten Chat! 🙂\n- Tippe auf „+“\n- Gib den Benutzernamen eines Freundes ein\n- Viel Spaß beim Chatten",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
