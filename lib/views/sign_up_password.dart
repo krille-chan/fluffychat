@@ -20,6 +20,7 @@ class SignUpPassword extends StatefulWidget {
 class _SignUpPasswordState extends State<SignUpPassword> {
   final TextEditingController passwordController = TextEditingController();
   String passwordError;
+  String _lastAuthWebViewStage;
   bool loading = false;
   bool showPassword = true;
 
@@ -66,6 +67,12 @@ class _SignUpPasswordState extends State<SignUpPassword> {
             ),
           );
         } else {
+          if (_lastAuthWebViewStage == currentStage) {
+            setState(
+                () => passwordError = L10n.of(context).oopsSomethingWentWrong);
+            return setState(() => loading = false);
+          }
+          _lastAuthWebViewStage = currentStage;
           await AdaptivePageLayout.of(context).pushNamed(
             '/authwebview/$currentStage/${exception.session}',
             arguments: () => _signUpAction(
