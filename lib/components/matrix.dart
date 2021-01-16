@@ -320,14 +320,6 @@ class MatrixState extends State<Matrix> {
     LoadingDialog.defaultBackLabel = L10n.of(context).close;
     LoadingDialog.defaultOnError = (Object e) => e.toLocalizedString(context);
 
-    onJitsiCallSub ??= client.onEvent.stream
-        .where((e) =>
-            e.type == EventUpdateType.timeline &&
-            e.eventType == 'm.room.message' &&
-            e.content['content']['msgtype'] == Matrix.callNamespace &&
-            e.content['sender'] != client.userID)
-        .listen(onJitsiCall);
-
     onRoomKeyRequestSub ??=
         client.onRoomKeyRequest.stream.listen((RoomKeyRequest request) async {
       final room = request.room;
@@ -437,7 +429,7 @@ class MatrixState extends State<Matrix> {
   void dispose() {
     onRoomKeyRequestSub?.cancel();
     onKeyVerificationRequestSub?.cancel();
-    onJitsiCallSub?.cancel();
+    onLoginStateChanged?.cancel();
     onNotification?.cancel();
     onFocusSub?.cancel();
     onBlurSub?.cancel();

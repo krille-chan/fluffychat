@@ -7,6 +7,7 @@ import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:emoji_picker/emoji_picker.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
+import 'package:fluffychat/app_config.dart';
 import 'package:fluffychat/components/avatar.dart';
 import 'package:fluffychat/components/chat_settings_popup_menu.dart';
 import 'package:fluffychat/components/connection_status_header.dart';
@@ -33,6 +34,7 @@ import 'package:pedantic/pedantic.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:swipe_to_action/swipe_to_action.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../components/dialogs/send_file_dialog.dart';
 import '../components/input_bar.dart';
@@ -88,6 +90,20 @@ class _ChatState extends State<Chat> {
   String pendingText = '';
 
   bool get _canLoadMore => timeline.events.last.type != EventTypes.RoomCreate;
+
+  void startCallAction(BuildContext context) async {
+    final url =
+        '${AppConfig.jitsiInstance}${Uri.encodeComponent(Matrix.of(context).client.generateUniqueTransactionId())}';
+
+    final success = await showFutureLoadingDialog(
+        context: context,
+        future: () => room.sendEvent({
+              'msgtype': Matrix.callNamespace,
+              'body': url,
+            }));
+    if (success.error != null) return;
+    await launch(url);
+  }
 
   void requestHistory() async {
     if (_canLoadMore) {
@@ -554,7 +570,13 @@ class _ChatState extends State<Chat> {
                     onPressed: () => redactEventsAction(context),
                   ),
               ]
-            : <Widget>[ChatSettingsPopupMenu(room, !room.isDirectChat)],
+            : <Widget>[
+                IconButton(
+                  icon: Icon(Icons.call_outlined),
+                  onPressed: () => startCallAction(context),
+                ),
+                ChatSettingsPopupMenu(room, !room.isDirectChat),
+              ],
       ),
       floatingActionButton: showScrollDownButton
           ? Padding(
