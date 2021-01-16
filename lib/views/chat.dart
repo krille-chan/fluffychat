@@ -469,8 +469,6 @@ class _ChatState extends State<Chat> {
     if (room.membership == Membership.invite) {
       showFutureLoadingDialog(context: context, future: () => room.join());
     }
-
-    final typingText = room.getLocalizedTypingText(context);
     return Scaffold(
       appBar: AppBar(
         leading: selectMode
@@ -482,7 +480,7 @@ class _ChatState extends State<Chat> {
         titleSpacing:
             AdaptivePageLayout.of(context).columnMode(context) ? null : 0,
         title: selectedEvents.isEmpty
-            ? StreamBuilder<Object>(
+            ? StreamBuilder(
                 stream: room.onUpdate.stream,
                 builder: (context, snapshot) => ListTile(
                       leading: Avatar(room.avatar, room.displayname),
@@ -508,7 +506,7 @@ class _ChatState extends State<Chat> {
                           room.getLocalizedDisplayname(
                               MatrixLocals(L10n.of(context))),
                           maxLines: 1),
-                      subtitle: typingText.isEmpty
+                      subtitle: room.getLocalizedTypingText(context).isEmpty
                           ? StreamBuilder<Object>(
                               stream: Matrix.of(context)
                                   .client
@@ -527,7 +525,7 @@ class _ChatState extends State<Chat> {
                                     size: 13),
                                 SizedBox(width: 4),
                                 Text(
-                                  typingText,
+                                  room.getLocalizedTypingText(context),
                                   maxLines: 1,
                                   style: TextStyle(
                                     color: Theme.of(context).primaryColor,
