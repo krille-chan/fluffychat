@@ -195,7 +195,7 @@ class _ChatState extends State<Chat> {
   TextEditingController sendController = TextEditingController();
 
   void send() {
-    if (sendController.text.isEmpty) return;
+    if (sendController.text.trim().isEmpty) return;
     room.sendTextEvent(sendController.text,
         inReplyTo: replyEvent, editEventId: editEvent?.eventId);
     sendController.text = pendingText;
