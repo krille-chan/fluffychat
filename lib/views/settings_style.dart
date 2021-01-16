@@ -49,6 +49,7 @@ class _SettingsStyleState extends State<SettingsStyle> {
 
   @override
   Widget build(BuildContext context) {
+    _currentTheme ??= AdaptiveTheme.of(context).mode;
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(),
