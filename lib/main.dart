@@ -3,6 +3,7 @@ import 'dart:async';
 
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
+import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/config/routes.dart';
 import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:flutter/cupertino.dart';
@@ -56,9 +57,9 @@ class App extends StatelessWidget {
                 dividerColor: Theme.of(context).dividerColor,
                 columnWidth: FluffyThemes.columnWidth,
                 routeBuilder: (builder, settings) =>
-                    _apl.currentState.columnMode(context)
-                        ? FadeRoute(page: builder(context))
-                        : CupertinoPageRoute(builder: builder),
+                    Matrix.of(context).loginState == LoginState.logged
+                        ? CupertinoPageRoute(builder: builder)
+                        : FadeRoute(page: builder(context)),
               ),
             ),
           ),

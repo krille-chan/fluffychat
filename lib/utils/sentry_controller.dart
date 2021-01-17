@@ -1,31 +1,18 @@
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:flushbar/flushbar_helper.dart';
 import 'package:fluffychat/app_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:sentry/sentry.dart';
 
 import 'famedlysdk_store.dart';
 import '../config/setting_keys.dart';
 
 abstract class SentryController {
-  static Future<void> toggleSentryAction(BuildContext context) async {
+  static Future<void> toggleSentryAction(
+      BuildContext context, bool enableSentry) async {
     if (!AppConfig.enableSentry) return;
-    final enableSentry = await showOkCancelAlertDialog(
-          context: context,
-          title: L10n.of(context).sendBugReports,
-          message: L10n.of(context).sentryInfo,
-          okLabel: L10n.of(context).ok,
-          cancelLabel: L10n.of(context).no,
-        ) ==
-        OkCancelResult.ok;
     final storage = Store();
     await storage.setItem(SettingKeys.sentry, enableSentry.toString());
-    // ignore: unawaited_futures
-    FlushbarHelper.createSuccess(message: L10n.of(context).changesHaveBeenSaved)
-        .show(context);
     return;
   }
 

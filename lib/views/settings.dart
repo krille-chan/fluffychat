@@ -1,6 +1,7 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:fluffychat/components/dialogs/bootstrap_dialog.dart';
+import 'package:fluffychat/components/sentry_switch_list_tile.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
@@ -406,11 +407,7 @@ class _SettingsState extends State<Settings> {
               onTap: () =>
                   AdaptivePageLayout.of(context).pushNamed('/settings/ignore'),
             ),
-            ListTile(
-              trailing: Icon(Icons.bug_report_outlined),
-              title: Text(L10n.of(context).sendBugReports),
-              onTap: () => SentryController.toggleSentryAction(context),
-            ),
+            SentrySwitchListTile(),
             Divider(thickness: 1),
             ListTile(
               trailing: Icon(Icons.security_outlined),
