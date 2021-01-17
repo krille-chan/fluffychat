@@ -2,10 +2,10 @@
 
 <p align="center">
 <a target="new" href="https://play.google.com/store/apps/details?id=chat.fluffy.fluffychat">
-  <img height="66px" src="https://christianpauly.gitlab.io/fluffychat-website/assets/images/google-play-badge.png" />
+  <img height="66px" src="https://fluffychat.im/assets/images/google-play-badge.png" />
   </a>
   <a target="new" href="https://fluffychat.im/en/fdroid.html">
-  <img height="66px" src="https://christianpauly.gitlab.io/fluffychat-website/assets/images/fdroid_button.png " />
+  <img height="66px" src="https://fluffychat.im/assets/images/fdroid_button.png " />
   </a>
   <br>
   <a href="https://web.fluffychat.im" target="new">Open FluffyChat in the browser</a> - <a href="https://matrix.to/#/#fluffychat:matrix.org" target="new">Join the community</a> - <a href="https://metalhead.club/@krille" target="new">Follow me on Mastodon</a> - <a href="https://hosted.weblate.org/projects/fluffychat/" target="new">Translate FluffyChat</a> - <a href="https://gitlab.com/ChristianPauly/fluffychat-website" target="new">Translate the website</a> - <a href="https://fluffychat.im" target="new">Website</a> - <a href="https://gitlab.com/ChristianPauly/fluffychat-flutter/-/jobs/artifacts/main/browse?job=build_android_apk" target="new">Download latest APK</a> - <a href="https://gitlab.com/famedly/famedlysdk" target="new">Famedly Matrix SDK</a>
