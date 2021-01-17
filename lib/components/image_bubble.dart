@@ -1,5 +1,4 @@
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/utils/app_route.dart';
 import 'package:fluffychat/views/image_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
@@ -235,8 +234,8 @@ class _ImageBubbleState extends State<ImageBubble> {
         onTap: () {
           if (!widget.tapToView) return;
           Navigator.of(context).push(
-            AppRoute(
-              ImageView(widget.event, onLoaded: () {
+            MaterialPageRoute(
+              builder: (_) => ImageView(widget.event, onLoaded: () {
                 // If the original file didn't load yet, we want to do that now.
                 // This is so that the original file displays after going on the image viewer,
                 // waiting for it to load, and then hitting back. This ensures that we always

@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'matrix_file_extension.dart';
-import 'app_route.dart';
 import '../views/image_view.dart';
 
 extension LocalizedBody on Event {
@@ -12,9 +11,7 @@ extension LocalizedBody on Event {
     if (!downloadOnly &&
         [MessageTypes.Image, MessageTypes.Sticker].contains(messageType)) {
       await Navigator.of(context).push(
-        AppRoute(
-          ImageView(this),
-        ),
+        MaterialPageRoute(builder: (_) => ImageView(this)),
       );
       return;
     }
