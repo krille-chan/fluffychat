@@ -92,7 +92,7 @@ build_android_appbundle:
   only:
     - main
 
-upload_to_fdroid_repo:
+upload-fdroid:
   stage: release
   before_script:
     - 'which ssh-agent || (sudo apt-get update -y && sudo apt-get install openssh-client -y )'
@@ -106,8 +106,8 @@ upload_to_fdroid_repo:
   script:
     - cd build/android/
     - export UPDATE_VERSION=$(pcregrep -o1 'version:\s([0-9]*\.[0-9]*\.[0-9]*)\+[0-9]*' ../../pubspec.yaml) && mv app-release.apk "${UPDATE_VERSION}.apk"
-    - rsync -rav -e ssh ./ fluffy@fdroid.nordgedanken.dev:/fdroid/repo
-    - ssh fluffy@fdroid.nordgedanken.dev "cd fdroid && fdroid update"
+    - rsync -rav -e ssh ./ fluffy@fdroid.nordgedanken.dev:/opt/fdroid/fluffychat/repo
+    - ssh fluffy@fdroid.nordgedanken.dev "cd /opt/fdroid/fluffychat && fdroid update --verbose"
   needs: ["build_android_apk"]
   resource_group: playstore_release
   allow_failure: true
