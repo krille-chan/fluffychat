@@ -88,7 +88,8 @@ class Message extends StatelessWidget {
               color: color,
               borderRadius: BorderRadius.circular(radius),
             ),
-            constraints: BoxConstraints(maxWidth: FluffyThemes.columnWidth),
+            constraints:
+                BoxConstraints(maxWidth: FluffyThemes.columnWidth * 1.5),
             child: Stack(
               children: <Widget>[
                 Column(
