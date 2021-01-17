@@ -1271,7 +1271,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "startYourFirstChat": "İlk sohbetini başlat :-)",
+  "startYourFirstChat": "Hemen ilk sohbetinize başlayın! 🙂\n- \"+\" simgesine dokunun\n- Bir arkadaşın kullanıcı adını girin\n- Sohbet ederken iyi eğlenceler",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
