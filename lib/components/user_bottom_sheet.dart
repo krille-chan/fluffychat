@@ -12,7 +12,6 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import '../utils/presence_extension.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
-import 'matrix.dart';
 import 'dialogs/key_verification_dialog.dart';
 
 class UserBottomSheet extends StatelessWidget {
@@ -81,14 +80,14 @@ class UserBottomSheet extends StatelessWidget {
   }
 
   void _verifyAction(BuildContext context) async {
-    final client = Matrix.of(context).client;
+    final client = user.room.client;
     final req = await client.userDeviceKeys[user.id].startVerification();
     await KeyVerificationDialog(request: req).show(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    final client = Matrix.of(context).client;
+    final client = user.room.client;
     final presence = client.presences[user.id];
     final verificationStatus = client.userDeviceKeys[user.id]?.verified;
     var items = <PopupMenuEntry<String>>[];
@@ -103,8 +102,7 @@ class UserBottomSheet extends StatelessWidget {
             value: 'mention'),
       );
     }
-    if (user.id != Matrix.of(context).client.userID &&
-        !user.room.isDirectChat) {
+    if (user.id != user.room.client.userID && !user.room.isDirectChat) {
       items.add(
         PopupMenuItem(
             child: _TextWithIcon(
@@ -187,7 +185,7 @@ class UserBottomSheet extends StatelessWidget {
                               ? _verifyAction(context)
                               : null,
                     ),
-                  if (user.id != Matrix.of(context).client.userID)
+                  if (user.id != user.room.client.userID)
                     PopupMenuButton(
                       itemBuilder: (_) => items,
                       onSelected: (action) =>
