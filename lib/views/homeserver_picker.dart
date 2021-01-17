@@ -4,6 +4,7 @@ import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/app_config.dart';
 import 'package:fluffychat/components/sentry_switch_list_tile.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter/material.dart';
@@ -136,22 +137,7 @@ class _HomeserverPickerState extends State<HomeserverPicker> {
                         fontSize: 16,
                       ),
                     ),
-                    onPressed: () => showAboutDialog(
-                      context: context,
-                      children: [
-                        RaisedButton(
-                          child: Text(L10n.of(context).sourceCode),
-                          onPressed: () => launch(AppConfig.sourceCodeUrl),
-                        ),
-                        RaisedButton(
-                          child: Text(L10n.of(context).help),
-                          onPressed: () => launch(AppConfig.supportUrl),
-                        ),
-                      ],
-                      applicationIcon: Image.asset('assets/logo.png',
-                          width: 100, height: 100),
-                      applicationName: AppConfig.applicationName,
-                    ),
+                    onPressed: () => PlatformInfos.showDialog(context),
                   ),
                   FlatButton(
                     padding: EdgeInsets.all(8),

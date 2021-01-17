@@ -579,19 +579,14 @@ class _SettingsState extends State<Settings> {
               onTap: () => launch(AppConfig.privacyUrl),
             ),
             ListTile(
-              trailing: Icon(Icons.link_outlined),
-              title: Text(L10n.of(context).license),
-              onTap: () => showLicensePage(
-                context: context,
-                applicationIcon:
-                    Image.asset('assets/logo.png', width: 100, height: 100),
-                applicationName: AppConfig.applicationName,
-              ),
-            ),
-            ListTile(
               trailing: Icon(Icons.code_outlined),
               title: Text(L10n.of(context).sourceCode),
               onTap: () => launch(AppConfig.sourceCodeUrl),
+            ),
+            ListTile(
+              trailing: Icon(Icons.link_outlined),
+              title: Text(L10n.of(context).about),
+              onTap: () => PlatformInfos.showDialog(context),
             ),
           ],
         ),
