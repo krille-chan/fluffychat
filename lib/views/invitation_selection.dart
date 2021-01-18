@@ -99,11 +99,10 @@ class _InvitationSelectionState extends State<InvitationSelection> {
     }
     setState(() {
       foundProfiles = List<Profile>.from(response.results);
-      if ('@$text'.isValidMatrixId &&
-          foundProfiles.indexWhere((profile) => '@$text' == profile.userId) ==
-              -1) {
+      if (text.isValidMatrixId &&
+          foundProfiles.indexWhere((profile) => text == profile.userId) == -1) {
         setState(() => foundProfiles = [
-              Profile.fromJson({'user_id': '@$text'}),
+              Profile.fromJson({'user_id': text}),
             ]);
       }
       final participants = room

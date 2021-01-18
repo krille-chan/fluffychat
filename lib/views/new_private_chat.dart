@@ -51,11 +51,14 @@ class _NewPrivateChatState extends State<NewPrivateChat> {
     }
   }
 
-  void searchUserWithCoolDown(BuildContext context, String text) async {
+  void searchUserWithCoolDown(BuildContext context) async {
+    if (controller.text.startsWith('@')) {
+      controller.text = controller.text.substring(1);
+    }
     coolDown?.cancel();
     coolDown = Timer(
       Duration(seconds: 1),
-      () => searchUser(context, text),
+      () => searchUser(context, controller.text),
     );
   }
 
@@ -99,8 +102,7 @@ class _NewPrivateChatState extends State<NewPrivateChat> {
                 controller: controller,
                 autofocus: true,
                 autocorrect: false,
-                onChanged: (String text) =>
-                    searchUserWithCoolDown(context, text),
+                onChanged: (String text) => searchUserWithCoolDown(context),
                 textInputAction: TextInputAction.go,
                 onFieldSubmitted: (s) => submitAction(context),
                 validator: (value) {
