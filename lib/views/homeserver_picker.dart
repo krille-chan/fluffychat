@@ -49,10 +49,14 @@ class _HomeserverPickerState extends State<HomeserverPicker> {
 
   @override
   Widget build(BuildContext context) {
+    final padding = EdgeInsets.symmetric(
+      horizontal: max((MediaQuery.of(context).size.width - 600) / 2, 0),
+    );
     return Scaffold(
       appBar: AppBar(
         title: Container(
           height: 40,
+          padding: padding,
           child: Material(
             color: Theme.of(context).secondaryHeaderColor,
             borderRadius: BorderRadius.circular(32),
@@ -79,9 +83,7 @@ class _HomeserverPickerState extends State<HomeserverPicker> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal:
-                  max((MediaQuery.of(context).size.width - 600) / 2, 0)),
+          padding: padding,
           child: ListView(
             children: [
               Hero(
