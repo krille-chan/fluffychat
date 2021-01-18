@@ -20,7 +20,6 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:provider/provider.dart';
 import 'package:universal_html/prefer_universal/html.dart' as html;
 import 'package:url_launcher/url_launcher.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart' as http;
 /*import 'package:fluffychat/views/chat.dart';
 import 'package:fluffychat/app_config.dart';
@@ -269,31 +268,17 @@ class MatrixState extends State<Matrix> {
   void initState() {
     super.initState();
     initMatrix();
-    initConfig().then((_) => initSettings());
+    if (PlatformInfos.isWeb) initConfig().then((_) => initSettings());
   }
 
   Future<void> initConfig() async {
-    if (PlatformInfos.isMobile) {
-      return;
-    }
     try {
-      var configJsonString = '';
-      if (PlatformInfos.isWeb) {
-        configJsonString =
-            utf8.decode((await http.get('config.json')).bodyBytes);
-      } else if (PlatformInfos.isBetaDesktop) {
-        final appDocDir = await getApplicationSupportDirectory();
-        configJsonString =
-            await File('${appDocDir.path}/config.json').readAsString();
-      } else {
-        final appDocDir = await getApplicationDocumentsDirectory();
-        configJsonString =
-            await File('${appDocDir.path}/config.json').readAsString();
-      }
+      var configJsonString =
+          utf8.decode((await http.get('config.json')).bodyBytes);
       final configJson = json.decode(configJsonString);
       AppConfig.loadFromJson(configJson);
     } catch (e, s) {
-      Logs().w('[ConfigLoader] Failed to load config.json', e, s);
+      Logs().v('[ConfigLoader] Failed to load config.json', e, s);
     }
   }
 
