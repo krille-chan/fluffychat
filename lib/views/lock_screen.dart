@@ -25,6 +25,7 @@ class LockScreen extends StatelessWidget {
               );
             } else {
               AppLock.of(context).didUnlock();
+              AppLock.of(context).disable();
             }
           });
         }

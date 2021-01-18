@@ -11,6 +11,7 @@ import 'package:fluffychat/app_config.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app_lock/flutter_app_lock.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_screen_lock/lock_screen.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -290,7 +291,12 @@ class _SettingsState extends State<Settings> {
     );
     if (newLock != null) {
       await FlutterSecureStorage()
-          .write(key: SettingKeys.appLockKey, value: newLock.first);
+          .write(key: SettingKeys.appLockKey, value: newLock.single);
+      if (newLock.single.isEmpty) {
+        AppLock.of(context).disable();
+      } else {
+        AppLock.of(context).enable();
+      }
     }
   }
 
