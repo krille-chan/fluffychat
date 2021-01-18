@@ -9,10 +9,6 @@ class LoadingView extends StatelessWidget {
       WidgetsBinding.instance.addPostFrameCallback((_) =>
           AdaptivePageLayout.of(context).pushNamedAndRemoveAllOthers('/'));
     }
-    return Scaffold(
-      body: Center(
-        child: CircularProgressIndicator(),
-      ),
-    );
+    return Scaffold(body: Center(child: CircularProgressIndicator()));
   }
 }

@@ -1604,6 +1604,26 @@
     "type": "text",
     "placeholders": {}
   },
+  "pleaseEnter4Digits": "Please enter 4 digits or leave empty to disable app lock.",
+  "@pleaseEnter4Digits": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChooseAPasscode": "Please choose a pass code",
+  "@pleaseChooseAPasscode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appLock": "App lock",
+  "@appLock": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "security": "Security",
+  "@security": {
+    "type": "text",
+    "placeholders": {}
+  },
   "sourceCode": "Source code",
   "@sourceCode": {
     "type": "text",
