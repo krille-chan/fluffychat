@@ -34,11 +34,11 @@ abstract class FirebaseController {
     String token;
     try {
       token = await _firebaseMessaging.getToken();
+      if (token?.isEmpty ?? true) {
+        throw '_firebaseMessaging.getToken() has not thrown an exception but returned no token';
+      }
     } catch (e, s) {
-      token = null;
       Logs().w('Unable to get firebase token', e, s);
-    }
-    if (token?.isEmpty ?? true) {
       final storeItem = await matrix.store.getItem(SettingKeys.showNoGoogle);
       final configOptionMissing = storeItem == null || storeItem.isEmpty;
       if (configOptionMissing || (!configOptionMissing && storeItem == '1')) {
