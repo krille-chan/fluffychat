@@ -13,7 +13,9 @@ import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app_lock/flutter_app_lock.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:provider/provider.dart';
 import 'package:universal_html/prefer_universal/html.dart' as html;
@@ -298,6 +300,17 @@ class MatrixState extends State<Matrix> {
   LoginState loginState;
 
   void initMatrix() {
+    // Display the app lock
+    if (PlatformInfos.isMobile) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        FlutterSecureStorage().read(key: SettingKeys.appLockKey).then((lock) {
+          if (lock?.isNotEmpty ?? false) {
+            AppLock.of(context).enable();
+            AppLock.of(context).showLockScreen();
+          }
+        });
+      });
+    }
     clientName =
         '${AppConfig.applicationName} ${kIsWeb ? 'Web' : Platform.operatingSystem}';
     final Set verificationMethods = <KeyVerificationMethod>{

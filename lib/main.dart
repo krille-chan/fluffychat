@@ -30,6 +30,7 @@ void main() async {
         ? AppLock(
             builder: (args) => App(),
             lockScreen: LockScreen(),
+            enabled: false,
           )
         : App()),
     SentryController.captureException,
