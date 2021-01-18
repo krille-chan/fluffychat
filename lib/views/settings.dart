@@ -12,6 +12,8 @@ import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:flutter_screen_lock/lock_screen.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -254,6 +256,44 @@ class _SettingsState extends State<Settings> {
     }
   }
 
+  void _setAppLockAction(BuildContext context) async {
+    final currentLock =
+        await FlutterSecureStorage().read(key: SettingKeys.appLockKey);
+    if (currentLock?.isNotEmpty ?? false) {
+      var unlocked = false;
+      await showLockScreen(
+        context: context,
+        correctString: currentLock,
+        onUnlocked: () => unlocked = true,
+        canBiometric: true,
+      );
+      if (unlocked != true) return;
+    }
+    final newLock = await showTextInputDialog(
+      context: context,
+      title: L10n.of(context).pleaseChooseAPasscode,
+      message: L10n.of(context).pleaseEnter4Digits,
+      textFields: [
+        DialogTextField(
+          validator: (text) {
+            if (text.length != 4 && text.isNotEmpty) {
+              return L10n.of(context).pleaseEnter4Digits;
+            }
+            return null;
+          },
+          keyboardType: TextInputType.number,
+          obscureText: true,
+          maxLines: 1,
+          minLines: 1,
+        )
+      ],
+    );
+    if (newLock != null) {
+      await FlutterSecureStorage()
+          .write(key: SettingKeys.appLockKey, value: newLock.first);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final client = Matrix.of(context).client;
@@ -439,13 +479,19 @@ class _SettingsState extends State<Settings> {
               Divider(thickness: 1),
               ListTile(
                 title: Text(
-                  L10n.of(context).encryption,
+                  L10n.of(context).security,
                   style: TextStyle(
                     color: Theme.of(context).primaryColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
+              if (PlatformInfos.isMobile)
+                ListTile(
+                  trailing: Icon(Icons.lock_outlined),
+                  title: Text(L10n.of(context).appLock),
+                  onTap: () => _setAppLockAction(context),
+                ),
               ListTile(
                 trailing: Icon(Icons.compare_arrows_outlined),
                 title: Text(client.encryption.crossSigning.enabled

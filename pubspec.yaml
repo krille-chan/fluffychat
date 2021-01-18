@@ -69,6 +69,8 @@ dependencies:
   emoji_picker: ^0.1.0
   future_loading_dialog: ^0.1.2
   package_info: ^0.4.3+2
+  flutter_app_lock: ^1.4.0+1
+  flutter_screen_lock: ^1.2.6
 
 dev_dependencies:
   flutter_test:

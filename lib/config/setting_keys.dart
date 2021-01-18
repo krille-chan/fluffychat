@@ -11,4 +11,5 @@ abstract class SettingKeys {
   static const String showNoGoogle = 'chat.fluffy.show_no_google';
   static const String showNoPid = 'chat.fluffy.show_no_pid';
   static const String databasePassword = 'database-password';
+  static const String appLockKey = 'chat.fluffy.app_lock';
 }
