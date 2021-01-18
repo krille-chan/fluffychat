@@ -72,7 +72,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "archivedRoom": "Arşiv Odası",
+  "archivedRoom": "Arşivlenmiş Oda",
   "@archivedRoom": {
     "type": "text",
     "placeholders": {}
@@ -273,7 +273,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changeTheme": "Sitilinizi değiştirin",
+  "changeTheme": "Tarzınızı değiştirin",
   "@changeTheme": {
     "type": "text",
     "placeholders": {}
@@ -1219,17 +1219,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "setAProfilePicture": "Profil fotoğrafı ekleyin",
+  "setAProfilePicture": "Profil fotoğrafı ayarla",
   "@setAProfilePicture": {
     "type": "text",
     "placeholders": {}
   },
-  "setGroupDescription": "Grup açıklaması ekleyin",
+  "setGroupDescription": "Grup açıklaması ayarla",
   "@setGroupDescription": {
     "type": "text",
     "placeholders": {}
   },
-  "setInvitationLink": "Davet bağlantısı ayarlayın",
+  "setInvitationLink": "Davet bağlantısı ayarla",
   "@setInvitationLink": {
     "type": "text",
     "placeholders": {}
@@ -1261,17 +1261,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "skip": "Geç",
+  "skip": "Atla",
   "@skip": {
     "type": "text",
     "placeholders": {}
   },
-  "sourceCode": "Kaynak kod",
+  "sourceCode": "Kaynak kodları",
   "@sourceCode": {
     "type": "text",
     "placeholders": {}
   },
-  "startYourFirstChat": "Hemen ilk sohbetinize başlayın! 🙂\n- \"+\" simgesine dokunun\n- Bir arkadaşın kullanıcı adını girin\n- Sohbet ederken iyi eğlenceler",
+  "startYourFirstChat": "Hemen ilk sohbetinize başlayın! 🙂\n- \"+\" simgesine dokunun\n- Bir arkadaşın kullanıcı adını girin\n- Eğlenceli bir şekilde sohbet edin",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -1296,12 +1296,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "tapToShowMenu": "Menüyü açmak için dokunun",
+  "tapToShowMenu": "Menüyü göstermek için dokunun",
   "@tapToShowMenu": {
     "type": "text",
     "placeholders": {}
   },
-  "theyDontMatch": "Eşleşme yok",
+  "theyDontMatch": "Eşleşmediler",
   "@theyDontMatch": {
     "type": "text",
     "placeholders": {}
@@ -1311,7 +1311,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "thisRoomHasBeenArchived": "Bu sohbet arşivlendi.",
+  "thisRoomHasBeenArchived": "Bu oda arşivlendi.",
   "@thisRoomHasBeenArchived": {
     "type": "text",
     "placeholders": {}
@@ -1409,7 +1409,7 @@
       "unreadChats": {}
     }
   },
-  "useAmoledTheme": "AMOLEDe uyumlu renkler kullanılsın mı?",
+  "useAmoledTheme": "AMOLED ile uyumlu renkler kullanılsın mı?",
   "@useAmoledTheme": {
     "type": "text",
     "placeholders": {}
@@ -1972,6 +1972,26 @@
   },
   "noConnectionToTheServer": "Sunucuyla bağlantı yok",
   "@noConnectionToTheServer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "security": "Güvenlik",
+  "@security": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appLock": "Uygulama kilidi",
+  "@appLock": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChooseAPasscode": "Lütfen bir geçiş kodu seçin",
+  "@pleaseChooseAPasscode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnter4Digits": "Lütfen 4 basamak girin veya uygulama kilidini devre dışı bırakmak için boş bırakın.",
+  "@pleaseEnter4Digits": {
     "type": "text",
     "placeholders": {}
   }
