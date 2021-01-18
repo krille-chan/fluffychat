@@ -318,7 +318,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chooseAUsername": "Choisissez un nom d'utilisateur",
+  "chooseAUsername": "Choisissez un nom d'utilisateur·ice",
   "@chooseAUsername": {
     "type": "text",
     "placeholders": {}
@@ -524,7 +524,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "editJitsiInstance": "Changer l'instance Jitsi",
+  "editJitsiInstance": "Changer d'instance Jitsi",
   "@editJitsiInstance": {
     "type": "text",
     "placeholders": {}
@@ -596,7 +596,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enterAUsername": "Entrez un nom d'utilisateur",
+  "enterAUsername": "Entrez un nom d'utilisateur·ice",
   "@enterAUsername": {
     "type": "text",
     "placeholders": {}
@@ -678,7 +678,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "hasWithdrawnTheInvitationFor": "{username} a retiré l'invitation de {targetName}",
+  "hasWithdrawnTheInvitationFor": "{username} a annulé l'invitation de {targetName}",
   "@hasWithdrawnTheInvitationFor": {
     "type": "text",
     "placeholders": {
@@ -706,17 +706,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "ignoredUsers": "Utilisateurs/trices ignoré(e)s",
+  "ignoredUsers": "Utilisateur·ices ignoré·es",
   "@ignoredUsers": {
     "type": "text",
     "placeholders": {}
   },
-  "ignoreListDescription": "Vous pouvez ignorer les utilisateurs/trices qui vous dérangent. Vous ne pourrez pas recevoir de messages ou d'invitations à participer à un salon de discussion de la part des utilisateurs/trices figurant sur votre liste personnelle.",
+  "ignoreListDescription": "Vous pouvez ignorer les utilisateur·ices qui vous dérangent. Vous ne pourrez pas recevoir de messages ou d'invitations à participer à un salon de discussion de la part des utilisateur·ices figurant sur votre liste personnelle.",
   "@ignoreListDescription": {
     "type": "text",
     "placeholders": {}
   },
-  "ignoreUsername": "Ignorer l'utilisateur/trice",
+  "ignoreUsername": "Ignorer l'utilisateur·ice",
   "@ignoreUsername": {
     "type": "text",
     "placeholders": {}
@@ -738,7 +738,7 @@
       "groupName": {}
     }
   },
-  "invited": "Invité",
+  "invited": "Invité·e",
   "@invited": {
     "type": "text",
     "placeholders": {}
@@ -751,7 +751,7 @@
       "targetName": {}
     }
   },
-  "invitedUsersOnly": "Uniquement les utilisateurs invités",
+  "invitedUsersOnly": "Uniquement les utilisateur·ices invité·es",
   "@invitedUsersOnly": {
     "type": "text",
     "placeholders": {}
@@ -769,7 +769,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "isTyping": "écrit…",
+  "isTyping": "est en train d'écrire…",
   "@isTyping": {
     "type": "text",
     "placeholders": {}
@@ -781,7 +781,7 @@
       "username": {}
     }
   },
-  "joinRoom": "Rejoindre la réunion",
+  "joinRoom": "Rejoindre le salon",
   "@joinRoom": {
     "type": "text",
     "placeholders": {}
@@ -817,7 +817,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "lastActiveAgo": "Vu pour la dernière fois : {localizedTimeShort}",
+  "lastActiveAgo": "Vu·e pour la dernière fois : {localizedTimeShort}",
   "@lastActiveAgo": {
     "type": "text",
     "placeholders": {
@@ -854,7 +854,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "loadCountMoreParticipants": "Charger {count} participants de plus",
+  "loadCountMoreParticipants": "Charger {count} participant·es de plus",
   "@loadCountMoreParticipants": {
     "type": "text",
     "placeholders": {
@@ -888,12 +888,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "makeAModerator": "Promouvoir comme modérateur",
+  "makeAModerator": "Promouvoir comme modérateur·ice",
   "@makeAModerator": {
     "type": "text",
     "placeholders": {}
   },
-  "makeAnAdmin": "Promouvoir comme administrateur",
+  "makeAnAdmin": "Promouvoir comme administrateur·ice",
   "@makeAnAdmin": {
     "type": "text",
     "placeholders": {}
@@ -908,7 +908,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "moderator": "Moderateur",
+  "moderator": "Moderateur·ice",
   "@moderator": {
     "type": "text",
     "placeholders": {}
@@ -923,7 +923,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "needPantalaimonWarning": "Sachez que vous avez besoin de Pantalaimon pour utiliser le chiffrement de bout en bout pour l'instant.",
+  "needPantalaimonWarning": "Pour l'instant, vous avez besoin de Pantalaimon pour utiliser le chiffrement de bout en bout.",
   "@needPantalaimonWarning": {
     "type": "text",
     "placeholders": {}
@@ -953,7 +953,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noEmotesFound": "Aucun émote trouvé. 😕",
+  "noEmotesFound": "Aucune émoticône émote trouvé. 😕",
   "@noEmotesFound": {
     "type": "text",
     "placeholders": {}
@@ -988,7 +988,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "numberSelected": "{number} selectionné(s)",
+  "numberSelected": "{number} sélectionné(s)",
   "@numberSelected": {
     "type": "text",
     "placeholders": {
@@ -1000,7 +1000,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "onlineKeyBackupDisabled": "La sauvegarde en ligne des clés est désactivée",
+  "onlineKeyBackupDisabled": "La sauvegarde des clés en ligne est désactivée",
   "@onlineKeyBackupDisabled": {
     "type": "text",
     "placeholders": {}
@@ -1030,7 +1030,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "participatingUserDevices": "Périphériques participants",
+  "participatingUserDevices": "Appareils participants",
   "@participatingUserDevices": {
     "type": "text",
     "placeholders": {}
@@ -1067,12 +1067,12 @@
       "fileName": {}
     }
   },
-  "pleaseChooseAUsername": "Choisissez un nom d'utilisateur",
+  "pleaseChooseAUsername": "Choisissez un nom d'utilisateur·ice",
   "@pleaseChooseAUsername": {
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterAMatrixIdentifier": "Veuillez renseigner un identifiant Matrix.",
+  "pleaseEnterAMatrixIdentifier": "Renseignez un identifiant Matrix.",
   "@pleaseEnterAMatrixIdentifier": {
     "type": "text",
     "placeholders": {}
@@ -1082,7 +1082,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterYourUsername": "Renseignez votre nom d'utilisateur",
+  "pleaseEnterYourUsername": "Renseignez votre nom d'utilisateur·ice",
   "@pleaseEnterYourUsername": {
     "type": "text",
     "placeholders": {}
@@ -1097,7 +1097,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "redactedAnEvent": "{username} a expurgé un évènement",
+  "redactedAnEvent": "{username} a supprimé un évènement",
   "@redactedAnEvent": {
     "type": "text",
     "placeholders": {
@@ -1126,7 +1126,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "removeAllOtherDevices": "Supprimer tous les autres périphériques",
+  "removeAllOtherDevices": "Supprimer tous les autres appareils",
   "@removeAllOtherDevices": {
     "type": "text",
     "placeholders": {}
@@ -1138,7 +1138,7 @@
       "username": {}
     }
   },
-  "removeDevice": "Supprimer le périphérique",
+  "removeDevice": "Supprimer l'appareil",
   "@removeDevice": {
     "type": "text",
     "placeholders": {}
@@ -1367,7 +1367,7 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "Commencez votre première conversation dès maintenant ! 🙂\n- Appuyez sur « + »\n- Entrez le nom d’utilisateur d’un ami\n- Amusez-vous à bavarder",
+  "startYourFirstChat": "Commencez votre première conversation dès maintenant ! 🙂\n- Appuyez sur « + »\n- Entrez le nom d’utilisateur·ice d’un·e ami·e\n- Bonne discussion !",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -1443,7 +1443,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unbannedUser": "{username} a dé-banni {targetName}",
+  "unbannedUser": "{username} a annulé le bannissement de {targetName}",
   "@unbannedUser": {
     "type": "text",
     "placeholders": {
@@ -1451,12 +1451,12 @@
       "targetName": {}
     }
   },
-  "unblockDevice": "Débloquer l'appareil",
+  "unblockDevice": "Retirer le blocage sur l'appareil",
   "@unblockDevice": {
     "type": "text",
     "placeholders": {}
   },
-  "unknownDevice": "Périphérique inconnu",
+  "unknownDevice": "Appareil inconnu",
   "@unknownDevice": {
     "type": "text",
     "placeholders": {}
@@ -1483,7 +1483,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unpin": "Détacher",
+  "unpin": "Désépingler",
   "@unpin": {
     "type": "text",
     "placeholders": {}
@@ -1531,7 +1531,7 @@
       "username2": {}
     }
   },
-  "userIsTyping": "{username} écrit…",
+  "userIsTyping": "{username} est en train d'écrire…",
   "@userIsTyping": {
     "type": "text",
     "placeholders": {
@@ -1545,7 +1545,7 @@
       "username": {}
     }
   },
-  "username": "Nom d'utilisateur",
+  "username": "Nom d'utilisateur·ice",
   "@username": {
     "type": "text",
     "placeholders": {}
@@ -1578,7 +1578,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "verifySuccess": "Vous avez vérifié avec succès !",
+  "verifySuccess": "La vérification a été effectuée avec succès !",
   "@verifySuccess": {
     "type": "text",
     "placeholders": {}
@@ -1588,7 +1588,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "verifyUser": "Vérifier l'utilisateur/trice",
+  "verifyUser": "Vérifier l'utilisateur·ice",
   "@verifyUser": {
     "type": "text",
     "placeholders": {}
@@ -1603,7 +1603,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "visibleForAllParticipants": "Visible pour tous les participants",
+  "visibleForAllParticipants": "Visible pour tous les participant·es",
   "@visibleForAllParticipants": {
     "type": "text",
     "placeholders": {}
@@ -1643,7 +1643,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "warningEncryptionInBeta": "Le chiffrement de bout en bout est actuellement en béta ! Utilisez cette fonctionnalité à vos propres risques !",
+  "warningEncryptionInBeta": "Le chiffrement de bout en bout est actuellement en bêta ! Utilisez cette fonctionnalité à vos propres risques !",
   "@warningEncryptionInBeta": {
     "type": "text",
     "placeholders": {}
@@ -1658,12 +1658,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "whoIsAllowedToJoinThisGroup": "Qui est autorisé à rejoindre ce groupe",
+  "whoIsAllowedToJoinThisGroup": "Qui est autorisé·e à rejoindre ce groupe",
   "@whoIsAllowedToJoinThisGroup": {
     "type": "text",
     "placeholders": {}
   },
-  "writeAMessage": "Écris un message…",
+  "writeAMessage": "Écrivez un message…",
   "@writeAMessage": {
     "type": "text",
     "placeholders": {}
@@ -1678,7 +1678,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "youAreInvitedToThisChat": "Vous êtes invité à cette discussion",
+  "youAreInvitedToThisChat": "Vous êtes invité·e à cette discussion",
   "@youAreInvitedToThisChat": {
     "type": "text",
     "placeholders": {}
@@ -1693,12 +1693,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "youHaveBeenBannedFromThisChat": "Vous avez été banni de cette discussion",
+  "youHaveBeenBannedFromThisChat": "Vous avez été banni·e de cette discussion",
   "@youHaveBeenBannedFromThisChat": {
     "type": "text",
     "placeholders": {}
   },
-  "yourOwnUsername": "Votre propre nom d'utilisateur",
+  "yourOwnUsername": "Votre propre nom d'utilisateur·ice",
   "@yourOwnUsername": {
     "type": "text",
     "placeholders": {}
@@ -1813,7 +1813,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "containsUserName": "Contient un nom d'utilisateur",
+  "containsUserName": "Contient un nom d'utilisateur·ice",
   "@containsUserName": {
     "type": "text",
     "placeholders": {}
@@ -1858,7 +1858,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "soundVibrationLedColor": "Son, vibration couleur diode",
+  "soundVibrationLedColor": "Son, vibration, couleur diode",
   "@soundVibrationLedColor": {
     "type": "text",
     "placeholders": {}
@@ -1948,7 +1948,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "numUsersTyping": "{count} utilisateurs écrivent…",
+  "numUsersTyping": "{count} utilisateur·ices écrivent…",
   "@numUsersTyping": {
     "type": "text",
     "placeholders": {
