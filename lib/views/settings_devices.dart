@@ -22,6 +22,9 @@ class DevicesSettingsState extends State<DevicesSettings> {
 
   void reload() => setState(() => devices = null);
 
+  bool _loadingDeletingDevices = false;
+  String _errorDeletingDevices;
+
   void _removeDevicesAction(BuildContext context, List<Device> devices) async {
     if (await showOkCancelAlertDialog(
           context: context,
@@ -33,33 +36,24 @@ class DevicesSettingsState extends State<DevicesSettings> {
     for (var userDevice in devices) {
       deviceIds.add(userDevice.deviceId);
     }
-    final password = await showTextInputDialog(
-      title: L10n.of(context).pleaseEnterYourPassword,
-      context: context,
-      textFields: [
-        DialogTextField(
-          hintText: '******',
-          obscureText: true,
-          minLines: 1,
-          maxLines: 1,
-        )
-      ],
-    );
-    if (password == null) return;
 
-    final success = await showFutureLoadingDialog(
-      context: context,
-      future: () => matrix.client.deleteDevices(
-        deviceIds,
-        auth: AuthenticationPassword(
-          password: password.single,
-          user: matrix.client.userID,
-          identifier: AuthenticationUserIdentifier(user: matrix.client.userID),
+    try {
+      setState(() {
+        _loadingDeletingDevices = true;
+        _errorDeletingDevices = null;
+      });
+      await matrix.client.uiaRequestBackground(
+        (auth) => matrix.client.deleteDevices(
+          deviceIds,
+          auth: auth,
         ),
-      ),
-    );
-    if (success.error == null) {
+      );
       reload();
+    } catch (e, s) {
+      Logs().v('Error while deleting devices', e, s);
+      setState(() => _errorDeletingDevices = e.toString());
+    } finally {
+      setState(() => _loadingDeletingDevices = false);
     }
   }
 
@@ -127,11 +121,16 @@ class DevicesSettingsState extends State<DevicesSettings> {
               if (devices.isNotEmpty)
                 ListTile(
                   title: Text(
-                    L10n.of(context).removeAllOtherDevices,
+                    _errorDeletingDevices ??
+                        L10n.of(context).removeAllOtherDevices,
                     style: TextStyle(color: Colors.red),
                   ),
-                  trailing: Icon(Icons.delete_outline),
-                  onTap: () => _removeDevicesAction(context, devices),
+                  trailing: _loadingDeletingDevices
+                      ? CircularProgressIndicator()
+                      : Icon(Icons.delete_outline),
+                  onTap: _loadingDeletingDevices
+                      ? null
+                      : () => _removeDevicesAction(context, devices),
                 ),
               Divider(height: 1),
               Expanded(

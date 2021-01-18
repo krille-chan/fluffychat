@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
+import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/app_config.dart';
 import 'package:fluffychat/components/sentry_switch_list_tile.dart';
@@ -30,10 +31,32 @@ class _HomeserverPickerState extends State<HomeserverPicker> {
     }
 
     setState(() => _isLoading = true);
+
+    // Look up well known
     try {
-      await Matrix.of(context).client.checkHomeserver(homeserver);
-      await AdaptivePageLayout.of(context)
-          .pushNamed(AppConfig.enableRegistration ? '/signup' : '/login');
+      final wellKnown = await MatrixApi(homeserver: Uri.parse(homeserver))
+          .requestWellKnownInformations();
+      homeserver = wellKnown.mHomeserver.baseUrl;
+    } catch (e) {
+      Logs().v('Found no well known information', e);
+    }
+
+    try {
+      await Matrix.of(context)
+          .client
+          .checkHomeserver(homeserver, supportedLoginTypes: {
+        AuthenticationTypes.password,
+        if (PlatformInfos.isMobile) AuthenticationTypes.sso
+      });
+      final loginTypes = await Matrix.of(context).client.requestLoginTypes();
+      if (loginTypes.flows
+          .any((flow) => flow.type == AuthenticationTypes.password)) {
+        await AdaptivePageLayout.of(context)
+            .pushNamed(AppConfig.enableRegistration ? '/signup' : '/login');
+      } else if (loginTypes.flows
+          .any((flow) => flow.type == AuthenticationTypes.sso)) {
+        await AdaptivePageLayout.of(context).pushNamed('/sso');
+      }
     } catch (e) {
       // ignore: unawaited_futures
       FlushbarHelper.createError(
