@@ -7,8 +7,9 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 class LockScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final applock = FlutterSecureStorage().read(key: SettingKeys.appLockKey);
     return FutureBuilder<String>(
-      future: FlutterSecureStorage().read(key: SettingKeys.appLockKey),
+      future: applock,
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return Scaffold(body: Center(child: Text(snapshot.error.toString())));
