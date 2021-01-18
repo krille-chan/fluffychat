@@ -34,8 +34,9 @@ abstract class FirebaseController {
     String token;
     try {
       token = await _firebaseMessaging.getToken();
-    } catch (_) {
+    } catch (e, s) {
       token = null;
+      Logs().w('Unable to get firebase token', e, s);
     }
     if (token?.isEmpty ?? true) {
       final storeItem = await matrix.store.getItem(SettingKeys.showNoGoogle);
