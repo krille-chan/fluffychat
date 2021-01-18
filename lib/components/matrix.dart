@@ -156,8 +156,13 @@ class MatrixState extends State<Matrix> {
           ),
         );
       default:
-        Logs().w('Warning! Cannot handle the stage "$stage"');
-        return;
+        await widget.apl.currentState.pushNamed(
+          '/authwebview/$stage/${uiaRequest.session}',
+          arguments: () => null,
+        );
+        return uiaRequest.completeStage(
+          AuthenticationData(session: uiaRequest.session),
+        );
     }
   }
 
