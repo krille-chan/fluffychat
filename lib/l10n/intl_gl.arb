@@ -1367,7 +1367,7 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "Comeza un chat! 🙂\n- Toca en  \"+\"\n- Escribe o nome de usuaria dunha amiga\n- Desfruta da conversa",
+  "startYourFirstChat": "Inicia unha conversa! 🙂\n- Toca en \"+\"\n- Escribe o nome de usuaria dunha amizade\n- Desfruta da conversa",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -1972,6 +1972,26 @@
   },
   "noConnectionToTheServer": "Sen conexión co servidor",
   "@noConnectionToTheServer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "security": "Seguridade",
+  "@security": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appLock": "Bloqueo da app",
+  "@appLock": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChooseAPasscode": "Escolle un código de acceso",
+  "@pleaseChooseAPasscode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnter4Digits": "Escribe 4 díxitos ou deíxao baleiro para non activar o bloqueo.",
+  "@pleaseEnter4Digits": {
     "type": "text",
     "placeholders": {}
   }
