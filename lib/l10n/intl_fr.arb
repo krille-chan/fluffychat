@@ -1974,5 +1974,25 @@
   "@noConnectionToTheServer": {
     "type": "text",
     "placeholders": {}
+  },
+  "security": "Sécurité",
+  "@security": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appLock": "Verrouillage de l’application",
+  "@appLock": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChooseAPasscode": "Veuillez choisir un code d’accès",
+  "@pleaseChooseAPasscode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnter4Digits": "Veuillez saisir 4 chiffres ou laisser vide pour désactiver le verrouillage de l’application.",
+  "@pleaseEnter4Digits": {
+    "type": "text",
+    "placeholders": {}
   }
 }
