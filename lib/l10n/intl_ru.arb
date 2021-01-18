@@ -1352,7 +1352,7 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "Начните свой первый чат :-)",
+  "startYourFirstChat": "Начни свой первый чат прямо сейчас! 🙂\n- Нажмите \"+\"\n- Введите логин друга\n- Веселитесь в чате",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -1972,6 +1972,26 @@
   },
   "noConnectionToTheServer": "Нет соединения с сервером",
   "@noConnectionToTheServer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "security": "Безопасность",
+  "@security": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appLock": "Блокировка приложения",
+  "@appLock": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChooseAPasscode": "Пожалуйста, выберите код доступа",
+  "@pleaseChooseAPasscode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnter4Digits": "Введите 4 цифры или оставьте поле пустым, чтобы отключить блокировку приложения.",
+  "@pleaseEnter4Digits": {
     "type": "text",
     "placeholders": {}
   }
