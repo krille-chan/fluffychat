@@ -214,12 +214,13 @@ class _ChatState extends State<Chat> {
     if (result == null) return;
     await showDialog(
       context: context,
-      builder: (context) => SendFileDialog(
+      builder: (c) => SendFileDialog(
         file: MatrixFile(
           bytes: result.toUint8List(),
           name: result.fileName,
         ).detectFileType,
         room: room,
+        l10n: L10n.of(context),
       ),
     );
   }
@@ -230,12 +231,13 @@ class _ChatState extends State<Chat> {
     if (result == null) return;
     await showDialog(
       context: context,
-      builder: (context) => SendFileDialog(
+      builder: (c) => SendFileDialog(
         file: MatrixImageFile(
           bytes: result.toUint8List(),
           name: result.fileName,
         ),
         room: room,
+        l10n: L10n.of(context),
       ),
     );
   }
@@ -246,12 +248,13 @@ class _ChatState extends State<Chat> {
     final bytes = await file.readAsBytes();
     await showDialog(
       context: context,
-      builder: (context) => SendFileDialog(
+      builder: (c) => SendFileDialog(
         file: MatrixImageFile(
           bytes: bytes,
           name: file.path,
         ),
         room: room,
+        l10n: L10n.of(context),
       ),
     );
   }

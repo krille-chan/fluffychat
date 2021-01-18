@@ -94,6 +94,7 @@ class ChatListItem extends StatelessWidget {
                 builder: (c) => SendFileDialog(
                       file: Matrix.of(context).shareContent['file'],
                       room: room,
+                      l10n: L10n.of(context),
                     ));
           } else {
             unawaited(room.sendEvent(Matrix.of(context).shareContent));

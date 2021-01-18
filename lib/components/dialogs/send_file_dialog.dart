@@ -10,8 +10,14 @@ import '../../utils/resize_image.dart';
 class SendFileDialog extends StatefulWidget {
   final Room room;
   final MatrixFile file;
+  final L10n l10n;
 
-  const SendFileDialog({this.room, this.file, Key key}) : super(key: key);
+  const SendFileDialog({
+    this.room,
+    @required this.l10n,
+    this.file,
+    Key key,
+  }) : super(key: key);
 
   @override
   _SendFileDialogState createState() => _SendFileDialogState();
@@ -34,13 +40,13 @@ class _SendFileDialogState extends State<SendFileDialog> {
 
   @override
   Widget build(BuildContext context) {
-    var sendStr = L10n.of(context).sendFile;
+    var sendStr = widget.l10n.sendFile;
     if (widget.file is MatrixImageFile) {
-      sendStr = L10n.of(context).sendImage;
+      sendStr = widget.l10n.sendImage;
     } else if (widget.file is MatrixAudioFile) {
-      sendStr = L10n.of(context).sendAudio;
+      sendStr = widget.l10n.sendAudio;
     } else if (widget.file is MatrixVideoFile) {
-      sendStr = L10n.of(context).sendVideo;
+      sendStr = widget.l10n.sendVideo;
     }
     Widget contentWidget;
     if (widget.file is MatrixImageFile) {
@@ -60,8 +66,8 @@ class _SendFileDialogState extends State<SendFileDialog> {
             ),
             InkWell(
               onTap: () => setState(() => origImage = !origImage),
-              child: Text(L10n.of(context).sendOriginal +
-                  ' (${widget.file.sizeString})'),
+              child: Text(
+                  widget.l10n.sendOriginal + ' (${widget.file.sizeString})'),
             ),
           ],
         )
@@ -74,14 +80,14 @@ class _SendFileDialogState extends State<SendFileDialog> {
       content: contentWidget,
       actions: <Widget>[
         FlatButton(
-          child: Text(L10n.of(context).cancel),
+          child: Text(widget.l10n.cancel),
           onPressed: () {
             // just close the dialog
             Navigator.of(context).pop();
           },
         ),
         FlatButton(
-          child: Text(L10n.of(context).send),
+          child: Text(widget.l10n.send),
           onPressed: _isSending
               ? null
               : () async {
