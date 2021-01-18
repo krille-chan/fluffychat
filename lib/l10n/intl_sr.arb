@@ -1222,7 +1222,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "newMessageInFluffyChat": "Нова порука у Пуфнастом Ћаскању",
+  "newMessageInFluffyChat": "Нова порука - FluffyChat",
   "@newMessageInFluffyChat": {
     "type": "text",
     "placeholders": {}
@@ -1901,6 +1901,36 @@
   },
   "changeTheHomeserver": "Промени домаћи сервер",
   "@changeTheHomeserver": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noCrossSignBootstrap": "Fluffychat тренутно не подржава међу-потписивање. Укључите га из апликације „Елемент“.",
+  "@noCrossSignBootstrap": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fluffychat": "FluffyChat",
+  "@fluffychat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "security": "Безбедност",
+  "@security": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appLock": "Закључавање апликације",
+  "@appLock": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChooseAPasscode": "Изаберите код за пролаз",
+  "@pleaseChooseAPasscode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnter4Digits": "Унесите 4 цифре или оставите празно да не закључавате апликацију.",
+  "@pleaseEnter4Digits": {
     "type": "text",
     "placeholders": {}
   }
