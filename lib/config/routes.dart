@@ -82,44 +82,50 @@ class FluffyRoutes {
             emptyView: (_) => EmptyPage(),
           );
         case 'rooms':
+          final roomId = parts[2];
           if (parts.length == 3) {
             return ViewData(
-              leftView: (_) => ChatList(activeChat: parts[2]),
-              mainView: (_) => Chat(parts[2]),
+              leftView: (_) => ChatList(activeChat: roomId),
+              mainView: (_) => Chat(roomId),
             );
           } else if (parts.length == 4) {
-            final roomId = parts[2];
             final action = parts[3];
             switch (action) {
               case 'details':
                 return ViewData(
-                  leftView: (_) => ChatList(activeChat: parts[2]),
-                  mainView: (_) => Chat(parts[2]),
+                  leftView: (_) => ChatList(activeChat: roomId),
+                  mainView: (_) => Chat(roomId),
                   rightView: (_) => ChatDetails(roomId),
                 );
               case 'encryption':
                 return ViewData(
-                  leftView: (_) => ChatList(activeChat: parts[2]),
-                  mainView: (_) => Chat(parts[2]),
+                  leftView: (_) => ChatList(activeChat: roomId),
+                  mainView: (_) => Chat(roomId),
                   rightView: (_) => ChatEncryptionSettings(roomId),
                 );
               case 'permissions':
                 return ViewData(
-                  leftView: (_) => ChatList(activeChat: parts[2]),
-                  mainView: (_) => Chat(parts[2]),
+                  leftView: (_) => ChatList(activeChat: roomId),
+                  mainView: (_) => Chat(roomId),
                   rightView: (_) => ChatPermissionsSettings(roomId),
                 );
               case 'invite':
                 return ViewData(
-                  leftView: (_) => ChatList(activeChat: parts[2]),
-                  mainView: (_) => Chat(parts[2]),
+                  leftView: (_) => ChatList(activeChat: roomId),
+                  mainView: (_) => Chat(roomId),
                   rightView: (_) => InvitationSelection(roomId),
                 );
               case 'emotes':
                 return ViewData(
-                  leftView: (_) => ChatList(activeChat: parts[2]),
-                  mainView: (_) => Chat(parts[2]),
+                  leftView: (_) => ChatList(activeChat: roomId),
+                  mainView: (_) => Chat(roomId),
                   rightView: (_) => MultipleEmotesSettings(roomId),
+                );
+              default:
+                return ViewData(
+                  leftView: (_) => ChatList(activeChat: roomId),
+                  mainView: (_) => Chat(roomId,
+                      scrollToEventId: action.sigil == '\$' ? action : null),
                 );
             }
           }
