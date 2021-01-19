@@ -35,7 +35,6 @@ class UrlLauncher {
       // we got a room! Let's open that one
       final roomIdOrAlias = identityParts.primaryIdentifier;
       final event = identityParts.secondaryIdentifier;
-      final query = identityParts.queryString;
       var room = matrix.client.getRoomByAlias(roomIdOrAlias) ??
           matrix.client.getRoomById(roomIdOrAlias);
       var roomId = room?.id;
@@ -49,26 +48,15 @@ class UrlLauncher {
           future: () =>
               matrix.client.requestRoomAliasInformations(roomIdOrAlias),
         );
-        if (response.error == null) {
-          roomId = response.result.roomId;
-          servers.addAll(response.result.servers);
-          room = matrix.client.getRoomById(roomId);
+        if (response.error != null) {
+          return; // nothing to do, the alias doesn't exist
         }
+        roomId = response.result.roomId;
+        servers.addAll(response.result.servers);
+        room = matrix.client.getRoomById(roomId);
       }
-      if (query != null) {
-        // the query information might hold additional servers to try, so let's try them!
-        // as there might be multiple "via" tags we can't just use Uri.splitQueryString, we need to do our own thing
-        for (final parameter in query.split('&')) {
-          final index = parameter.indexOf('=');
-          if (index == -1) {
-            continue;
-          }
-          if (Uri.decodeQueryComponent(parameter.substring(0, index)) !=
-              'via') {
-            continue;
-          }
-          servers.add(Uri.decodeQueryComponent(parameter.substring(index + 1)));
-        }
+      if (identityParts.via != null) {
+        servers.addAll(identityParts.via);
       }
       if (room != null) {
         // we have the room, so....just open it

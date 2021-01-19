@@ -116,10 +116,25 @@ class _DiscoverPageState extends State<DiscoverPage> {
     final server = _genericSearchTerm?.isValidMatrixId ?? false
         ? _genericSearchTerm.domain
         : _server;
-    _publicRoomsResponse ??= Matrix.of(context).client.searchPublicRooms(
+    _publicRoomsResponse ??= Matrix.of(context)
+        .client
+        .searchPublicRooms(
           server: server,
           genericSearchTerm: _genericSearchTerm,
-        );
+        )
+        .then((PublicRoomsResponse res) {
+      if (widget.alias != null &&
+          !res.chunk.any((room) =>
+              room.aliases.contains(widget.alias) ||
+              room.canonicalAlias == widget.alias)) {
+        // we have to tack on the original alias
+        res.chunk.add(PublicRoom.fromJson(<String, dynamic>{
+          'aliases': [widget.alias],
+          'name': widget.alias,
+        }));
+      }
+      return res;
+    });
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(),
