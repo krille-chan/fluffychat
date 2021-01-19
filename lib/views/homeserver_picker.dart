@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/matrix.dart';
@@ -9,7 +10,6 @@ import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../utils/localized_exception_extension.dart';
 
 class HomeserverPicker extends StatefulWidget {
@@ -18,13 +18,11 @@ class HomeserverPicker extends StatefulWidget {
 }
 
 class _HomeserverPickerState extends State<HomeserverPicker> {
-  final TextEditingController _controller =
-      TextEditingController(text: AppConfig.defaultHomeserver);
-
   bool _isLoading = false;
+  String _domain = AppConfig.defaultHomeserver;
 
   void _checkHomeserverAction(BuildContext context) async {
-    var homeserver = _controller.text;
+    var homeserver = _domain;
 
     if (!homeserver.startsWith('https://')) {
       homeserver = 'https://$homeserver';
@@ -70,40 +68,29 @@ class _HomeserverPickerState extends State<HomeserverPicker> {
     }
   }
 
+  void _changeHomeserverAction(BuildContext context) async {
+    final input = await showTextInputDialog(
+      context: context,
+      title: L10n.of(context).changeTheHomeserver,
+      textFields: [
+        DialogTextField(
+          keyboardType: TextInputType.url,
+          prefixText: 'https://',
+          hintText: AppConfig.defaultHomeserver,
+        ),
+      ],
+    );
+    if (input?.single?.isNotEmpty ?? false) {
+      setState(() => _domain = input.single);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final padding = EdgeInsets.symmetric(
       horizontal: max((MediaQuery.of(context).size.width - 600) / 2, 0),
     );
     return Scaffold(
-      appBar: AppBar(
-        title: Container(
-          height: 40,
-          padding: padding,
-          child: Material(
-            color: Theme.of(context).secondaryHeaderColor,
-            borderRadius: BorderRadius.circular(32),
-            child: TextField(
-              controller: _controller,
-              autocorrect: false,
-              readOnly: !AppConfig.allowOtherHomeservers,
-              decoration: InputDecoration(
-                prefixText: 'https://',
-                suffix: Icon(Icons.domain_outlined),
-                contentPadding: EdgeInsets.only(
-                  left: 24,
-                  right: 16,
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(32),
-                ),
-                labelText: L10n.of(context).changeTheHomeserver,
-                hintText: AppConfig.defaultHomeserver,
-              ),
-            ),
-          ),
-        ),
-      ),
       body: SafeArea(
         child: Padding(
           padding: padding,
@@ -125,41 +112,45 @@ class _HomeserverPickerState extends State<HomeserverPicker> {
                 ),
               ),
               SizedBox(height: 16),
-              Hero(
-                tag: 'loginButton',
-                child: Container(
-                  width: double.infinity,
-                  height: 50,
-                  padding: EdgeInsets.symmetric(horizontal: 12),
-                  child: RaisedButton(
-                    elevation: 7,
-                    color: Theme.of(context).primaryColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    child: _isLoading
-                        ? LinearProgressIndicator()
-                        : Text(
-                            L10n.of(context).connect.toUpperCase(),
-                            style: TextStyle(color: Colors.white, fontSize: 16),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Material(
+                  borderRadius: BorderRadius.circular(16),
+                  elevation: 2,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SizedBox(height: 8),
+                      Text(
+                        L10n.of(context).youWillBeConnectedTo(_domain),
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      FlatButton(
+                        padding: EdgeInsets.all(8),
+                        child: Text(
+                          L10n.of(context).changeTheHomeserver,
+                          style: TextStyle(
+                            decoration: TextDecoration.underline,
+                            fontSize: 16,
+                            color: Colors.blue,
                           ),
-                    onPressed: _isLoading
-                        ? null
-                        : () => _checkHomeserverAction(context),
+                        ),
+                        onPressed: () => _changeHomeserverAction(context),
+                      ),
+                    ],
                   ),
                 ),
               ),
-              SentrySwitchListTile(),
               Wrap(
                 alignment: WrapAlignment.center,
                 children: [
                   FlatButton(
                     padding: EdgeInsets.all(8),
                     child: Text(
-                      L10n.of(context).about,
+                      L10n.of(context).privacy,
                       style: TextStyle(
                         decoration: TextDecoration.underline,
-                        fontSize: 16,
+                        color: Colors.blueGrey,
                       ),
                     ),
                     onPressed: () => PlatformInfos.showDialog(context),
@@ -167,19 +158,50 @@ class _HomeserverPickerState extends State<HomeserverPicker> {
                   FlatButton(
                     padding: EdgeInsets.all(8),
                     child: Text(
-                      L10n.of(context).privacy,
+                      L10n.of(context).about,
                       style: TextStyle(
                         decoration: TextDecoration.underline,
-                        fontSize: 16,
+                        color: Colors.blueGrey,
                       ),
                     ),
-                    onPressed: () => launch(AppConfig.privacyUrl),
+                    onPressed: () => PlatformInfos.showDialog(context),
                   ),
                 ],
               ),
-              SizedBox(height: 16),
             ],
           ),
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: padding,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Hero(
+              tag: 'loginButton',
+              child: Container(
+                width: double.infinity,
+                height: 50,
+                padding: EdgeInsets.symmetric(horizontal: 12),
+                child: RaisedButton(
+                  elevation: 7,
+                  color: Theme.of(context).primaryColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  child: _isLoading
+                      ? LinearProgressIndicator()
+                      : Text(
+                          L10n.of(context).connect.toUpperCase(),
+                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        ),
+                  onPressed:
+                      _isLoading ? null : () => _checkHomeserverAction(context),
+                ),
+              ),
+            ),
+            SentrySwitchListTile(),
+          ],
         ),
       ),
     );

@@ -142,8 +142,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "byDefaultYouWillBeConnectedTo": "By default you will be connected to {homeserver}",
-  "@byDefaultYouWillBeConnectedTo": {
+  "youWillBeConnectedTo": "You will be connected to {homeserver}",
+  "@youWillBeConnectedTo": {
     "type": "text",
     "placeholders": {
       "homeserver": {}
