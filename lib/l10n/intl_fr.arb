@@ -1994,5 +1994,12 @@
   "@pleaseEnter4Digits": {
     "type": "text",
     "placeholders": {}
+  },
+  "youWillBeConnectedTo": "Vous serez connecté·e à {homeserver}",
+  "@youWillBeConnectedTo": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
   }
 }
