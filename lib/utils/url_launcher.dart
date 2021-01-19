@@ -71,9 +71,14 @@ class UrlLauncher {
         }
       }
       if (room != null) {
-        // we have the room, so....just open it!
-        await AdaptivePageLayout.of(context)
-            .pushNamedAndRemoveUntilIsFirst('/rooms/${room.id}/$event');
+        // we have the room, so....just open it
+        if (event != null) {
+          await AdaptivePageLayout.of(context)
+              .pushNamedAndRemoveUntilIsFirst('/rooms/${room.id}/$event');
+        } else {
+          await AdaptivePageLayout.of(context)
+              .pushNamedAndRemoveUntilIsFirst('/rooms/${room.id}');
+        }
         return;
       }
       if (roomIdOrAlias.sigil == '!') {
@@ -95,8 +100,13 @@ class UrlLauncher {
           await showFutureLoadingDialog(
               context: context,
               future: () => Future.delayed(const Duration(seconds: 2)));
-          await AdaptivePageLayout.of(context).pushNamedAndRemoveUntilIsFirst(
-              '/rooms/${response.result}/$event');
+          if (event != null) {
+            await AdaptivePageLayout.of(context).pushNamedAndRemoveUntilIsFirst(
+                '/rooms/${response.result}/$event');
+          } else {
+            await AdaptivePageLayout.of(context)
+                .pushNamedAndRemoveUntilIsFirst('/rooms/${response.result}');
+          }
         }
       } else {
         await AdaptivePageLayout.of(context)
