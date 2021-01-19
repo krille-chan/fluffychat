@@ -2,6 +2,7 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:fluffychat/components/dialogs/bootstrap_dialog.dart';
 import 'package:fluffychat/components/sentry_switch_list_tile.dart';
+import 'package:fluffychat/components/settings_switch_list_tile.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
@@ -382,36 +383,23 @@ class _SettingsState extends State<Settings> {
                   AdaptivePageLayout.of(context).pushNamed('/settings/style'),
               trailing: Icon(Icons.style_outlined),
             ),
-            SwitchListTile(
-              title: Text(L10n.of(context).renderRichContent),
-              value: AppConfig.renderHtml,
-              onChanged: (bool newValue) async {
-                AppConfig.renderHtml = newValue;
-                await Matrix.of(context)
-                    .store
-                    .setItem(SettingKeys.renderHtml, newValue.toString());
-                setState(() => null);
-              },
+            SettingsSwitchListTile(
+              title: L10n.of(context).renderRichContent,
+              onChanged: (b) => AppConfig.renderHtml = b,
+              storeKey: SettingKeys.renderHtml,
+              defaultValue: AppConfig.renderHtml,
             ),
-            SwitchListTile(
-              title: Text(L10n.of(context).hideRedactedEvents),
-              value: AppConfig.hideRedactedEvents,
-              onChanged: (bool newValue) async {
-                AppConfig.hideRedactedEvents = newValue;
-                await Matrix.of(context).store.setItem(
-                    SettingKeys.hideRedactedEvents, newValue.toString());
-                setState(() => null);
-              },
+            SettingsSwitchListTile(
+              title: L10n.of(context).hideRedactedEvents,
+              onChanged: (b) => AppConfig.hideRedactedEvents = b,
+              storeKey: SettingKeys.hideRedactedEvents,
+              defaultValue: AppConfig.hideRedactedEvents,
             ),
-            SwitchListTile(
-              title: Text(L10n.of(context).hideUnknownEvents),
-              value: AppConfig.hideUnknownEvents,
-              onChanged: (bool newValue) async {
-                AppConfig.hideUnknownEvents = newValue;
-                await Matrix.of(context).store.setItem(
-                    SettingKeys.hideUnknownEvents, newValue.toString());
-                setState(() => null);
-              },
+            SettingsSwitchListTile(
+              title: L10n.of(context).hideUnknownEvents,
+              onChanged: (b) => AppConfig.hideUnknownEvents = b,
+              storeKey: SettingKeys.hideUnknownEvents,
+              defaultValue: AppConfig.hideUnknownEvents,
             ),
             ListTile(
               title: Text(L10n.of(context).emoteSettings),
