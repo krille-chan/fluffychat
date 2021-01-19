@@ -1994,5 +1994,12 @@
   "@pleaseEnter4Digits": {
     "type": "text",
     "placeholders": {}
+  },
+  "youWillBeConnectedTo": "Sinu ühendus on koduserveriga {homeserver}",
+  "@youWillBeConnectedTo": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
   }
 }
