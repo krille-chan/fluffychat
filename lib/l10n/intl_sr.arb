@@ -281,7 +281,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pushRules": "Правила гурања",
+  "pushRules": "Правила протурања",
   "@pushRules": {
     "type": "text",
     "placeholders": {}
@@ -1041,7 +1041,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "removedBy": "Уклони {username}",
+  "removedBy": "Уклонио корисник {username}",
   "@removedBy": {
     "type": "text",
     "placeholders": {
@@ -1137,7 +1137,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "passwordForgotten": "Лозинка заборављена",
+  "passwordForgotten": "Заборављена лозинка",
   "@passwordForgotten": {
     "type": "text",
     "placeholders": {}
@@ -1424,7 +1424,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteContactToGroup": "Позови особу у {groupName}",
+  "inviteContactToGroup": "Позови особу у групу {groupName}",
   "@inviteContactToGroup": {
     "type": "text",
     "placeholders": {
@@ -1638,7 +1638,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "containsDisplayName": "Садржи приказано име",
+  "containsDisplayName": "Садржи приказно име",
   "@containsDisplayName": {
     "type": "text",
     "placeholders": {}
@@ -1658,7 +1658,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "editDisplayname": "Уреди приказано име",
+  "editDisplayname": "Уреди име за приказ",
   "@editDisplayname": {
     "type": "text",
     "placeholders": {}
@@ -1668,7 +1668,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "displaynameHasBeenChanged": "Приказано име је измењено",
+  "displaynameHasBeenChanged": "Име за приказ је измењено",
   "@displaynameHasBeenChanged": {
     "type": "text",
     "placeholders": {}
@@ -1931,6 +1931,32 @@
   },
   "pleaseEnter4Digits": "Унесите 4 цифре или оставите празно да не закључавате апликацију.",
   "@pleaseEnter4Digits": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unmuteChat": "Врати обавештења",
+  "@unmuteChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "title": "FluffyChat",
+  "@title": {
+    "description": "Title for the application",
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeOfDay": "{hours12}:{minutes} {suffix}",
+  "@timeOfDay": {
+    "type": "text",
+    "placeholders": {
+      "hours12": {},
+      "hours24": {},
+      "minutes": {},
+      "suffix": {}
+    }
+  },
+  "noGoogleServicesWarning": "Чини се да немате Гугл услуге на телефону. То је добра одлука за вашу приватност! Да би се протурале нотификације у FluffyChat, препоручујемо коришћење микроГ: https://microg.org/",
+  "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
   }
