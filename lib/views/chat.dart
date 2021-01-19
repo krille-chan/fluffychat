@@ -263,7 +263,7 @@ class _ChatState extends State<Chat> {
     String result;
     await showDialog(
         context: context,
-        builder: (context) => RecordingDialog(
+        builder: (c) => RecordingDialog(
               onFinished: (r) => result = r,
               l10n: L10n.of(context),
             ));
