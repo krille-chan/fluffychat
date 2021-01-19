@@ -273,7 +273,11 @@ class MatrixState extends State<Matrix> {
   void initState() {
     super.initState();
     initMatrix();
-    if (PlatformInfos.isWeb) initConfig().then((_) => initSettings());
+    if (PlatformInfos.isWeb) {
+      initConfig().then((_) => initSettings());
+    } else {
+      initSettings();
+    }
   }
 
   Future<void> initConfig() async {
