@@ -20,9 +20,10 @@ class ChatPermissionsSettings extends StatelessWidget {
       return FlushbarHelper.createError(message: L10n.of(context).noPermission)
           .show(context);
     }
-    final newLevel =
-        await PermissionSliderDialog(initialPermission: currentLevel)
-            .show(context);
+    final newLevel = await PermissionSliderDialog(
+      initialPermission: currentLevel,
+      l10n: L10n.of(context),
+    ).show(context);
     if (newLevel == null) return;
     final content = Map<String, dynamic>.from(
         room.getState(EventTypes.RoomPowerLevels).content);

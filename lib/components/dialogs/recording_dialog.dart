@@ -7,8 +7,13 @@ import 'package:intl/intl.dart';
 
 class RecordingDialog extends StatefulWidget {
   final Function onFinished;
+  final L10n l10n;
 
-  const RecordingDialog({this.onFinished, Key key}) : super(key: key);
+  const RecordingDialog({
+    this.onFinished,
+    @required this.l10n,
+    Key key,
+  }) : super(key: key);
 
   @override
   _RecordingDialogState createState() => _RecordingDialogState();
@@ -67,7 +72,7 @@ class _RecordingDialogState extends State<RecordingDialog> {
           SizedBox(width: 8),
           Expanded(
             child: Text(
-              '${L10n.of(context).recording}: $time',
+              '${widget.l10n.recording}: $time',
               style: TextStyle(
                 fontSize: 18,
               ),
@@ -78,7 +83,7 @@ class _RecordingDialogState extends State<RecordingDialog> {
       actions: <Widget>[
         FlatButton(
           child: Text(
-            L10n.of(context).cancel.toUpperCase(),
+            widget.l10n.cancel.toUpperCase(),
             style: TextStyle(
               color: Theme.of(context).textTheme.bodyText2.color.withAlpha(150),
             ),
@@ -88,7 +93,7 @@ class _RecordingDialogState extends State<RecordingDialog> {
         FlatButton(
           child: Row(
             children: <Widget>[
-              Text(L10n.of(context).send.toUpperCase()),
+              Text(widget.l10n.send.toUpperCase()),
               SizedBox(width: 4),
               Icon(Icons.send_outlined, size: 15),
             ],

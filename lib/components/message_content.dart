@@ -52,7 +52,10 @@ class MessageContent extends StatelessWidget {
           timeline.cancelSubscriptions();
         }
       };
-      await KeyVerificationDialog(request: req).show(context);
+      await KeyVerificationDialog(
+        request: req,
+        l10n: L10n.of(context),
+      ).show(context);
     } else {
       final success = await showFutureLoadingDialog(
         context: context,

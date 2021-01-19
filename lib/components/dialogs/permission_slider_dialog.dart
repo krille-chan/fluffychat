@@ -5,8 +5,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class PermissionSliderDialog extends StatefulWidget {
-  const PermissionSliderDialog({Key key, this.initialPermission = 0})
-      : super(key: key);
+  const PermissionSliderDialog({
+    Key key,
+    this.initialPermission = 0,
+    @required this.l10n,
+  }) : super(key: key);
+
+  final L10n l10n;
 
   Future<int> show(BuildContext context) => PlatformInfos.isCupertinoStyle
       ? showCupertinoDialog<int>(context: context, builder: (context) => this)
@@ -41,7 +46,7 @@ class _PermissionSliderDialogState extends State<PermissionSliderDialog> {
             min: 0.0,
           );
     final title = Text(
-      L10n.of(context).setPermissionsLevel,
+      widget.l10n.setPermissionsLevel,
       textAlign: TextAlign.center,
     );
     final content = Column(
@@ -49,9 +54,9 @@ class _PermissionSliderDialogState extends State<PermissionSliderDialog> {
       children: [
         Text('Level: ' +
             (_permission == 100
-                ? '$_permission (${L10n.of(context).admin})'
+                ? '$_permission (${widget.l10n.admin})'
                 : _permission >= 50
-                    ? '$_permission (${L10n.of(context).moderator})'
+                    ? '$_permission (${widget.l10n.moderator})'
                     : _permission.toString())),
         Container(
           height: 56,
@@ -61,11 +66,11 @@ class _PermissionSliderDialogState extends State<PermissionSliderDialog> {
     );
     final buttons = [
       AdaptiveFlatButton(
-        child: Text(L10n.of(context).cancel),
+        child: Text(widget.l10n.cancel),
         onPressed: () => Navigator.of(context).pop<int>(null),
       ),
       AdaptiveFlatButton(
-        child: Text(L10n.of(context).confirm),
+        child: Text(widget.l10n.confirm),
         onPressed: () => Navigator.of(context).pop<int>(_permission),
       ),
     ];

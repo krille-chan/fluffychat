@@ -362,7 +362,10 @@ class MatrixState extends State<Matrix> {
         request.onUpdate = null;
         hidPopup = true;
         await request.acceptVerification();
-        await KeyVerificationDialog(request: request).show(context);
+        await KeyVerificationDialog(
+          request: request,
+          l10n: L10n.of(context),
+        ).show(context);
       } else {
         request.onUpdate = null;
         hidPopup = true;

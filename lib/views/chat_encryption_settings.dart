@@ -36,7 +36,10 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
             setState(() => null);
           }
         };
-        await KeyVerificationDialog(request: req).show(context);
+        await KeyVerificationDialog(
+          request: req,
+          l10n: L10n.of(context),
+        ).show(context);
         break;
       case 'verify_manual':
         if (await showOkCancelAlertDialog(
@@ -59,7 +62,10 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
             setState(() => null);
           }
         };
-        await KeyVerificationDialog(request: req).show(context);
+        await KeyVerificationDialog(
+          request: req,
+          l10n: L10n.of(context),
+        ).show(context);
         break;
       case 'block':
         if (key.directVerified) {

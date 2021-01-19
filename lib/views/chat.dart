@@ -265,6 +265,7 @@ class _ChatState extends State<Chat> {
         context: context,
         builder: (context) => RecordingDialog(
               onFinished: (r) => result = r,
+              l10n: L10n.of(context),
             ));
     if (result == null) return;
     final audioFile = File(result);

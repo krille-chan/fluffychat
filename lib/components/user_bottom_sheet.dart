@@ -59,9 +59,10 @@ class UserBottomSheet extends StatelessWidget {
         }
         break;
       case 'permission':
-        final newPermission =
-            await PermissionSliderDialog(initialPermission: user.powerLevel)
-                .show(context);
+        final newPermission = await PermissionSliderDialog(
+          initialPermission: user.powerLevel,
+          l10n: L10n.of(context),
+        ).show(context);
         if (newPermission != null) {
           if (newPermission == 100 && await _askConfirmation() == false) break;
           await showFutureLoadingDialog(
@@ -82,7 +83,7 @@ class UserBottomSheet extends StatelessWidget {
   void _verifyAction(BuildContext context) async {
     final client = user.room.client;
     final req = await client.userDeviceKeys[user.id].startVerification();
-    await KeyVerificationDialog(request: req).show(context);
+    await KeyVerificationDialog(request: req,l10n: L10n.of(context),).show(context);
   }
 
   @override

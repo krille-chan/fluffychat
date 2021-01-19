@@ -516,7 +516,8 @@ class _SettingsState extends State<Settings> {
                     : null,
                 onTap: () async {
                   if (!client.encryption.crossSigning.enabled) {
-                    return BootstrapDialog().show(context);
+                    return BootstrapDialog(l10n: L10n.of(context))
+                        .show(context);
                   }
                   if (client.isUnknownSession) {
                     final input = await showTextInputDialog(
@@ -592,7 +593,8 @@ class _SettingsState extends State<Settings> {
                     : null,
                 onTap: () async {
                   if (!client.encryption.keyManager.enabled) {
-                    return BootstrapDialog().show(context);
+                    return BootstrapDialog(l10n: L10n.of(context))
+                        .show(context);
                   }
                   if (!(await client.encryption.keyManager.isCached())) {
                     await requestSSSSCache(context);

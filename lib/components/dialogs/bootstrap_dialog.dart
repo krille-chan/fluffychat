@@ -11,9 +11,13 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import '../matrix.dart';
 
 class BootstrapDialog extends StatefulWidget {
+  const BootstrapDialog({Key key, @required this.l10n}) : super(key: key);
+
   Future<bool> show(BuildContext context) => PlatformInfos.isCupertinoStyle
       ? showCupertinoDialog(context: context, builder: (context) => this)
       : showDialog(context: context, builder: (context) => this);
+
+  final L10n l10n;
 
   @override
   _BootstrapDialogState createState() => _BootstrapDialogState();
@@ -39,36 +43,36 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
       case BootstrapState.askWipeSsss:
         body = Text('Wipe chat backup?');
         buttons.add(AdaptiveFlatButton(
-          child: Text(L10n.of(context).yes),
+          child: Text(widget.l10n.yes),
           onPressed: () => bootstrap.wipeSsss(true),
         ));
         buttons.add(AdaptiveFlatButton(
           textColor: Theme.of(context).textTheme.bodyText1.color,
-          child: Text(L10n.of(context).no),
+          child: Text(widget.l10n.no),
           onPressed: () => bootstrap.wipeSsss(false),
         ));
         break;
       case BootstrapState.askUseExistingSsss:
         body = Text('Use existing chat backup?');
         buttons.add(AdaptiveFlatButton(
-          child: Text(L10n.of(context).yes),
+          child: Text(widget.l10n.yes),
           onPressed: () => bootstrap.useExistingSsss(true),
         ));
         buttons.add(AdaptiveFlatButton(
           textColor: Theme.of(context).textTheme.bodyText1.color,
-          child: Text(L10n.of(context).no),
+          child: Text(widget.l10n.no),
           onPressed: () => bootstrap.useExistingSsss(false),
         ));
         break;
       case BootstrapState.askBadSsss:
         body = Text('SSSS bad - continue nevertheless? DATALOSS!!!');
         buttons.add(AdaptiveFlatButton(
-          child: Text(L10n.of(context).yes),
+          child: Text(widget.l10n.yes),
           onPressed: () => bootstrap.ignoreBadSecrets(true),
         ));
         buttons.add(AdaptiveFlatButton(
           textColor: Theme.of(context).textTheme.bodyText1.color,
-          child: Text(L10n.of(context).no),
+          child: Text(widget.l10n.no),
           onPressed: () => bootstrap.ignoreBadSecrets(false),
         ));
         break;
@@ -77,14 +81,15 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
         for (final entry in bootstrap.oldSsssKeys.entries) {
           final keyId = entry.key;
           final key = entry.value;
-          widgets.add(Flexible(child: _AskUnlockOldSsss(keyId, key)));
+          widgets
+              .add(Flexible(child: _AskUnlockOldSsss(keyId, key, widget.l10n)));
         }
         body = Column(
           children: widgets,
           mainAxisSize: MainAxisSize.min,
         );
         buttons.add(AdaptiveFlatButton(
-          child: Text(L10n.of(context).confirm),
+          child: Text(widget.l10n.confirm),
           onPressed: () => bootstrap.unlockedSsss(),
         ));
         break;
@@ -130,19 +135,19 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
       case BootstrapState.askWipeCrossSigning:
         body = Text('Wipe cross-signing?');
         buttons.add(AdaptiveFlatButton(
-          child: Text(L10n.of(context).yes),
+          child: Text(widget.l10n.yes),
           onPressed: () => bootstrap.wipeCrossSigning(true),
         ));
         buttons.add(AdaptiveFlatButton(
           textColor: Theme.of(context).textTheme.bodyText1.color,
-          child: Text(L10n.of(context).no),
+          child: Text(widget.l10n.no),
           onPressed: () => bootstrap.wipeCrossSigning(false),
         ));
         break;
       case BootstrapState.askSetupCrossSigning:
         body = Text('Set up cross-signing?');
         buttons.add(AdaptiveFlatButton(
-          child: Text(L10n.of(context).yes),
+          child: Text(widget.l10n.yes),
           onPressed: () => bootstrap.askSetupCrossSigning(
             setupMasterKey: true,
             setupSelfSigningKey: true,
@@ -151,31 +156,31 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
         ));
         buttons.add(AdaptiveFlatButton(
           textColor: Theme.of(context).textTheme.bodyText1.color,
-          child: Text(L10n.of(context).no),
+          child: Text(widget.l10n.no),
           onPressed: () => bootstrap.askSetupCrossSigning(),
         ));
         break;
       case BootstrapState.askWipeOnlineKeyBackup:
         body = Text('Wipe chat backup?');
         buttons.add(AdaptiveFlatButton(
-          child: Text(L10n.of(context).yes),
+          child: Text(widget.l10n.yes),
           onPressed: () => bootstrap.wipeOnlineKeyBackup(true),
         ));
         buttons.add(AdaptiveFlatButton(
           textColor: Theme.of(context).textTheme.bodyText1.color,
-          child: Text(L10n.of(context).no),
+          child: Text(widget.l10n.no),
           onPressed: () => bootstrap.wipeOnlineKeyBackup(false),
         ));
         break;
       case BootstrapState.askSetupOnlineKeyBackup:
         body = Text('Set up chat backup?');
         buttons.add(AdaptiveFlatButton(
-          child: Text(L10n.of(context).yes),
+          child: Text(widget.l10n.yes),
           onPressed: () => bootstrap.askSetupOnlineKeyBackup(true),
         ));
         buttons.add(AdaptiveFlatButton(
           textColor: Theme.of(context).textTheme.bodyText1.color,
-          child: Text(L10n.of(context).no),
+          child: Text(widget.l10n.no),
           onPressed: () => bootstrap.askSetupOnlineKeyBackup(false),
         ));
         break;
@@ -183,10 +188,10 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
         body = ListTile(
           contentPadding: EdgeInsets.zero,
           leading: Icon(Icons.error_outline, color: Colors.red),
-          title: Text(L10n.of(context).oopsSomethingWentWrong),
+          title: Text(widget.l10n.oopsSomethingWentWrong),
         );
         buttons.add(AdaptiveFlatButton(
-          child: Text(L10n.of(context).close),
+          child: Text(widget.l10n.close),
           onPressed: () => Navigator.of(context).pop<bool>(false),
         ));
         break;
@@ -197,7 +202,7 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
           title: Text('Chat backup has been initialized!'),
         );
         buttons.add(AdaptiveFlatButton(
-          child: Text(L10n.of(context).close),
+          child: Text(widget.l10n.close),
           onPressed: () => Navigator.of(context).pop<bool>(false),
         ));
         break;
@@ -222,7 +227,8 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
 class _AskUnlockOldSsss extends StatefulWidget {
   final String keyId;
   final OpenSSSS ssssKey;
-  _AskUnlockOldSsss(this.keyId, this.ssssKey);
+  final L10n l10n;
+  _AskUnlockOldSsss(this.keyId, this.ssssKey, this.l10n);
 
   @override
   _AskUnlockOldSsssState createState() => _AskUnlockOldSsssState();
@@ -274,7 +280,7 @@ class _AskUnlockOldSsssState extends State<_AskUnlockOldSsss> {
             maxLines: 1,
             obscureText: true,
             decoration: InputDecoration(
-              hintText: L10n.of(context).passphraseOrKey,
+              hintText: widget.l10n.passphraseOrKey,
               prefixStyle: TextStyle(color: Theme.of(context).primaryColor),
               suffixStyle: TextStyle(color: Theme.of(context).primaryColor),
               border: OutlineInputBorder(),
@@ -285,7 +291,7 @@ class _AskUnlockOldSsssState extends State<_AskUnlockOldSsss> {
           color: Theme.of(context).primaryColor,
           elevation: 5,
           textColor: Colors.white,
-          child: Text(L10n.of(context).submit),
+          child: Text(widget.l10n.submit),
           onPressed: () {
             input = textEditingController.text;
             checkInput(context);
