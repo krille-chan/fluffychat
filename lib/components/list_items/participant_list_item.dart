@@ -27,8 +27,9 @@ class ParticipantListItem extends StatelessWidget {
     return ListTile(
       onTap: () => showModalBottomSheet(
         context: context,
-        builder: (context) => UserBottomSheet(
+        builder: (c) => UserBottomSheet(
           user: user,
+          l10n: L10n.of(context),
         ),
       ),
       title: Row(

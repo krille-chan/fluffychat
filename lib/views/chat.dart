@@ -492,7 +492,8 @@ class _ChatState extends State<Chat> {
                       onTap: room.isDirectChat
                           ? () => showModalBottomSheet(
                                 context: context,
-                                builder: (context) => UserBottomSheet(
+                                builder: (c) => UserBottomSheet(
+                                  l10n: L10n.of(context),
                                   user: room.getUserByMXIDSync(
                                       room.directChatMatrixID),
                                   onMention: () => sendController.text +=
@@ -735,8 +736,9 @@ class _ChatState extends State<Chat> {
                                               onAvatarTab: (Event event) =>
                                                   showModalBottomSheet(
                                                     context: context,
-                                                    builder: (context) =>
+                                                    builder: (c) =>
                                                         UserBottomSheet(
+                                                      l10n: L10n.of(context),
                                                       user: event.sender,
                                                       onMention: () =>
                                                           sendController.text +=

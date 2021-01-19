@@ -17,14 +17,19 @@ import 'dialogs/key_verification_dialog.dart';
 class UserBottomSheet extends StatelessWidget {
   final User user;
   final Function onMention;
+  final L10n l10n;
 
-  const UserBottomSheet({Key key, @required this.user, this.onMention})
-      : super(key: key);
+  const UserBottomSheet({
+    Key key,
+    @required this.user,
+    @required this.l10n,
+    this.onMention,
+  }) : super(key: key);
 
   void participantAction(BuildContext context, String action) async {
     final Function _askConfirmation = () async =>
         (await showOkCancelAlertDialog(
-                context: context, title: L10n.of(context).areYouSure) ==
+                context: context, title: l10n.areYouSure) ==
             OkCancelResult.ok);
     switch (action) {
       case 'mention':
@@ -83,7 +88,10 @@ class UserBottomSheet extends StatelessWidget {
   void _verifyAction(BuildContext context) async {
     final client = user.room.client;
     final req = await client.userDeviceKeys[user.id].startVerification();
-    await KeyVerificationDialog(request: req,l10n: L10n.of(context),).show(context);
+    await KeyVerificationDialog(
+      request: req,
+      l10n: L10n.of(context),
+    ).show(context);
   }
 
   @override
@@ -97,7 +105,7 @@ class UserBottomSheet extends StatelessWidget {
       items.add(
         PopupMenuItem(
             child: _TextWithIcon(
-              L10n.of(context).mention,
+              l10n.mention,
               Icons.alternate_email_outlined,
             ),
             value: 'mention'),
@@ -107,7 +115,7 @@ class UserBottomSheet extends StatelessWidget {
       items.add(
         PopupMenuItem(
             child: _TextWithIcon(
-              L10n.of(context).sendAMessage,
+              l10n.sendAMessage,
               Icons.send_outlined,
             ),
             value: 'message'),
@@ -117,7 +125,7 @@ class UserBottomSheet extends StatelessWidget {
       items.add(
         PopupMenuItem(
             child: _TextWithIcon(
-              L10n.of(context).setPermissionsLevel,
+              l10n.setPermissionsLevel,
               Icons.edit_attributes_outlined,
             ),
             value: 'permission'),
@@ -127,7 +135,7 @@ class UserBottomSheet extends StatelessWidget {
       items.add(
         PopupMenuItem(
             child: _TextWithIcon(
-              L10n.of(context).kickFromChat,
+              l10n.kickFromChat,
               Icons.exit_to_app_outlined,
             ),
             value: 'kick'),
@@ -137,7 +145,7 @@ class UserBottomSheet extends StatelessWidget {
       items.add(
         PopupMenuItem(
             child: _TextWithIcon(
-              L10n.of(context).banFromChat,
+              l10n.banFromChat,
               Icons.warning_sharp,
             ),
             value: 'ban'),
@@ -146,7 +154,7 @@ class UserBottomSheet extends StatelessWidget {
       items.add(
         PopupMenuItem(
             child: _TextWithIcon(
-              L10n.of(context).removeExile,
+              l10n.removeExile,
               Icons.warning_outlined,
             ),
             value: 'unban'),
@@ -203,7 +211,7 @@ class UserBottomSheet extends StatelessWidget {
                     ),
                   ),
                   ListTile(
-                    title: Text(L10n.of(context).username),
+                    title: Text(l10n.username),
                     subtitle: Text(user.id),
                     trailing: Icon(Icons.share_outlined),
                     onTap: () => FluffyShare.share(user.id, context),
