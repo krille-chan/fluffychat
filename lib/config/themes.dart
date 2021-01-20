@@ -6,7 +6,7 @@ abstract class FluffyThemes {
   static const double columnWidth = 360.0;
 
   static const fallback_text_style =
-      TextStyle(fontFamilyFallback: ['NotoEmoji']);
+      TextStyle(fontFamily: 'NotoSans', fontFamilyFallback: ['NotoEmoji']);
 
   static var fallback_text_theme = PlatformInfos.isDesktop
       ? TextTheme(
