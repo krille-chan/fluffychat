@@ -310,7 +310,7 @@ class MatrixState extends State<Matrix> {
     final Set verificationMethods = <KeyVerificationMethod>{
       KeyVerificationMethod.numbers
     };
-    if (PlatformInfos.isMobile) {
+    if (PlatformInfos.isMobile || (!kIsWeb && Platform.isLinux)) {
       // emojis don't show in web somehow
       verificationMethods.add(KeyVerificationMethod.emoji);
     }

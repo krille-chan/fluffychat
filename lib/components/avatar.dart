@@ -12,19 +12,21 @@ class Avatar extends StatelessWidget {
   final double size;
   final Function onTap;
   static const double defaultSize = 44;
+  final Client client;
 
   const Avatar(
     this.mxContent,
     this.name, {
     this.size = defaultSize,
     this.onTap,
+    this.client,
     Key key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var thumbnail = mxContent?.getThumbnail(
-      Matrix.of(context).client,
+      client ?? Matrix.of(context).client,
       width: size * MediaQuery.of(context).devicePixelRatio,
       height: size * MediaQuery.of(context).devicePixelRatio,
     );

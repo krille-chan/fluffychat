@@ -208,6 +208,7 @@ class UserBottomSheet extends StatelessWidget {
                     child: ContentBanner(
                       user.avatarUrl,
                       defaultIcon: Icons.person_outline,
+                      client: user.room.client,
                     ),
                   ),
                   ListTile(

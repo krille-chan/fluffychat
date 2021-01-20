@@ -4,6 +4,7 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'avatar.dart';
+import 'matrix.dart';
 
 class InputBar extends StatelessWidget {
   final Room room;
@@ -138,7 +139,11 @@ class InputBar extends StatelessWidget {
     return ret;
   }
 
-  Widget buildSuggestion(BuildContext context, Map<String, String> suggestion) {
+  Widget buildSuggestion(
+    BuildContext context,
+    Map<String, String> suggestion,
+    Client client,
+  ) {
     if (suggestion['type'] == 'emote') {
       final size = 30.0;
       final ratio = MediaQuery.of(context).devicePixelRatio;
@@ -182,8 +187,12 @@ class InputBar extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Avatar(url, suggestion['displayname'] ?? suggestion['mxid'],
-                size: size),
+            Avatar(
+              url,
+              suggestion['displayname'] ?? suggestion['mxid'],
+              size: size,
+              client: client,
+            ),
             SizedBox(width: 6),
             Text(suggestion['displayname'] ?? suggestion['mxid']),
           ],
@@ -283,7 +292,7 @@ class InputBar extends StatelessWidget {
         textCapitalization: TextCapitalization.sentences,
       ),
       suggestionsCallback: getSuggestions,
-      itemBuilder: buildSuggestion,
+      itemBuilder: (c, s) => buildSuggestion(c, s, Matrix.of(context).client),
       onSuggestionSelected: (Map<String, String> suggestion) =>
           insertSuggestion(context, suggestion),
       errorBuilder: (BuildContext context, Object error) => Container(),
