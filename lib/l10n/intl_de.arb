@@ -1980,7 +1980,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "appLock": "App Lock",
+  "appLock": "Anwendungssperre",
   "@appLock": {
     "type": "text",
     "placeholders": {}
@@ -1990,7 +1990,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnter4Digits": "Bitte 4 Ziffern eingeben oder leer lassen, um App Lock zu deaktivieren.",
+  "pleaseEnter4Digits": "Bitte 4 Ziffern eingeben oder leer lassen, um die Anwendungssperre zu deaktivieren.",
   "@pleaseEnter4Digits": {
     "type": "text",
     "placeholders": {}
