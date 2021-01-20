@@ -47,5 +47,135 @@
   "@about": {
     "type": "text",
     "placeholders": {}
+  },
+  "changedTheChatDescriptionTo": "{username} a schimbat descrierea grupului în '{description}'",
+  "@changedTheChatDescriptionTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "description": {}
+    }
+  },
+  "changedTheChatNameTo": "{username} a schimbat porecla în '{chatname}'",
+  "@changedTheChatNameTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "chatname": {}
+    }
+  },
+  "changedTheChatAvatar": "{username} a schimbat poza conversați",
+  "@changedTheChatAvatar": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changeDeviceName": "Schimbă numele dispozitiv",
+  "@changeDeviceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "Anulează",
+  "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cachedKeys": "Chei salvate",
+  "@cachedKeys": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "blockDevice": "Blochează dispozitiv",
+  "@blockDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bannedUser": "{username} a interzis pe {targetName}",
+  "@bannedUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "banned": "Interzis",
+  "@banned": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "banFromChat": "Interzis din conversație",
+  "@banFromChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "avatarHasBeenChanged": "Image de profil schimbată",
+  "@avatarHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "authentication": "Autentificare",
+  "@authentication": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askVerificationRequest": "Accepți cererea de verificare de la {username}?",
+  "@askVerificationRequest": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "askSSSSVerify": "Te rog introdu parola sau cheia ta de recuperare pentru a-ți verifica sesiunea.",
+  "@askSSSSVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askSSSSSign": "Pentru a putea conecta cealaltă persoană, te rog introdu parola sau cheia ta de recuperare.",
+  "@askSSSSSign": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askSSSSCache": "Te rog introdu parola ta sau cheile de recuparare pentru a depozita cheile.",
+  "@askSSSSCache": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSure": "Ești sigur?",
+  "@areYouSure": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areGuestsAllowedToJoin": "Vizitatorii \"guest\" se pot alătura",
+  "@areGuestsAllowedToJoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "archivedRoom": "Grup arhivat",
+  "@archivedRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "archive": "Arhivă",
+  "@archive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "anyoneCanJoin": "Oricine se poate alătura",
+  "@anyoneCanJoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "answeredTheCall": "{sendername} a acceptat apelul",
+  "@answeredTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "alreadyHaveAnAccount": "Ai deja un cont?",
+  "@alreadyHaveAnAccount": {
+    "type": "text",
+    "placeholders": {}
   }
 }
