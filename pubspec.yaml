@@ -91,4 +91,4 @@ flutter:
   fonts:
     - family: NotoEmoji
       fonts:
-        - asset: assets/fonts/NotoEmoji/NotoColorEmoji.ttf
+        - asset: fonts/NotoEmoji/NotoColorEmoji.ttf
