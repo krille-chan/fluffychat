@@ -1,1 +1,29 @@
-{}
+{
+  "accountInformation": "অ্যাকাউন্ট তথ্য",
+  "@accountInformation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "account": "অ্যাকাউন্ট",
+  "@account": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "acceptedTheInvitation": "{username} আমন্ত্রণ গ্রহণ করেছে",
+  "@acceptedTheInvitation": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "accept": "স্বীকার করি",
+  "@accept": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about": "সম্পর্কে",
+  "@about": {
+    "type": "text",
+    "placeholders": {}
+  }
+}
