@@ -1,8 +1,30 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 
 abstract class FluffyThemes {
   static const double columnWidth = 360.0;
+
+  static const fallback_text_style =
+      TextStyle(fontFamilyFallback: ['NotoEmoji']);
+
+  static var fallback_text_theme = PlatformInfos.isDesktop
+      ? TextTheme(
+          bodyText1: fallback_text_style,
+          bodyText2: fallback_text_style,
+          button: fallback_text_style,
+          caption: fallback_text_style,
+          overline: fallback_text_style,
+          headline1: fallback_text_style,
+          headline2: fallback_text_style,
+          headline3: fallback_text_style,
+          headline4: fallback_text_style,
+          headline5: fallback_text_style,
+          headline6: fallback_text_style,
+          subtitle1: fallback_text_style,
+          subtitle2: fallback_text_style)
+      : TextTheme();
+
   static ThemeData light = ThemeData(
     primaryColorDark: Colors.white,
     primaryColorLight: Color(0xff121212),
@@ -11,6 +33,7 @@ abstract class FluffyThemes {
     backgroundColor: Colors.white,
     secondaryHeaderColor: Color(0xFFECECF2),
     scaffoldBackgroundColor: Colors.white,
+    textTheme: Typography.material2018().black.merge(fallback_text_theme),
     snackBarTheme: SnackBarThemeData(
       behavior: kIsWeb ? SnackBarBehavior.floating : SnackBarBehavior.fixed,
     ),
@@ -46,6 +69,7 @@ abstract class FluffyThemes {
     scaffoldBackgroundColor: Colors.black,
     accentColor: Color(0xFFF5B4D2),
     secondaryHeaderColor: Color(0xff1D1D1D),
+    textTheme: Typography.material2018().white.merge(fallback_text_theme),
     snackBarTheme: SnackBarThemeData(
       behavior: kIsWeb ? SnackBarBehavior.floating : SnackBarBehavior.fixed,
     ),
