@@ -100,7 +100,8 @@ You can use Weblate to translate the app to your language:
 
 https://hosted.weblate.org/projects/fluffychat/
 
-
+If you want to get your translated strings approved, please ask in our
+<a href="https://matrix.to/#/#fluffychat:matrix.org" target="new">support room</a>!
 
 1. Replace the non-translated string in the codebase:
 ```
