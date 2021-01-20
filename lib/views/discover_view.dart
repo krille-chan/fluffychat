@@ -122,7 +122,14 @@ class _DiscoverPageState extends State<DiscoverPage> {
           server: server,
           genericSearchTerm: _genericSearchTerm,
         )
-        .then((PublicRoomsResponse res) {
+        .catchError((error) {
+      if (widget.alias == null) {
+        throw error;
+      }
+      return PublicRoomsResponse.fromJson({
+        'chunk': [],
+      });
+    }).then((PublicRoomsResponse res) {
       if (widget.alias != null &&
           !res.chunk.any((room) =>
               room.aliases.contains(widget.alias) ||
