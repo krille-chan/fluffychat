@@ -974,7 +974,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "lastSeenLongTimeAgo": "Виђен одавно",
+  "lastSeenLongTimeAgo": "одавно",
   "@lastSeenLongTimeAgo": {
     "type": "text",
     "placeholders": {}
@@ -1959,5 +1959,12 @@
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
+  },
+  "youWillBeConnectedTo": "Бићете повезани на {homeserver}",
+  "@youWillBeConnectedTo": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
   }
 }
