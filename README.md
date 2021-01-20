@@ -157,3 +157,5 @@ Example B:
 * Thanks to Mark for all his support and the chat background.
 
 * Also thanks to all translators and testers! With your help, fluffychat is now available in more than 12 languages.
+
+* <a href="https://github.com/googlefonts/noto-emoji/">Noto Emoji Font</a> for the awesome emojis.

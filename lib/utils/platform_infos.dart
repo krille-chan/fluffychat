@@ -48,8 +48,8 @@ abstract class PlatformInfos {
           onPressed: () => launch(AppConfig.sourceCodeUrl),
         ),
         RaisedButton(
-          child: Text(L10n.of(context).help),
-          onPressed: () => launch(AppConfig.supportUrl),
+          child: Text(AppConfig.emojiFontName),
+          onPressed: () => launch(AppConfig.emojiFontUrl),
         ),
       ],
       applicationIcon: Image.asset('assets/logo.png', width: 100, height: 100),
