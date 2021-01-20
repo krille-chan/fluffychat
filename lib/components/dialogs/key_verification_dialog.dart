@@ -206,13 +206,13 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
           mainAxisSize: MainAxisSize.min,
         );
         buttons.add(AdaptiveFlatButton(
-          child: Text(widget.l10n.theyMatch),
-          onPressed: () => widget.request.acceptSas(),
-        ));
-        buttons.add(AdaptiveFlatButton(
           textColor: Colors.red,
           child: Text(widget.l10n.theyDontMatch),
           onPressed: () => widget.request.rejectSas(),
+        ));
+        buttons.add(AdaptiveFlatButton(
+          child: Text(widget.l10n.theyMatch),
+          onPressed: () => widget.request.acceptSas(),
         ));
         break;
       case KeyVerificationState.waitingSas:
