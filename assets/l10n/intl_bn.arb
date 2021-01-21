@@ -2605,5 +2605,10 @@
     "placeholders": {
       "unreadCount": {}
     }
+  },
+  "pickImage": "",
+  "@pickImage": {
+    "type": "text",
+    "placeholders": {}
   }
 }
