@@ -1157,7 +1157,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pickImage": "Pick image",
+  "pickImage": "Pick an image",
   "@pickImage": {
     "type": "text",
     "placeholders": {}
