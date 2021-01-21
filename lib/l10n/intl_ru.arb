@@ -1994,5 +1994,12 @@
   "@pleaseEnter4Digits": {
     "type": "text",
     "placeholders": {}
+  },
+  "youWillBeConnectedTo": "Вы будете подключены к {homeserver}",
+  "@youWillBeConnectedTo": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
   }
 }
