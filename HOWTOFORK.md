@@ -10,11 +10,14 @@ recommend you to contact a lawyer **before** you publish your fork!
 ## 2. Disable end-to-end encryption!
 Due to US export regulations you are not allowed to publish your app in
 a store or anywhere on a US server before you have removed everything regarding
-the encryption. This means you have to remove:
+the encryption or fulfill the regulations. This means you have to remove:
 
 * Olm/Megolm end-to-end encryption
 * The sqlcipher database encryption
 * File encryption
+
+Learn more:
+https://www.bis.doc.gov/index.php/policy-guidance/encryption
 
 If you need help from us with using E2EE in your fork read more below under the 
 topic "**Official Support and Pricing**".
