@@ -1588,12 +1588,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerAcceptRequest": "Warte darauf, dass der Partner die Verifikationsanfrage annimmt...",
+  "waitingPartnerAcceptRequest": "Warte darauf, dass der Partner die Anfrage annimmt …",
   "@waitingPartnerAcceptRequest": {
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerEmoji": "Warte darauf, dass der Partner die Emoji annimmt...",
+  "waitingPartnerEmoji": "Warte darauf, dass der Partner die Emoji annimmt …",
   "@waitingPartnerEmoji": {
     "type": "text",
     "placeholders": {}
