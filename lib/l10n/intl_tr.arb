@@ -998,7 +998,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pickImage": "Resim seç",
+  "pickImage": "Bir resim seç",
   "@pickImage": {
     "type": "text",
     "placeholders": {}
@@ -1517,12 +1517,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerAcceptRequest": "İsteği kabul etmesi bekleniyor...",
+  "waitingPartnerAcceptRequest": "Ortağın isteği kabul etmesi bekleniyor…",
   "@waitingPartnerAcceptRequest": {
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerEmoji": "Emojiyi kabul etmesi bekleniyor...",
+  "waitingPartnerEmoji": "Ortağın emojiyi kabul etmesi bekleniyor…",
   "@waitingPartnerEmoji": {
     "type": "text",
     "placeholders": {}
