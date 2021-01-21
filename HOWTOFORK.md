@@ -4,8 +4,8 @@
 FluffyChat is licensed under AGPL. Read the license
 (https://gitlab.com/ChristianPauly/fluffychat-flutter/-/blob/main/LICENSE) and 
 make sure that your fork is open source under the same license and that you
-fulfill all requirements. Otherwise you could end up in legal problems. We
-recommend you to contact a lawyer **before** you publish your fork!
+fulfill all requirements. Maybe you should consider contacting a lawyer **before**
+you publish your fork.
 
 ## 2. Disable end-to-end encryption!
 Due to US export regulations you are not allowed to publish your app in
