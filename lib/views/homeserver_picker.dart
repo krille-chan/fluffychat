@@ -30,22 +30,8 @@ class _HomeserverPickerState extends State<HomeserverPicker> {
 
     setState(() => _isLoading = true);
 
-    // Look up well known
     try {
-      final wellKnown = await MatrixApi(homeserver: Uri.parse(homeserver))
-          .requestWellKnownInformations();
-      homeserver = wellKnown.mHomeserver.baseUrl;
-    } catch (e) {
-      Logs().v('Found no well known information', e);
-    }
-
-    try {
-      await Matrix.of(context)
-          .client
-          .checkHomeserver(homeserver, supportedLoginTypes: {
-        AuthenticationTypes.password,
-        if (PlatformInfos.isMobile) AuthenticationTypes.sso
-      });
+      await Matrix.of(context).client.checkHomeserver(homeserver);
       final loginTypes = await Matrix.of(context).client.requestLoginTypes();
       if (loginTypes.flows
           .any((flow) => flow.type == AuthenticationTypes.password)) {

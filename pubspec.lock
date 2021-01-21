@@ -216,7 +216,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "4597ea344553e78a0817d7cdad16ac72079c8034"
+      resolved-ref: "6badbc327e74ed814a3d8da410b1b5c5ce2596c0"
       url: "https://gitlab.com/famedly/famedlysdk.git"
     source: git
     version: "0.0.1"
@@ -603,7 +603,7 @@ packages:
       name: matrix_api_lite
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.4"
+    version: "0.1.6"
   matrix_file_e2ee:
     dependency: transitive
     description:

@@ -322,6 +322,10 @@ class MatrixState extends State<Matrix> {
         'im.ponies.room_emotes', // we want emotes to work properly
       },
       databaseBuilder: getDatabase,
+      supportedLoginTypes: {
+        AuthenticationTypes.password,
+        if (PlatformInfos.isMobile) AuthenticationTypes.sso
+      },
     );
     LoadingDialog.defaultTitle = L10n.of(context).loadingPleaseWait;
     LoadingDialog.defaultBackLabel = L10n.of(context).close;
