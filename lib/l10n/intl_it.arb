@@ -1989,5 +1989,15 @@
     "placeholders": {
       "homeserver": {}
     }
+  },
+  "waitingPartnerEmoji": "In attesa che il partner accetti l'emoji…",
+  "@waitingPartnerEmoji": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "waitingPartnerAcceptRequest": "In attesa che il partner accetti la richiesta…",
+  "@waitingPartnerAcceptRequest": {
+    "type": "text",
+    "placeholders": {}
   }
 }
