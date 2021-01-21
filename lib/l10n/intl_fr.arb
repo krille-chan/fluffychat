@@ -1618,12 +1618,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerAcceptRequest": "En attente de la vérification de la demande par le partenaire...",
+  "waitingPartnerAcceptRequest": "En attente de l'acceptation de la demande par le partenaire…",
   "@waitingPartnerAcceptRequest": {
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerEmoji": "En attente de l'acceptation de l'émoji par le partenaire...",
+  "waitingPartnerEmoji": "En attente de l'acceptation de l'émoji par le partenaire…",
   "@waitingPartnerEmoji": {
     "type": "text",
     "placeholders": {}
