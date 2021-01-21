@@ -1995,7 +1995,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "youWillBeConnectedTo": "Du wirst mit [homeserver] verbunden",
+  "youWillBeConnectedTo": "Du wirst mit {homeserver} verbunden",
   "@youWillBeConnectedTo": {
     "type": "text",
     "placeholders": {
