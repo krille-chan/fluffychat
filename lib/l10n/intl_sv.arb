@@ -1,5 +1,5 @@
 {
-  "activatedEndToEndEncryption": "aktiverade hellängdskryptering",
+  "activatedEndToEndEncryption": "{username} aktiverade totalsträckskryptering",
   "@activatedEndToEndEncryption": {
     "type": "text",
     "placeholders": {
@@ -11,7 +11,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "acceptedTheInvitation": "{användarnamn} accepterade inbjudan",
+  "acceptedTheInvitation": "{username} accepterade inbjudan",
   "@acceptedTheInvitation": {
     "type": "text",
     "placeholders": {
@@ -30,6 +30,113 @@
   },
   "accept": "Acceptera",
   "@accept": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "blockDevice": "Blockera Enhet",
+  "@blockDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bannedUser": "{username} bannlös {targetName}",
+  "@bannedUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "banned": "Bannlyst",
+  "@banned": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "banFromChat": "Bannlys från chatt",
+  "@banFromChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "avatarHasBeenChanged": "Avatar har ändrats",
+  "@avatarHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "authentication": "Autentisering",
+  "@authentication": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askVerificationRequest": "Acceptera denna verifikationsförfrågan från {username}?",
+  "@askVerificationRequest": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "askSSSSVerify": "Vänligen ange din lösenfras eller återställningsnyckel för säker lagring för att verifiera din session.",
+  "@askSSSSVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askSSSSSign": "För att kunna signera den andra personen, vänligen ange din lösenfras eller återställningsnyckel för säker lagring.",
+  "@askSSSSSign": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askSSSSCache": "Vänligen ange din lösenfras eller återställningsnyckel för säker lagring för att lagra nycklarna.",
+  "@askSSSSCache": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSure": "Är du säker?",
+  "@areYouSure": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areGuestsAllowedToJoin": "Får gästanvändare gå med",
+  "@areGuestsAllowedToJoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "archivedRoom": "Arkiverat Rum",
+  "@archivedRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "archive": "Arkiv",
+  "@archive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "anyoneCanJoin": "Vem som helst kan gå med",
+  "@anyoneCanJoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "answeredTheCall": "{senderName} besvarade samtalet",
+  "@answeredTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "alreadyHaveAnAccount": "Har du redan ett konto?",
+  "@alreadyHaveAnAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "alias": "alias",
+  "@alias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "admin": "Admin",
+  "@admin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addGroupDescription": "Lägg till en gruppbeskrivning",
+  "@addGroupDescription": {
     "type": "text",
     "placeholders": {}
   }
