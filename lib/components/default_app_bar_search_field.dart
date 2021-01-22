@@ -7,6 +7,7 @@ class DefaultAppBarSearchField extends StatefulWidget {
   final bool autofocus;
   final String prefixText;
   final String hintText;
+  final EdgeInsets padding;
 
   const DefaultAppBarSearchField({
     Key key,
@@ -16,6 +17,7 @@ class DefaultAppBarSearchField extends StatefulWidget {
     this.autofocus = false,
     this.prefixText,
     this.hintText,
+    this.padding,
   }) : super(key: key);
 
   @override
@@ -59,7 +61,7 @@ class _DefaultAppBarSearchFieldState extends State<DefaultAppBarSearchField> {
   Widget build(BuildContext context) {
     return Container(
       height: 40,
-      padding: EdgeInsets.only(right: 12),
+      padding: widget.padding ?? EdgeInsets.only(right: 12),
       child: Material(
         color: Theme.of(context).secondaryHeaderColor,
         borderRadius: BorderRadius.circular(32),

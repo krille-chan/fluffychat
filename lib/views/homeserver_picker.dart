@@ -1,11 +1,10 @@
 import 'dart:math';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/components/default_app_bar_search_field.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/app_config.dart';
-import 'package:fluffychat/components/sentry_switch_list_tile.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -20,17 +19,19 @@ class HomeserverPicker extends StatefulWidget {
 class _HomeserverPickerState extends State<HomeserverPicker> {
   bool _isLoading = false;
   String _domain = AppConfig.defaultHomeserver;
+  final TextEditingController _controller =
+      TextEditingController(text: AppConfig.defaultHomeserver);
 
   void _checkHomeserverAction(BuildContext context) async {
-    var homeserver = _domain;
-
-    if (!homeserver.startsWith('https://')) {
-      homeserver = 'https://$homeserver';
-    }
-
-    setState(() => _isLoading = true);
-
     try {
+      if (_domain.isEmpty) throw L10n.of(context).changeTheHomeserver;
+      var homeserver = _domain;
+
+      if (!homeserver.startsWith('https://')) {
+        homeserver = 'https://$homeserver';
+      }
+
+      setState(() => _isLoading = true);
       await Matrix.of(context).client.checkHomeserver(homeserver);
       final loginTypes = await Matrix.of(context).client.requestLoginTypes();
       if (loginTypes.flows
@@ -41,10 +42,12 @@ class _HomeserverPickerState extends State<HomeserverPicker> {
           .any((flow) => flow.type == AuthenticationTypes.sso)) {
         await AdaptivePageLayout.of(context).pushNamed('/sso');
       }
+    } on String catch (e) {
+      // ignore: unawaited_futures
+      FlushbarHelper.createError(message: e).show(context);
     } catch (e) {
       // ignore: unawaited_futures
       FlushbarHelper.createError(
-              title: L10n.of(context).noConnectionToTheServer,
               message: (e as Object).toLocalizedString(context))
           .show(context);
     } finally {
@@ -54,29 +57,23 @@ class _HomeserverPickerState extends State<HomeserverPicker> {
     }
   }
 
-  void _changeHomeserverAction(BuildContext context) async {
-    final input = await showTextInputDialog(
-      context: context,
-      title: L10n.of(context).changeTheHomeserver,
-      textFields: [
-        DialogTextField(
-          keyboardType: TextInputType.url,
-          prefixText: 'https://',
-          hintText: AppConfig.defaultHomeserver,
-        ),
-      ],
-    );
-    if (input?.single?.isNotEmpty ?? false) {
-      setState(() => _domain = input.single);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final padding = EdgeInsets.symmetric(
       horizontal: max((MediaQuery.of(context).size.width - 600) / 2, 0),
     );
     return Scaffold(
+      appBar: AppBar(
+        title: DefaultAppBarSearchField(
+          prefixText: 'https://',
+          hintText: L10n.of(context).enterYourHomeserver,
+          searchController: _controller,
+          suffix: Icon(Icons.edit_outlined),
+          padding: padding,
+          onChanged: (s) => _domain = s,
+        ),
+        elevation: 0,
+      ),
       body: SafeArea(
         child: Padding(
           padding: padding,
@@ -96,63 +93,6 @@ class _HomeserverPickerState extends State<HomeserverPicker> {
                     fontSize: 22,
                   ),
                 ),
-              ),
-              SizedBox(height: 16),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Material(
-                  borderRadius: BorderRadius.circular(16),
-                  elevation: 2,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      SizedBox(height: 8),
-                      Text(
-                        L10n.of(context).youWillBeConnectedTo(_domain),
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      FlatButton(
-                        padding: EdgeInsets.all(8),
-                        child: Text(
-                          L10n.of(context).changeTheHomeserver,
-                          style: TextStyle(
-                            decoration: TextDecoration.underline,
-                            fontSize: 16,
-                            color: Colors.blue,
-                          ),
-                        ),
-                        onPressed: () => _changeHomeserverAction(context),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Wrap(
-                alignment: WrapAlignment.center,
-                children: [
-                  FlatButton(
-                    padding: EdgeInsets.all(8),
-                    child: Text(
-                      L10n.of(context).privacy,
-                      style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        color: Colors.blueGrey,
-                      ),
-                    ),
-                    onPressed: () => PlatformInfos.showDialog(context),
-                  ),
-                  FlatButton(
-                    padding: EdgeInsets.all(8),
-                    child: Text(
-                      L10n.of(context).about,
-                      style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        color: Colors.blueGrey,
-                      ),
-                    ),
-                    onPressed: () => PlatformInfos.showDialog(context),
-                  ),
-                ],
               ),
             ],
           ),
@@ -186,7 +126,33 @@ class _HomeserverPickerState extends State<HomeserverPicker> {
                 ),
               ),
             ),
-            SentrySwitchListTile(),
+            Wrap(
+              alignment: WrapAlignment.center,
+              children: [
+                FlatButton(
+                  padding: EdgeInsets.all(8),
+                  child: Text(
+                    L10n.of(context).privacy,
+                    style: TextStyle(
+                      decoration: TextDecoration.underline,
+                      color: Colors.blueGrey,
+                    ),
+                  ),
+                  onPressed: () => PlatformInfos.showDialog(context),
+                ),
+                FlatButton(
+                  padding: EdgeInsets.all(8),
+                  child: Text(
+                    L10n.of(context).about,
+                    style: TextStyle(
+                      decoration: TextDecoration.underline,
+                      color: Colors.blueGrey,
+                    ),
+                  ),
+                  onPressed: () => PlatformInfos.showDialog(context),
+                ),
+              ],
+            ),
           ],
         ),
       ),

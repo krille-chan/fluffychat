@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:fluffychat/components/sentry_switch_list_tile.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info/package_info.dart';
@@ -51,8 +52,9 @@ abstract class PlatformInfos {
           child: Text(AppConfig.emojiFontName),
           onPressed: () => launch(AppConfig.emojiFontUrl),
         ),
+        SentrySwitchListTile(label: L10n.of(context).sendBugReports),
       ],
-      applicationIcon: Image.asset('assets/logo.png', width: 100, height: 100),
+      applicationIcon: Image.asset('assets/logo.png', width: 64, height: 64),
       applicationName: AppConfig.applicationName,
     );
   }
