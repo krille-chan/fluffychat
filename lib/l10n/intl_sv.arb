@@ -22,5 +22,15 @@
   "@about": {
     "type": "text",
     "placeholders": {}
+  },
+  "account": "Konto",
+  "@account": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "accept": "Acceptera",
+  "@accept": {
+    "type": "text",
+    "placeholders": {}
   }
 }
