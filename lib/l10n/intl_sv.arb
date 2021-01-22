@@ -1,1 +1,26 @@
-{}
+{
+  "activatedEndToEndEncryption": "aktiverade hellängdskryptering",
+  "@activatedEndToEndEncryption": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "accountInformation": "Information om kontot",
+  "@accountInformation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "acceptedTheInvitation": "{användarnamn} accepterade inbjudan",
+  "@acceptedTheInvitation": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "about": "Om Fluffychat",
+  "@about": {
+    "type": "text",
+    "placeholders": {}
+  }
+}
