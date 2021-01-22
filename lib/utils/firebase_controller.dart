@@ -171,7 +171,7 @@ abstract class FirebaseController {
       Client client;
       var tempClient = false;
       try {
-        client = Matrix.of(context).client;
+        client = matrix.client;
       } catch (_) {
         client = null;
       }
