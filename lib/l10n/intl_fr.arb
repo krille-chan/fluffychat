@@ -189,7 +189,7 @@
       "username": {}
     }
   },
-  "changedTheDisplaynameTo": "{username} s'est renommé en : {displayname}",
+  "changedTheDisplaynameTo": "{username} s'est renommé·e en : {displayname}",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
