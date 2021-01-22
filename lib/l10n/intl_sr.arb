@@ -76,7 +76,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "bannedUser": "{username} избаци корисника {targetName}",
+  "bannedUser": "{username} забрани корисника {targetName}",
   "@bannedUser": {
     "type": "text",
     "placeholders": {
@@ -84,12 +84,12 @@
       "targetName": {}
     }
   },
-  "banned": "Избачен",
+  "banned": "Забрањен",
   "@banned": {
     "type": "text",
     "placeholders": {}
   },
-  "banFromChat": "Избачен из ћаскања",
+  "banFromChat": "Забрани у ћаскању",
   "@banFromChat": {
     "type": "text",
     "placeholders": {}
@@ -1340,12 +1340,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "kickFromChat": "Шутни из ћаскања",
+  "kickFromChat": "Избаци из ћаскања",
   "@kickFromChat": {
     "type": "text",
     "placeholders": {}
   },
-  "kickedAndBanned": "{username} шутну и забрани корисника {targetName}",
+  "kickedAndBanned": "{username} избаци и забрани корисника {targetName}",
   "@kickedAndBanned": {
     "type": "text",
     "placeholders": {
@@ -1353,7 +1353,7 @@
       "targetName": {}
     }
   },
-  "kicked": "{username} шутну корисника {targetName}",
+  "kicked": "{username} избаци корисника {targetName}",
   "@kicked": {
     "type": "text",
     "placeholders": {
@@ -1494,7 +1494,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "groupWith": "Група с корисником {displayname}",
+  "groupWith": "Група са корисником {displayname}",
   "@groupWith": {
     "type": "text",
     "placeholders": {
@@ -1718,7 +1718,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "dateWithYear": "{year}-{month}-{day}",
+  "dateWithYear": "{day} {month} {year}",
   "@dateWithYear": {
     "type": "text",
     "placeholders": {
@@ -1727,7 +1727,7 @@
       "day": {}
     }
   },
-  "dateWithoutYear": "{month}-{day}",
+  "dateWithoutYear": "{day} {month}",
   "@dateWithoutYear": {
     "type": "text",
     "placeholders": {
@@ -1945,7 +1945,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "timeOfDay": "{hours12}:{minutes} {suffix}",
+  "timeOfDay": "{hours24}:{minutes}",
   "@timeOfDay": {
     "type": "text",
     "placeholders": {
@@ -1966,5 +1966,38 @@
     "placeholders": {
       "homeserver": {}
     }
+  },
+  "onlineKeyBackupEnabled": "Укључено је прављење резервних кључева на мрежи",
+  "@onlineKeyBackupEnabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "onlineKeyBackupDisabled": "Искључено је прављење резервних кључева на мрежи",
+  "@onlineKeyBackupDisabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noMegolmBootstrap": "Прављење резерве кључева на мрежи укључите из Елемента.",
+  "@noMegolmBootstrap": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changedTheDisplaynameTo": "{username} промени приказно име на: „{displayname}“",
+  "@changedTheDisplaynameTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "displayname": {}
+    }
+  },
+  "waitingPartnerEmoji": "Чекам да саговорник прихвати емоџије…",
+  "@waitingPartnerEmoji": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "waitingPartnerAcceptRequest": "Чекам да саговорник прихвати захтев…",
+  "@waitingPartnerAcceptRequest": {
+    "type": "text",
+    "placeholders": {}
   }
 }
