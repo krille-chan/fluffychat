@@ -1050,7 +1050,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pickImage": "Escolle unha imaxe",
+  "pickImage": "Elixe unha imaxe",
   "@pickImage": {
     "type": "text",
     "placeholders": {}
@@ -1994,5 +1994,12 @@
   "@pleaseEnter4Digits": {
     "type": "text",
     "placeholders": {}
+  },
+  "youWillBeConnectedTo": "Vaste conectar a {homeserver}",
+  "@youWillBeConnectedTo": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
   }
 }
