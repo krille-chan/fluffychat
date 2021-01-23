@@ -78,9 +78,7 @@ class _InvitationSelectionState extends State<InvitationSelection> {
   void searchUser(BuildContext context, String text) async {
     coolDown?.cancel();
     if (text.isEmpty) {
-      setState(() {
-        foundProfiles = [];
-      });
+      setState(() => foundProfiles = []);
     }
     currentSearchTerm = text;
     if (currentSearchTerm.isEmpty) return;
