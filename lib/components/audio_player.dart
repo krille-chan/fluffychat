@@ -157,7 +157,9 @@ class _AudioPlayerState extends State<AudioPlayer> {
               ? CircularProgressIndicator(strokeWidth: 2)
               : IconButton(
                   icon: Icon(
-                    flutterSound.isPlaying ? Icons.pause : Icons.play_arrow,
+                    flutterSound.isPlaying
+                        ? Icons.pause_outlined
+                        : Icons.play_arrow_outlined,
                     color: widget.color,
                   ),
                   onPressed: () {
