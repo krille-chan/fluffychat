@@ -30,14 +30,15 @@ class _NewPrivateChatState extends State<NewPrivateChat> {
       -1;
 
   void submitAction(BuildContext context) async {
+    controller.text = controller.text.replaceAll('@', '').trim();
     if (controller.text.isEmpty) return;
     if (!_formKey.currentState.validate()) return;
     final matrix = Matrix.of(context);
 
-    if ('@' + controller.text.trim() == matrix.client.userID) return;
+    if ('@' + controller.text == matrix.client.userID) return;
 
     final user = User(
-      '@' + controller.text.trim(),
+      '@' + controller.text,
       room: Room(id: '', client: matrix.client),
     );
     final roomID = await showFutureLoadingDialog(
@@ -52,12 +53,9 @@ class _NewPrivateChatState extends State<NewPrivateChat> {
   }
 
   void searchUserWithCoolDown(BuildContext context) async {
-    if (controller.text.startsWith('@')) {
-      controller.text = controller.text.substring(1);
-    }
     coolDown?.cancel();
     coolDown = Timer(
-      Duration(seconds: 1),
+      Duration(milliseconds: 500),
       () => searchUser(context, controller.text),
     );
   }
@@ -73,14 +71,14 @@ class _NewPrivateChatState extends State<NewPrivateChat> {
     if (loading) return;
     setState(() => loading = true);
     final matrix = Matrix.of(context);
-    final response = await showFutureLoadingDialog(
-      context: context,
-      future: () => matrix.client.searchUser(text, limit: 10),
-    );
+    UserSearchResult response;
+    try {
+      response = await matrix.client.searchUser(text, limit: 10);
+    } catch (_) {}
     setState(() => loading = false);
-    if (response.result?.results?.isEmpty ?? true) return;
+    if (response?.results?.isEmpty ?? true) return;
     setState(() {
-      foundProfiles = List<Profile>.from(response.result.results);
+      foundProfiles = List<Profile>.from(response.results);
     });
   }
 
