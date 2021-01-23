@@ -1,16 +1,16 @@
 import 'dart:async';
+import 'dart:io';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:flutter_sound/flutter_sound.dart';
-import 'package:intl/intl.dart';
+import 'package:flutter_sound_lite/flutter_sound.dart';
+import 'package:path_provider/path_provider.dart';
 
 class RecordingDialog extends StatefulWidget {
-  final Function onFinished;
   final L10n l10n;
 
   const RecordingDialog({
-    this.onFinished,
     @required this.l10n,
     Key key,
   }) : super(key: key);
@@ -20,22 +20,38 @@ class RecordingDialog extends StatefulWidget {
 }
 
 class _RecordingDialogState extends State<RecordingDialog> {
-  FlutterSound flutterSound = FlutterSound();
+  final FlutterSoundRecorder flutterSound = FlutterSoundRecorder();
   String time = '00:00:00';
 
   StreamSubscription _recorderSubscription;
 
   bool error = false;
+  String _recordedPath;
+  double _decibels = 0;
 
   void startRecording() async {
     try {
-      await flutterSound.startRecorder(
-        codec: t_CODEC.CODEC_AAC,
-      );
-      _recorderSubscription = flutterSound.onRecorderStateChanged.listen((e) {
-        var date =
-            DateTime.fromMillisecondsSinceEpoch(e.currentPosition.toInt());
-        setState(() => time = DateFormat('mm:ss:SS', 'en_US').format(date));
+      await flutterSound.openAudioSession();
+      await flutterSound.setSubscriptionDuration(Duration(milliseconds: 100));
+
+      final codec = Codec.aacADTS;
+      final tempDir = await getTemporaryDirectory();
+      _recordedPath = '${tempDir.path}/recording${ext[codec.index]}';
+
+      // delete any existing file
+      var outputFile = File(_recordedPath);
+      if (outputFile.existsSync()) {
+        await outputFile.delete();
+      }
+
+      await flutterSound.startRecorder(codec: codec, toFile: _recordedPath);
+
+      _recorderSubscription = flutterSound.onProgress.listen((e) {
+        setState(() {
+          _decibels = e.decibels;
+          time =
+              '${e.duration.inMinutes.toString().padLeft(2, '0')}:${(e.duration.inSeconds % 60).toString().padLeft(2, '0')}';
+        });
       });
     } catch (e) {
       error = true;
@@ -52,6 +68,7 @@ class _RecordingDialogState extends State<RecordingDialog> {
   void dispose() {
     if (flutterSound.isRecording) flutterSound.stopRecorder();
     _recorderSubscription?.cancel();
+    flutterSound.closeAudioSession();
     super.dispose();
   }
 
@@ -62,12 +79,24 @@ class _RecordingDialogState extends State<RecordingDialog> {
         Navigator.of(context).pop();
       });
     }
+    const maxDecibalWidth = 64.0;
+    final decibalWidth = min(_decibels / 2, maxDecibalWidth).toDouble();
     return AlertDialog(
       content: Row(
         children: <Widget>[
-          CircleAvatar(
-            backgroundColor: Colors.red,
-            radius: 8,
+          Container(
+            width: maxDecibalWidth,
+            height: maxDecibalWidth,
+            alignment: Alignment.center,
+            child: AnimatedContainer(
+              duration: Duration(milliseconds: 50),
+              width: decibalWidth,
+              height: decibalWidth,
+              decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.circular(decibalWidth),
+              ),
+            ),
           ),
           SizedBox(width: 8),
           Expanded(
@@ -100,11 +129,8 @@ class _RecordingDialogState extends State<RecordingDialog> {
           ),
           onPressed: () async {
             await _recorderSubscription?.cancel();
-            final result = await flutterSound.stopRecorder();
-            if (widget.onFinished != null) {
-              widget.onFinished(result);
-            }
-            Navigator.of(context).pop();
+            await flutterSound.stopRecorder();
+            Navigator.of(context).pop<String>(_recordedPath);
           },
         ),
       ],

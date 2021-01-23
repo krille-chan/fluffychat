@@ -31,6 +31,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pedantic/pedantic.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:swipe_to_action/swipe_to_action.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -260,13 +261,16 @@ class _ChatState extends State<Chat> {
   }
 
   void voiceMessageAction(BuildContext context) async {
-    String result;
-    await showDialog(
-        context: context,
-        builder: (c) => RecordingDialog(
-              onFinished: (r) => result = r,
-              l10n: L10n.of(context),
-            ));
+    if (await Permission.microphone.isGranted != true) {
+      final status = await Permission.microphone.request();
+      if (status != PermissionStatus.granted) return;
+    }
+    final result = await showDialog<String>(
+      context: context,
+      builder: (c) => RecordingDialog(
+        l10n: L10n.of(context),
+      ),
+    );
     if (result == null) return;
     final audioFile = File(result);
     // as we already explicitly say send in the recording dialog,
