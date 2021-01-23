@@ -139,13 +139,18 @@ class MatrixState extends State<Matrix> {
     final stage = uiaRequest.nextStages.first;
     switch (stage) {
       case AuthenticationTypes.password:
-        final input = await showTextInputDialog(context: context, textFields: [
-          DialogTextField(
-            minLines: 1,
-            maxLines: 1,
-            obscureText: true,
-          )
-        ]);
+        final input = await showTextInputDialog(
+          context: context,
+          title: L10n.of(context).pleaseEnterYourPassword,
+          textFields: [
+            DialogTextField(
+              minLines: 1,
+              maxLines: 1,
+              obscureText: true,
+              hintText: '******',
+            )
+          ],
+        );
         if (input?.isEmpty ?? true) return;
         return uiaRequest.completeStage(
           AuthenticationPassword(

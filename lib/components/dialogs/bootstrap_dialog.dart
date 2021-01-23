@@ -1,6 +1,7 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:famedlysdk/encryption.dart';
 import 'package:famedlysdk/encryption/utils/bootstrap.dart';
+import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/dialogs/adaptive_flat_button.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -8,16 +9,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import '../matrix.dart';
-
 class BootstrapDialog extends StatefulWidget {
-  const BootstrapDialog({Key key, @required this.l10n}) : super(key: key);
+  const BootstrapDialog({
+    Key key,
+    @required this.l10n,
+    @required this.client,
+    this.easyMode = false,
+  }) : super(key: key);
 
   Future<bool> show(BuildContext context) => PlatformInfos.isCupertinoStyle
       ? showCupertinoDialog(context: context, builder: (context) => this)
       : showDialog(context: context, builder: (context) => this);
 
   final L10n l10n;
+  final Client client;
+  final bool easyMode;
 
   @override
   _BootstrapDialogState createState() => _BootstrapDialogState();
@@ -28,17 +34,17 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
 
   @override
   Widget build(BuildContext context) {
-    bootstrap ??= Matrix.of(context)
-        .client
-        .encryption
+    bootstrap ??= widget.client.encryption
         .bootstrap(onUpdate: () => setState(() => null));
 
     final buttons = <AdaptiveFlatButton>[];
     Widget body;
+    var titleText = widget.l10n.cachedKeys;
 
     switch (bootstrap.state) {
       case BootstrapState.loading:
         body = LinearProgressIndicator();
+        titleText = widget.l10n.loadingPleaseWait;
         break;
       case BootstrapState.askWipeSsss:
         body = Text('Wipe chat backup?');
@@ -208,7 +214,7 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
         break;
     }
 
-    final title = Text('Chat backup');
+    final title = Text(titleText);
     if (PlatformInfos.isCupertinoStyle) {
       return CupertinoAlertDialog(
         title: title,
