@@ -71,6 +71,7 @@ class _HomeserverPickerState extends State<HomeserverPicker> {
           suffix: Icon(Icons.edit_outlined),
           padding: padding,
           onChanged: (s) => _domain = s,
+          readOnly: !AppConfig.allowOtherHomeservers,
         ),
         elevation: 0,
       ),
