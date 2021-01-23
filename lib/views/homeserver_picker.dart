@@ -130,7 +130,6 @@ class _HomeserverPickerState extends State<HomeserverPicker> {
               alignment: WrapAlignment.center,
               children: [
                 FlatButton(
-                  padding: EdgeInsets.all(8),
                   child: Text(
                     L10n.of(context).privacy,
                     style: TextStyle(
@@ -141,7 +140,6 @@ class _HomeserverPickerState extends State<HomeserverPicker> {
                   onPressed: () => PlatformInfos.showDialog(context),
                 ),
                 FlatButton(
-                  padding: EdgeInsets.all(8),
                   child: Text(
                     L10n.of(context).about,
                     style: TextStyle(
