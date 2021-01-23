@@ -92,6 +92,10 @@ class Store {
     return await secureStorage.write(key: key, value: value);
   }
 
+  Future<void> setItemBool(String key, bool value) async {
+    await setItem(key, value.toString());
+  }
+
   Future<void> deleteItem(String key) async {
     if (!PlatformInfos.isMobile) {
       await _setupLocalStorage();
