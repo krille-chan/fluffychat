@@ -11,7 +11,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "acceptedTheInvitation": "{username} hat die Einladung akzeptiert",
+  "acceptedTheInvitation": "{username} hat die Einladung angenommen",
   "@acceptedTheInvitation": {
     "type": "text",
     "placeholders": {
@@ -55,7 +55,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "answeredTheCall": "{senderName} hat den Anruf abgehoben",
+  "answeredTheCall": "{senderName} hat den Anruf angenommen",
   "@answeredTheCall": {
     "type": "text",
     "placeholders": {
