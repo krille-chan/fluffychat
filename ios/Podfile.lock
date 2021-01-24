@@ -34,6 +34,8 @@ PODS:
   - DKPhotoGallery/Resource (0.0.17):
     - SDWebImage
     - SwiftyGif
+  - emoji_picker (0.0.3):
+    - Flutter
   - file_picker (0.0.1):
     - DKImagePickerController/PhotoGallery
     - Flutter
@@ -91,8 +93,9 @@ PODS:
     - OLMKit
   - flutter_secure_storage (3.3.1):
     - Flutter
-  - flutter_sound (0.0.1):
+  - "flutter_sound_lite (7.5.3+1)":
     - Flutter
+    - "tau_sound_core (= 7.5.3+1)"
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
@@ -146,6 +149,8 @@ PODS:
   - SDWebImage/Core (5.9.5)
   - share (0.0.1):
     - Flutter
+  - shared_preferences (0.0.1):
+    - Flutter
   - sqflite (0.0.2):
     - Flutter
     - FMDB (>= 2.7.5)
@@ -173,6 +178,7 @@ PODS:
     - sqlite3/perf-threadsafe
     - sqlite3/rtree
   - SwiftyGif (5.3.0)
+  - "tau_sound_core (7.5.3+1)"
   - url_launcher (0.0.1):
     - Flutter
   - webview_flutter (0.0.1):
@@ -181,6 +187,7 @@ PODS:
 DEPENDENCIES:
   - android_path_provider (from `.symlinks/plugins/android_path_provider/ios`)
   - disk_space (from `.symlinks/plugins/disk_space/ios`)
+  - emoji_picker (from `.symlinks/plugins/emoji_picker/ios`)
   - file_picker (from `.symlinks/plugins/file_picker/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
@@ -189,7 +196,7 @@ DEPENDENCIES:
   - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
   - flutter_olm (from `.symlinks/plugins/flutter_olm/ios`)
   - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
-  - flutter_sound (from `.symlinks/plugins/flutter_sound/ios`)
+  - flutter_sound_lite (from `.symlinks/plugins/flutter_sound_lite/ios`)
   - image_picker (from `.symlinks/plugins/image_picker/ios`)
   - native_imaging (from `.symlinks/plugins/native_imaging/ios`)
   - open_file (from `.symlinks/plugins/open_file/ios`)
@@ -198,6 +205,7 @@ DEPENDENCIES:
   - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
   - receive_sharing_intent (from `.symlinks/plugins/receive_sharing_intent/ios`)
   - share (from `.symlinks/plugins/share/ios`)
+  - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
   - SQLCipher
   - sqlite3_flutter_libs (from `.symlinks/plugins/sqlite3_flutter_libs/ios`)
@@ -227,12 +235,15 @@ SPEC REPOS:
     - SQLCipher
     - sqlite3
     - SwiftyGif
+    - tau_sound_core
 
 EXTERNAL SOURCES:
   android_path_provider:
     :path: ".symlinks/plugins/android_path_provider/ios"
   disk_space:
     :path: ".symlinks/plugins/disk_space/ios"
+  emoji_picker:
+    :path: ".symlinks/plugins/emoji_picker/ios"
   file_picker:
     :path: ".symlinks/plugins/file_picker/ios"
   firebase_core:
@@ -249,8 +260,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_olm/ios"
   flutter_secure_storage:
     :path: ".symlinks/plugins/flutter_secure_storage/ios"
-  flutter_sound:
-    :path: ".symlinks/plugins/flutter_sound/ios"
+  flutter_sound_lite:
+    :path: ".symlinks/plugins/flutter_sound_lite/ios"
   image_picker:
     :path: ".symlinks/plugins/image_picker/ios"
   native_imaging:
@@ -267,6 +278,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/receive_sharing_intent/ios"
   share:
     :path: ".symlinks/plugins/share/ios"
+  shared_preferences:
+    :path: ".symlinks/plugins/shared_preferences/ios"
   sqflite:
     :path: ".symlinks/plugins/sqflite/ios"
   sqlite3_flutter_libs:
@@ -281,6 +294,7 @@ SPEC CHECKSUMS:
   disk_space: e94d34bbdf77954adfb39e60bde9cc5c7233eda6
   DKImagePickerController: b5eb7f7a388e4643264105d648d01f727110fc3d
   DKPhotoGallery: fdfad5125a9fdda9cc57df834d49df790dbb4179
+  emoji_picker: 0e868059aa18f9473d234f3d0701fbd4d5fd310c
   file_picker: 3e6c3790de664ccf9b882732d9db5eaf6b8d4eb1
   Firebase: 7cf5f9c67f03cb3b606d1d6535286e1080e57eb6
   firebase_core: 00e54a4744164a6b5a250b96dd1ad5afaba7a342
@@ -297,7 +311,7 @@ SPEC CHECKSUMS:
   flutter_local_notifications: 0c0b1ae97e741e1521e4c1629a459d04b9aec743
   flutter_olm: be36ebeb6388f7d7b3097d39feaf459a3cad2091
   flutter_secure_storage: 7953c38a04c3fdbb00571bcd87d8e3b5ceb9daec
-  flutter_sound: 0e8163ceac1e00eb6d894e2ae4641ba726a2c479
+  flutter_sound_lite: 011ef5c3a7fc0d29ad48463485f595220f7d13c5
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   GoogleDataTransport: f56af7caa4ed338dc8e138a5d7c5973e66440833
   GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
@@ -314,11 +328,13 @@ SPEC CHECKSUMS:
   receive_sharing_intent: c0d87310754e74c0f9542947e7cbdf3a0335a3b1
   SDWebImage: 0b2ba0d56479bf6a45ecddbfd5558bea93150d25
   share: 0b2c3e82132f5888bccca3351c504d0003b3b410
+  shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
   sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
   SQLCipher: 0b81a39b21247c559c52c3bd2234808e626c008b
   sqlite3: 8f7d2078ae27778699a622a94b853285793422a2
   sqlite3_flutter_libs: 5651f8ff48e3b44d910863c4ea5916085b1b245f
   SwiftyGif: e466e86c660d343357ab944a819a101c4127cb40
+  tau_sound_core: d6dad8fc83230965615e53717711e0550a642702
   url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
   webview_flutter: d2b4d6c66968ad042ad94cbb791f5b72b4678a96
 
