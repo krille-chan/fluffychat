@@ -66,7 +66,7 @@ abstract class FluffyThemes {
     ),
   );
 
-  static ThemeData dark = light.copyWith(
+  static ThemeData dark = ThemeData.dark().copyWith(
     primaryColorDark: Color(0xff121212),
     primaryColorLight: Colors.white,
     primaryColor: Color(0xFF8966CF),
@@ -76,6 +76,20 @@ abstract class FluffyThemes {
     accentColor: Color(0xFFF5B4D2),
     secondaryHeaderColor: Color(0xff1D1D1D),
     textTheme: Typography.material2018().white.merge(fallback_text_theme),
+    dialogTheme: DialogTheme(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+    ),
+    popupMenuTheme: PopupMenuThemeData(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+    ),
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: AppConfig.primaryColor,
+      foregroundColor: Colors.white,
+    ),
     appBarTheme: AppBarTheme(
       brightness: Brightness.dark,
       color: Color(0xff1D1D1D),
