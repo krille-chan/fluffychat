@@ -32,6 +32,7 @@ abstract class FluffyThemes {
     primaryColorLight: Color(0xff121212),
     brightness: Brightness.light,
     primaryColor: AppConfig.primaryColor,
+    accentColor: AppConfig.primaryColor,
     backgroundColor: Colors.white,
     secondaryHeaderColor: Color(0xFFECECF2),
     scaffoldBackgroundColor: Colors.white,
@@ -74,12 +75,12 @@ abstract class FluffyThemes {
   static ThemeData dark = ThemeData.dark().copyWith(
     primaryColorDark: Color(0xff121212),
     primaryColorLight: Colors.white,
-    primaryColor: Color(0xFF8966CF),
+    primaryColor: AppConfig.primaryColor,
     errorColor: Color(0xFFCF6679),
     backgroundColor: Colors.black,
     scaffoldBackgroundColor: Colors.black,
-    accentColor: Color(0xFFF5B4D2),
-    secondaryHeaderColor: Color(0xff1D1D1D),
+    accentColor: AppConfig.primaryColorLight,
+    secondaryHeaderColor: Color(0xff2D2D2D),
     textTheme: Typography.material2018().white.merge(fallback_text_theme),
     dialogTheme: DialogTheme(
       shape: RoundedRectangleBorder(
@@ -94,6 +95,11 @@ abstract class FluffyThemes {
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: AppConfig.primaryColor,
       foregroundColor: Colors.white,
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+      filled: true,
+      fillColor: Color(0xff2D2D2D),
     ),
     appBarTheme: AppBarTheme(
       brightness: Brightness.dark,
