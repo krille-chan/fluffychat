@@ -212,8 +212,6 @@ class _NewPrivateChatState extends State<NewPrivateChat> {
       floatingActionButton: FloatingActionButton(
         onPressed: () => submitAction(context),
         child: Icon(Icons.arrow_forward_outlined),
-        foregroundColor: Colors.white,
-        backgroundColor: Theme.of(context).primaryColor,
       ),
     );
   }

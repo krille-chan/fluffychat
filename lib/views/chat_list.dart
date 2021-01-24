@@ -256,7 +256,6 @@ class _ChatListState extends State<ChatList> {
                     ? null
                     : FloatingActionButton(
                         child: Icon(Icons.add_outlined),
-                        backgroundColor: Theme.of(context).primaryColor,
                         onPressed: () => AdaptivePageLayout.of(context)
                             .pushNamedAndRemoveUntilIsFirst('/newprivatechat'),
                       ),

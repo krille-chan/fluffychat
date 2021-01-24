@@ -19,7 +19,6 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:provider/provider.dart';
 import 'package:universal_html/prefer_universal/html.dart' as html;
-import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
 /*import 'package:fluffychat/views/chat.dart';
 import 'package:fluffychat/app_config.dart';
@@ -33,7 +32,6 @@ import 'dialogs/key_verification_dialog.dart';
 import '../utils/platform_infos.dart';
 import '../app_config.dart';
 import '../config/setting_keys.dart';
-import 'avatar.dart';
 
 class Matrix extends StatefulWidget {
   static const String callNamespace = 'chat.fluffy.jitsi_call';
@@ -169,61 +167,6 @@ class MatrixState extends State<Matrix> {
           AuthenticationData(session: uiaRequest.session),
         );
     }
-  }
-
-  void onJitsiCall(EventUpdate eventUpdate) {
-    final event = Event.fromJson(
-        eventUpdate.content, client.getRoomById(eventUpdate.roomID));
-    if (DateTime.now().millisecondsSinceEpoch -
-            event.originServerTs.millisecondsSinceEpoch >
-        1000 * 60 * 5) {
-      return;
-    }
-    final senderName = event.sender.calcDisplayname();
-    final senderAvatar = event.sender.avatarUrl;
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(L10n.of(context).videoCall),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            ListTile(
-              contentPadding: EdgeInsets.all(0),
-              leading: Avatar(senderAvatar, senderName),
-              title: Text(
-                senderName,
-                style: TextStyle(fontSize: 18),
-              ),
-              subtitle:
-                  event.room.isDirectChat ? null : Text(event.room.displayname),
-            ),
-            Divider(),
-            Row(
-              children: <Widget>[
-                Spacer(),
-                FloatingActionButton(
-                  backgroundColor: Colors.red,
-                  child: Icon(Icons.phone_missed_outlined),
-                  onPressed: () => Navigator.of(context).pop(),
-                ),
-                Spacer(),
-                FloatingActionButton(
-                  backgroundColor: Colors.green,
-                  child: Icon(Icons.phone_outlined),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                    launch(event.body);
-                  },
-                ),
-                Spacer(),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-    return;
   }
 
   bool webHasFocus = true;

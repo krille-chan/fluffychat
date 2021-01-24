@@ -181,7 +181,6 @@ class _EmotesSettingsState extends State<EmotesSettings> {
                   showSave = false;
                 });
               },
-              backgroundColor: Theme.of(context).primaryColor,
             )
           : null,
       body: StreamBuilder(

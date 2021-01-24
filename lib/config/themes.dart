@@ -2,6 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 
+import '../app_config.dart';
+
 abstract class FluffyThemes {
   static const double columnWidth = 360.0;
 
@@ -29,7 +31,7 @@ abstract class FluffyThemes {
     primaryColorDark: Colors.white,
     primaryColorLight: Color(0xff121212),
     brightness: Brightness.light,
-    primaryColor: Color(0xFF5625BA),
+    primaryColor: AppConfig.primaryColor,
     backgroundColor: Colors.white,
     secondaryHeaderColor: Color(0xFFECECF2),
     scaffoldBackgroundColor: Colors.white,
@@ -47,6 +49,10 @@ abstract class FluffyThemes {
         borderRadius: BorderRadius.circular(8.0),
       ),
     ),
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: AppConfig.primaryColor,
+      foregroundColor: Colors.white,
+    ),
     appBarTheme: AppBarTheme(
       brightness: Brightness.light,
       color: Colors.white,
@@ -60,7 +66,7 @@ abstract class FluffyThemes {
     ),
   );
 
-  static ThemeData dark = ThemeData.dark().copyWith(
+  static ThemeData dark = light.copyWith(
     primaryColorDark: Color(0xff121212),
     primaryColorLight: Colors.white,
     primaryColor: Color(0xFF8966CF),
@@ -70,19 +76,6 @@ abstract class FluffyThemes {
     accentColor: Color(0xFFF5B4D2),
     secondaryHeaderColor: Color(0xff1D1D1D),
     textTheme: Typography.material2018().white.merge(fallback_text_theme),
-    snackBarTheme: SnackBarThemeData(
-      behavior: kIsWeb ? SnackBarBehavior.floating : SnackBarBehavior.fixed,
-    ),
-    dialogTheme: DialogTheme(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8.0),
-      ),
-    ),
-    popupMenuTheme: PopupMenuThemeData(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8.0),
-      ),
-    ),
     appBarTheme: AppBarTheme(
       brightness: Brightness.dark,
       color: Color(0xff1D1D1D),

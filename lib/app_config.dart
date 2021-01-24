@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 abstract class AppConfig {
   static String _applicationName = 'FluffyChat';
   static String get applicationName => _applicationName;
@@ -8,6 +10,7 @@ abstract class AppConfig {
   static String jitsiInstance = 'https://meet.jit.si/';
   static const bool allowOtherHomeservers = true;
   static const bool enableRegistration = true;
+  static const Color primaryColor = Color(0xFF5625BA);
   static String _privacyUrl = 'https://fluffychat.im/en/privacy.html';
   static String get privacyUrl => _privacyUrl;
   static const String appId = 'im.fluffychat.FluffyChat';
