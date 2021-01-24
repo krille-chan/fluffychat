@@ -172,39 +172,32 @@ class _LoginState extends State<Login> {
               horizontal:
                   max((MediaQuery.of(context).size.width - 600) / 2, 0)),
           children: <Widget>[
-            ListTile(
-              leading: CircleAvatar(
-                child: Icon(Icons.account_box_outlined,
-                    color: Theme.of(context).primaryColor),
-              ),
-              title: TextField(
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: TextField(
                 readOnly: loading,
                 autocorrect: false,
                 autofocus: true,
                 onChanged: (t) => _checkWellKnownWithCoolDown(t, context),
                 controller: usernameController,
                 decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.account_box_outlined),
                     hintText:
                         '@${L10n.of(context).username.toLowerCase()}:domain',
                     errorText: usernameError,
                     labelText: L10n.of(context).username),
               ),
             ),
-            ListTile(
-              leading: CircleAvatar(
-                backgroundColor: Theme.of(context).brightness == Brightness.dark
-                    ? Color(0xff121212)
-                    : Colors.white,
-                child: Icon(Icons.lock_outlined,
-                    color: Theme.of(context).primaryColor),
-              ),
-              title: TextField(
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: TextField(
                 readOnly: loading,
                 autocorrect: false,
                 controller: passwordController,
                 obscureText: !showPassword,
                 onSubmitted: (t) => login(context),
                 decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.lock_outlined),
                     hintText: '****',
                     errorText: passwordError,
                     suffixIcon: IconButton(
@@ -217,17 +210,17 @@ class _LoginState extends State<Login> {
                     labelText: L10n.of(context).password),
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 12),
             Hero(
               tag: 'loginButton',
               child: Container(
-                height: 50,
+                height: 56,
                 padding: EdgeInsets.symmetric(horizontal: 12),
                 child: RaisedButton(
                   elevation: 7,
                   color: Theme.of(context).primaryColor,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(6),
+                    borderRadius: BorderRadius.circular(12),
                   ),
                   child: loading
                       ? LinearProgressIndicator()

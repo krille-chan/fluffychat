@@ -88,6 +88,22 @@ class _SignUpState extends State<SignUp> {
               tag: 'loginBanner',
               child: Image.asset('assets/banner.png'),
             ),
+            SizedBox(height: 16),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: TextField(
+                autocorrect: false,
+                controller: usernameController,
+                onSubmitted: (s) => signUpAction(context),
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.account_circle_outlined),
+                  hintText: L10n.of(context).username,
+                  errorText: usernameError,
+                  labelText: L10n.of(context).chooseAUsername,
+                ),
+              ),
+            ),
+            SizedBox(height: 8),
             ListTile(
               leading: CircleAvatar(
                 backgroundImage:
@@ -115,37 +131,17 @@ class _SignUpState extends State<SignUp> {
                   ? setAvatarAction
                   : () => setState(() => avatar = null),
             ),
-            ListTile(
-              leading: CircleAvatar(
-                backgroundColor: Theme.of(context).brightness == Brightness.dark
-                    ? Color(0xff121212)
-                    : Colors.white,
-                child: Icon(
-                  Icons.account_circle_outlined,
-                  color: Theme.of(context).primaryColor,
-                ),
-              ),
-              title: TextField(
-                autocorrect: false,
-                controller: usernameController,
-                onSubmitted: (s) => signUpAction(context),
-                decoration: InputDecoration(
-                    hintText: L10n.of(context).username,
-                    errorText: usernameError,
-                    labelText: L10n.of(context).chooseAUsername),
-              ),
-            ),
-            SizedBox(height: 20),
+            SizedBox(height: 16),
             Hero(
               tag: 'loginButton',
               child: Container(
-                height: 50,
+                height: 56,
                 padding: EdgeInsets.symmetric(horizontal: 12),
                 child: RaisedButton(
                   elevation: 7,
                   color: Theme.of(context).primaryColor,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(6),
+                    borderRadius: BorderRadius.circular(12),
                   ),
                   child: loading
                       ? LinearProgressIndicator()

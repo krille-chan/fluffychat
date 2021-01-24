@@ -108,13 +108,13 @@ class _HomeserverPickerState extends State<HomeserverPicker> {
               tag: 'loginButton',
               child: Container(
                 width: double.infinity,
-                height: 50,
+                height: 56,
                 padding: EdgeInsets.symmetric(horizontal: 12),
                 child: RaisedButton(
                   elevation: 7,
                   color: Theme.of(context).primaryColor,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(6),
+                    borderRadius: BorderRadius.circular(12),
                   ),
                   child: _isLoading
                       ? LinearProgressIndicator()

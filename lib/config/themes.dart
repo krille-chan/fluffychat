@@ -53,6 +53,11 @@ abstract class FluffyThemes {
       backgroundColor: AppConfig.primaryColor,
       foregroundColor: Colors.white,
     ),
+    inputDecorationTheme: InputDecorationTheme(
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+      filled: true,
+      fillColor: Color(0xFFECECF2),
+    ),
     appBarTheme: AppBarTheme(
       brightness: Brightness.light,
       color: Colors.white,

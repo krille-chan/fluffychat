@@ -48,7 +48,7 @@ class _NewGroupState extends State<NewGroup> {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(12.0),
             child: TextField(
               controller: controller,
               autofocus: true,
@@ -56,7 +56,6 @@ class _NewGroupState extends State<NewGroup> {
               textInputAction: TextInputAction.go,
               onSubmitted: (s) => submitAction(context),
               decoration: InputDecoration(
-                  border: OutlineInputBorder(),
                   labelText: L10n.of(context).optionalGroupName,
                   prefixIcon: Icon(Icons.people_outlined),
                   hintText: L10n.of(context).enterAGroupName),

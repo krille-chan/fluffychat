@@ -64,41 +64,34 @@ class _DefaultAppBarSearchFieldState extends State<DefaultAppBarSearchField> {
     return Container(
       height: 40,
       padding: widget.padding ?? EdgeInsets.only(right: 12),
-      child: Material(
-        color: Theme.of(context).secondaryHeaderColor,
-        borderRadius: BorderRadius.circular(32),
-        child: TextField(
-          autofocus: widget.autofocus,
-          autocorrect: false,
-          controller: _searchController,
-          onChanged: widget.onChanged,
-          focusNode: _focusNode,
-          readOnly: widget.readOnly,
-          decoration: InputDecoration(
-            prefixText: widget.prefixText,
-            contentPadding: EdgeInsets.only(
-              top: 8,
-              bottom: 8,
-              left: 16,
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(32),
-            ),
-            hintText: widget.hintText,
-            suffixIcon: !widget.readOnly &&
-                    (_focusNode.hasFocus ||
-                        (widget.suffix == null &&
-                            (_searchController.text?.isNotEmpty ?? false)))
-                ? IconButton(
-                    icon: Icon(Icons.backspace_outlined),
-                    onPressed: () {
-                      _searchController.clear();
-                      widget.onChanged?.call('');
-                      _focusNode.unfocus();
-                    },
-                  )
-                : widget.suffix,
+      child: TextField(
+        autofocus: widget.autofocus,
+        autocorrect: false,
+        controller: _searchController,
+        onChanged: widget.onChanged,
+        focusNode: _focusNode,
+        readOnly: widget.readOnly,
+        decoration: InputDecoration(
+          prefixText: widget.prefixText,
+          contentPadding: EdgeInsets.only(
+            top: 8,
+            bottom: 8,
+            left: 16,
           ),
+          hintText: widget.hintText,
+          suffixIcon: !widget.readOnly &&
+                  (_focusNode.hasFocus ||
+                      (widget.suffix == null &&
+                          (_searchController.text?.isNotEmpty ?? false)))
+              ? IconButton(
+                  icon: Icon(Icons.backspace_outlined),
+                  onPressed: () {
+                    _searchController.clear();
+                    widget.onChanged?.call('');
+                    _focusNode.unfocus();
+                  },
+                )
+              : widget.suffix,
         ),
       ),
     );
