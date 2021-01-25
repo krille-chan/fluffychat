@@ -404,7 +404,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "startYourFirstChat": "Komencu vian unuan babilon :-)",
+  "startYourFirstChat": "Komencu nun vian unuan babilon! 🙂\n• Tuŝetu al «+»\n• Enigu la uzantonomon de amiko\n• Ĝuu babiladon",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -1972,5 +1972,32 @@
   "@deviceId": {
     "type": "text",
     "placeholders": {}
+  },
+  "security": "Sekureco",
+  "@security": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appLock": "Ŝlosado",
+  "@appLock": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChooseAPasscode": "Bonvolu elekti paskodon",
+  "@pleaseChooseAPasscode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnter4Digits": "Bonvolu enigi 4 ciferojn, aŭ nenion por malŝalti ŝlosadon de la aplikaĵo.",
+  "@pleaseEnter4Digits": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youWillBeConnectedTo": "Vi konektiĝos al {homeserver}",
+  "@youWillBeConnectedTo": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
   }
 }
