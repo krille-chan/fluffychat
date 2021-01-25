@@ -146,7 +146,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "anyoneCanJoin": "Свако може да се придружи",
+  "anyoneCanJoin": "свако може да се придружи",
   "@anyoneCanJoin": {
     "type": "text",
     "placeholders": {}
@@ -212,7 +212,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "setCustomEmotes": "Постави посебне емотије",
+  "setCustomEmotes": "постави посебне емотије",
   "@setCustomEmotes": {
     "type": "text",
     "placeholders": {}
@@ -301,7 +301,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteShortcode": "скраћеница за емоти",
+  "emoteShortcode": "скраћеница",
   "@emoteShortcode": {
     "type": "text",
     "placeholders": {}
@@ -407,7 +407,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "whoIsAllowedToJoinThisGroup": "Коме је дозвољено да се придружи групи",
+  "whoIsAllowedToJoinThisGroup": "Ко може да се придружи групи",
   "@whoIsAllowedToJoinThisGroup": {
     "type": "text",
     "placeholders": {}
@@ -462,12 +462,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "visibleForEveryone": "Видљиво свима",
+  "visibleForEveryone": "видљиво свима",
   "@visibleForEveryone": {
     "type": "text",
     "placeholders": {}
   },
-  "visibleForAllParticipants": "Видљиво свим учесницима",
+  "visibleForAllParticipants": "видљиво свим учесницима",
   "@visibleForAllParticipants": {
     "type": "text",
     "placeholders": {}
@@ -712,12 +712,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "darkTheme": "Тамно",
+  "darkTheme": "тамни",
   "@darkTheme": {
     "type": "text",
     "placeholders": {}
   },
-  "lightTheme": "Светло",
+  "lightTheme": "светли",
   "@lightTheme": {
     "type": "text",
     "placeholders": {}
@@ -727,12 +727,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "systemTheme": "Систем",
+  "systemTheme": "системски",
   "@systemTheme": {
     "type": "text",
     "placeholders": {}
   },
-  "changeTheme": "Измените свој стил",
+  "changeTheme": "Измените изглед",
   "@changeTheme": {
     "type": "text",
     "placeholders": {}
@@ -871,7 +871,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "whoCanPerformWhichAction": "Ко може шта да ради",
+  "whoCanPerformWhichAction": "ко може шта да ради",
   "@whoCanPerformWhichAction": {
     "type": "text",
     "placeholders": {}
@@ -926,7 +926,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "discoverGroups": "Откиј групе",
+  "discoverGroups": "Истражи групе",
   "@discoverGroups": {
     "type": "text",
     "placeholders": {}
@@ -974,12 +974,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "lastSeenLongTimeAgo": "одавно",
+  "lastSeenLongTimeAgo": "одавно није на мрежи",
   "@lastSeenLongTimeAgo": {
     "type": "text",
     "placeholders": {}
   },
-  "searchForAChat": "Потражи ћаскање",
+  "searchForAChat": "претражи ћаскања",
   "@searchForAChat": {
     "type": "text",
     "placeholders": {}
@@ -1132,7 +1132,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pickImage": "Одаберите слику",
+  "pickImage": "Избор слике",
   "@pickImage": {
     "type": "text",
     "placeholders": {}
@@ -1398,7 +1398,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "invitedUsersOnly": "Само позвани корисници",
+  "invitedUsersOnly": "само позвани корисници",
   "@invitedUsersOnly": {
     "type": "text",
     "placeholders": {}
@@ -1484,12 +1484,12 @@
       "targetName": {}
     }
   },
-  "guestsCanJoin": "Гости могу приступити",
+  "guestsCanJoin": "гости могу приступити",
   "@guestsCanJoin": {
     "type": "text",
     "placeholders": {}
   },
-  "guestsAreForbidden": "Гости су забрањени",
+  "guestsAreForbidden": "гости су забрањени",
   "@guestsAreForbidden": {
     "type": "text",
     "placeholders": {}
@@ -1628,7 +1628,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteForMe": "Моје позивнице",
+  "inviteForMe": "Позивнице за мене",
   "@inviteForMe": {
     "type": "text",
     "placeholders": {}
@@ -1967,12 +1967,12 @@
       "homeserver": {}
     }
   },
-  "onlineKeyBackupEnabled": "Укључено је прављење резервних кључева на мрежи",
+  "onlineKeyBackupEnabled": "Резерва кључева на мрежи је укључена",
   "@onlineKeyBackupEnabled": {
     "type": "text",
     "placeholders": {}
   },
-  "onlineKeyBackupDisabled": "Искључено је прављење резервних кључева на мрежи",
+  "onlineKeyBackupDisabled": "Резерва кључева на мрежи је искључена",
   "@onlineKeyBackupDisabled": {
     "type": "text",
     "placeholders": {}
