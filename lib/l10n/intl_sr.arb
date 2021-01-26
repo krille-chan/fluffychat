@@ -89,7 +89,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "banFromChat": "Забрани у ћаскању",
+  "banFromChat": "Забране за ћаскање",
   "@banFromChat": {
     "type": "text",
     "placeholders": {}
@@ -402,7 +402,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "writeAMessage": "Напишите поруку…",
+  "writeAMessage": "напишите поруку…",
   "@writeAMessage": {
     "type": "text",
     "placeholders": {}
@@ -427,7 +427,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wednesday": "Среда",
+  "wednesday": "среда",
   "@wednesday": {
     "type": "text",
     "placeholders": {}
@@ -457,7 +457,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "visibilityOfTheChatHistory": "Видљивост историје ћаскања",
+  "visibilityOfTheChatHistory": "Одреди видљивост историје",
   "@visibilityOfTheChatHistory": {
     "type": "text",
     "placeholders": {}
@@ -632,7 +632,7 @@
       "targetName": {}
     }
   },
-  "tuesday": "Уторак",
+  "tuesday": "уторак",
   "@tuesday": {
     "type": "text",
     "placeholders": {}
@@ -657,7 +657,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "thursday": "Четвртак",
+  "thursday": "четвртак",
   "@thursday": {
     "type": "text",
     "placeholders": {}
@@ -687,7 +687,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sunday": "Недеља",
+  "sunday": "недеља",
   "@sunday": {
     "type": "text",
     "placeholders": {}
@@ -764,7 +764,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "setInvitationLink": "Постави везу позивнице",
+  "setInvitationLink": "Поставља везу позивнице",
   "@setInvitationLink": {
     "type": "text",
     "placeholders": {}
@@ -861,12 +861,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "setPermissionsLevel": "Поставља нивое дозвола",
+  "setPermissionsLevel": "Поставите ниво дозволе",
   "@setPermissionsLevel": {
     "type": "text",
     "placeholders": {}
   },
-  "editChatPermissions": "Уреди дозволе ћаскања",
+  "editChatPermissions": "Уредите дозволе ћаскања",
   "@editChatPermissions": {
     "type": "text",
     "placeholders": {}
@@ -901,7 +901,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "editRoomAvatar": "Уреди аватар собе",
+  "editRoomAvatar": "Уређује аватар собе",
   "@editRoomAvatar": {
     "type": "text",
     "placeholders": {}
@@ -911,7 +911,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enableEncryption": "Укључи шифровање",
+  "enableEncryption": "Укључује шифровање",
   "@enableEncryption": {
     "type": "text",
     "placeholders": {}
@@ -996,7 +996,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "saturday": "Субота",
+  "saturday": "субота",
   "@saturday": {
     "type": "text",
     "placeholders": {}
@@ -1237,7 +1237,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "monday": "Понедељак",
+  "monday": "понедељак",
   "@monday": {
     "type": "text",
     "placeholders": {}
@@ -1340,7 +1340,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "kickFromChat": "Избаци из ћаскања",
+  "kickFromChat": "Избацивање из ћаскања",
   "@kickFromChat": {
     "type": "text",
     "placeholders": {}
@@ -1431,7 +1431,7 @@
       "groupName": {}
     }
   },
-  "inviteContact": "Позови особу",
+  "inviteContact": "Позивање особа",
   "@inviteContact": {
     "type": "text",
     "placeholders": {}
@@ -1521,17 +1521,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "fromTheInvitation": "Од позивања",
+  "fromTheInvitation": "од позивања",
   "@fromTheInvitation": {
     "type": "text",
     "placeholders": {}
   },
-  "fromJoining": "Од приступања",
+  "fromJoining": "од приступања",
   "@fromJoining": {
     "type": "text",
     "placeholders": {}
   },
-  "friday": "Петак",
+  "friday": "петак",
   "@friday": {
     "type": "text",
     "placeholders": {}
@@ -1561,7 +1561,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enterAGroupName": "Унесите назив групе",
+  "enterAGroupName": "унесите назив групе",
   "@enterAGroupName": {
     "type": "text",
     "placeholders": {}
@@ -1583,7 +1583,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "encryptionNotEnabled": "Шифровање није уклључено",
+  "encryptionNotEnabled": "Шифровање није укључено",
   "@encryptionNotEnabled": {
     "type": "text",
     "placeholders": {}
@@ -1648,7 +1648,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "emptyChat": "Празно ћаскање",
+  "emptyChat": "празно ћаскање",
   "@emptyChat": {
     "type": "text",
     "placeholders": {}
@@ -1698,7 +1698,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "deleteMessage": "Обриши поруку",
+  "deleteMessage": "Брисање поруке",
   "@deleteMessage": {
     "type": "text",
     "placeholders": {}
@@ -1829,7 +1829,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "connect": "Повежи",
+  "connect": "Повежи се",
   "@connect": {
     "type": "text",
     "placeholders": {}
