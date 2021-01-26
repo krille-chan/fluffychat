@@ -878,7 +878,7 @@ packages:
       name: provider
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.3.2+4"
+    version: "4.3.3"
   pub_semver:
     dependency: transitive
     description:
@@ -913,7 +913,7 @@ packages:
       name: receive_sharing_intent
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.4.2"
+    version: "1.4.3"
   rxdart:
     dependency: transitive
     description:
