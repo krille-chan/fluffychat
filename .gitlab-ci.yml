@@ -107,7 +107,7 @@ upload-fdroid:
     - cd build/android/
     - export UPDATE_VERSION=$(pcregrep -o1 'version:\s([0-9]*\.[0-9]*\.[0-9]*)\+[0-9]*' ../../pubspec.yaml) && mv app-release.apk "${UPDATE_VERSION}.apk"
     - rsync -rav -e ssh ./ fluffy@fdroid.nordgedanken.dev:/opt/fdroid/fluffychat/repo
-    - ssh fluffy@fdroid.nordgedanken.dev "cd /opt/fdroid/fluffychat && fdroid update --verbose"
+    - ssh fluffy@fdroid.nordgedanken.dev -t '/bin/bash -i -l -c "cd /opt/fdroid/fluffychat && fdroid update --verbose"'
   needs: ["build_android_apk"]
   resource_group: playstore_release
   allow_failure: true
