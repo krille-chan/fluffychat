@@ -112,6 +112,11 @@ class MessageContent extends StatelessWidget {
                   color: textColor,
                   fontSize: bigEmotes ? fontSize * 3 : fontSize,
                 ),
+                linkStyle: TextStyle(
+                  color: textColor.withAlpha(150),
+                  fontSize: bigEmotes ? fontSize * 3 : fontSize,
+                  decoration: TextDecoration.underline,
+                ),
                 room: event.room,
                 emoteSize: bigEmotes ? fontSize * 3 : fontSize * 1.5,
               );
@@ -189,6 +194,11 @@ class MessageContent extends StatelessWidget {
                 color: textColor,
                 fontSize: bigEmotes ? fontSize * 3 : fontSize,
                 decoration: event.redacted ? TextDecoration.lineThrough : null,
+              ),
+              linkStyle: TextStyle(
+                color: textColor.withAlpha(150),
+                fontSize: bigEmotes ? fontSize * 3 : fontSize,
+                decoration: TextDecoration.underline,
               ),
               onLinkTap: (url) => UrlLauncher(context, url).launchUrl(),
             );
