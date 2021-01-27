@@ -1618,12 +1618,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerAcceptRequest": "Ootan, et teine osapool nõustuks päringuga...",
+  "waitingPartnerAcceptRequest": "Ootan, et teine osapool nõustuks päringuga…",
   "@waitingPartnerAcceptRequest": {
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerEmoji": "Ootan teise osapoole kinnitust, et tegemist on samade emojidega...",
+  "waitingPartnerEmoji": "Ootan teise osapoole kinnitust, et tegemist on samade emojidega…",
   "@waitingPartnerEmoji": {
     "type": "text",
     "placeholders": {}
