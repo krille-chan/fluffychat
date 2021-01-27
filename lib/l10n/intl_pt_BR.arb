@@ -313,7 +313,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "startYourFirstChat": "Inicie sua primeira conversa :-)",
+  "startYourFirstChat": "Inicie sua primeira conversa agora mesmo! 🙂\n- Pressione em \"+\"\n- Insira o nome de usuário de um amigo(a)\n- Divirta-se conversando",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -1954,5 +1954,50 @@
   "@noConnectionToTheServer": {
     "type": "text",
     "placeholders": {}
+  },
+  "waitingPartnerEmoji": "Esperando que a outra pessoa aceite os emoji…",
+  "@waitingPartnerEmoji": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "waitingPartnerAcceptRequest": "Esperando que a outra pessoa aceite a solicitação…",
+  "@waitingPartnerAcceptRequest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "security": "Segurança",
+  "@security": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnter4Digits": "Por favor, insira 4 dígitos ou deixe em branco para desativar a trava do aplicativo.",
+  "@pleaseEnter4Digits": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appLock": "Trava do aplicativo",
+  "@appLock": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChooseAPasscode": "Por favor, escolha um código",
+  "@pleaseChooseAPasscode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changedTheDisplaynameTo": "{username} mudou seu nome de exibição para: '{displayname}'",
+  "@changedTheDisplaynameTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "displayname": {}
+    }
+  },
+  "youWillBeConnectedTo": "Você se conectará a {homeserver}",
+  "@youWillBeConnectedTo": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
   }
 }
