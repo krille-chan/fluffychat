@@ -38,10 +38,6 @@ android {
         main.java.srcDirs += 'src/main/kotlin'
     }
 
-    lintOptions {
-        disable 'InvalidPackage'
-    }
-
     defaultConfig {
         applicationId "chat.fluffy.fluffychat"
         minSdkVersion 21
