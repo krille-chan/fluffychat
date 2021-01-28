@@ -16,7 +16,6 @@ dependencies:
       ref: main
 
   unifiedpush:
-#    path: /home/sorunome/repos/gotify/flutter_unified_push
     git:
       url: https://github.com/UnifiedPush/flutter-connector.git
       ref: main
@@ -41,11 +40,7 @@ dependencies:
   flutter_secure_storage: ^3.3.5
   http: ^0.12.2
   universal_html: ^1.2.4
-  receive_sharing_intent:
-    # see https://github.com/KasemJaffer/receive_sharing_intent/pull/115
-    git:
-      url: https://github.com/radvansky-tomas/receive_sharing_intent.git
-      ref: 107ea4ae3c3da15be4e6d3337623b69cc2e04c68
+  receive_sharing_intent: ^1.4.3
   flutter_slidable: ^0.5.7
   flutter_sound_lite: ^7.5.3+1
   open_file: ^3.0.3

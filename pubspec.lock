@@ -216,7 +216,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "a6ee8053670ef4701e412bef0836480c4ad45905"
+      resolved-ref: a6ee8053670ef4701e412bef0836480c4ad45905
       url: "https://gitlab.com/famedly/famedlysdk.git"
     source: git
     version: "0.0.1"
@@ -624,7 +624,7 @@ packages:
       name: matrix_api_lite
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.6"
+    version: "0.1.7"
   matrix_file_e2ee:
     dependency: transitive
     description:
@@ -910,12 +910,10 @@ packages:
   receive_sharing_intent:
     dependency: "direct main"
     description:
-      path: "."
-      ref: "107ea4ae3c3da15be4e6d3337623b69cc2e04c68"
-      resolved-ref: "107ea4ae3c3da15be4e6d3337623b69cc2e04c68"
-      url: "https://github.com/radvansky-tomas/receive_sharing_intent.git"
-    source: git
-    version: "1.4.2"
+      name: receive_sharing_intent
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.4.3"
   rxdart:
     dependency: transitive
     description:
@@ -1157,7 +1155,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "7092bcc846f6f919c7dfb58f2c30bb45ca7231c0"
+      resolved-ref: "9ad5360bb63021f366d35facf217f053d465b46c"
       url: "https://github.com/UnifiedPush/flutter-connector.git"
     source: git
     version: "0.0.1"
