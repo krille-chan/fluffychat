@@ -340,10 +340,9 @@ class MatrixState extends State<Matrix> {
         widget.apl.currentState.pushNamedAndRemoveAllOthers('/');
         if (loginState == LoginState.logged) {
           FirebaseController.context = context;
-          FirebaseController.setupFirebase(
-            this,
-            clientName,
-          ).catchError(SentryController.captureException);
+          FirebaseController.matrix = this;
+          FirebaseController.setupFirebase(clientName)
+              .catchError(SentryController.captureException);
         }
       }
     });

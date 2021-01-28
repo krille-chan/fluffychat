@@ -146,6 +146,45 @@ Example B:
 
 3. For testing just run a regular build without extras
 
+# Android push notifications without FCM
+Fluffychat has the ability to receive push notifications on android without FCM via the
+[UnifiedPush](https://github.com/UnifiedPush) project, e.g. using gotify as push backend. As the project is still pretty new
+there might still be some bugs, overall it seems to be working, though.
+
+While UnifiedPush also supports p2p push via [NoProvider2Push](https://github.com/NoProvider2Push/android)
+here the gotify setup will be outlined. Adapt re-write proxies accordingly, if you want to use a different push provider.
+
+For self-hosted push with gotify you have to install and configure [gotify-server](https://github.com/gotify/server)
+with [UnifiedPush](https://github.com/UnifiedPush/contrib/blob/main/providers/gotify.md) support.
+
+Next, you add the `repo.unifiedpush.org` repository to fdroid and install the gotify client via it. Log into your gotify account and push notifications should work!
+
+## Matrix-specific re-write proxy
+Until [MSC2970](https://github.com/matrix-org/matrix-doc/pull/2970) is figured out we unfortunately
+need another simple re-write proxy. By default the one at https://matrix.gateway.unifiedpush.org
+is used, however you can easily self-host it. For that, add to your nginx config on the same domain you serve gotify the following:
+```
+resolver 8.8.8.8;
+
+location /_matrix/push/v1/notify {
+    set $target '';
+    if ($request_method = GET ) {
+        return 200 '{"gateway":"matrix"}';
+    }
+    access_by_lua_block {
+        local cjson = require("cjson")
+        ngx.req.read_body()
+        local body = ngx.req.get_body_data()
+        local parsedBody = cjson.decode(body)
+        ngx.var.target = parsedBody["notification"]["devices"][1]["pushkey"]
+        ngx.req.set_body_data(body)
+    }
+    proxy_set_header Content-Type application/json;
+    proxy_set_header Host $host;
+    proxy_pass $target;
+}
+```
+
 # Special thanks to
 
 * <a href="https://github.com/fabiyamada">Fabiyamada</a> is a graphics designer from Brasil and has made the fluffychat logo and the banner. Big thanks for her great designs.

@@ -12,4 +12,7 @@ abstract class SettingKeys {
   static const String showNoPid = 'chat.fluffy.show_no_pid';
   static const String databasePassword = 'database-password';
   static const String appLockKey = 'chat.fluffy.app_lock';
+  static const String unifiedPushRegistered =
+      'chat.fluffy.unifiedpush.registered';
+  static const String unifiedPushEndpoint = 'chat.fluffy.unifiedpush.endpoint';
 }

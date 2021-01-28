@@ -910,10 +910,12 @@ packages:
   receive_sharing_intent:
     dependency: "direct main"
     description:
-      name: receive_sharing_intent
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.4.3"
+      path: "."
+      ref: "107ea4ae3c3da15be4e6d3337623b69cc2e04c68"
+      resolved-ref: "107ea4ae3c3da15be4e6d3337623b69cc2e04c68"
+      url: "https://github.com/radvansky-tomas/receive_sharing_intent.git"
+    source: git
+    version: "1.4.2"
   rxdart:
     dependency: transitive
     description:
@@ -1150,6 +1152,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.3.0-nullsafety.3"
+  unifiedpush:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: main
+      resolved-ref: "7092bcc846f6f919c7dfb58f2c30bb45ca7231c0"
+      url: "https://github.com/UnifiedPush/flutter-connector.git"
+    source: git
+    version: "0.0.1"
   universal_html:
     dependency: "direct main"
     description:
