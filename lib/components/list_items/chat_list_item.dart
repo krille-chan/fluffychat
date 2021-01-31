@@ -180,7 +180,7 @@ class ChatListItem extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 13,
                     color: room.notificationCount > 0
-                        ? Theme.of(context).primaryColor
+                        ? Theme.of(context).accentColor
                         : null,
                   ),
                 ),
@@ -200,7 +200,7 @@ class ChatListItem extends StatelessWidget {
               if (typingText.isNotEmpty) ...{
                 Icon(
                   Icons.edit_outlined,
-                  color: Theme.of(context).primaryColor,
+                  color: Theme.of(context).accentColor,
                   size: 14,
                 ),
                 SizedBox(width: 4),
@@ -210,7 +210,7 @@ class ChatListItem extends StatelessWidget {
                     ? Text(
                         typingText,
                         style: TextStyle(
-                          color: Theme.of(context).primaryColor,
+                          color: Theme.of(context).accentColor,
                         ),
                         softWrap: false,
                       )
@@ -218,7 +218,7 @@ class ChatListItem extends StatelessWidget {
                         ? Text(
                             L10n.of(context).youAreInvitedToThisChat,
                             style: TextStyle(
-                              color: Theme.of(context).primaryColor,
+                              color: Theme.of(context).accentColor,
                             ),
                             softWrap: false,
                           )
@@ -248,7 +248,7 @@ class ChatListItem extends StatelessWidget {
                   child: Icon(
                     Icons.push_pin_outlined,
                     size: 20,
-                    color: Theme.of(context).primaryColor,
+                    color: Theme.of(context).accentColor,
                   ),
                 ),
               if (room.isUnread)

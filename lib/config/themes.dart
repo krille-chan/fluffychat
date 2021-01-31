@@ -34,7 +34,7 @@ abstract class FluffyThemes {
     primaryColor: AppConfig.primaryColor,
     accentColor: AppConfig.primaryColor,
     backgroundColor: Colors.white,
-    secondaryHeaderColor: Color(0xFFECECF2),
+    secondaryHeaderColor: AppConfig.primaryColor.withAlpha(16),
     scaffoldBackgroundColor: Colors.white,
     textTheme: Typography.material2018().black.merge(fallback_text_theme),
     snackBarTheme: SnackBarThemeData(
@@ -57,7 +57,7 @@ abstract class FluffyThemes {
     inputDecorationTheme: InputDecorationTheme(
       border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
       filled: true,
-      fillColor: Color(0xFFECECF2),
+      fillColor: AppConfig.primaryColor.withAlpha(16),
     ),
     appBarTheme: AppBarTheme(
       brightness: Brightness.light,
@@ -80,7 +80,7 @@ abstract class FluffyThemes {
     backgroundColor: Colors.black,
     scaffoldBackgroundColor: Colors.black,
     accentColor: AppConfig.primaryColorLight,
-    secondaryHeaderColor: Color(0xff2D2D2D),
+    secondaryHeaderColor: AppConfig.primaryColorLight.withAlpha(32),
     textTheme: Typography.material2018().white.merge(fallback_text_theme),
     dialogTheme: DialogTheme(
       shape: RoundedRectangleBorder(
@@ -99,7 +99,7 @@ abstract class FluffyThemes {
     inputDecorationTheme: InputDecorationTheme(
       border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
       filled: true,
-      fillColor: Color(0xff2D2D2D),
+      fillColor: AppConfig.primaryColorLight.withAlpha(32),
     ),
     appBarTheme: AppBarTheme(
       brightness: Brightness.dark,

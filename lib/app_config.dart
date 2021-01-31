@@ -11,7 +11,7 @@ abstract class AppConfig {
   static const bool allowOtherHomeservers = true;
   static const bool enableRegistration = true;
   static const Color primaryColor = Color(0xFF5625BA);
-  static const Color primaryColorLight = Color(0xFFF5B4D2);
+  static const Color primaryColorLight = Color(0xFFCCBDEA);
   static String _privacyUrl = 'https://fluffychat.im/en/privacy.html';
   static String get privacyUrl => _privacyUrl;
   static const String appId = 'im.fluffychat.FluffyChat';

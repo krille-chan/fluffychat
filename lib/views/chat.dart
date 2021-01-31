@@ -707,8 +707,8 @@ class _ChatState extends State<Chat> {
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
                                             style: TextStyle(
-                                              color: Theme.of(context)
-                                                  .primaryColor,
+                                              color:
+                                                  Theme.of(context).accentColor,
                                             ),
                                           ),
                                         ),

@@ -19,7 +19,7 @@ class StateMessage extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: Theme.of(context).secondaryHeaderColor.withOpacity(0.9),
+            color: Theme.of(context).secondaryHeaderColor,
             borderRadius: BorderRadius.circular(7),
           ),
           child: Text(
