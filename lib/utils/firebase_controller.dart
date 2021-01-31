@@ -79,7 +79,7 @@ abstract class FirebaseController {
       goToRoom(details.payload);
     });
 
-    if ((await UnifiedPush.getDistributors()).isNotEmpty) {
+    if (!Platform.isIOS && (await UnifiedPush.getDistributors()).isNotEmpty) {
       await setupUnifiedPush(clientName);
       return;
     }
