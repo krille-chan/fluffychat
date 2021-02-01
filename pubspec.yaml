@@ -20,6 +20,7 @@ dependencies:
       url: https://github.com/UnifiedPush/flutter-connector.git
       ref: main
 
+  cupertino_icons: any
   localstorage: ^3.0.6+9
   file_picker_cross: 4.2.2
   image_picker: ^0.6.7+21
