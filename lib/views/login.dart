@@ -180,6 +180,7 @@ class _LoginState extends State<Login> {
                 autofocus: true,
                 onChanged: (t) => _checkWellKnownWithCoolDown(t, context),
                 controller: usernameController,
+                autofillHints: [AutofillHints.username],
                 decoration: InputDecoration(
                     prefixIcon: Icon(Icons.account_box_outlined),
                     hintText:
@@ -193,6 +194,7 @@ class _LoginState extends State<Login> {
               child: TextField(
                 readOnly: loading,
                 autocorrect: false,
+                autofillHints: [AutofillHints.password],
                 controller: passwordController,
                 obscureText: !showPassword,
                 onSubmitted: (t) => login(context),

@@ -1,12 +1,13 @@
 import 'dart:math';
 
-import 'package:adaptive_page_layout/adaptive_page_layout.dart';
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 
 import 'package:fluffychat/components/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SignUpPassword extends StatefulWidget {
   final MatrixFile avatar;
@@ -74,13 +75,19 @@ class _SignUpPasswordState extends State<SignUpPassword> {
             return setState(() => loading = false);
           }
           _lastAuthWebViewStage = currentStage;
-          await AdaptivePageLayout.of(context).pushNamed(
-            '/authwebview/$currentStage/${exception.session}',
-            arguments: () => _signUpAction(
+          await launch(
+            Matrix.of(context).client.homeserver.toString() +
+                '/_matrix/client/r0/auth/$currentStage/fallback/web?session=${exception.session}',
+          );
+          if (OkCancelResult.ok ==
+              await showOkCancelAlertDialog(
+                context: context,
+              )) {
+            _signUpAction(
               context,
               auth: AuthenticationData(session: exception.session),
-            ),
-          );
+            );
+          }
           return;
         }
       } else {
@@ -135,6 +142,7 @@ class _SignUpPasswordState extends State<SignUpPassword> {
               autofocus: true,
               autocorrect: false,
               onSubmitted: (t) => _signUpAction(context),
+              autofillHints: [AutofillHints.newPassword],
               decoration: InputDecoration(
                   prefixIcon: Icon(Icons.lock_outlined),
                   hintText: '****',

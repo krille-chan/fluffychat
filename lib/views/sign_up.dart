@@ -95,6 +95,7 @@ class _SignUpState extends State<SignUp> {
                 autocorrect: false,
                 controller: usernameController,
                 onSubmitted: (s) => signUpAction(context),
+                autofillHints: [AutofillHints.newUsername],
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.account_circle_outlined),
                   hintText: L10n.of(context).username,
