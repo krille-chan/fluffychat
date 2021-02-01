@@ -92,10 +92,11 @@ class _SignUpState extends State<SignUp> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12.0),
               child: TextField(
+                readOnly: loading,
                 autocorrect: false,
                 controller: usernameController,
                 onSubmitted: (s) => signUpAction(context),
-                autofillHints: [AutofillHints.newUsername],
+                autofillHints: loading ? null : [AutofillHints.newUsername],
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.account_circle_outlined),
                   hintText: L10n.of(context).username,

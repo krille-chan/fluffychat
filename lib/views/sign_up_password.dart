@@ -148,9 +148,10 @@ class _SignUpPasswordState extends State<SignUpPassword> {
               controller: passwordController,
               obscureText: !showPassword,
               autofocus: true,
+              readOnly: loading,
               autocorrect: false,
               onSubmitted: (t) => _signUpAction(context),
-              autofillHints: [AutofillHints.newPassword],
+              autofillHints: loading ? null : [AutofillHints.newPassword],
               decoration: InputDecoration(
                   prefixIcon: Icon(Icons.lock_outlined),
                   hintText: '****',
