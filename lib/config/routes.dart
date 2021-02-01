@@ -2,7 +2,6 @@ import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/views/archive.dart';
-import 'package:fluffychat/views/auth_web_view.dart';
 import 'package:fluffychat/views/chat.dart';
 import 'package:fluffychat/views/chat_details.dart';
 import 'package:fluffychat/views/chat_encryption_settings.dart';
@@ -61,16 +60,6 @@ class FluffyRoutes {
             );
           }
           return ViewData(mainView: (_) => SignUp());
-        case 'authwebview':
-          if (parts.length == 4) {
-            return ViewData(
-              mainView: (_) => AuthWebView(
-                parts[2],
-                Uri.decodeComponent(parts[3]),
-                settings.arguments,
-              ),
-            );
-          }
       }
     }
     // Routes IF user is logged in
@@ -138,17 +127,6 @@ class FluffyRoutes {
             mainView: (_) => Archive(),
             emptyView: (_) => EmptyPage(),
           );
-        case 'authwebview':
-          if (parts.length == 4) {
-            return ViewData(
-              mainView: (_) => AuthWebView(
-                parts[2],
-                Uri.decodeComponent(parts[3]),
-                settings.arguments,
-              ),
-            );
-          }
-          break;
         case 'discover':
           return ViewData(
             mainView: (_) =>

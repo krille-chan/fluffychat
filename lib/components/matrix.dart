@@ -20,6 +20,7 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:provider/provider.dart';
 import 'package:universal_html/prefer_universal/html.dart' as html;
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
 /*import 'package:fluffychat/views/chat.dart';
 import 'package:fluffychat/app_config.dart';
 import 'package:dbus/dbus.dart';
@@ -159,13 +160,21 @@ class MatrixState extends State<Matrix> {
           ),
         );
       default:
-        await widget.apl.currentState.pushNamed(
-          '/authwebview/$stage/${uiaRequest.session}',
-          arguments: () => null,
+        await launch(
+          Matrix.of(context).client.homeserver.toString() +
+              '/_matrix/client/r0/auth/$stage/fallback/web?session=${uiaRequest.session}',
         );
-        return uiaRequest.completeStage(
-          AuthenticationData(session: uiaRequest.session),
-        );
+        if (OkCancelResult.ok ==
+            await showOkCancelAlertDialog(
+              message: L10n.of(context).pleaseFollowInstructionsOnWeb,
+              context: context,
+              okLabel: L10n.of(context).next,
+              cancelLabel: L10n.of(context).cancel,
+            )) {
+          return uiaRequest.completeStage(
+            AuthenticationData(session: uiaRequest.session),
+          );
+        }
     }
   }
 

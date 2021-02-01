@@ -142,12 +142,22 @@
     "type": "text",
     "placeholders": {}
   },
+  "pleaseFollowInstructionsOnWeb": "Please follow the instructions on the website and tap on next.",
+  "@pleaseFollowInstructionsOnWeb": {
+    "type": "text",
+    "placeholders": {}
+  },
   "youWillBeConnectedTo": "You will be connected to {homeserver}",
   "@youWillBeConnectedTo": {
     "type": "text",
     "placeholders": {
       "homeserver": {}
     }
+  },
+  "next": "Next",
+  "@next": {
+    "type": "text",
+    "placeholders": {}
   },
   "cachedKeys": "Keys cached",
   "@cachedKeys": {

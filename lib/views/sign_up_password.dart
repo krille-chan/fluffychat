@@ -81,12 +81,20 @@ class _SignUpPasswordState extends State<SignUpPassword> {
           );
           if (OkCancelResult.ok ==
               await showOkCancelAlertDialog(
+                message: L10n.of(context).pleaseFollowInstructionsOnWeb,
                 context: context,
+                okLabel: L10n.of(context).next,
+                cancelLabel: L10n.of(context).cancel,
               )) {
             _signUpAction(
               context,
               auth: AuthenticationData(session: exception.session),
             );
+          } else {
+            setState(() {
+              loading = false;
+              passwordError = null;
+            });
           }
           return;
         }
