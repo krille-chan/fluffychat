@@ -2041,5 +2041,50 @@
   "@ignore": {
     "type": "text",
     "placeholders": {}
+  },
+  "reportMessage": "Signaler un message",
+  "@reportMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "redactMessage": "Rédiger un message",
+  "@redactMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contentHasBeenReported": "Le contenu a été signalé aux administrateurs du serveur",
+  "@contentHasBeenReported": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reason": "Raison",
+  "@reason": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whyDoYouWantToReportThis": "Pourquoi voulez-vous le signaler ?",
+  "@whyDoYouWantToReportThis": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inoffensive": "Inoffensant",
+  "@inoffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offensive": "Offensant",
+  "@offensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "extremeOffensive": "Extrêmement offensant",
+  "@extremeOffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "howOffensiveIsThisContent": "A quel point ce contenu est-il offensant ?",
+  "@howOffensiveIsThisContent": {
+    "type": "text",
+    "placeholders": {}
   }
 }
