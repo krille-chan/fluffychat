@@ -26,7 +26,6 @@ import 'package:fluffychat/views/settings_notifications.dart';
 import 'package:fluffychat/views/settings_style.dart';
 import 'package:fluffychat/views/sign_up.dart';
 import 'package:fluffychat/views/sign_up_password.dart';
-import 'package:fluffychat/views/sso_web_view.dart';
 import 'package:flutter/material.dart';
 
 class FluffyRoutes {
@@ -47,8 +46,6 @@ class FluffyRoutes {
           return ViewData(mainView: (_) => HomeserverPicker());
         case 'login':
           return ViewData(mainView: (_) => Login());
-        case 'sso':
-          return ViewData(mainView: (_) => SsoWebView());
         case 'signup':
           if (parts.length == 5 && parts[2] == 'password') {
             return ViewData(

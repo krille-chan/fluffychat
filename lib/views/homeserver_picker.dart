@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
@@ -7,9 +8,14 @@ import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/app_config.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flushbar/flushbar_helper.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:receive_sharing_intent/receive_sharing_intent.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../utils/localized_exception_extension.dart';
+import 'package:universal_html/prefer_universal/html.dart' as html;
 
 class HomeserverPicker extends StatefulWidget {
   @override
@@ -21,6 +27,46 @@ class _HomeserverPickerState extends State<HomeserverPicker> {
   String _domain = AppConfig.defaultHomeserver;
   final TextEditingController _controller =
       TextEditingController(text: AppConfig.defaultHomeserver);
+  StreamSubscription _intentDataStreamSubscription;
+
+  void _loginWithToken(String token) {
+    if (token?.isEmpty ?? true) return;
+    showFutureLoadingDialog(
+      context: context,
+      future: () => Matrix.of(context).client.login(
+            type: AuthenticationTypes.token,
+            userIdentifierType: null,
+            token: token,
+            initialDeviceDisplayName: Matrix.of(context).clientName,
+          ),
+    );
+  }
+
+  void _processIncomingSharedText(String text) async {
+    if (text == null || !text.startsWith(AppConfig.appOpenUrlScheme)) return;
+    AdaptivePageLayout.of(context).popUntilIsFirst();
+    final token = Uri.parse(text).queryParameters['loginToken'];
+    _loginWithToken(token);
+  }
+
+  void _initReceiveSharingContent() {
+    if (!PlatformInfos.isMobile) return;
+    _intentDataStreamSubscription =
+        ReceiveSharingIntent.getTextStream().listen(_processIncomingSharedText);
+    ReceiveSharingIntent.getInitialText().then(_processIncomingSharedText);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _initReceiveSharingContent();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _intentDataStreamSubscription?.cancel();
+  }
 
   void _checkHomeserverAction(BuildContext context) async {
     try {
@@ -40,7 +86,11 @@ class _HomeserverPickerState extends State<HomeserverPicker> {
             .pushNamed(AppConfig.enableRegistration ? '/signup' : '/login');
       } else if (loginTypes.flows
           .any((flow) => flow.type == AuthenticationTypes.sso)) {
-        await AdaptivePageLayout.of(context).pushNamed('/sso');
+        final redirectUrl = kIsWeb
+            ? html.window.location.href
+            : '${Uri.encodeQueryComponent(AppConfig.appOpenUrlScheme.toLowerCase() + '://sso')}';
+        await launch(
+            '${Matrix.of(context).client.homeserver?.toString()}/_matrix/client/r0/login/sso/redirect?redirectUrl=$redirectUrl');
       }
     } on String catch (e) {
       // ignore: unawaited_futures
@@ -62,6 +112,13 @@ class _HomeserverPickerState extends State<HomeserverPicker> {
     final padding = EdgeInsets.symmetric(
       horizontal: max((MediaQuery.of(context).size.width - 600) / 2, 0),
     );
+    if (kIsWeb) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        final token =
+            Uri.parse(html.window.location.href).queryParameters['loginToken'];
+        _loginWithToken(token);
+      });
+    }
     return Scaffold(
       appBar: AppBar(
         title: DefaultAppBarSearchField(

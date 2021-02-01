@@ -15,6 +15,7 @@ abstract class AppConfig {
   static String _privacyUrl = 'https://fluffychat.im/en/privacy.html';
   static String get privacyUrl => _privacyUrl;
   static const String appId = 'im.fluffychat.FluffyChat';
+  static const String appOpenUrlScheme = 'im.fluffychat';
   static const String sourceCodeUrl = 'https://gitlab.com/famedly/fluffychat';
   static const String supportUrl =
       'https://gitlab.com/famedly/fluffychat/issues';
