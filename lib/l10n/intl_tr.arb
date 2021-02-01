@@ -2001,5 +2001,15 @@
     "placeholders": {
       "homeserver": {}
     }
+  },
+  "pleaseFollowInstructionsOnWeb": "Lütfen web sitesindeki talimatları izleyin ve \"İleri\" düğmesine dokunun.",
+  "@pleaseFollowInstructionsOnWeb": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "next": "İleri",
+  "@next": {
+    "type": "text",
+    "placeholders": {}
   }
 }
