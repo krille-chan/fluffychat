@@ -1965,7 +1965,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "tooManyRequestsWarning": "Trop de requêtes. Veuillez réessayer plus tard !",
+  "tooManyRequestsWarning": "Trop de requêtes. Veuillez réessayer plus tard !",
   "@tooManyRequestsWarning": {
     "type": "text",
     "placeholders": {}
@@ -2067,7 +2067,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inoffensive": "Inoffensant",
+  "inoffensive": "Non offensant",
   "@inoffensive": {
     "type": "text",
     "placeholders": {}
@@ -2082,7 +2082,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "howOffensiveIsThisContent": "A quel point ce contenu est-il offensant ?",
+  "howOffensiveIsThisContent": "À quel point ce contenu est-il offensant ?",
   "@howOffensiveIsThisContent": {
     "type": "text",
     "placeholders": {}
