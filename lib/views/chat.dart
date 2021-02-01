@@ -312,11 +312,11 @@ class _ChatState extends State<Chat> {
         title: L10n.of(context).howOffensiveIsThisContent,
         actions: [
           AlertDialogAction(
-            key: 100,
+            key: -100,
             label: L10n.of(context).extremeOffensive,
           ),
           AlertDialogAction(
-            key: 50,
+            key: -50,
             label: L10n.of(context).offensive,
           ),
           AlertDialogAction(
