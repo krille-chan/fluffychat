@@ -2011,5 +2011,50 @@
   "@pleaseFollowInstructionsOnWeb": {
     "type": "text",
     "placeholders": {}
+  },
+  "reportMessage": "Teata sõnumist",
+  "@reportMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "redactMessage": "Muuda sõnumit",
+  "@redactMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contentHasBeenReported": "Saatsime selle sisu kohta teate koduserveri haldajate",
+  "@contentHasBeenReported": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reason": "Põhjus",
+  "@reason": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whyDoYouWantToReportThis": "Miks sa soovid sellest teatada?",
+  "@whyDoYouWantToReportThis": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inoffensive": "Kahjutu",
+  "@inoffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offensive": "Solvav",
+  "@offensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "extremeOffensive": "Äärmiselt solvav",
+  "@extremeOffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "howOffensiveIsThisContent": "Kui solvav see sisu on?",
+  "@howOffensiveIsThisContent": {
+    "type": "text",
+    "placeholders": {}
   }
 }
