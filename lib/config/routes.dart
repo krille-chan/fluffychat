@@ -161,7 +161,10 @@ class FluffyRoutes {
               case 'emotes':
                 return ViewData(
                   leftView: (_) => Settings(),
-                  mainView: (_) => EmotesSettings(room: settings.arguments),
+                  mainView: (_) => EmotesSettings(
+                    room: (settings.arguments as Map)['room'],
+                    stateKey: (settings.arguments as Map)['stateKey'],
+                  ),
                 );
               case 'ignore':
                 return ViewData(

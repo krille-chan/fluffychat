@@ -322,8 +322,9 @@ class _ChatDetailsState extends State<ChatDetails> {
                                 await AdaptivePageLayout.of(context)
                                     .pushNamed('/rooms/${room.id}/emotes');
                               } else {
-                                await AdaptivePageLayout.of(context)
-                                    .pushNamed('/settings/emotes');
+                                await AdaptivePageLayout.of(context).pushNamed(
+                                    '/settings/emotes',
+                                    arguments: {'room': room});
                               }
                             },
                           ),
