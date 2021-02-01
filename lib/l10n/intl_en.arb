@@ -1332,6 +1332,54 @@
       "username": {}
     }
   },
+
+
+  "howOffensiveIsThisContent": "How offensive is this content?",
+  "@howOffensiveIsThisContent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "extremeOffensive": "Extreme offensive",
+  "@extremeOffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offensive": "Offensive",
+  "@offensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inoffensive": "Inoffensive",
+  "@inoffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whyDoYouWantToReportThis": "Why do you want to report this?",
+  "@whyDoYouWantToReportThis": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reason": "Reason",
+  "@reason": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contentHasBeenReported": "The content has been reported to the server admins",
+  "@contentHasBeenReported": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "redactMessage": "Redact message",
+  "@redactMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reportMessage": "Report message",
+  "@reportMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+
   "searchForAChat": "Search for a chat",
   "@searchForAChat": {
     "type": "text",

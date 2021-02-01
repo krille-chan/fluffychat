@@ -305,6 +305,47 @@ class _ChatState extends State<Chat> {
     setState(() => selectedEvents.clear());
   }
 
+  void reportEventAction(BuildContext context) async {
+    final event = selectedEvents.single;
+    final score = await showConfirmationDialog<int>(
+        context: context,
+        title: L10n.of(context).howOffensiveIsThisContent,
+        actions: [
+          AlertDialogAction(
+            key: 100,
+            label: L10n.of(context).extremeOffensive,
+          ),
+          AlertDialogAction(
+            key: 50,
+            label: L10n.of(context).offensive,
+          ),
+          AlertDialogAction(
+            key: 0,
+            label: L10n.of(context).inoffensive,
+          ),
+        ]);
+    if (score == null) return;
+    final reason = await showTextInputDialog(
+        context: context,
+        title: L10n.of(context).whyDoYouWantToReportThis,
+        textFields: [DialogTextField(hintText: L10n.of(context).reason)]);
+    if (reason == null || reason.single.isEmpty) return;
+    final result = await showFutureLoadingDialog(
+      context: context,
+      future: () => Matrix.of(context).client.reportEvent(
+            event.roomId,
+            event.eventId,
+            reason.single,
+            score,
+          ),
+    );
+    if (result.error != null) return;
+    setState(() => selectedEvents.clear());
+    await FlushbarHelper.createSuccess(
+            message: L10n.of(context).contentHasBeenReported)
+        .show(context);
+  }
+
   void redactEventsAction(BuildContext context) async {
     var confirmed = await showOkCancelAlertDialog(
           context: context,
@@ -567,15 +608,43 @@ class _ChatState extends State<Chat> {
                       inputFocus.requestFocus();
                     },
                   ),
-                IconButton(
-                  icon: Icon(Icons.content_copy_outlined),
-                  onPressed: () => copyEventsAction(context),
+                PopupMenuButton(
+                  onSelected: (selected) {
+                    switch (selected) {
+                      case 'copy':
+                        copyEventsAction(context);
+                        break;
+                      case 'redact':
+                        redactEventsAction(context);
+                        break;
+                      case 'report':
+                        reportEventAction(context);
+                        break;
+                    }
+                  },
+                  itemBuilder: (_) => [
+                    PopupMenuItem(
+                      child: Text(L10n.of(context).copy),
+                      value: 'copy',
+                    ),
+                    if (canRedactSelectedEvents)
+                      PopupMenuItem(
+                        child: Text(
+                          L10n.of(context).redactMessage,
+                          style: TextStyle(color: Colors.orange),
+                        ),
+                        value: 'redact',
+                      ),
+                    if (selectedEvents.length == 1)
+                      PopupMenuItem(
+                        child: Text(
+                          L10n.of(context).reportMessage,
+                          style: TextStyle(color: Colors.red),
+                        ),
+                        value: 'report',
+                      ),
+                  ],
                 ),
-                if (canRedactSelectedEvents)
-                  IconButton(
-                    icon: Icon(Icons.delete_outlined),
-                    onPressed: () => redactEventsAction(context),
-                  ),
               ]
             : <Widget>[
                 IconButton(
