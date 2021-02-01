@@ -2001,5 +2001,15 @@
     "placeholders": {
       "homeserver": {}
     }
+  },
+  "next": "Suivant",
+  "@next": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseFollowInstructionsOnWeb": "Veuillez suivre les instructions sur le site et appuyer sur Suivant.",
+  "@pleaseFollowInstructionsOnWeb": {
+    "type": "text",
+    "placeholders": {}
   }
 }
