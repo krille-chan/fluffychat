@@ -45,7 +45,10 @@ class MultipleEmotesSettings extends StatelessWidget {
                   onTap: () async {
                     await AdaptivePageLayout.of(context).pushNamed(
                       '/settings/emotes',
-                      arguments: room,
+                      arguments: {
+                        'room': room,
+                        'stateKey': keys[i],
+                      },
                     );
                   },
                 );
