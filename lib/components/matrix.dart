@@ -10,7 +10,6 @@ import 'package:fluffychat/utils/firebase_controller.dart';
 import 'package:fluffychat/utils/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/sentry_controller.dart';
-import 'package:fluffychat/utils/status.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -127,7 +126,6 @@ class MatrixState extends State<Matrix> {
   StreamSubscription onKeyVerificationRequestSub;
   StreamSubscription onJitsiCallSub;
   StreamSubscription onNotification;
-  StreamSubscription<Presence> onPresence;
   StreamSubscription<LoginState> onLoginStateChanged;
   StreamSubscription<UiaRequest> onUiaRequest;
   StreamSubscription<html.Event> onFocusSub;
@@ -290,10 +288,6 @@ class MatrixState extends State<Matrix> {
     LoadingDialog.defaultBackLabel = L10n.of(context).close;
     LoadingDialog.defaultOnError = (Object e) => e.toLocalizedString(context);
 
-    onPresence ??= client.onPresence.stream
-        .where((p) => p.presence?.statusMsg != null)
-        .listen(_onPresence);
-
     onRoomKeyRequestSub ??=
         client.onRoomKeyRequest.stream.listen((RoomKeyRequest request) async {
       final room = request.room;
@@ -401,45 +395,6 @@ class MatrixState extends State<Matrix> {
     }
   }
 
-  Map<String, Status> get statuses {
-    if (client.accountData.containsKey(Status.namespace)) {
-      try {
-        return client.accountData[Status.namespace].content
-            .map((k, v) => MapEntry(k, Status.fromJson(v)));
-      } catch (e, s) {
-        Logs()
-            .e('Unable to parse status account data. Clearing up now...', e, s);
-        client.setAccountData(client.userID, Status.namespace, {});
-      }
-    }
-    return {};
-  }
-
-  void _onPresence(Presence presence) async {
-    if (statuses[presence.senderId]?.message != presence.presence.statusMsg) {
-      Logs().v('Update status from ${presence.senderId}');
-      await client.setAccountData(
-        client.userID,
-        Status.namespace,
-        statuses.map((k, v) => MapEntry(k, v.toJson()))
-          ..[presence.senderId] = Status(
-            presence.senderId,
-            presence.presence.statusMsg,
-            DateTime.now(),
-          ),
-      );
-    }
-  }
-
-  Future<void> removeStatusOfUser(String userId) async {
-    await client.setAccountData(
-      client.userID,
-      Status.namespace,
-      statuses.map((k, v) => MapEntry(k, v.toJson()))..remove(userId),
-    );
-    return;
-  }
-
   @override
   void dispose() {
     onRoomKeyRequestSub?.cancel();
@@ -448,7 +403,6 @@ class MatrixState extends State<Matrix> {
     onNotification?.cancel();
     onFocusSub?.cancel();
     onBlurSub?.cancel();
-    onPresence?.cancel();
     super.dispose();
   }
 

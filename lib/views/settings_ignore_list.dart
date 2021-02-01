@@ -6,25 +6,8 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import '../components/matrix.dart';
 
-class SettingsIgnoreList extends StatefulWidget {
-  final String initialUserId;
-
-  SettingsIgnoreList({Key key, this.initialUserId}) : super(key: key);
-
-  @override
-  _SettingsIgnoreListState createState() => _SettingsIgnoreListState();
-}
-
-class _SettingsIgnoreListState extends State<SettingsIgnoreList> {
+class SettingsIgnoreList extends StatelessWidget {
   final TextEditingController _controller = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-    if (widget.initialUserId != null) {
-      _controller.text = widget.initialUserId.replaceAll('@', '');
-    }
-  }
 
   void _ignoreUser(BuildContext context) {
     if (_controller.text.isEmpty) return;

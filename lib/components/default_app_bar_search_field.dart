@@ -9,7 +9,6 @@ class DefaultAppBarSearchField extends StatefulWidget {
   final String hintText;
   final EdgeInsets padding;
   final bool readOnly;
-  final Widget prefixIcon;
 
   const DefaultAppBarSearchField({
     Key key,
@@ -21,7 +20,6 @@ class DefaultAppBarSearchField extends StatefulWidget {
     this.hintText,
     this.padding,
     this.readOnly = false,
-    this.prefixIcon,
   }) : super(key: key);
 
   @override
@@ -75,18 +73,12 @@ class _DefaultAppBarSearchFieldState extends State<DefaultAppBarSearchField> {
         readOnly: widget.readOnly,
         decoration: InputDecoration(
           prefixText: widget.prefixText,
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-            borderSide:
-                BorderSide(color: Theme.of(context).secondaryHeaderColor),
-          ),
           contentPadding: EdgeInsets.only(
             top: 8,
             bottom: 8,
             left: 16,
           ),
           hintText: widget.hintText,
-          prefixIcon: widget.prefixIcon,
           suffixIcon: !widget.readOnly &&
                   (_focusNode.hasFocus ||
                       (widget.suffix == null &&

@@ -1332,13 +1332,8 @@
       "username": {}
     }
   },
-  "ignore": "Ignore",
-  "@ignore": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "search": "Search",
-  "@search": {
+  "searchForAChat": "Search for a chat",
+  "@searchForAChat": {
     "type": "text",
     "placeholders": {}
   },
@@ -1390,23 +1385,8 @@
       "count": {}
     }
   },
-  "status": "Status",
-  "@status": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "messages": "Messages",
-  "@messages": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "groups": "Groups",
-  "@groups": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "discover": "Discover",
-  "@discover": {
+  "discoverGroups": "Discover groups",
+  "@discoverGroups": {
     "type": "text",
     "placeholders": {}
   },
