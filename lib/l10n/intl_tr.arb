@@ -2041,5 +2041,50 @@
   "@ignore": {
     "type": "text",
     "placeholders": {}
+  },
+  "inoffensive": "Rahatsız edici değil",
+  "@inoffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reportMessage": "Mesajı bildir",
+  "@reportMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "redactMessage": "Mesajı düzenle",
+  "@redactMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contentHasBeenReported": "İçerik, sunucu yöneticilerine bildirildi",
+  "@contentHasBeenReported": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reason": "Neden",
+  "@reason": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whyDoYouWantToReportThis": "Bunu neden bildirmek istiyorsunuz?",
+  "@whyDoYouWantToReportThis": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offensive": "Rahatsız edici",
+  "@offensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "extremeOffensive": "Aşırı rahatsız edici",
+  "@extremeOffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "howOffensiveIsThisContent": "Bu içerik ne kadar rahatsız edici?",
+  "@howOffensiveIsThisContent": {
+    "type": "text",
+    "placeholders": {}
   }
 }
