@@ -933,7 +933,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Es sieht so aus als hättest du keine Google-Dienste auf deinem Gerät. Das ist eine gute Entscheidung für deine Privatsphäre! Um Push Benachrichtigungen in FluffyChat zu erhalten, empfehlen wir die Verwendung von microG: https://microg.org/",
+  "noGoogleServicesWarning": "Es sieht so aus als hättest du keine Google-Dienste auf deinem Gerät. Das ist eine gute Entscheidung für deine Privatsphäre! Um Push-Benachrichtigungen in FluffyChat zu erhalten, empfehlen wir die Verwendung von microG: https://microg.org/",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -1965,7 +1965,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "tooManyRequestsWarning": "Zu viele Anfragen. Bitte versuchen Sie es später noch einmal!",
+  "tooManyRequestsWarning": "Zu viele Anfragen. Bitte versuche es später noch einmal!",
   "@tooManyRequestsWarning": {
     "type": "text",
     "placeholders": {}
@@ -2001,5 +2001,60 @@
     "placeholders": {
       "homeserver": {}
     }
+  },
+  "whyDoYouWantToReportThis": "Warum willst du dies melden?",
+  "@whyDoYouWantToReportThis": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseFollowInstructionsOnWeb": "Bitte folge den Anweisungen auf der Website und tippe auf Weiter.",
+  "@pleaseFollowInstructionsOnWeb": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reportMessage": "Nachricht melden",
+  "@reportMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "redactMessage": "Nachricht verfassen",
+  "@redactMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contentHasBeenReported": "Der Inhalt wurde den Serveradministratoren gemeldet",
+  "@contentHasBeenReported": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reason": "Grund",
+  "@reason": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inoffensive": "Harmlos",
+  "@inoffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offensive": "Beleidigend",
+  "@offensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "extremeOffensive": "Extrem beleidigend",
+  "@extremeOffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "howOffensiveIsThisContent": "Wie beleidigend ist dieser Inhalt?",
+  "@howOffensiveIsThisContent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "next": "Weiter",
+  "@next": {
+    "type": "text",
+    "placeholders": {}
   }
 }
