@@ -2001,5 +2001,15 @@
     "placeholders": {
       "homeserver": {}
     }
+  },
+  "next": "Edasi",
+  "@next": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseFollowInstructionsOnWeb": "Palun järgi veebilehel olevaid juhiseid ja klõpsi nuppu Edasi.",
+  "@pleaseFollowInstructionsOnWeb": {
+    "type": "text",
+    "placeholders": {}
   }
 }
