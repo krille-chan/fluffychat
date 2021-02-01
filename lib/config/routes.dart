@@ -5,9 +5,8 @@ import 'package:fluffychat/views/archive.dart';
 import 'package:fluffychat/views/chat.dart';
 import 'package:fluffychat/views/chat_details.dart';
 import 'package:fluffychat/views/chat_encryption_settings.dart';
-import 'package:fluffychat/views/chat_list.dart';
+import 'package:fluffychat/views/home_view.dart';
 import 'package:fluffychat/views/chat_permissions_settings.dart';
-import 'package:fluffychat/views/discover_view.dart';
 import 'package:fluffychat/views/empty_page.dart';
 import 'package:fluffychat/views/homeserver_picker.dart';
 import 'package:fluffychat/views/invitation_selection.dart';
@@ -16,6 +15,7 @@ import 'package:fluffychat/views/log_view.dart';
 import 'package:fluffychat/views/login.dart';
 import 'package:fluffychat/views/new_group.dart';
 import 'package:fluffychat/views/new_private_chat.dart';
+import 'package:fluffychat/views/set_status_view.dart';
 import 'package:fluffychat/views/settings.dart';
 import 'package:fluffychat/views/settings_3pid.dart';
 import 'package:fluffychat/views/settings_devices.dart';
@@ -64,14 +64,14 @@ class FluffyRoutes {
       switch (parts[1]) {
         case '':
           return ViewData(
-            mainView: (_) => ChatList(),
+            mainView: (_) => HomeView(),
             emptyView: (_) => EmptyPage(),
           );
         case 'rooms':
           final roomId = parts[2];
           if (parts.length == 3) {
             return ViewData(
-              leftView: (_) => ChatList(activeChat: roomId),
+              leftView: (_) => HomeView(),
               mainView: (_) => Chat(roomId),
             );
           } else if (parts.length == 4) {
@@ -79,55 +79,49 @@ class FluffyRoutes {
             switch (action) {
               case 'details':
                 return ViewData(
-                  leftView: (_) => ChatList(activeChat: roomId),
+                  leftView: (_) => HomeView(),
                   mainView: (_) => Chat(roomId),
                   rightView: (_) => ChatDetails(roomId),
                 );
               case 'encryption':
                 return ViewData(
-                  leftView: (_) => ChatList(activeChat: roomId),
+                  leftView: (_) => HomeView(),
                   mainView: (_) => Chat(roomId),
                   rightView: (_) => ChatEncryptionSettings(roomId),
                 );
               case 'permissions':
                 return ViewData(
-                  leftView: (_) => ChatList(activeChat: roomId),
+                  leftView: (_) => HomeView(),
                   mainView: (_) => Chat(roomId),
                   rightView: (_) => ChatPermissionsSettings(roomId),
                 );
               case 'invite':
                 return ViewData(
-                  leftView: (_) => ChatList(activeChat: roomId),
+                  leftView: (_) => HomeView(),
                   mainView: (_) => Chat(roomId),
                   rightView: (_) => InvitationSelection(roomId),
                 );
               case 'emotes':
                 return ViewData(
-                  leftView: (_) => ChatList(activeChat: roomId),
+                  leftView: (_) => HomeView(),
                   mainView: (_) => Chat(roomId),
                   rightView: (_) => MultipleEmotesSettings(roomId),
                 );
               default:
                 return ViewData(
-                  leftView: (_) => ChatList(activeChat: roomId),
+                  leftView: (_) => HomeView(),
                   mainView: (_) => Chat(roomId,
                       scrollToEventId: action.sigil == '\$' ? action : null),
                 );
             }
           }
           return ViewData(
-            mainView: (_) => ChatList(),
+            mainView: (_) => HomeView(),
             emptyView: (_) => EmptyPage(),
           );
         case 'archive':
           return ViewData(
             mainView: (_) => Archive(),
-            emptyView: (_) => EmptyPage(),
-          );
-        case 'discover':
-          return ViewData(
-            mainView: (_) =>
-                DiscoverPage(alias: parts.length == 3 ? parts[2] : null),
             emptyView: (_) => EmptyPage(),
           );
         case 'logs':
@@ -136,13 +130,18 @@ class FluffyRoutes {
           );
         case 'newgroup':
           return ViewData(
-            leftView: (_) => ChatList(),
+            leftView: (_) => HomeView(),
             mainView: (_) => NewGroup(),
           );
         case 'newprivatechat':
           return ViewData(
-            leftView: (_) => ChatList(),
+            leftView: (_) => HomeView(),
             mainView: (_) => NewPrivateChat(),
+          );
+        case 'newstatus':
+          return ViewData(
+            leftView: (_) => HomeView(),
+            mainView: (_) => SetStatusView(initialText: settings.arguments),
           );
         case 'settings':
           if (parts.length == 3) {
@@ -169,7 +168,9 @@ class FluffyRoutes {
               case 'ignore':
                 return ViewData(
                   leftView: (_) => Settings(),
-                  mainView: (_) => SettingsIgnoreList(),
+                  mainView: (_) => SettingsIgnoreList(
+                    initialUserId: settings.arguments,
+                  ),
                 );
               case 'notifications':
                 return ViewData(
