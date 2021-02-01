@@ -1222,7 +1222,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "newMessageInFluffyChat": "Нова порука - FluffyChat",
+  "newMessageInFluffyChat": "Нова порука — FluffyChat",
   "@newMessageInFluffyChat": {
     "type": "text",
     "placeholders": {}
@@ -1997,6 +1997,16 @@
   },
   "waitingPartnerAcceptRequest": "Чекам да саговорник прихвати захтев…",
   "@waitingPartnerAcceptRequest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseFollowInstructionsOnWeb": "Испратите упутства на веб сајту и тапните на „Следеће“.",
+  "@pleaseFollowInstructionsOnWeb": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "next": "Следеће",
+  "@next": {
     "type": "text",
     "placeholders": {}
   }
