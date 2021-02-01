@@ -2011,5 +2011,35 @@
   "@next": {
     "type": "text",
     "placeholders": {}
+  },
+  "discover": "Keşfet",
+  "@discover": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groups": "Gruplar",
+  "@groups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "messages": "Mesajlar",
+  "@messages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "status": "Durum",
+  "@status": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "search": "Ara",
+  "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignore": "Yok say",
+  "@ignore": {
+    "type": "text",
+    "placeholders": {}
   }
 }
