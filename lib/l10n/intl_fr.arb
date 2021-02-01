@@ -2011,5 +2011,35 @@
   "@pleaseFollowInstructionsOnWeb": {
     "type": "text",
     "placeholders": {}
+  },
+  "discover": "Découvrir",
+  "@discover": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groups": "Groupes",
+  "@groups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "messages": "Messages",
+  "@messages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "status": "Statut",
+  "@status": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "search": "Rechercher",
+  "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignore": "Ignorer",
+  "@ignore": {
+    "type": "text",
+    "placeholders": {}
   }
 }
