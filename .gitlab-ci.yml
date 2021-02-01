@@ -142,6 +142,7 @@ build_linux:
     when: on_success
     paths:
       - build/linux/release/bundle/
+  allow_failure: true
 
 #snap:edge:
 #  stage: release
