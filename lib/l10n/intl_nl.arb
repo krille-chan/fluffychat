@@ -1241,7 +1241,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "homeserverIsNotCompatible": "Thuisserver is niet compatibel",
+  "homeserverIsNotCompatible": "Homeserver is niet compatibel",
   "@homeserverIsNotCompatible": {
     "type": "text",
     "placeholders": {}
@@ -1341,7 +1341,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enterYourHomeserver": "Vul je thuisserver in",
+  "enterYourHomeserver": "Vul je homeserver in",
   "@enterYourHomeserver": {
     "type": "text",
     "placeholders": {}
@@ -1800,7 +1800,7 @@
       "username": {}
     }
   },
-  "changeTheHomeserver": "Wijzig de thuisserver",
+  "changeTheHomeserver": "Wijzig de homeserver",
   "@changeTheHomeserver": {
     "type": "text",
     "placeholders": {}
@@ -1990,6 +1990,91 @@
   },
   "about": "Over",
   "@about": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reportMessage": "Bericht melden",
+  "@reportMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "redactMessage": "Bericht redigeren",
+  "@redactMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contentHasBeenReported": "De inhoud is gemeld aan de serverbeheerders",
+  "@contentHasBeenReported": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reason": "Reden",
+  "@reason": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whyDoYouWantToReportThis": "Waarom wil je dit melden?",
+  "@whyDoYouWantToReportThis": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inoffensive": "Niet beledigend",
+  "@inoffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offensive": "Beledigend",
+  "@offensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "extremeOffensive": "Extreem beledigend",
+  "@extremeOffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "howOffensiveIsThisContent": "Hoe beledigend is deze inhoud?",
+  "@howOffensiveIsThisContent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "search": "Zoeken",
+  "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discover": "Ontdek",
+  "@discover": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groups": "Groepen",
+  "@groups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "messages": "Berichten",
+  "@messages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "status": "Status",
+  "@status": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignore": "Negeer",
+  "@ignore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "next": "Volgende",
+  "@next": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseFollowInstructionsOnWeb": "Volg de instructies op de website en klik op volgende.",
+  "@pleaseFollowInstructionsOnWeb": {
     "type": "text",
     "placeholders": {}
   }
