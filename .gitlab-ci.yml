@@ -114,6 +114,28 @@ upload-fdroid:
   only:
     - tags
 
+upload-fdroid-nightly:
+  stage: release
+  before_script:
+    - 'which ssh-agent || (sudo apt-get update -y && sudo apt-get install openssh-client -y )'
+    - 'which rsync || (sudo apt-get update -y && sudo apt-get install rsync -y )'
+    - 'which pcregrep || (sudo apt-get update -y && sudo apt-get install pcregrep -y )'
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan -t rsa fdroid.nordgedanken.dev >> ~/.ssh/known_hosts
+  script:
+    - cd build/android/
+    - export UPDATE_VERSION=$(pcregrep -o1 'version:\s([0-9]*\.[0-9]*\.[0-9]*)\+[0-9]*' ../../pubspec.yaml) && mv app-release.apk "${UPDATE_VERSION}_$(date +%s).apk"
+    - rsync -rav -e ssh ./ fluffy@fdroid.nordgedanken.dev:/opt/fdroid/fluffychat-nightly/repo
+    - ssh fluffy@fdroid.nordgedanken.dev -t '/bin/bash -i -l -c "cd /opt/fdroid/fluffychat-nightly && fdroid update --verbose"'
+  needs: ["build_android_apk"]
+  resource_group: playstore_release
+  allow_failure: true
+  only:
+    - main
+
 pages:
   stage: deploy
   image: ruby:latest
