@@ -1,5 +1,5 @@
 # fluffychat-website
-The FluffyChat website including the FAQ is now available in english, german and spanish. If you would like to help with translations, you can check out this repo here: https://gitlab.com/ChristianPauly/fluffychat-website or just send me a translated version of these two files:
+The FluffyChat website including the FAQ is now available in Engish, German and Spanish. If you would like to help with translations, you can check out [**this repo**](https://gitlab.com/ChristianPauly/fluffychat-website) or send me a translated version of these two files:
 
 + https://gitlab.com/ChristianPauly/fluffychat-website/blob/master/en/faq.md
 + https://gitlab.com/ChristianPauly/fluffychat-website/blob/master/data/en.yml
