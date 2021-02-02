@@ -41,10 +41,6 @@ abstract class PlatformInfos {
       children: [
         Text('Version: $version'),
         RaisedButton(
-          child: Text(L10n.of(context).privacy),
-          onPressed: () => launch(AppConfig.privacyUrl),
-        ),
-        RaisedButton(
           child: Text(L10n.of(context).sourceCode),
           onPressed: () => launch(AppConfig.sourceCodeUrl),
         ),

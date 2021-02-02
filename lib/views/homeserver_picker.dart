@@ -195,7 +195,7 @@ class _HomeserverPickerState extends State<HomeserverPicker> {
                       color: Colors.blueGrey,
                     ),
                   ),
-                  onPressed: () => PlatformInfos.showDialog(context),
+                  onPressed: () => launch(AppConfig.privacyUrl),
                 ),
                 FlatButton(
                   child: Text(
