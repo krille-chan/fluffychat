@@ -1,0 +1,2169 @@
+diff --git a/lib/components/default_app_bar_search_field.dart b/lib/components/default_app_bar_search_field.dart
+index ca5428fe27499f6df81de6b16be07ae89e468746..1795b38ba063a5a0a4bb4446a9b62e16b4457e7e 100644
+--- a/lib/components/default_app_bar_search_field.dart
++++ b/lib/components/default_app_bar_search_field.dart
+@@ -9,6 +9,7 @@ class DefaultAppBarSearchField extends StatefulWidget {
+   final String hintText;
+   final EdgeInsets padding;
+   final bool readOnly;
++  final Widget prefixIcon;
+ 
+   const DefaultAppBarSearchField({
+     Key key,
+@@ -20,6 +21,7 @@ class DefaultAppBarSearchField extends StatefulWidget {
+     this.hintText,
+     this.padding,
+     this.readOnly = false,
++    this.prefixIcon,
+   }) : super(key: key);
+ 
+   @override
+@@ -73,12 +75,18 @@ class _DefaultAppBarSearchFieldState extends State<DefaultAppBarSearchField> {
+         readOnly: widget.readOnly,
+         decoration: InputDecoration(
+           prefixText: widget.prefixText,
++          enabledBorder: OutlineInputBorder(
++            borderRadius: BorderRadius.circular(12),
++            borderSide:
++                BorderSide(color: Theme.of(context).secondaryHeaderColor),
++          ),
+           contentPadding: EdgeInsets.only(
+             top: 8,
+             bottom: 8,
+             left: 16,
+           ),
+           hintText: widget.hintText,
++          prefixIcon: widget.prefixIcon,
+           suffixIcon: !widget.readOnly &&
+                   (_focusNode.hasFocus ||
+                       (widget.suffix == null &&
+diff --git a/lib/components/default_drawer.dart b/lib/components/default_drawer.dart
+deleted file mode 100644
+index b1cfdfcbd8734e8ef42867b7d73154e3511cb52e..0000000000000000000000000000000000000000
+--- a/lib/components/default_drawer.dart
++++ /dev/null
+@@ -1,94 +0,0 @@
+-import 'package:adaptive_dialog/adaptive_dialog.dart';
+-import 'package:adaptive_page_layout/adaptive_page_layout.dart';
+-import 'package:famedlysdk/famedlysdk.dart';
+-import 'package:flutter/material.dart';
+-import 'package:flutter_gen/gen_l10n/l10n.dart';
+-
+-import 'package:future_loading_dialog/future_loading_dialog.dart';
+-import 'matrix.dart';
+-
+-class DefaultDrawer extends StatelessWidget {
+-  void _drawerTapAction(BuildContext context, String route) {
+-    Navigator.of(context).pop();
+-    AdaptivePageLayout.of(context).pushNamedAndRemoveUntilIsFirst(route);
+-  }
+-
+-  void _setStatus(BuildContext context) async {
+-    final client = Matrix.of(context).client;
+-    final input = await showTextInputDialog(
+-      title: L10n.of(context).setStatus,
+-      context: context,
+-      textFields: [
+-        DialogTextField(
+-          hintText: L10n.of(context).statusExampleMessage,
+-        )
+-      ],
+-    );
+-    if (input == null || input.single.isEmpty) return;
+-    await showFutureLoadingDialog(
+-      context: context,
+-      future: () => client.sendPresence(
+-        client.userID,
+-        PresenceType.online,
+-        statusMsg: input.single,
+-      ),
+-    );
+-    Navigator.of(context).pop();
+-    return;
+-  }
+-
+-  @override
+-  Widget build(BuildContext context) {
+-    return Drawer(
+-      child: SafeArea(
+-        child: ListView(
+-          padding: EdgeInsets.zero,
+-          children: <Widget>[
+-            ListTile(
+-              leading: Icon(Icons.edit_outlined),
+-              title: Text(L10n.of(context).setStatus),
+-              onTap: () => _setStatus(context),
+-            ),
+-            Divider(height: 1),
+-            ListTile(
+-              leading: Icon(Icons.people_outline),
+-              title: Text(L10n.of(context).createNewGroup),
+-              onTap: () => _drawerTapAction(context, '/newgroup'),
+-            ),
+-            ListTile(
+-              leading: Icon(Icons.person_add_outlined),
+-              title: Text(L10n.of(context).newPrivateChat),
+-              onTap: () => _drawerTapAction(context, '/newprivatechat'),
+-            ),
+-            Divider(height: 1),
+-            ListTile(
+-              leading: Icon(Icons.archive_outlined),
+-              title: Text(L10n.of(context).archive),
+-              onTap: () => _drawerTapAction(
+-                context,
+-                '/archive',
+-              ),
+-            ),
+-            ListTile(
+-              leading: Icon(Icons.group_work_outlined),
+-              title: Text(L10n.of(context).discoverGroups),
+-              onTap: () => _drawerTapAction(
+-                context,
+-                '/discover',
+-              ),
+-            ),
+-            Divider(height: 1),
+-            ListTile(
+-              leading: Icon(Icons.settings_outlined),
+-              title: Text(L10n.of(context).settings),
+-              onTap: () => _drawerTapAction(
+-                context,
+-                '/settings',
+-              ),
+-            ),
+-          ],
+-        ),
+-      ),
+-    );
+-  }
+-}
+diff --git a/lib/components/list_items/status_list_tile.dart b/lib/components/list_items/status_list_tile.dart
+new file mode 100644
+index 0000000000000000000000000000000000000000..5e5bcaa0aa93b61057a0dcf8b15f9158d5aaf07b
+--- /dev/null
++++ b/lib/components/list_items/status_list_tile.dart
+@@ -0,0 +1,134 @@
++import 'package:adaptive_page_layout/adaptive_page_layout.dart';
++import 'package:cached_network_image/cached_network_image.dart';
++import 'package:famedlysdk/famedlysdk.dart';
++import 'package:fluffychat/components/avatar.dart';
++import 'package:fluffychat/utils/fluffy_share.dart';
++import 'package:fluffychat/utils/status.dart';
++import 'package:flutter/cupertino.dart';
++import 'package:flutter/material.dart';
++import 'package:future_loading_dialog/future_loading_dialog.dart';
++import 'package:flutter_gen/gen_l10n/l10n.dart';
++
++import '../../utils/string_color.dart';
++import '../../utils/date_time_extension.dart';
++import '../matrix.dart';
++
++class StatusListTile extends StatelessWidget {
++  final Status status;
++
++  const StatusListTile({Key key, @required this.status}) : super(key: key);
++  @override
++  Widget build(BuildContext context) {
++    final text = status.message;
++    final isImage = text.startsWith('mxc://') && text.split(' ').length == 1;
++    return FutureBuilder<Profile>(
++        future: Matrix.of(context).client.getProfileFromUserId(status.senderId),
++        builder: (context, snapshot) {
++          final displayname =
++              snapshot.data?.displayname ?? status.senderId.localpart;
++          final avatarUrl = snapshot.data?.avatarUrl;
++          return Column(
++            mainAxisSize: MainAxisSize.min,
++            children: [
++              ListTile(
++                leading: Avatar(avatarUrl, displayname),
++                title: Row(
++                  crossAxisAlignment: CrossAxisAlignment.baseline,
++                  children: [
++                    Text(displayname,
++                        style: TextStyle(fontWeight: FontWeight.bold)),
++                    SizedBox(width: 4),
++                    Text(status.dateTime.localizedTime(context),
++                        style: TextStyle(fontSize: 14)),
++                  ],
++                ),
++                subtitle: Text(status.senderId),
++                trailing: PopupMenuButton(
++                  onSelected: (_) => AdaptivePageLayout.of(context).pushNamed(
++                      '/settings/ignore',
++                      arguments: status.senderId),
++                  itemBuilder: (_) => [
++                    PopupMenuItem(
++                      child: Text(L10n.of(context).ignore),
++                      value: 'ignore',
++                    ),
++                  ],
++                ),
++              ),
++              isImage
++                  ? CachedNetworkImage(
++                      imageUrl: Uri.parse(text).getThumbnail(
++                        Matrix.of(context).client,
++                        width: 360,
++                        height: 360,
++                        method: ThumbnailMethod.scale,
++                      ),
++                      fit: BoxFit.cover,
++                      width: double.infinity,
++                    )
++                  : Container(
++                      height: 256,
++                      color: text.color,
++                      alignment: Alignment.center,
++                      child: SingleChildScrollView(
++                        padding: EdgeInsets.all(12),
++                        child: Text(
++                          text,
++                          textAlign: TextAlign.center,
++                          style: TextStyle(
++                            color: Colors.white,
++                            fontSize: 24,
++                          ),
++                        ),
++                      ),
++                    ),
++              Padding(
++                padding: const EdgeInsets.only(right: 12.0, left: 12.0),
++                child: Row(
++                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
++                  children: [
++                    IconButton(
++                      icon: Icon(CupertinoIcons.chat_bubble),
++                      onPressed: () async {
++                        final result = await showFutureLoadingDialog(
++                          context: context,
++                          future: () => User(
++                            status.senderId,
++                            room:
++                                Room(id: '', client: Matrix.of(context).client),
++                          ).startDirectChat(),
++                        );
++                        if (result.error == null) {
++                          await AdaptivePageLayout.of(context)
++                              .pushNamed('/rooms/${result.result}');
++                        }
++                      },
++                    ),
++                    IconButton(
++                      icon: Icon(Icons.ios_share),
++                      onPressed: () => AdaptivePageLayout.of(context)
++                          .pushNamed('/newstatus', arguments: status.message),
++                    ),
++                    IconButton(
++                      icon: Icon(Icons.share_outlined),
++                      onPressed: () => FluffyShare.share(
++                        '$displayname: ${status.message}',
++                        context,
++                      ),
++                    ),
++                    IconButton(
++                      icon: Icon(Icons.delete_outlined),
++                      onPressed: () => showFutureLoadingDialog(
++                        context: context,
++                        future: () => Matrix.of(context)
++                            .removeStatusOfUser(status.senderId),
++                      ),
++                    ),
++                  ],
++                ),
++              ),
++            ],
++          );
++        });
++  }
++}
+diff --git a/lib/components/matrix.dart b/lib/components/matrix.dart
+index ed0c76f978f2fa9fd123717ade51f2b1ce57e55b..5fcc4f5e8d32283fa9f7a3f9e5bb296dae6f34ed 100644
+--- a/lib/components/matrix.dart
++++ b/lib/components/matrix.dart
+@@ -10,6 +10,7 @@ import 'package:fluffychat/utils/firebase_controller.dart';
+ import 'package:fluffychat/utils/matrix_locals.dart';
+ import 'package:fluffychat/utils/platform_infos.dart';
+ import 'package:fluffychat/utils/sentry_controller.dart';
++import 'package:fluffychat/utils/status.dart';
+ import 'package:flushbar/flushbar.dart';
+ import 'package:flutter/foundation.dart';
+ import 'package:flutter/material.dart';
+@@ -126,6 +127,7 @@ class MatrixState extends State<Matrix> {
+   StreamSubscription onKeyVerificationRequestSub;
+   StreamSubscription onJitsiCallSub;
+   StreamSubscription onNotification;
++  StreamSubscription<Presence> onPresence;
+   StreamSubscription<LoginState> onLoginStateChanged;
+   StreamSubscription<UiaRequest> onUiaRequest;
+   StreamSubscription<html.Event> onFocusSub;
+@@ -288,6 +290,10 @@ class MatrixState extends State<Matrix> {
+     LoadingDialog.defaultBackLabel = L10n.of(context).close;
+     LoadingDialog.defaultOnError = (Object e) => e.toLocalizedString(context);
+ 
++    onPresence ??= client.onPresence.stream
++        .where((p) => p.presence?.statusMsg != null)
++        .listen(_onPresence);
++
+     onRoomKeyRequestSub ??=
+         client.onRoomKeyRequest.stream.listen((RoomKeyRequest request) async {
+       final room = request.room;
+@@ -395,6 +401,45 @@ class MatrixState extends State<Matrix> {
+     }
+   }
+ 
++  Map<String, Status> get statuses {
++    if (client.accountData.containsKey(Status.namespace)) {
++      try {
++        return client.accountData[Status.namespace].content
++            .map((k, v) => MapEntry(k, Status.fromJson(v)));
++      } catch (e, s) {
++        Logs()
++            .e('Unable to parse status account data. Clearing up now...', e, s);
++        client.setAccountData(client.userID, Status.namespace, {});
++      }
++    }
++    return {};
++  }
++
++  void _onPresence(Presence presence) async {
++    if (statuses[presence.senderId]?.message != presence.presence.statusMsg) {
++      Logs().v('Update status from ${presence.senderId}');
++      await client.setAccountData(
++        client.userID,
++        Status.namespace,
++        statuses.map((k, v) => MapEntry(k, v.toJson()))
++          ..[presence.senderId] = Status(
++            presence.senderId,
++            presence.presence.statusMsg,
++            DateTime.now(),
++          ),
++      );
++    }
++  }
++
++  Future<void> removeStatusOfUser(String userId) async {
++    await client.setAccountData(
++      client.userID,
++      Status.namespace,
++      statuses.map((k, v) => MapEntry(k, v.toJson()))..remove(userId),
++    );
++    return;
++  }
++
+   @override
+   void dispose() {
+     onRoomKeyRequestSub?.cancel();
+@@ -403,6 +448,7 @@ class MatrixState extends State<Matrix> {
+     onNotification?.cancel();
+     onFocusSub?.cancel();
+     onBlurSub?.cancel();
++    onPresence?.cancel();
+     super.dispose();
+   }
+ 
+diff --git a/lib/config/routes.dart b/lib/config/routes.dart
+index 1002989b5a5dcdbe49f90c69dec5f77255ba72ba..cc27d0dd753532d84c39b6dd8c40e5b161e32c76 100644
+--- a/lib/config/routes.dart
++++ b/lib/config/routes.dart
+@@ -5,9 +5,8 @@ import 'package:fluffychat/views/archive.dart';
+ import 'package:fluffychat/views/chat.dart';
+ import 'package:fluffychat/views/chat_details.dart';
+ import 'package:fluffychat/views/chat_encryption_settings.dart';
+-import 'package:fluffychat/views/chat_list.dart';
++import 'package:fluffychat/views/home_view.dart';
+ import 'package:fluffychat/views/chat_permissions_settings.dart';
+-import 'package:fluffychat/views/discover_view.dart';
+ import 'package:fluffychat/views/empty_page.dart';
+ import 'package:fluffychat/views/homeserver_picker.dart';
+ import 'package:fluffychat/views/invitation_selection.dart';
+@@ -16,6 +15,7 @@ import 'package:fluffychat/views/log_view.dart';
+ import 'package:fluffychat/views/login.dart';
+ import 'package:fluffychat/views/new_group.dart';
+ import 'package:fluffychat/views/new_private_chat.dart';
++import 'package:fluffychat/views/set_status_view.dart';
+ import 'package:fluffychat/views/settings.dart';
+ import 'package:fluffychat/views/settings_3pid.dart';
+ import 'package:fluffychat/views/settings_devices.dart';
+@@ -64,14 +64,14 @@ class FluffyRoutes {
+       switch (parts[1]) {
+         case '':
+           return ViewData(
+-            mainView: (_) => ChatList(),
++            mainView: (_) => HomeView(),
+             emptyView: (_) => EmptyPage(),
+           );
+         case 'rooms':
+           final roomId = parts[2];
+           if (parts.length == 3) {
+             return ViewData(
+-              leftView: (_) => ChatList(activeChat: roomId),
++              leftView: (_) => HomeView(),
+               mainView: (_) => Chat(roomId),
+             );
+           } else if (parts.length == 4) {
+@@ -79,44 +79,44 @@ class FluffyRoutes {
+             switch (action) {
+               case 'details':
+                 return ViewData(
+-                  leftView: (_) => ChatList(activeChat: roomId),
++                  leftView: (_) => HomeView(),
+                   mainView: (_) => Chat(roomId),
+                   rightView: (_) => ChatDetails(roomId),
+                 );
+               case 'encryption':
+                 return ViewData(
+-                  leftView: (_) => ChatList(activeChat: roomId),
++                  leftView: (_) => HomeView(),
+                   mainView: (_) => Chat(roomId),
+                   rightView: (_) => ChatEncryptionSettings(roomId),
+                 );
+               case 'permissions':
+                 return ViewData(
+-                  leftView: (_) => ChatList(activeChat: roomId),
++                  leftView: (_) => HomeView(),
+                   mainView: (_) => Chat(roomId),
+                   rightView: (_) => ChatPermissionsSettings(roomId),
+                 );
+               case 'invite':
+                 return ViewData(
+-                  leftView: (_) => ChatList(activeChat: roomId),
++                  leftView: (_) => HomeView(),
+                   mainView: (_) => Chat(roomId),
+                   rightView: (_) => InvitationSelection(roomId),
+                 );
+               case 'emotes':
+                 return ViewData(
+-                  leftView: (_) => ChatList(activeChat: roomId),
++                  leftView: (_) => HomeView(),
+                   mainView: (_) => Chat(roomId),
+                   rightView: (_) => MultipleEmotesSettings(roomId),
+                 );
+               default:
+                 return ViewData(
+-                  leftView: (_) => ChatList(activeChat: roomId),
++                  leftView: (_) => HomeView(),
+                   mainView: (_) => Chat(roomId,
+                       scrollToEventId: action.sigil == '\$' ? action : null),
+                 );
+             }
+           }
+           return ViewData(
+-            mainView: (_) => ChatList(),
++            mainView: (_) => HomeView(),
+             emptyView: (_) => EmptyPage(),
+           );
+         case 'archive':
+@@ -124,26 +124,25 @@ class FluffyRoutes {
+             mainView: (_) => Archive(),
+             emptyView: (_) => EmptyPage(),
+           );
+-        case 'discover':
+-          return ViewData(
+-            mainView: (_) =>
+-                DiscoverPage(alias: parts.length == 3 ? parts[2] : null),
+-            emptyView: (_) => EmptyPage(),
+-          );
+         case 'logs':
+           return ViewData(
+             mainView: (_) => LogViewer(),
+           );
+         case 'newgroup':
+           return ViewData(
+-            leftView: (_) => ChatList(),
++            leftView: (_) => HomeView(),
+             mainView: (_) => NewGroup(),
+           );
+         case 'newprivatechat':
+           return ViewData(
+-            leftView: (_) => ChatList(),
++            leftView: (_) => HomeView(),
+             mainView: (_) => NewPrivateChat(),
+           );
++        case 'newstatus':
++          return ViewData(
++            leftView: (_) => HomeView(),
++            mainView: (_) => SetStatusView(initialText: settings.arguments),
++          );
+         case 'settings':
+           if (parts.length == 3) {
+             final action = parts[2];
+@@ -166,7 +165,9 @@ class FluffyRoutes {
+               case 'ignore':
+                 return ViewData(
+                   leftView: (_) => Settings(),
+-                  mainView: (_) => SettingsIgnoreList(),
++                  mainView: (_) => SettingsIgnoreList(
++                    initialUserId: settings.arguments,
++                  ),
+                 );
+               case 'notifications':
+                 return ViewData(
+diff --git a/lib/utils/status.dart b/lib/utils/status.dart
+new file mode 100644
+index 0000000000000000000000000000000000000000..3c06ffb36994819860ebbccf6a51502ce877c69b
+--- /dev/null
++++ b/lib/utils/status.dart
+@@ -0,0 +1,19 @@
++class Status {
++  static const String namespace = 'im.fluffychat.statuses';
++  final String senderId;
++  final String message;
++  final DateTime dateTime;
++
++  Status(this.senderId, this.message, this.dateTime);
++
++  Status.fromJson(Map<String, dynamic> json)
++      : senderId = json['sender_id'],
++        message = json['message'],
++        dateTime = DateTime.fromMillisecondsSinceEpoch(json['date_time']);
++
++  Map<String, dynamic> toJson() => <String, dynamic>{
++        'sender_id': senderId,
++        'message': message,
++        'date_time': dateTime.millisecondsSinceEpoch,
++      };
++}
+diff --git a/lib/views/chat_list.dart b/lib/views/chat_list.dart
+deleted file mode 100644
+index b3a3a422622728ebaa7182e3c7e3731b05e03ac9..0000000000000000000000000000000000000000
+--- a/lib/views/chat_list.dart
++++ /dev/null
+@@ -1,341 +0,0 @@
+-import 'dart:async';
+-import 'dart:io';
+-
+-import 'package:adaptive_dialog/adaptive_dialog.dart';
+-import 'package:adaptive_page_layout/adaptive_page_layout.dart';
+-import 'package:famedlysdk/famedlysdk.dart';
+-import 'package:fluffychat/components/connection_status_header.dart';
+-import 'package:fluffychat/components/default_app_bar_search_field.dart';
+-import 'package:fluffychat/components/default_drawer.dart';
+-import 'package:future_loading_dialog/future_loading_dialog.dart';
+-import 'package:fluffychat/app_config.dart';
+-import 'package:fluffychat/utils/platform_infos.dart';
+-import 'package:flutter/foundation.dart';
+-import 'package:flutter/material.dart';
+-import 'package:flutter_gen/gen_l10n/l10n.dart';
+-import 'package:receive_sharing_intent/receive_sharing_intent.dart';
+-
+-import '../components/list_items/chat_list_item.dart';
+-import '../components/matrix.dart';
+-import '../utils/matrix_file_extension.dart';
+-import '../utils/url_launcher.dart';
+-
+-enum SelectMode { normal, share, select }
+-
+-class ChatList extends StatefulWidget {
+-  final String activeChat;
+-
+-  const ChatList({this.activeChat, Key key}) : super(key: key);
+-
+-  @override
+-  _ChatListState createState() => _ChatListState();
+-}
+-
+-class _ChatListState extends State<ChatList> {
+-  bool get searchMode => searchController.text?.isNotEmpty ?? false;
+-  final TextEditingController searchController = TextEditingController();
+-  final _selectedRoomIds = <String>{};
+-
+-  final ScrollController _scrollController = ScrollController();
+-  bool _scrolledToTop = true;
+-
+-  void _toggleSelection(String roomId) =>
+-      setState(() => _selectedRoomIds.contains(roomId)
+-          ? _selectedRoomIds.remove(roomId)
+-          : _selectedRoomIds.add(roomId));
+-
+-  Future<void> waitForFirstSync(BuildContext context) async {
+-    var client = Matrix.of(context).client;
+-    if (client.prevBatch?.isEmpty ?? true) {
+-      await client.onFirstSync.stream.first;
+-    }
+-    return true;
+-  }
+-
+-  @override
+-  void initState() {
+-    _scrollController.addListener(() async {
+-      if (_scrollController.position.pixels > 0 && _scrolledToTop) {
+-        setState(() => _scrolledToTop = false);
+-      } else if (_scrollController.position.pixels == 0 && !_scrolledToTop) {
+-        setState(() => _scrolledToTop = true);
+-      }
+-    });
+-    _initReceiveSharingIntent();
+-    super.initState();
+-  }
+-
+-  StreamSubscription _intentDataStreamSubscription;
+-
+-  StreamSubscription _intentFileStreamSubscription;
+-
+-  void _processIncomingSharedFiles(List<SharedMediaFile> files) {
+-    if (files?.isEmpty ?? true) return;
+-    AdaptivePageLayout.of(context).popUntilIsFirst();
+-    final file = File(files.first.path);
+-
+-    Matrix.of(context).shareContent = {
+-      'msgtype': 'chat.fluffy.shared_file',
+-      'file': MatrixFile(
+-        bytes: file.readAsBytesSync(),
+-        name: file.path,
+-      ).detectFileType,
+-    };
+-  }
+-
+-  void _processIncomingSharedText(String text) {
+-    if (text == null) return;
+-    AdaptivePageLayout.of(context).popUntilIsFirst();
+-    if (text.toLowerCase().startsWith(AppConfig.inviteLinkPrefix) ||
+-        (text.toLowerCase().startsWith(AppConfig.schemePrefix) &&
+-            !RegExp(r'\s').hasMatch(text))) {
+-      UrlLauncher(context, text).openMatrixToUrl();
+-      return;
+-    }
+-    Matrix.of(context).shareContent = {
+-      'msgtype': 'm.text',
+-      'body': text,
+-    };
+-  }
+-
+-  void _initReceiveSharingIntent() {
+-    if (!PlatformInfos.isMobile) return;
+-
+-    // For sharing images coming from outside the app while the app is in the memory
+-    _intentFileStreamSubscription = ReceiveSharingIntent.getMediaStream()
+-        .listen(_processIncomingSharedFiles, onError: print);
+-
+-    // For sharing images coming from outside the app while the app is closed
+-    ReceiveSharingIntent.getInitialMedia().then(_processIncomingSharedFiles);
+-
+-    // For sharing or opening urls/text coming from outside the app while the app is in the memory
+-    _intentDataStreamSubscription = ReceiveSharingIntent.getTextStream()
+-        .listen(_processIncomingSharedText, onError: print);
+-
+-    // For sharing or opening urls/text coming from outside the app while the app is closed
+-    ReceiveSharingIntent.getInitialText().then(_processIncomingSharedText);
+-  }
+-
+-  @override
+-  void dispose() {
+-    _intentDataStreamSubscription?.cancel();
+-    _intentFileStreamSubscription?.cancel();
+-    super.dispose();
+-  }
+-
+-  Future<void> _toggleUnread(BuildContext context) {
+-    final room = Matrix.of(context).client.getRoomById(_selectedRoomIds.single);
+-    return showFutureLoadingDialog(
+-      context: context,
+-      future: () => room.setUnread(!room.isUnread),
+-    );
+-  }
+-
+-  Future<void> _toggleFavouriteRoom(BuildContext context) {
+-    final room = Matrix.of(context).client.getRoomById(_selectedRoomIds.single);
+-    return showFutureLoadingDialog(
+-      context: context,
+-      future: () => room.setFavourite(!room.isFavourite),
+-    );
+-  }
+-
+-  Future<void> _toggleMuted(BuildContext context) {
+-    final room = Matrix.of(context).client.getRoomById(_selectedRoomIds.single);
+-    return showFutureLoadingDialog(
+-      context: context,
+-      future: () => room.setPushRuleState(
+-          room.pushRuleState == PushRuleState.notify
+-              ? PushRuleState.mentions_only
+-              : PushRuleState.notify),
+-    );
+-  }
+-
+-  Future<void> _archiveAction(BuildContext context) async {
+-    final confirmed = await showOkCancelAlertDialog(
+-          context: context,
+-          title: L10n.of(context).areYouSure,
+-        ) ==
+-        OkCancelResult.ok;
+-    if (!confirmed) return;
+-    await showFutureLoadingDialog(
+-      context: context,
+-      future: () => _archiveSelectedRooms(context),
+-    );
+-    setState(() => null);
+-  }
+-
+-  Future<void> _archiveSelectedRooms(BuildContext context) async {
+-    final client = Matrix.of(context).client;
+-    while (_selectedRoomIds.isNotEmpty) {
+-      final roomId = _selectedRoomIds.first;
+-      await client.getRoomById(roomId).leave();
+-      _selectedRoomIds.remove(roomId);
+-    }
+-  }
+-
+-  @override
+-  Widget build(BuildContext context) {
+-    return StreamBuilder(
+-        stream: Matrix.of(context).onShareContentChanged.stream,
+-        builder: (context, snapshot) {
+-          final selectMode = Matrix.of(context).shareContent == null
+-              ? _selectedRoomIds.isEmpty
+-                  ? SelectMode.normal
+-                  : SelectMode.select
+-              : SelectMode.share;
+-          if (selectMode == SelectMode.share) {
+-            _selectedRoomIds.clear();
+-          }
+-          Room selectedRoom;
+-          if (_selectedRoomIds.length == 1) {
+-            selectedRoom =
+-                Matrix.of(context).client.getRoomById(_selectedRoomIds.single);
+-          }
+-          return Scaffold(
+-            drawer: selectMode != SelectMode.normal ? null : DefaultDrawer(),
+-            appBar: AppBar(
+-              centerTitle: false,
+-              elevation: _scrolledToTop ? 0 : null,
+-              leading: selectMode == SelectMode.share
+-                  ? IconButton(
+-                      icon: Icon(Icons.close),
+-                      onPressed: () => Matrix.of(context).shareContent = null,
+-                    )
+-                  : selectMode == SelectMode.select
+-                      ? IconButton(
+-                          icon: Icon(Icons.close),
+-                          onPressed: () => setState(_selectedRoomIds.clear),
+-                        )
+-                      : null,
+-              titleSpacing: 0,
+-              actions: selectMode != SelectMode.select
+-                  ? null
+-                  : [
+-                      if (_selectedRoomIds.length == 1)
+-                        IconButton(
+-                          tooltip: L10n.of(context).toggleUnread,
+-                          icon: Icon(selectedRoom.isUnread
+-                              ? Icons.mark_chat_read_outlined
+-                              : Icons.mark_chat_unread_outlined),
+-                          onPressed: () => _toggleUnread(context),
+-                        ),
+-                      if (_selectedRoomIds.length == 1)
+-                        IconButton(
+-                          tooltip: L10n.of(context).toggleFavorite,
+-                          icon: Icon(Icons.push_pin_outlined),
+-                          onPressed: () => _toggleFavouriteRoom(context),
+-                        ),
+-                      if (_selectedRoomIds.length == 1)
+-                        IconButton(
+-                          icon: Icon(
+-                              selectedRoom.pushRuleState == PushRuleState.notify
+-                                  ? Icons.notifications_off_outlined
+-                                  : Icons.notifications_outlined),
+-                          tooltip: L10n.of(context).toggleMuted,
+-                          onPressed: () => _toggleMuted(context),
+-                        ),
+-                      IconButton(
+-                        icon: Icon(Icons.archive_outlined),
+-                        tooltip: L10n.of(context).archive,
+-                        onPressed: () => _archiveAction(context),
+-                      ),
+-                    ],
+-              title: selectMode == SelectMode.share
+-                  ? Text(L10n.of(context).share)
+-                  : selectMode == SelectMode.select
+-                      ? Text(_selectedRoomIds.length.toString())
+-                      : DefaultAppBarSearchField(
+-                          searchController: searchController,
+-                          hintText: L10n.of(context).searchForAChat,
+-                          onChanged: (_) => setState(() => null),
+-                          suffix: Icon(Icons.search_outlined),
+-                        ),
+-            ),
+-            floatingActionButton:
+-                AdaptivePageLayout.of(context).columnMode(context)
+-                    ? null
+-                    : FloatingActionButton(
+-                        child: Icon(Icons.add_outlined),
+-                        onPressed: () => AdaptivePageLayout.of(context)
+-                            .pushNamedAndRemoveUntilIsFirst('/newprivatechat'),
+-                      ),
+-            body: Column(
+-              children: [
+-                ConnectionStatusHeader(),
+-                Expanded(
+-                  child: StreamBuilder(
+-                      stream: Matrix.of(context)
+-                          .client
+-                          .onSync
+-                          .stream
+-                          .where((s) => s.hasRoomUpdate),
+-                      builder: (context, snapshot) {
+-                        return FutureBuilder<void>(
+-                          future: waitForFirstSync(context),
+-                          builder: (BuildContext context, snapshot) {
+-                            if (snapshot.hasData) {
+-                              var rooms = List<Room>.from(
+-                                  Matrix.of(context).client.rooms);
+-                              rooms.removeWhere((Room room) =>
+-                                  room.lastEvent == null ||
+-                                  (searchMode &&
+-                                      !room.displayname.toLowerCase().contains(
+-                                          searchController.text.toLowerCase() ??
+-                                              '')));
+-                              if (rooms.isEmpty && (!searchMode)) {
+-                                return Column(
+-                                  mainAxisAlignment: MainAxisAlignment.center,
+-                                  mainAxisSize: MainAxisSize.min,
+-                                  children: <Widget>[
+-                                    Icon(
+-                                      searchMode
+-                                          ? Icons.search_outlined
+-                                          : Icons.maps_ugc_outlined,
+-                                      size: 80,
+-                                      color: Colors.grey,
+-                                    ),
+-                                    Text(
+-                                      searchMode
+-                                          ? L10n.of(context).noRoomsFound
+-                                          : L10n.of(context).startYourFirstChat,
+-                                      style: TextStyle(
+-                                        color: Colors.grey,
+-                                        fontSize: 16,
+-                                      ),
+-                                    ),
+-                                  ],
+-                                );
+-                              }
+-                              final totalCount = rooms.length;
+-                              return ListView.builder(
+-                                controller: _scrollController,
+-                                itemCount: totalCount,
+-                                itemBuilder: (BuildContext context, int i) =>
+-                                    ChatListItem(
+-                                  rooms[i],
+-                                  selected:
+-                                      _selectedRoomIds.contains(rooms[i].id),
+-                                  onTap: selectMode == SelectMode.select
+-                                      ? () => _toggleSelection(rooms[i].id)
+-                                      : null,
+-                                  onLongPress: selectMode != SelectMode.share
+-                                      ? () => _toggleSelection(rooms[i].id)
+-                                      : null,
+-                                  activeChat: widget.activeChat == rooms[i].id,
+-                                ),
+-                              );
+-                            } else {
+-                              return Center(
+-                                child: CircularProgressIndicator(),
+-                              );
+-                            }
+-                          },
+-                        );
+-                      }),
+-                ),
+-              ],
+-            ),
+-          );
+-        });
+-  }
+-}
+diff --git a/lib/views/discover_view.dart b/lib/views/discover_view.dart
+deleted file mode 100644
+index b0b30dcb6500096e339a0ed3ee62b2165d030151..0000000000000000000000000000000000000000
+--- a/lib/views/discover_view.dart
++++ /dev/null
+@@ -1,238 +0,0 @@
+-import 'dart:async';
+-
+-import 'package:adaptive_dialog/adaptive_dialog.dart';
+-import 'package:adaptive_page_layout/adaptive_page_layout.dart';
+-import 'package:famedlysdk/famedlysdk.dart';
+-import 'package:fluffychat/components/avatar.dart';
+-import 'package:fluffychat/components/default_app_bar_search_field.dart';
+-import 'package:future_loading_dialog/future_loading_dialog.dart';
+-import 'package:fluffychat/components/matrix.dart';
+-import 'package:flutter/material.dart';
+-import 'package:flutter_gen/gen_l10n/l10n.dart';
+-
+-class DiscoverPage extends StatefulWidget {
+-  final String alias;
+-
+-  const DiscoverPage({Key key, this.alias}) : super(key: key);
+-  @override
+-  _DiscoverPageState createState() => _DiscoverPageState();
+-}
+-
+-class _DiscoverPageState extends State<DiscoverPage> {
+-  final ScrollController _scrollController = ScrollController();
+-  bool _scrolledToTop = true;
+-  Future<PublicRoomsResponse> _publicRoomsResponse;
+-  Timer _coolDown;
+-  String _server;
+-  String _genericSearchTerm;
+-
+-  void _search(BuildContext context, String query) async {
+-    _coolDown?.cancel();
+-    _coolDown = Timer(
+-      Duration(milliseconds: 500),
+-      () => setState(() {
+-        _genericSearchTerm = query;
+-        _publicRoomsResponse = null;
+-      }),
+-    );
+-  }
+-
+-  void _setServer(BuildContext context) async {
+-    final newServer = await showTextInputDialog(
+-        title: L10n.of(context).changeTheHomeserver,
+-        context: context,
+-        textFields: [
+-          DialogTextField(
+-            hintText: Matrix.of(context).client.homeserver.toString(),
+-            initialText: _server,
+-            keyboardType: TextInputType.url,
+-          )
+-        ]);
+-    if (newServer == null) return;
+-    setState(() {
+-      _server = newServer.single;
+-      _publicRoomsResponse = null;
+-    });
+-  }
+-
+-  Future<String> _joinRoomAndWait(
+-    BuildContext context,
+-    String roomId,
+-    String alias,
+-  ) async {
+-    if (Matrix.of(context).client.getRoomById(roomId) != null) {
+-      return roomId;
+-    }
+-    final newRoomId = await Matrix.of(context)
+-        .client
+-        .joinRoomOrAlias(alias?.isNotEmpty ?? false ? alias : roomId);
+-    await Matrix.of(context)
+-        .client
+-        .onRoomUpdate
+-        .stream
+-        .firstWhere((r) => r.id == newRoomId);
+-    return newRoomId;
+-  }
+-
+-  void _joinGroupAction(BuildContext context, PublicRoom room) async {
+-    if (await showOkCancelAlertDialog(
+-          context: context,
+-          okLabel: L10n.of(context).joinRoom,
+-          title: '${room.name} (${room.numJoinedMembers ?? 0})',
+-          message: room.topic ?? L10n.of(context).noDescription,
+-        ) ==
+-        OkCancelResult.cancel) {
+-      return;
+-    }
+-    final success = await showFutureLoadingDialog(
+-      context: context,
+-      future: () => _joinRoomAndWait(
+-        context,
+-        room.roomId,
+-        room.canonicalAlias ?? room.aliases.first,
+-      ),
+-    );
+-    if (success.error == null) {
+-      await AdaptivePageLayout.of(context)
+-          .pushNamedAndRemoveUntilIsFirst('/rooms/${success.result}');
+-    }
+-  }
+-
+-  @override
+-  void initState() {
+-    _genericSearchTerm = widget.alias;
+-    _scrollController.addListener(() async {
+-      if (_scrollController.position.pixels > 0 && _scrolledToTop) {
+-        setState(() => _scrolledToTop = false);
+-      } else if (_scrollController.position.pixels == 0 && !_scrolledToTop) {
+-        setState(() => _scrolledToTop = true);
+-      }
+-    });
+-    super.initState();
+-  }
+-
+-  @override
+-  Widget build(BuildContext context) {
+-    final server = _genericSearchTerm?.isValidMatrixId ?? false
+-        ? _genericSearchTerm.domain
+-        : _server;
+-    _publicRoomsResponse ??= Matrix.of(context)
+-        .client
+-        .searchPublicRooms(
+-          server: server,
+-          genericSearchTerm: _genericSearchTerm,
+-        )
+-        .catchError((error) {
+-      if (widget.alias == null) {
+-        throw error;
+-      }
+-      return PublicRoomsResponse.fromJson({
+-        'chunk': [],
+-      });
+-    }).then((PublicRoomsResponse res) {
+-      if (widget.alias != null &&
+-          !res.chunk.any((room) =>
+-              room.aliases.contains(widget.alias) ||
+-              room.canonicalAlias == widget.alias)) {
+-        // we have to tack on the original alias
+-        res.chunk.add(PublicRoom.fromJson(<String, dynamic>{
+-          'aliases': [widget.alias],
+-          'name': widget.alias,
+-        }));
+-      }
+-      return res;
+-    });
+-    return Scaffold(
+-      appBar: AppBar(
+-        leading: BackButton(),
+-        titleSpacing: 0,
+-        elevation: _scrolledToTop ? 0 : null,
+-        title: DefaultAppBarSearchField(
+-          onChanged: (text) => _search(context, text),
+-          hintText: L10n.of(context).searchForAChat,
+-          suffix: IconButton(
+-            icon: Icon(Icons.edit_outlined),
+-            onPressed: () => _setServer(context),
+-          ),
+-        ),
+-      ),
+-      body: FutureBuilder<PublicRoomsResponse>(
+-        future: _publicRoomsResponse,
+-        builder: (BuildContext context,
+-            AsyncSnapshot<PublicRoomsResponse> snapshot) {
+-          if (snapshot.hasError) {
+-            return Center(child: Text(snapshot.error.toString()));
+-          }
+-          if (snapshot.connectionState != ConnectionState.done) {
+-            return Center(child: CircularProgressIndicator());
+-          }
+-          final publicRoomsResponse = snapshot.data;
+-          if (publicRoomsResponse.chunk.isEmpty) {
+-            return Center(
+-              child: Text(
+-                'No public groups found...',
+-                textAlign: TextAlign.center,
+-              ),
+-            );
+-          }
+-          return GridView.builder(
+-            padding: EdgeInsets.all(12),
+-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+-              crossAxisCount: 2,
+-              childAspectRatio: 1,
+-              crossAxisSpacing: 16,
+-              mainAxisSpacing: 16,
+-            ),
+-            controller: _scrollController,
+-            itemCount: publicRoomsResponse.chunk.length,
+-            itemBuilder: (BuildContext context, int i) => Material(
+-              elevation: 2,
+-              borderRadius: BorderRadius.circular(16),
+-              child: InkWell(
+-                onTap: () => _joinGroupAction(
+-                  context,
+-                  publicRoomsResponse.chunk[i],
+-                ),
+-                borderRadius: BorderRadius.circular(16),
+-                child: Padding(
+-                  padding: const EdgeInsets.all(8.0),
+-                  child: Column(
+-                    mainAxisSize: MainAxisSize.min,
+-                    children: [
+-                      Avatar(
+-                          Uri.parse(
+-                              publicRoomsResponse.chunk[i].avatarUrl ?? ''),
+-                          publicRoomsResponse.chunk[i].name),
+-                      Text(
+-                        publicRoomsResponse.chunk[i].name,
+-                        style: TextStyle(
+-                          fontSize: 16,
+-                          fontWeight: FontWeight.bold,
+-                        ),
+-                        maxLines: 1,
+-                        textAlign: TextAlign.center,
+-                      ),
+-                      Text(
+-                        L10n.of(context).countParticipants(
+-                            publicRoomsResponse.chunk[i].numJoinedMembers ?? 0),
+-                        style: TextStyle(fontSize: 10.5),
+-                        maxLines: 1,
+-                        textAlign: TextAlign.center,
+-                      ),
+-                      Text(
+-                        publicRoomsResponse.chunk[i].topic ??
+-                            L10n.of(context).noDescription,
+-                        maxLines: 4,
+-                        textAlign: TextAlign.center,
+-                      ),
+-                    ],
+-                  ),
+-                ),
+-              ),
+-            ),
+-          );
+-        },
+-      ),
+-    );
+-  }
+-}
+diff --git a/lib/views/home_view.dart b/lib/views/home_view.dart
+new file mode 100644
+index 0000000000000000000000000000000000000000..6148313fc822ae372a099874d7e36b2778fd3bfe
+--- /dev/null
++++ b/lib/views/home_view.dart
+@@ -0,0 +1,235 @@
++import 'dart:async';
++import 'dart:io';
++
++import 'package:adaptive_dialog/adaptive_dialog.dart';
++import 'package:adaptive_page_layout/adaptive_page_layout.dart';
++import 'package:famedlysdk/famedlysdk.dart';
++import 'package:fluffychat/views/home_view_parts/discover.dart';
++import 'package:fluffychat/views/share_view.dart';
++import 'package:flutter/cupertino.dart';
++import 'package:fluffychat/app_config.dart';
++import 'package:fluffychat/utils/platform_infos.dart';
++import 'package:flutter/foundation.dart';
++import 'package:flutter/material.dart';
++import 'package:receive_sharing_intent/receive_sharing_intent.dart';
++import '../components/matrix.dart';
++import '../utils/matrix_file_extension.dart';
++import '../utils/url_launcher.dart';
++import 'home_view_parts/chat_list.dart';
++import 'home_view_parts/status_list.dart';
++import 'package:flutter_gen/gen_l10n/l10n.dart';
++
++enum SelectMode { normal, share, select }
++
++class HomeView extends StatefulWidget {
++  final String activeChat;
++
++  const HomeView({this.activeChat, Key key}) : super(key: key);
++
++  @override
++  _HomeViewState createState() => _HomeViewState();
++}
++
++class _HomeViewState extends State<HomeView> {
++  @override
++  void initState() {
++    _initReceiveSharingIntent();
++    super.initState();
++  }
++
++  int currentIndex = 1;
++
++  StreamSubscription _intentDataStreamSubscription;
++
++  StreamSubscription _intentFileStreamSubscription;
++
++  StreamSubscription _onShareContentChanged;
++
++  AppBar appBar;
++
++  void _onShare(Map<String, dynamic> content) {
++    if (content != null) {
++      WidgetsBinding.instance.addPostFrameCallback(
++        (_) => Navigator.of(context).push(
++          MaterialPageRoute(
++            builder: (_) => ShareView(),
++          ),
++        ),
++      );
++    }
++  }
++
++  void _processIncomingSharedFiles(List<SharedMediaFile> files) {
++    if (files?.isEmpty ?? true) return;
++    AdaptivePageLayout.of(context).popUntilIsFirst();
++    final file = File(files.first.path);
++
++    Matrix.of(context).shareContent = {
++      'msgtype': 'chat.fluffy.shared_file',
++      'file': MatrixFile(
++        bytes: file.readAsBytesSync(),
++        name: file.path,
++      ).detectFileType,
++    };
++  }
++
++  void _processIncomingSharedText(String text) {
++    if (text == null) return;
++    AdaptivePageLayout.of(context).popUntilIsFirst();
++    if (text.toLowerCase().startsWith(AppConfig.inviteLinkPrefix) ||
++        (text.toLowerCase().startsWith(AppConfig.schemePrefix) &&
++            !RegExp(r'\s').hasMatch(text))) {
++      UrlLauncher(context, text).openMatrixToUrl();
++      return;
++    }
++    Matrix.of(context).shareContent = {
++      'msgtype': 'm.text',
++      'body': text,
++    };
++  }
++
++  void _initReceiveSharingIntent() {
++    if (!PlatformInfos.isMobile) return;
++
++    // For sharing images coming from outside the app while the app is in the memory
++    _intentFileStreamSubscription = ReceiveSharingIntent.getMediaStream()
++        .listen(_processIncomingSharedFiles, onError: print);
++
++    // For sharing images coming from outside the app while the app is closed
++    ReceiveSharingIntent.getInitialMedia().then(_processIncomingSharedFiles);
++
++    // For sharing or opening urls/text coming from outside the app while the app is in the memory
++    _intentDataStreamSubscription = ReceiveSharingIntent.getTextStream()
++        .listen(_processIncomingSharedText, onError: print);
++
++    // For sharing or opening urls/text coming from outside the app while the app is closed
++    ReceiveSharingIntent.getInitialText().then(_processIncomingSharedText);
++  }
++
++  @override
++  void dispose() {
++    _intentDataStreamSubscription?.cancel();
++    _intentFileStreamSubscription?.cancel();
++    super.dispose();
++  }
++
++  String _server;
++
++  void _setServer(BuildContext context) async {
++    final newServer = await showTextInputDialog(
++        title: L10n.of(context).changeTheHomeserver,
++        context: context,
++        textFields: [
++          DialogTextField(
++            prefixText: 'https://',
++            hintText: Matrix.of(context).client.homeserver.host,
++            initialText: _server,
++            keyboardType: TextInputType.url,
++          )
++        ]);
++    if (newServer == null) return;
++    setState(() {
++      _server = newServer.single;
++    });
++  }
++
++  void _onFabTab() {
++    switch (currentIndex) {
++      case 0:
++        AdaptivePageLayout.of(context)
++            .pushNamedAndRemoveUntilIsFirst('/newstatus');
++        break;
++      case 1:
++        AdaptivePageLayout.of(context)
++            .pushNamedAndRemoveUntilIsFirst('/newprivatechat');
++        break;
++      case 2:
++        AdaptivePageLayout.of(context)
++            .pushNamedAndRemoveUntilIsFirst('/newgroup');
++        break;
++      case 3:
++        _setServer(context);
++        break;
++    }
++  }
++
++  @override
++  Widget build(BuildContext context) {
++    _onShareContentChanged ??=
++        Matrix.of(context).onShareContentChanged.stream.listen(_onShare);
++    Widget body;
++    IconData fabIcon;
++    switch (currentIndex) {
++      case 0:
++        body = StatusList();
++        fabIcon = Icons.edit_outlined;
++        break;
++      case 1:
++        body = ChatList(
++          type: ChatListType.messages,
++          onCustomAppBar: (appBar) => setState(() => this.appBar = appBar),
++        );
++        fabIcon = Icons.add_outlined;
++        break;
++      case 2:
++        body = ChatList(
++          type: ChatListType.groups,
++          onCustomAppBar: (appBar) => setState(() => this.appBar = appBar),
++        );
++        fabIcon = Icons.group_add_outlined;
++        break;
++      case 3:
++        body = Discover(server: _server);
++        fabIcon = Icons.domain_outlined;
++        break;
++    }
++
++    return Scaffold(
++      appBar: appBar ??
++          AppBar(
++              centerTitle: false,
++              actions: [
++                IconButton(
++                  icon: Icon(Icons.account_circle_outlined),
++                  onPressed: () =>
++                      AdaptivePageLayout.of(context).pushNamed('/settings'),
++                ),
++              ],
++              title: Text(AppConfig.applicationName)),
++      body: body,
++      floatingActionButton: FloatingActionButton(
++        child: Icon(fabIcon),
++        onPressed: _onFabTab,
++      ),
++      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
++      bottomNavigationBar: BottomNavigationBar(
++        unselectedItemColor: Colors.black,
++        currentIndex: currentIndex,
++        showSelectedLabels: true,
++        showUnselectedLabels: false,
++        type: BottomNavigationBarType.fixed,
++        elevation: 20,
++        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
++        onTap: (i) => setState(() => currentIndex = i),
++        items: [
++          BottomNavigationBarItem(
++            label: L10n.of(context).status,
++            icon: Icon(Icons.home_outlined),
++          ),
++          BottomNavigationBarItem(
++            label: L10n.of(context).messages,
++            icon: Icon(CupertinoIcons.chat_bubble_2),
++          ),
++          BottomNavigationBarItem(
++            label: L10n.of(context).groups,
++            icon: Icon(Icons.people_outline),
++          ),
++          BottomNavigationBarItem(
++            label: L10n.of(context).discover,
++            icon: Icon(CupertinoIcons.search_circle),
++          ),
++        ],
++      ),
++    );
++  }
++}
+diff --git a/lib/views/home_view_parts/chat_list.dart b/lib/views/home_view_parts/chat_list.dart
+new file mode 100644
+index 0000000000000000000000000000000000000000..d22f91c79829569265c69e570c6adb59a8f26c0b
+--- /dev/null
++++ b/lib/views/home_view_parts/chat_list.dart
+@@ -0,0 +1,245 @@
++import 'package:adaptive_dialog/adaptive_dialog.dart';
++import 'package:famedlysdk/famedlysdk.dart';
++import 'package:fluffychat/components/connection_status_header.dart';
++import 'package:fluffychat/components/default_app_bar_search_field.dart';
++import 'package:fluffychat/components/list_items/chat_list_item.dart';
++import 'package:fluffychat/components/matrix.dart';
++import 'package:flutter/material.dart';
++import 'package:flutter_gen/gen_l10n/l10n.dart';
++import 'package:future_loading_dialog/future_loading_dialog.dart';
++
++enum ChatListType { messages, groups, all }
++
++enum SelectMode { normal, select }
++
++class ChatList extends StatefulWidget {
++  final ChatListType type;
++  final void Function(AppBar appBar) onCustomAppBar;
++
++  const ChatList({
++    Key key,
++    @required this.type,
++    this.onCustomAppBar,
++  }) : super(key: key);
++  @override
++  _ChatListState createState() => _ChatListState();
++}
++
++class _ChatListState extends State<ChatList> {
++  bool get searchMode => searchController.text?.isNotEmpty ?? false;
++  final TextEditingController searchController = TextEditingController();
++  final _selectedRoomIds = <String>{};
++
++  void _toggleSelection(String roomId) {
++    setState(() => _selectedRoomIds.contains(roomId)
++        ? _selectedRoomIds.remove(roomId)
++        : _selectedRoomIds.add(roomId));
++    widget.onCustomAppBar(
++      _selectedRoomIds.isEmpty
++          ? null
++          : AppBar(
++              centerTitle: false,
++              leading: IconButton(
++                icon: Icon(Icons.close_outlined),
++                onPressed: () {
++                  _selectedRoomIds.clear();
++                  widget.onCustomAppBar(null);
++                },
++              ),
++              title: Text(
++                L10n.of(context)
++                    .numberSelected(_selectedRoomIds.length.toString()),
++              ),
++              actions: [
++                if (_selectedRoomIds.length == 1)
++                  IconButton(
++                    tooltip: L10n.of(context).toggleUnread,
++                    icon: Icon(Matrix.of(context)
++                            .client
++                            .getRoomById(_selectedRoomIds.single)
++                            .isUnread
++                        ? Icons.mark_chat_read_outlined
++                        : Icons.mark_chat_unread_outlined),
++                    onPressed: () => _toggleUnread(context),
++                  ),
++                if (_selectedRoomIds.length == 1)
++                  IconButton(
++                    tooltip: L10n.of(context).toggleFavorite,
++                    icon: Icon(Icons.push_pin_outlined),
++                    onPressed: () => _toggleFavouriteRoom(context),
++                  ),
++                if (_selectedRoomIds.length == 1)
++                  IconButton(
++                    icon: Icon(Matrix.of(context)
++                                .client
++                                .getRoomById(_selectedRoomIds.single)
++                                .pushRuleState ==
++                            PushRuleState.notify
++                        ? Icons.notifications_off_outlined
++                        : Icons.notifications_outlined),
++                    tooltip: L10n.of(context).toggleMuted,
++                    onPressed: () => _toggleMuted(context),
++                  ),
++                IconButton(
++                  icon: Icon(Icons.archive_outlined),
++                  tooltip: L10n.of(context).archive,
++                  onPressed: () => _archiveAction(context),
++                ),
++              ],
++            ),
++    );
++  }
++
++  Future<void> _toggleUnread(BuildContext context) {
++    final room = Matrix.of(context).client.getRoomById(_selectedRoomIds.single);
++    return showFutureLoadingDialog(
++      context: context,
++      future: () => room.setUnread(!room.isUnread),
++    );
++  }
++
++  Future<void> _toggleFavouriteRoom(BuildContext context) {
++    final room = Matrix.of(context).client.getRoomById(_selectedRoomIds.single);
++    return showFutureLoadingDialog(
++      context: context,
++      future: () => room.setFavourite(!room.isFavourite),
++    );
++  }
++
++  Future<void> _toggleMuted(BuildContext context) {
++    final room = Matrix.of(context).client.getRoomById(_selectedRoomIds.single);
++    return showFutureLoadingDialog(
++      context: context,
++      future: () => room.setPushRuleState(
++          room.pushRuleState == PushRuleState.notify
++              ? PushRuleState.mentions_only
++              : PushRuleState.notify),
++    );
++  }
++
++  Future<void> _archiveAction(BuildContext context) async {
++    final confirmed = await showOkCancelAlertDialog(
++          context: context,
++          title: L10n.of(context).areYouSure,
++        ) ==
++        OkCancelResult.ok;
++    if (!confirmed) return;
++    await showFutureLoadingDialog(
++      context: context,
++      future: () => _archiveSelectedRooms(context),
++    );
++    setState(() => null);
++  }
++
++  Future<void> _archiveSelectedRooms(BuildContext context) async {
++    final client = Matrix.of(context).client;
++    while (_selectedRoomIds.isNotEmpty) {
++      final roomId = _selectedRoomIds.first;
++      await client.getRoomById(roomId).leave();
++      _toggleSelection(roomId);
++    }
++  }
++
++  Future<void> waitForFirstSync(BuildContext context) async {
++    var client = Matrix.of(context).client;
++    if (client.prevBatch?.isEmpty ?? true) {
++      await client.onFirstSync.stream.first;
++    }
++    return true;
++  }
++
++  @override
++  Widget build(BuildContext context) {
++    final selectMode =
++        _selectedRoomIds.isEmpty ? SelectMode.normal : SelectMode.select;
++    return Column(children: [
++      ConnectionStatusHeader(),
++      Expanded(
++        child: StreamBuilder(
++            stream: Matrix.of(context)
++                .client
++                .onSync
++                .stream
++                .where((s) => s.hasRoomUpdate),
++            builder: (context, snapshot) {
++              return FutureBuilder<void>(
++                future: waitForFirstSync(context),
++                builder: (BuildContext context, snapshot) {
++                  if (snapshot.hasData) {
++                    var rooms =
++                        List<Room>.from(Matrix.of(context).client.rooms);
++                    rooms.removeWhere((room) =>
++                        room.lastEvent == null ||
++                        (searchMode &&
++                            !room.displayname.toLowerCase().contains(
++                                searchController.text.toLowerCase() ?? '')));
++                    if (widget.type == ChatListType.messages) {
++                      rooms.removeWhere((room) => !room.isDirectChat);
++                    } else if (widget.type == ChatListType.groups) {
++                      rooms.removeWhere((room) => room.isDirectChat);
++                    }
++                    if (rooms.isEmpty && (!searchMode)) {
++                      return Column(
++                        mainAxisAlignment: MainAxisAlignment.center,
++                        mainAxisSize: MainAxisSize.min,
++                        children: <Widget>[
++                          Icon(
++                            searchMode
++                                ? Icons.search_outlined
++                                : Icons.maps_ugc_outlined,
++                            size: 80,
++                            color: Colors.grey,
++                          ),
++                          Text(
++                            searchMode
++                                ? L10n.of(context).noRoomsFound
++                                : L10n.of(context).startYourFirstChat,
++                            style: TextStyle(
++                              color: Colors.grey,
++                              fontSize: 16,
++                            ),
++                          ),
++                        ],
++                      );
++                    }
++                    final totalCount = rooms.length;
++                    return ListView.builder(
++                      itemCount: totalCount + 1,
++                      itemBuilder: (BuildContext context, int i) => i == 0
++                          ? Padding(
++                              padding: EdgeInsets.all(12),
++                              child: DefaultAppBarSearchField(
++                                hintText: L10n.of(context).search,
++                                prefixIcon: Icon(Icons.search_outlined),
++                                searchController: searchController,
++                                onChanged: (_) => setState(() => null),
++                                padding: EdgeInsets.zero,
++                              ),
++                            )
++                          : ChatListItem(
++                              rooms[i - 1],
++                              selected:
++                                  _selectedRoomIds.contains(rooms[i - 1].id),
++                              onTap: selectMode == SelectMode.select &&
++                                      widget.onCustomAppBar != null
++                                  ? () => _toggleSelection(rooms[i - 1].id)
++                                  : null,
++                              onLongPress: widget.onCustomAppBar != null
++                                  ? () => _toggleSelection(rooms[i - 1].id)
++                                  : null,
++                              activeChat: Matrix.of(context).activeRoomId ==
++                                  rooms[i - 1].id,
++                            ),
++                    );
++                  } else {
++                    return Center(
++                      child: CircularProgressIndicator(),
++                    );
++                  }
++                },
++              );
++            }),
++      ),
++    ]);
++  }
++}
+diff --git a/lib/views/home_view_parts/discover.dart b/lib/views/home_view_parts/discover.dart
+new file mode 100644
+index 0000000000000000000000000000000000000000..5eca5c69a5270a3b7963acf3392eb1cd8cc61443
+--- /dev/null
++++ b/lib/views/home_view_parts/discover.dart
+@@ -0,0 +1,215 @@
++import 'dart:async';
++
++import 'package:adaptive_dialog/adaptive_dialog.dart';
++import 'package:adaptive_page_layout/adaptive_page_layout.dart';
++import 'package:famedlysdk/famedlysdk.dart';
++import 'package:fluffychat/components/avatar.dart';
++import 'package:fluffychat/components/default_app_bar_search_field.dart';
++import 'package:future_loading_dialog/future_loading_dialog.dart';
++import 'package:fluffychat/components/matrix.dart';
++import 'package:flutter/material.dart';
++import 'package:flutter_gen/gen_l10n/l10n.dart';
++
++class Discover extends StatefulWidget {
++  final String alias;
++
++  final String server;
++
++  const Discover({
++    Key key,
++    this.alias,
++    this.server,
++  }) : super(key: key);
++  @override
++  _DiscoverState createState() => _DiscoverState();
++}
++
++class _DiscoverState extends State<Discover> {
++  Future<PublicRoomsResponse> _publicRoomsResponse;
++  Timer _coolDown;
++  String _genericSearchTerm;
++
++  void _search(BuildContext context, String query) async {
++    _coolDown?.cancel();
++    _coolDown = Timer(
++      Duration(milliseconds: 500),
++      () => setState(() {
++        _genericSearchTerm = query;
++        _publicRoomsResponse = null;
++      }),
++    );
++  }
++
++  Future<String> _joinRoomAndWait(
++    BuildContext context,
++    String roomId,
++    String alias,
++  ) async {
++    if (Matrix.of(context).client.getRoomById(roomId) != null) {
++      return roomId;
++    }
++    final newRoomId = await Matrix.of(context)
++        .client
++        .joinRoomOrAlias(alias?.isNotEmpty ?? false ? alias : roomId);
++    await Matrix.of(context)
++        .client
++        .onRoomUpdate
++        .stream
++        .firstWhere((r) => r.id == newRoomId);
++    return newRoomId;
++  }
++
++  void _joinGroupAction(BuildContext context, PublicRoom room) async {
++    if (await showOkCancelAlertDialog(
++          context: context,
++          okLabel: L10n.of(context).joinRoom,
++          title: '${room.name} (${room.numJoinedMembers ?? 0})',
++          message: room.topic ?? L10n.of(context).noDescription,
++        ) ==
++        OkCancelResult.cancel) {
++      return;
++    }
++    final success = await showFutureLoadingDialog(
++      context: context,
++      future: () => _joinRoomAndWait(
++        context,
++        room.roomId,
++        room.canonicalAlias ?? room.aliases.first,
++      ),
++    );
++    if (success.error == null) {
++      await AdaptivePageLayout.of(context)
++          .pushNamedAndRemoveUntilIsFirst('/rooms/${success.result}');
++    }
++  }
++
++  @override
++  void initState() {
++    _genericSearchTerm = widget.alias;
++    super.initState();
++  }
++
++  @override
++  Widget build(BuildContext context) {
++    final server = _genericSearchTerm?.isValidMatrixId ?? false
++        ? _genericSearchTerm.domain
++        : widget.server;
++    _publicRoomsResponse ??= Matrix.of(context)
++        .client
++        .searchPublicRooms(
++          server: server,
++          genericSearchTerm: _genericSearchTerm,
++        )
++        .catchError((error) {
++      if (widget.alias == null) {
++        throw error;
++      }
++      return PublicRoomsResponse.fromJson({
++        'chunk': [],
++      });
++    }).then((PublicRoomsResponse res) {
++      if (widget.alias != null &&
++          !res.chunk.any((room) =>
++              room.aliases.contains(widget.alias) ||
++              room.canonicalAlias == widget.alias)) {
++        // we have to tack on the original alias
++        res.chunk.add(PublicRoom.fromJson(<String, dynamic>{
++          'aliases': [widget.alias],
++          'name': widget.alias,
++        }));
++      }
++      return res;
++    });
++    return ListView(
++      children: [
++        Padding(
++          padding: EdgeInsets.all(12),
++          child: DefaultAppBarSearchField(
++            hintText: L10n.of(context).search,
++            prefixIcon: Icon(Icons.search_outlined),
++            onChanged: (t) => _search(context, t),
++            padding: EdgeInsets.zero,
++          ),
++        ),
++        FutureBuilder<PublicRoomsResponse>(
++            future: _publicRoomsResponse,
++            builder: (BuildContext context,
++                AsyncSnapshot<PublicRoomsResponse> snapshot) {
++              if (snapshot.hasError) {
++                return Center(child: Text(snapshot.error.toString()));
++              }
++              if (snapshot.connectionState != ConnectionState.done) {
++                return Center(child: CircularProgressIndicator());
++              }
++              final publicRoomsResponse = snapshot.data;
++              if (publicRoomsResponse.chunk.isEmpty) {
++                return Center(
++                  child: Text(
++                    'No public groups found...',
++                    textAlign: TextAlign.center,
++                  ),
++                );
++              }
++              return GridView.builder(
++                shrinkWrap: true,
++                padding: EdgeInsets.all(12),
++                physics: NeverScrollableScrollPhysics(),
++                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
++                  crossAxisCount: 2,
++                  childAspectRatio: 1,
++                  crossAxisSpacing: 16,
++                  mainAxisSpacing: 16,
++                ),
++                itemCount: publicRoomsResponse.chunk.length,
++                itemBuilder: (BuildContext context, int i) => Material(
++                  elevation: 2,
++                  borderRadius: BorderRadius.circular(16),
++                  child: InkWell(
++                    onTap: () => _joinGroupAction(
++                      context,
++                      publicRoomsResponse.chunk[i],
++                    ),
++                    borderRadius: BorderRadius.circular(16),
++                    child: Padding(
++                      padding: const EdgeInsets.all(8.0),
++                      child: Column(
++                        mainAxisSize: MainAxisSize.min,
++                        children: [
++                          Avatar(
++                              Uri.parse(
++                                  publicRoomsResponse.chunk[i].avatarUrl ?? ''),
++                              publicRoomsResponse.chunk[i].name),
++                          Text(
++                            publicRoomsResponse.chunk[i].name,
++                            style: TextStyle(
++                              fontSize: 16,
++                              fontWeight: FontWeight.bold,
++                            ),
++                            maxLines: 1,
++                            textAlign: TextAlign.center,
++                          ),
++                          Text(
++                            L10n.of(context).countParticipants(
++                                publicRoomsResponse.chunk[i].numJoinedMembers ??
++                                    0),
++                            style: TextStyle(fontSize: 10.5),
++                            maxLines: 1,
++                            textAlign: TextAlign.center,
++                          ),
++                          Text(
++                            publicRoomsResponse.chunk[i].topic ??
++                                L10n.of(context).noDescription,
++                            maxLines: 4,
++                            textAlign: TextAlign.center,
++                          ),
++                        ],
++                      ),
++                    ),
++                  ),
++                ),
++              );
++            }),
++      ],
++    );
++  }
++}
+diff --git a/lib/views/home_view_parts/status_list.dart b/lib/views/home_view_parts/status_list.dart
+new file mode 100644
+index 0000000000000000000000000000000000000000..4c89886ea25b3e3aa46f300f2230f8b07d541b2e
+--- /dev/null
++++ b/lib/views/home_view_parts/status_list.dart
+@@ -0,0 +1,66 @@
++import 'package:fluffychat/components/list_items/status_list_tile.dart';
++import 'package:fluffychat/components/matrix.dart';
++import 'package:fluffychat/utils/status.dart';
++import 'package:flutter/material.dart';
++
++class StatusList extends StatefulWidget {
++  @override
++  _StatusListState createState() => _StatusListState();
++}
++
++class _StatusListState extends State<StatusList> {
++  bool _onlyContacts = false;
++
++  @override
++  Widget build(BuildContext context) {
++    return ListView(children: [
++      Row(
++        mainAxisAlignment: MainAxisAlignment.center,
++        children: [
++          RaisedButton(
++            elevation: _onlyContacts ? 7 : null,
++            color: !_onlyContacts ? null : Theme.of(context).primaryColor,
++            child: Text(
++              'Contacts',
++              style: TextStyle(color: _onlyContacts ? Colors.white : null),
++            ),
++            onPressed: () => setState(() => _onlyContacts = true),
++          ),
++          RaisedButton(
++            elevation: !_onlyContacts ? 7 : null,
++            color: _onlyContacts ? null : Theme.of(context).primaryColor,
++            child: Text(
++              'All',
++              style: TextStyle(color: !_onlyContacts ? Colors.white : null),
++            ),
++            onPressed: () => setState(() => _onlyContacts = false),
++          ),
++        ],
++      ),
++      Divider(height: 1),
++      StreamBuilder<Object>(
++          stream: Matrix.of(context)
++              .client
++              .onAccountData
++              .stream
++              .where((a) => a.type == Status.namespace),
++          builder: (context, snapshot) {
++            final statuses = Matrix.of(context).statuses.values.toList()
++              ..sort((a, b) => b.dateTime.compareTo(a.dateTime));
++            if (_onlyContacts) {
++              final client = Matrix.of(context).client;
++              statuses.removeWhere(
++                  (p) => client.getDirectChatFromUserId(p.senderId) == null);
++            }
++            return ListView.separated(
++              physics: NeverScrollableScrollPhysics(),
++              shrinkWrap: true,
++              padding: EdgeInsets.only(bottom: 24),
++              separatorBuilder: (_, __) => Divider(height: 1),
++              itemCount: statuses.length,
++              itemBuilder: (context, i) => StatusListTile(status: statuses[i]),
++            );
++          }),
++    ]);
++  }
++}
+diff --git a/lib/views/set_status_view.dart b/lib/views/set_status_view.dart
+new file mode 100644
+index 0000000000000000000000000000000000000000..c98e4ce4e00ceb03e2a06db2d58e71546df9fe0a
+--- /dev/null
++++ b/lib/views/set_status_view.dart
+@@ -0,0 +1,166 @@
++import 'package:adaptive_dialog/adaptive_dialog.dart';
++import 'package:adaptive_page_layout/adaptive_page_layout.dart';
++import 'package:famedlysdk/famedlysdk.dart';
++import 'package:file_picker_cross/file_picker_cross.dart';
++import 'package:fluffychat/components/matrix.dart';
++import 'package:fluffychat/utils/platform_infos.dart';
++import 'package:flutter/material.dart';
++import 'package:future_loading_dialog/future_loading_dialog.dart';
++import 'package:image_picker/image_picker.dart';
++import '../utils/string_color.dart';
++import 'package:flutter_gen/gen_l10n/l10n.dart';
++
++class SetStatusView extends StatefulWidget {
++  final String initialText;
++
++  const SetStatusView({Key key, this.initialText}) : super(key: key);
++
++  @override
++  _SetStatusViewState createState() => _SetStatusViewState();
++}
++
++class _SetStatusViewState extends State<SetStatusView> {
++  Color _color;
++  final TextEditingController _controller = TextEditingController();
++
++  @override
++  void initState() {
++    super.initState();
++    _controller.text = widget.initialText;
++  }
++
++  void _setStatusAction(BuildContext context, [String message]) async {
++    final result = await showFutureLoadingDialog(
++      context: context,
++      future: () => Matrix.of(context).client.sendPresence(
++            Matrix.of(context).client.userID,
++            PresenceType.online,
++            statusMsg: message ?? _controller.text,
++          ),
++    );
++    if (result.error == null) AdaptivePageLayout.of(context).pop();
++  }
++
++  void _setCameraImageStatusAction(BuildContext context) async {
++    MatrixFile file;
++    if (PlatformInfos.isMobile) {
++      final result = await ImagePicker().getImage(
++          source: ImageSource.camera,
++          imageQuality: 50,
++          maxWidth: 1600,
++          maxHeight: 1600);
++      if (result == null) return;
++      file = MatrixFile(
++        bytes: await result.readAsBytes(),
++        name: result.path,
++      );
++    }
++    final uploadResp = await showFutureLoadingDialog(
++      context: context,
++      future: () => Matrix.of(context).client.upload(file.bytes, file.name),
++    );
++    if (uploadResp.error == null) {
++      return _setStatusAction(context, uploadResp.result);
++    }
++  }
++
++  void _setImageStatusAction(BuildContext context) async {
++    MatrixFile file;
++    if (PlatformInfos.isMobile) {
++      final result = await ImagePicker().getImage(
++          source: ImageSource.gallery,
++          imageQuality: 50,
++          maxWidth: 1600,
++          maxHeight: 1600);
++      if (result == null) return;
++      file = MatrixFile(
++        bytes: await result.readAsBytes(),
++        name: result.path,
++      );
++    } else {
++      final result =
++          await FilePickerCross.importFromStorage(type: FileTypeCross.image);
++      if (result == null) return;
++      file = MatrixFile(
++        bytes: result.toUint8List(),
++        name: result.fileName,
++      );
++    }
++    final uploadResp = await showFutureLoadingDialog(
++      context: context,
++      future: () => Matrix.of(context).client.upload(file.bytes, file.name),
++    );
++    if (uploadResp.error == null) {
++      return _setStatusAction(context, uploadResp.result);
++    }
++  }
++
++  @override
++  Widget build(BuildContext context) {
++    _color ??= Theme.of(context).primaryColor;
++    return Scaffold(
++      extendBodyBehindAppBar: true,
++      appBar: AppBar(
++        backgroundColor:
++            Theme.of(context).scaffoldBackgroundColor.withOpacity(0.5),
++        title: Text(L10n.of(context).statusExampleMessage),
++        actions: [
++          IconButton(
++            icon: Icon(Icons.info_outlined),
++            onPressed: () => showOkAlertDialog(
++              context: context,
++              title: L10n.of(context).setStatus,
++              message:
++                  'Show your status to all users you share a room. Every status will replace the previous one. Be aware that statuses are public and therefore not end-to-end encrypted.',
++            ),
++          ),
++        ],
++      ),
++      body: AnimatedContainer(
++        duration: Duration(seconds: 2),
++        alignment: Alignment.center,
++        color: _color,
++        child: SingleChildScrollView(
++          child: TextField(
++            minLines: 1,
++            maxLines: 10,
++            autofocus: true,
++            textAlign: TextAlign.center,
++            controller: _controller,
++            onChanged: (s) => setState(() => _color = s.color),
++            style: TextStyle(fontSize: 40, color: Colors.white),
++            decoration: InputDecoration(
++              border: InputBorder.none,
++              filled: false,
++            ),
++          ),
++        ),
++      ),
++      floatingActionButton: Column(
++        mainAxisSize: MainAxisSize.min,
++        children: [
++          if (PlatformInfos.isMobile) ...{
++            FloatingActionButton(
++              backgroundColor: Colors.white,
++              foregroundColor: Theme.of(context).primaryColor,
++              child: Icon(Icons.camera_alt_outlined),
++              onPressed: () => _setCameraImageStatusAction(context),
++            ),
++            SizedBox(height: 12),
++          },
++          FloatingActionButton(
++            backgroundColor: Colors.white,
++            foregroundColor: Theme.of(context).primaryColor,
++            child: Icon(Icons.image_outlined),
++            onPressed: () => _setImageStatusAction(context),
++          ),
++          SizedBox(height: 12),
++          FloatingActionButton(
++            child: Icon(Icons.send_outlined),
++            onPressed: () => _setStatusAction(context),
++          ),
++        ],
++      ),
++    );
++  }
++}
+diff --git a/lib/views/settings_ignore_list.dart b/lib/views/settings_ignore_list.dart
+index 73c59e7a740ca4b78075db6bed3395e584255b8f..f02ff01eddf451c4b1e9001c06f4816f6cd84a8b 100644
+--- a/lib/views/settings_ignore_list.dart
++++ b/lib/views/settings_ignore_list.dart
+@@ -6,9 +6,26 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
+ 
+ import '../components/matrix.dart';
+ 
+-class SettingsIgnoreList extends StatelessWidget {
++class SettingsIgnoreList extends StatefulWidget {
++  final String initialUserId;
++
++  SettingsIgnoreList({Key key, this.initialUserId}) : super(key: key);
++
++  @override
++  _SettingsIgnoreListState createState() => _SettingsIgnoreListState();
++}
++
++class _SettingsIgnoreListState extends State<SettingsIgnoreList> {
+   final TextEditingController _controller = TextEditingController();
+ 
++  @override
++  void initState() {
++    super.initState();
++    if (widget.initialUserId != null) {
++      _controller.text = widget.initialUserId.replaceAll('@', '');
++    }
++  }
++
+   void _ignoreUser(BuildContext context) {
+     if (_controller.text.isEmpty) return;
+     final userId = '@${_controller.text}';
+diff --git a/lib/views/share_view.dart b/lib/views/share_view.dart
+new file mode 100644
+index 0000000000000000000000000000000000000000..40ad4ec8bdc3e91bbaee92f079c1b12debc91b86
+--- /dev/null
++++ b/lib/views/share_view.dart
+@@ -0,0 +1,27 @@
++import 'package:adaptive_page_layout/adaptive_page_layout.dart';
++import 'package:fluffychat/components/matrix.dart';
++import 'package:flutter/material.dart';
++import 'package:flutter_gen/gen_l10n/l10n.dart';
++
++import 'home_view_parts/chat_list.dart';
++
++class ShareView extends StatelessWidget {
++  @override
++  Widget build(BuildContext context) {
++    return Scaffold(
++      appBar: AppBar(
++        leading: IconButton(
++          icon: Icon(Icons.close_outlined),
++          onPressed: () {
++            Matrix.of(context).shareContent = null;
++            AdaptivePageLayout.of(context).pop();
++          },
++        ),
++        title: Text(L10n.of(context).share),
++      ),
++      body: ChatList(
++        type: ChatListType.all,
++      ),
++    );
++  }
++}
+diff --git a/pubspec.lock b/pubspec.lock
+index 05fab1ed079ffc43d80f93f438b789cf770bd0a1..8b8b7f715a36299b9f7c8d2ddd72ec754be101eb 100644
+--- a/pubspec.lock
++++ b/pubspec.lock
+@@ -176,6 +176,13 @@ packages:
+       url: "https://pub.dartlang.org"
+     source: hosted
+     version: "0.16.2"
++  cupertino_icons:
++    dependency: "direct main"
++    description:
++      name: cupertino_icons
++      url: "https://pub.dartlang.org"
++    source: hosted
++    version: "1.0.0"
+   dapackages:
+     dependency: "direct dev"
+     description:
+diff --git a/pubspec.yaml b/pubspec.yaml
+index 14cd4d359887dba6f7ae71b6a0bd80b0c8d556b6..9d7396dad30deb74998c9e60d76785f9667e2051 100644
+--- a/pubspec.yaml
++++ b/pubspec.yaml
+@@ -20,6 +20,7 @@ dependencies:
+       url: https://github.com/UnifiedPush/flutter-connector.git
+       ref: main
+ 
++  cupertino_icons: any
+   localstorage: ^3.0.6+9
+   file_picker_cross: 4.2.2
+   image_picker: ^0.6.7+21
