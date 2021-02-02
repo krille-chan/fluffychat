@@ -2056,5 +2056,35 @@
   "@howOffensiveIsThisContent": {
     "type": "text",
     "placeholders": {}
+  },
+  "search": "Otsi",
+  "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discover": "Avasta",
+  "@discover": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groups": "Rühmad",
+  "@groups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "messages": "Sõnumid",
+  "@messages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "status": "Olek",
+  "@status": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignore": "Eira",
+  "@ignore": {
+    "type": "text",
+    "placeholders": {}
   }
 }
