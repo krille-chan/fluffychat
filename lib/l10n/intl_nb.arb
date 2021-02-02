@@ -1900,5 +1900,65 @@
   "@authentication": {
     "type": "text",
     "placeholders": {}
+  },
+  "next": "Neste",
+  "@next": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourPublicKey": "Din offentlige nøkkel",
+  "@yourPublicKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noDescription": "Ingen beskrivelse",
+  "@noDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discoverGroups": "Oppdag grupper",
+  "@discoverGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reason": "Grunn",
+  "@reason": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "search": "Søk",
+  "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discover": "Oppdag",
+  "@discover": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groups": "Grupper",
+  "@groups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "messages": "Meldinger",
+  "@messages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "status": "Status",
+  "@status": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignore": "Ignorer",
+  "@ignore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicKey": "Offentlig nøkkel",
+  "@publicKey": {
+    "type": "text",
+    "placeholders": {}
   }
 }
