@@ -110,7 +110,7 @@ class _DiscoverState extends State<Discover> {
     }).then((PublicRoomsResponse res) {
       if (widget.alias != null &&
           !res.chunk.any((room) =>
-              room.aliases.contains(widget.alias) ||
+              (room.aliases?.contains(widget.alias) ?? false) ||
               room.canonicalAlias == widget.alias)) {
         // we have to tack on the original alias
         res.chunk.add(PublicRoom.fromJson(<String, dynamic>{
