@@ -176,6 +176,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.16.2"
+  cupertino_icons:
+    dependency: "direct main"
+    description:
+      name: cupertino_icons
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   dapackages:
     dependency: "direct dev"
     description:
@@ -865,6 +872,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.5.0-nullsafety.2"
+  preload_page_view:
+    dependency: "direct main"
+    description:
+      name: preload_page_view
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.4"
   process:
     dependency: transitive
     description:

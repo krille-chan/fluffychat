@@ -1332,8 +1332,36 @@
       "username": {}
     }
   },
-
-
+  "ignore": "Ignore",
+  "@ignore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "status": "Status",
+  "@status": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "messages": "Messages",
+  "@messages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groups": "Groups",
+  "@groups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discover": "Discover",
+  "@discover": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "search": "Search",
+  "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
   "howOffensiveIsThisContent": "How offensive is this content?",
   "@howOffensiveIsThisContent": {
     "type": "text",
