@@ -39,17 +39,19 @@ class StatusListTile extends StatelessWidget {
                 ),
                 subtitle: Text(status.dateTime.localizedTime(context),
                     style: TextStyle(fontSize: 14)),
-                trailing: PopupMenuButton(
-                  onSelected: (_) => AdaptivePageLayout.of(context).pushNamed(
-                      '/settings/ignore',
-                      arguments: status.senderId),
-                  itemBuilder: (_) => [
-                    PopupMenuItem(
-                      child: Text(L10n.of(context).ignore),
-                      value: 'ignore',
-                    ),
-                  ],
-                ),
+                trailing: Matrix.of(context).client.userID == status.senderId
+                    ? null
+                    : PopupMenuButton(
+                        onSelected: (_) => AdaptivePageLayout.of(context)
+                            .pushNamed('/settings/ignore',
+                                arguments: status.senderId),
+                        itemBuilder: (_) => [
+                          PopupMenuItem(
+                            child: Text(L10n.of(context).ignore),
+                            value: 'ignore',
+                          ),
+                        ],
+                      ),
               ),
               isImage
                   ? CachedNetworkImage(
@@ -85,20 +87,24 @@ class StatusListTile extends StatelessWidget {
                   children: [
                     IconButton(
                       icon: Icon(CupertinoIcons.chat_bubble),
-                      onPressed: () async {
-                        final result = await showFutureLoadingDialog(
-                          context: context,
-                          future: () => User(
-                            status.senderId,
-                            room:
-                                Room(id: '', client: Matrix.of(context).client),
-                          ).startDirectChat(),
-                        );
-                        if (result.error == null) {
-                          await AdaptivePageLayout.of(context)
-                              .pushNamed('/rooms/${result.result}');
-                        }
-                      },
+                      onPressed:
+                          Matrix.of(context).client.userID == status.senderId
+                              ? null
+                              : () async {
+                                  final result = await showFutureLoadingDialog(
+                                    context: context,
+                                    future: () => User(
+                                      status.senderId,
+                                      room: Room(
+                                          id: '',
+                                          client: Matrix.of(context).client),
+                                    ).startDirectChat(),
+                                  );
+                                  if (result.error == null) {
+                                    await AdaptivePageLayout.of(context)
+                                        .pushNamed('/rooms/${result.result}');
+                                  }
+                                },
                     ),
                     IconButton(
                       icon: Icon(Icons.ios_share),
