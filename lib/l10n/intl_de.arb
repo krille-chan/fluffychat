@@ -2017,7 +2017,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "redactMessage": "Nachricht verfassen",
+  "redactMessage": "Nachricht löschen",
   "@redactMessage": {
     "type": "text",
     "placeholders": {}
@@ -2054,6 +2054,36 @@
   },
   "next": "Weiter",
   "@next": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "search": "Suchen",
+  "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discover": "Entdecken",
+  "@discover": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groups": "Gruppen",
+  "@groups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "messages": "Nachrichten",
+  "@messages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "status": "Status",
+  "@status": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignore": "Ignorieren",
+  "@ignore": {
     "type": "text",
     "placeholders": {}
   }
