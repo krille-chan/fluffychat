@@ -211,13 +211,13 @@ class _HomeViewState extends State<HomeView> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomNavigationBar(
-        unselectedItemColor: Colors.black,
+        unselectedItemColor: Theme.of(context).textTheme.bodyText1.color,
         currentIndex: currentIndex,
         showSelectedLabels: true,
         showUnselectedLabels: false,
         type: BottomNavigationBarType.fixed,
         elevation: 20,
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        backgroundColor: Theme.of(context).appBarTheme.color,
         onTap: (i) {
           _pageController.animateToPage(
             i,
