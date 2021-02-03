@@ -388,7 +388,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "appLock": "App-slot",
+  "appLock": "App-vergrendeling",
   "@appLock": {
     "type": "text",
     "placeholders": {}
@@ -1413,7 +1413,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pushRules": "Push de regels",
+  "pushRules": "Meldingsregels",
   "@pushRules": {
     "type": "text",
     "placeholders": {}
