@@ -524,7 +524,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteInvalid": "Neplatná klávesová zkratka emotikonu!",
+  "emoteInvalid": "Neplatná klávesová zkratka emoji!",
   "@emoteInvalid": {
     "type": "text",
     "placeholders": {}
@@ -1173,7 +1173,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "searchForAChat": "Vyhledejte chat",
+  "searchForAChat": "Vyhledat chat",
   "@searchForAChat": {
     "type": "text",
     "placeholders": {}
@@ -1352,7 +1352,7 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "Zahajte svůj první chat :-)",
+  "startYourFirstChat": "Zahajte svůj první chat! 🙂\n- Klepněte na „+“\n- Zadejte uživatelské jméno přítele\n- Bavte se chatováním",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -1972,6 +1972,138 @@
   },
   "noConnectionToTheServer": "Žádné připojení k serveru",
   "@noConnectionToTheServer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "security": "Bezpečnostní",
+  "@security": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appLock": "Zámek aplikace",
+  "@appLock": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChooseAPasscode": "Vyberte přístupový kód",
+  "@pleaseChooseAPasscode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnter4Digits": "Chcete-li deaktivovat zámek aplikace, zadejte 4 číslice nebo nechte prázdné.",
+  "@pleaseEnter4Digits": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reportMessage": "Nahlásit zprávu",
+  "@reportMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "redactMessage": "Redigovat zprávu",
+  "@redactMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contentHasBeenReported": "Obsah byl nahlášen správcům serveru",
+  "@contentHasBeenReported": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reason": "Důvod",
+  "@reason": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whyDoYouWantToReportThis": "Proč to chcete nahlásit?",
+  "@whyDoYouWantToReportThis": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inoffensive": "Neškodný",
+  "@inoffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offensive": "Urážlivé",
+  "@offensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "extremeOffensive": "Extrémně urážlivé",
+  "@extremeOffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "howOffensiveIsThisContent": "Jak urážlivý je tento obsah?",
+  "@howOffensiveIsThisContent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "search": "Hledat",
+  "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discover": "Objevit",
+  "@discover": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "all": "Vše",
+  "@all": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contacts": "Kontakty",
+  "@contacts": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groups": "Skupiny",
+  "@groups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "messages": "Zprávy",
+  "@messages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "status": "Stav",
+  "@status": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignore": "Ignorovat",
+  "@ignore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newChat": "Nový chat",
+  "@newChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noStatusesFound": "Dosud nebyly nalezeny žádné stavy.",
+  "@noStatusesFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "next": "Další",
+  "@next": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youWillBeConnectedTo": "Budete připojeni k {homeserver}",
+  "@youWillBeConnectedTo": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "pleaseFollowInstructionsOnWeb": "Postupujte podle pokynů na webu a klepněte na další.",
+  "@pleaseFollowInstructionsOnWeb": {
     "type": "text",
     "placeholders": {}
   }
