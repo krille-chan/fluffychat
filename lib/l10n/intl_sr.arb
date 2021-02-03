@@ -89,7 +89,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "banFromChat": "Забране за ћаскање",
+  "banFromChat": "Забрани у ћаскању",
   "@banFromChat": {
     "type": "text",
     "placeholders": {}
@@ -856,12 +856,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "sendAMessage": "Шаље поруке",
+  "sendAMessage": "Пошаљи поруку",
   "@sendAMessage": {
     "type": "text",
     "placeholders": {}
   },
-  "setPermissionsLevel": "Поставите ниво дозволе",
+  "setPermissionsLevel": "Одреди ниво дозволе",
   "@setPermissionsLevel": {
     "type": "text",
     "placeholders": {}
@@ -1340,7 +1340,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "kickFromChat": "Избацивање из ћаскања",
+  "kickFromChat": "Избаци из ћаскања",
   "@kickFromChat": {
     "type": "text",
     "placeholders": {}
@@ -2082,6 +2082,26 @@
   },
   "ignore": "Игнориши",
   "@ignore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "all": "Сви",
+  "@all": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contacts": "Контакти",
+  "@contacts": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newChat": "Ново ћаскање",
+  "@newChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noStatusesFound": "За сад нема стања.",
+  "@noStatusesFound": {
     "type": "text",
     "placeholders": {}
   }
