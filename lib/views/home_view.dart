@@ -154,10 +154,6 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
             .pushNamedAndRemoveUntilIsFirst('/newprivatechat');
         break;
       case 2:
-        AdaptivePageLayout.of(context)
-            .pushNamedAndRemoveUntilIsFirst('/newgroup');
-        break;
-      case 3:
         _setServer(context);
         break;
     }
