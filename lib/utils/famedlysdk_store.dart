@@ -40,9 +40,30 @@ Future<Database> getDatabase(Client client) async {
 Database _db;
 bool _generateDatabaseLock = false;
 
+// see https://github.com/mogol/flutter_secure_storage/issues/161#issuecomment-704578453
+class AsyncMutex {
+  Completer<void> _completer;
+
+  Future<void> lock() async {
+    while (_completer != null) {
+      await _completer.future;
+    }
+
+    _completer = Completer<void>();
+  }
+
+  void unlock() {
+    assert(_completer != null);
+    final completer = _completer;
+    _completer = null;
+    completer.complete();
+  }
+}
+
 class Store {
   LocalStorage storage;
   final FlutterSecureStorage secureStorage;
+  static final _mutex = AsyncMutex();
 
   Store()
       : secureStorage = PlatformInfos.isMobile ? FlutterSecureStorage() : null;
@@ -69,6 +90,7 @@ class Store {
       }
     }
     try {
+      await _mutex.lock();
       return await secureStorage.read(key: key);
     } catch (_) {
       return null;
@@ -89,6 +111,7 @@ class Store {
       await _setupLocalStorage();
       return await storage.setItem(key, value);
     }
+    await _mutex.lock();
     return await secureStorage.write(key: key, value: value);
   }
 
@@ -101,6 +124,7 @@ class Store {
       await _setupLocalStorage();
       return await storage.deleteItem(key);
     }
+    await _mutex.lock();
     return await secureStorage.delete(key: key);
   }
 }
