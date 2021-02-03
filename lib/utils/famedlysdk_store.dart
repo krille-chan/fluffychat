@@ -94,6 +94,8 @@ class Store {
       return await secureStorage.read(key: key);
     } catch (_) {
       return null;
+    } finally {
+      _mutex.unlock();
     }
   }
 
@@ -111,8 +113,12 @@ class Store {
       await _setupLocalStorage();
       return await storage.setItem(key, value);
     }
-    await _mutex.lock();
-    return await secureStorage.write(key: key, value: value);
+    try {
+      await _mutex.lock();
+      return await secureStorage.write(key: key, value: value);
+    } finally {
+      _mutex.unlock();
+    }
   }
 
   Future<void> setItemBool(String key, bool value) async {
@@ -124,7 +130,11 @@ class Store {
       await _setupLocalStorage();
       return await storage.deleteItem(key);
     }
-    await _mutex.lock();
-    return await secureStorage.delete(key: key);
+    try {
+      await _mutex.lock();
+      return await secureStorage.delete(key: key);
+    } finally {
+      _mutex.unlock();
+    }
   }
 }
