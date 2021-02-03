@@ -2086,5 +2086,25 @@
   "@ignore": {
     "type": "text",
     "placeholders": {}
+  },
+  "all": "Alle",
+  "@all": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contacts": "Kontakte",
+  "@contacts": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newChat": "Neuer Chat",
+  "@newChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noStatusesFound": "Keine Einträge gefunden.",
+  "@noStatusesFound": {
+    "type": "text",
+    "placeholders": {}
   }
 }
