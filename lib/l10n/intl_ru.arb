@@ -2001,5 +2001,90 @@
     "placeholders": {
       "homeserver": {}
     }
+  },
+  "reportMessage": "Сообщить о сообщении",
+  "@reportMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "redactMessage": "Отредактировать сообщение",
+  "@redactMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contentHasBeenReported": "О контенте было сообщено администраторам сервера",
+  "@contentHasBeenReported": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reason": "Причина",
+  "@reason": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whyDoYouWantToReportThis": "Почему вы хотите сообщить об этом?",
+  "@whyDoYouWantToReportThis": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inoffensive": "Безобидный",
+  "@inoffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offensive": "Оскорбительный",
+  "@offensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "extremeOffensive": "Крайне оскорбительный",
+  "@extremeOffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "howOffensiveIsThisContent": "Насколько оскорбительным является этот контент?",
+  "@howOffensiveIsThisContent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "search": "Поиск",
+  "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discover": "Обзор",
+  "@discover": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groups": "Группы",
+  "@groups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "messages": "Сообщения",
+  "@messages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "status": "Статус",
+  "@status": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignore": "Игнорировать",
+  "@ignore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "next": "Далее",
+  "@next": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseFollowInstructionsOnWeb": "Следуйте инструкциям на веб-сайте и нажмите «Далее».",
+  "@pleaseFollowInstructionsOnWeb": {
+    "type": "text",
+    "placeholders": {}
   }
 }
