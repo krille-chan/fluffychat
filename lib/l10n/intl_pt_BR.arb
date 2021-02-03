@@ -1999,5 +1999,90 @@
     "placeholders": {
       "homeserver": {}
     }
+  },
+  "reportMessage": "Denunciar mensagem",
+  "@reportMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "redactMessage": "Retratar mensagem",
+  "@redactMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contentHasBeenReported": "O conteúdo foi denunciado para quem administra o servidor",
+  "@contentHasBeenReported": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reason": "Motivo",
+  "@reason": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whyDoYouWantToReportThis": "Por que você quer denunciar isto?",
+  "@whyDoYouWantToReportThis": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inoffensive": "Inofensivo",
+  "@inoffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offensive": "Ofensivo",
+  "@offensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "extremeOffensive": "Extremamente ofensivo",
+  "@extremeOffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "howOffensiveIsThisContent": "O quão ofensivo é este conteúdo?",
+  "@howOffensiveIsThisContent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "search": "Buscar",
+  "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discover": "Desvendar",
+  "@discover": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groups": "Grupos",
+  "@groups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "messages": "Mensagens",
+  "@messages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "status": "Status",
+  "@status": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignore": "Ignorar",
+  "@ignore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "next": "Próximo",
+  "@next": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseFollowInstructionsOnWeb": "Por favor, siga as instruções no site e toque em próximo.",
+  "@pleaseFollowInstructionsOnWeb": {
+    "type": "text",
+    "placeholders": {}
   }
 }
