@@ -56,6 +56,12 @@ abstract class FluffyThemes {
     ),
     inputDecorationTheme: InputDecorationTheme(
       border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(
+          color: AppConfig.primaryColor.withAlpha(16),
+        ),
+      ),
       filled: true,
       fillColor: AppConfig.primaryColor.withAlpha(16),
     ),
@@ -100,6 +106,12 @@ abstract class FluffyThemes {
       border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
       filled: true,
       fillColor: AppConfig.primaryColorLight.withAlpha(32),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(
+          color: AppConfig.primaryColor.withAlpha(16),
+        ),
+      ),
     ),
     appBarTheme: AppBarTheme(
       brightness: Brightness.dark,
