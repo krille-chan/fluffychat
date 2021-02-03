@@ -2086,5 +2086,25 @@
   "@howOffensiveIsThisContent": {
     "type": "text",
     "placeholders": {}
+  },
+  "all": "Tümü",
+  "@all": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contacts": "Kişiler",
+  "@contacts": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newChat": "Yeni sohbet",
+  "@newChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noStatusesFound": "Şimdiye kadar hiçbir durum bulunamadı.",
+  "@noStatusesFound": {
+    "type": "text",
+    "placeholders": {}
   }
 }
