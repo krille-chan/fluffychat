@@ -16,7 +16,6 @@ import 'package:fluffychat/views/login.dart';
 import 'package:fluffychat/views/new_group.dart';
 import 'package:fluffychat/views/new_private_chat.dart';
 import 'package:fluffychat/views/set_status_view.dart';
-import 'package:fluffychat/views/settings.dart';
 import 'package:fluffychat/views/settings_3pid.dart';
 import 'package:fluffychat/views/settings_devices.dart';
 import 'package:fluffychat/views/settings_emotes.dart';
@@ -149,17 +148,17 @@ class FluffyRoutes {
             switch (action) {
               case '3pid':
                 return ViewData(
-                  leftView: (_) => Settings(),
+                  leftView: (_) => HomeView(),
                   mainView: (_) => Settings3Pid(),
                 );
               case 'devices':
                 return ViewData(
-                  leftView: (_) => Settings(),
+                  leftView: (_) => HomeView(),
                   mainView: (_) => DevicesSettings(),
                 );
               case 'emotes':
                 return ViewData(
-                  leftView: (_) => Settings(),
+                  leftView: (_) => HomeView(),
                   mainView: (_) => EmotesSettings(
                     room: ((settings.arguments ?? {}) as Map)['room'],
                     stateKey: ((settings.arguments ?? {}) as Map)['stateKey'],
@@ -167,25 +166,25 @@ class FluffyRoutes {
                 );
               case 'ignore':
                 return ViewData(
-                  leftView: (_) => Settings(),
+                  leftView: (_) => HomeView(),
                   mainView: (_) => SettingsIgnoreList(
                     initialUserId: settings.arguments,
                   ),
                 );
               case 'notifications':
                 return ViewData(
-                  leftView: (_) => Settings(),
+                  leftView: (_) => HomeView(),
                   mainView: (_) => SettingsNotifications(),
                 );
               case 'style':
                 return ViewData(
-                  leftView: (_) => Settings(),
+                  leftView: (_) => HomeView(),
                   mainView: (_) => SettingsStyle(),
                 );
             }
           }
           return ViewData(
-            mainView: (_) => Settings(),
+            mainView: (_) => HomeView(),
             emptyView: (_) => EmptyPage(),
           );
       }

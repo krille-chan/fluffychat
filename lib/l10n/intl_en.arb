@@ -1025,8 +1025,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "newPrivateChat": "New private chat",
-  "@newPrivateChat": {
+  "noStatusesFound": "No statuses found so far.",
+  "@noStatusesFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newChat": "New chat",
+  "@newChat": {
     "type": "text",
     "placeholders": {}
   },
@@ -1349,6 +1354,16 @@
   },
   "groups": "Groups",
   "@groups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contacts": "Contacts",
+  "@contacts": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "all": "All",
+  "@all": {
     "type": "text",
     "placeholders": {}
   },

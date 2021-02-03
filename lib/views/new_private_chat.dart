@@ -87,8 +87,18 @@ class _NewPrivateChatState extends State<NewPrivateChat> {
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(),
-        title: Text(L10n.of(context).newPrivateChat),
+        title: Text(L10n.of(context).newChat),
         elevation: 0,
+        actions: [
+          FlatButton(
+            child: Text(
+              L10n.of(context).createNewGroup,
+              style: TextStyle(color: Theme.of(context).accentColor),
+            ),
+            onPressed: () => AdaptivePageLayout.of(context)
+                .pushNamedAndRemoveUntilIsFirst('/newgroup'),
+          )
+        ],
       ),
       body: Column(
         children: <Widget>[

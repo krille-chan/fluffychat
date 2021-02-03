@@ -571,14 +571,14 @@ class _ChatState extends State<Chat> {
                           : Row(
                               children: <Widget>[
                                 Icon(Icons.edit_outlined,
-                                    color: Theme.of(context).primaryColor,
+                                    color: Theme.of(context).accentColor,
                                     size: 13),
                                 SizedBox(width: 4),
                                 Text(
                                   room.getLocalizedTypingText(context),
                                   maxLines: 1,
                                   style: TextStyle(
-                                    color: Theme.of(context).primaryColor,
+                                    color: Theme.of(context).accentColor,
                                     fontStyle: FontStyle.italic,
                                     fontSize: 16,
                                   ),

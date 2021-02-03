@@ -19,9 +19,7 @@ class ShareView extends StatelessWidget {
         ),
         title: Text(L10n.of(context).share),
       ),
-      body: ChatList(
-        type: ChatListType.all,
-      ),
+      body: ChatList(),
     );
   }
 }

@@ -19,11 +19,11 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../components/content_banner.dart';
+import '../../components/content_banner.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
-import '../components/matrix.dart';
-import '../app_config.dart';
-import '../config/setting_keys.dart';
+import '../../components/matrix.dart';
+import '../../app_config.dart';
+import '../../config/setting_keys.dart';
 
 class Settings extends StatefulWidget {
   @override
@@ -320,221 +320,197 @@ class _SettingsState extends State<Settings> {
         return c;
       });
     }
-    return Scaffold(
-      body: NestedScrollView(
-        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) =>
-            <Widget>[
-          SliverAppBar(
-            leading: BackButton(),
-            expandedHeight: 300.0,
-            floating: true,
-            pinned: true,
-            backgroundColor: Theme.of(context).appBarTheme.color,
-            flexibleSpace: FlexibleSpaceBar(
-              title: Text(
-                L10n.of(context).settings,
-                style: TextStyle(
-                    color: Theme.of(context)
-                        .appBarTheme
-                        .textTheme
-                        .headline6
-                        .color),
-              ),
-              background: ContentBanner(
-                profile?.avatarUrl,
-                height: 300,
-                defaultIcon: Icons.account_circle_outlined,
-                loading: profile == null,
-                onEdit: () => setAvatarAction(context),
+    return ListView(
+      children: <Widget>[
+        ContentBanner(
+          profile?.avatarUrl,
+          height: 200,
+          opacity: 1,
+          defaultIcon: Icons.account_circle_outlined,
+          loading: profile == null,
+          onEdit: () => setAvatarAction(context),
+        ),
+        ListTile(
+          title: Text(
+            L10n.of(context).notifications,
+            style: TextStyle(
+              color: Theme.of(context).primaryColor,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        ListTile(
+          trailing: Icon(Icons.notifications_outlined),
+          title: Text(L10n.of(context).notifications),
+          onTap: () => AdaptivePageLayout.of(context)
+              .pushNamed('/settings/notifications'),
+        ),
+        Divider(thickness: 1),
+        ListTile(
+          title: Text(
+            L10n.of(context).chat,
+            style: TextStyle(
+              color: Theme.of(context).primaryColor,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        ListTile(
+          title: Text(L10n.of(context).changeTheme),
+          onTap: () =>
+              AdaptivePageLayout.of(context).pushNamed('/settings/style'),
+          trailing: Icon(Icons.style_outlined),
+        ),
+        SettingsSwitchListTile(
+          title: L10n.of(context).renderRichContent,
+          onChanged: (b) => AppConfig.renderHtml = b,
+          storeKey: SettingKeys.renderHtml,
+          defaultValue: AppConfig.renderHtml,
+        ),
+        SettingsSwitchListTile(
+          title: L10n.of(context).hideRedactedEvents,
+          onChanged: (b) => AppConfig.hideRedactedEvents = b,
+          storeKey: SettingKeys.hideRedactedEvents,
+          defaultValue: AppConfig.hideRedactedEvents,
+        ),
+        SettingsSwitchListTile(
+          title: L10n.of(context).hideUnknownEvents,
+          onChanged: (b) => AppConfig.hideUnknownEvents = b,
+          storeKey: SettingKeys.hideUnknownEvents,
+          defaultValue: AppConfig.hideUnknownEvents,
+        ),
+        ListTile(
+          title: Text(L10n.of(context).emoteSettings),
+          onTap: () =>
+              AdaptivePageLayout.of(context).pushNamed('/settings/emotes'),
+          trailing: Icon(Icons.insert_emoticon_outlined),
+        ),
+        Divider(thickness: 1),
+        ListTile(
+          title: Text(
+            L10n.of(context).account,
+            style: TextStyle(
+              color: Theme.of(context).primaryColor,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        ListTile(
+          trailing: Icon(Icons.edit_outlined),
+          title: Text(L10n.of(context).editDisplayname),
+          subtitle: Text(profile?.displayname ?? client.userID.localpart),
+          onTap: () => setDisplaynameAction(context),
+        ),
+        ListTile(
+          trailing: Icon(Icons.phone_outlined),
+          title: Text(L10n.of(context).editJitsiInstance),
+          subtitle: Text(AppConfig.jitsiInstance),
+          onTap: () => setJitsiInstanceAction(context),
+        ),
+        ListTile(
+          trailing: Icon(Icons.devices_other_outlined),
+          title: Text(L10n.of(context).devices),
+          onTap: () =>
+              AdaptivePageLayout.of(context).pushNamed('/settings/devices'),
+        ),
+        ListTile(
+          trailing: Icon(Icons.block_outlined),
+          title: Text(L10n.of(context).ignoredUsers),
+          onTap: () =>
+              AdaptivePageLayout.of(context).pushNamed('/settings/ignore'),
+        ),
+        SentrySwitchListTile(),
+        Divider(thickness: 1),
+        ListTile(
+          trailing: Icon(Icons.security_outlined),
+          title: Text(
+            L10n.of(context).changePassword,
+          ),
+          onTap: () => _changePasswordAccountAction(context),
+        ),
+        ListTile(
+          trailing: Icon(Icons.email_outlined),
+          title: Text(L10n.of(context).passwordRecovery),
+          onTap: () =>
+              AdaptivePageLayout.of(context).pushNamed('/settings/3pid'),
+        ),
+        ListTile(
+          trailing: Icon(Icons.exit_to_app_outlined),
+          title: Text(L10n.of(context).logout),
+          onTap: () => logoutAction(context),
+        ),
+        ListTile(
+          trailing: Icon(Icons.delete_forever_outlined),
+          title: Text(
+            L10n.of(context).deleteAccount,
+            style: TextStyle(color: Colors.red),
+          ),
+          onTap: () => _deleteAccountAction(context),
+        ),
+        if (client.encryption != null) ...{
+          Divider(thickness: 1),
+          ListTile(
+            title: Text(
+              L10n.of(context).security,
+              style: TextStyle(
+                color: Theme.of(context).primaryColor,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),
-        ],
-        body: ListView(
-          children: <Widget>[
+          if (PlatformInfos.isMobile)
             ListTile(
-              title: Text(
-                L10n.of(context).notifications,
-                style: TextStyle(
-                  color: Theme.of(context).primaryColor,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              trailing: Icon(Icons.lock_outlined),
+              title: Text(L10n.of(context).appLock),
+              onTap: () => _setAppLockAction(context),
             ),
-            ListTile(
-              trailing: Icon(Icons.notifications_outlined),
-              title: Text(L10n.of(context).notifications),
-              onTap: () => AdaptivePageLayout.of(context)
-                  .pushNamed('/settings/notifications'),
+          ListTile(
+            title: Text(L10n.of(context).yourPublicKey),
+            onTap: () => showOkAlertDialog(
+              context: context,
+              title: L10n.of(context).yourPublicKey,
+              message: client.fingerprintKey.beautified,
             ),
-            Divider(thickness: 1),
-            ListTile(
-              title: Text(
-                L10n.of(context).chat,
-                style: TextStyle(
-                  color: Theme.of(context).primaryColor,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+            trailing: Icon(Icons.vpn_key_outlined),
+          ),
+          ListTile(
+            title: Text(L10n.of(context).cachedKeys),
+            trailing: Icon(Icons.wb_cloudy_outlined),
+            subtitle: Text(
+                '${client.encryption.keyManager.enabled ? L10n.of(context).onlineKeyBackupEnabled : L10n.of(context).onlineKeyBackupDisabled}\n${client.encryption.crossSigning.enabled ? L10n.of(context).crossSigningEnabled : L10n.of(context).crossSigningDisabled}'),
+            onTap: () => BootstrapDialog(
+              l10n: L10n.of(context),
+              client: Matrix.of(context).client,
+            ).show(context),
+          ),
+        },
+        Divider(thickness: 1),
+        ListTile(
+          title: Text(
+            L10n.of(context).about,
+            style: TextStyle(
+              color: Theme.of(context).primaryColor,
+              fontWeight: FontWeight.bold,
             ),
-            ListTile(
-              title: Text(L10n.of(context).changeTheme),
-              onTap: () =>
-                  AdaptivePageLayout.of(context).pushNamed('/settings/style'),
-              trailing: Icon(Icons.style_outlined),
-            ),
-            SettingsSwitchListTile(
-              title: L10n.of(context).renderRichContent,
-              onChanged: (b) => AppConfig.renderHtml = b,
-              storeKey: SettingKeys.renderHtml,
-              defaultValue: AppConfig.renderHtml,
-            ),
-            SettingsSwitchListTile(
-              title: L10n.of(context).hideRedactedEvents,
-              onChanged: (b) => AppConfig.hideRedactedEvents = b,
-              storeKey: SettingKeys.hideRedactedEvents,
-              defaultValue: AppConfig.hideRedactedEvents,
-            ),
-            SettingsSwitchListTile(
-              title: L10n.of(context).hideUnknownEvents,
-              onChanged: (b) => AppConfig.hideUnknownEvents = b,
-              storeKey: SettingKeys.hideUnknownEvents,
-              defaultValue: AppConfig.hideUnknownEvents,
-            ),
-            ListTile(
-              title: Text(L10n.of(context).emoteSettings),
-              onTap: () =>
-                  AdaptivePageLayout.of(context).pushNamed('/settings/emotes'),
-              trailing: Icon(Icons.insert_emoticon_outlined),
-            ),
-            Divider(thickness: 1),
-            ListTile(
-              title: Text(
-                L10n.of(context).account,
-                style: TextStyle(
-                  color: Theme.of(context).primaryColor,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            ListTile(
-              trailing: Icon(Icons.edit_outlined),
-              title: Text(L10n.of(context).editDisplayname),
-              subtitle: Text(profile?.displayname ?? client.userID.localpart),
-              onTap: () => setDisplaynameAction(context),
-            ),
-            ListTile(
-              trailing: Icon(Icons.phone_outlined),
-              title: Text(L10n.of(context).editJitsiInstance),
-              subtitle: Text(AppConfig.jitsiInstance),
-              onTap: () => setJitsiInstanceAction(context),
-            ),
-            ListTile(
-              trailing: Icon(Icons.devices_other_outlined),
-              title: Text(L10n.of(context).devices),
-              onTap: () =>
-                  AdaptivePageLayout.of(context).pushNamed('/settings/devices'),
-            ),
-            ListTile(
-              trailing: Icon(Icons.block_outlined),
-              title: Text(L10n.of(context).ignoredUsers),
-              onTap: () =>
-                  AdaptivePageLayout.of(context).pushNamed('/settings/ignore'),
-            ),
-            SentrySwitchListTile(),
-            Divider(thickness: 1),
-            ListTile(
-              trailing: Icon(Icons.security_outlined),
-              title: Text(
-                L10n.of(context).changePassword,
-              ),
-              onTap: () => _changePasswordAccountAction(context),
-            ),
-            ListTile(
-              trailing: Icon(Icons.email_outlined),
-              title: Text(L10n.of(context).passwordRecovery),
-              onTap: () =>
-                  AdaptivePageLayout.of(context).pushNamed('/settings/3pid'),
-            ),
-            ListTile(
-              trailing: Icon(Icons.exit_to_app_outlined),
-              title: Text(L10n.of(context).logout),
-              onTap: () => logoutAction(context),
-            ),
-            ListTile(
-              trailing: Icon(Icons.delete_forever_outlined),
-              title: Text(
-                L10n.of(context).deleteAccount,
-                style: TextStyle(color: Colors.red),
-              ),
-              onTap: () => _deleteAccountAction(context),
-            ),
-            if (client.encryption != null) ...{
-              Divider(thickness: 1),
-              ListTile(
-                title: Text(
-                  L10n.of(context).security,
-                  style: TextStyle(
-                    color: Theme.of(context).primaryColor,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              if (PlatformInfos.isMobile)
-                ListTile(
-                  trailing: Icon(Icons.lock_outlined),
-                  title: Text(L10n.of(context).appLock),
-                  onTap: () => _setAppLockAction(context),
-                ),
-              ListTile(
-                title: Text(L10n.of(context).yourPublicKey),
-                onTap: () => showOkAlertDialog(
-                  context: context,
-                  title: L10n.of(context).yourPublicKey,
-                  message: client.fingerprintKey.beautified,
-                ),
-                trailing: Icon(Icons.vpn_key_outlined),
-              ),
-              ListTile(
-                title: Text(L10n.of(context).cachedKeys),
-                trailing: Icon(Icons.wb_cloudy_outlined),
-                subtitle: Text(
-                    '${client.encryption.keyManager.enabled ? L10n.of(context).onlineKeyBackupEnabled : L10n.of(context).onlineKeyBackupDisabled}\n${client.encryption.crossSigning.enabled ? L10n.of(context).crossSigningEnabled : L10n.of(context).crossSigningDisabled}'),
-                onTap: () => BootstrapDialog(
-                  l10n: L10n.of(context),
-                  client: Matrix.of(context).client,
-                ).show(context),
-              ),
-            },
-            Divider(thickness: 1),
-            ListTile(
-              title: Text(
-                L10n.of(context).about,
-                style: TextStyle(
-                  color: Theme.of(context).primaryColor,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              onTap: () => AdaptivePageLayout.of(context).pushNamed('/logs'),
-            ),
-            ListTile(
-              trailing: Icon(Icons.help_outlined),
-              title: Text(L10n.of(context).help),
-              onTap: () => launch(AppConfig.supportUrl),
-            ),
-            ListTile(
-              trailing: Icon(Icons.privacy_tip_outlined),
-              title: Text(L10n.of(context).privacy),
-              onTap: () => launch(AppConfig.privacyUrl),
-            ),
-            ListTile(
-              trailing: Icon(Icons.link_outlined),
-              title: Text(L10n.of(context).about),
-              onTap: () => PlatformInfos.showDialog(context),
-            ),
-          ],
+          ),
+          onTap: () => AdaptivePageLayout.of(context).pushNamed('/logs'),
         ),
-      ),
+        ListTile(
+          trailing: Icon(Icons.help_outlined),
+          title: Text(L10n.of(context).help),
+          onTap: () => launch(AppConfig.supportUrl),
+        ),
+        ListTile(
+          trailing: Icon(Icons.privacy_tip_outlined),
+          title: Text(L10n.of(context).privacy),
+          onTap: () => launch(AppConfig.privacyUrl),
+        ),
+        ListTile(
+          trailing: Icon(Icons.link_outlined),
+          title: Text(L10n.of(context).about),
+          onTap: () => PlatformInfos.showDialog(context),
+        ),
+      ],
     );
   }
 }

@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/views/home_view_parts/discover.dart';
 import 'package:fluffychat/views/share_view.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,12 +12,12 @@ import 'package:fluffychat/app_config.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:preload_page_view/preload_page_view.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 import '../components/matrix.dart';
 import '../utils/matrix_file_extension.dart';
 import '../utils/url_launcher.dart';
 import 'home_view_parts/chat_list.dart';
+import 'home_view_parts/settings.dart';
 import 'home_view_parts/status_list.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -31,12 +32,17 @@ class HomeView extends StatefulWidget {
   _HomeViewState createState() => _HomeViewState();
 }
 
-class _HomeViewState extends State<HomeView> {
+class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
   @override
   void initState() {
     _initReceiveSharingIntent();
+    _pageController = TabController(length: 4, vsync: this, initialIndex: 1);
+    _pageController.addListener(_updateCurrentIndex);
     super.initState();
   }
+
+  void _updateCurrentIndex() =>
+      setState(() => currentIndex = _pageController.index);
 
   int currentIndex = 1;
 
@@ -48,8 +54,7 @@ class _HomeViewState extends State<HomeView> {
 
   AppBar appBar;
 
-  final PreloadPageController _pageController =
-      PreloadPageController(initialPage: 1);
+  TabController _pageController;
 
   void _onShare(Map<String, dynamic> content) {
     if (content != null) {
@@ -114,6 +119,7 @@ class _HomeViewState extends State<HomeView> {
   void dispose() {
     _intentDataStreamSubscription?.cancel();
     _intentFileStreamSubscription?.cancel();
+    _pageController.removeListener(_updateCurrentIndex);
     super.dispose();
   }
 
@@ -170,9 +176,6 @@ class _HomeViewState extends State<HomeView> {
         fabIcon = Icons.add_outlined;
         break;
       case 2:
-        fabIcon = Icons.group_add_outlined;
-        break;
-      case 3:
         fabIcon = Icons.domain_outlined;
         break;
     }
@@ -182,33 +185,56 @@ class _HomeViewState extends State<HomeView> {
           AppBar(
               centerTitle: false,
               actions: [
-                IconButton(
-                  icon: Icon(Icons.account_circle_outlined),
-                  onPressed: () =>
-                      AdaptivePageLayout.of(context).pushNamed('/settings'),
+                PopupMenuButton(
+                  onSelected: (action) {
+                    switch (action) {
+                      case 'invite':
+                        FluffyShare.share(
+                            L10n.of(context).inviteText(
+                                Matrix.of(context).client.userID,
+                                'https://matrix.to/#/${Matrix.of(context).client.userID}'),
+                            context);
+                        break;
+                      case 'archive':
+                        AdaptivePageLayout.of(context).pushNamed('/archive');
+                        break;
+                    }
+                  },
+                  itemBuilder: (_) => [
+                    PopupMenuItem(
+                      value: 'invite',
+                      child: Text(L10n.of(context).inviteContact),
+                    ),
+                    PopupMenuItem(
+                      value: 'archive',
+                      child: Text(L10n.of(context).archive),
+                    ),
+                  ],
                 ),
               ],
               title: Text(AppConfig.applicationName)),
-      body: PreloadPageView(
+      body: TabBarView(
         controller: _pageController,
-        onPageChanged: (i) => setState(() => currentIndex = i),
         children: [
           StatusList(key: Key('StatusList')),
           ChatList(
-            type: ChatListType.messages,
-            onCustomAppBar: (appBar) => setState(() => this.appBar = appBar),
-          ),
-          ChatList(
-            type: ChatListType.groups,
             onCustomAppBar: (appBar) => setState(() => this.appBar = appBar),
           ),
           Discover(server: _server),
+          Settings(),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(fabIcon),
-        onPressed: _onFabTab,
-      ),
+      floatingActionButton: fabIcon == null
+          ? null
+          : FloatingActionButton(
+              child: Icon(fabIcon),
+              onPressed: _onFabTab,
+              foregroundColor:
+                  currentIndex == 2 ? Theme.of(context).accentColor : null,
+              backgroundColor: currentIndex == 2
+                  ? Theme.of(context).scaffoldBackgroundColor
+                  : null,
+            ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: Theme.of(context).textTheme.bodyText1.color,
@@ -219,11 +245,7 @@ class _HomeViewState extends State<HomeView> {
         elevation: 20,
         backgroundColor: Theme.of(context).appBarTheme.color,
         onTap: (i) {
-          _pageController.animateToPage(
-            i,
-            duration: Duration(milliseconds: 200),
-            curve: Curves.bounceOut,
-          );
+          _pageController.animateTo(i);
           setState(() => currentIndex = i);
         },
         items: [
@@ -236,12 +258,12 @@ class _HomeViewState extends State<HomeView> {
             icon: Icon(CupertinoIcons.chat_bubble_2),
           ),
           BottomNavigationBarItem(
-            label: L10n.of(context).groups,
-            icon: Icon(Icons.people_outline),
-          ),
-          BottomNavigationBarItem(
             label: L10n.of(context).discover,
             icon: Icon(CupertinoIcons.search_circle),
+          ),
+          BottomNavigationBarItem(
+            label: L10n.of(context).settings,
+            icon: Icon(Icons.settings_outlined),
           ),
         ],
       ),

@@ -2,6 +2,7 @@ import 'package:fluffychat/components/list_items/status_list_tile.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/utils/status.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class StatusList extends StatefulWidget {
   const StatusList({Key key}) : super(key: key);
@@ -22,7 +23,7 @@ class _StatusListState extends State<StatusList> {
             elevation: _onlyContacts ? 7 : null,
             color: !_onlyContacts ? null : Theme.of(context).primaryColor,
             child: Text(
-              'Contacts',
+              L10n.of(context).contacts,
               style: TextStyle(color: _onlyContacts ? Colors.white : null),
             ),
             onPressed: () => setState(() => _onlyContacts = true),
@@ -31,7 +32,7 @@ class _StatusListState extends State<StatusList> {
             elevation: !_onlyContacts ? 7 : null,
             color: _onlyContacts ? null : Theme.of(context).primaryColor,
             child: Text(
-              'All',
+              L10n.of(context).all,
               style: TextStyle(color: !_onlyContacts ? Colors.white : null),
             ),
             onPressed: () => setState(() => _onlyContacts = false),
@@ -52,6 +53,16 @@ class _StatusListState extends State<StatusList> {
               final client = Matrix.of(context).client;
               statuses.removeWhere(
                   (p) => client.getDirectChatFromUserId(p.senderId) == null);
+            }
+            if (statuses.isEmpty) {
+              return Container(
+                padding: EdgeInsets.all(16),
+                alignment: Alignment.center,
+                child: Text(
+                  L10n.of(context).noStatusesFound,
+                  textAlign: TextAlign.center,
+                ),
+              );
             }
             return ListView.separated(
               physics: NeverScrollableScrollPhysics(),

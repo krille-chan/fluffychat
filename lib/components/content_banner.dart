@@ -12,6 +12,7 @@ class ContentBanner extends StatelessWidget {
   final bool loading;
   final Function onEdit;
   final Client client;
+  final double opacity;
 
   const ContentBanner(this.mxContent,
       {this.height = 400,
@@ -19,6 +20,7 @@ class ContentBanner extends StatelessWidget {
       this.loading = false,
       this.onEdit,
       this.client,
+      this.opacity = 0.75,
       Key key})
       : super(key: key);
 
@@ -35,7 +37,7 @@ class ContentBanner extends StatelessWidget {
       animated: true,
     );
     return Container(
-      height: 300,
+      height: height,
       alignment: Alignment.center,
       decoration: BoxDecoration(
         color: Theme.of(context).secondaryHeaderColor,
@@ -48,7 +50,7 @@ class ContentBanner extends StatelessWidget {
             top: 0,
             bottom: 0,
             child: Opacity(
-              opacity: 0.75,
+              opacity: opacity,
               child: !loading
                   ? mxContent != null
                       ? CachedNetworkImage(

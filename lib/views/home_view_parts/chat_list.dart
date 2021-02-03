@@ -8,19 +8,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 
-enum ChatListType { messages, groups, all }
-
 enum SelectMode { normal, select }
 
 class ChatList extends StatefulWidget {
   final String activeChat;
-  final ChatListType type;
   final void Function(AppBar appBar) onCustomAppBar;
 
   const ChatList({
     Key key,
     this.activeChat,
-    @required this.type,
     this.onCustomAppBar,
   }) : super(key: key);
   @override
@@ -175,11 +171,6 @@ class _ChatListState extends State<ChatList> {
                         (searchMode &&
                             !room.displayname.toLowerCase().contains(
                                 searchController.text.toLowerCase() ?? '')));
-                    if (widget.type == ChatListType.messages) {
-                      rooms.removeWhere((room) => !room.isDirectChat);
-                    } else if (widget.type == ChatListType.groups) {
-                      rooms.removeWhere((room) => room.isDirectChat);
-                    }
                     if (rooms.isEmpty && (!searchMode)) {
                       return Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -196,6 +187,7 @@ class _ChatListState extends State<ChatList> {
                             searchMode
                                 ? L10n.of(context).noRoomsFound
                                 : L10n.of(context).startYourFirstChat,
+                            textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Colors.grey,
                               fontSize: 16,
