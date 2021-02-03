@@ -1154,6 +1154,7 @@ class _ChatState extends State<Chat> {
                                               L10n.of(context).writeAMessage,
                                           hintMaxLines: 1,
                                           border: InputBorder.none,
+                                          enabledBorder: InputBorder.none,
                                           filled: false,
                                         ),
                                         onChanged: (String text) {
