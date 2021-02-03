@@ -2009,5 +2009,80 @@
   "@next": {
     "type": "text",
     "placeholders": {}
+  },
+  "reportMessage": "Пријави поруку",
+  "@reportMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "redactMessage": "Редигуј поруку",
+  "@redactMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contentHasBeenReported": "Садржај је пријављен администраторима сервера",
+  "@contentHasBeenReported": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reason": "Разлог",
+  "@reason": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whyDoYouWantToReportThis": "Зашто желите ово да пријавите?",
+  "@whyDoYouWantToReportThis": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inoffensive": "Није увредљив",
+  "@inoffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offensive": "Увредљив",
+  "@offensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "extremeOffensive": "Екстремно увредљив",
+  "@extremeOffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "howOffensiveIsThisContent": "Колико је увредљив овај садржај?",
+  "@howOffensiveIsThisContent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "search": "Претражи",
+  "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discover": "Истражи",
+  "@discover": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groups": "Групе",
+  "@groups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "messages": "Поруке",
+  "@messages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "status": "Стање",
+  "@status": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignore": "Игнориши",
+  "@ignore": {
+    "type": "text",
+    "placeholders": {}
   }
 }
