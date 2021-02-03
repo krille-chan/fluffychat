@@ -2086,5 +2086,25 @@
   "@howOffensiveIsThisContent": {
     "type": "text",
     "placeholders": {}
+  },
+  "all": "Tout",
+  "@all": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contacts": "Contacts",
+  "@contacts": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newChat": "Nouveau salon de discussion",
+  "@newChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noStatusesFound": "Aucun statut n'a été trouvé jusqu'à présent.",
+  "@noStatusesFound": {
+    "type": "text",
+    "placeholders": {}
   }
 }
