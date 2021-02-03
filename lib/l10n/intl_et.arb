@@ -2086,5 +2086,25 @@
   "@ignore": {
     "type": "text",
     "placeholders": {}
+  },
+  "noStatusesFound": "Pole veel ühtegi olekut leidnud.",
+  "@noStatusesFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "all": "Kõik",
+  "@all": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contacts": "Kontaktid",
+  "@contacts": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newChat": "Uus vestlus",
+  "@newChat": {
+    "type": "text",
+    "placeholders": {}
   }
 }
