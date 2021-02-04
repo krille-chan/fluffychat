@@ -2086,5 +2086,25 @@
   "@pleaseFollowInstructionsOnWeb": {
     "type": "text",
     "placeholders": {}
+  },
+  "all": "Все",
+  "@all": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contacts": "Контакты",
+  "@contacts": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newChat": "Новый чат",
+  "@newChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noStatusesFound": "Статусы пока не найдены.",
+  "@noStatusesFound": {
+    "type": "text",
+    "placeholders": {}
   }
 }
