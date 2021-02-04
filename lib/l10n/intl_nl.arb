@@ -14,7 +14,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changedTheDisplaynameTo": "{username} heeft de weergavenaam gewijzigd in: '{weergavenaam}'",
+  "changedTheDisplaynameTo": "{username} heeft hun weergavenaam gewijzigd in: '{displayname}'",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -627,7 +627,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "discoverGroups": "Ontdek groepen",
+  "discoverGroups": "Ontdek kamers",
   "@discoverGroups": {
     "type": "text",
     "placeholders": {}
@@ -778,7 +778,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "renderRichContent": "Render uitgebreide berichtinhoud",
+  "renderRichContent": "Uitgebreide berichtinhoud weergeven",
   "@renderRichContent": {
     "type": "text",
     "placeholders": {}
@@ -1115,7 +1115,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "kickedAndBanned": "{gebruikersnaam} heeft {targetName} gekickt en verbannen",
+  "kickedAndBanned": "{gebruikersnaam} heeft {targetName} verwijderd en verbannen",
   "@kickedAndBanned": {
     "type": "text",
     "placeholders": {
@@ -1123,7 +1123,7 @@
       "targetName": {}
     }
   },
-  "kicked": "{username} heeft {targetName} gekickt",
+  "kicked": "{username} heeft {targetName} verwijderd",
   "@kicked": {
     "type": "text",
     "placeholders": {
@@ -1146,7 +1146,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "joinedTheChat": "{username} heeft zich de chat gevoegd",
+  "joinedTheChat": "{username} heeft zich bij de chat gevoegd",
   "@joinedTheChat": {
     "type": "text",
     "placeholders": {
@@ -2075,6 +2075,26 @@
   },
   "pleaseFollowInstructionsOnWeb": "Volg de instructies op de website en klik op volgende.",
   "@pleaseFollowInstructionsOnWeb": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "all": "Alle",
+  "@all": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contacts": "Contacten",
+  "@contacts": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newChat": "Nieuwe chat",
+  "@newChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noStatusesFound": "Geen statussen gevonden tot nu toe.",
+  "@noStatusesFound": {
     "type": "text",
     "placeholders": {}
   }
