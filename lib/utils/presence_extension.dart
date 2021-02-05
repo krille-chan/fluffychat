@@ -37,4 +37,16 @@ extension PresenceExtension on Presence {
     }
     return presence.presence.getLocalized(context);
   }
+
+  Color get color {
+    switch (presence?.presence ?? PresenceType.offline) {
+      case PresenceType.online:
+        return Colors.green;
+      case PresenceType.offline:
+        return Colors.red;
+      case PresenceType.unavailable:
+      default:
+        return Colors.grey;
+    }
+  }
 }

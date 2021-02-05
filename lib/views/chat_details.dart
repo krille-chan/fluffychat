@@ -1,6 +1,7 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:fluffychat/app_config.dart';
+import 'package:fluffychat/components/avatar.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:flushbar/flushbar_helper.dart';
@@ -238,6 +239,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                                         .scaffoldBackgroundColor,
                                     foregroundColor: Colors.grey,
                                     child: Icon(Icons.edit_outlined),
+                                    radius: Avatar.defaultSize / 2,
                                   )
                                 : null,
                             title: Text('${L10n.of(context).groupDescription}:',

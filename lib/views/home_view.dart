@@ -12,13 +12,14 @@ import 'package:fluffychat/app_config.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 import '../components/matrix.dart';
 import '../utils/matrix_file_extension.dart';
 import '../utils/url_launcher.dart';
 import 'home_view_parts/chat_list.dart';
 import 'home_view_parts/settings.dart';
-import 'home_view_parts/status_list.dart';
+import 'home_view_parts/contact_list.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 enum SelectMode { normal, share, select }
@@ -143,11 +144,30 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
     });
   }
 
+  void _setStatus() async {
+    final input = await showTextInputDialog(
+        context: context,
+        title: L10n.of(context).setStatus,
+        textFields: [
+          DialogTextField(
+            hintText: L10n.of(context).statusExampleMessage,
+          ),
+        ]);
+    if (input == null) return;
+    await showFutureLoadingDialog(
+      context: context,
+      future: () => Matrix.of(context).client.sendPresence(
+            Matrix.of(context).client.userID,
+            PresenceType.online,
+            statusMsg: input.single,
+          ),
+    );
+  }
+
   void _onFabTab() {
     switch (currentIndex) {
       case 0:
-        AdaptivePageLayout.of(context)
-            .pushNamedAndRemoveUntilIsFirst('/newstatus');
+        _setStatus();
         break;
       case 1:
         AdaptivePageLayout.of(context)
@@ -212,7 +232,7 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
       body: TabBarView(
         controller: _pageController,
         children: [
-          StatusList(key: Key('StatusList')),
+          ContactList(),
           ChatList(
             onCustomAppBar: (appBar) => setState(() => this.appBar = appBar),
           ),
@@ -246,8 +266,8 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
         },
         items: [
           BottomNavigationBarItem(
-            label: L10n.of(context).status,
-            icon: Icon(Icons.home_outlined),
+            label: L10n.of(context).contacts,
+            icon: Icon(Icons.people_outlined),
           ),
           BottomNavigationBarItem(
             label: L10n.of(context).messages,
