@@ -15,7 +15,6 @@ import 'package:fluffychat/views/log_view.dart';
 import 'package:fluffychat/views/login.dart';
 import 'package:fluffychat/views/new_group.dart';
 import 'package:fluffychat/views/new_private_chat.dart';
-import 'package:fluffychat/views/set_status_view.dart';
 import 'package:fluffychat/views/settings_3pid.dart';
 import 'package:fluffychat/views/settings_devices.dart';
 import 'package:fluffychat/views/settings_emotes.dart';
@@ -136,11 +135,6 @@ class FluffyRoutes {
           return ViewData(
             leftView: (_) => HomeView(),
             mainView: (_) => NewPrivateChat(),
-          );
-        case 'newstatus':
-          return ViewData(
-            leftView: (_) => HomeView(),
-            mainView: (_) => SetStatusView(initialText: settings.arguments),
           );
         case 'settings':
           if (parts.length == 3) {
