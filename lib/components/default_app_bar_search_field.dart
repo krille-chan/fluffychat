@@ -11,7 +11,7 @@ class DefaultAppBarSearchField extends StatefulWidget {
   final bool readOnly;
   final Widget prefixIcon;
 
-  const DefaultAppBarSearchField({
+  DefaultAppBarSearchField({
     Key key,
     this.searchController,
     this.onChanged,
@@ -25,14 +25,16 @@ class DefaultAppBarSearchField extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _DefaultAppBarSearchFieldState createState() =>
-      _DefaultAppBarSearchFieldState();
+  DefaultAppBarSearchFieldState createState() =>
+      DefaultAppBarSearchFieldState();
 }
 
-class _DefaultAppBarSearchFieldState extends State<DefaultAppBarSearchField> {
-  final FocusNode _focusNode = FocusNode();
+class DefaultAppBarSearchFieldState extends State<DefaultAppBarSearchField> {
   TextEditingController _searchController;
   bool _lastTextWasEmpty = false;
+  final FocusNode _focusNode = FocusNode();
+
+  void requestFocus() => _focusNode.requestFocus();
 
   void _updateSearchController() {
     final thisTextIsEmpty = _searchController.text?.isEmpty ?? false;

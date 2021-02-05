@@ -14,11 +14,13 @@ class Discover extends StatefulWidget {
   final String alias;
 
   final String server;
+  final Stream onAppBarButtonTap;
 
   const Discover({
     Key key,
     this.alias,
     this.server,
+    this.onAppBarButtonTap,
   }) : super(key: key);
   @override
   _DiscoverState createState() => _DiscoverState();
@@ -28,6 +30,16 @@ class _DiscoverState extends State<Discover> {
   Future<PublicRoomsResponse> _publicRoomsResponse;
   Timer _coolDown;
   String _genericSearchTerm;
+
+  final ScrollController _scrollController = ScrollController();
+  StreamSubscription _onAppBarButtonTapSub;
+  final GlobalKey<DefaultAppBarSearchFieldState> _searchField = GlobalKey();
+
+  @override
+  void dispose() {
+    _onAppBarButtonTapSub?.cancel();
+    super.dispose();
+  }
 
   void _search(BuildContext context, String query) async {
     _coolDown?.cancel();
@@ -86,6 +98,17 @@ class _DiscoverState extends State<Discover> {
   @override
   void initState() {
     _genericSearchTerm = widget.alias;
+    _onAppBarButtonTapSub =
+        widget.onAppBarButtonTap.where((i) => i == 2).listen((_) async {
+      await _scrollController.animateTo(
+        _scrollController.position.minScrollExtent,
+        duration: Duration(milliseconds: 200),
+        curve: Curves.ease,
+      );
+      WidgetsBinding.instance.addPostFrameCallback(
+        (_) => _searchField.currentState.requestFocus(),
+      );
+    });
     super.initState();
   }
 
@@ -121,10 +144,12 @@ class _DiscoverState extends State<Discover> {
       return res;
     });
     return ListView(
+      controller: _scrollController,
       children: [
         Padding(
           padding: EdgeInsets.all(12),
           child: DefaultAppBarSearchField(
+            key: _searchField,
             hintText: L10n.of(context).search,
             prefixIcon: Icon(Icons.search_outlined),
             onChanged: (t) => _search(context, t),

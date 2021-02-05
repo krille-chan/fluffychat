@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/views/home_view_parts/discover.dart';
 import 'package:fluffychat/views/share_view.dart';
 import 'package:flutter/cupertino.dart';
@@ -179,20 +178,30 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
     }
   }
 
+  final StreamController<int> _onAppBarButtonTap =
+      StreamController<int>.broadcast();
+
   @override
   Widget build(BuildContext context) {
     _onShareContentChanged ??=
         Matrix.of(context).onShareContentChanged.stream.listen(_onShare);
     IconData fabIcon;
+    String title;
     switch (currentIndex) {
       case 0:
         fabIcon = Icons.edit_outlined;
+        title = L10n.of(context).contacts;
         break;
       case 1:
         fabIcon = Icons.add_outlined;
+        title = AppConfig.applicationName;
         break;
       case 2:
         fabIcon = Icons.domain_outlined;
+        title = L10n.of(context).discover;
+        break;
+      case 3:
+        title = L10n.of(context).settings;
         break;
     }
 
@@ -201,43 +210,27 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
           AppBar(
               centerTitle: false,
               actions: [
-                PopupMenuButton(
-                  onSelected: (action) {
-                    switch (action) {
-                      case 'invite':
-                        FluffyShare.share(
-                            L10n.of(context).inviteText(
-                                Matrix.of(context).client.userID,
-                                'https://matrix.to/#/${Matrix.of(context).client.userID}'),
-                            context);
-                        break;
-                      case 'archive':
-                        AdaptivePageLayout.of(context).pushNamed('/archive');
-                        break;
-                    }
-                  },
-                  itemBuilder: (_) => [
-                    PopupMenuItem(
-                      value: 'invite',
-                      child: Text(L10n.of(context).inviteContact),
-                    ),
-                    PopupMenuItem(
-                      value: 'archive',
-                      child: Text(L10n.of(context).archive),
-                    ),
-                  ],
+                IconButton(
+                  icon: Icon(currentIndex == 3
+                      ? Icons.exit_to_app_outlined
+                      : Icons.search_outlined),
+                  onPressed: () => _pageController.indexIsChanging
+                      ? null
+                      : _onAppBarButtonTap.add(currentIndex),
                 ),
               ],
-              title: Text(AppConfig.applicationName)),
+              title: Text(title)),
       body: TabBarView(
         controller: _pageController,
         children: [
-          ContactList(),
+          ContactList(onAppBarButtonTap: _onAppBarButtonTap.stream),
           ChatList(
             onCustomAppBar: (appBar) => setState(() => this.appBar = appBar),
+            onAppBarButtonTap: _onAppBarButtonTap.stream,
           ),
-          Discover(server: _server),
-          Settings(),
+          Discover(
+              server: _server, onAppBarButtonTap: _onAppBarButtonTap.stream),
+          Settings(onAppBarButtonTap: _onAppBarButtonTap.stream),
         ],
       ),
       floatingActionButton: fabIcon == null
@@ -258,7 +251,6 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
         showSelectedLabels: true,
         showUnselectedLabels: false,
         type: BottomNavigationBarType.fixed,
-        elevation: 20,
         backgroundColor: Theme.of(context).appBarTheme.color,
         onTap: (i) {
           _pageController.animateTo(i);
@@ -275,7 +267,7 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
           ),
           BottomNavigationBarItem(
             label: L10n.of(context).discover,
-            icon: Icon(CupertinoIcons.search_circle),
+            icon: Icon(CupertinoIcons.compass),
           ),
           BottomNavigationBarItem(
             label: L10n.of(context).settings,

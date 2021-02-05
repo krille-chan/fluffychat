@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/connection_status_header.dart';
@@ -13,11 +15,13 @@ enum SelectMode { normal, select }
 class ChatList extends StatefulWidget {
   final String activeChat;
   final void Function(AppBar appBar) onCustomAppBar;
+  final Stream onAppBarButtonTap;
 
   const ChatList({
     Key key,
     this.activeChat,
     this.onCustomAppBar,
+    this.onAppBarButtonTap,
   }) : super(key: key);
   @override
   _ChatListState createState() => _ChatListState();
@@ -27,6 +31,32 @@ class _ChatListState extends State<ChatList> {
   bool get searchMode => searchController.text?.isNotEmpty ?? false;
   final TextEditingController searchController = TextEditingController();
   final _selectedRoomIds = <String>{};
+
+  final ScrollController _scrollController = ScrollController();
+  StreamSubscription _onAppBarButtonTapSub;
+  final GlobalKey<DefaultAppBarSearchFieldState> _searchField = GlobalKey();
+
+  @override
+  void initState() {
+    _onAppBarButtonTapSub =
+        widget.onAppBarButtonTap.where((i) => i == 1).listen((_) async {
+      await _scrollController.animateTo(
+        _scrollController.position.minScrollExtent,
+        duration: Duration(milliseconds: 200),
+        curve: Curves.ease,
+      );
+      WidgetsBinding.instance.addPostFrameCallback(
+        (_) => _searchField.currentState.requestFocus(),
+      );
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _onAppBarButtonTapSub?.cancel();
+    super.dispose();
+  }
 
   void _toggleSelection(String roomId) {
     setState(() => _selectedRoomIds.contains(roomId)
@@ -198,11 +228,13 @@ class _ChatListState extends State<ChatList> {
                     }
                     final totalCount = rooms.length;
                     return ListView.builder(
+                      controller: _scrollController,
                       itemCount: totalCount + 1,
                       itemBuilder: (BuildContext context, int i) => i == 0
                           ? Padding(
                               padding: EdgeInsets.all(12),
                               child: DefaultAppBarSearchField(
+                                key: _searchField,
                                 hintText: L10n.of(context).search,
                                 prefixIcon: Icon(Icons.search_outlined),
                                 searchController: searchController,

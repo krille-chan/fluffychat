@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:fluffychat/components/dialogs/bootstrap_dialog.dart';
@@ -26,6 +28,9 @@ import '../../app_config.dart';
 import '../../config/setting_keys.dart';
 
 class Settings extends StatefulWidget {
+  final Stream onAppBarButtonTap;
+
+  const Settings({Key key, this.onAppBarButtonTap}) : super(key: key);
   @override
   _SettingsState createState() => _SettingsState();
 }
@@ -37,6 +42,21 @@ class _SettingsState extends State<Settings> {
   bool crossSigningCached;
   Future<bool> megolmBackupCachedFuture;
   bool megolmBackupCached;
+  StreamSubscription _onAppBarButtonTapSub;
+
+  @override
+  void initState() {
+    _onAppBarButtonTapSub = widget.onAppBarButtonTap
+        .where((i) => i == 3)
+        .listen((_) => logoutAction(context));
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _onAppBarButtonTapSub?.cancel();
+    super.dispose();
+  }
 
   void logoutAction(BuildContext context) async {
     if (await showOkCancelAlertDialog(
