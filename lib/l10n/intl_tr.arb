@@ -2106,5 +2106,10 @@
   "@noStatusesFound": {
     "type": "text",
     "placeholders": {}
+  },
+  "addNewContact": "Yeni kişi ekle",
+  "@addNewContact": {
+    "type": "text",
+    "placeholders": {}
   }
 }
