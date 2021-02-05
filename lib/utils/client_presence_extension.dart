@@ -26,6 +26,8 @@ extension ClientPresenceExtension on Client {
               (p.presence?.statusMsg?.isNotEmpty ?? false))
           .toList(),
     );
+
+    contactList.sort((a, b) => a.senderId.compareTo(b.senderId));
     contactList.sort((a, b) => (a.presence.lastActiveAgo?.toDouble() ??
             double.infinity)
         .compareTo((b.presence.lastActiveAgo?.toDouble() ?? double.infinity)));

@@ -208,18 +208,27 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
     return Scaffold(
       appBar: appBar ??
           AppBar(
-              centerTitle: false,
-              actions: [
-                IconButton(
-                  icon: Icon(currentIndex == 3
-                      ? Icons.exit_to_app_outlined
-                      : Icons.search_outlined),
-                  onPressed: () => _pageController.indexIsChanging
-                      ? null
-                      : _onAppBarButtonTap.add(currentIndex),
-                ),
-              ],
-              title: Text(title)),
+            centerTitle: false,
+            actions: [
+              IconButton(
+                icon: Icon(currentIndex == 3
+                    ? Icons.exit_to_app_outlined
+                    : Icons.search_outlined),
+                onPressed: () => _pageController.indexIsChanging
+                    ? null
+                    : _onAppBarButtonTap.add(currentIndex),
+              ),
+            ],
+            title: Text(title),
+            elevation:
+                AdaptivePageLayout.of(context).columnMode(context) ? 0 : null,
+            bottom: AdaptivePageLayout.of(context).columnMode(context)
+                ? PreferredSize(
+                    preferredSize: Size.fromHeight(1),
+                    child: Divider(height: 1),
+                  )
+                : null,
+          ),
       body: TabBarView(
         controller: _pageController,
         children: [

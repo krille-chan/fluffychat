@@ -16,9 +16,6 @@ class ContactListTile extends StatelessWidget {
     var statusMsg = contact.presence?.statusMsg?.isNotEmpty ?? false
         ? contact.presence.statusMsg
         : null;
-    if (contact.senderId == '@jana:janian.de') {
-      statusMsg = 'Hallo Welt';
-    }
     return FutureBuilder<Profile>(
         future:
             Matrix.of(context).client.getProfileFromUserId(contact.senderId),
