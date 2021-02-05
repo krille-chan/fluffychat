@@ -14,7 +14,7 @@ extension ClientPresenceExtension on Client {
                 {
                   'sender': mxid,
                   'type': 'm.presence',
-                  'content': {'presence': 'online'},
+                  'content': {'presence': 'offline'},
                 },
               ),
         )
