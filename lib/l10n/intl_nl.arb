@@ -2097,5 +2097,10 @@
   "@noStatusesFound": {
     "type": "text",
     "placeholders": {}
+  },
+  "addNewContact": "Nieuw contact toevoegen",
+  "@addNewContact": {
+    "type": "text",
+    "placeholders": {}
   }
 }
