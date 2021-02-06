@@ -87,7 +87,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSCache": "Prosím zadejte vaší přístupovu frázi k „bezpečému úložišti“ anebo „klíč na obnovu“ pro uložení klíčů.",
+  "askSSSSCache": "Prosím zadejte vaší přístupovu frázi k „bezpečnému úložišti“ anebo „klíč na obnovu“ pro uložení klíčů.",
   "@askSSSSCache": {
     "type": "text",
     "placeholders": {}
@@ -109,7 +109,7 @@
       "username": {}
     }
   },
-  "authentication": "Autentizace",
+  "authentication": "Ověření",
   "@authentication": {
     "type": "text",
     "placeholders": {}
@@ -273,7 +273,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changeTheHomeserver": "Změňte domovský server",
+  "changeTheHomeserver": "Změnit domovský server",
   "@changeTheHomeserver": {
     "type": "text",
     "placeholders": {}
@@ -2104,6 +2104,21 @@
   },
   "pleaseFollowInstructionsOnWeb": "Postupujte podle pokynů na webu a klepněte na další.",
   "@pleaseFollowInstructionsOnWeb": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewContact": "Přidat nový kontakt",
+  "@addNewContact": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSureYouWantToLogout": "Opravdu se chcete odhlásit?",
+  "@areYouSureYouWantToLogout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPublicRoomsFound": "Nebyly nalezeny žádné veřejné místnosti...",
+  "@noPublicRoomsFound": {
     "type": "text",
     "placeholders": {}
   }
