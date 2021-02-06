@@ -390,7 +390,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "countParticipants": "{count} Teilnehmer*innen",
+  "countParticipants": "{count} Teilnehmer",
   "@countParticipants": {
     "type": "text",
     "placeholders": {
@@ -829,7 +829,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "loadCountMoreParticipants": "{count} weitere Teilnehmer*innen laden",
+  "loadCountMoreParticipants": "{count} weitere Teilnehmer laden",
   "@loadCountMoreParticipants": {
     "type": "text",
     "placeholders": {
@@ -1573,7 +1573,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "visibleForAllParticipants": "Sichtbar für alle Teilnehmer*innen",
+  "visibleForAllParticipants": "Sichtbar für alle Teilnehmer",
   "@visibleForAllParticipants": {
     "type": "text",
     "placeholders": {}
