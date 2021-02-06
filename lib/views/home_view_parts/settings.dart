@@ -61,7 +61,7 @@ class _SettingsState extends State<Settings> {
   void logoutAction(BuildContext context) async {
     if (await showOkCancelAlertDialog(
           context: context,
-          title: L10n.of(context).areYouSure,
+          title: L10n.of(context).areYouSureYouWantToLogout,
         ) ==
         OkCancelResult.cancel) {
       return;

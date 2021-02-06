@@ -28,6 +28,7 @@ class Discover extends StatefulWidget {
 
 class _DiscoverState extends State<Discover> {
   Future<PublicRoomsResponse> _publicRoomsResponse;
+  String _lastServer;
   Timer _coolDown;
   String _genericSearchTerm;
 
@@ -117,6 +118,10 @@ class _DiscoverState extends State<Discover> {
     final server = _genericSearchTerm?.isValidMatrixId ?? false
         ? _genericSearchTerm.domain
         : widget.server;
+    if (_lastServer != server) {
+      _lastServer = server;
+      _publicRoomsResponse = null;
+    }
     _publicRoomsResponse ??= Matrix.of(context)
         .client
         .searchPublicRooms(

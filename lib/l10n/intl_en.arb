@@ -87,6 +87,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "areYouSureYouWantToLogout": "Are you sure you want to log out?",
+  "@areYouSureYouWantToLogout": {
+    "type": "text",
+    "placeholders": {}
+  },
   "askSSSSCache": "Please enter your secure store passphrase or recovery key to cache the keys.",
   "@askSSSSCache": {
     "type": "text",
