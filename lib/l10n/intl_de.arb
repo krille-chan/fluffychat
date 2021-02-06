@@ -2106,5 +2106,10 @@
   "@noStatusesFound": {
     "type": "text",
     "placeholders": {}
+  },
+  "addNewContact": "Neuen Kontakt hinzufügen",
+  "@addNewContact": {
+    "type": "text",
+    "placeholders": {}
   }
 }
