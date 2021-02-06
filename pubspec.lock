@@ -1162,7 +1162,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "9ad5360bb63021f366d35facf217f053d465b46c"
+      resolved-ref: f91b62772bd000863d1df2218198a83e71e6f87c
       url: "https://github.com/UnifiedPush/flutter-connector.git"
     source: git
     version: "0.0.1"
