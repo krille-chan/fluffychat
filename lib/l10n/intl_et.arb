@@ -2106,5 +2106,20 @@
   "@newChat": {
     "type": "text",
     "placeholders": {}
+  },
+  "addNewContact": "Lisa uus kontakt",
+  "@addNewContact": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSureYouWantToLogout": "Kas sa oled kindel, et soovid välja logida?",
+  "@areYouSureYouWantToLogout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPublicRoomsFound": "Avalikke jututubasid ei leidunud...",
+  "@noPublicRoomsFound": {
+    "type": "text",
+    "placeholders": {}
   }
 }
