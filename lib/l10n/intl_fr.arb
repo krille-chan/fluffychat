@@ -1367,7 +1367,7 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "Commencez votre première conversation dès maintenant ! 🙂\n- Appuyez sur « + »\n- Entrez le nom d’utilisateur·ice d’un·e ami·e\n- Bonne discussion !",
+  "startYourFirstChat": "Commencez votre première conversation dès maintenant ! 🙂\n- Appuyez sur « + »\n- Entrez le nom d’utilisateur·ice d’un·e ami·e\n- Bonne discussion",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -2109,6 +2109,11 @@
   },
   "addNewContact": "Ajouter un nouveau contact",
   "@addNewContact": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSureYouWantToLogout": "Voulez-vous vraiment vous déconnecter ?",
+  "@areYouSureYouWantToLogout": {
     "type": "text",
     "placeholders": {}
   }
