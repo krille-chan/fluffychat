@@ -17,7 +17,7 @@ extension LocalizedExceptionExtension on Object {
     if (this is MatrixConnectionException) {
       L10n.of(context).noConnectionToTheServer;
     }
-    Logs().d('Something went wrong: ', this);
+    Logs().w('Something went wrong: ', this);
     return L10n.of(context).oopsSomethingWentWrong;
   }
 }

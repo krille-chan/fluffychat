@@ -9,6 +9,7 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import '../../utils/localized_exception_extension.dart';
 
 class Discover extends StatefulWidget {
   final String alias;
@@ -166,7 +167,27 @@ class _DiscoverState extends State<Discover> {
             builder: (BuildContext context,
                 AsyncSnapshot<PublicRoomsResponse> snapshot) {
               if (snapshot.hasError) {
-                return Center(child: Text(snapshot.error.toString()));
+                return Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(height: 32),
+                    Icon(
+                      Icons.error_outlined,
+                      size: 80,
+                      color: Colors.grey,
+                    ),
+                    Center(
+                      child: Text(
+                        snapshot.error.toLocalizedString(context),
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  ],
+                );
               }
               if (snapshot.connectionState != ConnectionState.done) {
                 return Center(child: CircularProgressIndicator());
