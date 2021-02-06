@@ -132,7 +132,6 @@ class MatrixState extends State<Matrix> {
   StreamSubscription<html.Event> onBlurSub;
 
   void _onUiaRequest(UiaRequest uiaRequest) async {
-    uiaRequest.onUpdate = (_) => _onUiaRequest(uiaRequest);
     if (uiaRequest.state != UiaRequestState.waitForUser ||
         uiaRequest.nextStages.isEmpty) return;
     final stage = uiaRequest.nextStages.first;

@@ -135,7 +135,7 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
                 future: () =>
                     bootstrap.newSsssKey.unlock(keyOrPassphrase: input.single),
               );
-              if (valid.error == null) bootstrap.openExistingSsss();
+              if (valid.error == null) await bootstrap.openExistingSsss();
             }));
         break;
       case BootstrapState.askWipeCrossSigning:
