@@ -87,6 +87,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "noPublicRoomsFound": "No public rooms found...",
+  "@noPublicRoomsFound": {
+    "type": "text",
+    "placeholders": {}
+  },
   "areYouSureYouWantToLogout": "Are you sure you want to log out?",
   "@areYouSureYouWantToLogout": {
     "type": "text",

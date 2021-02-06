@@ -213,14 +213,16 @@ class _ChatListState extends State<ChatList> {
                             size: 80,
                             color: Colors.grey,
                           ),
-                          Text(
-                            searchMode
-                                ? L10n.of(context).noRoomsFound
-                                : L10n.of(context).startYourFirstChat,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 16,
+                          Center(
+                            child: Text(
+                              searchMode
+                                  ? L10n.of(context).noRoomsFound
+                                  : L10n.of(context).startYourFirstChat,
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 16,
+                              ),
                             ),
                           ),
                         ],

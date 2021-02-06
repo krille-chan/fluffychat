@@ -173,11 +173,26 @@ class _DiscoverState extends State<Discover> {
               }
               final publicRoomsResponse = snapshot.data;
               if (publicRoomsResponse.chunk.isEmpty) {
-                return Center(
-                  child: Text(
-                    'No public groups found...',
-                    textAlign: TextAlign.center,
-                  ),
+                return Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(height: 32),
+                    Icon(
+                      Icons.search_outlined,
+                      size: 80,
+                      color: Colors.grey,
+                    ),
+                    Center(
+                      child: Text(
+                        L10n.of(context).noPublicRoomsFound,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  ],
                 );
               }
               return GridView.builder(

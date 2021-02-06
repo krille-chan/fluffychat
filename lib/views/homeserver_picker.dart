@@ -129,6 +129,7 @@ class _HomeserverPickerState extends State<HomeserverPicker> {
           padding: padding,
           onChanged: (s) => _domain = s,
           readOnly: !AppConfig.allowOtherHomeservers,
+          onSubmit: (_) => _checkHomeserverAction(context),
         ),
         elevation: 0,
       ),

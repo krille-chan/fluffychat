@@ -5,6 +5,7 @@ import 'package:fluffychat/components/avatar.dart';
 import 'package:fluffychat/components/default_app_bar_search_field.dart';
 import 'package:fluffychat/components/list_items/contact_list_tile.dart';
 import 'package:fluffychat/components/matrix.dart';
+import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:flutter/material.dart';
 import '../../utils/client_presence_extension.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -83,13 +84,41 @@ class _ContactListState extends State<ContactList> {
                       .contains(_searchQuery.toLowerCase()))
                   .toList();
               if (contactList.isEmpty) {
-                return Container(
-                  padding: EdgeInsets.all(16),
-                  alignment: Alignment.center,
-                  child: Text(
-                    'No contacts found...',
-                    textAlign: TextAlign.center,
-                  ),
+                return Column(
+                  children: [
+                    SizedBox(height: 32),
+                    Icon(
+                      Icons.people_outlined,
+                      size: 80,
+                      color: Colors.grey,
+                    ),
+                    RaisedButton(
+                      elevation: 7,
+                      color: Theme.of(context).primaryColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(Icons.share_outlined, color: Colors.white),
+                          SizedBox(width: 16),
+                          Text(
+                            L10n.of(context).inviteContact,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ],
+                      ),
+                      onPressed: () => FluffyShare.share(
+                          L10n.of(context).inviteText(
+                              Matrix.of(context).client.userID,
+                              'https://matrix.to/#/${Matrix.of(context).client.userID}'),
+                          context),
+                    ),
+                  ],
                 );
               }
               return ListView.builder(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class DefaultAppBarSearchField extends StatefulWidget {
   final TextEditingController searchController;
   final void Function(String) onChanged;
+  final void Function(String) onSubmit;
   final Widget suffix;
   final bool autofocus;
   final String prefixText;
@@ -15,6 +16,7 @@ class DefaultAppBarSearchField extends StatefulWidget {
     Key key,
     this.searchController,
     this.onChanged,
+    this.onSubmit,
     this.suffix,
     this.autofocus = false,
     this.prefixText,
@@ -75,6 +77,7 @@ class DefaultAppBarSearchFieldState extends State<DefaultAppBarSearchField> {
         onChanged: widget.onChanged,
         focusNode: _focusNode,
         readOnly: widget.readOnly,
+        onSubmitted: widget.onSubmit,
         decoration: InputDecoration(
           prefixText: widget.prefixText,
           enabledBorder: OutlineInputBorder(
