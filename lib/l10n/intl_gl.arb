@@ -2086,5 +2086,30 @@
   "@pleaseFollowInstructionsOnWeb": {
     "type": "text",
     "placeholders": {}
+  },
+  "all": "Todos",
+  "@all": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contacts": "Contactos",
+  "@contacts": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewContact": "Engadir novo contacto",
+  "@addNewContact": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newChat": "Novo chat",
+  "@newChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noStatusesFound": "Aínda non atopamos mensaxes.",
+  "@noStatusesFound": {
+    "type": "text",
+    "placeholders": {}
   }
 }
