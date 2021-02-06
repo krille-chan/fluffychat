@@ -173,16 +173,16 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
                                 child: Text(L10n.of(context).verifyStart),
                                 value: 'verify',
                               ));
-                              items.add(PopupMenuItem(
-                                child: Text(L10n.of(context).verifyManual),
-                                value: 'verify_manual',
-                              ));
                             } else {
                               items.add(PopupMenuItem(
                                 child: Text(L10n.of(context).verifyUser),
                                 value: 'verify_user',
                               ));
                             }
+                            items.add(PopupMenuItem(
+                              child: Text(L10n.of(context).verifyManual),
+                              value: 'verify_manual',
+                            ));
                           }
                           if (deviceKeys[i].blocked) {
                             items.add(PopupMenuItem(
