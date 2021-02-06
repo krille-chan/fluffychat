@@ -2116,5 +2116,10 @@
   "@areYouSureYouWantToLogout": {
     "type": "text",
     "placeholders": {}
+  },
+  "noPublicRoomsFound": "Aucun salon privé n'a été trouvé...",
+  "@noPublicRoomsFound": {
+    "type": "text",
+    "placeholders": {}
   }
 }
