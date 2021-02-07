@@ -185,7 +185,7 @@ class _ChatState extends State<Chat> {
   void dispose() {
     timeline?.cancelSubscriptions();
     timeline = null;
-    matrix.activeRoomId = '';
+    matrix.client.activeRoomId = '';
     super.dispose();
   }
 
@@ -509,7 +509,7 @@ class _ChatState extends State<Chat> {
         ),
       );
     }
-    matrix.activeRoomId = widget.id;
+    matrix.client.activeRoomId = widget.id;
 
     if (room.membership == Membership.invite) {
       showFutureLoadingDialog(context: context, future: () => room.join());

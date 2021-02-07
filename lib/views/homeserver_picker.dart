@@ -38,7 +38,7 @@ class _HomeserverPickerState extends State<HomeserverPicker> {
             type: AuthenticationTypes.token,
             userIdentifierType: null,
             token: token,
-            initialDeviceDisplayName: Matrix.of(context).clientName,
+            initialDeviceDisplayName: PlatformInfos.clientName,
           ),
     );
   }

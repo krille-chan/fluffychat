@@ -8,6 +8,7 @@ import 'package:fluffychat/components/matrix.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import '../utils/platform_infos.dart';
 
 import '../app_config.dart';
 
@@ -46,7 +47,7 @@ class _LoginState extends State<Login> {
       await matrix.client.login(
           user: usernameController.text,
           password: passwordController.text,
-          initialDeviceDisplayName: matrix.clientName);
+          initialDeviceDisplayName: PlatformInfos.clientName);
     } on MatrixException catch (exception) {
       setState(() => passwordError = exception.errorMessage);
       return setState(() => loading = false);
