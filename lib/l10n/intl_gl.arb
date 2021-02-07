@@ -918,7 +918,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "muteChat": "Acalar conversa",
+  "muteChat": "Desactiva notif.",
   "@muteChat": {
     "type": "text",
     "placeholders": {}
@@ -1478,7 +1478,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unmuteChat": "Reactivar chat",
+  "unmuteChat": "Reactivar notif.",
   "@unmuteChat": {
     "type": "text",
     "placeholders": {}
@@ -1618,12 +1618,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerAcceptRequest": "Agardando a que a outra parte acepte a solicitude...",
+  "waitingPartnerAcceptRequest": "Agardando a que a outra parte acepte a solicitude…",
   "@waitingPartnerAcceptRequest": {
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerEmoji": "Agardando a que a outra parte acepte as emoticonas...",
+  "waitingPartnerEmoji": "Agardando a que a outra parte acepte as emoticonas…",
   "@waitingPartnerEmoji": {
     "type": "text",
     "placeholders": {}
@@ -1938,7 +1938,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "toggleMuted": "Activar Acalar",
+  "toggleMuted": "Cambia Noificacións",
   "@toggleMuted": {
     "type": "text",
     "placeholders": {}
@@ -2109,6 +2109,16 @@
   },
   "noStatusesFound": "Aínda non atopamos mensaxes.",
   "@noStatusesFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSureYouWantToLogout": "Tes a certeza de querer desconectar?",
+  "@areYouSureYouWantToLogout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPublicRoomsFound": "Non se atoparon salas públicas...",
+  "@noPublicRoomsFound": {
     "type": "text",
     "placeholders": {}
   }
