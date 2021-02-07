@@ -209,11 +209,11 @@ class _EmotesSettingsState extends State<EmotesSettings> {
                             prefixText: ': ',
                             suffixText: ':',
                             prefixStyle: TextStyle(
-                              color: Theme.of(context).primaryColor,
+                              color: Theme.of(context).accentColor,
                               fontWeight: FontWeight.bold,
                             ),
                             suffixStyle: TextStyle(
-                              color: Theme.of(context).primaryColor,
+                              color: Theme.of(context).accentColor,
                               fontWeight: FontWeight.bold,
                             ),
                             border: InputBorder.none,
@@ -272,7 +272,6 @@ class _EmotesSettingsState extends State<EmotesSettings> {
                     title: Text(L10n.of(context).enableEmotesGlobally),
                     trailing: Switch(
                       value: isGloballyActive(client),
-                      activeColor: Theme.of(context).primaryColor,
                       onChanged: (bool newValue) async {
                         await _setIsGloballyActive(context, newValue);
                         setState(() => null);
@@ -328,11 +327,11 @@ class _EmotesSettingsState extends State<EmotesSettings> {
                                     prefixText: ': ',
                                     suffixText: ':',
                                     prefixStyle: TextStyle(
-                                      color: Theme.of(context).primaryColor,
+                                      color: Theme.of(context).accentColor,
                                       fontWeight: FontWeight.bold,
                                     ),
                                     suffixStyle: TextStyle(
-                                      color: Theme.of(context).primaryColor,
+                                      color: Theme.of(context).accentColor,
                                       fontWeight: FontWeight.bold,
                                     ),
                                     border: InputBorder.none,

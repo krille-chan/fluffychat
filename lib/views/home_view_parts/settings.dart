@@ -354,7 +354,7 @@ class _SettingsState extends State<Settings> {
           title: Text(
             L10n.of(context).notifications,
             style: TextStyle(
-              color: Theme.of(context).primaryColor,
+              color: Theme.of(context).accentColor,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -370,7 +370,7 @@ class _SettingsState extends State<Settings> {
           title: Text(
             L10n.of(context).chat,
             style: TextStyle(
-              color: Theme.of(context).primaryColor,
+              color: Theme.of(context).accentColor,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -415,7 +415,7 @@ class _SettingsState extends State<Settings> {
           title: Text(
             L10n.of(context).account,
             style: TextStyle(
-              color: Theme.of(context).primaryColor,
+              color: Theme.of(context).accentColor,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -478,7 +478,7 @@ class _SettingsState extends State<Settings> {
             title: Text(
               L10n.of(context).security,
               style: TextStyle(
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).accentColor,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -514,7 +514,7 @@ class _SettingsState extends State<Settings> {
           title: Text(
             L10n.of(context).about,
             style: TextStyle(
-              color: Theme.of(context).primaryColor,
+              color: Theme.of(context).accentColor,
               fontWeight: FontWeight.bold,
             ),
           ),

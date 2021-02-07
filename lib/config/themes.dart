@@ -34,7 +34,7 @@ abstract class FluffyThemes {
     primaryColor: AppConfig.primaryColor,
     accentColor: AppConfig.primaryColor,
     backgroundColor: Colors.white,
-    secondaryHeaderColor: AppConfig.primaryColor.withAlpha(16),
+    secondaryHeaderColor: lighten(AppConfig.primaryColor, .51),
     scaffoldBackgroundColor: Colors.white,
     textTheme: Typography.material2018().black.merge(fallback_text_theme),
     snackBarTheme: SnackBarThemeData(
@@ -60,11 +60,11 @@ abstract class FluffyThemes {
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         borderSide: BorderSide(
-          color: AppConfig.primaryColor.withAlpha(16),
+          color: lighten(AppConfig.primaryColor, .51),
         ),
       ),
       filled: true,
-      fillColor: AppConfig.primaryColor.withAlpha(16),
+      fillColor: lighten(AppConfig.primaryColor, .51),
     ),
     appBarTheme: AppBarTheme(
       brightness: Brightness.light,
@@ -87,7 +87,7 @@ abstract class FluffyThemes {
     backgroundColor: Colors.black,
     scaffoldBackgroundColor: Colors.black,
     accentColor: AppConfig.primaryColorLight,
-    secondaryHeaderColor: AppConfig.primaryColorLight.withAlpha(32),
+    secondaryHeaderColor: FluffyThemes.darken(AppConfig.primaryColorLight, .71),
     textTheme: Typography.material2018().white.merge(fallback_text_theme),
     dialogTheme: DialogTheme(
       shape: RoundedRectangleBorder(
@@ -107,11 +107,11 @@ abstract class FluffyThemes {
       border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppConfig.borderRadius)),
       filled: true,
-      fillColor: AppConfig.primaryColorLight.withAlpha(32),
+      fillColor: FluffyThemes.darken(AppConfig.primaryColorLight, .71),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         borderSide: BorderSide(
-          color: AppConfig.primaryColor.withAlpha(16),
+          color: FluffyThemes.darken(AppConfig.primaryColor, .31),
         ),
       ),
     ),
@@ -144,4 +144,23 @@ abstract class FluffyThemes {
       Theme.of(context).brightness == Brightness.light
           ? Colors.white
           : Colors.black;
+
+  static Color darken(Color color, [double amount = .1]) {
+    assert(amount >= 0 && amount <= 1);
+
+    final hsl = HSLColor.fromColor(color);
+    final hslDark = hsl.withLightness((hsl.lightness - amount).clamp(0.0, 1.0));
+
+    return hslDark.toColor();
+  }
+
+  static Color lighten(Color color, [double amount = .1]) {
+    assert(amount >= 0 && amount <= 1);
+
+    final hsl = HSLColor.fromColor(color);
+    final hslLight =
+        hsl.withLightness((hsl.lightness + amount).clamp(0.0, 1.0));
+
+    return hslLight.toColor();
+  }
 }

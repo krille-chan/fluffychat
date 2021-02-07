@@ -151,7 +151,7 @@ class SettingsNotifications extends StatelessWidget {
                     title: Text(
                       L10n.of(context).pushRules,
                       style: TextStyle(
-                        color: Theme.of(context).primaryColor,
+                        color: Theme.of(context).accentColor,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
