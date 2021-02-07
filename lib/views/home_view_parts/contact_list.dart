@@ -23,6 +23,7 @@ class _ContactListState extends State<ContactList> {
   String _searchQuery = '';
   final ScrollController _scrollController = ScrollController();
   StreamSubscription _onAppBarButtonTapSub;
+  StreamSubscription _onSync;
   final GlobalKey<DefaultAppBarSearchFieldState> _searchField = GlobalKey();
 
   @override
@@ -43,12 +44,31 @@ class _ContactListState extends State<ContactList> {
 
   @override
   void dispose() {
+    _onSync?.cancel();
     _onAppBarButtonTapSub?.cancel();
     super.dispose();
   }
 
+  DateTime _lastSetState = DateTime.now();
+  Timer _coolDown;
+
+  void _updateView() {
+    _lastSetState = DateTime.now();
+    setState(() => null);
+  }
+
   @override
   Widget build(BuildContext context) {
+    _onSync ??= Matrix.of(context).client.onSync.stream.listen((_) {
+      if (DateTime.now().millisecondsSinceEpoch -
+              _lastSetState.millisecondsSinceEpoch <
+          1000) {
+        _coolDown?.cancel();
+        _coolDown = Timer(Duration(seconds: 1), _updateView);
+      } else {
+        _updateView();
+      }
+    });
     return ListView(
       controller: _scrollController,
       children: [
@@ -74,64 +94,60 @@ class _ContactListState extends State<ContactList> {
               AdaptivePageLayout.of(context).pushNamed('/newprivatechat'),
         ),
         Divider(height: 1),
-        StreamBuilder<Object>(
-            stream: Matrix.of(context).client.onSync.stream,
-            builder: (context, snapshot) {
-              final contactList = Matrix.of(context)
-                  .client
-                  .contactList
-                  .where((p) => p.senderId
-                      .toLowerCase()
-                      .contains(_searchQuery.toLowerCase()))
-                  .toList();
-              if (contactList.isEmpty) {
-                return Column(
-                  children: [
-                    SizedBox(height: 32),
-                    Icon(
-                      Icons.people_outlined,
-                      size: 80,
-                      color: Colors.grey,
-                    ),
-                    RaisedButton(
-                      elevation: 7,
-                      color: Theme.of(context).primaryColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius:
-                            BorderRadius.circular(AppConfig.borderRadius),
+        Builder(builder: (context) {
+          final contactList = Matrix.of(context)
+              .client
+              .contactList
+              .where((p) =>
+                  p.senderId.toLowerCase().contains(_searchQuery.toLowerCase()))
+              .toList();
+          if (contactList.isEmpty) {
+            return Column(
+              children: [
+                SizedBox(height: 32),
+                Icon(
+                  Icons.people_outlined,
+                  size: 80,
+                  color: Colors.grey,
+                ),
+                RaisedButton(
+                  elevation: 7,
+                  color: Theme.of(context).primaryColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.share_outlined, color: Colors.white),
+                      SizedBox(width: 16),
+                      Text(
+                        L10n.of(context).inviteContact,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
                       ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(Icons.share_outlined, color: Colors.white),
-                          SizedBox(width: 16),
-                          Text(
-                            L10n.of(context).inviteContact,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                            ),
-                          ),
-                        ],
-                      ),
-                      onPressed: () => FluffyShare.share(
-                          L10n.of(context).inviteText(
-                              Matrix.of(context).client.userID,
-                              'https://matrix.to/#/${Matrix.of(context).client.userID}'),
-                          context),
-                    ),
-                  ],
-                );
-              }
-              return ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                padding: EdgeInsets.only(bottom: 24),
-                itemCount: contactList.length,
-                itemBuilder: (context, i) =>
-                    ContactListTile(contact: contactList[i]),
-              );
-            }),
+                    ],
+                  ),
+                  onPressed: () => FluffyShare.share(
+                      L10n.of(context).inviteText(
+                          Matrix.of(context).client.userID,
+                          'https://matrix.to/#/${Matrix.of(context).client.userID}'),
+                      context),
+                ),
+              ],
+            );
+          }
+          return ListView.builder(
+            physics: NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            padding: EdgeInsets.only(bottom: 24),
+            itemCount: contactList.length,
+            itemBuilder: (context, i) =>
+                ContactListTile(contact: contactList[i]),
+          );
+        }),
       ],
     );
   }
