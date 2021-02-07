@@ -220,8 +220,6 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
               ),
             ],
             title: Text(title),
-            elevation:
-                AdaptivePageLayout.of(context).columnMode(context) ? 0 : null,
             bottom: AdaptivePageLayout.of(context).columnMode(context)
                 ? PreferredSize(
                     preferredSize: Size.fromHeight(1),
