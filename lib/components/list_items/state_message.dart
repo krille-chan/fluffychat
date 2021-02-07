@@ -3,6 +3,8 @@ import 'package:fluffychat/utils/matrix_locals.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
+import '../../app_config.dart';
+
 class StateMessage extends StatelessWidget {
   final Event event;
   const StateMessage(this.event);
@@ -26,6 +28,8 @@ class StateMessage extends StatelessWidget {
             event.getLocalizedBody(MatrixLocals(L10n.of(context))),
             textAlign: TextAlign.center,
             style: TextStyle(
+              fontSize: Theme.of(context).textTheme.bodyText1.fontSize *
+                  AppConfig.fontSizeFactor,
               color: Theme.of(context).textTheme.bodyText2.color,
               decoration: event.redacted ? TextDecoration.lineThrough : null,
             ),

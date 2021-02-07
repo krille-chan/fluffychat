@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../app_config.dart';
 import '../components/matrix.dart';
 
 class SettingsStyle extends StatefulWidget {
@@ -75,12 +76,12 @@ class _SettingsStyleState extends State<SettingsStyle> {
             title: Text(L10n.of(context).darkTheme),
             onChanged: (t) => _switchTheme(t, context),
           ),
-          Divider(thickness: 1),
+          Divider(height: 1),
           ListTile(
             title: Text(
               L10n.of(context).wallpaper,
               style: TextStyle(
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).accentColor,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -105,6 +106,49 @@ class _SettingsStyleState extends State<SettingsStyle> {
               onTap: () => setWallpaperAction(context),
             );
           }),
+          Divider(height: 1),
+          ListTile(
+            title: Text(
+              'Font size',
+              style: TextStyle(
+                color: Theme.of(context).accentColor,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            subtitle: Text('(*${AppConfig.fontSizeFactor})'),
+          ),
+          Container(
+            alignment: Alignment.centerLeft,
+            child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+              decoration: BoxDecoration(
+                color: Theme.of(context).secondaryHeaderColor,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Text(
+                'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor',
+                style: TextStyle(
+                  fontSize: Theme.of(context).textTheme.bodyText1.fontSize *
+                      AppConfig.fontSizeFactor,
+                ),
+              ),
+            ),
+          ),
+          Slider(
+            min: 0.5,
+            max: 2.5,
+            divisions: 4,
+            value: AppConfig.fontSizeFactor,
+            semanticFormatterCallback: (d) => d.toString(),
+            onChanged: (d) {
+              setState(() => AppConfig.fontSizeFactor = d);
+              Matrix.of(context).store.setItem(
+                    SettingKeys.fontSizeFactor,
+                    AppConfig.fontSizeFactor.toString(),
+                  );
+            },
+          ),
         ],
       ),
     );

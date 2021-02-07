@@ -51,15 +51,13 @@ class ContentBanner extends StatelessWidget {
             bottom: 0,
             child: Opacity(
               opacity: opacity,
-              child: !loading
-                  ? mxContent != null
-                      ? CachedNetworkImage(
-                          imageUrl: src,
-                          height: 300,
-                          fit: BoxFit.cover,
-                        )
-                      : Icon(defaultIcon, size: 300)
-                  : Icon(defaultIcon, size: 300),
+              child: (!loading && mxContent != null)
+                  ? CachedNetworkImage(
+                      imageUrl: src,
+                      height: 300,
+                      fit: BoxFit.cover,
+                    )
+                  : Icon(defaultIcon, size: 200),
             ),
           ),
           if (onEdit != null)

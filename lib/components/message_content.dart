@@ -73,6 +73,8 @@ class MessageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final fontSize =
+        DefaultTextStyle.of(context).style.fontSize * AppConfig.fontSizeFactor;
     switch (event.type) {
       case EventTypes.Message:
       case EventTypes.Encrypted:
@@ -105,7 +107,6 @@ class MessageContent extends StatelessWidget {
               final bigEmotes = event.onlyEmotes &&
                   event.numberEmotes > 0 &&
                   event.numberEmotes <= 10;
-              final fontSize = DefaultTextStyle.of(context).style.fontSize;
               return HtmlMessage(
                 html: html,
                 defaultTextStyle: TextStyle(
@@ -163,7 +164,6 @@ class MessageContent extends StatelessWidget {
                 onPressed: () => launch(event.body),
               );
             }
-            final fontSize = DefaultTextStyle.of(context).style.fontSize;
             if (event.redacted) {
               return Row(
                 mainAxisSize: MainAxisSize.min,
