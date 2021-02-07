@@ -194,6 +194,7 @@ class _ChatDetailsState extends State<ChatDetails> {
               headerSliverBuilder:
                   (BuildContext context, bool innerBoxIsScrolled) => <Widget>[
                 SliverAppBar(
+                  elevation: Theme.of(context).appBarTheme.elevation,
                   leading: BackButton(),
                   expandedHeight: 300.0,
                   floating: true,

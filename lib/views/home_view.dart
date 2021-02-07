@@ -220,12 +220,6 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
               ),
             ],
             title: Text(title),
-            bottom: AdaptivePageLayout.of(context).columnMode(context)
-                ? PreferredSize(
-                    preferredSize: Size.fromHeight(1),
-                    child: Divider(height: 1),
-                  )
-                : null,
           ),
       body: TabBarView(
         controller: _pageController,
@@ -253,6 +247,7 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
             ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomNavigationBar(
+        elevation: 1,
         unselectedItemColor: Theme.of(context).textTheme.bodyText1.color,
         currentIndex: currentIndex,
         showSelectedLabels: true,
