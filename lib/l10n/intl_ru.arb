@@ -2106,5 +2106,20 @@
   "@noStatusesFound": {
     "type": "text",
     "placeholders": {}
+  },
+  "addNewContact": "Добавить новый контакт",
+  "@addNewContact": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSureYouWantToLogout": "Вы действительно хотите выйти?",
+  "@areYouSureYouWantToLogout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPublicRoomsFound": "Никаких общественных комнат не найдено…",
+  "@noPublicRoomsFound": {
+    "type": "text",
+    "placeholders": {}
   }
 }
