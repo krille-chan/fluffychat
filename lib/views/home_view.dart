@@ -221,17 +221,26 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
             ],
             title: Text(title),
           ),
-      body: TabBarView(
-        controller: _pageController,
+      body: Column(
         children: [
-          ContactList(onAppBarButtonTap: _onAppBarButtonTap.stream),
-          ChatList(
-            onCustomAppBar: (appBar) => setState(() => this.appBar = appBar),
-            onAppBarButtonTap: _onAppBarButtonTap.stream,
+          Expanded(
+            child: TabBarView(
+              controller: _pageController,
+              children: [
+                ContactList(onAppBarButtonTap: _onAppBarButtonTap.stream),
+                ChatList(
+                  onCustomAppBar: (appBar) =>
+                      setState(() => this.appBar = appBar),
+                  onAppBarButtonTap: _onAppBarButtonTap.stream,
+                ),
+                Discover(
+                    server: _server,
+                    onAppBarButtonTap: _onAppBarButtonTap.stream),
+                Settings(onAppBarButtonTap: _onAppBarButtonTap.stream),
+              ],
+            ),
           ),
-          Discover(
-              server: _server, onAppBarButtonTap: _onAppBarButtonTap.stream),
-          Settings(onAppBarButtonTap: _onAppBarButtonTap.stream),
+          Divider(height: 1),
         ],
       ),
       floatingActionButton: fabIcon == null
@@ -247,7 +256,7 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
             ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomNavigationBar(
-        elevation: 1,
+        elevation: 0,
         unselectedItemColor: Theme.of(context).textTheme.bodyText1.color,
         currentIndex: currentIndex,
         showSelectedLabels: true,
