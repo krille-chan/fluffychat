@@ -172,7 +172,7 @@ class _HomeserverPickerState extends State<HomeserverPicker> {
                   elevation: 7,
                   color: Theme.of(context).primaryColor,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(AppConfig.borderRadius),
                   ),
                   child: _isLoading
                       ? LinearProgressIndicator()

@@ -9,6 +9,8 @@ import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
+import '../app_config.dart';
+
 class Login extends StatefulWidget {
   @override
   _LoginState createState() => _LoginState();
@@ -222,7 +224,7 @@ class _LoginState extends State<Login> {
                   elevation: 7,
                   color: Theme.of(context).primaryColor,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(AppConfig.borderRadius),
                   ),
                   child: loading
                       ? LinearProgressIndicator()

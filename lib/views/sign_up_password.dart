@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../app_config.dart';
+
 class SignUpPassword extends StatefulWidget {
   final MatrixFile avatar;
   final String username;
@@ -176,7 +178,7 @@ class _SignUpPasswordState extends State<SignUpPassword> {
                 elevation: 7,
                 color: Theme.of(context).primaryColor,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(AppConfig.borderRadius),
                 ),
                 child: loading
                     ? LinearProgressIndicator()

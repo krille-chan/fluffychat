@@ -9,6 +9,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
+import '../app_config.dart';
+
 class SignUp extends StatefulWidget {
   @override
   _SignUpState createState() => _SignUpState();
@@ -143,7 +145,7 @@ class _SignUpState extends State<SignUp> {
                   elevation: 7,
                   color: Theme.of(context).primaryColor,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(AppConfig.borderRadius),
                   ),
                   child: loading
                       ? LinearProgressIndicator()

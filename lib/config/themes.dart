@@ -42,12 +42,12 @@ abstract class FluffyThemes {
     ),
     dialogTheme: DialogTheme(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: BorderRadius.circular(AppConfig.borderRadius),
       ),
     ),
     popupMenuTheme: PopupMenuThemeData(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: BorderRadius.circular(AppConfig.borderRadius),
       ),
     ),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
@@ -55,9 +55,10 @@ abstract class FluffyThemes {
       foregroundColor: Colors.white,
     ),
     inputDecorationTheme: InputDecorationTheme(
-      border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+      border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(AppConfig.borderRadius)),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         borderSide: BorderSide(
           color: AppConfig.primaryColor.withAlpha(16),
         ),
@@ -90,12 +91,12 @@ abstract class FluffyThemes {
     textTheme: Typography.material2018().white.merge(fallback_text_theme),
     dialogTheme: DialogTheme(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: BorderRadius.circular(AppConfig.borderRadius),
       ),
     ),
     popupMenuTheme: PopupMenuThemeData(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: BorderRadius.circular(AppConfig.borderRadius),
       ),
     ),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
@@ -103,11 +104,12 @@ abstract class FluffyThemes {
       foregroundColor: Colors.white,
     ),
     inputDecorationTheme: InputDecorationTheme(
-      border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+      border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(AppConfig.borderRadius)),
       filled: true,
       fillColor: AppConfig.primaryColorLight.withAlpha(32),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         borderSide: BorderSide(
           color: AppConfig.primaryColor.withAlpha(16),
         ),

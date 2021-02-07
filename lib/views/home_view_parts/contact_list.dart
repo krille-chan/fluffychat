@@ -7,6 +7,7 @@ import 'package:fluffychat/components/list_items/contact_list_tile.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:flutter/material.dart';
+import '../../app_config.dart';
 import '../../utils/client_presence_extension.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -96,7 +97,8 @@ class _ContactListState extends State<ContactList> {
                       elevation: 7,
                       color: Theme.of(context).primaryColor,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius:
+                            BorderRadius.circular(AppConfig.borderRadius),
                       ),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../app_config.dart';
+
 class DefaultAppBarSearchField extends StatefulWidget {
   final TextEditingController searchController;
   final void Function(String) onChanged;
@@ -81,7 +83,7 @@ class DefaultAppBarSearchFieldState extends State<DefaultAppBarSearchField> {
         decoration: InputDecoration(
           prefixText: widget.prefixText,
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(AppConfig.borderRadius),
             borderSide:
                 BorderSide(color: Theme.of(context).secondaryHeaderColor),
           ),

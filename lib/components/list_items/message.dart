@@ -76,8 +76,6 @@ class Message extends StatelessWidget {
           : Theme.of(context).primaryColor;
     }
 
-    final radius = 16.0;
-
     var rowChildren = <Widget>[
       Expanded(
         child: Container(
@@ -87,7 +85,8 @@ class Message extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
             decoration: BoxDecoration(
               color: color,
-              borderRadius: BorderRadius.circular(radius),
+              borderRadius:
+                  BorderRadius.circular(AppConfig.messageBubbleBorderRadius),
             ),
             constraints:
                 BoxConstraints(maxWidth: FluffyThemes.columnWidth * 1.5),
