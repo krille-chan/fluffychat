@@ -2111,5 +2111,15 @@
   "@addNewContact": {
     "type": "text",
     "placeholders": {}
+  },
+  "areYouSureYouWantToLogout": "Oturumu açmak istediğinizden emin misiniz?",
+  "@areYouSureYouWantToLogout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPublicRoomsFound": "Herkese açık oda bulunamadı...",
+  "@noPublicRoomsFound": {
+    "type": "text",
+    "placeholders": {}
   }
 }
