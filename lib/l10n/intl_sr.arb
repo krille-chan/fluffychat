@@ -2104,5 +2104,20 @@
   "@noStatusesFound": {
     "type": "text",
     "placeholders": {}
+  },
+  "addNewContact": "Додај нови контакт",
+  "@addNewContact": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSureYouWantToLogout": "Заиста желите да се одјавите?",
+  "@areYouSureYouWantToLogout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPublicRoomsFound": "Нисам нашао јавне собе...",
+  "@noPublicRoomsFound": {
+    "type": "text",
+    "placeholders": {}
   }
 }
