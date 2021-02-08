@@ -92,12 +92,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSSign": "Bitte gebe um die andere Person signieren zu können dein Secure-Store Passwort oder Wiederherstellungsschlüssel ein.",
+  "askSSSSSign": "Bitte gib, um die andere Person signieren zu können, dein Secure-Store-Passwort oder Wiederherstellungsschlüssel ein.",
   "@askSSSSSign": {
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSVerify": "Bitte gebe um deine Session zu verifizieren dein Secure-Store Passwort oder Wiederherstellungsschlüssel ein.",
+  "askSSSSVerify": "Bitte gib, um deine Session zu verifizieren, dein Secure-Store-Passwort oder Wiederherstellungsschlüssel ein.",
   "@askSSSSVerify": {
     "type": "text",
     "placeholders": {}
@@ -189,7 +189,7 @@
       "username": {}
     }
   },
-  "changedTheDisplaynameTo": "{username} hat den Nicknamen geändert zu: {displayname}",
+  "changedTheDisplaynameTo": "{username} hat den Nicknamen geändert zu: „{displayname}“",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -574,7 +574,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "endedTheCall": "{senderName} hat den Anruf aufgelegt",
+  "endedTheCall": "{senderName} hat den Anruf beendet",
   "@endedTheCall": {
     "type": "text",
     "placeholders": {
@@ -933,7 +933,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Es sieht so aus als hättest du keine Google-Dienste auf deinem Gerät. Das ist eine gute Entscheidung für deine Privatsphäre! Um Push-Benachrichtigungen in FluffyChat zu erhalten, empfehlen wir die Verwendung von microG: https://microg.org/",
+  "noGoogleServicesWarning": "Es sieht so aus, als hättest du keine Google-Dienste auf deinem Gerät. Das ist eine gute Entscheidung für deine Privatsphäre! Um Push-Benachrichtigungen in FluffyChat zu erhalten, empfehlen wir die Verwendung von microG: https://microg.org/",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -1678,7 +1678,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "ignoreListDescription": "Du kannst störende Benutzer ignorieren. DU bist dann nicht mehr in der Lage Nachrichten oder Raumeinladungen von diesen zu erhalten.",
+  "ignoreListDescription": "Du kannst störende Benutzer ignorieren. Du bist dann nicht mehr in der Lage, Nachrichten oder Raumeinladungen von diesen zu erhalten.",
   "@ignoreListDescription": {
     "type": "text",
     "placeholders": {}
@@ -1708,7 +1708,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enableEmotesGlobally": "Aktiviere Emotikon-Bündel global",
+  "enableEmotesGlobally": "Aktiviere Emoticon-Bündel global",
   "@enableEmotesGlobally": {
     "type": "text",
     "placeholders": {}
@@ -1723,7 +1723,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unavailable": "Nicht Verfügbar",
+  "unavailable": "Nicht verfügbar",
   "@unavailable": {
     "type": "text",
     "placeholders": {}
@@ -1858,7 +1858,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "soundVibrationLedColor": "Ton, Vibration LED-Farbe",
+  "soundVibrationLedColor": "Ton, Vibration, LED-Farbe",
   "@soundVibrationLedColor": {
     "type": "text",
     "placeholders": {}
@@ -2114,6 +2114,11 @@
   },
   "areYouSureYouWantToLogout": "Willst du dich wirklich abmelden?",
   "@areYouSureYouWantToLogout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPublicRoomsFound": "Keine öffentlichen Räume gefunden ...",
+  "@noPublicRoomsFound": {
     "type": "text",
     "placeholders": {}
   }
