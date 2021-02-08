@@ -2054,5 +2054,70 @@
   "@pleaseFollowInstructionsOnWeb": {
     "type": "text",
     "placeholders": {}
+  },
+  "search": "Cerca",
+  "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discover": "Scopri",
+  "@discover": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "all": "Tutto",
+  "@all": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contacts": "Contatti",
+  "@contacts": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groups": "Gruppi",
+  "@groups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "messages": "Messaggi",
+  "@messages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "status": "Stato",
+  "@status": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignore": "Ignora",
+  "@ignore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewContact": "Aggiungi un nuovo contatto",
+  "@addNewContact": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newChat": "Nuova discussione",
+  "@newChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noStatusesFound": "Nessuno stato trovato finora.",
+  "@noStatusesFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSureYouWantToLogout": "Sei sicuro/a di voler uscire?",
+  "@areYouSureYouWantToLogout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPublicRoomsFound": "Nessuna stanza pubblica trovata…",
+  "@noPublicRoomsFound": {
+    "type": "text",
+    "placeholders": {}
   }
 }
