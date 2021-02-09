@@ -2084,5 +2084,40 @@
   "@pleaseFollowInstructionsOnWeb": {
     "type": "text",
     "placeholders": {}
+  },
+  "all": "Todas",
+  "@all": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contacts": "Contatos",
+  "@contacts": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewContact": "Adicionar novo contato",
+  "@addNewContact": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newChat": "Nova conversa",
+  "@newChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noStatusesFound": "Nenhum status encontrado por enquanto.",
+  "@noStatusesFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSureYouWantToLogout": "Tem certeza que deseja encerrar a sessão?",
+  "@areYouSureYouWantToLogout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPublicRoomsFound": "Não foram encontradas salas públicas...",
+  "@noPublicRoomsFound": {
+    "type": "text",
+    "placeholders": {}
   }
 }
