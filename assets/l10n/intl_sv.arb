@@ -2485,5 +2485,10 @@
     "placeholders": {
       "path": {}
     }
+  },
+  "discover": "",
+  "@discover": {
+    "type": "text",
+    "placeholders": {}
   }
 }
