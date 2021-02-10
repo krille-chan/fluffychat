@@ -27,7 +27,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "youHaveBeenBannedFromThisChat": "Je bent verbannen uit deze chat",
+  "youHaveBeenBannedFromThisChat": "Je bent verbannen uit deze groep",
   "@youHaveBeenBannedFromThisChat": {
     "type": "text",
     "placeholders": {}
@@ -37,12 +37,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "youAreNoLongerParticipatingInThisChat": "Je neemt niet langer deel aan deze chat",
+  "youAreNoLongerParticipatingInThisChat": "Je neemt niet langer deel aan deze groep",
   "@youAreNoLongerParticipatingInThisChat": {
     "type": "text",
     "placeholders": {}
   },
-  "youAreInvitedToThisChat": "Je bent uitgenodigd voor deze chat",
+  "youAreInvitedToThisChat": "Je bent uitgenodigd voor deze groep",
   "@youAreInvitedToThisChat": {
     "type": "text",
     "placeholders": {}
@@ -62,7 +62,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "whoIsAllowedToJoinThisGroup": "Wie mag lid worden van deze groep",
+  "whoIsAllowedToJoinThisGroup": "Wie mag deelnemen aan deze groep",
   "@whoIsAllowedToJoinThisGroup": {
     "type": "text",
     "placeholders": {}
@@ -112,7 +112,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "visibilityOfTheChatHistory": "Zichtbaarheid van de chatgeschiedenis",
+  "visibilityOfTheChatHistory": "Groepsgeschiedenis zichtbaarheid",
   "@visibilityOfTheChatHistory": {
     "type": "text",
     "placeholders": {}
@@ -122,7 +122,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "visibleForAllParticipants": "Zichtbaar voor alle deelnemers",
+  "visibleForAllParticipants": "Zichtbaar voor alle personen",
   "@visibleForAllParticipants": {
     "type": "text",
     "placeholders": {}
@@ -215,7 +215,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadMessagesInChats": "{unreadEvents} ongelezen berichten in {unreadChats} chats",
+  "unreadMessagesInChats": "{unreadEvents} ongelezen berichten in {unreadChats} groepen",
   "@unreadMessagesInChats": {
     "type": "text",
     "placeholders": {
@@ -230,7 +230,7 @@
       "unreadEvents": {}
     }
   },
-  "unreadChats": "{unreadCount} ongelezen chats",
+  "unreadChats": "{unreadCount} ongelezen berichten",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
@@ -274,7 +274,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unmuteChat": "Chat niet meer dempen",
+  "unmuteChat": "Meldingen inschakelen",
   "@unmuteChat": {
     "type": "text",
     "placeholders": {}
@@ -307,7 +307,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "toggleMuted": "Dempingen in- of uitschakelen",
+  "toggleMuted": "Dempen wijzigen",
   "@toggleMuted": {
     "type": "text",
     "placeholders": {}
@@ -338,7 +338,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "thisRoomHasBeenArchived": "Deze kamer is gearchiveerd.",
+  "thisRoomHasBeenArchived": "Deze groep is gearchiveerd.",
   "@thisRoomHasBeenArchived": {
     "type": "text",
     "placeholders": {}
@@ -373,7 +373,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "startYourFirstChat": "Start nu je eerste chat! 🙂\n- Tik op \"+\"\n- Voer de gebruikersnaam van een vriend in\n- Veel plezier met chatten",
+  "startYourFirstChat": "Start nu je eerste bericht! 🙂\n- Tik op \"+\"\n- Voer de gebruikersnaam van een vriend in\n- Veel plezier met chatten",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -428,7 +428,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changeTheme": "Verander je stijl",
+  "changeTheme": "Stijl veranderen",
   "@changeTheme": {
     "type": "text",
     "placeholders": {}
@@ -445,7 +445,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "signUp": "Aanmelden",
+  "signUp": "Registreren",
   "@signUp": {
     "type": "text",
     "placeholders": {}
@@ -465,7 +465,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "setGroupDescription": "Stel een groepsbeschrijving in",
+  "setGroupDescription": "Stel een groepsomschrijving in",
   "@setGroupDescription": {
     "type": "text",
     "placeholders": {}
@@ -532,7 +532,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sendImage": "Stuur afbeelding",
+  "sendImage": "Afbeelding versturen",
   "@sendImage": {
     "type": "text",
     "placeholders": {}
@@ -562,12 +562,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "setCustomEmotes": "Stel aangepaste emotes in",
+  "setCustomEmotes": "Aangepaste emoticons inschakelen",
   "@setCustomEmotes": {
     "type": "text",
     "placeholders": {}
   },
-  "editChatPermissions": "Bewerk chatrechten",
+  "editChatPermissions": "Groepsrechten wijzigen",
   "@editChatPermissions": {
     "type": "text",
     "placeholders": {}
@@ -582,12 +582,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "participant": "Deelnemer",
+  "participant": "Personen",
   "@participant": {
     "type": "text",
     "placeholders": {}
   },
-  "configureChat": "Configureer chat",
+  "configureChat": "Configureer groep",
   "@configureChat": {
     "type": "text",
     "placeholders": {}
@@ -602,12 +602,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "editRoomAvatar": "Bewerk de kamer-avatar",
+  "editRoomAvatar": "Groepsavatar wijzigen",
   "@editRoomAvatar": {
     "type": "text",
     "placeholders": {}
   },
-  "replaceRoomWithNewerVersion": "Vervang kamer door een nieuwere versie",
+  "replaceRoomWithNewerVersion": "Vervang groep door een nieuwere versie",
   "@replaceRoomWithNewerVersion": {
     "type": "text",
     "placeholders": {}
@@ -617,12 +617,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "editBlockedServers": "Bewerk geblokkeerde servers",
+  "editBlockedServers": "Geblokkeerde servers wijzigen",
   "@editBlockedServers": {
     "type": "text",
     "placeholders": {}
   },
-  "noDescription": "Geen beschrijving",
+  "noDescription": "Geen omschrijving",
   "@noDescription": {
     "type": "text",
     "placeholders": {}
@@ -670,7 +670,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sendBugReports": "Sta het verzenden van bugrapporten toe met sentry.io",
+  "sendBugReports": "Bugrapporten versturen met sentry.io toestaan",
   "@sendBugReports": {
     "type": "text",
     "placeholders": {}
@@ -680,7 +680,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "searchForAChat": "Zoek een chat",
+  "searchForAChat": "Zoek een groep",
   "@searchForAChat": {
     "type": "text",
     "placeholders": {}
@@ -702,7 +702,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "roomHasBeenUpgraded": "Kamer is geüpgrade",
+  "roomHasBeenUpgraded": "Groep is geüpgrade",
   "@roomHasBeenUpgraded": {
     "type": "text",
     "placeholders": {}
@@ -766,7 +766,7 @@
       "username": {}
     }
   },
-  "redactedAnEvent": "{username} heeft een evenement geredigeerd",
+  "redactedAnEvent": "{username} heeft een event verwijderd",
   "@redactedAnEvent": {
     "type": "text",
     "placeholders": {
@@ -783,7 +783,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "rejoin": "Opnieuw aanmelden",
+  "rejoin": "Opnieuw deelnemen",
   "@rejoin": {
     "type": "text",
     "placeholders": {}
@@ -793,7 +793,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "publicRooms": "Openbare Kamers",
+  "publicRooms": "Openbare groepen",
   "@publicRooms": {
     "type": "text",
     "placeholders": {}
@@ -937,7 +937,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noRoomsFound": "Geen kamers gevonden …",
+  "noRoomsFound": "Geen groepen gevonden …",
   "@noRoomsFound": {
     "type": "text",
     "placeholders": {}
@@ -947,7 +947,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noEmotesFound": "Geen emotes gevonden. 😕",
+  "noEmotesFound": "Geen emoticons gevonden. 😕",
   "@noEmotesFound": {
     "type": "text",
     "placeholders": {}
@@ -957,7 +957,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Het lijkt erop dat je geen Google-services op je telefoon hebt. Dat is een goede beslissing voor je privacy! Om pushmeldingen in FluffyChat te ontvangen, raden we aan microG te gebruiken: https://microg.org/",
+  "noGoogleServicesWarning": "Het lijkt erop dat je geen Google-services op je telefoon hebt. Dat is een goede beslissing voor je privacy! Om meldingen in FluffyChat te ontvangen raden we je aan microG te gebruiken: https://microg.org/",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -967,7 +967,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "Fluffychat biedt momenteel geen ondersteuning voor het inschakelen van kruislings ondertekenen. Schakel het in vanuit Element.",
+  "noCrossSignBootstrap": "FluffyChat biedt momenteel geen ondersteuning voor het inschakelen van kruislings ondertekening. Schakel het in vanuit Element.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -997,7 +997,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "muteChat": "Demp chat",
+  "muteChat": "Dempen",
   "@muteChat": {
     "type": "text",
     "placeholders": {}
@@ -1012,7 +1012,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "messageWillBeRemovedWarning": "Bericht wordt verwijderd voor alle deelnemers",
+  "messageWillBeRemovedWarning": "Bericht wordt verwijderd voor alle personen",
   "@messageWillBeRemovedWarning": {
     "type": "text",
     "placeholders": {}
@@ -1027,7 +1027,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "makeSureTheIdentifierIsValid": "Zorg ervoor dat de identificator geldig is",
+  "makeSureTheIdentifierIsValid": "Zorg ervoor dat de identificatie geldig is",
   "@makeSureTheIdentifierIsValid": {
     "type": "text",
     "placeholders": {}
@@ -1042,19 +1042,19 @@
     "type": "text",
     "placeholders": {}
   },
-  "logInTo": "Aanmelden bij {homeserver}",
+  "logInTo": "Inloggen bij {homeserver}",
   "@logInTo": {
     "type": "text",
     "placeholders": {
       "homeserver": {}
     }
   },
-  "login": "Aanmelden",
+  "login": "Inloggen",
   "@login": {
     "type": "text",
     "placeholders": {}
   },
-  "loadCountMoreParticipants": "Laad nog {count} deelnemers",
+  "loadCountMoreParticipants": "Laad nog {count} personen",
   "@loadCountMoreParticipants": {
     "type": "text",
     "placeholders": {
@@ -1088,19 +1088,19 @@
       "localizedTimeShort": {}
     }
   },
-  "userLeftTheChat": "{username} heeft de chat verlaten",
+  "userLeftTheChat": "{username} heeft de groep verlaten",
   "@userLeftTheChat": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "logout": "Afmelden",
+  "logout": "Uitloggen",
   "@logout": {
     "type": "text",
     "placeholders": {}
   },
-  "leftTheChat": "Verliet de chat",
+  "leftTheChat": "Verliet de groep",
   "@leftTheChat": {
     "type": "text",
     "placeholders": {}
@@ -1110,12 +1110,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "kickFromChat": "Kick van chat",
+  "kickFromChat": "Uit groep verwijderen",
   "@kickFromChat": {
     "type": "text",
     "placeholders": {}
   },
-  "kickedAndBanned": "{gebruikersnaam} heeft {targetName} verwijderd en verbannen",
+  "kickedAndBanned": "{username} heeft {targetName} verwijderd en verbannen",
   "@kickedAndBanned": {
     "type": "text",
     "placeholders": {
@@ -1141,19 +1141,19 @@
     "type": "text",
     "placeholders": {}
   },
-  "joinRoom": "Neem deel aan de kamer",
+  "joinRoom": "Deelnemen",
   "@joinRoom": {
     "type": "text",
     "placeholders": {}
   },
-  "joinedTheChat": "{username} heeft zich bij de chat gevoegd",
+  "joinedTheChat": "{username} is toegetreden",
   "@joinedTheChat": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "editJitsiInstance": "Bewerk Jitsi-server",
+  "editJitsiInstance": "Jitsi-server wijzigen",
   "@editJitsiInstance": {
     "type": "text",
     "placeholders": {}
@@ -1186,7 +1186,7 @@
       "targetName": {}
     }
   },
-  "inviteText": "{username} heeft je uitgenodigd voor FluffyChat.\n1. Installeer FluffyChat: https://fluffychat.im\n2. Meld je aan of log in\n3. Open de uitnodigingslink: {link}",
+  "inviteText": "{username} heeft je uitgenodigd voor FluffyChat.\n1. Installeer FluffyChat: https://fluffychat.im\n2. Registreer of log in\n3. Open deze uitnodigingslink: {link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {
@@ -1216,7 +1216,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "ignoreListDescription": "Je kunt gebruikers die je storen negeren. Je kunt geen berichten of kameruitnodigingen ontvangen van de gebruikers op je persoonlijke negeerlijst.",
+  "ignoreListDescription": "Je kunt personen die je storen negeren. Je kunt geen berichten of groepsuitnodigingen ontvangen van de personen op je persoonlijke negeerlijst.",
   "@ignoreListDescription": {
     "type": "text",
     "placeholders": {}
@@ -1321,7 +1321,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "forward": "Doorsturen",
+  "forward": "Stuur door",
   "@forward": {
     "type": "text",
     "placeholders": {}
@@ -1393,7 +1393,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enableEmotesGlobally": "Schakel emote-pakket overal in",
+  "enableEmotesGlobally": "Emoticonpakket overal inschakelen",
   "@enableEmotesGlobally": {
     "type": "text",
     "placeholders": {}
@@ -1413,7 +1413,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pushRules": "Meldingsregels",
+  "pushRules": "Meldingsinstellingen",
   "@pushRules": {
     "type": "text",
     "placeholders": {}
@@ -1423,12 +1423,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "memberChanges": "Wijzigingen van lid",
+  "memberChanges": "Persoon wijzigingen",
   "@memberChanges": {
     "type": "text",
     "placeholders": {}
   },
-  "inviteForMe": "Uitnodigen voor mij",
+  "inviteForMe": "Persoonlijke uitnodiging",
   "@inviteForMe": {
     "type": "text",
     "placeholders": {}
@@ -1443,27 +1443,27 @@
     "type": "text",
     "placeholders": {}
   },
-  "directChats": "Directe Chats",
+  "directChats": "Direct bericht",
   "@directChats": {
     "type": "text",
     "placeholders": {}
   },
-  "emptyChat": "Leeg chat",
+  "emptyChat": "Lege groep",
   "@emptyChat": {
     "type": "text",
     "placeholders": {}
   },
-  "emotePacks": "Emote-pakketten voor de kamer",
+  "emotePacks": "Emoticonpakketten voor de groep",
   "@emotePacks": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteInvalid": "Ongeldige emote korte code!",
+  "emoteInvalid": "Ongeldige emoticon korte code!",
   "@emoteInvalid": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteExists": "Emote bestaat al!",
+  "emoteExists": "Emoticon bestaat al!",
   "@emoteExists": {
     "type": "text",
     "placeholders": {}
@@ -1473,27 +1473,27 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteWarnNeedToPick": "Je moet een emote korte code en afbeelding kiezen!",
+  "emoteWarnNeedToPick": "Je moet een emoticon korte code en afbeelding kiezen!",
   "@emoteWarnNeedToPick": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteShortcode": "Emote korte code",
+  "emoteShortcode": "Emoticon korte code",
   "@emoteShortcode": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteSettings": "Emote-instellingen",
+  "emoteSettings": "Emoticoninstellingen",
   "@emoteSettings": {
     "type": "text",
     "placeholders": {}
   },
-  "editDisplayname": "Wijzig de weergavenaam",
+  "editDisplayname": "Weergavenaam wijzigen",
   "@editDisplayname": {
     "type": "text",
     "placeholders": {}
   },
-  "downloadFile": "Download bestand",
+  "downloadFile": "Bestand downloaden",
   "@downloadFile": {
     "type": "text",
     "placeholders": {}
@@ -1528,7 +1528,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "deleteMessage": "Verwijder bericht",
+  "deleteMessage": "Bericht verwijderen",
   "@deleteMessage": {
     "type": "text",
     "placeholders": {}
@@ -1588,12 +1588,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "createNewGroup": "Nieuwe groep maken",
+  "createNewGroup": "Nieuwe groep",
   "@createNewGroup": {
     "type": "text",
     "placeholders": {}
   },
-  "createdTheChat": "{username} heeft de chat gemaakt",
+  "createdTheChat": "{username} heeft de groep gemaakt",
   "@createdTheChat": {
     "type": "text",
     "placeholders": {
@@ -1610,7 +1610,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "countParticipants": "{count} deelnemers",
+  "countParticipants": "{count} personen",
   "@countParticipants": {
     "type": "text",
     "placeholders": {
@@ -1694,12 +1694,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatDetails": "Chat details",
+  "chatDetails": "Groepdetails",
   "@chatDetails": {
     "type": "text",
     "placeholders": {}
   },
-  "chat": "Chat",
+  "chat": "Groep",
   "@chat": {
     "type": "text",
     "placeholders": {}
@@ -1729,7 +1729,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changelog": "Wijzigingslog",
+  "changelog": "Wijzigingslogboek",
   "@changelog": {
     "type": "text",
     "placeholders": {}
@@ -1741,7 +1741,7 @@
       "username": {}
     }
   },
-  "changedTheRoomAliases": "{username} heeft de kameraliassen gewijzigd",
+  "changedTheRoomAliases": "{username} heeft de groepaliassen gewijzigd",
   "@changedTheRoomAliases": {
     "type": "text",
     "placeholders": {
@@ -1755,7 +1755,7 @@
       "username": {}
     }
   },
-  "changedTheJoinRulesTo": "{username} heeft de regels voor deelname gewijzigd in: {joinRules}",
+  "changedTheJoinRulesTo": "{username} heeft de deelnameregels gewijzigd in: {joinRules}",
   "@changedTheJoinRulesTo": {
     "type": "text",
     "placeholders": {
@@ -1763,7 +1763,7 @@
       "joinRules": {}
     }
   },
-  "changedTheJoinRules": "{username} heeft de regels voor deelname gewijzigd",
+  "changedTheJoinRules": "{username} heeft de deelnameregels gewijzigd",
   "@changedTheJoinRules": {
     "type": "text",
     "placeholders": {
@@ -1805,14 +1805,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "changedTheChatPermissions": "{username} heeft de chatrechten gewijzigd",
+  "changedTheChatPermissions": "{username} heeft de groepsrechten gewijzigd",
   "@changedTheChatPermissions": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheChatDescriptionTo": "{username} heeft de chatbeschrijving gewijzigd in: '{description}'",
+  "changedTheChatDescriptionTo": "{username} heeft de groepsomschrijving gewijzigd in: '{description}'",
   "@changedTheChatDescriptionTo": {
     "type": "text",
     "placeholders": {
@@ -1820,7 +1820,7 @@
       "description": {}
     }
   },
-  "changedTheChatNameTo": "{username} heeft de chatnaam gewijzigd in: '{chatnaam}'",
+  "changedTheChatNameTo": "{username} heeft de groepsnaam gewijzigd in: '{chatnaam}'",
   "@changedTheChatNameTo": {
     "type": "text",
     "placeholders": {
@@ -1828,7 +1828,7 @@
       "chatname": {}
     }
   },
-  "changedTheChatAvatar": "{username} heeft de chat-avatar gewijzigd",
+  "changedTheChatAvatar": "{username} heeft de groepsavatar gewijzigd",
   "@changedTheChatAvatar": {
     "type": "text",
     "placeholders": {
@@ -1875,7 +1875,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "banFromChat": "Verban van chat",
+  "banFromChat": "Verban van groep",
   "@banFromChat": {
     "type": "text",
     "placeholders": {}
@@ -1917,12 +1917,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "areGuestsAllowedToJoin": "Mogen gastgebruikers deelnemen",
+  "areGuestsAllowedToJoin": "Mogen gasten deelnemen",
   "@areGuestsAllowedToJoin": {
     "type": "text",
     "placeholders": {}
   },
-  "archivedRoom": "Gearchiveerde Kamer",
+  "archivedRoom": "Gearchiveerde groep",
   "@archivedRoom": {
     "type": "text",
     "placeholders": {}
@@ -1932,7 +1932,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "anyoneCanJoin": "Iedereen kan meedoen",
+  "anyoneCanJoin": "Iedereen kan deelnemen",
   "@anyoneCanJoin": {
     "type": "text",
     "placeholders": {}
@@ -1959,7 +1959,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "addGroupDescription": "Voeg een groepsbeschrijving toe",
+  "addGroupDescription": "Voeg een groepsomschrijving toe",
   "@addGroupDescription": {
     "type": "text",
     "placeholders": {}
@@ -1993,12 +1993,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "reportMessage": "Bericht melden",
+  "reportMessage": "Bericht rapporteren",
   "@reportMessage": {
     "type": "text",
     "placeholders": {}
   },
-  "redactMessage": "Bericht redigeren",
+  "redactMessage": "Verwijder",
   "@redactMessage": {
     "type": "text",
     "placeholders": {}
@@ -2013,7 +2013,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "whyDoYouWantToReportThis": "Waarom wil je dit melden?",
+  "whyDoYouWantToReportThis": "Waarom wil je dit rapporteren?",
   "@whyDoYouWantToReportThis": {
     "type": "text",
     "placeholders": {}
@@ -2088,7 +2088,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "newChat": "Nieuwe chat",
+  "newChat": "Nieuw bericht",
   "@newChat": {
     "type": "text",
     "placeholders": {}
@@ -2103,12 +2103,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "areYouSureYouWantToLogout": "Weet je zeker dat je wil afmelden?",
+  "areYouSureYouWantToLogout": "Weet je zeker dat je wilt uitloggen?",
   "@areYouSureYouWantToLogout": {
     "type": "text",
     "placeholders": {}
   },
-  "noPublicRoomsFound": "Geen publieke kamers gevonden...",
+  "noPublicRoomsFound": "Geen publieke groepen gevonden...",
   "@noPublicRoomsFound": {
     "type": "text",
     "placeholders": {}
