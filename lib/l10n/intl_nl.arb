@@ -537,7 +537,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sendFile": "Stuur bestand",
+  "sendFile": "Bestand versturen",
   "@sendFile": {
     "type": "text",
     "placeholders": {}
@@ -1246,12 +1246,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "hideUnknownEvents": "Verberg onbekende gebeurtenissen",
+  "hideUnknownEvents": "Onbekende gebeurtenissen verbergen",
   "@hideUnknownEvents": {
     "type": "text",
     "placeholders": {}
   },
-  "hideRedactedEvents": "Verberg bewerkte gebeurtenissen",
+  "hideRedactedEvents": "Bewerkte gebeurtenissen verbergen",
   "@hideRedactedEvents": {
     "type": "text",
     "placeholders": {}
@@ -1311,7 +1311,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "fromJoining": "Van deelname",
+  "fromJoining": "Vanaf deelname",
   "@fromJoining": {
     "type": "text",
     "placeholders": {}
@@ -1483,7 +1483,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteSettings": "Emoticoninstellingen",
+  "emoteSettings": "Emoticon-instellingen",
   "@emoteSettings": {
     "type": "text",
     "placeholders": {}
@@ -1770,7 +1770,7 @@
       "username": {}
     }
   },
-  "changedTheHistoryVisibilityTo": "{username} heeft de zichtbaarheid van de geschiedenis gewijzigd in: {regels}",
+  "changedTheHistoryVisibilityTo": "{username} heeft de zichtbaarheid van de geschiedenis gewijzigd in: {rules}",
   "@changedTheHistoryVisibilityTo": {
     "type": "text",
     "placeholders": {
@@ -1785,7 +1785,7 @@
       "username": {}
     }
   },
-  "changedTheGuestAccessRulesTo": "{username} heeft de gasttoegangsregels gewijzigd in: {rules}",
+  "changedTheGuestAccessRulesTo": "{username} heeft de gastenregels gewijzigd in: {rules}",
   "@changedTheGuestAccessRulesTo": {
     "type": "text",
     "placeholders": {
@@ -1820,7 +1820,7 @@
       "description": {}
     }
   },
-  "changedTheChatNameTo": "{username} heeft de groepsnaam gewijzigd in: '{chatnaam}'",
+  "changedTheChatNameTo": "{username} heeft de groepsnaam gewijzigd in: '{chatname}'",
   "@changedTheChatNameTo": {
     "type": "text",
     "placeholders": {
