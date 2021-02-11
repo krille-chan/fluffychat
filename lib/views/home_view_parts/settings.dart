@@ -298,6 +298,9 @@ class _SettingsState extends State<Settings> {
       textFields: [
         DialogTextField(
           validator: (text) {
+            if (int.tryParse(text) == null || int.tryParse(text) < 0) {
+              return L10n.of(context).pleaseEnter4Digits;
+            }
             if (text.length != 4 && text.isNotEmpty) {
               return L10n.of(context).pleaseEnter4Digits;
             }
