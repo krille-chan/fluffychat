@@ -4,14 +4,14 @@ links:
     gitlab: GitLab
     openstore: OpenStore
 index:
-    title: Open. Nonprofit. Geinig ♥
+    title: Open. Non-profit. Schattig ♥
     subtitle: Chat met je Ubuntu Touch vrienden.
     open: Open
-    openDesc: Opensource en open ontwikkeling waaraan iedereen deel kan nemen.
-    nonprofit: Nonprofit
-    nonprofitDesc: FluffyChat is made for fun and not for profit.
-    cute: Geinig ♥
-    cuteDesc: Geinig ontwerp en vele andere mogelijkheden waaronder nachtmodus.
+    openDesc: Open source en open ontwikkeling waaraan iedereen deel kan nemen.
+    nonprofit: Non-profit
+    nonprofitDesc: FluffyChat is gemaakt voor plezier en niet voor winst.
+    cute: Schattig ♥
+    cuteDesc: Schattig ontwerp en vele andere mogelijkheden waaronder nachtmodus.
     chats: Een-op-een en groepschats
     chatsDesc: Ongelimiteerd aantal groepen en directe chats.
     easy: Makkelijk
@@ -19,21 +19,21 @@ index:
     free: Vrij
     freeDesc: Vrij te gebruiken voor iedereen zonder advertenties.
     connective: Connectiviteit
-    connectiveDesc: Invite your friends to FluffyChat.
+    connectiveDesc: Nodig je vrienden uit voor FluffyChat.
     decentralized: Gedecentraliseerd
-    decentralizedDesc: Er is geen "FluffyChat server" die je gedwongen bent te gebruiken. Gebruik de server die jij vertrouwt of host je eigen server.
-    compatible: Compatible
-    compatibleDesc: Compatible met <a href="https://matrix.org/docs/projects/client/element-android.html" target="new">Element</a>, <a href="https://matrix.org/docs/projects/client/fractal.html" target="new">Fractal</a>, <a href="https://matrix.org/docs/projects/client/nheko.html" target="new">Nheko</a> en alle <a href="https://matrix.org/docs/projects/try-matrix-now.html" target="new">matrix</a> messengers.
+    decentralizedDesc: Er is geen "FluffyChat-server" die je gedwongen bent te gebruiken. Gebruik de server die jij vertrouwt of host je eigen server.
+    compatible: Compatibel
+    compatibleDesc: Compatibel met <a href="https://matrix.org/docs/projects/client/element-android.html" target="_blank" rel="noreferrer noopener">Element</a>, <a href="https://matrix.org/docs/projects/client/fractal.html" target="_blank" rel="noreferrer noopener">Fractal</a>, <a href="https://matrix.org/docs/projects/client/nheko.html" target="new">Nheko</a> en alle <a href="https://matrix.org/docs/projects/try-matrix-now.html" target="_blank" rel="noreferrer noopener">Matrix</a> messengers.
     dreamTitle: FluffyChat komt vanuit een droom
     dreamText: Stel je een wereld voor waar elk van ons de messenger kiest die we leuk vinden en toch kunnen chatten met al onze vrienden.<br>
         Een wereld waarbij er geen bedrijven bestaan die ons bespioneren wanneer je selfies naar je vrienden of geliefden stuurt.<br>
-        En een wereld waarin apps gemaakt zijn om geinig te zijn en niet voor winst. ♥
-    license: GNU General Public License
-    changelog: Changelog
+        En een wereld waarin apps gemaakt zijn om schattig te zijn en niet voor winst. ♥
+    license: GNU Algemene Openbare Licentie
+    changelog: Wijzigingenlogboek
     translations: Help met vertalingen
     created: Gemaakt door Christian Pauly
-    privacypolicy: Privacy Beleid
-    contributors: Met bijdragen van
-    specialthanksto: Met speciale dank aan
+    privacypolicy: Privacybeleid
+    contributors: Bijdragers
+    specialthanksto: Speciale dank aan
     ubports: UBports
-    support: Server hosting and professional support
+    support: Server hosting en professionele ondersteuning
