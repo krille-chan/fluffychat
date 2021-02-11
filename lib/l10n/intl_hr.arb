@@ -2001,5 +2001,125 @@
     "placeholders": {
       "homeserver": {}
     }
+  },
+  "reportMessage": "Prijavi poruku",
+  "@reportMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "redactMessage": "Ispravi poruku",
+  "@redactMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contentHasBeenReported": "Sadržaj je prijavljen administratorima poslužitelja",
+  "@contentHasBeenReported": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reason": "Razlog",
+  "@reason": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whyDoYouWantToReportThis": "Zašto ovo želiš prijaviti?",
+  "@whyDoYouWantToReportThis": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inoffensive": "Neuvredljiv",
+  "@inoffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offensive": "Uvredljiv",
+  "@offensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "extremeOffensive": "Izrazito uvredljiv",
+  "@extremeOffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "howOffensiveIsThisContent": "Koliko je ovaj sadržaj uvredljiv?",
+  "@howOffensiveIsThisContent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "search": "Traži",
+  "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discover": "Otkrij",
+  "@discover": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "all": "Svi",
+  "@all": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contacts": "Kontakti",
+  "@contacts": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groups": "Grupe",
+  "@groups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "messages": "Poruke",
+  "@messages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "status": "Stanje",
+  "@status": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignore": "Zanemari",
+  "@ignore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewContact": "Dodaj novi kontakt",
+  "@addNewContact": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newChat": "Novi chat",
+  "@newChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noStatusesFound": "Do sada nema stanja.",
+  "@noStatusesFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "next": "Dalje",
+  "@next": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseFollowInstructionsOnWeb": "Slijedi upute na web-stranici i dodirni „Dalje”.",
+  "@pleaseFollowInstructionsOnWeb": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSureYouWantToLogout": "Stvarno se želiš odjaviti?",
+  "@areYouSureYouWantToLogout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPublicRoomsFound": "Nema javnih soba …",
+  "@noPublicRoomsFound": {
+    "type": "text",
+    "placeholders": {}
   }
 }
