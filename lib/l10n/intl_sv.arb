@@ -182,7 +182,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseClickOnLink": "Klicka på länken i epost-meddelandet för att sedan fortsätta.",
+  "pleaseClickOnLink": "Klicka på länken i e-postmeddelandet för att sedan fortsätta.",
   "@pleaseClickOnLink": {
     "type": "text",
     "placeholders": {}
@@ -197,7 +197,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "Fluffychat stödjer ej aktiverad korssignering för tillfället. Var god aktivera detta inifrån Element.",
+  "noCrossSignBootstrap": "Fluffychat stödjer ej aktiverad korssignering för tillfället. Vänligen aktivera detta inifrån Element.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -282,17 +282,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerNumbers": "Väntar på att partnern accepterar nummer…",
+  "waitingPartnerNumbers": "Väntar på att deltagaren accepterar nummer…",
   "@waitingPartnerNumbers": {
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerEmoji": "Väntar på att partnern accepterar emojien…",
+  "waitingPartnerEmoji": "Väntar på att deltagaren accepterar emojien…",
   "@waitingPartnerEmoji": {
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerAcceptRequest": "Väntar på att partnern accepterar begäran…",
+  "waitingPartnerAcceptRequest": "Väntar på att deltagaren accepterar begäran…",
   "@waitingPartnerAcceptRequest": {
     "type": "text",
     "placeholders": {}
@@ -583,7 +583,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseChooseAPasscode": "Var god ange ett lösenord",
+  "pleaseChooseAPasscode": "Ange ett lösenord",
   "@pleaseChooseAPasscode": {
     "type": "text",
     "placeholders": {}
@@ -737,7 +737,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "soundVibrationLedColor": "Ljud, vibration LED-färg",
+  "soundVibrationLedColor": "Ljud, vibrations-LED-färg",
   "@soundVibrationLedColor": {
     "type": "text",
     "placeholders": {}
@@ -1210,7 +1210,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "newVerificationRequest": "Ny verifikations-begäran!",
+  "newVerificationRequest": "Ny verifikationsbegäran!",
   "@newVerificationRequest": {
     "type": "text",
     "placeholders": {}
@@ -1554,7 +1554,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "forward": "Frammåt",
+  "forward": "Framåt",
   "@forward": {
     "type": "text",
     "placeholders": {}
@@ -1646,7 +1646,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "memberChanges": "Medlems-ändringar",
+  "memberChanges": "Medlemsändringar",
   "@memberChanges": {
     "type": "text",
     "placeholders": {}
@@ -1691,7 +1691,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enterAnEmailAddress": "Ange en epost address",
+  "enterAnEmailAddress": "Ange en e-postaddress",
   "@enterAnEmailAddress": {
     "type": "text",
     "placeholders": {}
@@ -2073,7 +2073,7 @@
       "username": {}
     }
   },
-  "cachedKeys": "Nycklar cachade",
+  "cachedKeys": "Cachade nycklar",
   "@cachedKeys": {
     "type": "text",
     "placeholders": {}
