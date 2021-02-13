@@ -18,6 +18,22 @@
       "username": {}
     }
   },
+  "badServerVersionsException": "The homeserver supports the Spec versions:\n{serverVersions}\nBut this app supports only {supportedVersions}",
+  "@badServerVersionsException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "badServerLoginTypesException": "The homeserver supports the login types:\n{serverVersions}\nBut this app supports only:\n{supportedVersions}",
+  "@badServerLoginTypesException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
   "account": "Account",
   "@account": {
     "type": "text",

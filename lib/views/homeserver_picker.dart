@@ -6,6 +6,7 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/default_app_bar_search_field.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/app_config.dart';
+import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/foundation.dart';
@@ -78,7 +79,23 @@ class _HomeserverPickerState extends State<HomeserverPicker> {
       }
 
       setState(() => _isLoading = true);
-      await Matrix.of(context).client.checkHomeserver(homeserver);
+      final wellKnown =
+          await Matrix.of(context).client.checkHomeserver(homeserver);
+
+      var jitsi = wellKnown?.content
+          ?.tryGet<Map<String, dynamic>>('im.vector.riot.jitsi')
+          ?.tryGet<String>('preferredDomain');
+      if (jitsi != null) {
+        if (!jitsi.endsWith('/')) {
+          jitsi += '/';
+        }
+        Logs().v('Found custom jitsi instance $jitsi');
+        await Matrix.of(context)
+            .store
+            .setItem(SettingKeys.jitsiInstance, jitsi);
+        AppConfig.jitsiInstance = jitsi;
+      }
+
       final loginTypes = await Matrix.of(context).client.requestLoginTypes();
       if (loginTypes.flows
           .any((flow) => flow.type == AuthenticationTypes.password)) {
@@ -92,9 +109,6 @@ class _HomeserverPickerState extends State<HomeserverPicker> {
         await launch(
             '${Matrix.of(context).client.homeserver?.toString()}/_matrix/client/r0/login/sso/redirect?redirectUrl=$redirectUrl');
       }
-    } on String catch (e) {
-      // ignore: unawaited_futures
-      FlushbarHelper.createError(message: e).show(context);
     } catch (e) {
       // ignore: unawaited_futures
       FlushbarHelper.createError(

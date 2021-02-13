@@ -380,8 +380,9 @@ class MatrixState extends State<Matrix> {
           wallpaper = file;
         }
       });
-      store.getItem(SettingKeys.fontSizeFactor).then((value) => AppConfig
-          .fontSizeFactor = double.tryParse(value) ?? AppConfig.fontSizeFactor);
+      store.getItem(SettingKeys.fontSizeFactor).then((value) =>
+          AppConfig.fontSizeFactor =
+              double.tryParse(value ?? '') ?? AppConfig.fontSizeFactor);
       store
           .getItemBool(SettingKeys.renderHtml, AppConfig.renderHtml)
           .then((value) => AppConfig.renderHtml = value);
