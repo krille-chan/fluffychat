@@ -254,7 +254,7 @@ class _MetaRow extends StatelessWidget {
           event.originServerTs.localizedTime(context),
           style: TextStyle(
             color: color.withAlpha(200),
-            fontSize: 11,
+            fontSize: 11 * AppConfig.fontSizeFactor,
           ),
         ),
         if (event.hasAggregatedEvents(timeline, RelationshipTypes.Edit))
@@ -262,7 +262,7 @@ class _MetaRow extends StatelessWidget {
             padding: const EdgeInsets.only(left: 2.0),
             child: Icon(
               Icons.edit_outlined,
-              size: 12,
+              size: 12 * AppConfig.fontSizeFactor,
               color: color,
             ),
           ),
@@ -270,7 +270,7 @@ class _MetaRow extends StatelessWidget {
         if (ownMessage)
           Icon(
             displayEvent.statusIcon,
-            size: 14,
+            size: 14 * AppConfig.fontSizeFactor,
             color: color,
           ),
       ],
