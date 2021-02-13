@@ -2137,5 +2137,85 @@
       "serverVersions": {},
       "supportedVersions": {}
     }
+  },
+  "wipeChatBackup": "Yeni bir güvenlik anahtarı oluşturmak için sohbet yedeğiniz silinsin mi?",
+  "@wipeChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fontSize": "Yazı tipi boyutu",
+  "@fontSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPause": "Duraklat",
+  "@audioPlayerPause": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackupDescription": "Sohbet yedeklemeniz bir güvenlik anahtarı ile güvence altına alındı. Lütfen kaybetmediğinizden emin olun.",
+  "@chatBackupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterSecurityKey": "Lütfen güvenlik anahtarınızı girin",
+  "@pleaseEnterSecurityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transferFromAnotherDevice": "Başka bir aygıttan aktar",
+  "@transferFromAnotherDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "everythingReady": "Herşey hazır!",
+  "@everythingReady": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKeyLost": "Güvenlik anahtarı kayıp mı?",
+  "@securityKeyLost": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackup": "Sohbet yedekleme",
+  "@chatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copyToClipboard": "Panoya kopyala",
+  "@copyToClipboard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKey": "Güvenlik anahtarı",
+  "@securityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clearText": "Metni temizle",
+  "@clearText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userUnknownVerification": "Kullanıcının bilinmeyen bir doğrulama durumu var",
+  "@userUnknownVerification": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userNotVerified": "Kullanıcı doğrulanmadı",
+  "@userNotVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userVerified": "Kullanıcı doğrulandı",
+  "@userVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPlay": "Oynat",
+  "@audioPlayerPlay": {
+    "type": "text",
+    "placeholders": {}
   }
 }
