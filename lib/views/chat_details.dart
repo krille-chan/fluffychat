@@ -245,7 +245,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                                 : null,
                             title: Text('${L10n.of(context).groupDescription}:',
                                 style: TextStyle(
-                                    color: Theme.of(context).primaryColor,
+                                    color: Theme.of(context).accentColor,
                                     fontWeight: FontWeight.bold)),
                             subtitle: LinkText(
                               text: room.topic?.isEmpty ?? true
@@ -269,7 +269,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                             title: Text(
                               L10n.of(context).settings,
                               style: TextStyle(
-                                color: Theme.of(context).primaryColor,
+                                color: Theme.of(context).accentColor,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -483,7 +483,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                                       actualMembersCount.toString())
                                   : L10n.of(context).emptyChat,
                               style: TextStyle(
-                                color: Theme.of(context).primaryColor,
+                                color: Theme.of(context).accentColor,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -496,6 +496,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                                     backgroundColor:
                                         Theme.of(context).primaryColor,
                                     foregroundColor: Colors.white,
+                                    radius: Avatar.defaultSize / 2,
                                   ),
                                   onTap: () => AdaptivePageLayout.of(context)
                                       .pushNamed('/rooms/${room.id}/invite'),
