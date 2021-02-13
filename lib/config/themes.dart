@@ -87,7 +87,7 @@ abstract class FluffyThemes {
     backgroundColor: Colors.black,
     scaffoldBackgroundColor: Colors.black,
     accentColor: AppConfig.primaryColorLight,
-    secondaryHeaderColor: FluffyThemes.darken(AppConfig.primaryColorLight, .71),
+    secondaryHeaderColor: FluffyThemes.darken(AppConfig.primaryColorLight, .65),
     textTheme: Typography.material2018().white.merge(fallback_text_theme),
     dialogTheme: DialogTheme(
       shape: RoundedRectangleBorder(
