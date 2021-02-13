@@ -10,11 +10,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
+import 'key_verification_dialog.dart';
+
 class BootstrapDialog extends StatefulWidget {
+  final bool wipe;
   const BootstrapDialog({
     Key key,
     @required this.l10n,
     @required this.client,
+    this.wipe = false,
   }) : super(key: key);
 
   Future<bool> show(BuildContext context) => PlatformInfos.isCupertinoStyle
@@ -42,7 +46,7 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
 
   bool _recoveryKeyStored = false;
 
-  bool _wipe = false;
+  bool _wipe;
 
   void _createBootstrap(bool wipe) {
     setState(() {
@@ -56,6 +60,7 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
 
   @override
   Widget build(BuildContext context) {
+    _wipe ??= widget.wipe;
     final buttons = <AdaptiveFlatButton>[];
     Widget body = LinearProgressIndicator();
     titleText = widget.l10n.loadingPleaseWait;
@@ -153,6 +158,19 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
                   )) {
                 _createBootstrap(true);
               }
+            },
+          ));
+          buttons.add(AdaptiveFlatButton(
+            child: Text('Transfer from another device'),
+            onPressed: () async {
+              final req = await widget
+                  .client.userDeviceKeys[widget.client.userID]
+                  .startVerification();
+              await KeyVerificationDialog(
+                request: req,
+                l10n: widget.l10n,
+              ).show(context);
+              Navigator.of(context).pop();
             },
           ));
           buttons.add(AdaptiveFlatButton(

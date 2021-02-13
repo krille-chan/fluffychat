@@ -504,10 +504,28 @@ class _SettingsState extends State<Settings> {
                 trailing: Icon(Icons.wb_cloudy_outlined),
                 subtitle: Text(
                     '${client.encryption.keyManager.enabled ? L10n.of(context).onlineKeyBackupEnabled : L10n.of(context).onlineKeyBackupDisabled}\n${client.encryption.crossSigning.enabled ? L10n.of(context).crossSigningEnabled : L10n.of(context).crossSigningDisabled}'),
-                onTap: () => BootstrapDialog(
-                  l10n: L10n.of(context),
-                  client: Matrix.of(context).client,
-                ).show(context),
+                onTap: () async {
+                  if (await client.encryption.keyManager.isCached()) {
+                    if (OkCancelResult.ok ==
+                        await showOkCancelAlertDialog(
+                          context: context,
+                          title: L10n.of(context).keysCached,
+                          message:
+                              'Wipe your chat backup to create a new security key?',
+                          isDestructiveAction: true,
+                        )) {
+                      return BootstrapDialog(
+                        l10n: L10n.of(context),
+                        client: Matrix.of(context).client,
+                        wipe: true,
+                      ).show(context);
+                    }
+                  }
+                  return BootstrapDialog(
+                    l10n: L10n.of(context),
+                    client: Matrix.of(context).client,
+                  ).show(context);
+                },
               ),
             },
             Divider(thickness: 1),
