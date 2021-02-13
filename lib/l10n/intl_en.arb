@@ -404,8 +404,18 @@
     "type": "text",
     "placeholders": {}
   },
+  "securityKey": "Security key",
+  "@securityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
   "copy": "Copy",
   "@copy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copyToClipboard": "Copy to clipboard",
+  "@copyToClipboard": {
     "type": "text",
     "placeholders": {}
   },
@@ -435,6 +445,36 @@
   },
   "create": "Create",
   "@create": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackup": "Chat backup",
+  "@chatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKeyLost": "Security key lost?",
+  "@securityKeyLost": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "everythingReady": "Everything ready!",
+  "@everythingReady": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transferFromAnotherDevice": "Transfer from another device",
+  "@transferFromAnotherDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterSecurityKey": "Please enter your security key",
+  "@pleaseEnterSecurityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackupDescription": "Your chat backup is secured with a security key. Please make sure you don't lose it.",
+  "@chatBackupDescription": {
     "type": "text",
     "placeholders": {}
   },
@@ -2104,6 +2144,16 @@
   },
   "userNotVerified": "User is not verified",
   "@userNotVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fontSize": "Font size",
+  "@fontSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wipeChatBackup": "Wipe your chat backup to create a new security key?",
+  "@wipeChatBackup": {
     "type": "text",
     "placeholders": {}
   },

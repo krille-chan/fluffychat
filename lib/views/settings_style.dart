@@ -109,7 +109,7 @@ class _SettingsStyleState extends State<SettingsStyle> {
           Divider(height: 1),
           ListTile(
             title: Text(
-              'Font size',
+              L10n.of(context).fontSize,
               style: TextStyle(
                 color: Theme.of(context).accentColor,
                 fontWeight: FontWeight.bold,

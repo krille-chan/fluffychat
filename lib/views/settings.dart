@@ -510,8 +510,7 @@ class _SettingsState extends State<Settings> {
                         await showOkCancelAlertDialog(
                           context: context,
                           title: L10n.of(context).keysCached,
-                          message:
-                              'Wipe your chat backup to create a new security key?',
+                          message: L10n.of(context).wipeChatBackup,
                           isDestructiveAction: true,
                         )) {
                       return BootstrapDialog(

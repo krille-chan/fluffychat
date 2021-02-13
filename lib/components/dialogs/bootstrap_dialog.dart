@@ -66,9 +66,8 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
     titleText = widget.l10n.loadingPleaseWait;
 
     if (bootstrap == null) {
-      titleText = 'Chat backup';
-      body = Text(
-          'To make sure that only you have access to your encrypted messages, we have generated a security key for you.');
+      titleText = widget.l10n.chatBackup;
+      body = Text(widget.l10n.chatBackupDescription);
       buttons.add(AdaptiveFlatButton(
         child: Text(widget.l10n.next),
         onPressed: () => _createBootstrap(false),
@@ -76,7 +75,7 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
     } else if (bootstrap.newSsssKey?.recoveryKey != null &&
         _recoveryKeyStored == false) {
       final key = bootstrap.newSsssKey.recoveryKey;
-      titleText = 'Security key';
+      titleText = widget.l10n.securityKey;
       body = Container(
         alignment: Alignment.center,
         width: 200,
@@ -91,7 +90,7 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
         ),
       );
       buttons.add(AdaptiveFlatButton(
-        child: Text('Copy to clipboard'),
+        child: Text(widget.l10n.copyToClipboard),
         onPressed: () => Clipboard.setData(ClipboardData(text: key)),
       ));
       buttons.add(AdaptiveFlatButton(
@@ -122,7 +121,7 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
         case BootstrapState.openExistingSsss:
           _recoveryKeyStored = true;
           titleText =
-              _recoveryKeyInputError ?? 'Please enter your security key!';
+              _recoveryKeyInputError ?? widget.l10n.pleaseEnterSecurityKey;
           body = PlatformInfos.isCupertinoStyle
               ? CupertinoTextField(
                   minLines: 2,
@@ -151,9 +150,8 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
               if (OkCancelResult.ok ==
                   await showOkCancelAlertDialog(
                     context: context,
-                    title: 'Lost security key',
-                    message:
-                        'Wipe your chat backup to create a new security key?',
+                    title: widget.l10n.securityKeyLost,
+                    message: widget.l10n.wipeChatBackup,
                     isDestructiveAction: true,
                   )) {
                 _createBootstrap(true);
@@ -161,7 +159,7 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
             },
           ));
           buttons.add(AdaptiveFlatButton(
-            child: Text('Transfer from another device'),
+            child: Text(widget.l10n.transferFromAnotherDevice),
             onPressed: () async {
               final req = await widget
                   .client.userDeviceKeys[widget.client.userID]
@@ -202,7 +200,7 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
                 } catch (e, s) {
                   Logs().w('Unable to unlock SSSS', e, s);
                   setState(() => _recoveryKeyInputError =
-                      L10n.of(context).oopsSomethingWentWrong);
+                      widget.l10n.oopsSomethingWentWrong);
                 } finally {
                   setState(() => _recoveryKeyInputLoading = false);
                 }
@@ -247,11 +245,11 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
           ));
           break;
         case BootstrapState.done:
-          titleText = 'Process completed';
+          titleText = L10n.of(context).everythingReady;
           body = ListTile(
             contentPadding: EdgeInsets.zero,
             leading: Icon(Icons.check_circle, color: Colors.green),
-            title: Text('Chat backup has been initialized!'),
+            title: Text(L10n.of(context).keysCached),
           );
           buttons.add(AdaptiveFlatButton(
             child: Text(widget.l10n.close),
