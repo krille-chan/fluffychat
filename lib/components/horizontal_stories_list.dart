@@ -141,14 +141,18 @@ class _StoriesListTile extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(height: 4),
-                  Text(displayname.split(' ').first,
-                      style: TextStyle(
-                        fontWeight: hasStatusMessage ? FontWeight.bold : null,
-                        color: hasStatusMessage
-                            ? Theme.of(context).accentColor
-                            : null,
-                      )),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 4.0, right: 4.0, top: 4.0),
+                    child: Text(displayname.split(' ').first,
+                        maxLines: 1,
+                        style: TextStyle(
+                          fontWeight: hasStatusMessage ? FontWeight.bold : null,
+                          color: hasStatusMessage
+                              ? Theme.of(context).accentColor
+                              : null,
+                        )),
+                  ),
                 ],
               ),
             ),
