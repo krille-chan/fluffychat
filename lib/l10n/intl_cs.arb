@@ -2145,7 +2145,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "userUnknownVerification": "Status ověření uživatele je neznámý",
+  "userUnknownVerification": "Stav ověření uživatele je neznámý",
   "@userUnknownVerification": {
     "type": "text",
     "placeholders": {}
