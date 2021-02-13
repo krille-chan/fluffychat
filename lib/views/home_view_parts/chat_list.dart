@@ -232,6 +232,7 @@ class _ChatListState extends State<ChatList> {
                     return ListView.builder(
                       controller: _scrollController,
                       itemCount: totalCount + 1,
+                      padding: EdgeInsets.only(bottom: 24),
                       itemBuilder: (BuildContext context, int i) => i == 0
                           ? Padding(
                               padding: EdgeInsets.all(12),
