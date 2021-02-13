@@ -5,7 +5,8 @@ import 'package:fluffychat/views/archive.dart';
 import 'package:fluffychat/views/chat.dart';
 import 'package:fluffychat/views/chat_details.dart';
 import 'package:fluffychat/views/chat_encryption_settings.dart';
-import 'package:fluffychat/views/home_view.dart';
+import 'package:fluffychat/views/discover.dart';
+import 'package:fluffychat/views/chat_list.dart';
 import 'package:fluffychat/views/chat_permissions_settings.dart';
 import 'package:fluffychat/views/empty_page.dart';
 import 'package:fluffychat/views/homeserver_picker.dart';
@@ -15,6 +16,7 @@ import 'package:fluffychat/views/log_view.dart';
 import 'package:fluffychat/views/login.dart';
 import 'package:fluffychat/views/new_group.dart';
 import 'package:fluffychat/views/new_private_chat.dart';
+import 'package:fluffychat/views/settings.dart';
 import 'package:fluffychat/views/settings_3pid.dart';
 import 'package:fluffychat/views/settings_devices.dart';
 import 'package:fluffychat/views/settings_emotes.dart';
@@ -62,14 +64,14 @@ class FluffyRoutes {
       switch (parts[1]) {
         case '':
           return ViewData(
-            mainView: (_) => HomeView(),
+            mainView: (_) => ChatList(),
             emptyView: (_) => EmptyPage(),
           );
         case 'rooms':
           final roomId = parts[2];
           if (parts.length == 3) {
             return ViewData(
-              leftView: (_) => HomeView(activeChat: roomId),
+              leftView: (_) => ChatList(activeChat: roomId),
               mainView: (_) => Chat(roomId),
             );
           } else if (parts.length == 4) {
@@ -77,44 +79,44 @@ class FluffyRoutes {
             switch (action) {
               case 'details':
                 return ViewData(
-                  leftView: (_) => HomeView(activeChat: roomId),
+                  leftView: (_) => ChatList(activeChat: roomId),
                   mainView: (_) => Chat(roomId),
                   rightView: (_) => ChatDetails(roomId),
                 );
               case 'encryption':
                 return ViewData(
-                  leftView: (_) => HomeView(activeChat: roomId),
+                  leftView: (_) => ChatList(activeChat: roomId),
                   mainView: (_) => Chat(roomId),
                   rightView: (_) => ChatEncryptionSettings(roomId),
                 );
               case 'permissions':
                 return ViewData(
-                  leftView: (_) => HomeView(activeChat: roomId),
+                  leftView: (_) => ChatList(activeChat: roomId),
                   mainView: (_) => Chat(roomId),
                   rightView: (_) => ChatPermissionsSettings(roomId),
                 );
               case 'invite':
                 return ViewData(
-                  leftView: (_) => HomeView(activeChat: roomId),
+                  leftView: (_) => ChatList(activeChat: roomId),
                   mainView: (_) => Chat(roomId),
                   rightView: (_) => InvitationSelection(roomId),
                 );
               case 'emotes':
                 return ViewData(
-                  leftView: (_) => HomeView(activeChat: roomId),
+                  leftView: (_) => ChatList(activeChat: roomId),
                   mainView: (_) => Chat(roomId),
                   rightView: (_) => MultipleEmotesSettings(roomId),
                 );
               default:
                 return ViewData(
-                  leftView: (_) => HomeView(activeChat: roomId),
+                  leftView: (_) => ChatList(activeChat: roomId),
                   mainView: (_) => Chat(roomId,
                       scrollToEventId: action.sigil == '\$' ? action : null),
                 );
             }
           }
           return ViewData(
-            mainView: (_) => HomeView(),
+            mainView: (_) => ChatList(),
             emptyView: (_) => EmptyPage(),
           );
         case 'archive':
@@ -128,13 +130,24 @@ class FluffyRoutes {
           );
         case 'newgroup':
           return ViewData(
-            leftView: (_) => HomeView(),
+            leftView: (_) => ChatList(),
             mainView: (_) => NewGroup(),
           );
         case 'newprivatechat':
           return ViewData(
-            leftView: (_) => HomeView(),
+            leftView: (_) => ChatList(),
             mainView: (_) => NewPrivateChat(),
+          );
+        case 'discover':
+          if (parts.length == 3) {
+            return ViewData(
+              mainView: (_) => Discover(alias: parts[2]),
+              emptyView: (_) => EmptyPage(),
+            );
+          }
+          return ViewData(
+            mainView: (_) => Discover(),
+            emptyView: (_) => EmptyPage(),
           );
         case 'settings':
           if (parts.length == 3) {
@@ -142,17 +155,17 @@ class FluffyRoutes {
             switch (action) {
               case '3pid':
                 return ViewData(
-                  leftView: (_) => HomeView(),
+                  leftView: (_) => Settings(),
                   mainView: (_) => Settings3Pid(),
                 );
               case 'devices':
                 return ViewData(
-                  leftView: (_) => HomeView(),
+                  leftView: (_) => Settings(),
                   mainView: (_) => DevicesSettings(),
                 );
               case 'emotes':
                 return ViewData(
-                  leftView: (_) => HomeView(),
+                  leftView: (_) => Settings(),
                   mainView: (_) => EmotesSettings(
                     room: ((settings.arguments ?? {}) as Map)['room'],
                     stateKey: ((settings.arguments ?? {}) as Map)['stateKey'],
@@ -160,25 +173,30 @@ class FluffyRoutes {
                 );
               case 'ignore':
                 return ViewData(
-                  leftView: (_) => HomeView(),
+                  leftView: (_) => Settings(),
                   mainView: (_) => SettingsIgnoreList(
                     initialUserId: settings.arguments,
                   ),
                 );
               case 'notifications':
                 return ViewData(
-                  leftView: (_) => HomeView(),
+                  leftView: (_) => Settings(),
                   mainView: (_) => SettingsNotifications(),
                 );
               case 'style':
                 return ViewData(
-                  leftView: (_) => HomeView(),
+                  leftView: (_) => Settings(),
                   mainView: (_) => SettingsStyle(),
                 );
             }
+          } else {
+            return ViewData(
+              mainView: (_) => Settings(),
+              emptyView: (_) => EmptyPage(),
+            );
           }
           return ViewData(
-            mainView: (_) => HomeView(),
+            mainView: (_) => ChatList(),
             emptyView: (_) => EmptyPage(),
           );
       }
