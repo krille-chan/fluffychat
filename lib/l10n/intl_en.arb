@@ -2087,6 +2087,36 @@
     "type": "text",
     "placeholders": {}
   },
+  "audioPlayerPause": "Pause",
+  "@audioPlayerPause": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPlay": "Play",
+  "@audioPlayerPlay": {
+    "type": "text",
+    "placeholders": {}
+  },
+    "userVerified": "User is verified",
+  "@userVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userNotVerified": "User is not verified",
+  "@userNotVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userUnknownVerification": "User has an unknown verification status",
+  "@userUnknownVerification": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clearText": "Clear text",
+  "@clearText": {
+    "type": "text",
+    "placeholders": {}
+  },
   "writeAMessage": "Write a message…",
   "@writeAMessage": {
     "type": "text",

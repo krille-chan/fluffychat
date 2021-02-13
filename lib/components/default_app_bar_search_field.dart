@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import '../app_config.dart';
 
@@ -99,6 +100,7 @@ class DefaultAppBarSearchFieldState extends State<DefaultAppBarSearchField> {
                       (widget.suffix == null &&
                           (_searchController.text?.isNotEmpty ?? false)))
               ? IconButton(
+                  tooltip: L10n.of(context).clearText,
                   icon: Icon(Icons.backspace_outlined),
                   onPressed: () {
                     _searchController.clear();

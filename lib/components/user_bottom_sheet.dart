@@ -189,6 +189,13 @@ class UserBottomSheet extends StatelessWidget {
                             }[verificationStatus] ??
                             Colors.orange,
                       ),
+                      tooltip: {
+                            UserVerifiedStatus.unknownDevice:
+                                L10n.of(context).userNotVerified,
+                            UserVerifiedStatus.verified:
+                                L10n.of(context).userVerified,
+                          }[verificationStatus] ??
+                          L10n.of(context).userUnknownVerification,
                       onPressed: () =>
                           verificationStatus == UserVerifiedStatus.unknown
                               ? _verifyAction(context)

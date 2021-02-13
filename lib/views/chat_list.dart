@@ -230,6 +230,7 @@ class _ChatListState extends State<ChatList> {
                   leading: selectMode == SelectMode.normal
                       ? null
                       : IconButton(
+                          tooltip: L10n.of(context).cancel,
                           icon: Icon(Icons.close_outlined),
                           onPressed: () => selectMode == SelectMode.share
                               ? setState(

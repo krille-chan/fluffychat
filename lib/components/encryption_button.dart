@@ -95,6 +95,9 @@ class _EncryptionButtonState extends State<EncryptionButton> {
             color = null;
           }
           return IconButton(
+            tooltip: widget.room.encrypted
+                ? L10n.of(context).encrypted
+                : L10n.of(context).encryptionNotEnabled,
             icon: Icon(
                 widget.room.encrypted
                     ? Icons.lock_outlined

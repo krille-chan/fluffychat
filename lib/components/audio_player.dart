@@ -8,6 +8,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sound_lite/flutter_sound.dart';
 import 'package:universal_html/prefer_universal/html.dart' as html;
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import '../utils/ui_fake.dart' if (dart.library.html) 'dart:ui' as ui;
 import 'matrix.dart';
 import '../utils/event_extension.dart';
@@ -162,6 +163,9 @@ class _AudioPlayerState extends State<AudioPlayer> {
                         : Icons.play_arrow_outlined,
                     color: widget.color,
                   ),
+                  tooltip: flutterSound.isPlaying
+                      ? L10n.of(context).audioPlayerPause
+                      : L10n.of(context).audioPlayerPlay,
                   onPressed: () {
                     if (status == AudioPlayerStatus.DOWNLOADED) {
                       _playAction();
