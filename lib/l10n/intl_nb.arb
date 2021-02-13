@@ -1960,5 +1960,45 @@
   "@publicKey": {
     "type": "text",
     "placeholders": {}
+  },
+  "clearText": "Tøm tekst",
+  "@clearText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userNotVerified": "Ubekreftet bruker",
+  "@userNotVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userVerified": "Bekreftet bruker",
+  "@userVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPlay": "Spill av",
+  "@audioPlayerPlay": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPause": "Pause",
+  "@audioPlayerPause": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "security": "Sikkerhet",
+  "@security": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "all": "Alle",
+  "@all": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contacts": "Kontakter",
+  "@contacts": {
+    "type": "text",
+    "placeholders": {}
   }
 }

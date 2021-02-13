@@ -524,7 +524,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteInvalid": "Neplatná klávesová zkratka emoji!",
+  "emoteInvalid": "Neplatný kód emotikony!",
   "@emoteInvalid": {
     "type": "text",
     "placeholders": {}
@@ -2121,5 +2121,51 @@
   "@noPublicRoomsFound": {
     "type": "text",
     "placeholders": {}
+  },
+  "audioPlayerPlay": "Přehrát",
+  "@audioPlayerPlay": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPause": "Pozastavit",
+  "@audioPlayerPause": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "badServerLoginTypesException": "Homeserver podporuje přihlášení typu:\n{serverVersions}\nAle tato aplikace podporuje pouze:\n{supportedVersions}",
+  "@badServerLoginTypesException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "clearText": "Smazat text",
+  "@clearText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userUnknownVerification": "Status ověření uživatele je neznámý",
+  "@userUnknownVerification": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userNotVerified": "Uživatel není ověřen",
+  "@userNotVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userVerified": "Uživatel je ověřen",
+  "@userVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "badServerVersionsException": "Homeserver podporuje specifikaci verzí:\n{serverVersions}\nAle tato aplikace podporuje pouze verze {supportedVersions}",
+  "@badServerVersionsException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
   }
 }
