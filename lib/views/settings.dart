@@ -513,14 +513,15 @@ class _SettingsState extends State<Settings> {
                           message: L10n.of(context).wipeChatBackup,
                           isDestructiveAction: true,
                         )) {
-                      return BootstrapDialog(
+                      await BootstrapDialog(
                         l10n: L10n.of(context),
                         client: Matrix.of(context).client,
                         wipe: true,
                       ).show(context);
                     }
+                    return;
                   }
-                  return BootstrapDialog(
+                  await BootstrapDialog(
                     l10n: L10n.of(context),
                     client: Matrix.of(context).client,
                   ).show(context);
