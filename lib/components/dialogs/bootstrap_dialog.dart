@@ -3,7 +3,6 @@ import 'package:famedlysdk/encryption.dart';
 import 'package:famedlysdk/encryption/utils/bootstrap.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/dialogs/adaptive_flat_button.dart';
-import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:flutter/services.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/cupertino.dart';
@@ -179,24 +178,10 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
                   _recoveryKeyInputLoading = true;
                 });
                 try {
-                  final input = _recoveryKeyTextEditingController.text.trim();
                   await bootstrap.newSsssKey.unlock(
-                    keyOrPassphrase: input,
+                    keyOrPassphrase: _recoveryKeyTextEditingController.text,
                   );
                   await bootstrap.openExistingSsss();
-                  if (widget.client.encryption.crossSigning.enabled) {
-                    Logs().v(
-                        'Cross signing is already enabled. Try to self-sign');
-                    try {
-                      await widget.client.encryption.crossSigning
-                          .selfSign(recoveryKey: input);
-                    } catch (e, s) {
-                      // ignore: unawaited_futures
-                      SentryController.captureException(
-                          'Unable to self sign with recovery key after successfully open existing SSSS: ${e.toString()}',
-                          s);
-                    }
-                  }
                 } catch (e, s) {
                   Logs().w('Unable to unlock SSSS', e, s);
                   setState(() => _recoveryKeyInputError =
