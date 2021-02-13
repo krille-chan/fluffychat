@@ -2000,5 +2000,132 @@
   "@contacts": {
     "type": "text",
     "placeholders": {}
+  },
+  "reportMessage": "Rapporter melding",
+  "@reportMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contentHasBeenReported": "Innholdet har blitt rapportert til tjeneradministratorene",
+  "@contentHasBeenReported": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whyDoYouWantToReportThis": "Hvorfor ønsker du å rapportere dette?",
+  "@whyDoYouWantToReportThis": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inoffensive": "Harmløst",
+  "@inoffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offensive": "Støtende",
+  "@offensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "extremeOffensive": "Veldig",
+  "@extremeOffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "howOffensiveIsThisContent": "Hvor støtende er innholdet?",
+  "@howOffensiveIsThisContent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noStatusesFound": "Ingen statuser så langt.",
+  "@noStatusesFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackupDescription": "Din sludringssikkerhetskopi er sikret med en sikkerhetsnøkkel. Ikke mist den.",
+  "@chatBackupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youWillBeConnectedTo": "Du vil bli tilknyttet {homeserver}",
+  "@youWillBeConnectedTo": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "pleaseFollowInstructionsOnWeb": "Følg instruksen på nettsiden og trykk på «Neste».",
+  "@pleaseFollowInstructionsOnWeb": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userUnknownVerification": "Bruker har ukjent bekreftelsesstatus",
+  "@userUnknownVerification": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fontSize": "Skriftstørrelse",
+  "@fontSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tooManyRequestsWarning": "For mange forespørsler. Prøv igjen senere.",
+  "@tooManyRequestsWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterSecurityKey": "Skriv inn din sikkerhetsnøkkel",
+  "@pleaseEnterSecurityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transferFromAnotherDevice": "Overfør fra en annen enhet",
+  "@transferFromAnotherDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "everythingReady": "Alt er klart.",
+  "@everythingReady": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKeyLost": "Mistet sikkerhetsnøkkelen?",
+  "@securityKeyLost": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackup": "Sludringssikkerhetskopi",
+  "@chatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copyToClipboard": "Kopier til utklippstavle",
+  "@copyToClipboard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKey": "Sikkerhetsnøkkel",
+  "@securityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSureYouWantToLogout": "Er du sikker på at du vil logge ut?",
+  "@areYouSureYouWantToLogout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appLock": "Programlås",
+  "@appLock": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewContact": "Legg til ny kontakt",
+  "@addNewContact": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newChat": "Ny sludring",
+  "@newChat": {
+    "type": "text",
+    "placeholders": {}
   }
 }
