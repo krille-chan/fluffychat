@@ -2121,5 +2121,101 @@
   "@noPublicRoomsFound": {
     "type": "text",
     "placeholders": {}
+  },
+  "clearText": "Kustuta tekst",
+  "@clearText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "badServerVersionsException": "See koduserver toetab Matrixi spetsifikatsioonist järgmisi versioone:\n{serverVersions}\nAga see rakendus toetab vaid järgmisi versioone: {supportedVersions}",
+  "@badServerVersionsException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "badServerLoginTypesException": "See koduserver toetab Matrixi võrku sisselogimiseks:\n{serverVersions}\nAga see rakendus toetab vaid järgmisi võimalusi:\n{supportedVersions}",
+  "@badServerLoginTypesException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "userUnknownVerification": "Kasutaja verifitseerimisolek on teadmata",
+  "@userUnknownVerification": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wipeChatBackup": "Kas kustutame sinu vestluste varukoopia ja loome uue turvavõtme?",
+  "@wipeChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fontSize": "Fondi suurus",
+  "@fontSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userNotVerified": "Kasutaja on verifitseerimata",
+  "@userNotVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userVerified": "Kasutaja on verifitseeritud",
+  "@userVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPlay": "Esita",
+  "@audioPlayerPlay": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPause": "Peata",
+  "@audioPlayerPause": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackupDescription": "Sinu vestluste varukoopia on krüptitud turvavõtmega. Palun vaata, et sa seda ei kaota.",
+  "@chatBackupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterSecurityKey": "Palun sisesta oma turvavõti",
+  "@pleaseEnterSecurityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transferFromAnotherDevice": "Tõsta teisest seadmest",
+  "@transferFromAnotherDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "everythingReady": "Kõik on valmis!",
+  "@everythingReady": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKeyLost": "Kas kaotasid turvavõtme?",
+  "@securityKeyLost": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackup": "Varunda vestlus",
+  "@chatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copyToClipboard": "Kopeeri lõikelauale",
+  "@copyToClipboard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKey": "Turvavõti",
+  "@securityKey": {
+    "type": "text",
+    "placeholders": {}
   }
 }
