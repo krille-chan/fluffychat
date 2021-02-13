@@ -60,8 +60,6 @@ class _ChatState extends State<Chat> {
 
   MatrixState matrix;
 
-  String seenByText = '';
-
   final AutoScrollController _scrollController = AutoScrollController();
 
   FocusNode inputFocus = FocusNode();
@@ -150,8 +148,6 @@ class _ChatState extends State<Chat> {
       () {
         filteredEvents =
             timeline.getFilteredEvents(collapseRoomCreate: _collapseRoomCreate);
-        seenByText =
-            room.getLocalizedSeenByText(context, timeline, filteredEvents);
       },
     );
   }
@@ -751,41 +747,51 @@ class _ChatState extends State<Chat> {
                                           )
                                         : Container()
                                 : i == 0
-                                    ? AnimatedContainer(
-                                        height: seenByText.isEmpty ? 0 : 24,
-                                        duration: seenByText.isEmpty
-                                            ? Duration(milliseconds: 0)
-                                            : Duration(milliseconds: 300),
-                                        alignment:
-                                            filteredEvents.first.senderId ==
-                                                    client.userID
-                                                ? Alignment.topRight
-                                                : Alignment.topLeft,
-                                        child: Container(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 4),
-                                          decoration: BoxDecoration(
-                                            color: Theme.of(context)
-                                                .scaffoldBackgroundColor
-                                                .withOpacity(0.8),
-                                            borderRadius:
-                                                BorderRadius.circular(4),
-                                          ),
-                                          child: Text(
-                                            seenByText,
-                                            maxLines: 1,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
-                                              color:
-                                                  Theme.of(context).accentColor,
+                                    ? StreamBuilder(
+                                        stream: room.onUpdate.stream,
+                                        builder: (_, __) {
+                                          final seenByText =
+                                              room.getLocalizedSeenByText(
+                                                  context,
+                                                  timeline,
+                                                  filteredEvents);
+                                          return AnimatedContainer(
+                                            height: seenByText.isEmpty ? 0 : 24,
+                                            duration: seenByText.isEmpty
+                                                ? Duration(milliseconds: 0)
+                                                : Duration(milliseconds: 300),
+                                            alignment:
+                                                filteredEvents.first.senderId ==
+                                                        client.userID
+                                                    ? Alignment.topRight
+                                                    : Alignment.topLeft,
+                                            child: Container(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 4),
+                                              decoration: BoxDecoration(
+                                                color: Theme.of(context)
+                                                    .scaffoldBackgroundColor
+                                                    .withOpacity(0.8),
+                                                borderRadius:
+                                                    BorderRadius.circular(4),
+                                              ),
+                                              child: Text(
+                                                seenByText,
+                                                maxLines: 1,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: TextStyle(
+                                                  color: Theme.of(context)
+                                                      .accentColor,
+                                                ),
+                                              ),
                                             ),
-                                          ),
-                                        ),
-                                        padding: EdgeInsets.only(
-                                          left: 8,
-                                          right: 8,
-                                          bottom: 8,
-                                        ),
+                                            padding: EdgeInsets.only(
+                                              left: 8,
+                                              right: 8,
+                                              bottom: 8,
+                                            ),
+                                          );
+                                        },
                                       )
                                     : AutoScrollTag(
                                         key: ValueKey(
