@@ -519,27 +519,27 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteExists": "Emote existiert bereits!",
+  "emoteExists": "Emoticon existiert bereits!",
   "@emoteExists": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteInvalid": "Ungültiges Emote-Kürzel!",
+  "emoteInvalid": "Ungültiges Emoticon-Kürzel!",
   "@emoteInvalid": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteSettings": "Emote-Einstellungen",
+  "emoteSettings": "Emoticon-Einstellungen",
   "@emoteSettings": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteShortcode": "Emote-Kürzel",
+  "emoteShortcode": "Emoticon-Kürzel",
   "@emoteShortcode": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteWarnNeedToPick": "Wähle ein Emote-Kürzel und ein Bild!",
+  "emoteWarnNeedToPick": "Wähle ein Emoticon-Kürzel und ein Bild!",
   "@emoteWarnNeedToPick": {
     "type": "text",
     "placeholders": {}
@@ -923,12 +923,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "FluffyChat kann Cross-Signing noch nicht einschalten. Bitte schalte es innerhalb Element an.",
+  "noCrossSignBootstrap": "FluffyChat kann Cross-Signing noch nicht einschalten. Bitte schalte es innerhalb von Element an.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
   },
-  "noEmotesFound": "Keine Emotes gefunden. 😕",
+  "noEmotesFound": "Keine Emoticons gefunden. 😕",
   "@noEmotesFound": {
     "type": "text",
     "placeholders": {}
@@ -1718,7 +1718,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changeDeviceName": "Gerätename ändern",
+  "changeDeviceName": "Gerätenamen ändern",
   "@changeDeviceName": {
     "type": "text",
     "placeholders": {}
@@ -1868,7 +1868,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "setCustomEmotes": "Eigene Emotes einstellen",
+  "setCustomEmotes": "Eigene Emoticons einstellen",
   "@setCustomEmotes": {
     "type": "text",
     "placeholders": {}
