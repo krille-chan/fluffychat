@@ -640,7 +640,7 @@
       "count": {}
     }
   },
-  "seenByUserAndUser": "Gezien door {username} en {username}",
+  "seenByUserAndUser": "Gezien door {username} en {username2}",
   "@seenByUserAndUser": {
     "type": "text",
     "placeholders": {
@@ -2163,5 +2163,50 @@
       "serverVersions": {},
       "supportedVersions": {}
     }
+  },
+  "clearText": "Tekst wissen",
+  "@clearText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userUnknownVerification": "Gebruiker heeft een onbekende verificatiestatus",
+  "@userUnknownVerification": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wipeChatBackup": "Uw chatback-up wissen om een nieuwe veiligheidssleutel te maken?",
+  "@wipeChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fontSize": "Lettergrootte",
+  "@fontSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userNotVerified": "Gebruiker is niet geverifieerd",
+  "@userNotVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userVerified": "Gebruiker is geverifieerd",
+  "@userVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPlay": "Afspelen",
+  "@audioPlayerPlay": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPause": "Pause",
+  "@audioPlayerPause": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackupDescription": "Uw chatback-up is beveiligd met een veiligheidssleutel. Zorg ervoor dat u deze niet verliest.",
+  "@chatBackupDescription": {
+    "type": "text",
+    "placeholders": {}
   }
 }
