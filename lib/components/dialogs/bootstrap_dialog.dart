@@ -230,11 +230,11 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
           ));
           break;
         case BootstrapState.done:
-          titleText = L10n.of(context).everythingReady;
+          titleText = widget.l10n.everythingReady;
           body = ListTile(
             contentPadding: EdgeInsets.zero,
             leading: Icon(Icons.check_circle, color: Colors.green),
-            title: Text(L10n.of(context).keysCached),
+            title: Text(widget.l10n.keysCached),
           );
           buttons.add(AdaptiveFlatButton(
             child: Text(widget.l10n.close),
