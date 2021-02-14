@@ -1337,7 +1337,7 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "Starte jetzt deinen ersten Chat! 🙂\n- Tippe auf „+“\n- Gib den Benutzernamen eines Freundes ein\n- Viel Spaß beim Chatten",
+  "startYourFirstChat": "Starte jetzt deinen ersten Chat! 🙂\n- Tippe auf „+“\n- Gib einen Benutzernamen ein\n- Viel Spaß beim Chatten",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -1813,7 +1813,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "memberChanges": "Mitgliederänderungen",
+  "memberChanges": "Änderungen der Teilnehmer:innen",
   "@memberChanges": {
     "type": "text",
     "placeholders": {}
