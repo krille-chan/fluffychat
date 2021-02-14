@@ -2112,5 +2112,56 @@
   "@noPublicRoomsFound": {
     "type": "text",
     "placeholders": {}
+  },
+  "pleaseEnterSecurityKey": "Voer uw veiligheidsssleutel in",
+  "@pleaseEnterSecurityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transferFromAnotherDevice": "Overzetten vanaf een ander apparaat",
+  "@transferFromAnotherDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "everythingReady": "Alles klaar!",
+  "@everythingReady": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKeyLost": "Veiligheidssleutel verloren?",
+  "@securityKeyLost": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackup": "Chatback-up",
+  "@chatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copyToClipboard": "Kopieer naar klembord",
+  "@copyToClipboard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKey": "Veiligheidssleutel",
+  "@securityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "badServerLoginTypesException": "De homeserver ondersteunt de login types:\n{serverVersions}\nMaar deze app ondersteunt alleen:\n{supportedVersions}",
+  "@badServerLoginTypesException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "badServerVersionsException": "De homeserver ondersteunt de Spec-versies:\n{serverVersions}\nMaar deze app ondersteunt alleen {supportedVersions}",
+  "@badServerVersionsException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
   }
 }
