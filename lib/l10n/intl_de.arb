@@ -836,7 +836,7 @@
       "count": {}
     }
   },
-  "loadingPleaseWait": "Ladevorgang … Bitte warten.",
+  "loadingPleaseWait": "Lade … Bitte warten.",
   "@loadingPleaseWait": {
     "type": "text",
     "placeholders": {}
@@ -878,7 +878,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "messageWillBeRemovedWarning": "Nachricht wird für alle Teilnehmer*innen entfernt",
+  "messageWillBeRemovedWarning": "Nachricht wird für alle Teilnehmer:innen entfernt",
   "@messageWillBeRemovedWarning": {
     "type": "text",
     "placeholders": {}
@@ -1883,7 +1883,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "participant": "Teilnehmer*in",
+  "participant": "Teilnehmer:in",
   "@participant": {
     "type": "text",
     "placeholders": {}
@@ -2121,5 +2121,101 @@
   "@noPublicRoomsFound": {
     "type": "text",
     "placeholders": {}
+  },
+  "clearText": "Text löschen",
+  "@clearText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userUnknownVerification": "Benutzer:in hat einen unbekannten Verifikationsstatus",
+  "@userUnknownVerification": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wipeChatBackup": "Chat-Backup löschen, um neuen Sicherheitsschlüssel zu erstellen?",
+  "@wipeChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fontSize": "Schriftgröße",
+  "@fontSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userNotVerified": "Benutzer:in ist nicht verifiziert",
+  "@userNotVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userVerified": "Benutzer:in ist verifiziert",
+  "@userVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPlay": "Abspielen",
+  "@audioPlayerPlay": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPause": "Pause",
+  "@audioPlayerPause": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackupDescription": "Dein Chat-Backup ist mit einem Sicherheitsschlüssel gesichert. Bitte stelle sicher, dass du diesen nicht verlierst.",
+  "@chatBackupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterSecurityKey": "Bitte Sicherheitsschlüssel eingeben",
+  "@pleaseEnterSecurityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transferFromAnotherDevice": "Von anderem Gerät übertragen",
+  "@transferFromAnotherDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "everythingReady": "Alles fertig!",
+  "@everythingReady": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKeyLost": "Sicherheitsschlüssel verloren?",
+  "@securityKeyLost": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackup": "Chat-Backup",
+  "@chatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copyToClipboard": "In Zwischenablage kopieren",
+  "@copyToClipboard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKey": "Sicherheitsschlüssel",
+  "@securityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "badServerLoginTypesException": "Der Homeserver unterstützt diese Anmelde-Typen:\n{serverVersions}\nAber diese App unterstützt nur:\n{supportedVersions}",
+  "@badServerLoginTypesException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "badServerVersionsException": "Der Homeserver unterstützt die Spec-Versionen:\n{serverVersions}\nAber diese App unterstützt nur:\n{supportedVersions}",
+  "@badServerVersionsException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
   }
 }
