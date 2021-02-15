@@ -1753,7 +1753,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changePassword": "Cambiar contrasinal",
+  "changePassword": "Mudar contrasinal",
   "@changePassword": {
     "type": "text",
     "placeholders": {}
@@ -2121,5 +2121,101 @@
   "@noPublicRoomsFound": {
     "type": "text",
     "placeholders": {}
+  },
+  "clearText": "Eliminar texto",
+  "@clearText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userUnknownVerification": "A usuaria ten un estado de verificación descoñecido",
+  "@userUnknownVerification": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wipeChatBackup": "Eliminar a copia de apoio do chat e crear unha nova chave de seguridade?",
+  "@wipeChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fontSize": "Tamaño da letra",
+  "@fontSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userNotVerified": "Usuaria non verificada",
+  "@userNotVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userVerified": "Usuaria verificada",
+  "@userVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPlay": "Reproducir",
+  "@audioPlayerPlay": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPause": "Deter",
+  "@audioPlayerPause": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackupDescription": "A copia de apoio do chat está protexida cunha chave de seguridade. Pon coidado e non a perdas.",
+  "@chatBackupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterSecurityKey": "Escribe a túa chave de seguridade",
+  "@pleaseEnterSecurityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transferFromAnotherDevice": "Transferir desde outro dispositivo",
+  "@transferFromAnotherDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "everythingReady": "Todo preparado!",
+  "@everythingReady": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKeyLost": "Perdeches a chave de seguridade?",
+  "@securityKeyLost": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackup": "Copia de apoio do chat",
+  "@chatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copyToClipboard": "Copiar ao portapapeis",
+  "@copyToClipboard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKey": "Chave de seguridade",
+  "@securityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "badServerLoginTypesException": "O servidor soporta as seguintes formas de conexión:\n{serverVersions}\nPero esta app só soporta:\n{supportedVersions}",
+  "@badServerLoginTypesException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "badServerVersionsException": "O servidor soporta as seguintes características:\n{serverVersions}\nPero esta app só soporta {supportedVersions}",
+  "@badServerVersionsException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
   }
 }
