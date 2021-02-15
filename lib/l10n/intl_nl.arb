@@ -307,7 +307,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "toggleMuted": "Dempen wijzigen",
+  "toggleMuted": "Dempen in- of uitschakelen",
   "@toggleMuted": {
     "type": "text",
     "placeholders": {}
@@ -627,7 +627,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "discoverGroups": "Ontdek kamers",
+  "discoverGroups": "Ontdek groepen",
   "@discoverGroups": {
     "type": "text",
     "placeholders": {}
@@ -1206,7 +1206,7 @@
       "groupName": {}
     }
   },
-  "inviteContact": "Nodig contact uit",
+  "inviteContact": "Contact uitnodigen",
   "@inviteContact": {
     "type": "text",
     "placeholders": {}
@@ -1964,7 +1964,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "activatedEndToEndEncryption": "{username} heeft end-to-end encryptie geactiveerd",
+  "activatedEndToEndEncryption": "{username} heeft end-to-end-versleuteling geactiveerd",
   "@activatedEndToEndEncryption": {
     "type": "text",
     "placeholders": {
