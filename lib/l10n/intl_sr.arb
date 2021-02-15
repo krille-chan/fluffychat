@@ -2119,5 +2119,101 @@
   "@noPublicRoomsFound": {
     "type": "text",
     "placeholders": {}
+  },
+  "wipeChatBackup": "Да обришем резервну копију како би направио нови сигурносни кључ?",
+  "@wipeChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fontSize": "Величина фонта",
+  "@fontSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clearText": "Обриши текст",
+  "@clearText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userUnknownVerification": "Корисник има непознато стање верификованости",
+  "@userUnknownVerification": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userNotVerified": "Корисник није верификован",
+  "@userNotVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userVerified": "Корисник је верификован",
+  "@userVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPlay": "Пуштање",
+  "@audioPlayerPlay": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPause": "Пауза",
+  "@audioPlayerPause": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackupDescription": "Ваша резервна копија ћаскања је обезбеђена кључем. Немојте да га изгубите.",
+  "@chatBackupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterSecurityKey": "Унесите свој сигурносни кључ",
+  "@pleaseEnterSecurityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transferFromAnotherDevice": "Пренос са другог уређаја",
+  "@transferFromAnotherDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "everythingReady": "Све је спремно!",
+  "@everythingReady": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKeyLost": "Изгубљен сигурносни кључ?",
+  "@securityKeyLost": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackup": "Копија ћаскања",
+  "@chatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copyToClipboard": "Копира у клипборд",
+  "@copyToClipboard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKey": "Сигурносни кључ",
+  "@securityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "badServerLoginTypesException": "Домаћи сервер подржава начине пријаве:\n{serverVersions}\nали ова апликација подржава само:\n{supportedVersions}",
+  "@badServerLoginTypesException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "badServerVersionsException": "Домаћи сервер подржава верзије:\n{serverVersions}\nали ова апликација подржава само {supportedVersions}",
+  "@badServerVersionsException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
   }
 }
