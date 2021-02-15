@@ -1999,5 +1999,200 @@
     "placeholders": {
       "homeserver": {}
     }
+  },
+  "clearText": "Forigi tekston",
+  "@clearText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userUnknownVerification": "Uzanto havas nekonatan staton de kontrolo",
+  "@userUnknownVerification": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wipeChatBackup": "Ĉu forviŝi la savkopion de via babilo por krei novan sekurecan ŝlosilon?",
+  "@wipeChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fontSize": "Grandeco de tiparo",
+  "@fontSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userNotVerified": "Uzanto ne kontroliĝis",
+  "@userNotVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userVerified": "Uzanto kontroliĝis",
+  "@userVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPlay": "Ludi",
+  "@audioPlayerPlay": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPause": "Paŭzigi",
+  "@audioPlayerPause": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reportMessage": "Raporti mesaĝon",
+  "@reportMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contentHasBeenReported": "La enhavo raportiĝis al la administrantoj de la servilo",
+  "@contentHasBeenReported": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reason": "Kialo",
+  "@reason": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whyDoYouWantToReportThis": "Kial vi volas tion ĉi raporti?",
+  "@whyDoYouWantToReportThis": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inoffensive": "Neofenda",
+  "@inoffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offensive": "Ofenda",
+  "@offensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "extremeOffensive": "Tre ofenda",
+  "@extremeOffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "howOffensiveIsThisContent": "Kiel ofenda estas ĉi tiu enhavo?",
+  "@howOffensiveIsThisContent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "search": "Serĉi",
+  "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discover": "Trovi",
+  "@discover": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "all": "Ĉio",
+  "@all": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contacts": "Kontaktoj",
+  "@contacts": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groups": "Grupoj",
+  "@groups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "messages": "Mesaĝoj",
+  "@messages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "status": "Stato",
+  "@status": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignore": "Malatenti",
+  "@ignore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewContact": "Aldoni novan kontakton",
+  "@addNewContact": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newChat": "Nova babilo",
+  "@newChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noStatusesFound": "Neniuj statoj troviĝis ankoraŭ.",
+  "@noStatusesFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackupDescription": "Via savkopio de babilo estas sekurigita per sekureca ŝlosilo. Bonvolu certigi, ke vi ne perdos ĝin.",
+  "@chatBackupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterSecurityKey": "Bonvolu enigi vian sekurecan ŝlosilon",
+  "@pleaseEnterSecurityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transferFromAnotherDevice": "Transporti de alia aparato",
+  "@transferFromAnotherDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "everythingReady": "Ĉio pretas!",
+  "@everythingReady": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKeyLost": "Ĉu vi perdis sekurecan ŝlosilon?",
+  "@securityKeyLost": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackup": "Savkopiado de babilo",
+  "@chatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copyToClipboard": "Kopii al tondujo",
+  "@copyToClipboard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKey": "Sekureca ŝlosilo",
+  "@securityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseFollowInstructionsOnWeb": "Bonvolu sekvi la instrukciojn de la retejo kaj tuŝetu al «Sekva».",
+  "@pleaseFollowInstructionsOnWeb": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "next": "Sekva",
+  "@next": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSureYouWantToLogout": "Ĉu vi certe volas adiaŭi?",
+  "@areYouSureYouWantToLogout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPublicRoomsFound": "Neniuj publikaj ĉambroj troviĝis…",
+  "@noPublicRoomsFound": {
+    "type": "text",
+    "placeholders": {}
   }
 }
