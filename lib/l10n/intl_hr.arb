@@ -189,7 +189,7 @@
       "username": {}
     }
   },
-  "changedTheDisplaynameTo": "{username} je promijenio/la prikazano ime u: {displayname}",
+  "changedTheDisplaynameTo": "{username} je promijenio/la prikazano ime u: „{displayname}”",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -601,7 +601,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enterYourHomeserver": "Upiši svog domaćeg poslužitelja",
+  "enterYourHomeserver": "Upiši svoj domaći poslužitelj",
   "@enterYourHomeserver": {
     "type": "text",
     "placeholders": {}
@@ -1231,7 +1231,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sendBugReports": "Dozvoli slanje izvještaja o greškama sa sentry.io",
+  "sendBugReports": "Dozvoli slanje izvještaja o greškama pomoću sentry.io",
   "@sendBugReports": {
     "type": "text",
     "placeholders": {}
@@ -1618,17 +1618,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerAcceptRequest": "Čekanje na partnera, da prihvati zahtjeva …",
+  "waitingPartnerAcceptRequest": "Čeka se na sugovornika da prihvati zahtjev …",
   "@waitingPartnerAcceptRequest": {
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerEmoji": "Čekanje na partnera, da prihvati emoji …",
+  "waitingPartnerEmoji": "Čeka se na sugovornika da prihvati emoji …",
   "@waitingPartnerEmoji": {
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerNumbers": "Čeka se na partnera da prihvati brojeve …",
+  "waitingPartnerNumbers": "Čeka se na sugovornika da prihvati brojeve …",
   "@waitingPartnerNumbers": {
     "type": "text",
     "placeholders": {}
@@ -2022,7 +2022,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "whyDoYouWantToReportThis": "Zašto ovo želiš prijaviti?",
+  "whyDoYouWantToReportThis": "Zašto želiš ovo prijaviti?",
   "@whyDoYouWantToReportThis": {
     "type": "text",
     "placeholders": {}
@@ -2119,6 +2119,102 @@
   },
   "noPublicRoomsFound": "Nema javnih soba …",
   "@noPublicRoomsFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterSecurityKey": "Upiši svoj sigurnosni ključ",
+  "@pleaseEnterSecurityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transferFromAnotherDevice": "Prenesi s jednog drugog uređaja",
+  "@transferFromAnotherDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "everythingReady": "Sve je spremno!",
+  "@everythingReady": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKeyLost": "Izgubio/la si sigurnosni ključ?",
+  "@securityKeyLost": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copyToClipboard": "Kopiraj u međuspremnik",
+  "@copyToClipboard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKey": "Sigurnosni ključ",
+  "@securityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "badServerLoginTypesException": "Domaći poslužitelj podržava vrste prijave:\n{serverVersions}\nMeđutim ovaj program podržava samo:\n{supportedVersions}",
+  "@badServerLoginTypesException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "badServerVersionsException": "Domaći poslužitelj podržava verzije specifikacije:\n{serverVersions}\nMeđutim ovaj program podržava samo {supportedVersions}",
+  "@badServerVersionsException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "chatBackupDescription": "Sigurnosna kopija chata osigurana je sigurnosnim ključem. Pazi da ga ne izgubiš.",
+  "@chatBackupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackup": "Sigurnosna kopija chata",
+  "@chatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clearText": "Ukloni tekst",
+  "@clearText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userUnknownVerification": "Korisnik ima nepoznato stanje provjere",
+  "@userUnknownVerification": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wipeChatBackup": "Izbrisati sigurnosnu kopiju chata za stvaranje novog sigurnosnog ključa?",
+  "@wipeChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fontSize": "Veličina fonta",
+  "@fontSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userNotVerified": "Korisnik nije potvrđen",
+  "@userNotVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userVerified": "Korisnik je potvrđen",
+  "@userVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPlay": "Pokreni",
+  "@audioPlayerPlay": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPause": "Zaustavi",
+  "@audioPlayerPause": {
     "type": "text",
     "placeholders": {}
   }
