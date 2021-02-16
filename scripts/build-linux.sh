@@ -1,6 +1,5 @@
 #!/bin/sh -ve
-flutter channel master
-flutter upgrade
+flutter version 1.26.0-12.0.pre
 flutter config --enable-linux-desktop
 flutter clean
 flutter pub get
