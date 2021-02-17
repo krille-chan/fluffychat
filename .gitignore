@@ -41,7 +41,7 @@ prime
 lib/generated_plugin_registrant.dart
 docs/build/
 docs/.jekyll-cache/
-
+docs/_site/
 
 # Exceptions to above rules.
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
