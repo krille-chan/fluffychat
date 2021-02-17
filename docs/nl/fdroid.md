@@ -1,13 +1,13 @@
 ---
 layout: default
 title: F-Droid Repository
-lang: en
+lang: nl
 ---
 # F-Droid Repository
 
-## Add Repository to F-Droid
+## Voeg Repository toe aan F-Droid
 
-Easiest way to add the Repository is to either scan the QR-Code or if you are on your phone directly click it.
+De eenvoudigste manier om de Repository toe te voegen is door de QR-Code te scannen of als je op je telefoon bent er direct op te klikken.
 
 {::nomarkdown}
 <a href="fdroidrepos://fdroid.fluffychat.im/?fingerprint=8E2637AEF6697CC6DD486AF044A6EE45B1A742AE3EF56566E748CDE8BC65C1FB" >
@@ -16,27 +16,27 @@ Easiest way to add the Repository is to either scan the QR-Code or if you are on
 {:/}
 
 
-### If the QR-Code doesn't work:
+### Als de QR-Code niet werkt:
 
-First check if you have f-droid installed. If not you can get it from: [https://f-droid.org/](https://f-droid.org/).
-After you made sure you installed it and you didn't have it installed before you can try again the QR-Code.
-If this still isn't working follow the next steps:
+Controleer eerst of je F-Droid hebt geïnstalleerd. Zo niet, dan kan je hem krijgen via: [https://f-droid.org/](https://f-droid.org/).
+Nadat je zeker bent dat je het geïnstalleerd hebt en je het nog niet eerder geïnstalleerd had kan je de QR-Code opnieuw proberen.
+Als dit nog steeds niet werkt volg dan de volgende stappen:
 
-1. Open the f-droid App
-2. Go to the `Settings` Tab in the Bottom bar
-3. Click the `Repositories` Action
-4. Click on the plus sign at the top.
-5. Fill in `https://fdroid.fluffychat.im` into the top field and `8E2637AEF6697CC6DD486AF044A6EE45B1A742AE3EF56566E748CDE8BC65C1FB` in the bottom field.
+1. Open de F-Droid App
+2. Ga naar de `Settings` Tab in the onderste balk
+3. Klik op `Repositories` Actie
+4. Klik op het plusje bovenaan
+5. Vul `https://fdroid.fluffychat.im` in in het bovenste veld en `8E2637AEF6697CC6DD486AF044A6EE45B1A742AE3EF56566E748CDE8BC65C1FB` in het onderste veld.
 
-## What is the fingerprint?
+## Wat is de vingerafdruk?
 
-The fingerprint of the Repository is: `8E2637AEF6697CC6DD486AF044A6EE45B1A742AE3EF56566E748CDE8BC65C1FB`
+De vingerafdruk van de Repository is: `8E2637AEF6697CC6DD486AF044A6EE45B1A742AE3EF56566E748CDE8BC65C1FB`
 
 # Nightly Repository
 
-## Add Repository to F-Droid
+## Voeg Repository toe aan F-Droid
 
-Easiest way to add the Repository is to either scan the QR-Code or if you are on your phone directly click it.
+De eenvoudigste manier om de Repository toe te voegen is door de QR-Code te scannen of als je op je telefoon bent er direct op te klikken.
 
 {::nomarkdown}
 <a href="fdroidrepos://nightly.fdroid.fluffychat.im/?fingerprint=21A469657300576478B623DF99D8EB889A80BCD939ACA60A4074741BEAEC397D" >
@@ -45,18 +45,18 @@ Easiest way to add the Repository is to either scan the QR-Code or if you are on
 {:/}
 
 
-### If the QR-Code doesn't work:
+### Als de QR-Code niet werkt:
 
-First check if you have f-droid installed. If not you can get it from: [https://f-droid.org/](https://f-droid.org/).
-After you made sure you installed it and you didn't have it installed before you can try again the QR-Code.
-If this still isn't working follow the next steps:
+Controleer eerst of je F-Droid hebt geïnstalleerd. Zo niet, dan kan je hem krijgen via: [https://f-droid.org/](https://f-droid.org/).
+Nadat je zeker bent dat je het geïnstalleerd hebt en je het nog niet eerder geïnstalleerd had kan je de QR-Code opnieuw proberen.
+Als dit nog steeds niet werkt volg dan de volgende stappen:
 
-1. Open the f-droid App
-2. Go to the `Settings` Tab in the Bottom bar
-3. Click the `Repositories` Action
-4. Click on the plus sign at the top.
-5. Fill in `https://nightly.fdroid.fluffychat.im` into the top field and `21A469657300576478B623DF99D8EB889A80BCD939ACA60A4074741BEAEC397D` in the bottom field.
+1. Open de F-Droid App
+2. Ga naar de `Settings` Tab in the onderste balk
+3. Klik op `Repositories` Actie
+4. Klik op het plusje bovenaan
+5. Vul `https://nightly.fdroid.fluffychat.im` in in het bovenste veld en `21A469657300576478B623DF99D8EB889A80BCD939ACA60A4074741BEAEC397D` in het onderste veld.
 
-## What is the fingerprint?
+## Wat is de vingerafdruk?
 
-The fingerprint of the Repository is: `21A469657300576478B623DF99D8EB889A80BCD939ACA60A4074741BEAEC397D`
+De vingerafdruk van de Repository is: `21A469657300576478B623DF99D8EB889A80BCD939ACA60A4074741BEAEC397D`
