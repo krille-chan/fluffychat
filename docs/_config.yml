@@ -15,7 +15,7 @@ gitlab_username:  christianpauly
 
 # Build settings
 markdown: kramdown
-languages: [ "en", "de", "es", "nl", "ru", "tr" ]
+languages: [ "en", "de", "es", "hr", "nl", "ru", "tr" ]
 exclude_from_localizations: ["assets"]
 exclude: [ "README.md", "LICENSE"]
 assets: "/assets"

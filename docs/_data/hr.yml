@@ -1,0 +1,39 @@
+links:
+    faq: ČPP
+    community: Zajednica
+    gitlab: GitLab
+    openstore: OpenStore
+index:
+    title: Otvoren. Nekomercijalan. Simpatičan ♥
+    subtitle: Razgovaraj s prijateljima na Ubuntu Touch.
+    open: Otvoren
+    openDesc: Program otvorenog koda. Svatko može doprinijeti razvoju programa.
+    nonprofit: Nekomercijalan
+    nonprofitDesc: FluffyChat je stvoren za zabavu, ne za zaradu.
+    cute: Simpatičan ♥
+    cuteDesc: Simpatičan dizajn s raznim postavkama tema, uključujući tamnu temu.
+    chats: Privatni i grupni razgovori
+    chatsDesc: Neograničen broj grupa i privatni razgovori.
+    easy: Jednostavan
+    easyDesc: FluffyChat pruža maksimalno pojednostavljeno sučelje.
+    free: Slobodan
+    freeDesc: Svatko ga smije koristiti i ne sadrži oglase.
+    connective: Poveziv
+    connectiveDesc: Pozovi prijatelje u FluffyChat.
+    decentralized: Decentraliziran
+    decentralizedDesc: Ne postoji određeni „FluffyChat poslužitelj” koji se mora koristiti. Koristi poslužitelj kojem vjeruješ ili vlastiti poslužitelj.
+    compatible: Kompatibilan
+    compatibleDesc: Kompatibilan s <a href="https://matrix.org/docs/projects/client/element-android.html" target="new">Element</a>, <a href="https://matrix.org/docs/projects/client/fractal.html" target="new">Fractal</a>, <a href="https://matrix.org/docs/projects/client/nheko.html" target="new">Nheko</a> i svim <a href="https://matrix.org/docs/projects/try-matrix-now.html" target="new">matrix</a> programima za slanje poruka.
+    dreamTitle: Osnovna ideja FluffyChata
+    dreamText: Zamisli svijet u kojem svatko može odabrati program za slanje poruka prijateljima koji mu se najviše sviđa.<br>
+         Svijet u kojem tvrtke ne prate fotke koje šalješ prijateljima i ljubavnicima.<br>
+         Svijet u kojem se programi stvaraju za zabavu, a ne za zaradu. ♥
+    license: GNU opća javna licenca
+    changelog: Dnevnik promjena
+    translations: Pomogni prevesti
+    created: Autor: Christian Pauly
+    privacypolicy: Politika privatnosti
+    contributors: Doprinositelji
+    specialthanksto: Zahvale
+    ubports: UB priključci
+    support: Hosting usluga na poslužitelju i profesionalna podrška

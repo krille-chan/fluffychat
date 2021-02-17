@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+    var languages = new Array();
+    
+    languages.push("en");
+    
+    languages.push("de");
+    
+    languages.push("es");
+    
+    languages.push("hr");
+    
+    languages.push("nl");
+    
+    languages.push("ru");
+    
+    </script>
+    <!-- Basic Page Needs
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta charset="utf-8">
+<title>FluffyChat – Javna web-stranica</title>
+<meta name="description" content="">
+<meta name="author" content="">
+
+<!-- Mobile Specific Metas
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- FONT
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="/assets/css/font.css" rel="stylesheet" type="text/css">
+
+<!-- CSS
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link rel="stylesheet" href="/assets/css/normalize.css">
+<link rel="stylesheet" href="/assets/css/skeleton.css">
+<link rel="stylesheet" href="/assets/css/animate.min.css">
+<link rel="stylesheet" href="/assets/css/custom.css">
+
+<!-- JS
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script src="/assets/js/nav.js"></script>
+<script src="/assets/js/jquery-3.2.1.min.js"></script>
+
+<!-- Favicon
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link rel="icon" type="image/png" href="/assets/images/favicon.png">
+
+</head>
+<body>
+    <div class="container" id="headerContainer">
+    <div class="header">
+        <div class="left_side">
+            <a class="header_button" href="index.html"><img src="/assets/images/favicon.png"></a>
+        </div>
+        <div class="right_side">
+            <nav id="header_main_nav">
+                <a href="https://gitlab.com/famedly/fluffychat/issues" target="new">ČPP</a>
+                <a href="https://matrix.to/#/%23fluffychat:matrix.org"  target="new" >Zajednica</a>
+                <a href="https://gitlab.com/famedly/fluffychat"  target="new" >GitLab</a>
+                <a href="https://liberapay.com/KrilleChritzelius/"  target="new" >Liberapay</a>
+                <a class="header_button" rel="me" href="https://metalhead.club/@krille" target="new"><img src="/assets/images/mastodon.png"></a>
+            </nav>
+            <a id="header_toggle_mobile" class="header_button"><img src="/assets/images/menu.svg"></a>
+        </div>
+    </div>
+</div>
+
+
+    <div id="content">
+        <img src="/assets/images/banner.png" id="banner" />
+
+        <div class="container">
+            <div class="row">
+    <div class="one-half column paddingColumn" id="titleColumn">
+        <h3>Otvoren. Nekomercijalan. Simpatičan ♥</h3>
+        <b>Android:</b><br />
+        <a href="https://play.google.com/store/apps/details?id=chat.fluffy.fluffychat" target="new"><img
+                alt="Get it from PlayStore" style="height: 50px;" class="animated bounceIn"
+                src="/assets/images/google-play-badge.png" /></a>
+        <a href="/en/fdroid.html"><img alt="Get it from F-Droid" style="height: 50px;"
+                class="animated bounceIn" src="/assets/images/fdroid_button.png" /></a><br />
+        <b>iPhone:</b><br />
+        <a href="https://testflight.apple.com/join/hL6Tyyaj" target="new"><img alt="Get it from the AppStore"
+                style="height: 50px;" class="animated bounceIn"
+                src="/assets/images/appstore-badge.png" /></a><br />
+        <b>Ubuntu Touch:</b><br />
+        <a href="https://open-store.io/app/fluffychat.christianpauly" target="new"><img
+                style="height: 50px;width: auto;" class="buttonImage animated bounceIn"
+                src="/assets/images/downloadButton.jpg" /></a><br />
+        <b>Linux:</b><br />
+        <a href="https://flathub.org/apps/details/im.fluffychat.Fluffychat" target="new"><img alt="Get it from FlatHub"
+                style="height: 50px;" src="https://flathub.org/assets/badges/flathub-badge-en.png" /></a>
+        <a href="https://snapcraft.io/fluffychat" target="new"><img alt="Get it from the Snap Store"
+                style="height: 50px;"
+                src="https://snapcraft.io/static/images/badges/en/snap-store-black.svg" /></a><br />
+        <b>Preglednik:</b><br />
+        <a href="https://web.fluffychat.im" id="browserbutton" target="new"><img alt="Open in "
+                style="height: 42px; padding: 5px;" class="animated bounceIn"
+                src="/assets/images/browser.png" />
+            <p>Otvori u pregledniku</p>
+        </a><br />
+    </div>
+    <div class="one-half column gridItem">
+        <img id="screenshot" src="/assets/images/product-mini.png"
+            class="article_image animated bounceInRight" />
+
+    </div>
+</div>
+
+<div class="spacer"> </div>
+
+<div class="row">
+    <div class="one-third column gridItem">
+        <img src="/assets/images/open.svg" class="article_image" />
+        <p><b>Otvoren</b><br>
+            Program otvorenog koda. Svatko može doprinijeti razvoju programa.</p>
+    </div>
+    <div class="one-third column gridItem">
+        <img src="/assets/images/nonprofit.svg" class="article_image" />
+        <p>
+            <b>Nekomercijalan</b><br>
+            FluffyChat je stvoren za zabavu, ne za zaradu.
+        </p>
+    </div>
+    <div class="one-third column gridItem">
+        <img src="/assets/images/cute.svg" class="article_image" />
+        <p><b>Simpatičan ♥</b><br>
+            Simpatičan dizajn s raznim postavkama tema, uključujući tamnu temu.
+    </div>
+</div>
+<div class="row">
+    <div class="one-third column gridItem">
+        <img src="/assets/images/chats.svg" class="article_image" />
+        <p><b>Privatni i grupni razgovori</b><br>
+            Neograničen broj grupa i privatni razgovori.
+        </p>
+    </div>
+    <div class="one-third column gridItem">
+        <img src="/assets/images/easy.svg" class="article_image" />
+        <p><b>Jednostavan</b><br>
+            FluffyChat pruža maksimalno pojednostavljeno sučelje.
+        </p>
+    </div>
+    <div class="one-third column gridItem">
+        <img src="/assets/images/free.svg" class="article_image" />
+        <p><b>Slobodan</b><br>
+            Svatko ga smije koristiti i ne sadrži oglase.
+        </p>
+    </div>
+</div>
+<div class="row">
+    <div class="one-third column gridItem">
+        <img src="/assets/images/connective.svg" class="article_image" />
+        <p><b>Poveziv</b><br>
+            Pozovi prijatelje u FluffyChat.
+        </p>
+    </div>
+    <div class="one-third column gridItem">
+        <img src="/assets/images/decentralized.svg" class="article_image" />
+        <p><b>Decentraliziran</b><br>
+            Ne postoji jedan „FluffyChat poslužitelj” koji se mora koristiti. Koristi poslužitelj kojem vjeruješ ili vlastiti poslužitelj.
+        </p>
+    </div>
+    <div class="one-third column gridItem">
+        <img src="/assets/images/compatible.svg" class="article_image" />
+        <p><b>Kompatibilan</b><br>
+            Kompatibilan s <a href="https://matrix.org/docs/projects/client/element-android.html" target="new">Element</a>, <a href="https://matrix.org/docs/projects/client/fractal.html" target="new">Fractal</a>, <a href="https://matrix.org/docs/projects/client/nheko.html" target="new">Nheko</a> i svim <a href="https://matrix.org/docs/projects/try-matrix-now.html" target="new">matrix</a> programima za slanje poruka.</p>
+    </div>
+</div>
+
+<div class="spacer"> </div>
+
+<div class="row">
+    <div class="one-third column">
+        <img class="article_image" src="/assets/images/if_50-_couple-lesbian-love-head-to-head-1_3011618.png" />
+    </div>
+    <div class="two-thirds column paddingColumn">
+        <h3>Osnovna ideja FluffyChata</h3>
+        <p>Zamisli svijet u kojem svatko može odabrati program za slanje poruka prijateljima koji mu se najviše sviđa.<br>Svijet u kojem nema tvrtki koje prate fotke koje šalješ prijateljima i ljubavnicima.<br>Svijet u kojem se programi stvaraju za zabavu, a ne za zaradu. ♥
+        </p>
+    </div>
+</div>
+
+        </div>
+    </div>
+
+    <div class="spacer"> </div>
+
+
+<div class="centered">
+    <script src="https://liberapay.com/KrilleChritzelius/widgets/button.js"></script>
+    <noscript><a href="https://liberapay.com/KrilleChritzelius/donate"><img alt="Donate using Liberapay" src="https://liberapay.com//assets/widgets/donate.svg"></a></noscript>
+</div>
+
+<div class="spacer"> </div>
+
+<div class="container">
+
+<div id="footer">
+    Dostupni jezici: (
+    
+    
+    <a href="/en">en</a>
+    
+    
+    
+    <a href="/de">de</a>
+    
+    
+    
+    <a href="/es">es</a>
+    
+    
+    
+    <a href="/hr">hr</a>
+    
+    
+    
+    <a href="/nl">nl</a>
+    
+    
+    
+    <a href="/ru">ru</a>
+    
+    
+    )
+    <br/>
+    <a href="https://gitlab.com/famedly/flutter/-/blob/main/LICENSE" target="new">GNU opća javna licenca</a> -
+    <a href="/en/changelog.md" target="new">Dnevnik promjena</a> -
+    <a href="https://hosted.weblate.org/projects/fluffychat/" target="new">Pomogni prevesti</a> -
+    <a href="https://christianpauly.gitlab.io/" target="new">Autor: Christian Pauly</a> -
+    <a href="/en/privacy.html">Politika privatnosti</a> -
+    <a href="https://gitlab.com/famedly/flutter/-/graphs/main" target="new">Doprinositelji</a> -
+    <a href="https://gitlab.com/famedly/flutter#special-thanks-to" target="new">Zahvale</a>
+</div>
+
+</div>
+
+</body>
+</html>
