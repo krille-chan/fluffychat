@@ -2132,7 +2132,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wipeChatBackup": "Chat-Backup löschen, um neuen Sicherheitsschlüssel zu erstellen?",
+  "wipeChatBackup": "Chat-Sicherung löschen, um neuen Sicherheitsschlüssel zu erstellen?",
   "@wipeChatBackup": {
     "type": "text",
     "placeholders": {}
@@ -2162,7 +2162,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatBackupDescription": "Dein Chat-Backup ist mit einem Sicherheitsschlüssel gesichert. Bitte stelle sicher, dass du diesen nicht verlierst.",
+  "chatBackupDescription": "Deine Chat-Sicherung ist mit einem Sicherheitsschlüssel gesichert. Bitte stelle sicher, dass du diesen nicht verlierst.",
   "@chatBackupDescription": {
     "type": "text",
     "placeholders": {}
@@ -2187,7 +2187,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatBackup": "Chat-Backup",
+  "chatBackup": "Chat-Sicherung",
   "@chatBackup": {
     "type": "text",
     "placeholders": {}
