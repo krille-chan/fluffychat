@@ -2119,5 +2119,101 @@
   "@noPublicRoomsFound": {
     "type": "text",
     "placeholders": {}
+  },
+  "clearText": "Cancella il testo",
+  "@clearText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userUnknownVerification": "L'utente ha uno stato di verifica sconosciuto",
+  "@userUnknownVerification": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wipeChatBackup": "Cancellare il backup della discussione per creare una nuova chiave di sicurezza?",
+  "@wipeChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fontSize": "Dimensione carattere",
+  "@fontSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userNotVerified": "L'utente non è verificato",
+  "@userNotVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userVerified": "L'utente è verificato",
+  "@userVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPlay": "Riproduci",
+  "@audioPlayerPlay": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPause": "Pausa",
+  "@audioPlayerPause": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackupDescription": "Il backup della discussione è protetto da una chiave di sicurezza. Assicurati di non perderla.",
+  "@chatBackupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterSecurityKey": "Inserisci la tua chiave di sicurezza",
+  "@pleaseEnterSecurityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transferFromAnotherDevice": "Trasferimento da un altro dispositivo",
+  "@transferFromAnotherDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "everythingReady": "Tutto pronto!",
+  "@everythingReady": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKeyLost": "Chiave di sicurezza persa?",
+  "@securityKeyLost": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackup": "Backup delle discussioni",
+  "@chatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copyToClipboard": "Copia negli appunti",
+  "@copyToClipboard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKey": "Chiave di sicurezza",
+  "@securityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "badServerLoginTypesException": "L'homeserver supporta i tipi di accesso:\n{serverVersions}\nMa questa applicazione supporta solo:\n{supportedVersions}",
+  "@badServerLoginTypesException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "badServerVersionsException": "L'homeserver supporta le versioni Spec:\n{serverVersions}\nMa questa applicazione supporta solo {supportedVersions}",
+  "@badServerVersionsException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
   }
 }
