@@ -1910,5 +1910,190 @@
       "serverVersions": {},
       "supportedVersions": {}
     }
+  },
+  "editChatPermissions": "编辑聊天权限",
+  "@editChatPermissions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whoCanPerformWhichAction": "谁可以执行哪些操作",
+  "@whoCanPerformWhichAction": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "participant": "参与者",
+  "@participant": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "configureChat": "配置聊天",
+  "@configureChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendMessages": "发送消息",
+  "@sendMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "defaultPermissionLevel": "默认权限级别",
+  "@defaultPermissionLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAvatar": "编辑房间头像",
+  "@editRoomAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "replaceRoomWithNewerVersion": "用较新的版本替换房间",
+  "@replaceRoomWithNewerVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEncryption": "启用加密",
+  "@enableEncryption": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editBlockedServers": "编辑被阻止的服务器",
+  "@editBlockedServers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noDescription": "没有说明",
+  "@noDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicKey": "公钥",
+  "@publicKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseClickOnLink": "请点击电子邮件中的链接，然后继续。",
+  "@pleaseClickOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordForgotten": "忘记密码",
+  "@passwordForgotten": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordRecovery": "密码恢复",
+  "@passwordRecovery": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unavailable": "不可用",
+  "@unavailable": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offline": "离线",
+  "@offline": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "online": "在线",
+  "@online": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPasswordRecoveryDescription": "您尚未添加恢复密码的方法。",
+  "@noPasswordRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "mention": "提到",
+  "@mention": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iHaveClickedOnLink": "我已经点击了链接",
+  "@iHaveClickedOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideUnknownEvents": "隐藏未知事件",
+  "@hideUnknownEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideRedactedEvents": "隐藏密文事件",
+  "@hideRedactedEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encrypted": "加密的",
+  "@encrypted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "edit": "编辑",
+  "@edit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationsEnabledForThisAccount": "已为此帐户启用通知",
+  "@notificationsEnabledForThisAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notifications": "通知",
+  "@notifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pushRules": "推送规则",
+  "@pushRules": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "botMessages": "机器人消息",
+  "@botMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "memberChanges": "成员变更",
+  "@memberChanges": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteForMe": "来自我的邀请",
+  "@inviteForMe": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsUserName": "包含用户名",
+  "@containsUserName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsDisplayName": "包含显示名称",
+  "@containsDisplayName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "directChats": "直接聊天",
+  "@directChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterAnEmailAddress": "输入一个电子邮件地址",
+  "@enterAnEmailAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceId": "设备 ID",
+  "@deviceId": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changePassword": "更改密码",
+  "@changePassword": {
+    "type": "text",
+    "placeholders": {}
   }
 }
