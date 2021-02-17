@@ -149,7 +149,7 @@
       "homeserver": {}
     }
   },
-  "cachedKeys": "成功保存了密钥！",
+  "cachedKeys": "密钥已保存",
   "@cachedKeys": {
     "type": "text",
     "placeholders": {}
@@ -414,12 +414,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "crossSigningDisabled": "Cross-Signing未启用",
+  "crossSigningDisabled": "社会化登录未启用",
   "@crossSigningDisabled": {
     "type": "text",
     "placeholders": {}
   },
-  "crossSigningEnabled": "Cross-Signing已启用",
+  "crossSigningEnabled": "社会化登录已启用",
   "@crossSigningEnabled": {
     "type": "text",
     "placeholders": {}
@@ -1722,5 +1722,193 @@
   "@changeDeviceName": {
     "type": "text",
     "placeholders": {}
+  },
+  "discoverGroups": "发现群组",
+  "@discoverGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reportMessage": "举报信息",
+  "@reportMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "redactMessage": "重新编辑信息",
+  "@redactMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contentHasBeenReported": "此内容已被报告至服务器管理员处",
+  "@contentHasBeenReported": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reason": "原因",
+  "@reason": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whyDoYouWantToReportThis": "你举报的理由是什么？",
+  "@whyDoYouWantToReportThis": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inoffensive": "不令人反感",
+  "@inoffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offensive": "令人反感",
+  "@offensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "extremeOffensive": "极端令人反感",
+  "@extremeOffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "howOffensiveIsThisContent": "这些内容有多让人反感？",
+  "@howOffensiveIsThisContent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "search": "搜索",
+  "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discover": "探索",
+  "@discover": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "all": "全部",
+  "@all": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contacts": "联系人",
+  "@contacts": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groups": "群组",
+  "@groups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "messages": "消息",
+  "@messages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "status": "状态",
+  "@status": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignore": "忽略",
+  "@ignore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewContact": "添加新的联系人",
+  "@addNewContact": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newChat": "新的聊天",
+  "@newChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noStatusesFound": "目前还没有发现任何状态。",
+  "@noStatusesFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackupDescription": "您的聊天记录备份已被安全密钥加密。请确保您不会丢失它。",
+  "@chatBackupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterSecurityKey": "请键入您的安全密钥",
+  "@pleaseEnterSecurityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transferFromAnotherDevice": "从其他设备传输",
+  "@transferFromAnotherDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "everythingReady": "一切就绪！",
+  "@everythingReady": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKeyLost": "丢失安全密钥？",
+  "@securityKeyLost": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackup": "聊天记录备份",
+  "@chatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copyToClipboard": "复制到剪贴板",
+  "@copyToClipboard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKey": "安全密钥",
+  "@securityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "next": "下一个",
+  "@next": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youWillBeConnectedTo": "您将连接到{homeserver}",
+  "@youWillBeConnectedTo": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "pleaseFollowInstructionsOnWeb": "请按照网站上的提示，点击下一步。",
+  "@pleaseFollowInstructionsOnWeb": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSureYouWantToLogout": "你确定要注销吗？",
+  "@areYouSureYouWantToLogout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPublicRoomsFound": "没有找到公共房间...",
+  "@noPublicRoomsFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "badServerLoginTypesException": "服务器支持登录方式：\n{serverVersions}\n但本应用只支持以下登录方式：\n{supportedVersions}",
+  "@badServerLoginTypesException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "badServerVersionsException": "服务器支持系统版本:\n{serverVersions}\n但本应用仅支持{supportedVersions}",
+  "@badServerVersionsException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
   }
 }
