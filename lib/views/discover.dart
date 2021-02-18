@@ -64,6 +64,7 @@ class _DiscoverState extends State<Discover> {
           okLabel: L10n.of(context).joinRoom,
           title: '${room.name} (${room.numJoinedMembers ?? 0})',
           message: room.topic ?? L10n.of(context).noDescription,
+          cancelLabel: L10n.of(context).cancel,
         ) ==
         OkCancelResult.cancel) {
       return;

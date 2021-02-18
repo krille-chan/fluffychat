@@ -29,6 +29,8 @@ class DevicesSettingsState extends State<DevicesSettings> {
     if (await showOkCancelAlertDialog(
           context: context,
           title: L10n.of(context).areYouSure,
+          okLabel: L10n.of(context).yes,
+          cancelLabel: L10n.of(context).cancel,
         ) ==
         OkCancelResult.cancel) return;
     var matrix = Matrix.of(context);

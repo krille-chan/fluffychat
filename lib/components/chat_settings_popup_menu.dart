@@ -69,6 +69,8 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
             var confirmed = await showOkCancelAlertDialog(
               context: context,
               title: L10n.of(context).areYouSure,
+              okLabel: L10n.of(context).ok,
+              cancelLabel: L10n.of(context).cancel,
             );
             if (confirmed == OkCancelResult.ok) {
               final success = await showFutureLoadingDialog(

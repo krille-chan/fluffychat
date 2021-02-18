@@ -46,6 +46,8 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
               context: context,
               title: L10n.of(context).isDeviceKeyCorrect,
               message: key.ed25519Key.beautified,
+              okLabel: L10n.of(context).ok,
+              cancelLabel: L10n.of(context).cancel,
             ) ==
             OkCancelResult.ok) {
           await unblock();

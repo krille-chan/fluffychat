@@ -39,6 +39,7 @@ class _EncryptionButtonState extends State<EncryptionButton> {
               ? L10n.of(context).warningEncryptionInBeta
               : L10n.of(context).needPantalaimonWarning,
           okLabel: L10n.of(context).yes,
+          cancelLabel: L10n.of(context).cancel,
         ) ==
         OkCancelResult.ok) {
       await showFutureLoadingDialog(

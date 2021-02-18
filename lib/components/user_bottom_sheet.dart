@@ -27,9 +27,13 @@ class UserBottomSheet extends StatelessWidget {
   }) : super(key: key);
 
   void participantAction(BuildContext context, String action) async {
-    final Function _askConfirmation = () async =>
-        (await showOkCancelAlertDialog(
-                context: context, title: l10n.areYouSure) ==
+    final Function _askConfirmation =
+        () async => (await showOkCancelAlertDialog(
+              context: context,
+              title: l10n.areYouSure,
+              okLabel: l10n.yes,
+              cancelLabel: l10n.no,
+            ) ==
             OkCancelResult.ok);
     switch (action) {
       case 'mention':

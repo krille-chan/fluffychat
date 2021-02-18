@@ -185,6 +185,8 @@ class _ChatListState extends State<ChatList> {
     final confirmed = await showOkCancelAlertDialog(
           context: context,
           title: L10n.of(context).areYouSure,
+          okLabel: L10n.of(context).yes,
+          cancelLabel: L10n.of(context).cancel,
         ) ==
         OkCancelResult.ok;
     if (!confirmed) return;

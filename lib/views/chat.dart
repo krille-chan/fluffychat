@@ -347,6 +347,7 @@ class _ChatState extends State<Chat> {
           context: context,
           title: L10n.of(context).messageWillBeRemovedWarning,
           okLabel: L10n.of(context).remove,
+          cancelLabel: L10n.of(context).cancel,
         ) ==
         OkCancelResult.ok;
     if (!confirmed) return;

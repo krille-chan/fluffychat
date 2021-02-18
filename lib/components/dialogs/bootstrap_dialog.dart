@@ -151,6 +151,8 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
                     context: context,
                     title: widget.l10n.securityKeyLost,
                     message: widget.l10n.wipeChatBackup,
+                    okLabel: widget.l10n.ok,
+                    cancelLabel: widget.l10n.cancel,
                     isDestructiveAction: true,
                   )) {
                 _createBootstrap(true);

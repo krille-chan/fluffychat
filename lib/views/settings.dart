@@ -44,6 +44,8 @@ class _SettingsState extends State<Settings> {
     if (await showOkCancelAlertDialog(
           context: context,
           title: L10n.of(context).areYouSureYouWantToLogout,
+          okLabel: L10n.of(context).yes,
+          cancelLabel: L10n.of(context).cancel,
         ) ==
         OkCancelResult.cancel) {
       return;
@@ -91,12 +93,18 @@ class _SettingsState extends State<Settings> {
           context: context,
           title: L10n.of(context).warning,
           message: L10n.of(context).deactivateAccountWarning,
+          okLabel: L10n.of(context).ok,
+          cancelLabel: L10n.of(context).cancel,
         ) ==
         OkCancelResult.cancel) {
       return;
     }
     if (await showOkCancelAlertDialog(
-            context: context, title: L10n.of(context).areYouSure) ==
+          context: context,
+          title: L10n.of(context).areYouSure,
+          okLabel: L10n.of(context).yes,
+          cancelLabel: L10n.of(context).cancel,
+        ) ==
         OkCancelResult.cancel) {
       return;
     }
@@ -512,6 +520,8 @@ class _SettingsState extends State<Settings> {
                           title: L10n.of(context).keysCached,
                           message: L10n.of(context).wipeChatBackup,
                           isDestructiveAction: true,
+                          okLabel: L10n.of(context).ok,
+                          cancelLabel: L10n.of(context).cancel,
                         )) {
                       await BootstrapDialog(
                         l10n: L10n.of(context),

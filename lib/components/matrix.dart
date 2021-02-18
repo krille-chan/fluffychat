@@ -321,6 +321,8 @@ class MatrixState extends State<Matrix> {
             context: context,
             title: L10n.of(context).newVerificationRequest,
             message: L10n.of(context).askVerificationRequest(request.userId),
+            okLabel: L10n.of(context).ok,
+            cancelLabel: L10n.of(context).cancel,
           ) ==
           OkCancelResult.ok) {
         request.onUpdate = null;
