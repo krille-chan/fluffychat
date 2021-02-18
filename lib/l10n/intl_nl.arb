@@ -14,7 +14,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changedTheDisplaynameTo": "{username} heeft hun weergavenaam gewijzigd in: '{displayname}'",
+  "changedTheDisplaynameTo": "{username}'s weergavenaam is nu '{displayname}'",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -187,7 +187,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "userAndUserAreTyping": "{username} en {username} zijn aan het typen …",
+  "userAndUserAreTyping": "{username} en {username2} zijn aan het typen …",
   "@userAndUserAreTyping": {
     "type": "text",
     "placeholders": {
@@ -307,7 +307,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "toggleMuted": "Dempen in- of uitschakelen",
+  "toggleMuted": "Meldingen in- of uitschakelen",
   "@toggleMuted": {
     "type": "text",
     "placeholders": {}
@@ -627,7 +627,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "discoverGroups": "Ontdek groepen",
+  "discoverGroups": "Groepen ontdekken",
   "@discoverGroups": {
     "type": "text",
     "placeholders": {}
@@ -670,7 +670,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sendBugReports": "Bugrapporten versturen met sentry.io toestaan",
+  "sendBugReports": "Bugrapporten met sentry.io versturen",
   "@sendBugReports": {
     "type": "text",
     "placeholders": {}
@@ -875,7 +875,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "optionalGroupName": "(Optioneel) Groepsnaam",
+  "optionalGroupName": "Groepsnaam (Optioneel)",
   "@optionalGroupName": {
     "type": "text",
     "placeholders": {}
@@ -997,7 +997,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "muteChat": "Dempen",
+  "muteChat": "Meldingen verbergen",
   "@muteChat": {
     "type": "text",
     "placeholders": {}
@@ -1216,17 +1216,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "ignoreListDescription": "Je kunt personen die je storen negeren. Je kunt geen berichten of groepsuitnodigingen ontvangen van de personen op je persoonlijke negeerlijst.",
+  "ignoreListDescription": "Je kunt personen die je storen negeren. Je kunt geen berichten of groepsuitnodigingen ontvangen van de personen op je negeerlijst.",
   "@ignoreListDescription": {
     "type": "text",
     "placeholders": {}
   },
-  "ignoreUsername": "Negeer gebruikersnaam",
+  "ignoreUsername": "Negeer persoon",
   "@ignoreUsername": {
     "type": "text",
     "placeholders": {}
   },
-  "ignoredUsers": "Genegeerde gebruikers",
+  "ignoredUsers": "Genegeerde personen",
   "@ignoredUsers": {
     "type": "text",
     "placeholders": {}
@@ -1306,7 +1306,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "fromTheInvitation": "Van de uitnodiging",
+  "fromTheInvitation": "Vanaf uitnodiging",
   "@fromTheInvitation": {
     "type": "text",
     "placeholders": {}
@@ -1388,7 +1388,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enableEncryptionWarning": "Je kunt de codering niet meer uitschakelen. Weet je het zeker?",
+  "enableEncryptionWarning": "Je kunt de versleuteling hierna niet meer uitschakelen. Weet je het zeker?",
   "@enableEncryptionWarning": {
     "type": "text",
     "placeholders": {}
@@ -1538,7 +1538,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "deactivateAccountWarning": "Hierdoor wordt je gebruikersaccount gedeactiveerd. Dit kan niet ongedaan gemaakt worden! Weet je het zeker?",
+  "deactivateAccountWarning": "Hierdoor wordt je account gedeactiveerd. Dit kan niet ongedaan gemaakt worden! Weet je het zeker?",
   "@deactivateAccountWarning": {
     "type": "text",
     "placeholders": {}
@@ -1748,7 +1748,7 @@
       "username": {}
     }
   },
-  "changedTheProfileAvatar": "{username} heeft hun avatar gewijzigd",
+  "changedTheProfileAvatar": "{username}'s avatar is gewijzigd",
   "@changedTheProfileAvatar": {
     "type": "text",
     "placeholders": {
@@ -1880,7 +1880,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "avatarHasBeenChanged": "Avatar is veranderd",
+  "avatarHasBeenChanged": "Avatar is gewijzigd",
   "@avatarHasBeenChanged": {
     "type": "text",
     "placeholders": {}
@@ -2113,7 +2113,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterSecurityKey": "Voer uw veiligheidsssleutel in",
+  "pleaseEnterSecurityKey": "Voer je veiligheidsssleutel in",
   "@pleaseEnterSecurityKey": {
     "type": "text",
     "placeholders": {}
@@ -2133,7 +2133,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatBackup": "Chatback-up",
+  "chatBackup": "Berichtenback-up",
   "@chatBackup": {
     "type": "text",
     "placeholders": {}
@@ -2174,7 +2174,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wipeChatBackup": "Uw chatback-up wissen om een nieuwe veiligheidssleutel te maken?",
+  "wipeChatBackup": "Je berichtenback-up wissen om een nieuwe veiligheidssleutel te maken?",
   "@wipeChatBackup": {
     "type": "text",
     "placeholders": {}
@@ -2204,7 +2204,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatBackupDescription": "Uw chatback-up is beveiligd met een veiligheidssleutel. Zorg ervoor dat u deze niet verliest.",
+  "chatBackupDescription": "Je berichtenback-up is beveiligd met een veiligheidssleutel. Zorg ervoor dat je deze niet verliest.",
   "@chatBackupDescription": {
     "type": "text",
     "placeholders": {}
