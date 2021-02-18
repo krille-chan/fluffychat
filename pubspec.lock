@@ -223,7 +223,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "41522e868d7672f2a67b0f2e3bae050435f15f4f"
+      resolved-ref: "82f823f50e8dc96b60a5a1f288bb93bff84b1eb3"
       url: "https://gitlab.com/famedly/famedlysdk.git"
     source: git
     version: "0.0.1"
