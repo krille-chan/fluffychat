@@ -19,13 +19,6 @@ extension ClientPresenceExtension on Client {
               ),
         )
         .toList();
-    contactList.addAll(
-      presences.values
-          .where((p) =>
-              !directChatsMxid.contains(p.senderId) &&
-              (p.presence?.statusMsg?.isNotEmpty ?? false))
-          .toList(),
-    );
 
     contactList.sort((a, b) => a.senderId.compareTo(b.senderId));
     contactList.sort((a, b) => (a.presence.lastActiveAgo?.toDouble() ??
