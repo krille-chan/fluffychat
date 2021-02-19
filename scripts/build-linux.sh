@@ -1,5 +1,5 @@
 #!/bin/sh -ve
-yes | flutter downgrade 1.26.0-12.0.pre
+flutter channel master && flutter upgrade
 flutter config --enable-linux-desktop
 flutter clean
 flutter pub get
