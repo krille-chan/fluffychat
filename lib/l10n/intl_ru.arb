@@ -2217,5 +2217,25 @@
       "serverVersions": {},
       "supportedVersions": {}
     }
+  },
+  "showPassword": "Показать пароль",
+  "@showPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addEmail": "Добавить электронную почту",
+  "@addEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zoomOut": "Отдалить",
+  "@zoomOut": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zoomIn": "Приблизить",
+  "@zoomIn": {
+    "type": "text",
+    "placeholders": {}
   }
 }
