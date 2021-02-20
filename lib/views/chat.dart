@@ -981,7 +981,6 @@ class _ChatState extends State<Chat> {
                 ),
                 Divider(
                   height: 1,
-                  color: Theme.of(context).secondaryHeaderColor,
                   thickness: 1,
                 ),
                 room.canSendDefaultMessages &&
