@@ -2167,5 +2167,75 @@
       "serverVersions": {},
       "supportedVersions": {}
     }
+  },
+  "wipeChatBackup": "Chcete vymazat zálohu chatu a vytvořit nový bezpečnostní klíč?",
+  "@wipeChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fontSize": "Velikost písma",
+  "@fontSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackupDescription": "Záloha chatu je zabezpečena bezpečnostním klíčem. Ujistěte se, že klíč neztratíte.",
+  "@chatBackupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterSecurityKey": "Zadejte svůj bezpečnostní klíč",
+  "@pleaseEnterSecurityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transferFromAnotherDevice": "Přenos z jiného zařízení",
+  "@transferFromAnotherDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "everythingReady": "Vše připraveno!",
+  "@everythingReady": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKeyLost": "Ztratili jste bezpečnostní klíč?",
+  "@securityKeyLost": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackup": "Záloha chatu",
+  "@chatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showPassword": "Zobrazit heslo",
+  "@showPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addEmail": "Přidat e-mail",
+  "@addEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zoomOut": "Oddálit",
+  "@zoomOut": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zoomIn": "Přiblížit",
+  "@zoomIn": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copyToClipboard": "Zkopírovat do schránky",
+  "@copyToClipboard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKey": "Bezpečnostní klíč",
+  "@securityKey": {
+    "type": "text",
+    "placeholders": {}
   }
 }
