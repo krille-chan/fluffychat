@@ -8,6 +8,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'adaptive_flat_button.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import '../../utils/string_color.dart';
+import '../../utils/beautify_string_extension.dart';
 
 class KeyVerificationDialog extends StatefulWidget {
   Future<void> show(BuildContext context) => PlatformInfos.isCupertinoStyle
@@ -168,6 +169,26 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
           ],
           mainAxisSize: MainAxisSize.min,
         );
+        final key = widget.request.client.userDeviceKeys[widget.request.userId]
+            .deviceKeys[widget.request.deviceId];
+        if (key != null) {
+          buttons.add(AdaptiveFlatButton(
+            child: Text(widget.l10n.verifyManual),
+            onPressed: () async {
+              final result = await showOkCancelAlertDialog(
+                context: context,
+                title: widget.l10n.verifyManual,
+                message: key.ed25519Key.beautified,
+              );
+              if (result == OkCancelResult.ok) {
+                await key.setVerified(true);
+              }
+              await widget.request.cancel();
+              Navigator.of(context).pop();
+            },
+          ));
+        }
+
         break;
       case KeyVerificationState.askSas:
         TextSpan compareWidget;

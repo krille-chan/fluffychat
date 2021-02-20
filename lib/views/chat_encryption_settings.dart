@@ -1,13 +1,12 @@
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:famedlysdk/encryption.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/avatar.dart';
 import 'package:fluffychat/components/matrix.dart';
-import 'package:fluffychat/utils/beautify_string_extension.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import '../components/dialogs/key_verification_dialog.dart';
+import '../utils/device_extension.dart';
 
 class ChatEncryptionSettings extends StatefulWidget {
   final String id;
@@ -40,20 +39,6 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
           request: req,
           l10n: L10n.of(context),
         ).show(context);
-        break;
-      case 'verify_manual':
-        if (await showOkCancelAlertDialog(
-              context: context,
-              title: L10n.of(context).isDeviceKeyCorrect,
-              message: key.ed25519Key.beautified,
-              okLabel: L10n.of(context).ok,
-              cancelLabel: L10n.of(context).cancel,
-            ) ==
-            OkCancelResult.ok) {
-          await unblock();
-          await key.setVerified(true);
-          setState(() => null);
-        }
         break;
       case 'verify_user':
         await unblock();
@@ -170,20 +155,11 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
                           var items = <PopupMenuEntry<String>>[];
                           if (deviceKeys[i].blocked ||
                               !deviceKeys[i].verified) {
-                            if (deviceKeys[i].userId == room.client.userID) {
-                              items.add(PopupMenuItem(
-                                child: Text(L10n.of(context).verifyStart),
-                                value: 'verify',
-                              ));
-                            } else {
-                              items.add(PopupMenuItem(
-                                child: Text(L10n.of(context).verifyUser),
-                                value: 'verify_user',
-                              ));
-                            }
                             items.add(PopupMenuItem(
-                              child: Text(L10n.of(context).verifyManual),
-                              value: 'verify_manual',
+                              child: Text(L10n.of(context).verifyStart),
+                              value: deviceKeys[i].userId == room.client.userID
+                                  ? 'verify'
+                                  : 'verify_user',
                             ));
                           }
                           if (deviceKeys[i].blocked) {
@@ -201,8 +177,15 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
                           return items;
                         },
                         child: ListTile(
+                          leading: CircleAvatar(
+                            foregroundColor:
+                                Theme.of(context).textTheme.bodyText1.color,
+                            backgroundColor:
+                                Theme.of(context).secondaryHeaderColor,
+                            child: Icon(deviceKeys[i].icon),
+                          ),
                           title: Text(
-                            '${deviceKeys[i].deviceDisplayName ?? L10n.of(context).unknownDevice}',
+                            deviceKeys[i].displayname,
                             style: TextStyle(
                                 color: deviceKeys[i].blocked
                                     ? Colors.red

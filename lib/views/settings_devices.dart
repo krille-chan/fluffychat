@@ -8,6 +8,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import '../components/matrix.dart';
 import '../utils/date_time_extension.dart';
+import '../utils/device_extension.dart';
 
 class DevicesSettings extends StatefulWidget {
   @override
@@ -113,6 +114,15 @@ class DevicesSettingsState extends State<DevicesSettings> {
     setState(() => null);
   }
 
+  void _unblockDeviceAction(BuildContext context, Device device) async {
+    final key = Matrix.of(context)
+        .client
+        .userDeviceKeys[Matrix.of(context).client.userID]
+        .deviceKeys[device.deviceId];
+    await key.setBlocked(false);
+    setState(() => null);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -152,6 +162,7 @@ class DevicesSettingsState extends State<DevicesSettings> {
                   remove: (d) => _removeDevicesAction(context, [d]),
                   verify: (d) => _verifyDeviceAction(context, d),
                   block: (d) => _blockDeviceAction(context, d),
+                  unblock: (d) => _unblockDeviceAction(context, d),
                 ),
               Divider(height: 1),
               if (devices.isNotEmpty)
@@ -189,6 +200,7 @@ class DevicesSettingsState extends State<DevicesSettings> {
                           remove: (d) => _removeDevicesAction(context, [d]),
                           verify: (d) => _verifyDeviceAction(context, d),
                           block: (d) => _blockDeviceAction(context, d),
+                          unblock: (d) => _unblockDeviceAction(context, d),
                         ),
                       ),
               ),
@@ -205,6 +217,7 @@ enum UserDeviceListItemAction {
   remove,
   verify,
   block,
+  unblock,
 }
 
 class UserDeviceListItem extends StatelessWidget {
@@ -213,6 +226,7 @@ class UserDeviceListItem extends StatelessWidget {
   final void Function(Device) rename;
   final void Function(Device) verify;
   final void Function(Device) block;
+  final void Function(Device) unblock;
 
   const UserDeviceListItem(
     this.userDevice, {
@@ -220,6 +234,7 @@ class UserDeviceListItem extends StatelessWidget {
     @required this.rename,
     @required this.verify,
     @required this.block,
+    @required this.unblock,
     Key key,
   }) : super(key: key);
 
@@ -229,9 +244,6 @@ class UserDeviceListItem extends StatelessWidget {
         .client
         .userDeviceKeys[Matrix.of(context).client.userID]
         ?.deviceKeys[userDevice.deviceId];
-    final displayname = (userDevice.displayName?.isNotEmpty ?? false)
-        ? userDevice.displayName
-        : L10n.of(context).unknownDevice;
 
     return ListTile(
       onTap: () async {
@@ -244,16 +256,23 @@ class UserDeviceListItem extends StatelessWidget {
             ),
             SheetAction(
               key: UserDeviceListItemAction.verify,
-              label: L10n.of(context).verify,
+              label: L10n.of(context).verifyStart,
             ),
             if (keys != null) ...{
+              if (!keys.blocked)
+                SheetAction(
+                  key: UserDeviceListItemAction.block,
+                  label: L10n.of(context).blockDevice,
+                  isDestructiveAction: true,
+                ),
+              if (keys.blocked)
+                SheetAction(
+                  key: UserDeviceListItemAction.unblock,
+                  label: L10n.of(context).unblockDevice,
+                  isDestructiveAction: true,
+                ),
               SheetAction(
-                key: UserDeviceListItemAction.block,
-                label: L10n.of(context).blockDevice,
-                isDestructiveAction: true,
-              ),
-              SheetAction(
-                key: UserDeviceListItemAction.block,
+                key: UserDeviceListItemAction.remove,
                 label: L10n.of(context).delete,
                 isDestructiveAction: true,
               ),
@@ -273,25 +292,20 @@ class UserDeviceListItem extends StatelessWidget {
           case UserDeviceListItemAction.block:
             block(userDevice);
             break;
+          case UserDeviceListItemAction.unblock:
+            unblock(userDevice);
+            break;
         }
       },
       leading: CircleAvatar(
         foregroundColor: Theme.of(context).textTheme.bodyText1.color,
         backgroundColor: Theme.of(context).secondaryHeaderColor,
-        child: Icon(displayname.toLowerCase().contains('android')
-            ? Icons.phone_android_outlined
-            : displayname.toLowerCase().contains('ios')
-                ? Icons.phone_iphone_outlined
-                : displayname.toLowerCase().contains('web')
-                    ? Icons.web_outlined
-                    : displayname.toLowerCase().contains('desktop')
-                        ? Icons.desktop_mac_outlined
-                        : Icons.device_unknown_outlined),
+        child: Icon(userDevice.icon),
       ),
       title: Row(
         children: <Widget>[
           Text(
-            displayname,
+            userDevice.displayname,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
