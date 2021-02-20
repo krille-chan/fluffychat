@@ -180,6 +180,7 @@ class UserBottomSheet extends StatelessWidget {
                 leading: IconButton(
                   icon: Icon(Icons.arrow_downward_outlined),
                   onPressed: Navigator.of(context).pop,
+                  tooltip: L10n.of(context).close,
                 ),
                 title: Text(user.calcDisplayname()),
                 actions: [

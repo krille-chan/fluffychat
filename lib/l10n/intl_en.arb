@@ -448,6 +448,26 @@
     "type": "text",
     "placeholders": {}
   },
+  "zoomIn": "Zoom in",
+  "@zoomIn": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zoomOut": "Zoom out",
+  "@zoomOut": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addEmail": "Add email",
+  "@addEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showPassword": "Show password",
+  "@showPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
   "chatBackup": "Chat backup",
   "@chatBackup": {
     "type": "text",

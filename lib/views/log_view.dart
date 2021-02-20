@@ -1,6 +1,7 @@
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class LogViewer extends StatefulWidget {
   @override
@@ -25,10 +26,12 @@ class _LogViewerState extends State<LogViewer> {
           IconButton(
             icon: Icon(Icons.zoom_in_outlined),
             onPressed: () => setState(() => fontSize++),
+            tooltip: L10n.of(context).zoomIn,
           ),
           IconButton(
             icon: Icon(Icons.zoom_out_outlined),
             onPressed: () => setState(() => fontSize--),
+            tooltip: L10n.of(context).zoomOut,
           ),
           PopupMenuButton<Level>(
             itemBuilder: (context) => Level.values

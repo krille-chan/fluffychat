@@ -521,6 +521,7 @@ class _ChatState extends State<Chat> {
             ? IconButton(
                 icon: Icon(Icons.close),
                 onPressed: () => setState(() => selectedEvents.clear()),
+                tooltip: L10n.of(context).close,
               )
             : null,
         titleSpacing:
@@ -592,6 +593,7 @@ class _ChatState extends State<Chat> {
                     selectedEvents.first.senderId == client.userID)
                   IconButton(
                     icon: Icon(Icons.edit_outlined),
+                    tooltip: L10n.of(context).edit,
                     onPressed: () {
                       setState(() {
                         pendingText = sendController.text;
@@ -645,6 +647,7 @@ class _ChatState extends State<Chat> {
               ]
             : <Widget>[
                 IconButton(
+                  tooltip: L10n.of(context).videoCall,
                   icon: Icon(Icons.call_outlined),
                   onPressed: () => startCallAction(context),
                 ),
@@ -959,6 +962,7 @@ class _ChatState extends State<Chat> {
                     child: Row(
                       children: <Widget>[
                         IconButton(
+                          tooltip: L10n.of(context).close,
                           icon: Icon(Icons.close),
                           onPressed: () => setState(() {
                             if (editEvent != null) {
@@ -1196,6 +1200,7 @@ class _ChatState extends State<Chat> {
                                       height: 56,
                                       alignment: Alignment.center,
                                       child: IconButton(
+                                        tooltip: L10n.of(context).voiceMessage,
                                         icon: Icon(Icons.mic_none_outlined),
                                         onPressed: () =>
                                             voiceMessageAction(context),
@@ -1209,6 +1214,7 @@ class _ChatState extends State<Chat> {
                                       child: IconButton(
                                         icon: Icon(Icons.send_outlined),
                                         onPressed: () => send(),
+                                        tooltip: L10n.of(context).send,
                                       ),
                                     ),
                                 ],

@@ -202,6 +202,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                   actions: <Widget>[
                     if (room.canonicalAlias?.isNotEmpty ?? false)
                       IconButton(
+                        tooltip: L10n.of(context).share,
                         icon: Icon(Icons.share_outlined),
                         onPressed: () => FluffyShare.share(
                             AppConfig.inviteLinkPrefix + room.canonicalAlias,

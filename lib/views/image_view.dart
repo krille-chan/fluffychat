@@ -4,6 +4,7 @@ import 'package:fluffychat/components/image_bubble.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:flutter/material.dart';
 import '../utils/event_extension.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import '../utils/platform_infos.dart';
 
 class ImageView extends StatelessWidget {
@@ -30,6 +31,7 @@ class ImageView extends StatelessWidget {
           icon: Icon(Icons.close),
           onPressed: () => Navigator.of(context).pop(),
           color: Colors.white,
+          tooltip: L10n.of(context).close,
         ),
         backgroundColor: Color(0x44000000),
         actions: [
@@ -37,11 +39,13 @@ class ImageView extends StatelessWidget {
             icon: Icon(Icons.reply_outlined),
             onPressed: () => _forwardAction(context),
             color: Colors.white,
+            tooltip: L10n.of(context).share,
           ),
           IconButton(
             icon: Icon(Icons.download_outlined),
             onPressed: () => event.openFile(context, downloadOnly: true),
             color: Colors.white,
+            tooltip: L10n.of(context).downloadFile,
           ),
         ],
       ),

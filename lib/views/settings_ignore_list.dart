@@ -63,6 +63,7 @@ class _SettingsIgnoreListState extends State<SettingsIgnoreList> {
                     prefixText: '@',
                     labelText: L10n.of(context).ignoreUsername,
                     suffixIcon: IconButton(
+                      tooltip: L10n.of(context).ignore,
                       icon: Icon(Icons.done_outlined),
                       onPressed: () => _ignoreUser(context),
                     ),
@@ -95,6 +96,7 @@ class _SettingsIgnoreListState extends State<SettingsIgnoreList> {
                         title:
                             Text(s.data?.displayname ?? client.ignoredUsers[i]),
                         trailing: IconButton(
+                          tooltip: L10n.of(context).delete,
                           icon: Icon(Icons.delete_forever_outlined),
                           onPressed: () => showFutureLoadingDialog(
                             context: context,

@@ -284,6 +284,7 @@ class _ChatListState extends State<ChatList> {
                           : [
                               IconButton(
                                 icon: Icon(Icons.search_outlined),
+                                tooltip: L10n.of(context).search,
                                 onPressed: () async {
                                   await _scrollController.animateTo(
                                     _scrollController.position.minScrollExtent,

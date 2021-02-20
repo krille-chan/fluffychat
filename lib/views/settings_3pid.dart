@@ -103,6 +103,7 @@ class _Settings3PidState extends State<Settings3Pid> {
           IconButton(
             icon: Icon(Icons.add_outlined),
             onPressed: () => _add3PidAction(context),
+            tooltip: L10n.of(context).addEmail,
           )
         ],
       ),
@@ -153,6 +154,7 @@ class _Settings3PidState extends State<Settings3Pid> {
                         child: Icon(identifier[i].iconData)),
                     title: Text(identifier[i].address),
                     trailing: IconButton(
+                      tooltip: L10n.of(context).delete,
                       icon: Icon(Icons.delete_forever_outlined),
                       color: Colors.red,
                       onPressed: () => _delete3Pid(context, identifier[i]),
