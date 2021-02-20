@@ -1,5 +1,7 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:famedlysdk/encryption/utils/key_verification.dart';
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/components/dialogs/key_verification_dialog.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -81,6 +83,36 @@ class DevicesSettingsState extends State<DevicesSettings> {
     }
   }
 
+  void _verifyDeviceAction(BuildContext context, Device device) async {
+    final req = Matrix.of(context)
+        .client
+        .userDeviceKeys[Matrix.of(context).client.userID]
+        .deviceKeys[device.deviceId]
+        .startVerification();
+    req.onUpdate = () {
+      if ({KeyVerificationState.error, KeyVerificationState.done}
+          .contains(req.state)) {
+        setState(() => null);
+      }
+    };
+    await KeyVerificationDialog(
+      request: req,
+      l10n: L10n.of(context),
+    ).show(context);
+  }
+
+  void _blockDeviceAction(BuildContext context, Device device) async {
+    final key = Matrix.of(context)
+        .client
+        .userDeviceKeys[Matrix.of(context).client.userID]
+        .deviceKeys[device.deviceId];
+    if (key.directVerified) {
+      await key.setVerified(false);
+    }
+    await key.setBlocked(true);
+    setState(() => null);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -118,6 +150,8 @@ class DevicesSettingsState extends State<DevicesSettings> {
                   thisDevice,
                   rename: (d) => _renameDeviceAction(context, d),
                   remove: (d) => _removeDevicesAction(context, [d]),
+                  verify: (d) => _verifyDeviceAction(context, d),
+                  block: (d) => _blockDeviceAction(context, d),
                 ),
               Divider(height: 1),
               if (devices.isNotEmpty)
@@ -153,6 +187,8 @@ class DevicesSettingsState extends State<DevicesSettings> {
                           devices[i],
                           rename: (d) => _renameDeviceAction(context, d),
                           remove: (d) => _removeDevicesAction(context, [d]),
+                          verify: (d) => _verifyDeviceAction(context, d),
+                          block: (d) => _blockDeviceAction(context, d),
                         ),
                       ),
               ),
@@ -164,62 +200,125 @@ class DevicesSettingsState extends State<DevicesSettings> {
   }
 }
 
+enum UserDeviceListItemAction {
+  rename,
+  remove,
+  verify,
+  block,
+}
+
 class UserDeviceListItem extends StatelessWidget {
   final Device userDevice;
-  final Function remove;
-  final Function rename;
+  final void Function(Device) remove;
+  final void Function(Device) rename;
+  final void Function(Device) verify;
+  final void Function(Device) block;
 
-  const UserDeviceListItem(this.userDevice, {this.remove, this.rename, Key key})
-      : super(key: key);
+  const UserDeviceListItem(
+    this.userDevice, {
+    @required this.remove,
+    @required this.rename,
+    @required this.verify,
+    @required this.block,
+    Key key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return PopupMenuButton(
-      onSelected: (String action) {
+    final keys = Matrix.of(context)
+        .client
+        .userDeviceKeys[Matrix.of(context).client.userID]
+        ?.deviceKeys[userDevice.deviceId];
+    final displayname = (userDevice.displayName?.isNotEmpty ?? false)
+        ? userDevice.displayName
+        : L10n.of(context).unknownDevice;
+
+    return ListTile(
+      onTap: () async {
+        final action = await showModalActionSheet<UserDeviceListItemAction>(
+          context: context,
+          actions: [
+            SheetAction(
+              key: UserDeviceListItemAction.rename,
+              label: L10n.of(context).changeDeviceName,
+            ),
+            SheetAction(
+              key: UserDeviceListItemAction.verify,
+              label: L10n.of(context).verify,
+            ),
+            if (keys != null) ...{
+              SheetAction(
+                key: UserDeviceListItemAction.block,
+                label: L10n.of(context).blockDevice,
+                isDestructiveAction: true,
+              ),
+              SheetAction(
+                key: UserDeviceListItemAction.block,
+                label: L10n.of(context).delete,
+                isDestructiveAction: true,
+              ),
+            },
+          ],
+        );
         switch (action) {
-          case 'remove':
-            if (remove != null) remove(userDevice);
+          case UserDeviceListItemAction.rename:
+            rename(userDevice);
             break;
-          case 'rename':
-            if (rename != null) rename(userDevice);
+          case UserDeviceListItemAction.remove:
+            remove(userDevice);
+            break;
+          case UserDeviceListItemAction.verify:
+            verify(userDevice);
+            break;
+          case UserDeviceListItemAction.block:
+            block(userDevice);
+            break;
         }
       },
-      itemBuilder: (BuildContext context) => [
-        PopupMenuItem<String>(
-          value: 'rename',
-          child: Text(L10n.of(context).changeDeviceName),
-        ),
-        PopupMenuItem<String>(
-          value: 'remove',
-          child: Text(
-            L10n.of(context).removeDevice,
-            style: TextStyle(color: Colors.red),
+      leading: CircleAvatar(
+        foregroundColor: Theme.of(context).textTheme.bodyText1.color,
+        backgroundColor: Theme.of(context).secondaryHeaderColor,
+        child: Icon(displayname.toLowerCase().contains('android')
+            ? Icons.phone_android_outlined
+            : displayname.toLowerCase().contains('ios')
+                ? Icons.phone_iphone_outlined
+                : displayname.toLowerCase().contains('web')
+                    ? Icons.web_outlined
+                    : displayname.toLowerCase().contains('desktop')
+                        ? Icons.desktop_mac_outlined
+                        : Icons.device_unknown_outlined),
+      ),
+      title: Row(
+        children: <Widget>[
+          Text(
+            displayname,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
-        ),
-      ],
-      child: ListTile(
-        contentPadding: EdgeInsets.all(16.0),
-        title: Row(
-          children: <Widget>[
-            Expanded(
-              child: Text(
-                (userDevice.displayName?.isNotEmpty ?? false)
-                    ? userDevice.displayName
-                    : L10n.of(context).unknownDevice,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
+          Spacer(),
+          Text(userDevice.lastSeenTs.localizedTimeShort(context)),
+        ],
+      ),
+      subtitle: Row(
+        children: <Widget>[
+          Text(userDevice.deviceId),
+          Spacer(),
+          if (keys != null)
+            Text(
+              keys.blocked
+                  ? L10n.of(context).blocked
+                  : keys.verified
+                      ? L10n.of(context).verified
+                      : L10n.of(context).unknownDevice,
+              style: TextStyle(
+                color: keys.blocked
+                    ? Colors.red
+                    : keys.verified
+                        ? Colors.green
+                        : Colors.orange,
               ),
             ),
-            Text(userDevice.lastSeenTs.localizedTimeShort(context)),
-          ],
-        ),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text('${L10n.of(context).id}: ${userDevice.deviceId}'),
-            Text('${L10n.of(context).lastSeenIp}: ${userDevice.lastSeenIp}'),
-          ],
-        ),
+        ],
       ),
     );
   }

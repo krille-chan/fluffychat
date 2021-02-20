@@ -448,6 +448,16 @@
     "type": "text",
     "placeholders": {}
   },
+  "verified": "Verified",
+  "@verified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "blocked": "Blocked",
+  "@blocked": {
+    "type": "text",
+    "placeholders": {}
+  },
   "zoomIn": "Zoom in",
   "@zoomIn": {
     "type": "text",
