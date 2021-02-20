@@ -14,7 +14,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changedTheDisplaynameTo": "{username}'s weergavenaam is nu '{displayname}'",
+  "changedTheDisplaynameTo": "{username}'s naam is nu {displayname}",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -855,7 +855,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "passwordHasBeenChanged": "Wachtwoord is gewijzigd",
+  "passwordHasBeenChanged": "Wachtwoord gewijzigd",
   "@passwordHasBeenChanged": {
     "type": "text",
     "placeholders": {}
@@ -1438,7 +1438,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "containsDisplayName": "Bevat weergavenaam",
+  "containsDisplayName": "Bevat naam",
   "@containsDisplayName": {
     "type": "text",
     "placeholders": {}
@@ -1488,7 +1488,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "editDisplayname": "Weergavenaam wijzigen",
+  "editDisplayname": "Naam wijzigen",
   "@editDisplayname": {
     "type": "text",
     "placeholders": {}
@@ -1498,7 +1498,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "displaynameHasBeenChanged": "De weergavenaam is gewijzigd",
+  "displaynameHasBeenChanged": "De naam is gewijzigd",
   "@displaynameHasBeenChanged": {
     "type": "text",
     "placeholders": {}
@@ -1617,7 +1617,7 @@
       "count": {}
     }
   },
-  "couldNotSetDisplayname": "Kan weergavenaam niet instellen",
+  "couldNotSetDisplayname": "Kan naam niet instellen",
   "@couldNotSetDisplayname": {
     "type": "text",
     "placeholders": {}
@@ -1644,7 +1644,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "contentViewer": "Content weergave",
+  "contentViewer": "Contentvoorvertoning",
   "@contentViewer": {
     "type": "text",
     "placeholders": {}
@@ -1755,7 +1755,7 @@
       "username": {}
     }
   },
-  "changedTheJoinRulesTo": "{username} heeft de deelnameregels gewijzigd in: {joinRules}",
+  "changedTheJoinRulesTo": "{username} heeft de deelnameregels gewijzigd in {joinRules}",
   "@changedTheJoinRulesTo": {
     "type": "text",
     "placeholders": {
@@ -1770,7 +1770,7 @@
       "username": {}
     }
   },
-  "changedTheHistoryVisibilityTo": "{username} heeft de zichtbaarheid van de geschiedenis gewijzigd in: {rules}",
+  "changedTheHistoryVisibilityTo": "{username} heeft de zichtbaarheid van de geschiedenis gewijzigd in {rules}",
   "@changedTheHistoryVisibilityTo": {
     "type": "text",
     "placeholders": {
@@ -1785,7 +1785,7 @@
       "username": {}
     }
   },
-  "changedTheGuestAccessRulesTo": "{username} heeft de gastenregels gewijzigd in: {rules}",
+  "changedTheGuestAccessRulesTo": "{username} heeft de gastenregels gewijzigd in {rules}",
   "@changedTheGuestAccessRulesTo": {
     "type": "text",
     "placeholders": {
@@ -1812,7 +1812,7 @@
       "username": {}
     }
   },
-  "changedTheChatDescriptionTo": "{username} heeft de groepsomschrijving gewijzigd in: '{description}'",
+  "changedTheChatDescriptionTo": "{username} heeft de groepsomschrijving gewijzigd in: {description}",
   "@changedTheChatDescriptionTo": {
     "type": "text",
     "placeholders": {
@@ -1820,7 +1820,7 @@
       "description": {}
     }
   },
-  "changedTheChatNameTo": "{username} heeft de groepsnaam gewijzigd in: '{chatname}'",
+  "changedTheChatNameTo": "{username} heeft de groepsnaam gewijzigd in {chatname}",
   "@changedTheChatNameTo": {
     "type": "text",
     "placeholders": {
