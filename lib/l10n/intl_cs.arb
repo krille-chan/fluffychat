@@ -1918,7 +1918,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "editBlockedServers": "Upravit blokované servery",
+  "editBlockedServers": "Upravit zakázané servery",
   "@editBlockedServers": {
     "type": "text",
     "placeholders": {}
@@ -2235,6 +2235,16 @@
   },
   "securityKey": "Bezpečnostní klíč",
   "@securityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "blocked": "Zakázán",
+  "@blocked": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verified": "Ověřeno",
+  "@verified": {
     "type": "text",
     "placeholders": {}
   }
