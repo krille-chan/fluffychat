@@ -57,7 +57,7 @@ class _HorizontalStoriesListState extends State<HorizontalStoriesList> {
             p.senderId.toLowerCase().contains(widget.searchQuery.toLowerCase()))
         .toList();
     return AnimatedContainer(
-      height: height,
+      height: contactList.isEmpty ? 0 : height,
       duration: Duration(milliseconds: 300),
       child: contactList.isEmpty
           ? null
