@@ -2217,5 +2217,25 @@
       "serverVersions": {},
       "supportedVersions": {}
     }
+  },
+  "showPassword": "Amosar contrasinal",
+  "@showPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addEmail": "Engadir email",
+  "@addEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zoomOut": "Diminuir zoom",
+  "@zoomOut": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zoomIn": "Aumentar zoom",
+  "@zoomIn": {
+    "type": "text",
+    "placeholders": {}
   }
 }
