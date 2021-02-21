@@ -2217,5 +2217,35 @@
   "@securityKey": {
     "type": "text",
     "placeholders": {}
+  },
+  "showPassword": "Afficher le mot de passe",
+  "@showPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addEmail": "Ajouter un courriel",
+  "@addEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zoomOut": "Dézoomer",
+  "@zoomOut": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zoomIn": "Zoomer",
+  "@zoomIn": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "blocked": "Bloqué",
+  "@blocked": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verified": "Vérifié",
+  "@verified": {
+    "type": "text",
+    "placeholders": {}
   }
 }
