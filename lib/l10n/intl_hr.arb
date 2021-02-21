@@ -2217,5 +2217,35 @@
   "@audioPlayerPause": {
     "type": "text",
     "placeholders": {}
+  },
+  "showPassword": "Pokaži lozinku",
+  "@showPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addEmail": "Dodaj e-mail",
+  "@addEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zoomOut": "Umanji",
+  "@zoomOut": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zoomIn": "Uvećaj",
+  "@zoomIn": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "blocked": "Blokirano",
+  "@blocked": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verified": "Potvrđeno",
+  "@verified": {
+    "type": "text",
+    "placeholders": {}
   }
 }
