@@ -19,12 +19,24 @@ import 'package:universal_html/prefer_universal/html.dart' as html;
 import 'components/matrix.dart';
 import 'config/themes.dart';
 import 'app_config.dart';
+import 'utils/fluffy_client.dart';
+import 'utils/platform_infos.dart';
+import 'utils/background_push.dart';
 
 void main() async {
+  // Our background push shared isolate accesses flutter-internal things very early in the startup proccess
+  // To make sure that the parts of flutter needed are started up already, we need to ensure that the
+  // widget bindings are initialized already.
+  WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(statusBarColor: Colors.transparent));
   FlutterError.onError = (FlutterErrorDetails details) =>
       Zone.current.handleUncaughtError(details.exception, details.stack);
+
+  if (PlatformInfos.isMobile) {
+    BackgroundPush.clientOnly(FluffyClient());
+  }
+
   runZonedGuarded(
     () => runApp(PlatformInfos.isMobile
         ? AppLock(

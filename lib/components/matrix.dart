@@ -6,7 +6,6 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/encryption.dart';
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/utils/firebase_controller.dart';
 import 'package:fluffychat/utils/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/sentry_controller.dart';
@@ -33,6 +32,8 @@ import 'dialogs/key_verification_dialog.dart';
 import '../utils/platform_infos.dart';
 import '../app_config.dart';
 import '../config/setting_keys.dart';
+import '../utils/fluffy_client.dart';
+import '../utils/background_push.dart';
 
 class Matrix extends StatefulWidget {
   static const String callNamespace = 'chat.fluffy.jitsi_call';
@@ -58,11 +59,13 @@ class Matrix extends StatefulWidget {
       Provider.of<MatrixState>(context, listen: false);
 }
 
-class MatrixState extends State<Matrix> {
-  Client client;
+class MatrixState extends State<Matrix> with WidgetsBindingObserver {
+  FluffyClient client;
   Store store = Store();
   @override
   BuildContext get context => widget.context;
+
+  BackgroundPush _backgroundPush;
 
   Map<String, dynamic> get shareContent => _shareContent;
   set shareContent(Map<String, dynamic> content) {
@@ -75,15 +78,7 @@ class MatrixState extends State<Matrix> {
   final StreamController<Map<String, dynamic>> onShareContentChanged =
       StreamController.broadcast();
 
-  String activeRoomId;
   File wallpaper;
-  String clientName;
-
-  void clean() async {
-    if (!kIsWeb) return;
-
-    await store.deleteItem(clientName);
-  }
 
   void _initWithStore() async {
     try {
@@ -181,7 +176,7 @@ class MatrixState extends State<Matrix> {
 
   void _showLocalNotification(EventUpdate eventUpdate) async {
     final roomId = eventUpdate.roomID;
-    if (webHasFocus && activeRoomId == roomId) return;
+    if (webHasFocus && client.activeRoomId == roomId) return;
     final room = client.getRoomById(roomId);
     if (room.notificationCount == 0) return;
     final event = Event.fromJson(eventUpdate.content, room);
@@ -228,6 +223,7 @@ class MatrixState extends State<Matrix> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     initMatrix();
     if (PlatformInfos.isWeb) {
       initConfig().then((_) => initSettings());
@@ -261,28 +257,7 @@ class MatrixState extends State<Matrix> {
         });
       });
     }
-    clientName =
-        '${AppConfig.applicationName} ${kIsWeb ? 'Web' : Platform.operatingSystem}';
-    final Set verificationMethods = <KeyVerificationMethod>{
-      KeyVerificationMethod.numbers
-    };
-    if (PlatformInfos.isMobile || (!kIsWeb && Platform.isLinux)) {
-      // emojis don't show in web somehow
-      verificationMethods.add(KeyVerificationMethod.emoji);
-    }
-    client = Client(
-      clientName,
-      enableE2eeRecovery: true,
-      verificationMethods: verificationMethods,
-      importantStateEvents: <String>{
-        'im.ponies.room_emotes', // we want emotes to work properly
-      },
-      databaseBuilder: getDatabase,
-      supportedLoginTypes: {
-        AuthenticationTypes.password,
-        if (PlatformInfos.isMobile) AuthenticationTypes.sso
-      },
-    );
+    client = FluffyClient();
     LoadingDialog.defaultTitle = L10n.of(context).loadingPleaseWait;
     LoadingDialog.defaultBackLabel = L10n.of(context).close;
     LoadingDialog.defaultOnError = (Object e) => e.toLocalizedString(context);
@@ -348,16 +323,10 @@ class MatrixState extends State<Matrix> {
       if (loginState != state) {
         loginState = state;
         widget.apl.currentState.pushNamedAndRemoveAllOthers('/');
-        if (loginState == LoginState.logged) {
-          FirebaseController.context = context;
-          FirebaseController.matrix = this;
-          FirebaseController.setupFirebase(clientName)
-              .catchError(SentryController.captureException);
-        }
       }
     });
     onUiaRequest ??= client.onUiaRequest.stream.listen(_onUiaRequest);
-    if (kIsWeb || Platform.isLinux) {
+    if (PlatformInfos.isWeb || PlatformInfos.isLinux) {
       client.onSync.stream.first.then((s) {
         html.Notification.requestPermission();
         onNotification ??= client.onEvent.stream
@@ -368,6 +337,26 @@ class MatrixState extends State<Matrix> {
                 e.content['sender'] != client.userID)
             .listen(_showLocalNotification);
       });
+    }
+
+    if (PlatformInfos.isMobile) {
+      _backgroundPush = BackgroundPush(client, context, widget.apl);
+    }
+  }
+
+  bool _firstStartup = true;
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    Logs().v('AppLifecycleState = $state');
+    final foreground = state != AppLifecycleState.detached &&
+        state != AppLifecycleState.paused;
+    client.backgroundSync = foreground;
+    client.syncPresence = foreground ? null : PresenceType.unavailable;
+    client.requestHistoryOnLimitedTimeline = !foreground;
+    if (_firstStartup) {
+      _firstStartup = false;
+      _backgroundPush?.setupPush();
     }
   }
 
@@ -401,12 +390,16 @@ class MatrixState extends State<Matrix> {
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+
     onRoomKeyRequestSub?.cancel();
     onKeyVerificationRequestSub?.cancel();
     onLoginStateChanged?.cancel();
     onNotification?.cancel();
     onFocusSub?.cancel();
     onBlurSub?.cancel();
+    _backgroundPush?.onLogin?.cancel();
+
     super.dispose();
   }
 
