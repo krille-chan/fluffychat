@@ -2237,5 +2237,15 @@
   "@zoomIn": {
     "type": "text",
     "placeholders": {}
+  },
+  "verified": "Проверено",
+  "@verified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "blocked": "Заблокировано",
+  "@blocked": {
+    "type": "text",
+    "placeholders": {}
   }
 }
