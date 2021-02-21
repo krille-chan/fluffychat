@@ -108,8 +108,7 @@ class BackgroundPush {
   Future<void> fullInit() async {
     _onContextInit?.call();
     _onContextInit = null;
-    // ignore: unawaited_futures
-    setupPush();
+    await setupPush();
   }
 
   void handleLoginStateChanged(LoginState state) {
@@ -211,7 +210,10 @@ class BackgroundPush {
     }
   }
 
+  bool _wentToRoomOnStartup = false;
+
   Future<void> setupPush() async {
+    await setupLocalNotificationsPlugin();
     if (_loginState != LoginState.logged ||
         !PlatformInfos.isMobile ||
         context == null) {
@@ -223,6 +225,20 @@ class BackgroundPush {
     } else {
       await setupFirebase();
     }
+
+    // ignore: unawaited_futures
+    _flutterLocalNotificationsPlugin
+        .getNotificationAppLaunchDetails()
+        .then((details) {
+      if (details == null ||
+          !details.didNotificationLaunchApp ||
+          _wentToRoomOnStartup ||
+          apl == null) {
+        return;
+      }
+      _wentToRoomOnStartup = true;
+      goToRoom(details.payload);
+    });
   }
 
   Future<void> _noFcmWarning() async {
@@ -266,6 +282,7 @@ class BackgroundPush {
 
   Future<void> goToRoom(String roomId) async {
     try {
+      Logs().v('[Push] Attempting to go to room $roomId...');
       if (apl == null) {
         return;
       }
@@ -295,21 +312,10 @@ class BackgroundPush {
     await _flutterLocalNotificationsPlugin.initialize(initializationSettings,
         onSelectNotification: goToRoom);
 
-    // ignore: unawaited_futures
-    _flutterLocalNotificationsPlugin
-        .getNotificationAppLaunchDetails()
-        .then((details) {
-      if (details == null || !details.didNotificationLaunchApp) {
-        return;
-      }
-      goToRoom(details.payload);
-    });
-
     _notificationsPluginSetUp = true;
   }
 
   Future<void> setupUp() async {
-    await setupLocalNotificationsPlugin();
     if (!(await store.getItemBool(SettingKeys.unifiedPushRegistered, false))) {
       Logs().i('[Push] UnifiedPush not registered, attempting to do so...');
       await UnifiedPush.registerAppWithDialog();
