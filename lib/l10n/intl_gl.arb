@@ -2237,5 +2237,15 @@
   "@zoomIn": {
     "type": "text",
     "placeholders": {}
+  },
+  "blocked": "Bloqueado",
+  "@blocked": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verified": "Verificado",
+  "@verified": {
+    "type": "text",
+    "placeholders": {}
   }
 }
