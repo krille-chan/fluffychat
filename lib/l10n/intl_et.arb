@@ -2217,5 +2217,35 @@
   "@securityKey": {
     "type": "text",
     "placeholders": {}
+  },
+  "blocked": "Blokeeritud",
+  "@blocked": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showPassword": "Näita salasõna",
+  "@showPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addEmail": "Lisa e-posti aadress",
+  "@addEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zoomOut": "Suumi välja",
+  "@zoomOut": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zoomIn": "Suumi sisse",
+  "@zoomIn": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verified": "Verifitseeritud",
+  "@verified": {
+    "type": "text",
+    "placeholders": {}
   }
 }
