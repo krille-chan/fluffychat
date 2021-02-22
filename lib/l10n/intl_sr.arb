@@ -2190,7 +2190,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "copyToClipboard": "Копира у клипборд",
+  "copyToClipboard": "Копирај у клипборд",
   "@copyToClipboard": {
     "type": "text",
     "placeholders": {}
