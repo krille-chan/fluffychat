@@ -2215,5 +2215,35 @@
       "serverVersions": {},
       "supportedVersions": {}
     }
+  },
+  "showPassword": "Mostra la password",
+  "@showPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addEmail": "Aggiungi e-mail",
+  "@addEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zoomOut": "Rimpicciolisci",
+  "@zoomOut": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zoomIn": "Ingrandisci",
+  "@zoomIn": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "blocked": "Bloccato",
+  "@blocked": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verified": "Verificato",
+  "@verified": {
+    "type": "text",
+    "placeholders": {}
   }
 }
