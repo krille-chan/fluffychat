@@ -455,7 +455,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "setStatus": "Stel een status in",
+  "setStatus": "Status instellen",
   "@setStatus": {
     "type": "text",
     "placeholders": {}
@@ -875,7 +875,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "optionalGroupName": "Groepsnaam (Optioneel)",
+  "optionalGroupName": "Groepsnaam (optioneel)",
   "@optionalGroupName": {
     "type": "text",
     "placeholders": {}
@@ -1088,7 +1088,7 @@
       "localizedTimeShort": {}
     }
   },
-  "userLeftTheChat": "{username} heeft de groep verlaten",
+  "userLeftTheChat": "{username} is vertrokken",
   "@userLeftTheChat": {
     "type": "text",
     "placeholders": {
@@ -1146,7 +1146,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "joinedTheChat": "{username} is toegetreden",
+  "joinedTheChat": "{username} is toegetreden tot de groep",
   "@joinedTheChat": {
     "type": "text",
     "placeholders": {
@@ -1755,7 +1755,7 @@
       "username": {}
     }
   },
-  "changedTheJoinRulesTo": "{username} heeft de deelnameregels gewijzigd in {joinRules}",
+  "changedTheJoinRulesTo": "{username} heeft de deelnameregels gewijzigd in: {joinRules}",
   "@changedTheJoinRulesTo": {
     "type": "text",
     "placeholders": {
@@ -1770,7 +1770,7 @@
       "username": {}
     }
   },
-  "changedTheHistoryVisibilityTo": "{username} heeft de zichtbaarheid van de geschiedenis gewijzigd in {rules}",
+  "changedTheHistoryVisibilityTo": "{username} heeft de zichtbaarheid van de geschiedenis gewijzigd in: {rules}",
   "@changedTheHistoryVisibilityTo": {
     "type": "text",
     "placeholders": {
@@ -1785,7 +1785,7 @@
       "username": {}
     }
   },
-  "changedTheGuestAccessRulesTo": "{username} heeft de gastenregels gewijzigd in {rules}",
+  "changedTheGuestAccessRulesTo": "{username} heeft de gastenregels gewijzigd in: {rules}",
   "@changedTheGuestAccessRulesTo": {
     "type": "text",
     "placeholders": {
@@ -1820,7 +1820,7 @@
       "description": {}
     }
   },
-  "changedTheChatNameTo": "{username} heeft de groepsnaam gewijzigd in {chatname}",
+  "changedTheChatNameTo": "{username} heeft de groepsnaam gewijzigd in: {chatname}",
   "@changedTheChatNameTo": {
     "type": "text",
     "placeholders": {
@@ -2206,6 +2206,36 @@
   },
   "chatBackupDescription": "Je berichtenback-up is beveiligd met een veiligheidssleutel. Zorg ervoor dat je deze niet verliest.",
   "@chatBackupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showPassword": "Wachtwoord weergeven",
+  "@showPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addEmail": "Email toevoegen",
+  "@addEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zoomOut": "Uitzoomen",
+  "@zoomOut": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zoomIn": "Inzoomen",
+  "@zoomIn": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "blocked": "Geblokkeerd",
+  "@blocked": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verified": "Geverifieerd",
+  "@verified": {
     "type": "text",
     "placeholders": {}
   }
