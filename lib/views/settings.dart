@@ -61,6 +61,8 @@ class _SettingsState extends State<Settings> {
     final input = await showTextInputDialog(
       context: context,
       title: L10n.of(context).changePassword,
+      okLabel: L10n.of(context).ok,
+      cancelLabel: L10n.of(context).cancel,
       textFields: [
         DialogTextField(
           hintText: L10n.of(context).pleaseEnterYourPassword,
@@ -111,6 +113,8 @@ class _SettingsState extends State<Settings> {
     final input = await showTextInputDialog(
       context: context,
       title: L10n.of(context).pleaseEnterYourPassword,
+      okLabel: L10n.of(context).ok,
+      cancelLabel: L10n.of(context).cancel,
       textFields: [
         DialogTextField(
           obscureText: true,
@@ -139,6 +143,8 @@ class _SettingsState extends State<Settings> {
     var input = await showTextInputDialog(
       context: context,
       title: L10n.of(context).editJitsiInstance,
+      okLabel: L10n.of(context).ok,
+      cancelLabel: L10n.of(context).cancel,
       textFields: [
         DialogTextField(
           initialText: AppConfig.jitsiInstance.replaceFirst(prefix, ''),
@@ -160,6 +166,8 @@ class _SettingsState extends State<Settings> {
     final input = await showTextInputDialog(
       context: context,
       title: L10n.of(context).editDisplayname,
+      okLabel: L10n.of(context).ok,
+      cancelLabel: L10n.of(context).cancel,
       textFields: [
         DialogTextField(
           initialText: profile?.displayname ??
@@ -222,6 +230,8 @@ class _SettingsState extends State<Settings> {
     final input = await showTextInputDialog(
       context: context,
       title: L10n.of(context).askSSSSCache,
+      okLabel: L10n.of(context).ok,
+      cancelLabel: L10n.of(context).cancel,
       textFields: [
         DialogTextField(
           hintText: L10n.of(context).passphraseOrKey,
@@ -285,6 +295,7 @@ class _SettingsState extends State<Settings> {
       context: context,
       title: L10n.of(context).pleaseChooseAPasscode,
       message: L10n.of(context).pleaseEnter4Digits,
+      cancelLabel: L10n.of(context).cancel,
       textFields: [
         DialogTextField(
           validator: (text) {

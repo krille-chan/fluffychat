@@ -66,6 +66,8 @@ class DevicesSettingsState extends State<DevicesSettings> {
     final displayName = await showTextInputDialog(
       context: context,
       title: L10n.of(context).changeDeviceName,
+      okLabel: L10n.of(context).ok,
+      cancelLabel: L10n.of(context).cancel,
       textFields: [
         DialogTextField(
           hintText: device.displayName,

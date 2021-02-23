@@ -37,6 +37,8 @@ class _ChatDetailsState extends State<ChatDetails> {
     final input = await showTextInputDialog(
       context: context,
       title: L10n.of(context).changeTheNameOfTheGroup,
+      okLabel: L10n.of(context).ok,
+      cancelLabel: L10n.of(context).cancel,
       textFields: [
         DialogTextField(
           initialText: room.getLocalizedDisplayname(
@@ -63,6 +65,8 @@ class _ChatDetailsState extends State<ChatDetails> {
     final input = await showTextInputDialog(
       context: context,
       title: L10n.of(context).setInvitationLink,
+      okLabel: L10n.of(context).ok,
+      cancelLabel: L10n.of(context).cancel,
       textFields: [
         DialogTextField(
           hintText: '#localpart:domain',
@@ -103,6 +107,8 @@ class _ChatDetailsState extends State<ChatDetails> {
     final input = await showTextInputDialog(
       context: context,
       title: L10n.of(context).setGroupDescription,
+      okLabel: L10n.of(context).ok,
+      cancelLabel: L10n.of(context).cancel,
       textFields: [
         DialogTextField(
           hintText: L10n.of(context).setGroupDescription,

@@ -89,6 +89,8 @@ class _DiscoverState extends State<Discover> {
     final newServer = await showTextInputDialog(
         title: L10n.of(context).changeTheHomeserver,
         context: context,
+        okLabel: L10n.of(context).ok,
+        cancelLabel: L10n.of(context).cancel,
         textFields: [
           DialogTextField(
             prefixText: 'https://',

@@ -324,6 +324,8 @@ class _ChatState extends State<Chat> {
     final reason = await showTextInputDialog(
         context: context,
         title: L10n.of(context).whyDoYouWantToReportThis,
+        okLabel: L10n.of(context).ok,
+        cancelLabel: L10n.of(context).cancel,
         textFields: [DialogTextField(hintText: L10n.of(context).reason)]);
     if (reason == null || reason.single.isEmpty) return;
     final result = await showFutureLoadingDialog(

@@ -132,6 +132,8 @@ class _ChatListState extends State<ChatList> {
     final input = await showTextInputDialog(
         context: context,
         title: L10n.of(context).setStatus,
+          okLabel: L10n.of(context).ok,
+          cancelLabel: L10n.of(context).cancel,
         textFields: [
           DialogTextField(
             hintText: L10n.of(context).statusExampleMessage,
