@@ -78,7 +78,13 @@ class App extends StatelessWidget {
                 dividerColor: Theme.of(context).dividerColor,
                 columnWidth: FluffyThemes.columnWidth,
                 routeBuilder: (builder, settings) =>
-                    Matrix.of(context).loginState == LoginState.logged
+                    Matrix.of(context).loginState == LoginState.logged &&
+                            !{
+                              '/',
+                              '/discover',
+                              '/contacts',
+                              '/settings',
+                            }.contains(settings.name)
                         ? CupertinoPageRoute(builder: builder)
                         : FadeRoute(page: builder(context)),
               ),

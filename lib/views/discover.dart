@@ -5,6 +5,7 @@ import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/avatar.dart';
 import 'package:fluffychat/components/default_app_bar_search_field.dart';
+import 'package:fluffychat/components/default_bottom_navigation_bar.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:flutter/material.dart';
@@ -148,12 +149,18 @@ class _DiscoverState extends State<Discover> {
     });
     return Scaffold(
       appBar: AppBar(
+        elevation: 1,
+        automaticallyImplyLeading: false,
         title: Text(L10n.of(context).discoverGroups),
         actions: [
-          FlatButton(
-            child: Text(
+          TextButton.icon(
+            label: Text(
               server ?? Matrix.of(context).client.userID.domain,
-              style: TextStyle(color: Theme.of(context).primaryColor),
+              style: TextStyle(color: Theme.of(context).accentColor),
+            ),
+            icon: Icon(
+              Icons.edit_outlined,
+              color: Theme.of(context).accentColor,
             ),
             onPressed: () => _setServer(context),
           ),
@@ -287,6 +294,7 @@ class _DiscoverState extends State<Discover> {
               }),
         ],
       ),
+      bottomNavigationBar: DefaultBottomNavigationBar(currentIndex: 2),
     );
   }
 }
