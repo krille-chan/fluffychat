@@ -2243,7 +2243,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "verified": "Überprüft",
+  "verified": "Verifiziert",
   "@verified": {
     "type": "text",
     "placeholders": {}
