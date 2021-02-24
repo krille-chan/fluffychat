@@ -5,6 +5,7 @@ import 'package:fluffychat/views/archive.dart';
 import 'package:fluffychat/views/chat.dart';
 import 'package:fluffychat/views/chat_details.dart';
 import 'package:fluffychat/views/chat_encryption_settings.dart';
+import 'package:fluffychat/views/contacts.dart';
 import 'package:fluffychat/views/discover.dart';
 import 'package:fluffychat/views/chat_list.dart';
 import 'package:fluffychat/views/chat_permissions_settings.dart';
@@ -61,6 +62,7 @@ class FluffyRoutes {
     }
     // Routes IF user is logged in
     else {
+      final activeRoomId = Matrix.of(context).client.activeRoomId;
       switch (parts[1]) {
         case '':
           return ViewData(
@@ -138,11 +140,18 @@ class FluffyRoutes {
             leftView: (_) => ChatList(),
             mainView: (_) => NewPrivateChat(),
           );
+        case 'contacts':
+          return ViewData(
+            mainView: (_) => Contacts(),
+            emptyView: (_) =>
+                activeRoomId != null ? Chat(activeRoomId) : EmptyPage(),
+          );
         case 'discover':
           if (parts.length == 3) {
             return ViewData(
               mainView: (_) => Discover(alias: parts[2]),
-              emptyView: (_) => EmptyPage(),
+              emptyView: (_) =>
+                  activeRoomId != null ? Chat(activeRoomId) : EmptyPage(),
             );
           }
           return ViewData(
@@ -192,12 +201,14 @@ class FluffyRoutes {
           } else {
             return ViewData(
               mainView: (_) => Settings(),
-              emptyView: (_) => EmptyPage(),
+              emptyView: (_) =>
+                  activeRoomId != null ? Chat(activeRoomId) : EmptyPage(),
             );
           }
           return ViewData(
             mainView: (_) => ChatList(),
-            emptyView: (_) => EmptyPage(),
+            emptyView: (_) =>
+                activeRoomId != null ? Chat(activeRoomId) : EmptyPage(),
           );
       }
     }

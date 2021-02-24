@@ -6,9 +6,8 @@ import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/connection_status_header.dart';
 import 'package:fluffychat/components/default_app_bar_search_field.dart';
-import 'package:fluffychat/components/horizontal_stories_list.dart';
+import 'package:fluffychat/components/default_bottom_navigation_bar.dart';
 import 'package:fluffychat/components/list_items/chat_list_item.dart';
-import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fluffychat/app_config.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -105,51 +104,6 @@ class _ChatListState extends State<ChatList> {
     super.dispose();
   }
 
-  void _onPopupMenuButtonSelect(ChatListPopupMenuItemActions action) {
-    switch (action) {
-      case ChatListPopupMenuItemActions.createGroup:
-        AdaptivePageLayout.of(context).pushNamed('/newgroup');
-        break;
-      case ChatListPopupMenuItemActions.discover:
-        AdaptivePageLayout.of(context).pushNamed('/discover');
-        break;
-      case ChatListPopupMenuItemActions.setStatus:
-        _setStatus();
-        break;
-      case ChatListPopupMenuItemActions.inviteContact:
-        FluffyShare.share(
-            L10n.of(context).inviteText(Matrix.of(context).client.userID,
-                'https://matrix.to/#/${Matrix.of(context).client.userID}'),
-            context);
-        break;
-      case ChatListPopupMenuItemActions.settings:
-        AdaptivePageLayout.of(context).pushNamed('/settings');
-        break;
-    }
-  }
-
-  void _setStatus() async {
-    final input = await showTextInputDialog(
-        context: context,
-        title: L10n.of(context).setStatus,
-          okLabel: L10n.of(context).ok,
-          cancelLabel: L10n.of(context).cancel,
-        textFields: [
-          DialogTextField(
-            hintText: L10n.of(context).statusExampleMessage,
-          ),
-        ]);
-    if (input == null) return;
-    await showFutureLoadingDialog(
-      context: context,
-      future: () => Matrix.of(context).client.sendPresence(
-            Matrix.of(context).client.userID,
-            PresenceType.online,
-            statusMsg: input.single,
-          ),
-    );
-  }
-
   void _toggleSelection(String roomId) {
     setState(() => _selectedRoomIds.contains(roomId)
         ? _selectedRoomIds.remove(roomId)
@@ -231,6 +185,7 @@ class _ChatListState extends State<ChatList> {
           return Scaffold(
             appBar: appBar ??
                 AppBar(
+                  elevation: 1,
                   leading: selectMode == SelectMode.normal
                       ? null
                       : IconButton(
@@ -299,66 +254,6 @@ class _ChatListState extends State<ChatList> {
                                   );
                                 },
                               ),
-                              PopupMenuButton<ChatListPopupMenuItemActions>(
-                                onSelected: _onPopupMenuButtonSelect,
-                                itemBuilder: (_) => [
-                                  PopupMenuItem(
-                                    value: ChatListPopupMenuItemActions
-                                        .createGroup,
-                                    child: Row(
-                                      children: [
-                                        Icon(Icons.group_add_outlined),
-                                        SizedBox(width: 12),
-                                        Text(L10n.of(context).createNewGroup),
-                                      ],
-                                    ),
-                                  ),
-                                  PopupMenuItem(
-                                    value:
-                                        ChatListPopupMenuItemActions.discover,
-                                    child: Row(
-                                      children: [
-                                        Icon(Icons.group_work_outlined),
-                                        SizedBox(width: 12),
-                                        Text(L10n.of(context).discoverGroups),
-                                      ],
-                                    ),
-                                  ),
-                                  PopupMenuItem(
-                                    value:
-                                        ChatListPopupMenuItemActions.setStatus,
-                                    child: Row(
-                                      children: [
-                                        Icon(Icons.edit_outlined),
-                                        SizedBox(width: 12),
-                                        Text(L10n.of(context).setStatus),
-                                      ],
-                                    ),
-                                  ),
-                                  PopupMenuItem(
-                                    value: ChatListPopupMenuItemActions
-                                        .inviteContact,
-                                    child: Row(
-                                      children: [
-                                        Icon(Icons.share_outlined),
-                                        SizedBox(width: 12),
-                                        Text(L10n.of(context).inviteContact),
-                                      ],
-                                    ),
-                                  ),
-                                  PopupMenuItem(
-                                    value:
-                                        ChatListPopupMenuItemActions.settings,
-                                    child: Row(
-                                      children: [
-                                        Icon(Icons.settings_outlined),
-                                        SizedBox(width: 12),
-                                        Text(L10n.of(context).settings),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
                             ],
                   title: Text(selectMode == SelectMode.share
                       ? L10n.of(context).share
@@ -422,32 +317,16 @@ class _ChatListState extends State<ChatList> {
                               itemCount: totalCount + 1,
                               itemBuilder: (BuildContext context, int i) => i ==
                                       0
-                                  ? Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.all(12),
-                                          child: DefaultAppBarSearchField(
-                                            key: _searchFieldKey,
-                                            hintText: L10n.of(context).search,
-                                            prefixIcon:
-                                                Icon(Icons.search_outlined),
-                                            searchController: searchController,
-                                            onChanged: (_) =>
-                                                setState(() => null),
-                                            padding: EdgeInsets.zero,
-                                          ),
-                                        ),
-                                        if (selectMode == SelectMode.normal)
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 4.0),
-                                            child: HorizontalStoriesList(
-                                              searchQuery:
-                                                  searchController.text,
-                                            ),
-                                          ),
-                                      ],
+                                  ? Padding(
+                                      padding: EdgeInsets.all(12),
+                                      child: DefaultAppBarSearchField(
+                                        key: _searchFieldKey,
+                                        hintText: L10n.of(context).search,
+                                        prefixIcon: Icon(Icons.search_outlined),
+                                        searchController: searchController,
+                                        onChanged: (_) => setState(() => null),
+                                        padding: EdgeInsets.zero,
+                                      ),
                                     )
                                   : ChatListItem(
                                       rooms[i - 1],
@@ -473,11 +352,18 @@ class _ChatListState extends State<ChatList> {
                     }),
               ),
             ]),
-            floatingActionButton: FloatingActionButton(
-              child: Icon(Icons.add_outlined),
-              onPressed: () => AdaptivePageLayout.of(context)
-                  .pushNamedAndRemoveUntilIsFirst('/newprivatechat'),
-            ),
+            floatingActionButton: selectMode == SelectMode.normal
+                ? FloatingActionButton(
+                    child: Icon(Icons.add_outlined),
+                    onPressed: () => AdaptivePageLayout.of(context)
+                        .pushNamedAndRemoveUntilIsFirst('/newprivatechat'),
+                  )
+                : null,
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerDocked,
+            bottomNavigationBar: selectMode == SelectMode.normal
+                ? DefaultBottomNavigationBar(currentIndex: 1)
+                : null,
           );
         });
   }
