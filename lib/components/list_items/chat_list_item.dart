@@ -90,12 +90,13 @@ class ChatListItem extends StatelessWidget {
           if (Matrix.of(context).shareContent['msgtype'] ==
               'chat.fluffy.shared_file') {
             await showDialog(
-                context: context,
-                builder: (c) => SendFileDialog(
-                      file: Matrix.of(context).shareContent['file'],
-                      room: room,
-                      l10n: L10n.of(context),
-                    ));
+              context: context,
+              builder: (c) => SendFileDialog(
+                file: Matrix.of(context).shareContent['file'],
+                room: room,
+              ),
+              useRootNavigator: false,
+            );
           } else {
             unawaited(room.sendEvent(Matrix.of(context).shareContent));
           }
@@ -124,6 +125,7 @@ class ChatListItem extends StatelessWidget {
         title: L10n.of(context).areYouSure,
         okLabel: L10n.of(context).yes,
         cancelLabel: L10n.of(context).no,
+        useRootNavigator: false,
       );
       if (confirmed == OkCancelResult.cancel) return;
       await showFutureLoadingDialog(

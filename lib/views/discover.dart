@@ -66,6 +66,7 @@ class _DiscoverState extends State<Discover> {
           title: '${room.name} (${room.numJoinedMembers ?? 0})',
           message: room.topic ?? L10n.of(context).noDescription,
           cancelLabel: L10n.of(context).cancel,
+          useRootNavigator: false,
         ) ==
         OkCancelResult.cancel) {
       return;
@@ -92,6 +93,7 @@ class _DiscoverState extends State<Discover> {
         context: context,
         okLabel: L10n.of(context).ok,
         cancelLabel: L10n.of(context).cancel,
+        useRootNavigator: false,
         textFields: [
           DialogTextField(
             prefixText: 'https://',

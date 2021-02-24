@@ -43,6 +43,7 @@ class _ContactsState extends State<Contacts> {
         title: L10n.of(context).setStatus,
         okLabel: L10n.of(context).ok,
         cancelLabel: L10n.of(context).cancel,
+        useRootNavigator: false,
         textFields: [
           DialogTextField(
             hintText: L10n.of(context).statusExampleMessage,

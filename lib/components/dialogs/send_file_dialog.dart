@@ -10,11 +10,9 @@ import '../../utils/resize_image.dart';
 class SendFileDialog extends StatefulWidget {
   final Room room;
   final MatrixFile file;
-  final L10n l10n;
 
   const SendFileDialog({
     this.room,
-    @required this.l10n,
     this.file,
     Key key,
   }) : super(key: key);
@@ -40,13 +38,13 @@ class _SendFileDialogState extends State<SendFileDialog> {
 
   @override
   Widget build(BuildContext context) {
-    var sendStr = widget.l10n.sendFile;
+    var sendStr = L10n.of(context).sendFile;
     if (widget.file is MatrixImageFile) {
-      sendStr = widget.l10n.sendImage;
+      sendStr = L10n.of(context).sendImage;
     } else if (widget.file is MatrixAudioFile) {
-      sendStr = widget.l10n.sendAudio;
+      sendStr = L10n.of(context).sendAudio;
     } else if (widget.file is MatrixVideoFile) {
-      sendStr = widget.l10n.sendVideo;
+      sendStr = L10n.of(context).sendVideo;
     }
     Widget contentWidget;
     if (widget.file is MatrixImageFile) {
@@ -66,8 +64,8 @@ class _SendFileDialogState extends State<SendFileDialog> {
             ),
             InkWell(
               onTap: () => setState(() => origImage = !origImage),
-              child: Text(
-                  widget.l10n.sendOriginal + ' (${widget.file.sizeString})'),
+              child: Text(L10n.of(context).sendOriginal +
+                  ' (${widget.file.sizeString})'),
             ),
           ],
         )
@@ -80,14 +78,14 @@ class _SendFileDialogState extends State<SendFileDialog> {
       content: contentWidget,
       actions: <Widget>[
         FlatButton(
-          child: Text(widget.l10n.cancel),
+          child: Text(L10n.of(context).cancel),
           onPressed: () {
             // just close the dialog
-            Navigator.of(context).pop();
+            Navigator.of(context, rootNavigator: false).pop();
           },
         ),
         FlatButton(
-          child: Text(widget.l10n.send),
+          child: Text(L10n.of(context).send),
           onPressed: _isSending
               ? null
               : () async {
@@ -96,7 +94,7 @@ class _SendFileDialogState extends State<SendFileDialog> {
                   });
                   await showFutureLoadingDialog(
                       context: context, future: () => _send());
-                  await Navigator.of(context).pop();
+                  await Navigator.of(context, rootNavigator: false).pop();
                 },
         ),
       ],

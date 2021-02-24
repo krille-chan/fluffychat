@@ -88,6 +88,7 @@ class _SignUpPasswordState extends State<SignUpPassword> {
                 context: context,
                 okLabel: L10n.of(context).next,
                 cancelLabel: L10n.of(context).cancel,
+                useRootNavigator: false,
               )) {
             _signUpAction(
               context,

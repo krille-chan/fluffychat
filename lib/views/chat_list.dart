@@ -143,6 +143,7 @@ class _ChatListState extends State<ChatList> {
           title: L10n.of(context).areYouSure,
           okLabel: L10n.of(context).yes,
           cancelLabel: L10n.of(context).cancel,
+          useRootNavigator: false,
         ) ==
         OkCancelResult.ok;
     if (!confirmed) return;

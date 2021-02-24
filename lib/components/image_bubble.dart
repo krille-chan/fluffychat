@@ -233,7 +233,7 @@ class _ImageBubbleState extends State<ImageBubble> {
       child: InkWell(
         onTap: () {
           if (!widget.tapToView) return;
-          Navigator.of(context).push(
+          Navigator.of(context, rootNavigator: false).push(
             MaterialPageRoute(
               builder: (_) => ImageView(widget.event, onLoaded: () {
                 // If the original file didn't load yet, we want to do that now.

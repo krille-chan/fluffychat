@@ -10,7 +10,7 @@ extension LocalizedBody on Event {
   void openFile(BuildContext context, {bool downloadOnly = false}) async {
     if (!downloadOnly &&
         [MessageTypes.Image, MessageTypes.Sticker].contains(messageType)) {
-      await Navigator.of(context).push(
+      await Navigator.of(context, rootNavigator: false).push(
         MaterialPageRoute(builder: (_) => ImageView(this)),
       );
       return;

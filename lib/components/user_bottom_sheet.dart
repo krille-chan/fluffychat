@@ -17,12 +17,10 @@ import 'dialogs/key_verification_dialog.dart';
 class UserBottomSheet extends StatelessWidget {
   final User user;
   final Function onMention;
-  final L10n l10n;
 
   const UserBottomSheet({
     Key key,
     @required this.user,
-    @required this.l10n,
     this.onMention,
   }) : super(key: key);
 
@@ -30,14 +28,15 @@ class UserBottomSheet extends StatelessWidget {
     final Function _askConfirmation =
         () async => (await showOkCancelAlertDialog(
               context: context,
-              title: l10n.areYouSure,
-              okLabel: l10n.yes,
-              cancelLabel: l10n.no,
+              useRootNavigator: false,
+              title: L10n.of(context).areYouSure,
+              okLabel: L10n.of(context).yes,
+              cancelLabel: L10n.of(context).no,
             ) ==
             OkCancelResult.ok);
     switch (action) {
       case 'mention':
-        Navigator.of(context).pop();
+        Navigator.of(context, rootNavigator: false).pop();
         onMention();
         break;
       case 'ban':
@@ -46,7 +45,7 @@ class UserBottomSheet extends StatelessWidget {
             context: context,
             future: () => user.ban(),
           );
-          Navigator.of(context).pop();
+          Navigator.of(context, rootNavigator: false).pop();
         }
         break;
       case 'unban':
@@ -55,7 +54,7 @@ class UserBottomSheet extends StatelessWidget {
             context: context,
             future: () => user.unban(),
           );
-          Navigator.of(context).pop();
+          Navigator.of(context, rootNavigator: false).pop();
         }
         break;
       case 'kick':
@@ -64,21 +63,20 @@ class UserBottomSheet extends StatelessWidget {
             context: context,
             future: () => user.kick(),
           );
-          Navigator.of(context).pop();
+          Navigator.of(context, rootNavigator: false).pop();
         }
         break;
       case 'permission':
-        final newPermission = await PermissionSliderDialog(
-          initialPermission: user.powerLevel,
-          l10n: L10n.of(context),
-        ).show(context);
+        final newPermission =
+            await PermissionSliderDialog(initialPermission: user.powerLevel)
+                .show(context);
         if (newPermission != null) {
           if (newPermission == 100 && await _askConfirmation() == false) break;
           await showFutureLoadingDialog(
             context: context,
             future: () => user.setPower(newPermission),
           );
-          Navigator.of(context).pop();
+          Navigator.of(context, rootNavigator: false).pop();
         }
         break;
       case 'message':
@@ -92,10 +90,7 @@ class UserBottomSheet extends StatelessWidget {
   void _verifyAction(BuildContext context) async {
     final client = user.room.client;
     final req = await client.userDeviceKeys[user.id].startVerification();
-    await KeyVerificationDialog(
-      request: req,
-      l10n: L10n.of(context),
-    ).show(context);
+    await KeyVerificationDialog(request: req).show(context);
   }
 
   @override
@@ -109,7 +104,7 @@ class UserBottomSheet extends StatelessWidget {
       items.add(
         PopupMenuItem(
             child: _TextWithIcon(
-              l10n.mention,
+              L10n.of(context).mention,
               Icons.alternate_email_outlined,
             ),
             value: 'mention'),
@@ -119,7 +114,7 @@ class UserBottomSheet extends StatelessWidget {
       items.add(
         PopupMenuItem(
             child: _TextWithIcon(
-              l10n.sendAMessage,
+              L10n.of(context).sendAMessage,
               Icons.send_outlined,
             ),
             value: 'message'),
@@ -129,7 +124,7 @@ class UserBottomSheet extends StatelessWidget {
       items.add(
         PopupMenuItem(
             child: _TextWithIcon(
-              l10n.setPermissionsLevel,
+              L10n.of(context).setPermissionsLevel,
               Icons.edit_attributes_outlined,
             ),
             value: 'permission'),
@@ -139,7 +134,7 @@ class UserBottomSheet extends StatelessWidget {
       items.add(
         PopupMenuItem(
             child: _TextWithIcon(
-              l10n.kickFromChat,
+              L10n.of(context).kickFromChat,
               Icons.exit_to_app_outlined,
             ),
             value: 'kick'),
@@ -149,7 +144,7 @@ class UserBottomSheet extends StatelessWidget {
       items.add(
         PopupMenuItem(
             child: _TextWithIcon(
-              l10n.banFromChat,
+              L10n.of(context).banFromChat,
               Icons.warning_sharp,
             ),
             value: 'ban'),
@@ -158,7 +153,7 @@ class UserBottomSheet extends StatelessWidget {
       items.add(
         PopupMenuItem(
             child: _TextWithIcon(
-              l10n.removeExile,
+              L10n.of(context).removeExile,
               Icons.warning_outlined,
             ),
             value: 'unban'),
@@ -179,7 +174,7 @@ class UserBottomSheet extends StatelessWidget {
                     Theme.of(context).scaffoldBackgroundColor.withOpacity(0.5),
                 leading: IconButton(
                   icon: Icon(Icons.arrow_downward_outlined),
-                  onPressed: Navigator.of(context).pop,
+                  onPressed: Navigator.of(context, rootNavigator: false).pop,
                   tooltip: L10n.of(context).close,
                 ),
                 title: Text(user.calcDisplayname()),
@@ -224,7 +219,7 @@ class UserBottomSheet extends StatelessWidget {
                     ),
                   ),
                   ListTile(
-                    title: Text(l10n.username),
+                    title: Text(L10n.of(context).username),
                     subtitle: Text(user.id),
                     trailing: Icon(Icons.share_outlined),
                     onTap: () => FluffyShare.share(user.id, context),

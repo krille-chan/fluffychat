@@ -12,16 +12,21 @@ import '../../utils/beautify_string_extension.dart';
 
 class KeyVerificationDialog extends StatefulWidget {
   Future<void> show(BuildContext context) => PlatformInfos.isCupertinoStyle
-      ? showCupertinoDialog(context: context, builder: (context) => this)
-      : showDialog(context: context, builder: (context) => this);
+      ? showCupertinoDialog(
+          context: context,
+          builder: (context) => this,
+          useRootNavigator: false,
+        )
+      : showDialog(
+          context: context,
+          builder: (context) => this,
+          useRootNavigator: false,
+        );
 
   final KeyVerification request;
 
-  final L10n l10n;
-
   KeyVerificationDialog({
     this.request,
-    @required this.l10n,
   });
 
   @override
@@ -92,7 +97,8 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
           if (valid.error != null) {
             await showOkAlertDialog(
               context: context,
-              message: widget.l10n.incorrectPassphraseOrKey,
+              message: L10n.of(context).incorrectPassphraseOrKey,
+              useRootNavigator: false,
             );
           }
         };
@@ -100,7 +106,8 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
           margin: EdgeInsets.only(left: 8.0, right: 8.0),
           child: Column(
             children: <Widget>[
-              Text(widget.l10n.askSSSSSign, style: TextStyle(fontSize: 20)),
+              Text(L10n.of(context).askSSSSSign,
+                  style: TextStyle(fontSize: 20)),
               Container(height: 10),
               TextField(
                 controller: textEditingController,
@@ -114,7 +121,7 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
                 maxLines: 1,
                 obscureText: true,
                 decoration: InputDecoration(
-                  hintText: widget.l10n.passphraseOrKey,
+                  hintText: L10n.of(context).passphraseOrKey,
                   prefixStyle: TextStyle(color: Theme.of(context).primaryColor),
                   suffixStyle: TextStyle(color: Theme.of(context).primaryColor),
                   border: OutlineInputBorder(),
@@ -125,32 +132,33 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
           ),
         );
         buttons.add(AdaptiveFlatButton(
-          child: Text(widget.l10n.submit),
+          child: Text(L10n.of(context).submit),
           onPressed: () {
             input = textEditingController.text;
             checkInput();
           },
         ));
         buttons.add(AdaptiveFlatButton(
-          child: Text(widget.l10n.skip),
+          child: Text(L10n.of(context).skip),
           onPressed: () => widget.request.openSSSS(skip: true),
         ));
         break;
       case KeyVerificationState.askAccept:
         body = Container(
-          child: Text(widget.l10n.askVerificationRequest(widget.request.userId),
+          child: Text(
+              L10n.of(context).askVerificationRequest(widget.request.userId),
               style: TextStyle(fontSize: 20)),
           margin: EdgeInsets.only(left: 8.0, right: 8.0),
         );
         buttons.add(AdaptiveFlatButton(
-          child: Text(widget.l10n.accept),
+          child: Text(L10n.of(context).accept),
           onPressed: () => widget.request.acceptVerification(),
         ));
         buttons.add(AdaptiveFlatButton(
-          child: Text(widget.l10n.reject),
+          child: Text(L10n.of(context).reject),
           onPressed: () {
             widget.request.rejectVerification().then((_) {
-              Navigator.of(context).pop();
+              Navigator.of(context, rootNavigator: false).pop();
             });
           },
         ));
@@ -163,7 +171,7 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
                 : CircularProgressIndicator(),
             SizedBox(height: 10),
             Text(
-              widget.l10n.waitingPartnerAcceptRequest,
+              L10n.of(context).waitingPartnerAcceptRequest,
               textAlign: TextAlign.center,
             ),
           ],
@@ -173,18 +181,19 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
             .deviceKeys[widget.request.deviceId];
         if (key != null) {
           buttons.add(AdaptiveFlatButton(
-            child: Text(widget.l10n.verifyManual),
+            child: Text(L10n.of(context).verifyManual),
             onPressed: () async {
               final result = await showOkCancelAlertDialog(
                 context: context,
-                title: widget.l10n.verifyManual,
+                useRootNavigator: false,
+                title: L10n.of(context).verifyManual,
                 message: key.ed25519Key.beautified,
               );
               if (result == OkCancelResult.ok) {
                 await key.setVerified(true);
               }
               await widget.request.cancel();
-              Navigator.of(context).pop();
+              Navigator.of(context, rootNavigator: false).pop();
             },
           ));
         }
@@ -196,14 +205,14 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
         // view for if "emoji" is a present sasType or not?
         String compareText;
         if (widget.request.sasTypes.contains('emoji')) {
-          compareText = widget.l10n.compareEmojiMatch;
+          compareText = L10n.of(context).compareEmojiMatch;
           compareWidget = TextSpan(
             children: widget.request.sasEmojis
                 .map((e) => WidgetSpan(child: _Emoji(e)))
                 .toList(),
           );
         } else {
-          compareText = widget.l10n.compareNumbersMatch;
+          compareText = L10n.of(context).compareNumbersMatch;
           final numbers = widget.request.sasNumbers;
           final numbstr = '${numbers[0]}-${numbers[1]}-${numbers[2]}';
           compareWidget =
@@ -228,18 +237,18 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
         );
         buttons.add(AdaptiveFlatButton(
           textColor: Colors.red,
-          child: Text(widget.l10n.theyDontMatch),
+          child: Text(L10n.of(context).theyDontMatch),
           onPressed: () => widget.request.rejectSas(),
         ));
         buttons.add(AdaptiveFlatButton(
-          child: Text(widget.l10n.theyMatch),
+          child: Text(L10n.of(context).theyMatch),
           onPressed: () => widget.request.acceptSas(),
         ));
         break;
       case KeyVerificationState.waitingSas:
         var acceptText = widget.request.sasTypes.contains('emoji')
-            ? widget.l10n.waitingPartnerEmoji
-            : widget.l10n.waitingPartnerNumbers;
+            ? L10n.of(context).waitingPartnerEmoji
+            : L10n.of(context).waitingPartnerNumbers;
         body = Column(
           children: <Widget>[
             PlatformInfos.isCupertinoStyle
@@ -260,15 +269,15 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
             Icon(Icons.check_circle_outlined, color: Colors.green, size: 200.0),
             SizedBox(height: 10),
             Text(
-              widget.l10n.verifySuccess,
+              L10n.of(context).verifySuccess,
               textAlign: TextAlign.center,
             ),
           ],
           mainAxisSize: MainAxisSize.min,
         );
         buttons.add(AdaptiveFlatButton(
-          child: Text(widget.l10n.close),
-          onPressed: () => Navigator.of(context).pop(),
+          child: Text(L10n.of(context).close),
+          onPressed: () => Navigator.of(context, rootNavigator: false).pop(),
         ));
         break;
       case KeyVerificationState.error:
@@ -284,8 +293,8 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
           mainAxisSize: MainAxisSize.min,
         );
         buttons.add(FlatButton(
-          child: Text(widget.l10n.close),
-          onPressed: () => Navigator.of(context).pop(),
+          child: Text(L10n.of(context).close),
+          onPressed: () => Navigator.of(context, rootNavigator: false).pop(),
         ));
         break;
     }
@@ -329,7 +338,7 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
       ],
       crossAxisAlignment: CrossAxisAlignment.start,
     );
-    final title = Text(widget.l10n.verifyTitle);
+    final title = Text(L10n.of(context).verifyTitle);
     final content = Scrollbar(
       isAlwaysShown: true,
       controller: _scrollController,
