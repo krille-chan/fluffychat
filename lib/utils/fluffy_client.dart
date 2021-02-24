@@ -28,7 +28,8 @@ class FluffyClient extends Client {
           databaseBuilder: getDatabase,
           supportedLoginTypes: {
             AuthenticationTypes.password,
-            if (PlatformInfos.isMobile) AuthenticationTypes.sso
+            if (PlatformInfos.isMobile || PlatformInfos.isWeb)
+              AuthenticationTypes.sso
           },
         );
 }
