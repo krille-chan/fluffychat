@@ -47,6 +47,7 @@ class _SettingsState extends State<Settings> {
           title: L10n.of(context).areYouSureYouWantToLogout,
           okLabel: L10n.of(context).yes,
           cancelLabel: L10n.of(context).cancel,
+          useRootNavigator: false,
         ) ==
         OkCancelResult.cancel) {
       return;
@@ -64,6 +65,7 @@ class _SettingsState extends State<Settings> {
       title: L10n.of(context).changePassword,
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
+      useRootNavigator: false,
       textFields: [
         DialogTextField(
           hintText: L10n.of(context).pleaseEnterYourPassword,
@@ -98,6 +100,7 @@ class _SettingsState extends State<Settings> {
           message: L10n.of(context).deactivateAccountWarning,
           okLabel: L10n.of(context).ok,
           cancelLabel: L10n.of(context).cancel,
+          useRootNavigator: false,
         ) ==
         OkCancelResult.cancel) {
       return;
@@ -107,6 +110,7 @@ class _SettingsState extends State<Settings> {
           title: L10n.of(context).areYouSure,
           okLabel: L10n.of(context).yes,
           cancelLabel: L10n.of(context).cancel,
+          useRootNavigator: false,
         ) ==
         OkCancelResult.cancel) {
       return;
@@ -116,6 +120,7 @@ class _SettingsState extends State<Settings> {
       title: L10n.of(context).pleaseEnterYourPassword,
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
+      useRootNavigator: false,
       textFields: [
         DialogTextField(
           obscureText: true,
@@ -146,6 +151,7 @@ class _SettingsState extends State<Settings> {
       title: L10n.of(context).editJitsiInstance,
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
+      useRootNavigator: false,
       textFields: [
         DialogTextField(
           initialText: AppConfig.jitsiInstance.replaceFirst(prefix, ''),
@@ -169,6 +175,7 @@ class _SettingsState extends State<Settings> {
       title: L10n.of(context).editDisplayname,
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
+      useRootNavigator: false,
       textFields: [
         DialogTextField(
           initialText: profile?.displayname ??
@@ -233,6 +240,7 @@ class _SettingsState extends State<Settings> {
       title: L10n.of(context).askSSSSCache,
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
+      useRootNavigator: false,
       textFields: [
         DialogTextField(
           hintText: L10n.of(context).passphraseOrKey,
@@ -263,6 +271,8 @@ class _SettingsState extends State<Settings> {
         await showOkAlertDialog(
           context: context,
           message: L10n.of(context).cachedKeys,
+          okLabel: L10n.of(context).ok,
+          useRootNavigator: false,
         );
         setState(() {
           crossSigningCachedFuture = null;
@@ -274,6 +284,8 @@ class _SettingsState extends State<Settings> {
         await showOkAlertDialog(
           context: context,
           message: L10n.of(context).incorrectPassphraseOrKey,
+          okLabel: L10n.of(context).ok,
+          useRootNavigator: false,
         );
       }
     }
@@ -297,6 +309,7 @@ class _SettingsState extends State<Settings> {
       title: L10n.of(context).pleaseChooseAPasscode,
       message: L10n.of(context).pleaseEnter4Digits,
       cancelLabel: L10n.of(context).cancel,
+      useRootNavigator: false,
       textFields: [
         DialogTextField(
           validator: (text) {
@@ -516,6 +529,8 @@ class _SettingsState extends State<Settings> {
                   context: context,
                   title: L10n.of(context).yourPublicKey,
                   message: client.fingerprintKey.beautified,
+                  okLabel: L10n.of(context).ok,
+                  useRootNavigator: false,
                 ),
                 trailing: Icon(Icons.vpn_key_outlined),
               ),
@@ -534,19 +549,13 @@ class _SettingsState extends State<Settings> {
                           isDestructiveAction: true,
                           okLabel: L10n.of(context).ok,
                           cancelLabel: L10n.of(context).cancel,
+                          useRootNavigator: false,
                         )) {
-                      await BootstrapDialog(
-                        l10n: L10n.of(context),
-                        client: Matrix.of(context).client,
-                        wipe: true,
-                      ).show(context);
+                      await BootstrapDialog(wipe: true).show(context);
                     }
                     return;
                   }
-                  await BootstrapDialog(
-                    l10n: L10n.of(context),
-                    client: Matrix.of(context).client,
-                  ).show(context);
+                  await BootstrapDialog().show(context);
                 },
               ),
             },

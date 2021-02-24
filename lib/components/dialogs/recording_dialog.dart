@@ -8,10 +8,7 @@ import 'package:flutter_sound_lite/flutter_sound.dart';
 import 'package:path_provider/path_provider.dart';
 
 class RecordingDialog extends StatefulWidget {
-  final L10n l10n;
-
   const RecordingDialog({
-    @required this.l10n,
     Key key,
   }) : super(key: key);
 
@@ -76,7 +73,7 @@ class _RecordingDialogState extends State<RecordingDialog> {
   Widget build(BuildContext context) {
     if (error) {
       Timer(Duration(seconds: 1), () {
-        Navigator.of(context).pop();
+        Navigator.of(context, rootNavigator: false).pop();
       });
     }
     const maxDecibalWidth = 64.0;
@@ -101,7 +98,7 @@ class _RecordingDialogState extends State<RecordingDialog> {
           SizedBox(width: 8),
           Expanded(
             child: Text(
-              '${widget.l10n.recording}: $time',
+              '${L10n.of(context).recording}: $time',
               style: TextStyle(
                 fontSize: 18,
               ),
@@ -112,17 +109,17 @@ class _RecordingDialogState extends State<RecordingDialog> {
       actions: <Widget>[
         FlatButton(
           child: Text(
-            widget.l10n.cancel.toUpperCase(),
+            L10n.of(context).cancel.toUpperCase(),
             style: TextStyle(
               color: Theme.of(context).textTheme.bodyText2.color.withAlpha(150),
             ),
           ),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => Navigator.of(context, rootNavigator: false).pop(),
         ),
         FlatButton(
           child: Row(
             children: <Widget>[
-              Text(widget.l10n.send.toUpperCase()),
+              Text(L10n.of(context).send.toUpperCase()),
               SizedBox(width: 4),
               Icon(Icons.send_outlined, size: 15),
             ],
@@ -130,7 +127,8 @@ class _RecordingDialogState extends State<RecordingDialog> {
           onPressed: () async {
             await _recorderSubscription?.cancel();
             await flutterSound.stopRecorder();
-            Navigator.of(context).pop<String>(_recordedPath);
+            Navigator.of(context, rootNavigator: false)
+                .pop<String>(_recordedPath);
           },
         ),
       ],

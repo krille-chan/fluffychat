@@ -34,6 +34,7 @@ class _EncryptionButtonState extends State<EncryptionButton> {
     }
     if (await showOkCancelAlertDialog(
           context: context,
+          useRootNavigator: false,
           title: L10n.of(context).enableEncryptionWarning,
           message: widget.room.client.encryptionEnabled
               ? L10n.of(context).warningEncryptionInBeta

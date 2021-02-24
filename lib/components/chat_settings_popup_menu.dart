@@ -68,6 +68,7 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
           case 'leave':
             var confirmed = await showOkCancelAlertDialog(
               context: context,
+              useRootNavigator: false,
               title: L10n.of(context).areYouSure,
               okLabel: L10n.of(context).ok,
               cancelLabel: L10n.of(context).cancel,

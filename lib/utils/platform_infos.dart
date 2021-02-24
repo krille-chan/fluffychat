@@ -43,6 +43,7 @@ abstract class PlatformInfos {
     var version = await PlatformInfos.getVersion();
     showAboutDialog(
       context: context,
+      useRootNavigator: false,
       children: [
         Text('Version: $version'),
         RaisedButton(

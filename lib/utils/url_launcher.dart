@@ -73,6 +73,7 @@ class UrlLauncher {
         if (await showOkCancelAlertDialog(
               context: context,
               title: 'Join room $roomIdOrAlias',
+              useRootNavigator: false,
             ) ==
             OkCancelResult.ok) {
           roomId = roomIdOrAlias;
@@ -116,6 +117,7 @@ class UrlLauncher {
       if (await showOkCancelAlertDialog(
             context: context,
             title: 'Message user ${user.id}',
+            useRootNavigator: false,
           ) ==
           OkCancelResult.ok) {
         roomId = (await showFutureLoadingDialog(

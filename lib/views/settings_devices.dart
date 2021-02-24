@@ -34,6 +34,7 @@ class DevicesSettingsState extends State<DevicesSettings> {
           title: L10n.of(context).areYouSure,
           okLabel: L10n.of(context).yes,
           cancelLabel: L10n.of(context).cancel,
+          useRootNavigator: false,
         ) ==
         OkCancelResult.cancel) return;
     var matrix = Matrix.of(context);
@@ -68,6 +69,7 @@ class DevicesSettingsState extends State<DevicesSettings> {
       title: L10n.of(context).changeDeviceName,
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
+      useRootNavigator: false,
       textFields: [
         DialogTextField(
           hintText: device.displayName,
@@ -98,10 +100,7 @@ class DevicesSettingsState extends State<DevicesSettings> {
         setState(() => null);
       }
     };
-    await KeyVerificationDialog(
-      request: req,
-      l10n: L10n.of(context),
-    ).show(context);
+    await KeyVerificationDialog(request: req).show(context);
   }
 
   void _blockDeviceAction(BuildContext context, Device device) async {

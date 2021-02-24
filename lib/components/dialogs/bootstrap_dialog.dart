@@ -3,6 +3,7 @@ import 'package:famedlysdk/encryption.dart';
 import 'package:famedlysdk/encryption/utils/bootstrap.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/dialogs/adaptive_flat_button.dart';
+import 'package:fluffychat/components/matrix.dart';
 import 'package:flutter/services.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,17 +16,20 @@ class BootstrapDialog extends StatefulWidget {
   final bool wipe;
   const BootstrapDialog({
     Key key,
-    @required this.l10n,
-    @required this.client,
     this.wipe = false,
   }) : super(key: key);
 
   Future<bool> show(BuildContext context) => PlatformInfos.isCupertinoStyle
-      ? showCupertinoDialog(context: context, builder: (context) => this)
-      : showDialog(context: context, builder: (context) => this);
-
-  final L10n l10n;
-  final Client client;
+      ? showCupertinoDialog(
+          context: context,
+          builder: (context) => this,
+          useRootNavigator: false,
+        )
+      : showDialog(
+          context: context,
+          builder: (context) => this,
+          useRootNavigator: false,
+        );
 
   @override
   _BootstrapDialogState createState() => _BootstrapDialogState();
@@ -52,7 +56,9 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
       _wipe = wipe;
       titleText = null;
       _recoveryKeyStored = false;
-      bootstrap = widget.client.encryption
+      bootstrap = Matrix.of(context)
+          .client
+          .encryption
           .bootstrap(onUpdate: () => setState(() => null));
     });
   }
@@ -62,19 +68,19 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
     _wipe ??= widget.wipe;
     final buttons = <AdaptiveFlatButton>[];
     Widget body = LinearProgressIndicator();
-    titleText = widget.l10n.loadingPleaseWait;
+    titleText = L10n.of(context).loadingPleaseWait;
 
     if (bootstrap == null) {
-      titleText = widget.l10n.chatBackup;
-      body = Text(widget.l10n.chatBackupDescription);
+      titleText = L10n.of(context).chatBackup;
+      body = Text(L10n.of(context).chatBackupDescription);
       buttons.add(AdaptiveFlatButton(
-        child: Text(widget.l10n.next),
+        child: Text(L10n.of(context).next),
         onPressed: () => _createBootstrap(false),
       ));
     } else if (bootstrap.newSsssKey?.recoveryKey != null &&
         _recoveryKeyStored == false) {
       final key = bootstrap.newSsssKey.recoveryKey;
-      titleText = widget.l10n.securityKey;
+      titleText = L10n.of(context).securityKey;
       body = Container(
         alignment: Alignment.center,
         width: 200,
@@ -89,11 +95,11 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
         ),
       );
       buttons.add(AdaptiveFlatButton(
-        child: Text(widget.l10n.copyToClipboard),
+        child: Text(L10n.of(context).copyToClipboard),
         onPressed: () => Clipboard.setData(ClipboardData(text: key)),
       ));
       buttons.add(AdaptiveFlatButton(
-        child: Text(widget.l10n.next),
+        child: Text(L10n.of(context).next),
         onPressed: () => setState(() => _recoveryKeyStored = true),
       ));
     } else {
@@ -120,7 +126,7 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
         case BootstrapState.openExistingSsss:
           _recoveryKeyStored = true;
           titleText =
-              _recoveryKeyInputError ?? widget.l10n.pleaseEnterSecurityKey;
+              _recoveryKeyInputError ?? L10n.of(context).pleaseEnterSecurityKey;
           body = PlatformInfos.isCupertinoStyle
               ? CupertinoTextField(
                   minLines: 2,
@@ -149,10 +155,11 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
               if (OkCancelResult.ok ==
                   await showOkCancelAlertDialog(
                     context: context,
-                    title: widget.l10n.securityKeyLost,
-                    message: widget.l10n.wipeChatBackup,
-                    okLabel: widget.l10n.ok,
-                    cancelLabel: widget.l10n.cancel,
+                    useRootNavigator: false,
+                    title: L10n.of(context).securityKeyLost,
+                    message: L10n.of(context).wipeChatBackup,
+                    okLabel: L10n.of(context).ok,
+                    cancelLabel: L10n.of(context).cancel,
                     isDestructiveAction: true,
                   )) {
                 _createBootstrap(true);
@@ -160,20 +167,18 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
             },
           ));
           buttons.add(AdaptiveFlatButton(
-            child: Text(widget.l10n.transferFromAnotherDevice),
+            child: Text(L10n.of(context).transferFromAnotherDevice),
             onPressed: () async {
-              final req = await widget
-                  .client.userDeviceKeys[widget.client.userID]
+              final req = await Matrix.of(context)
+                  .client
+                  .userDeviceKeys[Matrix.of(context).client.userID]
                   .startVerification();
-              await KeyVerificationDialog(
-                request: req,
-                l10n: widget.l10n,
-              ).show(context);
-              Navigator.of(context).pop();
+              await KeyVerificationDialog(request: req).show(context);
+              Navigator.of(context, rootNavigator: false).pop();
             },
           ));
           buttons.add(AdaptiveFlatButton(
-              child: Text(widget.l10n.next),
+              child: Text(L10n.of(context).next),
               onPressed: () async {
                 setState(() {
                   _recoveryKeyInputError = null;
@@ -187,7 +192,7 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
                 } catch (e, s) {
                   Logs().w('Unable to unlock SSSS', e, s);
                   setState(() => _recoveryKeyInputError =
-                      widget.l10n.oopsSomethingWentWrong);
+                      L10n.of(context).oopsSomethingWentWrong);
                 } finally {
                   setState(() => _recoveryKeyInputLoading = false);
                 }
@@ -220,27 +225,29 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
           break;
         case BootstrapState.askBadSsss:
         case BootstrapState.error:
-          titleText = widget.l10n.oopsSomethingWentWrong;
+          titleText = L10n.of(context).oopsSomethingWentWrong;
           body = ListTile(
             contentPadding: EdgeInsets.zero,
             leading: Icon(Icons.error_outline, color: Colors.red),
-            title: Text(widget.l10n.oopsSomethingWentWrong),
+            title: Text(L10n.of(context).oopsSomethingWentWrong),
           );
           buttons.add(AdaptiveFlatButton(
-            child: Text(widget.l10n.close),
-            onPressed: () => Navigator.of(context).pop<bool>(false),
+            child: Text(L10n.of(context).close),
+            onPressed: () =>
+                Navigator.of(context, rootNavigator: false).pop<bool>(false),
           ));
           break;
         case BootstrapState.done:
-          titleText = widget.l10n.everythingReady;
+          titleText = L10n.of(context).everythingReady;
           body = ListTile(
             contentPadding: EdgeInsets.zero,
             leading: Icon(Icons.check_circle, color: Colors.green),
-            title: Text(widget.l10n.keysCached),
+            title: Text(L10n.of(context).keysCached),
           );
           buttons.add(AdaptiveFlatButton(
-            child: Text(widget.l10n.close),
-            onPressed: () => Navigator.of(context).pop<bool>(false),
+            child: Text(L10n.of(context).close),
+            onPressed: () =>
+                Navigator.of(context, rootNavigator: false).pop<bool>(false),
           ));
           break;
       }

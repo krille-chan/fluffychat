@@ -29,7 +29,7 @@ class ImageView extends StatelessWidget {
         elevation: 0,
         leading: IconButton(
           icon: Icon(Icons.close),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => Navigator.of(context, rootNavigator: false).pop(),
           color: Colors.white,
           tooltip: L10n.of(context).close,
         ),
@@ -67,7 +67,7 @@ class ImageView extends StatelessWidget {
         onInteractionEnd: (ScaleEndDetails endDetails) {
           if (PlatformInfos.usesTouchscreen == false) {
             if (endDetails.velocity.pixelsPerSecond.dy > calcVelocity) {
-              Navigator.of(context).pop();
+              Navigator.of(context, rootNavigator: false).pop();
             }
           }
         },

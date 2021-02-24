@@ -233,8 +233,11 @@ class _EmotesSettingsState extends State<EmotesSettings> {
                               newMxcController.text == null ||
                               newMxcController.text.isEmpty) {
                             await showOkAlertDialog(
-                                context: context,
-                                message: L10n.of(context).emoteWarnNeedToPick);
+                              context: context,
+                              message: L10n.of(context).emoteWarnNeedToPick,
+                              okLabel: L10n.of(context).ok,
+                              useRootNavigator: false,
+                            );
                             return;
                           }
                           final emoteCode = ':${newEmoteController.text}:';
@@ -243,14 +246,20 @@ class _EmotesSettingsState extends State<EmotesSettings> {
                                   e.emote == emoteCode && e.mxc != mxc) !=
                               -1) {
                             await showOkAlertDialog(
-                                context: context,
-                                message: L10n.of(context).emoteExists);
+                              context: context,
+                              message: L10n.of(context).emoteExists,
+                              okLabel: L10n.of(context).ok,
+                              useRootNavigator: false,
+                            );
                             return;
                           }
                           if (!RegExp(r'^:[-\w]+:$').hasMatch(emoteCode)) {
                             await showOkAlertDialog(
-                                context: context,
-                                message: L10n.of(context).emoteInvalid);
+                              context: context,
+                              message: L10n.of(context).emoteInvalid,
+                              okLabel: L10n.of(context).ok,
+                              useRootNavigator: false,
+                            );
                             return;
                           }
                           emotes.add(_EmoteEntry(emote: emoteCode, mxc: mxc));
@@ -344,18 +353,22 @@ class _EmotesSettingsState extends State<EmotesSettings> {
                                         -1) {
                                       controller.text = emote.emoteClean;
                                       showOkAlertDialog(
-                                          context: context,
-                                          message:
-                                              L10n.of(context).emoteExists);
+                                        context: context,
+                                        message: L10n.of(context).emoteExists,
+                                        okLabel: L10n.of(context).ok,
+                                        useRootNavigator: false,
+                                      );
                                       return;
                                     }
                                     if (!RegExp(r'^:[-\w]+:$')
                                         .hasMatch(emoteCode)) {
                                       controller.text = emote.emoteClean;
                                       showOkAlertDialog(
-                                          context: context,
-                                          message:
-                                              L10n.of(context).emoteInvalid);
+                                        context: context,
+                                        message: L10n.of(context).emoteInvalid,
+                                        okLabel: L10n.of(context).ok,
+                                        useRootNavigator: false,
+                                      );
                                       return;
                                     }
                                     setState(() {

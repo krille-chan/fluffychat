@@ -96,6 +96,7 @@ class _LoginState extends State<Login> {
       title: L10n.of(context).enterAnEmailAddress,
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
+      useRootNavigator: false,
       textFields: [
         DialogTextField(
           hintText: L10n.of(context).enterAnEmailAddress,
@@ -119,6 +120,7 @@ class _LoginState extends State<Login> {
       title: L10n.of(context).weSentYouAnEmail,
       message: L10n.of(context).pleaseClickOnLink,
       okLabel: L10n.of(context).iHaveClickedOnLink,
+      useRootNavigator: false,
     );
     if (ok == null) return;
     final password = await showTextInputDialog(
@@ -126,6 +128,7 @@ class _LoginState extends State<Login> {
       title: L10n.of(context).chooseAStrongPassword,
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
+      useRootNavigator: false,
       textFields: [
         DialogTextField(
           hintText: '******',

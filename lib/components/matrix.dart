@@ -137,6 +137,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
           title: L10n.of(context).pleaseEnterYourPassword,
           okLabel: L10n.of(context).ok,
           cancelLabel: L10n.of(context).cancel,
+          useRootNavigator: false,
           textFields: [
             DialogTextField(
               minLines: 1,
@@ -164,6 +165,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
             await showOkCancelAlertDialog(
               message: L10n.of(context).pleaseFollowInstructionsOnWeb,
               context: context,
+              useRootNavigator: false,
               okLabel: L10n.of(context).next,
               cancelLabel: L10n.of(context).cancel,
             )) {
@@ -209,7 +211,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         body: body,
         replacesID: _linuxNotificationIds[roomId] ?? -1,
         appName: AppConfig.applicationName,
-        actionCallback: (_) => Navigator.of(context).pushAndRemoveUntil(
+        actionCallback: (_) => Navigator.of(context, rootNavigator: false).pushAndRemoveUntil(
             AppRoute.defaultRoute(
               context,
               ChatView(roomId),
@@ -273,6 +275,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       final sender = room.getUserByMXIDSync(request.sender);
       if (await showOkCancelAlertDialog(
             context: context,
+            useRootNavigator: false,
             title: L10n.of(context).requestToReadOlderMessages,
             message:
                 '${sender.id}\n\n${L10n.of(context).device}:\n${request.requestingDevice.deviceId}\n\n${L10n.of(context).publicKey}:\n${request.requestingDevice.ed25519Key.beautified}',
@@ -296,6 +299,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       };
       if (await showOkCancelAlertDialog(
             context: context,
+            useRootNavigator: false,
             title: L10n.of(context).newVerificationRequest,
             message: L10n.of(context).askVerificationRequest(request.userId),
             okLabel: L10n.of(context).ok,
@@ -305,10 +309,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         request.onUpdate = null;
         hidPopup = true;
         await request.acceptVerification();
-        await KeyVerificationDialog(
-          request: request,
-          l10n: L10n.of(context),
-        ).show(context);
+        await KeyVerificationDialog(request: request).show(context);
       } else {
         request.onUpdate = null;
         hidPopup = true;

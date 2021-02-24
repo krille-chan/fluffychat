@@ -211,13 +211,13 @@ class _ChatState extends State<Chat> {
     if (result == null) return;
     await showDialog(
       context: context,
+      useRootNavigator: false,
       builder: (c) => SendFileDialog(
         file: MatrixFile(
           bytes: result.toUint8List(),
           name: result.fileName,
         ).detectFileType,
         room: room,
-        l10n: L10n.of(context),
       ),
     );
   }
@@ -228,13 +228,13 @@ class _ChatState extends State<Chat> {
     if (result == null) return;
     await showDialog(
       context: context,
+      useRootNavigator: false,
       builder: (c) => SendFileDialog(
         file: MatrixImageFile(
           bytes: result.toUint8List(),
           name: result.fileName,
         ),
         room: room,
-        l10n: L10n.of(context),
       ),
     );
   }
@@ -245,13 +245,13 @@ class _ChatState extends State<Chat> {
     final bytes = await file.readAsBytes();
     await showDialog(
       context: context,
+      useRootNavigator: false,
       builder: (c) => SendFileDialog(
         file: MatrixImageFile(
           bytes: bytes,
           name: file.path,
         ),
         room: room,
-        l10n: L10n.of(context),
       ),
     );
   }
@@ -263,9 +263,8 @@ class _ChatState extends State<Chat> {
     }
     final result = await showDialog<String>(
       context: context,
-      builder: (c) => RecordingDialog(
-        l10n: L10n.of(context),
-      ),
+      builder: (c) => RecordingDialog(),
+      useRootNavigator: false,
     );
     if (result == null) return;
     final audioFile = File(result);
@@ -306,6 +305,7 @@ class _ChatState extends State<Chat> {
     final score = await showConfirmationDialog<int>(
         context: context,
         title: L10n.of(context).howOffensiveIsThisContent,
+        useRootNavigator: false,
         actions: [
           AlertDialogAction(
             key: -100,
@@ -326,6 +326,7 @@ class _ChatState extends State<Chat> {
         title: L10n.of(context).whyDoYouWantToReportThis,
         okLabel: L10n.of(context).ok,
         cancelLabel: L10n.of(context).cancel,
+        useRootNavigator: false,
         textFields: [DialogTextField(hintText: L10n.of(context).reason)]);
     if (reason == null || reason.single.isEmpty) return;
     final result = await showFutureLoadingDialog(
@@ -350,6 +351,7 @@ class _ChatState extends State<Chat> {
           title: L10n.of(context).messageWillBeRemovedWarning,
           okLabel: L10n.of(context).remove,
           cancelLabel: L10n.of(context).cancel,
+          useRootNavigator: false,
         ) ==
         OkCancelResult.ok;
     if (!confirmed) return;
@@ -473,7 +475,7 @@ class _ChatState extends State<Chat> {
                 // make sure we remove duplicates
                 prefs.setStringList('recents', recents.toSet().toList());
               });
-              Navigator.of(context).pop<Emoji>(emoji);
+              Navigator.of(context, rootNavigator: false).pop<Emoji>(emoji);
             },
           ),
         ],
@@ -538,7 +540,6 @@ class _ChatState extends State<Chat> {
                           ? () => showModalBottomSheet(
                                 context: context,
                                 builder: (c) => UserBottomSheet(
-                                  l10n: L10n.of(context),
                                   user: room.getUserByMXIDSync(
                                       room.directChatMatrixID),
                                   onMention: () => sendController.text +=
@@ -823,7 +824,6 @@ class _ChatState extends State<Chat> {
                                                     context: context,
                                                     builder: (c) =>
                                                         UserBottomSheet(
-                                                      l10n: L10n.of(context),
                                                       user: event.sender,
                                                       onMention: () =>
                                                           sendController.text +=
