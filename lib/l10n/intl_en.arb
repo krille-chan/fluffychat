@@ -513,6 +513,18 @@
     "type": "text",
     "placeholders": {}
   },
+  "oneMoreEvent": "1 more event",
+  "@oneMoreEvent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "xMoreEvents": "{count} more events",
+  "@xMoreEvents": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
   "createdTheChat": "{username} created the chat",
   "@createdTheChat": {
     "type": "text",

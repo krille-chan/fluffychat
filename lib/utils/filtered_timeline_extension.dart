@@ -3,7 +3,7 @@ import 'package:famedlysdk/famedlysdk.dart';
 import '../app_config.dart';
 
 extension FilteredTimelineExtension on Timeline {
-  List<Event> getFilteredEvents({bool collapseRoomCreate = true}) {
+  List<Event> getFilteredEvents({Set<String> unfolded = const {}}) {
     final filteredEvents = events
         .where((e) =>
             // always filter out edit and reaction relationships
@@ -19,23 +19,35 @@ extension FilteredTimelineExtension on Timeline {
             // if we enabled to hide all unknown events, don't show those
             (!AppConfig.hideUnknownEvents || e.isEventTypeKnown) &&
             // remove state events that we don't want to render
-            (!{EventTypes.Message, EventTypes.Sticker, EventTypes.Encrypted}
-                    .contains(e.type) ||
-                !AppConfig.hideAllStateEvents))
+            (e.isState || !AppConfig.hideAllStateEvents))
         .toList();
 
-    // Hide state events from the room creater right after the room created event
-    if (collapseRoomCreate &&
-        filteredEvents[filteredEvents.length - 1].type ==
-            EventTypes.RoomCreate) {
-      while (filteredEvents.length >= 3 &&
-          filteredEvents[filteredEvents.length - 2].senderId ==
-              filteredEvents[filteredEvents.length - 1].senderId &&
-          ![EventTypes.Message, EventTypes.Sticker, EventTypes.Encrypted]
-              .contains(filteredEvents[filteredEvents.length - 2].type)) {
-        filteredEvents.removeAt(filteredEvents.length - 2);
+    // Fold state events
+    var counter = 0;
+    for (var i = filteredEvents.length - 1; i >= 0; i--) {
+      if (!filteredEvents[i].isState) continue;
+      if (i > 0 &&
+          filteredEvents[i - 1].isState &&
+          !unfolded.contains(filteredEvents[i - 1].eventId)) {
+        counter++;
+        filteredEvents[i].unsigned['im.fluffychat.collapsed_state_event'] =
+            true;
+      } else {
+        filteredEvents[i].unsigned['im.fluffychat.collapsed_state_event'] =
+            false;
+        filteredEvents[i]
+            .unsigned['im.fluffychat.collapsed_state_event_count'] = counter;
+        counter = 0;
       }
     }
     return filteredEvents;
   }
+}
+
+extension IsStateExtension on Event {
+  bool get isState => !{
+        EventTypes.Message,
+        EventTypes.Sticker,
+        EventTypes.Encrypted
+      }.contains(type);
 }
