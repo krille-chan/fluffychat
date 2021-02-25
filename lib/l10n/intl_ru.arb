@@ -2247,5 +2247,17 @@
   "@blocked": {
     "type": "text",
     "placeholders": {}
+  },
+  "xMoreEvents": "ещё {count} событий",
+  "@xMoreEvents": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "oneMoreEvent": "Еще 1 событие",
+  "@oneMoreEvent": {
+    "type": "text",
+    "placeholders": {}
   }
 }
