@@ -67,7 +67,8 @@ class FluffyRoutes {
         case '':
           return ViewData(
             mainView: (_) => ChatList(),
-            emptyView: (_) => EmptyPage(),
+            emptyView: (_) =>
+                activeRoomId != null ? Chat(activeRoomId) : EmptyPage(),
           );
         case 'rooms':
           final roomId = parts[2];
@@ -119,12 +120,13 @@ class FluffyRoutes {
           }
           return ViewData(
             mainView: (_) => ChatList(),
-            emptyView: (_) => EmptyPage(),
+            emptyView: (_) =>
+                activeRoomId != null ? Chat(activeRoomId) : EmptyPage(),
           );
         case 'archive':
           return ViewData(
+            leftView: (_) => Settings(),
             mainView: (_) => Archive(),
-            emptyView: (_) => EmptyPage(),
           );
         case 'logs':
           return ViewData(
@@ -156,7 +158,8 @@ class FluffyRoutes {
           }
           return ViewData(
             mainView: (_) => Discover(),
-            emptyView: (_) => EmptyPage(),
+            emptyView: (_) =>
+                activeRoomId != null ? Chat(activeRoomId) : EmptyPage(),
           );
         case 'settings':
           if (parts.length == 3) {
