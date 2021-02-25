@@ -49,7 +49,7 @@ class _SignUpState extends State<SignUp> {
     setState(() => loading = true);
 
     final preferredUsername =
-        usernameController.text.toLowerCase().replaceAll(' ', '-');
+        usernameController.text.toLowerCase().trim().replaceAll(' ', '-');
 
     try {
       await matrix.client.usernameAvailable(preferredUsername);
