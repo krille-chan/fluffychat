@@ -315,13 +315,10 @@ class _SettingsState extends State<Settings> {
       textFields: [
         DialogTextField(
           validator: (text) {
-            if (int.tryParse(text) == null || int.tryParse(text) < 0) {
-              return L10n.of(context).pleaseEnter4Digits;
+            if (text.length == 0 || (text.length == 4 && int.tryparse(text) > 0)) {
+              return null;
             }
-            if (text.length != 4 && text.isNotEmpty) {
-              return L10n.of(context).pleaseEnter4Digits;
-            }
-            return null;
+            return L10n.of(context).pleaseEnter4Digits;
           },
           keyboardType: TextInputType.number,
           obscureText: true,
