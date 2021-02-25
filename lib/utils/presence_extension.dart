@@ -29,10 +29,10 @@ extension PresenceExtension on Presence {
       case PresenceType.online:
         return Colors.green;
       case PresenceType.offline:
-        return Colors.red;
+        return Colors.grey;
       case PresenceType.unavailable:
       default:
-        return Colors.grey;
+        return Colors.red;
     }
   }
 }
