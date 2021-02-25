@@ -82,15 +82,17 @@ class _SettingsState extends State<Settings> {
       ],
     );
     if (input == null) return;
-    await showFutureLoadingDialog(
+    final success = await showFutureLoadingDialog(
       context: context,
       future: () => Matrix.of(context)
           .client
           .changePassword(input.last, oldPassword: input.first),
     );
-    await FlushbarHelper.createSuccess(
-            message: L10n.of(context).passwordHasBeenChanged)
-        .show(context);
+    if (success.error == null) {
+      await FlushbarHelper.createSuccess(
+              message: L10n.of(context).passwordHasBeenChanged)
+          .show(context);
+    }
   }
 
   void _deleteAccountAction(BuildContext context) async {
