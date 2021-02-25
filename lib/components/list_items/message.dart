@@ -16,9 +16,10 @@ import 'state_message.dart';
 class Message extends StatelessWidget {
   final Event event;
   final Event nextEvent;
-  final Function(Event) onSelect;
-  final Function(Event) onAvatarTab;
-  final Function(String) scrollToEventId;
+  final void Function(Event) onSelect;
+  final void Function(Event) onAvatarTab;
+  final void Function(String) scrollToEventId;
+  final void Function(String) unfold;
   final bool longPressSelect;
   final bool selected;
   final Timeline timeline;
@@ -29,6 +30,7 @@ class Message extends StatelessWidget {
       this.onSelect,
       this.onAvatarTab,
       this.scrollToEventId,
+      @required this.unfold,
       this.selected,
       this.timeline});
 
@@ -38,15 +40,9 @@ class Message extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (event.type == EventTypes.RoomCreate) {
-      return InkWell(
-        onTap: () => onSelect(event),
-        child: StateMessage(event),
-      );
-    }
     if (![EventTypes.Message, EventTypes.Sticker, EventTypes.Encrypted]
         .contains(event.type)) {
-      return StateMessage(event);
+      return StateMessage(event, unfold: unfold);
     }
 
     var client = Matrix.of(context).client;

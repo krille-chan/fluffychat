@@ -72,7 +72,7 @@ class _ChatState extends State<Chat> {
 
   List<Event> filteredEvents;
 
-  bool _collapseRoomCreate = true;
+  final Set<String> _unfolded = {};
 
   Event replyEvent;
 
@@ -146,10 +146,20 @@ class _ChatState extends State<Chat> {
     if (!mounted) return;
     setState(
       () {
-        filteredEvents =
-            timeline.getFilteredEvents(collapseRoomCreate: _collapseRoomCreate);
+        filteredEvents = timeline.getFilteredEvents(unfolded: _unfolded);
       },
     );
+  }
+
+  void _unfold(String eventId) {
+    var i = filteredEvents.indexWhere((e) => e.eventId == eventId);
+    setState(() {
+      while (i < filteredEvents.length - 1 && filteredEvents[i].isState) {
+        _unfolded.add(filteredEvents[i].eventId);
+        i++;
+      }
+      filteredEvents = timeline.getFilteredEvents(unfolded: _unfolded);
+    });
   }
 
   Future<bool> getTimeline(BuildContext context) async {
@@ -712,9 +722,7 @@ class _ChatState extends State<Chat> {
                         thisEventsKeyMap[filteredEvents[i].eventId] = i;
                       }
 
-                      return ListView.custom(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: max(
+                      final horizontalPadding = max(
                               0,
                               (MediaQuery.of(context).size.width -
                                       FluffyThemes.columnWidth *
@@ -724,7 +732,14 @@ class _ChatState extends State<Chat> {
                                                   null
                                               ? 4.5
                                               : 3.5)) /
-                                  2),
+                                  2)
+                          .toDouble();
+
+                      return ListView.custom(
+                        padding: EdgeInsets.only(
+                          top: 16,
+                          left: horizontalPadding,
+                          right: horizontalPadding,
                         ),
                         reverse: true,
                         controller: _scrollController,
@@ -759,9 +774,11 @@ class _ChatState extends State<Chat> {
                                         builder: (_, __) {
                                           final seenByText =
                                               room.getLocalizedSeenByText(
-                                                  context,
-                                                  timeline,
-                                                  filteredEvents);
+                                            context,
+                                            timeline,
+                                            filteredEvents,
+                                            _unfolded,
+                                          );
                                           return AnimatedContainer(
                                             height: seenByText.isEmpty ? 0 : 24,
                                             duration: seenByText.isEmpty
@@ -830,13 +847,8 @@ class _ChatState extends State<Chat> {
                                                               '${event.senderId} ',
                                                     ),
                                                   ),
+                                              unfold: _unfold,
                                               onSelect: (Event event) {
-                                                if (event.type ==
-                                                    EventTypes.RoomCreate) {
-                                                  return setState(() =>
-                                                      _collapseRoomCreate =
-                                                          false);
-                                                }
                                                 if (!event.redacted) {
                                                   if (selectedEvents
                                                       .contains(event)) {

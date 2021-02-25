@@ -63,11 +63,14 @@ extension RoomStatusExtension on Room {
   }
 
   String getLocalizedSeenByText(
-      BuildContext context, Timeline timeline, List<Event> filteredEvents) {
+    BuildContext context,
+    Timeline timeline,
+    List<Event> filteredEvents,
+    Set<String> unfolded,
+  ) {
     var seenByText = '';
     if (timeline.events.isNotEmpty) {
-      final filteredEvents =
-          timeline.getFilteredEvents(collapseRoomCreate: false);
+      final filteredEvents = timeline.getFilteredEvents(unfolded: unfolded);
       final lastReceipts = <User>{};
       // now we iterate the timeline events until we hit the first rendered event
       for (final event in timeline.events) {
