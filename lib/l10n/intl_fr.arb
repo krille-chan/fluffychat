@@ -2247,5 +2247,17 @@
   "@verified": {
     "type": "text",
     "placeholders": {}
+  },
+  "xMoreEvents": "{count} événements en plus",
+  "@xMoreEvents": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "oneMoreEvent": "1 événement en plus",
+  "@oneMoreEvent": {
+    "type": "text",
+    "placeholders": {}
   }
 }
