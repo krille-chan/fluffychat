@@ -83,7 +83,6 @@ class App extends StatelessWidget {
                               '/',
                               '/discover',
                               '/contacts',
-                              '/settings',
                             }.contains(settings.name)
                         ? CupertinoPageRoute(builder: builder)
                         : FadeRoute(page: builder(context)),

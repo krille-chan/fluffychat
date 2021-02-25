@@ -365,8 +365,10 @@ class _SettingsState extends State<Settings> {
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) =>
             <Widget>[
           SliverAppBar(
-            elevation: 1,
-            automaticallyImplyLeading: false,
+            leading: IconButton(
+              icon: Icon(Icons.close_outlined),
+              onPressed: () => AdaptivePageLayout.of(context).popUntilIsFirst(),
+            ),
             expandedHeight: 300.0,
             floating: true,
             pinned: true,
@@ -590,7 +592,6 @@ class _SettingsState extends State<Settings> {
           ],
         ),
       ),
-      bottomNavigationBar: DefaultBottomNavigationBar(currentIndex: 3),
     );
   }
 }

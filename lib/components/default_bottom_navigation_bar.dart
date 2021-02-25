@@ -25,18 +25,13 @@ class DefaultBottomNavigationBar extends StatelessWidget {
             AdaptivePageLayout.of(context)
                 .pushNamedAndRemoveUntilIsFirst('/discover');
             break;
-          case 3:
-            AdaptivePageLayout.of(context)
-                .pushNamedAndRemoveUntilIsFirst('/settings');
-            break;
         }
       },
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       selectedItemColor: Theme.of(context).accentColor,
       currentIndex: currentIndex,
-      //unselectedItemColor: Theme.of(context).textTheme.bodyText1.color,
       type: BottomNavigationBarType.fixed,
-      showUnselectedLabels: false,
+      showUnselectedLabels: true,
       items: [
         BottomNavigationBarItem(
           icon: Icon(currentIndex == 0 ? Icons.people : Icons.people_outlined),
@@ -53,11 +48,6 @@ class DefaultBottomNavigationBar extends StatelessWidget {
               ? CupertinoIcons.compass_fill
               : CupertinoIcons.compass),
           label: L10n.of(context).discover,
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(
-              currentIndex == 3 ? Icons.settings : Icons.settings_outlined),
-          label: L10n.of(context).settings,
         ),
       ],
     );

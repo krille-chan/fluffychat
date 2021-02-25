@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/components/avatar.dart';
 import 'package:fluffychat/components/connection_status_header.dart';
 import 'package:fluffychat/components/default_app_bar_search_field.dart';
 import 'package:fluffychat/components/default_bottom_navigation_bar.dart';
@@ -188,7 +189,22 @@ class _ChatListState extends State<ChatList> {
                 AppBar(
                   elevation: 1,
                   leading: selectMode == SelectMode.normal
-                      ? null
+                      ? Center(
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(32),
+                            child: FutureBuilder<Profile>(
+                              future: Matrix.of(context).client.ownProfile,
+                              builder: (_, snapshot) => Avatar(
+                                snapshot.data?.avatarUrl ?? Uri.parse(''),
+                                snapshot.data?.displayname ??
+                                    Matrix.of(context).client.userID.localpart,
+                                size: 32,
+                              ),
+                            ),
+                            onTap: () => AdaptivePageLayout.of(context)
+                                .pushNamedAndRemoveUntilIsFirst('/settings'),
+                          ),
+                        )
                       : IconButton(
                           tooltip: L10n.of(context).cancel,
                           icon: Icon(Icons.close_outlined),
@@ -360,8 +376,6 @@ class _ChatListState extends State<ChatList> {
                         .pushNamedAndRemoveUntilIsFirst('/newprivatechat'),
                   )
                 : null,
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.centerDocked,
             bottomNavigationBar: selectMode == SelectMode.normal
                 ? DefaultBottomNavigationBar(currentIndex: 1)
                 : null,

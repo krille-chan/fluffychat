@@ -62,7 +62,8 @@ class _ContactsState extends State<Contacts> {
 
   @override
   Widget build(BuildContext context) {
-    _onSync ??= Matrix.of(context).client.onSync.stream.listen((_) {
+    final client = Matrix.of(context).client;
+    _onSync ??= client.onSync.stream.listen((_) {
       if (DateTime.now().millisecondsSinceEpoch -
               _lastSetState.millisecondsSinceEpoch <
           1000) {
@@ -78,6 +79,10 @@ class _ContactsState extends State<Contacts> {
         .where((p) =>
             p.senderId.toLowerCase().contains(_controller.text.toLowerCase()))
         .toList();
+    if (client.presences[client.userID]?.presence?.statusMsg?.isNotEmpty ??
+        false) {
+      contactList.add(client.presences[client.userID]);
+    }
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -147,9 +152,8 @@ class _ContactsState extends State<Contacts> {
                                   color: Theme.of(context).accentColor),
                             ),
                             onPressed: () => FluffyShare.share(
-                                L10n.of(context).inviteText(
-                                    Matrix.of(context).client.userID,
-                                    'https://matrix.to/#/${Matrix.of(context).client.userID}'),
+                                L10n.of(context).inviteText(client.userID,
+                                    'https://matrix.to/#/${client.userID}'),
                                 context),
                           ),
                         ),
@@ -196,7 +200,13 @@ class _ContactListTile extends StatelessWidget {
               ),
             ),
             title: Text(displayname),
-            subtitle: Text(contact.getLocalizedStatusMessage(context)),
+            subtitle: Text(contact.getLocalizedStatusMessage(context),
+                style: contact.presence.statusMsg?.isNotEmpty ?? false
+                    ? TextStyle(
+                        color: Theme.of(context).accentColor,
+                        fontWeight: FontWeight.bold,
+                      )
+                    : null),
             onTap: () => AdaptivePageLayout.of(context).pushNamed(
                 '/rooms/${Matrix.of(context).client.getDirectChatFromUserId(contact.senderId)}'),
           );
