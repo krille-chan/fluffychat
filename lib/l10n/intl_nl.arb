@@ -2238,5 +2238,17 @@
   "@verified": {
     "type": "text",
     "placeholders": {}
+  },
+  "xMoreEvents": "Nog {count} gebeurtenissen",
+  "@xMoreEvents": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "oneMoreEvent": "Nog 1 gebeurtenis",
+  "@oneMoreEvent": {
+    "type": "text",
+    "placeholders": {}
   }
 }
