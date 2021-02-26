@@ -1859,5 +1859,35 @@
   "@videoCall": {
     "type": "text",
     "placeholders": {}
+  },
+  "waitingPartnerEmoji": "正在等待夥伴接受那個表情符號…",
+  "@waitingPartnerEmoji": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "waitingPartnerAcceptRequest": "正在等待夥伴接受請求…",
+  "@waitingPartnerAcceptRequest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "voiceMessage": "語音訊息",
+  "@voiceMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "visibilityOfTheChatHistory": "聊天記錄的可見性",
+  "@visibilityOfTheChatHistory": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "visibleForEveryone": "對所有人可見",
+  "@visibleForEveryone": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "visibleForAllParticipants": "對所有參與者可見",
+  "@visibleForAllParticipants": {
+    "type": "text",
+    "placeholders": {}
   }
 }
