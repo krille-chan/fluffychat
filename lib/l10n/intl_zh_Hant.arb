@@ -1850,7 +1850,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "verifyUser": "驗證用戶",
+  "verifyUser": "驗證使用者",
   "@verifyUser": {
     "type": "text",
     "placeholders": {}
