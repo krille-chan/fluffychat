@@ -1792,7 +1792,7 @@
       "count": {}
     }
   },
-  "userIsTyping": "{username}正在打字啦 不要急…",
+  "userIsTyping": "{username}正在輸入…",
   "@userIsTyping": {
     "type": "text",
     "placeholders": {
