@@ -1777,7 +1777,7 @@
       "username": {}
     }
   },
-  "userAndOthersAreTyping": "{username}和另外{count}個人正在輸入…",
+  "userAndOthersAreTyping": "{username}和其他{count}個人正在輸入…",
   "@userAndOthersAreTyping": {
     "type": "text",
     "placeholders": {
@@ -1806,5 +1806,10 @@
       "username": {},
       "username2": {}
     }
+  },
+  "username": "使用者名稱",
+  "@username": {
+    "type": "text",
+    "placeholders": {}
   }
 }
