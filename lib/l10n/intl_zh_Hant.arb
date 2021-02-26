@@ -1899,5 +1899,20 @@
   "@warning": {
     "type": "text",
     "placeholders": {}
+  },
+  "welcomeText": "歡迎使用Matrix中最可愛的即時通訊工具",
+  "@welcomeText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "warningEncryptionInBeta": "端到端加密目前處於Beta測試中! 使用的話後果自負喔!☆（ゝω●）",
+  "@warningEncryptionInBeta": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wallpaper": "桌布",
+  "@wallpaper": {
+    "type": "text",
+    "placeholders": {}
   }
 }
