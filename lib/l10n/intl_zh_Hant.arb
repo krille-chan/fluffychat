@@ -1965,7 +1965,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "writeAMessage": "寫個訊息…",
+  "writeAMessage": "輸入訊息…",
   "@writeAMessage": {
     "type": "text",
     "placeholders": {}
@@ -1982,6 +1982,11 @@
   },
   "yes": "是",
   "@yes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "you": "您",
+  "@you": {
     "type": "text",
     "placeholders": {}
   }
