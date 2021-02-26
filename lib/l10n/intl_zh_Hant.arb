@@ -1989,5 +1989,15 @@
   "@you": {
     "type": "text",
     "placeholders": {}
+  },
+  "youCannotInviteYourself": "邊緣人嗎? 你不能邀請自己",
+  "@youCannotInviteYourself": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youAreNoLongerParticipatingInThisChat": "您不再參與這個聊天室了",
+  "@youAreNoLongerParticipatingInThisChat": {
+    "type": "text",
+    "placeholders": {}
   }
 }
