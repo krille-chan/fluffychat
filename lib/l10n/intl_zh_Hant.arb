@@ -1140,7 +1140,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "answeredTheCall": "{senderName} 已開始通話",
+  "answeredTheCall": "已與{senderName} 開始通話",
   "@answeredTheCall": {
     "type": "text",
     "placeholders": {
@@ -1162,7 +1162,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "addGroupDescription": "新增群組介紹",
+  "addGroupDescription": "新增一個群組描述",
   "@addGroupDescription": {
     "type": "text",
     "placeholders": {}
