@@ -1944,5 +1944,10 @@
   "@audioPlayerPlay": {
     "type": "text",
     "placeholders": {}
+  },
+  "userNotVerified": "用戶未驗證",
+  "@userNotVerified": {
+    "type": "text",
+    "placeholders": {}
   }
 }
