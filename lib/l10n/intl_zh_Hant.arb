@@ -1762,5 +1762,12 @@
   "@sendVideo": {
     "type": "text",
     "placeholders": {}
+  },
+  "sentAnAudio": "{username}發送了一個音訊",
+  "@sentAnAudio": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
   }
 }
