@@ -1812,7 +1812,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "userSentUnknownEvent": "{username}發送了一個{type}事件",
+  "userSentUnknownEvent": "{username}傳送了一個{type}事件",
   "@userSentUnknownEvent": {
     "type": "text",
     "placeholders": {
