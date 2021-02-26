@@ -1741,7 +1741,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sendFile": "發送文件",
+  "sendFile": "傳送文件",
   "@sendFile": {
     "type": "text",
     "placeholders": {}
