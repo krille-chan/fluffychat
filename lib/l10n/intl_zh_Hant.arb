@@ -1849,5 +1849,10 @@
   "@verifyTitle": {
     "type": "text",
     "placeholders": {}
+  },
+  "verifyUser": "驗證用戶",
+  "@verifyUser": {
+    "type": "text",
+    "placeholders": {}
   }
 }
