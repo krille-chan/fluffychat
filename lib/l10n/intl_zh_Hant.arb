@@ -1750,5 +1750,17 @@
   "@sendImage": {
     "type": "text",
     "placeholders": {}
+  },
+  "sentAFile": "{username}發送了一個文件",
+  "@sentAFile": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "sendVideo": "傳送影片",
+  "@sendVideo": {
+    "type": "text",
+    "placeholders": {}
   }
 }
