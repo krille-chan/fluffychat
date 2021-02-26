@@ -1914,5 +1914,20 @@
   "@wallpaper": {
     "type": "text",
     "placeholders": {}
+  },
+  "weSentYouAnEmail": "我們給你發了一封電子郵件",
+  "@weSentYouAnEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wednesday": "星期三",
+  "@wednesday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPause": "暫停",
+  "@audioPlayerPause": {
+    "type": "text",
+    "placeholders": {}
   }
 }
