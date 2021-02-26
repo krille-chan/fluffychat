@@ -1745,5 +1745,10 @@
   "@sendFile": {
     "type": "text",
     "placeholders": {}
+  },
+  "sendImage": "發送圖片",
+  "@sendImage": {
+    "type": "text",
+    "placeholders": {}
   }
 }
