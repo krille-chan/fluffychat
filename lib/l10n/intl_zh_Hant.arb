@@ -1860,7 +1860,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerEmoji": "正在等待夥伴接受那個表情符號…",
+  "waitingPartnerEmoji": "正在等待夥伴接受表情符號…",
   "@waitingPartnerEmoji": {
     "type": "text",
     "placeholders": {}
