@@ -1834,5 +1834,15 @@
   "@verify": {
     "type": "text",
     "placeholders": {}
+  },
+  "verifySuccess": "你成功驗證了!",
+  "@verifySuccess": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyStart": "開始驗證",
+  "@verifyStart": {
+    "type": "text",
+    "placeholders": {}
   }
 }
