@@ -1726,7 +1726,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sendAudio": "發送音訊",
+  "sendAudio": "傳送音訊",
   "@sendAudio": {
     "type": "text",
     "placeholders": {}
