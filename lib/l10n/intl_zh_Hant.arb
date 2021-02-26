@@ -1889,5 +1889,10 @@
   "@visibleForAllParticipants": {
     "type": "text",
     "placeholders": {}
+  },
+  "waitingPartnerNumbers": "正在等待夥伴接受…",
+  "@waitingPartnerNumbers": {
+    "type": "text",
+    "placeholders": {}
   }
 }
