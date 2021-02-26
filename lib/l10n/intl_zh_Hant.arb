@@ -1194,7 +1194,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "whoCanPerformWhichAction": "誰可以執行哪些操作",
+  "whoCanPerformWhichAction": "誰可以執行這個動作",
   "@whoCanPerformWhichAction": {
     "type": "text",
     "placeholders": {}
@@ -1706,7 +1706,7 @@
       "senderName": {}
     }
   },
-  "setPermissionsLevel": "設定權限等級",
+  "setPermissionsLevel": "設定權限級別",
   "@setPermissionsLevel": {
     "type": "text",
     "placeholders": {}
@@ -1723,6 +1723,11 @@
   },
   "editChatPermissions": "編輯聊天室權限",
   "@editChatPermissions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendAudio": "發送音訊",
+  "@sendAudio": {
     "type": "text",
     "placeholders": {}
   }
