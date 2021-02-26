@@ -1819,5 +1819,20 @@
       "username": {},
       "type": {}
     }
+  },
+  "verifiedSession": "工作階段成功驗證",
+  "@verifiedSession": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyManual": "手動驗證",
+  "@verifyManual": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verify": "驗證",
+  "@verify": {
+    "type": "text",
+    "placeholders": {}
   }
 }
