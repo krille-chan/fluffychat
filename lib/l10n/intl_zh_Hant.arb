@@ -1929,5 +1929,10 @@
   "@audioPlayerPause": {
     "type": "text",
     "placeholders": {}
+  },
+  "whoIsAllowedToJoinThisGroup": "誰可以加入這個小組",
+  "@whoIsAllowedToJoinThisGroup": {
+    "type": "text",
+    "placeholders": {}
   }
 }
