@@ -1855,7 +1855,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "videoCall": "視頻(X像(O電話",
+  "videoCall": "視訊通話",
   "@videoCall": {
     "type": "text",
     "placeholders": {}
