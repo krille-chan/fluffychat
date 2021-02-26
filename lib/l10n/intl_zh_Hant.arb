@@ -84,7 +84,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "logInTo": "登入 {homeserver}",
+  "logInTo": "登入{homeserver}",
   "@logInTo": {
     "type": "text",
     "placeholders": {
@@ -96,7 +96,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "loadCountMoreParticipants": "載入 {count} 個更多的參與者",
+  "loadCountMoreParticipants": "載入{count}個更多的參與者",
   "@loadCountMoreParticipants": {
     "type": "text",
     "placeholders": {
@@ -130,7 +130,7 @@
       "localizedTimeShort": {}
     }
   },
-  "userLeftTheChat": "{username} 離開了聊天室",
+  "userLeftTheChat": "{username}離開了聊天室",
   "@userLeftTheChat": {
     "type": "text",
     "placeholders": {
@@ -157,7 +157,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "kickedAndBanned": "{username} 踢了 {targetName} 並將其封禁",
+  "kickedAndBanned": "{username}踢了{targetName}並將其封禁",
   "@kickedAndBanned": {
     "type": "text",
     "placeholders": {
@@ -165,7 +165,7 @@
       "targetName": {}
     }
   },
-  "kicked": "{username} 踢了 {targetName}",
+  "kicked": "{username}踢了{targetName}",
   "@kicked": {
     "type": "text",
     "placeholders": {
@@ -198,7 +198,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "joinedTheChat": "{username} 加入了聊天室",
+  "joinedTheChat": "{username}加入了聊天室",
   "@joinedTheChat": {
     "type": "text",
     "placeholders": {
@@ -225,7 +225,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "invitedUser": "{username} 邀請了 {targetName}",
+  "invitedUser": "{username}邀請了{targetName}",
   "@invitedUser": {
     "type": "text",
     "placeholders": {
@@ -233,7 +233,7 @@
       "targetName": {}
     }
   },
-  "inviteText": "{username} 邀請您使用 FluffyChat.\n1. 安裝 FluffyChat: https://fluffychat.im\n2. 登入或註冊\n3. 打開該邀請網址: {link}",
+  "inviteText": "{username}邀請您使用 FluffyChat.\n1. 安裝 FluffyChat: https://fluffychat.im\n2. 登入或註冊\n3. 打開該邀請網址:{link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {
@@ -246,7 +246,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteContactToGroup": "邀請聯絡人到 {groupName}",
+  "inviteContactToGroup": "邀請聯絡人到{groupName}",
   "@inviteContactToGroup": {
     "type": "text",
     "placeholders": {
@@ -263,14 +263,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "xMoreEvents": "還有 {count} 個事件",
+  "xMoreEvents": "還有{count}個事件",
   "@xMoreEvents": {
     "type": "text",
     "placeholders": {
       "count": {}
     }
   },
-  "oneMoreEvent": "還有 1 個事件",
+  "oneMoreEvent": "還有1個事件",
   "@oneMoreEvent": {
     "type": "text",
     "placeholders": {}
@@ -280,7 +280,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unbannedUser": "{username} 解除封禁了 {targetName}",
+  "unbannedUser": "{username}解除封禁了{targetName}",
   "@unbannedUser": {
     "type": "text",
     "placeholders": {
@@ -288,7 +288,7 @@
       "targetName": {}
     }
   },
-  "bannedUser": "{username} 封禁了 {targetName}",
+  "bannedUser": "{username}封禁了{targetName}",
   "@bannedUser": {
     "type": "text",
     "placeholders": {
@@ -441,7 +441,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "createdTheChat": "{username} 建立了聊天室",
+  "createdTheChat": "{username}建立了聊天室",
   "@createdTheChat": {
     "type": "text",
     "placeholders": {
@@ -513,7 +513,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "groupWith": "名稱為 {displayname} 的群組",
+  "groupWith": "名稱為{displayname}的群組",
   "@groupWith": {
     "type": "text",
     "placeholders": {
@@ -527,7 +527,7 @@
       "error": {}
     }
   },
-  "askVerificationRequest": "是否接受來自 {username} 的驗證申請？",
+  "askVerificationRequest": "是否接受來自{username}的驗證申請？",
   "@askVerificationRequest": {
     "type": "text",
     "placeholders": {
@@ -539,14 +539,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "activatedEndToEndEncryption": "{username} 已啟用點對點加密",
+  "activatedEndToEndEncryption": "{username}已啟用點對點加密",
   "@activatedEndToEndEncryption": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "youWillBeConnectedTo": "您將會連接到 {homeserver}",
+  "youWillBeConnectedTo": "您將會連接到{homeserver}",
   "@youWillBeConnectedTo": {
     "type": "text",
     "placeholders": {
@@ -619,7 +619,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "hasWithdrawnTheInvitationFor": "{username} 收回了對 {targetName} 的邀請",
+  "hasWithdrawnTheInvitationFor": "{username}收回了對{targetName}的邀請",
   "@hasWithdrawnTheInvitationFor": {
     "type": "text",
     "placeholders": {
@@ -707,7 +707,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "endedTheCall": "{senderName} 結束了通話",
+  "endedTheCall": "{senderName}結束了通話",
   "@endedTheCall": {
     "type": "text",
     "placeholders": {
@@ -779,7 +779,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "discardPicture": "拋棄圖片",
+  "discardPicture": "放棄圖片",
   "@discardPicture": {
     "type": "text",
     "placeholders": {}
@@ -864,7 +864,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "countParticipants": "{count} 參與者",
+  "countParticipants": "{count}個參與者",
   "@countParticipants": {
     "type": "text",
     "placeholders": {
@@ -976,28 +976,28 @@
     "type": "text",
     "placeholders": {}
   },
-  "changedTheRoomInvitationLink": "{username} 變更了邀請連結",
+  "changedTheRoomInvitationLink": "{username}變更了邀請連結",
   "@changedTheRoomInvitationLink": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheRoomAliases": "{username} 變更了房間名",
+  "changedTheRoomAliases": "{username}變更了房間名",
   "@changedTheRoomAliases": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheProfileAvatar": "{username} 變更了他們的頭貼",
+  "changedTheProfileAvatar": "{username}變更了他們的頭貼",
   "@changedTheProfileAvatar": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheJoinRulesTo": "{username} 變更了加入的規則為：{joinRules}",
+  "changedTheJoinRulesTo": "{username}變更了加入的規則為：{joinRules}",
   "@changedTheJoinRulesTo": {
     "type": "text",
     "placeholders": {
@@ -1005,14 +1005,14 @@
       "joinRules": {}
     }
   },
-  "changedTheJoinRules": "{username} 變更了加入的規則",
+  "changedTheJoinRules": "{username}變更了加入的規則",
   "@changedTheJoinRules": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheHistoryVisibilityTo": "{username} 變更了歷史紀錄觀察狀態到：{rules}",
+  "changedTheHistoryVisibilityTo": "{username}變更了歷史紀錄觀察狀態到：{rules}",
   "@changedTheHistoryVisibilityTo": {
     "type": "text",
     "placeholders": {
@@ -1020,14 +1020,14 @@
       "rules": {}
     }
   },
-  "changedTheHistoryVisibility": "{username} 變更了歷史記錄觀察狀態",
+  "changedTheHistoryVisibility": "{username}變更了歷史記錄觀察狀態",
   "@changedTheHistoryVisibility": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheGuestAccessRulesTo": "{username} 變更了訪客訪問規則為：{rules}",
+  "changedTheGuestAccessRulesTo": "{username}變更了訪客訪問規則為：{rules}",
   "@changedTheGuestAccessRulesTo": {
     "type": "text",
     "placeholders": {
@@ -1035,7 +1035,7 @@
       "rules": {}
     }
   },
-  "changedTheGuestAccessRules": "{username} 變更了訪客訪問規則",
+  "changedTheGuestAccessRules": "{username}變更了訪客訪問規則",
   "@changedTheGuestAccessRules": {
     "type": "text",
     "placeholders": {
@@ -1047,7 +1047,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changedTheDisplaynameTo": "{username} 變更了顯示名稱為：“{displayname}”",
+  "changedTheDisplaynameTo": "{username}變更了顯示名稱為：“{displayname}”",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -1055,14 +1055,14 @@
       "displayname": {}
     }
   },
-  "changedTheChatPermissions": "{username} 變更了對話權限",
+  "changedTheChatPermissions": "{username}變更了對話權限",
   "@changedTheChatPermissions": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheChatDescriptionTo": "{username} 變更了對話介紹為：“{description}”",
+  "changedTheChatDescriptionTo": "{username}變更了對話介紹為：“{description}”",
   "@changedTheChatDescriptionTo": {
     "type": "text",
     "placeholders": {
@@ -1070,7 +1070,7 @@
       "description": {}
     }
   },
-  "changedTheChatNameTo": "{username} 變更了暱稱為：“{chatname}”",
+  "changedTheChatNameTo": "{username}變更了暱稱為：“{chatname}”",
   "@changedTheChatNameTo": {
     "type": "text",
     "placeholders": {
@@ -1078,7 +1078,7 @@
       "chatname": {}
     }
   },
-  "changedTheChatAvatar": "{username} 變更了對話頭貼",
+  "changedTheChatAvatar": "{username}變更了對話頭貼",
   "@changedTheChatAvatar": {
     "type": "text",
     "placeholders": {
@@ -1140,7 +1140,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "answeredTheCall": "已開始與 {senderName} 通話",
+  "answeredTheCall": "已開始與{senderName}通話",
   "@answeredTheCall": {
     "type": "text",
     "placeholders": {
@@ -1177,7 +1177,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "acceptedTheInvitation": "{username} 已接受邀請",
+  "acceptedTheInvitation": "{username}已接受邀請",
   "@acceptedTheInvitation": {
     "type": "text",
     "placeholders": {
@@ -1249,7 +1249,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "seenByUserAndCountOthers": "{username}和其他 {count}個人已讀",
+  "seenByUserAndCountOthers": "{username}和其他{count}個人已讀",
   "@seenByUserAndCountOthers": {
     "type": "text",
     "placeholders": {
@@ -1257,7 +1257,7 @@
       "count": {}
     }
   },
-  "seenByUserAndUser": "{username} 和 {username2} 已讀",
+  "seenByUserAndUser": "{username}和{username2}已讀",
   "@seenByUserAndUser": {
     "type": "text",
     "placeholders": {
@@ -1265,7 +1265,7 @@
       "username2": {}
     }
   },
-  "seenByUser": "{username} 已讀",
+  "seenByUser": "{username}已讀",
   "@seenByUser": {
     "type": "text",
     "placeholders": {
@@ -1392,7 +1392,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sharedTheLocation": "{username} 分享了位置",
+  "sharedTheLocation": "{username}分享了位置",
   "@sharedTheLocation": {
     "type": "text",
     "placeholders": {
@@ -1449,7 +1449,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "removedBy": "被 {username} 移除",
+  "removedBy": "被{username}移除",
   "@removedBy": {
     "type": "text",
     "placeholders": {
@@ -1466,14 +1466,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "rejectedTheInvitation": "{username} 拒絕了邀請",
+  "rejectedTheInvitation": "{username}拒絕了邀請",
   "@rejectedTheInvitation": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "redactedAnEvent": "{username} 編輯了一個事件",
+  "redactedAnEvent": "{username}編輯了一個事件",
   "@redactedAnEvent": {
     "type": "text",
     "placeholders": {
@@ -1545,7 +1545,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "play": "播放 {fileName}",
+  "play": "播放{fileName}",
   "@play": {
     "type": "text",
     "placeholders": {
@@ -1642,7 +1642,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "numberSelected": "{number} 已選擇",
+  "numberSelected": "{number}已選擇",
   "@numberSelected": {
     "type": "text",
     "placeholders": {
@@ -1699,7 +1699,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "startedACall": "{senderName} 開始了通話",
+  "startedACall": "{senderName}開始了通話",
   "@startedACall": {
     "type": "text",
     "placeholders": {
@@ -1728,6 +1728,16 @@
   },
   "sendAudio": "發送音訊",
   "@sendAudio": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "soundVibrationLedColor": "聲音、振動及LED",
+  "@soundVibrationLedColor": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendAMessage": "傳送訊息",
+  "@sendAMessage": {
     "type": "text",
     "placeholders": {}
   }
