@@ -1769,5 +1769,12 @@
     "placeholders": {
       "username": {}
     }
+  },
+  "sentAPicture": "{username}發送了一張圖片",
+  "@sentAPicture": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
   }
 }
