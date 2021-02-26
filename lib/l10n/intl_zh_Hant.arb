@@ -1930,13 +1930,18 @@
     "type": "text",
     "placeholders": {}
   },
-  "whoIsAllowedToJoinThisGroup": "誰可以加入這個小組",
+  "whoIsAllowedToJoinThisGroup": "誰可以加入這個群組",
   "@whoIsAllowedToJoinThisGroup": {
     "type": "text",
     "placeholders": {}
   },
   "userVerified": "用戶已驗證",
   "@userVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPlay": "播放",
+  "@audioPlayerPlay": {
     "type": "text",
     "placeholders": {}
   }
