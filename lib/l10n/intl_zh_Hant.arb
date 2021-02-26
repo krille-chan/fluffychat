@@ -1249,7 +1249,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "seenByUserAndCountOthers": "{username} 和其他 {count} 人已讀",
+  "seenByUserAndCountOthers": "{username}和其他 {count}個人已讀",
   "@seenByUserAndCountOthers": {
     "type": "text",
     "placeholders": {
