@@ -1791,5 +1791,20 @@
     "placeholders": {
       "count": {}
     }
+  },
+  "userIsTyping": "{username}正在打字啦 不要急…",
+  "@userIsTyping": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "userAndUserAreTyping": "{username}和{username2}正在輸入…",
+  "@userAndUserAreTyping": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "username2": {}
+    }
   }
 }
