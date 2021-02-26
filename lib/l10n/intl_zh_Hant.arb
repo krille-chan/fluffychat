@@ -1945,7 +1945,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "userNotVerified": "用戶未驗證",
+  "userNotVerified": "使用者尚未驗證",
   "@userNotVerified": {
     "type": "text",
     "placeholders": {}
