@@ -1140,7 +1140,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "answeredTheCall": "已與{senderName} 開始通話",
+  "answeredTheCall": "已開始與 {senderName} 通話",
   "@answeredTheCall": {
     "type": "text",
     "placeholders": {
