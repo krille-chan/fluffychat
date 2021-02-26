@@ -1835,7 +1835,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "verifySuccess": "你成功驗證了!",
+  "verifySuccess": "您成功驗證了！",
   "@verifySuccess": {
     "type": "text",
     "placeholders": {}
