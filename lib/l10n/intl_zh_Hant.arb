@@ -1763,7 +1763,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sentAnAudio": "{username}發送了一個音訊",
+  "sentAnAudio": "{username}傳送了一個音訊",
   "@sentAnAudio": {
     "type": "text",
     "placeholders": {
