@@ -1974,5 +1974,15 @@
   "@clearText": {
     "type": "text",
     "placeholders": {}
+  },
+  "youAreInvitedToThisChat": "有人邀請您加入此聊天室",
+  "@youAreInvitedToThisChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yes": "是",
+  "@yes": {
+    "type": "text",
+    "placeholders": {}
   }
 }
