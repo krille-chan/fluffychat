@@ -1776,5 +1776,20 @@
     "placeholders": {
       "username": {}
     }
+  },
+  "userAndOthersAreTyping": "{username}和另外{count}個人正在輸入…",
+  "@userAndOthersAreTyping": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "count": {}
+    }
+  },
+  "numUsersTyping": "{count}個人正在輸入…",
+  "@numUsersTyping": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
   }
 }
