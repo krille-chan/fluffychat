@@ -1964,5 +1964,15 @@
   "@userUnknownVerification": {
     "type": "text",
     "placeholders": {}
+  },
+  "writeAMessage": "寫個訊息…",
+  "@writeAMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clearText": "清除文字",
+  "@clearText": {
+    "type": "text",
+    "placeholders": {}
   }
 }
