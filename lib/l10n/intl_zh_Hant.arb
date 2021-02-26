@@ -1751,7 +1751,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sentAFile": "{username}發送了一個文件",
+  "sentAFile": "{username}傳送了一個文件",
   "@sentAFile": {
     "type": "text",
     "placeholders": {
