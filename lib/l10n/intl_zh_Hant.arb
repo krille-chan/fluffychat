@@ -1959,5 +1959,10 @@
   "@fontSize": {
     "type": "text",
     "placeholders": {}
+  },
+  "userUnknownVerification": "用戶驗證狀態未知",
+  "@userUnknownVerification": {
+    "type": "text",
+    "placeholders": {}
   }
 }
