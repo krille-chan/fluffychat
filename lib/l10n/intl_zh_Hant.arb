@@ -1890,7 +1890,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerNumbers": "正在等待夥伴接受…",
+  "waitingPartnerNumbers": "正在等待夥伴接受數字…",
   "@waitingPartnerNumbers": {
     "type": "text",
     "placeholders": {}
