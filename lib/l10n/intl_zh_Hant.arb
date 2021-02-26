@@ -1844,5 +1844,10 @@
   "@verifyStart": {
     "type": "text",
     "placeholders": {}
+  },
+  "verifyTitle": "正在驗證其他帳戶",
+  "@verifyTitle": {
+    "type": "text",
+    "placeholders": {}
   }
 }
