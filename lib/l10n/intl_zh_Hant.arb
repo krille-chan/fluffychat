@@ -1746,7 +1746,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sendImage": "發送圖片",
+  "sendImage": "傳送圖片",
   "@sendImage": {
     "type": "text",
     "placeholders": {}
