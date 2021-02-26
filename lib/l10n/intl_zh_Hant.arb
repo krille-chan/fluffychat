@@ -1915,7 +1915,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "weSentYouAnEmail": "我們給你發了一封電子郵件",
+  "weSentYouAnEmail": "我們向您傳送了一封電子郵件",
   "@weSentYouAnEmail": {
     "type": "text",
     "placeholders": {}
