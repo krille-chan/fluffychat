@@ -301,7 +301,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "banFromChat": "已被從對話中封禁",
+  "banFromChat": "已從聊天室中封禁",
   "@banFromChat": {
     "type": "text",
     "placeholders": {}
@@ -326,7 +326,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "yourOwnUsername": "您自己的使用者名稱",
+  "yourOwnUsername": "您的使用者名稱",
   "@yourOwnUsername": {
     "type": "text",
     "placeholders": {}
@@ -584,7 +584,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "darkTheme": "深色",
+  "darkTheme": "夜間模式",
   "@darkTheme": {
     "type": "text",
     "placeholders": {}
@@ -931,7 +931,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chooseAUsername": "輸入一個暱稱",
+  "chooseAUsername": "輸入您的使用者名稱",
   "@chooseAUsername": {
     "type": "text",
     "placeholders": {}
@@ -946,7 +946,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chat": "對話",
+  "chat": "聊天",
   "@chat": {
     "type": "text",
     "placeholders": {}
@@ -961,7 +961,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changeWallpaper": "變更對話背景",
+  "changeWallpaper": "變更聊天背景",
   "@changeWallpaper": {
     "type": "text",
     "placeholders": {}
@@ -1694,7 +1694,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "systemTheme": "系統",
+  "systemTheme": "自動",
   "@systemTheme": {
     "type": "text",
     "placeholders": {}
