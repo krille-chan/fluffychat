@@ -1949,5 +1949,15 @@
   "@userNotVerified": {
     "type": "text",
     "placeholders": {}
+  },
+  "wipeChatBackup": "要清除你的聊天備份來創建新的安全密鑰嗎？",
+  "@wipeChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fontSize": "字體大小",
+  "@fontSize": {
+    "type": "text",
+    "placeholders": {}
   }
 }
