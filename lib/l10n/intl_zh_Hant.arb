@@ -1935,7 +1935,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "userVerified": "用戶已驗證",
+  "userVerified": "使用者已驗證",
   "@userVerified": {
     "type": "text",
     "placeholders": {}
