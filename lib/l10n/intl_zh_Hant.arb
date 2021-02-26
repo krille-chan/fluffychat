@@ -1895,7 +1895,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "warning": "警告!",
+  "warning": "警告！",
   "@warning": {
     "type": "text",
     "placeholders": {}
