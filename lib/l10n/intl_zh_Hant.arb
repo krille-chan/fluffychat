@@ -1820,7 +1820,7 @@
       "type": {}
     }
   },
-  "verifiedSession": "工作階段成功驗證",
+  "verifiedSession": "工作階段成功驗證！",
   "@verifiedSession": {
     "type": "text",
     "placeholders": {}
