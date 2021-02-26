@@ -1845,7 +1845,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "verifyTitle": "正在驗證其他帳戶",
+  "verifyTitle": "正在驗證其他帳號",
   "@verifyTitle": {
     "type": "text",
     "placeholders": {}
