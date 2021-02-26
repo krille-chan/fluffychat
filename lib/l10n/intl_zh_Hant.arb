@@ -1960,7 +1960,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "userUnknownVerification": "用戶驗證狀態未知",
+  "userUnknownVerification": "未知的使用者驗證狀態",
   "@userUnknownVerification": {
     "type": "text",
     "placeholders": {}
