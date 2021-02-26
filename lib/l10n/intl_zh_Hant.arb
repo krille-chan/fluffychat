@@ -1950,7 +1950,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wipeChatBackup": "要清除你的聊天備份來創建新的安全密鑰嗎？",
+  "wipeChatBackup": "要清除您的聊天備份以建立新的安全金鑰嗎？",
   "@wipeChatBackup": {
     "type": "text",
     "placeholders": {}
