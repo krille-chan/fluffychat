@@ -98,33 +98,44 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   StreamSubscription<html.Event> onFocusSub;
   StreamSubscription<html.Event> onBlurSub;
 
+  String _cachedPassword;
+  String get cachedPassword {
+    final tmp = _cachedPassword;
+    _cachedPassword = null;
+    return tmp;
+  }
+
+  set cachedPassword(String p) => _cachedPassword = p;
+
   void _onUiaRequest(UiaRequest uiaRequest) async {
     if (uiaRequest.state != UiaRequestState.waitForUser ||
         uiaRequest.nextStages.isEmpty) return;
     final stage = uiaRequest.nextStages.first;
     switch (stage) {
       case AuthenticationTypes.password:
-        final input = await showTextInputDialog(
-          context: context,
-          title: L10n.of(context).pleaseEnterYourPassword,
-          okLabel: L10n.of(context).ok,
-          cancelLabel: L10n.of(context).cancel,
-          useRootNavigator: false,
-          textFields: [
-            DialogTextField(
-              minLines: 1,
-              maxLines: 1,
-              obscureText: true,
-              hintText: '******',
-            )
-          ],
-        );
+        final input = cachedPassword ??
+            (await showTextInputDialog(
+              context: context,
+              title: L10n.of(context).pleaseEnterYourPassword,
+              okLabel: L10n.of(context).ok,
+              cancelLabel: L10n.of(context).cancel,
+              useRootNavigator: false,
+              textFields: [
+                DialogTextField(
+                  minLines: 1,
+                  maxLines: 1,
+                  obscureText: true,
+                  hintText: '******',
+                )
+              ],
+            ))
+                ?.single;
         if (input?.isEmpty ?? true) return;
         return uiaRequest.completeStage(
           AuthenticationPassword(
             session: uiaRequest.session,
             user: client.userID,
-            password: input.single,
+            password: input,
             identifier: AuthenticationUserIdentifier(user: client.userID),
           ),
         );

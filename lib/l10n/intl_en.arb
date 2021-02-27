@@ -498,7 +498,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterSecurityKey": "Please enter your security key",
+  "pleaseEnterSecurityKey": "Please enter your security key:",
   "@pleaseEnterSecurityKey": {
     "type": "text",
     "placeholders": {}
@@ -2005,6 +2005,11 @@
       "unreadEvents": {},
       "unreadChats": {}
     }
+  },
+  "unlockChatBackup": "Unlock chat backup",
+  "@unlockChatBackup": {
+    "type": "text",
+    "placeholders": {}
   },
   "yourPublicKey": "Your public key",
   "@yourPublicKey": {

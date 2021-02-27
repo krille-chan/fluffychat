@@ -174,12 +174,8 @@ class _ChatListState extends State<ChatList> {
 
   final GlobalKey<DefaultAppBarSearchFieldState> _searchFieldKey = GlobalKey();
 
-  Future<List<ThirdPartyIdentifier>> _thirdPartyIdentifierFuture;
-
   @override
   Widget build(BuildContext context) {
-    _thirdPartyIdentifierFuture ??=
-        Matrix.of(context).client.requestThirdPartyIdentifiers();
     return StreamBuilder<Object>(
         stream: Matrix.of(context).onShareContentChanged.stream,
         builder: (_, __) {

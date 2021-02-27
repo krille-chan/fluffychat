@@ -140,12 +140,7 @@ class _ContactsState extends State<Contacts> {
                           color: Colors.grey,
                         ),
                         Center(
-                          child: RaisedButton(
-                            elevation: 7,
-                            color: Theme.of(context).scaffoldBackgroundColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(6),
-                            ),
+                          child: OutlinedButton(
                             child: Text(
                               L10n.of(context).inviteContact,
                               style: TextStyle(

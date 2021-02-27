@@ -91,6 +91,7 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
           style: TextStyle(
             fontSize: 18,
             wordSpacing: 38,
+            fontFamily: 'monospace',
           ),
         ),
       );
@@ -129,8 +130,8 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
               _recoveryKeyInputError ?? L10n.of(context).pleaseEnterSecurityKey;
           body = PlatformInfos.isCupertinoStyle
               ? CupertinoTextField(
-                  minLines: 2,
-                  maxLines: 2,
+                  minLines: 1,
+                  maxLines: 1,
                   autofocus: true,
                   autocorrect: false,
                   autofillHints: _recoveryKeyInputLoading
@@ -139,46 +140,22 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
                   controller: _recoveryKeyTextEditingController,
                 )
               : TextField(
-                  minLines: 2,
-                  maxLines: 2,
+                  minLines: 1,
+                  maxLines: 1,
                   autofocus: true,
                   autocorrect: false,
                   autofillHints: _recoveryKeyInputLoading
                       ? null
                       : [AutofillHints.password],
                   controller: _recoveryKeyTextEditingController,
+                  decoration: InputDecoration(
+                    border: UnderlineInputBorder(),
+                    filled: false,
+                    hintText: L10n.of(context).securityKey,
+                  ),
                 );
           buttons.add(AdaptiveFlatButton(
-            textColor: Colors.red,
-            label: 'Lost security key',
-            onPressed: () async {
-              if (OkCancelResult.ok ==
-                  await showOkCancelAlertDialog(
-                    context: context,
-                    useRootNavigator: false,
-                    title: L10n.of(context).securityKeyLost,
-                    message: L10n.of(context).wipeChatBackup,
-                    okLabel: L10n.of(context).ok,
-                    cancelLabel: L10n.of(context).cancel,
-                    isDestructiveAction: true,
-                  )) {
-                _createBootstrap(true);
-              }
-            },
-          ));
-          buttons.add(AdaptiveFlatButton(
-            label: L10n.of(context).transferFromAnotherDevice,
-            onPressed: () async {
-              final req = await Matrix.of(context)
-                  .client
-                  .userDeviceKeys[Matrix.of(context).client.userID]
-                  .startVerification();
-              await KeyVerificationDialog(request: req).show(context);
-              Navigator.of(context, rootNavigator: false).pop();
-            },
-          ));
-          buttons.add(AdaptiveFlatButton(
-              label: L10n.of(context).next,
+              label: L10n.of(context).unlockChatBackup,
               onPressed: () async {
                 setState(() {
                   _recoveryKeyInputError = null;
@@ -197,6 +174,35 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
                   setState(() => _recoveryKeyInputLoading = false);
                 }
               }));
+          buttons.add(AdaptiveFlatButton(
+            label: L10n.of(context).transferFromAnotherDevice,
+            onPressed: () async {
+              final req = await Matrix.of(context)
+                  .client
+                  .userDeviceKeys[Matrix.of(context).client.userID]
+                  .startVerification();
+              await KeyVerificationDialog(request: req).show(context);
+              Navigator.of(context, rootNavigator: false).pop();
+            },
+          ));
+          buttons.add(AdaptiveFlatButton(
+            textColor: Colors.red,
+            label: L10n.of(context).securityKeyLost,
+            onPressed: () async {
+              if (OkCancelResult.ok ==
+                  await showOkCancelAlertDialog(
+                    context: context,
+                    useRootNavigator: false,
+                    title: L10n.of(context).securityKeyLost,
+                    message: L10n.of(context).wipeChatBackup,
+                    okLabel: L10n.of(context).ok,
+                    cancelLabel: L10n.of(context).cancel,
+                    isDestructiveAction: true,
+                  )) {
+                _createBootstrap(true);
+              }
+            },
+          ));
           break;
         case BootstrapState.askWipeCrossSigning:
           WidgetsBinding.instance.addPostFrameCallback(
