@@ -2183,7 +2183,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterSecurityKey": "Palun sisesta oma turvavõti",
+  "pleaseEnterSecurityKey": "Palun sisesta oma turvavõti:",
   "@pleaseEnterSecurityKey": {
     "type": "text",
     "placeholders": {}
@@ -2257,6 +2257,11 @@
   },
   "oneMoreEvent": "Veel 1 sündmus",
   "@oneMoreEvent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unlockChatBackup": "Krüpti lahti oma vestluste varukoopia",
+  "@unlockChatBackup": {
     "type": "text",
     "placeholders": {}
   }
