@@ -97,6 +97,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   StreamSubscription<UiaRequest> onUiaRequest;
   StreamSubscription<html.Event> onFocusSub;
   StreamSubscription<html.Event> onBlurSub;
+  StreamSubscription<Presence> onOwnPresence;
 
   String _cachedPassword;
   String get cachedPassword {
@@ -311,6 +312,30 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         widget.apl.currentState.pushNamedAndRemoveAllOthers('/');
       }
     });
+
+    // Cache and resend status message
+    onOwnPresence ??= client.onPresence.stream.listen((presence) {
+      if (client.isLogged() &&
+          client.userID == presence.senderId &&
+          presence.presence?.statusMsg != null) {
+        Logs().v('Update status message: "${presence.presence.statusMsg}"');
+        store.setItem(
+            SettingKeys.ownStatusMessage, presence.presence.statusMsg);
+      }
+    });
+    if (client.isLogged()) {
+      store.getItem(SettingKeys.ownStatusMessage).then((statusMsg) {
+        if (statusMsg?.isNotEmpty ?? false) {
+          Logs().v('Send cached status message: "$statusMsg"');
+          client.sendPresence(
+            client.userID,
+            PresenceType.online,
+            statusMsg: statusMsg,
+          );
+        }
+      });
+    }
+
     onUiaRequest ??= client.onUiaRequest.stream.listen(_onUiaRequest);
     if (PlatformInfos.isWeb || PlatformInfos.isLinux) {
       client.onSync.stream.first.then((s) {
@@ -381,6 +406,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     onRoomKeyRequestSub?.cancel();
     onKeyVerificationRequestSub?.cancel();
     onLoginStateChanged?.cancel();
+    onOwnPresence?.cancel();
     onNotification?.cancel();
     onFocusSub?.cancel();
     onBlurSub?.cancel();

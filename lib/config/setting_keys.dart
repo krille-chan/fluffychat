@@ -17,4 +17,5 @@ abstract class SettingKeys {
       'chat.fluffy.unifiedpush.registered';
   static const String unifiedPushEndpoint = 'chat.fluffy.unifiedpush.endpoint';
   static const String notificationCurrentIds = 'chat.fluffy.notification_ids';
+  static const String ownStatusMessage = 'chat.fluffy.status_msg';
 }
