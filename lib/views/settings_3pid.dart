@@ -51,7 +51,7 @@ class _Settings3PidState extends State<Settings3Pid> {
       future: () => Matrix.of(context).client.uiaRequestBackground(
             (auth) => Matrix.of(context).client.addThirdPartyIdentifier(
                   clientSecret,
-                  (response as RequestTokenResponse).sid,
+                  response.result.sid,
                   auth: auth,
                 ),
           ),
