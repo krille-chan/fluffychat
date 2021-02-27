@@ -1,10 +1,10 @@
 {
-  "noMegolmBootstrap": "FluffyChat 目前不支援啟用線上金鑰備份。請在 Riot 中啟用。",
+  "noMegolmBootstrap": "FluffyChat目前不支援啟用線上金鑰備份。請在Riot中啟用。",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "FluffyChat 目前不支援啟用 Cross-Signing。請在 Riot 中啟用。",
+  "noCrossSignBootstrap": "FluffyChat目前不支援啟用Cross-Signing。請在Riot中啟用。",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -34,12 +34,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "newMessageInFluffyChat": "來自 FluffyChat 的新訊息",
+  "newMessageInFluffyChat": "來自FluffyChat的新訊息",
   "@newMessageInFluffyChat": {
     "type": "text",
     "placeholders": {}
   },
-  "needPantalaimonWarning": "請注意您需要 Pantalaimon 才能使用點對點加密功能。",
+  "needPantalaimonWarning": "請注意您需要Pantalaimon才能使用點對點加密功能。",
   "@needPantalaimonWarning": {
     "type": "text",
     "placeholders": {}
@@ -118,7 +118,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "lastSeenIp": "最後使用的 IP",
+  "lastSeenIp": "最後使用的IP",
   "@lastSeenIp": {
     "type": "text",
     "placeholders": {}
@@ -401,7 +401,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "deviceId": "裝置 ID",
+  "deviceId": "裝置ID",
   "@deviceId": {
     "type": "text",
     "placeholders": {}
@@ -921,7 +921,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "compareEmojiMatch": "對比並確認這些表情符合其他那些裝置:",
+  "compareEmojiMatch": "對比並確認這些表情符合其他那些裝置：",
   "@compareEmojiMatch": {
     "type": "text",
     "placeholders": {}
@@ -990,7 +990,7 @@
       "username": {}
     }
   },
-  "changedTheProfileAvatar": "{username}變更了他們的頭貼",
+  "changedTheProfileAvatar": "{username}變更了頭貼",
   "@changedTheProfileAvatar": {
     "type": "text",
     "placeholders": {
@@ -1287,7 +1287,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sendBugReports": "允許向 sentry.io 回報錯誤",
+  "sendBugReports": "允許向sentry.io回報錯誤",
   "@sendBugReports": {
     "type": "text",
     "placeholders": {}
@@ -1530,7 +1530,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterAMatrixIdentifier": "請輸入 Matrix ID。",
+  "pleaseEnterAMatrixIdentifier": "請輸入Matrix ID。",
   "@pleaseEnterAMatrixIdentifier": {
     "type": "text",
     "placeholders": {}
@@ -1674,12 +1674,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "看起來您手機上沒有 Google 服務框架。這對於保護您的隱私而言是個好決定！但為了收到 FluffyChat 的推播通知，我們推薦您使用microG：https://microg.org/",
+  "noGoogleServicesWarning": "看起來您手機上沒有Google服務框架。這對於保護您的隱私而言是個好決定！但為了收到FluffyChat的推播通知，我們推薦您使用microG：https://microg.org/",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "useAmoledTheme": "使用適合 AMOLED 螢幕的顏色？",
+  "useAmoledTheme": "使用適合AMOLED螢幕的顏色？",
   "@useAmoledTheme": {
     "type": "text",
     "placeholders": {}

@@ -2247,5 +2247,17 @@
   "@verified": {
     "type": "text",
     "placeholders": {}
+  },
+  "xMoreEvents": "Veel {count} sündmust",
+  "@xMoreEvents": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "oneMoreEvent": "Veel 1 sündmus",
+  "@oneMoreEvent": {
+    "type": "text",
+    "placeholders": {}
   }
 }

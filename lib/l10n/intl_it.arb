@@ -2245,5 +2245,17 @@
   "@verified": {
     "type": "text",
     "placeholders": {}
+  },
+  "xMoreEvents": "{count} altri eventi",
+  "@xMoreEvents": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "oneMoreEvent": "1 altro evento",
+  "@oneMoreEvent": {
+    "type": "text",
+    "placeholders": {}
   }
 }
