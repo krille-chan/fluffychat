@@ -421,7 +421,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterSecurityKey": "請輸入您的安全金鑰",
+  "pleaseEnterSecurityKey": "請輸入您的安全金鑰 ：",
   "@pleaseEnterSecurityKey": {
     "type": "text",
     "placeholders": {}
@@ -1312,7 +1312,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "youHaveBeenBannedFromThisChat": "你已經被這個聊天室封禁",
+  "youHaveBeenBannedFromThisChat": "您已經被這個聊天室封禁",
   "@youHaveBeenBannedFromThisChat": {
     "type": "text",
     "placeholders": {}
@@ -1950,7 +1950,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wipeChatBackup": "要清除您的聊天備份以建立新的安全金鑰嗎？",
+  "wipeChatBackup": "要清除您的聊天記錄備份以建立新的安全金鑰嗎？",
   "@wipeChatBackup": {
     "type": "text",
     "placeholders": {}
@@ -2245,5 +2245,35 @@
     "placeholders": {
       "username": {}
     }
+  },
+  "noEncryptionForPublicRooms": "您只能在聊天室不再被允許公開訪問後，才能啟用加密。",
+  "@noEncryptionForPublicRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceVerifyDescription": "只有在所有的裝置都經過驗證後，加密才會是安全的。",
+  "@deviceVerifyDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapOnDeviceToVerify": "在一個裝置上點擊以進行驗證",
+  "@tapOnDeviceToVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unlockChatBackup": "解鎖聊天記錄備份",
+  "@unlockChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "friends": "朋友",
+  "@friends": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewFriend": "新增朋友",
+  "@addNewFriend": {
+    "type": "text",
+    "placeholders": {}
   }
 }
