@@ -1158,8 +1158,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "addNewContact": "Add new contact",
-  "@addNewContact": {
+  "addNewFriend": "Add new friend",
+  "@addNewFriend": {
     "type": "text",
     "placeholders": {}
   },
@@ -1485,8 +1485,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "contacts": "Contacts",
-  "@contacts": {
+  "friends": "Friends",
+  "@friends": {
     "type": "text",
     "placeholders": {}
   },

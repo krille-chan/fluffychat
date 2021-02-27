@@ -87,7 +87,7 @@ class _ContactsState extends State<Contacts> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         elevation: 1,
-        title: Text(L10n.of(context).contacts),
+        title: Text(L10n.of(context).friends),
         actions: [
           TextButton.icon(
             label: Text(
@@ -123,7 +123,7 @@ class _ContactsState extends State<Contacts> {
                       backgroundColor: Theme.of(context).primaryColor,
                       foregroundColor: Colors.white,
                     ),
-                    title: Text(L10n.of(context).addNewContact),
+                    title: Text(L10n.of(context).addNewFriend),
                     onTap: () => AdaptivePageLayout.of(context)
                         .pushNamed('/newprivatechat'),
                   ),

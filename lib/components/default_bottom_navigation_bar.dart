@@ -35,7 +35,7 @@ class DefaultBottomNavigationBar extends StatelessWidget {
       items: [
         BottomNavigationBarItem(
           icon: Icon(currentIndex == 0 ? Icons.people : Icons.people_outlined),
-          label: L10n.of(context).contacts,
+          label: L10n.of(context).friends,
         ),
         BottomNavigationBarItem(
           icon: Icon(currentIndex == 1
