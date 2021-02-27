@@ -46,22 +46,6 @@ class _Settings3PidState extends State<Settings3Pid> {
       useRootNavigator: false,
     );
     if (ok == null) return;
-    final password = await showTextInputDialog(
-      context: context,
-      title: L10n.of(context).pleaseEnterYourPassword,
-      okLabel: L10n.of(context).ok,
-      cancelLabel: L10n.of(context).cancel,
-      useRootNavigator: false,
-      textFields: [
-        DialogTextField(
-          hintText: '******',
-          obscureText: true,
-          minLines: 1,
-          maxLines: 1,
-        ),
-      ],
-    );
-    if (password == null) return;
     final success = await showFutureLoadingDialog(
       context: context,
       future: () => Matrix.of(context).client.uiaRequestBackground(
