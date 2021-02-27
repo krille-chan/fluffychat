@@ -2279,5 +2279,15 @@
   "@tapOnDeviceToVerify": {
     "type": "text",
     "placeholders": {}
+  },
+  "friends": "Arkadaşlar",
+  "@friends": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewFriend": "Yeni arkadaş ekle",
+  "@addNewFriend": {
+    "type": "text",
+    "placeholders": {}
   }
 }
