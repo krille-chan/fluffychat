@@ -2047,7 +2047,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "redactMessage": "Rédiger un message",
+  "redactMessage": "Supprimer un message",
   "@redactMessage": {
     "type": "text",
     "placeholders": {}
@@ -2183,7 +2183,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterSecurityKey": "Veuillez saisir votre clé de sécurité",
+  "pleaseEnterSecurityKey": "Veuillez saisir votre clé de sécurité :",
   "@pleaseEnterSecurityKey": {
     "type": "text",
     "placeholders": {}
@@ -2257,6 +2257,36 @@
   },
   "oneMoreEvent": "1 évènement en plus",
   "@oneMoreEvent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unlockChatBackup": "Déverrouiller la sauvegarde de la discussion",
+  "@unlockChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "friends": "Ami·e·s",
+  "@friends": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewFriend": "Ajouter un·e nouvel·le ami·e",
+  "@addNewFriend": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noEncryptionForPublicRooms": "Vous pouvez activer le chiffrement seulement quand la salle n'est plus accessible au public.",
+  "@noEncryptionForPublicRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceVerifyDescription": "Le chiffremenr est sécurisé seulement quand tous les appareils ont été vérifiés.",
+  "@deviceVerifyDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapOnDeviceToVerify": "Appuyez sur un appareil pour vérifier",
+  "@tapOnDeviceToVerify": {
     "type": "text",
     "placeholders": {}
   }
