@@ -179,28 +179,6 @@ class UserBottomSheet extends StatelessWidget {
                 ),
                 title: Text(user.calcDisplayname()),
                 actions: [
-                  if (verificationStatus != null)
-                    IconButton(
-                      icon: Icon(
-                        Icons.lock_outlined,
-                        color: {
-                              UserVerifiedStatus.unknownDevice: Colors.red,
-                              UserVerifiedStatus.verified: Colors.green,
-                            }[verificationStatus] ??
-                            Colors.orange,
-                      ),
-                      tooltip: {
-                            UserVerifiedStatus.unknownDevice:
-                                L10n.of(context).userNotVerified,
-                            UserVerifiedStatus.verified:
-                                L10n.of(context).userVerified,
-                          }[verificationStatus] ??
-                          L10n.of(context).userUnknownVerification,
-                      onPressed: () =>
-                          verificationStatus == UserVerifiedStatus.unknown
-                              ? _verifyAction(context)
-                              : null,
-                    ),
                   if (user.id != user.room.client.userID)
                     PopupMenuButton(
                       itemBuilder: (_) => items,
