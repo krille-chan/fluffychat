@@ -189,7 +189,7 @@
       "username": {}
     }
   },
-  "changedTheDisplaynameTo": "{username} hat den Nicknamen geändert zu: „{displayname}“",
+  "changedTheDisplaynameTo": "{username} hat den Anzeigenamen geändert zu: „{displayname}“",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -509,7 +509,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "editDisplayname": "Anzeigename ändern",
+  "editDisplayname": "Anzeigenamen bearbeiten",
   "@editDisplayname": {
     "type": "text",
     "placeholders": {}
@@ -1501,7 +1501,7 @@
       "username2": {}
     }
   },
-  "userIsTyping": "{username} schreibt …",
+  "userIsTyping": "{username} schreibt …",
   "@userIsTyping": {
     "type": "text",
     "placeholders": {
@@ -2117,7 +2117,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noPublicRoomsFound": "Keine öffentlichen Räume gefunden ...",
+  "noPublicRoomsFound": "Keine öffentlichen Räume gefunden …",
   "@noPublicRoomsFound": {
     "type": "text",
     "placeholders": {}
@@ -2132,7 +2132,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wipeChatBackup": "Chat-Backup löschen, um neuen Sicherheitsschlüssel zu erstellen?",
+  "wipeChatBackup": "Chat-Sicherung löschen, um neuen Sicherheitsschlüssel zu erstellen?",
   "@wipeChatBackup": {
     "type": "text",
     "placeholders": {}
@@ -2162,7 +2162,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatBackupDescription": "Dein Chat-Backup ist mit einem Sicherheitsschlüssel gesichert. Bitte stelle sicher, dass du diesen nicht verlierst.",
+  "chatBackupDescription": "Deine Chat-Sicherung ist mit einem Sicherheitsschlüssel gesichert. Bitte stelle sicher, dass du diesen nicht verlierst.",
   "@chatBackupDescription": {
     "type": "text",
     "placeholders": {}
@@ -2187,7 +2187,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatBackup": "Chat-Backup",
+  "chatBackup": "Chat-Sicherung",
   "@chatBackup": {
     "type": "text",
     "placeholders": {}
@@ -2260,7 +2260,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unlockChatBackup": "Chat-Backup entsperren",
+  "unlockChatBackup": "Chat-Sicherung entsperren",
   "@unlockChatBackup": {
     "type": "text",
     "placeholders": {}
