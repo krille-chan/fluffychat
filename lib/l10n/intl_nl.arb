@@ -2250,5 +2250,35 @@
   "@oneMoreEvent": {
     "type": "text",
     "placeholders": {}
+  },
+  "unlockChatBackup": "Gesprekkenback-up ontgrendelen",
+  "@unlockChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "friends": "Vrienden",
+  "@friends": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewFriend": "Nieuwe vriend toevoegen",
+  "@addNewFriend": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noEncryptionForPublicRooms": "Je kunt de versleuteling pas activeren zodra het gesprek niet meer publiekelijk toegankelijk is.",
+  "@noEncryptionForPublicRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceVerifyDescription": "De versleutelinf is pas veilig als alle apparaten zijn geverifieerd.",
+  "@deviceVerifyDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapOnDeviceToVerify": "Tik op een apparaat om te verifiëren",
+  "@tapOnDeviceToVerify": {
+    "type": "text",
+    "placeholders": {}
   }
 }
