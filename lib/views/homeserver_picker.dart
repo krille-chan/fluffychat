@@ -202,7 +202,7 @@ class _HomeserverPickerState extends State<HomeserverPicker> {
             Wrap(
               alignment: WrapAlignment.center,
               children: [
-                FlatButton(
+                TextButton(
                   child: Text(
                     L10n.of(context).privacy,
                     style: TextStyle(
@@ -212,7 +212,7 @@ class _HomeserverPickerState extends State<HomeserverPicker> {
                   ),
                   onPressed: () => launch(AppConfig.privacyUrl),
                 ),
-                FlatButton(
+                TextButton(
                   child: Text(
                     L10n.of(context).about,
                     style: TextStyle(

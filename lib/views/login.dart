@@ -246,7 +246,7 @@ class _LoginState extends State<Login> {
               ),
             ),
             Center(
-              child: FlatButton(
+              child: TextButton(
                 child: Text(
                   L10n.of(context).passwordForgotten,
                   style: TextStyle(

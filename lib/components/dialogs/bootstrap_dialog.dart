@@ -74,7 +74,7 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
       titleText = L10n.of(context).chatBackup;
       body = Text(L10n.of(context).chatBackupDescription);
       buttons.add(AdaptiveFlatButton(
-        child: Text(L10n.of(context).next),
+        label: L10n.of(context).next,
         onPressed: () => _createBootstrap(false),
       ));
     } else if (bootstrap.newSsssKey?.recoveryKey != null &&
@@ -95,11 +95,11 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
         ),
       );
       buttons.add(AdaptiveFlatButton(
-        child: Text(L10n.of(context).copyToClipboard),
+        label: L10n.of(context).copyToClipboard,
         onPressed: () => Clipboard.setData(ClipboardData(text: key)),
       ));
       buttons.add(AdaptiveFlatButton(
-        child: Text(L10n.of(context).next),
+        label: L10n.of(context).next,
         onPressed: () => setState(() => _recoveryKeyStored = true),
       ));
     } else {
@@ -150,7 +150,7 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
                 );
           buttons.add(AdaptiveFlatButton(
             textColor: Colors.red,
-            child: Text('Lost security key'),
+            label: 'Lost security key',
             onPressed: () async {
               if (OkCancelResult.ok ==
                   await showOkCancelAlertDialog(
@@ -167,7 +167,7 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
             },
           ));
           buttons.add(AdaptiveFlatButton(
-            child: Text(L10n.of(context).transferFromAnotherDevice),
+            label: L10n.of(context).transferFromAnotherDevice,
             onPressed: () async {
               final req = await Matrix.of(context)
                   .client
@@ -178,7 +178,7 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
             },
           ));
           buttons.add(AdaptiveFlatButton(
-              child: Text(L10n.of(context).next),
+              label: L10n.of(context).next,
               onPressed: () async {
                 setState(() {
                   _recoveryKeyInputError = null;
@@ -232,7 +232,7 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
             title: Text(L10n.of(context).oopsSomethingWentWrong),
           );
           buttons.add(AdaptiveFlatButton(
-            child: Text(L10n.of(context).close),
+            label: L10n.of(context).close,
             onPressed: () =>
                 Navigator.of(context, rootNavigator: false).pop<bool>(false),
           ));
@@ -245,7 +245,7 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
             title: Text(L10n.of(context).keysCached),
           );
           buttons.add(AdaptiveFlatButton(
-            child: Text(L10n.of(context).close),
+            label: L10n.of(context).close,
             onPressed: () =>
                 Navigator.of(context, rootNavigator: false).pop<bool>(false),
           ));

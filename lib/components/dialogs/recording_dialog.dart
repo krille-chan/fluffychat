@@ -107,7 +107,7 @@ class _RecordingDialogState extends State<RecordingDialog> {
         ],
       ),
       actions: <Widget>[
-        FlatButton(
+        TextButton(
           child: Text(
             L10n.of(context).cancel.toUpperCase(),
             style: TextStyle(
@@ -116,7 +116,7 @@ class _RecordingDialogState extends State<RecordingDialog> {
           ),
           onPressed: () => Navigator.of(context, rootNavigator: false).pop(),
         ),
-        FlatButton(
+        TextButton(
           child: Row(
             children: <Widget>[
               Text(L10n.of(context).send.toUpperCase()),

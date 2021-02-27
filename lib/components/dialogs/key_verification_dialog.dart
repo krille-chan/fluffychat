@@ -132,14 +132,14 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
           ),
         );
         buttons.add(AdaptiveFlatButton(
-          child: Text(L10n.of(context).submit),
+          label: L10n.of(context).submit,
           onPressed: () {
             input = textEditingController.text;
             checkInput();
           },
         ));
         buttons.add(AdaptiveFlatButton(
-          child: Text(L10n.of(context).skip),
+          label: L10n.of(context).skip,
           onPressed: () => widget.request.openSSSS(skip: true),
         ));
         break;
@@ -151,11 +151,11 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
           margin: EdgeInsets.only(left: 8.0, right: 8.0),
         );
         buttons.add(AdaptiveFlatButton(
-          child: Text(L10n.of(context).accept),
+          label: L10n.of(context).accept,
           onPressed: () => widget.request.acceptVerification(),
         ));
         buttons.add(AdaptiveFlatButton(
-          child: Text(L10n.of(context).reject),
+          label: L10n.of(context).reject,
           onPressed: () {
             widget.request.rejectVerification().then((_) {
               Navigator.of(context, rootNavigator: false).pop();
@@ -181,7 +181,7 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
             .deviceKeys[widget.request.deviceId];
         if (key != null) {
           buttons.add(AdaptiveFlatButton(
-            child: Text(L10n.of(context).verifyManual),
+            label: L10n.of(context).verifyManual,
             onPressed: () async {
               final result = await showOkCancelAlertDialog(
                 context: context,
@@ -237,11 +237,11 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
         );
         buttons.add(AdaptiveFlatButton(
           textColor: Colors.red,
-          child: Text(L10n.of(context).theyDontMatch),
+          label: L10n.of(context).theyDontMatch,
           onPressed: () => widget.request.rejectSas(),
         ));
         buttons.add(AdaptiveFlatButton(
-          child: Text(L10n.of(context).theyMatch),
+          label: L10n.of(context).theyMatch,
           onPressed: () => widget.request.acceptSas(),
         ));
         break;
@@ -276,7 +276,7 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
           mainAxisSize: MainAxisSize.min,
         );
         buttons.add(AdaptiveFlatButton(
-          child: Text(L10n.of(context).close),
+          label: L10n.of(context).close,
           onPressed: () => Navigator.of(context, rootNavigator: false).pop(),
         ));
         break;
@@ -292,8 +292,8 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
           ],
           mainAxisSize: MainAxisSize.min,
         );
-        buttons.add(FlatButton(
-          child: Text(L10n.of(context).close),
+        buttons.add(AdaptiveFlatButton(
+          label: L10n.of(context).close,
           onPressed: () => Navigator.of(context, rootNavigator: false).pop(),
         ));
         break;

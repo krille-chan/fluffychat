@@ -9,7 +9,6 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/utils/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/sentry_controller.dart';
-import 'package:flushbar/flushbar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_lock/flutter_app_lock.dart';
@@ -83,33 +82,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   void _initWithStore() async {
     try {
       client.init();
-
-      final storeItem = await store.getItem(SettingKeys.showNoPid);
-      final configOptionMissing = storeItem == null || storeItem.isEmpty;
-      if (configOptionMissing || (!configOptionMissing && storeItem == '1')) {
-        if (configOptionMissing) {
-          await store.setItem(SettingKeys.showNoPid, '0');
-        }
-        await client.requestThirdPartyIdentifiers().then((l) {
-          if (l.isEmpty) {
-            Flushbar(
-              title: L10n.of(context).warning,
-              message: L10n.of(context).noPasswordRecoveryDescription,
-              mainButton: RaisedButton(
-                elevation: 7,
-                color: Theme.of(context).scaffoldBackgroundColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(6),
-                ),
-                child: Text(L10n.of(context).edit),
-                onPressed: () =>
-                    AdaptivePageLayout.of(context).pushNamed('/settings/3pid'),
-              ),
-              flushbarStyle: FlushbarStyle.FLOATING,
-            ).show(context);
-          }
-        }).catchError((_) => null);
-      }
     } catch (e, s) {
       client.onLoginStateChanged.sink.addError(e, s);
       SentryController.captureException(e, s);

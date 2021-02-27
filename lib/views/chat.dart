@@ -754,7 +754,7 @@ class _ChatState extends State<Chat> {
                                         child: CircularProgressIndicator(),
                                       )
                                     : _canLoadMore
-                                        ? FlatButton(
+                                        ? TextButton(
                                             child: Text(
                                               L10n.of(context).loadMore,
                                               style: TextStyle(
@@ -1014,7 +1014,7 @@ class _ChatState extends State<Chat> {
                               ? <Widget>[
                                   Container(
                                     height: 56,
-                                    child: FlatButton(
+                                    child: TextButton(
                                       onPressed: () =>
                                           forwardEventsAction(context),
                                       child: Row(
@@ -1033,7 +1033,7 @@ class _ChatState extends State<Chat> {
                                               0
                                           ? Container(
                                               height: 56,
-                                              child: FlatButton(
+                                              child: TextButton(
                                                 onPressed: () => replyAction(),
                                                 child: Row(
                                                   children: <Widget>[
@@ -1047,7 +1047,7 @@ class _ChatState extends State<Chat> {
                                             )
                                           : Container(
                                               height: 56,
-                                              child: FlatButton(
+                                              child: TextButton(
                                                 onPressed: () =>
                                                     sendAgainAction(timeline),
                                                 child: Row(

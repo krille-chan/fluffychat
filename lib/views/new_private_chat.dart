@@ -90,7 +90,7 @@ class _NewPrivateChatState extends State<NewPrivateChat> {
         title: Text(L10n.of(context).newChat),
         elevation: 0,
         actions: [
-          FlatButton(
+          TextButton(
             child: Text(
               L10n.of(context).createNewGroup,
               style: TextStyle(color: Theme.of(context).accentColor),

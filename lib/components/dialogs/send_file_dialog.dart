@@ -77,14 +77,14 @@ class _SendFileDialogState extends State<SendFileDialog> {
       title: Text(sendStr),
       content: contentWidget,
       actions: <Widget>[
-        FlatButton(
+        TextButton(
           child: Text(L10n.of(context).cancel),
           onPressed: () {
             // just close the dialog
             Navigator.of(context, rootNavigator: false).pop();
           },
         ),
-        FlatButton(
+        TextButton(
           child: Text(L10n.of(context).send),
           onPressed: _isSending
               ? null

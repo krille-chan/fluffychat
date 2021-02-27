@@ -71,12 +71,12 @@ class _PermissionSliderDialogState extends State<PermissionSliderDialog> {
     );
     final buttons = [
       AdaptiveFlatButton(
-        child: Text(L10n.of(context).cancel),
+       label: L10n.of(context).cancel,
         onPressed: () =>
             Navigator.of(context, rootNavigator: false).pop<int>(null),
       ),
       AdaptiveFlatButton(
-        child: Text(L10n.of(context).confirm),
+      label: L10n.of(context).confirm,
         onPressed: () =>
             Navigator.of(context, rootNavigator: false).pop<int>(_permission),
       ),

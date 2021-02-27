@@ -3,13 +3,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AdaptiveFlatButton extends StatelessWidget {
-  final Widget child;
+  final String label;
   final Color textColor;
   final Function onPressed;
 
   const AdaptiveFlatButton({
     Key key,
-    this.child,
+    @required this.label,
     this.textColor,
     this.onPressed,
   }) : super(key: key);
@@ -18,14 +18,16 @@ class AdaptiveFlatButton extends StatelessWidget {
   Widget build(BuildContext context) {
     if (PlatformInfos.isCupertinoStyle) {
       return CupertinoDialogAction(
-        child: child,
+        child: Text(label),
         onPressed: onPressed,
         textStyle: textColor != null ? TextStyle(color: textColor) : null,
       );
     }
-    return FlatButton(
-      child: child,
-      textColor: textColor,
+    return TextButton(
+      child: Text(
+        label,
+        style: TextStyle(color: textColor),
+      ),
       onPressed: onPressed,
     );
   }

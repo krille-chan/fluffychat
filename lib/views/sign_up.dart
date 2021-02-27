@@ -158,7 +158,7 @@ class _SignUpState extends State<SignUp> {
               ),
             ),
             Center(
-              child: FlatButton(
+              child: TextButton(
                 child: Text(
                   L10n.of(context).alreadyHaveAnAccount,
                   style: TextStyle(
