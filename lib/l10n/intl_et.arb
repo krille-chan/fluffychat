@@ -2264,5 +2264,30 @@
   "@unlockChatBackup": {
     "type": "text",
     "placeholders": {}
+  },
+  "friends": "Sõbrad",
+  "@friends": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewFriend": "Lisa uus sõber",
+  "@addNewFriend": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noEncryptionForPublicRooms": "Sa võid krüptimise kasutusele võtta niipea, kui jututuba poel enam avalik.",
+  "@noEncryptionForPublicRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceVerifyDescription": "Krüptimisel on mõte vaid siis, kui ka kõik vestlusega seotud seadmed on verifitseeritud.",
+  "@deviceVerifyDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapOnDeviceToVerify": "Verifitseerimiseks klõpsi seadme nime",
+  "@tapOnDeviceToVerify": {
+    "type": "text",
+    "placeholders": {}
   }
 }
