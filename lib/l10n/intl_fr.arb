@@ -1743,12 +1743,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "hideUnknownEvents": "Cacher les événements inconnus",
+  "hideUnknownEvents": "Cacher les évènements inconnus",
   "@hideUnknownEvents": {
     "type": "text",
     "placeholders": {}
   },
-  "hideRedactedEvents": "Cacher les événements supprimés",
+  "hideRedactedEvents": "Cacher les évènements supprimés",
   "@hideRedactedEvents": {
     "type": "text",
     "placeholders": {}
@@ -2248,14 +2248,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "xMoreEvents": "{count} événements en plus",
+  "xMoreEvents": "{count} évènements en plus",
   "@xMoreEvents": {
     "type": "text",
     "placeholders": {
       "count": {}
     }
   },
-  "oneMoreEvent": "1 événement en plus",
+  "oneMoreEvent": "1 évènement en plus",
   "@oneMoreEvent": {
     "type": "text",
     "placeholders": {}
