@@ -259,17 +259,24 @@ class _ChatListState extends State<ChatList> {
                               IconButton(
                                 icon: Icon(Icons.search_outlined),
                                 tooltip: L10n.of(context).search,
-                                onPressed: () async {
-                                  await _scrollController.animateTo(
-                                    _scrollController.position.minScrollExtent,
-                                    duration: Duration(milliseconds: 200),
-                                    curve: Curves.ease,
-                                  );
-                                  WidgetsBinding.instance.addPostFrameCallback(
-                                    (_) => _searchFieldKey.currentState
-                                        .requestFocus(),
-                                  );
-                                },
+                                onPressed: Matrix.of(context)
+                                        .client
+                                        .rooms
+                                        .isEmpty
+                                    ? null
+                                    : () async {
+                                        await _scrollController.animateTo(
+                                          _scrollController
+                                              .position.minScrollExtent,
+                                          duration: Duration(milliseconds: 200),
+                                          curve: Curves.ease,
+                                        );
+                                        WidgetsBinding.instance
+                                            .addPostFrameCallback(
+                                          (_) => _searchFieldKey.currentState
+                                              .requestFocus(),
+                                        );
+                                      },
                               ),
                             ],
                   title: Text(selectMode == SelectMode.share

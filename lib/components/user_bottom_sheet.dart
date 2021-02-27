@@ -12,7 +12,6 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import '../utils/presence_extension.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
-import 'dialogs/key_verification_dialog.dart';
 
 class UserBottomSheet extends StatelessWidget {
   final User user;
@@ -87,17 +86,10 @@ class UserBottomSheet extends StatelessWidget {
     }
   }
 
-  void _verifyAction(BuildContext context) async {
-    final client = user.room.client;
-    final req = await client.userDeviceKeys[user.id].startVerification();
-    await KeyVerificationDialog(request: req).show(context);
-  }
-
   @override
   Widget build(BuildContext context) {
     final client = user.room.client;
     final presence = client.presences[user.id];
-    final verificationStatus = client.userDeviceKeys[user.id]?.verified;
     var items = <PopupMenuEntry<String>>[];
 
     if (onMention != null) {
