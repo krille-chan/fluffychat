@@ -81,7 +81,7 @@ class _ContactsState extends State<Contacts> {
         .toList();
     if (client.presences[client.userID]?.presence?.statusMsg?.isNotEmpty ??
         false) {
-      contactList.add(client.presences[client.userID]);
+      contactList.insert(0, client.presences[client.userID]);
     }
     return Scaffold(
       appBar: AppBar(
