@@ -2158,7 +2158,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterSecurityKey": "Lütfen güvenlik anahtarınızı girin",
+  "pleaseEnterSecurityKey": "Lütfen güvenlik anahtarınızı girin:",
   "@pleaseEnterSecurityKey": {
     "type": "text",
     "placeholders": {}
@@ -2257,6 +2257,26 @@
   },
   "oneMoreEvent": "1 etkinlik daha",
   "@oneMoreEvent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unlockChatBackup": "Sohbet yedeklemesinin kilidini aç",
+  "@unlockChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noEncryptionForPublicRooms": "Şifrelemeyi yalnızca oda artık herkese açık olmadığında etkinleştirebilirsiniz.",
+  "@noEncryptionForPublicRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceVerifyDescription": "Şifreleme yalnızca tüm aygıtlar doğrulandığında güvenlidir.",
+  "@deviceVerifyDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapOnDeviceToVerify": "Doğrulamak için bir aygıta dokunun",
+  "@tapOnDeviceToVerify": {
     "type": "text",
     "placeholders": {}
   }
