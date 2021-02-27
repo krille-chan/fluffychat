@@ -498,6 +498,21 @@
     "type": "text",
     "placeholders": {}
   },
+  "tapOnDeviceToVerify": "Tap on a device to verifiy",
+  "@tapOnDeviceToVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceVerifyDescription": "The encryption is only secure when all devices have been verified.",
+  "@deviceVerifyDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noEncryptionForPublicRooms": "You can only activate encryption as soon as the room is no longer publicly accessible.",
+  "@noEncryptionForPublicRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
   "pleaseEnterSecurityKey": "Please enter your security key:",
   "@pleaseEnterSecurityKey": {
     "type": "text",

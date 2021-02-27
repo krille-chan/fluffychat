@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
-import 'package:flushbar/flushbar_helper.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -26,18 +25,21 @@ class _EncryptionButtonState extends State<EncryptionButton> {
           .pushNamed('/rooms/${widget.room.id}/encryption');
       return;
     }
-    if (!widget.room.client.encryptionEnabled) {
-      await FlushbarHelper.createInformation(
-              message: L10n.of(context).needPantalaimonWarning)
-          .show(context);
+    if (widget.room.joinRules == JoinRules.public) {
+      await showOkAlertDialog(
+        context: context,
+        useRootNavigator: false,
+        okLabel: L10n.of(context).ok,
+        message: L10n.of(context).noEncryptionForPublicRooms,
+      );
       return;
     }
     if (await showOkCancelAlertDialog(
           context: context,
           useRootNavigator: false,
-          title: L10n.of(context).enableEncryptionWarning,
+          title: L10n.of(context).enableEncryption,
           message: widget.room.client.encryptionEnabled
-              ? L10n.of(context).warningEncryptionInBeta
+              ? L10n.of(context).enableEncryptionWarning
               : L10n.of(context).needPantalaimonWarning,
           okLabel: L10n.of(context).yes,
           cancelLabel: L10n.of(context).cancel,

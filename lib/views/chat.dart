@@ -659,11 +659,12 @@ class _ChatState extends State<Chat> {
                 ),
               ]
             : <Widget>[
-                IconButton(
-                  tooltip: L10n.of(context).videoCall,
-                  icon: Icon(Icons.video_call_outlined),
-                  onPressed: () => startCallAction(context),
-                ),
+                if (room.canSendDefaultMessages)
+                  IconButton(
+                    tooltip: L10n.of(context).videoCall,
+                    icon: Icon(Icons.video_call_outlined),
+                    onPressed: () => startCallAction(context),
+                  ),
                 ChatSettingsPopupMenu(room, !room.isDirectChat),
               ],
       ),

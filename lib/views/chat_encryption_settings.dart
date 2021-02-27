@@ -2,7 +2,6 @@ import 'package:famedlysdk/encryption.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/avatar.dart';
 import 'package:fluffychat/components/matrix.dart';
-import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import '../components/dialogs/key_verification_dialog.dart';
@@ -63,23 +62,24 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback(
-      (_) => FlushbarHelper.createInformation(
-              message: L10n.of(context).warningEncryptionInBeta)
-          .show(context),
-    );
-  }
-
-  @override
   Widget build(BuildContext context) {
     final room = Matrix.of(context).client.getRoomById(widget.id);
 
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(),
-        title: Text(L10n.of(context).participatingUserDevices),
+        title: Text(L10n.of(context).tapOnDeviceToVerify),
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(56),
+          child: ListTile(
+            title: Text(L10n.of(context).deviceVerifyDescription),
+            leading: CircleAvatar(
+              backgroundColor: Theme.of(context).secondaryHeaderColor,
+              foregroundColor: Theme.of(context).accentColor,
+              child: Icon(Icons.lock),
+            ),
+          ),
+        ),
       ),
       body: StreamBuilder(
           stream: room.onUpdate.stream,
@@ -98,50 +98,62 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
                   return Center(child: CircularProgressIndicator());
                 }
                 final deviceKeys = snapshot.data;
-                return ListView.separated(
-                  separatorBuilder: (BuildContext context, int i) =>
-                      Divider(height: 1),
+                return ListView.builder(
                   itemCount: deviceKeys.length,
                   itemBuilder: (BuildContext context, int i) => Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       if (i == 0 ||
-                          deviceKeys[i].userId != deviceKeys[i - 1].userId)
-                        Material(
-                          child: PopupMenuButton(
-                            onSelected: (action) =>
-                                onSelected(context, action, deviceKeys[i]),
-                            itemBuilder: (c) {
-                              var items = <PopupMenuEntry<String>>[];
-                              if (room
-                                      .client
-                                      .userDeviceKeys[deviceKeys[i].userId]
-                                      .verified ==
-                                  UserVerifiedStatus.unknown) {
-                                items.add(PopupMenuItem(
-                                  child: Text(L10n.of(context).verifyUser),
-                                  value: 'verify_user',
-                                ));
-                              }
-                              return items;
-                            },
-                            child: ListTile(
-                              leading: Avatar(
-                                room
-                                    .getUserByMXIDSync(deviceKeys[i].userId)
-                                    .avatarUrl,
-                                room
-                                    .getUserByMXIDSync(deviceKeys[i].userId)
-                                    .calcDisplayname(),
-                              ),
-                              title: Text(room
+                          deviceKeys[i].userId != deviceKeys[i - 1].userId) ...{
+                        Divider(height: 1, thickness: 1),
+                        PopupMenuButton(
+                          onSelected: (action) =>
+                              onSelected(context, action, deviceKeys[i]),
+                          itemBuilder: (c) {
+                            var items = <PopupMenuEntry<String>>[];
+                            if (room.client.userDeviceKeys[deviceKeys[i].userId]
+                                    .verified ==
+                                UserVerifiedStatus.unknown) {
+                              items.add(PopupMenuItem(
+                                child: Text(L10n.of(context).verifyUser),
+                                value: 'verify_user',
+                              ));
+                            }
+                            return items;
+                          },
+                          child: ListTile(
+                            leading: Avatar(
+                              room
                                   .getUserByMXIDSync(deviceKeys[i].userId)
-                                  .calcDisplayname()),
-                              subtitle: Text(deviceKeys[i].userId),
+                                  .avatarUrl,
+                              room
+                                  .getUserByMXIDSync(deviceKeys[i].userId)
+                                  .calcDisplayname(),
+                            ),
+                            title: Row(
+                              children: [
+                                Text(
+                                  room
+                                      .getUserByMXIDSync(deviceKeys[i].userId)
+                                      .calcDisplayname(),
+                                ),
+                                Spacer(),
+                                Text(
+                                  deviceKeys[i].userId,
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .bodyText1
+                                        .color
+                                        .withAlpha(150),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                          elevation: 2,
                         ),
+                      },
                       PopupMenuButton(
                         onSelected: (action) =>
                             onSelected(context, action, deviceKeys[i]),
@@ -180,15 +192,39 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
                           ),
                           title: Text(
                             deviceKeys[i].displayname,
-                            style: TextStyle(
-                                color: deviceKeys[i].blocked
-                                    ? Colors.red
-                                    : deviceKeys[i].verified
-                                        ? Colors.green
-                                        : Colors.orange),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                           ),
-                          subtitle: Text(
-                            '${L10n.of(context).deviceId}: ${deviceKeys[i].deviceId}',
+                          subtitle: Row(
+                            children: [
+                              Text(
+                                deviceKeys[i].deviceId,
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodyText1
+                                      .color
+                                      .withAlpha(150),
+                                ),
+                              ),
+                              Spacer(),
+                              Text(
+                                deviceKeys[i].blocked
+                                    ? L10n.of(context).blocked
+                                    : deviceKeys[i].verified
+                                        ? L10n.of(context).verified
+                                        : L10n.of(context).unknownDevice,
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: deviceKeys[i].blocked
+                                      ? Colors.red
+                                      : deviceKeys[i].verified
+                                          ? Colors.green
+                                          : Colors.orange,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
