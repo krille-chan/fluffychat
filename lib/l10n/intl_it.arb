@@ -69,7 +69,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "bannedUser": "{username} ha bannato {targetName}",
+  "bannedUser": "{username} ha bandito {targetName}",
   "@bannedUser": {
     "type": "text",
     "placeholders": {
@@ -77,12 +77,12 @@
       "targetName": {}
     }
   },
-  "banned": "Bannato",
+  "banned": "Bandito",
   "@banned": {
     "type": "text",
     "placeholders": {}
   },
-  "banFromChat": "Bannato dalla chat",
+  "banFromChat": "Bandisci dalla chat",
   "@banFromChat": {
     "type": "text",
     "placeholders": {}
@@ -1423,7 +1423,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "youHaveBeenBannedFromThisChat": "Sei stato/a bannato/a da questa chat",
+  "youHaveBeenBannedFromThisChat": "Sei stato/a bandito/a da questa chat",
   "@youHaveBeenBannedFromThisChat": {
     "type": "text",
     "placeholders": {}
@@ -1479,7 +1479,7 @@
       "localizedTimeShort": {}
     }
   },
-  "redactedAnEvent": "{username} ha redatto un evento",
+  "redactedAnEvent": "{username} ha eliminato un evento",
   "@redactedAnEvent": {
     "type": "text",
     "placeholders": {
@@ -1665,7 +1665,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "kickedAndBanned": "{username} ha espulso e bannato {targetName}",
+  "kickedAndBanned": "{username} ha espulso e bandito {targetName}",
   "@kickedAndBanned": {
     "type": "text",
     "placeholders": {
@@ -2005,7 +2005,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "redactMessage": "Redigi un messaggio",
+  "redactMessage": "Elimina un messaggio",
   "@redactMessage": {
     "type": "text",
     "placeholders": {}
@@ -2165,7 +2165,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterSecurityKey": "Inserisci la tua chiave di sicurezza",
+  "pleaseEnterSecurityKey": "Inserisci la tua chiave di sicurezza:",
   "@pleaseEnterSecurityKey": {
     "type": "text",
     "placeholders": {}
@@ -2255,6 +2255,36 @@
   },
   "oneMoreEvent": "1 altro evento",
   "@oneMoreEvent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unlockChatBackup": "Sblocca il backup della discussione",
+  "@unlockChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "friends": "Amici",
+  "@friends": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewFriend": "Aggiungi un nuovo amico",
+  "@addNewFriend": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noEncryptionForPublicRooms": "Puoi attivare la crittografia solo quando la stanza non è più accessibile pubblicamente.",
+  "@noEncryptionForPublicRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceVerifyDescription": "La crittografia è sicura solo quando tutti i dispositivi sono stati verificati.",
+  "@deviceVerifyDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapOnDeviceToVerify": "Tocca un dispositivo per verificarlo",
+  "@tapOnDeviceToVerify": {
     "type": "text",
     "placeholders": {}
   }
