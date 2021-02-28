@@ -2275,17 +2275,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "noEncryptionForPublicRooms": "Vous pouvez activer le chiffrement seulement quand la salle n'est plus accessible au public.",
+  "noEncryptionForPublicRooms": "Vous pouvez activer le chiffrement seulement quand le salon n'est plus accessible au public.",
   "@noEncryptionForPublicRooms": {
     "type": "text",
     "placeholders": {}
   },
-  "deviceVerifyDescription": "Le chiffremenr est sécurisé seulement quand tous les appareils ont été vérifiés.",
+  "deviceVerifyDescription": "Le chiffrement n'est sécurisé que lorsque tous les appareils ont été vérifiés.",
   "@deviceVerifyDescription": {
     "type": "text",
     "placeholders": {}
   },
-  "tapOnDeviceToVerify": "Appuyez sur un appareil pour vérifier",
+  "tapOnDeviceToVerify": "Appuyez sur un appareil pour le vérifier",
   "@tapOnDeviceToVerify": {
     "type": "text",
     "placeholders": {}
