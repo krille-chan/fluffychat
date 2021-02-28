@@ -2167,7 +2167,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterSecurityKey": "Пожалуйста, введите свой ключ безопасности",
+  "pleaseEnterSecurityKey": "Пожалуйста, введите свой ключ безопасности:",
   "@pleaseEnterSecurityKey": {
     "type": "text",
     "placeholders": {}
@@ -2257,6 +2257,36 @@
   },
   "oneMoreEvent": "Еще 1 событие",
   "@oneMoreEvent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unlockChatBackup": "Разблокировать резервную копию чата",
+  "@unlockChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "friends": "Друзья",
+  "@friends": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewFriend": "Добавить нового друга",
+  "@addNewFriend": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noEncryptionForPublicRooms": "Вы можете активировать шифрование только тогда, когда комната перестает быть общедоступной.",
+  "@noEncryptionForPublicRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceVerifyDescription": "Шифрование является безопасным только тогда, когда все устройства проверены.",
+  "@deviceVerifyDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapOnDeviceToVerify": "Нажмите на устройство, чтобы проверить",
+  "@tapOnDeviceToVerify": {
     "type": "text",
     "placeholders": {}
   }
