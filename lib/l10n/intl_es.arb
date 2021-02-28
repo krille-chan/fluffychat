@@ -1772,5 +1772,10 @@
   "@changePassword": {
     "type": "text",
     "placeholders": {}
+  },
+  "addEmail": "Añadir dirección de correo",
+  "@addEmail": {
+    "type": "text",
+    "placeholders": {}
   }
 }
