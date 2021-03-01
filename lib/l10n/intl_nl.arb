@@ -132,7 +132,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "verifyUser": "Verifieer gebruiker",
+  "verifyUser": "Verifieer Persoon",
   "@verifyUser": {
     "type": "text",
     "placeholders": {}
@@ -203,7 +203,7 @@
       "count": {}
     }
   },
-  "numUsersTyping": "{count} gebruikers typen …",
+  "numUsersTyping": "{count} personen typen…",
   "@numUsersTyping": {
     "type": "text",
     "placeholders": {
@@ -460,7 +460,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "setInvitationLink": "Stel een uitnodigingslink in",
+  "setInvitationLink": "Uitnodigingslink instellen",
   "@setInvitationLink": {
     "type": "text",
     "placeholders": {}
@@ -587,12 +587,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "configureChat": "Configureer groep",
+  "configureChat": "Groep configureren",
   "@configureChat": {
     "type": "text",
     "placeholders": {}
   },
-  "sendMessages": "Verstuur bericht",
+  "sendMessages": "Berichten versturen",
   "@sendMessages": {
     "type": "text",
     "placeholders": {}
@@ -607,12 +607,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "replaceRoomWithNewerVersion": "Vervang groep door een nieuwere versie",
+  "replaceRoomWithNewerVersion": "Groep door een nieuwere versie vervangen",
   "@replaceRoomWithNewerVersion": {
     "type": "text",
     "placeholders": {}
   },
-  "enableEncryption": "Schakel versleuteling in",
+  "enableEncryption": "Versleuteling inschakelen",
   "@enableEncryption": {
     "type": "text",
     "placeholders": {}
@@ -732,7 +732,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "revokeAllPermissions": "Trek alle machtigingen in",
+  "revokeAllPermissions": "Alle machtigingen intrekken",
   "@revokeAllPermissions": {
     "type": "text",
     "placeholders": {}
@@ -870,7 +870,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "participatingUserDevices": "Deelnemende gebruikersapparaten",
+  "participatingUserDevices": "Deelnemende apparaten",
   "@participatingUserDevices": {
     "type": "text",
     "placeholders": {}
@@ -895,7 +895,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "onlineKeyBackupEnabled": "Online sleutelback-up is ingeschakeld",
+  "onlineKeyBackupEnabled": "Online Sleutelback-up is ingeschakeld",
   "@onlineKeyBackupEnabled": {
     "type": "text",
     "placeholders": {}
@@ -915,12 +915,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "onlineKeyBackupDisabled": "Online sleutelback-up is uitgeschakeld",
+  "onlineKeyBackupDisabled": "Online Sleutelback-up is uitgeschakeld",
   "@onlineKeyBackupDisabled": {
     "type": "text",
     "placeholders": {}
   },
-  "ok": "ok",
+  "ok": "OK",
   "@ok": {
     "type": "text",
     "placeholders": {}
@@ -962,12 +962,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "Zet in plaats daarvan online sleutelback-up vanuit Element aan.",
+  "noMegolmBootstrap": "Zet in plaats daarvan de Online Sleutelback-up aan vanuit Element.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "FluffyChat biedt momenteel geen ondersteuning voor het inschakelen van kruislings ondertekening. Schakel het in vanuit Element.",
+  "noCrossSignBootstrap": "FluffyChat biedt momenteel geen ondersteuning voor het inschakelen van Kruislings Ondertekenen. Schakel het in vanuit Element.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -1146,7 +1146,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "joinedTheChat": "{username} is toegetreden tot de groep",
+  "joinedTheChat": "{username} is toegetreden",
   "@joinedTheChat": {
     "type": "text",
     "placeholders": {
@@ -1173,7 +1173,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "invitedUsersOnly": "Alleen uitgenodigde gebruikers",
+  "invitedUsersOnly": "Alleen uitgenodigde personen",
   "@invitedUsersOnly": {
     "type": "text",
     "placeholders": {}
@@ -1199,7 +1199,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteContactToGroup": "Nodig contact uit voor {groupName}",
+  "inviteContactToGroup": "Contact voor {groupName} uitnodigen",
   "@inviteContactToGroup": {
     "type": "text",
     "placeholders": {
@@ -1578,12 +1578,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "crossSigningEnabled": "Kruislings ondertekening aan",
+  "crossSigningEnabled": "Kruislings Ondertekenen ingeschakeld",
   "@crossSigningEnabled": {
     "type": "text",
     "placeholders": {}
   },
-  "crossSigningDisabled": "Kruislings ondertekening uit",
+  "crossSigningDisabled": "Kruislings Ondertekenen uitgeschakeld",
   "@crossSigningDisabled": {
     "type": "text",
     "placeholders": {}
@@ -1649,7 +1649,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "contactHasBeenInvitedToTheGroup": "Contact is uitgenodigd voor de groep",
+  "contactHasBeenInvitedToTheGroup": "Contact is voor de groep uitgenodigd",
   "@contactHasBeenInvitedToTheGroup": {
     "type": "text",
     "placeholders": {}
@@ -1724,7 +1724,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changeTheNameOfTheGroup": "Verander de naam van de groep",
+  "changeTheNameOfTheGroup": "Naam van de groep wijzigen",
   "@changeTheNameOfTheGroup": {
     "type": "text",
     "placeholders": {}
@@ -1800,7 +1800,7 @@
       "username": {}
     }
   },
-  "changeTheHomeserver": "Wijzig de homeserver",
+  "changeTheHomeserver": "Homeserver wijzigen",
   "@changeTheHomeserver": {
     "type": "text",
     "placeholders": {}
@@ -1875,7 +1875,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "banFromChat": "Verban van groep",
+  "banFromChat": "Van groep verbannen",
   "@banFromChat": {
     "type": "text",
     "placeholders": {}
@@ -2043,7 +2043,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "discover": "Ontdek",
+  "discover": "Ontdekken",
   "@discover": {
     "type": "text",
     "placeholders": {}
@@ -2113,7 +2113,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterSecurityKey": "Voer je veiligheidsssleutel in",
+  "pleaseEnterSecurityKey": "Voer je veiligheidsssleutel in:",
   "@pleaseEnterSecurityKey": {
     "type": "text",
     "placeholders": {}
@@ -2169,7 +2169,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "userUnknownVerification": "Gebruiker heeft een onbekende verificatiestatus",
+  "userUnknownVerification": "Persoon heeft een onbekende verificatiestatus",
   "@userUnknownVerification": {
     "type": "text",
     "placeholders": {}
@@ -2184,12 +2184,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "userNotVerified": "Gebruiker is niet geverifieerd",
+  "userNotVerified": "Persoon is niet geverifieerd",
   "@userNotVerified": {
     "type": "text",
     "placeholders": {}
   },
-  "userVerified": "Gebruiker is geverifieerd",
+  "userVerified": "Persoon is geverifieerd",
   "@userVerified": {
     "type": "text",
     "placeholders": {}
@@ -2251,7 +2251,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unlockChatBackup": "Gesprekkenback-up ontgrendelen",
+  "unlockChatBackup": "Berichtenback-up ontgrendelen",
   "@unlockChatBackup": {
     "type": "text",
     "placeholders": {}
