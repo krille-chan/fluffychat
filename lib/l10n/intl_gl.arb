@@ -2167,7 +2167,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterSecurityKey": "Escribe a túa chave de seguridade",
+  "pleaseEnterSecurityKey": "Escribe a túa chave de seguridade:",
   "@pleaseEnterSecurityKey": {
     "type": "text",
     "placeholders": {}
@@ -2257,6 +2257,36 @@
   },
   "oneMoreEvent": "Un evento máis",
   "@oneMoreEvent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unlockChatBackup": "Desbloquear copia do chat",
+  "@unlockChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "friends": "Amizades",
+  "@friends": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewFriend": "Engadir nova amizade",
+  "@addNewFriend": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noEncryptionForPublicRooms": "Só podes activar o cifrado tan pronto como a sala non sexa públicamente accesible.",
+  "@noEncryptionForPublicRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceVerifyDescription": "O cifrado só será seguro cando tódolos dispositivos estén verificados.",
+  "@deviceVerifyDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapOnDeviceToVerify": "Toca nun dispositivo para verificalo",
+  "@tapOnDeviceToVerify": {
     "type": "text",
     "placeholders": {}
   }
