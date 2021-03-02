@@ -2122,7 +2122,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterSecurityKey": "Upiši svoj sigurnosni ključ",
+  "pleaseEnterSecurityKey": "Upiši sigurnosni ključ:",
   "@pleaseEnterSecurityKey": {
     "type": "text",
     "placeholders": {}
@@ -2245,6 +2245,48 @@
   },
   "verified": "Potvrđeno",
   "@verified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unlockChatBackup": "Otključaj sigurnosnu kopiju chata",
+  "@unlockChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "friends": "Prijatelji",
+  "@friends": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewFriend": "Dodaj novog prijatelja",
+  "@addNewFriend": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noEncryptionForPublicRooms": "Šifriranje možeš aktivirati samo nakon što soba više nije javno dostupna.",
+  "@noEncryptionForPublicRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceVerifyDescription": "Šifriranje je sigurno samo ako su svi uređaji potvrđeni.",
+  "@deviceVerifyDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapOnDeviceToVerify": "Za potvrđivanje dodirni uređaj",
+  "@tapOnDeviceToVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "xMoreEvents": "Još {count} događaja",
+  "@xMoreEvents": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "oneMoreEvent": "Još jedan događaj",
+  "@oneMoreEvent": {
     "type": "text",
     "placeholders": {}
   }
