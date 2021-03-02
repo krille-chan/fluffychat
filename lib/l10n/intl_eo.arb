@@ -2140,7 +2140,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterSecurityKey": "Bonvolu enigi vian sekurecan ŝlosilon",
+  "pleaseEnterSecurityKey": "Bonvolu enigi vian sekurecan ŝlosilon:",
   "@pleaseEnterSecurityKey": {
     "type": "text",
     "placeholders": {}
@@ -2194,5 +2194,85 @@
   "@noPublicRoomsFound": {
     "type": "text",
     "placeholders": {}
+  },
+  "unlockChatBackup": "Malŝlosi savkopion de babilo",
+  "@unlockChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "friends": "Amikoj",
+  "@friends": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewFriend": "Aldoni novan amikon",
+  "@addNewFriend": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "xMoreEvents": "{count} pliaj eventoj",
+  "@xMoreEvents": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "oneMoreEvent": "1 plia evento",
+  "@oneMoreEvent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noEncryptionForPublicRooms": "Vi nur povas aktivigi ĉifradon kiam la ĉambro ne plu estas publike alirebla.",
+  "@noEncryptionForPublicRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceVerifyDescription": "Ĉifrado nur sekuras kiam ĉiuj aparatoj kontroliĝis.",
+  "@deviceVerifyDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapOnDeviceToVerify": "Tuŝetu aparaton por kontroli",
+  "@tapOnDeviceToVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showPassword": "Montri pasvorton",
+  "@showPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addEmail": "Aldoni retpoŝtadreson",
+  "@addEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zoomOut": "Malzomi",
+  "@zoomOut": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zoomIn": "Zomi",
+  "@zoomIn": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "blocked": "Blokita",
+  "@blocked": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verified": "Kontrolita",
+  "@verified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "badServerLoginTypesException": "La hejmservilo subtenas la jenajn specojn de salutoj:\n{serverVersions}\nSed ĉi tiu aplikaĵo subtenas nur:\n{supportedVersions}",
+  "@badServerLoginTypesException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
   }
 }
