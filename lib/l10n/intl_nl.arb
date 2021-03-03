@@ -87,7 +87,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "warningEncryptionInBeta": "End-to-end-versleuteling bevindt zich momenteel in bèta! Gebruik op eigen risico!",
+  "warningEncryptionInBeta": "Eind-tot-eindversleuteling bevindt zich momenteel in beta! Gebruik op eigen risico!",
   "@warningEncryptionInBeta": {
     "type": "text",
     "placeholders": {}
@@ -107,7 +107,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "voiceMessage": "Spraakbericht",
+  "voiceMessage": "Spraakbericht versturen",
   "@voiceMessage": {
     "type": "text",
     "placeholders": {}
@@ -607,7 +607,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "replaceRoomWithNewerVersion": "Groep door een nieuwere versie vervangen",
+  "replaceRoomWithNewerVersion": "Groepversie upgraden",
   "@replaceRoomWithNewerVersion": {
     "type": "text",
     "placeholders": {}
@@ -880,7 +880,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "openCamera": "Open camera",
+  "openCamera": "Camera openen",
   "@openCamera": {
     "type": "text",
     "placeholders": {}
@@ -992,12 +992,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "needPantalaimonWarning": "Houd er rekening mee dat je voorlopig Pantalaimon nodig hebt om end-to-end-versleuteling te gebruiken.",
+  "needPantalaimonWarning": "Houd er rekening mee dat je voorlopig Pantalaimon nodig hebt om eind-tot-eindversleuteling te gebruiken.",
   "@needPantalaimonWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "muteChat": "Meldingen verbergen",
+  "muteChat": "Meldingen uitschakelen",
   "@muteChat": {
     "type": "text",
     "placeholders": {}
@@ -1061,7 +1061,7 @@
       "count": {}
     }
   },
-  "loadMore": "Laad meer…",
+  "loadMore": "Meer laden…",
   "@loadMore": {
     "type": "text",
     "placeholders": {}
@@ -1363,7 +1363,7 @@
       "senderName": {}
     }
   },
-  "end2endEncryptionSettings": "End-to-end-versleutelingsinstellingen",
+  "end2endEncryptionSettings": "Eind-tot-eindversleutelingsinstellingen",
   "@end2endEncryptionSettings": {
     "type": "text",
     "placeholders": {}
@@ -1724,7 +1724,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changeTheNameOfTheGroup": "Naam van de groep wijzigen",
+  "changeTheNameOfTheGroup": "Groepsnaam wijzigen",
   "@changeTheNameOfTheGroup": {
     "type": "text",
     "placeholders": {}
@@ -1897,17 +1897,17 @@
       "username": {}
     }
   },
-  "askSSSSVerify": "Voer je beveiligde wachtwoordzin of herstelsleutel in om je sessie te verifiëren.",
+  "askSSSSVerify": "Voer je beveiligde opslag wachtwoordzin of herstelsleutel in om je sessie te verifiëren.",
   "@askSSSSVerify": {
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSSign": "Voer je beveiligde wachtwoordzin of herstelsleutel in om de andere persoon te kunnen ondertekenen.",
+  "askSSSSSign": "Voer je beveiligde opslag wachtwoordzin of herstelsleutel in om de andere persoon te kunnen ondertekenen.",
   "@askSSSSSign": {
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSCache": "Voer je beveiligde wachtwoordzin of herstelsleutel in om de sleutels in de cache te bewaren.",
+  "askSSSSCache": "Voer je beveiligde opslag wachtwoordzin of herstelsleutel in om de sleutels in de cache te bewaren.",
   "@askSSSSCache": {
     "type": "text",
     "placeholders": {}
@@ -1964,7 +1964,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "activatedEndToEndEncryption": "{username} heeft end-to-end-versleuteling geactiveerd",
+  "activatedEndToEndEncryption": "{username} heeft eind-tot-eindversleuteling geactiveerd",
   "@activatedEndToEndEncryption": {
     "type": "text",
     "placeholders": {
