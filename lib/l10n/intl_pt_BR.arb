@@ -2119,5 +2119,21 @@
   "@noPublicRoomsFound": {
     "type": "text",
     "placeholders": {}
+  },
+  "badServerLoginTypesException": "O servidor matriz suporta os tipos de login:\n{serverVersions}\nMas este app suporta apenas:\n{supportedVersions}",
+  "@badServerLoginTypesException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "badServerVersionsException": "O servidor matriz suporta as versões Spec:\n{serverVersions}\nMas este app suporta apenas {supportedVersions}",
+  "@badServerVersionsException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
   }
 }
