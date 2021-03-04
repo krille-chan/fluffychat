@@ -414,12 +414,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "crossSigningDisabled": "相互署名は使えません",
+  "crossSigningDisabled": "相互署名OFF",
   "@crossSigningDisabled": {
     "type": "text",
     "placeholders": {}
   },
-  "crossSigningEnabled": "相互署名が使えます",
+  "crossSigningEnabled": "相互署名ON",
   "@crossSigningEnabled": {
     "type": "text",
     "placeholders": {}
@@ -831,12 +831,12 @@
       "count": {}
     }
   },
-  "loadingPleaseWait": "読み込み中...お待ちください",
+  "loadingPleaseWait": "読み込み中…お待ちください。",
   "@loadingPleaseWait": {
     "type": "text",
     "placeholders": {}
   },
-  "loadMore": "更に読み込む...",
+  "loadMore": "更に読み込む…",
   "@loadMore": {
     "type": "text",
     "placeholders": {}
@@ -913,7 +913,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "FluffyChatは現在相互署名機能をサポートしていません。Riotから有効化してください。",
+  "noCrossSignBootstrap": "FluffyChatは現在相互署名機能をサポートしていません。Elementから有効化してください。",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -928,7 +928,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "FluffyChatは現在鍵のオンラインバックアップの有効化をサポートしていません。Riotから有効化してください。",
+  "noMegolmBootstrap": "鍵のオンラインバックアップはElementから有効化にしてください。",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -943,7 +943,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noRoomsFound": "部屋は見つかりませんでした...",
+  "noRoomsFound": "部屋は見つかりませんでした…",
   "@noRoomsFound": {
     "type": "text",
     "placeholders": {}
@@ -975,7 +975,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "oopsSomethingWentWrong": "おっと、何かがうまくいきませんでした...",
+  "oopsSomethingWentWrong": "おっと、何かがうまくいきませんでした…",
   "@oopsSomethingWentWrong": {
     "type": "text",
     "placeholders": {}
@@ -1032,7 +1032,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterAMatrixIdentifier": "Matrix識別子を入力してください",
+  "pleaseEnterAMatrixIdentifier": "Matrix IDを入力してください",
   "@pleaseEnterAMatrixIdentifier": {
     "type": "text",
     "placeholders": {}
@@ -1450,7 +1450,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "userAndOthersAreTyping": "{username}と他{count}名が入力しています...",
+  "userAndOthersAreTyping": "{username}と他{count}名が入力しています…",
   "@userAndOthersAreTyping": {
     "type": "text",
     "placeholders": {
@@ -1458,7 +1458,7 @@
       "count": {}
     }
   },
-  "userAndUserAreTyping": "{username}と{username2}が入力しています...",
+  "userAndUserAreTyping": "{username}と{username2}が入力しています…",
   "@userAndUserAreTyping": {
     "type": "text",
     "placeholders": {
@@ -1466,7 +1466,7 @@
       "username2": {}
     }
   },
-  "userIsTyping": "{username}が入力しています...",
+  "userIsTyping": "{username}が入力しています…",
   "@userIsTyping": {
     "type": "text",
     "placeholders": {
@@ -1563,7 +1563,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerNumbers": "パートナーの数字承諾待ちです...",
+  "waitingPartnerNumbers": "パートナーの数字承諾待ちです…",
   "@waitingPartnerNumbers": {
     "type": "text",
     "placeholders": {}
@@ -1583,7 +1583,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "welcomeText": "matrixネットワークで一番かわいいチャットアプリへようこそ。",
+  "welcomeText": "Matrixネットワークで一番かわいいチャットアプリへようこそ。",
   "@welcomeText": {
     "type": "text",
     "placeholders": {}
@@ -1593,7 +1593,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "writeAMessage": "メッセージを入力してください...",
+  "writeAMessage": "メッセージを入力してください…",
   "@writeAMessage": {
     "type": "text",
     "placeholders": {}
@@ -1630,6 +1630,313 @@
   },
   "yourOwnUsername": "あなたのユーザー名",
   "@yourOwnUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "withTheseAddressesRecoveryDescription": "これらのアドレスを使用すると、パスワードを回復することができます。",
+  "@withTheseAddressesRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "weSentYouAnEmail": "あなたにメールを送信しました",
+  "@weSentYouAnEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "warning": "警告！",
+  "@warning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "numUsersTyping": "{count}人が入力中…",
+  "@numUsersTyping": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "yourPublicKey": "あなたの公開鍵",
+  "@yourPublicKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tooManyRequestsWarning": "リクエストが多すぎます。また後で試してみてください！",
+  "@tooManyRequestsWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noConnectionToTheServer": "サーバーに接続できません",
+  "@noConnectionToTheServer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleUnread": "既読/未読にマーク",
+  "@toggleUnread": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleMuted": "ミュート切り替え",
+  "@toggleMuted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleFavorite": "お気に入り切り替え",
+  "@toggleFavorite": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendVideo": "動画を送信",
+  "@sendVideo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendOriginal": "オリジナルの送信",
+  "@sendOriginal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendAudio": "音声の送信",
+  "@sendAudio": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "soundVibrationLedColor": "音、振動、カラーLED",
+  "@soundVibrationLedColor": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setPermissionsLevel": "権限レベルをセット",
+  "@setPermissionsLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editChatPermissions": "チャット権限の変更",
+  "@editChatPermissions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whoCanPerformWhichAction": "誰がどの操作を実行できるか",
+  "@whoCanPerformWhichAction": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "participant": "参加者",
+  "@participant": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "configureChat": "チャットの設定",
+  "@configureChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendMessages": "メッセージを送る",
+  "@sendMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "defaultPermissionLevel": "デフォルトの権限レベル",
+  "@defaultPermissionLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAvatar": "部屋のアバターを編集する",
+  "@editRoomAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "replaceRoomWithNewerVersion": "部屋を新しいバージョンに変更する",
+  "@replaceRoomWithNewerVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEncryption": "暗号化を有効にする",
+  "@enableEncryption": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noDescription": "説明がありません",
+  "@noDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "no": "いいえ",
+  "@no": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changesHaveBeenSaved": "変更が保存されました",
+  "@changesHaveBeenSaved": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sentryInfo": "プライバシーについての情報: https://sentry.io/security/",
+  "@sentryInfo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendBugReports": "バグレポートをsentry.ioへ送信することを許可する",
+  "@sendBugReports": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicKey": "公開鍵",
+  "@publicKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "privacy": "プライバシー",
+  "@privacy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseClickOnLink": "メールのリンクから進めてください。",
+  "@pleaseClickOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordForgotten": "パスワードを忘れた",
+  "@passwordForgotten": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordRecovery": "パスワードリカバリー",
+  "@passwordRecovery": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordHasBeenChanged": "パスワードが変更されました",
+  "@passwordHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unavailable": "不在",
+  "@unavailable": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offline": "オフライン",
+  "@offline": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "online": "オンライン",
+  "@online": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPasswordRecoveryDescription": "パスワードを回復する方法をまだ追加していません。",
+  "@noPasswordRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iHaveClickedOnLink": "リンクをクリックしました",
+  "@iHaveClickedOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignoreListDescription": "ユーザーは無視することができます。無視したユーザーからのメッセージやルームの招待は受け取れません。",
+  "@ignoreListDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignoreUsername": "ユーザー名を無視する",
+  "@ignoreUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignoredUsers": "無視されたユーザー",
+  "@ignoredUsers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideUnknownEvents": "不明なイベントを非表示にする",
+  "@hideUnknownEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideRedactedEvents": "編集済みイベントを非表示にする",
+  "@hideRedactedEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encrypted": "暗号化",
+  "@encrypted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "edit": "編集",
+  "@edit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationsEnabledForThisAccount": "このアカウントでは通知が有効です",
+  "@notificationsEnabledForThisAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notifications": "通知",
+  "@notifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "botMessages": "ボットメッセージ",
+  "@botMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "memberChanges": "メンバーの変更",
+  "@memberChanges": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsUserName": "ユーザー名を含んでいます",
+  "@containsUserName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsDisplayName": "表示名を含んでいます",
+  "@containsDisplayName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "directChats": "ダイレクトチャット",
+  "@directChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emotePacks": "部屋のEmoteパック",
+  "@emotePacks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterAnEmailAddress": "メールアドレスを入力してください",
+  "@enterAnEmailAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceId": "デバイスID",
+  "@deviceId": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteAccount": "アカウントの削除",
+  "@deleteAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deactivateAccountWarning": "あなたのアカウントを無効化します。この操作は元に戻せません！よろしいですか？",
+  "@deactivateAccountWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changePassword": "パスワードを変更",
+  "@changePassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeDeviceName": "デバイス名を変更",
+  "@changeDeviceName": {
     "type": "text",
     "placeholders": {}
   }
