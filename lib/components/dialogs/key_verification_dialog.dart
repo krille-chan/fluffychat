@@ -105,6 +105,7 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
         body = Container(
           margin: EdgeInsets.only(left: 8.0, right: 8.0),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Text(L10n.of(context).askSSSSSign,
                   style: TextStyle(fontSize: 20)),
@@ -128,7 +129,6 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
                 ),
               ),
             ],
-            mainAxisSize: MainAxisSize.min,
           ),
         );
         buttons.add(AdaptiveFlatButton(
@@ -145,10 +145,10 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
         break;
       case KeyVerificationState.askAccept:
         body = Container(
+          margin: EdgeInsets.only(left: 8.0, right: 8.0),
           child: Text(
               L10n.of(context).askVerificationRequest(widget.request.userId),
               style: TextStyle(fontSize: 20)),
-          margin: EdgeInsets.only(left: 8.0, right: 8.0),
         );
         buttons.add(AdaptiveFlatButton(
           label: L10n.of(context).accept,
@@ -165,6 +165,7 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
         break;
       case KeyVerificationState.waitingAccept:
         body = Column(
+          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             PlatformInfos.isCupertinoStyle
                 ? CupertinoActivityIndicator()
@@ -175,7 +176,6 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
               textAlign: TextAlign.center,
             ),
           ],
-          mainAxisSize: MainAxisSize.min,
         );
         final key = widget.request.client.userDeviceKeys[widget.request.userId]
             .deviceKeys[widget.request.deviceId];
@@ -219,6 +219,7 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
               TextSpan(text: numbstr, style: TextStyle(fontSize: 40));
         }
         body = Column(
+          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Center(
               child: Text(
@@ -233,7 +234,6 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
               textAlign: TextAlign.center,
             ),
           ],
-          mainAxisSize: MainAxisSize.min,
         );
         buttons.add(AdaptiveFlatButton(
           textColor: Colors.red,
@@ -250,6 +250,7 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
             ? L10n.of(context).waitingPartnerEmoji
             : L10n.of(context).waitingPartnerNumbers;
         body = Column(
+          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             PlatformInfos.isCupertinoStyle
                 ? CupertinoActivityIndicator()
@@ -260,11 +261,11 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
               textAlign: TextAlign.center,
             ),
           ],
-          mainAxisSize: MainAxisSize.min,
         );
         break;
       case KeyVerificationState.done:
         body = Column(
+          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Icon(Icons.check_circle_outlined, color: Colors.green, size: 200.0),
             SizedBox(height: 10),
@@ -273,7 +274,6 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
               textAlign: TextAlign.center,
             ),
           ],
-          mainAxisSize: MainAxisSize.min,
         );
         buttons.add(AdaptiveFlatButton(
           label: L10n.of(context).close,
@@ -282,6 +282,7 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
         break;
       case KeyVerificationState.error:
         body = Column(
+          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Icon(Icons.cancel, color: Colors.red, size: 200.0),
             SizedBox(height: 10),
@@ -290,7 +291,6 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
               textAlign: TextAlign.center,
             ),
           ],
-          mainAxisSize: MainAxisSize.min,
         );
         buttons.add(AdaptiveFlatButton(
           label: L10n.of(context).close,
@@ -318,6 +318,7 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
     }
     final userNameTitle = Row(
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text(
           otherName,
@@ -336,7 +337,6 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
             ),
           ),
       ],
-      crossAxisAlignment: CrossAxisAlignment.start,
     );
     final title = Text(L10n.of(context).verifyTitle);
     final content = Scrollbar(

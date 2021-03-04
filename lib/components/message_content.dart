@@ -123,42 +123,28 @@ class MessageContent extends StatelessWidget {
             continue textmessage;
           case MessageTypes.BadEncrypted:
           case EventTypes.Encrypted:
-            return RaisedButton(
-              elevation: 7,
-              color: Theme.of(context).scaffoldBackgroundColor,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(6),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(Icons.lock_outline),
-                  SizedBox(width: 8),
-                  Text(L10n.of(context).encrypted),
-                ],
+            return ElevatedButton.icon(
+              style: ElevatedButton.styleFrom(
+                primary: Theme.of(context).scaffoldBackgroundColor,
+                onPrimary: Theme.of(context).textTheme.bodyText1.color,
               ),
               onPressed: () => _verifyOrRequestKey(context),
+              icon: Icon(Icons.lock_outline),
+              label: Text(L10n.of(context).encrypted),
             );
           case MessageTypes.Location:
           case MessageTypes.None:
           textmessage:
           default:
             if (event.content['msgtype'] == Matrix.callNamespace) {
-              return RaisedButton(
-                elevation: 7,
-                color: Theme.of(context).scaffoldBackgroundColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(6),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Icon(Icons.phone_outlined, color: Colors.green),
-                    SizedBox(width: 8),
-                    Text(L10n.of(context).videoCall),
-                  ],
+              return ElevatedButton.icon(
+                style: ElevatedButton.styleFrom(
+                  primary: Theme.of(context).scaffoldBackgroundColor,
+                  onPrimary: Theme.of(context).textTheme.bodyText1.color,
                 ),
                 onPressed: () => launch(event.body),
+                icon: Icon(Icons.phone_outlined, color: Colors.green),
+                label: Text(L10n.of(context).videoCall),
               );
             }
             if (event.redacted) {

@@ -18,17 +18,17 @@ class AdaptiveFlatButton extends StatelessWidget {
   Widget build(BuildContext context) {
     if (PlatformInfos.isCupertinoStyle) {
       return CupertinoDialogAction(
-        child: Text(label),
         onPressed: onPressed,
         textStyle: textColor != null ? TextStyle(color: textColor) : null,
+        child: Text(label),
       );
     }
     return TextButton(
+      onPressed: onPressed,
       child: Text(
         label,
         style: TextStyle(color: textColor),
       ),
-      onPressed: onPressed,
     );
   }
 }

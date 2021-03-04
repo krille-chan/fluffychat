@@ -636,24 +636,24 @@ class _ChatState extends State<Chat> {
                   },
                   itemBuilder: (_) => [
                     PopupMenuItem(
-                      child: Text(L10n.of(context).copy),
                       value: 'copy',
+                      child: Text(L10n.of(context).copy),
                     ),
                     if (canRedactSelectedEvents)
                       PopupMenuItem(
+                        value: 'redact',
                         child: Text(
                           L10n.of(context).redactMessage,
                           style: TextStyle(color: Colors.orange),
                         ),
-                        value: 'redact',
                       ),
                     if (selectedEvents.length == 1)
                       PopupMenuItem(
+                        value: 'report',
                         child: Text(
                           L10n.of(context).reportMessage,
                           style: TextStyle(color: Colors.red),
                         ),
-                        value: 'report',
                       ),
                   ],
                 ),
@@ -672,12 +672,12 @@ class _ChatState extends State<Chat> {
           ? Padding(
               padding: const EdgeInsets.only(bottom: 56.0),
               child: FloatingActionButton(
-                child: Icon(Icons.arrow_downward_outlined,
-                    color: Theme.of(context).primaryColor),
                 onPressed: () => _scrollController.jumpTo(0),
                 foregroundColor: Theme.of(context).textTheme.bodyText2.color,
                 backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                 mini: true,
+                child: Icon(Icons.arrow_downward_outlined,
+                    color: Theme.of(context).primaryColor),
               ),
             )
           : null,
@@ -756,6 +756,7 @@ class _ChatState extends State<Chat> {
                                       )
                                     : _canLoadMore
                                         ? TextButton(
+                                            onPressed: requestHistory,
                                             child: Text(
                                               L10n.of(context).loadMore,
                                               style: TextStyle(
@@ -766,7 +767,6 @@ class _ChatState extends State<Chat> {
                                                     TextDecoration.underline,
                                               ),
                                             ),
-                                            onPressed: requestHistory,
                                           )
                                         : Container()
                                 : i == 0
@@ -790,6 +790,11 @@ class _ChatState extends State<Chat> {
                                                         client.userID
                                                     ? Alignment.topRight
                                                     : Alignment.topLeft,
+                                            padding: EdgeInsets.only(
+                                              left: 8,
+                                              right: 8,
+                                              bottom: 8,
+                                            ),
                                             child: Container(
                                               padding: EdgeInsets.symmetric(
                                                   horizontal: 4),
@@ -809,11 +814,6 @@ class _ChatState extends State<Chat> {
                                                       .accentColor,
                                                 ),
                                               ),
-                                            ),
-                                            padding: EdgeInsets.only(
-                                              left: 8,
-                                              right: 8,
-                                              bottom: 8,
                                             ),
                                           );
                                         },
@@ -942,14 +942,14 @@ class _ChatState extends State<Chat> {
                         itemBuilder: (c, i) => i == emojis.length
                             ? InkWell(
                                 borderRadius: BorderRadius.circular(8),
+                                onTap: () => _pickEmojiAction(
+                                    context, allReactionEvents),
                                 child: Container(
                                   width: 56,
                                   height: 56,
                                   alignment: Alignment.center,
                                   child: Icon(Icons.add_outlined),
                                 ),
-                                onTap: () => _pickEmojiAction(
-                                    context, allReactionEvents),
                               )
                             : InkWell(
                                 borderRadius: BorderRadius.circular(8),

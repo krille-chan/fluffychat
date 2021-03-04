@@ -192,6 +192,8 @@ class _ChatListState extends State<ChatList> {
                       ? Center(
                           child: InkWell(
                             borderRadius: BorderRadius.circular(32),
+                            onTap: () => AdaptivePageLayout.of(context)
+                                .pushNamedAndRemoveUntilIsFirst('/settings'),
                             child: FutureBuilder<Profile>(
                               future: Matrix.of(context).client.ownProfile,
                               builder: (_, snapshot) => Avatar(
@@ -201,8 +203,6 @@ class _ChatListState extends State<ChatList> {
                                 size: 32,
                               ),
                             ),
-                            onTap: () => AdaptivePageLayout.of(context)
-                                .pushNamedAndRemoveUntilIsFirst('/settings'),
                           ),
                         )
                       : IconButton(
@@ -378,9 +378,9 @@ class _ChatListState extends State<ChatList> {
             ]),
             floatingActionButton: selectMode == SelectMode.normal
                 ? FloatingActionButton(
-                    child: Icon(Icons.add_outlined),
                     onPressed: () => AdaptivePageLayout.of(context)
                         .pushNamedAndRemoveUntilIsFirst('/newprivatechat'),
+                    child: Icon(Icons.add_outlined),
                   )
                 : null,
             bottomNavigationBar: selectMode == SelectMode.normal

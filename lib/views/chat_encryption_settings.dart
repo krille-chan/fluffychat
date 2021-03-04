@@ -115,8 +115,8 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
                                     .verified ==
                                 UserVerifiedStatus.unknown) {
                               items.add(PopupMenuItem(
-                                child: Text(L10n.of(context).verifyUser),
                                 value: 'verify_user',
+                                child: Text(L10n.of(context).verifyUser),
                               ));
                             }
                             return items;
@@ -162,22 +162,22 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
                           if (deviceKeys[i].blocked ||
                               !deviceKeys[i].verified) {
                             items.add(PopupMenuItem(
-                              child: Text(L10n.of(context).verifyStart),
                               value: deviceKeys[i].userId == room.client.userID
                                   ? 'verify'
                                   : 'verify_user',
+                              child: Text(L10n.of(context).verifyStart),
                             ));
                           }
                           if (deviceKeys[i].blocked) {
                             items.add(PopupMenuItem(
-                              child: Text(L10n.of(context).unblockDevice),
                               value: 'unblock',
+                              child: Text(L10n.of(context).unblockDevice),
                             ));
                           }
                           if (!deviceKeys[i].blocked) {
                             items.add(PopupMenuItem(
-                              child: Text(L10n.of(context).blockDevice),
                               value: 'block',
+                              child: Text(L10n.of(context).blockDevice),
                             ));
                           }
                           return items;

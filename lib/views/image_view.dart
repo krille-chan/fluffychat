@@ -50,6 +50,15 @@ class ImageView extends StatelessWidget {
         ],
       ),
       body: InteractiveViewer(
+        minScale: 1.0,
+        maxScale: 10.0,
+        onInteractionEnd: (ScaleEndDetails endDetails) {
+          if (PlatformInfos.usesTouchscreen == false) {
+            if (endDetails.velocity.pixelsPerSecond.dy > calcVelocity) {
+              Navigator.of(context, rootNavigator: false).pop();
+            }
+          }
+        },
         child: Center(
           child: ImageBubble(
             event,
@@ -62,15 +71,6 @@ class ImageView extends StatelessWidget {
             thumbnailOnly: false,
           ),
         ),
-        minScale: 1.0,
-        maxScale: 10.0,
-        onInteractionEnd: (ScaleEndDetails endDetails) {
-          if (PlatformInfos.usesTouchscreen == false) {
-            if (endDetails.velocity.pixelsPerSecond.dy > calcVelocity) {
-              Navigator.of(context, rootNavigator: false).pop();
-            }
-          }
-        },
       ),
     );
   }

@@ -13,5 +13,5 @@ Future<Database> constructDb(
 }
 
 Future<String> getLocalstorage(String key) async {
-  return await window.localStorage[key];
+  return window.localStorage[key];
 }

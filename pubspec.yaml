@@ -53,7 +53,9 @@ dependencies:
   mime_type: ^0.3.2
   flushbar: ^1.10.4
   adaptive_dialog: ^0.9.3
-  flutter_matrix_html: ^0.2.0
+  flutter_matrix_html:
+    git:
+      url: https://github.com/ChristianPauly/flutter_matrix_html.git
   moor: ^3.4.0
   sqlite3_flutter_libs: ^0.3.0
   sqlite3: ^0.1.8
@@ -73,7 +75,7 @@ dependencies:
   sentry: ">=3.0.0 <4.0.0"
   scroll_to_index: ^1.0.6
   swipe_to_action: ^0.1.0
-  flutter_svg: 0.19.1 # Because fluffychat depends on flutter_svg >=0.19.2 which requires Flutter SDK version >=1.24.0-6.0.pre <2.0.0, version solving failed.
+  flutter_svg: ^0.19.3
   flutter_cache_manager: ^2.1.1
   open_noti_settings: ^0.0.4
   emoji_picker: ^0.1.0

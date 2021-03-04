@@ -108,15 +108,21 @@ class _RecordingDialogState extends State<RecordingDialog> {
       ),
       actions: <Widget>[
         TextButton(
+          onPressed: () => Navigator.of(context, rootNavigator: false).pop(),
           child: Text(
             L10n.of(context).cancel.toUpperCase(),
             style: TextStyle(
               color: Theme.of(context).textTheme.bodyText2.color.withAlpha(150),
             ),
           ),
-          onPressed: () => Navigator.of(context, rootNavigator: false).pop(),
         ),
         TextButton(
+          onPressed: () async {
+            await _recorderSubscription?.cancel();
+            await flutterSound.stopRecorder();
+            Navigator.of(context, rootNavigator: false)
+                .pop<String>(_recordedPath);
+          },
           child: Row(
             children: <Widget>[
               Text(L10n.of(context).send.toUpperCase()),
@@ -124,12 +130,6 @@ class _RecordingDialogState extends State<RecordingDialog> {
               Icon(Icons.send_outlined, size: 15),
             ],
           ),
-          onPressed: () async {
-            await _recorderSubscription?.cancel();
-            await flutterSound.stopRecorder();
-            Navigator.of(context, rootNavigator: false)
-                .pop<String>(_recordedPath);
-          },
         ),
       ],
     );

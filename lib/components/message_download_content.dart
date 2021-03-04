@@ -19,12 +19,12 @@ class MessageDownloadContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          RaisedButton(
-            elevation: 7,
-            color: Theme.of(context).scaffoldBackgroundColor,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(6),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Theme.of(context).scaffoldBackgroundColor,
+              onPrimary: Theme.of(context).textTheme.bodyText1.color,
             ),
+            onPressed: () => event.openFile(context),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -38,7 +38,6 @@ class MessageDownloadContent extends StatelessWidget {
                 ),
               ],
             ),
-            onPressed: () => event.openFile(context),
           ),
           if (event.sizeString != null)
             Text(

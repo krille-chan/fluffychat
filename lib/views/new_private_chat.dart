@@ -91,12 +91,12 @@ class _NewPrivateChatState extends State<NewPrivateChat> {
         elevation: 0,
         actions: [
           TextButton(
+            onPressed: () => AdaptivePageLayout.of(context)
+                .pushNamedAndRemoveUntilIsFirst('/newgroup'),
             child: Text(
               L10n.of(context).createNewGroup,
               style: TextStyle(color: Theme.of(context).accentColor),
             ),
-            onPressed: () => AdaptivePageLayout.of(context)
-                .pushNamedAndRemoveUntilIsFirst('/newgroup'),
           )
         ],
       ),

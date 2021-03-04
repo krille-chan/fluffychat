@@ -231,25 +231,25 @@ class InputBar extends StatelessWidget {
       }
       insertText = (isUnique
               ? insertEmote
-              : ':${insertPack}~${insertEmote.substring(1)}') +
+              : ':$insertPack~${insertEmote.substring(1)}') +
           ' ';
       startText = replaceText.replaceAllMapped(
         RegExp(r'(\s|^)(:(?:[-\w]+~)?[-\w]+)$'),
-        (Match m) => '${m[1]}${insertText}',
+        (Match m) => '${m[1]}$insertText',
       );
     }
     if (suggestion['type'] == 'user') {
       insertText = suggestion['mxid'] + ' ';
       startText = replaceText.replaceAllMapped(
         RegExp(r'(\s|^)(@[-\w]+)$'),
-        (Match m) => '${m[1]}${insertText}',
+        (Match m) => '${m[1]}$insertText',
       );
     }
     if (suggestion['type'] == 'room') {
       insertText = suggestion['mxid'] + ' ';
       startText = replaceText.replaceAllMapped(
         RegExp(r'(\s|^)(#[-\w]+)$'),
-        (Match m) => '${m[1]}${insertText}',
+        (Match m) => '${m[1]}$insertText',
       );
     }
     if (insertText.isNotEmpty && startText.isNotEmpty) {

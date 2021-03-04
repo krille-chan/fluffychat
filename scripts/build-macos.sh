@@ -1,6 +1,4 @@
 #!/bin/sh -ve
-flutter channel dev
-flutter upgrade
 flutter config --enable-macos-desktop
 flutter clean
 flutter pub get

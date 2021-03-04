@@ -81,7 +81,7 @@ class UserBottomSheet extends StatelessWidget {
       case 'message':
         final roomId = await user.startDirectChat();
         await AdaptivePageLayout.of(context)
-            .pushNamedAndRemoveUntilIsFirst('/rooms/${roomId}');
+            .pushNamedAndRemoveUntilIsFirst('/rooms/$roomId');
         break;
     }
   }
@@ -95,60 +95,66 @@ class UserBottomSheet extends StatelessWidget {
     if (onMention != null) {
       items.add(
         PopupMenuItem(
-            child: _TextWithIcon(
-              L10n.of(context).mention,
-              Icons.alternate_email_outlined,
-            ),
-            value: 'mention'),
+          value: 'mention',
+          child: _TextWithIcon(
+            L10n.of(context).mention,
+            Icons.alternate_email_outlined,
+          ),
+        ),
       );
     }
     if (user.id != user.room.client.userID && !user.room.isDirectChat) {
       items.add(
         PopupMenuItem(
-            child: _TextWithIcon(
-              L10n.of(context).sendAMessage,
-              Icons.send_outlined,
-            ),
-            value: 'message'),
+          value: 'message',
+          child: _TextWithIcon(
+            L10n.of(context).sendAMessage,
+            Icons.send_outlined,
+          ),
+        ),
       );
     }
     if (user.canChangePowerLevel) {
       items.add(
         PopupMenuItem(
-            child: _TextWithIcon(
-              L10n.of(context).setPermissionsLevel,
-              Icons.edit_attributes_outlined,
-            ),
-            value: 'permission'),
+          value: 'permission',
+          child: _TextWithIcon(
+            L10n.of(context).setPermissionsLevel,
+            Icons.edit_attributes_outlined,
+          ),
+        ),
       );
     }
     if (user.canKick) {
       items.add(
         PopupMenuItem(
-            child: _TextWithIcon(
-              L10n.of(context).kickFromChat,
-              Icons.exit_to_app_outlined,
-            ),
-            value: 'kick'),
+          value: 'kick',
+          child: _TextWithIcon(
+            L10n.of(context).kickFromChat,
+            Icons.exit_to_app_outlined,
+          ),
+        ),
       );
     }
     if (user.canBan && user.membership != Membership.ban) {
       items.add(
         PopupMenuItem(
-            child: _TextWithIcon(
-              L10n.of(context).banFromChat,
-              Icons.warning_sharp,
-            ),
-            value: 'ban'),
+          value: 'ban',
+          child: _TextWithIcon(
+            L10n.of(context).banFromChat,
+            Icons.warning_sharp,
+          ),
+        ),
       );
     } else if (user.canBan && user.membership == Membership.ban) {
       items.add(
         PopupMenuItem(
-            child: _TextWithIcon(
-              L10n.of(context).removeExile,
-              Icons.warning_outlined,
-            ),
-            value: 'unban'),
+          value: 'unban',
+          child: _TextWithIcon(
+            L10n.of(context).removeExile,
+            Icons.warning_outlined,
+          ),
+        ),
       );
     }
     return Center(

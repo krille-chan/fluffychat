@@ -180,22 +180,16 @@ class _HomeserverPickerState extends State<HomeserverPicker> {
               tag: 'loginButton',
               child: Container(
                 width: double.infinity,
-                height: 56,
                 padding: EdgeInsets.symmetric(horizontal: 12),
-                child: RaisedButton(
-                  elevation: 7,
-                  color: Theme.of(context).primaryColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-                  ),
+                child: ElevatedButton(
+                  onPressed:
+                      _isLoading ? null : () => _checkHomeserverAction(context),
                   child: _isLoading
                       ? LinearProgressIndicator()
                       : Text(
                           L10n.of(context).connect.toUpperCase(),
                           style: TextStyle(color: Colors.white, fontSize: 16),
                         ),
-                  onPressed:
-                      _isLoading ? null : () => _checkHomeserverAction(context),
                 ),
               ),
             ),
@@ -203,6 +197,7 @@ class _HomeserverPickerState extends State<HomeserverPicker> {
               alignment: WrapAlignment.center,
               children: [
                 TextButton(
+                  onPressed: () => launch(AppConfig.privacyUrl),
                   child: Text(
                     L10n.of(context).privacy,
                     style: TextStyle(
@@ -210,9 +205,9 @@ class _HomeserverPickerState extends State<HomeserverPicker> {
                       color: Colors.blueGrey,
                     ),
                   ),
-                  onPressed: () => launch(AppConfig.privacyUrl),
                 ),
                 TextButton(
+                  onPressed: () => PlatformInfos.showDialog(context),
                   child: Text(
                     L10n.of(context).about,
                     style: TextStyle(
@@ -220,7 +215,6 @@ class _HomeserverPickerState extends State<HomeserverPicker> {
                       color: Colors.blueGrey,
                     ),
                   ),
-                  onPressed: () => PlatformInfos.showDialog(context),
                 ),
               ],
             ),

@@ -46,13 +46,13 @@ abstract class PlatformInfos {
       useRootNavigator: false,
       children: [
         Text('Version: $version'),
-        RaisedButton(
-          child: Text(L10n.of(context).sourceCode),
+        OutlinedButton(
           onPressed: () => launch(AppConfig.sourceCodeUrl),
+          child: Text(L10n.of(context).sourceCode),
         ),
-        RaisedButton(
-          child: Text(AppConfig.emojiFontName),
+        OutlinedButton(
           onPressed: () => launch(AppConfig.emojiFontUrl),
+          child: Text(AppConfig.emojiFontName),
         ),
         SentrySwitchListTile(label: L10n.of(context).sendBugReports),
       ],

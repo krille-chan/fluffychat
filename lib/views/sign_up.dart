@@ -9,8 +9,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import '../app_config.dart';
-
 class SignUp extends StatefulWidget {
   @override
   _SignUpState createState() => _SignUpState();
@@ -138,27 +136,23 @@ class _SignUpState extends State<SignUp> {
             SizedBox(height: 16),
             Hero(
               tag: 'loginButton',
-              child: Container(
-                height: 56,
+              child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 12),
-                child: RaisedButton(
-                  elevation: 7,
-                  color: Theme.of(context).primaryColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-                  ),
+                child: ElevatedButton(
+                  onPressed: loading ? null : () => signUpAction(context),
                   child: loading
                       ? LinearProgressIndicator()
                       : Text(
                           L10n.of(context).signUp.toUpperCase(),
                           style: TextStyle(color: Colors.white, fontSize: 16),
                         ),
-                  onPressed: loading ? null : () => signUpAction(context),
                 ),
               ),
             ),
             Center(
               child: TextButton(
+                onPressed: () =>
+                    AdaptivePageLayout.of(context).pushNamed('/login'),
                 child: Text(
                   L10n.of(context).alreadyHaveAnAccount,
                   style: TextStyle(
@@ -167,8 +161,6 @@ class _SignUpState extends State<SignUp> {
                     fontSize: 16,
                   ),
                 ),
-                onPressed: () =>
-                    AdaptivePageLayout.of(context).pushNamed('/login'),
               ),
             ),
           ]),
