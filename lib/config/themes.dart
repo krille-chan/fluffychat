@@ -28,6 +28,7 @@ abstract class FluffyThemes {
       : TextTheme();
 
   static ThemeData light = ThemeData(
+    visualDensity: VisualDensity.standard,
     primaryColorDark: Colors.white,
     primaryColorLight: Color(0xff121212),
     brightness: Brightness.light,
@@ -53,6 +54,17 @@ abstract class FluffyThemes {
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: AppConfig.primaryColor,
       foregroundColor: Colors.white,
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        primary: AppConfig.primaryColor,
+        onPrimary: Colors.white,
+        elevation: 7,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+        ),
+        padding: EdgeInsets.all(12),
+      ),
     ),
     inputDecorationTheme: InputDecorationTheme(
       border: OutlineInputBorder(
@@ -80,6 +92,7 @@ abstract class FluffyThemes {
   );
 
   static ThemeData dark = ThemeData.dark().copyWith(
+    visualDensity: VisualDensity.standard,
     primaryColorDark: Color(0xff121212),
     primaryColorLight: Colors.white,
     primaryColor: AppConfig.primaryColor,

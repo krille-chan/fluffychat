@@ -119,9 +119,9 @@ class _ContactsState extends State<Contacts> {
                   ListTile(
                     leading: CircleAvatar(
                       radius: Avatar.defaultSize / 2,
-                      child: Icon(Icons.person_add_outlined),
                       backgroundColor: Theme.of(context).primaryColor,
                       foregroundColor: Colors.white,
+                      child: Icon(Icons.person_add_outlined),
                     ),
                     title: Text(L10n.of(context).addNewFriend),
                     onTap: () => AdaptivePageLayout.of(context)
@@ -141,15 +141,15 @@ class _ContactsState extends State<Contacts> {
                         ),
                         Center(
                           child: OutlinedButton(
+                            onPressed: () => FluffyShare.share(
+                                L10n.of(context).inviteText(client.userID,
+                                    'https://matrix.to/#/${client.userID}'),
+                                context),
                             child: Text(
                               L10n.of(context).inviteContact,
                               style: TextStyle(
                                   color: Theme.of(context).accentColor),
                             ),
-                            onPressed: () => FluffyShare.share(
-                                L10n.of(context).inviteText(client.userID,
-                                    'https://matrix.to/#/${client.userID}'),
-                                context),
                           ),
                         ),
                       ],

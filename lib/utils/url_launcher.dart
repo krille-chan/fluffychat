@@ -99,7 +99,7 @@ class UrlLauncher {
         }
       } else {
         await AdaptivePageLayout.of(context)
-            .pushNamedAndRemoveUntilIsFirst('/discover/${roomIdOrAlias}');
+            .pushNamedAndRemoveUntilIsFirst('/discover/$roomIdOrAlias');
       }
     } else if (identityParts.primaryIdentifier.sigil == '@') {
       final user = User(
@@ -109,7 +109,7 @@ class UrlLauncher {
       var roomId = matrix.client.getDirectChatFromUserId(user.id);
       if (roomId != null) {
         await AdaptivePageLayout.of(context)
-            .pushNamedAndRemoveUntilIsFirst('/rooms/${roomId}');
+            .pushNamedAndRemoveUntilIsFirst('/rooms/$roomId');
 
         return;
       }
@@ -128,7 +128,7 @@ class UrlLauncher {
 
         if (roomId != null) {
           await AdaptivePageLayout.of(context)
-              .pushNamedAndRemoveUntilIsFirst('/rooms/${roomId}');
+              .pushNamedAndRemoveUntilIsFirst('/rooms/$roomId');
         }
       }
     }

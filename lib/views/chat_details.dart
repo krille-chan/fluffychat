@@ -249,8 +249,8 @@ class _ChatDetailsState extends State<ChatDetails> {
                                     backgroundColor: Theme.of(context)
                                         .scaffoldBackgroundColor,
                                     foregroundColor: Colors.grey,
-                                    child: Icon(Icons.edit_outlined),
                                     radius: Avatar.defaultSize / 2,
+                                    child: Icon(Icons.edit_outlined),
                                   )
                                 : null,
                             title: Text('${L10n.of(context).groupDescription}:',
@@ -342,19 +342,6 @@ class _ChatDetailsState extends State<ChatDetails> {
                             },
                           ),
                           PopupMenuButton(
-                            child: ListTile(
-                              leading: CircleAvatar(
-                                  backgroundColor:
-                                      Theme.of(context).scaffoldBackgroundColor,
-                                  foregroundColor: Colors.grey,
-                                  child: Icon(Icons.public_outlined)),
-                              title: Text(
-                                  L10n.of(context).whoIsAllowedToJoinThisGroup),
-                              subtitle: Text(
-                                room.joinRules.getLocalizedString(
-                                    MatrixLocals(L10n.of(context))),
-                              ),
-                            ),
                             onSelected: (JoinRules joinRule) =>
                                 showFutureLoadingDialog(
                               context: context,
@@ -377,22 +364,21 @@ class _ChatDetailsState extends State<ChatDetails> {
                                           MatrixLocals(L10n.of(context)))),
                                 ),
                             ],
-                          ),
-                          PopupMenuButton(
                             child: ListTile(
                               leading: CircleAvatar(
-                                backgroundColor:
-                                    Theme.of(context).scaffoldBackgroundColor,
-                                foregroundColor: Colors.grey,
-                                child: Icon(Icons.visibility_outlined),
-                              ),
+                                  backgroundColor:
+                                      Theme.of(context).scaffoldBackgroundColor,
+                                  foregroundColor: Colors.grey,
+                                  child: Icon(Icons.public_outlined)),
                               title: Text(
-                                  L10n.of(context).visibilityOfTheChatHistory),
+                                  L10n.of(context).whoIsAllowedToJoinThisGroup),
                               subtitle: Text(
-                                room.historyVisibility.getLocalizedString(
+                                room.joinRules.getLocalizedString(
                                     MatrixLocals(L10n.of(context))),
                               ),
                             ),
+                          ),
+                          PopupMenuButton(
                             onSelected: (HistoryVisibility historyVisibility) =>
                                 showFutureLoadingDialog(
                               context: context,
@@ -430,23 +416,23 @@ class _ChatDetailsState extends State<ChatDetails> {
                                           MatrixLocals(L10n.of(context)))),
                                 ),
                             ],
+                            child: ListTile(
+                              leading: CircleAvatar(
+                                backgroundColor:
+                                    Theme.of(context).scaffoldBackgroundColor,
+                                foregroundColor: Colors.grey,
+                                child: Icon(Icons.visibility_outlined),
+                              ),
+                              title: Text(
+                                  L10n.of(context).visibilityOfTheChatHistory),
+                              subtitle: Text(
+                                room.historyVisibility.getLocalizedString(
+                                    MatrixLocals(L10n.of(context))),
+                              ),
+                            ),
                           ),
                           if (room.joinRules == JoinRules.public)
                             PopupMenuButton(
-                              child: ListTile(
-                                leading: CircleAvatar(
-                                  backgroundColor:
-                                      Theme.of(context).scaffoldBackgroundColor,
-                                  foregroundColor: Colors.grey,
-                                  child: Icon(Icons.info_outline),
-                                ),
-                                title: Text(
-                                    L10n.of(context).areGuestsAllowedToJoin),
-                                subtitle: Text(
-                                  room.guestAccess.getLocalizedString(
-                                      MatrixLocals(L10n.of(context))),
-                                ),
-                              ),
                               onSelected: (GuestAccess guestAccess) =>
                                   showFutureLoadingDialog(
                                 context: context,
@@ -471,6 +457,20 @@ class _ChatDetailsState extends State<ChatDetails> {
                                     ),
                                   ),
                               ],
+                              child: ListTile(
+                                leading: CircleAvatar(
+                                  backgroundColor:
+                                      Theme.of(context).scaffoldBackgroundColor,
+                                  foregroundColor: Colors.grey,
+                                  child: Icon(Icons.info_outline),
+                                ),
+                                title: Text(
+                                    L10n.of(context).areGuestsAllowedToJoin),
+                                subtitle: Text(
+                                  room.guestAccess.getLocalizedString(
+                                      MatrixLocals(L10n.of(context))),
+                                ),
+                              ),
                             ),
                           ListTile(
                             title: Text(L10n.of(context).editChatPermissions),
@@ -502,11 +502,11 @@ class _ChatDetailsState extends State<ChatDetails> {
                               ? ListTile(
                                   title: Text(L10n.of(context).inviteContact),
                                   leading: CircleAvatar(
-                                    child: Icon(Icons.add_outlined),
                                     backgroundColor:
                                         Theme.of(context).primaryColor,
                                     foregroundColor: Colors.white,
                                     radius: Avatar.defaultSize / 2,
+                                    child: Icon(Icons.add_outlined),
                                   ),
                                   onTap: () => AdaptivePageLayout.of(context)
                                       .pushNamed('/rooms/${room.id}/invite'),

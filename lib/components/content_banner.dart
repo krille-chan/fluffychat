@@ -66,8 +66,8 @@ class ContentBanner extends StatelessWidget {
               alignment: Alignment.bottomRight,
               child: FloatingActionButton(
                 mini: true,
-                child: Icon(Icons.camera_alt_outlined),
                 onPressed: onEdit,
+                child: Icon(Icons.camera_alt_outlined),
               ),
             ),
         ],

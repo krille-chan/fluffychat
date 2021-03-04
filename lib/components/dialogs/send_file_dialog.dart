@@ -78,14 +78,13 @@ class _SendFileDialogState extends State<SendFileDialog> {
       content: contentWidget,
       actions: <Widget>[
         TextButton(
-          child: Text(L10n.of(context).cancel),
           onPressed: () {
             // just close the dialog
             Navigator.of(context, rootNavigator: false).pop();
           },
+          child: Text(L10n.of(context).cancel),
         ),
         TextButton(
-          child: Text(L10n.of(context).send),
           onPressed: _isSending
               ? null
               : () async {
@@ -94,8 +93,9 @@ class _SendFileDialogState extends State<SendFileDialog> {
                   });
                   await showFutureLoadingDialog(
                       context: context, future: () => _send());
-                  await Navigator.of(context, rootNavigator: false).pop();
+                  Navigator.of(context, rootNavigator: false).pop();
                 },
+          child: Text(L10n.of(context).send),
         ),
       ],
     );

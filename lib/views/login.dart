@@ -10,8 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import '../utils/platform_infos.dart';
 
-import '../app_config.dart';
-
 class Login extends StatefulWidget {
   @override
   _LoginState createState() => _LoginState();
@@ -226,27 +224,22 @@ class _LoginState extends State<Login> {
             SizedBox(height: 12),
             Hero(
               tag: 'loginButton',
-              child: Container(
-                height: 56,
+              child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 12),
-                child: RaisedButton(
-                  elevation: 7,
-                  color: Theme.of(context).primaryColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-                  ),
+                child: ElevatedButton(
+                  onPressed: loading ? null : () => login(context),
                   child: loading
                       ? LinearProgressIndicator()
                       : Text(
                           L10n.of(context).login.toUpperCase(),
                           style: TextStyle(color: Colors.white, fontSize: 16),
                         ),
-                  onPressed: loading ? null : () => login(context),
                 ),
               ),
             ),
             Center(
               child: TextButton(
+                onPressed: () => _passwordForgotten(context),
                 child: Text(
                   L10n.of(context).passwordForgotten,
                   style: TextStyle(
@@ -254,7 +247,6 @@ class _LoginState extends State<Login> {
                     decoration: TextDecoration.underline,
                   ),
                 ),
-                onPressed: () => _passwordForgotten(context),
               ),
             ),
           ],

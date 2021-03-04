@@ -174,13 +174,13 @@ class _EmotesSettingsState extends State<EmotesSettings> {
       ),
       floatingActionButton: showSave
           ? FloatingActionButton(
-              child: Icon(Icons.save_outlined, color: Colors.white),
               onPressed: () async {
                 await _save(context);
                 setState(() {
                   showSave = false;
                 });
               },
+              child: Icon(Icons.save_outlined, color: Colors.white),
             )
           : null,
       body: StreamBuilder(
@@ -190,6 +190,9 @@ class _EmotesSettingsState extends State<EmotesSettings> {
               children: <Widget>[
                 if (!readonly)
                   Container(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 8.0,
+                    ),
                     child: ListTile(
                       leading: Container(
                         width: 180.0,
@@ -222,11 +225,6 @@ class _EmotesSettingsState extends State<EmotesSettings> {
                       ),
                       title: _EmoteImagePicker(newMxcController),
                       trailing: InkWell(
-                        child: Icon(
-                          Icons.add_outlined,
-                          color: Colors.green,
-                          size: 32.0,
-                        ),
                         onTap: () async {
                           if (newEmoteController.text == null ||
                               newEmoteController.text.isEmpty ||
@@ -270,10 +268,12 @@ class _EmotesSettingsState extends State<EmotesSettings> {
                             showSave = false;
                           });
                         },
+                        child: Icon(
+                          Icons.add_outlined,
+                          color: Colors.green,
+                          size: 32.0,
+                        ),
                       ),
-                    ),
-                    padding: EdgeInsets.symmetric(
-                      vertical: 8.0,
                     ),
                   ),
                 if (widget.room != null)
@@ -346,7 +346,7 @@ class _EmotesSettingsState extends State<EmotesSettings> {
                                     border: InputBorder.none,
                                   ),
                                   onSubmitted: (s) {
-                                    final emoteCode = ':${s}:';
+                                    final emoteCode = ':$s:';
                                     if (emotes.indexWhere((e) =>
                                             e.emote == emoteCode &&
                                             e.mxc != emote.mxc) !=
@@ -382,16 +382,16 @@ class _EmotesSettingsState extends State<EmotesSettings> {
                               trailing: readonly
                                   ? null
                                   : InkWell(
-                                      child: Icon(
-                                        Icons.delete_forever_outlined,
-                                        color: Colors.red,
-                                        size: 32.0,
-                                      ),
                                       onTap: () => setState(() {
                                         emotes.removeWhere(
                                             (e) => e.emote == emote.emote);
                                         showSave = true;
                                       }),
+                                      child: Icon(
+                                        Icons.delete_forever_outlined,
+                                        color: Colors.red,
+                                        size: 32.0,
+                                      ),
                                     ),
                             );
                           },
@@ -440,14 +440,7 @@ class _EmoteImagePickerState extends State<_EmoteImagePicker> {
   @override
   Widget build(BuildContext context) {
     if (widget.controller.text == null || widget.controller.text.isEmpty) {
-      return RaisedButton(
-        color: Theme.of(context).primaryColor,
-        elevation: 5,
-        textColor: Colors.white,
-        child: Text(L10n.of(context).pickImage),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
-        ),
+      return ElevatedButton(
         onPressed: () async {
           if (kIsWeb) {
             await FlushbarHelper.createError(
@@ -487,6 +480,7 @@ class _EmoteImagePickerState extends State<_EmoteImagePicker> {
             });
           }
         },
+        child: Text(L10n.of(context).pickImage),
       );
     } else {
       return _EmoteImage(widget.controller.text);

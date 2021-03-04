@@ -10,8 +10,6 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../utils/platform_infos.dart';
 
-import '../app_config.dart';
-
 class SignUpPassword extends StatefulWidget {
   final MatrixFile avatar;
   final String username;
@@ -174,22 +172,16 @@ class _SignUpPasswordState extends State<SignUpPassword> {
           SizedBox(height: 12),
           Hero(
             tag: 'loginButton',
-            child: Container(
-              height: 56,
+            child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 12),
-              child: RaisedButton(
-                elevation: 7,
-                color: Theme.of(context).primaryColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-                ),
+              child: ElevatedButton(
+                onPressed: loading ? null : () => _signUpAction(context),
                 child: loading
                     ? LinearProgressIndicator()
                     : Text(
                         L10n.of(context).createAccountNow.toUpperCase(),
                         style: TextStyle(color: Colors.white, fontSize: 16),
                       ),
-                onPressed: loading ? null : () => _signUpAction(context),
               ),
             ),
           ),

@@ -1,6 +1,4 @@
 #!/bin/sh -ve
-flutter channel stable
-flutter upgrade
 flutter clean
 flutter pub get
 cd ios

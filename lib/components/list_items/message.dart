@@ -109,6 +109,11 @@ class Message extends StatelessWidget {
                                   originServerTs: DateTime.now(),
                                 );
                           return InkWell(
+                            onTap: () {
+                              if (scrollToEventId != null) {
+                                scrollToEventId(replyEvent.eventId);
+                              }
+                            },
                             child: AbsorbPointer(
                               child: Container(
                                 margin: EdgeInsets.symmetric(vertical: 4.0),
@@ -116,11 +121,6 @@ class Message extends StatelessWidget {
                                     lightText: ownMessage, timeline: timeline),
                               ),
                             ),
-                            onTap: () {
-                              if (scrollToEventId != null) {
-                                scrollToEventId(replyEvent.eventId);
-                              }
-                            },
                           );
                         },
                       ),

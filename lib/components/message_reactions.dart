@@ -120,6 +120,7 @@ class _Reaction extends StatelessWidget {
           ));
     }
     return InkWell(
+      onTap: () => onTap != null ? onTap() : null,
       child: Container(
         decoration: BoxDecoration(
           color: color,
@@ -132,7 +133,6 @@ class _Reaction extends StatelessWidget {
         padding: EdgeInsets.all(padding),
         child: content,
       ),
-      onTap: () => onTap != null ? onTap() : null,
     );
   }
 }

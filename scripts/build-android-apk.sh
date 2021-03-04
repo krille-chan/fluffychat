@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-flutter channel stable
-flutter upgrade
 flutter pub get
 flutter build apk --release
 mkdir -p build/android

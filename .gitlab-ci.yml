@@ -25,7 +25,6 @@ test:
 
 build_web:
   stage: coverage
-  image: registry.gitlab.com/famedly/containers/flutter-dockerimages:beta
   before_script: [sudo apt update && sudo apt install curl -y, ./scripts/prepare-web.sh]
   script: [./scripts/build-web.sh]
   artifacts:
@@ -157,7 +156,6 @@ pages:
 
 build_linux:
   stage: coverage
-  image: cirrusci/flutter:dev
   before_script: [sudo apt update && sudo apt install curl clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev liblzma-dev -y]
   script: [./scripts/build-linux.sh]
   artifacts:
@@ -260,7 +258,6 @@ upload-windows:
 
 upload-playstore:
   extends: .release
-  image: registry.gitlab.com/famedly/containers/flutter-dockerimages:stable
   script: [./scripts/release-playstore.sh]
   resource_group: playstore_release
 
