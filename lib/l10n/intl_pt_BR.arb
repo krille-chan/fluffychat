@@ -2135,5 +2135,157 @@
       "serverVersions": {},
       "supportedVersions": {}
     }
+  },
+  "clearText": "Limpar texto",
+  "@clearText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userUnknownVerification": "Usuário(a) tem um status de verificação desconhecido",
+  "@userUnknownVerification": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wipeChatBackup": "Limpar o backup da conversa para criar uma nova chave de segurança?",
+  "@wipeChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fontSize": "Tamanho da fonte",
+  "@fontSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userNotVerified": "Usuário(a) não verificado(a)",
+  "@userNotVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userVerified": "Usuário(a) verificado(a)",
+  "@userVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPause": "Pausar",
+  "@audioPlayerPause": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPlay": "Tocar",
+  "@audioPlayerPlay": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unlockChatBackup": "Destrancar o backup da conversa",
+  "@unlockChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "friends": "Amigos",
+  "@friends": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewFriend": "Adicionar novo(a) amigo(a)",
+  "@addNewFriend": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "xMoreEvents": "Mais {count} eventos",
+  "@xMoreEvents": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "oneMoreEvent": "Mais 1 evento",
+  "@oneMoreEvent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackupDescription": "O backup da sua conversa é protegido com sua chave de segurança. Por favor, evite perdê-la.",
+  "@chatBackupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterSecurityKey": "Por favor, insira sua chave de segurança:",
+  "@pleaseEnterSecurityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noEncryptionForPublicRooms": "Você só pode ativar criptografia quando a sala não for mais publicamente acessível.",
+  "@noEncryptionForPublicRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceVerifyDescription": "A criptografia só é segura quando todos os dispositivos forem verificados.",
+  "@deviceVerifyDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapOnDeviceToVerify": "Toque num dispositivo para verificar",
+  "@tapOnDeviceToVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transferFromAnotherDevice": "Transferir de outro dispositivo",
+  "@transferFromAnotherDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "everythingReady": "Tudo pronto!",
+  "@everythingReady": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKeyLost": "Chave de segurança perdida?",
+  "@securityKeyLost": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackup": "Backup da conversa",
+  "@chatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showPassword": "Mostrar senha",
+  "@showPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addEmail": "Adicionar email",
+  "@addEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zoomOut": "Reduzir",
+  "@zoomOut": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zoomIn": "Ampliar",
+  "@zoomIn": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "blocked": "Bloqueado",
+  "@blocked": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verified": "Verificado",
+  "@verified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copyToClipboard": "Copiar para a área de transferência",
+  "@copyToClipboard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKey": "Chave de segurança",
+  "@securityKey": {
+    "type": "text",
+    "placeholders": {}
   }
 }
