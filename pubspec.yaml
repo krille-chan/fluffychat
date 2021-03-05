@@ -55,7 +55,8 @@ dependencies:
   adaptive_dialog: ^0.9.3
   flutter_matrix_html:
     git:
-      url: https://github.com/ChristianPauly/flutter_matrix_html.git
+      url: https://github.com/Sorunome/flutter_matrix_html.git
+      ref: 6b6a850fcfc3b0a3e88a3dd6beb79eda3acac853
   moor: ^3.4.0
   sqlite3_flutter_libs: ^0.3.0
   sqlite3: ^0.1.8
@@ -90,6 +91,14 @@ dev_dependencies:
 
   pedantic: ^1.9.2
   dapackages: ^1.4.0
+
+# The flutter_maths version of flutter_matrix_html is weird and conflicts with a few of our packages.
+# So, we have to force-override the dependencies to work out.
+dependency_overrides:
+  provider: ^4.3.3
+  flutter_svg: ^0.19.3
+  # Was actually brought in via fcm packages and flutter_matrix_html
+  quiver: ^2.0.0
 
 flutter:
   generate: true

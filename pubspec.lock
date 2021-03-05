@@ -386,13 +386,22 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_math:
+    dependency: transitive
+    description:
+      path: "."
+      ref: "6c3284faaedfe1dcb08f23d2c519bc95cbf0dbaf"
+      resolved-ref: "6c3284faaedfe1dcb08f23d2c519bc95cbf0dbaf"
+      url: "https://github.com/walsha2/flutter_math.git"
+    source: git
+    version: "0.3.0-nullsafety.1"
   flutter_matrix_html:
     dependency: "direct main"
     description:
       path: "."
-      ref: HEAD
-      resolved-ref: b1505570660d2e4c212a67889fe260eca7fb136e
-      url: "https://github.com/ChristianPauly/flutter_matrix_html.git"
+      ref: "6b6a850fcfc3b0a3e88a3dd6beb79eda3acac853"
+      resolved-ref: "6b6a850fcfc3b0a3e88a3dd6beb79eda3acac853"
+      url: "https://github.com/Sorunome/flutter_matrix_html.git"
     source: git
     version: "0.2.0"
   flutter_olm:
@@ -891,7 +900,7 @@ packages:
     source: hosted
     version: "1.4.4"
   quiver:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: quiver
       url: "https://pub.dartlang.org"
@@ -1140,6 +1149,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.5.9"
+  tuple:
+    dependency: transitive
+    description:
+      name: tuple
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0-nullsafety.0"
   typed_data:
     dependency: transitive
     description:
@@ -1305,4 +1321,4 @@ packages:
     version: "0.1.2"
 sdks:
   dart: ">=2.12.0-0.0 <3.0.0"
-  flutter: ">=1.24.0-10.1.pre"
+  flutter: ">=1.24.0-6.0.pre"
