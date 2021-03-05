@@ -12,74 +12,27 @@ description: |
   4. Unlimited groups and direct chats.
   5. FluffyChat is made as simple to use as possible.
   6. Free to use for everyone without ads.
-  7. FluffyChat can use your addressbook to find your friends or you can use
-  usernames.
-  8. There is no "FluffyChat server" you are forced to use. Use the server
+  7. There is no "FluffyChat server" you are forced to use. Use the server
   you find trustworthy or host your own.
-  9. Compatible with Riot, Fractal, Nekho and all matrix messengers.
+  8. Compatible with Riot, Fractal, Nekho and all matrix messengers.
   
-  Join the community: fluffychat://+ubports_community:matrix.org
-  Website: http://fluffy.chat
+  Join the community: https://matrix.to/#/#fluffychat:matrix.org
+  Website: http://fluffychat.im
   Microblog: https://metalhead.club/@krille
 
-grade: devel
+grade: stable
 confinement: strict
 icon: assets/logo.png
 
 parts:
-  olm:
-    plugin: cmake
-    source: https://gitlab.matrix.org/matrix-org/olm.git
-    source-type: git
-    source-tag: 3.2.1
-    build-packages:
-      - g++
   fluffychat:
     plugin: flutter
     source: .
     flutter-target: lib/main.dart
     stage-packages:
       - libsqlite3-dev
-      - libatk-bridge2.0-0
-      - libatk1.0-0
-      - libatspi2.0-0
-      - libcairo-gobject2
-      - libcairo2
-      - libdatrie1
-      - libegl1
-      - libepoxy0
-      - libfontconfig1
-      - libfreetype6
-      - libgdk-pixbuf2.0-0
-      - libglvnd0
-      - libgraphite2-3
-      - libgtk-3-0
-      - libharfbuzz0b
-      - libpango-1.0-0
-      - libpangocairo-1.0-0
-      - libpangoft2-1.0-0
-      - libpixman-1-0
-      - libpng16-16
-      - libthai0
-      - libwayland-client0
-      - libwayland-cursor0
-      - libwayland-egl1
-      - libx11-6
-      - libxau6
-      - libxcb-render0
-      - libxcb-shm0
-      - libxcb1
-      - libxcomposite1
-      - libxcursor1
-      - libxdamage1
-      - libxdmcp6
-      - libxext6
-      - libxfixes3
-      - libxi6
-      - libxinerama1
-      - libxkbcommon0
-      - libxrandr2
-      - libxrender1
+      #- libolm-dev
+
 slots:
   dbus-svc:
     interface: dbus
@@ -89,8 +42,7 @@ slots:
 apps:
   fluffychat:
     command: fluffychat
-    extensions:
-      - flutter-dev
+    extensions: [flutter-dev]
     plugs:
       - network
       - home
