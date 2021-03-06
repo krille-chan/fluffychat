@@ -172,6 +172,7 @@ snap:edge:
   stage: release
   image: "snapcore/snapcraft"
   before_script:
+    - sudo apt update && sudo apt install git curl -y
     - git clone https://github.com/flutter/flutter.git
     - export PATH="$PATH:`pwd`/flutter/bin"
   variables:
