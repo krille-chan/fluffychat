@@ -38,46 +38,6 @@ parts:
     stage-packages:
       - libsqlite3-dev
       #- libolm-dev # Not available in core18
-      - libatk-bridge2.0-0
-      - libatk1.0-0
-      - libatspi2.0-0
-      - libcairo-gobject2
-      - libcairo2
-      - libdatrie1
-      - libegl1
-      - libepoxy0
-      - libfontconfig1
-      - libfreetype6
-      - libgdk-pixbuf2.0-0
-      - libglvnd0
-      - libgraphite2-3
-      - libgtk-3-0
-      - libharfbuzz0b
-      - libpango-1.0-0
-      - libpangocairo-1.0-0
-      - libpangoft2-1.0-0
-      - libpixman-1-0
-      - libpng16-16
-      - libthai0
-      - libwayland-client0
-      - libwayland-cursor0
-      - libwayland-egl1
-      - libx11-6
-      - libxau6
-      - libxcb-render0
-      - libxcb-shm0
-      - libxcb1
-      - libxcomposite1
-      - libxcursor1
-      - libxdamage1
-      - libxdmcp6
-      - libxext6
-      - libxfixes3
-      - libxi6
-      - libxinerama1
-      - libxkbcommon0
-      - libxrandr2
-      - libxrender1
 
 slots:
   dbus-svc:
