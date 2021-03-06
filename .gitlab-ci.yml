@@ -172,7 +172,7 @@ snap:edge:
   stage: release
   image: ubuntu
   before_script:
-    - sudo apt update && sudo apt install snapcraft git curl unzip clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev liblzma-dev -y
+    - apt update && apt install snapcraft git curl unzip clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev liblzma-dev -y
     - git clone https://github.com/flutter/flutter.git
     - export PATH="$PATH:`pwd`/flutter/bin"
   variables:
