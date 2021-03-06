@@ -6,14 +6,14 @@ variables:
 
 .shared_windows_runners:
   tags:
-  - shared-windows
-  - windows
-  - windows-1809
+    - shared-windows
+    - windows
+    - windows-1809
 
 stages:
-- coverage
-- release
-- deploy
+  - coverage
+  - release
+  - deploy
 
 code_analyze:
   stage: coverage
@@ -25,7 +25,8 @@ test:
 
 build_web:
   stage: coverage
-  before_script: [sudo apt update && sudo apt install curl -y, ./scripts/prepare-web.sh]
+  before_script:
+    [sudo apt update && sudo apt install curl -y, ./scripts/prepare-web.sh]
   script: [./scripts/build-web.sh]
   artifacts:
     paths:
@@ -44,8 +45,8 @@ build_windows:
     - cd ..; git clone https://github.com/flutter/flutter.git -b dev; $env:path += ";C:\GitLab-Runner\builds\famedly\flutter\bin"; cd fluffychat
     - flutter doctor
     - flutter config --enable-windows-desktop
-    - "$package_override = \"`r`ndependency_overrides:`r`n  intl: 0.17.0-nullsafety.2\""
-    - "[System.IO.File]::AppendAllText(\"$CI_PROJECT_DIR/pubspec.yaml\", $package_override, [System.Text.Encoding]::UTF8)"
+    - '$package_override = "`r`ndependency_overrides:`r`n  intl: 0.17.0-nullsafety.2"'
+    - '[System.IO.File]::AppendAllText("$CI_PROJECT_DIR/pubspec.yaml", $package_override, [System.Text.Encoding]::UTF8)'
     - flutter clean
     - flutter pub get
     - flutter build windows
@@ -94,9 +95,9 @@ build_android_appbundle:
 upload-fdroid:
   stage: release
   before_script:
-    - 'which ssh-agent || (sudo apt-get update -y && sudo apt-get install openssh-client -y )'
-    - 'which rsync || (sudo apt-get update -y && sudo apt-get install rsync -y )'
-    - 'which pcregrep || (sudo apt-get update -y && sudo apt-get install pcregrep -y )'
+    - "which ssh-agent || (sudo apt-get update -y && sudo apt-get install openssh-client -y )"
+    - "which rsync || (sudo apt-get update -y && sudo apt-get install rsync -y )"
+    - "which pcregrep || (sudo apt-get update -y && sudo apt-get install pcregrep -y )"
     - eval $(ssh-agent -s)
     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
     - mkdir -p ~/.ssh
@@ -116,9 +117,9 @@ upload-fdroid:
 upload-fdroid-nightly:
   stage: release
   before_script:
-    - 'which ssh-agent || (sudo apt-get update -y && sudo apt-get install openssh-client -y )'
-    - 'which rsync || (sudo apt-get update -y && sudo apt-get install rsync -y )'
-    - 'which pcregrep || (sudo apt-get update -y && sudo apt-get install pcregrep -y )'
+    - "which ssh-agent || (sudo apt-get update -y && sudo apt-get install openssh-client -y )"
+    - "which rsync || (sudo apt-get update -y && sudo apt-get install rsync -y )"
+    - "which pcregrep || (sudo apt-get update -y && sudo apt-get install pcregrep -y )"
     - eval $(ssh-agent -s)
     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
     - mkdir -p ~/.ssh
@@ -156,7 +157,10 @@ pages:
 
 build_linux:
   stage: coverage
-  before_script: [sudo apt update && sudo apt install curl clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev liblzma-dev -y]
+  before_script:
+    [
+      sudo apt update && sudo apt install curl clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev liblzma-dev -y,
+    ]
   script: [./scripts/build-linux.sh]
   artifacts:
     when: on_success
@@ -164,35 +168,36 @@ build_linux:
       - build/linux/release/bundle/
   allow_failure: true
 
-#snap:edge:
-#  stage: release
-#  image: "cibuilds/snapcraft:core18"
-#  variables:
-#    SNAPCRAFT_LOGIN_FILE: ${SNAPCRAFT_LOGIN_FILE}
-#  only:
-#    - main
-#  script: [./scripts/publish-snap-edge.sh]
-#  artifacts:
-#    paths:
-#      - './*.snap'
-#    when: on_success
-#  allow_failure: true
+snap:edge:
+  stage: release
+  image: "cibuilds/snapcraft:core18"
+  variables:
+    SNAPCRAFT_LOGIN_FILE: ${SNAPCRAFT_LOGIN_FILE}
+  only:
+    - main
+  script: [./scripts/publish-snap-edge.sh]
+  needs: ["build_linux"]
+  artifacts:
+    paths:
+      - "./*.snap"
+    when: on_success
+  allow_failure: true
 
-#snap:publish:
-#  stage: release
-#  image: "cibuilds/snapcraft:core18"
-#  variables:
-#    SNAPCRAFT_LOGIN_FILE: ${SNAPCRAFT_LOGIN_FILE}
-#  only:
-#    - tags
-#  script: [./scripts/publish-snap-stable.sh]
-#  artifacts:
-#    paths:
-#      - './*.snap'
-#    when: on_success
-#    expire_in: 1 week
-#  needs: []
-#  allow_failure: true
+snap:publish:
+  stage: release
+  image: "cibuilds/snapcraft:core18"
+  variables:
+    SNAPCRAFT_LOGIN_FILE: ${SNAPCRAFT_LOGIN_FILE}
+  only:
+    - tags
+  script: [./scripts/publish-snap-stable.sh]
+  needs: ["build_linux"]
+  artifacts:
+    paths:
+      - "./*.snap"
+    when: on_success
+    expire_in: 1 week
+  allow_failure: true
 
 update-dependencies:
   stage: coverage
