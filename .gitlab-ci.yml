@@ -170,7 +170,7 @@ build_linux:
 
 snap:edge:
   stage: release
-  image: "snapcore/snapcraft"
+  before_script: [sudo apt update && sudo apt install snapcraft -y]
   variables:
     SNAPCRAFT_LOGIN_FILE: ${SNAPCRAFT_LOGIN_FILE}
   only:
@@ -185,7 +185,7 @@ snap:edge:
 
 snap:publish:
   stage: release
-  image: "snapcore/snapcraft"
+  before_script: [sudo apt update && sudo apt install snapcraft -y]
   variables:
     SNAPCRAFT_LOGIN_FILE: ${SNAPCRAFT_LOGIN_FILE}
   only:
