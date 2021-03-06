@@ -3,7 +3,6 @@ import 'package:famedlysdk/encryption.dart';
 import 'package:famedlysdk/encryption/utils/bootstrap.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/dialogs/adaptive_flat_button.dart';
-import 'package:fluffychat/components/matrix.dart';
 import 'package:flutter/services.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,9 +13,11 @@ import 'key_verification_dialog.dart';
 
 class BootstrapDialog extends StatefulWidget {
   final bool wipe;
+  final Client client;
   const BootstrapDialog({
     Key key,
     this.wipe = false,
+    @required this.client,
   }) : super(key: key);
 
   Future<bool> show(BuildContext context) => PlatformInfos.isCupertinoStyle
@@ -56,9 +57,7 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
       _wipe = wipe;
       titleText = null;
       _recoveryKeyStored = false;
-      bootstrap = Matrix.of(context)
-          .client
-          .encryption
+      bootstrap = widget.client.encryption
           .bootstrap(onUpdate: () => setState(() => null));
     });
   }
@@ -177,9 +176,8 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
           buttons.add(AdaptiveFlatButton(
             label: L10n.of(context).transferFromAnotherDevice,
             onPressed: () async {
-              final req = await Matrix.of(context)
-                  .client
-                  .userDeviceKeys[Matrix.of(context).client.userID]
+              final req = await widget
+                  .client.userDeviceKeys[widget.client.userID]
                   .startVerification();
               await KeyVerificationDialog(request: req).show(context);
               Navigator.of(context, rootNavigator: false).pop();

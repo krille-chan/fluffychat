@@ -397,7 +397,9 @@ class _SettingsState extends State<Settings> {
                         style: TextStyle(color: Colors.red),
                       ),
                       onPressed: () async {
-                        await BootstrapDialog().show(context);
+                        await BootstrapDialog(
+                          client: Matrix.of(context).client,
+                        ).show(context);
                         AdaptivePageLayout.of(context).popUntilIsFirst();
                       },
                     );
@@ -579,11 +581,16 @@ class _SettingsState extends State<Settings> {
                           cancelLabel: L10n.of(context).cancel,
                           useRootNavigator: false,
                         )) {
-                      await BootstrapDialog(wipe: true).show(context);
+                      await BootstrapDialog(
+                        client: Matrix.of(context).client,
+                        wipe: true,
+                      ).show(context);
                     }
                     return;
                   }
-                  await BootstrapDialog().show(context);
+                  await BootstrapDialog(
+                    client: Matrix.of(context).client,
+                  ).show(context);
                 },
               ),
             },
