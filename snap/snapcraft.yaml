@@ -35,7 +35,6 @@ parts:
   fluffychat:
     plugin: dump
     source: ./build/linux/release/bundle/
-    build-snaps: [flutter]
     stage-packages:
       - libsqlite3-dev
       #- libolm-dev # Not available in core18

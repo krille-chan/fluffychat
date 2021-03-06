@@ -171,7 +171,9 @@ build_linux:
 snap:edge:
   stage: release
   image: "snapcore/snapcraft"
-  before_script: []
+  before_script:
+    - git clone https://github.com/flutter/flutter.git
+    - export PATH="$PATH:`pwd`/flutter/bin"
   variables:
     SNAPCRAFT_LOGIN_FILE: ${SNAPCRAFT_LOGIN_FILE}
   only:
