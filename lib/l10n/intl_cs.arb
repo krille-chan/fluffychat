@@ -2183,7 +2183,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterSecurityKey": "Zadejte svůj bezpečnostní klíč",
+  "pleaseEnterSecurityKey": "Zadejte svůj bezpečnostní klíč:",
   "@pleaseEnterSecurityKey": {
     "type": "text",
     "placeholders": {}
@@ -2245,6 +2245,21 @@
   },
   "verified": "Ověřeno",
   "@verified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noEncryptionForPublicRooms": "Můžete aktivovat šifrování jakmile místnost přestane být veřejně dostupná.",
+  "@noEncryptionForPublicRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceVerifyDescription": "Šifrování je bezpečné pouze tehdy, kdy jsou ověřená všechna zařízení.",
+  "@deviceVerifyDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapOnDeviceToVerify": "Klepněte na zařízení pro jeho ověření",
+  "@tapOnDeviceToVerify": {
     "type": "text",
     "placeholders": {}
   }
