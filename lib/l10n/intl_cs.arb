@@ -2262,5 +2262,10 @@
   "@tapOnDeviceToVerify": {
     "type": "text",
     "placeholders": {}
+  },
+  "addNewFriend": "Přidat nového přítele",
+  "@addNewFriend": {
+    "type": "text",
+    "placeholders": {}
   }
 }
