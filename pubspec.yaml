@@ -84,6 +84,7 @@ dependencies:
   package_info: ^0.4.3+2
   flutter_app_lock: ^1.4.0+1
   flutter_screen_lock: ^1.2.6
+  email_validator: ^1.0.6
 
 dev_dependencies:
   flutter_test:
