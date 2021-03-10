@@ -79,7 +79,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
   File wallpaper;
 
-  void _initWithStore() async {
+  void _initWithStore() {
     try {
       client.init();
     } catch (e, s) {
@@ -344,7 +344,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
             .where((e) =>
                 e.type == EventUpdateType.timeline &&
                 [EventTypes.Message, EventTypes.Sticker, EventTypes.Encrypted]
-                    .contains(e.eventType) &&
+                    .contains(e.content['type']) &&
                 e.content['sender'] != client.userID)
             .listen(_showLocalNotification);
       });

@@ -36,7 +36,6 @@ class _HomeserverPickerState extends State<HomeserverPicker> {
       context: context,
       future: () => Matrix.of(context).client.login(
             type: AuthenticationTypes.token,
-            userIdentifierType: null,
             token: token,
             initialDeviceDisplayName: PlatformInfos.clientName,
           ),

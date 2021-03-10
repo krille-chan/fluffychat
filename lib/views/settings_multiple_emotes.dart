@@ -21,7 +21,7 @@ class MultipleEmotesSettings extends StatelessWidget {
         stream: room.onUpdate.stream,
         builder: (context, snapshot) {
           final packs =
-              room.states.states['im.ponies.room_emotes'] ?? <String, Event>{};
+              room.states['im.ponies.room_emotes'] ?? <String, Event>{};
           if (!packs.containsKey('')) {
             packs[''] = null;
           }

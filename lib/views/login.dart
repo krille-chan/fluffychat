@@ -42,8 +42,28 @@ class _LoginState extends State<Login> {
 
     setState(() => loading = true);
     try {
+      final username = usernameController.text;
+      AuthenticationIdentifier identifier;
+      if (username.isEmail) {
+        identifier = AuthenticationThirdPartyIdentifier(
+          medium: 'email',
+          address: username,
+        );
+      } else if (username.isPhoneNumber) {
+        identifier = AuthenticationThirdPartyIdentifier(
+          medium: 'msisdn',
+          address: username,
+        );
+      } else {
+        identifier = AuthenticationUserIdentifier(user: username);
+      }
       await matrix.client.login(
-          user: usernameController.text,
+          identifier: identifier,
+          // To stay compatible with older server versions
+          // ignore: deprecated_member_use
+          user: identifier.type == AuthenticationIdentifierTypes.userId
+              ? username
+              : null,
           password: passwordController.text,
           initialDeviceDisplayName: PlatformInfos.clientName);
     } on MatrixException catch (exception) {
@@ -254,4 +274,13 @@ class _LoginState extends State<Login> {
       }),
     );
   }
+}
+
+extension on String {
+  static final RegExp _emailRegex = RegExp(
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+  static final RegExp _phoneRegex =
+      RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$');
+  bool get isEmail => _emailRegex.hasMatch(this);
+  bool get isPhoneNumber => _phoneRegex.hasMatch(this);
 }

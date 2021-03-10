@@ -46,7 +46,7 @@ class UrlLauncher {
         final response = await showFutureLoadingDialog(
           context: context,
           future: () =>
-              matrix.client.requestRoomAliasInformations(roomIdOrAlias),
+              matrix.client.requestRoomAliasInformation(roomIdOrAlias),
         );
         if (response.error != null) {
           return; // nothing to do, the alias doesn't exist
