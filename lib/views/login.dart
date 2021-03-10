@@ -9,6 +9,7 @@ import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import '../utils/platform_infos.dart';
+import 'package:email_validator/email_validator.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -277,10 +278,8 @@ class _LoginState extends State<Login> {
 }
 
 extension on String {
-  static final RegExp _emailRegex = RegExp(
-      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
   static final RegExp _phoneRegex =
       RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$');
-  bool get isEmail => _emailRegex.hasMatch(this);
+  bool get isEmail => EmailValidator.validate(this);
   bool get isPhoneNumber => _phoneRegex.hasMatch(this);
 }
