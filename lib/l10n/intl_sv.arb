@@ -752,7 +752,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "setCustomEmotes": "Ställ in anpassade emotes",
+  "setCustomEmotes": "Ställ in anpassade dekaler",
   "@setCustomEmotes": {
     "type": "text",
     "placeholders": {}
@@ -1190,7 +1190,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noEmotesFound": "Hittade inga emotes. 😕",
+  "noEmotesFound": "Hittade inga dekaler. 😕",
   "@noEmotesFound": {
     "type": "text",
     "placeholders": {}
@@ -1616,7 +1616,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enableEmotesGlobally": "Aktivera emote-paket globalt",
+  "enableEmotesGlobally": "Aktivera dekal-paket globalt",
   "@enableEmotesGlobally": {
     "type": "text",
     "placeholders": {}
@@ -1676,17 +1676,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "emotePacks": "Emote paket för rummet",
+  "emotePacks": "Dekalpaket för rummet",
   "@emotePacks": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteInvalid": "Ogiltig emote kortkod!",
+  "emoteInvalid": "Ogiltig dekal-kod!",
   "@emoteInvalid": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteExists": "Emote existerar redan!",
+  "emoteExists": "Dekalen existerar redan!",
   "@emoteExists": {
     "type": "text",
     "placeholders": {}
@@ -1696,12 +1696,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteShortcode": "Emote kortkod",
+  "emoteShortcode": "Dekal kod",
   "@emoteShortcode": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteWarnNeedToPick": "Du måste välja en emote kortkod och en bild!",
+  "emoteWarnNeedToPick": "Du måste välja en dekal-kod och en bild!",
   "@emoteWarnNeedToPick": {
     "type": "text",
     "placeholders": {}
@@ -2107,5 +2107,13 @@
   "@noPublicRoomsFound": {
     "type": "text",
     "placeholders": {}
+  },
+  "badServerVersionsException": "Hemservern stöjder Spec-versionen:\n{serverVersions}\nMen denna app stödjer enbart {supportedVersions}",
+  "@badServerVersionsException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
   }
 }
