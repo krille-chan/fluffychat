@@ -21,7 +21,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:ui';
-import 'dart:math';
 
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
@@ -68,8 +67,6 @@ class BackgroundPush {
 
   final pendingTests = <String, Completer<void>>{};
 
-  void Function() _onContextInit;
-
   DateTime lastReceivedPush;
 
   BackgroundPush._(this.client) {
@@ -106,8 +103,6 @@ class BackgroundPush {
   }
 
   Future<void> fullInit() async {
-    _onContextInit?.call();
-    _onContextInit = null;
     await setupPush();
   }
 
@@ -271,13 +266,6 @@ class BackgroundPush {
       gatewayUrl: AppConfig.pushNotificationsGatewayUrl,
       token: _fcmToken,
     );
-
-    if (context == null) {
-      _onContextInit = sendTestMessageGUI;
-    } else if (kReleaseMode) {
-      // ignore: unawaited_futures
-      sendTestMessageGUI();
-    }
   }
 
   Future<void> goToRoom(String roomId) async {
@@ -725,93 +713,5 @@ class BackgroundPush {
       ticker: ticker,
       color: color,
     );
-  }
-
-  Future<bool> sendTestMessageGUI({bool verbose = false}) async {
-    try {
-      await sendTestMessage().timeout(Duration(seconds: 30));
-      if (verbose) {
-        await FlushbarHelper.createSuccess(
-                message:
-                    'Push test was successful' /* l10n.pushTestSuccessful */)
-            .show(context);
-      }
-    } catch (e, s) {
-      var msg;
-//      final l10n = l10n;
-      if (e is SocketException) {
-        msg = 'Push server is unreachable';
-//        msg = verbose ? l10n.pushServerUnreachable : null;
-      } else if (e is NoTokenException) {
-        msg = 'Push token is unavailable';
-//        msg = verbose ? l10n.pushTokenUnavailable : null;
-      } else {
-        msg = 'Push failed';
-//        msg = l10n.pushFail;
-        Logs().e('[Push] Test message failed: $e', s);
-      }
-      if (msg != null) {
-        await FlushbarHelper.createError(message: '$msg\n\n${e.toString()}')
-            .show(context);
-      }
-      return false;
-    }
-    return true;
-  }
-
-  Future<void> sendTestMessage() async {
-    if (!(await store.getItemBool(SettingKeys.unifiedPushRegistered, false)) &&
-        (_fcmToken?.isEmpty ?? true)) {
-      throw NoTokenException();
-    }
-
-    final random = Random.secure();
-    final randomId =
-        base64.encode(List<int>.generate(12, (i) => random.nextInt(256)));
-    final completer = Completer<void>();
-    if (PlatformInfos.isIOS) {
-      // don't expect a reply, because fcm_shared_isolate can't receive on iOS
-      completer.complete();
-    } else {
-      pendingTests[randomId] = completer;
-    }
-
-    final endpoint = (await store.getItem(SettingKeys.unifiedPushEndpoint)) ??
-        AppConfig.pushNotificationsGatewayUrl;
-
-    try {
-      final resp = await http.post(
-        endpoint,
-        headers: {'Content-Type': 'application/json'},
-        body: jsonEncode(
-          {
-            'notification': {
-              'event_id': randomId,
-              'room_id': 'test',
-              'counts': {
-                'unread': 1,
-              },
-              'devices': [
-                {
-                  'app_id': AppConfig.pushNotificationsAppId,
-                  'pushkey': _fcmToken,
-                  'pushkey_ts': 12345678,
-                  'data': {},
-                  'tweaks': {}
-                }
-              ]
-            }
-          },
-        ),
-      );
-      if (resp.statusCode < 200 || resp.statusCode >= 299) {
-        throw resp.body.isNotEmpty ? resp.body : resp.reasonPhrase;
-      }
-    } catch (_) {
-      pendingTests.remove(randomId);
-      rethrow;
-    }
-
-    return completer.future;
   }
 }
