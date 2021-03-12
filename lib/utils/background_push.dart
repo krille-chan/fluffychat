@@ -25,6 +25,7 @@ import 'dart:ui';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -127,6 +128,16 @@ class BackgroundPush {
     Set<String> oldTokens,
     bool useDeviceSpecificAppId = false,
   }) async {
+    if (Platform.isIOS) {
+      Logs().v('Request notification permissions on iOS');
+      await FirebaseMessaging().requestNotificationPermissions(
+        IosNotificationSettings(
+          sound: true,
+          alert: true,
+          badge: true,
+        ),
+      );
+    }
     final clientName = PlatformInfos.clientName;
     oldTokens ??= <String>{};
     final pushers = await client.requestPushers().catchError((e) {
