@@ -79,9 +79,20 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
   File wallpaper;
 
-  void _initWithStore() {
+  void _initWithStore() async {
     try {
-      client.init();
+      await client.init();
+      if (client.isLogged()) {
+        final statusMsg = await store.getItem(SettingKeys.ownStatusMessage);
+        if (statusMsg?.isNotEmpty ?? false) {
+          Logs().v('Send cached status message: "$statusMsg"');
+          await client.sendPresence(
+            client.userID,
+            PresenceType.online,
+            statusMsg: statusMsg,
+          );
+        }
+      }
     } catch (e, s) {
       client.onLoginStateChanged.sink.addError(e, s);
       SentryController.captureException(e, s);
@@ -323,18 +334,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
             SettingKeys.ownStatusMessage, presence.presence.statusMsg);
       }
     });
-    if (client.isLogged()) {
-      store.getItem(SettingKeys.ownStatusMessage).then((statusMsg) {
-        if (statusMsg?.isNotEmpty ?? false) {
-          Logs().v('Send cached status message: "$statusMsg"');
-          client.sendPresence(
-            client.userID,
-            PresenceType.online,
-            statusMsg: statusMsg,
-          );
-        }
-      });
-    }
 
     onUiaRequest ??= client.onUiaRequest.stream.listen(_onUiaRequest);
     if (PlatformInfos.isWeb || PlatformInfos.isLinux) {
