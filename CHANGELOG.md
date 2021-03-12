@@ -4,15 +4,41 @@ Chat with your friends.
 ## Unreleased
 
 ### Chore
+* Change push gateway url [078aefa]
+* Update file picker cross dependency [91c6912]
+* Update snapcraft.yaml but still not working [1072379]
+* Update changelog [a05f2f0]
 * Change call icon [7403ac7]
 * Update famedlySdk [ec64cf6]
 
 ### Feature
+* Cache and resend status message [c8a7031]
 * New experimental design [94aa9a3]
 * Better verification design [9bcd6b2]
 * Verify and block devices in devices list [8ebacfe]
 
 ### Fixes
+* Remove test push [a838d90]
+* Email validation [c8e487c]
+* CI [2e60322]
+* CI [7275837]
+* CI [1a8dc50]
+* CI [c012081]
+* CI [380732d]
+* CI [06c31c0]
+* CI [4d1a171]
+* CI [597ceab]
+* snapcraft CI [fee0eb9]
+* Bootstrap in columnview [bcd2a03]
+* Remove unnecessary snapcraft dependencies [3a816d1]
+* Snapcraft and it builds now :-) [eb0eca4]
+* flutter_matrix_html crash and flutter_maths stuffs [3caac92]
+* Minor bugs [9fbfca6]
+* add mail [53fc634]
+* 3pid [887f3b1]
+* Bootstrap hint [8651b37]
+* Bootstrap hint [1331b10]
+* Own presence at top of the list [ac6fcd1]
 * Analyzer [e1ddfc8]
 * Trim username on registration [61a8eb5]
 * Password success banner if not succeeded [5150563]
@@ -29,6 +55,14 @@ Chat with your friends.
 * Dont show random users in top bar [54e268b]
 * Localize ok cancel alert dialogs [9f9b833]
 * Use single-isolate push [949771d]
+
+### Docs
+* Update Turkish translation for website [4a664eb]
+
+### Refactor
+* Update SDK and enable login with email and phone [864b665]
+* Migrate to flutter 2 [bb97b1b]
+* Switch to TextButton [55803d1]
 
 ## v0.27.0 - 2021-02-17
 
