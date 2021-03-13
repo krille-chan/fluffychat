@@ -1,38 +1,12 @@
 ![](https://i.imgur.com/wi7RlVt.png)
 
 <p align="center">
-<a target="new" href="https://play.google.com/store/apps/details?id=chat.fluffy.fluffychat">
-  <img height="66px" src="https://fluffychat.im/assets/images/google-play-badge.png" />
-  </a>
-  <a target="new" href="https://fluffychat.im/en/fdroid.html">
-  <img height="66px" src="https://fluffychat.im/assets/images/fdroid_button.png " />
-  </a>
-  <br>
-  <a href="https://web.fluffychat.im" target="new">Open FluffyChat in the browser</a> - <a href="https://matrix.to/#/#fluffychat:matrix.org" target="new">Join the community</a> - <a href="https://metalhead.club/@krille" target="new">Follow me on Mastodon</a> - <a href="https://hosted.weblate.org/projects/fluffychat/" target="new">Translate FluffyChat</a> - <a href="https://gitlab.com/ChristianPauly/fluffychat-website" target="new">Translate the website</a> - <a href="https://fluffychat.im" target="new">Website</a> - <a href="https://gitlab.com/ChristianPauly/fluffychat-flutter/-/jobs/artifacts/main/browse?job=build_android_apk" target="new">Download latest APK</a> - <a href="https://gitlab.com/famedly/famedlysdk" target="new">Famedly Matrix SDK</a> - <a href="https://famedly.com/kontakt">Server hosting and professional support</a>
+  <a href="https://matrix.to/#/#fluffychat:matrix.org" target="new">Join the community</a> - <a href="https://metalhead.club/@krille" target="new">Follow me on Mastodon</a> - <a href="https://hosted.weblate.org/projects/fluffychat/" target="new">Translate FluffyChat</a> - <a href="https://gitlab.com/ChristianPauly/fluffychat-website" target="new">Translate the website</a> - <a href="https://fluffychat.im" target="new">Website</a> - <a href="https://gitlab.com/famedly/famedlysdk" target="new">Famedly Matrix SDK</a> - <a href="https://famedly.com/kontakt">Server hosting and professional support</a>
  </p>
 <br>
 <br>
 
-# Features
- * Single and group chats
- * Send images and files
- * Voice messages
- * Offline chat history
- * Push Notifications
- * Account settings
- * Display user avatars
- * Themes, chat wallpapers and dark mode
- * Device management
- * Edit chat settings and permissions
- * Kick, ban and unban users
- * Display and edit chat topics
- * Change chat & user avatars
- * Archived chats
- * Discover public chats on the user's homeserver
- * Registration
- * Disable account
- * Change password
- * End-To-End-Encryption
+FluffyChat is a multi-platform Matrix client written in Dart/Flutter. It compiles to native code von Android, iOS, macOS, Windows and Linux and renders with Skia on the web. FluffyChat is just a hobby project from the developers of [Famedly](https://famedly.com) and licensed under AGPLv3. It follows a [design philosophy](https://ko-fi.com/post/FluffyChats-Design-Philosophy-W7W63A6YS) to be minimalistic, inclusive and easy to use.
 
 # How to build
 
@@ -67,14 +41,10 @@ sudo apt install ninja-build
 
 * Enable web support in Flutter: https://flutter.dev/docs/get-started/web
 
-* Optionally edit the file `lib/app_config.dart`. If you e.g. only want to change the default homeserver, then only modify the `defaultHomeserver` key.
-
 * Build with:
 ```bash
 ./scripts/prepare-web.sh
-flutter clean
-flutter pub get
-flutter build web --release --verbose
+flutter build web --release
 ```
 
 * Optionally configure by serving a `config.json` at the same path as fluffychat.
@@ -94,7 +64,7 @@ flutter build macos --release
 ```
 
 
-## How to add translations for your language
+# How to add translations for your language
 
 You can use Weblate to translate the app to your language:
 
