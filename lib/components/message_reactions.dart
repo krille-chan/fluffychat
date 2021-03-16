@@ -1,7 +1,7 @@
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-
+import 'package:characters/characters.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'matrix.dart';
 
@@ -109,9 +109,9 @@ class _Reaction extends StatelessWidget {
         ],
       );
     } else {
-      var renderKey = reactionKey;
+      var renderKey = Characters(reactionKey);
       if (renderKey.length > 10) {
-        renderKey = renderKey.substring(0, 7) + '...';
+        renderKey = renderKey.getRange(0, 9) + Characters('…');
       }
       content = Text('$renderKey $count',
           style: TextStyle(
