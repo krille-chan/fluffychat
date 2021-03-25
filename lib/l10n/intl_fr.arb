@@ -1392,7 +1392,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "tapToShowMenu": "Tappez pour afficher le menu",
+  "tapToShowMenu": "Tapez pour afficher le menu",
   "@tapToShowMenu": {
     "type": "text",
     "placeholders": {}
@@ -1878,7 +1878,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "whoCanPerformWhichAction": "Qui peur faire quelle action",
+  "whoCanPerformWhichAction": "Qui peut faire quelle action",
   "@whoCanPerformWhichAction": {
     "type": "text",
     "placeholders": {}
