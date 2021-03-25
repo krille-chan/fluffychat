@@ -2130,7 +2130,7 @@
       "supportedVersions": {}
     }
   },
-  "badServerVersionsException": "Le serveur d'accueil prend en charge les versions Spec :\n{serverVersions}\nMais cette application ne prend en charge que {supportedVersions}",
+  "badServerVersionsException": "Le serveur d'accueil prend en charge les versions de la spécification Matrix :\n{serverVersions}\nMais cette application ne prend en charge que {supportedVersions}",
   "@badServerVersionsException": {
     "type": "text",
     "placeholders": {
