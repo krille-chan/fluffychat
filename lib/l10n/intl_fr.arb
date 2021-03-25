@@ -953,7 +953,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noEmotesFound": "Aucune émoticône trouvé. 😕",
+  "noEmotesFound": "Aucune émoticône trouvée. 😕",
   "@noEmotesFound": {
     "type": "text",
     "placeholders": {}
