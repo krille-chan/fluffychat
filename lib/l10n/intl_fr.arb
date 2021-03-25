@@ -77,7 +77,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "areGuestsAllowedToJoin": "Est-ce que les invités peuvent rejoindre",
+  "areGuestsAllowedToJoin": "Les invités peuvent-ils rejoindre",
   "@areGuestsAllowedToJoin": {
     "type": "text",
     "placeholders": {}
