@@ -824,7 +824,7 @@
       "localizedTimeShort": {}
     }
   },
-  "lastSeenIp": "Dernière addresse IP utilisée",
+  "lastSeenIp": "Dernière adresse IP utilisée",
   "@lastSeenIp": {
     "type": "text",
     "placeholders": {}
@@ -908,7 +908,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "moderator": "Moderateur·ice",
+  "moderator": "Modérateur·ice",
   "@moderator": {
     "type": "text",
     "placeholders": {}
@@ -948,12 +948,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "Fluffychat ne prend actuellement pas en charge l'activation de la signature croisée. Veuillez l'activer depuis Element.",
+  "noCrossSignBootstrap": "Fluffychat ne prend pas encore en charge l'activation de la signature croisée. Veuillez l'activer depuis Element.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
   },
-  "noEmotesFound": "Aucune émoticône émote trouvé. 😕",
+  "noEmotesFound": "Aucune émoticône trouvé. 😕",
   "@noEmotesFound": {
     "type": "text",
     "placeholders": {}
@@ -963,7 +963,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "Fluffychat ne prend pas actuellement en charge l'activation de la sauvegarde des clés en ligne. Veuillez l'activer à partir d'Element.",
+  "noMegolmBootstrap": "Fluffychat ne prend pas encore en charge l'activation de la sauvegarde des clés en ligne. Veuillez l'activer à partir d'Element.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -1738,7 +1738,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "mention": "Mention",
+  "mention": "Mentionner",
   "@mention": {
     "type": "text",
     "placeholders": {}
@@ -2117,7 +2117,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noPublicRoomsFound": "Aucun salon privé n'a été trouvé...",
+  "noPublicRoomsFound": "Aucun salon public n'a été trouvé...",
   "@noPublicRoomsFound": {
     "type": "text",
     "placeholders": {}
