@@ -2289,5 +2289,20 @@
   "@addNewFriend": {
     "type": "text",
     "placeholders": {}
+  },
+  "publicGroups": "Herkese Açık Gruplar",
+  "@publicGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "people": "İnsanlar",
+  "@people": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chats": "Sohbetler",
+  "@chats": {
+    "type": "text",
+    "placeholders": {}
   }
 }
