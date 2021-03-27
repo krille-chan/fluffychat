@@ -2289,5 +2289,20 @@
   "@tapOnDeviceToVerify": {
     "type": "text",
     "placeholders": {}
+  },
+  "publicGroups": "Avalikud rühmad",
+  "@publicGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "people": "Inimesed",
+  "@people": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chats": "Vestlused",
+  "@chats": {
+    "type": "text",
+    "placeholders": {}
   }
 }
