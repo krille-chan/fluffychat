@@ -81,7 +81,7 @@ class App extends StatelessWidget {
                     Matrix.of(context).loginState == LoginState.logged &&
                             !{
                               '/',
-                              '/discover',
+                              '/search',
                               '/contacts',
                             }.contains(settings.name)
                         ? CupertinoPageRoute(builder: builder)

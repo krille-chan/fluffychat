@@ -11,6 +11,21 @@
     "type": "text",
     "placeholders": {}
   },
+  "chats": "Chats",
+  "@chats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "people": "People",
+  "@people": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicGroups": "Public Groups",
+  "@publicGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
   "acceptedTheInvitation": "{username} accepted the invitation",
   "@acceptedTheInvitation": {
     "type": "text",

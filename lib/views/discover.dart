@@ -5,7 +5,6 @@ import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/avatar.dart';
 import 'package:fluffychat/components/default_app_bar_search_field.dart';
-import 'package:fluffychat/components/default_bottom_navigation_bar.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:flutter/material.dart';
@@ -296,7 +295,6 @@ class _DiscoverState extends State<Discover> {
               }),
         ],
       ),
-      bottomNavigationBar: DefaultBottomNavigationBar(currentIndex: 2),
     );
   }
 }
