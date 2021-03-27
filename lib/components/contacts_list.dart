@@ -56,10 +56,6 @@ class _ContactsState extends State<ContactsList> {
             .toLowerCase()
             .contains(widget.searchController.text.toLowerCase()))
         .toList();
-    if (client.presences[client.userID]?.presence?.statusMsg?.isNotEmpty ??
-        false) {
-      contactList.insert(0, client.presences[client.userID]);
-    }
     return ListView.builder(
       itemCount: contactList.length,
       itemBuilder: (_, i) => _ContactListTile(contact: contactList[i]),
