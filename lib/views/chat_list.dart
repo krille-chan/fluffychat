@@ -4,11 +4,9 @@ import 'dart:io';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/components/avatar.dart';
 import 'package:fluffychat/components/connection_status_header.dart';
-import 'package:fluffychat/components/default_app_bar_search_field.dart';
-import 'package:fluffychat/components/default_bottom_navigation_bar.dart';
 import 'package:fluffychat/components/list_items/chat_list_item.dart';
+import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fluffychat/app_config.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -22,6 +20,7 @@ import '../utils/url_launcher.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 enum SelectMode { normal, share, select }
+enum PopupMenuAction { settings, invite, newGroup }
 
 class ChatList extends StatefulWidget {
   final String activeChat;
@@ -38,9 +37,6 @@ class _ChatListState extends State<ChatList> {
   StreamSubscription _intentFileStreamSubscription;
 
   AppBar appBar;
-
-  bool get searchMode => searchController.text?.isNotEmpty ?? false;
-  final TextEditingController searchController = TextEditingController();
   final _selectedRoomIds = <String>{};
 
   final ScrollController _scrollController = ScrollController();
@@ -172,8 +168,6 @@ class _ChatListState extends State<ChatList> {
     return true;
   }
 
-  final GlobalKey<DefaultAppBarSearchFieldState> _searchFieldKey = GlobalKey();
-
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<Object>(
@@ -187,24 +181,8 @@ class _ChatListState extends State<ChatList> {
           return Scaffold(
             appBar: appBar ??
                 AppBar(
-                  elevation: 1,
                   leading: selectMode == SelectMode.normal
-                      ? Center(
-                          child: InkWell(
-                            borderRadius: BorderRadius.circular(32),
-                            onTap: () => AdaptivePageLayout.of(context)
-                                .pushNamedAndRemoveUntilIsFirst('/settings'),
-                            child: FutureBuilder<Profile>(
-                              future: Matrix.of(context).client.ownProfile,
-                              builder: (_, snapshot) => Avatar(
-                                snapshot.data?.avatarUrl ?? Uri.parse(''),
-                                snapshot.data?.displayname ??
-                                    Matrix.of(context).client.userID.localpart,
-                                size: 32,
-                              ),
-                            ),
-                          ),
-                        )
+                      ? null
                       : IconButton(
                           tooltip: L10n.of(context).cancel,
                           icon: Icon(Icons.close_outlined),
@@ -259,24 +237,64 @@ class _ChatListState extends State<ChatList> {
                               IconButton(
                                 icon: Icon(Icons.search_outlined),
                                 tooltip: L10n.of(context).search,
-                                onPressed: Matrix.of(context)
-                                        .client
-                                        .rooms
-                                        .isEmpty
-                                    ? null
-                                    : () async {
-                                        await _scrollController.animateTo(
-                                          _scrollController
-                                              .position.minScrollExtent,
-                                          duration: Duration(milliseconds: 200),
-                                          curve: Curves.ease,
-                                        );
-                                        WidgetsBinding.instance
-                                            .addPostFrameCallback(
-                                          (_) => _searchFieldKey.currentState
-                                              .requestFocus(),
-                                        );
-                                      },
+                                onPressed: () => AdaptivePageLayout.of(context)
+                                    .pushNamed('/search'),
+                              ),
+                              PopupMenuButton<PopupMenuAction>(
+                                onSelected: (action) {
+                                  switch (action) {
+                                    case PopupMenuAction.settings:
+                                      AdaptivePageLayout.of(context)
+                                          .pushNamed('/settings');
+                                      break;
+                                    case PopupMenuAction.invite:
+                                      FluffyShare.share(
+                                          L10n.of(context).inviteText(
+                                              Matrix.of(context).client.userID,
+                                              'https://matrix.to/#/${Matrix.of(context).client.userID}'),
+                                          context);
+                                      break;
+                                    case PopupMenuAction.newGroup:
+                                      AdaptivePageLayout.of(context)
+                                          .pushNamed('/newgroup');
+                                      break;
+                                  }
+                                },
+                                itemBuilder: (_) => [
+                                  PopupMenuItem(
+                                    value: PopupMenuAction.newGroup,
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Icon(Icons.group_add_outlined),
+                                        SizedBox(width: 12),
+                                        Text(L10n.of(context).createNewGroup),
+                                      ],
+                                    ),
+                                  ),
+                                  PopupMenuItem(
+                                    value: PopupMenuAction.invite,
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Icon(Icons.share_outlined),
+                                        SizedBox(width: 12),
+                                        Text(L10n.of(context).inviteContact),
+                                      ],
+                                    ),
+                                  ),
+                                  PopupMenuItem(
+                                    value: PopupMenuAction.settings,
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Icon(Icons.settings_outlined),
+                                        SizedBox(width: 12),
+                                        Text(L10n.of(context).settings),
+                                      ],
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                   title: Text(selectMode == SelectMode.share
@@ -302,29 +320,20 @@ class _ChatListState extends State<ChatList> {
                           if (snapshot.hasData) {
                             var rooms = List<Room>.from(
                                 Matrix.of(context).client.rooms);
-                            rooms.removeWhere((room) =>
-                                room.lastEvent == null ||
-                                (searchMode &&
-                                    !room.displayname.toLowerCase().contains(
-                                        searchController.text.toLowerCase() ??
-                                            '')));
-                            if (rooms.isEmpty && (!searchMode)) {
+                            rooms.removeWhere((room) => room.lastEvent == null);
+                            if (rooms.isEmpty) {
                               return Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 mainAxisSize: MainAxisSize.min,
                                 children: <Widget>[
                                   Icon(
-                                    searchMode
-                                        ? Icons.search_outlined
-                                        : Icons.maps_ugc_outlined,
+                                    Icons.maps_ugc_outlined,
                                     size: 80,
                                     color: Colors.grey,
                                   ),
                                   Center(
                                     child: Text(
-                                      searchMode
-                                          ? L10n.of(context).noRoomsFound
-                                          : L10n.of(context).startYourFirstChat,
+                                      L10n.of(context).startYourFirstChat,
                                       textAlign: TextAlign.start,
                                       style: TextStyle(
                                         color: Colors.grey,
@@ -338,33 +347,19 @@ class _ChatListState extends State<ChatList> {
                             final totalCount = rooms.length;
                             return ListView.builder(
                               controller: _scrollController,
-                              itemCount: totalCount + 1,
-                              itemBuilder: (BuildContext context, int i) => i ==
-                                      0
-                                  ? Padding(
-                                      padding: EdgeInsets.all(12),
-                                      child: DefaultAppBarSearchField(
-                                        key: _searchFieldKey,
-                                        hintText: L10n.of(context).search,
-                                        prefixIcon: Icon(Icons.search_outlined),
-                                        searchController: searchController,
-                                        onChanged: (_) => setState(() => null),
-                                        padding: EdgeInsets.zero,
-                                      ),
-                                    )
-                                  : ChatListItem(
-                                      rooms[i - 1],
-                                      selected: _selectedRoomIds
-                                          .contains(rooms[i - 1].id),
-                                      onTap: selectMode == SelectMode.select
-                                          ? () =>
-                                              _toggleSelection(rooms[i - 1].id)
-                                          : null,
-                                      onLongPress: () =>
-                                          _toggleSelection(rooms[i - 1].id),
-                                      activeChat:
-                                          widget.activeChat == rooms[i - 1].id,
-                                    ),
+                              itemCount: totalCount,
+                              itemBuilder: (BuildContext context, int i) =>
+                                  ChatListItem(
+                                rooms[i],
+                                selected:
+                                    _selectedRoomIds.contains(rooms[i].id),
+                                onTap: selectMode == SelectMode.select
+                                    ? () => _toggleSelection(rooms[i].id)
+                                    : null,
+                                onLongPress: () =>
+                                    _toggleSelection(rooms[i].id),
+                                activeChat: widget.activeChat == rooms[i].id,
+                              ),
                             );
                           } else {
                             return Center(
@@ -382,9 +377,6 @@ class _ChatListState extends State<ChatList> {
                         .pushNamedAndRemoveUntilIsFirst('/newprivatechat'),
                     child: Icon(Icons.add_outlined),
                   )
-                : null,
-            bottomNavigationBar: selectMode == SelectMode.normal
-                ? DefaultBottomNavigationBar(currentIndex: 1)
                 : null,
           );
         });

@@ -99,7 +99,7 @@ class UrlLauncher {
         }
       } else {
         await AdaptivePageLayout.of(context)
-            .pushNamedAndRemoveUntilIsFirst('/discover/$roomIdOrAlias');
+            .pushNamedAndRemoveUntilIsFirst('/search/$roomIdOrAlias');
       }
     } else if (identityParts.primaryIdentifier.sigil == '@') {
       final user = User(

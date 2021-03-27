@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/avatar.dart';
+import 'package:fluffychat/components/contacts_list.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
@@ -108,7 +109,7 @@ class _NewPrivateChatState extends State<NewPrivateChat> {
               key: _formKey,
               child: TextFormField(
                 controller: controller,
-                autofocus: true,
+                //autofocus: true,
                 autocorrect: false,
                 onChanged: (String text) => searchUserWithCoolDown(context),
                 textInputAction: TextInputAction.go,
@@ -150,13 +151,35 @@ class _NewPrivateChatState extends State<NewPrivateChat> {
                             )
                           : Icon(Icons.account_circle_outlined),
                   prefixText: '@',
+                  suffixIcon: IconButton(
+                    onPressed: () => submitAction(context),
+                    icon: Icon(Icons.arrow_forward_outlined),
+                  ),
                   hintText: '${L10n.of(context).username.toLowerCase()}',
                 ),
               ),
             ),
           ),
           Divider(height: 1),
-          if (foundProfiles.isNotEmpty && !correctMxId)
+          ListTile(
+            leading: CircleAvatar(
+              radius: Avatar.defaultSize / 2,
+              foregroundColor: Theme.of(context).accentColor,
+              backgroundColor: Theme.of(context).secondaryHeaderColor,
+              child: Icon(Icons.share_outlined),
+            ),
+            onTap: () => FluffyShare.share(
+                L10n.of(context).inviteText(Matrix.of(context).client.userID,
+                    'https://matrix.to/#/${Matrix.of(context).client.userID}'),
+                context),
+            title: Text('${L10n.of(context).yourOwnUsername}:'),
+            subtitle: Text(
+              Matrix.of(context).client.userID,
+              style: TextStyle(color: Theme.of(context).accentColor),
+            ),
+          ),
+          Divider(height: 1),
+          if (foundProfiles.isNotEmpty)
             Expanded(
               child: ListView.builder(
                 itemCount: foundProfiles.length,
@@ -190,37 +213,11 @@ class _NewPrivateChatState extends State<NewPrivateChat> {
                 },
               ),
             ),
-          if (foundProfiles.isEmpty || correctMxId)
-            ListTile(
-              trailing: Icon(Icons.share_outlined),
-              onTap: () => FluffyShare.share(
-                  L10n.of(context).inviteText(Matrix.of(context).client.userID,
-                      'https://matrix.to/#/${Matrix.of(context).client.userID}'),
-                  context),
-              title: Text(
-                '${L10n.of(context).yourOwnUsername}:',
-                style: TextStyle(
-                  fontStyle: FontStyle.italic,
-                ),
-              ),
-              subtitle: Text(
-                Matrix.of(context).client.userID,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Theme.of(context).primaryColor,
-                ),
-              ),
-            ),
-          Divider(height: 1),
-          if (foundProfiles.isEmpty || correctMxId)
+          if (foundProfiles.isEmpty)
             Expanded(
-              child: Image.asset('assets/private_chat_wallpaper.png'),
+              child: ContactsList(searchController: controller),
             ),
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => submitAction(context),
-        child: Icon(Icons.arrow_forward_outlined),
       ),
     );
   }

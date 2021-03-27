@@ -5,8 +5,6 @@ import 'package:fluffychat/views/archive.dart';
 import 'package:fluffychat/views/chat.dart';
 import 'package:fluffychat/views/chat_details.dart';
 import 'package:fluffychat/views/chat_encryption_settings.dart';
-import 'package:fluffychat/views/contacts.dart';
-import 'package:fluffychat/views/discover.dart';
 import 'package:fluffychat/views/chat_list.dart';
 import 'package:fluffychat/views/chat_permissions_settings.dart';
 import 'package:fluffychat/views/empty_page.dart';
@@ -17,6 +15,7 @@ import 'package:fluffychat/views/log_view.dart';
 import 'package:fluffychat/views/login.dart';
 import 'package:fluffychat/views/new_group.dart';
 import 'package:fluffychat/views/new_private_chat.dart';
+import 'package:fluffychat/views/search_view.dart';
 import 'package:fluffychat/views/settings.dart';
 import 'package:fluffychat/views/settings_3pid.dart';
 import 'package:fluffychat/views/settings_devices.dart';
@@ -142,22 +141,16 @@ class FluffyRoutes {
             leftView: (_) => ChatList(),
             mainView: (_) => NewPrivateChat(),
           );
-        case 'contacts':
-          return ViewData(
-            mainView: (_) => Contacts(),
-            emptyView: (_) =>
-                activeRoomId != null ? Chat(activeRoomId) : EmptyPage(),
-          );
-        case 'discover':
+        case 'search':
           if (parts.length == 3) {
             return ViewData(
-              mainView: (_) => Discover(alias: parts[2]),
+              mainView: (_) => SearchView(alias: parts[2]),
               emptyView: (_) =>
                   activeRoomId != null ? Chat(activeRoomId) : EmptyPage(),
             );
           }
           return ViewData(
-            mainView: (_) => Discover(),
+            mainView: (_) => SearchView(),
             emptyView: (_) =>
                 activeRoomId != null ? Chat(activeRoomId) : EmptyPage(),
           );
