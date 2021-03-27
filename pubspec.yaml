@@ -24,7 +24,6 @@ dependencies:
   fcm_shared_isolate:
     git:
       url: https://gitlab.com/famedly/libraries/fcm_shared_isolate.git
-      ref: ios
 
   cupertino_icons: any
   localstorage: ^3.0.6+9
@@ -32,7 +31,6 @@ dependencies:
   image_picker: ^0.6.7+21
   url_launcher: ^5.7.10
   cached_network_image: ^2.5.0
-  firebase_messaging: any
   flutter_local_notifications: ^3.0.3
   adaptive_page_layout: ^0.1.6
   provider: ^4.3.3

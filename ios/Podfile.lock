@@ -36,24 +36,13 @@ PODS:
     - SwiftyGif
   - emoji_picker (0.0.3):
     - Flutter
-  - fcm_shared_isolate (0.0.1):
-    - Firebase/Messaging
-    - Flutter
   - file_picker (0.0.1):
     - DKImagePickerController/PhotoGallery
     - Flutter
   - Firebase/CoreOnly (6.33.0):
     - FirebaseCore (= 6.10.3)
-  - Firebase/Messaging (6.33.0):
-    - Firebase/CoreOnly
-    - FirebaseMessaging (~> 4.7.0)
   - firebase_core (0.5.3):
     - Firebase/CoreOnly (~> 6.33.0)
-    - Flutter
-  - firebase_messaging (7.0.3):
-    - Firebase/CoreOnly (~> 6.33.0)
-    - Firebase/Messaging (~> 6.33.0)
-    - firebase_core
     - Flutter
   - FirebaseCore (6.10.3):
     - FirebaseCoreDiagnostics (~> 1.6)
@@ -64,24 +53,6 @@ PODS:
     - GoogleUtilities/Environment (~> 6.7)
     - GoogleUtilities/Logger (~> 6.7)
     - nanopb (~> 1.30906.0)
-  - FirebaseInstallations (1.7.0):
-    - FirebaseCore (~> 6.10)
-    - GoogleUtilities/Environment (~> 6.7)
-    - GoogleUtilities/UserDefaults (~> 6.7)
-    - PromisesObjC (~> 1.2)
-  - FirebaseInstanceID (4.8.0):
-    - FirebaseCore (~> 6.10)
-    - FirebaseInstallations (~> 1.6)
-    - GoogleUtilities/Environment (~> 6.7)
-    - GoogleUtilities/UserDefaults (~> 6.7)
-  - FirebaseMessaging (4.7.1):
-    - FirebaseCore (~> 6.10)
-    - FirebaseInstanceID (~> 4.7)
-    - GoogleUtilities/AppDelegateSwizzler (~> 6.7)
-    - GoogleUtilities/Environment (~> 6.7)
-    - GoogleUtilities/Reachability (~> 6.7)
-    - GoogleUtilities/UserDefaults (~> 6.7)
-    - Protobuf (>= 3.9.2, ~> 3.9)
   - Flutter (1.0.0)
   - flutter_keyboard_visibility (0.0.1):
     - Flutter
@@ -99,23 +70,10 @@ PODS:
   - FMDB/standard (2.7.5)
   - GoogleDataTransport (7.5.1):
     - nanopb (~> 1.30906.0)
-  - GoogleUtilities/AppDelegateSwizzler (6.7.2):
-    - GoogleUtilities/Environment
-    - GoogleUtilities/Logger
-    - GoogleUtilities/Network
   - GoogleUtilities/Environment (6.7.2):
     - PromisesObjC (~> 1.2)
   - GoogleUtilities/Logger (6.7.2):
     - GoogleUtilities/Environment
-  - GoogleUtilities/Network (6.7.2):
-    - GoogleUtilities/Logger
-    - "GoogleUtilities/NSData+zlib"
-    - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (6.7.2)"
-  - GoogleUtilities/Reachability (6.7.2):
-    - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (6.7.2):
-    - GoogleUtilities/Logger
   - image_picker (0.0.1):
     - Flutter
   - nanopb (1.30906.0):
@@ -134,7 +92,6 @@ PODS:
   - "permission_handler (5.0.1+1)":
     - Flutter
   - PromisesObjC (1.2.12)
-  - Protobuf (3.14.0)
   - receive_sharing_intent (0.0.1):
     - Flutter
   - SDWebImage (5.10.4):
@@ -161,10 +118,8 @@ DEPENDENCIES:
   - android_path_provider (from `.symlinks/plugins/android_path_provider/ios`)
   - disk_space (from `.symlinks/plugins/disk_space/ios`)
   - emoji_picker (from `.symlinks/plugins/emoji_picker/ios`)
-  - fcm_shared_isolate (from `.symlinks/plugins/fcm_shared_isolate/ios`)
   - file_picker (from `.symlinks/plugins/file_picker/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
-  - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
   - Flutter (from `Flutter`)
   - flutter_keyboard_visibility (from `.symlinks/plugins/flutter_keyboard_visibility/ios`)
   - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
@@ -191,15 +146,11 @@ SPEC REPOS:
     - Firebase
     - FirebaseCore
     - FirebaseCoreDiagnostics
-    - FirebaseInstallations
-    - FirebaseInstanceID
-    - FirebaseMessaging
     - FMDB
     - GoogleDataTransport
     - GoogleUtilities
     - nanopb
     - PromisesObjC
-    - Protobuf
     - SDWebImage
     - SQLCipher
     - SwiftyGif
@@ -212,14 +163,10 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/disk_space/ios"
   emoji_picker:
     :path: ".symlinks/plugins/emoji_picker/ios"
-  fcm_shared_isolate:
-    :path: ".symlinks/plugins/fcm_shared_isolate/ios"
   file_picker:
     :path: ".symlinks/plugins/file_picker/ios"
   firebase_core:
     :path: ".symlinks/plugins/firebase_core/ios"
-  firebase_messaging:
-    :path: ".symlinks/plugins/firebase_messaging/ios"
   Flutter:
     :path: Flutter
   flutter_keyboard_visibility:
@@ -261,16 +208,11 @@ SPEC CHECKSUMS:
   DKImagePickerController: b5eb7f7a388e4643264105d648d01f727110fc3d
   DKPhotoGallery: fdfad5125a9fdda9cc57df834d49df790dbb4179
   emoji_picker: 0e868059aa18f9473d234f3d0701fbd4d5fd310c
-  fcm_shared_isolate: c322d17ae6fa396b68f5cb2f2f0fd04ee26a56e6
   file_picker: 3e6c3790de664ccf9b882732d9db5eaf6b8d4eb1
   Firebase: 8db6f2d1b2c5e2984efba4949a145875a8f65fe5
   firebase_core: 5d6a02f3d85acd5f8321c2d6d62877626a670659
-  firebase_messaging: 0aea2cd5885b65e19ede58ee3507f485c992cc75
   FirebaseCore: d889d9e12535b7f36ac8bfbf1713a0836a3012cd
   FirebaseCoreDiagnostics: 770ac5958e1372ce67959ae4b4f31d8e127c3ac1
-  FirebaseInstallations: 466c7b4d1f58fe16707693091da253726a731ed2
-  FirebaseInstanceID: bd3ffc24367f901a43c063b36c640b345a4a5dd1
-  FirebaseMessaging: 5eca4ef173de76253352511aafef774caa1cba2a
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
   flutter_keyboard_visibility: 0339d06371254c3eb25eeb90ba8d17dca8f9c069
   flutter_local_notifications: 0c0b1ae97e741e1521e4c1629a459d04b9aec743
@@ -288,7 +230,6 @@ SPEC CHECKSUMS:
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
   permission_handler: eac8e15b4a1a3fba55b761d19f3f4e6b005d15b6
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
-  Protobuf: 0cde852566359049847168e51bd1c690e0f70056
   receive_sharing_intent: c0d87310754e74c0f9542947e7cbdf3a0335a3b1
   SDWebImage: c666b97e1fa9c64b4909816a903322018f0a9c84
   share: 0b2c3e82132f5888bccca3351c504d0003b3b410

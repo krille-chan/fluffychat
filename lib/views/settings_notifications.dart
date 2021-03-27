@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:open_noti_settings/open_noti_settings.dart';
+import '../utils/localized_exception_extension.dart';
 
 import '../components/matrix.dart';
 
@@ -163,7 +164,43 @@ class SettingsNotifications extends StatelessWidget {
                       onChanged: (bool enabled) =>
                           _setNotificationSetting(context, item, enabled),
                     ),
-                }
+                },
+                Divider(thickness: 1),
+                ListTile(
+                  title: Text(
+                    L10n.of(context).devices,
+                    style: TextStyle(
+                      color: Theme.of(context).accentColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                FutureBuilder<List<Pusher>>(
+                  future: Matrix.of(context).client.requestPushers(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasError) {
+                      Center(
+                        child: Text(
+                          snapshot.error.toLocalizedString(context),
+                        ),
+                      );
+                    }
+                    if (!snapshot.hasData) {
+                      Center(child: CircularProgressIndicator());
+                    }
+                    final pushers = snapshot.data;
+                    return ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: pushers.length,
+                      itemBuilder: (_, i) => ListTile(
+                        title: Text(
+                            '${pushers[i].appDisplayName} - ${pushers[i].appId}'),
+                        subtitle: Text(pushers[i].data.url.toString()),
+                      ),
+                    );
+                  },
+                ),
               ],
             );
           }),

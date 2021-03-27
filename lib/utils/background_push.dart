@@ -25,7 +25,6 @@ import 'dart:ui';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -76,17 +75,19 @@ class BackgroundPush {
     onRoomSync ??= client.onSync.stream
         .where((s) => s.hasRoomUpdate)
         .listen((s) => _onClearingPush(getFromServer: false));
-    _firebaseMessaging.setListeners(
-      onMessage: _onFcmMessage,
-      onNewToken: _newFcmToken,
-    );
-    UnifiedPush.initializeWithReceiver(
-      onNewEndpoint: _newUpEndpoint,
-      onRegistrationFailed: _upUnregistered,
-      onRegistrationRefused: _upUnregistered,
-      onUnregistered: _upUnregistered,
-      onMessage: _onUpMessage,
-    );
+    if (Platform.isAndroid) {
+      _fcmSharedIsolate.setListeners(
+        onMessage: _onFcmMessage,
+        onNewToken: _newFcmToken,
+      );
+      UnifiedPush.initializeWithReceiver(
+        onNewEndpoint: _newUpEndpoint,
+        onRegistrationFailed: _upUnregistered,
+        onRegistrationRefused: _upUnregistered,
+        onUnregistered: _upUnregistered,
+        onMessage: _onUpMessage,
+      );
+    }
   }
 
   factory BackgroundPush.clientOnly(FluffyClient client) {
@@ -117,7 +118,7 @@ class BackgroundPush {
     setupPush();
   }
 
-  final _firebaseMessaging = FcmSharedIsolate();
+  final _fcmSharedIsolate = FcmSharedIsolate();
 
   StreamSubscription<LoginState> onLogin;
   StreamSubscription<SyncUpdate> onRoomSync;
@@ -128,16 +129,6 @@ class BackgroundPush {
     Set<String> oldTokens,
     bool useDeviceSpecificAppId = false,
   }) async {
-    if (Platform.isIOS) {
-      Logs().v('Request notification permissions on iOS');
-      await FirebaseMessaging().requestNotificationPermissions(
-        IosNotificationSettings(
-          sound: true,
-          alert: true,
-          badge: true,
-        ),
-      );
-    }
     final clientName = PlatformInfos.clientName;
     oldTokens ??= <String>{};
     final pushers = await client.requestPushers().catchError((e) {
@@ -170,11 +161,14 @@ class BackgroundPush {
               AppConfig.pushNotificationsPusherFormat) {
         Logs().i('[Push] Pusher already set');
       } else {
+        Logs().i('Need to set new pusher');
         oldTokens.add(token);
         if (client.isLogged()) {
           setNewPusher = true;
         }
       }
+    } else {
+      Logs().w('[Push] Missing required push credentials');
     }
     for (final pusher in pushers) {
       if ((token != null &&
@@ -266,7 +260,8 @@ class BackgroundPush {
   Future<void> setupFirebase() async {
     if (_fcmToken?.isEmpty ?? true) {
       try {
-        _fcmToken = await _firebaseMessaging.getToken();
+        _fcmToken = await _fcmSharedIsolate.getToken();
+        Logs().v('[Push] Got token: $_fcmToken');
       } catch (e, s) {
         Logs().e('[Push] cannot get token', e, s);
         await _noFcmWarning();
@@ -326,6 +321,7 @@ class BackgroundPush {
   }
 
   Future<void> _onFcmMessage(Map<dynamic, dynamic> message) async {
+    Logs().v('[Push] Foreground message received');
     Map<String, dynamic> data;
     try {
       data = Map<String, dynamic>.from(message['data'] ?? message);
@@ -363,7 +359,8 @@ class BackgroundPush {
     Logs().i('[Push] UnifiedPush using endpoint ' + endpoint);
     final oldTokens = <String>{};
     try {
-      final fcmToken = await _firebaseMessaging.getToken();
+      final fcmToken = await _fcmSharedIsolate.getToken();
+      Logs().v('[Push] New token: $fcmToken');
       oldTokens.add(fcmToken);
     } catch (_) {}
     await setupPusher(

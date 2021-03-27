@@ -238,8 +238,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: ios
-      resolved-ref: "86519130e5e122a20fdd31de34013d62a88f106d"
+      ref: HEAD
+      resolved-ref: "19f36c2ad7df214cae34c870f3888e24dac90b86"
       url: "https://gitlab.com/famedly/libraries/fcm_shared_isolate.git"
     source: git
     version: "0.0.1"
@@ -299,13 +299,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.1+1"
-  firebase_messaging:
-    dependency: "direct main"
-    description:
-      name: firebase_messaging
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "7.0.3"
   flushbar:
     dependency: "direct main"
     description:
