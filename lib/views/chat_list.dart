@@ -20,7 +20,7 @@ import '../utils/url_launcher.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 enum SelectMode { normal, share, select }
-enum PopupMenuAction { settings, invite, newGroup }
+enum PopupMenuAction { settings, invite, newGroup, setStatus }
 
 class ChatList extends StatefulWidget {
   final String activeChat;
@@ -151,6 +151,29 @@ class _ChatListState extends State<ChatList> {
     setState(() => null);
   }
 
+  void _setStatus(BuildContext context) async {
+    final input = await showTextInputDialog(
+        context: context,
+        title: L10n.of(context).setStatus,
+        okLabel: L10n.of(context).ok,
+        cancelLabel: L10n.of(context).cancel,
+        useRootNavigator: false,
+        textFields: [
+          DialogTextField(
+            hintText: L10n.of(context).statusExampleMessage,
+          ),
+        ]);
+    if (input == null) return;
+    await showFutureLoadingDialog(
+      context: context,
+      future: () => Matrix.of(context).client.sendPresence(
+            Matrix.of(context).client.userID,
+            PresenceType.online,
+            statusMsg: input.single,
+          ),
+    );
+  }
+
   Future<void> _archiveSelectedRooms(BuildContext context) async {
     final client = Matrix.of(context).client;
     while (_selectedRoomIds.isNotEmpty) {
@@ -243,6 +266,9 @@ class _ChatListState extends State<ChatList> {
                               PopupMenuButton<PopupMenuAction>(
                                 onSelected: (action) {
                                   switch (action) {
+                                    case PopupMenuAction.setStatus:
+                                      _setStatus(context);
+                                      break;
                                     case PopupMenuAction.settings:
                                       AdaptivePageLayout.of(context)
                                           .pushNamed('/settings');
@@ -261,6 +287,17 @@ class _ChatListState extends State<ChatList> {
                                   }
                                 },
                                 itemBuilder: (_) => [
+                                  PopupMenuItem(
+                                    value: PopupMenuAction.setStatus,
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Icon(Icons.edit_outlined),
+                                        SizedBox(width: 12),
+                                        Text(L10n.of(context).setStatus),
+                                      ],
+                                    ),
+                                  ),
                                   PopupMenuItem(
                                     value: PopupMenuAction.newGroup,
                                     child: Row(
