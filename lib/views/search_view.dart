@@ -357,11 +357,17 @@ class _SearchViewState extends State<SearchView> {
                     itemBuilder: (BuildContext context, int i) {
                       var foundProfile = foundProfiles[i];
                       return ListTile(
-                        onTap: () {
-                          setState(() {
-                            _controller.text = currentSearchTerm =
-                                foundProfile.userId.substring(1);
-                          });
+                        onTap: () async {
+                          final roomID = await showFutureLoadingDialog(
+                            context: context,
+                            future: () => Matrix.of(context)
+                                .client
+                                .startDirectChat(foundProfile.userId),
+                          );
+                          if (roomID.error == null) {
+                            await AdaptivePageLayout.of(context)
+                                .popAndPushNamed('/rooms/${roomID.result}');
+                          }
                         },
                         leading: Avatar(
                           foundProfile.avatarUrl,
