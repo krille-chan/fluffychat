@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:fluffychat/components/dialogs/permission_slider_dialog.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
@@ -149,14 +150,25 @@ class ChatPermissionsSettings extends StatelessWidget {
                                       fontWeight: FontWeight.bold,
                                       color: Theme.of(context).accentColor),
                                 ),
-                          onTap: roomVersion == shouldHaveVersion
-                              ? null
-                              : () => showFutureLoadingDialog(
-                                    context: context,
-                                    future: () => room.client
-                                        .upgradeRoom(roomId, shouldHaveVersion),
-                                  ).then((_) =>
-                                      AdaptivePageLayout.of(context).pop()),
+                          onTap: () async {
+                            final newVersion =
+                                await showConfirmationDialog<String>(
+                              context: context,
+                              title: 'Choose Room Version',
+                              actions: snapshot
+                                  .data.mRoomVersions.available.entries
+                                  .where((r) => r.key != roomVersion)
+                                  .map((version) => AlertDialogAction(
+                                      key: version.key,
+                                      label:
+                                          '${version.key} (${version.value.toString().split('.').last})')),
+                            );
+                            await showFutureLoadingDialog(
+                              context: context,
+                              future: () =>
+                                  room.client.upgradeRoom(roomId, newVersion),
+                            ).then((_) => AdaptivePageLayout.of(context).pop());
+                          },
                         );
                       },
                     ),
