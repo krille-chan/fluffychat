@@ -888,7 +888,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "makeAModerator": "Promouvoir comme modérateur·ice",
+  "makeAModerator": "Promouvoir comme modérateur·rice",
   "@makeAModerator": {
     "type": "text",
     "placeholders": {}
@@ -908,7 +908,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "moderator": "Modérateur/trice",
+  "moderator": "Modérateur·rice",
   "@moderator": {
     "type": "text",
     "placeholders": {}
