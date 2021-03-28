@@ -2280,5 +2280,20 @@
   "@tapOnDeviceToVerify": {
     "type": "text",
     "placeholders": {}
+  },
+  "publicGroups": "Publieke Groepen",
+  "@publicGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "people": "Mensen",
+  "@people": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chats": "Chats",
+  "@chats": {
+    "type": "text",
+    "placeholders": {}
   }
 }
