@@ -267,6 +267,7 @@ upload-windows:
 
 upload-playstore:
   extends: .release
+  before_script: [./scripts/prepare-android-release.sh]
   script: [./scripts/release-playstore.sh]
   resource_group: playstore_release
 
