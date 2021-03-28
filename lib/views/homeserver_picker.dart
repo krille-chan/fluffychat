@@ -104,9 +104,9 @@ class _HomeserverPickerState extends State<HomeserverPicker> {
           .any((flow) => flow.type == AuthenticationTypes.sso)) {
         final redirectUrl = kIsWeb
             ? html.window.location.href
-            : '${Uri.encodeQueryComponent(AppConfig.appOpenUrlScheme.toLowerCase() + '://sso')}';
+            : AppConfig.appOpenUrlScheme.toLowerCase() + '://sso';
         await launch(
-            '${Matrix.of(context).client.homeserver?.toString()}/_matrix/client/r0/login/sso/redirect?redirectUrl=$redirectUrl');
+            '${Matrix.of(context).client.homeserver?.toString()}/_matrix/client/r0/login/sso/redirect?redirectUrl=${Uri.encodeQueryComponent(redirectUrl)}');
       }
     } catch (e) {
       // ignore: unawaited_futures
