@@ -2289,5 +2289,20 @@
   "@tapOnDeviceToVerify": {
     "type": "text",
     "placeholders": {}
+  },
+  "publicGroups": "Grupos públicos",
+  "@publicGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "people": "Persoas",
+  "@people": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chats": "Chats",
+  "@chats": {
+    "type": "text",
+    "placeholders": {}
   }
 }
