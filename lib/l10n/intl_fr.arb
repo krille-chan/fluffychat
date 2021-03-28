@@ -908,7 +908,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "moderator": "Modérateur·ice",
+  "moderator": "Modérateur/trice",
   "@moderator": {
     "type": "text",
     "placeholders": {}
@@ -963,7 +963,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "Fluffychat ne prend pas encore en charge l'activation de la sauvegarde des clés en ligne. Veuillez l'activer à partir d'Element.",
+  "noMegolmBootstrap": "Veuillez plutôt activer la sauvegarde des clés en ligne à partir d'Element.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -1392,7 +1392,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "tapToShowMenu": "Tapez pour afficher le menu",
+  "tapToShowMenu": "Appuyez pour afficher le menu",
   "@tapToShowMenu": {
     "type": "text",
     "placeholders": {}
@@ -2287,6 +2287,21 @@
   },
   "tapOnDeviceToVerify": "Appuyez sur un appareil pour le vérifier",
   "@tapOnDeviceToVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicGroups": "Groupes publics",
+  "@publicGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "people": "Personnes",
+  "@people": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chats": "Discussions",
+  "@chats": {
     "type": "text",
     "placeholders": {}
   }
