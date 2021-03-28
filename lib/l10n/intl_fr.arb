@@ -87,7 +87,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSCache": "Veuillez saisir votre phrase de passe stockée de manière sécurisée ou votre clé de récupération pour mettre les clés en cache.",
+  "askSSSSCache": "Veuillez saisir la phrase de passe de votre trousseau sécurisé ou votre clé de récupération pour mettre vos clés en cache.",
   "@askSSSSCache": {
     "type": "text",
     "placeholders": {}
@@ -2130,7 +2130,7 @@
       "supportedVersions": {}
     }
   },
-  "badServerVersionsException": "Le serveur d'accueil prend en charge les versions de la spécification Matrix :\n{serverVersions}\nMais cette application ne prend en charge que {supportedVersions}",
+  "badServerVersionsException": "Le serveur d'accueil prend en charge les versions des spécifications :\n{serverVersions}\nMais cette application ne prend en charge que {supportedVersions}",
   "@badServerVersionsException": {
     "type": "text",
     "placeholders": {
