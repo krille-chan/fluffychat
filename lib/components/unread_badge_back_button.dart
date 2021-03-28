@@ -34,13 +34,16 @@ class UnreadBadgeBackButton extends StatelessWidget {
                         padding: EdgeInsets.all(4),
                         margin: EdgeInsets.only(bottom: 4, right: 8),
                         decoration: BoxDecoration(
-                          color: Colors.red,
+                          color: Theme.of(context).primaryColor,
                           borderRadius:
                               BorderRadius.circular(AppConfig.borderRadius),
                         ),
                         child: Text(
                           '$unreadCount',
-                          style: TextStyle(fontSize: 12),
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     )
