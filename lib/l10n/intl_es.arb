@@ -23,7 +23,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "accountInformation": "Informaciones de la cuenta",
+  "accountInformation": "Información de la cuenta",
   "@accountInformation": {
     "type": "text",
     "placeholders": {}
@@ -1777,5 +1777,23 @@
   "@addEmail": {
     "type": "text",
     "placeholders": {}
+  },
+  "pleaseFollowInstructionsOnWeb": "Por favor, siga las instrucciones del sitio web y presione \"siguiente\".",
+  "@pleaseFollowInstructionsOnWeb": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSureYouWantToLogout": "¿Estás seguro de que quieres cerrar sesión?",
+  "@areYouSureYouWantToLogout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "badServerVersionsException": "El servidor soporta las siguientes versiones de la especificación:\n{serverVersions}\npero esta aplicación sólo soporta las versiones {supportedVersions}",
+  "@badServerVersionsException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
   }
 }
