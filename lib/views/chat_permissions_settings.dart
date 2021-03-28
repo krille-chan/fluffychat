@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:fluffychat/components/dialogs/permission_slider_dialog.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/components/matrix.dart';
@@ -123,6 +124,43 @@ class ChatPermissionsSettings extends StatelessWidget {
                             context, entry.key, entry.value,
                             category: 'events'),
                       ),
+                  if (room.ownPowerLevel >= 100) ...{
+                    Divider(thickness: 1),
+                    FutureBuilder<ServerCapabilities>(
+                      future: room.client.requestServerCapabilities(),
+                      builder: (context, snapshot) {
+                        if (!snapshot.hasData) {
+                          return Center(child: CircularProgressIndicator());
+                        }
+                        final String roomVersion = room
+                                .getState(EventTypes.RoomCreate)
+                                .content['room_version'] ??
+                            '1';
+                        final shouldHaveVersion =
+                            snapshot.data.mRoomVersions.defaultVersion;
+
+                        return ListTile(
+                          title: Text('Current room version: $roomVersion'),
+                          subtitle: roomVersion == shouldHaveVersion
+                              ? null
+                              : Text(
+                                  'Upgrade to $shouldHaveVersion available!',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Theme.of(context).accentColor),
+                                ),
+                          onTap: roomVersion == shouldHaveVersion
+                              ? null
+                              : () => showFutureLoadingDialog(
+                                    context: context,
+                                    future: () => room.client
+                                        .upgradeRoom(roomId, shouldHaveVersion),
+                                  ).then((_) =>
+                                      AdaptivePageLayout.of(context).pop()),
+                        );
+                      },
+                    ),
+                  },
                 ],
               ),
             ],

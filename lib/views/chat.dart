@@ -698,6 +698,36 @@ class _ChatState extends State<Chat> {
             child: Column(
               children: <Widget>[
                 ConnectionStatusHeader(),
+                if (room.getState(EventTypes.RoomTombstone) != null)
+                  Container(
+                    height: 56,
+                    color: Theme.of(context).secondaryHeaderColor,
+                    child: ListTile(
+                      leading: Icon(Icons.upgrade_outlined),
+                      title: Text(room
+                          .getState(EventTypes.RoomTombstone)
+                          .parsedTombstoneContent
+                          .body),
+                      onTap: () async {
+                        final result = await showFutureLoadingDialog(
+                          context: context,
+                          future: () => room.client.joinRoom(room
+                              .getState(EventTypes.RoomTombstone)
+                              .parsedTombstoneContent
+                              .replacementRoom),
+                        );
+                        await showFutureLoadingDialog(
+                          context: context,
+                          future: () => room.leave(),
+                        );
+                        if (result.error == null) {
+                          await AdaptivePageLayout.of(context)
+                              .pushNamedAndRemoveUntilIsFirst(
+                                  '/rooms/${result.result}');
+                        }
+                      },
+                    ),
+                  ),
                 Expanded(
                   child: FutureBuilder<bool>(
                     future: getTimeline(context),
