@@ -92,12 +92,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSSign": "Pour pouvoir faire signer l'autre personne, veuillez entrer votre phrase de passe stockée de manière sécurisée ou votre clé de récupération.",
+  "askSSSSSign": "Pour pouvoir faire signer l'autre personne, veuillez entrer la phrase de passe de votre trousseau sécurisé ou votre clé de récupération.",
   "@askSSSSSign": {
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSVerify": "Veuillez saisir votre phrase de passe stockée de manière sécurisée ou votre clé de récupération pour vérifier votre session.",
+  "askSSSSVerify": "Veuillez saisir la phrase de passe de votre trousseau sécurisé ou votre clé de récupération pour vérifier votre session.",
   "@askSSSSVerify": {
     "type": "text",
     "placeholders": {}
@@ -711,7 +711,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "ignoreListDescription": "Vous pouvez ignorer les utilisateur·ices qui vous dérangent. Vous ne pourrez pas recevoir de messages ou d'invitations à participer à un salon de discussion de la part des utilisateur·ices figurant sur votre liste personnelle.",
+  "ignoreListDescription": "Vous pouvez ignorer les utilisateur·ices qui vous dérangent en les mettant dans votre liste à ignorer personnelle. Vous ne recevrez plus de messages ou d'invitations à participer à un salon de discussion de la part des utilisateur·ices figurant sur cette liste.",
   "@ignoreListDescription": {
     "type": "text",
     "placeholders": {}
@@ -1323,7 +1323,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "setStatus": "Définir un statut",
+  "setStatus": "Définir le statut",
   "@setStatus": {
     "type": "text",
     "placeholders": {}
