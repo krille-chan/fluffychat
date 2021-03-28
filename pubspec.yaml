@@ -24,7 +24,8 @@ dependencies:
   fcm_shared_isolate:
     git:
       url: https://gitlab.com/famedly/libraries/fcm_shared_isolate.git
-
+      ref: ios
+  firebase_messaging: any
   cupertino_icons: any
   localstorage: ^3.0.6+9
   file_picker_cross: ^4.2.8

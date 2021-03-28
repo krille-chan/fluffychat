@@ -12,6 +12,7 @@ import 'package:fluffychat/components/avatar.dart';
 import 'package:fluffychat/components/chat_settings_popup_menu.dart';
 import 'package:fluffychat/components/connection_status_header.dart';
 import 'package:fluffychat/components/dialogs/recording_dialog.dart';
+import 'package:fluffychat/components/unread_badge_back_button.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
@@ -529,6 +530,7 @@ class _ChatState extends State<Chat> {
     if (room.membership == Membership.invite) {
       showFutureLoadingDialog(context: context, future: () => room.join());
     }
+
     return Scaffold(
       appBar: AppBar(
         leading: selectMode
@@ -537,7 +539,9 @@ class _ChatState extends State<Chat> {
                 onPressed: () => setState(() => selectedEvents.clear()),
                 tooltip: L10n.of(context).close,
               )
-            : null,
+            : AdaptivePageLayout.of(context).columnMode(context)
+                ? null
+                : UnreadBadgeBackButton(roomId: widget.id),
         titleSpacing:
             AdaptivePageLayout.of(context).columnMode(context) ? null : 0,
         title: selectedEvents.isEmpty

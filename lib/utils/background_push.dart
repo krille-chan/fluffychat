@@ -34,7 +34,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_gen/gen_l10n/l10n_en.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:path_provider/path_provider.dart';
-
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'platform_infos.dart';
 import '../app_config.dart';
 import '../config/setting_keys.dart';
@@ -75,11 +75,11 @@ class BackgroundPush {
     onRoomSync ??= client.onSync.stream
         .where((s) => s.hasRoomUpdate)
         .listen((s) => _onClearingPush(getFromServer: false));
+    _fcmSharedIsolate.setListeners(
+      onMessage: _onFcmMessage,
+      onNewToken: _newFcmToken,
+    );
     if (Platform.isAndroid) {
-      _fcmSharedIsolate.setListeners(
-        onMessage: _onFcmMessage,
-        onNewToken: _newFcmToken,
-      );
       UnifiedPush.initializeWithReceiver(
         onNewEndpoint: _newUpEndpoint,
         onRegistrationFailed: _upUnregistered,
@@ -129,6 +129,14 @@ class BackgroundPush {
     Set<String> oldTokens,
     bool useDeviceSpecificAppId = false,
   }) async {
+    if (PlatformInfos.isIOS) {
+      FirebaseMessaging()
+          .requestNotificationPermissions(IosNotificationSettings(
+        sound: true,
+        alert: true,
+        badge: true,
+      ));
+    }
     final clientName = PlatformInfos.clientName;
     oldTokens ??= <String>{};
     final pushers = await client.requestPushers().catchError((e) {
@@ -261,7 +269,6 @@ class BackgroundPush {
     if (_fcmToken?.isEmpty ?? true) {
       try {
         _fcmToken = await _fcmSharedIsolate.getToken();
-        Logs().v('[Push] Got token: $_fcmToken');
       } catch (e, s) {
         Logs().e('[Push] cannot get token', e, s);
         await _noFcmWarning();
@@ -360,7 +367,6 @@ class BackgroundPush {
     final oldTokens = <String>{};
     try {
       final fcmToken = await _fcmSharedIsolate.getToken();
-      Logs().v('[Push] New token: $fcmToken');
       oldTokens.add(fcmToken);
     } catch (_) {}
     await setupPusher(
