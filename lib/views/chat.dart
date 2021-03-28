@@ -663,7 +663,7 @@ class _ChatState extends State<Chat> {
                 ),
               ]
             : <Widget>[
-                if (room.canSendDefaultMessages)
+                if (room.canSendDefaultStates)
                   IconButton(
                     tooltip: L10n.of(context).videoCall,
                     icon: Icon(Icons.video_call_outlined),
