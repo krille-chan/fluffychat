@@ -2274,5 +2274,20 @@
       "serverVersions": {},
       "supportedVersions": {}
     }
+  },
+  "publicGroups": "Publikaj grupoj",
+  "@publicGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "people": "Personoj",
+  "@people": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chats": "Babiloj",
+  "@chats": {
+    "type": "text",
+    "placeholders": {}
   }
 }
