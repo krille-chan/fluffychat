@@ -27,7 +27,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "youHaveBeenBannedFromThisChat": "Je bent verbannen uit deze groep",
+  "youHaveBeenBannedFromThisChat": "Je bent verbannen uit deze chat",
   "@youHaveBeenBannedFromThisChat": {
     "type": "text",
     "placeholders": {}
@@ -37,12 +37,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "youAreNoLongerParticipatingInThisChat": "Je neemt niet langer deel aan deze groep",
+  "youAreNoLongerParticipatingInThisChat": "Je neemt niet langer deel aan deze chat",
   "@youAreNoLongerParticipatingInThisChat": {
     "type": "text",
     "placeholders": {}
   },
-  "youAreInvitedToThisChat": "Je bent uitgenodigd voor deze groep",
+  "youAreInvitedToThisChat": "Je bent uitgenodigd voor deze chat",
   "@youAreInvitedToThisChat": {
     "type": "text",
     "placeholders": {}
@@ -112,7 +112,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "visibilityOfTheChatHistory": "Groepsgeschiedenis zichtbaarheid",
+  "visibilityOfTheChatHistory": "Chatgeschiedenis zichtbaarheid",
   "@visibilityOfTheChatHistory": {
     "type": "text",
     "placeholders": {}
@@ -215,7 +215,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadMessagesInChats": "{unreadEvents} ongelezen berichten in {unreadChats} groepen",
+  "unreadMessagesInChats": "{unreadEvents} ongelezen berichten in {unreadChats} chats",
   "@unreadMessagesInChats": {
     "type": "text",
     "placeholders": {
@@ -230,7 +230,7 @@
       "unreadEvents": {}
     }
   },
-  "unreadChats": "{unreadCount} ongelezen berichten",
+  "unreadChats": "{unreadCount} ongelezen chats",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
@@ -373,7 +373,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "startYourFirstChat": "Start nu je eerste bericht! 🙂\n- Tik op \"+\"\n- Voer de gebruikersnaam van een vriend in\n- Veel plezier met chatten",
+  "startYourFirstChat": "Start nu je eerste chat! 🙂\n- Tik op \"+\"\n- Voer de gebruikersnaam van een vriend in\n- Veel plezier met chatten",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -567,7 +567,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "editChatPermissions": "Groepsrechten wijzigen",
+  "editChatPermissions": "Chatrechten wijzigen",
   "@editChatPermissions": {
     "type": "text",
     "placeholders": {}
@@ -587,7 +587,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "configureChat": "Groep configureren",
+  "configureChat": "Chat configureren",
   "@configureChat": {
     "type": "text",
     "placeholders": {}
@@ -680,7 +680,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "searchForAChat": "Zoek een groep",
+  "searchForAChat": "Zoek een chat",
   "@searchForAChat": {
     "type": "text",
     "placeholders": {}
@@ -1088,7 +1088,7 @@
       "localizedTimeShort": {}
     }
   },
-  "userLeftTheChat": "{username} is vertrokken",
+  "userLeftTheChat": "{username} is vertrokken uit de chat",
   "@userLeftTheChat": {
     "type": "text",
     "placeholders": {
@@ -1100,7 +1100,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "leftTheChat": "Verliet de groep",
+  "leftTheChat": "Verliet de chat",
   "@leftTheChat": {
     "type": "text",
     "placeholders": {}
@@ -1110,7 +1110,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "kickFromChat": "Uit groep verwijderen",
+  "kickFromChat": "Uit chat verwijderen",
   "@kickFromChat": {
     "type": "text",
     "placeholders": {}
@@ -1146,7 +1146,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "joinedTheChat": "{username} is toegetreden",
+  "joinedTheChat": "{username} is toegetreden tot de chat",
   "@joinedTheChat": {
     "type": "text",
     "placeholders": {
@@ -1448,7 +1448,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "emptyChat": "Lege groep",
+  "emptyChat": "Lege chat",
   "@emptyChat": {
     "type": "text",
     "placeholders": {}
@@ -1593,7 +1593,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "createdTheChat": "{username} heeft de groep gemaakt",
+  "createdTheChat": "{username} heeft de chat gemaakt",
   "@createdTheChat": {
     "type": "text",
     "placeholders": {
@@ -1694,12 +1694,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatDetails": "Groepdetails",
+  "chatDetails": "Chatdetails",
   "@chatDetails": {
     "type": "text",
     "placeholders": {}
   },
-  "chat": "Groep",
+  "chat": "Chat",
   "@chat": {
     "type": "text",
     "placeholders": {}
@@ -1805,14 +1805,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "changedTheChatPermissions": "{username} heeft de groepsrechten gewijzigd",
+  "changedTheChatPermissions": "{username} heeft de chatrechten gewijzigd",
   "@changedTheChatPermissions": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheChatDescriptionTo": "{username} heeft de groepsomschrijving gewijzigd in: {description}",
+  "changedTheChatDescriptionTo": "{username} heeft de chatomschrijving gewijzigd in: {description}",
   "@changedTheChatDescriptionTo": {
     "type": "text",
     "placeholders": {
@@ -1820,7 +1820,7 @@
       "description": {}
     }
   },
-  "changedTheChatNameTo": "{username} heeft de groepsnaam gewijzigd in: {chatname}",
+  "changedTheChatNameTo": "{username} heeft de chatnaam gewijzigd in: {chatname}",
   "@changedTheChatNameTo": {
     "type": "text",
     "placeholders": {
@@ -1828,7 +1828,7 @@
       "chatname": {}
     }
   },
-  "changedTheChatAvatar": "{username} heeft de groepsavatar gewijzigd",
+  "changedTheChatAvatar": "{username} heeft de chatavatar gewijzigd",
   "@changedTheChatAvatar": {
     "type": "text",
     "placeholders": {
@@ -1875,7 +1875,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "banFromChat": "Van groep verbannen",
+  "banFromChat": "Van chat verbannen",
   "@banFromChat": {
     "type": "text",
     "placeholders": {}
@@ -2088,7 +2088,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "newChat": "Nieuw bericht",
+  "newChat": "Nieuwe chat",
   "@newChat": {
     "type": "text",
     "placeholders": {}
@@ -2133,7 +2133,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatBackup": "Berichtenback-up",
+  "chatBackup": "Chatback-up",
   "@chatBackup": {
     "type": "text",
     "placeholders": {}
@@ -2174,7 +2174,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wipeChatBackup": "Je berichtenback-up wissen om een nieuwe veiligheidssleutel te maken?",
+  "wipeChatBackup": "Je chatback-up wissen om een nieuwe veiligheidssleutel te maken?",
   "@wipeChatBackup": {
     "type": "text",
     "placeholders": {}
@@ -2204,7 +2204,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatBackupDescription": "Je berichtenback-up is beveiligd met een veiligheidssleutel. Zorg ervoor dat je deze niet verliest.",
+  "chatBackupDescription": "Je chatback-up is beveiligd met een veiligheidssleutel. Zorg ervoor dat je deze niet verliest.",
   "@chatBackupDescription": {
     "type": "text",
     "placeholders": {}
@@ -2251,7 +2251,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unlockChatBackup": "Berichtenback-up ontgrendelen",
+  "unlockChatBackup": "Chatback-up ontgrendelen",
   "@unlockChatBackup": {
     "type": "text",
     "placeholders": {}
@@ -2281,12 +2281,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "publicGroups": "Publieke Groepen",
+  "publicGroups": "Alle Groepen",
   "@publicGroups": {
     "type": "text",
     "placeholders": {}
   },
-  "people": "Mensen",
+  "people": "Personen",
   "@people": {
     "type": "text",
     "placeholders": {}
