@@ -2289,5 +2289,20 @@
   "@oneMoreEvent": {
     "type": "text",
     "placeholders": {}
+  },
+  "chats": "Chatovi",
+  "@chats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicGroups": "Javne grupe",
+  "@publicGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "people": "Ljudi",
+  "@people": {
+    "type": "text",
+    "placeholders": {}
   }
 }
