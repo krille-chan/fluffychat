@@ -210,7 +210,7 @@ class _SearchViewState extends State<SearchView> {
               vertical: 0,
             ),
             tabs: [
-              Tab(child: Text(L10n.of(context).publicGroups, maxLines: 1)),
+              Tab(child: Text(L10n.of(context).discover, maxLines: 1)),
               Tab(child: Text(L10n.of(context).chats, maxLines: 1)),
               Tab(child: Text(L10n.of(context).people, maxLines: 1)),
             ],
