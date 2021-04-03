@@ -582,6 +582,7 @@ class _ChatState extends State<Chat> {
                               builder: (context, snapshot) => Text(
                                     room.getLocalizedStatus(context),
                                     maxLines: 1,
+                                    //overflow: TextOverflow.ellipsis,
                                   ))
                           : Row(
                               children: <Widget>[
@@ -589,13 +590,14 @@ class _ChatState extends State<Chat> {
                                     color: Theme.of(context).accentColor,
                                     size: 13),
                                 SizedBox(width: 4),
-                                Text(
-                                  room.getLocalizedTypingText(context),
-                                  maxLines: 1,
-                                  style: TextStyle(
-                                    color: Theme.of(context).accentColor,
-                                    fontStyle: FontStyle.italic,
-                                    fontSize: 16,
+                                Expanded(
+                                  child: Text(
+                                    room.getLocalizedTypingText(context),
+                                    maxLines: 1,
+                                    style: TextStyle(
+                                      color: Theme.of(context).accentColor,
+                                      fontStyle: FontStyle.italic,
+                                    ),
                                   ),
                                 ),
                               ],
