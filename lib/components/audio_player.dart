@@ -1,9 +1,10 @@
 import 'dart:async';
 import 'dart:typed_data';
 
+import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/message_download_content.dart';
-import 'package:flushbar/flushbar_helper.dart';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sound_lite/flutter_sound.dart';
@@ -81,8 +82,11 @@ class _AudioPlayerState extends State<AudioPlayer> {
       _playAction();
     } catch (e, s) {
       Logs().v('Could not download audio file', e, s);
-      await FlushbarHelper.createError(message: e.toLocalizedString(context))
-          .show(context);
+      AdaptivePageLayout.of(context).showSnackBar(
+        SnackBar(
+          content: Text(e.toLocalizedString(context)),
+        ),
+      );
     }
   }
 

@@ -25,7 +25,7 @@ import 'dart:ui';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
-import 'package:flushbar/flushbar_helper.dart';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -255,10 +255,10 @@ class BackgroundPush {
     }
     if (await store.getItemBool(SettingKeys.showNoGoogle, true)) {
       await loadLocale();
-      await FlushbarHelper.createError(
-        message: l10n.noGoogleServicesWarning,
-        duration: Duration(seconds: 15),
-      ).show(context);
+      AdaptivePageLayout.of(context).showSnackBar(SnackBar(
+          content: Text(
+        l10n.noGoogleServicesWarning,
+      )));
       if (null == await store.getItem(SettingKeys.showNoGoogle)) {
         await store.setItemBool(SettingKeys.showNoGoogle, false);
       }

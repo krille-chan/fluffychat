@@ -33,7 +33,7 @@ dependencies:
   url_launcher: ^5.7.10
   cached_network_image: ^2.5.0
   flutter_local_notifications: ^3.0.3
-  adaptive_page_layout: ^0.1.6
+  adaptive_page_layout: ^0.2.1
   provider: ^4.3.3
   adaptive_theme: ^1.1.0
   # desktop_notifications: ^0.0.0-dev.4  // Currently blocked by: https://github.com/canonical/desktop_notifications.dart/issues/5
@@ -50,7 +50,6 @@ dependencies:
   flutter_sound_lite: ^7.5.3+1
   open_file: ^3.0.3
   mime_type: ^0.3.2
-  flushbar: ^1.10.4
   adaptive_dialog: ^0.9.3
   flutter_matrix_html:
     git:

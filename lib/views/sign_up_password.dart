@@ -1,7 +1,8 @@
 import 'dart:math';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:flushbar/flushbar_helper.dart';
+import 'package:adaptive_page_layout/adaptive_page_layout.dart';
+
 import 'package:famedlysdk/famedlysdk.dart';
 
 import 'package:fluffychat/components/matrix.dart';
@@ -114,17 +115,15 @@ class _SignUpPasswordState extends State<SignUpPassword> {
       await matrix.client
           .setDisplayname(matrix.client.userID, widget.displayname);
     } catch (exception) {
-      await FlushbarHelper.createError(
-              message: L10n.of(context).couldNotSetDisplayname)
-          .show(context);
+      AdaptivePageLayout.of(context).showSnackBar(
+          SnackBar(content: Text(L10n.of(context).couldNotSetDisplayname)));
     }
     if (widget.avatar != null) {
       try {
         await matrix.client.setAvatar(widget.avatar);
       } catch (exception) {
-        await FlushbarHelper.createError(
-                message: L10n.of(context).couldNotSetAvatar)
-            .show(context);
+        AdaptivePageLayout.of(context).showSnackBar(
+            SnackBar(content: Text(L10n.of(context).couldNotSetAvatar)));
       }
     }
     if (mounted) setState(() => loading = false);

@@ -4,7 +4,7 @@ import 'package:fluffychat/app_config.dart';
 import 'package:fluffychat/components/avatar.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
-import 'package:flushbar/flushbar_helper.dart';
+
 import 'package:famedlysdk/famedlysdk.dart';
 
 import 'package:file_picker_cross/file_picker_cross.dart';
@@ -56,9 +56,8 @@ class _ChatDetailsState extends State<ChatDetails> {
       future: () => room.setName(input.single),
     );
     if (success.error == null) {
-      await FlushbarHelper.createSuccess(
-              message: L10n.of(context).displaynameHasBeenChanged)
-          .show(context);
+      AdaptivePageLayout.of(context).showSnackBar(
+          SnackBar(content: Text(L10n.of(context).displaynameHasBeenChanged)));
     }
   }
 
@@ -127,9 +126,8 @@ class _ChatDetailsState extends State<ChatDetails> {
       future: () => room.setDescription(input.single),
     );
     if (success.error == null) {
-      await FlushbarHelper.createSuccess(
-              message: L10n.of(context).groupDescriptionHasBeenChanged)
-          .show(context);
+      AdaptivePageLayout.of(context).showSnackBar(SnackBar(
+          content: Text(L10n.of(context).groupDescriptionHasBeenChanged)));
     }
   }
 
@@ -162,9 +160,8 @@ class _ChatDetailsState extends State<ChatDetails> {
       future: () => room.setAvatar(file),
     );
     if (success.error == null) {
-      await FlushbarHelper.createSuccess(
-              message: L10n.of(context).avatarHasBeenChanged)
-          .show(context);
+      AdaptivePageLayout.of(context).showSnackBar(
+          SnackBar(content: Text(L10n.of(context).avatarHasBeenChanged)));
     }
   }
 

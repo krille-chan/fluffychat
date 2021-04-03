@@ -1,3 +1,4 @@
+import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/encryption/utils/key_verification.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/audio_player.dart';
@@ -6,7 +7,7 @@ import 'package:fluffychat/components/image_bubble.dart';
 import 'package:fluffychat/utils/event_extension.dart';
 import 'package:fluffychat/utils/matrix_locals.dart';
 import 'package:fluffychat/components/dialogs/key_verification_dialog.dart';
-import 'package:flushbar/flushbar_helper.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix_link_text/link_text.dart';
@@ -26,13 +27,14 @@ class MessageContent extends StatelessWidget {
 
   void _verifyOrRequestKey(BuildContext context) async {
     if (event.content['can_request_session'] != true) {
-      FlushbarHelper.createError(
-        message: event.type == EventTypes.Encrypted
+      AdaptivePageLayout.of(context).showSnackBar(SnackBar(
+          content: Text(
+        event.type == EventTypes.Encrypted
             ? L10n.of(context).needPantalaimonWarning
             : event.getLocalizedBody(
                 MatrixLocals(L10n.of(context)),
               ),
-      );
+      )));
       return;
     }
     final client = Matrix.of(context).client;
@@ -59,11 +61,8 @@ class MessageContent extends StatelessWidget {
         future: () => event.requestKey(),
       );
       if (success.error == null) {
-        await FlushbarHelper.createLoading(
-          title: L10n.of(context).loadingPleaseWait,
-          message: L10n.of(context).requestToReadOlderMessages,
-          linearProgressIndicator: LinearProgressIndicator(),
-        ).show(context);
+        AdaptivePageLayout.of(context).showSnackBar(SnackBar(
+            content: Text(L10n.of(context).requestToReadOlderMessages)));
       }
     }
   }

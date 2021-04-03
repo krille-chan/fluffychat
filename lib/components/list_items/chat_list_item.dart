@@ -6,7 +6,7 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/event_extension.dart';
 import 'package:fluffychat/utils/matrix_locals.dart';
 import 'package:fluffychat/utils/room_status_extension.dart';
-import 'package:flushbar/flushbar_helper.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:pedantic/pedantic.dart';
@@ -47,9 +47,11 @@ class ChatListItem extends StatelessWidget {
       }
 
       if (room.membership == Membership.ban) {
-        await FlushbarHelper.createError(
-                message: L10n.of(context).youHaveBeenBannedFromThisChat)
-            .show(context);
+        AdaptivePageLayout.of(context).showSnackBar(
+          SnackBar(
+            content: Text(L10n.of(context).youHaveBeenBannedFromThisChat),
+          ),
+        );
         return;
       }
 

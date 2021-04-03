@@ -2,10 +2,11 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/components/matrix.dart';
-import 'package:flushbar/flushbar_helper.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import '../utils/platform_infos.dart';
@@ -174,8 +175,8 @@ class _LoginState extends State<Login> {
           ),
     );
     if (success.error == null) {
-      FlushbarHelper.createSuccess(
-          message: L10n.of(context).passwordHasBeenChanged);
+      AdaptivePageLayout.of(context).showSnackBar(
+          SnackBar(content: Text(L10n.of(context).passwordHasBeenChanged)));
     }
   }
 

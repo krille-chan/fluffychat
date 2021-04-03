@@ -1,7 +1,8 @@
 import 'dart:async';
 
+import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:fluffychat/components/default_app_bar_search_field.dart';
-import 'package:flushbar/flushbar_helper.dart';
+
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/avatar.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
@@ -61,9 +62,8 @@ class _InvitationSelectionState extends State<InvitationSelection> {
       future: () => room.invite(id),
     );
     if (success.error == null) {
-      await FlushbarHelper.createSuccess(
-              message: L10n.of(context).contactHasBeenInvitedToTheGroup)
-          .show(context);
+      AdaptivePageLayout.of(context).showSnackBar(SnackBar(
+          content: Text(L10n.of(context).contactHasBeenInvitedToTheGroup)));
     }
   }
 
@@ -89,8 +89,8 @@ class _InvitationSelectionState extends State<InvitationSelection> {
     try {
       response = await matrix.client.searchUser(text, limit: 10);
     } catch (e) {
-      FlushbarHelper.createError(
-          message: (e as Object).toLocalizedString(context));
+      AdaptivePageLayout.of(context).showSnackBar(
+          SnackBar(content: Text((e as Object).toLocalizedString(context))));
       return;
     } finally {
       setState(() => loading = false);

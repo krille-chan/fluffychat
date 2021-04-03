@@ -14,7 +14,7 @@ import 'package:fluffychat/components/connection_status_header.dart';
 import 'package:fluffychat/components/dialogs/recording_dialog.dart';
 import 'package:fluffychat/components/unread_badge_back_button.dart';
 import 'package:fluffychat/config/themes.dart';
-import 'package:flushbar/flushbar_helper.dart';
+
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/components/encryption_button.dart';
 import 'package:fluffychat/components/list_items/message.dart';
@@ -110,9 +110,8 @@ class _ChatState extends State<Chat> {
       try {
         await timeline.requestHistory(historyCount: _loadHistoryCount);
       } catch (err) {
-        await FlushbarHelper.createError(
-                message: err.toLocalizedString(context))
-            .show(context);
+        AdaptivePageLayout.of(context).showSnackBar(
+            SnackBar(content: Text(err.toLocalizedString(context))));
       }
     }
   }
@@ -351,9 +350,8 @@ class _ChatState extends State<Chat> {
     );
     if (result.error != null) return;
     setState(() => selectedEvents.clear());
-    await FlushbarHelper.createSuccess(
-            message: L10n.of(context).contentHasBeenReported)
-        .show(context);
+    AdaptivePageLayout.of(context).showSnackBar(
+        SnackBar(content: Text(L10n.of(context).contentHasBeenReported)));
   }
 
   void redactEventsAction(BuildContext context) async {

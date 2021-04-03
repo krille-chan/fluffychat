@@ -1,5 +1,6 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:flushbar/flushbar_helper.dart';
+import 'package:adaptive_page_layout/adaptive_page_layout.dart';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
@@ -443,9 +444,8 @@ class _EmoteImagePickerState extends State<_EmoteImagePicker> {
       return ElevatedButton(
         onPressed: () async {
           if (kIsWeb) {
-            await FlushbarHelper.createError(
-                    message: L10n.of(context).notSupportedInWeb)
-                .show(context);
+            AdaptivePageLayout.of(context).showSnackBar(
+                SnackBar(content: Text(L10n.of(context).notSupportedInWeb)));
             return;
           }
           MatrixFile file;

@@ -8,7 +8,7 @@ import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:flushbar/flushbar_helper.dart';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter/material.dart';
@@ -109,10 +109,8 @@ class _HomeserverPickerState extends State<HomeserverPicker> {
             '${Matrix.of(context).client.homeserver?.toString()}/_matrix/client/r0/login/sso/redirect?redirectUrl=${Uri.encodeQueryComponent(redirectUrl)}');
       }
     } catch (e) {
-      // ignore: unawaited_futures
-      FlushbarHelper.createError(
-              message: (e as Object).toLocalizedString(context))
-          .show(context);
+      AdaptivePageLayout.of(context).showSnackBar(
+          SnackBar(content: Text((e as Object).toLocalizedString(context))));
     } finally {
       if (mounted) {
         setState(() => _isLoading = false);

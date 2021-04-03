@@ -5,7 +5,7 @@ import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:fluffychat/components/dialogs/bootstrap_dialog.dart';
 import 'package:fluffychat/components/sentry_switch_list_tile.dart';
 import 'package:fluffychat/components/settings_switch_list_tile.dart';
-import 'package:flushbar/flushbar_helper.dart';
+
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
 import 'package:fluffychat/utils/beautify_string_extension.dart';
@@ -88,9 +88,8 @@ class _SettingsState extends State<Settings> {
           .changePassword(input.last, oldPassword: input.first),
     );
     if (success.error == null) {
-      await FlushbarHelper.createSuccess(
-              message: L10n.of(context).passwordHasBeenChanged)
-          .show(context);
+      AdaptivePageLayout.of(context).showSnackBar(
+          SnackBar(content: Text(L10n.of(context).passwordHasBeenChanged)));
     }
   }
 

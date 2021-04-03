@@ -5,7 +5,7 @@ import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:fluffychat/components/dialogs/permission_slider_dialog.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/components/matrix.dart';
-import 'package:flushbar/flushbar_helper.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:famedlysdk/famedlysdk.dart';
@@ -19,8 +19,9 @@ class ChatPermissionsSettings extends StatelessWidget {
       {String category}) async {
     final room = Matrix.of(context).client.getRoomById(roomId);
     if (!room.canSendEvent(EventTypes.RoomPowerLevels)) {
-      return FlushbarHelper.createError(message: L10n.of(context).noPermission)
-          .show(context);
+      AdaptivePageLayout.of(context)
+          .showSnackBar(SnackBar(content: Text(L10n.of(context).noPermission)));
+      return;
     }
     final newLevel =
         await PermissionSliderDialog(initialPermission: currentLevel)
