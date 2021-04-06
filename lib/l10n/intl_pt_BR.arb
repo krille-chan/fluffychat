@@ -2287,5 +2287,20 @@
   "@securityKey": {
     "type": "text",
     "placeholders": {}
+  },
+  "publicGroups": "Grupos Públicos",
+  "@publicGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "people": "Pessoas",
+  "@people": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chats": "Conversas",
+  "@chats": {
+    "type": "text",
+    "placeholders": {}
   }
 }
