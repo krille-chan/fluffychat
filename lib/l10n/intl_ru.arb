@@ -2289,5 +2289,20 @@
   "@tapOnDeviceToVerify": {
     "type": "text",
     "placeholders": {}
+  },
+  "publicGroups": "Публичные группы",
+  "@publicGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "people": "Люди",
+  "@people": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chats": "Чаты",
+  "@chats": {
+    "type": "text",
+    "placeholders": {}
   }
 }
