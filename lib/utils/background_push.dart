@@ -576,11 +576,11 @@ class BackgroundPush {
   Future<void> _showNotification(String roomId, String eventId) async {
     await setupLocalNotificationsPlugin();
     final room = client.getRoomById(roomId);
-    await room.postLoad();
-    final event = await client.database.getEventById(client.id, eventId, room);
     if (room == null) {
       throw 'Room not found';
     }
+    await room.postLoad();
+    final event = await client.database.getEventById(client.id, eventId, room);
 
     if (((client.activeRoomId?.isNotEmpty ?? false) &&
             client.activeRoomId == room.id &&
