@@ -39,8 +39,6 @@ class _ChatListState extends State<ChatList> {
   AppBar appBar;
   final _selectedRoomIds = <String>{};
 
-  final ScrollController _scrollController = ScrollController();
-
   void _processIncomingSharedFiles(List<SharedMediaFile> files) {
     if (files?.isEmpty ?? true) return;
     AdaptivePageLayout.of(context).popUntilIsFirst();
@@ -386,7 +384,6 @@ class _ChatListState extends State<ChatList> {
                             }
                             final totalCount = rooms.length;
                             return ListView.builder(
-                              controller: _scrollController,
                               itemCount: totalCount,
                               itemBuilder: (BuildContext context, int i) =>
                                   ChatListItem(
