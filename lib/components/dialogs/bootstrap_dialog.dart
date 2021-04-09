@@ -25,11 +25,13 @@ class BootstrapDialog extends StatefulWidget {
           context: context,
           builder: (context) => this,
           useRootNavigator: false,
+          barrierDismissible: true,
         )
       : showDialog(
           context: context,
           builder: (context) => this,
           useRootNavigator: false,
+          barrierDismissible: true,
         );
 
   @override

@@ -14,11 +14,13 @@ class KeyVerificationDialog extends StatefulWidget {
   Future<void> show(BuildContext context) => PlatformInfos.isCupertinoStyle
       ? showCupertinoDialog(
           context: context,
+          barrierDismissible: true,
           builder: (context) => this,
           useRootNavigator: false,
         )
       : showDialog(
           context: context,
+          barrierDismissible: true,
           builder: (context) => this,
           useRootNavigator: false,
         );
