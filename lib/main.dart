@@ -80,7 +80,7 @@ class App extends StatelessWidget {
                 onGenerateRoute: FluffyRoutes(context).onGenerateRoute,
                 dividerColor: Theme.of(context).dividerColor,
                 columnWidth: FluffyThemes.columnWidth,
-                dividerWidth: 0.5,
+                dividerWidth: 1.0,
                 routeBuilder: (builder, settings) =>
                     Matrix.of(context).loginState == LoginState.logged &&
                             !{
