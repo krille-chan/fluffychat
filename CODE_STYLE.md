@@ -5,7 +5,7 @@ FluffyChat tries to be as minimal as possible even in the code style. We try to 
 ### Directory Structure
 
 - `/lib/config/` Constants, styles and other configurations
-- `/lib/controller/` Controller classes regarding the MVC separation
+- `/lib/controllers/` Controller classes regarding the MVC separation
 - `/lib/l10n/` Localization files wi
 - `/lib/utils/` Helper functions and extensions
 - `/lib/views/` View classes and widgets
@@ -65,7 +65,7 @@ class EnterNameView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Enter your name'),
+        title: Text('Your name: ${controller.name}'),
       ),
       body: Center(
         child: TextField(
