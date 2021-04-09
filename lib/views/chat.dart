@@ -947,6 +947,7 @@ class _ChatState extends State<Chat> {
                   duration: Duration(milliseconds: 300),
                   height: (editEvent == null &&
                           replyEvent == null &&
+                          room.canSendDefaultMessages &&
                           selectedEvents.length == 1)
                       ? 56
                       : 0,
