@@ -10,7 +10,7 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
 import 'package:fluffychat/utils/beautify_string_extension.dart';
 
-import 'package:fluffychat/app_config.dart';
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +24,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../views/widgets/content_banner.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import '../views/widgets/matrix.dart';
-import '../app_config.dart';
+import '../config/app_config.dart';
 import '../config/setting_keys.dart';
 
 class Settings extends StatefulWidget {

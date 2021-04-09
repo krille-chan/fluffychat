@@ -8,7 +8,7 @@ import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:emoji_picker/emoji_picker.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
-import 'package:fluffychat/app_config.dart';
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/views/widgets/avatar.dart';
 import 'package:fluffychat/views/widgets/chat_settings_popup_menu.dart';
 import 'package:fluffychat/views/widgets/connection_status_header.dart';

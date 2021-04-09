@@ -1,5 +1,5 @@
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/app_config.dart';
+import 'package:fluffychat/config/app_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:sentry/sentry.dart';

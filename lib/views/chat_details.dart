@@ -1,6 +1,6 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
-import 'package:fluffychat/app_config.dart';
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/views/widgets/avatar.dart';
 import 'package:fluffychat/views/widgets/matrix.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';

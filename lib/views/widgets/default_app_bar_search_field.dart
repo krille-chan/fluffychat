@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import '../../app_config.dart';
+import '../../config/app_config.dart';
 
 class DefaultAppBarSearchField extends StatefulWidget {
   final TextEditingController searchController;

@@ -2,7 +2,7 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'filtered_timeline_extension.dart';
-import '../app_config.dart';
+import '../config/app_config.dart';
 import 'date_time_extension.dart';
 
 extension RoomStatusExtension on Room {

@@ -1,7 +1,7 @@
 import 'package:fluffychat/controllers/homeserver_picker_controller.dart';
 import 'package:fluffychat/views/widgets/default_app_bar_search_field.dart';
 import 'package:fluffychat/views/widgets/fluffy_banner.dart';
-import 'package:fluffychat/app_config.dart';
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/views/widgets/one_page_card.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 

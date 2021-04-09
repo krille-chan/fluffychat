@@ -8,7 +8,7 @@ import 'package:fluffychat/views/widgets/connection_status_header.dart';
 import 'package:fluffychat/views/widgets/list_items/chat_list_item.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:fluffychat/app_config.dart';
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

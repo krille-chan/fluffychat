@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../app_config.dart';
+import '../config/app_config.dart';
 import '../views/widgets/matrix.dart';
 
 class SettingsStyle extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:famedlysdk/famedlysdk.dart';
 
-import '../app_config.dart';
+import '../config/app_config.dart';
 
 extension FilteredTimelineExtension on Timeline {
   List<Event> getFilteredEvents({Set<String> unfolded = const {}}) {

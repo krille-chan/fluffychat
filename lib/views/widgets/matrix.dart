@@ -29,7 +29,7 @@ import '../../utils/localized_exception_extension.dart';
 import '../../utils/famedlysdk_store.dart';
 import 'dialogs/key_verification_dialog.dart';
 import '../../utils/platform_infos.dart';
-import '../../app_config.dart';
+import '../../config/app_config.dart';
 import '../../config/setting_keys.dart';
 import '../../utils/fluffy_client.dart';
 import '../../utils/background_push.dart';

@@ -18,7 +18,7 @@ import 'package:universal_html/prefer_universal/html.dart' as html;
 
 import 'views/widgets/matrix.dart';
 import 'config/themes.dart';
-import 'app_config.dart';
+import 'config/app_config.dart';
 import 'utils/fluffy_client.dart';
 import 'utils/platform_infos.dart';
 import 'utils/background_push.dart';

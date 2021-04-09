@@ -7,7 +7,7 @@ import 'package:fluffychat/utils/event_extension.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:flutter/material.dart';
 
-import '../../../app_config.dart';
+import '../../../config/app_config.dart';
 import '../avatar.dart';
 import '../matrix.dart';
 import '../message_reactions.dart';
