@@ -28,8 +28,10 @@ void main() async {
   // To make sure that the parts of flutter needed are started up already, we need to ensure that the
   // widget bindings are initialized already.
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    systemNavigationBarColor: Colors.transparent,
+    statusBarColor: Colors.transparent,
+  ));
   FlutterError.onError = (FlutterErrorDetails details) =>
       Zone.current.handleUncaughtError(details.exception, details.stack);
 
@@ -74,6 +76,7 @@ class App extends StatelessWidget {
             child: Builder(
               builder: (context) => AdaptivePageLayout(
                 key: _apl,
+                safeAreaOnColumnView: false,
                 onGenerateRoute: FluffyRoutes(context).onGenerateRoute,
                 dividerColor: Theme.of(context).dividerColor,
                 columnWidth: FluffyThemes.columnWidth,

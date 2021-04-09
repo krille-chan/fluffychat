@@ -34,7 +34,7 @@ class OnePageCard extends StatelessWidget {
         horizontal: max((MediaQuery.of(context).size.width - 600) / 2, 0),
         vertical: max((MediaQuery.of(context).size.height - 800) / 2, 0),
       ),
-      child: Card(child: child),
+      child: SafeArea(child: Card(child: child)),
     );
   }
 }
