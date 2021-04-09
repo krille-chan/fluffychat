@@ -2304,5 +2304,15 @@
   "@people": {
     "type": "text",
     "placeholders": {}
+  },
+  "goToTheNewRoom": "Idi u novu sobu",
+  "@goToTheNewRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "roomVersion": "Verzija sobe",
+  "@roomVersion": {
+    "type": "text",
+    "placeholders": {}
   }
 }
