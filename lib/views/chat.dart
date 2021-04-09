@@ -689,32 +689,11 @@ class _ChatState extends State<Chat> {
       body: Stack(
         children: <Widget>[
           if (Matrix.of(context).wallpaper != null)
-            Container(
-              height: double.infinity,
+            Image.file(
+              Matrix.of(context).wallpaper,
               width: double.infinity,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: FileImage(
-                    Matrix.of(context).wallpaper,
-                  ),
-                  fit: BoxFit.cover,
-                ),
-              ),
-              child: ClipRRect(
-                // make sure we apply clip it properly
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(
-                    sigmaX: 4,
-                    sigmaY: 4,
-                  ),
-                  child: Container(
-                    alignment: Alignment.center,
-                    color: Theme.of(context)
-                        .scaffoldBackgroundColor
-                        .withOpacity(0.33),
-                  ),
-                ),
-              ),
+              height: double.infinity,
+              fit: BoxFit.cover,
             ),
           SafeArea(
             child: Column(
