@@ -6,6 +6,7 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
 
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/views/widgets/max_width_body.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -184,223 +185,227 @@ class _EmotesSettingsState extends State<EmotesSettings> {
               child: Icon(Icons.save_outlined, color: Colors.white),
             )
           : null,
-      body: StreamBuilder(
-          stream: widget.room?.onUpdate?.stream,
-          builder: (context, snapshot) {
-            return Column(
-              children: <Widget>[
-                if (!readonly)
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                      vertical: 8.0,
-                    ),
-                    child: ListTile(
-                      leading: Container(
-                        width: 180.0,
-                        height: 38,
-                        padding: EdgeInsets.symmetric(horizontal: 8),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          color: Theme.of(context).secondaryHeaderColor,
-                        ),
-                        child: TextField(
-                          controller: newEmoteController,
-                          autocorrect: false,
-                          minLines: 1,
-                          maxLines: 1,
-                          decoration: InputDecoration(
-                            hintText: L10n.of(context).emoteShortcode,
-                            prefixText: ': ',
-                            suffixText: ':',
-                            prefixStyle: TextStyle(
-                              color: Theme.of(context).accentColor,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            suffixStyle: TextStyle(
-                              color: Theme.of(context).accentColor,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            border: InputBorder.none,
-                          ),
-                        ),
+      body: MaxWidthBody(
+        child: StreamBuilder(
+            stream: widget.room?.onUpdate?.stream,
+            builder: (context, snapshot) {
+              return Column(
+                children: <Widget>[
+                  if (!readonly)
+                    Container(
+                      padding: EdgeInsets.symmetric(
+                        vertical: 8.0,
                       ),
-                      title: _EmoteImagePicker(newMxcController),
-                      trailing: InkWell(
-                        onTap: () async {
-                          if (newEmoteController.text == null ||
-                              newEmoteController.text.isEmpty ||
-                              newMxcController.text == null ||
-                              newMxcController.text.isEmpty) {
-                            await showOkAlertDialog(
-                              context: context,
-                              message: L10n.of(context).emoteWarnNeedToPick,
-                              okLabel: L10n.of(context).ok,
-                              useRootNavigator: false,
-                            );
-                            return;
-                          }
-                          final emoteCode = ':${newEmoteController.text}:';
-                          final mxc = newMxcController.text;
-                          if (emotes.indexWhere((e) =>
-                                  e.emote == emoteCode && e.mxc != mxc) !=
-                              -1) {
-                            await showOkAlertDialog(
-                              context: context,
-                              message: L10n.of(context).emoteExists,
-                              okLabel: L10n.of(context).ok,
-                              useRootNavigator: false,
-                            );
-                            return;
-                          }
-                          if (!RegExp(r'^:[-\w]+:$').hasMatch(emoteCode)) {
-                            await showOkAlertDialog(
-                              context: context,
-                              message: L10n.of(context).emoteInvalid,
-                              okLabel: L10n.of(context).ok,
-                              useRootNavigator: false,
-                            );
-                            return;
-                          }
-                          emotes.add(_EmoteEntry(emote: emoteCode, mxc: mxc));
-                          await _save(context);
-                          setState(() {
-                            newEmoteController.text = '';
-                            newMxcController.text = '';
-                            showSave = false;
-                          });
-                        },
-                        child: Icon(
-                          Icons.add_outlined,
-                          color: Colors.green,
-                          size: 32.0,
-                        ),
-                      ),
-                    ),
-                  ),
-                if (widget.room != null)
-                  ListTile(
-                    title: Text(L10n.of(context).enableEmotesGlobally),
-                    trailing: Switch(
-                      value: isGloballyActive(client),
-                      onChanged: (bool newValue) async {
-                        await _setIsGloballyActive(context, newValue);
-                        setState(() => null);
-                      },
-                    ),
-                  ),
-                if (!readonly || widget.room != null)
-                  Divider(
-                    height: 2,
-                    thickness: 2,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                Expanded(
-                  child: emotes.isEmpty
-                      ? Center(
-                          child: Padding(
-                            padding: EdgeInsets.all(16),
-                            child: Text(
-                              L10n.of(context).noEmotesFound,
-                              style: TextStyle(fontSize: 20),
-                            ),
+                      child: ListTile(
+                        leading: Container(
+                          width: 180.0,
+                          height: 38,
+                          padding: EdgeInsets.symmetric(horizontal: 8),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            color: Theme.of(context).secondaryHeaderColor,
                           ),
-                        )
-                      : ListView.separated(
-                          separatorBuilder: (BuildContext context, int i) =>
-                              Container(),
-                          itemCount: emotes.length + 1,
-                          itemBuilder: (BuildContext context, int i) {
-                            if (i >= emotes.length) {
-                              return Container(height: 70);
-                            }
-                            final emote = emotes[i];
-                            final controller = TextEditingController();
-                            controller.text = emote.emoteClean;
-                            return ListTile(
-                              leading: Container(
-                                width: 180.0,
-                                height: 38,
-                                padding: EdgeInsets.symmetric(horizontal: 8),
-                                decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10)),
-                                  color: Theme.of(context).secondaryHeaderColor,
-                                ),
-                                child: TextField(
-                                  readOnly: readonly,
-                                  controller: controller,
-                                  autocorrect: false,
-                                  minLines: 1,
-                                  maxLines: 1,
-                                  decoration: InputDecoration(
-                                    hintText: L10n.of(context).emoteShortcode,
-                                    prefixText: ': ',
-                                    suffixText: ':',
-                                    prefixStyle: TextStyle(
-                                      color: Theme.of(context).accentColor,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                    suffixStyle: TextStyle(
-                                      color: Theme.of(context).accentColor,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                    border: InputBorder.none,
-                                  ),
-                                  onSubmitted: (s) {
-                                    final emoteCode = ':$s:';
-                                    if (emotes.indexWhere((e) =>
-                                            e.emote == emoteCode &&
-                                            e.mxc != emote.mxc) !=
-                                        -1) {
-                                      controller.text = emote.emoteClean;
-                                      showOkAlertDialog(
-                                        context: context,
-                                        message: L10n.of(context).emoteExists,
-                                        okLabel: L10n.of(context).ok,
-                                        useRootNavigator: false,
-                                      );
-                                      return;
-                                    }
-                                    if (!RegExp(r'^:[-\w]+:$')
-                                        .hasMatch(emoteCode)) {
-                                      controller.text = emote.emoteClean;
-                                      showOkAlertDialog(
-                                        context: context,
-                                        message: L10n.of(context).emoteInvalid,
-                                        okLabel: L10n.of(context).ok,
-                                        useRootNavigator: false,
-                                      );
-                                      return;
-                                    }
-                                    setState(() {
-                                      emote.emote = emoteCode;
-                                      showSave = true;
-                                    });
-                                  },
-                                ),
+                          child: TextField(
+                            controller: newEmoteController,
+                            autocorrect: false,
+                            minLines: 1,
+                            maxLines: 1,
+                            decoration: InputDecoration(
+                              hintText: L10n.of(context).emoteShortcode,
+                              prefixText: ': ',
+                              suffixText: ':',
+                              prefixStyle: TextStyle(
+                                color: Theme.of(context).accentColor,
+                                fontWeight: FontWeight.bold,
                               ),
-                              title: _EmoteImage(emote.mxc),
-                              trailing: readonly
-                                  ? null
-                                  : InkWell(
-                                      onTap: () => setState(() {
-                                        emotes.removeWhere(
-                                            (e) => e.emote == emote.emote);
-                                        showSave = true;
-                                      }),
-                                      child: Icon(
-                                        Icons.delete_forever_outlined,
-                                        color: Colors.red,
-                                        size: 32.0,
-                                      ),
-                                    ),
-                            );
-                          },
+                              suffixStyle: TextStyle(
+                                color: Theme.of(context).accentColor,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              border: InputBorder.none,
+                            ),
+                          ),
                         ),
-                ),
-              ],
-            );
-          }),
+                        title: _EmoteImagePicker(newMxcController),
+                        trailing: InkWell(
+                          onTap: () async {
+                            if (newEmoteController.text == null ||
+                                newEmoteController.text.isEmpty ||
+                                newMxcController.text == null ||
+                                newMxcController.text.isEmpty) {
+                              await showOkAlertDialog(
+                                context: context,
+                                message: L10n.of(context).emoteWarnNeedToPick,
+                                okLabel: L10n.of(context).ok,
+                                useRootNavigator: false,
+                              );
+                              return;
+                            }
+                            final emoteCode = ':${newEmoteController.text}:';
+                            final mxc = newMxcController.text;
+                            if (emotes.indexWhere((e) =>
+                                    e.emote == emoteCode && e.mxc != mxc) !=
+                                -1) {
+                              await showOkAlertDialog(
+                                context: context,
+                                message: L10n.of(context).emoteExists,
+                                okLabel: L10n.of(context).ok,
+                                useRootNavigator: false,
+                              );
+                              return;
+                            }
+                            if (!RegExp(r'^:[-\w]+:$').hasMatch(emoteCode)) {
+                              await showOkAlertDialog(
+                                context: context,
+                                message: L10n.of(context).emoteInvalid,
+                                okLabel: L10n.of(context).ok,
+                                useRootNavigator: false,
+                              );
+                              return;
+                            }
+                            emotes.add(_EmoteEntry(emote: emoteCode, mxc: mxc));
+                            await _save(context);
+                            setState(() {
+                              newEmoteController.text = '';
+                              newMxcController.text = '';
+                              showSave = false;
+                            });
+                          },
+                          child: Icon(
+                            Icons.add_outlined,
+                            color: Colors.green,
+                            size: 32.0,
+                          ),
+                        ),
+                      ),
+                    ),
+                  if (widget.room != null)
+                    ListTile(
+                      title: Text(L10n.of(context).enableEmotesGlobally),
+                      trailing: Switch(
+                        value: isGloballyActive(client),
+                        onChanged: (bool newValue) async {
+                          await _setIsGloballyActive(context, newValue);
+                          setState(() => null);
+                        },
+                      ),
+                    ),
+                  if (!readonly || widget.room != null)
+                    Divider(
+                      height: 2,
+                      thickness: 2,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                  Expanded(
+                    child: emotes.isEmpty
+                        ? Center(
+                            child: Padding(
+                              padding: EdgeInsets.all(16),
+                              child: Text(
+                                L10n.of(context).noEmotesFound,
+                                style: TextStyle(fontSize: 20),
+                              ),
+                            ),
+                          )
+                        : ListView.separated(
+                            separatorBuilder: (BuildContext context, int i) =>
+                                Container(),
+                            itemCount: emotes.length + 1,
+                            itemBuilder: (BuildContext context, int i) {
+                              if (i >= emotes.length) {
+                                return Container(height: 70);
+                              }
+                              final emote = emotes[i];
+                              final controller = TextEditingController();
+                              controller.text = emote.emoteClean;
+                              return ListTile(
+                                leading: Container(
+                                  width: 180.0,
+                                  height: 38,
+                                  padding: EdgeInsets.symmetric(horizontal: 8),
+                                  decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                    color:
+                                        Theme.of(context).secondaryHeaderColor,
+                                  ),
+                                  child: TextField(
+                                    readOnly: readonly,
+                                    controller: controller,
+                                    autocorrect: false,
+                                    minLines: 1,
+                                    maxLines: 1,
+                                    decoration: InputDecoration(
+                                      hintText: L10n.of(context).emoteShortcode,
+                                      prefixText: ': ',
+                                      suffixText: ':',
+                                      prefixStyle: TextStyle(
+                                        color: Theme.of(context).accentColor,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      suffixStyle: TextStyle(
+                                        color: Theme.of(context).accentColor,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      border: InputBorder.none,
+                                    ),
+                                    onSubmitted: (s) {
+                                      final emoteCode = ':$s:';
+                                      if (emotes.indexWhere((e) =>
+                                              e.emote == emoteCode &&
+                                              e.mxc != emote.mxc) !=
+                                          -1) {
+                                        controller.text = emote.emoteClean;
+                                        showOkAlertDialog(
+                                          context: context,
+                                          message: L10n.of(context).emoteExists,
+                                          okLabel: L10n.of(context).ok,
+                                          useRootNavigator: false,
+                                        );
+                                        return;
+                                      }
+                                      if (!RegExp(r'^:[-\w]+:$')
+                                          .hasMatch(emoteCode)) {
+                                        controller.text = emote.emoteClean;
+                                        showOkAlertDialog(
+                                          context: context,
+                                          message:
+                                              L10n.of(context).emoteInvalid,
+                                          okLabel: L10n.of(context).ok,
+                                          useRootNavigator: false,
+                                        );
+                                        return;
+                                      }
+                                      setState(() {
+                                        emote.emote = emoteCode;
+                                        showSave = true;
+                                      });
+                                    },
+                                  ),
+                                ),
+                                title: _EmoteImage(emote.mxc),
+                                trailing: readonly
+                                    ? null
+                                    : InkWell(
+                                        onTap: () => setState(() {
+                                          emotes.removeWhere(
+                                              (e) => e.emote == emote.emote);
+                                          showSave = true;
+                                        }),
+                                        child: Icon(
+                                          Icons.delete_forever_outlined,
+                                          color: Colors.red,
+                                          size: 32.0,
+                                        ),
+                                      ),
+                              );
+                            },
+                          ),
+                  ),
+                ],
+              );
+            }),
+      ),
     );
   }
 }

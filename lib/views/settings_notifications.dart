@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/views/widgets/max_width_body.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:flutter/foundation.dart';
@@ -113,97 +114,101 @@ class SettingsNotifications extends StatelessWidget {
         leading: BackButton(),
         title: Text(L10n.of(context).notifications),
       ),
-      body: StreamBuilder(
-          stream: Matrix.of(context)
-              .client
-              .onAccountData
-              .stream
-              .where((event) => event.type == 'm.push_rules'),
-          builder: (BuildContext context, _) {
-            return ListView(
-              children: [
-                SwitchListTile(
-                  value: !Matrix.of(context).client.allPushNotificationsMuted,
-                  title:
-                      Text(L10n.of(context).notificationsEnabledForThisAccount),
-                  onChanged: (_) => showFutureLoadingDialog(
-                    context: context,
-                    future: () => Matrix.of(context)
-                        .client
-                        .setMuteAllPushNotifications(
-                          !Matrix.of(context).client.allPushNotificationsMuted,
-                        ),
-                  ),
-                ),
-                if (!Matrix.of(context).client.allPushNotificationsMuted) ...{
-                  if (!kIsWeb && Platform.isAndroid)
-                    ListTile(
-                      title: Text(L10n.of(context).soundVibrationLedColor),
-                      trailing: CircleAvatar(
-                        backgroundColor:
-                            Theme.of(context).scaffoldBackgroundColor,
-                        foregroundColor: Colors.grey,
-                        child: Icon(Icons.edit_outlined),
-                      ),
-                      onTap: () => _openAndroidNotificationSettingsAction(),
+      body: MaxWidthBody(
+        withScrolling: true,
+        child: StreamBuilder(
+            stream: Matrix.of(context)
+                .client
+                .onAccountData
+                .stream
+                .where((event) => event.type == 'm.push_rules'),
+            builder: (BuildContext context, _) {
+              return Column(
+                children: [
+                  SwitchListTile(
+                    value: !Matrix.of(context).client.allPushNotificationsMuted,
+                    title: Text(
+                        L10n.of(context).notificationsEnabledForThisAccount),
+                    onChanged: (_) => showFutureLoadingDialog(
+                      context: context,
+                      future: () =>
+                          Matrix.of(context).client.setMuteAllPushNotifications(
+                                !Matrix.of(context)
+                                    .client
+                                    .allPushNotificationsMuted,
+                              ),
                     ),
+                  ),
+                  if (!Matrix.of(context).client.allPushNotificationsMuted) ...{
+                    if (!kIsWeb && Platform.isAndroid)
+                      ListTile(
+                        title: Text(L10n.of(context).soundVibrationLedColor),
+                        trailing: CircleAvatar(
+                          backgroundColor:
+                              Theme.of(context).scaffoldBackgroundColor,
+                          foregroundColor: Colors.grey,
+                          child: Icon(Icons.edit_outlined),
+                        ),
+                        onTap: () => _openAndroidNotificationSettingsAction(),
+                      ),
+                    Divider(thickness: 1),
+                    ListTile(
+                      title: Text(
+                        L10n.of(context).pushRules,
+                        style: TextStyle(
+                          color: Theme.of(context).accentColor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    for (var item in items)
+                      SwitchListTile(
+                        value: _getNotificationSetting(context, item) ?? true,
+                        title: Text(item.title(context)),
+                        onChanged: (bool enabled) =>
+                            _setNotificationSetting(context, item, enabled),
+                      ),
+                  },
                   Divider(thickness: 1),
                   ListTile(
                     title: Text(
-                      L10n.of(context).pushRules,
+                      L10n.of(context).devices,
                       style: TextStyle(
                         color: Theme.of(context).accentColor,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
-                  for (var item in items)
-                    SwitchListTile(
-                      value: _getNotificationSetting(context, item) ?? true,
-                      title: Text(item.title(context)),
-                      onChanged: (bool enabled) =>
-                          _setNotificationSetting(context, item, enabled),
-                    ),
-                },
-                Divider(thickness: 1),
-                ListTile(
-                  title: Text(
-                    L10n.of(context).devices,
-                    style: TextStyle(
-                      color: Theme.of(context).accentColor,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                FutureBuilder<List<Pusher>>(
-                  future: Matrix.of(context).client.requestPushers(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasError) {
-                      Center(
-                        child: Text(
-                          snapshot.error.toLocalizedString(context),
+                  FutureBuilder<List<Pusher>>(
+                    future: Matrix.of(context).client.requestPushers(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasError) {
+                        Center(
+                          child: Text(
+                            snapshot.error.toLocalizedString(context),
+                          ),
+                        );
+                      }
+                      if (!snapshot.hasData) {
+                        Center(child: CircularProgressIndicator());
+                      }
+                      final pushers = snapshot.data;
+                      return ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: pushers.length,
+                        itemBuilder: (_, i) => ListTile(
+                          title: Text(
+                              '${pushers[i].appDisplayName} - ${pushers[i].appId}'),
+                          subtitle: Text(pushers[i].data.url.toString()),
                         ),
                       );
-                    }
-                    if (!snapshot.hasData) {
-                      Center(child: CircularProgressIndicator());
-                    }
-                    final pushers = snapshot.data;
-                    return ListView.builder(
-                      physics: NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: pushers.length,
-                      itemBuilder: (_, i) => ListTile(
-                        title: Text(
-                            '${pushers[i].appDisplayName} - ${pushers[i].appId}'),
-                        subtitle: Text(pushers[i].data.url.toString()),
-                      ),
-                    );
-                  },
-                ),
-              ],
-            );
-          }),
+                    },
+                  ),
+                ],
+              );
+            }),
+      ),
     );
   }
 }

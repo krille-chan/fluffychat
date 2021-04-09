@@ -1,5 +1,6 @@
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart' as sdk;
+import 'package:fluffychat/views/widgets/max_width_body.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/views/widgets/matrix.dart';
 import 'package:flutter/material.dart';
@@ -45,32 +46,34 @@ class _NewGroupState extends State<NewGroup> {
         title: Text(L10n.of(context).createNewGroup),
         elevation: 0,
       ),
-      body: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: TextField(
-              controller: controller,
-              autofocus: true,
-              autocorrect: false,
-              textInputAction: TextInputAction.go,
-              onSubmitted: (s) => submitAction(context),
-              decoration: InputDecoration(
-                  labelText: L10n.of(context).optionalGroupName,
-                  prefixIcon: Icon(Icons.people_outlined),
-                  hintText: L10n.of(context).enterAGroupName),
+      body: MaxWidthBody(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: TextField(
+                controller: controller,
+                autofocus: true,
+                autocorrect: false,
+                textInputAction: TextInputAction.go,
+                onSubmitted: (s) => submitAction(context),
+                decoration: InputDecoration(
+                    labelText: L10n.of(context).optionalGroupName,
+                    prefixIcon: Icon(Icons.people_outlined),
+                    hintText: L10n.of(context).enterAGroupName),
+              ),
             ),
-          ),
-          SwitchListTile(
-            title: Text(L10n.of(context).groupIsPublic),
-            value: publicGroup,
-            onChanged: (bool b) => setState(() => publicGroup = b),
-          ),
-          Expanded(
-            child: Image.asset('assets/new_group_wallpaper.png'),
-          ),
-        ],
+            SwitchListTile(
+              title: Text(L10n.of(context).groupIsPublic),
+              value: publicGroup,
+              onChanged: (bool b) => setState(() => publicGroup = b),
+            ),
+            Expanded(
+              child: Image.asset('assets/new_group_wallpaper.png'),
+            ),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => submitAction(context),

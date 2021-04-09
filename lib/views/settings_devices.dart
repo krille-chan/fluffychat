@@ -2,6 +2,7 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:famedlysdk/encryption/utils/key_verification.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/views/widgets/dialogs/key_verification_dialog.dart';
+import 'package:fluffychat/views/widgets/max_width_body.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -131,83 +132,86 @@ class DevicesSettingsState extends State<DevicesSettings> {
         leading: BackButton(),
         title: Text(L10n.of(context).devices),
       ),
-      body: FutureBuilder<bool>(
-        future: _loadUserDevices(context),
-        builder: (BuildContext context, snapshot) {
-          if (snapshot.hasError) {
-            return Center(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Icon(Icons.error_outlined),
-                  Text(snapshot.error.toString()),
-                ],
-              ),
-            );
-          }
-          if (!snapshot.hasData || this.devices == null) {
-            return Center(child: CircularProgressIndicator());
-          }
-          Function isOwnDevice = (Device userDevice) =>
-              userDevice.deviceId == Matrix.of(context).client.deviceID;
-          final devices = List<Device>.from(this.devices);
-          var thisDevice = devices.firstWhere(isOwnDevice, orElse: () => null);
-          devices.removeWhere(isOwnDevice);
-          devices.sort((a, b) => b.lastSeenTs.compareTo(a.lastSeenTs));
-          return Column(
-            children: <Widget>[
-              if (thisDevice != null)
-                UserDeviceListItem(
-                  thisDevice,
-                  rename: (d) => _renameDeviceAction(context, d),
-                  remove: (d) => _removeDevicesAction(context, [d]),
-                  verify: (d) => _verifyDeviceAction(context, d),
-                  block: (d) => _blockDeviceAction(context, d),
-                  unblock: (d) => _unblockDeviceAction(context, d),
+      body: MaxWidthBody(
+        child: FutureBuilder<bool>(
+          future: _loadUserDevices(context),
+          builder: (BuildContext context, snapshot) {
+            if (snapshot.hasError) {
+              return Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Icon(Icons.error_outlined),
+                    Text(snapshot.error.toString()),
+                  ],
                 ),
-              Divider(height: 1),
-              if (devices.isNotEmpty)
-                ListTile(
-                  title: Text(
-                    _errorDeletingDevices ??
-                        L10n.of(context).removeAllOtherDevices,
-                    style: TextStyle(color: Colors.red),
+              );
+            }
+            if (!snapshot.hasData || this.devices == null) {
+              return Center(child: CircularProgressIndicator());
+            }
+            Function isOwnDevice = (Device userDevice) =>
+                userDevice.deviceId == Matrix.of(context).client.deviceID;
+            final devices = List<Device>.from(this.devices);
+            var thisDevice =
+                devices.firstWhere(isOwnDevice, orElse: () => null);
+            devices.removeWhere(isOwnDevice);
+            devices.sort((a, b) => b.lastSeenTs.compareTo(a.lastSeenTs));
+            return Column(
+              children: <Widget>[
+                if (thisDevice != null)
+                  UserDeviceListItem(
+                    thisDevice,
+                    rename: (d) => _renameDeviceAction(context, d),
+                    remove: (d) => _removeDevicesAction(context, [d]),
+                    verify: (d) => _verifyDeviceAction(context, d),
+                    block: (d) => _blockDeviceAction(context, d),
+                    unblock: (d) => _unblockDeviceAction(context, d),
                   ),
-                  trailing: _loadingDeletingDevices
-                      ? CircularProgressIndicator()
-                      : Icon(Icons.delete_outline),
-                  onTap: _loadingDeletingDevices
-                      ? null
-                      : () => _removeDevicesAction(context, devices),
+                Divider(height: 1),
+                if (devices.isNotEmpty)
+                  ListTile(
+                    title: Text(
+                      _errorDeletingDevices ??
+                          L10n.of(context).removeAllOtherDevices,
+                      style: TextStyle(color: Colors.red),
+                    ),
+                    trailing: _loadingDeletingDevices
+                        ? CircularProgressIndicator()
+                        : Icon(Icons.delete_outline),
+                    onTap: _loadingDeletingDevices
+                        ? null
+                        : () => _removeDevicesAction(context, devices),
+                  ),
+                Divider(height: 1),
+                Expanded(
+                  child: devices.isEmpty
+                      ? Center(
+                          child: Icon(
+                            Icons.devices_other,
+                            size: 60,
+                            color: Theme.of(context).secondaryHeaderColor,
+                          ),
+                        )
+                      : ListView.separated(
+                          separatorBuilder: (BuildContext context, int i) =>
+                              Divider(height: 1),
+                          itemCount: devices.length,
+                          itemBuilder: (BuildContext context, int i) =>
+                              UserDeviceListItem(
+                            devices[i],
+                            rename: (d) => _renameDeviceAction(context, d),
+                            remove: (d) => _removeDevicesAction(context, [d]),
+                            verify: (d) => _verifyDeviceAction(context, d),
+                            block: (d) => _blockDeviceAction(context, d),
+                            unblock: (d) => _unblockDeviceAction(context, d),
+                          ),
+                        ),
                 ),
-              Divider(height: 1),
-              Expanded(
-                child: devices.isEmpty
-                    ? Center(
-                        child: Icon(
-                          Icons.devices_other,
-                          size: 60,
-                          color: Theme.of(context).secondaryHeaderColor,
-                        ),
-                      )
-                    : ListView.separated(
-                        separatorBuilder: (BuildContext context, int i) =>
-                            Divider(height: 1),
-                        itemCount: devices.length,
-                        itemBuilder: (BuildContext context, int i) =>
-                            UserDeviceListItem(
-                          devices[i],
-                          rename: (d) => _renameDeviceAction(context, d),
-                          remove: (d) => _removeDevicesAction(context, [d]),
-                          verify: (d) => _verifyDeviceAction(context, d),
-                          block: (d) => _blockDeviceAction(context, d),
-                          unblock: (d) => _unblockDeviceAction(context, d),
-                        ),
-                      ),
-              ),
-            ],
-          );
-        },
+              ],
+            );
+          },
+        ),
       ),
     );
   }

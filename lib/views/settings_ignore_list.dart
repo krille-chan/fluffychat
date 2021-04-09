@@ -1,5 +1,6 @@
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/views/widgets/avatar.dart';
+import 'package:fluffychat/views/widgets/max_width_body.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -45,71 +46,73 @@ class _SettingsIgnoreListState extends State<SettingsIgnoreList> {
         leading: BackButton(),
         title: Text(L10n.of(context).ignoredUsers),
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TextField(
-                  controller: _controller,
-                  autocorrect: false,
-                  textInputAction: TextInputAction.done,
-                  onSubmitted: (_) => _ignoreUser(context),
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'bad_guy:domain.abc',
-                    prefixText: '@',
-                    labelText: L10n.of(context).ignoreUsername,
-                    suffixIcon: IconButton(
-                      tooltip: L10n.of(context).ignore,
-                      icon: Icon(Icons.done_outlined),
-                      onPressed: () => _ignoreUser(context),
+      body: MaxWidthBody(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextField(
+                    controller: _controller,
+                    autocorrect: false,
+                    textInputAction: TextInputAction.done,
+                    onSubmitted: (_) => _ignoreUser(context),
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'bad_guy:domain.abc',
+                      prefixText: '@',
+                      labelText: L10n.of(context).ignoreUsername,
+                      suffixIcon: IconButton(
+                        tooltip: L10n.of(context).ignore,
+                        icon: Icon(Icons.done_outlined),
+                        onPressed: () => _ignoreUser(context),
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(height: 16),
-                Text(
-                  L10n.of(context).ignoreListDescription,
-                  style: TextStyle(color: Colors.orange),
-                ),
-              ],
+                  SizedBox(height: 16),
+                  Text(
+                    L10n.of(context).ignoreListDescription,
+                    style: TextStyle(color: Colors.orange),
+                  ),
+                ],
+              ),
             ),
-          ),
-          Divider(height: 1),
-          Expanded(
-            child: StreamBuilder<Object>(
-                stream: client.onAccountData.stream
-                    .where((a) => a.type == 'm.ignored_user_list'),
-                builder: (context, snapshot) {
-                  return ListView.builder(
-                    itemCount: client.ignoredUsers.length,
-                    itemBuilder: (c, i) => FutureBuilder<Profile>(
-                      future:
-                          client.getProfileFromUserId(client.ignoredUsers[i]),
-                      builder: (c, s) => ListTile(
-                        leading: Avatar(
-                          s.data?.avatarUrl ?? Uri.parse(''),
-                          s.data?.displayname ?? client.ignoredUsers[i],
-                        ),
-                        title:
-                            Text(s.data?.displayname ?? client.ignoredUsers[i]),
-                        trailing: IconButton(
-                          tooltip: L10n.of(context).delete,
-                          icon: Icon(Icons.delete_forever_outlined),
-                          onPressed: () => showFutureLoadingDialog(
-                            context: context,
-                            future: () =>
-                                client.unignoreUser(client.ignoredUsers[i]),
+            Divider(height: 1),
+            Expanded(
+              child: StreamBuilder<Object>(
+                  stream: client.onAccountData.stream
+                      .where((a) => a.type == 'm.ignored_user_list'),
+                  builder: (context, snapshot) {
+                    return ListView.builder(
+                      itemCount: client.ignoredUsers.length,
+                      itemBuilder: (c, i) => FutureBuilder<Profile>(
+                        future:
+                            client.getProfileFromUserId(client.ignoredUsers[i]),
+                        builder: (c, s) => ListTile(
+                          leading: Avatar(
+                            s.data?.avatarUrl ?? Uri.parse(''),
+                            s.data?.displayname ?? client.ignoredUsers[i],
+                          ),
+                          title: Text(
+                              s.data?.displayname ?? client.ignoredUsers[i]),
+                          trailing: IconButton(
+                            tooltip: L10n.of(context).delete,
+                            icon: Icon(Icons.delete_forever_outlined),
+                            onPressed: () => showFutureLoadingDialog(
+                              context: context,
+                              future: () =>
+                                  client.unignoreUser(client.ignoredUsers[i]),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  );
-                }),
-          ),
-        ],
+                    );
+                  }),
+            ),
+          ],
+        ),
       ),
     );
   }

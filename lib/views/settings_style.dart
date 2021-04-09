@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:fluffychat/config/setting_keys.dart';
+import 'package:fluffychat/views/widgets/max_width_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:image_picker/image_picker.dart';
@@ -56,100 +57,104 @@ class _SettingsStyleState extends State<SettingsStyle> {
         leading: BackButton(),
         title: Text(L10n.of(context).changeTheme),
       ),
-      body: ListView(
-        children: [
-          RadioListTile<AdaptiveThemeMode>(
-            groupValue: _currentTheme,
-            value: AdaptiveThemeMode.system,
-            title: Text(L10n.of(context).systemTheme),
-            onChanged: (t) => _switchTheme(t, context),
-          ),
-          RadioListTile<AdaptiveThemeMode>(
-            groupValue: _currentTheme,
-            value: AdaptiveThemeMode.light,
-            title: Text(L10n.of(context).lightTheme),
-            onChanged: (t) => _switchTheme(t, context),
-          ),
-          RadioListTile<AdaptiveThemeMode>(
-            groupValue: _currentTheme,
-            value: AdaptiveThemeMode.dark,
-            title: Text(L10n.of(context).darkTheme),
-            onChanged: (t) => _switchTheme(t, context),
-          ),
-          Divider(height: 1),
-          ListTile(
-            title: Text(
-              L10n.of(context).wallpaper,
-              style: TextStyle(
-                color: Theme.of(context).accentColor,
-                fontWeight: FontWeight.bold,
-              ),
+      body: MaxWidthBody(
+        withScrolling: true,
+        child: Column(
+          children: [
+            RadioListTile<AdaptiveThemeMode>(
+              groupValue: _currentTheme,
+              value: AdaptiveThemeMode.system,
+              title: Text(L10n.of(context).systemTheme),
+              onChanged: (t) => _switchTheme(t, context),
             ),
-          ),
-          if (Matrix.of(context).wallpaper != null)
+            RadioListTile<AdaptiveThemeMode>(
+              groupValue: _currentTheme,
+              value: AdaptiveThemeMode.light,
+              title: Text(L10n.of(context).lightTheme),
+              onChanged: (t) => _switchTheme(t, context),
+            ),
+            RadioListTile<AdaptiveThemeMode>(
+              groupValue: _currentTheme,
+              value: AdaptiveThemeMode.dark,
+              title: Text(L10n.of(context).darkTheme),
+              onChanged: (t) => _switchTheme(t, context),
+            ),
+            Divider(height: 1),
             ListTile(
-              title: Image.file(
-                Matrix.of(context).wallpaper,
-                height: 38,
-                fit: BoxFit.cover,
-              ),
-              trailing: Icon(
-                Icons.delete_forever_outlined,
-                color: Colors.red,
-              ),
-              onTap: () => deleteWallpaperAction(context),
-            ),
-          Builder(builder: (context) {
-            return ListTile(
-              title: Text(L10n.of(context).changeWallpaper),
-              trailing: Icon(Icons.wallpaper_outlined),
-              onTap: () => setWallpaperAction(context),
-            );
-          }),
-          Divider(height: 1),
-          ListTile(
-            title: Text(
-              L10n.of(context).fontSize,
-              style: TextStyle(
-                color: Theme.of(context).accentColor,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            subtitle: Text('(*${AppConfig.fontSizeFactor})'),
-          ),
-          Container(
-            alignment: Alignment.centerLeft,
-            child: Container(
-              margin: const EdgeInsets.symmetric(horizontal: 16),
-              padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
-              decoration: BoxDecoration(
-                color: Theme.of(context).secondaryHeaderColor,
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Text(
-                'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor',
+              title: Text(
+                L10n.of(context).wallpaper,
                 style: TextStyle(
-                  fontSize: Theme.of(context).textTheme.bodyText1.fontSize *
-                      AppConfig.fontSizeFactor,
+                  color: Theme.of(context).accentColor,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-          ),
-          Slider(
-            min: 0.5,
-            max: 2.5,
-            divisions: 4,
-            value: AppConfig.fontSizeFactor,
-            semanticFormatterCallback: (d) => d.toString(),
-            onChanged: (d) {
-              setState(() => AppConfig.fontSizeFactor = d);
-              Matrix.of(context).store.setItem(
-                    SettingKeys.fontSizeFactor,
-                    AppConfig.fontSizeFactor.toString(),
-                  );
-            },
-          ),
-        ],
+            if (Matrix.of(context).wallpaper != null)
+              ListTile(
+                title: Image.file(
+                  Matrix.of(context).wallpaper,
+                  height: 38,
+                  fit: BoxFit.cover,
+                ),
+                trailing: Icon(
+                  Icons.delete_forever_outlined,
+                  color: Colors.red,
+                ),
+                onTap: () => deleteWallpaperAction(context),
+              ),
+            Builder(builder: (context) {
+              return ListTile(
+                title: Text(L10n.of(context).changeWallpaper),
+                trailing: Icon(Icons.wallpaper_outlined),
+                onTap: () => setWallpaperAction(context),
+              );
+            }),
+            Divider(height: 1),
+            ListTile(
+              title: Text(
+                L10n.of(context).fontSize,
+                style: TextStyle(
+                  color: Theme.of(context).accentColor,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              subtitle: Text('(*${AppConfig.fontSizeFactor})'),
+            ),
+            Container(
+              alignment: Alignment.centerLeft,
+              child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 16),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).secondaryHeaderColor,
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Text(
+                  'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor',
+                  style: TextStyle(
+                    fontSize: Theme.of(context).textTheme.bodyText1.fontSize *
+                        AppConfig.fontSizeFactor,
+                  ),
+                ),
+              ),
+            ),
+            Slider(
+              min: 0.5,
+              max: 2.5,
+              divisions: 4,
+              value: AppConfig.fontSizeFactor,
+              semanticFormatterCallback: (d) => d.toString(),
+              onChanged: (d) {
+                setState(() => AppConfig.fontSizeFactor = d);
+                Matrix.of(context).store.setItem(
+                      SettingKeys.fontSizeFactor,
+                      AppConfig.fontSizeFactor.toString(),
+                    );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

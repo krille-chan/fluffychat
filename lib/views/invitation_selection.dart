@@ -5,6 +5,7 @@ import 'package:fluffychat/views/widgets/default_app_bar_search_field.dart';
 
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/views/widgets/avatar.dart';
+import 'package:fluffychat/views/widgets/max_width_body.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/views/widgets/matrix.dart';
 import 'package:flutter/material.dart';
@@ -128,45 +129,52 @@ class _InvitationSelectionState extends State<InvitationSelection> {
           onChanged: (String text) => searchUserWithCoolDown(context, text),
         ),
       ),
-      body: foundProfiles.isNotEmpty
-          ? ListView.builder(
-              itemCount: foundProfiles.length,
-              itemBuilder: (BuildContext context, int i) => ListTile(
-                leading: Avatar(
-                  foundProfiles[i].avatarUrl,
-                  foundProfiles[i].displayname ?? foundProfiles[i].userId,
-                ),
-                title: Text(
-                  foundProfiles[i].displayname ??
-                      foundProfiles[i].userId.localpart,
-                ),
-                subtitle: Text(foundProfiles[i].userId),
-                onTap: () => inviteAction(context, foundProfiles[i].userId),
-              ),
-            )
-          : FutureBuilder<List<User>>(
-              future: getContacts(context),
-              builder: (BuildContext context, snapshot) {
-                if (!snapshot.hasData) {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-                var contacts = snapshot.data;
-                return ListView.builder(
-                  itemCount: contacts.length,
-                  itemBuilder: (BuildContext context, int i) => ListTile(
-                    leading: Avatar(
-                      contacts[i].avatarUrl,
-                      contacts[i].calcDisplayname(),
-                    ),
-                    title: Text(contacts[i].calcDisplayname()),
-                    subtitle: Text(contacts[i].id),
-                    onTap: () => inviteAction(context, contacts[i].id),
+      body: MaxWidthBody(
+        withScrolling: true,
+        child: foundProfiles.isNotEmpty
+            ? ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: foundProfiles.length,
+                itemBuilder: (BuildContext context, int i) => ListTile(
+                  leading: Avatar(
+                    foundProfiles[i].avatarUrl,
+                    foundProfiles[i].displayname ?? foundProfiles[i].userId,
                   ),
-                );
-              },
-            ),
+                  title: Text(
+                    foundProfiles[i].displayname ??
+                        foundProfiles[i].userId.localpart,
+                  ),
+                  subtitle: Text(foundProfiles[i].userId),
+                  onTap: () => inviteAction(context, foundProfiles[i].userId),
+                ),
+              )
+            : FutureBuilder<List<User>>(
+                future: getContacts(context),
+                builder: (BuildContext context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  var contacts = snapshot.data;
+                  return ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: contacts.length,
+                    itemBuilder: (BuildContext context, int i) => ListTile(
+                      leading: Avatar(
+                        contacts[i].avatarUrl,
+                        contacts[i].calcDisplayname(),
+                      ),
+                      title: Text(contacts[i].calcDisplayname()),
+                      subtitle: Text(contacts[i].id),
+                      onTap: () => inviteAction(context, contacts[i].id),
+                    ),
+                  );
+                },
+              ),
+      ),
     );
   }
 }

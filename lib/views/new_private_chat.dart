@@ -4,6 +4,7 @@ import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/views/widgets/avatar.dart';
 import 'package:fluffychat/views/widgets/contacts_list.dart';
+import 'package:fluffychat/views/widgets/max_width_body.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/views/widgets/matrix.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
@@ -101,123 +102,127 @@ class _NewPrivateChatState extends State<NewPrivateChat> {
           )
         ],
       ),
-      body: Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Form(
-              key: _formKey,
-              child: TextFormField(
-                controller: controller,
-                //autofocus: true,
-                autocorrect: false,
-                onChanged: (String text) => searchUserWithCoolDown(context),
-                textInputAction: TextInputAction.go,
-                onFieldSubmitted: (s) => submitAction(context),
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return L10n.of(context).pleaseEnterAMatrixIdentifier;
-                  }
-                  final matrix = Matrix.of(context);
-                  var mxid = '@' + controller.text.trim();
-                  if (mxid == matrix.client.userID) {
-                    return L10n.of(context).youCannotInviteYourself;
-                  }
-                  if (!mxid.contains('@')) {
-                    return L10n.of(context).makeSureTheIdentifierIsValid;
-                  }
-                  if (!mxid.contains(':')) {
-                    return L10n.of(context).makeSureTheIdentifierIsValid;
-                  }
-                  return null;
-                },
-                decoration: InputDecoration(
-                  labelText: L10n.of(context).enterAUsername,
-                  prefixIcon: loading
-                      ? Container(
-                          padding: const EdgeInsets.all(8.0),
-                          width: 12,
-                          height: 12,
-                          child: CircularProgressIndicator(),
-                        )
-                      : correctMxId
-                          ? Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Avatar(
-                                foundProfile.avatarUrl,
-                                foundProfile.displayname ?? foundProfile.userId,
-                                size: 12,
-                              ),
-                            )
-                          : Icon(Icons.account_circle_outlined),
-                  prefixText: '@',
-                  suffixIcon: IconButton(
-                    onPressed: () => submitAction(context),
-                    icon: Icon(Icons.arrow_forward_outlined),
+      body: MaxWidthBody(
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Form(
+                key: _formKey,
+                child: TextFormField(
+                  controller: controller,
+                  //autofocus: true,
+                  autocorrect: false,
+                  onChanged: (String text) => searchUserWithCoolDown(context),
+                  textInputAction: TextInputAction.go,
+                  onFieldSubmitted: (s) => submitAction(context),
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return L10n.of(context).pleaseEnterAMatrixIdentifier;
+                    }
+                    final matrix = Matrix.of(context);
+                    var mxid = '@' + controller.text.trim();
+                    if (mxid == matrix.client.userID) {
+                      return L10n.of(context).youCannotInviteYourself;
+                    }
+                    if (!mxid.contains('@')) {
+                      return L10n.of(context).makeSureTheIdentifierIsValid;
+                    }
+                    if (!mxid.contains(':')) {
+                      return L10n.of(context).makeSureTheIdentifierIsValid;
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                    labelText: L10n.of(context).enterAUsername,
+                    prefixIcon: loading
+                        ? Container(
+                            padding: const EdgeInsets.all(8.0),
+                            width: 12,
+                            height: 12,
+                            child: CircularProgressIndicator(),
+                          )
+                        : correctMxId
+                            ? Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Avatar(
+                                  foundProfile.avatarUrl,
+                                  foundProfile.displayname ??
+                                      foundProfile.userId,
+                                  size: 12,
+                                ),
+                              )
+                            : Icon(Icons.account_circle_outlined),
+                    prefixText: '@',
+                    suffixIcon: IconButton(
+                      onPressed: () => submitAction(context),
+                      icon: Icon(Icons.arrow_forward_outlined),
+                    ),
+                    hintText: '${L10n.of(context).username.toLowerCase()}',
                   ),
-                  hintText: '${L10n.of(context).username.toLowerCase()}',
                 ),
               ),
             ),
-          ),
-          Divider(height: 1),
-          ListTile(
-            leading: CircleAvatar(
-              radius: Avatar.defaultSize / 2,
-              foregroundColor: Theme.of(context).accentColor,
-              backgroundColor: Theme.of(context).secondaryHeaderColor,
-              child: Icon(Icons.share_outlined),
-            ),
-            onTap: () => FluffyShare.share(
-                L10n.of(context).inviteText(Matrix.of(context).client.userID,
-                    'https://matrix.to/#/${Matrix.of(context).client.userID}'),
-                context),
-            title: Text('${L10n.of(context).yourOwnUsername}:'),
-            subtitle: Text(
-              Matrix.of(context).client.userID,
-              style: TextStyle(color: Theme.of(context).accentColor),
-            ),
-          ),
-          Divider(height: 1),
-          if (foundProfiles.isNotEmpty)
-            Expanded(
-              child: ListView.builder(
-                itemCount: foundProfiles.length,
-                itemBuilder: (BuildContext context, int i) {
-                  var foundProfile = foundProfiles[i];
-                  return ListTile(
-                    onTap: () {
-                      setState(() {
-                        controller.text = currentSearchTerm =
-                            foundProfile.userId.substring(1);
-                      });
-                    },
-                    leading: Avatar(
-                      foundProfile.avatarUrl,
-                      foundProfile.displayname ?? foundProfile.userId,
-                      //size: 24,
-                    ),
-                    title: Text(
-                      foundProfile.displayname ?? foundProfile.userId.localpart,
-                      style: TextStyle(),
-                      maxLines: 1,
-                    ),
-                    subtitle: Text(
-                      foundProfile.userId,
-                      maxLines: 1,
-                      style: TextStyle(
-                        fontSize: 12,
-                      ),
-                    ),
-                  );
-                },
+            Divider(height: 1),
+            ListTile(
+              leading: CircleAvatar(
+                radius: Avatar.defaultSize / 2,
+                foregroundColor: Theme.of(context).accentColor,
+                backgroundColor: Theme.of(context).secondaryHeaderColor,
+                child: Icon(Icons.share_outlined),
+              ),
+              onTap: () => FluffyShare.share(
+                  L10n.of(context).inviteText(Matrix.of(context).client.userID,
+                      'https://matrix.to/#/${Matrix.of(context).client.userID}'),
+                  context),
+              title: Text('${L10n.of(context).yourOwnUsername}:'),
+              subtitle: Text(
+                Matrix.of(context).client.userID,
+                style: TextStyle(color: Theme.of(context).accentColor),
               ),
             ),
-          if (foundProfiles.isEmpty)
-            Expanded(
-              child: ContactsList(searchController: controller),
-            ),
-        ],
+            Divider(height: 1),
+            if (foundProfiles.isNotEmpty)
+              Expanded(
+                child: ListView.builder(
+                  itemCount: foundProfiles.length,
+                  itemBuilder: (BuildContext context, int i) {
+                    var foundProfile = foundProfiles[i];
+                    return ListTile(
+                      onTap: () {
+                        setState(() {
+                          controller.text = currentSearchTerm =
+                              foundProfile.userId.substring(1);
+                        });
+                      },
+                      leading: Avatar(
+                        foundProfile.avatarUrl,
+                        foundProfile.displayname ?? foundProfile.userId,
+                        //size: 24,
+                      ),
+                      title: Text(
+                        foundProfile.displayname ??
+                            foundProfile.userId.localpart,
+                        style: TextStyle(),
+                        maxLines: 1,
+                      ),
+                      subtitle: Text(
+                        foundProfile.userId,
+                        maxLines: 1,
+                        style: TextStyle(
+                          fontSize: 12,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            if (foundProfiles.isEmpty)
+              Expanded(
+                child: ContactsList(searchController: controller),
+              ),
+          ],
+        ),
       ),
     );
   }

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:fluffychat/views/widgets/dialogs/permission_slider_dialog.dart';
+import 'package:fluffychat/views/widgets/max_width_body.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/views/widgets/matrix.dart';
 
@@ -52,133 +53,137 @@ class ChatPermissionsSettings extends StatelessWidget {
         leading: BackButton(),
         title: Text(L10n.of(context).editChatPermissions),
       ),
-      body: StreamBuilder(
-        stream: Matrix.of(context).client.onSync.stream.where(
-              (e) =>
-                  (e?.rooms?.join?.containsKey(roomId) ?? false) &&
-                  (e.rooms.join[roomId]?.timeline?.events
-                          ?.any((s) => s.type == EventTypes.RoomPowerLevels) ??
-                      false),
-            ),
-        builder: (context, _) {
-          final room = Matrix.of(context).client.getRoomById(roomId);
-          final powerLevelsContent = Map<String, dynamic>.from(
-              room.getState(EventTypes.RoomPowerLevels).content);
-          final powerLevels = Map<String, dynamic>.from(powerLevelsContent)
-            ..removeWhere((k, v) => !(v is int));
-          final eventsPowerLevels =
-              Map<String, dynamic>.from(powerLevelsContent['events'])
-                ..removeWhere((k, v) => !(v is int));
+      body: MaxWidthBody(
+        withScrolling: true,
+        child: StreamBuilder(
+          stream: Matrix.of(context).client.onSync.stream.where(
+                (e) =>
+                    (e?.rooms?.join?.containsKey(roomId) ?? false) &&
+                    (e.rooms.join[roomId]?.timeline?.events?.any(
+                            (s) => s.type == EventTypes.RoomPowerLevels) ??
+                        false),
+              ),
+          builder: (context, _) {
+            final room = Matrix.of(context).client.getRoomById(roomId);
+            final powerLevelsContent = Map<String, dynamic>.from(
+                room.getState(EventTypes.RoomPowerLevels).content);
+            final powerLevels = Map<String, dynamic>.from(powerLevelsContent)
+              ..removeWhere((k, v) => !(v is int));
+            final eventsPowerLevels =
+                Map<String, dynamic>.from(powerLevelsContent['events'])
+                  ..removeWhere((k, v) => !(v is int));
 
-          return ListView(
-            children: [
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  for (var entry in powerLevels.entries)
-                    PermissionsListTile(
-                      permissionKey: entry.key,
-                      permission: entry.value,
-                      onTap: () =>
-                          _editPowerLevel(context, entry.key, entry.value),
-                    ),
-                  Divider(thickness: 1),
-                  ListTile(
-                    title: Text(
-                      L10n.of(context).notifications,
-                      style: TextStyle(
-                        color: Theme.of(context).primaryColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  Builder(builder: (context) {
-                    final key = 'rooms';
-                    final int value =
-                        powerLevelsContent.containsKey('notifications')
-                            ? powerLevelsContent['notifications']['rooms'] ?? 0
-                            : 0;
-                    return PermissionsListTile(
-                      permissionKey: key,
-                      permission: value,
-                      category: 'notifications',
-                      onTap: () => _editPowerLevel(context, key, value,
-                          category: 'notifications'),
-                    );
-                  }),
-                  Divider(thickness: 1),
-                  ListTile(
-                    title: Text(
-                      L10n.of(context).configureChat,
-                      style: TextStyle(
-                        color: Theme.of(context).primaryColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  if (eventsPowerLevels != null)
-                    for (var entry in eventsPowerLevels.entries)
+            return Column(
+              children: [
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    for (var entry in powerLevels.entries)
                       PermissionsListTile(
                         permissionKey: entry.key,
-                        category: 'events',
                         permission: entry.value,
-                        onTap: () => _editPowerLevel(
-                            context, entry.key, entry.value,
-                            category: 'events'),
+                        onTap: () =>
+                            _editPowerLevel(context, entry.key, entry.value),
                       ),
-                  if (room.ownPowerLevel >= 100) ...{
                     Divider(thickness: 1),
-                    FutureBuilder<ServerCapabilities>(
-                      future: room.client.requestServerCapabilities(),
-                      builder: (context, snapshot) {
-                        if (!snapshot.hasData) {
-                          return Center(child: CircularProgressIndicator());
-                        }
-                        final String roomVersion = room
-                                .getState(EventTypes.RoomCreate)
-                                .content['room_version'] ??
-                            '1';
-                        final shouldHaveVersion =
-                            snapshot.data.mRoomVersions.defaultVersion;
-
-                        return ListTile(
-                          title: Text('Current room version: $roomVersion'),
-                          subtitle: roomVersion == shouldHaveVersion
-                              ? null
-                              : Text(
-                                  'Upgrade to $shouldHaveVersion available!',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Theme.of(context).accentColor),
-                                ),
-                          onTap: () async {
-                            final newVersion =
-                                await showConfirmationDialog<String>(
-                              context: context,
-                              title: 'Choose Room Version',
-                              actions: snapshot
-                                  .data.mRoomVersions.available.entries
-                                  .where((r) => r.key != roomVersion)
-                                  .map((version) => AlertDialogAction(
-                                      key: version.key,
-                                      label:
-                                          '${version.key} (${version.value.toString().split('.').last})')),
-                            );
-                            await showFutureLoadingDialog(
-                              context: context,
-                              future: () =>
-                                  room.client.upgradeRoom(roomId, newVersion),
-                            ).then((_) => AdaptivePageLayout.of(context).pop());
-                          },
-                        );
-                      },
+                    ListTile(
+                      title: Text(
+                        L10n.of(context).notifications,
+                        style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
-                  },
-                ],
-              ),
-            ],
-          );
-        },
+                    Builder(builder: (context) {
+                      final key = 'rooms';
+                      final int value = powerLevelsContent
+                              .containsKey('notifications')
+                          ? powerLevelsContent['notifications']['rooms'] ?? 0
+                          : 0;
+                      return PermissionsListTile(
+                        permissionKey: key,
+                        permission: value,
+                        category: 'notifications',
+                        onTap: () => _editPowerLevel(context, key, value,
+                            category: 'notifications'),
+                      );
+                    }),
+                    Divider(thickness: 1),
+                    ListTile(
+                      title: Text(
+                        L10n.of(context).configureChat,
+                        style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    if (eventsPowerLevels != null)
+                      for (var entry in eventsPowerLevels.entries)
+                        PermissionsListTile(
+                          permissionKey: entry.key,
+                          category: 'events',
+                          permission: entry.value,
+                          onTap: () => _editPowerLevel(
+                              context, entry.key, entry.value,
+                              category: 'events'),
+                        ),
+                    if (room.ownPowerLevel >= 100) ...{
+                      Divider(thickness: 1),
+                      FutureBuilder<ServerCapabilities>(
+                        future: room.client.requestServerCapabilities(),
+                        builder: (context, snapshot) {
+                          if (!snapshot.hasData) {
+                            return Center(child: CircularProgressIndicator());
+                          }
+                          final String roomVersion = room
+                                  .getState(EventTypes.RoomCreate)
+                                  .content['room_version'] ??
+                              '1';
+                          final shouldHaveVersion =
+                              snapshot.data.mRoomVersions.defaultVersion;
+
+                          return ListTile(
+                            title: Text('Current room version: $roomVersion'),
+                            subtitle: roomVersion == shouldHaveVersion
+                                ? null
+                                : Text(
+                                    'Upgrade to $shouldHaveVersion available!',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Theme.of(context).accentColor),
+                                  ),
+                            onTap: () async {
+                              final newVersion =
+                                  await showConfirmationDialog<String>(
+                                context: context,
+                                title: 'Choose Room Version',
+                                actions: snapshot
+                                    .data.mRoomVersions.available.entries
+                                    .where((r) => r.key != roomVersion)
+                                    .map((version) => AlertDialogAction(
+                                        key: version.key,
+                                        label:
+                                            '${version.key} (${version.value.toString().split('.').last})')),
+                              );
+                              await showFutureLoadingDialog(
+                                context: context,
+                                future: () =>
+                                    room.client.upgradeRoom(roomId, newVersion),
+                              ).then(
+                                  (_) => AdaptivePageLayout.of(context).pop());
+                            },
+                          );
+                        },
+                      ),
+                    },
+                  ],
+                ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }

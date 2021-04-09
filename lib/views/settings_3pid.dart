@@ -1,5 +1,6 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/views/widgets/max_width_body.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/views/widgets/matrix.dart';
 import 'package:flutter/material.dart';
@@ -99,64 +100,67 @@ class _Settings3PidState extends State<Settings3Pid> {
           )
         ],
       ),
-      body: FutureBuilder<List<ThirdPartyIdentifier>>(
-        future: _request,
-        builder: (BuildContext context,
-            AsyncSnapshot<List<ThirdPartyIdentifier>> snapshot) {
-          if (snapshot.hasError) {
-            return Center(
-              child: Text(
-                snapshot.error.toString(),
-                textAlign: TextAlign.center,
-              ),
-            );
-          }
-          if (!snapshot.hasData) {
-            return Center(child: CircularProgressIndicator());
-          }
-          final identifier = snapshot.data;
-          return Column(
-            children: [
-              ListTile(
-                leading: CircleAvatar(
-                  backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                  foregroundColor:
-                      identifier.isEmpty ? Colors.orange : Colors.grey,
-                  child: Icon(
+      body: MaxWidthBody(
+        child: FutureBuilder<List<ThirdPartyIdentifier>>(
+          future: _request,
+          builder: (BuildContext context,
+              AsyncSnapshot<List<ThirdPartyIdentifier>> snapshot) {
+            if (snapshot.hasError) {
+              return Center(
+                child: Text(
+                  snapshot.error.toString(),
+                  textAlign: TextAlign.center,
+                ),
+              );
+            }
+            if (!snapshot.hasData) {
+              return Center(child: CircularProgressIndicator());
+            }
+            final identifier = snapshot.data;
+            return Column(
+              children: [
+                ListTile(
+                  leading: CircleAvatar(
+                    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                    foregroundColor:
+                        identifier.isEmpty ? Colors.orange : Colors.grey,
+                    child: Icon(
+                      identifier.isEmpty
+                          ? Icons.warning_outlined
+                          : Icons.info_outlined,
+                    ),
+                  ),
+                  title: Text(
                     identifier.isEmpty
-                        ? Icons.warning_outlined
-                        : Icons.info_outlined,
+                        ? L10n.of(context).noPasswordRecoveryDescription
+                        : L10n.of(context)
+                            .withTheseAddressesRecoveryDescription,
                   ),
                 ),
-                title: Text(
-                  identifier.isEmpty
-                      ? L10n.of(context).noPasswordRecoveryDescription
-                      : L10n.of(context).withTheseAddressesRecoveryDescription,
-                ),
-              ),
-              Divider(height: 1),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: identifier.length,
-                  itemBuilder: (BuildContext context, int i) => ListTile(
-                    leading: CircleAvatar(
-                        backgroundColor:
-                            Theme.of(context).scaffoldBackgroundColor,
-                        foregroundColor: Colors.grey,
-                        child: Icon(identifier[i].iconData)),
-                    title: Text(identifier[i].address),
-                    trailing: IconButton(
-                      tooltip: L10n.of(context).delete,
-                      icon: Icon(Icons.delete_forever_outlined),
-                      color: Colors.red,
-                      onPressed: () => _delete3Pid(context, identifier[i]),
+                Divider(height: 1),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: identifier.length,
+                    itemBuilder: (BuildContext context, int i) => ListTile(
+                      leading: CircleAvatar(
+                          backgroundColor:
+                              Theme.of(context).scaffoldBackgroundColor,
+                          foregroundColor: Colors.grey,
+                          child: Icon(identifier[i].iconData)),
+                      title: Text(identifier[i].address),
+                      trailing: IconButton(
+                        tooltip: L10n.of(context).delete,
+                        icon: Icon(Icons.delete_forever_outlined),
+                        color: Colors.red,
+                        onPressed: () => _delete3Pid(context, identifier[i]),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          );
-        },
+              ],
+            );
+          },
+        ),
       ),
     );
   }
