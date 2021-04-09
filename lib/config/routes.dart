@@ -1,5 +1,6 @@
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/controllers/homeserver_picker_controller.dart';
 import 'package:fluffychat/views/widgets/matrix.dart';
 import 'package:fluffychat/views/archive.dart';
 import 'package:fluffychat/views/chat.dart';
@@ -8,7 +9,6 @@ import 'package:fluffychat/views/chat_encryption_settings.dart';
 import 'package:fluffychat/views/chat_list.dart';
 import 'package:fluffychat/views/chat_permissions_settings.dart';
 import 'package:fluffychat/views/empty_page.dart';
-import 'package:fluffychat/views/homeserver_picker.dart';
 import 'package:fluffychat/views/invitation_selection.dart';
 import 'package:fluffychat/views/loading_view.dart';
 import 'package:fluffychat/views/log_view.dart';
