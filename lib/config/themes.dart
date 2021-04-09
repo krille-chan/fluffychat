@@ -66,6 +66,13 @@ abstract class FluffyThemes {
         padding: EdgeInsets.all(12),
       ),
     ),
+    cardTheme: CardTheme(
+      elevation: 7,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+      ),
+      clipBehavior: Clip.hardEdge,
+    ),
     inputDecorationTheme: InputDecorationTheme(
       border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppConfig.borderRadius)),
@@ -112,6 +119,13 @@ abstract class FluffyThemes {
         borderRadius: BorderRadius.circular(AppConfig.borderRadius),
       ),
     ),
+    cardTheme: CardTheme(
+      elevation: 7,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+      ),
+      clipBehavior: Clip.hardEdge,
+    ),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: AppConfig.primaryColor,
       foregroundColor: Colors.white,
@@ -126,6 +140,17 @@ abstract class FluffyThemes {
         borderSide: BorderSide(
           color: FluffyThemes.darken(AppConfig.primaryColor, .31),
         ),
+      ),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        primary: AppConfig.primaryColor,
+        onPrimary: Colors.white,
+        elevation: 7,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+        ),
+        padding: EdgeInsets.all(12),
       ),
     ),
     appBarTheme: AppBarTheme(

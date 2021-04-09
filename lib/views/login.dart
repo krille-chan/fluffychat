@@ -1,9 +1,9 @@
 import 'dart:async';
-import 'dart:math';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/components/one_page_card.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/components/matrix.dart';
 
@@ -184,96 +184,95 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: loading ? Container() : BackButton(),
-        elevation: 0,
-        title: Text(
-          L10n.of(context).logInTo(Matrix.of(context)
-              .client
-              .homeserver
-              .toString()
-              .replaceFirst('https://', '')),
+    return OnePageCard(
+      child: Scaffold(
+        appBar: AppBar(
+          leading: loading ? Container() : BackButton(),
+          elevation: 0,
+          title: Text(
+            L10n.of(context).logInTo(Matrix.of(context)
+                .client
+                .homeserver
+                .toString()
+                .replaceFirst('https://', '')),
+          ),
         ),
-      ),
-      body: Builder(builder: (context) {
-        return ListView(
-          padding: EdgeInsets.symmetric(
-              horizontal:
-                  max((MediaQuery.of(context).size.width - 600) / 2, 0)),
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: TextField(
-                readOnly: loading,
-                autocorrect: false,
-                autofocus: true,
-                onChanged: (t) => _checkWellKnownWithCoolDown(t, context),
-                controller: usernameController,
-                autofillHints: loading ? null : [AutofillHints.username],
-                decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.account_box_outlined),
-                    hintText:
-                        '@${L10n.of(context).username.toLowerCase()}:domain',
-                    errorText: usernameError,
-                    labelText: L10n.of(context).username),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: TextField(
-                readOnly: loading,
-                autocorrect: false,
-                autofillHints: loading ? null : [AutofillHints.password],
-                controller: passwordController,
-                obscureText: !showPassword,
-                onSubmitted: (t) => login(context),
-                decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.lock_outlined),
-                    hintText: '****',
-                    errorText: passwordError,
-                    suffixIcon: IconButton(
-                      tooltip: L10n.of(context).showPassword,
-                      icon: Icon(showPassword
-                          ? Icons.visibility_off_outlined
-                          : Icons.visibility_outlined),
-                      onPressed: () =>
-                          setState(() => showPassword = !showPassword),
-                    ),
-                    labelText: L10n.of(context).password),
-              ),
-            ),
-            SizedBox(height: 12),
-            Hero(
-              tag: 'loginButton',
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 12),
-                child: ElevatedButton(
-                  onPressed: loading ? null : () => login(context),
-                  child: loading
-                      ? LinearProgressIndicator()
-                      : Text(
-                          L10n.of(context).login.toUpperCase(),
-                          style: TextStyle(color: Colors.white, fontSize: 16),
-                        ),
+        body: Builder(builder: (context) {
+          return ListView(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: TextField(
+                  readOnly: loading,
+                  autocorrect: false,
+                  autofocus: true,
+                  onChanged: (t) => _checkWellKnownWithCoolDown(t, context),
+                  controller: usernameController,
+                  autofillHints: loading ? null : [AutofillHints.username],
+                  decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.account_box_outlined),
+                      hintText:
+                          '@${L10n.of(context).username.toLowerCase()}:domain',
+                      errorText: usernameError,
+                      labelText: L10n.of(context).username),
                 ),
               ),
-            ),
-            Center(
-              child: TextButton(
-                onPressed: () => _passwordForgotten(context),
-                child: Text(
-                  L10n.of(context).passwordForgotten,
-                  style: TextStyle(
-                    color: Colors.blue,
-                    decoration: TextDecoration.underline,
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: TextField(
+                  readOnly: loading,
+                  autocorrect: false,
+                  autofillHints: loading ? null : [AutofillHints.password],
+                  controller: passwordController,
+                  obscureText: !showPassword,
+                  onSubmitted: (t) => login(context),
+                  decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.lock_outlined),
+                      hintText: '****',
+                      errorText: passwordError,
+                      suffixIcon: IconButton(
+                        tooltip: L10n.of(context).showPassword,
+                        icon: Icon(showPassword
+                            ? Icons.visibility_off_outlined
+                            : Icons.visibility_outlined),
+                        onPressed: () =>
+                            setState(() => showPassword = !showPassword),
+                      ),
+                      labelText: L10n.of(context).password),
+                ),
+              ),
+              SizedBox(height: 12),
+              Hero(
+                tag: 'loginButton',
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 12),
+                  child: ElevatedButton(
+                    onPressed: loading ? null : () => login(context),
+                    child: loading
+                        ? LinearProgressIndicator()
+                        : Text(
+                            L10n.of(context).login.toUpperCase(),
+                            style: TextStyle(color: Colors.white, fontSize: 16),
+                          ),
                   ),
                 ),
               ),
-            ),
-          ],
-        );
-      }),
+              Center(
+                child: TextButton(
+                  onPressed: () => _passwordForgotten(context),
+                  child: Text(
+                    L10n.of(context).passwordForgotten,
+                    style: TextStyle(
+                      color: Colors.blue,
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          );
+        }),
+      ),
     );
   }
 }

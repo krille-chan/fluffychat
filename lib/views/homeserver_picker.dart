@@ -1,11 +1,12 @@
 import 'dart:async';
-import 'dart:math';
 
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/components/default_app_bar_search_field.dart';
+import 'package:fluffychat/components/fluffy_banner.dart';
 import 'package:fluffychat/components/matrix.dart';
 import 'package:fluffychat/app_config.dart';
+import 'package:fluffychat/components/one_page_card.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 
@@ -120,9 +121,6 @@ class _HomeserverPickerState extends State<HomeserverPicker> {
 
   @override
   Widget build(BuildContext context) {
-    final padding = EdgeInsets.symmetric(
-      horizontal: max((MediaQuery.of(context).size.width - 600) / 2, 0),
-    );
     if (kIsWeb) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         final token =
@@ -130,28 +128,28 @@ class _HomeserverPickerState extends State<HomeserverPicker> {
         _loginWithToken(token);
       });
     }
-    return Scaffold(
-      appBar: AppBar(
-        title: DefaultAppBarSearchField(
-          prefixText: 'https://',
-          hintText: L10n.of(context).enterYourHomeserver,
-          searchController: _controller,
-          suffix: Icon(Icons.edit_outlined),
-          padding: padding,
-          onChanged: (s) => _domain = s,
-          readOnly: !AppConfig.allowOtherHomeservers,
-          onSubmit: (_) => _checkHomeserverAction(context),
+    return OnePageCard(
+      child: Scaffold(
+        appBar: AppBar(
+          titleSpacing: 8,
+          title: DefaultAppBarSearchField(
+            prefixText: 'https://',
+            hintText: L10n.of(context).enterYourHomeserver,
+            searchController: _controller,
+            suffix: Icon(Icons.edit_outlined),
+            padding: EdgeInsets.zero,
+            onChanged: (s) => _domain = s,
+            readOnly: !AppConfig.allowOtherHomeservers,
+            onSubmit: (_) => _checkHomeserverAction(context),
+          ),
+          elevation: 0,
         ),
-        elevation: 0,
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: padding,
+        body: SafeArea(
           child: ListView(
             children: [
               Hero(
                 tag: 'loginBanner',
-                child: Image.asset('assets/banner.png'),
+                child: FluffyBanner(),
               ),
               Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -167,10 +165,7 @@ class _HomeserverPickerState extends State<HomeserverPicker> {
             ],
           ),
         ),
-      ),
-      bottomNavigationBar: Padding(
-        padding: padding,
-        child: Column(
+        bottomNavigationBar: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Hero(

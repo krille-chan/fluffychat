@@ -1,11 +1,10 @@
-import 'dart:math';
-
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 
 import 'package:famedlysdk/famedlysdk.dart';
 
 import 'package:fluffychat/components/matrix.dart';
+import 'package:fluffychat/components/one_page_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -131,60 +130,60 @@ class _SignUpPasswordState extends State<SignUpPassword> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        leading: loading ? Container() : BackButton(),
-        title: Text(
-          L10n.of(context).chooseAStrongPassword,
-        ),
-      ),
-      body: ListView(
-        padding: EdgeInsets.symmetric(
-            horizontal: max((MediaQuery.of(context).size.width - 600) / 2, 0)),
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: TextField(
-              controller: passwordController,
-              obscureText: !showPassword,
-              autofocus: true,
-              readOnly: loading,
-              autocorrect: false,
-              onSubmitted: (t) => _signUpAction(context),
-              autofillHints: loading ? null : [AutofillHints.newPassword],
-              decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.lock_outlined),
-                  hintText: '****',
-                  errorText: passwordError,
-                  suffixIcon: IconButton(
-                    tooltip: L10n.of(context).showPassword,
-                    icon: Icon(showPassword
-                        ? Icons.visibility_off_outlined
-                        : Icons.visibility_outlined),
-                    onPressed: () =>
-                        setState(() => showPassword = !showPassword),
-                  ),
-                  labelText: L10n.of(context).password),
-            ),
+    return OnePageCard(
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          leading: loading ? Container() : BackButton(),
+          title: Text(
+            L10n.of(context).chooseAStrongPassword,
           ),
-          SizedBox(height: 12),
-          Hero(
-            tag: 'loginButton',
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 12),
-              child: ElevatedButton(
-                onPressed: loading ? null : () => _signUpAction(context),
-                child: loading
-                    ? LinearProgressIndicator()
-                    : Text(
-                        L10n.of(context).createAccountNow.toUpperCase(),
-                        style: TextStyle(color: Colors.white, fontSize: 16),
-                      ),
+        ),
+        body: ListView(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: TextField(
+                controller: passwordController,
+                obscureText: !showPassword,
+                autofocus: true,
+                readOnly: loading,
+                autocorrect: false,
+                onSubmitted: (t) => _signUpAction(context),
+                autofillHints: loading ? null : [AutofillHints.newPassword],
+                decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.lock_outlined),
+                    hintText: '****',
+                    errorText: passwordError,
+                    suffixIcon: IconButton(
+                      tooltip: L10n.of(context).showPassword,
+                      icon: Icon(showPassword
+                          ? Icons.visibility_off_outlined
+                          : Icons.visibility_outlined),
+                      onPressed: () =>
+                          setState(() => showPassword = !showPassword),
+                    ),
+                    labelText: L10n.of(context).password),
               ),
             ),
-          ),
-        ],
+            SizedBox(height: 12),
+            Hero(
+              tag: 'loginButton',
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 12),
+                child: ElevatedButton(
+                  onPressed: loading ? null : () => _signUpAction(context),
+                  child: loading
+                      ? LinearProgressIndicator()
+                      : Text(
+                          L10n.of(context).createAccountNow.toUpperCase(),
+                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

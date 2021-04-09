@@ -204,6 +204,9 @@ class _ChatListState extends State<ChatList> {
           return Scaffold(
             appBar: appBar ??
                 AppBar(
+                  elevation: AdaptivePageLayout.of(context).columnMode(context)
+                      ? 1
+                      : null,
                   leading: selectMode == SelectMode.normal
                       ? null
                       : IconButton(
