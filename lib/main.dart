@@ -29,7 +29,6 @@ void main() async {
   // widget bindings are initialized already.
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    systemNavigationBarColor: Colors.transparent,
     statusBarColor: Colors.transparent,
   ));
   FlutterError.onError = (FlutterErrorDetails details) =>
