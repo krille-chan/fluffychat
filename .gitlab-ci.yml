@@ -266,10 +266,12 @@ upload-windows:
       curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file package.tar.gz ${PACKAGE_REGISTRY_URL}/fluffychat-windows.tar.gz
 
 upload-playstore:
-  extends: .release
+  stage: release
   before_script: [./scripts/prepare-android-release.sh]
   script: [./scripts/release-playstore.sh]
   resource_group: playstore_release
+  only:
+    - tags
 
 release:
   extends: .release
