@@ -2295,5 +2295,15 @@
   "@chats": {
     "type": "text",
     "placeholders": {}
+  },
+  "roomVersion": "Groepversie",
+  "@roomVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "goToTheNewRoom": "Ga naar de nieuwe groep",
+  "@goToTheNewRoom": {
+    "type": "text",
+    "placeholders": {}
   }
 }
