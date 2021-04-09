@@ -50,9 +50,7 @@ class _SignUpPasswordState extends State<SignUpPassword> {
       await waitForLogin;
     } on MatrixException catch (exception) {
       if (exception.requireAdditionalAuthentication) {
-        final stages = exception.authenticationFlows
-            .firstWhere((a) => !a.stages.contains('m.login.email.identity'))
-            .stages;
+        final stages = exception.authenticationFlows.first.stages;
 
         final currentStage = exception.completedAuthenticationFlows == null
             ? stages.first
