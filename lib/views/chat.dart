@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
@@ -688,11 +689,32 @@ class _ChatState extends State<Chat> {
       body: Stack(
         children: <Widget>[
           if (Matrix.of(context).wallpaper != null)
-            Image.file(
-              Matrix.of(context).wallpaper,
+            Container(
               height: double.infinity,
               width: double.infinity,
-              fit: BoxFit.cover,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: FileImage(
+                    Matrix.of(context).wallpaper,
+                  ),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: ClipRRect(
+                // make sure we apply clip it properly
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(
+                    sigmaX: 4,
+                    sigmaY: 4,
+                  ),
+                  child: Container(
+                    alignment: Alignment.center,
+                    color: Theme.of(context)
+                        .scaffoldBackgroundColor
+                        .withOpacity(0.33),
+                  ),
+                ),
+              ),
             ),
           SafeArea(
             child: Column(
