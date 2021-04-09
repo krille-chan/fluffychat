@@ -161,9 +161,9 @@ class UserBottomSheet extends StatelessWidget {
       child: Container(
         width: min(
             MediaQuery.of(context).size.width, FluffyThemes.columnWidth * 1.5),
-        child: SafeArea(
-          child: Material(
-            elevation: 4,
+        child: Material(
+          elevation: 4,
+          child: SafeArea(
             child: Scaffold(
               extendBodyBehindAppBar: true,
               appBar: AppBar(
