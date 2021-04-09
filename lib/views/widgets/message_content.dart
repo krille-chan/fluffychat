@@ -1,20 +1,20 @@
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/encryption/utils/key_verification.dart';
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/components/audio_player.dart';
+import 'package:fluffychat/views/widgets/audio_player.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
-import 'package:fluffychat/components/image_bubble.dart';
+import 'package:fluffychat/views/widgets/image_bubble.dart';
 import 'package:fluffychat/utils/event_extension.dart';
 import 'package:fluffychat/utils/matrix_locals.dart';
-import 'package:fluffychat/components/dialogs/key_verification_dialog.dart';
+import 'package:fluffychat/views/widgets/dialogs/key_verification_dialog.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix_link_text/link_text.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../utils/url_launcher.dart';
-import '../app_config.dart';
+import '../../utils/url_launcher.dart';
+import '../../app_config.dart';
 import 'html_message.dart';
 import 'matrix.dart';
 import 'message_download_content.dart';

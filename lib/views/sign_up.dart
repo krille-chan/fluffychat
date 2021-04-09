@@ -1,10 +1,10 @@
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
-import 'package:fluffychat/components/fluffy_banner.dart';
+import 'package:fluffychat/views/widgets/fluffy_banner.dart';
 
-import 'package:fluffychat/components/matrix.dart';
-import 'package:fluffychat/components/one_page_card.dart';
+import 'package:fluffychat/views/widgets/matrix.dart';
+import 'package:fluffychat/views/widgets/one_page_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';

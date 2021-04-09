@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
-import 'package:fluffychat/components/dialogs/bootstrap_dialog.dart';
-import 'package:fluffychat/components/sentry_switch_list_tile.dart';
-import 'package:fluffychat/components/settings_switch_list_tile.dart';
+import 'package:fluffychat/views/widgets/dialogs/bootstrap_dialog.dart';
+import 'package:fluffychat/views/widgets/sentry_switch_list_tile.dart';
+import 'package:fluffychat/views/widgets/settings_switch_list_tile.dart';
 
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
@@ -21,9 +21,9 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../components/content_banner.dart';
+import '../views/widgets/content_banner.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
-import '../components/matrix.dart';
+import '../views/widgets/matrix.dart';
 import '../app_config.dart';
 import '../config/setting_keys.dart';
 

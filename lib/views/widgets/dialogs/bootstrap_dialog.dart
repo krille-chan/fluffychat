@@ -2,7 +2,7 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:famedlysdk/encryption.dart';
 import 'package:famedlysdk/encryption/utils/bootstrap.dart';
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/components/dialogs/adaptive_flat_button.dart';
+import 'package:fluffychat/views/widgets/dialogs/adaptive_flat_button.dart';
 import 'package:flutter/services.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/cupertino.dart';

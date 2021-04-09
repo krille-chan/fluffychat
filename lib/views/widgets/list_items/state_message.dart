@@ -3,7 +3,7 @@ import 'package:fluffychat/utils/matrix_locals.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import '../../app_config.dart';
+import '../../../app_config.dart';
 
 class StateMessage extends StatelessWidget {
   final Event event;

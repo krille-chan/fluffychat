@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:fluffychat/components/sentry_switch_list_tile.dart';
+import 'package:fluffychat/views/widgets/sentry_switch_list_tile.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info/package_info.dart';

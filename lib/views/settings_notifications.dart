@@ -10,7 +10,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:open_noti_settings/open_noti_settings.dart';
 import '../utils/localized_exception_extension.dart';
 
-import '../components/matrix.dart';
+import '../views/widgets/matrix.dart';
 
 class NotificationSettingsItem {
   final PushRuleKind type;

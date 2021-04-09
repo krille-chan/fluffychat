@@ -1,13 +1,13 @@
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/components/message_content.dart';
-import 'package:fluffychat/components/reply_content.dart';
+import 'package:fluffychat/views/widgets/message_content.dart';
+import 'package:fluffychat/views/widgets/reply_content.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/event_extension.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:flutter/material.dart';
 
-import '../../app_config.dart';
+import '../../../app_config.dart';
 import '../avatar.dart';
 import '../matrix.dart';
 import '../message_reactions.dart';

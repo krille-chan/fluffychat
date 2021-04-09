@@ -3,16 +3,16 @@ import 'dart:typed_data';
 
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/components/message_download_content.dart';
+import 'package:fluffychat/views/widgets/message_download_content.dart';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sound_lite/flutter_sound.dart';
 import 'package:universal_html/prefer_universal/html.dart' as html;
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import '../utils/ui_fake.dart' if (dart.library.html) 'dart:ui' as ui;
+import '../../utils/ui_fake.dart' if (dart.library.html) 'dart:ui' as ui;
 import 'matrix.dart';
-import '../utils/event_extension.dart';
+import '../../utils/event_extension.dart';
 
 class AudioPlayer extends StatefulWidget {
   final Color color;

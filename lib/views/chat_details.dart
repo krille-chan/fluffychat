@@ -1,17 +1,17 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:fluffychat/app_config.dart';
-import 'package:fluffychat/components/avatar.dart';
-import 'package:fluffychat/components/matrix.dart';
+import 'package:fluffychat/views/widgets/avatar.dart';
+import 'package:fluffychat/views/widgets/matrix.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 
 import 'package:famedlysdk/famedlysdk.dart';
 
 import 'package:file_picker_cross/file_picker_cross.dart';
-import 'package:fluffychat/components/chat_settings_popup_menu.dart';
-import 'package:fluffychat/components/content_banner.dart';
+import 'package:fluffychat/views/widgets/chat_settings_popup_menu.dart';
+import 'package:fluffychat/views/widgets/content_banner.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
-import 'package:fluffychat/components/list_items/participant_list_item.dart';
+import 'package:fluffychat/views/widgets/list_items/participant_list_item.dart';
 import 'package:fluffychat/utils/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/material.dart';

@@ -2,11 +2,11 @@ import 'dart:async';
 
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/components/default_app_bar_search_field.dart';
-import 'package:fluffychat/components/fluffy_banner.dart';
-import 'package:fluffychat/components/matrix.dart';
+import 'package:fluffychat/views/widgets/default_app_bar_search_field.dart';
+import 'package:fluffychat/views/widgets/fluffy_banner.dart';
+import 'package:fluffychat/views/widgets/matrix.dart';
 import 'package:fluffychat/app_config.dart';
-import 'package:fluffychat/components/one_page_card.dart';
+import 'package:fluffychat/views/widgets/one_page_card.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 

@@ -1,10 +1,10 @@
 import 'package:famedlysdk/encryption.dart';
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/components/avatar.dart';
-import 'package:fluffychat/components/matrix.dart';
+import 'package:fluffychat/views/widgets/avatar.dart';
+import 'package:fluffychat/views/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import '../components/dialogs/key_verification_dialog.dart';
+import '../views/widgets/dialogs/key_verification_dialog.dart';
 import '../utils/device_extension.dart';
 
 class ChatEncryptionSettings extends StatefulWidget {

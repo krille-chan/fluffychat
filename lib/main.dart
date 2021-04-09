@@ -16,7 +16,7 @@ import 'package:flutter_app_lock/flutter_app_lock.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:universal_html/prefer_universal/html.dart' as html;
 
-import 'components/matrix.dart';
+import 'views/widgets/matrix.dart';
 import 'config/themes.dart';
 import 'app_config.dart';
 import 'utils/fluffy_client.dart';

@@ -7,7 +7,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../app_config.dart';
-import '../components/matrix.dart';
+import '../views/widgets/matrix.dart';
 
 class SettingsStyle extends StatefulWidget {
   @override

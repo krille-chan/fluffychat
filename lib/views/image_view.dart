@@ -1,7 +1,7 @@
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/components/image_bubble.dart';
-import 'package:fluffychat/components/matrix.dart';
+import 'package:fluffychat/views/widgets/image_bubble.dart';
+import 'package:fluffychat/views/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import '../utils/event_extension.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';

@@ -1,6 +1,6 @@
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/components/matrix.dart';
+import 'package:fluffychat/views/widgets/matrix.dart';
 import 'package:fluffychat/views/archive.dart';
 import 'package:fluffychat/views/chat.dart';
 import 'package:fluffychat/views/chat_details.dart';
