@@ -427,7 +427,7 @@ class _ChatListState extends State<ChatList> {
                 ? FloatingActionButton(
                     onPressed: () => AdaptivePageLayout.of(context)
                         .pushNamedAndRemoveUntilIsFirst('/newprivatechat'),
-                    child: Icon(Icons.add_outlined),
+                    child: Icon(CupertinoIcons.chat_bubble),
                   )
                 : null,
           );
