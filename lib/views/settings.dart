@@ -345,12 +345,12 @@ class _SettingsState extends State<Settings> {
     });
     if (client.encryption != null) {
       crossSigningCachedFuture ??=
-          client.encryption.crossSigning.isCached().then((c) {
+          client.encryption?.crossSigning?.isCached()?.then((c) {
         if (mounted) setState(() => crossSigningCached = c);
         return c;
       });
       megolmBackupCachedFuture ??=
-          client.encryption.keyManager.isCached().then((c) {
+          client.encryption?.keyManager?.isCached()?.then((c) {
         if (mounted) setState(() => megolmBackupCached = c);
         return c;
       });
@@ -381,8 +381,8 @@ class _SettingsState extends State<Settings> {
                     final needsBootstrap = Matrix.of(context)
                                 .client
                                 .encryption
-                                .crossSigning
-                                .enabled ==
+                                ?.crossSigning
+                                ?.enabled ==
                             false ||
                         snapshot.data == false;
                     final isUnknownSession =
