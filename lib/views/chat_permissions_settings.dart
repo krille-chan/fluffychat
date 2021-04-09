@@ -70,7 +70,7 @@ class ChatPermissionsSettings extends StatelessWidget {
             final powerLevels = Map<String, dynamic>.from(powerLevelsContent)
               ..removeWhere((k, v) => !(v is int));
             final eventsPowerLevels =
-                Map<String, dynamic>.from(powerLevelsContent['events'])
+                Map<String, dynamic>.from(powerLevelsContent['events'] ?? {})
                   ..removeWhere((k, v) => !(v is int));
 
             return Column(
@@ -129,7 +129,7 @@ class ChatPermissionsSettings extends StatelessWidget {
                               context, entry.key, entry.value,
                               category: 'events'),
                         ),
-                    if (room.ownPowerLevel >= 100) ...{
+                    if (room.canSendEvent(EventTypes.RoomTombstone)) ...{
                       Divider(thickness: 1),
                       FutureBuilder<ServerCapabilities>(
                         future: room.client.requestServerCapabilities(),
