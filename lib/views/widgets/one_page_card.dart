@@ -33,8 +33,9 @@ class OnePageCard extends StatelessWidget {
               ),
             ),
             padding: EdgeInsets.symmetric(
-              horizontal: max((MediaQuery.of(context).size.width - 600) / 2, 0),
-              vertical: max((MediaQuery.of(context).size.height - 800) / 2, 0),
+              horizontal:
+                  max((MediaQuery.of(context).size.width - 600) / 2, 12),
+              vertical: max((MediaQuery.of(context).size.height - 800) / 2, 12),
             ),
             child: SafeArea(child: Card(child: child)),
           );
