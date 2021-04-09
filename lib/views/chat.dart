@@ -701,32 +701,56 @@ class _ChatState extends State<Chat> {
                 ConnectionStatusHeader(),
                 if (room.getState(EventTypes.RoomTombstone) != null)
                   Container(
-                    height: 56,
-                    color: Theme.of(context).secondaryHeaderColor,
-                    child: ListTile(
-                      leading: Icon(Icons.upgrade_outlined),
-                      title: Text(room
-                          .getState(EventTypes.RoomTombstone)
-                          .parsedTombstoneContent
-                          .body),
-                      onTap: () async {
-                        final result = await showFutureLoadingDialog(
-                          context: context,
-                          future: () => room.client.joinRoom(room
+                    height: 72,
+                    child: Material(
+                      color: Theme.of(context).secondaryHeaderColor,
+                      child: ListTile(
+                        leading: CircleAvatar(
+                          foregroundColor: Theme.of(context).accentColor,
+                          backgroundColor: Theme.of(context).backgroundColor,
+                          child: Icon(Icons.upgrade_outlined),
+                        ),
+                        title: Text(
+                          room
                               .getState(EventTypes.RoomTombstone)
                               .parsedTombstoneContent
-                              .replacementRoom),
-                        );
-                        await showFutureLoadingDialog(
-                          context: context,
-                          future: () => room.leave(),
-                        );
-                        if (result.error == null) {
-                          await AdaptivePageLayout.of(context)
-                              .pushNamedAndRemoveUntilIsFirst(
-                                  '/rooms/${result.result}');
-                        }
-                      },
+                              .body,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        subtitle: Text(L10n.of(context).goToTheNewRoom),
+                        onTap: () async {
+                          if (OkCancelResult.ok !=
+                              await showOkCancelAlertDialog(
+                                context: context,
+                                title: L10n.of(context).goToTheNewRoom,
+                                message: room
+                                    .getState(EventTypes.RoomTombstone)
+                                    .parsedTombstoneContent
+                                    .body,
+                                okLabel: L10n.of(context).ok,
+                                cancelLabel: L10n.of(context).cancel,
+                              )) {
+                            return;
+                          }
+                          final result = await showFutureLoadingDialog(
+                            context: context,
+                            future: () => room.client.joinRoom(room
+                                .getState(EventTypes.RoomTombstone)
+                                .parsedTombstoneContent
+                                .replacementRoom),
+                          );
+                          await showFutureLoadingDialog(
+                            context: context,
+                            future: () => room.leave(),
+                          );
+                          if (result.error == null) {
+                            await AdaptivePageLayout.of(context)
+                                .pushNamedAndRemoveUntilIsFirst(
+                                    '/rooms/${result.result}');
+                          }
+                        },
+                      ),
                     ),
                   ),
                 Expanded(

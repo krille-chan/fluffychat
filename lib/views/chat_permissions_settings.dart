@@ -141,32 +141,35 @@ class ChatPermissionsSettings extends StatelessWidget {
                                   .getState(EventTypes.RoomCreate)
                                   .content['room_version'] ??
                               '1';
-                          final shouldHaveVersion =
-                              snapshot.data.mRoomVersions.defaultVersion;
 
                           return ListTile(
-                            title: Text('Current room version: $roomVersion'),
-                            subtitle: roomVersion == shouldHaveVersion
-                                ? null
-                                : Text(
-                                    'Upgrade to $shouldHaveVersion available!',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Theme.of(context).accentColor),
-                                  ),
+                            title: Text(
+                                '${L10n.of(context).roomVersion}: $roomVersion'),
                             onTap: () async {
                               final newVersion =
                                   await showConfirmationDialog<String>(
                                 context: context,
-                                title: 'Choose Room Version',
+                                title: L10n.of(context)
+                                    .replaceRoomWithNewerVersion,
                                 actions: snapshot
                                     .data.mRoomVersions.available.entries
                                     .where((r) => r.key != roomVersion)
                                     .map((version) => AlertDialogAction(
                                         key: version.key,
                                         label:
-                                            '${version.key} (${version.value.toString().split('.').last})')),
+                                            '${version.key} (${version.value.toString().split('.').last})'))
+                                    .toList(),
                               );
+                              if (newVersion == null ||
+                                  OkCancelResult.cancel ==
+                                      await showOkCancelAlertDialog(
+                                        context: context,
+                                        okLabel: L10n.of(context).yes,
+                                        cancelLabel: L10n.of(context).cancel,
+                                        title: L10n.of(context).areYouSure,
+                                      )) {
+                                return;
+                              }
                               await showFutureLoadingDialog(
                                 context: context,
                                 future: () =>

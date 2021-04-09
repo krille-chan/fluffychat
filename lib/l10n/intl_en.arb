@@ -81,6 +81,16 @@
     "type": "text",
     "placeholders": {}
   },
+  "roomVersion": "Room version",
+  "@roomVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "goToTheNewRoom": "Go to the new room",
+  "@goToTheNewRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
   "alreadyHaveAnAccount": "Already have an account?",
   "@alreadyHaveAnAccount": {
     "type": "text",
