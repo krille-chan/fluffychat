@@ -29,7 +29,7 @@ abstract class PlatformInfos {
   static bool get usesTouchscreen => !isMobile;
 
   static String get clientName =>
-      '${AppConfig.applicationName} ${isWeb ? 'Web' : Platform.operatingSystem}';
+      '${AppConfig.applicationName} ${isWeb ? 'web' : Platform.operatingSystem}';
 
   static Future<String> getVersion() async {
     var version = kIsWeb ? 'Web' : 'Unknown';
