@@ -72,7 +72,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "archivedRoom": "Salon achivé",
+  "archivedRoom": "Salon archivé",
   "@archivedRoom": {
     "type": "text",
     "placeholders": {}
@@ -2302,6 +2302,16 @@
   },
   "chats": "Discussions",
   "@chats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "goToTheNewRoom": "Aller dans le nouveau salon",
+  "@goToTheNewRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "roomVersion": "Version du salon",
+  "@roomVersion": {
     "type": "text",
     "placeholders": {}
   }
