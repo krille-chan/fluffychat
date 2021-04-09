@@ -117,8 +117,8 @@ class FluffyRoutes {
               mainView: (_) => ChatList(), emptyView: (_) => EmptyPage());
         case 'archive':
           return ViewData(
-            leftView: (_) => Settings(),
             mainView: (_) => Archive(),
+            emptyView: (_) => EmptyPage(),
           );
         case 'logs':
           return ViewData(

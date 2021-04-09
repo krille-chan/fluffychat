@@ -468,11 +468,6 @@ class _SettingsState extends State<Settings> {
                   AdaptivePageLayout.of(context).pushNamed('/settings/emotes'),
               trailing: Icon(Icons.insert_emoticon_outlined),
             ),
-            ListTile(
-              title: Text(L10n.of(context).archive),
-              onTap: () => AdaptivePageLayout.of(context).pushNamed('/archive'),
-              trailing: Icon(Icons.archive_outlined),
-            ),
             Divider(thickness: 1),
             ListTile(
               title: Text(

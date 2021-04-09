@@ -20,7 +20,7 @@ import '../utils/url_launcher.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 enum SelectMode { normal, share, select }
-enum PopupMenuAction { settings, invite, newGroup, setStatus }
+enum PopupMenuAction { settings, invite, newGroup, setStatus, archive }
 
 class ChatList extends StatefulWidget {
   final String activeChat;
@@ -285,6 +285,10 @@ class _ChatListState extends State<ChatList> {
                                       AdaptivePageLayout.of(context)
                                           .pushNamed('/newgroup');
                                       break;
+                                    case PopupMenuAction.archive:
+                                      AdaptivePageLayout.of(context)
+                                          .pushNamed('/archive');
+                                      break;
                                   }
                                 },
                                 itemBuilder: (_) => [
@@ -318,6 +322,17 @@ class _ChatListState extends State<ChatList> {
                                         Icon(Icons.share_outlined),
                                         SizedBox(width: 12),
                                         Text(L10n.of(context).inviteContact),
+                                      ],
+                                    ),
+                                  ),
+                                  PopupMenuItem(
+                                    value: PopupMenuAction.archive,
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Icon(Icons.archive_outlined),
+                                        SizedBox(width: 12),
+                                        Text(L10n.of(context).archive),
                                       ],
                                     ),
                                   ),
