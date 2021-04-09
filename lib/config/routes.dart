@@ -61,14 +61,10 @@ class FluffyRoutes {
     }
     // Routes IF user is logged in
     else {
-      final activeRoomId = Matrix.of(context).client.activeRoomId;
       switch (parts[1]) {
         case '':
           return ViewData(
-            mainView: (_) => ChatList(),
-            emptyView: (_) =>
-                activeRoomId != null ? Chat(activeRoomId) : EmptyPage(),
-          );
+              mainView: (_) => ChatList(), emptyView: (_) => EmptyPage());
         case 'rooms':
           final roomId = parts[2];
           if (parts.length == 3) {
@@ -118,10 +114,7 @@ class FluffyRoutes {
             }
           }
           return ViewData(
-            mainView: (_) => ChatList(),
-            emptyView: (_) =>
-                activeRoomId != null ? Chat(activeRoomId) : EmptyPage(),
-          );
+              mainView: (_) => ChatList(), emptyView: (_) => EmptyPage());
         case 'archive':
           return ViewData(
             leftView: (_) => Settings(),
@@ -144,16 +137,11 @@ class FluffyRoutes {
         case 'search':
           if (parts.length == 3) {
             return ViewData(
-              mainView: (_) => SearchView(alias: parts[2]),
-              emptyView: (_) =>
-                  activeRoomId != null ? Chat(activeRoomId) : EmptyPage(),
-            );
+                mainView: (_) => SearchView(alias: parts[2]),
+                emptyView: (_) => EmptyPage());
           }
           return ViewData(
-            mainView: (_) => SearchView(),
-            emptyView: (_) =>
-                activeRoomId != null ? Chat(activeRoomId) : EmptyPage(),
-          );
+              mainView: (_) => SearchView(), emptyView: (_) => EmptyPage());
         case 'settings':
           if (parts.length == 3) {
             final action = parts[2];
@@ -196,16 +184,10 @@ class FluffyRoutes {
             }
           } else {
             return ViewData(
-              mainView: (_) => Settings(),
-              emptyView: (_) =>
-                  activeRoomId != null ? Chat(activeRoomId) : EmptyPage(),
-            );
+                mainView: (_) => Settings(), emptyView: (_) => EmptyPage());
           }
           return ViewData(
-            mainView: (_) => ChatList(),
-            emptyView: (_) =>
-                activeRoomId != null ? Chat(activeRoomId) : EmptyPage(),
-          );
+              mainView: (_) => ChatList(), emptyView: (_) => EmptyPage());
       }
     }
 
