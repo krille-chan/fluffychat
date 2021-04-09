@@ -23,8 +23,9 @@ class _NewGroupState extends State<NewGroup> {
             ? sdk.CreateRoomPreset.public_chat
             : sdk.CreateRoomPreset.private_chat,
         visibility: publicGroup ? sdk.Visibility.public : null,
-        roomAliasName:
-            publicGroup && controller.text.isNotEmpty ? controller.text : null,
+        roomAliasName: publicGroup && controller.text.isNotEmpty
+            ? controller.text.trim().toLowerCase().replaceAll(' ', '_')
+            : null,
         name: controller.text.isNotEmpty ? controller.text : null,
       ),
     );
