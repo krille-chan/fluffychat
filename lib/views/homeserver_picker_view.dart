@@ -1,4 +1,4 @@
-import 'package:fluffychat/controllers/homeserver_picker_controller.dart';
+import '../controllers/homeserver_picker_controller.dart';
 import 'package:fluffychat/views/widgets/default_app_bar_search_field.dart';
 import 'package:fluffychat/views/widgets/fluffy_banner.dart';
 import 'package:fluffychat/config/app_config.dart';

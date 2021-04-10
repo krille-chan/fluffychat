@@ -4,14 +4,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'matrix_file_extension.dart';
-import '../views/image_view.dart';
+import '../controllers/image_viewer_controller.dart';
 
 extension LocalizedBody on Event {
   void openFile(BuildContext context, {bool downloadOnly = false}) async {
     if (!downloadOnly &&
         [MessageTypes.Image, MessageTypes.Sticker].contains(messageType)) {
       await Navigator.of(context, rootNavigator: false).push(
-        MaterialPageRoute(builder: (_) => ImageView(this)),
+        MaterialPageRoute(builder: (_) => ImageViewer(this)),
       );
       return;
     }
