@@ -2304,5 +2304,15 @@
   "@chats": {
     "type": "text",
     "placeholders": {}
+  },
+  "goToTheNewRoom": "Hakka kasutama uut jututuba",
+  "@goToTheNewRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "roomVersion": "Jututoa versioon",
+  "@roomVersion": {
+    "type": "text",
+    "placeholders": {}
   }
 }
