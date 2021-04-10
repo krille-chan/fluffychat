@@ -41,18 +41,21 @@ void main() async {
   runZonedGuarded(
     () => runApp(PlatformInfos.isMobile
         ? AppLock(
-            builder: (args) => App(),
+            builder: (args) => FluffyChatApp(),
             lockScreen: LockScreen(),
             enabled: false,
           )
-        : App()),
+        : FluffyChatApp()),
     SentryController.captureException,
   );
 }
 
-class App extends StatelessWidget {
+class FluffyChatApp extends StatelessWidget {
+  final Widget test;
   static final GlobalKey<AdaptivePageLayoutState> _apl =
       GlobalKey<AdaptivePageLayoutState>();
+
+  const FluffyChatApp({Key key, this.test}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return AdaptiveTheme(
@@ -76,7 +79,9 @@ class App extends StatelessWidget {
               builder: (context) => AdaptivePageLayout(
                 key: _apl,
                 safeAreaOnColumnView: false,
-                onGenerateRoute: FluffyRoutes(context).onGenerateRoute,
+                onGenerateRoute: test == null
+                    ? FluffyRoutes(context).onGenerateRoute
+                    : (_) => ViewData(mainView: (_) => test),
                 dividerColor: Theme.of(context).dividerColor,
                 columnWidth: FluffyThemes.columnWidth,
                 dividerWidth: 1.0,
