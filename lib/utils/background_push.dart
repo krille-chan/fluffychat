@@ -255,7 +255,7 @@ class BackgroundPush {
     }
     if (await store.getItemBool(SettingKeys.showNoGoogle, true)) {
       await loadLocale();
-      AdaptivePageLayout.of(context).showSnackBar(SnackBar(
+      apl.currentState.showSnackBar(SnackBar(
           content: Text(
         l10n.noGoogleServicesWarning,
       )));
