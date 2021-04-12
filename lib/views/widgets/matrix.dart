@@ -86,7 +86,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
   void _initWithStore() async {
     try {
-      await client.init();
+      if (!testMode) await client.init();
       if (client.isLogged()) {
         final statusMsg = await store.getItem(SettingKeys.ownStatusMessage);
         if (statusMsg?.isNotEmpty ?? false) {
@@ -261,7 +261,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         });
       });
     }
-    client = widget.testClient ?? FluffyClient();
+    client = FluffyClient();
     LoadingDialog.defaultTitle = L10n.of(context).loadingPleaseWait;
     LoadingDialog.defaultBackLabel = L10n.of(context).close;
     LoadingDialog.defaultOnError = (Object e) => e.toLocalizedString(context);

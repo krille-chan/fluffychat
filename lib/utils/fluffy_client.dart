@@ -1,21 +1,24 @@
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:famedlysdk/encryption.dart';
+import 'package:matrix_api_lite/fake_matrix_api.dart';
 import 'platform_infos.dart';
 import 'famedlysdk_store.dart';
 
 class FluffyClient extends Client {
-  static final FluffyClient _instance = FluffyClient._internal();
+  static FluffyClient _instance;
 
   /// The ID of the currently active room, if there is one. May be null or emtpy
   String activeRoomId;
 
-  factory FluffyClient() {
+  factory FluffyClient({testMode = false}) {
+    _instance ??= FluffyClient._internal(testMode: testMode);
     return _instance;
   }
 
-  FluffyClient._internal()
+  FluffyClient._internal({testMode = false})
       : super(
-          PlatformInfos.clientName,
+          testMode ? 'FluffyChat Widget Tests' : PlatformInfos.clientName,
+          httpClient: testMode ? FakeMatrixApi() : null,
           enableE2eeRecovery: true,
           verificationMethods: {
             KeyVerificationMethod.numbers,
@@ -25,7 +28,7 @@ class FluffyClient extends Client {
           importantStateEvents: <String>{
             'im.ponies.room_emotes', // we want emotes to work properly
           },
-          databaseBuilder: getDatabase,
+          databaseBuilder: testMode ? null : getDatabase,
           supportedLoginTypes: {
             AuthenticationTypes.password,
             if (PlatformInfos.isMobile || PlatformInfos.isWeb)
