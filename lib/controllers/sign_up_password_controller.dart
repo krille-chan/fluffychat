@@ -2,9 +2,9 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/views/sign_up_password_view.dart';
 
 import 'package:fluffychat/views/widgets/matrix.dart';
-import 'package:fluffychat/views/widgets/one_page_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -16,17 +16,19 @@ class SignUpPassword extends StatefulWidget {
   final String displayname;
   const SignUpPassword(this.username, {this.avatar, this.displayname});
   @override
-  _SignUpPasswordState createState() => _SignUpPasswordState();
+  SignUpPasswordController createState() => SignUpPasswordController();
 }
 
-class _SignUpPasswordState extends State<SignUpPassword> {
+class SignUpPasswordController extends State<SignUpPassword> {
   final TextEditingController passwordController = TextEditingController();
   String passwordError;
   String _lastAuthWebViewStage;
   bool loading = false;
   bool showPassword = true;
 
-  void _signUpAction(BuildContext context, {AuthenticationData auth}) async {
+  void toggleShowPassword() => setState(() => showPassword = !showPassword);
+
+  void signUpAction({AuthenticationData auth}) async {
     var matrix = Matrix.of(context);
     if (passwordController.text.isEmpty) {
       setState(() => passwordError = L10n.of(context).pleaseEnterYourPassword);
@@ -59,8 +61,7 @@ class _SignUpPasswordState extends State<SignUpPassword> {
                 true);
 
         if (currentStage == 'm.login.dummy') {
-          _signUpAction(
-            context,
+          signUpAction(
             auth: AuthenticationData(
               type: currentStage,
               session: exception.session,
@@ -86,8 +87,7 @@ class _SignUpPasswordState extends State<SignUpPassword> {
                 cancelLabel: L10n.of(context).cancel,
                 useRootNavigator: false,
               )) {
-            _signUpAction(
-              context,
+            signUpAction(
               auth: AuthenticationData(session: exception.session),
             );
           } else {
@@ -127,62 +127,5 @@ class _SignUpPasswordState extends State<SignUpPassword> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return OnePageCard(
-      child: Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          leading: loading ? Container() : BackButton(),
-          title: Text(
-            L10n.of(context).chooseAStrongPassword,
-          ),
-        ),
-        body: ListView(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: TextField(
-                controller: passwordController,
-                obscureText: !showPassword,
-                autofocus: true,
-                readOnly: loading,
-                autocorrect: false,
-                onSubmitted: (t) => _signUpAction(context),
-                autofillHints: loading ? null : [AutofillHints.newPassword],
-                decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.lock_outlined),
-                    hintText: '****',
-                    errorText: passwordError,
-                    suffixIcon: IconButton(
-                      tooltip: L10n.of(context).showPassword,
-                      icon: Icon(showPassword
-                          ? Icons.visibility_off_outlined
-                          : Icons.visibility_outlined),
-                      onPressed: () =>
-                          setState(() => showPassword = !showPassword),
-                    ),
-                    labelText: L10n.of(context).password),
-              ),
-            ),
-            SizedBox(height: 12),
-            Hero(
-              tag: 'loginButton',
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 12),
-                child: ElevatedButton(
-                  onPressed: loading ? null : () => _signUpAction(context),
-                  child: loading
-                      ? LinearProgressIndicator()
-                      : Text(
-                          L10n.of(context).createAccountNow.toUpperCase(),
-                          style: TextStyle(color: Colors.white, fontSize: 16),
-                        ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+  Widget build(BuildContext context) => SignUpPasswordView(this);
 }

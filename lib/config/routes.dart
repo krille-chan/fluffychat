@@ -2,6 +2,7 @@ import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/controllers/homeserver_picker_controller.dart';
 import 'package:fluffychat/controllers/sign_up_controller.dart';
+import 'package:fluffychat/controllers/sign_up_password_controller.dart';
 import 'package:fluffychat/views/widgets/matrix.dart';
 import 'package:fluffychat/views/archive.dart';
 import 'package:fluffychat/views/chat.dart';
@@ -25,7 +26,6 @@ import 'package:fluffychat/views/settings_ignore_list.dart';
 import 'package:fluffychat/views/settings_multiple_emotes.dart';
 import 'package:fluffychat/views/settings_notifications.dart';
 import 'package:fluffychat/views/settings_style.dart';
-import 'package:fluffychat/views/sign_up_password.dart';
 import 'package:flutter/material.dart';
 
 class FluffyRoutes {
