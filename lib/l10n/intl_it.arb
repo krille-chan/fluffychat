@@ -2287,5 +2287,15 @@
   "@tapOnDeviceToVerify": {
     "type": "text",
     "placeholders": {}
+  },
+  "goToTheNewRoom": "Vai nella nuova stanza",
+  "@goToTheNewRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "roomVersion": "Versione della stanza",
+  "@roomVersion": {
+    "type": "text",
+    "placeholders": {}
   }
 }
