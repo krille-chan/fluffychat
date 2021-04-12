@@ -2165,7 +2165,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterSecurityKey": "Унесите свој сигурносни кључ",
+  "pleaseEnterSecurityKey": "Унесите свој сигурносни кључ:",
   "@pleaseEnterSecurityKey": {
     "type": "text",
     "placeholders": {}
@@ -2215,5 +2215,90 @@
       "serverVersions": {},
       "supportedVersions": {}
     }
+  },
+  "unlockChatBackup": "Откључај резерву ћаскања",
+  "@unlockChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "friends": "Пријатељи",
+  "@friends": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewFriend": "Додај новог пријатеља",
+  "@addNewFriend": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noEncryptionForPublicRooms": "Шифровање се може активирати након што соба престане да буде јавно доступна.",
+  "@noEncryptionForPublicRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceVerifyDescription": "Шифровање је безбедно само када су сви уређаји верификовани.",
+  "@deviceVerifyDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapOnDeviceToVerify": "Тапните уређај да верификујете",
+  "@tapOnDeviceToVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showPassword": "Прикажи лозинку",
+  "@showPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addEmail": "Додај е-адресу",
+  "@addEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zoomOut": "Умањи",
+  "@zoomOut": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zoomIn": "Увећај",
+  "@zoomIn": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "blocked": "Блокиран",
+  "@blocked": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verified": "Верификовано",
+  "@verified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "goToTheNewRoom": "Иди у нову собу",
+  "@goToTheNewRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "roomVersion": "Верзија собе",
+  "@roomVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicGroups": "Јавне групе",
+  "@publicGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "people": "Људи",
+  "@people": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chats": "Ћаскања",
+  "@chats": {
+    "type": "text",
+    "placeholders": {}
   }
 }
