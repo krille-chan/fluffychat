@@ -51,11 +51,13 @@ void main() async {
 }
 
 class FluffyChatApp extends StatelessWidget {
-  final Widget test;
+  final Widget testWidget;
+  final Client testClient;
   static final GlobalKey<AdaptivePageLayoutState> _apl =
       GlobalKey<AdaptivePageLayoutState>();
 
-  const FluffyChatApp({Key key, this.test}) : super(key: key);
+  const FluffyChatApp({Key key, this.testWidget, this.testClient})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return AdaptiveTheme(
@@ -75,13 +77,14 @@ class FluffyChatApp extends StatelessWidget {
           builder: (context) => Matrix(
             context: context,
             apl: _apl,
+            testClient: testClient,
             child: Builder(
               builder: (context) => AdaptivePageLayout(
                 key: _apl,
                 safeAreaOnColumnView: false,
-                onGenerateRoute: test == null
+                onGenerateRoute: testWidget == null
                     ? FluffyRoutes(context).onGenerateRoute
-                    : (_) => ViewData(mainView: (_) => test),
+                    : (_) => ViewData(mainView: (_) => testWidget),
                 dividerColor: Theme.of(context).dividerColor,
                 columnWidth: FluffyThemes.columnWidth,
                 dividerWidth: 1.0,

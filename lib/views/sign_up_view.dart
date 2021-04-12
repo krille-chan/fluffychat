@@ -1,6 +1,5 @@
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
-import 'package:famedlysdk/famedlysdk.dart';
-import 'package:file_picker_cross/file_picker_cross.dart';
+import 'package:fluffychat/controllers/sign_up_controller.dart';
 import 'package:fluffychat/views/widgets/fluffy_banner.dart';
 
 import 'package:fluffychat/views/widgets/matrix.dart';
@@ -9,61 +8,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-class SignUp extends StatefulWidget {
-  @override
-  _SignUpState createState() => _SignUpState();
-}
+class SignUpView extends StatelessWidget {
+  final SignUpController controller;
 
-class _SignUpState extends State<SignUp> {
-  final TextEditingController usernameController = TextEditingController();
-  String usernameError;
-  bool loading = false;
-  MatrixFile avatar;
-
-  void setAvatarAction() async {
-    var file =
-        await FilePickerCross.importFromStorage(type: FileTypeCross.image);
-    if (file != null) {
-      setState(
-        () => avatar = MatrixFile(
-          bytes: file.toUint8List(),
-          name: file.fileName,
-        ),
-      );
-    }
-  }
-
-  void signUpAction(BuildContext context) async {
-    var matrix = Matrix.of(context);
-    if (usernameController.text.isEmpty) {
-      setState(() => usernameError = L10n.of(context).pleaseChooseAUsername);
-    } else {
-      setState(() => usernameError = null);
-    }
-
-    if (usernameController.text.isEmpty) {
-      return;
-    }
-    setState(() => loading = true);
-
-    final preferredUsername =
-        usernameController.text.toLowerCase().trim().replaceAll(' ', '-');
-
-    try {
-      await matrix.client.usernameAvailable(preferredUsername);
-    } on MatrixException catch (exception) {
-      setState(() => usernameError = exception.errorMessage);
-      return setState(() => loading = false);
-    } catch (exception) {
-      setState(() => usernameError = exception.toString());
-      return setState(() => loading = false);
-    }
-    setState(() => loading = false);
-    await AdaptivePageLayout.of(context).pushNamed(
-      '/signup/password/${Uri.encodeComponent(preferredUsername)}/${Uri.encodeComponent(usernameController.text)}',
-      arguments: avatar,
-    );
-  }
+  const SignUpView(
+    this.controller, {
+    Key key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +22,7 @@ class _SignUpState extends State<SignUp> {
       child: Scaffold(
         appBar: AppBar(
           elevation: 0,
-          leading: loading ? Container() : BackButton(),
+          leading: controller.loading ? Container() : BackButton(),
           title: Text(
             Matrix.of(context)
                 .client
@@ -89,15 +40,16 @@ class _SignUpState extends State<SignUp> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
             child: TextField(
-              readOnly: loading,
+              readOnly: controller.loading,
               autocorrect: false,
-              controller: usernameController,
-              onSubmitted: (s) => signUpAction(context),
-              autofillHints: loading ? null : [AutofillHints.newUsername],
+              controller: controller.usernameController,
+              onSubmitted: controller.signUpAction,
+              autofillHints:
+                  controller.loading ? null : [AutofillHints.newUsername],
               decoration: InputDecoration(
                 prefixIcon: Icon(Icons.account_circle_outlined),
                 hintText: L10n.of(context).username,
-                errorText: usernameError,
+                errorText: controller.usernameError,
                 labelText: L10n.of(context).chooseAUsername,
               ),
             ),
@@ -105,30 +57,31 @@ class _SignUpState extends State<SignUp> {
           SizedBox(height: 8),
           ListTile(
             leading: CircleAvatar(
-              backgroundImage:
-                  avatar == null ? null : MemoryImage(avatar.bytes),
-              backgroundColor: avatar == null
+              backgroundImage: controller.avatar == null
+                  ? null
+                  : MemoryImage(controller.avatar.bytes),
+              backgroundColor: controller.avatar == null
                   ? Theme.of(context).brightness == Brightness.dark
                       ? Color(0xff121212)
                       : Colors.white
                   : Theme.of(context).secondaryHeaderColor,
-              child: avatar == null
+              child: controller.avatar == null
                   ? Icon(Icons.camera_alt_outlined,
                       color: Theme.of(context).primaryColor)
                   : null,
             ),
-            trailing: avatar == null
+            trailing: controller.avatar == null
                 ? null
                 : Icon(
                     Icons.close,
                     color: Colors.red,
                   ),
-            title: Text(avatar == null
+            title: Text(controller.avatar == null
                 ? L10n.of(context).setAProfilePicture
                 : L10n.of(context).discardPicture),
-            onTap: avatar == null
-                ? setAvatarAction
-                : () => setState(() => avatar = null),
+            onTap: controller.avatar == null
+                ? controller.setAvatarAction
+                : controller.resetAvatarAction,
           ),
           SizedBox(height: 16),
           Hero(
@@ -136,8 +89,8 @@ class _SignUpState extends State<SignUp> {
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 12),
               child: ElevatedButton(
-                onPressed: loading ? null : () => signUpAction(context),
-                child: loading
+                onPressed: controller.loading ? null : controller.signUpAction,
+                child: controller.loading
                     ? LinearProgressIndicator()
                     : Text(
                         L10n.of(context).signUp.toUpperCase(),

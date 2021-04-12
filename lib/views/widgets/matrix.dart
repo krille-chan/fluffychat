@@ -43,10 +43,13 @@ class Matrix extends StatefulWidget {
 
   final BuildContext context;
 
+  final Client testClient;
+
   Matrix({
     this.child,
     @required this.apl,
     @required this.context,
+    this.testClient,
     Key key,
   }) : super(key: key);
 
@@ -65,6 +68,8 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   BuildContext get context => widget.context;
 
   BackgroundPush _backgroundPush;
+
+  bool get testMode => widget.testClient != null;
 
   Map<String, dynamic> get shareContent => _shareContent;
   set shareContent(Map<String, dynamic> content) {
@@ -256,7 +261,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         });
       });
     }
-    client = FluffyClient();
+    client = widget.testClient ?? FluffyClient();
     LoadingDialog.defaultTitle = L10n.of(context).loadingPleaseWait;
     LoadingDialog.defaultBackLabel = L10n.of(context).close;
     LoadingDialog.defaultOnError = (Object e) => e.toLocalizedString(context);
