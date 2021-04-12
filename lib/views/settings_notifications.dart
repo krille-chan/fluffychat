@@ -189,10 +189,10 @@ class SettingsNotifications extends StatelessWidget {
                           ),
                         );
                       }
-                      if (!snapshot.hasData) {
+                      if (snapshot.connectionState != ConnectionState.done) {
                         Center(child: CircularProgressIndicator());
                       }
-                      final pushers = snapshot.data;
+                      final pushers = snapshot.data ?? [];
                       return ListView.builder(
                         physics: NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
