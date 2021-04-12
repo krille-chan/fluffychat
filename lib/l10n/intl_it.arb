@@ -2297,5 +2297,20 @@
   "@roomVersion": {
     "type": "text",
     "placeholders": {}
+  },
+  "publicGroups": "Gruppi pubblici",
+  "@publicGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "people": "Persone",
+  "@people": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chats": "Discussioni",
+  "@chats": {
+    "type": "text",
+    "placeholders": {}
   }
 }
