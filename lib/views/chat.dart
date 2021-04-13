@@ -559,10 +559,12 @@ class _ChatState extends State<Chat> {
                                       '${room.directChatMatrixID} ',
                                 ),
                               )
-                          : () => AdaptivePageLayout.of(context)
-                                      .viewDataStack
-                                      .length <
-                                  3
+                          : () => (!AdaptivePageLayout.of(context)
+                                      .columnMode(context) ||
+                                  AdaptivePageLayout.of(context)
+                                          .viewDataStack
+                                          .length <
+                                      3)
                               ? AdaptivePageLayout.of(context)
                                   .pushNamed('/rooms/${room.id}/details')
                               : null,

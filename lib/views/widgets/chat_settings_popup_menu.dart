@@ -95,7 +95,8 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                     widget.room.setPushRuleState(PushRuleState.notify));
             break;
           case 'details':
-            if (AdaptivePageLayout.of(context).viewDataStack.length < 3) {
+            if (!AdaptivePageLayout.of(context).columnMode(context) ||
+                AdaptivePageLayout.of(context).viewDataStack.length < 3) {
               await AdaptivePageLayout.of(context)
                   .pushNamed('/rooms/${widget.room.id}/details');
             }
