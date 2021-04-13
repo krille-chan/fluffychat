@@ -27,7 +27,8 @@ extension MatrixFileExtension on MatrixFile {
       element.click();
       element.remove();
     } else {
-      if (!(await Permission.storage.request()).isGranted) return;
+      if (PlatformInfos.isMobile &&
+          !(await Permission.storage.request()).isGranted) return;
       final downloadsDir = PlatformInfos.isDesktop
           ? (await getDownloadsDirectory()).path
           : Platform.isAndroid

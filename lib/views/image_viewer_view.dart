@@ -25,13 +25,13 @@ class ImageViewerView extends StatelessWidget {
         actions: [
           IconButton(
             icon: Icon(Icons.reply_outlined),
-            onPressed: () => controller.forwardAction,
+            onPressed: controller.forwardAction,
             color: Colors.white,
             tooltip: L10n.of(context).share,
           ),
           IconButton(
             icon: Icon(Icons.download_outlined),
-            onPressed: () => controller.openFileAction,
+            onPressed: controller.openFileAction,
             color: Colors.white,
             tooltip: L10n.of(context).downloadFile,
           ),
