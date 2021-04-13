@@ -15,7 +15,7 @@ import 'package:fluffychat/views/empty_page.dart';
 import 'package:fluffychat/views/loading_view.dart';
 import 'package:fluffychat/views/log_view.dart';
 import 'package:fluffychat/views/login.dart';
-import 'package:fluffychat/views/new_group.dart';
+import 'package:fluffychat/controllers/new_group_controller.dart';
 import 'package:fluffychat/views/new_private_chat.dart';
 import 'package:fluffychat/views/search_view.dart';
 import 'package:fluffychat/views/settings.dart';
