@@ -27,10 +27,10 @@ class AudioPlayer extends StatefulWidget {
   _AudioPlayerState createState() => _AudioPlayerState();
 }
 
-enum AudioPlayerStatus { NOT_DOWNLOADED, DOWNLOADING, DOWNLOADED }
+enum AudioPlayerStatus { notDownloaded, downloading, downloaded }
 
 class _AudioPlayerState extends State<AudioPlayer> {
-  AudioPlayerStatus status = AudioPlayerStatus.NOT_DOWNLOADED;
+  AudioPlayerStatus status = AudioPlayerStatus.notDownloaded;
 
   final FlutterSoundPlayer flutterSound = FlutterSoundPlayer();
 
@@ -70,14 +70,14 @@ class _AudioPlayerState extends State<AudioPlayer> {
   }
 
   Future<void> _downloadAction() async {
-    if (status != AudioPlayerStatus.NOT_DOWNLOADED) return;
-    setState(() => status = AudioPlayerStatus.DOWNLOADING);
+    if (status != AudioPlayerStatus.notDownloaded) return;
+    setState(() => status = AudioPlayerStatus.downloading);
     try {
       final matrixFile =
           await widget.event.downloadAndDecryptAttachmentCached();
       setState(() {
         audioFile = matrixFile.bytes;
-        status = AudioPlayerStatus.DOWNLOADED;
+        status = AudioPlayerStatus.downloaded;
       });
       _playAction();
     } catch (e, s) {
@@ -126,7 +126,7 @@ class _AudioPlayerState extends State<AudioPlayer> {
             });
             AudioPlayer.currentId = null;
           } else if (e != null) {
-            var txt =
+            final txt =
                 '${e.position.inMinutes.toString().padLeft(2, '0')}:${(e.position.inSeconds % 60).toString().padLeft(2, '0')}';
             setState(() {
               maxPosition = e.duration.inMilliseconds.toDouble();
@@ -158,7 +158,7 @@ class _AudioPlayerState extends State<AudioPlayer> {
       children: <Widget>[
         Container(
           width: 30,
-          child: status == AudioPlayerStatus.DOWNLOADING
+          child: status == AudioPlayerStatus.downloading
               ? CircularProgressIndicator(strokeWidth: 2)
               : IconButton(
                   icon: Icon(
@@ -171,7 +171,7 @@ class _AudioPlayerState extends State<AudioPlayer> {
                       ? L10n.of(context).audioPlayerPause
                       : L10n.of(context).audioPlayerPlay,
                   onPressed: () {
-                    if (status == AudioPlayerStatus.DOWNLOADED) {
+                    if (status == AudioPlayerStatus.downloaded) {
                       _playAction();
                     } else {
                       _downloadAction();
@@ -184,7 +184,7 @@ class _AudioPlayerState extends State<AudioPlayer> {
             value: currentPosition,
             onChanged: (double position) => flutterSound
                 .seekToPlayer(Duration(milliseconds: position.toInt())),
-            max: status == AudioPlayerStatus.DOWNLOADED ? maxPosition : 0,
+            max: status == AudioPlayerStatus.downloaded ? maxPosition : 0,
             min: 0,
           ),
         ),

@@ -38,7 +38,7 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
         .listen(
           (u) => setState(() => null),
         );
-    var items = <PopupMenuEntry<String>>[
+    final items = <PopupMenuEntry<String>>[
       widget.room.pushRuleState == PushRuleState.notify
           ? PopupMenuItem<String>(
               value: 'mute',
@@ -66,7 +66,7 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
       onSelected: (String choice) async {
         switch (choice) {
           case 'leave':
-            var confirmed = await showOkCancelAlertDialog(
+            final confirmed = await showOkCancelAlertDialog(
               context: context,
               useRootNavigator: false,
               title: L10n.of(context).areYouSure,

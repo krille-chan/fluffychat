@@ -40,7 +40,7 @@ class UrlLauncher {
       var roomId = room?.id;
       // we make the servers a set and later on convert to a list, so that we can easily
       // deduplicate servers added via alias lookup and query parameter
-      var servers = <String>{};
+      final servers = <String>{};
       if (room == null && roomIdOrAlias.sigil == '#') {
         // we were unable to find the room locally...so resolve it
         final response = await showFutureLoadingDialog(

@@ -355,7 +355,7 @@ class _SearchViewState extends State<SearchView> {
                 ? ListView.builder(
                     itemCount: foundProfiles.length,
                     itemBuilder: (BuildContext context, int i) {
-                      var foundProfile = foundProfiles[i];
+                      final foundProfile = foundProfiles[i];
                       return ListTile(
                         onTap: () async {
                           final roomID = await showFutureLoadingDialog(

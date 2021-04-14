@@ -25,7 +25,7 @@ class Avatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var thumbnail = mxContent?.getThumbnail(
+    final thumbnail = mxContent?.getThumbnail(
       client ?? Matrix.of(context).client,
       width: size * MediaQuery.of(context).devicePixelRatio,
       height: size * MediaQuery.of(context).devicePixelRatio,

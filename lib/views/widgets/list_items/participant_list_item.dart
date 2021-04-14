@@ -12,7 +12,7 @@ class ParticipantListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var membershipBatch = <Membership, String>{
+    final membershipBatch = <Membership, String>{
       Membership.join: '',
       Membership.ban: L10n.of(context).banned,
       Membership.invite: L10n.of(context).invited,

@@ -61,6 +61,7 @@ class _LogViewerState extends State<LogViewer> {
 }
 
 class _AnsiParser {
+  // ignore: constant_identifier_names
   static const TEXT = 0, BRACKET = 1, CODE = 2;
   final String text;
 
@@ -73,12 +74,13 @@ class _AnsiParser {
     spans = [];
     var state = TEXT;
     StringBuffer buffer;
-    var text = StringBuffer();
+    final text = StringBuffer();
     var code = 0;
     List<int> codes;
 
+    // ignore: prefer_final_locals
     for (var i = 0, n = s.length; i < n; i++) {
-      var c = s[i];
+      final c = s[i];
 
       switch (state) {
         case TEXT:
@@ -104,7 +106,7 @@ class _AnsiParser {
 
         case CODE:
           buffer.write(c);
-          var codeUnit = c.codeUnitAt(0);
+          final codeUnit = c.codeUnitAt(0);
           if (codeUnit >= 48 && codeUnit <= 57) {
             code = code * 10 + codeUnit - 48;
             continue;

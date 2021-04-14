@@ -7,24 +7,24 @@ import 'app_config.dart';
 abstract class FluffyThemes {
   static const double columnWidth = 360.0;
 
-  static const fallback_text_style =
+  static const fallbackTextStyle =
       TextStyle(fontFamily: 'NotoSans', fontFamilyFallback: ['NotoEmoji']);
 
   static var fallback_text_theme = PlatformInfos.isDesktop
       ? TextTheme(
-          bodyText1: fallback_text_style,
-          bodyText2: fallback_text_style,
-          button: fallback_text_style,
-          caption: fallback_text_style,
-          overline: fallback_text_style,
-          headline1: fallback_text_style,
-          headline2: fallback_text_style,
-          headline3: fallback_text_style,
-          headline4: fallback_text_style,
-          headline5: fallback_text_style,
-          headline6: fallback_text_style,
-          subtitle1: fallback_text_style,
-          subtitle2: fallback_text_style)
+          bodyText1: fallbackTextStyle,
+          bodyText2: fallbackTextStyle,
+          button: fallbackTextStyle,
+          caption: fallbackTextStyle,
+          overline: fallbackTextStyle,
+          headline1: fallbackTextStyle,
+          headline2: fallbackTextStyle,
+          headline3: fallbackTextStyle,
+          headline4: fallbackTextStyle,
+          headline5: fallbackTextStyle,
+          headline6: fallbackTextStyle,
+          subtitle1: fallbackTextStyle,
+          subtitle2: fallbackTextStyle)
       : TextTheme();
 
   static ThemeData light = ThemeData(

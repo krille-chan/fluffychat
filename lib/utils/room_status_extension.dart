@@ -35,7 +35,7 @@ extension RoomStatusExtension on Room {
 
   String getLocalizedTypingText(BuildContext context) {
     var typingText = '';
-    var typingUsers = this.typingUsers;
+    final typingUsers = this.typingUsers;
     typingUsers.removeWhere((User u) => u.id == client.userID);
 
     if (AppConfig.hideTypingUsernames) {

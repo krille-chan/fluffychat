@@ -36,7 +36,7 @@ class _RecordingDialogState extends State<RecordingDialog> {
       _recordedPath = '${tempDir.path}/recording${ext[codec.index]}';
 
       // delete any existing file
-      var outputFile = File(_recordedPath);
+      final outputFile = File(_recordedPath);
       if (outputFile.existsSync()) {
         await outputFile.delete();
       }
