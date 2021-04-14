@@ -15,7 +15,7 @@ extension MatrixFileExtension on MatrixFile {
     if (kIsWeb) {
       final fileName = name.split('/').last;
       final mimeType = mime(fileName);
-      var element = html.document.createElement('a');
+      final element = html.document.createElement('a');
       element.setAttribute(
           'href', html.Url.createObjectUrlFromBlob(html.Blob([bytes])));
       element.setAttribute('target', '_blank');

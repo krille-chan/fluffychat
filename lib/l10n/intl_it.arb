@@ -2287,5 +2287,30 @@
   "@tapOnDeviceToVerify": {
     "type": "text",
     "placeholders": {}
+  },
+  "goToTheNewRoom": "Vai nella nuova stanza",
+  "@goToTheNewRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "roomVersion": "Versione della stanza",
+  "@roomVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicGroups": "Gruppi pubblici",
+  "@publicGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "people": "Persone",
+  "@people": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chats": "Discussioni",
+  "@chats": {
+    "type": "text",
+    "placeholders": {}
   }
 }

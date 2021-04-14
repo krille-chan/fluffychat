@@ -300,13 +300,13 @@ class BackgroundPush {
     }
 
     // initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
-    var initializationSettingsAndroid =
+    final initializationSettingsAndroid =
         AndroidInitializationSettings('notifications_icon');
-    var initializationSettingsIOS =
+    final initializationSettingsIOS =
         IOSInitializationSettings(onDidReceiveLocalNotification: (i, a, b, c) {
       return null;
     });
-    var initializationSettings = InitializationSettings(
+    final initializationSettings = InitializationSettings(
       android: initializationSettingsAndroid,
       iOS: initializationSettingsIOS,
     );
@@ -622,7 +622,7 @@ class BackgroundPush {
     );
 
     // Show notification
-    var androidPlatformChannelSpecifics = _getAndroidNotificationDetails(
+    final androidPlatformChannelSpecifics = _getAndroidNotificationDetails(
       styleInformation: MessagingStyleInformation(
         person,
         conversationTitle: title,
@@ -636,8 +636,8 @@ class BackgroundPush {
       ),
       ticker: l10n.newMessageInFluffyChat,
     );
-    var iOSPlatformChannelSpecifics = IOSNotificationDetails();
-    var platformChannelSpecifics = NotificationDetails(
+    final iOSPlatformChannelSpecifics = IOSNotificationDetails();
+    final platformChannelSpecifics = NotificationDetails(
       android: androidPlatformChannelSpecifics,
       iOS: iOSPlatformChannelSpecifics,
     );
@@ -655,8 +655,8 @@ class BackgroundPush {
       await setupLocalNotificationsPlugin();
 
       await loadLocale();
-      String eventId = data['event_id'];
-      String roomId = data['room_id'];
+      final String eventId = data['event_id'];
+      final String roomId = data['room_id'];
       final unread = ((data['counts'] is String
               ? json.decode(data.tryGet<String>('counts', '{}'))
               : data.tryGet<Map<String, dynamic>>(
@@ -668,9 +668,9 @@ class BackgroundPush {
       }
 
       // Display notification
-      var androidPlatformChannelSpecifics = _getAndroidNotificationDetails();
-      var iOSPlatformChannelSpecifics = IOSNotificationDetails();
-      var platformChannelSpecifics = NotificationDetails(
+      final androidPlatformChannelSpecifics = _getAndroidNotificationDetails();
+      final iOSPlatformChannelSpecifics = IOSNotificationDetails();
+      final platformChannelSpecifics = NotificationDetails(
         android: androidPlatformChannelSpecifics,
         iOS: iOSPlatformChannelSpecifics,
       );
@@ -692,20 +692,20 @@ class BackgroundPush {
     final thumbnail = width == null && height == null ? false : true;
     final tempDirectory = (await getTemporaryDirectory()).path;
     final prefix = thumbnail ? 'thumbnail' : '';
-    var file =
+    final file =
         File('$tempDirectory/${prefix}_${content.toString().split("/").last}');
 
     if (!file.existsSync()) {
       final url = thumbnail
           ? content.getThumbnail(client, width: width, height: height)
           : content.getDownloadLink(client);
-      var request = await HttpClient().getUrl(Uri.parse(url));
-      var response = await request.close();
+      final request = await HttpClient().getUrl(Uri.parse(url));
+      final response = await request.close();
       if (response.statusCode >= 300) {
         // we are not in the 2xx range
         return null;
       }
-      var bytes = await consolidateHttpClientResponseBytes(response);
+      final bytes = await consolidateHttpClientResponseBytes(response);
       await file.writeAsBytes(bytes);
     }
 

@@ -83,7 +83,7 @@ class _ChatDetailsState extends State<ChatDetails> {
     final aliases =
         aliasEvent != null ? aliasEvent.content['aliases'] ?? [] : [];
     if (aliases.indexWhere((s) => s == canonicalAlias) == -1) {
-      var newAliases = List<String>.from(aliases);
+      final newAliases = List<String>.from(aliases);
       newAliases.add(canonicalAlias);
       final response = await showFutureLoadingDialog(
         context: context,

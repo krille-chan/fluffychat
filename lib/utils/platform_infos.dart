@@ -40,7 +40,7 @@ abstract class PlatformInfos {
   }
 
   static void showDialog(BuildContext context) async {
-    var version = await PlatformInfos.getVersion();
+    final version = await PlatformInfos.getVersion();
     showAboutDialog(
       context: context,
       useRootNavigator: false,

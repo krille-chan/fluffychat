@@ -116,7 +116,7 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
                             onSelected: (action) =>
                                 onSelected(context, action, deviceKeys[i]),
                             itemBuilder: (c) {
-                              var items = <PopupMenuEntry<String>>[];
+                              final items = <PopupMenuEntry<String>>[];
                               if (room
                                       .client
                                       .userDeviceKeys[deviceKeys[i].userId]
@@ -166,7 +166,7 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
                           onSelected: (action) =>
                               onSelected(context, action, deviceKeys[i]),
                           itemBuilder: (c) {
-                            var items = <PopupMenuEntry<String>>[];
+                            final items = <PopupMenuEntry<String>>[];
                             if (deviceKeys[i].blocked ||
                                 !deviceKeys[i].verified) {
                               items.add(PopupMenuItem(

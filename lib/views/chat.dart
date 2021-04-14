@@ -251,7 +251,7 @@ class _ChatState extends State<Chat> {
   }
 
   void openCameraAction(BuildContext context) async {
-    var file = await ImagePicker().getImage(source: ImageSource.camera);
+    final file = await ImagePicker().getImage(source: ImageSource.camera);
     if (file == null) return;
     final bytes = await file.readAsBytes();
     await showDialog(
@@ -297,7 +297,7 @@ class _ChatState extends State<Chat> {
           .getDisplayEvent(timeline)
           .getLocalizedBody(MatrixLocals(L10n.of(context)));
     }
-    for (var event in selectedEvents) {
+    for (final event in selectedEvents) {
       if (copyString.isNotEmpty) copyString += '\n\n';
       copyString += event.getDisplayEvent(timeline).getLocalizedBody(
           MatrixLocals(L10n.of(context)),
@@ -356,7 +356,7 @@ class _ChatState extends State<Chat> {
   }
 
   void redactEventsAction(BuildContext context) async {
-    var confirmed = await showOkCancelAlertDialog(
+    final confirmed = await showOkCancelAlertDialog(
           context: context,
           title: L10n.of(context).messageWillBeRemovedWarning,
           okLabel: L10n.of(context).remove,
@@ -365,7 +365,7 @@ class _ChatState extends State<Chat> {
         ) ==
         OkCancelResult.ok;
     if (!confirmed) return;
-    for (var event in selectedEvents) {
+    for (final event in selectedEvents) {
       await showFutureLoadingDialog(
           context: context,
           future: () => event.status > 0 ? event.redact() : event.remove());
@@ -374,7 +374,7 @@ class _ChatState extends State<Chat> {
   }
 
   bool get canRedactSelectedEvents {
-    for (var event in selectedEvents) {
+    for (final event in selectedEvents) {
       if (event.canRedact == false) return false;
     }
     return true;
@@ -512,7 +512,7 @@ class _ChatState extends State<Chat> {
   @override
   Widget build(BuildContext context) {
     matrix = Matrix.of(context);
-    var client = matrix.client;
+    final client = matrix.client;
     room ??= client.getRoomById(widget.id);
     if (room == null) {
       return Scaffold(
@@ -985,7 +985,7 @@ class _ChatState extends State<Chat> {
                           selectedEvents.length == 1)) {
                         return Container();
                       }
-                      var emojis = List<String>.from(AppEmojis.emojis);
+                      final emojis = List<String>.from(AppEmojis.emojis);
                       final allReactionEvents = selectedEvents.first
                           .aggregatedEvents(
                               timeline, RelationshipTypes.Reaction)

@@ -62,7 +62,7 @@ class InvitationSelectionView extends StatelessWidget {
                       child: CircularProgressIndicator(),
                     );
                   }
-                  var contacts = snapshot.data;
+                  final contacts = snapshot.data;
                   return ListView.builder(
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,

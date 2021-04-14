@@ -248,7 +248,7 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
         ));
         break;
       case KeyVerificationState.waitingSas:
-        var acceptText = widget.request.sasTypes.contains('emoji')
+        final acceptText = widget.request.sasTypes.contains('emoji')
             ? L10n.of(context).waitingPartnerEmoji
             : L10n.of(context).waitingPartnerNumbers;
         body = Column(

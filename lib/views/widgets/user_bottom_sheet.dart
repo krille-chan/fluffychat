@@ -90,7 +90,7 @@ class UserBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     final client = user.room.client;
     final presence = client.presences[user.id];
-    var items = <PopupMenuEntry<String>>[];
+    final items = <PopupMenuEntry<String>>[];
 
     if (onMention != null) {
       items.add(

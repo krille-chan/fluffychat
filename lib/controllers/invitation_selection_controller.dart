@@ -28,16 +28,16 @@ class InvitationSelectionController extends State<InvitationSelection> {
   Timer coolDown;
 
   Future<List<User>> getContacts(BuildContext context) async {
-    var client = Matrix.of(context).client;
+    final client = Matrix.of(context).client;
     final room = client.getRoomById(widget.roomId);
-    var participants = await room.requestParticipants();
+    final participants = await room.requestParticipants();
     participants.removeWhere(
       (u) => ![Membership.join, Membership.invite].contains(u.membership),
     );
-    var contacts = <User>[];
-    var userMap = <String, bool>{};
+    final contacts = <User>[];
+    final userMap = <String, bool>{};
     for (var i = 0; i < client.rooms.length; i++) {
-      var roomUsers = client.rooms[i].getParticipants();
+      final roomUsers = client.rooms[i].getParticipants();
 
       for (var j = 0; j < roomUsers.length; j++) {
         if (userMap[roomUsers[j].id] != true &&

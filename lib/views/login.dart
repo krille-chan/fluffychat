@@ -26,7 +26,7 @@ class _LoginState extends State<Login> {
   bool showPassword = false;
 
   void login(BuildContext context) async {
-    var matrix = Matrix.of(context);
+    final matrix = Matrix.of(context);
     if (usernameController.text.isEmpty) {
       setState(() => usernameError = L10n.of(context).pleaseEnterYourUsername);
     } else {

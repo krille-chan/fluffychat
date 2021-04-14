@@ -238,7 +238,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
   Future<void> initConfig() async {
     try {
-      var configJsonString =
+      final configJsonString =
           utf8.decode((await http.get('config.json')).bodyBytes);
       final configJson = json.decode(configJsonString);
       AppConfig.loadFromJson(configJson);
