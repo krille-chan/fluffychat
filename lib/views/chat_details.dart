@@ -1,182 +1,32 @@
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/controllers/chat_details_controller.dart';
 import 'package:fluffychat/views/widgets/avatar.dart';
 import 'package:fluffychat/views/widgets/matrix.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 
 import 'package:famedlysdk/famedlysdk.dart';
 
-import 'package:file_picker_cross/file_picker_cross.dart';
 import 'package:fluffychat/views/widgets/chat_settings_popup_menu.dart';
 import 'package:fluffychat/views/widgets/content_banner.dart';
 import 'package:fluffychat/views/widgets/max_width_body.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/views/widgets/list_items/participant_list_item.dart';
 import 'package:fluffychat/utils/matrix_locals.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:matrix_link_text/link_text.dart';
 
 import '../utils/url_launcher.dart';
 
-class ChatDetails extends StatefulWidget {
-  final String roomId;
+class ChatDetailsView extends StatelessWidget {
+  final ChatDetailsController controller;
 
-  const ChatDetails(this.roomId);
-
-  @override
-  _ChatDetailsState createState() => _ChatDetailsState();
-}
-
-class _ChatDetailsState extends State<ChatDetails> {
-  Room room;
-  List<User> members;
-  void setDisplaynameAction(BuildContext context) async {
-    final input = await showTextInputDialog(
-      context: context,
-      title: L10n.of(context).changeTheNameOfTheGroup,
-      okLabel: L10n.of(context).ok,
-      cancelLabel: L10n.of(context).cancel,
-      useRootNavigator: false,
-      textFields: [
-        DialogTextField(
-          initialText: room.getLocalizedDisplayname(
-            MatrixLocals(
-              L10n.of(context),
-            ),
-          ),
-        )
-      ],
-    );
-    if (input == null) return;
-    final success = await showFutureLoadingDialog(
-      context: context,
-      future: () => room.setName(input.single),
-    );
-    if (success.error == null) {
-      AdaptivePageLayout.of(context).showSnackBar(
-          SnackBar(content: Text(L10n.of(context).displaynameHasBeenChanged)));
-    }
-  }
-
-  void setCanonicalAliasAction(context) async {
-    final input = await showTextInputDialog(
-      context: context,
-      title: L10n.of(context).setInvitationLink,
-      okLabel: L10n.of(context).ok,
-      cancelLabel: L10n.of(context).cancel,
-      useRootNavigator: false,
-      textFields: [
-        DialogTextField(
-          hintText: '#localpart:domain',
-          initialText: L10n.of(context).alias.toLowerCase(),
-        )
-      ],
-    );
-    if (input == null) return;
-    final domain = room.client.userID.domain;
-    final canonicalAlias = '%23' + input.single + '%3A' + domain;
-    final aliasEvent = room.getState('m.room.aliases', domain);
-    final aliases =
-        aliasEvent != null ? aliasEvent.content['aliases'] ?? [] : [];
-    if (aliases.indexWhere((s) => s == canonicalAlias) == -1) {
-      final newAliases = List<String>.from(aliases);
-      newAliases.add(canonicalAlias);
-      final response = await showFutureLoadingDialog(
-        context: context,
-        future: () => room.client.requestRoomAliasInformation(canonicalAlias),
-      );
-      if (response.error != null) {
-        final success = await showFutureLoadingDialog(
-          context: context,
-          future: () => room.client.createRoomAlias(canonicalAlias, room.id),
-        );
-        if (success.error != null) return;
-      }
-    }
-    await showFutureLoadingDialog(
-      context: context,
-      future: () => room.client.sendState(room.id, 'm.room.canonical_alias', {
-        'alias': input.single,
-      }),
-    );
-  }
-
-  void setTopicAction(BuildContext context) async {
-    final input = await showTextInputDialog(
-      context: context,
-      title: L10n.of(context).setGroupDescription,
-      okLabel: L10n.of(context).ok,
-      cancelLabel: L10n.of(context).cancel,
-      useRootNavigator: false,
-      textFields: [
-        DialogTextField(
-          hintText: L10n.of(context).setGroupDescription,
-          initialText: room.topic,
-          minLines: 1,
-          maxLines: 4,
-        )
-      ],
-    );
-    if (input == null) return;
-    final success = await showFutureLoadingDialog(
-      context: context,
-      future: () => room.setDescription(input.single),
-    );
-    if (success.error == null) {
-      AdaptivePageLayout.of(context).showSnackBar(SnackBar(
-          content: Text(L10n.of(context).groupDescriptionHasBeenChanged)));
-    }
-  }
-
-  void setAvatarAction(BuildContext context) async {
-    MatrixFile file;
-    if (PlatformInfos.isMobile) {
-      final result = await ImagePicker().getImage(
-          source: ImageSource.gallery,
-          imageQuality: 50,
-          maxWidth: 1600,
-          maxHeight: 1600);
-      if (result == null) return;
-      file = MatrixFile(
-        bytes: await result.readAsBytes(),
-        name: result.path,
-      );
-    } else {
-      final result = await FilePickerCross.importFromStorage(
-        type: FileTypeCross.image,
-      );
-      if (result == null) return;
-      file = MatrixFile(
-        bytes: result.toUint8List(),
-        name: result.fileName,
-      );
-    }
-
-    final success = await showFutureLoadingDialog(
-      context: context,
-      future: () => room.setAvatar(file),
-    );
-    if (success.error == null) {
-      AdaptivePageLayout.of(context).showSnackBar(
-          SnackBar(content: Text(L10n.of(context).avatarHasBeenChanged)));
-    }
-  }
-
-  void requestMoreMembersAction(BuildContext context) async {
-    final participants = await showFutureLoadingDialog(
-        context: context, future: () => room.requestParticipants());
-    if (participants.error == null) {
-      setState(() => members = participants.result);
-    }
-  }
+  const ChatDetailsView(this.controller, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    room ??= Matrix.of(context).client.getRoomById(widget.roomId);
+    final room =
+        Matrix.of(context).client.getRoomById(controller.widget.roomId);
     if (room == null) {
       return Scaffold(
         appBar: AppBar(
@@ -188,11 +38,12 @@ class _ChatDetailsState extends State<ChatDetails> {
         ),
       );
     }
-    members ??= room.getParticipants();
-    members.removeWhere((u) => u.membership == Membership.leave);
+
+    controller.members.removeWhere((u) => u.membership == Membership.leave);
     final actualMembersCount =
         room.mInvitedMemberCount + room.mJoinedMemberCount;
-    final canRequestMoreMembers = members.length < actualMembersCount;
+    final canRequestMoreMembers =
+        controller.members.length < actualMembersCount;
     return StreamBuilder(
         stream: room.onUpdate.stream,
         builder: (context, snapshot) {
@@ -230,15 +81,16 @@ class _ChatDetailsState extends State<ChatDetails> {
                   flexibleSpace: FlexibleSpaceBar(
                     background: ContentBanner(room.avatar,
                         onEdit: room.canSendEvent('m.room.avatar')
-                            ? () => setAvatarAction(context)
+                            ? controller.setAvatarAction
                             : null),
                   ),
                 ),
               ],
               body: MaxWidthBody(
                 child: ListView.builder(
-                  itemCount:
-                      members.length + 1 + (canRequestMoreMembers ? 1 : 0),
+                  itemCount: controller.members.length +
+                      1 +
+                      (canRequestMoreMembers ? 1 : 0),
                   itemBuilder: (BuildContext context, int i) => i == 0
                       ? Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -274,7 +126,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                                     UrlLauncher(context, url).launchUrl(),
                               ),
                               onTap: room.canSendEvent('m.room.topic')
-                                  ? () => setTopicAction(context)
+                                  ? controller.setTopicAction
                                   : null,
                             ),
                             Divider(thickness: 1),
@@ -299,7 +151,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                                     L10n.of(context).changeTheNameOfTheGroup),
                                 subtitle: Text(room.getLocalizedDisplayname(
                                     MatrixLocals(L10n.of(context)))),
-                                onTap: () => setDisplaynameAction(context),
+                                onTap: controller.setDisplaynameAction,
                               ),
                             if (room.canSendEvent('m.room.canonical_alias') &&
                                 room.joinRules == JoinRules.public)
@@ -310,7 +162,8 @@ class _ChatDetailsState extends State<ChatDetails> {
                                   foregroundColor: Colors.grey,
                                   child: Icon(Icons.link_outlined),
                                 ),
-                                onTap: () => setCanonicalAliasAction(context),
+                                onTap: () =>
+                                    controller.setCanonicalAliasAction(context),
                                 title: Text(L10n.of(context).setInvitationLink),
                                 subtitle: Text(
                                     (room.canonicalAlias?.isNotEmpty ?? false)
@@ -326,29 +179,10 @@ class _ChatDetailsState extends State<ChatDetails> {
                               ),
                               title: Text(L10n.of(context).emoteSettings),
                               subtitle: Text(L10n.of(context).setCustomEmotes),
-                              onTap: () async {
-                                // okay, we need to test if there are any emote state events other than the default one
-                                // if so, we need to be directed to a selection screen for which pack we want to look at
-                                // otherwise, we just open the normal one.
-                                if ((room.states['im.ponies.room_emotes'] ??
-                                        <String, Event>{})
-                                    .keys
-                                    .any((String s) => s.isNotEmpty)) {
-                                  await AdaptivePageLayout.of(context)
-                                      .pushNamed('/rooms/${room.id}/emotes');
-                                } else {
-                                  await AdaptivePageLayout.of(context)
-                                      .pushNamed('/settings/emotes',
-                                          arguments: {'room': room});
-                                }
-                              },
+                              onTap: controller.goToEmoteSettings,
                             ),
                             PopupMenuButton(
-                              onSelected: (JoinRules joinRule) =>
-                                  showFutureLoadingDialog(
-                                context: context,
-                                future: () => room.setJoinRules(joinRule),
-                              ),
+                              onSelected: controller.setJoinRulesAction,
                               itemBuilder: (BuildContext context) =>
                                   <PopupMenuEntry<JoinRules>>[
                                 if (room.canChangeJoinRules)
@@ -381,13 +215,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                               ),
                             ),
                             PopupMenuButton(
-                              onSelected:
-                                  (HistoryVisibility historyVisibility) =>
-                                      showFutureLoadingDialog(
-                                context: context,
-                                future: () => room
-                                    .setHistoryVisibility(historyVisibility),
-                              ),
+                              onSelected: controller.setHistoryVisibilityAction,
                               itemBuilder: (BuildContext context) =>
                                   <PopupMenuEntry<HistoryVisibility>>[
                                 if (room.canChangeHistoryVisibility)
@@ -436,12 +264,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                             ),
                             if (room.joinRules == JoinRules.public)
                               PopupMenuButton(
-                                onSelected: (GuestAccess guestAccess) =>
-                                    showFutureLoadingDialog(
-                                  context: context,
-                                  future: () =>
-                                      room.setGuestAccess(guestAccess),
-                                ),
+                                onSelected: controller.setGuestAccessAction,
                                 itemBuilder: (BuildContext context) =>
                                     <PopupMenuEntry<GuestAccess>>[
                                   if (room.canChangeGuestAccess)
@@ -519,12 +342,13 @@ class _ChatDetailsState extends State<ChatDetails> {
                                 : Container(),
                           ],
                         )
-                      : i < members.length + 1
-                          ? ParticipantListItem(members[i - 1])
+                      : i < controller.members.length + 1
+                          ? ParticipantListItem(controller.members[i - 1])
                           : ListTile(
                               title: Text(L10n.of(context)
                                   .loadCountMoreParticipants(
-                                      (actualMembersCount - members.length)
+                                      (actualMembersCount -
+                                              controller.members.length)
                                           .toString())),
                               leading: CircleAvatar(
                                 backgroundColor:
@@ -534,7 +358,7 @@ class _ChatDetailsState extends State<ChatDetails> {
                                   color: Colors.grey,
                                 ),
                               ),
-                              onTap: () => requestMoreMembersAction(context),
+                              onTap: controller.requestMoreMembersAction,
                             ),
                 ),
               ),

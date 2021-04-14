@@ -7,7 +7,7 @@ import 'package:fluffychat/controllers/sign_up_controller.dart';
 import 'package:fluffychat/controllers/sign_up_password_controller.dart';
 import 'package:fluffychat/views/widgets/matrix.dart';
 import 'package:fluffychat/views/chat.dart';
-import 'package:fluffychat/views/chat_details.dart';
+import 'package:fluffychat/controllers/chat_details_controller.dart';
 import 'package:fluffychat/views/chat_encryption_settings.dart';
 import 'package:fluffychat/views/chat_list.dart';
 import 'package:fluffychat/views/chat_permissions_settings.dart';
