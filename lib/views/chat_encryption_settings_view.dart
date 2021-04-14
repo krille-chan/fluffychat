@@ -1,70 +1,21 @@
-import 'package:famedlysdk/encryption.dart';
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/controllers/chat_encryption_settings_controller.dart';
 import 'package:fluffychat/views/widgets/avatar.dart';
 import 'package:fluffychat/views/widgets/matrix.dart';
 import 'package:fluffychat/views/widgets/max_width_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import '../views/widgets/dialogs/key_verification_dialog.dart';
 import '../utils/device_extension.dart';
 
-class ChatEncryptionSettings extends StatefulWidget {
-  final String id;
+class ChatEncryptionSettingsView extends StatelessWidget {
+  final ChatEncryptionSettingsController controller;
 
-  const ChatEncryptionSettings(this.id, {Key key}) : super(key: key);
-
-  @override
-  _ChatEncryptionSettingsState createState() => _ChatEncryptionSettingsState();
-}
-
-class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
-  Future<void> onSelected(
-      BuildContext context, String action, DeviceKeys key) async {
-    final room = Matrix.of(context).client.getRoomById(widget.id);
-    final unblock = () async {
-      if (key.blocked) {
-        await key.setBlocked(false);
-      }
-    };
-    switch (action) {
-      case 'verify':
-        await unblock();
-        final req = key.startVerification();
-        req.onUpdate = () {
-          if (req.state == KeyVerificationState.done) {
-            setState(() => null);
-          }
-        };
-        await KeyVerificationDialog(request: req).show(context);
-        break;
-      case 'verify_user':
-        await unblock();
-        final req =
-            await room.client.userDeviceKeys[key.userId].startVerification();
-        req.onUpdate = () {
-          if (req.state == KeyVerificationState.done) {
-            setState(() => null);
-          }
-        };
-        await KeyVerificationDialog(request: req).show(context);
-        break;
-      case 'block':
-        if (key.directVerified) {
-          await key.setVerified(false);
-        }
-        await key.setBlocked(true);
-        setState(() => null);
-        break;
-      case 'unblock':
-        await unblock();
-        setState(() => null);
-        break;
-    }
-  }
+  const ChatEncryptionSettingsView(this.controller, {Key key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final room = Matrix.of(context).client.getRoomById(widget.id);
+    final room = Matrix.of(context).client.getRoomById(controller.widget.id);
 
     return Scaffold(
       appBar: AppBar(
@@ -113,8 +64,8 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
                                 deviceKeys[i - 1].userId) ...{
                           Divider(height: 1, thickness: 1),
                           PopupMenuButton(
-                            onSelected: (action) =>
-                                onSelected(context, action, deviceKeys[i]),
+                            onSelected: (action) => controller.onSelected(
+                                context, action, deviceKeys[i]),
                             itemBuilder: (c) {
                               final items = <PopupMenuEntry<String>>[];
                               if (room
@@ -163,8 +114,8 @@ class _ChatEncryptionSettingsState extends State<ChatEncryptionSettings> {
                           ),
                         },
                         PopupMenuButton(
-                          onSelected: (action) =>
-                              onSelected(context, action, deviceKeys[i]),
+                          onSelected: (action) => controller.onSelected(
+                              context, action, deviceKeys[i]),
                           itemBuilder: (c) {
                             final items = <PopupMenuEntry<String>>[];
                             if (deviceKeys[i].blocked ||
