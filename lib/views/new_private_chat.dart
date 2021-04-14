@@ -121,7 +121,7 @@ class _NewPrivateChatState extends State<NewPrivateChat> {
                       return L10n.of(context).pleaseEnterAMatrixIdentifier;
                     }
                     final matrix = Matrix.of(context);
-                    var mxid = '@' + controller.text.trim();
+                    final mxid = '@' + controller.text.trim();
                     if (mxid == matrix.client.userID) {
                       return L10n.of(context).youCannotInviteYourself;
                     }
@@ -187,7 +187,7 @@ class _NewPrivateChatState extends State<NewPrivateChat> {
                 child: ListView.builder(
                   itemCount: foundProfiles.length,
                   itemBuilder: (BuildContext context, int i) {
-                    var foundProfile = foundProfiles[i];
+                    final foundProfile = foundProfiles[i];
                     return ListTile(
                       onTap: () {
                         setState(() {

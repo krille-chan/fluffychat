@@ -51,7 +51,7 @@ class _SettingsState extends State<Settings> {
         OkCancelResult.cancel) {
       return;
     }
-    var matrix = Matrix.of(context);
+    final matrix = Matrix.of(context);
     await showFutureLoadingDialog(
       context: context,
       future: () => matrix.client.logout(),
@@ -146,7 +146,7 @@ class _SettingsState extends State<Settings> {
 
   void setJitsiInstanceAction(BuildContext context) async {
     const prefix = 'https://';
-    var input = await showTextInputDialog(
+    final input = await showTextInputDialog(
       context: context,
       title: L10n.of(context).editJitsiInstance,
       okLabel: L10n.of(context).ok,

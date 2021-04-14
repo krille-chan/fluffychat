@@ -20,7 +20,7 @@ class SignUpController extends State<SignUp> {
   MatrixFile avatar;
 
   void setAvatarAction() async {
-    var file =
+    final file =
         await FilePickerCross.importFromStorage(type: FileTypeCross.image);
     if (file != null) {
       setState(
@@ -35,7 +35,7 @@ class SignUpController extends State<SignUp> {
   void resetAvatarAction() => setState(() => avatar = null);
 
   void signUpAction([_]) async {
-    var matrix = Matrix.of(context);
+    final matrix = Matrix.of(context);
     if (usernameController.text.isEmpty) {
       setState(() => usernameError = L10n.of(context).pleaseChooseAUsername);
     } else {

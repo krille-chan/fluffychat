@@ -137,7 +137,7 @@ class _EmotesSettingsState extends State<EmotesSettings> {
 
   @override
   Widget build(BuildContext context) {
-    var client = Matrix.of(context).client;
+    final client = Matrix.of(context).client;
     if (emotes == null) {
       emotes = <_EmoteEntry>[];
       Map<String, dynamic> emoteSource;

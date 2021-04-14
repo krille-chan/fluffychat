@@ -44,13 +44,13 @@ extension DateTimeExtension on DateTime {
   /// Returns [localizedTimeOfDay()] if the ChatTime is today, the name of the week
   /// day if the ChatTime is this week and a date string else.
   String localizedTimeShort(BuildContext context) {
-    var now = DateTime.now();
+    final now = DateTime.now();
 
-    var sameYear = now.year == year;
+    final sameYear = now.year == year;
 
-    var sameDay = sameYear && now.month == month && now.day == day;
+    final sameDay = sameYear && now.month == month && now.day == day;
 
-    var sameWeek = sameYear &&
+    final sameWeek = sameYear &&
         !sameDay &&
         now.millisecondsSinceEpoch - millisecondsSinceEpoch <
             1000 * 60 * 60 * 24 * 7;
@@ -86,11 +86,11 @@ extension DateTimeExtension on DateTime {
   /// shows the date.
   /// TODO: Add localization
   String localizedTime(BuildContext context) {
-    var now = DateTime.now();
+    final now = DateTime.now();
 
-    var sameYear = now.year == year;
+    final sameYear = now.year == year;
 
-    var sameDay = sameYear && now.month == month && now.day == day;
+    final sameDay = sameYear && now.month == month && now.day == day;
 
     if (sameDay) return localizedTimeOfDay(context);
     return L10n.of(context).dateAndTimeOfDay(

@@ -29,7 +29,7 @@ class SignUpPasswordController extends State<SignUpPassword> {
   void toggleShowPassword() => setState(() => showPassword = !showPassword);
 
   void signUpAction({AuthenticationData auth}) async {
-    var matrix = Matrix.of(context);
+    final matrix = Matrix.of(context);
     if (passwordController.text.isEmpty) {
       setState(() => passwordError = L10n.of(context).pleaseEnterYourPassword);
     } else {
@@ -42,7 +42,7 @@ class SignUpPasswordController extends State<SignUpPassword> {
 
     try {
       setState(() => loading = true);
-      var waitForLogin = matrix.client.onLoginStateChanged.stream.first;
+      final waitForLogin = matrix.client.onLoginStateChanged.stream.first;
       await matrix.client.register(
         username: widget.username,
         password: passwordController.text,

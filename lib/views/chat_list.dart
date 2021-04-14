@@ -182,7 +182,7 @@ class _ChatListState extends State<ChatList> {
   }
 
   Future<void> waitForFirstSync(BuildContext context) async {
-    var client = Matrix.of(context).client;
+    final client = Matrix.of(context).client;
     if (client.prevBatch?.isEmpty ?? true) {
       await client.onFirstSync.stream.first;
     }
@@ -371,7 +371,7 @@ class _ChatListState extends State<ChatList> {
                         future: waitForFirstSync(context),
                         builder: (BuildContext context, snapshot) {
                           if (snapshot.hasData) {
-                            var rooms = List<Room>.from(
+                            final rooms = List<Room>.from(
                                 Matrix.of(context).client.rooms);
                             rooms.removeWhere((room) => room.lastEvent == null);
                             if (rooms.isEmpty) {

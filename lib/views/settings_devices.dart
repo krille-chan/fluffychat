@@ -38,9 +38,9 @@ class DevicesSettingsState extends State<DevicesSettings> {
           useRootNavigator: false,
         ) ==
         OkCancelResult.cancel) return;
-    var matrix = Matrix.of(context);
-    var deviceIds = <String>[];
-    for (var userDevice in devices) {
+    final matrix = Matrix.of(context);
+    final deviceIds = <String>[];
+    for (final userDevice in devices) {
       deviceIds.add(userDevice.deviceId);
     }
 
@@ -150,10 +150,10 @@ class DevicesSettingsState extends State<DevicesSettings> {
             if (!snapshot.hasData || this.devices == null) {
               return Center(child: CircularProgressIndicator());
             }
-            Function isOwnDevice = (Device userDevice) =>
+            final Function isOwnDevice = (Device userDevice) =>
                 userDevice.deviceId == Matrix.of(context).client.deviceID;
             final devices = List<Device>.from(this.devices);
-            var thisDevice =
+            final thisDevice =
                 devices.firstWhere(isOwnDevice, orElse: () => null);
             devices.removeWhere(isOwnDevice);
             devices.sort((a, b) => b.lastSeenTs.compareTo(a.lastSeenTs));
