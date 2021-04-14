@@ -2304,5 +2304,15 @@
   "@chats": {
     "type": "text",
     "placeholders": {}
+  },
+  "goToTheNewRoom": "В новую комнату",
+  "@goToTheNewRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "roomVersion": "Версия комнаты",
+  "@roomVersion": {
+    "type": "text",
+    "placeholders": {}
   }
 }
