@@ -20,7 +20,7 @@ import 'package:fluffychat/controllers/new_private_chat_controller.dart';
 import 'package:fluffychat/views/search_view.dart';
 import 'package:fluffychat/views/settings.dart';
 import 'package:fluffychat/views/settings_3pid.dart';
-import 'package:fluffychat/views/settings_devices.dart';
+import 'package:fluffychat/controllers/device_settings_controller.dart';
 import 'package:fluffychat/views/settings_emotes.dart';
 import 'package:fluffychat/views/settings_ignore_list.dart';
 import 'package:fluffychat/views/settings_multiple_emotes.dart';
