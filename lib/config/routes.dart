@@ -10,7 +10,7 @@ import 'package:fluffychat/views/chat.dart';
 import 'package:fluffychat/controllers/chat_details_controller.dart';
 import 'package:fluffychat/controllers/chat_encryption_settings_controller.dart';
 import 'package:fluffychat/controllers/chat_list_controller.dart';
-import 'package:fluffychat/views/chat_permissions_settings.dart';
+import 'package:fluffychat/controllers/chat_permissions_settings_controller.dart';
 import 'package:fluffychat/views/empty_page.dart';
 import 'package:fluffychat/views/loading_view.dart';
 import 'package:fluffychat/views/log_view.dart';
