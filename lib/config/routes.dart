@@ -12,8 +12,8 @@ import 'package:fluffychat/controllers/chat_encryption_settings_controller.dart'
 import 'package:fluffychat/controllers/chat_list_controller.dart';
 import 'package:fluffychat/controllers/chat_permissions_settings_controller.dart';
 import 'package:fluffychat/views/empty_page.dart';
-import 'package:fluffychat/views/loading_view.dart';
-import 'package:fluffychat/views/log_view.dart';
+import 'package:fluffychat/views/widgets/loading_view.dart';
+import 'package:fluffychat/views/widgets/log_view.dart';
 import 'package:fluffychat/views/login.dart';
 import 'package:fluffychat/controllers/new_group_controller.dart';
 import 'package:fluffychat/controllers/new_private_chat_controller.dart';
