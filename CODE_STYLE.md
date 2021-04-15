@@ -2,14 +2,37 @@
 
 FluffyChat tries to be as minimal as possible even in the code style. We try to keep the code clean, simple and easy to read. The source code of the app is under `/lib` with the main entry point `/lib/main.dart`.
 
-### Directory Structure
+### Directory Structure:
 
-- `/lib/config/` Constants, styles and other configurations
-- `/lib/controllers/` Controller classes regarding the MVC separation
-- `/lib/l10n/` Localization files wi
-- `/lib/utils/` Helper functions and extensions
-- `/lib/views/` View classes and widgets
-- `/lib/views/widgets/` Reusable Flutter widgets
+
+- /lib
+  - /config
+    - app_config.dart
+    - ...Constants, styles and other configurations
+  - /l10n
+    - intl_en.arb
+    - ...Localization files
+  - /models
+    - app_model.dart
+    - ...Data models used in the app
+  - /utils
+    - handy_function.dart
+    - ...Helper functions and extensions
+  - /views
+    - /ui
+      - home_ui.dart
+      - details_ui.dart
+    - /widgets
+      - /dialogs
+        - /ui
+      - /list_items
+        - /ui
+      - /ui
+    - home_view.dart
+    - details_view.dart
+    - ...The views and widgets of the app separated in Controllers and Views
+  - main.dart
+
 
 Most of the business model is in the Famedly Matrix Dart SDK. We try to not keep a model inside of the source code but extend it under `/utils`.
 

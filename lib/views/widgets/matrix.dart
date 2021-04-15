@@ -19,7 +19,7 @@ import 'package:provider/provider.dart';
 import 'package:universal_html/prefer_universal/html.dart' as html;
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
-/*import 'package:fluffychat/views/chat.dart';
+/*import 'package:fluffychat/views/chat_ui.dart';
 import 'package:fluffychat/app_config.dart';
 import 'package:dbus/dbus.dart';
 import 'package:desktop_notifications/desktop_notifications.dart';*/

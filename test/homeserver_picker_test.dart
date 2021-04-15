@@ -1,4 +1,4 @@
-import 'package:fluffychat/controllers/homeserver_picker_controller.dart';
+import 'package:fluffychat/views/homeserver_picker.dart';
 import 'package:fluffychat/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
