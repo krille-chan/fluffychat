@@ -238,7 +238,7 @@ class ChatUI extends StatelessWidget {
                   child: FutureBuilder<bool>(
                     future: controller.getTimeline(),
                     builder: (BuildContext context, snapshot) {
-                      if (!snapshot.hasData) {
+                      if (controller.timeline == null) {
                         return Center(
                           child: CircularProgressIndicator(),
                         );
