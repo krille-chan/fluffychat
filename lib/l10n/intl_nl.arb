@@ -338,7 +338,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "thisRoomHasBeenArchived": "Deze groep is gearchiveerd.",
+  "thisRoomHasBeenArchived": "Deze kamer is gearchiveerd.",
   "@thisRoomHasBeenArchived": {
     "type": "text",
     "placeholders": {}
@@ -602,12 +602,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "editRoomAvatar": "Groepsavatar wijzigen",
+  "editRoomAvatar": "Kameravatar wijzigen",
   "@editRoomAvatar": {
     "type": "text",
     "placeholders": {}
   },
-  "replaceRoomWithNewerVersion": "Groepversie upgraden",
+  "replaceRoomWithNewerVersion": "Kamerversie upgraden",
   "@replaceRoomWithNewerVersion": {
     "type": "text",
     "placeholders": {}
@@ -702,7 +702,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "roomHasBeenUpgraded": "Groep is geüpgrade",
+  "roomHasBeenUpgraded": "Kamer is geüpgrade",
   "@roomHasBeenUpgraded": {
     "type": "text",
     "placeholders": {}
@@ -793,7 +793,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "publicRooms": "Openbare groepen",
+  "publicRooms": "Openbare Kamers",
   "@publicRooms": {
     "type": "text",
     "placeholders": {}
@@ -937,7 +937,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noRoomsFound": "Geen groepen gevonden …",
+  "noRoomsFound": "Geen kamers gevonden …",
   "@noRoomsFound": {
     "type": "text",
     "placeholders": {}
@@ -957,7 +957,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Het lijkt erop dat je geen Google-services op je telefoon hebt. Dat is een goede beslissing voor je privacy! Om meldingen in FluffyChat te ontvangen raden we je aan microG te gebruiken: https://microg.org/",
+  "noGoogleServicesWarning": "Het lijkt erop dat je geen Google-services op je telefoon hebt. Dat is een goede beslissing voor je privacy! Om meldingen in FluffyChat te ontvangen raden we je aan om microG te gebruiken: https://microg.org/",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -1216,7 +1216,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "ignoreListDescription": "Je kunt personen die je storen negeren. Je kunt geen berichten of groepsuitnodigingen ontvangen van de personen op je negeerlijst.",
+  "ignoreListDescription": "Je kunt personen die je storen negeren. Je kunt geen berichten of kameruitnodigingen ontvangen van de personen op je negeerlijst.",
   "@ignoreListDescription": {
     "type": "text",
     "placeholders": {}
@@ -1443,7 +1443,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "directChats": "Direct bericht",
+  "directChats": "Directe Chats",
   "@directChats": {
     "type": "text",
     "placeholders": {}
@@ -1453,7 +1453,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "emotePacks": "Emoticonpakketten voor de groep",
+  "emotePacks": "Emoticonpakketten voor de kamer",
   "@emotePacks": {
     "type": "text",
     "placeholders": {}
@@ -1741,7 +1741,7 @@
       "username": {}
     }
   },
-  "changedTheRoomAliases": "{username} heeft de groepaliassen gewijzigd",
+  "changedTheRoomAliases": "{username} heeft de kameraliassen gewijzigd",
   "@changedTheRoomAliases": {
     "type": "text",
     "placeholders": {
@@ -1922,7 +1922,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "archivedRoom": "Gearchiveerde groep",
+  "archivedRoom": "Gearchiveerde Kamer",
   "@archivedRoom": {
     "type": "text",
     "placeholders": {}
@@ -2108,7 +2108,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noPublicRoomsFound": "Geen publieke groepen gevonden...",
+  "noPublicRoomsFound": "Geen publieke kamers gevonden...",
   "@noPublicRoomsFound": {
     "type": "text",
     "placeholders": {}
@@ -2266,7 +2266,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noEncryptionForPublicRooms": "Je kunt de versleuteling pas activeren zodra het gesprek niet meer publiekelijk toegankelijk is.",
+  "noEncryptionForPublicRooms": "Je kunt de versleuteling pas activeren zodra de kamer niet meer publiekelijk toegankelijk is.",
   "@noEncryptionForPublicRooms": {
     "type": "text",
     "placeholders": {}
@@ -2296,12 +2296,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "roomVersion": "Groepversie",
+  "roomVersion": "Kamerversie",
   "@roomVersion": {
     "type": "text",
     "placeholders": {}
   },
-  "goToTheNewRoom": "Ga naar de nieuwe groep",
+  "goToTheNewRoom": "Ga naar de nieuwe kamer",
   "@goToTheNewRoom": {
     "type": "text",
     "placeholders": {}
