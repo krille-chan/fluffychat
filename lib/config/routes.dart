@@ -17,7 +17,7 @@ import 'package:fluffychat/views/widgets/log_view.dart';
 import 'package:fluffychat/views/ui/login_ui.dart';
 import 'package:fluffychat/views/new_group.dart';
 import 'package:fluffychat/views/new_private_chat.dart';
-import 'package:fluffychat/views/ui/search_ui.dart';
+import 'package:fluffychat/views/search.dart';
 import 'package:fluffychat/views/ui/settings_ui.dart';
 import 'package:fluffychat/views/ui/settings_3pid_ui.dart';
 import 'package:fluffychat/views/device_settings.dart';
@@ -137,11 +137,11 @@ class FluffyRoutes {
         case 'search':
           if (parts.length == 3) {
             return ViewData(
-                mainView: (_) => SearchView(alias: parts[2]),
+                mainView: (_) => Search(alias: parts[2]),
                 emptyView: (_) => EmptyPage());
           }
           return ViewData(
-              mainView: (_) => SearchView(), emptyView: (_) => EmptyPage());
+              mainView: (_) => Search(), emptyView: (_) => EmptyPage());
         case 'settings':
           if (parts.length == 3) {
             final action = parts[2];

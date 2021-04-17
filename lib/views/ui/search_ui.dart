@@ -1,6 +1,3 @@
-import 'dart:async';
-
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/views/widgets/avatar.dart';
@@ -12,167 +9,44 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import '../../utils/localized_exception_extension.dart';
+import '../search.dart';
 
-class SearchView extends StatefulWidget {
-  final String alias;
+class SearchUI extends StatelessWidget {
+  final SearchController controller;
 
-  const SearchView({Key key, this.alias}) : super(key: key);
-
-  @override
-  _SearchViewState createState() => _SearchViewState();
-}
-
-class _SearchViewState extends State<SearchView> {
-  final TextEditingController _controller = TextEditingController();
-  Future<PublicRoomsResponse> _publicRoomsResponse;
-  String _lastServer;
-  Timer _coolDown;
-  String _genericSearchTerm;
-
-  void _search(BuildContext context, String query) async {
-    setState(() => null);
-    _coolDown?.cancel();
-    _coolDown = Timer(
-      Duration(milliseconds: 500),
-      () => setState(() {
-        _genericSearchTerm = query;
-        _publicRoomsResponse = null;
-        searchUser(context, _controller.text);
-      }),
-    );
-  }
-
-  Future<String> _joinRoomAndWait(
-    BuildContext context,
-    String roomId,
-    String alias,
-  ) async {
-    if (Matrix.of(context).client.getRoomById(roomId) != null) {
-      return roomId;
-    }
-    final newRoomId = await Matrix.of(context)
-        .client
-        .joinRoomOrAlias(alias?.isNotEmpty ?? false ? alias : roomId);
-    await Matrix.of(context)
-        .client
-        .onRoomUpdate
-        .stream
-        .firstWhere((r) => r.id == newRoomId);
-    return newRoomId;
-  }
-
-  void _joinGroupAction(BuildContext context, PublicRoom room) async {
-    if (await showOkCancelAlertDialog(
-          context: context,
-          okLabel: L10n.of(context).joinRoom,
-          title: '${room.name} (${room.numJoinedMembers ?? 0})',
-          message: room.topic ?? L10n.of(context).noDescription,
-          cancelLabel: L10n.of(context).cancel,
-          useRootNavigator: false,
-        ) ==
-        OkCancelResult.cancel) {
-      return;
-    }
-    final success = await showFutureLoadingDialog(
-      context: context,
-      future: () => _joinRoomAndWait(
-        context,
-        room.roomId,
-        room.canonicalAlias ?? room.aliases.first,
-      ),
-    );
-    if (success.error == null) {
-      await AdaptivePageLayout.of(context)
-          .pushNamedAndRemoveUntilIsFirst('/rooms/${success.result}');
-    }
-  }
-
-  String _server;
-
-  void _setServer(BuildContext context) async {
-    final newServer = await showTextInputDialog(
-        title: L10n.of(context).changeTheHomeserver,
-        context: context,
-        okLabel: L10n.of(context).ok,
-        cancelLabel: L10n.of(context).cancel,
-        useRootNavigator: false,
-        textFields: [
-          DialogTextField(
-            prefixText: 'https://',
-            hintText: Matrix.of(context).client.homeserver.host,
-            initialText: _server,
-            keyboardType: TextInputType.url,
-          )
-        ]);
-    if (newServer == null) return;
-    setState(() {
-      _server = newServer.single;
-    });
-  }
-
-  String currentSearchTerm;
-  List<Profile> foundProfiles = [];
-
-  void searchUser(BuildContext context, String text) async {
-    if (text.isEmpty) {
-      setState(() {
-        foundProfiles = [];
-      });
-    }
-    currentSearchTerm = text;
-    if (currentSearchTerm.isEmpty) return;
-    final matrix = Matrix.of(context);
-    UserSearchResult response;
-    try {
-      response = await matrix.client.searchUser(text, limit: 10);
-    } catch (_) {}
-    foundProfiles = List<Profile>.from(response?.results ?? []);
-    if (foundProfiles.isEmpty && text.isValidMatrixId && text.sigil == '@') {
-      foundProfiles.add(Profile.fromJson({
-        'displayname': text.localpart,
-        'user_id': text,
-      }));
-    }
-    setState(() {});
-  }
-
-  @override
-  void initState() {
-    _genericSearchTerm = widget.alias;
-    super.initState();
-  }
+  const SearchUI(this.controller, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final server = _genericSearchTerm?.isValidMatrixId ?? false
-        ? _genericSearchTerm.domain
-        : _server;
-    if (_lastServer != server) {
-      _lastServer = server;
-      _publicRoomsResponse = null;
+    final server = controller.genericSearchTerm?.isValidMatrixId ?? false
+        ? controller.genericSearchTerm.domain
+        : controller.server;
+    if (controller.lastServer != server) {
+      controller.lastServer = server;
+      controller.publicRoomsResponse = null;
     }
-    _publicRoomsResponse ??= Matrix.of(context)
+    controller.publicRoomsResponse ??= Matrix.of(context)
         .client
         .searchPublicRooms(
           server: server,
-          genericSearchTerm: _genericSearchTerm,
+          genericSearchTerm: controller.genericSearchTerm,
         )
         .catchError((error) {
-      if (widget.alias == null) {
+      if (controller.widget.alias == null) {
         throw error;
       }
       return PublicRoomsResponse.fromJson({
         'chunk': [],
       });
     }).then((PublicRoomsResponse res) {
-      if (widget.alias != null &&
+      if (controller.widget.alias != null &&
           !res.chunk.any((room) =>
-              (room.aliases?.contains(widget.alias) ?? false) ||
-              room.canonicalAlias == widget.alias)) {
+              (room.aliases?.contains(controller.widget.alias) ?? false) ||
+              room.canonicalAlias == controller.widget.alias)) {
         // we have to tack on the original alias
         res.chunk.add(PublicRoom.fromJson(<String, dynamic>{
-          'aliases': [widget.alias],
-          'name': widget.alias,
+          'aliases': [controller.widget.alias],
+          'name': controller.widget.alias,
         }));
       }
       return res;
@@ -184,7 +58,7 @@ class _SearchViewState extends State<SearchView> {
           room.lastEvent == null ||
           !room.displayname
               .toLowerCase()
-              .contains(_controller.text.toLowerCase()),
+              .contains(controller.controller.text.toLowerCase()),
     );
     return DefaultTabController(
       length: 3,
@@ -196,9 +70,9 @@ class _SearchViewState extends State<SearchView> {
           title: DefaultAppBarSearchField(
             autofocus: true,
             hintText: L10n.of(context).search,
-            searchController: _controller,
+            searchController: controller.controller,
             suffix: Icon(Icons.search_outlined),
-            onChanged: (t) => _search(context, t),
+            onChanged: controller.search,
           ),
           bottom: TabBar(
             indicatorColor: Theme.of(context).accentColor,
@@ -228,10 +102,10 @@ class _SearchViewState extends State<SearchView> {
                     child: Icon(Icons.edit_outlined),
                   ),
                   title: Text(L10n.of(context).changeTheServer),
-                  onTap: () => _setServer(context),
+                  onTap: controller.setServer,
                 ),
                 FutureBuilder<PublicRoomsResponse>(
-                    future: _publicRoomsResponse,
+                    future: controller.publicRoomsResponse,
                     builder: (BuildContext context,
                         AsyncSnapshot<PublicRoomsResponse> snapshot) {
                       if (snapshot.hasError) {
@@ -299,8 +173,7 @@ class _SearchViewState extends State<SearchView> {
                           elevation: 2,
                           borderRadius: BorderRadius.circular(16),
                           child: InkWell(
-                            onTap: () => _joinGroupAction(
-                              context,
+                            onTap: () => controller.joinGroupAction(
                               publicRoomsResponse.chunk[i],
                             ),
                             borderRadius: BorderRadius.circular(16),
@@ -351,11 +224,11 @@ class _SearchViewState extends State<SearchView> {
               itemCount: rooms.length,
               itemBuilder: (_, i) => ChatListItem(rooms[i]),
             ),
-            foundProfiles.isNotEmpty
+            controller.foundProfiles.isNotEmpty
                 ? ListView.builder(
-                    itemCount: foundProfiles.length,
+                    itemCount: controller.foundProfiles.length,
                     itemBuilder: (BuildContext context, int i) {
-                      final foundProfile = foundProfiles[i];
+                      final foundProfile = controller.foundProfiles[i];
                       return ListTile(
                         onTap: () async {
                           final roomID = await showFutureLoadingDialog(
@@ -390,7 +263,7 @@ class _SearchViewState extends State<SearchView> {
                       );
                     },
                   )
-                : ContactsList(searchController: _controller),
+                : ContactsList(searchController: controller.controller),
           ],
         ),
       ),
