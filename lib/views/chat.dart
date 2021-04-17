@@ -184,7 +184,7 @@ class ChatController extends State<Chat> {
         }
       });
     }
-    updateView();
+    filteredEvents = timeline.getFilteredEvents(unfolded: unfolded);
     return true;
   }
 
