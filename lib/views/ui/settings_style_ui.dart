@@ -1,57 +1,20 @@
-import 'dart:io';
-
 import 'package:adaptive_theme/adaptive_theme.dart';
-import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/views/widgets/max_width_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:image_picker/image_picker.dart';
 
 import '../../config/app_config.dart';
 import '../widgets/matrix.dart';
+import '../settings_style.dart';
 
-class SettingsStyle extends StatefulWidget {
-  @override
-  _SettingsStyleState createState() => _SettingsStyleState();
-}
+class SettingsStyleUI extends StatelessWidget {
+  final SettingsStyleController controller;
 
-class _SettingsStyleState extends State<SettingsStyle> {
-  void setWallpaperAction(BuildContext context) async {
-    final wallpaper = await ImagePicker().getImage(source: ImageSource.gallery);
-    if (wallpaper == null) return;
-    Matrix.of(context).wallpaper = File(wallpaper.path);
-    await Matrix.of(context)
-        .store
-        .setItem(SettingKeys.wallpaper, wallpaper.path);
-    setState(() => null);
-  }
-
-  void deleteWallpaperAction(BuildContext context) async {
-    Matrix.of(context).wallpaper = null;
-    await Matrix.of(context).store.deleteItem(SettingKeys.wallpaper);
-    setState(() => null);
-  }
-
-  AdaptiveThemeMode _currentTheme;
-
-  void _switchTheme(AdaptiveThemeMode newTheme, BuildContext context) {
-    switch (newTheme) {
-      case AdaptiveThemeMode.light:
-        AdaptiveTheme.of(context).setLight();
-        break;
-      case AdaptiveThemeMode.dark:
-        AdaptiveTheme.of(context).setDark();
-        break;
-      case AdaptiveThemeMode.system:
-        AdaptiveTheme.of(context).setSystem();
-        break;
-    }
-    setState(() => _currentTheme = newTheme);
-  }
+  const SettingsStyleUI(this.controller, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    _currentTheme ??= AdaptiveTheme.of(context).mode;
+    controller.currentTheme ??= AdaptiveTheme.of(context).mode;
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(),
@@ -62,22 +25,22 @@ class _SettingsStyleState extends State<SettingsStyle> {
         child: Column(
           children: [
             RadioListTile<AdaptiveThemeMode>(
-              groupValue: _currentTheme,
+              groupValue: controller.currentTheme,
               value: AdaptiveThemeMode.system,
               title: Text(L10n.of(context).systemTheme),
-              onChanged: (t) => _switchTheme(t, context),
+              onChanged: controller.switchTheme,
             ),
             RadioListTile<AdaptiveThemeMode>(
-              groupValue: _currentTheme,
+              groupValue: controller.currentTheme,
               value: AdaptiveThemeMode.light,
               title: Text(L10n.of(context).lightTheme),
-              onChanged: (t) => _switchTheme(t, context),
+              onChanged: controller.switchTheme,
             ),
             RadioListTile<AdaptiveThemeMode>(
-              groupValue: _currentTheme,
+              groupValue: controller.currentTheme,
               value: AdaptiveThemeMode.dark,
               title: Text(L10n.of(context).darkTheme),
-              onChanged: (t) => _switchTheme(t, context),
+              onChanged: controller.switchTheme,
             ),
             Divider(height: 1),
             ListTile(
@@ -100,13 +63,13 @@ class _SettingsStyleState extends State<SettingsStyle> {
                   Icons.delete_forever_outlined,
                   color: Colors.red,
                 ),
-                onTap: () => deleteWallpaperAction(context),
+                onTap: controller.deleteWallpaperAction,
               ),
             Builder(builder: (context) {
               return ListTile(
                 title: Text(L10n.of(context).changeWallpaper),
                 trailing: Icon(Icons.wallpaper_outlined),
-                onTap: () => setWallpaperAction(context),
+                onTap: controller.setWallpaperAction,
               );
             }),
             Divider(height: 1),
@@ -145,13 +108,7 @@ class _SettingsStyleState extends State<SettingsStyle> {
               divisions: 4,
               value: AppConfig.fontSizeFactor,
               semanticFormatterCallback: (d) => d.toString(),
-              onChanged: (d) {
-                setState(() => AppConfig.fontSizeFactor = d);
-                Matrix.of(context).store.setItem(
-                      SettingKeys.fontSizeFactor,
-                      AppConfig.fontSizeFactor.toString(),
-                    );
-              },
+              onChanged: controller.changeFontSizeFactor,
             ),
           ],
         ),

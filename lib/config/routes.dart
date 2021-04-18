@@ -25,7 +25,7 @@ import 'package:fluffychat/views/ui/settings_emotes_ui.dart';
 import 'package:fluffychat/views/ui/settings_ignore_list_ui.dart';
 import 'package:fluffychat/views/ui/settings_multiple_emotes_ui.dart';
 import 'package:fluffychat/views/ui/settings_notifications_ui.dart';
-import 'package:fluffychat/views/ui/settings_style_ui.dart';
+import 'package:fluffychat/views/settings_style.dart';
 import 'package:flutter/material.dart';
 
 class FluffyRoutes {
