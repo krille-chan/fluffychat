@@ -260,7 +260,7 @@ class ChatUI extends StatelessWidget {
                                       FluffyThemes.columnWidth *
                                           (AdaptivePageLayout.of(context)
                                                       .currentViewData
-                                                      .rightView !=
+                                                      ?.rightView !=
                                                   null
                                               ? 4.5
                                               : 3.5)) /
