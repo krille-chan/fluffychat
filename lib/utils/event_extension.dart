@@ -87,7 +87,7 @@ extension LocalizedBody on Event {
     }
     // check if the url is cached
     final url = Uri.parse(mxcUrl).getDownloadLink(room.client);
-    final file = await DefaultCacheManager().getFileFromCache(url);
+    final file = await DefaultCacheManager().getFileFromCache(url.toString());
     return file != null;
   }
 
@@ -96,8 +96,8 @@ extension LocalizedBody on Event {
     final mxcUrl = attachmentOrThumbnailMxcUrl(getThumbnail: getThumbnail);
     _downloadAndDecryptFutures[mxcUrl] ??= downloadAndDecryptAttachment(
       getThumbnail: getThumbnail,
-      downloadCallback: (String url) async {
-        final file = await DefaultCacheManager().getSingleFile(url);
+      downloadCallback: (Uri url) async {
+        final file = await DefaultCacheManager().getSingleFile(url.toString());
         return await file.readAsBytes();
       },
     );

@@ -14,7 +14,7 @@ class MessageReactions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final allReactionEvents =
-        event.aggregatedEvents(timeline, RelationshipTypes.Reaction);
+        event.aggregatedEvents(timeline, RelationshipTypes.reaction);
     final reactionMap = <String, _ReactionEntry>{};
     for (final e in allReactionEvents) {
       if (e.content['m.relates_to'].containsKey('key')) {
@@ -97,7 +97,7 @@ class _Reaction extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           CachedNetworkImage(
-            imageUrl: src,
+            imageUrl: src.toString(),
             height: fontSize,
           ),
           Container(width: 4),

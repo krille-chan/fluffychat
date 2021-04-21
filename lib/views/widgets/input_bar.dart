@@ -160,7 +160,7 @@ class InputBar extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             CachedNetworkImage(
-              imageUrl: url,
+              imageUrl: url.toString(),
               width: size,
               height: size,
             ),

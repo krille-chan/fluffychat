@@ -92,7 +92,7 @@ class Message extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    if (event.relationshipType == RelationshipTypes.Reply)
+                    if (event.relationshipType == RelationshipTypes.reply)
                       FutureBuilder<Event>(
                         future: event.getReplyEvent(timeline),
                         builder: (BuildContext context, snapshot) {
@@ -177,7 +177,7 @@ class Message extends StatelessWidget {
       children: rowChildren,
     );
     Widget container;
-    if (event.hasAggregatedEvents(timeline, RelationshipTypes.Reaction)) {
+    if (event.hasAggregatedEvents(timeline, RelationshipTypes.reaction)) {
       container = Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment:
@@ -253,7 +253,7 @@ class _MetaRow extends StatelessWidget {
             fontSize: 11 * AppConfig.fontSizeFactor,
           ),
         ),
-        if (event.hasAggregatedEvents(timeline, RelationshipTypes.Edit))
+        if (event.hasAggregatedEvents(timeline, RelationshipTypes.edit))
           Padding(
             padding: const EdgeInsets.only(left: 2.0),
             child: Icon(

@@ -34,7 +34,6 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_gen/gen_l10n/l10n_en.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'platform_infos.dart';
 import '../config/app_config.dart';
 import '../config/setting_keys.dart';
@@ -130,12 +129,7 @@ class BackgroundPush {
     bool useDeviceSpecificAppId = false,
   }) async {
     if (PlatformInfos.isIOS) {
-      FirebaseMessaging()
-          .requestNotificationPermissions(IosNotificationSettings(
-        sound: true,
-        alert: true,
-        badge: true,
-      ));
+      await _fcmSharedIsolate.requestPermission();
     }
     final clientName = PlatformInfos.clientName;
     oldTokens ??= <String>{};
@@ -355,7 +349,8 @@ class BackgroundPush {
           .toString()
           .split('?')
           .first;
-      final res = json.decode(utf8.decode((await http.get(url)).bodyBytes));
+      final res =
+          json.decode(utf8.decode((await http.get(Uri.parse(url))).bodyBytes));
       if (res['gateway'] == 'matrix') {
         endpoint = url;
       }
@@ -699,7 +694,7 @@ class BackgroundPush {
       final url = thumbnail
           ? content.getThumbnail(client, width: width, height: height)
           : content.getDownloadLink(client);
-      final request = await HttpClient().getUrl(Uri.parse(url));
+      final request = await HttpClient().getUrl(url);
       final response = await request.close();
       if (response.statusCode >= 300) {
         // we are not in the 2xx range

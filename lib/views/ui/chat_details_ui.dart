@@ -241,8 +241,8 @@ class ChatDetailsUI extends StatelessWidget {
                                   ),
                                 if (room.canChangeHistoryVisibility)
                                   PopupMenuItem<HistoryVisibility>(
-                                    value: HistoryVisibility.world_readable,
-                                    child: Text(HistoryVisibility.world_readable
+                                    value: HistoryVisibility.worldReadable,
+                                    child: Text(HistoryVisibility.worldReadable
                                         .getLocalizedString(
                                             MatrixLocals(L10n.of(context)))),
                                   ),
@@ -269,9 +269,9 @@ class ChatDetailsUI extends StatelessWidget {
                                     <PopupMenuEntry<GuestAccess>>[
                                   if (room.canChangeGuestAccess)
                                     PopupMenuItem<GuestAccess>(
-                                      value: GuestAccess.can_join,
+                                      value: GuestAccess.canJoin,
                                       child: Text(
-                                        GuestAccess.can_join.getLocalizedString(
+                                        GuestAccess.canJoin.getLocalizedString(
                                             MatrixLocals(L10n.of(context))),
                                       ),
                                     ),

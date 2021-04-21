@@ -431,7 +431,7 @@ class ChatUI extends StatelessWidget {
                       final emojis = List<String>.from(AppEmojis.emojis);
                       final allReactionEvents = controller.selectedEvents.first
                           .aggregatedEvents(
-                              controller.timeline, RelationshipTypes.Reaction)
+                              controller.timeline, RelationshipTypes.reaction)
                           ?.where((event) =>
                               event.senderId == event.room.client.userID &&
                               event.type == 'm.reaction');

@@ -7,7 +7,7 @@ extension FilteredTimelineExtension on Timeline {
     final filteredEvents = events
         .where((e) =>
             // always filter out edit and reaction relationships
-            !{RelationshipTypes.Edit, RelationshipTypes.Reaction}
+            !{RelationshipTypes.edit, RelationshipTypes.reaction}
                 .contains(e.relationshipType) &&
             // always filter out m.key.* events
             !e.type.startsWith('m.key.verification.') &&

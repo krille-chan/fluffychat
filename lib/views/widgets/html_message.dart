@@ -56,13 +56,15 @@ class HtmlMessage extends StatelessWidget {
       getMxcUrl: (String mxc, double width, double height,
           {bool animated = false}) {
         final ratio = MediaQuery.of(context).devicePixelRatio;
-        return Uri.parse(mxc)?.getThumbnail(
-          matrix.client,
-          width: (width ?? 800) * ratio,
-          height: (height ?? 800) * ratio,
-          method: ThumbnailMethod.scale,
-          animated: animated,
-        );
+        return Uri.parse(mxc)
+            ?.getThumbnail(
+              matrix.client,
+              width: (width ?? 800) * ratio,
+              height: (height ?? 800) * ratio,
+              method: ThumbnailMethod.scale,
+              animated: animated,
+            )
+            .toString();
       },
       setCodeLanguage: (String key, String value) async {
         await matrix.store.setItem('${SettingKeys.codeLanguage}.$key', value);

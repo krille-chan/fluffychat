@@ -125,7 +125,7 @@ class ChatListController extends State<ChatList> {
       context: context,
       future: () => room.setPushRuleState(
           room.pushRuleState == PushRuleState.notify
-              ? PushRuleState.mentions_only
+              ? PushRuleState.mentionsOnly
               : PushRuleState.notify),
     );
   }
