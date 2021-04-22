@@ -53,7 +53,6 @@ dependencies:
   flutter_olm: ^1.1.1
   flutter_openssl_crypto: ^0.0.1
   intl: any
-  circular_check_box: ^1.0.4
   flutter_localizations:
     sdk: flutter
   native_imaging:

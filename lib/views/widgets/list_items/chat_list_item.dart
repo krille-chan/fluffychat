@@ -1,6 +1,5 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
-import 'package:circular_check_box/circular_check_box.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/event_extension.dart';
@@ -154,7 +153,7 @@ class ChatListItem extends StatelessWidget {
                         width: Avatar.defaultSize,
                         height: Avatar.defaultSize,
                         alignment: Alignment.center,
-                        child: CircularCheckBox(
+                        child: Checkbox(
                           value: selected,
                           onChanged: (_) => onLongPress(),
                         ),
