@@ -1,7 +1,7 @@
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_lock/flutter_app_lock.dart';
-import 'package:flutter_screen_lock/lock_screen.dart';
+import 'package:flutter_screen_lock/functions.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class LockScreen extends StatelessWidget {
@@ -17,11 +17,10 @@ class LockScreen extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.done) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
             if (snapshot.data?.isNotEmpty ?? false) {
-              showLockScreen(
+              screenLock(
                 context: context,
                 correctString: snapshot.data,
-                onUnlocked: () => AppLock.of(context).didUnlock(),
-                canBiometric: true,
+                didConfirmed: (_) => AppLock.of(context).didUnlock(),
                 canCancel: false,
               );
             } else {

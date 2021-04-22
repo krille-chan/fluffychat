@@ -32,30 +32,30 @@ build_web:
     paths:
       - build/web/
 
-build_windows:
-  extends:
-    - .shared_windows_runners
-  stage: coverage
-  script:
-    # Install chocolately
-    - Set-ExecutionPolicy Bypass -Scope Process
-    - Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-    - choco install git -y
-    - choco install visualstudio2019community -y --package-parameters "--add Microsoft.VisualStudio.Product.BuildTools --includeRecommended --includeOptional --passive --locale en-US"
-    - cd ..; git clone https://github.com/flutter/flutter.git -b dev; $env:path += ";C:\GitLab-Runner\builds\famedly\flutter\bin"; cd fluffychat
-    - flutter doctor
-    - flutter config --enable-windows-desktop
-    - '$package_override = "`r`ndependency_overrides:`r`n  intl: 0.17.0-nullsafety.2"'
-    - '[System.IO.File]::AppendAllText("$CI_PROJECT_DIR/pubspec.yaml", $package_override, [System.Text.Encoding]::UTF8)'
-    - flutter clean
-    - flutter pub get
-    - flutter build windows
-  needs: []
-  artifacts:
-    paths:
-      - build/windows/runner/Release/
-    name: "Binaries"
-  allow_failure: true
+#build_windows:
+#  extends:
+#    - .shared_windows_runners
+#  stage: coverage
+#  script:
+#    # Install chocolately
+#    - Set-ExecutionPolicy Bypass -Scope Process
+#    - Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+#    - choco install git -y
+#    - choco install visualstudio2019community -y --package-parameters "--add Microsoft.VisualStudio.Product.BuildTools --includeRecommended --includeOptional --passive --locale en-US"
+#    - cd ..; git clone https://github.com/flutter/flutter.git -b dev; $env:path += ";C:\GitLab-Runner\builds\famedly\flutter\bin"; cd fluffychat
+#    - flutter doctor
+#    - flutter config --enable-windows-desktop
+#    - '$package_override = "`r`ndependency_overrides:`r`n  intl: 0.17.0-nullsafety.2"'
+#    - '[System.IO.File]::AppendAllText("$CI_PROJECT_DIR/pubspec.yaml", $package_override, [System.Text.Encoding]::UTF8)'
+#    - flutter clean
+#    - flutter pub get
+#    - flutter build windows
+#  needs: []
+#  artifacts:
+#    paths:
+#      - build/windows/runner/Release/
+#    name: "Binaries"
+#  allow_failure: true
 
 build_android_debug:
   stage: coverage
@@ -159,34 +159,32 @@ build_linux:
   stage: coverage
   before_script:
     [
-      sudo apt update && sudo apt install curl clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev liblzma-dev -y,
+      sudo apt update && sudo apt install curl clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev liblzma-dev libjsoncpp-dev cmake-data libjsoncpp1 libsecret-1-dev libsecret-1-0 librhash0 -y,
     ]
   script: [./scripts/build-linux.sh]
   artifacts:
     when: on_success
     paths:
       - build/linux/release/bundle/
-  allow_failure: true
 
-snap:edge:
-  stage: release
-  image: "snapcore/snapcraft"
-  before_script:
-    - apt update && apt install git curl unzip clang cmake build-essential ninja-build pkg-config libgtk-3-dev libblkid-dev liblzma-dev -y
-    - git clone https://github.com/flutter/flutter.git
-    - export PATH="$PATH:`pwd`/flutter/bin"
-  variables:
-    SNAPCRAFT_LOGIN_FILE: ${SNAPCRAFT_LOGIN_FILE}
-  only:
-    - main
-  script: [./scripts/publish-snap-edge.sh]
-  needs: ["build_linux"]
-  dependencies: ["build_linux"]
-  artifacts:
-    paths:
-      - "./*.snap"
-    when: on_success
-  allow_failure: true
+#snap:edge:
+#  stage: release
+#  image: "snapcore/snapcraft"
+#  before_script:
+#    - apt update && apt install git curl unzip clang cmake build-essential ninja-build pkg-config libgtk-3-dev libblkid-dev liblzma-dev -y
+#    - git clone https://github.com/flutter/flutter.git
+#    - export PATH="$PATH:`pwd`/flutter/bin"
+#  variables:
+#    SNAPCRAFT_LOGIN_FILE: ${SNAPCRAFT_LOGIN_FILE}
+#  only:
+#    - main
+#  script: [./scripts/publish-snap-edge.sh]
+#  needs: ["build_linux"]
+#  dependencies: ["build_linux"]
+#  artifacts:
+#    paths:
+#      - "./*.snap"
+#    when: on_success
 
 #snap:publish:
 #  stage: release
@@ -202,7 +200,6 @@ snap:edge:
 #      - "./*.snap"
 #    when: on_success
 #    expire_in: 1 week
-#  allow_failure: true
 
 update-dependencies:
   stage: coverage

@@ -80,9 +80,10 @@ class _ImageBubbleState extends State<ImageBubble> {
 
   @override
   void initState() {
-    thumbnailUrl =
-        widget.event.getAttachmentUrl(getThumbnail: true, animated: true);
-    attachmentUrl = widget.event.getAttachmentUrl(animated: true);
+    thumbnailUrl = widget.event
+        .getAttachmentUrl(getThumbnail: true, animated: true)
+        .toString();
+    attachmentUrl = widget.event.getAttachmentUrl(animated: true).toString();
     if (thumbnailUrl == null) {
       _requestFile(getThumbnail: true);
     }
@@ -195,12 +196,15 @@ class _ImageBubbleState extends State<ImageBubble> {
             _requestedThumbnailOnFailure = true;
             WidgetsBinding.instance.addPostFrameCallback((_) {
               setState(() {
-                thumbnailUrl = widget.event.getAttachmentUrl(
-                    getThumbnail: true,
-                    useThumbnailMxcUrl: true,
-                    animated: true);
+                thumbnailUrl = widget.event
+                    .getAttachmentUrl(
+                        getThumbnail: true,
+                        useThumbnailMxcUrl: true,
+                        animated: true)
+                    .toString();
                 attachmentUrl = widget.event
-                    .getAttachmentUrl(useThumbnailMxcUrl: true, animated: true);
+                    .getAttachmentUrl(useThumbnailMxcUrl: true, animated: true)
+                    .toString();
               });
             });
           }

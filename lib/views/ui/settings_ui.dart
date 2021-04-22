@@ -16,7 +16,7 @@ import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_lock/flutter_app_lock.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:flutter_screen_lock/lock_screen.dart';
+import 'package:flutter_screen_lock/functions.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -296,11 +296,10 @@ class _SettingsState extends State<Settings> {
         await FlutterSecureStorage().read(key: SettingKeys.appLockKey);
     if (currentLock?.isNotEmpty ?? false) {
       var unlocked = false;
-      await showLockScreen(
+      await screenLock(
         context: context,
         correctString: currentLock,
-        onUnlocked: () => unlocked = true,
-        canBiometric: true,
+        didConfirmed: (_) => unlocked = true,
       );
       if (unlocked != true) return;
     }

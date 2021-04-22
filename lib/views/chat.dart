@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
-import 'package:emoji_picker/emoji_picker.dart';
+import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
 import 'package:fluffychat/config/app_config.dart';
@@ -395,7 +395,7 @@ class ChatController extends State<Chat> {
       event.sendAgain();
     }
     final allEditEvents = event
-        .aggregatedEvents(timeline, RelationshipTypes.Edit)
+        .aggregatedEvents(timeline, RelationshipTypes.edit)
         .where((e) => e.status == -1);
     for (final e in allEditEvents) {
       e.sendAgain();
@@ -473,7 +473,7 @@ class ChatController extends State<Chat> {
         children: [
           Spacer(),
           EmojiPicker(
-            onEmojiSelected: (emoji, category) {
+            onEmojiSelected: (category, emoji) {
               // recent emojis don't work, so we sadly have to re-implement them
               // https://github.com/JeffG05/emoji_picker/issues/31
               SharedPreferences.getInstance().then((prefs) {
@@ -482,7 +482,7 @@ class ChatController extends State<Chat> {
                 // make sure we remove duplicates
                 prefs.setStringList('recents', recents.toSet().toList());
               });
-              Navigator.of(context, rootNavigator: false).pop<Emoji>(emoji);
+              Navigator.of(context, rootNavigator: false).pop(emoji);
             },
           ),
         ],

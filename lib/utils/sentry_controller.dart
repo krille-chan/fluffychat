@@ -22,13 +22,13 @@ abstract class SentryController {
     return await storage.getItemBool(SettingKeys.sentry);
   }
 
-  static final sentry = SentryClient(dsn: AppConfig.sentryDns);
+  static final sentry = SentryClient(SentryOptions(dsn: AppConfig.sentryDns));
 
   static void captureException(error, stackTrace) async {
     Logs().e('Capture exception', error, stackTrace);
     if (!kDebugMode && await getSentryStatus()) {
       await sentry.captureException(
-        exception: error,
+        error,
         stackTrace: stackTrace,
       );
     }

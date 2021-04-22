@@ -66,7 +66,7 @@ class Avatar extends StatelessWidget {
           child: noPic
               ? textWidget
               : CachedNetworkImage(
-                  imageUrl: src,
+                  imageUrl: src.toString(),
                   fit: BoxFit.cover,
                   width: size,
                   height: size,

@@ -16,7 +16,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:provider/provider.dart';
-import 'package:universal_html/prefer_universal/html.dart' as html;
+import 'package:universal_html/html.dart' as html;
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 /*import 'package:fluffychat/views/chat_ui.dart';
@@ -201,7 +201,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       html.Notification(
         room.getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
         body: body,
-        icon: icon,
+        icon: icon.toString(),
       );
     } else if (Platform.isLinux) {
       /*var sessionBus = DBusClient.session();
@@ -239,7 +239,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   Future<void> initConfig() async {
     try {
       final configJsonString =
-          utf8.decode((await http.get('config.json')).bodyBytes);
+          utf8.decode((await http.get(Uri.parse('config.json'))).bodyBytes);
       final configJson = json.decode(configJsonString);
       AppConfig.loadFromJson(configJson);
     } catch (e, s) {

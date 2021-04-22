@@ -8,7 +8,7 @@ import 'package:fluffychat/views/widgets/message_download_content.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sound_lite/flutter_sound.dart';
-import 'package:universal_html/prefer_universal/html.dart' as html;
+import 'package:universal_html/html.dart' as html;
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import '../../utils/ui_fake.dart' if (dart.library.html) 'dart:ui' as ui;
 import 'matrix.dart';
@@ -144,7 +144,8 @@ class _AudioPlayerState extends State<AudioPlayer> {
     if (kIsWeb) {
       if (widget.event.content['url'] is String) {
         webSrcUrl = Uri.parse(widget.event.content['url'])
-            .getDownloadLink(Matrix.of(context).client);
+            .getDownloadLink(Matrix.of(context).client)
+            .toString();
         return Container(
           height: 50,
           width: 300,

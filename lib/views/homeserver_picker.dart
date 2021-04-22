@@ -15,7 +15,7 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../utils/localized_exception_extension.dart';
-import 'package:universal_html/prefer_universal/html.dart' as html;
+import 'package:universal_html/html.dart' as html;
 
 class HomeserverPicker extends StatefulWidget {
   @override
