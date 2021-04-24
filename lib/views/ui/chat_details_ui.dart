@@ -9,7 +9,7 @@ import 'package:famedlysdk/famedlysdk.dart';
 
 import 'package:fluffychat/views/widgets/chat_settings_popup_menu.dart';
 import 'package:fluffychat/views/widgets/content_banner.dart';
-import 'package:fluffychat/views/widgets/max_width_body.dart';
+import 'package:fluffychat/views/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/views/widgets/list_items/participant_list_item.dart';
 import 'package:fluffychat/utils/matrix_locals.dart';
 import 'package:flutter/material.dart';

@@ -16,7 +16,7 @@ import 'package:fluffychat/views/widgets/encryption_button.dart';
 import 'package:fluffychat/views/widgets/list_items/message.dart';
 import 'package:fluffychat/views/widgets/matrix.dart';
 import 'package:fluffychat/views/widgets/reply_content.dart';
-import 'package:fluffychat/views/widgets/user_bottom_sheet.dart';
+import 'package:fluffychat/views/user_bottom_sheet.dart';
 import 'package:fluffychat/config/app_emojis.dart';
 import 'package:fluffychat/utils/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';

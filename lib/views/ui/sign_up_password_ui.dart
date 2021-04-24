@@ -1,6 +1,6 @@
 import 'package:fluffychat/views/sign_up_password.dart';
 
-import 'package:fluffychat/views/widgets/one_page_card.dart';
+import 'package:fluffychat/views/widgets/layouts/one_page_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 

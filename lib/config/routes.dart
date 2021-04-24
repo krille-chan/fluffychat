@@ -14,7 +14,7 @@ import 'package:fluffychat/views/chat_encryption_settings.dart';
 import 'package:fluffychat/views/chat_list.dart';
 import 'package:fluffychat/views/chat_permissions_settings.dart';
 import 'package:fluffychat/views/ui/empty_page_ui.dart';
-import 'package:fluffychat/views/widgets/loading_view.dart';
+import 'package:fluffychat/views/widgets/layouts/loading_view.dart';
 import 'package:fluffychat/views/widgets/log_view.dart';
 import 'package:fluffychat/views/ui/login_ui.dart';
 import 'package:fluffychat/views/new_group.dart';

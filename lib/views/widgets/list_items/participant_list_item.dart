@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import '../avatar.dart';
-import '../user_bottom_sheet.dart';
+import '../../user_bottom_sheet.dart';
 
 class ParticipantListItem extends StatelessWidget {
   final User user;

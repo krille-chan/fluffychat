@@ -7,7 +7,7 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/config/routes.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/sentry_controller.dart';
-import 'package:fluffychat/views/widgets/lock_screen.dart';
+import 'package:fluffychat/views/widgets/layouts/lock_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

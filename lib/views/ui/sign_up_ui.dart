@@ -3,7 +3,7 @@ import 'package:fluffychat/views/sign_up.dart';
 import 'package:fluffychat/views/widgets/fluffy_banner.dart';
 
 import 'package:fluffychat/views/widgets/matrix.dart';
-import 'package:fluffychat/views/widgets/one_page_card.dart';
+import 'package:fluffychat/views/widgets/layouts/one_page_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';

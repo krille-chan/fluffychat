@@ -3,7 +3,7 @@ import 'package:fluffychat/views/widgets/default_app_bar_search_field.dart';
 
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/views/widgets/avatar.dart';
-import 'package:fluffychat/views/widgets/max_width_body.dart';
+import 'package:fluffychat/views/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/views/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
