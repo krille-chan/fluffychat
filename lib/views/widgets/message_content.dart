@@ -6,7 +6,7 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/views/widgets/image_bubble.dart';
 import 'package:fluffychat/utils/event_extension.dart';
 import 'package:fluffychat/utils/matrix_locals.dart';
-import 'package:fluffychat/views/widgets/dialogs/key_verification_dialog.dart';
+import 'package:fluffychat/views/key_verification_dialog.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';

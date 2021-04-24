@@ -3,7 +3,7 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/views/ui/chat_encryption_settings_ui.dart';
 import 'package:fluffychat/views/widgets/matrix.dart';
 import 'package:flutter/material.dart';
-import 'widgets/dialogs/key_verification_dialog.dart';
+import 'key_verification_dialog.dart';
 
 class ChatEncryptionSettings extends StatefulWidget {
   final String id;

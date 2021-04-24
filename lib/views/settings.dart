@@ -17,7 +17,7 @@ import 'package:image_picker/image_picker.dart';
 
 import 'ui/settings_ui.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
-import 'widgets/dialogs/bootstrap_dialog.dart';
+import 'bootstrap_dialog.dart';
 import 'widgets/matrix.dart';
 import '../config/app_config.dart';
 import '../config/setting_keys.dart';

@@ -5,10 +5,10 @@ import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'adaptive_flat_button.dart';
+import 'widgets/adaptive_flat_button.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
-import '../../../utils/string_color.dart';
-import '../../../utils/beautify_string_extension.dart';
+import '../utils/string_color.dart';
+import '../utils/beautify_string_extension.dart';
 
 class KeyVerificationDialog extends StatefulWidget {
   Future<void> show(BuildContext context) => PlatformInfos.isCupertinoStyle

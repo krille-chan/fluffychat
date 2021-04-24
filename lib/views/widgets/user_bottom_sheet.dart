@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/views/widgets/dialogs/permission_slider_dialog.dart';
+import 'package:fluffychat/views/permission_slider_dialog.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:flutter/material.dart';

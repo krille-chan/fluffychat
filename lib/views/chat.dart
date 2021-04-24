@@ -8,7 +8,7 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/views/ui/chat_ui.dart';
-import 'package:fluffychat/views/widgets/dialogs/recording_dialog.dart';
+import 'package:fluffychat/views/recording_dialog.dart';
 
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/views/widgets/matrix.dart';
@@ -25,7 +25,7 @@ import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'widgets/dialogs/send_file_dialog.dart';
+import 'send_file_dialog.dart';
 import '../utils/filtered_timeline_extension.dart';
 import '../utils/matrix_file_extension.dart';
 
