@@ -24,7 +24,7 @@ import 'package:fluffychat/views/ui/settings_ui.dart';
 import 'package:fluffychat/views/settings_3pid.dart';
 import 'package:fluffychat/views/device_settings.dart';
 import 'package:fluffychat/views/settings_ignore_list.dart';
-import 'package:fluffychat/views/ui/settings_notifications_ui.dart';
+import 'package:fluffychat/views/settings_notifications.dart';
 import 'package:fluffychat/views/settings_style.dart';
 import 'package:flutter/material.dart';
 
