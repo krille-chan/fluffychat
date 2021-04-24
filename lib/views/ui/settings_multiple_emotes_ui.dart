@@ -1,17 +1,19 @@
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
+import 'package:fluffychat/views/settings_multiple_emotes.dart';
 import 'package:fluffychat/views/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-class MultipleEmotesSettings extends StatelessWidget {
-  final String roomId;
+class MultipleEmotesSettingsUI extends StatelessWidget {
+  final MultipleEmotesSettingsController controller;
 
-  MultipleEmotesSettings(this.roomId, {Key key}) : super(key: key);
+  MultipleEmotesSettingsUI(this.controller, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final room = Matrix.of(context).client.getRoomById(roomId);
+    final room =
+        Matrix.of(context).client.getRoomById(controller.widget.roomId);
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(),
