@@ -22,7 +22,7 @@ import 'package:fluffychat/views/search.dart';
 import 'package:fluffychat/views/ui/settings_ui.dart';
 import 'package:fluffychat/views/settings_3pid.dart';
 import 'package:fluffychat/views/device_settings.dart';
-import 'package:fluffychat/views/ui/settings_ignore_list_ui.dart';
+import 'package:fluffychat/views/settings_ignore_list.dart';
 import 'package:fluffychat/views/ui/settings_multiple_emotes_ui.dart';
 import 'package:fluffychat/views/ui/settings_notifications_ui.dart';
 import 'package:fluffychat/views/settings_style.dart';

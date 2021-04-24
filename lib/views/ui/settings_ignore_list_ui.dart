@@ -5,38 +5,13 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
+import '../settings_ignore_list.dart';
 import '../widgets/matrix.dart';
 
-class SettingsIgnoreList extends StatefulWidget {
-  final String initialUserId;
+class SettingsIgnoreListUI extends StatelessWidget {
+  final SettingsIgnoreListController controller;
 
-  SettingsIgnoreList({Key key, this.initialUserId}) : super(key: key);
-
-  @override
-  _SettingsIgnoreListState createState() => _SettingsIgnoreListState();
-}
-
-class _SettingsIgnoreListState extends State<SettingsIgnoreList> {
-  final TextEditingController _controller = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-    if (widget.initialUserId != null) {
-      _controller.text = widget.initialUserId.replaceAll('@', '');
-    }
-  }
-
-  void _ignoreUser(BuildContext context) {
-    if (_controller.text.isEmpty) return;
-    final userId = '@${_controller.text}';
-
-    showFutureLoadingDialog(
-      context: context,
-      future: () => Matrix.of(context).client.ignoreUser(userId),
-    );
-    _controller.clear();
-  }
+  const SettingsIgnoreListUI(this.controller, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -55,10 +30,10 @@ class _SettingsIgnoreListState extends State<SettingsIgnoreList> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   TextField(
-                    controller: _controller,
+                    controller: controller.controller,
                     autocorrect: false,
                     textInputAction: TextInputAction.done,
-                    onSubmitted: (_) => _ignoreUser(context),
+                    onSubmitted: (_) => controller.ignoreUser(context),
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: 'bad_guy:domain.abc',
@@ -67,7 +42,7 @@ class _SettingsIgnoreListState extends State<SettingsIgnoreList> {
                       suffixIcon: IconButton(
                         tooltip: L10n.of(context).ignore,
                         icon: Icon(Icons.done_outlined),
-                        onPressed: () => _ignoreUser(context),
+                        onPressed: () => controller.ignoreUser(context),
                       ),
                     ),
                   ),
