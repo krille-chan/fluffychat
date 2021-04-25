@@ -469,21 +469,24 @@ class ChatController extends State<Chat> {
     final emoji = await showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
-      builder: (context) => Column(
+      builder: (innerContext) => Column(
         children: [
           Spacer(),
-          EmojiPicker(
-            onEmojiSelected: (category, emoji) {
-              // recent emojis don't work, so we sadly have to re-implement them
-              // https://github.com/JeffG05/emoji_picker/issues/31
-              SharedPreferences.getInstance().then((prefs) {
-                final recents = prefs.getStringList('recents') ?? <String>[];
-                recents.insert(0, emoji.name);
-                // make sure we remove duplicates
-                prefs.setStringList('recents', recents.toSet().toList());
-              });
-              Navigator.of(context, rootNavigator: false).pop(emoji);
-            },
+          Material(
+            color: Theme.of(context).scaffoldBackgroundColor,
+            child: EmojiPicker(
+              onEmojiSelected: (category, emoji) {
+                // recent emojis don't work, so we sadly have to re-implement them
+                // https://github.com/JeffG05/emoji_picker/issues/31
+                SharedPreferences.getInstance().then((prefs) {
+                  final recents = prefs.getStringList('recents') ?? <String>[];
+                  recents.insert(0, emoji.name);
+                  // make sure we remove duplicates
+                  prefs.setStringList('recents', recents.toSet().toList());
+                });
+                Navigator.of(innerContext, rootNavigator: false).pop(emoji);
+              },
+            ),
           ),
         ],
       ),
