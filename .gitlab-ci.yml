@@ -173,6 +173,7 @@ snap:edge:
   variables:
     SNAPCRAFT_LOGIN_FILE: ${SNAPCRAFT_LOGIN_FILE}
   only: [main]
+  before_script: [sudo apt install git]
   script: [./scripts/publish-snap-edge.sh]
   needs: ["build_linux"]
   dependencies: ["build_linux"]
@@ -187,6 +188,7 @@ snap:publish:
   variables:
     SNAPCRAFT_LOGIN_FILE: ${SNAPCRAFT_LOGIN_FILE}
   only: [tags]
+  before_script: [sudo apt install git]
   script: [./scripts/publish-snap-stable.sh]
   needs: ["build_linux"]
   artifacts:
