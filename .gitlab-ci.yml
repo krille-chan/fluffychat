@@ -155,7 +155,7 @@ pages:
   only:
     - main
 
-build_linux:
+build_linux_x86:
   stage: coverage
   before_script:
     [
@@ -167,6 +167,16 @@ build_linux:
     paths:
       - build/linux/release/bundle/
 
+build_linux_arm64:
+  stage: coverage
+  script: [./scripts/build-linux.sh]
+  tags: [docker_arm64]
+  only: [main]
+  artifacts:
+    when: on_success
+    paths:
+      - build/linux/arm64/release/bundle/
+
 snap:edge:
   stage: release
   image: "snapcore/snapcraft"
@@ -175,8 +185,8 @@ snap:edge:
   only: [main]
   before_script: [sudo apt install git -y]
   script: [./scripts/publish-snap-edge.sh]
-  needs: ["build_linux"]
-  dependencies: ["build_linux"]
+  needs: ["build_linux_x86"]
+  dependencies: ["build_linux_x86"]
   artifacts:
     paths:
       - "./*.snap"
@@ -190,7 +200,7 @@ snap:publish:
   only: [tags]
   before_script: [sudo apt install git -y]
   script: [./scripts/publish-snap-stable.sh]
-  needs: ["build_linux"]
+  needs: ["build_linux_x86"]
   artifacts:
     paths:
       - "./*.snap"
@@ -244,10 +254,17 @@ upload-web:
     - |
       curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file package.tar.gz ${PACKAGE_REGISTRY_URL}/fluffychat-web.tar.gz
 
-upload-linux:
+upload-linux-x86:
   extends: .release
   script:
     - tar czf package.tar.gz -C build/linux/release/bundle/ .
+    - |
+      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file package.tar.gz ${PACKAGE_REGISTRY_URL}/fluffychat-linux.tar.gz
+
+upload-linux-arm64:
+  extends: .release
+  script:
+    - tar czf package.tar.gz -C build/linux/arm64/release/bundle/ .
     - |
       curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file package.tar.gz ${PACKAGE_REGISTRY_URL}/fluffychat-linux.tar.gz
 
