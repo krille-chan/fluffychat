@@ -78,11 +78,10 @@ class Message extends StatelessWidget {
           alignment: alignment,
           child: Container(
             margin: const EdgeInsets.symmetric(horizontal: 8),
-            padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
             decoration: BoxDecoration(
               color: color,
-              borderRadius:
-                  BorderRadius.circular(AppConfig.messageBubbleBorderRadius),
+              borderRadius: BorderRadius.circular(AppConfig.borderRadius),
             ),
             constraints:
                 BoxConstraints(maxWidth: FluffyThemes.columnWidth * 1.5),
@@ -208,7 +207,8 @@ class Message extends StatelessWidget {
             ? Theme.of(context).primaryColor.withAlpha(100)
             : Theme.of(context).primaryColor.withAlpha(0),
         child: Padding(
-          padding: EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0),
+          padding:
+              EdgeInsets.only(left: 8.0, right: 8.0, bottom: 4.0, top: 4.0),
           child: container,
         ),
       ),

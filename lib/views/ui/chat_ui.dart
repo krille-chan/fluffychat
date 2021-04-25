@@ -270,6 +270,7 @@ class ChatUI extends StatelessWidget {
                       return ListView.custom(
                         padding: EdgeInsets.only(
                           top: 16,
+                          bottom: 4,
                           left: horizontalPadding,
                           right: horizontalPadding,
                         ),

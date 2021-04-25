@@ -20,17 +20,18 @@ class StateMessage extends StatelessWidget {
     return InkWell(
       onTap: counter != 0 ? () => unfold(event.eventId) : null,
       child: Padding(
-        padding: const EdgeInsets.only(
-          left: 8.0,
-          right: 8.0,
-          bottom: 8.0,
+        padding: const EdgeInsets.symmetric(
+          horizontal: 8.0,
+          vertical: 4.0,
         ),
         child: Center(
           child: Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: Theme.of(context).secondaryHeaderColor,
-              borderRadius: BorderRadius.circular(7),
+              border: Border.all(
+                color: Theme.of(context).dividerColor,
+              ),
+              borderRadius: BorderRadius.circular(AppConfig.borderRadius),
             ),
             child: Column(
               mainAxisSize: MainAxisSize.min,

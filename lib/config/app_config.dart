@@ -42,7 +42,6 @@ abstract class AppConfig {
   static const String emojiFontUrl =
       'https://github.com/googlefonts/noto-emoji/';
   static const double borderRadius = 12.0;
-  static const double messageBubbleBorderRadius = 16.0;
 
   static void loadFromJson(Map<String, dynamic> json) {
     if (json['application_name'] is String) {
