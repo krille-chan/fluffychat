@@ -167,39 +167,32 @@ build_linux:
     paths:
       - build/linux/release/bundle/
 
-#snap:edge:
-#  stage: release
-#  image: "snapcore/snapcraft"
-#  before_script:
-#    - apt update && apt install git curl unzip clang cmake build-essential ninja-build pkg-config libgtk-3-dev libblkid-dev liblzma-dev -y
-#    - git clone https://github.com/flutter/flutter.git
-#    - export PATH="$PATH:`pwd`/flutter/bin"
-#  variables:
-#    SNAPCRAFT_LOGIN_FILE: ${SNAPCRAFT_LOGIN_FILE}
-#  only:
-#    - main
-#  script: [./scripts/publish-snap-edge.sh]
-#  needs: ["build_linux"]
-#  dependencies: ["build_linux"]
-#  artifacts:
-#    paths:
-#      - "./*.snap"
-#    when: on_success
+snap:edge:
+  stage: release
+  image: "snapcore/snapcraft"
+  variables:
+    SNAPCRAFT_LOGIN_FILE: ${SNAPCRAFT_LOGIN_FILE}
+  only: [main]
+  script: [./scripts/publish-snap-edge.sh]
+  needs: ["build_linux"]
+  dependencies: ["build_linux"]
+  artifacts:
+    paths:
+      - "./*.snap"
+    when: on_success
 
-#snap:publish:
-#  stage: release
-#  image: "snapcore/snapcraft"
-#  variables:
-#    SNAPCRAFT_LOGIN_FILE: ${SNAPCRAFT_LOGIN_FILE}
-#  only:
-#    - tags
-#  script: [./scripts/publish-snap-stable.sh]
-#  needs: ["build_linux"]
-#  artifacts:
-#    paths:
-#      - "./*.snap"
-#    when: on_success
-#    expire_in: 1 week
+snap:publish:
+  stage: release
+  image: "snapcore/snapcraft"
+  variables:
+    SNAPCRAFT_LOGIN_FILE: ${SNAPCRAFT_LOGIN_FILE}
+  only: [tags]
+  script: [./scripts/publish-snap-stable.sh]
+  needs: ["build_linux"]
+  artifacts:
+    paths:
+      - "./*.snap"
+    when: on_success
 
 update-dependencies:
   stage: coverage

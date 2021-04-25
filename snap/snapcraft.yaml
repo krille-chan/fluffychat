@@ -22,7 +22,6 @@ description: |
 
 grade: stable
 confinement: strict
-icon: assets/logo.png
 
 parts:
   olm:
@@ -37,7 +36,6 @@ parts:
     source: ./build/linux/release/bundle/
     stage-packages:
       - libsqlite3-dev
-      #- libolm-dev # Not available in core18
 
 slots:
   dbus-svc:
