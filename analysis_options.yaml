@@ -7,6 +7,7 @@ linter:
     - constant_identifier_names
     - prefer_final_locals
     - prefer_final_in_for_each
+    - sort_pub_dependencies
 
 analyzer:
   errors:
