@@ -11,6 +11,7 @@ dependencies:
   adaptive_page_layout: ^0.2.3
   adaptive_theme: ^2.2.0
   android_path_provider: ^0.2.1
+  audioplayers: ^0.18.3
   cached_network_image: ^3.0.0
   cupertino_icons: any
   # desktop_notifications: ^0.0.0-dev.4  // Currently blocked by: https://github.com/canonical/desktop_notifications.dart/issues/5
@@ -39,7 +40,6 @@ dependencies:
   flutter_screen_lock: ^4.0.3
   flutter_secure_storage: ^4.1.0
   flutter_slidable: ^0.6.0
-  flutter_sound_lite: ^8.1.1
   flutter_svg: ^0.21.0+1
   flutter_typeahead: ^3.1.1
   future_loading_dialog: ^0.1.2

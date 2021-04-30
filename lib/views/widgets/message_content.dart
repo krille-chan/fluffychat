@@ -83,7 +83,7 @@ class MessageContent extends StatelessWidget {
             }
             return MessageDownloadContent(event, textColor);
           case MessageTypes.Audio:
-            return AudioPlayer(
+            return AudioPlayerWidget(
               event,
               color: textColor,
             );

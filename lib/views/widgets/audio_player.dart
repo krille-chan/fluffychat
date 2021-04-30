@@ -1,26 +1,28 @@
 import 'dart:async';
-import 'dart:typed_data';
+import 'dart:io';
 
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:fluffychat/views/widgets/message_download_content.dart';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_sound_lite/flutter_sound.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import '../../utils/ui_fake.dart' if (dart.library.html) 'dart:ui' as ui;
 import 'matrix.dart';
 import '../../utils/event_extension.dart';
 
-class AudioPlayer extends StatefulWidget {
+class AudioPlayerWidget extends StatefulWidget {
   final Color color;
   final Event event;
 
   static String currentId;
 
-  const AudioPlayer(this.event, {this.color = Colors.black, Key key})
+  const AudioPlayerWidget(this.event, {this.color = Colors.black, Key key})
       : super(key: key);
 
   @override
@@ -29,17 +31,20 @@ class AudioPlayer extends StatefulWidget {
 
 enum AudioPlayerStatus { notDownloaded, downloading, downloaded }
 
-class _AudioPlayerState extends State<AudioPlayer> {
+class _AudioPlayerState extends State<AudioPlayerWidget> {
   AudioPlayerStatus status = AudioPlayerStatus.notDownloaded;
+  final AudioPlayer audioPlayer = AudioPlayer();
 
-  final FlutterSoundPlayer flutterSound = FlutterSoundPlayer();
-
-  StreamSubscription soundSubscription;
-  Uint8List audioFile;
+  StreamSubscription onAudioPositionChanged;
+  StreamSubscription onDurationChanged;
+  StreamSubscription onPlayerStateChanged;
+  StreamSubscription onPlayerError;
 
   String statusText = '00:00';
   double currentPosition = 0;
   double maxPosition = 0;
+
+  File audioFile;
 
   String webSrcUrl;
 
@@ -59,13 +64,14 @@ class _AudioPlayerState extends State<AudioPlayer> {
 
   @override
   void dispose() {
-    if (flutterSound.isPlaying) {
-      flutterSound.stopPlayer();
+    if (audioPlayer.state == AudioPlayerState.PLAYING) {
+      audioPlayer.stop();
     }
-    if (flutterSound.isOpen()) {
-      flutterSound.closeAudioSession();
-    }
-    soundSubscription?.cancel();
+    onAudioPositionChanged?.cancel();
+    onDurationChanged?.cancel();
+    onPlayerStateChanged?.cancel();
+    onPlayerError?.cancel();
+
     super.dispose();
   }
 
@@ -75,8 +81,15 @@ class _AudioPlayerState extends State<AudioPlayer> {
     try {
       final matrixFile =
           await widget.event.downloadAndDecryptAttachmentCached();
+      final tempDir = await getTemporaryDirectory();
+      final fileName = matrixFile.name.contains('.')
+          ? matrixFile.name
+          : '${matrixFile.name}.mp3';
+      final file = File('${tempDir.path}/$fileName');
+      await file.writeAsBytes(matrixFile.bytes);
+
       setState(() {
-        audioFile = matrixFile.bytes;
+        audioFile = file;
         status = AudioPlayerStatus.downloaded;
       });
       _playAction();
@@ -91,50 +104,42 @@ class _AudioPlayerState extends State<AudioPlayer> {
   }
 
   void _playAction() async {
-    if (AudioPlayer.currentId != widget.event.eventId) {
-      if (AudioPlayer.currentId != null) {
-        if (!flutterSound.isStopped) {
-          await flutterSound.stopPlayer();
+    if (AudioPlayerWidget.currentId != widget.event.eventId) {
+      if (AudioPlayerWidget.currentId != null) {
+        if (audioPlayer.state != AudioPlayerState.STOPPED) {
+          await audioPlayer.stop();
           setState(() => null);
         }
       }
-      AudioPlayer.currentId = widget.event.eventId;
+      AudioPlayerWidget.currentId = widget.event.eventId;
     }
-    switch (flutterSound.playerState) {
-      case PlayerState.isPlaying:
-        await flutterSound.pausePlayer();
+    switch (audioPlayer.state) {
+      case AudioPlayerState.PLAYING:
+        await audioPlayer.pause();
         break;
-      case PlayerState.isPaused:
-        await flutterSound.resumePlayer();
+      case AudioPlayerState.PAUSED:
+        await audioPlayer.resume();
         break;
-      case PlayerState.isStopped:
+      case AudioPlayerState.STOPPED:
       default:
-        if (!flutterSound.isOpen()) {
-          await flutterSound.openAudioSession(
-              focus: AudioFocus.requestFocusAndStopOthers,
-              category: SessionCategory.playback);
-        }
-
-        await flutterSound.setSubscriptionDuration(Duration(milliseconds: 100));
-        await flutterSound.startPlayer(fromDataBuffer: audioFile);
-        soundSubscription ??= flutterSound.onProgress.listen((e) {
-          if (AudioPlayer.currentId != widget.event.eventId) {
-            soundSubscription?.cancel()?.then((f) => soundSubscription = null);
-            setState(() {
-              currentPosition = 0;
-              statusText = '00:00';
-            });
-            AudioPlayer.currentId = null;
-          } else if (e != null) {
-            final txt =
-                '${e.position.inMinutes.toString().padLeft(2, '0')}:${(e.position.inSeconds % 60).toString().padLeft(2, '0')}';
-            setState(() {
-              maxPosition = e.duration.inMilliseconds.toDouble();
-              currentPosition = e.position.inMilliseconds.toDouble();
-              statusText = txt;
-            });
-          }
+        onAudioPositionChanged ??=
+            audioPlayer.onAudioPositionChanged.listen((state) {
+          setState(() => currentPosition = state.inMilliseconds.toDouble());
         });
+        onDurationChanged ??= audioPlayer.onDurationChanged.listen((max) =>
+            setState(() => maxPosition = max.inMilliseconds.toDouble()));
+        onPlayerStateChanged ??= audioPlayer.onPlayerStateChanged
+            .listen((_) => setState(() => null));
+        onPlayerError ??= audioPlayer.onPlayerError.listen((e) {
+          AdaptivePageLayout.of(context).showSnackBar(
+            SnackBar(
+              content: Text(L10n.of(context).oopsSomethingWentWrong),
+            ),
+          );
+          SentryController.captureException(e, StackTrace.current);
+        });
+
+        await audioPlayer.play(audioFile.path);
         break;
     }
   }
@@ -163,12 +168,12 @@ class _AudioPlayerState extends State<AudioPlayer> {
               ? CircularProgressIndicator(strokeWidth: 2)
               : IconButton(
                   icon: Icon(
-                    flutterSound.isPlaying
+                    audioPlayer.state == AudioPlayerState.PLAYING
                         ? Icons.pause_outlined
                         : Icons.play_arrow_outlined,
                     color: widget.color,
                   ),
-                  tooltip: flutterSound.isPlaying
+                  tooltip: audioPlayer.state == AudioPlayerState.PLAYING
                       ? L10n.of(context).audioPlayerPause
                       : L10n.of(context).audioPlayerPlay,
                   onPressed: () {
@@ -183,8 +188,8 @@ class _AudioPlayerState extends State<AudioPlayer> {
         Expanded(
           child: Slider(
             value: currentPosition,
-            onChanged: (double position) => flutterSound
-                .seekToPlayer(Duration(milliseconds: position.toInt())),
+            onChanged: (double position) =>
+                audioPlayer.seek(Duration(milliseconds: position.toInt())),
             max: status == AudioPlayerStatus.downloaded ? maxPosition : 0,
             min: 0,
           ),

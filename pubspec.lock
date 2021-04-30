@@ -71,6 +71,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.5.0"
+  audioplayers:
+    dependency: "direct main"
+    description:
+      name: audioplayers
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.18.3"
   base58check:
     dependency: transitive
     description:
@@ -407,34 +414,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.0"
-  flutter_sound_lite:
-    dependency: "direct main"
-    description:
-      name: flutter_sound_lite
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "8.1.1"
-  flutter_sound_platform_interface:
-    dependency: transitive
-    description:
-      name: flutter_sound_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "8.1.1"
-  flutter_sound_web:
-    dependency: transitive
-    description:
-      name: flutter_sound_web
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "8.1.1"
-  flutter_spinkit:
-    dependency: transitive
-    description:
-      name: flutter_spinkit
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "5.0.0"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -867,13 +846,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
-  recase:
-    dependency: transitive
-    description:
-      name: recase
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "4.0.0"
   receive_sharing_intent:
     dependency: "direct main"
     description:
