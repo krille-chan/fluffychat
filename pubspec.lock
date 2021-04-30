@@ -1113,12 +1113,10 @@ packages:
   unifiedpush:
     dependency: "direct main"
     description:
-      path: "."
-      ref: main
-      resolved-ref: a75da94b9b6687abd24951579a13644ed2a62a28
-      url: "https://github.com/UnifiedPush/flutter-connector.git"
-    source: git
-    version: "1.0.1"
+      name: unifiedpush
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
   universal_html:
     dependency: "direct main"
     description:

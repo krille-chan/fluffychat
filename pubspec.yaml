@@ -65,10 +65,7 @@ dependencies:
   sqflite: ^2.0.0+3 # Still used to obtain the database location
   sqlite3: ^1.0.0
   swipe_to_action: ^0.1.0
-  unifiedpush:
-    git:
-      url: https://github.com/UnifiedPush/flutter-connector.git
-      ref: main
+  unifiedpush: ^1.0.2
   universal_html: ^2.0.8
   url_launcher: ^6.0.3
 

@@ -319,6 +319,11 @@ class BackgroundPush {
       await _newUpEndpoint(
           await store.getItem(SettingKeys.unifiedPushEndpoint));
     }
+
+    // re-register the app without a dialog. This should be safe,
+    // and allows recovering from app deletion in gotify, for instance
+    Logs().i('[Push] UnifiedPush registration found, re-registering');
+    await UnifiedPush.registerApp();
   }
 
   Future<void> _onFcmMessage(Map<dynamic, dynamic> message) async {
