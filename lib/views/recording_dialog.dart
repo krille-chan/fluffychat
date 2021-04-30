@@ -4,10 +4,11 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:flutter_sound_lite/flutter_sound.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:record/record.dart';
 
 class RecordingDialog extends StatefulWidget {
+  static const String recordingFileType = 'mp3';
   const RecordingDialog({
     Key key,
   }) : super(key: key);
@@ -17,23 +18,19 @@ class RecordingDialog extends StatefulWidget {
 }
 
 class _RecordingDialogState extends State<RecordingDialog> {
-  final FlutterSoundRecorder flutterSound = FlutterSoundRecorder();
   String time = '00:00:00';
 
-  StreamSubscription _recorderSubscription;
+  Timer _recorderSubscription;
+  Duration _duration;
 
   bool error = false;
   String _recordedPath;
-  double _decibels = 0;
 
   void startRecording() async {
     try {
-      await flutterSound.openAudioSession();
-      await flutterSound.setSubscriptionDuration(Duration(milliseconds: 100));
-
-      final codec = Codec.aacADTS;
       final tempDir = await getTemporaryDirectory();
-      _recordedPath = '${tempDir.path}/recording${ext[codec.index]}';
+      _recordedPath =
+          '${tempDir.path}/recording_${DateTime.now().millisecondsSinceEpoch}.${RecordingDialog.recordingFileType}';
 
       // delete any existing file
       final outputFile = File(_recordedPath);
@@ -41,15 +38,11 @@ class _RecordingDialogState extends State<RecordingDialog> {
         await outputFile.delete();
       }
 
-      await flutterSound.startRecorder(codec: codec, toFile: _recordedPath);
-
-      _recorderSubscription = flutterSound.onProgress.listen((e) {
-        setState(() {
-          _decibels = e.decibels;
-          time =
-              '${e.duration.inMinutes.toString().padLeft(2, '0')}:${(e.duration.inSeconds % 60).toString().padLeft(2, '0')}';
-        });
-      });
+      await Record.start(path: _recordedPath);
+      setState(() => _duration = Duration.zero);
+      _recorderSubscription?.cancel();
+      _recorderSubscription = Timer.periodic(Duration(seconds: 1),
+          (_) => setState(() => _duration += Duration(seconds: 1)));
     } catch (e) {
       error = true;
     }
@@ -63,9 +56,8 @@ class _RecordingDialogState extends State<RecordingDialog> {
 
   @override
   void dispose() {
-    if (flutterSound.isRecording) flutterSound.stopRecorder();
     _recorderSubscription?.cancel();
-    flutterSound.closeAudioSession();
+    Record.stop();
     super.dispose();
   }
 
@@ -77,7 +69,8 @@ class _RecordingDialogState extends State<RecordingDialog> {
       });
     }
     const maxDecibalWidth = 64.0;
-    final decibalWidth = min(_decibels / 2, maxDecibalWidth).toDouble();
+    final decibalWidth =
+        min(_duration.inSeconds % 2 / 2, maxDecibalWidth).toDouble();
     return AlertDialog(
       content: Row(
         children: <Widget>[
@@ -118,8 +111,8 @@ class _RecordingDialogState extends State<RecordingDialog> {
         ),
         TextButton(
           onPressed: () async {
-            await _recorderSubscription?.cancel();
-            await flutterSound.stopRecorder();
+            _recorderSubscription?.cancel();
+            await Record.stop();
             Navigator.of(context, rootNavigator: false)
                 .pop<String>(_recordedPath);
           },
