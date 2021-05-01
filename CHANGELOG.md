@@ -4,6 +4,146 @@ Chat with your friends.
 ## Unreleased
 
 ### Chore
+* Update UP and automatically re-register UP on startup [aa3348e]
+
+### Feature
+* Desktop notifications on Linux Desktop [25e76f0]
+* Much better alias managing [642db67]
+* Archive with clean up [f366ab6]
+
+### Fixes
+* RecordingDialog [e74b102]
+* Crash on start [16febd3]
+* Sort dependencies [46f84b5]
+* Lock screen [f8ba7bd]
+* Freeze bug [15c3178]
+* UserBottomSheet [dbb0464]
+* Message bubble wrong height [2b9bd9c]
+* Low height layout [0d6b43d]
+* Behaviour of homeserver textfield [2c8a8a4]
+* Build Linux [d867a56]
+* EmojiPicker background [0a5270b]
+* e2ee files [ccd7964]
+* Remove the goddamn package from hell circular checkbox!!! Shame on you! SHAME! [81c6906]
+* Missing null check [586c248]
+* Chat ui [0231feb]
+* Chat UI doesnt load [4f20ea4]
+
+### Refactor
+* Remove unused variable [b9f5c94]
+* Remove flutter_sound [334d4c0]
+* Switch to record package [2cf4f47]
+* Sort dependencies [f2295f7]
+* Widget file structure and MVC user bottom sheet [bd53745]
+* Dialogs as views [69deae3]
+* MVC Settings page [bc5e973]
+* MVC Settings Notifications [c291b08]
+* MVC multiple emote settings [a64ada5]
+* MVC settings ignore list [f23fdcc]
+* MVC emote settings [1f9f3f4]
+* Null safe dependencies [ca82a46]
+* MVC settings style [c6083b6]
+* MVC settings 3pid [6bfe7b2]
+* MVC search [b008d56]
+* Folder structure and MVC chat ui [fb61824]
+* Move some views to widgets [1fe5b78]
+* MVC device settings view [15731b9]
+* New private chat view [453d4f3]
+* MVC chat permission settings [001e0ee]
+* MVC chat list view [7658425]
+* MVC chat encryption settings [576e840]
+* MVC chat details [28ed394]
+* Enable more lints [6a56ec4]
+* MVC new group view [3f889e2]
+* MVC invitation selection [c12e815]
+
+## v0.29.1 - 2021-04-13
+
+### Chore
+* Bump version [215f3c8]
+
+### Fixes
+* Save file [3f854d6]
+* Routing broken in chat details [f1166b2]
+* Tests [e75a5a0]
+* Minor sentry crashes [9aa7d52]
+* nogooglewarning [7619941]
+
+### Refactor
+* MVC archive [c2cbad7]
+* MVC sign up password view [fa0162a]
+* MVC sign up view [db19b37]
+* Controllers [f5f02c6]
+
+## v0.29.0 - 2021-04-09
+
+### Chore
+* Clean up repo [ef7ccef]
+* Bump version [81a4c26]
+* Nicer FAB icon [3eeb9a9]
+* Archive button in main menu [da3dc80]
+* turn renderHtml and hideUnknownEvents on [29f8e05]
+* Remove unused dependencies [c505c50]
+
+### Feature
+* Experimental support for room upgrades [a3af5a9]
+
+### Fixes
+* Room upgrade again [1d40705]
+* Better padding [c79562f]
+* Room upgrade [dac26dd]
+* iOS [3a6b329]
+* React if not allowed [0146767]
+* iPad dividerwidth [a154db0]
+* Playstore release job [47c9180]
+* Remove blur [ebf73bf]
+* Support for email registration [7e5eae5]
+* Typo [6250fd0]
+* #323 [56e5c81]
+* Typo [b38b0e4]
+* Buggy routing [62bf380]
+* barrierDismissible: true, [de9e373]
+* UserBottomSheet SafeArea [0e172c7]
+* Add normal mode again to OnePageCard [c057d31]
+* ScrollController in chatlist [93477d3]
+* SafeArea on iPad [8911e64]
+* Missing null check [7cb0dc4]
+* Overflow in chat app bar [5bf5483]
+* Select room version [2f5a73f]
+
+### Docs
+* Add code style [035ad96]
+
+### Refactor
+* Move app_config to /configs [8b9f4a4]
+* homeserver picker view [8e828d8]
+* widgets dir [c9ab69a]
+
+## v0.28.1 - 2021-03-28
+
+### Chore
+* Update version [518634a]
+
+### Feature
+* Implement new search view design [e42dd4b]
+
+### Fixes
+* Share on iOS [ea31991]
+* Permission to send video call [4de6d16]
+* Unread badge color [49d5f86]
+* Push on iOS [cb6217c]
+* Add Podfile to gitignore [dd4b4c5]
+* Own user in people list [ce047b7]
+* Start chat [92ff960]
+* Set status missing [17a3311]
+
+### Refactor
+* push stuff [b6eaf5b]
+
+## v0.28.0 - 2021-03-16
+
+### Chore
+* Bump version [f8ee682]
 * Change push gateway url [078aefa]
 * Update file picker cross dependency [91c6912]
 * Update snapcraft.yaml but still not working [1072379]
@@ -18,6 +158,8 @@ Chat with your friends.
 * Verify and block devices in devices list [8ebacfe]
 
 ### Fixes
+* substring in reply key respects unicode runes [5695342]
+* Resend status message [05cd699]
 * Remove test push [a838d90]
 * Email validation [c8e487c]
 * CI [2e60322]
@@ -57,6 +199,7 @@ Chat with your friends.
 * Use single-isolate push [949771d]
 
 ### Docs
+* Update readme and contributing [449e46d]
 * Update Turkish translation for website [4a664eb]
 
 ### Refactor
