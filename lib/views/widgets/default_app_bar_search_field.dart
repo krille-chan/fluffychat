@@ -14,6 +14,7 @@ class DefaultAppBarSearchField extends StatefulWidget {
   final EdgeInsets padding;
   final bool readOnly;
   final Widget prefixIcon;
+  final bool unfocusOnClear;
 
   DefaultAppBarSearchField({
     Key key,
@@ -27,6 +28,7 @@ class DefaultAppBarSearchField extends StatefulWidget {
     this.padding,
     this.readOnly = false,
     this.prefixIcon,
+    this.unfocusOnClear = true,
   }) : super(key: key);
 
   @override
@@ -105,7 +107,7 @@ class DefaultAppBarSearchFieldState extends State<DefaultAppBarSearchField> {
                   onPressed: () {
                     _searchController.clear();
                     widget.onChanged?.call('');
-                    _focusNode.unfocus();
+                    if (widget.unfocusOnClear) _focusNode.unfocus();
                   },
                 )
               : widget.suffix,
