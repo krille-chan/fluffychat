@@ -29,6 +29,7 @@ class ParticipantListItem extends StatelessWidget {
         context: context,
         builder: (c) => UserBottomSheet(
           user: user,
+          outerContext: context,
         ),
       ),
       title: Row(

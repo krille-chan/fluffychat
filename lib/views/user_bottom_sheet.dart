@@ -12,10 +12,12 @@ import 'ui/user_bottom_sheet_ui.dart';
 class UserBottomSheet extends StatefulWidget {
   final User user;
   final Function onMention;
+  final BuildContext outerContext;
 
   const UserBottomSheet({
     Key key,
     @required this.user,
+    @required this.outerContext,
     this.onMention,
   }) : super(key: key);
 
@@ -81,8 +83,9 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         break;
       case 'message':
         final roomId = await widget.user.startDirectChat();
-        await AdaptivePageLayout.of(context)
+        await AdaptivePageLayout.of(widget.outerContext)
             .pushNamedAndRemoveUntilIsFirst('/rooms/$roomId');
+        Navigator.of(context, rootNavigator: false).pop();
         break;
     }
   }

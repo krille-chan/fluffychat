@@ -81,6 +81,7 @@ class ChatUI extends StatelessWidget {
                                 builder: (c) => UserBottomSheet(
                                   user: controller.room.getUserByMXIDSync(
                                       controller.room.directChatMatrixID),
+                                  outerContext: context,
                                   onMention: () => controller
                                           .sendController.text +=
                                       '${controller.room.directChatMatrixID} ',
@@ -379,6 +380,7 @@ class ChatUI extends StatelessWidget {
                                                     builder: (c) =>
                                                         UserBottomSheet(
                                                       user: event.sender,
+          outerContext: context,
                                                       onMention: () => controller
                                                               .sendController
                                                               .text +=

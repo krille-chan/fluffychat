@@ -110,7 +110,8 @@ class UserBottomSheetUI extends StatelessWidget {
                     title: Text(L10n.of(context).username),
                     subtitle: Text(user.id),
                     trailing: Icon(Icons.share_outlined),
-                    onTap: () => FluffyShare.share(user.id, context),
+                    onTap: () => FluffyShare.share(
+                        user.id, controller.widget.outerContext),
                   ),
                   if (presence != null)
                     ListTile(
