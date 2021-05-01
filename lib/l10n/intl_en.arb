@@ -1372,6 +1372,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "pleaseEnterYourPin": "Please enter your pin",
+  "@pleaseEnterYourPin": {
+    "type": "text",
+    "placeholders": {}
+  },
   "pleaseEnterYourPassword": "Please enter your password",
   "@pleaseEnterYourPassword": {
     "type": "text",

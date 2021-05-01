@@ -7,7 +7,6 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/config/routes.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/sentry_controller.dart';
-import 'package:fluffychat/views/widgets/layouts/lock_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +15,7 @@ import 'package:flutter_app_lock/flutter_app_lock.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:universal_html/html.dart' as html;
 
+import 'views/widgets/lock_screen.dart';
 import 'views/widgets/matrix.dart';
 import 'config/themes.dart';
 import 'config/app_config.dart';

@@ -11,7 +11,6 @@ import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_lock/flutter_app_lock.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:flutter_screen_lock/functions.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -290,13 +289,7 @@ class SettingsController extends State<Settings> {
     final currentLock =
         await FlutterSecureStorage().read(key: SettingKeys.appLockKey);
     if (currentLock?.isNotEmpty ?? false) {
-      var unlocked = false;
-      await screenLock(
-        context: context,
-        correctString: currentLock,
-        didConfirmed: (_) => unlocked = true,
-      );
-      if (unlocked != true) return;
+      await AppLock.of(context).showLockScreen();
     }
     final newLock = await showTextInputDialog(
       context: context,
