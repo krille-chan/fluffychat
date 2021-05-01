@@ -2,7 +2,7 @@ links:
     faq: ČPP
     community: Zajednica
     gitlab: GitLab
-    openstore: OpenStore
+    blog: Blog
 index:
     title: Otvoren. Nekomercijalan. Simpatičan ♥
     subtitle: Razgovaraj s prijateljima na Ubuntu Touch.
@@ -25,9 +25,10 @@ index:
     compatible: Kompatibilan
     compatibleDesc: Kompatibilan s <a href="https://matrix.org/docs/projects/client/element-android.html" target="new">Element</a>, <a href="https://matrix.org/docs/projects/client/fractal.html" target="new">Fractal</a>, <a href="https://matrix.org/docs/projects/client/nheko.html" target="new">Nheko</a> i svim <a href="https://matrix.org/docs/projects/try-matrix-now.html" target="new">matrix</a> programima za slanje poruka.
     dreamTitle: Osnovna ideja FluffyChata
-    dreamText: Zamisli svijet u kojem svatko može odabrati program za slanje poruka prijateljima koji mu se najviše sviđa.<br>
-         Svijet u kojem tvrtke ne prate fotke koje šalješ prijateljima i ljubavnicima.<br>
-         Svijet u kojem se programi stvaraju za zabavu, a ne za zaradu. ♥
+    dreamText:
+        Zamisli svijet u kojem svatko može odabrati program za slanje poruka prijateljima koji mu se najviše sviđa.<br>
+        Svijet u kojem tvrtke ne prate fotke koje šalješ prijateljima i ljubavnicima.<br>
+        Svijet u kojem se programi stvaraju za zabavu, a ne za zaradu. ♥
     license: GNU opća javna licenca
     changelog: Dnevnik promjena
     translations: Pomogni prevesti

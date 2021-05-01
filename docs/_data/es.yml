@@ -2,7 +2,7 @@ links:
     faq: Preguntas frecuentes
     community: Comunidad
     gitlab: GitLab
-    openstore: OpenStore
+    blog: Blog
 index:
     title: Abierto. Sin ánimo de lucro. Adorable ♥
     subtitle: Charle con sus amigos desde Ubuntu Touch.
@@ -25,7 +25,8 @@ index:
     compatible: Compatible
     compatibleDesc: Compatible con <a href="https://matrix.org/docs/projects/client/riot-android.html" target="new">Riot</a>, <a href="https://matrix.org/docs/projects/client/fractal.html" target="new">Fractal</a>, <a href="https://matrix.org/docs/projects/client/nheko.html" target="new">Nheko</a> y todos los servicios de mensajería de <a href="https://matrix.org/docs/projects/try-matrix-now.html" target="new">matrix</a>.
     dreamTitle: FluffyChat viene con un sueño
-    dreamText: Imagine un mundo donde todos puedan elegir el servicio de mensajería que deseen y, aún así, poder conversar con todos los amigos.<br>
+    dreamText:
+        Imagine un mundo donde todos puedan elegir el servicio de mensajería que deseen y, aún así, poder conversar con todos los amigos.<br>
         Un mundo donde no hay empresas que le espian cuando envía fotos suyas a amigos o amantes.<br>
         Y un mundo donde las aplicaciones se hacen por «esponjosidad» y no por lucro. ♥
     license: Licencia pública general de GNU («GPL»)

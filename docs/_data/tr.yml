@@ -2,7 +2,7 @@ links:
     faq: SSS
     community: Topluluk
     gitlab: GitLab
-    openstore: OpenStore
+    blog: Blog
 index:
     title: Açık. Kâr Amacı Gütmeyen. Şirin ♥
     subtitle: Arkadaşlarınızla Ubuntu Touch'tan sohbet edin.
@@ -25,7 +25,8 @@ index:
     compatible: Uyumlu
     compatibleDesc: <a href="https://matrix.org/docs/projects/client/element-android.html" target="new">Element</a>, <a href="https://matrix.org/docs/projects/client/fractal.html" target="new">Fractal</a>, <a href="https://matrix.org/docs/projects/client/nheko.html" target="new">Nheko</a> ve tüm <a href="https://matrix.org/docs/projects/try-matrix-now.html" target="new">matrix</a> mesajlaşma uygulamalarıyla uyumlu.
     dreamTitle: FluffyChat'in bir rüyası var
-    dreamText: Herkesin sevdiği mesajlaşma uygulamasını seçebileceği ve yine de tüm arkadaşlarıyla sohbet edebildiği bir dünya hayal edin.<br>
+    dreamText:
+        Herkesin sevdiği mesajlaşma uygulamasını seçebileceği ve yine de tüm arkadaşlarıyla sohbet edebildiği bir dünya hayal edin.<br>
         Arkadaşlarınıza ve sevdiklerinize özçekimler gönderdiğinizde sizi gözetleyen hiçbir şirketin olmadığı bir dünya.<br>
         Ve uygulamaların kâr için değil, sevimlilik için yapıldığı bir dünya. ♥
     license: GNU Genel Kamu Lisansı

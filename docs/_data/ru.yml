@@ -2,7 +2,7 @@ links:
     faq: FAQ
     community: Сообщество
     gitlab: GitLab
-    openstore: OpenStore
+    blog: Blog
 index:
     title: Открытый. Некоммерческий. Милый ♥
     subtitle: Общайтесь с друзьями из Ubuntu Touch.
@@ -25,7 +25,8 @@ index:
     compatible: Совместимый
     compatibleDesc: Совместим с <a href="https://matrix.org/docs/projects/client/riot-android.html" target="new">Riot</a>, <a href="https://matrix.org/docs/projects/client/fractal.html" target="new">Fractal</a>, <a href="https://matrix.org/docs/projects/client/nheko.html" target="new">Nheko</a> и всеми <a href="https://matrix.org/docs/projects/try-matrix-now.html" target="new">matrix</a> мессенджерами.
     dreamTitle: FluffyChat приходит с мечтой
-    dreamText: Представьте себе мир, в котором каждый может выбрать понравившийся ему мессенджер и по-прежнему общаться со всеми своими друзьями.<br>
+    dreamText:
+        Представьте себе мир, в котором каждый может выбрать понравившийся ему мессенджер и по-прежнему общаться со всеми своими друзьями.<br>
         Мир, в котором нет компаний, которые следят за тобой, когда ты отправляешь селфи друзьям и любимым.<br>
         И мир, где приложения созданы для пушистости, а не для получения прибыли. ♥
     license: GNU General Public License
@@ -37,4 +38,3 @@ index:
     specialthanksto: Особая благодарность
     ubports: UBports
     support: Server hosting and professional support
-

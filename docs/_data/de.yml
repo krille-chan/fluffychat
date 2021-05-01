@@ -2,7 +2,7 @@ links:
     faq: FAQ
     community: Gemeinschaft
     gitlab: GitLab
-    openstore: OpenStore
+    blog: Blog
 index:
     title: Frei. Unkommerziell. Knuffig ♥
     subtitle: Chatte mit deinen Freunden auf Ubuntu Touch
@@ -25,7 +25,8 @@ index:
     compatible: Kompatibel.
     compatibleDesc: Kompatibel mit <a href="https://matrix.org/docs/projects/client/element-android.html" target="new">Element</a>, <a href="https://matrix.org/docs/projects/client/fractal.html" target="new">Fractal</a>, <a href="https://matrix.org/docs/projects/client/nheko.html" target="new">Nheko</a> und allen <a href="https://matrix.org/docs/projects/try-matrix-now.html" target="new">Matrix</a> Messengern.
     dreamTitle: FluffyChat kommt mit einem Traum
-    dreamText: Stelle dir eine Welt vor, in dem man den Messenger benutzen kann, den man am meisten mag und trotzdem mit seinen Freunden schreiben kann.
+    dreamText:
+        Stelle dir eine Welt vor, in dem man den Messenger benutzen kann, den man am meisten mag und trotzdem mit seinen Freunden schreiben kann.
         Eine Welt, wo es keine Firmen gibt, die dich ausspionieren wenn du Selfies zu deinen Freunden und Liebsten schickst.
         Und eine Welt in der Apps für Fluffyness entwickelt werden und nicht für Profit. ♥
     license: GNU General Public License
