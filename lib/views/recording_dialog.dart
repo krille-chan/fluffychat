@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -18,10 +17,8 @@ class RecordingDialog extends StatefulWidget {
 }
 
 class _RecordingDialogState extends State<RecordingDialog> {
-  String time = '00:00:00';
-
   Timer _recorderSubscription;
-  Duration _duration;
+  Duration _duration = Duration.zero;
 
   bool error = false;
   String _recordedPath;
@@ -70,7 +67,10 @@ class _RecordingDialogState extends State<RecordingDialog> {
     }
     const maxDecibalWidth = 64.0;
     final decibalWidth =
-        min(_duration.inSeconds % 2 / 2, maxDecibalWidth).toDouble();
+        ((_duration.inSeconds % 2) + 1) * (maxDecibalWidth / 2).toDouble();
+    final time =
+        '${_duration.inMinutes.toString().padLeft(2, '0')}:${(_duration.inSeconds % 60).toString().padLeft(2, '0')}';
+
     return AlertDialog(
       content: Row(
         children: <Widget>[
