@@ -2314,5 +2314,7 @@
   "@roomVersion": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "clearArchive": "Effacer les archives",
+  "@clearArchive": {}
 }
