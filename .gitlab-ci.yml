@@ -270,12 +270,12 @@ upload-linux-arm64:
     - |
       curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file package.tar.gz ${PACKAGE_REGISTRY_URL}/fluffychat-linux.tar.gz
 
-upload-windows:
-  extends: .release
-  script:
-    - tar czf package.tar.gz -C build/windows/runner/Release/ .
-    - |
-      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file package.tar.gz ${PACKAGE_REGISTRY_URL}/fluffychat-windows.tar.gz
+#upload-windows:
+#  extends: .release
+#  script:
+#    - tar czf package.tar.gz -C build/windows/runner/Release/ .
+#    - |
+#      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file package.tar.gz ${PACKAGE_REGISTRY_URL}/fluffychat-windows.tar.gz
 
 upload-playstore:
   stage: release
