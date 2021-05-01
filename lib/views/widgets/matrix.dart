@@ -19,10 +19,7 @@ import 'package:provider/provider.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
-/*import 'package:fluffychat/views/chat_ui.dart';
-import 'package:fluffychat/app_config.dart';
-import 'package:dbus/dbus.dart';
-import 'package:desktop_notifications/desktop_notifications.dart';*/
+import 'package:desktop_notifications/desktop_notifications.dart';
 
 import '../../utils/beautify_string_extension.dart';
 import '../../utils/localized_exception_extension.dart';
@@ -184,6 +181,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     final room = client.getRoomById(roomId);
     if (room.notificationCount == 0) return;
     final event = Event.fromJson(eventUpdate.content, room);
+    final title = room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)));
     final body = event.getLocalizedBody(
       MatrixLocals(L10n.of(context)),
       withSenderNamePrefix:
@@ -199,30 +197,22 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         ..autoplay = true
         ..load();
       html.Notification(
-        room.getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
+        title,
         body: body,
         icon: icon.toString(),
       );
     } else if (Platform.isLinux) {
-      /*var sessionBus = DBusClient.session();
-      var client = NotificationClient(sessionBus);
-      _linuxNotificationIds[roomId] = await client.notify(
-        room.getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
+      await linuxNotifications.notify(
+        title,
         body: body,
-        replacesID: _linuxNotificationIds[roomId] ?? -1,
+        replacesId: _linuxNotificationIds[roomId] ?? -1,
         appName: AppConfig.applicationName,
-        actionCallback: (_) => Navigator.of(context, rootNavigator: false).pushAndRemoveUntil(
-            AppRoute.defaultRoute(
-              context,
-              ChatView(roomId),
-            ),
-            (r) => r.isFirst),
       );
-      await sessionBus.close();*/
     }
   }
 
-  //final Map<String, int> _linuxNotificationIds = {};
+  final linuxNotifications = NotificationsClient();
+  final Map<String, int> _linuxNotificationIds = {};
 
   @override
   void initState() {
@@ -415,6 +405,8 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     onFocusSub?.cancel();
     onBlurSub?.cancel();
     _backgroundPush?.onLogin?.cancel();
+
+    linuxNotifications.close();
 
     super.dispose();
   }

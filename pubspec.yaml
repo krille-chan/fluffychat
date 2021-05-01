@@ -14,7 +14,7 @@ dependencies:
   audioplayers: ^0.18.3
   cached_network_image: ^3.0.0
   cupertino_icons: any
-  # desktop_notifications: ^0.0.0-dev.4  // Currently blocked by: https://github.com/canonical/desktop_notifications.dart/issues/5
+  desktop_notifications: ^0.4.0
   email_validator: ^2.0.1
   emoji_picker_flutter: ^1.0.3
   famedlysdk:

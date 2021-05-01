@@ -183,6 +183,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.6.0"
+  dbus:
+    dependency: transitive
+    description:
+      name: dbus
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.3"
+  desktop_notifications:
+    dependency: "direct main"
+    description:
+      name: desktop_notifications
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.0"
   disk_space_ns:
     dependency: transitive
     description:
