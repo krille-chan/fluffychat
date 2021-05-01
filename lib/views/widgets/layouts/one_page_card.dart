@@ -7,7 +7,7 @@ class OnePageCard extends StatelessWidget {
 
   const OnePageCard({Key key, this.child}) : super(key: key);
 
-  static const int alpha = 16;
+  static const int alpha = 12;
   @override
   Widget build(BuildContext context) {
     return MediaQuery.of(context).size.width <= 600
