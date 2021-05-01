@@ -261,14 +261,14 @@ upload-linux-x86:
   script:
     - tar czf package.tar.gz -C build/linux/release/bundle/ .
     - |
-      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file package.tar.gz ${PACKAGE_REGISTRY_URL}/fluffychat-linux.tar.gz
+      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file package.tar.gz ${PACKAGE_REGISTRY_URL}/fluffychat-linux-x86.tar.gz
 
 upload-linux-arm64:
   extends: .release
   script:
     - tar czf package.tar.gz -C build/linux/arm64/release/bundle/ .
     - |
-      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file package.tar.gz ${PACKAGE_REGISTRY_URL}/fluffychat-linux.tar.gz
+      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file package.tar.gz ${PACKAGE_REGISTRY_URL}/fluffychat-linux-arm64.tar.gz
 
 #upload-windows:
 #  extends: .release
