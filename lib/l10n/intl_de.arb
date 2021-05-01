@@ -2314,5 +2314,22 @@
   "@roomVersion": {
     "type": "text",
     "placeholders": {}
+  },
+  "pleaseEnterYourPin": "Bitte gib deine Pin ein",
+  "@pleaseEnterYourPin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clearArchive": "Archiv leeren",
+  "@clearArchive": {},
+  "setAsCanonicalAlias": "Als Haupt-Alias festlegen",
+  "@setAsCanonicalAlias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAliases": "Raum-Aliase bearbeiten",
+  "@editRoomAliases": {
+    "type": "text",
+    "placeholders": {}
   }
 }
