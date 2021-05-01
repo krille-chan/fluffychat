@@ -2316,5 +2316,20 @@
     "placeholders": {}
   },
   "clearArchive": "Effacer les archives",
-  "@clearArchive": {}
+  "@clearArchive": {},
+  "pleaseEnterYourPin": "Veuillez saisir votre code PIN",
+  "@pleaseEnterYourPin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setAsCanonicalAlias": "Définir comme adresse principale",
+  "@setAsCanonicalAlias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAliases": "Modifier les adresses du salon",
+  "@editRoomAliases": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
