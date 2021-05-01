@@ -1,8 +1,10 @@
 # Change Log for fluffychat
 
-## Unreleased
+## v0.30.0 - 2021-05-01
 
 In this release we have mostly focused on bugfixing and stability. We have switched to the new Flutter 2 framework and have done a lot of refactoring under the hood. The annoying freezing bug should now be fixed. Voice messages now have a new backend which should improve the sound quality and stability. There is now a more professional UI for editing aliases of a room. Users can now see a list of all aliases, add new aliases, delete them and mark one alias as the canonical (or main) alias. Some minor design changes and design fixes should improve the overall UX of the app exspecially on tablets.
+
+Version 0.30.0 will be the first version with arm64 support. You can download binaries from the CI and we will try to publish it on Flathub. Together with the new Linux Desktop Notifications feature, this might be interesting for the Librem 5 or the PinePhone. Sadly I don't own one of these very interesting devices. If you have one, I would very like to see some screenshots of it! :-)
 
 ### Chore
 * Update UP and automatically re-register UP on startup [aa3348e]
