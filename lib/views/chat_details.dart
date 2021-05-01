@@ -6,12 +6,15 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
 import 'package:fluffychat/views/ui/chat_details_ui.dart';
 import 'package:fluffychat/views/widgets/matrix.dart';
+import 'package:flutter/services.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/utils/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:image_picker/image_picker.dart';
+
+enum AliasActions { copy, delete, setCanonical }
 
 class ChatDetails extends StatefulWidget {
   final String roomId;
@@ -61,7 +64,104 @@ class ChatDetailsController extends State<ChatDetails> {
     }
   }
 
-  void setCanonicalAliasAction(context) async {
+  void editAliases() async {
+    final room = Matrix.of(context).client.getRoomById(widget.roomId);
+
+    // The current endpoint doesnt seem to be implemented in Synapse. This may
+    // change in the future and then we just need to switch to this api call:
+    //
+    // final aliases = await showFutureLoadingDialog(
+    //   context: context,
+    //   future: () => room.client.requestRoomAliases(room.id),
+    // );
+    //
+    // While this is not working we use the unstable api:
+    final aliases = await showFutureLoadingDialog(
+      context: context,
+      future: () => room.client
+          .request(
+            RequestType.GET,
+            '/client/unstable/org.matrix.msc2432/rooms/${Uri.encodeComponent(room.id)}/aliases',
+          )
+          .then((response) => List<String>.from(response['aliases'])),
+    );
+    // Switch to the stable api once it is implemented.
+
+    if (aliases.error != null) return;
+    final adminMode = room.canSendEvent('m.room.canonical_alias');
+    if (aliases.result.isEmpty && (room.canonicalAlias?.isNotEmpty ?? false)) {
+      aliases.result.add(room.canonicalAlias);
+    }
+    if (aliases.result.isEmpty && adminMode) {
+      return setAliasAction();
+    }
+    final select = await showConfirmationDialog(
+      context: context,
+      title: L10n.of(context).editRoomAliases,
+      actions: [
+        if (adminMode)
+          AlertDialogAction(label: L10n.of(context).create, key: 'new'),
+        ...aliases.result
+            .map((alias) => AlertDialogAction(key: alias, label: alias))
+            .toList(),
+      ],
+    );
+    if (select == null) return;
+    if (select == 'new') {
+      return setAliasAction();
+    }
+    final option = await showConfirmationDialog<AliasActions>(
+      context: context,
+      title: select,
+      actions: [
+        AlertDialogAction(
+          label: L10n.of(context).copyToClipboard,
+          key: AliasActions.copy,
+          isDefaultAction: true,
+        ),
+        if (adminMode) ...{
+          AlertDialogAction(
+            label: L10n.of(context).setAsCanonicalAlias,
+            key: AliasActions.setCanonical,
+            isDestructiveAction: true,
+          ),
+          AlertDialogAction(
+            label: L10n.of(context).delete,
+            key: AliasActions.delete,
+            isDestructiveAction: true,
+          ),
+        },
+      ],
+    );
+    switch (option) {
+      case AliasActions.copy:
+        await Clipboard.setData(ClipboardData(text: select));
+        AdaptivePageLayout.of(context).showSnackBar(
+          SnackBar(content: Text(L10n.of(context).copiedToClipboard)),
+        );
+        break;
+      case AliasActions.delete:
+        await showFutureLoadingDialog(
+          context: context,
+          future: () => room.client.removeRoomAlias(select),
+        );
+        break;
+      case AliasActions.setCanonical:
+        await showFutureLoadingDialog(
+          context: context,
+          future: () =>
+              room.client.sendState(room.id, EventTypes.RoomCanonicalAlias, {
+            'alias': select,
+          }),
+        );
+        break;
+    }
+  }
+
+  void setAliasAction() async {
+    final room = Matrix.of(context).client.getRoomById(widget.roomId);
+    final domain = room.client.userID.domain;
+
     final input = await showTextInputDialog(
       context: context,
       title: L10n.of(context).setInvitationLink,
@@ -70,38 +170,18 @@ class ChatDetailsController extends State<ChatDetails> {
       useRootNavigator: false,
       textFields: [
         DialogTextField(
-          hintText: '#localpart:domain',
-          initialText: L10n.of(context).alias.toLowerCase(),
+          prefixText: '#',
+          suffixText: domain,
+          hintText: L10n.of(context).alias,
+          initialText: room.canonicalAlias?.localpart,
         )
       ],
     );
     if (input == null) return;
-    final room = Matrix.of(context).client.getRoomById(widget.roomId);
-    final domain = room.client.userID.domain;
-    final canonicalAlias = '%23' + input.single + '%3A' + domain;
-    final aliasEvent = room.getState('m.room.aliases', domain);
-    final aliases =
-        aliasEvent != null ? aliasEvent.content['aliases'] ?? [] : [];
-    if (aliases.indexWhere((s) => s == canonicalAlias) == -1) {
-      final newAliases = List<String>.from(aliases);
-      newAliases.add(canonicalAlias);
-      final response = await showFutureLoadingDialog(
-        context: context,
-        future: () => room.client.requestRoomAliasInformation(canonicalAlias),
-      );
-      if (response.error != null) {
-        final success = await showFutureLoadingDialog(
-          context: context,
-          future: () => room.client.createRoomAlias(canonicalAlias, room.id),
-        );
-        if (success.error != null) return;
-      }
-    }
     await showFutureLoadingDialog(
       context: context,
-      future: () => room.client.sendState(room.id, 'm.room.canonical_alias', {
-        'alias': input.single,
-      }),
+      future: () => room.client
+          .createRoomAlias('#' + input.single + ':' + domain, room.id),
     );
   }
 

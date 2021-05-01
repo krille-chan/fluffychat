@@ -153,8 +153,7 @@ class ChatDetailsUI extends StatelessWidget {
                                     MatrixLocals(L10n.of(context)))),
                                 onTap: controller.setDisplaynameAction,
                               ),
-                            if (room.canSendEvent('m.room.canonical_alias') &&
-                                room.joinRules == JoinRules.public)
+                            if (room.joinRules == JoinRules.public)
                               ListTile(
                                 leading: CircleAvatar(
                                   backgroundColor:
@@ -162,9 +161,8 @@ class ChatDetailsUI extends StatelessWidget {
                                   foregroundColor: Colors.grey,
                                   child: Icon(Icons.link_outlined),
                                 ),
-                                onTap: () =>
-                                    controller.setCanonicalAliasAction(context),
-                                title: Text(L10n.of(context).setInvitationLink),
+                                onTap: controller.editAliases,
+                                title: Text(L10n.of(context).editRoomAliases),
                                 subtitle: Text(
                                     (room.canonicalAlias?.isNotEmpty ?? false)
                                         ? room.canonicalAlias

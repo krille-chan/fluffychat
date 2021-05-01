@@ -16,6 +16,16 @@
     "type": "text",
     "placeholders": {}
   },
+  "editRoomAliases": "Edit room aliases",
+  "@editRoomAliases": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setAsCanonicalAlias": "Set as main alias",
+  "@setAsCanonicalAlias": {
+    "type": "text",
+    "placeholders": {}
+  },
   "people": "People",
   "@people": {
     "type": "text",
