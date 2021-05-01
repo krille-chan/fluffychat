@@ -5,6 +5,7 @@
 import FlutterMacOS
 import Foundation
 
+import audioplayers
 import file_chooser
 import firebase_core
 import flutter_local_notifications
@@ -15,6 +16,7 @@ import sqflite
 import url_launcher_macos
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
+  AudioplayersPlugin.register(with: registry.registrar(forPlugin: "AudioplayersPlugin"))
   FileChooserPlugin.register(with: registry.registrar(forPlugin: "FileChooserPlugin"))
   FLTFirebaseCorePlugin.register(with: registry.registrar(forPlugin: "FLTFirebaseCorePlugin"))
   FlutterLocalNotificationsPlugin.register(with: registry.registrar(forPlugin: "FlutterLocalNotificationsPlugin"))

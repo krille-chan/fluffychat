@@ -37,11 +37,13 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppleMusicUsageDescription</key>
 	<string>Play audio and voice messages in the app.</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Play audio and voice messages on bluetooth devices</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>Share calendar dates with your contacts in FluffyChat.</string>
 	<key>NSCameraUsageDescription</key>

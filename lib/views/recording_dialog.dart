@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'dart:io';
 
+import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:path_provider/path_provider.dart';
@@ -27,21 +27,21 @@ class _RecordingDialogState extends State<RecordingDialog> {
     try {
       final tempDir = await getTemporaryDirectory();
       _recordedPath =
-          '${tempDir.path}/recording_${DateTime.now().millisecondsSinceEpoch}.${RecordingDialog.recordingFileType}';
+          '${tempDir.path}/recording${DateTime.now().microsecondsSinceEpoch}';
 
-      // delete any existing file
-      final outputFile = File(_recordedPath);
-      if (outputFile.existsSync()) {
-        await outputFile.delete();
+      final result = await Record.hasPermission();
+      if (result != true) {
+        setState(() => error = true);
+        return;
       }
-
-      await Record.start(path: _recordedPath);
+      await Record.start(path: _recordedPath, encoder: AudioEncoder.AAC);
       setState(() => _duration = Duration.zero);
       _recorderSubscription?.cancel();
       _recorderSubscription = Timer.periodic(Duration(seconds: 1),
           (_) => setState(() => _duration += Duration(seconds: 1)));
-    } catch (e) {
-      error = true;
+    } catch (e, s) {
+      SentryController.captureException(e, s);
+      setState(() => error = true);
     }
   }
 
@@ -60,11 +60,6 @@ class _RecordingDialogState extends State<RecordingDialog> {
 
   @override
   Widget build(BuildContext context) {
-    if (error) {
-      Timer(Duration(seconds: 1), () {
-        Navigator.of(context, rootNavigator: false).pop();
-      });
-    }
     const maxDecibalWidth = 64.0;
     final decibalWidth =
         ((_duration.inSeconds % 2) + 1) * (maxDecibalWidth / 4).toDouble();
@@ -72,33 +67,35 @@ class _RecordingDialogState extends State<RecordingDialog> {
         '${_duration.inMinutes.toString().padLeft(2, '0')}:${(_duration.inSeconds % 60).toString().padLeft(2, '0')}';
 
     return AlertDialog(
-      content: Row(
-        children: <Widget>[
-          Container(
-            width: maxDecibalWidth,
-            height: maxDecibalWidth,
-            alignment: Alignment.center,
-            child: AnimatedContainer(
-              duration: Duration(seconds: 1),
-              width: decibalWidth,
-              height: decibalWidth,
-              decoration: BoxDecoration(
-                color: Colors.red,
-                borderRadius: BorderRadius.circular(decibalWidth),
-              ),
+      content: error
+          ? Text(L10n.of(context).oopsSomethingWentWrong)
+          : Row(
+              children: <Widget>[
+                Container(
+                  width: maxDecibalWidth,
+                  height: maxDecibalWidth,
+                  alignment: Alignment.center,
+                  child: AnimatedContainer(
+                    duration: Duration(seconds: 1),
+                    width: decibalWidth,
+                    height: decibalWidth,
+                    decoration: BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(decibalWidth),
+                    ),
+                  ),
+                ),
+                SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    '${L10n.of(context).recording}: $time',
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ),
-          SizedBox(width: 8),
-          Expanded(
-            child: Text(
-              '${L10n.of(context).recording}: $time',
-              style: TextStyle(
-                fontSize: 18,
-              ),
-            ),
-          ),
-        ],
-      ),
       actions: <Widget>[
         TextButton(
           onPressed: () => Navigator.of(context, rootNavigator: false).pop(),
@@ -109,21 +106,22 @@ class _RecordingDialogState extends State<RecordingDialog> {
             ),
           ),
         ),
-        TextButton(
-          onPressed: () async {
-            _recorderSubscription?.cancel();
-            await Record.stop();
-            Navigator.of(context, rootNavigator: false)
-                .pop<String>(_recordedPath);
-          },
-          child: Row(
-            children: <Widget>[
-              Text(L10n.of(context).send.toUpperCase()),
-              SizedBox(width: 4),
-              Icon(Icons.send_outlined, size: 15),
-            ],
+        if (error != true)
+          TextButton(
+            onPressed: () async {
+              _recorderSubscription?.cancel();
+              await Record.stop();
+              Navigator.of(context, rootNavigator: false)
+                  .pop<String>(_recordedPath);
+            },
+            child: Row(
+              children: <Widget>[
+                Text(L10n.of(context).send.toUpperCase()),
+                SizedBox(width: 4),
+                Icon(Icons.send_outlined, size: 15),
+              ],
+            ),
           ),
-        ),
       ],
     );
   }
