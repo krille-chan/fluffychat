@@ -25,12 +25,11 @@ class Avatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final thumbnail = mxContent?.getThumbnail(
+    final src = mxContent?.getThumbnail(
       client ?? Matrix.of(context).client,
       width: size * MediaQuery.of(context).devicePixelRatio,
       height: size * MediaQuery.of(context).devicePixelRatio,
     );
-    final src = thumbnail;
     var fallbackLetters = '@';
     if ((name?.runes?.length ?? 0) >= 2) {
       fallbackLetters = String.fromCharCodes(name.runes, 0, 2);
