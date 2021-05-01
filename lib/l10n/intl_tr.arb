@@ -2314,5 +2314,22 @@
   "@roomVersion": {
     "type": "text",
     "placeholders": {}
+  },
+  "pleaseEnterYourPin": "Lütfen PIN kodunuzu girin",
+  "@pleaseEnterYourPin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clearArchive": "Arşivi temizle",
+  "@clearArchive": {},
+  "setAsCanonicalAlias": "Ana takma ad olarak ayarla",
+  "@setAsCanonicalAlias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAliases": "Oda takma adlarını düzenle",
+  "@editRoomAliases": {
+    "type": "text",
+    "placeholders": {}
   }
 }
