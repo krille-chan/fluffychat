@@ -8,7 +8,7 @@ environment:
 
 dependencies:
   adaptive_dialog: ^0.10.0+5
-  adaptive_page_layout: ^0.2.3
+  adaptive_page_layout: ^0.2.4
   adaptive_theme: ^2.2.0
   android_path_provider: ^0.2.1
   audioplayers: ^0.18.3
