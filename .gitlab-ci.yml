@@ -171,7 +171,9 @@ build_linux_arm64:
   stage: coverage
   script: [./scripts/build-linux.sh]
   tags: [docker_arm64]
-  only: [main]
+  only:
+    - main
+    - tags
   artifacts:
     when: on_success
     paths:
