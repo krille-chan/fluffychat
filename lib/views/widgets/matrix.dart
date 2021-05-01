@@ -211,7 +211,8 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     }
   }
 
-  final linuxNotifications = NotificationsClient();
+  final linuxNotifications =
+      PlatformInfos.isLinux ? NotificationsClient() : null;
   final Map<String, int> _linuxNotificationIds = {};
 
   @override
