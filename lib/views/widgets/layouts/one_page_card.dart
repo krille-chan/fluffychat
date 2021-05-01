@@ -8,9 +8,11 @@ class OnePageCard extends StatelessWidget {
   const OnePageCard({Key key, this.child}) : super(key: key);
 
   static const int alpha = 12;
+  static const int breakpoint = 600;
   @override
   Widget build(BuildContext context) {
-    return MediaQuery.of(context).size.width <= 600
+    return MediaQuery.of(context).size.width <= breakpoint ||
+            MediaQuery.of(context).size.height <= breakpoint
         ? child
         : Container(
             decoration: BoxDecoration(
