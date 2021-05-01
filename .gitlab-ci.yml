@@ -177,34 +177,34 @@ build_linux_arm64:
     paths:
       - build/linux/arm64/release/bundle/
 
-snap:edge:
-  stage: release
-  image: "snapcore/snapcraft"
-  variables:
-    SNAPCRAFT_LOGIN_FILE: ${SNAPCRAFT_LOGIN_FILE}
-  only: [main]
-  before_script: [sudo apt install git -y]
-  script: [./scripts/publish-snap-edge.sh]
-  needs: ["build_linux_x86"]
-  dependencies: ["build_linux_x86"]
-  artifacts:
-    paths:
-      - "./*.snap"
-    when: on_success
+#snap:edge:
+#  stage: release
+#  image: "snapcore/snapcraft"
+#  variables:
+#    SNAPCRAFT_LOGIN_FILE: ${SNAPCRAFT_LOGIN_FILE}
+#  only: [main]
+#  before_script: [sudo apt install git -y]
+#  script: [./scripts/publish-snap-edge.sh]
+#  needs: ["build_linux_x86"]
+#  dependencies: ["build_linux_x86"]
+#  artifacts:
+#    paths:
+#      - "./*.snap"
+#    when: on_success
 
-snap:publish:
-  stage: release
-  image: "snapcore/snapcraft"
-  variables:
-    SNAPCRAFT_LOGIN_FILE: ${SNAPCRAFT_LOGIN_FILE}
-  only: [tags]
-  before_script: [sudo apt install git -y]
-  script: [./scripts/publish-snap-stable.sh]
-  needs: ["build_linux_x86"]
-  artifacts:
-    paths:
-      - "./*.snap"
-    when: on_success
+#snap:publish:
+#  stage: release
+#  image: "snapcore/snapcraft"
+#  variables:
+#    SNAPCRAFT_LOGIN_FILE: ${SNAPCRAFT_LOGIN_FILE}
+#  only: [tags]
+#  before_script: [sudo apt install git -y]
+#  script: [./scripts/publish-snap-stable.sh]
+#  needs: ["build_linux_x86"]
+#  artifacts:
+#    paths:
+#      - "./*.snap"
+#    when: on_success
 
 update-dependencies:
   stage: coverage
