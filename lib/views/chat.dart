@@ -509,7 +509,7 @@ class ChatController extends State<Chat> {
     setState(() => selectedEvents.clear());
   }
 
-  void clearSelectedEvents() => () => setState(() => selectedEvents.clear());
+  void clearSelectedEvents() => setState(() => selectedEvents.clear());
 
   void editSelectedEventAction() {
     setState(() {
