@@ -2267,5 +2267,69 @@
   "@addNewFriend": {
     "type": "text",
     "placeholders": {}
+  },
+  "unlockChatBackup": "Odemknout zálohu chatu",
+  "@unlockChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "friends": "Přátelé",
+  "@friends": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterYourPin": "Zadejte svůj PIN",
+  "@pleaseEnterYourPin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "xMoreEvents": "{count} dalších událostí",
+  "@xMoreEvents": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "oneMoreEvent": "1 další událost",
+  "@oneMoreEvent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "goToTheNewRoom": "Přejít do nové místnost",
+  "@goToTheNewRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "roomVersion": "Verze místnosti",
+  "@roomVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicGroups": "Veřejné skupiny",
+  "@publicGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clearArchive": "Vymazat archiv",
+  "@clearArchive": {},
+  "people": "Lidé",
+  "@people": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setAsCanonicalAlias": "Nastavit jako hlavní alias",
+  "@setAsCanonicalAlias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAliases": "Upravit aliasy místností",
+  "@editRoomAliases": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chats": "Chaty",
+  "@chats": {
+    "type": "text",
+    "placeholders": {}
   }
 }
