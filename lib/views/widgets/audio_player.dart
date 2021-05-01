@@ -124,7 +124,11 @@ class _AudioPlayerState extends State<AudioPlayerWidget> {
       default:
         onAudioPositionChanged ??=
             audioPlayer.onAudioPositionChanged.listen((state) {
-          setState(() => currentPosition = state.inMilliseconds.toDouble());
+          setState(() {
+            statusText =
+                '${state.inMinutes.toString().padLeft(2, '0')}:${(state.inSeconds % 60).toString().padLeft(2, '0')}';
+            currentPosition = state.inMilliseconds.toDouble();
+          });
         });
         onDurationChanged ??= audioPlayer.onDurationChanged.listen((max) =>
             setState(() => maxPosition = max.inMilliseconds.toDouble()));
