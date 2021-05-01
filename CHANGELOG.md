@@ -12,9 +12,6 @@ Chat with your friends.
 * Archive with clean up [f366ab6]
 
 ### Fixes
-* RecordingDialog [e74b102]
-* Crash on start [16febd3]
-* Sort dependencies [46f84b5]
 * Lock screen [f8ba7bd]
 * Freeze bug [15c3178]
 * UserBottomSheet [dbb0464]
@@ -26,7 +23,6 @@ Chat with your friends.
 * e2ee files [ccd7964]
 * Remove the goddamn package from hell circular checkbox!!! Shame on you! SHAME! [81c6906]
 * Missing null check [586c248]
-* Chat ui [0231feb]
 * Chat UI doesnt load [4f20ea4]
 
 ### Refactor

@@ -1,1 +1,0 @@
-<html><body>You are being <a href="https://gitlab.com/famedly/fluffychat/-/raw/main/PRIVACY.md">redirected</a>.</body></html>
