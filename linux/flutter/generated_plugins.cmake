@@ -4,7 +4,6 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   file_chooser
-  flutter_secure_storage
   url_launcher_linux
 )
 
