@@ -67,7 +67,7 @@ class _RecordingDialogState extends State<RecordingDialog> {
     }
     const maxDecibalWidth = 64.0;
     final decibalWidth =
-        ((_duration.inSeconds % 2) + 1) * (maxDecibalWidth / 2).toDouble();
+        ((_duration.inSeconds % 2) + 1) * (maxDecibalWidth / 4).toDouble();
     final time =
         '${_duration.inMinutes.toString().padLeft(2, '0')}:${(_duration.inSeconds % 60).toString().padLeft(2, '0')}';
 
@@ -79,7 +79,7 @@ class _RecordingDialogState extends State<RecordingDialog> {
             height: maxDecibalWidth,
             alignment: Alignment.center,
             child: AnimatedContainer(
-              duration: Duration(milliseconds: 50),
+              duration: Duration(seconds: 1),
               width: decibalWidth,
               height: decibalWidth,
               decoration: BoxDecoration(
