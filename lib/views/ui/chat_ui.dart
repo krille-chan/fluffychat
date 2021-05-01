@@ -380,7 +380,7 @@ class ChatUI extends StatelessWidget {
                                                     builder: (c) =>
                                                         UserBottomSheet(
                                                       user: event.sender,
-          outerContext: context,
+                                                      outerContext: context,
                                                       onMention: () => controller
                                                               .sendController
                                                               .text +=
