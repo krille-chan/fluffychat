@@ -11,34 +11,48 @@ class ArchiveUI extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: BackButton(),
-        title: Text(L10n.of(context).archive),
-      ),
-      body: FutureBuilder<List<Room>>(
-        future: controller.getArchive(context),
-        builder: (BuildContext context, snapshot) {
-          if (snapshot.hasError) {
-            return Center(
-                child: Text(
-              L10n.of(context).oopsSomethingWentWrong,
-              textAlign: TextAlign.center,
-            ));
-          }
-          if (!snapshot.hasData) {
-            return Center(child: CircularProgressIndicator());
-          } else {
-            controller.archive = snapshot.data;
-            return ListView.builder(
-              itemCount: controller.archive.length,
-              itemBuilder: (BuildContext context, int i) => ChatListItem(
-                controller.archive[i],
-                onForget: controller.forgetAction,
-              ),
-            );
-          }
-        },
+    return FutureBuilder<List<Room>>(
+      future: controller.getArchive(context),
+      builder: (BuildContext context, snapshot) => Scaffold(
+        appBar: AppBar(
+          leading: BackButton(),
+          title: Text(L10n.of(context).archive),
+          actions: [
+            if (snapshot.hasData &&
+                controller.archive != null &&
+                controller.archive.isNotEmpty)
+              TextButton(
+                onPressed: controller.forgetAllAction,
+                child: Text(L10n.of(context).clearArchive),
+              )
+          ],
+        ),
+        body: Builder(
+          builder: (BuildContext context) {
+            if (snapshot.hasError) {
+              return Center(
+                  child: Text(
+                L10n.of(context).oopsSomethingWentWrong,
+                textAlign: TextAlign.center,
+              ));
+            }
+            if (!snapshot.hasData) {
+              return Center(child: CircularProgressIndicator());
+            } else {
+              controller.archive = snapshot.data;
+              if (controller.archive.isEmpty) {
+                return Center(child: Icon(Icons.archive_outlined, size: 80));
+              }
+              return ListView.builder(
+                itemCount: controller.archive.length,
+                itemBuilder: (BuildContext context, int i) => ChatListItem(
+                  controller.archive[i],
+                  onForget: controller.forgetAction,
+                ),
+              );
+            }
+          },
+        ),
       ),
     );
   }
