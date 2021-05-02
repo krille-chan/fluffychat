@@ -2305,5 +2305,22 @@
   "@goToTheNewRoom": {
     "type": "text",
     "placeholders": {}
+  },
+  "pleaseEnterYourPin": "Voer je pincode in",
+  "@pleaseEnterYourPin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clearArchive": "Archief wissen",
+  "@clearArchive": {},
+  "setAsCanonicalAlias": "Instellen als hoofdalias",
+  "@setAsCanonicalAlias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAliases": "Wijzig kameraliassen",
+  "@editRoomAliases": {
+    "type": "text",
+    "placeholders": {}
   }
 }
