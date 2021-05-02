@@ -2316,5 +2316,20 @@
     "placeholders": {}
   },
   "clearArchive": "Kustuta arhiiv",
-  "@clearArchive": {}
+  "@clearArchive": {},
+  "pleaseEnterYourPin": "Palun sisesta oma PIN-kood",
+  "@pleaseEnterYourPin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setAsCanonicalAlias": "Määra põhinimeks",
+  "@setAsCanonicalAlias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAliases": "Muuda jututoa aliast",
+  "@editRoomAliases": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
