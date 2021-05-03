@@ -2314,5 +2314,22 @@
   "@roomVersion": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "setAsCanonicalAlias": "Postavi kao glavni pseudonim",
+  "@setAsCanonicalAlias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAliases": "Uredi pseudonime sobe",
+  "@editRoomAliases": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterYourPin": "Upiši svoj pin",
+  "@pleaseEnterYourPin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clearArchive": "Isprazni arhiv",
+  "@clearArchive": {}
 }
