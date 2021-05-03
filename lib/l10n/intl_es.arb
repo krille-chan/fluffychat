@@ -1795,5 +1795,10 @@
       "serverVersions": {},
       "supportedVersions": {}
     }
+  },
+  "next": "Siguiente",
+  "@next": {
+    "type": "text",
+    "placeholders": {}
   }
 }
