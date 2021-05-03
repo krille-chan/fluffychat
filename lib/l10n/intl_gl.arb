@@ -2314,5 +2314,22 @@
   "@roomVersion": {
     "type": "text",
     "placeholders": {}
+  },
+  "pleaseEnterYourPin": "Escribe o teu pin",
+  "@pleaseEnterYourPin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clearArchive": "Baleirar arquivo",
+  "@clearArchive": {},
+  "setAsCanonicalAlias": "Establecer como alias principal",
+  "@setAsCanonicalAlias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAliases": "Editar alias da sala",
+  "@editRoomAliases": {
+    "type": "text",
+    "placeholders": {}
   }
 }
