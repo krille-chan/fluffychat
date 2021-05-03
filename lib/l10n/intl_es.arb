@@ -1800,5 +1800,10 @@
   "@next": {
     "type": "text",
     "placeholders": {}
+  },
+  "chats": "Conversaciones",
+  "@chats": {
+    "type": "text",
+    "placeholders": {}
   }
 }
