@@ -2318,7 +2318,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "editRoomAliases": "Wijzig kameraliassen",
+  "editRoomAliases": "Kameraliassen wijzigen",
   "@editRoomAliases": {
     "type": "text",
     "placeholders": {}
