@@ -2300,5 +2300,22 @@
   "@chats": {
     "type": "text",
     "placeholders": {}
+  },
+  "pleaseEnterYourPin": "Унесите свој пин",
+  "@pleaseEnterYourPin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clearArchive": "Очисти архиву",
+  "@clearArchive": {},
+  "setAsCanonicalAlias": "Постави као главни алијас",
+  "@setAsCanonicalAlias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAliases": "Уреди алијасе собе",
+  "@editRoomAliases": {
+    "type": "text",
+    "placeholders": {}
   }
 }
