@@ -1,3 +1,11 @@
+## v0.30.1 - 2021-05-07
+
+### Chore
+* Update translations
+
+### Fixes
+* Record audio on iOS [cd1e9ae]
+
 ## v0.30.0 - 2021-05-01
 
 In this release we have mostly focused on bugfixing and stability. We have switched to the new Flutter 2 framework and have done a lot of refactoring under the hood. The annoying freezing bug should now be fixed. Voice messages now have a new backend which should improve the sound quality and stability. There is now a more professional UI for editing aliases of a room. Users can now see a list of all aliases, add new aliases, delete them and mark one alias as the canonical (or main) alias. Some minor design changes and design fixes should improve the overall UX of the app exspecially on tablets.
