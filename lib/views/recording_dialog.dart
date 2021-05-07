@@ -7,7 +7,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:record/record.dart';
 
 class RecordingDialog extends StatefulWidget {
-  static const String recordingFileType = 'mp3';
+  static const String recordingFileType = 'aac';
   const RecordingDialog({
     Key key,
   }) : super(key: key);
@@ -27,7 +27,7 @@ class _RecordingDialogState extends State<RecordingDialog> {
     try {
       final tempDir = await getTemporaryDirectory();
       _recordedPath =
-          '${tempDir.path}/recording${DateTime.now().microsecondsSinceEpoch}';
+          '${tempDir.path}/recording${DateTime.now().microsecondsSinceEpoch}.${RecordingDialog.recordingFileType}';
 
       final result = await Record.hasPermission();
       if (result != true) {
