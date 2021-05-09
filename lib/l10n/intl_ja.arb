@@ -739,7 +739,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "isTyping": "入力しています...",
+  "isTyping": "が入力しています…",
   "@isTyping": {
     "type": "text",
     "placeholders": {}
@@ -1937,6 +1937,11 @@
   },
   "changeDeviceName": "デバイス名を変更",
   "@changeDeviceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copyToClipboard": "クリップボードにコピー",
+  "@copyToClipboard": {
     "type": "text",
     "placeholders": {}
   }
