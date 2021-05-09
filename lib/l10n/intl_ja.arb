@@ -1944,5 +1944,10 @@
   "@copyToClipboard": {
     "type": "text",
     "placeholders": {}
+  },
+  "mention": "メンション",
+  "@mention": {
+    "type": "text",
+    "placeholders": {}
   }
 }
