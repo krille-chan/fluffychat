@@ -242,7 +242,10 @@ class _MetaRow extends StatelessWidget {
             style: TextStyle(
               fontSize: 11 * AppConfig.fontSizeFactor,
               fontWeight: FontWeight.bold,
-              color: displayname.color.withAlpha(200),
+              color: (Theme.of(context).brightness == Brightness.light
+                      ? displayname.darkColor
+                      : displayname.lightColor)
+                  .withAlpha(200),
             ),
           ),
         if (showDisplayname) SizedBox(width: 4),
