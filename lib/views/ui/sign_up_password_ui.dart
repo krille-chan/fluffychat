@@ -47,6 +47,21 @@ class SignUpPasswordUI extends StatelessWidget {
                     labelText: L10n.of(context).password),
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: TextField(
+                controller: controller.emailController,
+                readOnly: controller.loading,
+                autocorrect: false,
+                keyboardType: TextInputType.emailAddress,
+                onSubmitted: (_) => controller.signUpAction,
+                decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.mail_outline_outlined),
+                    errorText: controller.emailError,
+                    hintText: 'email@example.com',
+                    labelText: L10n.of(context).optionalAddEmail),
+              ),
+            ),
             SizedBox(height: 12),
             Hero(
               tag: 'loginButton',

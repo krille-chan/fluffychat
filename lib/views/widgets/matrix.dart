@@ -121,57 +121,89 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
   set cachedPassword(String p) => _cachedPassword = p;
 
+  String currentClientSecret;
+  RequestTokenResponse currentThreepidCreds;
+
   void _onUiaRequest(UiaRequest uiaRequest) async {
-    if (uiaRequest.state != UiaRequestState.waitForUser ||
-        uiaRequest.nextStages.isEmpty) return;
-    final stage = uiaRequest.nextStages.first;
-    switch (stage) {
-      case AuthenticationTypes.password:
-        final input = cachedPassword ??
-            (await showTextInputDialog(
-              context: context,
-              title: L10n.of(context).pleaseEnterYourPassword,
-              okLabel: L10n.of(context).ok,
-              cancelLabel: L10n.of(context).cancel,
-              useRootNavigator: false,
-              textFields: [
-                DialogTextField(
-                  minLines: 1,
-                  maxLines: 1,
-                  obscureText: true,
-                  hintText: '******',
-                )
-              ],
-            ))
-                ?.single;
-        if (input?.isEmpty ?? true) return;
-        return uiaRequest.completeStage(
-          AuthenticationPassword(
-            session: uiaRequest.session,
-            user: client.userID,
-            password: input,
-            identifier: AuthenticationUserIdentifier(user: client.userID),
-          ),
-        );
-      default:
-        await launch(
-          client.homeserver.toString() +
-              '/_matrix/client/r0/auth/$stage/fallback/web?session=${uiaRequest.session}',
-        );
-        if (OkCancelResult.ok ==
-            await showOkCancelAlertDialog(
-              message: L10n.of(context).pleaseFollowInstructionsOnWeb,
-              context: context,
-              useRootNavigator: false,
-              okLabel: L10n.of(context).next,
-              cancelLabel: L10n.of(context).cancel,
-            )) {
+    try {
+      if (uiaRequest.state != UiaRequestState.waitForUser ||
+          uiaRequest.nextStages.isEmpty) return;
+      final stage = uiaRequest.nextStages.first;
+      switch (stage) {
+        case AuthenticationTypes.password:
+          final input = cachedPassword ??
+              (await showTextInputDialog(
+                context: context,
+                title: L10n.of(context).pleaseEnterYourPassword,
+                okLabel: L10n.of(context).ok,
+                cancelLabel: L10n.of(context).cancel,
+                useRootNavigator: false,
+                textFields: [
+                  DialogTextField(
+                    minLines: 1,
+                    maxLines: 1,
+                    obscureText: true,
+                    hintText: '******',
+                  )
+                ],
+              ))
+                  ?.single;
+          if (input?.isEmpty ?? true) return;
           return uiaRequest.completeStage(
-            AuthenticationData(session: uiaRequest.session),
+            AuthenticationPassword(
+              session: uiaRequest.session,
+              user: client.userID,
+              password: input,
+              identifier: AuthenticationUserIdentifier(user: client.userID),
+            ),
           );
-        } else {
-          return uiaRequest.cancel();
-        }
+        case AuthenticationTypes.emailIdentity:
+          if (currentClientSecret == null || currentThreepidCreds == null) {
+            return uiaRequest
+                .cancel(Exception('This server requires an email address'));
+          }
+          final auth = AuthenticationThreePidCreds(
+            session: uiaRequest.session,
+            type: AuthenticationTypes.emailIdentity,
+            threepidCreds: [
+              ThreepidCreds(
+                sid: currentThreepidCreds.sid,
+                clientSecret: currentClientSecret,
+              ),
+            ],
+          );
+          currentThreepidCreds = currentClientSecret = null;
+          return uiaRequest.completeStage(auth);
+        case AuthenticationTypes.dummy:
+          return uiaRequest.completeStage(
+            AuthenticationData(
+              type: AuthenticationTypes.dummy,
+              session: uiaRequest.session,
+            ),
+          );
+        default:
+          await launch(
+            client.homeserver.toString() +
+                '/_matrix/client/r0/auth/$stage/fallback/web?session=${uiaRequest.session}',
+          );
+          if (OkCancelResult.ok ==
+              await showOkCancelAlertDialog(
+                message: L10n.of(context).pleaseFollowInstructionsOnWeb,
+                context: context,
+                useRootNavigator: false,
+                okLabel: L10n.of(context).next,
+                cancelLabel: L10n.of(context).cancel,
+              )) {
+            return uiaRequest.completeStage(
+              AuthenticationData(session: uiaRequest.session),
+            );
+          } else {
+            return uiaRequest.cancel();
+          }
+      }
+    } catch (e, s) {
+      Logs().e('Error while background UIA', e, s);
+      return uiaRequest.cancel(e);
     }
   }
 
@@ -420,5 +452,29 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       create: (_) => this,
       child: widget.child,
     );
+  }
+}
+
+class FixedThreepidCreds extends ThreepidCreds {
+  FixedThreepidCreds({
+    String sid,
+    String clientSecret,
+    String idServer,
+    String idAccessToken,
+  }) : super(
+          sid: sid,
+          clientSecret: clientSecret,
+          idServer: idServer,
+          idAccessToken: idAccessToken,
+        );
+
+  @override
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{};
+    data['sid'] = sid;
+    data['client_secret'] = clientSecret;
+    if (idServer != null) data['id_server'] = idServer;
+    if (idAccessToken != null) data['id_access_token'] = idAccessToken;
+    return data;
   }
 }

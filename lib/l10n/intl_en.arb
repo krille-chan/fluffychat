@@ -1357,6 +1357,16 @@
       "fileName": {}
     }
   },
+  "invalidEmail": "Invalid email",
+  "@invalidEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "optionalAddEmail": "(Optional) Your email address",
+  "@optionalAddEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
   "pleaseChooseAUsername": "Please choose a username",
   "@pleaseChooseAUsername": {
     "type": "text",
