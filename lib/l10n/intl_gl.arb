@@ -2331,5 +2331,15 @@
   "@editRoomAliases": {
     "type": "text",
     "placeholders": {}
+  },
+  "optionalAddEmail": "(Optativo) O teu enderezo de email",
+  "@optionalAddEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidEmail": "Email non válido",
+  "@invalidEmail": {
+    "type": "text",
+    "placeholders": {}
   }
 }
