@@ -1,3 +1,17 @@
+## v0.30.2 - 2021-05-13
+
+### Feature
+* Implement registration with email [19616f3]
+
+### Fixes
+* Android input after sending message [4488520]
+
+### Changes
+* Switch to tchncs.de as default homeserver
+
+### Refactor
+* UIA registering [48bf116]
+
 ## v0.30.1 - 2021-05-07
 
 ### Chore
