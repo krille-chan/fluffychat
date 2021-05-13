@@ -202,7 +202,10 @@ class ChatController extends State<Chat> {
     if (sendController.text.trim().isEmpty) return;
     room.sendTextEvent(sendController.text,
         inReplyTo: replyEvent, editEventId: editEvent?.eventId);
-    sendController.text = pendingText;
+    sendController.value = TextEditingValue(
+      text: pendingText,
+      selection: TextSelection.collapsed(offset: 0),
+    );
 
     setState(() {
       inputText = pendingText;
