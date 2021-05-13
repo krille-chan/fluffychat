@@ -2331,5 +2331,15 @@
   "@editRoomAliases": {
     "type": "text",
     "placeholders": {}
+  },
+  "optionalAddEmail": "(İsteğe bağlı) E-posta adresiniz",
+  "@optionalAddEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidEmail": "Geçersiz e-posta",
+  "@invalidEmail": {
+    "type": "text",
+    "placeholders": {}
   }
 }
