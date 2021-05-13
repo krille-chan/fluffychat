@@ -2322,5 +2322,15 @@
   "@editRoomAliases": {
     "type": "text",
     "placeholders": {}
+  },
+  "optionalAddEmail": "Je e-mailadres (optioneel)",
+  "@optionalAddEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidEmail": "Ongeldige e-mail",
+  "@invalidEmail": {
+    "type": "text",
+    "placeholders": {}
   }
 }
