@@ -155,7 +155,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         );
       default:
         await launch(
-          Matrix.of(context).client.homeserver.toString() +
+          client.homeserver.toString() +
               '/_matrix/client/r0/auth/$stage/fallback/web?session=${uiaRequest.session}',
         );
         if (OkCancelResult.ok ==
@@ -169,6 +169,8 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
           return uiaRequest.completeStage(
             AuthenticationData(session: uiaRequest.session),
           );
+        } else {
+          return uiaRequest.cancel();
         }
     }
   }
