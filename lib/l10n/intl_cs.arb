@@ -2331,5 +2331,15 @@
   "@chats": {
     "type": "text",
     "placeholders": {}
+  },
+  "optionalAddEmail": "(Volitelné) Vaše e-mailová adresa",
+  "@optionalAddEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidEmail": "Neplatný e-mail",
+  "@invalidEmail": {
+    "type": "text",
+    "placeholders": {}
   }
 }
