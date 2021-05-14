@@ -2317,5 +2317,15 @@
   "@editRoomAliases": {
     "type": "text",
     "placeholders": {}
+  },
+  "optionalAddEmail": "(необавезно) ваша е-адреса",
+  "@optionalAddEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidEmail": "Лоша е-адреса",
+  "@invalidEmail": {
+    "type": "text",
+    "placeholders": {}
   }
 }
