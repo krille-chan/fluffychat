@@ -46,6 +46,8 @@
 	<string>Play audio and voice messages on bluetooth devices</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>Share calendar dates with your contacts in FluffyChat.</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Play audio and voice messages via bluetooth devices.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Open the camera and take a picture to share them with your contacts on FluffyChat.</string>
 	<key>NSContactsUsageDescription</key>
