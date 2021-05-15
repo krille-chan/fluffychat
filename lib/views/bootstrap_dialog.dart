@@ -8,6 +8,7 @@ import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
 
 import 'key_verification_dialog.dart';
 
@@ -178,10 +179,13 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
           buttons.add(AdaptiveFlatButton(
             label: L10n.of(context).transferFromAnotherDevice,
             onPressed: () async {
-              final req = await widget
-                  .client.userDeviceKeys[widget.client.userID]
-                  .startVerification();
-              await KeyVerificationDialog(request: req).show(context);
+              final req = await showFutureLoadingDialog(
+                context: context,
+                future: () => widget.client.userDeviceKeys[widget.client.userID]
+                    .startVerification(),
+              );
+              if (req.error != null) return;
+              await KeyVerificationDialog(request: req.result).show(context);
               Navigator.of(context, rootNavigator: false).pop();
             },
           ));
