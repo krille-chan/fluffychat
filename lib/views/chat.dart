@@ -9,6 +9,7 @@ import 'package:file_picker_cross/file_picker_cross.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/views/ui/chat_ui.dart';
 import 'package:fluffychat/views/recording_dialog.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/views/widgets/matrix.dart';
@@ -184,6 +185,15 @@ class ChatController extends State<Chat> {
         timeline.events.first.eventId,
         readReceiptLocationEventId: timeline.events.first.eventId,
       );
+      if (PlatformInfos.isIOS) {
+        // Workaround for iOS not clearing notifications with fcm_shared_isolate
+        if (!room.client.rooms.any((r) =>
+            r.membership == Membership.invite ||
+            (r.notificationCount != null && r.notificationCount > 0))) {
+          // ignore: unawaited_futures
+          FlutterLocalNotificationsPlugin().cancelAll();
+        }
+      }
     }
     return true;
   }
