@@ -160,17 +160,6 @@ class ChatController extends State<Chat> {
           throw err;
         });
       }
-      if (room.notificationCount != null &&
-          room.notificationCount > 0 &&
-          timeline != null &&
-          timeline.events.isNotEmpty &&
-          Matrix.of(context).webHasFocus) {
-        // ignore: unawaited_futures
-        room.sendReadMarker(
-          timeline.events.first.eventId,
-          readReceiptLocationEventId: timeline.events.first.eventId,
-        );
-      }
 
       // when the scroll controller is attached we want to scroll to an event id, if specified
       // and update the scroll controller...which will trigger a request history, if the
@@ -185,6 +174,17 @@ class ChatController extends State<Chat> {
       });
     }
     filteredEvents = timeline.getFilteredEvents(unfolded: unfolded);
+    if (room.notificationCount != null &&
+        room.notificationCount > 0 &&
+        timeline != null &&
+        timeline.events.isNotEmpty &&
+        Matrix.of(context).webHasFocus) {
+      // ignore: unawaited_futures
+      room.sendReadMarker(
+        timeline.events.first.eventId,
+        readReceiptLocationEventId: timeline.events.first.eventId,
+      );
+    }
     return true;
   }
 
