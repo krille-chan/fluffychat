@@ -41,6 +41,16 @@ abstract class FluffyThemes {
     snackBarTheme: SnackBarThemeData(
       behavior: kIsWeb ? SnackBarBehavior.floating : SnackBarBehavior.fixed,
     ),
+    pageTransitionsTheme: PageTransitionsTheme(
+      builders: {
+        TargetPlatform.fuchsia: ZoomPageTransitionsBuilder(),
+        TargetPlatform.android: ZoomPageTransitionsBuilder(),
+        TargetPlatform.linux: CupertinoPageTransitionsBuilder(),
+        TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
+        TargetPlatform.windows: CupertinoPageTransitionsBuilder(),
+        TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+      },
+    ),
     dialogTheme: DialogTheme(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(AppConfig.borderRadius),
@@ -125,6 +135,16 @@ abstract class FluffyThemes {
         borderRadius: BorderRadius.circular(AppConfig.borderRadius),
       ),
       clipBehavior: Clip.hardEdge,
+    ),
+    pageTransitionsTheme: PageTransitionsTheme(
+      builders: {
+        TargetPlatform.fuchsia: ZoomPageTransitionsBuilder(),
+        TargetPlatform.android: ZoomPageTransitionsBuilder(),
+        TargetPlatform.linux: CupertinoPageTransitionsBuilder(),
+        TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
+        TargetPlatform.windows: CupertinoPageTransitionsBuilder(),
+        TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+      },
     ),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: AppConfig.primaryColor,

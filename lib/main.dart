@@ -95,7 +95,7 @@ class FluffyChatApp extends StatelessWidget {
                               '/search',
                               '/contacts',
                             }.contains(settings.name)
-                        ? CupertinoPageRoute(builder: builder)
+                        ? MaterialPageRoute(builder: builder)
                         : FadeRoute(page: builder(context)),
               ),
             ),
