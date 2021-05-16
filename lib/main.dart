@@ -10,6 +10,7 @@ import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_app_lock/flutter_app_lock.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:universal_html/html.dart' as html;
@@ -76,32 +77,41 @@ class FluffyChatApp extends StatelessWidget {
             ? Locale(html.window.navigator.language.split('-').first)
             : null,
         home: Builder(
-          builder: (context) => Matrix(
-            context: context,
-            apl: _apl,
-            testClient: testClient,
-            child: Builder(
-              builder: (context) => AdaptivePageLayout(
-                key: _apl,
-                safeAreaOnColumnView: false,
-                onGenerateRoute: testWidget == null
-                    ? FluffyRoutes(context).onGenerateRoute
-                    : (_) => ViewData(mainView: (_) => testWidget),
-                dividerColor: Theme.of(context).dividerColor,
-                columnWidth: FluffyThemes.columnWidth,
-                dividerWidth: 1.0,
-                routeBuilder: (builder, settings) =>
-                    Matrix.of(context).loginState == LoginState.logged &&
-                            !{
-                              '/',
-                              '/search',
-                              '/contacts',
-                            }.contains(settings.name)
-                        ? MaterialPageRoute(builder: builder)
-                        : FadeRoute(page: builder(context)),
+          builder: (context) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              SystemChrome.setSystemUIOverlayStyle(
+                Theme.of(context).brightness == Brightness.light
+                    ? SystemUiOverlayStyle.light
+                    : SystemUiOverlayStyle.dark,
+              );
+            });
+            return Matrix(
+              context: context,
+              apl: _apl,
+              testClient: testClient,
+              child: Builder(
+                builder: (context) => AdaptivePageLayout(
+                  key: _apl,
+                  safeAreaOnColumnView: false,
+                  onGenerateRoute: testWidget == null
+                      ? FluffyRoutes(context).onGenerateRoute
+                      : (_) => ViewData(mainView: (_) => testWidget),
+                  dividerColor: Theme.of(context).dividerColor,
+                  columnWidth: FluffyThemes.columnWidth,
+                  dividerWidth: 1.0,
+                  routeBuilder: (builder, settings) =>
+                      Matrix.of(context).loginState == LoginState.logged &&
+                              !{
+                                '/',
+                                '/search',
+                                '/contacts',
+                              }.contains(settings.name)
+                          ? MaterialPageRoute(builder: builder)
+                          : FadeRoute(page: builder(context)),
+                ),
               ),
-            ),
-          ),
+            );
+          },
         ),
       ),
     );
