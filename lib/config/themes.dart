@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:flutter/services.dart';
 
 import 'app_config.dart';
 
@@ -98,6 +99,11 @@ abstract class FluffyThemes {
     appBarTheme: AppBarTheme(
       brightness: Brightness.light,
       color: Colors.white,
+      systemOverlayStyle: SystemUiOverlayStyle(
+        systemNavigationBarColor: Colors.white,
+        systemNavigationBarIconBrightness: Brightness.dark,
+        statusBarColor: Colors.transparent,
+      ),
       textTheme: TextTheme(
         headline6: TextStyle(
           color: Colors.black,
@@ -176,6 +182,11 @@ abstract class FluffyThemes {
     appBarTheme: AppBarTheme(
       brightness: Brightness.dark,
       color: Color(0xff1D1D1D),
+      systemOverlayStyle: SystemUiOverlayStyle(
+        systemNavigationBarColor: Colors.black,
+        systemNavigationBarIconBrightness: Brightness.light,
+        statusBarColor: Colors.transparent,
+      ),
       textTheme: TextTheme(
         headline6: TextStyle(
           color: Colors.white,
