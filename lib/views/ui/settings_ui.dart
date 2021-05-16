@@ -38,13 +38,7 @@ class SettingsUI extends StatelessWidget {
             expandedHeight: 300.0,
             floating: true,
             pinned: true,
-            title: Text(L10n.of(context).settings,
-                style: TextStyle(
-                    color: Theme.of(context)
-                        .appBarTheme
-                        .textTheme
-                        .headline6
-                        .color)),
+            title: Text(L10n.of(context).settings),
             actions: [
               FutureBuilder(
                   future: controller.crossSigningCachedFuture,

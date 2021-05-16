@@ -511,7 +511,7 @@ class ChatUI extends StatelessWidget {
                         controller.room.membership == Membership.join
                     ? Container(
                         decoration: BoxDecoration(
-                          color: Theme.of(context).backgroundColor,
+                          color: Theme.of(context).scaffoldBackgroundColor,
                         ),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.end,

@@ -258,7 +258,7 @@ class _MetaRow extends StatelessWidget {
         Text(
           event.originServerTs.localizedTime(context),
           style: TextStyle(
-            color: color.withAlpha(164),
+            color: color.withAlpha(180),
             fontSize: 10 * AppConfig.fontSizeFactor,
           ),
         ),
