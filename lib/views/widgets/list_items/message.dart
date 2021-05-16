@@ -76,62 +76,87 @@ class Message extends StatelessWidget {
       Expanded(
         child: Container(
           alignment: alignment,
-          child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 8),
-            padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
-            decoration: BoxDecoration(
-              color: color,
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: Material(
+            color: color,
+            borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+            child: InkWell(
+              onHover: (b) => useMouse = true,
+              onTap: !useMouse && longPressSelect
+                  ? () => null
+                  : () => onSelect(event),
+              onLongPress: !longPressSelect ? null : () => onSelect(event),
               borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-            ),
-            constraints:
-                BoxConstraints(maxWidth: FluffyThemes.columnWidth * 1.5),
-            child: Stack(
-              children: <Widget>[
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+              child: Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+                constraints:
+                    BoxConstraints(maxWidth: FluffyThemes.columnWidth * 1.5),
+                child: Stack(
                   children: <Widget>[
-                    if (event.relationshipType == RelationshipTypes.reply)
-                      FutureBuilder<Event>(
-                        future: event.getReplyEvent(timeline),
-                        builder: (BuildContext context, snapshot) {
-                          final replyEvent = snapshot.hasData
-                              ? snapshot.data
-                              : Event(
-                                  eventId: event.relationshipEventId,
-                                  content: {'msgtype': 'm.text', 'body': '...'},
-                                  senderId: event.senderId,
-                                  type: 'm.room.message',
-                                  room: event.room,
-                                  roomId: event.roomId,
-                                  status: 1,
-                                  originServerTs: DateTime.now(),
-                                );
-                          return InkWell(
-                            onTap: () {
-                              if (scrollToEventId != null) {
-                                scrollToEventId(replyEvent.eventId);
-                              }
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        if (event.relationshipType == RelationshipTypes.reply)
+                          FutureBuilder<Event>(
+                            future: event.getReplyEvent(timeline),
+                            builder: (BuildContext context, snapshot) {
+                              final replyEvent = snapshot.hasData
+                                  ? snapshot.data
+                                  : Event(
+                                      eventId: event.relationshipEventId,
+                                      content: {
+                                        'msgtype': 'm.text',
+                                        'body': '...'
+                                      },
+                                      senderId: event.senderId,
+                                      type: 'm.room.message',
+                                      room: event.room,
+                                      roomId: event.roomId,
+                                      status: 1,
+                                      originServerTs: DateTime.now(),
+                                    );
+                              return InkWell(
+                                onTap: () {
+                                  if (scrollToEventId != null) {
+                                    scrollToEventId(replyEvent.eventId);
+                                  }
+                                },
+                                child: AbsorbPointer(
+                                  child: Container(
+                                    margin: EdgeInsets.symmetric(vertical: 4.0),
+                                    child: ReplyContent(replyEvent,
+                                        lightText: ownMessage,
+                                        timeline: timeline),
+                                  ),
+                                ),
+                              );
                             },
-                            child: AbsorbPointer(
-                              child: Container(
-                                margin: EdgeInsets.symmetric(vertical: 4.0),
-                                child: ReplyContent(replyEvent,
-                                    lightText: ownMessage, timeline: timeline),
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    MessageContent(
-                      displayEvent,
-                      textColor: textColor,
+                          ),
+                        MessageContent(
+                          displayEvent,
+                          textColor: textColor,
+                        ),
+                        SizedBox(height: 3),
+                        Opacity(
+                          opacity: 0,
+                          child: _MetaRow(
+                            event, // meta information should be from the unedited event
+                            ownMessage,
+                            textColor,
+                            timeline,
+                            displayEvent,
+                          ),
+                        ),
+                      ],
                     ),
-                    SizedBox(height: 3),
-                    Opacity(
-                      opacity: 0,
+                    Positioned(
+                      bottom: 0,
+                      right: ownMessage ? 0 : null,
+                      left: !ownMessage ? 0 : null,
                       child: _MetaRow(
-                        event, // meta information should be from the unedited event
+                        event,
                         ownMessage,
                         textColor,
                         timeline,
@@ -140,19 +165,7 @@ class Message extends StatelessWidget {
                     ),
                   ],
                 ),
-                Positioned(
-                  bottom: 0,
-                  right: ownMessage ? 0 : null,
-                  left: !ownMessage ? 0 : null,
-                  child: _MetaRow(
-                    event,
-                    ownMessage,
-                    textColor,
-                    timeline,
-                    displayEvent,
-                  ),
-                ),
-              ],
+              ),
             ),
           ),
         ),
@@ -197,20 +210,13 @@ class Message extends StatelessWidget {
       container = row;
     }
 
-    return InkWell(
-      onHover: (b) => useMouse = true,
-      onTap: !useMouse && longPressSelect ? () => null : () => onSelect(event),
-      splashColor: Theme.of(context).primaryColor.withAlpha(100),
-      onLongPress: !longPressSelect ? null : () => onSelect(event),
-      child: Container(
-        color: selected
-            ? Theme.of(context).primaryColor.withAlpha(100)
-            : Theme.of(context).primaryColor.withAlpha(0),
-        child: Padding(
-          padding:
-              EdgeInsets.only(left: 8.0, right: 8.0, bottom: 4.0, top: 4.0),
-          child: container,
-        ),
+    return Container(
+      color: selected
+          ? Theme.of(context).primaryColor.withAlpha(100)
+          : Theme.of(context).primaryColor.withAlpha(0),
+      child: Padding(
+        padding: EdgeInsets.only(left: 8.0, right: 8.0, bottom: 4.0, top: 4.0),
+        child: container,
       ),
     );
   }
@@ -240,7 +246,7 @@ class _MetaRow extends StatelessWidget {
           Text(
             displayname,
             style: TextStyle(
-              fontSize: 11 * AppConfig.fontSizeFactor,
+              fontSize: 10 * AppConfig.fontSizeFactor,
               fontWeight: FontWeight.bold,
               color: (Theme.of(context).brightness == Brightness.light
                       ? displayname.darkColor
@@ -252,8 +258,8 @@ class _MetaRow extends StatelessWidget {
         Text(
           event.originServerTs.localizedTime(context),
           style: TextStyle(
-            color: color.withAlpha(200),
-            fontSize: 11 * AppConfig.fontSizeFactor,
+            color: color.withAlpha(164),
+            fontSize: 10 * AppConfig.fontSizeFactor,
           ),
         ),
         if (event.hasAggregatedEvents(timeline, RelationshipTypes.edit))

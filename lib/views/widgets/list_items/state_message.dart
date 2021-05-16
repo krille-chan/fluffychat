@@ -17,14 +17,15 @@ class StateMessage extends StatelessWidget {
     }
     final int counter =
         event.unsigned['im.fluffychat.collapsed_state_event_count'] ?? 0;
-    return InkWell(
-      onTap: counter != 0 ? () => unfold(event.eventId) : null,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 8.0,
-          vertical: 4.0,
-        ),
-        child: Center(
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 8.0,
+        vertical: 4.0,
+      ),
+      child: Center(
+        child: InkWell(
+          onTap: counter != 0 ? () => unfold(event.eventId) : null,
+          borderRadius: BorderRadius.circular(AppConfig.borderRadius),
           child: Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
