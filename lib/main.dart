@@ -28,9 +28,6 @@ void main() async {
   // To make sure that the parts of flutter needed are started up already, we need to ensure that the
   // widget bindings are initialized already.
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    statusBarColor: Colors.transparent,
-  ));
   FlutterError.onError = (FlutterErrorDetails details) =>
       Zone.current.handleUncaughtError(details.exception, details.stack);
 
@@ -79,25 +76,41 @@ class FluffyChatApp extends StatelessWidget {
             apl: _apl,
             testClient: testClient,
             child: Builder(
-              builder: (context) => AdaptivePageLayout(
-                key: _apl,
-                safeAreaOnColumnView: false,
-                onGenerateRoute: testWidget == null
-                    ? FluffyRoutes(context).onGenerateRoute
-                    : (_) => ViewData(mainView: (_) => testWidget),
-                dividerColor: Theme.of(context).dividerColor,
-                columnWidth: FluffyThemes.columnWidth,
-                dividerWidth: 1.0,
-                routeBuilder: (builder, settings) =>
-                    Matrix.of(context).loginState == LoginState.logged &&
-                            !{
-                              '/',
-                              '/search',
-                              '/contacts',
-                            }.contains(settings.name)
-                        ? MaterialPageRoute(builder: builder)
-                        : FadeRoute(page: builder(context)),
-              ),
+              builder: (context) {
+                final darkMode =
+                    Theme.of(context).brightness == Brightness.dark;
+                final brightness =
+                    darkMode ? Brightness.light : Brightness.dark;
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+                    systemNavigationBarColor:
+                        Theme.of(context).scaffoldBackgroundColor,
+                    statusBarColor: Colors.transparent,
+                    statusBarBrightness: brightness,
+                    statusBarIconBrightness: brightness,
+                    systemNavigationBarIconBrightness: brightness,
+                  ));
+                });
+                return AdaptivePageLayout(
+                  key: _apl,
+                  safeAreaOnColumnView: false,
+                  onGenerateRoute: testWidget == null
+                      ? FluffyRoutes(context).onGenerateRoute
+                      : (_) => ViewData(mainView: (_) => testWidget),
+                  dividerColor: Theme.of(context).dividerColor,
+                  columnWidth: FluffyThemes.columnWidth,
+                  dividerWidth: 1.0,
+                  routeBuilder: (builder, settings) =>
+                      Matrix.of(context).loginState == LoginState.logged &&
+                              !{
+                                '/',
+                                '/search',
+                                '/contacts',
+                              }.contains(settings.name)
+                          ? MaterialPageRoute(builder: builder)
+                          : FadeRoute(page: builder(context)),
+                );
+              },
             ),
           ),
         ),
