@@ -55,6 +55,12 @@ class FluffyChatApp extends StatelessWidget {
 
   const FluffyChatApp({Key key, this.testWidget, this.testClient})
       : super(key: key);
+
+  /// getInitialLink may rereturn the value multiple times if this view is
+  /// opened multiple times for example if the user logs out after they logged
+  /// in with qr code or magic link.
+  static bool gotInitialLink = false;
+
   @override
   Widget build(BuildContext context) {
     return AdaptiveTheme(

@@ -13,6 +13,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
+import 'package:uni_links/uni_links.dart';
+import '../main.dart';
 import 'widgets/matrix.dart';
 import '../utils/matrix_file_extension.dart';
 import '../utils/url_launcher.dart';
@@ -34,6 +36,8 @@ class ChatListController extends State<ChatList> {
   StreamSubscription _intentDataStreamSubscription;
 
   StreamSubscription _intentFileStreamSubscription;
+
+  StreamSubscription _intentUriStreamSubscription;
 
   final selectedRoomIds = <String>{};
 
@@ -57,13 +61,23 @@ class ChatListController extends State<ChatList> {
     if (text.toLowerCase().startsWith(AppConfig.inviteLinkPrefix) ||
         (text.toLowerCase().startsWith(AppConfig.schemePrefix) &&
             !RegExp(r'\s').hasMatch(text))) {
-      UrlLauncher(context, text).openMatrixToUrl();
       return;
     }
     Matrix.of(context).shareContent = {
       'msgtype': 'm.text',
       'body': text,
     };
+  }
+
+  void _processIncomingUris(String text) async {
+    if (text == null || !text.startsWith(AppConfig.appOpenUrlScheme)) return;
+    if (text.toLowerCase().startsWith(AppConfig.inviteLinkPrefix) ||
+        (text.toLowerCase().startsWith(AppConfig.schemePrefix) &&
+            !RegExp(r'\s').hasMatch(text))) {
+      AdaptivePageLayout.of(context).popUntilIsFirst();
+      UrlLauncher(context, text).openMatrixToUrl();
+      return;
+    }
   }
 
   void _initReceiveSharingIntent() {
@@ -82,6 +96,13 @@ class ChatListController extends State<ChatList> {
 
     // For sharing or opening urls/text coming from outside the app while the app is closed
     ReceiveSharingIntent.getInitialText().then(_processIncomingSharedText);
+
+    // For receiving shared Uris
+    _intentDataStreamSubscription = linkStream.listen(_processIncomingUris);
+    if (FluffyChatApp.gotInitialLink == false) {
+      FluffyChatApp.gotInitialLink = true;
+      getInitialLink().then(_processIncomingUris);
+    }
   }
 
   @override
@@ -94,6 +115,7 @@ class ChatListController extends State<ChatList> {
   void dispose() {
     _intentDataStreamSubscription?.cancel();
     _intentFileStreamSubscription?.cancel();
+    _intentUriStreamSubscription?.cancel();
     super.dispose();
   }
 

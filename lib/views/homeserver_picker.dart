@@ -7,13 +7,14 @@ import 'package:fluffychat/views/widgets/matrix.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:uni_links/uni_links.dart';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
-import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../main.dart';
 import '../utils/localized_exception_extension.dart';
 import 'package:universal_html/html.dart' as html;
 
@@ -41,24 +42,27 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     );
   }
 
-  void _processIncomingSharedText(String text) async {
+  void _processIncomingUris(String text) async {
     if (text == null || !text.startsWith(AppConfig.appOpenUrlScheme)) return;
     AdaptivePageLayout.of(context).popUntilIsFirst();
     final token = Uri.parse(text).queryParameters['loginToken'];
-    _loginWithToken(token);
+    if (token != null) _loginWithToken(token);
   }
 
-  void _initReceiveSharingContent() {
+  void _initReceiveUri() {
     if (!PlatformInfos.isMobile) return;
-    _intentDataStreamSubscription =
-        ReceiveSharingIntent.getTextStream().listen(_processIncomingSharedText);
-    ReceiveSharingIntent.getInitialText().then(_processIncomingSharedText);
+    // For receiving shared Uris
+    _intentDataStreamSubscription = linkStream.listen(_processIncomingUris);
+    if (FluffyChatApp.gotInitialLink == false) {
+      FluffyChatApp.gotInitialLink = true;
+      getInitialLink().then(_processIncomingUris);
+    }
   }
 
   @override
   void initState() {
     super.initState();
-    _initReceiveSharingContent();
+    _initReceiveUri();
     if (kIsWeb) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         final token =
