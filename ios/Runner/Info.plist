@@ -19,7 +19,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>$(FLUTTER_BUILD_NAME)</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -42,12 +42,12 @@
 	<true/>
 	<key>NSAppleMusicUsageDescription</key>
 	<string>Play audio and voice messages in the app.</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Play audio and voice messages via bluetooth devices.</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>Play audio and voice messages on bluetooth devices</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>Share calendar dates with your contacts in FluffyChat.</string>
-	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>Play audio and voice messages via bluetooth devices.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Open the camera and take a picture to share them with your contacts on FluffyChat.</string>
 	<key>NSContactsUsageDescription</key>
