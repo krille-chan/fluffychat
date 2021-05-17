@@ -739,7 +739,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "isTyping": "正在打字...",
+  "isTyping": "正在打字…",
   "@isTyping": {
     "type": "text",
     "placeholders": {}
@@ -836,7 +836,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "loadMore": "加载更多...",
+  "loadMore": "加载更多…",
   "@loadMore": {
     "type": "text",
     "placeholders": {}
@@ -943,7 +943,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noRoomsFound": "未找到聊天室...",
+  "noRoomsFound": "未找到聊天室…",
   "@noRoomsFound": {
     "type": "text",
     "placeholders": {}
@@ -975,7 +975,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "oopsSomethingWentWrong": "哦！出了一些错误...",
+  "oopsSomethingWentWrong": "哦！出了一些错误…",
   "@oopsSomethingWentWrong": {
     "type": "text",
     "placeholders": {}
