@@ -2395,5 +2395,10 @@
     }
   },
   "signInWithPassword": "パスワードでログイン",
-  "@signInWithPassword": {}
+  "@signInWithPassword": {},
+  "discover": "",
+  "@discover": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
