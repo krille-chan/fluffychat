@@ -2229,5 +2229,25 @@
   "@chats": {
     "type": "text",
     "placeholders": {}
+  },
+  "securityKeyLost": "セキュリティキーを紛失しましたか？",
+  "@securityKeyLost": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addEmail": "メールアドレスを追加する",
+  "@addEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verified": "検証済み",
+  "@verified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKey": "セキュリティキー",
+  "@securityKey": {
+    "type": "text",
+    "placeholders": {}
   }
 }
