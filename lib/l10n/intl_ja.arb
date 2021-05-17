@@ -149,7 +149,7 @@
       "homeserver": {}
     }
   },
-  "cachedKeys": "鍵のキャッシュに成功しました！",
+  "cachedKeys": "鍵をキャッシュしました",
   "@cachedKeys": {
     "type": "text",
     "placeholders": {}
@@ -1947,6 +1947,286 @@
   },
   "mention": "メンション",
   "@mention": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userUnknownVerification": "ユーザーは不明な認証状態です",
+  "@userUnknownVerification": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wipeChatBackup": "新しい秘密鍵を作るためにチャットのバックアップを消去しますか？",
+  "@wipeChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fontSize": "フォントサイズ",
+  "@fontSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userNotVerified": "ユーザーは認証されていません",
+  "@userNotVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userVerified": "ユーザーは認証されました",
+  "@userVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPlay": "再生",
+  "@audioPlayerPlay": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPause": "一時停止",
+  "@audioPlayerPause": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unlockChatBackup": "チャットのバックアップを解錠する",
+  "@unlockChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "security": "セキュリティ",
+  "@security": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appLock": "アプリのロック",
+  "@appLock": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChooseAPasscode": "パスコードを選んでください",
+  "@pleaseChooseAPasscode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editBlockedServers": "ブロックしたサーバーを編集",
+  "@editBlockedServers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discoverGroups": "グループを発見",
+  "@discoverGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reportMessage": "メッセージを通報",
+  "@reportMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "redactMessage": "メッセージを書く",
+  "@redactMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contentHasBeenReported": "サーバー管理者に通報されました",
+  "@contentHasBeenReported": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reason": "理由",
+  "@reason": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whyDoYouWantToReportThis": "なぜこれを通報したいのですか？",
+  "@whyDoYouWantToReportThis": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inoffensive": "非攻撃的",
+  "@inoffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offensive": "攻撃的",
+  "@offensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "extremeOffensive": "とても攻撃的",
+  "@extremeOffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "search": "検索",
+  "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discover": "発見する",
+  "@discover": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "all": "すべて",
+  "@all": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "friends": "友達",
+  "@friends": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groups": "グループ",
+  "@groups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "messages": "メッセージ",
+  "@messages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "status": "ステータス",
+  "@status": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignore": "無視する",
+  "@ignore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterYourPin": "PINを入力してください",
+  "@pleaseEnterYourPin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewFriend": "友達を追加",
+  "@addNewFriend": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newChat": "新規チャット",
+  "@newChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEmotesGlobally": "emoteをグローバルに有効にする",
+  "@enableEmotesGlobally": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pushRules": "ルールを追加する",
+  "@pushRules": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteForMe": "自分への招待",
+  "@inviteForMe": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oneMoreEvent": "もう1つのイベント",
+  "@oneMoreEvent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackupDescription": "チャットのバックアップは秘密鍵によって保存されます。失くさないように気をつけてください。",
+  "@chatBackupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noEncryptionForPublicRooms": "ルームを非公開にした後暗号化を有効にできます",
+  "@noEncryptionForPublicRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapOnDeviceToVerify": "デバイス上でタップして認証",
+  "@tapOnDeviceToVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackup": "チャットのバックアップ",
+  "@chatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showPassword": "パスワードを表示",
+  "@showPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "next": "次へ",
+  "@next": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youWillBeConnectedTo": "{homeserver}に接続します",
+  "@youWillBeConnectedTo": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "areYouSureYouWantToLogout": "ログアウトしてよろしいですか？",
+  "@areYouSureYouWantToLogout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPublicRoomsFound": "公開ルームが見つかりませんでした…",
+  "@noPublicRoomsFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "goToTheNewRoom": "新規ルームへ",
+  "@goToTheNewRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "roomVersion": "ルームバージョン",
+  "@roomVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "badServerLoginTypesException": "ホームサーバーでサポートされているログインタイプ：\n{serverVersions}\nアプリでは{supportedVersions}しかサポートされていません",
+  "@badServerLoginTypesException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "badServerVersionsException": "ホームサーバーでサポートされているバージョン：\n{serverVersions}\nアプリでは{supportedVersions}しかサポートされていません",
+  "@badServerVersionsException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "publicGroups": "公開グループ",
+  "@publicGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clearArchive": "アーカイブを消去",
+  "@clearArchive": {},
+  "people": "人々",
+  "@people": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setAsCanonicalAlias": "メインエイリアスに設定",
+  "@setAsCanonicalAlias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAliases": "ルームエイリアスを編集",
+  "@editRoomAliases": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chats": "チャット",
+  "@chats": {
     "type": "text",
     "placeholders": {}
   }
