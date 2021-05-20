@@ -652,10 +652,7 @@ class ChatController extends State<Chat> {
       room.sendTypingNotification(true,
           timeout: Duration(seconds: 30).inMilliseconds);
     }
-    // Workaround for a current desktop bug
-    if (!PlatformInfos.isBetaDesktop) {
-      setState(() => inputText = text);
-    }
+    setState(() => inputText = text);
   }
 
   void cancelReplyEventAction() => setState(() {
