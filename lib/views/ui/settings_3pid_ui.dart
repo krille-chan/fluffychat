@@ -12,8 +12,7 @@ class Settings3PidUI extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    controller.request ??=
-        Matrix.of(context).client.getAccount3PIDs();
+    controller.request ??= Matrix.of(context).client.getAccount3PIDs();
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(),

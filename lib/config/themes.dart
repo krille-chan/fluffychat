@@ -99,7 +99,6 @@ abstract class FluffyThemes {
     appBarTheme: AppBarTheme(
       brightness: Brightness.light,
       color: Colors.white,
-      systemOverlayStyle: SystemUiOverlayStyle.dark,
       textTheme: TextTheme(
         headline6: TextStyle(
           color: Colors.black,
@@ -178,7 +177,6 @@ abstract class FluffyThemes {
     appBarTheme: AppBarTheme(
       brightness: Brightness.dark,
       color: Color(0xff1D1D1D),
-      systemOverlayStyle: SystemUiOverlayStyle.light,
       textTheme: TextTheme(
         headline6: TextStyle(
           color: Colors.white,

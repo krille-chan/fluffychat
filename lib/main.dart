@@ -80,9 +80,14 @@ class FluffyChatApp extends StatelessWidget {
           builder: (context) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               SystemChrome.setSystemUIOverlayStyle(
-                Theme.of(context).brightness == Brightness.light
-                    ? SystemUiOverlayStyle.light
-                    : SystemUiOverlayStyle.dark,
+                SystemUiOverlayStyle(
+                  statusBarColor: Colors.transparent,
+                  systemNavigationBarColor: Theme.of(context).backgroundColor,
+                  systemNavigationBarIconBrightness:
+                      Theme.of(context).brightness == Brightness.light
+                          ? Brightness.dark
+                          : Brightness.light,
+                ),
               );
             });
             return Matrix(
