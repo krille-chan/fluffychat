@@ -98,7 +98,7 @@ class SettingsNotificationsController extends State<SettingsNotifications> {
   void setNotificationSetting(NotificationSettingsItem item, bool enabled) {
     showFutureLoadingDialog(
       context: context,
-      future: () => Matrix.of(context).client.enablePushRule(
+      future: () => Matrix.of(context).client.setPushRuleEnabled(
             'global',
             item.type,
             item.key,

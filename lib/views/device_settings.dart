@@ -18,7 +18,7 @@ class DevicesSettingsController extends State<DevicesSettings> {
   List<Device> devices;
   Future<bool> loadUserDevices(BuildContext context) async {
     if (devices != null) return true;
-    devices = await Matrix.of(context).client.requestDevices();
+    devices = await Matrix.of(context).client.getDevices();
     return true;
   }
 
@@ -80,7 +80,7 @@ class DevicesSettingsController extends State<DevicesSettings> {
       context: context,
       future: () => Matrix.of(context)
           .client
-          .setDeviceMetadata(device.deviceId, displayName: displayName.single),
+          .updateDevice(device.deviceId, displayName: displayName.single),
     );
     if (success.error == null) {
       reload();

@@ -51,7 +51,7 @@ class Settings3PidController extends State<Settings3Pid> {
     final success = await showFutureLoadingDialog(
       context: context,
       future: () => Matrix.of(context).client.uiaRequestBackground(
-            (auth) => Matrix.of(context).client.addThirdPartyIdentifier(
+            (auth) => Matrix.of(context).client.add3PID(
                   clientSecret,
                   response.result.sid,
                   auth: auth,
@@ -77,7 +77,7 @@ class Settings3PidController extends State<Settings3Pid> {
     }
     final success = await showFutureLoadingDialog(
         context: context,
-        future: () => Matrix.of(context).client.deleteThirdPartyIdentifier(
+        future: () => Matrix.of(context).client.delete3pidFromAccount(
               identifier.address,
               identifier.medium,
             ));

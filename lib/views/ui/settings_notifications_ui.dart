@@ -89,7 +89,7 @@ class SettingsNotificationsUI extends StatelessWidget {
                     ),
                   ),
                   FutureBuilder<List<Pusher>>(
-                    future: Matrix.of(context).client.requestPushers(),
+                    future: Matrix.of(context).client.getPushers(),
                     builder: (context, snapshot) {
                       if (snapshot.hasError) {
                         Center(

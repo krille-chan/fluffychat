@@ -182,7 +182,7 @@ class SettingsController extends State<Settings> {
     final success = await showFutureLoadingDialog(
       context: context,
       future: () =>
-          matrix.client.setDisplayname(matrix.client.userID, input.single),
+          matrix.client.setDisplayName(matrix.client.userID, input.single),
     );
     if (success.error == null) {
       setState(() {

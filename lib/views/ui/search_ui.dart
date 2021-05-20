@@ -27,7 +27,7 @@ class SearchUI extends StatelessWidget {
     }
     controller.publicRoomsResponse ??= Matrix.of(context)
         .client
-        .searchPublicRooms(
+        .queryPublicRooms(
           server: server,
           genericSearchTerm: controller.genericSearchTerm,
         )

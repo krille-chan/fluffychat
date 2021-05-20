@@ -25,7 +25,7 @@ class PublicRoomListItem extends StatelessWidget {
 
   Future<String> _joinRoomAndWait(BuildContext context) async {
     final roomId =
-        await Matrix.of(context).client.joinRoomOrAlias(publicRoomEntry.roomId);
+        await Matrix.of(context).client.joinRoom(publicRoomEntry.roomId);
     if (Matrix.of(context).client.getRoomById(roomId) == null) {
       await Matrix.of(context)
           .client

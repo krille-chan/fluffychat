@@ -87,7 +87,7 @@ class InvitationSelectionController extends State<InvitationSelection> {
     final matrix = Matrix.of(context);
     UserSearchResult response;
     try {
-      response = await matrix.client.searchUser(text, limit: 10);
+      response = await matrix.client.searchUserDirectory(text, limit: 10);
     } catch (e) {
       AdaptivePageLayout.of(context).showSnackBar(
           SnackBar(content: Text((e as Object).toLocalizedString(context))));

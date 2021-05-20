@@ -88,7 +88,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         final statusMsg = await store.getItem(SettingKeys.ownStatusMessage);
         if (statusMsg?.isNotEmpty ?? false) {
           Logs().v('Send cached status message: "$statusMsg"');
-          await client.sendPresence(
+          await client.setPresence(
             client.userID,
             PresenceType.online,
             statusMsg: statusMsg,

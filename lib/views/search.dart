@@ -48,7 +48,7 @@ class SearchController extends State<Search> {
     }
     final newRoomId = await Matrix.of(context)
         .client
-        .joinRoomOrAlias(alias?.isNotEmpty ?? false ? alias : roomId);
+        .joinRoom(alias?.isNotEmpty ?? false ? alias : roomId);
     await Matrix.of(context)
         .client
         .onRoomUpdate
@@ -120,7 +120,7 @@ class SearchController extends State<Search> {
     final matrix = Matrix.of(context);
     UserSearchResult response;
     try {
-      response = await matrix.client.searchUser(text, limit: 10);
+      response = await matrix.client.searchUserDirectory(text, limit: 10);
     } catch (_) {}
     foundProfiles = List<Profile>.from(response?.results ?? []);
     if (foundProfiles.isEmpty && text.isValidMatrixId && text.sigil == '@') {

@@ -47,8 +47,8 @@ class ChatPermissionsSettingsController extends State<ChatPermissionsSettings> {
     inspect(content);
     await showFutureLoadingDialog(
       context: context,
-      future: () =>
-          room.client.sendState(room.id, EventTypes.RoomPowerLevels, content),
+      future: () => room.client
+          .setRoomStateWithKey(room.id, EventTypes.RoomPowerLevels, content),
     );
   }
 

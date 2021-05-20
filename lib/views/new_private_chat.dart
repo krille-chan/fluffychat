@@ -73,7 +73,7 @@ class NewPrivateChatController extends State<NewPrivateChat> {
     final matrix = Matrix.of(context);
     UserSearchResult response;
     try {
-      response = await matrix.client.searchUser(text, limit: 10);
+      response = await matrix.client.searchUserDirectory(text, limit: 10);
     } catch (_) {}
     setState(() => loading = false);
     if (response?.results?.isEmpty ?? true) return;

@@ -45,8 +45,7 @@ class UrlLauncher {
         // we were unable to find the room locally...so resolve it
         final response = await showFutureLoadingDialog(
           context: context,
-          future: () =>
-              matrix.client.requestRoomAliasInformation(roomIdOrAlias),
+          future: () => matrix.client.getRoomIdByAlias(roomIdOrAlias),
         );
         if (response.error != null) {
           return; // nothing to do, the alias doesn't exist
@@ -79,7 +78,7 @@ class UrlLauncher {
           roomId = roomIdOrAlias;
           final response = await showFutureLoadingDialog(
             context: context,
-            future: () => matrix.client.joinRoomOrAlias(
+            future: () => matrix.client.joinRoom(
               roomIdOrAlias,
               servers: servers.isNotEmpty ? servers.toList() : null,
             ),

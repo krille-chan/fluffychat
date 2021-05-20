@@ -77,8 +77,8 @@ class EmotesSettingsController extends State<EmotesSettings> {
     if (widget.room != null) {
       await showFutureLoadingDialog(
         context: context,
-        future: () => client.sendState(widget.room.id, 'im.ponies.room_emotes',
-            content, widget.stateKey ?? ''),
+        future: () => client.setRoomStateWithKey(widget.room.id,
+            'im.ponies.room_emotes', content, widget.stateKey ?? ''),
       );
     } else {
       await showFutureLoadingDialog(
@@ -249,7 +249,8 @@ class EmotesSettingsController extends State<EmotesSettings> {
     }
     final uploadResp = await showFutureLoadingDialog(
       context: context,
-      future: () => Matrix.of(context).client.upload(file.bytes, file.name),
+      future: () =>
+          Matrix.of(context).client.uploadContent(file.bytes, file.name),
     );
     if (uploadResp.error == null) {
       setState(() {

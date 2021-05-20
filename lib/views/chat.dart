@@ -181,7 +181,7 @@ class ChatController extends State<Chat> {
         timeline.events.isNotEmpty &&
         Matrix.of(context).webHasFocus) {
       // ignore: unawaited_futures
-      room.sendReadMarker(
+      room.setReadMarker(
         timeline.events.first.eventId,
         readReceiptLocationEventId: timeline.events.first.eventId,
       );
@@ -351,7 +351,7 @@ class ChatController extends State<Chat> {
     if (reason == null || reason.single.isEmpty) return;
     final result = await showFutureLoadingDialog(
       context: context,
-      future: () => Matrix.of(context).client.reportEvent(
+      future: () => Matrix.of(context).client.reportContent(
             event.roomId,
             event.eventId,
             reason.single,
@@ -377,7 +377,8 @@ class ChatController extends State<Chat> {
     for (final event in selectedEvents) {
       await showFutureLoadingDialog(
           context: context,
-          future: () => event.status > 0 ? event.redact() : event.remove());
+          future: () =>
+              event.status > 0 ? event.redactEvent() : event.remove());
     }
     setState(() => selectedEvents.clear());
   }
@@ -629,7 +630,7 @@ class ChatController extends State<Chat> {
     typingCoolDown = Timer(Duration(seconds: 2), () {
       typingCoolDown = null;
       currentlyTyping = false;
-      room.sendTypingNotification(false);
+      room.setTyping(false);
     });
     typingTimeout ??= Timer(Duration(seconds: 30), () {
       typingTimeout = null;
@@ -637,8 +638,7 @@ class ChatController extends State<Chat> {
     });
     if (!currentlyTyping) {
       currentlyTyping = true;
-      room.sendTypingNotification(true,
-          timeout: Duration(seconds: 30).inMilliseconds);
+      room.setTyping(true, timeout: Duration(seconds: 30).inMilliseconds);
     }
     setState(() => inputText = text);
   }

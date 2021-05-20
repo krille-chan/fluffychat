@@ -230,10 +230,10 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "70ee808911f49f34bbc933859dfffd4b804f1b2e"
+      resolved-ref: "6fae2e1426fa440b09bafb9bc23e8791037c6efe"
       url: "https://gitlab.com/famedly/famedlysdk.git"
     source: git
-    version: "0.0.1"
+    version: "0.1.0"
   fcm_shared_isolate:
     dependency: "direct main"
     description:
@@ -564,13 +564,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0+1"
-  logger:
-    dependency: transitive
-    description:
-      name: logger
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0"
   logging:
     dependency: transitive
     description:
@@ -598,7 +591,7 @@ packages:
       name: matrix_api_lite
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.6"
+    version: "0.3.1"
   matrix_link_text:
     dependency: transitive
     description:

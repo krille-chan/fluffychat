@@ -110,7 +110,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
         AppConfig.jitsiInstance = jitsi;
       }
 
-      final loginTypes = await Matrix.of(context).client.requestLoginTypes();
+      final loginTypes = await Matrix.of(context).client.getLoginFlows();
       if (loginTypes.flows
           .any((flow) => flow.type == AuthenticationTypes.password)) {
         await AdaptivePageLayout.of(context)

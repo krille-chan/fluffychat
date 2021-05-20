@@ -79,7 +79,7 @@ class SignUpPasswordController extends State<SignUpPassword> {
       if (matrix.currentClientSecret != null &&
           matrix.currentThreepidCreds != null) {
         Logs().d('Add third party identifier');
-        await matrix.client.addThirdPartyIdentifier(
+        await matrix.client.add3PID(
           matrix.currentClientSecret,
           matrix.currentThreepidCreds.sid,
         );
@@ -94,7 +94,7 @@ class SignUpPasswordController extends State<SignUpPassword> {
     // tchncs.de
     try {
       await matrix.client
-          .setDisplayname(matrix.client.userID, widget.displayname);
+          .setDisplayName(matrix.client.userID, widget.displayname);
     } catch (exception) {
       AdaptivePageLayout.of(context).showSnackBar(
           SnackBar(content: Text(L10n.of(context).couldNotSetDisplayname)));

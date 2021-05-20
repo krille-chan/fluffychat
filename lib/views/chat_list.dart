@@ -184,7 +184,7 @@ class ChatListController extends State<ChatList> {
     if (input == null) return;
     await showFutureLoadingDialog(
       context: context,
-      future: () => Matrix.of(context).client.sendPresence(
+      future: () => Matrix.of(context).client.setPresence(
             Matrix.of(context).client.userID,
             PresenceType.online,
             statusMsg: input.single,

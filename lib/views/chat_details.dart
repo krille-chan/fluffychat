@@ -143,14 +143,14 @@ class ChatDetailsController extends State<ChatDetails> {
       case AliasActions.delete:
         await showFutureLoadingDialog(
           context: context,
-          future: () => room.client.removeRoomAlias(select),
+          future: () => room.client.deleteRoomAlias(select),
         );
         break;
       case AliasActions.setCanonical:
         await showFutureLoadingDialog(
           context: context,
-          future: () =>
-              room.client.sendState(room.id, EventTypes.RoomCanonicalAlias, {
+          future: () => room.client
+              .setRoomStateWithKey(room.id, EventTypes.RoomCanonicalAlias, {
             'alias': select,
           }),
         );
@@ -180,8 +180,8 @@ class ChatDetailsController extends State<ChatDetails> {
     if (input == null) return;
     await showFutureLoadingDialog(
       context: context,
-      future: () => room.client
-          .createRoomAlias('#' + input.single + ':' + domain, room.id),
+      future: () =>
+          room.client.setRoomAlias('#' + input.single + ':' + domain, room.id),
     );
   }
 

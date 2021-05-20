@@ -133,7 +133,7 @@ class BackgroundPush {
     }
     final clientName = PlatformInfos.clientName;
     oldTokens ??= <String>{};
-    final pushers = await client.requestPushers().catchError((e) {
+    final pushers = await client.getPushers().catchError((e) {
       Logs().w('[Push] Unable to request pushers', e);
       return <Pusher>[];
     });
@@ -179,7 +179,7 @@ class BackgroundPush {
           oldTokens.contains(pusher.pushkey)) {
         pusher.kind = null;
         try {
-          await client.setPusher(
+          await client.postPusher(
             pusher,
             append: true,
           );
@@ -191,7 +191,7 @@ class BackgroundPush {
     }
     if (setNewPusher) {
       try {
-        await client.setPusher(
+        await client.postPusher(
           Pusher(
             token,
             thisAppId,
@@ -534,7 +534,7 @@ class BackgroundPush {
           try {
             Logs().v(
                 '[Push] failed to sync for fallback push, fetching notifications endpoint...');
-            final notifications = await client.requestNotifications(limit: 20);
+            final notifications = await client.getNotifications(limit: 20);
             final notificationRooms =
                 notifications.notifications.map((n) => n.roomId).toSet();
             emptyRooms = client.rooms

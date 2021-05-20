@@ -93,7 +93,7 @@ class ChatPermissionsSettingsUI extends StatelessWidget {
                     if (room.canSendEvent(EventTypes.RoomTombstone)) ...{
                       Divider(thickness: 1),
                       FutureBuilder<ServerCapabilities>(
-                        future: room.client.requestServerCapabilities(),
+                        future: room.client.getCapabilities(),
                         builder: (context, snapshot) {
                           if (!snapshot.hasData) {
                             return Center(child: CircularProgressIndicator());

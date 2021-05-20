@@ -51,7 +51,7 @@ class SignUpController extends State<SignUp> {
         usernameController.text.toLowerCase().trim().replaceAll(' ', '-');
 
     try {
-      await matrix.client.usernameAvailable(preferredUsername);
+      await matrix.client.checkUsernameAvailability(preferredUsername);
     } on MatrixException catch (exception) {
       setState(() => usernameError = exception.errorMessage);
       return setState(() => loading = false);
