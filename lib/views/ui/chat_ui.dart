@@ -2,6 +2,7 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
+import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/views/chat.dart';
 import 'package:fluffychat/views/widgets/avatar.dart';
@@ -415,68 +416,70 @@ class ChatUI extends StatelessWidget {
                     },
                   ),
                 ),
-                AnimatedContainer(
-                  duration: Duration(milliseconds: 300),
-                  height: (controller.editEvent == null &&
-                          controller.replyEvent == null &&
-                          controller.room.canSendDefaultMessages &&
-                          controller.selectedEvents.length == 1)
-                      ? 56
-                      : 0,
-                  child: Material(
-                    color: Theme.of(context).secondaryHeaderColor,
-                    child: Builder(builder: (context) {
-                      if (!(controller.editEvent == null &&
-                          controller.replyEvent == null &&
-                          controller.selectedEvents.length == 1)) {
-                        return Container();
-                      }
-                      final emojis = List<String>.from(AppEmojis.emojis);
-                      final allReactionEvents = controller.selectedEvents.first
-                          .aggregatedEvents(
-                              controller.timeline, RelationshipTypes.reaction)
-                          ?.where((event) =>
-                              event.senderId == event.room.client.userID &&
-                              event.type == 'm.reaction');
+                if (!controller.showEmojiPicker)
+                  AnimatedContainer(
+                    duration: Duration(milliseconds: 300),
+                    height: (controller.editEvent == null &&
+                            controller.replyEvent == null &&
+                            controller.room.canSendDefaultMessages &&
+                            controller.selectedEvents.length == 1)
+                        ? 56
+                        : 0,
+                    child: Material(
+                      color: Theme.of(context).secondaryHeaderColor,
+                      child: Builder(builder: (context) {
+                        if (!(controller.editEvent == null &&
+                            controller.replyEvent == null &&
+                            controller.selectedEvents.length == 1)) {
+                          return Container();
+                        }
+                        final emojis = List<String>.from(AppEmojis.emojis);
+                        final allReactionEvents = controller
+                            .selectedEvents.first
+                            .aggregatedEvents(
+                                controller.timeline, RelationshipTypes.reaction)
+                            ?.where((event) =>
+                                event.senderId == event.room.client.userID &&
+                                event.type == 'm.reaction');
 
-                      allReactionEvents.forEach((event) {
-                        try {
-                          emojis.remove(event.content['m.relates_to']['key']);
-                        } catch (_) {}
-                      });
-                      return ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: emojis.length + 1,
-                        itemBuilder: (c, i) => i == emojis.length
-                            ? InkWell(
-                                borderRadius: BorderRadius.circular(8),
-                                onTap: () => controller
-                                    .pickEmojiAction(allReactionEvents),
-                                child: Container(
-                                  width: 56,
-                                  height: 56,
-                                  alignment: Alignment.center,
-                                  child: Icon(Icons.add_outlined),
-                                ),
-                              )
-                            : InkWell(
-                                borderRadius: BorderRadius.circular(8),
-                                onTap: () =>
-                                    controller.sendEmojiAction(emojis[i]),
-                                child: Container(
-                                  width: 56,
-                                  height: 56,
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    emojis[i],
-                                    style: TextStyle(fontSize: 30),
+                        allReactionEvents.forEach((event) {
+                          try {
+                            emojis.remove(event.content['m.relates_to']['key']);
+                          } catch (_) {}
+                        });
+                        return ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: emojis.length + 1,
+                          itemBuilder: (c, i) => i == emojis.length
+                              ? InkWell(
+                                  borderRadius: BorderRadius.circular(8),
+                                  onTap: () => controller
+                                      .pickEmojiAction(allReactionEvents),
+                                  child: Container(
+                                    width: 56,
+                                    height: 56,
+                                    alignment: Alignment.center,
+                                    child: Icon(Icons.add_outlined),
+                                  ),
+                                )
+                              : InkWell(
+                                  borderRadius: BorderRadius.circular(8),
+                                  onTap: () =>
+                                      controller.sendEmojiAction(emojis[i]),
+                                  child: Container(
+                                    width: 56,
+                                    height: 56,
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      emojis[i],
+                                      style: TextStyle(fontSize: 30),
+                                    ),
                                   ),
                                 ),
-                              ),
-                      );
-                    }),
+                        );
+                      }),
+                    ),
                   ),
-                ),
                 AnimatedContainer(
                   duration: Duration(milliseconds: 300),
                   height: controller.editEvent != null ||
@@ -507,204 +510,207 @@ class ChatUI extends StatelessWidget {
                   height: 1,
                   thickness: 1,
                 ),
-                controller.room.canSendDefaultMessages &&
-                        controller.room.membership == Membership.join
-                    ? Container(
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).scaffoldBackgroundColor,
-                        ),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: controller.selectMode
-                              ? <Widget>[
-                                  Container(
-                                    height: 56,
-                                    child: TextButton(
-                                      onPressed: controller.forwardEventsAction,
-                                      child: Row(
-                                        children: <Widget>[
-                                          Icon(Icons
-                                              .keyboard_arrow_left_outlined),
-                                          Text(L10n.of(context).forward),
-                                        ],
-                                      ),
-                                    ),
+                if (controller.room.canSendDefaultMessages &&
+                    controller.room.membership == Membership.join &&
+                    !controller.showEmojiPicker)
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).scaffoldBackgroundColor,
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: controller.selectMode
+                          ? <Widget>[
+                              Container(
+                                height: 56,
+                                child: TextButton(
+                                  onPressed: controller.forwardEventsAction,
+                                  child: Row(
+                                    children: <Widget>[
+                                      Icon(Icons.keyboard_arrow_left_outlined),
+                                      Text(L10n.of(context).forward),
+                                    ],
                                   ),
-                                  controller.selectedEvents.length == 1
-                                      ? controller.selectedEvents.first
-                                                  .getDisplayEvent(
-                                                      controller.timeline)
-                                                  .status >
-                                              0
-                                          ? Container(
-                                              height: 56,
-                                              child: TextButton(
-                                                onPressed:
-                                                    controller.replyAction,
-                                                child: Row(
-                                                  children: <Widget>[
-                                                    Text(
-                                                        L10n.of(context).reply),
-                                                    Icon(Icons
-                                                        .keyboard_arrow_right),
-                                                  ],
-                                                ),
-                                              ),
-                                            )
-                                          : Container(
-                                              height: 56,
-                                              child: TextButton(
-                                                onPressed:
-                                                    controller.sendAgainAction,
-                                                child: Row(
-                                                  children: <Widget>[
-                                                    Text(L10n.of(context)
-                                                        .tryToSendAgain),
-                                                    SizedBox(width: 4),
-                                                    Icon(Icons.send_outlined,
-                                                        size: 16),
-                                                  ],
-                                                ),
-                                              ),
-                                            )
-                                      : Container(),
-                                ]
-                              : <Widget>[
-                                  AnimatedContainer(
-                                    duration: Duration(milliseconds: 200),
-                                    height: 56,
-                                    width:
-                                        controller.inputText.isEmpty ? 56 : 0,
-                                    alignment: Alignment.center,
-                                    clipBehavior: Clip.hardEdge,
-                                    decoration: BoxDecoration(),
-                                    child: PopupMenuButton<String>(
-                                      icon: Icon(Icons.add_outlined),
-                                      onSelected: controller
-                                          .onAddPopupMenuButtonSelected,
-                                      itemBuilder: (BuildContext context) =>
-                                          <PopupMenuEntry<String>>[
-                                        PopupMenuItem<String>(
-                                          value: 'file',
-                                          child: ListTile(
-                                            leading: CircleAvatar(
-                                              backgroundColor: Colors.green,
-                                              foregroundColor: Colors.white,
-                                              child: Icon(
-                                                  Icons.attachment_outlined),
+                                ),
+                              ),
+                              controller.selectedEvents.length == 1
+                                  ? controller.selectedEvents.first
+                                              .getDisplayEvent(
+                                                  controller.timeline)
+                                              .status >
+                                          0
+                                      ? Container(
+                                          height: 56,
+                                          child: TextButton(
+                                            onPressed: controller.replyAction,
+                                            child: Row(
+                                              children: <Widget>[
+                                                Text(L10n.of(context).reply),
+                                                Icon(
+                                                    Icons.keyboard_arrow_right),
+                                              ],
                                             ),
-                                            title:
-                                                Text(L10n.of(context).sendFile),
-                                            contentPadding: EdgeInsets.all(0),
                                           ),
+                                        )
+                                      : Container(
+                                          height: 56,
+                                          child: TextButton(
+                                            onPressed:
+                                                controller.sendAgainAction,
+                                            child: Row(
+                                              children: <Widget>[
+                                                Text(L10n.of(context)
+                                                    .tryToSendAgain),
+                                                SizedBox(width: 4),
+                                                Icon(Icons.send_outlined,
+                                                    size: 16),
+                                              ],
+                                            ),
+                                          ),
+                                        )
+                                  : Container(),
+                            ]
+                          : <Widget>[
+                              AnimatedContainer(
+                                duration: Duration(milliseconds: 200),
+                                height: 56,
+                                width: controller.inputText.isEmpty ? 56 : 0,
+                                alignment: Alignment.center,
+                                clipBehavior: Clip.hardEdge,
+                                decoration: BoxDecoration(),
+                                child: PopupMenuButton<String>(
+                                  icon: Icon(Icons.add_outlined),
+                                  onSelected:
+                                      controller.onAddPopupMenuButtonSelected,
+                                  itemBuilder: (BuildContext context) =>
+                                      <PopupMenuEntry<String>>[
+                                    PopupMenuItem<String>(
+                                      value: 'file',
+                                      child: ListTile(
+                                        leading: CircleAvatar(
+                                          backgroundColor: Colors.green,
+                                          foregroundColor: Colors.white,
+                                          child:
+                                              Icon(Icons.attachment_outlined),
                                         ),
-                                        PopupMenuItem<String>(
-                                          value: 'image',
-                                          child: ListTile(
-                                            leading: CircleAvatar(
-                                              backgroundColor: Colors.blue,
-                                              foregroundColor: Colors.white,
-                                              child: Icon(Icons.image_outlined),
-                                            ),
-                                            title: Text(
-                                                L10n.of(context).sendImage),
-                                            contentPadding: EdgeInsets.all(0),
-                                          ),
+                                        title: Text(L10n.of(context).sendFile),
+                                        contentPadding: EdgeInsets.all(0),
+                                      ),
+                                    ),
+                                    PopupMenuItem<String>(
+                                      value: 'image',
+                                      child: ListTile(
+                                        leading: CircleAvatar(
+                                          backgroundColor: Colors.blue,
+                                          foregroundColor: Colors.white,
+                                          child: Icon(Icons.image_outlined),
                                         ),
-                                        if (PlatformInfos.isMobile)
-                                          PopupMenuItem<String>(
-                                            value: 'camera',
-                                            child: ListTile(
-                                              leading: CircleAvatar(
-                                                backgroundColor: Colors.purple,
-                                                foregroundColor: Colors.white,
-                                                child: Icon(
-                                                    Icons.camera_alt_outlined),
-                                              ),
-                                              title: Text(
-                                                  L10n.of(context).openCamera),
-                                              contentPadding: EdgeInsets.all(0),
-                                            ),
-                                          ),
-                                        if (PlatformInfos.isMobile)
-                                          PopupMenuItem<String>(
-                                            value: 'voice',
-                                            child: ListTile(
-                                              leading: CircleAvatar(
-                                                backgroundColor: Colors.red,
-                                                foregroundColor: Colors.white,
-                                                child: Icon(
-                                                    Icons.mic_none_outlined),
-                                              ),
-                                              title: Text(L10n.of(context)
-                                                  .voiceMessage),
-                                              contentPadding: EdgeInsets.all(0),
-                                            ),
-                                          ),
-                                      ],
+                                        title: Text(L10n.of(context).sendImage),
+                                        contentPadding: EdgeInsets.all(0),
+                                      ),
                                     ),
-                                  ),
-                                  Container(
-                                    height: 56,
-                                    alignment: Alignment.center,
-                                    child: EncryptionButton(controller.room),
-                                  ),
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 4.0),
-                                      child: InputBar(
-                                        room: controller.room,
-                                        minLines: 1,
-                                        maxLines: kIsWeb ? 1 : 8,
-                                        autofocus: !PlatformInfos.isMobile,
-                                        keyboardType: !PlatformInfos.isMobile
-                                            ? TextInputType.text
-                                            : TextInputType.multiline,
-                                        onSubmitted:
-                                            controller.onInputBarSubmitted,
-                                        focusNode: controller.inputFocus,
-                                        controller: controller.sendController,
-                                        decoration: InputDecoration(
-                                          hintText:
-                                              L10n.of(context).writeAMessage,
-                                          hintMaxLines: 1,
-                                          border: InputBorder.none,
-                                          enabledBorder: InputBorder.none,
-                                          filled: false,
+                                    if (PlatformInfos.isMobile)
+                                      PopupMenuItem<String>(
+                                        value: 'camera',
+                                        child: ListTile(
+                                          leading: CircleAvatar(
+                                            backgroundColor: Colors.purple,
+                                            foregroundColor: Colors.white,
+                                            child:
+                                                Icon(Icons.camera_alt_outlined),
+                                          ),
+                                          title:
+                                              Text(L10n.of(context).openCamera),
+                                          contentPadding: EdgeInsets.all(0),
                                         ),
-                                        onChanged: controller.onInputBarChanged,
                                       ),
+                                    if (PlatformInfos.isMobile)
+                                      PopupMenuItem<String>(
+                                        value: 'voice',
+                                        child: ListTile(
+                                          leading: CircleAvatar(
+                                            backgroundColor: Colors.red,
+                                            foregroundColor: Colors.white,
+                                            child:
+                                                Icon(Icons.mic_none_outlined),
+                                          ),
+                                          title: Text(
+                                              L10n.of(context).voiceMessage),
+                                          contentPadding: EdgeInsets.all(0),
+                                        ),
+                                      ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                height: 56,
+                                alignment: Alignment.center,
+                                child: EncryptionButton(controller.room),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 4.0),
+                                  child: InputBar(
+                                    room: controller.room,
+                                    minLines: 1,
+                                    maxLines: kIsWeb ? 1 : 8,
+                                    autofocus: !PlatformInfos.isMobile,
+                                    keyboardType: !PlatformInfos.isMobile
+                                        ? TextInputType.text
+                                        : TextInputType.multiline,
+                                    onSubmitted: controller.onInputBarSubmitted,
+                                    focusNode: controller.inputFocus,
+                                    controller: controller.sendController,
+                                    decoration: InputDecoration(
+                                      hintText: L10n.of(context).writeAMessage,
+                                      hintMaxLines: 1,
+                                      border: InputBorder.none,
+                                      enabledBorder: InputBorder.none,
+                                      filled: false,
                                     ),
+                                    onChanged: controller.onInputBarChanged,
                                   ),
-                                  if (PlatformInfos.isMobile &&
-                                      controller.inputText.isEmpty)
-                                    Container(
-                                      height: 56,
-                                      alignment: Alignment.center,
-                                      child: IconButton(
-                                        tooltip: L10n.of(context).voiceMessage,
-                                        icon: Icon(Icons.mic_none_outlined),
-                                        onPressed:
-                                            controller.voiceMessageAction,
-                                      ),
-                                    ),
-                                  if (!PlatformInfos.isMobile ||
-                                      controller.inputText.isNotEmpty)
-                                    Container(
-                                      height: 56,
-                                      alignment: Alignment.center,
-                                      child: IconButton(
-                                        icon: Icon(Icons.send_outlined),
-                                        onPressed: controller.send,
-                                        tooltip: L10n.of(context).send,
-                                      ),
-                                    ),
-                                ],
-                        ),
-                      )
-                    : Container(),
+                                ),
+                              ),
+                              if (PlatformInfos.isMobile &&
+                                  controller.inputText.isEmpty)
+                                Container(
+                                  height: 56,
+                                  alignment: Alignment.center,
+                                  child: IconButton(
+                                    tooltip: L10n.of(context).voiceMessage,
+                                    icon: Icon(Icons.mic_none_outlined),
+                                    onPressed: controller.voiceMessageAction,
+                                  ),
+                                ),
+                              if (!PlatformInfos.isMobile ||
+                                  controller.inputText.isNotEmpty)
+                                Container(
+                                  height: 56,
+                                  alignment: Alignment.center,
+                                  child: IconButton(
+                                    icon: Icon(Icons.send_outlined),
+                                    onPressed: controller.send,
+                                    tooltip: L10n.of(context).send,
+                                  ),
+                                ),
+                            ],
+                    ),
+                  ),
+                AnimatedContainer(
+                  duration: Duration(milliseconds: 300),
+                  height: controller.showEmojiPicker
+                      ? MediaQuery.of(context).size.height / 2
+                      : 0,
+                  child: controller.showEmojiPicker
+                      ? EmojiPicker(
+                          onEmojiSelected: controller.onEmojiSelected,
+                          onBackspacePressed: controller.cancelEmojiPicker,
+                        )
+                      : null,
+                ),
               ],
             ),
           ),

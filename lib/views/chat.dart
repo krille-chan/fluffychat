@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
-import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
 import 'package:fluffychat/config/app_config.dart';
@@ -23,7 +22,6 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'send_file_dialog.dart';
@@ -77,6 +75,8 @@ class ChatController extends State<Chat> {
   String pendingText = '';
 
   bool get canLoadMore => timeline.events.last.type != EventTypes.RoomCreate;
+
+  bool showEmojiPicker = false;
 
   void startCallAction() async {
     final url =
@@ -478,37 +478,22 @@ class ChatController extends State<Chat> {
 
   void scrollDown() => scrollController.jumpTo(0);
 
-  void pickEmojiAction(Iterable<Event> allReactionEvents) async {
-    final emoji = await showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.transparent,
-      builder: (innerContext) => Column(
-        children: [
-          Spacer(),
-          Material(
-            color: Theme.of(context).scaffoldBackgroundColor,
-            child: EmojiPicker(
-              onEmojiSelected: (category, emoji) {
-                // recent emojis don't work, so we sadly have to re-implement them
-                // https://github.com/JeffG05/emoji_picker/issues/31
-                SharedPreferences.getInstance().then((prefs) {
-                  final recents = prefs.getStringList('recents') ?? <String>[];
-                  recents.insert(0, emoji.name);
-                  // make sure we remove duplicates
-                  prefs.setStringList('recents', recents.toSet().toList());
-                });
-                Navigator.of(innerContext, rootNavigator: false).pop(emoji);
-              },
-            ),
-          ),
-        ],
-      ),
-    );
+  void onEmojiSelected(category, emoji) {
+    setState(() => showEmojiPicker = false);
     if (emoji == null) return;
     // make sure we don't send the same emoji twice
-    if (allReactionEvents
+    if (_allReactionEvents
         .any((e) => e.content['m.relates_to']['key'] == emoji.emoji)) return;
     return sendEmojiAction(emoji.emoji);
+  }
+
+  Iterable<Event> _allReactionEvents;
+
+  void cancelEmojiPicker() => setState(() => showEmojiPicker = false);
+
+  void pickEmojiAction(Iterable<Event> allReactionEvents) async {
+    _allReactionEvents = allReactionEvents;
+    setState(() => showEmojiPicker = true);
   }
 
   void sendEmojiAction(String emoji) async {
@@ -522,7 +507,10 @@ class ChatController extends State<Chat> {
     setState(() => selectedEvents.clear());
   }
 
-  void clearSelectedEvents() => setState(() => selectedEvents.clear());
+  void clearSelectedEvents() => setState(() {
+        selectedEvents.clear();
+        showEmojiPicker = false;
+      });
 
   void editSelectedEventAction() {
     setState(() {

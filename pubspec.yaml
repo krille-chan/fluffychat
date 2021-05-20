@@ -16,7 +16,7 @@ dependencies:
   cupertino_icons: any
   desktop_notifications: ^0.4.0
   email_validator: ^2.0.1
-  emoji_picker_flutter: ^1.0.3
+  emoji_picker_flutter: ^1.0.5
   famedlysdk:
     git:
       url: https://gitlab.com/famedly/famedlysdk.git
