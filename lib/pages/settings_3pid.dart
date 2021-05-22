@@ -5,7 +5,7 @@ import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import 'views/settings_3pid_ui.dart';
+import 'views/settings_3pid_view.dart';
 
 class Settings3Pid extends StatefulWidget {
   static int sendAttempt = 0;

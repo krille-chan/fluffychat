@@ -14,7 +14,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:image_picker/image_picker.dart';
 
-import 'views/settings_ui.dart';
+import 'views/settings_view.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'bootstrap_dialog.dart';
 import '../widgets/matrix.dart';

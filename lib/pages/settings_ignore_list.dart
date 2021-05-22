@@ -1,7 +1,7 @@
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:flutter/material.dart';
 
-import 'views/settings_ignore_list_ui.dart';
+import 'views/settings_ignore_list_view.dart';
 import '../widgets/matrix.dart';
 
 class SettingsIgnoreList extends StatefulWidget {

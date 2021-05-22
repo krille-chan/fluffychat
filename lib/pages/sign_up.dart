@@ -1,7 +1,7 @@
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
-import 'package:fluffychat/pages/views/sign_up_ui.dart';
+import 'package:fluffychat/pages/views/sign_up_view.dart';
 
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/cupertino.dart';

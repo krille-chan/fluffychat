@@ -6,7 +6,7 @@ import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pages/views/chat_ui.dart';
+import 'package:fluffychat/pages/views/chat_view.dart';
 import 'package:fluffychat/pages/recording_dialog.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 

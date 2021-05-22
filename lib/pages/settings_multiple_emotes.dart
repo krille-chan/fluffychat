@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'views/settings_multiple_emotes_ui.dart';
+import 'views/settings_multiple_emotes_view.dart';
 
 class MultipleEmotesSettings extends StatefulWidget {
   final String roomId;

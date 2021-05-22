@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
-import 'package:fluffychat/pages/views/chat_permissions_settings_ui.dart';
+import 'package:fluffychat/pages/views/chat_permissions_settings_view.dart';
 import 'package:fluffychat/pages/permission_slider_dialog.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';

@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/pages/views/homeserver_picker_ui.dart';
+import 'package:fluffychat/pages/views/homeserver_picker_view.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';

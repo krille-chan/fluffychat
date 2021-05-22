@@ -7,7 +7,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 
-import 'views/user_bottom_sheet_ui.dart';
+import 'views/user_bottom_sheet_view.dart';
 
 class UserBottomSheet extends StatefulWidget {
   final User user;

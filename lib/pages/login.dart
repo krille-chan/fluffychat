@@ -3,21 +3,22 @@ import 'dart:async';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/widgets/layouts/one_page_card.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import '../../utils/platform_infos.dart';
+import '../utils/platform_infos.dart';
 import 'package:email_validator/email_validator.dart';
+
+import 'views/login_view.dart';
 
 class Login extends StatefulWidget {
   @override
-  _LoginState createState() => _LoginState();
+  LoginController createState() => LoginController();
 }
 
-class _LoginState extends State<Login> {
+class LoginController extends State<Login> {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   String usernameError;
@@ -25,7 +26,9 @@ class _LoginState extends State<Login> {
   bool loading = false;
   bool showPassword = false;
 
-  void login(BuildContext context) async {
+  void toggleShowPassword() => setState(() => showPassword = !showPassword);
+
+  void login([_]) async {
     final matrix = Matrix.of(context);
     if (usernameController.text.isEmpty) {
       setState(() => usernameError = L10n.of(context).pleaseEnterYourUsername);
@@ -81,15 +84,15 @@ class _LoginState extends State<Login> {
 
   Timer _coolDown;
 
-  void _checkWellKnownWithCoolDown(String userId, BuildContext context) async {
+  void checkWellKnownWithCoolDown(String userId) async {
     _coolDown?.cancel();
     _coolDown = Timer(
       Duration(seconds: 1),
-      () => _checkWellKnown(userId, context),
+      () => _checkWellKnown(userId),
     );
   }
 
-  void _checkWellKnown(String userId, BuildContext context) async {
+  void _checkWellKnown(String userId) async {
     setState(() => usernameError = null);
     if (!userId.isValidMatrixId) return;
     try {
@@ -110,7 +113,7 @@ class _LoginState extends State<Login> {
     }
   }
 
-  void _passwordForgotten(BuildContext context) async {
+  void passwordForgotten() async {
     final input = await showTextInputDialog(
       context: context,
       title: L10n.of(context).enterAnEmailAddress,
@@ -183,98 +186,7 @@ class _LoginState extends State<Login> {
   static int sendAttempt = 0;
 
   @override
-  Widget build(BuildContext context) {
-    return OnePageCard(
-      child: Scaffold(
-        appBar: AppBar(
-          leading: loading ? Container() : BackButton(),
-          elevation: 0,
-          title: Text(
-            L10n.of(context).logInTo(Matrix.of(context)
-                .client
-                .homeserver
-                .toString()
-                .replaceFirst('https://', '')),
-          ),
-        ),
-        body: Builder(builder: (context) {
-          return ListView(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: TextField(
-                  readOnly: loading,
-                  autocorrect: false,
-                  autofocus: true,
-                  onChanged: (t) => _checkWellKnownWithCoolDown(t, context),
-                  controller: usernameController,
-                  autofillHints: loading ? null : [AutofillHints.username],
-                  decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.account_box_outlined),
-                      hintText:
-                          '@${L10n.of(context).username.toLowerCase()}:domain',
-                      errorText: usernameError,
-                      labelText: L10n.of(context).username),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: TextField(
-                  readOnly: loading,
-                  autocorrect: false,
-                  autofillHints: loading ? null : [AutofillHints.password],
-                  controller: passwordController,
-                  obscureText: !showPassword,
-                  onSubmitted: (t) => login(context),
-                  decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.lock_outlined),
-                      hintText: '****',
-                      errorText: passwordError,
-                      suffixIcon: IconButton(
-                        tooltip: L10n.of(context).showPassword,
-                        icon: Icon(showPassword
-                            ? Icons.visibility_off_outlined
-                            : Icons.visibility_outlined),
-                        onPressed: () =>
-                            setState(() => showPassword = !showPassword),
-                      ),
-                      labelText: L10n.of(context).password),
-                ),
-              ),
-              SizedBox(height: 12),
-              Hero(
-                tag: 'loginButton',
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 12),
-                  child: ElevatedButton(
-                    onPressed: loading ? null : () => login(context),
-                    child: loading
-                        ? LinearProgressIndicator()
-                        : Text(
-                            L10n.of(context).login.toUpperCase(),
-                            style: TextStyle(color: Colors.white, fontSize: 16),
-                          ),
-                  ),
-                ),
-              ),
-              Center(
-                child: TextButton(
-                  onPressed: () => _passwordForgotten(context),
-                  child: Text(
-                    L10n.of(context).passwordForgotten,
-                    style: TextStyle(
-                      color: Colors.blue,
-                      decoration: TextDecoration.underline,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          );
-        }),
-      ),
-    );
-  }
+  Widget build(BuildContext context) => LoginView(this);
 }
 
 extension on String {

@@ -4,7 +4,7 @@ import 'package:email_validator/email_validator.dart';
 
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/utils/get_client_secret.dart';
-import 'package:fluffychat/pages/views/sign_up_password_ui.dart';
+import 'package:fluffychat/pages/views/sign_up_password_view.dart';
 
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';

@@ -1,6 +1,6 @@
 import 'package:famedlysdk/encryption.dart';
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/pages/views/chat_encryption_settings_ui.dart';
+import 'package:fluffychat/pages/views/chat_encryption_settings_view.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'key_verification_dialog.dart';

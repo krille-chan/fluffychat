@@ -7,7 +7,7 @@ import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
-import 'views/search_ui.dart';
+import 'views/search_view.dart';
 
 class Search extends StatefulWidget {
   final String alias;

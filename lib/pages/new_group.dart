@@ -1,6 +1,6 @@
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart' as sdk;
-import 'package:fluffychat/pages/views/new_group_ui.dart';
+import 'package:fluffychat/pages/views/new_group_view.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';

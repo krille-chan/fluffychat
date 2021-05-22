@@ -5,7 +5,7 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
-import 'package:fluffychat/pages/views/chat_list_ui.dart';
+import 'package:fluffychat/pages/views/chat_list_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/platform_infos.dart';

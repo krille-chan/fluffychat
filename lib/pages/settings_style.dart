@@ -6,7 +6,7 @@ import 'package:fluffychat/config/setting_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-import 'views/settings_style_ui.dart';
+import 'views/settings_style_view.dart';
 import '../widgets/matrix.dart';
 
 class SettingsStyle extends StatefulWidget {
