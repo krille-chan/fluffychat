@@ -3,7 +3,7 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
 import 'package:fluffychat/views/ui/sign_up_ui.dart';
 
-import 'package:fluffychat/views/widgets/matrix.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';

@@ -1,8 +1,8 @@
 import '../homeserver_picker.dart';
-import 'package:fluffychat/views/widgets/default_app_bar_search_field.dart';
-import 'package:fluffychat/views/widgets/fluffy_banner.dart';
+import 'package:fluffychat/widgets/default_app_bar_search_field.dart';
+import 'package:fluffychat/widgets/fluffy_banner.dart';
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/views/widgets/layouts/one_page_card.dart';
+import 'package:fluffychat/widgets/layouts/one_page_card.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 
 import 'package:flutter/foundation.dart';

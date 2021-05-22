@@ -1,5 +1,5 @@
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
-import 'package:fluffychat/views/widgets/matrix.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 
 class LoadingView extends StatelessWidget {

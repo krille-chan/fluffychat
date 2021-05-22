@@ -7,7 +7,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:open_noti_settings/open_noti_settings.dart';
 
 import 'ui/settings_notifications_ui.dart';
-import 'widgets/matrix.dart';
+import '../widgets/matrix.dart';
 
 class NotificationSettingsItem {
   final PushRuleKind type;

@@ -11,7 +11,7 @@ import 'package:fluffychat/views/recording_dialog.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import 'package:future_loading_dialog/future_loading_dialog.dart';
-import 'package:fluffychat/views/widgets/matrix.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/utils/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';

@@ -10,7 +10,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:image_picker/image_picker.dart';
 import 'ui/settings_emotes_ui.dart';
-import 'widgets/matrix.dart';
+import '../widgets/matrix.dart';
 
 class EmotesSettings extends StatefulWidget {
   final Room room;

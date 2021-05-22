@@ -1,13 +1,13 @@
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/views/chat_list.dart';
-import 'package:fluffychat/views/widgets/connection_status_header.dart';
-import 'package:fluffychat/views/widgets/list_items/chat_list_item.dart';
+import 'package:fluffychat/widgets/connection_status_header.dart';
+import 'package:fluffychat/widgets/list_items/chat_list_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import '../widgets/matrix.dart';
+import '../../widgets/matrix.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class ChatListUI extends StatelessWidget {

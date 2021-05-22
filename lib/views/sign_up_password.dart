@@ -6,7 +6,7 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/utils/get_client_secret.dart';
 import 'package:fluffychat/views/ui/sign_up_password_ui.dart';
 
-import 'package:fluffychat/views/widgets/matrix.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import '../utils/platform_infos.dart';

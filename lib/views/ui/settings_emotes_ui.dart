@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/views/widgets/layouts/max_width_body.dart';
+import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import '../widgets/matrix.dart';
+import '../../widgets/matrix.dart';
 import '../settings_emotes.dart';
 
 class EmotesSettingsUI extends StatelessWidget {

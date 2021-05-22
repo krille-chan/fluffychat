@@ -7,7 +7,7 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import 'widgets/matrix.dart';
+import '../widgets/matrix.dart';
 
 class DevicesSettings extends StatefulWidget {
   @override

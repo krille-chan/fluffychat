@@ -2,7 +2,7 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:flutter/material.dart';
 
 import 'ui/settings_ignore_list_ui.dart';
-import 'widgets/matrix.dart';
+import '../widgets/matrix.dart';
 
 class SettingsIgnoreList extends StatefulWidget {
   final String initialUserId;

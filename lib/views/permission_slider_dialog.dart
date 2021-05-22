@@ -1,4 +1,4 @@
-import 'package:fluffychat/views/widgets/adaptive_flat_button.dart';
+import 'package:fluffychat/widgets/adaptive_flat_button.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';

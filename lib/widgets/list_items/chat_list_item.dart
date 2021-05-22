@@ -10,9 +10,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:pedantic/pedantic.dart';
 
-import '../../../utils/date_time_extension.dart';
+import '../../utils/date_time_extension.dart';
 import '../avatar.dart';
-import '../../send_file_dialog.dart';
+import '../../views/send_file_dialog.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import '../matrix.dart';
 import '../mouse_over_builder.dart';

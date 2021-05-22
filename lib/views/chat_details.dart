@@ -5,7 +5,7 @@ import 'package:famedlysdk/famedlysdk.dart';
 
 import 'package:file_picker_cross/file_picker_cross.dart';
 import 'package:fluffychat/views/ui/chat_details_ui.dart';
-import 'package:fluffychat/views/widgets/matrix.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/services.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/utils/matrix_locals.dart';

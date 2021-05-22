@@ -1,10 +1,10 @@
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/views/widgets/avatar.dart';
-import 'package:fluffychat/views/widgets/contacts_list.dart';
-import 'package:fluffychat/views/widgets/default_app_bar_search_field.dart';
-import 'package:fluffychat/views/widgets/list_items/chat_list_item.dart';
-import 'package:fluffychat/views/widgets/matrix.dart';
+import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/contacts_list.dart';
+import 'package:fluffychat/widgets/default_app_bar_search_field.dart';
+import 'package:fluffychat/widgets/list_items/chat_list_item.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';

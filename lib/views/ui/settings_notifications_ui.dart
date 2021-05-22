@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/views/widgets/layouts/max_width_body.dart';
+import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +9,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import '../../utils/localized_exception_extension.dart';
 
 import '../settings_notifications.dart';
-import '../widgets/matrix.dart';
+import '../../widgets/matrix.dart';
 
 class SettingsNotificationsUI extends StatelessWidget {
   final SettingsNotificationsController controller;

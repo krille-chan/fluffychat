@@ -21,15 +21,15 @@ import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:desktop_notifications/desktop_notifications.dart';
 
-import '../../utils/beautify_string_extension.dart';
-import '../../utils/localized_exception_extension.dart';
-import '../../utils/famedlysdk_store.dart';
-import '../key_verification_dialog.dart';
-import '../../utils/platform_infos.dart';
-import '../../config/app_config.dart';
-import '../../config/setting_keys.dart';
-import '../../utils/fluffy_client.dart';
-import '../../utils/background_push.dart';
+import '../utils/beautify_string_extension.dart';
+import '../utils/localized_exception_extension.dart';
+import '../utils/famedlysdk_store.dart';
+import '../views/key_verification_dialog.dart';
+import '../utils/platform_infos.dart';
+import '../config/app_config.dart';
+import '../config/setting_keys.dart';
+import '../utils/fluffy_client.dart';
+import '../utils/background_push.dart';
 
 class Matrix extends StatefulWidget {
   static const String callNamespace = 'chat.fluffy.jitsi_call';

@@ -1,7 +1,7 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
-import 'package:fluffychat/views/widgets/sentry_switch_list_tile.dart';
-import 'package:fluffychat/views/widgets/settings_switch_list_tile.dart';
+import 'package:fluffychat/widgets/sentry_switch_list_tile.dart';
+import 'package:fluffychat/widgets/settings_switch_list_tile.dart';
 
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/utils/beautify_string_extension.dart';
@@ -12,8 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../widgets/content_banner.dart';
-import '../widgets/matrix.dart';
+import '../../widgets/content_banner.dart';
+import '../../widgets/matrix.dart';
 import '../../config/app_config.dart';
 import '../../config/setting_keys.dart';
 import '../settings.dart';

@@ -1,6 +1,6 @@
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/views/archive.dart';
-import 'package:fluffychat/views/widgets/list_items/chat_list_item.dart';
+import 'package:fluffychat/widgets/list_items/chat_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 

@@ -1,7 +1,7 @@
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:flutter/material.dart';
 
-import '../../config/app_config.dart';
+import '../config/app_config.dart';
 import 'matrix.dart';
 
 class UnreadBadgeBackButton extends StatelessWidget {

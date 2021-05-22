@@ -4,7 +4,7 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:flutter/material.dart';
-import '../widgets/content_banner.dart';
+import '../../widgets/content_banner.dart';
 import '../user_bottom_sheet.dart';
 import '../../utils/presence_extension.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
