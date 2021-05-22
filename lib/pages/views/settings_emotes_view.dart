@@ -220,7 +220,7 @@ class _EmoteImagePickerState extends State<_EmoteImagePicker> {
   Widget build(BuildContext context) {
     if (widget.controller.text == null || widget.controller.text.isEmpty) {
       return ElevatedButton(
-        onPressed: () async {},
+        onPressed: () => widget.onPressed(widget.controller),
         child: Text(L10n.of(context).pickImage),
       );
     } else {
