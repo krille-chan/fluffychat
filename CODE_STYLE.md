@@ -9,28 +9,22 @@ FluffyChat tries to be as minimal as possible even in the code style. We try to 
   - /config
     - app_config.dart
     - ...Constants, styles and other configurations
-  - /l10n
-    - intl_en.arb
-    - ...Localization files
-  - /models
-    - app_model.dart
-    - ...Data models used in the app
   - /utils
     - handy_function.dart
     - ...Helper functions and extensions
-  - /views
+  - /pages
     - /ui
-      - home_ui.dart
-      - details_ui.dart
-    - /widgets
-      - /dialogs
-        - /ui
-      - /list_items
-        - /ui
-      - /ui
-    - home_view.dart
-    - details_view.dart
-    - ...The views and widgets of the app separated in Controllers and Views
+      - home_view.dart
+      - details_view.dart
+      - settings_view.dart
+    - home.dart
+    - details.dart
+    - settings.dart
+    - ...The pages of the app separated in Controllers and Views
+  - /widgets
+    - /dialogs
+    - /list_items
+    - ...Custom widgets created for this project
   - main.dart
 
 
