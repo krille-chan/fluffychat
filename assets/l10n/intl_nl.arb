@@ -373,7 +373,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "startYourFirstChat": "Start nu je eerste chat! 🙂\n- Tik op \"+\"\n- Voer de gebruikersnaam van een vriend in\n- Veel plezier met chatten",
+  "startYourFirstChat": "Start nu je eerste chat! 🙂\n- Tik op chat-knop\n- Voer de gebruikersnaam van een vriend in\n- Veel plezier met chatten",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
