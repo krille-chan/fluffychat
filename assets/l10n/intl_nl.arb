@@ -2332,5 +2332,15 @@
   "@invalidEmail": {
     "type": "text",
     "placeholders": {}
+  },
+  "useSSO": "Gebruik eenmalig inloggen",
+  "@useSSO": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "or": "Of",
+  "@or": {
+    "type": "text",
+    "placeholders": {}
   }
 }
