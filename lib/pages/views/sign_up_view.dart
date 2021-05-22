@@ -7,6 +7,7 @@ import 'package:fluffychat/widgets/layouts/one_page_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import '../../utils/localized_exception_extension.dart';
 
 class SignUpView extends StatelessWidget {
   final SignUpController controller;
@@ -28,89 +29,148 @@ class SignUpView extends StatelessWidget {
                 .replaceFirst('https://', ''),
           ),
         ),
-        body: ListView(children: <Widget>[
-          Hero(
-            tag: 'loginBanner',
-            child: FluffyBanner(),
-          ),
-          SizedBox(height: 16),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12.0),
-            child: TextField(
-              readOnly: controller.loading,
-              autocorrect: false,
-              controller: controller.usernameController,
-              onSubmitted: controller.signUpAction,
-              autofillHints:
-                  controller.loading ? null : [AutofillHints.newUsername],
-              decoration: InputDecoration(
-                prefixIcon: Icon(Icons.account_circle_outlined),
-                hintText: L10n.of(context).username,
-                errorText: controller.usernameError,
-                labelText: L10n.of(context).chooseAUsername,
-              ),
-            ),
-          ),
-          SizedBox(height: 8),
-          ListTile(
-            leading: CircleAvatar(
-              backgroundImage: controller.avatar == null
-                  ? null
-                  : MemoryImage(controller.avatar.bytes),
-              backgroundColor: controller.avatar == null
-                  ? Theme.of(context).brightness == Brightness.dark
-                      ? Color(0xff121212)
-                      : Colors.white
-                  : Theme.of(context).secondaryHeaderColor,
-              child: controller.avatar == null
-                  ? Icon(Icons.camera_alt_outlined,
-                      color: Theme.of(context).primaryColor)
-                  : null,
-            ),
-            trailing: controller.avatar == null
-                ? null
-                : Icon(
-                    Icons.close,
-                    color: Colors.red,
+        body: FutureBuilder(
+            future: controller.getLoginTypes(),
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                return Center(
+                  child: Text(
+                    snapshot.error.toLocalizedString(context),
+                    textAlign: TextAlign.center,
                   ),
-            title: Text(controller.avatar == null
-                ? L10n.of(context).setAProfilePicture
-                : L10n.of(context).discardPicture),
-            onTap: controller.avatar == null
-                ? controller.setAvatarAction
-                : controller.resetAvatarAction,
-          ),
-          SizedBox(height: 16),
-          Hero(
-            tag: 'loginButton',
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 12),
-              child: ElevatedButton(
-                onPressed: controller.loading ? null : controller.signUpAction,
-                child: controller.loading
-                    ? LinearProgressIndicator()
-                    : Text(
-                        L10n.of(context).signUp.toUpperCase(),
-                        style: TextStyle(color: Colors.white, fontSize: 16),
-                      ),
-              ),
-            ),
-          ),
-          Center(
-            child: TextButton(
-              onPressed: () =>
-                  AdaptivePageLayout.of(context).pushNamed('/login'),
-              child: Text(
-                L10n.of(context).alreadyHaveAnAccount,
-                style: TextStyle(
-                  decoration: TextDecoration.underline,
-                  color: Colors.blue,
-                  fontSize: 16,
+                );
+              }
+              if (!snapshot.hasData) {
+                return Center(child: CircularProgressIndicator());
+              }
+              return ListView(children: <Widget>[
+                Hero(
+                  tag: 'loginBanner',
+                  child: FluffyBanner(),
                 ),
-              ),
-            ),
-          ),
-        ]),
+                SizedBox(height: 16),
+                if (controller.passwordLoginSupported) ...{
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                    child: TextField(
+                      readOnly: controller.loading,
+                      autocorrect: false,
+                      controller: controller.usernameController,
+                      onSubmitted: controller.signUpAction,
+                      autofillHints: controller.loading
+                          ? null
+                          : [AutofillHints.newUsername],
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.account_circle_outlined),
+                        hintText: L10n.of(context).username,
+                        errorText: controller.usernameError,
+                        labelText: L10n.of(context).chooseAUsername,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 8),
+                  ListTile(
+                    leading: CircleAvatar(
+                      backgroundImage: controller.avatar == null
+                          ? null
+                          : MemoryImage(controller.avatar.bytes),
+                      backgroundColor: controller.avatar == null
+                          ? Theme.of(context).brightness == Brightness.dark
+                              ? Color(0xff121212)
+                              : Colors.white
+                          : Theme.of(context).secondaryHeaderColor,
+                      child: controller.avatar == null
+                          ? Icon(Icons.camera_alt_outlined,
+                              color: Theme.of(context).primaryColor)
+                          : null,
+                    ),
+                    trailing: controller.avatar == null
+                        ? null
+                        : Icon(
+                            Icons.close,
+                            color: Colors.red,
+                          ),
+                    title: Text(controller.avatar == null
+                        ? L10n.of(context).setAProfilePicture
+                        : L10n.of(context).discardPicture),
+                    onTap: controller.avatar == null
+                        ? controller.setAvatarAction
+                        : controller.resetAvatarAction,
+                  ),
+                  SizedBox(height: 16),
+                  Hero(
+                    tag: 'loginButton',
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 12),
+                      child: ElevatedButton(
+                        onPressed:
+                            controller.loading ? null : controller.signUpAction,
+                        child: controller.loading
+                            ? LinearProgressIndicator()
+                            : Text(
+                                L10n.of(context).signUp.toUpperCase(),
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 16),
+                              ),
+                      ),
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                          child: Container(
+                        height: 1,
+                        color: Theme.of(context).dividerColor,
+                      )),
+                      Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Text(L10n.of(context).or),
+                      ),
+                      Expanded(
+                          child: Container(
+                        height: 1,
+                        color: Theme.of(context).dividerColor,
+                      )),
+                    ],
+                  ),
+                },
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 12),
+                  child: Row(children: [
+                    if (controller.passwordLoginSupported)
+                      Expanded(
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Theme.of(context).secondaryHeaderColor,
+                            onPrimary:
+                                Theme.of(context).textTheme.bodyText1.color,
+                            elevation: 2,
+                          ),
+                          onPressed: () => AdaptivePageLayout.of(context)
+                              .pushNamed('/login'),
+                          child: Text(L10n.of(context).login),
+                        ),
+                      ),
+                    if (controller.passwordLoginSupported &&
+                        controller.ssoLoginSupported)
+                      SizedBox(width: 12),
+                    if (controller.ssoLoginSupported)
+                      Expanded(
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Theme.of(context).secondaryHeaderColor,
+                            onPrimary:
+                                Theme.of(context).textTheme.bodyText1.color,
+                            elevation: 2,
+                          ),
+                          onPressed: controller.ssoLoginAction,
+                          child: Text(L10n.of(context).useSSO),
+                        ),
+                      ),
+                  ]),
+                ),
+              ]);
+            }),
       ),
     );
   }

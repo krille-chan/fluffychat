@@ -1908,6 +1908,21 @@
     "type": "text",
     "placeholders": {}
   },
+  "or": "Or",
+  "@or": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "login": "Login",
+  "@login": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "useSSO": "Use single sign on",
+  "@useSSO": {
+    "type": "text",
+    "placeholders": {}
+  },
   "sourceCode": "Source code",
   "@sourceCode": {
     "type": "text",
