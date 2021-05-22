@@ -1352,7 +1352,7 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "Zahajte svůj první chat! 🙂\n- Klepněte na „+“\n- Zadejte uživatelské jméno přítele\n- Bavte se chatováním",
+  "startYourFirstChat": "Zahajte svůj první chat! 🙂\n- Klepněte na tlačítko zprávy\n- Zadejte uživatelské jméno přítele\n- Bavte se chatováním",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -2339,6 +2339,16 @@
   },
   "invalidEmail": "Neplatný e-mail",
   "@invalidEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "useSSO": "Použijte jednotné přihlášení",
+  "@useSSO": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "or": "Nebo",
+  "@or": {
     "type": "text",
     "placeholders": {}
   }
