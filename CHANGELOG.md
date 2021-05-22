@@ -1,3 +1,40 @@
+
+## Unreleased
+
+### Chore
+* Format iOS stuff [584c873]
+
+### Feature
+* Cute animation for hiding the + button in inputbar [37c40a2]
+* Improved chat bubble design and splash animations [0b3734f]
+* Zoom page transition on Android and Fuchsia [e6c20dd]
+
+### Fixes
+* "Pick an image" button in emote settings doesn't do anything [e6be684]
+* Formatting and style [2540a6c]
+* Emoji picker [e1bd4e1]
+* Systemuioverlaystyle [c0d446b]
+* Status bar and system navigation bar theme [d986986]
+* Open URIs [6d7c52c]
+* Status bar color [f347edd]
+* add missing purpose string [3830b4b]
+* Workaround for iOS not clearing notifications with fcm_shared_isolate [88a7e8d]
+* Minor glitch in bootstrap [107a3aa]
+* Send read markers [08dd2d7]
+
+### Docs
+* Update code style [3e7269d]
+
+### Refactor
+* Structure files in more directories [ebc598a]
+* Rename UI to Views [e44de26]
+* rename UI to View and MVC login page [cc113bb]
+* Rename views to pages [a93165e]
+* Move widgets to lib [56a2455]
+* Move translations to assets [0526e66]
+* Update SDK [4f13473]
+* Use default systemUiOverlayStyle [8292ee7]
+
 ## v0.30.2 - 2021-05-13
 
 ### Feature
