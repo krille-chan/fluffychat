@@ -2341,5 +2341,15 @@
   "@invalidEmail": {
     "type": "text",
     "placeholders": {}
+  },
+  "useSSO": "Nutze Single Sign On",
+  "@useSSO": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "or": "Oder",
+  "@or": {
+    "type": "text",
+    "placeholders": {}
   }
 }
