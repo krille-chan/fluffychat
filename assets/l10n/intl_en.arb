@@ -1913,7 +1913,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "startYourFirstChat": "Start your first chat right now! 🙂\n- Tap on \"+\"\n- Enter the username of a friend\n- Have fun chatting",
+  "startYourFirstChat": "Start your first chat right now! 🙂\n- Tap on the message button\n- Enter the username of a friend\n- Have fun chatting",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
