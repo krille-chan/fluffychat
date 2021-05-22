@@ -1,4 +1,4 @@
-import 'package:fluffychat/views/sign_up_password.dart';
+import 'package:fluffychat/pages/sign_up_password.dart';
 import 'package:fluffychat/main.dart';
 import 'package:flutter_test/flutter_test.dart';
 

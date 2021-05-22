@@ -24,7 +24,7 @@ import 'package:desktop_notifications/desktop_notifications.dart';
 import '../utils/beautify_string_extension.dart';
 import '../utils/localized_exception_extension.dart';
 import '../utils/famedlysdk_store.dart';
-import '../views/key_verification_dialog.dart';
+import '../pages/key_verification_dialog.dart';
 import '../utils/platform_infos.dart';
 import '../config/app_config.dart';
 import '../config/setting_keys.dart';

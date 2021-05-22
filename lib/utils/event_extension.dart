@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'matrix_file_extension.dart';
-import '../views/image_viewer.dart';
+import '../pages/image_viewer.dart';
 
 extension LocalizedBody on Event {
   void openFile(BuildContext context, {bool downloadOnly = false}) async {
