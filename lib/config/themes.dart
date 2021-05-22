@@ -39,9 +39,7 @@ abstract class FluffyThemes {
     secondaryHeaderColor: lighten(AppConfig.primaryColor, .51),
     scaffoldBackgroundColor: Colors.white,
     textTheme: Typography.material2018().black.merge(fallback_text_theme),
-    snackBarTheme: SnackBarThemeData(
-      behavior: kIsWeb ? SnackBarBehavior.floating : SnackBarBehavior.fixed,
-    ),
+    snackBarTheme: SnackBarThemeData(behavior: SnackBarBehavior.floating),
     pageTransitionsTheme: PageTransitionsTheme(
       builders: {
         TargetPlatform.fuchsia: ZoomPageTransitionsBuilder(),
@@ -174,6 +172,7 @@ abstract class FluffyThemes {
         padding: EdgeInsets.all(12),
       ),
     ),
+    snackBarTheme: SnackBarThemeData(behavior: SnackBarBehavior.floating),
     appBarTheme: AppBarTheme(
       brightness: Brightness.dark,
       color: Color(0xff1D1D1D),
