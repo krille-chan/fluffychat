@@ -19,7 +19,7 @@ import 'widgets/lock_screen.dart';
 import 'widgets/matrix.dart';
 import 'config/themes.dart';
 import 'config/app_config.dart';
-import 'utils/fluffy_client.dart';
+import 'utils/matrix_sdk_extensions.dart/fluffy_client.dart';
 import 'utils/platform_infos.dart';
 import 'utils/background_push.dart';
 

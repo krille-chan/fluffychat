@@ -5,7 +5,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import '../matrix.dart';
 import '../../utils/date_time_extension.dart';
-import '../../utils/device_extension.dart';
+import '../../utils/matrix_sdk_extensions.dart/device_extension.dart';
 
 enum UserDeviceListItemAction {
   rename,

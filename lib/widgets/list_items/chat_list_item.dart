@@ -2,8 +2,8 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/utils/event_extension.dart';
-import 'package:fluffychat/utils/matrix_locals.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions.dart/event_extension.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
 import 'package:fluffychat/utils/room_status_extension.dart';
 
 import 'package:flutter/material.dart';

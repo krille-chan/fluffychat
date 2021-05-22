@@ -6,7 +6,7 @@ import 'package:flutter_blurhash/flutter_blurhash.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../utils/event_extension.dart';
+import '../../utils/matrix_sdk_extensions.dart/event_extension.dart';
 
 class ImageBubble extends StatefulWidget {
   final Event event;

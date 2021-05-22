@@ -1,8 +1,8 @@
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:famedlysdk/encryption.dart';
 import 'package:matrix_api_lite/fake_matrix_api.dart';
-import 'platform_infos.dart';
-import 'famedlysdk_store.dart';
+import '../platform_infos.dart';
+import '../famedlysdk_store.dart';
 
 class FluffyClient extends Client {
   static FluffyClient _instance;

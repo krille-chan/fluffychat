@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:characters/characters.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
-import 'matrix.dart';
+import '../matrix.dart';
 
 class MessageReactions extends StatelessWidget {
   final Event event;

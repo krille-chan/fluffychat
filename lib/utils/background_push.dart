@@ -38,8 +38,8 @@ import 'platform_infos.dart';
 import '../config/app_config.dart';
 import '../config/setting_keys.dart';
 import 'famedlysdk_store.dart';
-import 'fluffy_client.dart';
-import 'matrix_locals.dart';
+import 'matrix_sdk_extensions.dart/fluffy_client.dart';
+import 'matrix_sdk_extensions.dart/matrix_locals.dart';
 
 class NoTokenException implements Exception {
   String get cause => 'Cannot get firebase token';

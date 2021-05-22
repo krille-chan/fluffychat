@@ -12,7 +12,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:fluffychat/utils/matrix_locals.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -25,8 +25,8 @@ import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'send_file_dialog.dart';
-import '../utils/filtered_timeline_extension.dart';
-import '../utils/matrix_file_extension.dart';
+import '../utils/matrix_sdk_extensions.dart/filtered_timeline_extension.dart';
+import '../utils/matrix_sdk_extensions.dart/matrix_file_extension.dart';
 
 class Chat extends StatefulWidget {
   final String id;

@@ -1,5 +1,5 @@
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/utils/fluffy_client.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions.dart/fluffy_client.dart';
 
 Future<FluffyClient> testClient({
   bool loggedIn = false,

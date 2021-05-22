@@ -16,7 +16,7 @@ import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 import 'package:uni_links/uni_links.dart';
 import '../main.dart';
 import '../widgets/matrix.dart';
-import '../utils/matrix_file_extension.dart';
+import '../utils/matrix_sdk_extensions.dart/matrix_file_extension.dart';
 import '../utils/url_launcher.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 

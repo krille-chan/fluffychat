@@ -6,7 +6,7 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/encryption.dart';
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/utils/matrix_locals.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:flutter/foundation.dart';
@@ -28,7 +28,7 @@ import '../pages/key_verification_dialog.dart';
 import '../utils/platform_infos.dart';
 import '../config/app_config.dart';
 import '../config/setting_keys.dart';
-import '../utils/fluffy_client.dart';
+import '../utils/matrix_sdk_extensions.dart/fluffy_client.dart';
 import '../utils/background_push.dart';
 
 class Matrix extends StatefulWidget {

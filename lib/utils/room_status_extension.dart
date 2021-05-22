@@ -1,7 +1,7 @@
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'filtered_timeline_extension.dart';
+import 'matrix_sdk_extensions.dart/filtered_timeline_extension.dart';
 import '../config/app_config.dart';
 import 'date_time_extension.dart';
 

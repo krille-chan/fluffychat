@@ -4,8 +4,8 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
-import '../utils/client_presence_extension.dart';
-import '../utils/presence_extension.dart';
+import '../utils/matrix_sdk_extensions.dart/client_presence_extension.dart';
+import '../utils/matrix_sdk_extensions.dart/presence_extension.dart';
 import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 
 class ContactsList extends StatefulWidget {

@@ -1,10 +1,10 @@
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:flutter_matrix_html/flutter_html.dart';
 import 'package:flutter/material.dart';
-import '../utils/url_launcher.dart';
-import '../config/setting_keys.dart';
+import '../../utils/url_launcher.dart';
+import '../../config/setting_keys.dart';
 
-import 'matrix.dart';
+import '../matrix.dart';
 
 class HtmlMessage extends StatelessWidget {
   final String html;

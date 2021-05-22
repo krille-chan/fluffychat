@@ -14,12 +14,12 @@ import 'package:fluffychat/config/themes.dart';
 
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/encryption_button.dart';
-import 'package:fluffychat/widgets/list_items/message.dart';
+import 'package:fluffychat/widgets/event_content/message.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:fluffychat/widgets/reply_content.dart';
+import 'package:fluffychat/widgets/event_content/reply_content.dart';
 import 'package:fluffychat/pages/user_bottom_sheet.dart';
 import 'package:fluffychat/config/app_emojis.dart';
-import 'package:fluffychat/utils/matrix_locals.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/room_status_extension.dart';
 import 'package:flutter/foundation.dart';
