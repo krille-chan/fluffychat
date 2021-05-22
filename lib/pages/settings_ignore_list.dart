@@ -36,5 +36,5 @@ class SettingsIgnoreListController extends State<SettingsIgnoreList> {
   }
 
   @override
-  Widget build(BuildContext context) => SettingsIgnoreListUI(this);
+  Widget build(BuildContext context) => SettingsIgnoreListView(this);
 }

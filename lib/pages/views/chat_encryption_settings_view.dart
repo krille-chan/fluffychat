@@ -7,10 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import '../../utils/device_extension.dart';
 
-class ChatEncryptionSettingsUI extends StatelessWidget {
+class ChatEncryptionSettingsView extends StatelessWidget {
   final ChatEncryptionSettingsController controller;
 
-  const ChatEncryptionSettingsUI(this.controller, {Key key}) : super(key: key);
+  const ChatEncryptionSettingsView(this.controller, {Key key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -295,6 +295,6 @@ class EmotesSettingsController extends State<EmotesSettings> {
         }
       }
     }
-    return EmotesSettingsUI(this);
+    return EmotesSettingsView(this);
   }
 }

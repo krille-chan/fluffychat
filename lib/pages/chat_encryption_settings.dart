@@ -61,5 +61,5 @@ class ChatEncryptionSettingsController extends State<ChatEncryptionSettings> {
   }
 
   @override
-  Widget build(BuildContext context) => ChatEncryptionSettingsUI(this);
+  Widget build(BuildContext context) => ChatEncryptionSettingsView(this);
 }

@@ -8,10 +8,10 @@ import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-class InvitationSelectionUI extends StatelessWidget {
+class InvitationSelectionView extends StatelessWidget {
   final InvitationSelectionController controller;
 
-  const InvitationSelectionUI(this.controller, {Key key}) : super(key: key);
+  const InvitationSelectionView(this.controller, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

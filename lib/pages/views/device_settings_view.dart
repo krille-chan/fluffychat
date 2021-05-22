@@ -5,10 +5,10 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import '../../widgets/list_items/user_device_list_item.dart';
 
-class DevicesSettingsUI extends StatelessWidget {
+class DevicesSettingsView extends StatelessWidget {
   final DevicesSettingsController controller;
 
-  const DevicesSettingsUI(this.controller, {Key key}) : super(key: key);
+  const DevicesSettingsView(this.controller, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

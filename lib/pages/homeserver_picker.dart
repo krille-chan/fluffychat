@@ -134,5 +134,5 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   }
 
   @override
-  Widget build(BuildContext context) => HomeserverPickerUI(this);
+  Widget build(BuildContext context) => HomeserverPickerView(this);
 }

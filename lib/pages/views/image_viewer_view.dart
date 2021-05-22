@@ -3,10 +3,10 @@ import 'package:fluffychat/widgets/image_bubble.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-class ImageViewerUI extends StatelessWidget {
+class ImageViewerView extends StatelessWidget {
   final ImageViewerController controller;
 
-  const ImageViewerUI(this.controller, {Key key}) : super(key: key);
+  const ImageViewerView(this.controller, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

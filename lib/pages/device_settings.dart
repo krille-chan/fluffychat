@@ -136,5 +136,5 @@ class DevicesSettingsController extends State<DevicesSettings> {
     ..sort((a, b) => b.lastSeenTs.compareTo(a.lastSeenTs));
 
   @override
-  Widget build(BuildContext context) => DevicesSettingsUI(this);
+  Widget build(BuildContext context) => DevicesSettingsView(this);
 }

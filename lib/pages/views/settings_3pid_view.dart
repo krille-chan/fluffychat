@@ -5,10 +5,10 @@ import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-class Settings3PidUI extends StatelessWidget {
+class Settings3PidView extends StatelessWidget {
   final Settings3PidController controller;
 
-  const Settings3PidUI(this.controller, {Key key}) : super(key: key);
+  const Settings3PidView(this.controller, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

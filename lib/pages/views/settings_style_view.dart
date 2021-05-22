@@ -7,10 +7,10 @@ import '../../config/app_config.dart';
 import '../../widgets/matrix.dart';
 import '../settings_style.dart';
 
-class SettingsStyleUI extends StatelessWidget {
+class SettingsStyleView extends StatelessWidget {
   final SettingsStyleController controller;
 
-  const SettingsStyleUI(this.controller, {Key key}) : super(key: key);
+  const SettingsStyleView(this.controller, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -14,5 +14,5 @@ class MultipleEmotesSettings extends StatefulWidget {
 
 class MultipleEmotesSettingsController extends State<MultipleEmotesSettings> {
   @override
-  Widget build(BuildContext context) => MultipleEmotesSettingsUI(this);
+  Widget build(BuildContext context) => MultipleEmotesSettingsView(this);
 }

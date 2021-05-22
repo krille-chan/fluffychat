@@ -7,10 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 
-class ChatPermissionsSettingsUI extends StatelessWidget {
+class ChatPermissionsSettingsView extends StatelessWidget {
   final ChatPermissionsSettingsController controller;
 
-  const ChatPermissionsSettingsUI(this.controller, {Key key}) : super(key: key);
+  const ChatPermissionsSettingsView(this.controller, {Key key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -29,10 +29,10 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:swipe_to_action/swipe_to_action.dart';
 
-class ChatUI extends StatelessWidget {
+class ChatView extends StatelessWidget {
   final ChatController controller;
 
-  const ChatUI(this.controller, {Key key}) : super(key: key);
+  const ChatView(this.controller, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

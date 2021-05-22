@@ -8,10 +8,10 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import '../settings_ignore_list.dart';
 import '../../widgets/matrix.dart';
 
-class SettingsIgnoreListUI extends StatelessWidget {
+class SettingsIgnoreListView extends StatelessWidget {
   final SettingsIgnoreListController controller;
 
-  const SettingsIgnoreListUI(this.controller, {Key key}) : super(key: key);
+  const SettingsIgnoreListView(this.controller, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

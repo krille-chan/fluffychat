@@ -111,5 +111,5 @@ class SignUpPasswordController extends State<SignUpPassword> {
   }
 
   @override
-  Widget build(BuildContext context) => SignUpPasswordUI(this);
+  Widget build(BuildContext context) => SignUpPasswordView(this);
 }

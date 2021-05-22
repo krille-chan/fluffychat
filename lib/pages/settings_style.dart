@@ -57,5 +57,5 @@ class SettingsStyleController extends State<SettingsStyle> {
   }
 
   @override
-  Widget build(BuildContext context) => SettingsStyleUI(this);
+  Widget build(BuildContext context) => SettingsStyleView(this);
 }

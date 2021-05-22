@@ -373,6 +373,6 @@ class SettingsController extends State<Settings> {
         return c;
       });
     }
-    return SettingsUI(this);
+    return SettingsView(this);
   }
 }

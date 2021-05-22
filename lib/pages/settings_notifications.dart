@@ -108,5 +108,5 @@ class SettingsNotificationsController extends State<SettingsNotifications> {
   }
 
   @override
-  Widget build(BuildContext context) => SettingsNotificationsUI(this);
+  Widget build(BuildContext context) => SettingsNotificationsView(this);
 }

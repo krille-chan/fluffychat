@@ -92,5 +92,5 @@ class ChatPermissionsSettingsController extends State<ChatPermissionsSettings> {
   }
 
   @override
-  Widget build(BuildContext context) => ChatPermissionsSettingsUI(this);
+  Widget build(BuildContext context) => ChatPermissionsSettingsView(this);
 }

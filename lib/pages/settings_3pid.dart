@@ -86,5 +86,5 @@ class Settings3PidController extends State<Settings3Pid> {
   }
 
   @override
-  Widget build(BuildContext context) => Settings3PidUI(this);
+  Widget build(BuildContext context) => Settings3PidView(this);
 }

@@ -116,5 +116,5 @@ class InvitationSelectionController extends State<InvitationSelection> {
   }
 
   @override
-  Widget build(BuildContext context) => InvitationSelectionUI(this);
+  Widget build(BuildContext context) => InvitationSelectionView(this);
 }

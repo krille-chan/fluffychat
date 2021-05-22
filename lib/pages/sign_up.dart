@@ -67,5 +67,5 @@ class SignUpController extends State<SignUp> {
   }
 
   @override
-  Widget build(BuildContext context) => SignUpUI(this);
+  Widget build(BuildContext context) => SignUpView(this);
 }

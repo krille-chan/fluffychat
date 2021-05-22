@@ -299,5 +299,5 @@ class ChatDetailsController extends State<ChatDetails> {
   }
 
   @override
-  Widget build(BuildContext context) => ChatDetailsUI(this);
+  Widget build(BuildContext context) => ChatDetailsView(this);
 }

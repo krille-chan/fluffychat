@@ -112,5 +112,5 @@ class NewPrivateChatController extends State<NewPrivateChat> {
       );
 
   @override
-  Widget build(BuildContext context) => NewPrivateChatUI(this);
+  Widget build(BuildContext context) => NewPrivateChatView(this);
 }

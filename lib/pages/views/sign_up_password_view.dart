@@ -4,10 +4,10 @@ import 'package:fluffychat/widgets/layouts/one_page_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-class SignUpPasswordUI extends StatelessWidget {
+class SignUpPasswordView extends StatelessWidget {
   final SignUpPasswordController controller;
 
-  const SignUpPasswordUI(this.controller, {Key key}) : super(key: key);
+  const SignUpPasswordView(this.controller, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -139,5 +139,5 @@ class SearchController extends State<Search> {
   }
 
   @override
-  Widget build(BuildContext context) => SearchUI(this);
+  Widget build(BuildContext context) => SearchView(this);
 }

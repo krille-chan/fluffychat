@@ -8,10 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 
-class NewPrivateChatUI extends StatelessWidget {
+class NewPrivateChatView extends StatelessWidget {
   final NewPrivateChatController controller;
 
-  const NewPrivateChatUI(this.controller, {Key key}) : super(key: key);
+  const NewPrivateChatView(this.controller, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

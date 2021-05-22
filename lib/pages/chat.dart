@@ -653,5 +653,5 @@ class ChatController extends State<Chat> {
       });
 
   @override
-  Widget build(BuildContext context) => ChatUI(this);
+  Widget build(BuildContext context) => ChatView(this);
 }

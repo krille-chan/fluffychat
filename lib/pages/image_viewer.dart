@@ -38,5 +38,5 @@ class ImageViewerController extends State<ImageViewer> {
   }
 
   @override
-  Widget build(BuildContext context) => ImageViewerUI(this);
+  Widget build(BuildContext context) => ImageViewerView(this);
 }

@@ -18,10 +18,10 @@ import 'package:matrix_link_text/link_text.dart';
 
 import '../../utils/url_launcher.dart';
 
-class ChatDetailsUI extends StatelessWidget {
+class ChatDetailsView extends StatelessWidget {
   final ChatDetailsController controller;
 
-  const ChatDetailsUI(this.controller, {Key key}) : super(key: key);
+  const ChatDetailsView(this.controller, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

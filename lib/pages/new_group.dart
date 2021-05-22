@@ -40,5 +40,5 @@ class NewGroupController extends State<NewGroup> {
   }
 
   @override
-  Widget build(BuildContext context) => NewGroupUI(this);
+  Widget build(BuildContext context) => NewGroupView(this);
 }

@@ -8,10 +8,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-class SignUpUI extends StatelessWidget {
+class SignUpView extends StatelessWidget {
   final SignUpController controller;
 
-  const SignUpUI(this.controller, {Key key}) : super(key: key);
+  const SignUpView(this.controller, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

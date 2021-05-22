@@ -11,10 +11,10 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import '../../utils/localized_exception_extension.dart';
 import '../search.dart';
 
-class SearchUI extends StatelessWidget {
+class SearchView extends StatelessWidget {
   final SearchController controller;
 
-  const SearchUI(this.controller, {Key key}) : super(key: key);
+  const SearchView(this.controller, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

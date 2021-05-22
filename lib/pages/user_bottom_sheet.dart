@@ -91,5 +91,5 @@ class UserBottomSheetController extends State<UserBottomSheet> {
   }
 
   @override
-  Widget build(BuildContext context) => UserBottomSheetUI(this);
+  Widget build(BuildContext context) => UserBottomSheetView(this);
 }

@@ -7,10 +7,10 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import '../../widgets/matrix.dart';
 import '../settings_emotes.dart';
 
-class EmotesSettingsUI extends StatelessWidget {
+class EmotesSettingsView extends StatelessWidget {
   final EmotesSettingsController controller;
 
-  const EmotesSettingsUI(this.controller, {Key key}) : super(key: key);
+  const EmotesSettingsView(this.controller, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-class MultipleEmotesSettingsUI extends StatelessWidget {
+class MultipleEmotesSettingsView extends StatelessWidget {
   final MultipleEmotesSettingsController controller;
 
-  MultipleEmotesSettingsUI(this.controller, {Key key}) : super(key: key);
+  MultipleEmotesSettingsView(this.controller, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

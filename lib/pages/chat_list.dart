@@ -246,7 +246,7 @@ class ChatListController extends State<ChatList> {
   }
 
   @override
-  Widget build(BuildContext context) => ChatListUI(this);
+  Widget build(BuildContext context) => ChatListView(this);
 }
 
 enum ChatListPopupMenuItemActions {

@@ -11,10 +11,10 @@ import '../../utils/localized_exception_extension.dart';
 import '../settings_notifications.dart';
 import '../../widgets/matrix.dart';
 
-class SettingsNotificationsUI extends StatelessWidget {
+class SettingsNotificationsView extends StatelessWidget {
   final SettingsNotificationsController controller;
 
-  const SettingsNotificationsUI(this.controller, {Key key}) : super(key: key);
+  const SettingsNotificationsView(this.controller, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

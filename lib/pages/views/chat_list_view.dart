@@ -10,10 +10,10 @@ import 'package:flutter/material.dart';
 import '../../widgets/matrix.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-class ChatListUI extends StatelessWidget {
+class ChatListView extends StatelessWidget {
   final ChatListController controller;
 
-  const ChatListUI(this.controller, {Key key}) : super(key: key);
+  const ChatListView(this.controller, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

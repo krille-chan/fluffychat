@@ -9,10 +9,10 @@ import '../user_bottom_sheet.dart';
 import '../../utils/presence_extension.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-class UserBottomSheetUI extends StatelessWidget {
+class UserBottomSheetView extends StatelessWidget {
   final UserBottomSheetController controller;
 
-  const UserBottomSheetUI(this.controller, {Key key}) : super(key: key);
+  const UserBottomSheetView(this.controller, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
