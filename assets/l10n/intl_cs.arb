@@ -948,7 +948,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Zdá se, že v telefonu nemáte žádné služby Google. To je dobré rozhodnutí pro vaše soukromí! Chcete-li dostávat push oznámení ve FluffyChat, doporučujeme použít microG: https://microg.org/",
+  "noGoogleServicesWarning": "Zdá se, že v telefonu nemáte žádné služby Google. To je dobré rozhodnutí pro vaše soukromí! Chcete-li dostávat push oznámení ve FluffyChat, doporučujeme použít: https://microg.org/ nebo https://unifiedpush.org/.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -2349,6 +2349,11 @@
   },
   "or": "Nebo",
   "@or": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oopsPushError": "Jejda! Při nastavování oznámení push došlo bohužel k chybě.",
+  "@oopsPushError": {
     "type": "text",
     "placeholders": {}
   }
