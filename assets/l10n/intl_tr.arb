@@ -911,7 +911,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Görünüşe göre telefonunuzda Google hizmetleri yok. Bu, gizliliğiniz için iyi bir karar! FluffyChat'te anlık bildirimler almak için microG kullanmanızı tavsiye ediyoruz: https://microg.org/",
+  "noGoogleServicesWarning": "Görünüşe göre telefonunuzda Google hizmetleri yok. Bu, gizliliğiniz için iyi bir karar! FluffyChat'te anlık bildirimler almak için https://microg.org/ veya https://unifiedpush.org/ kullanmanızı tavsiye ediyoruz.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -2349,6 +2349,11 @@
   },
   "or": "Veya",
   "@or": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oopsPushError": "Tüh! Maalesef anlık bildirimlerini ayarlarken bir hata oluştu.",
+  "@oopsPushError": {
     "type": "text",
     "placeholders": {}
   }
