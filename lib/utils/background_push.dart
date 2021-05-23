@@ -251,7 +251,9 @@ class BackgroundPush {
       await loadLocale();
       apl.currentState.showSnackBar(SnackBar(
           content: Text(
-        l10n.noGoogleServicesWarning,
+        PlatformInfos.isAndroid
+            ? l10n.noGoogleServicesWarning
+            : l10n.oopsPushError,
       )));
       if (null == await store.getItem(SettingKeys.showNoGoogle)) {
         await store.setItemBool(SettingKeys.showNoGoogle, false);

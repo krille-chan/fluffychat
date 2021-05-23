@@ -1223,8 +1223,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using microG: https://microg.org/",
+  "noGoogleServicesWarning": "It seems that you have no google services on your phone. That's a good decision for your privacy! To receive push notifications in FluffyChat we recommend using https://microg.org/ or https://unifiedpush.org/.",
   "@noGoogleServicesWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oopsPushError": "Oops! Unfortunately, an error occurred when setting up the push notifications.",
+  "@oopsPushError": {
     "type": "text",
     "placeholders": {}
   },
