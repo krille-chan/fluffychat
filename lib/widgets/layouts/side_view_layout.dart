@@ -15,7 +15,7 @@ class SideViewLayout extends StatelessWidget {
     final hideSideView = currentUrl.split('/').length == 4;
     return sideView == null
         ? mainView
-        : MediaQuery.of(context).size.width < FluffyThemes.columnWidth * 3 &&
+        : MediaQuery.of(context).size.width < FluffyThemes.columnWidth * 3.5 &&
                 !hideSideView
             ? sideView
             : Row(
