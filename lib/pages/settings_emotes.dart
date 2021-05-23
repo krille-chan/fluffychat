@@ -135,6 +135,7 @@ class EmotesSettingsController extends State<EmotesSettings> {
         -1) {
       controller.text = emote.emoteClean;
       showOkAlertDialog(
+        useRootNavigator: false,
         context: context,
         message: L10n.of(context).emoteExists,
         okLabel: L10n.of(context).ok,
@@ -144,6 +145,7 @@ class EmotesSettingsController extends State<EmotesSettings> {
     if (!RegExp(r'^:[-\w]+:$').hasMatch(emoteCode)) {
       controller.text = emote.emoteClean;
       showOkAlertDialog(
+        useRootNavigator: false,
         context: context,
         message: L10n.of(context).emoteInvalid,
         okLabel: L10n.of(context).ok,
@@ -182,6 +184,7 @@ class EmotesSettingsController extends State<EmotesSettings> {
         newMxcController.text == null ||
         newMxcController.text.isEmpty) {
       await showOkAlertDialog(
+        useRootNavigator: false,
         context: context,
         message: L10n.of(context).emoteWarnNeedToPick,
         okLabel: L10n.of(context).ok,
@@ -192,6 +195,7 @@ class EmotesSettingsController extends State<EmotesSettings> {
     final mxc = newMxcController.text;
     if (emotes.indexWhere((e) => e.emote == emoteCode && e.mxc != mxc) != -1) {
       await showOkAlertDialog(
+        useRootNavigator: false,
         context: context,
         message: L10n.of(context).emoteExists,
         okLabel: L10n.of(context).ok,
@@ -200,6 +204,7 @@ class EmotesSettingsController extends State<EmotesSettings> {
     }
     if (!RegExp(r'^:[-\w]+:$').hasMatch(emoteCode)) {
       await showOkAlertDialog(
+        useRootNavigator: false,
         context: context,
         message: L10n.of(context).emoteInvalid,
         okLabel: L10n.of(context).ok,

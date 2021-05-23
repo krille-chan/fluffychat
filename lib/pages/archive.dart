@@ -23,6 +23,7 @@ class ArchiveController extends State<Archive> {
 
   void forgetAllAction() async {
     if (await showOkCancelAlertDialog(
+          useRootNavigator: false,
           context: context,
           title: L10n.of(context).areYouSure,
           okLabel: L10n.of(context).yes,

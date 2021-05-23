@@ -128,6 +128,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         case AuthenticationTypes.password:
           final input = cachedPassword ??
               (await showTextInputDialog(
+                useRootNavigator: false,
                 context: navigatorContext,
                 title: L10n.of(widget.context).pleaseEnterYourPassword,
                 okLabel: L10n.of(widget.context).ok,
@@ -182,6 +183,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
           );
           if (OkCancelResult.ok ==
               await showOkCancelAlertDialog(
+                useRootNavigator: false,
                 message: L10n.of(widget.context).pleaseFollowInstructionsOnWeb,
                 context: navigatorContext,
                 okLabel: L10n.of(widget.context).next,
@@ -293,6 +295,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         hidPopup = true;
       };
       if (await showOkCancelAlertDialog(
+            useRootNavigator: false,
             context: navigatorContext,
             title: L10n.of(widget.context).newVerificationRequest,
             message:

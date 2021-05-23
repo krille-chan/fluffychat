@@ -58,6 +58,7 @@ class SignUpPasswordController extends State<SignUpPassword> {
         );
         if (OkCancelResult.ok !=
             await showOkCancelAlertDialog(
+              useRootNavigator: false,
               context: context,
               message: L10n.of(context).weSentYouAnEmail,
               okLabel: L10n.of(context).confirm,

@@ -93,6 +93,7 @@ class ChatListItem extends StatelessWidget {
               'chat.fluffy.shared_file') {
             await showDialog(
               context: context,
+              useRootNavigator: false,
               builder: (c) => SendFileDialog(
                 file: Matrix.of(context).shareContent['file'],
                 room: room,
@@ -121,6 +122,7 @@ class ChatListItem extends StatelessWidget {
         return success;
       }
       final confirmed = await showOkCancelAlertDialog(
+        useRootNavigator: false,
         context: context,
         title: L10n.of(context).areYouSure,
         okLabel: L10n.of(context).yes,

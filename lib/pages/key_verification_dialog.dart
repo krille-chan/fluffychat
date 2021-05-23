@@ -16,11 +16,13 @@ class KeyVerificationDialog extends StatefulWidget {
           context: context,
           barrierDismissible: true,
           builder: (context) => this,
+          useRootNavigator: false,
         )
       : showDialog(
           context: context,
           barrierDismissible: true,
           builder: (context) => this,
+          useRootNavigator: false,
         );
 
   final KeyVerification request;
@@ -96,6 +98,7 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
               });
           if (valid.error != null) {
             await showOkAlertDialog(
+              useRootNavigator: false,
               context: context,
               message: L10n.of(context).incorrectPassphraseOrKey,
             );
@@ -183,6 +186,7 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
             label: L10n.of(context).verifyManual,
             onPressed: () async {
               final result = await showOkCancelAlertDialog(
+                useRootNavigator: false,
                 context: context,
                 title: L10n.of(context).verifyManual,
                 message: key.ed25519Key.beautified,

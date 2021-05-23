@@ -202,6 +202,7 @@ class SettingsView extends StatelessWidget {
               ListTile(
                 title: Text(L10n.of(context).yourPublicKey),
                 onTap: () => showOkAlertDialog(
+                  useRootNavigator: false,
                   context: context,
                   title: L10n.of(context).yourPublicKey,
                   message: client.fingerprintKey.beautified,

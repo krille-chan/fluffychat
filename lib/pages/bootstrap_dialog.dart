@@ -26,11 +26,13 @@ class BootstrapDialog extends StatefulWidget {
           context: context,
           builder: (context) => this,
           barrierDismissible: true,
+          useRootNavigator: false,
         )
       : showDialog(
           context: context,
           builder: (context) => this,
           barrierDismissible: true,
+          useRootNavigator: false,
         );
 
   @override
@@ -193,6 +195,7 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
             onPressed: () async {
               if (OkCancelResult.ok ==
                   await showOkCancelAlertDialog(
+                    useRootNavigator: false,
                     context: context,
                     title: L10n.of(context).securityKeyLost,
                     message: L10n.of(context).wipeChatBackup,

@@ -59,6 +59,7 @@ class SearchController extends State<Search> {
 
   void joinGroupAction(PublicRoom room) async {
     if (await showOkCancelAlertDialog(
+          useRootNavigator: false,
           context: context,
           okLabel: L10n.of(context).joinRoom,
           title: '${room.name} (${room.numJoinedMembers ?? 0})',
@@ -85,6 +86,7 @@ class SearchController extends State<Search> {
 
   void setServer() async {
     final newServer = await showTextInputDialog(
+        useRootNavigator: false,
         title: L10n.of(context).changeTheHomeserver,
         context: context,
         okLabel: L10n.of(context).ok,

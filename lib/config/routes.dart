@@ -145,7 +145,22 @@ class AppRoutes {
             ),
             buildTransition: _fadeTransition,
             stackedRoutes: [
-              _settingsRoute,
+              VNester(
+                path: '/settings',
+                widgetBuilder: (child) => TwoColumnLayout(
+                  mainView: Settings(),
+                  sideView: child,
+                ),
+                buildTransition: _dynamicTransition,
+                nestedRoutes: [
+                  VWidget(
+                    path: '',
+                    widget: EmptyPage(),
+                    buildTransition: _dynamicTransition,
+                    stackedRoutes: _settingsRoutes,
+                  ),
+                ],
+              ),
               VWidget(
                 path: '/search',
                 widget: TwoColumnLayout(
@@ -185,7 +200,11 @@ class AppRoutes {
                   stackedRoutes: _chatDetailsRoutes,
                 ),
               ]),
-              _settingsRoute,
+              VWidget(
+                path: '/settings',
+                widget: Settings(),
+                stackedRoutes: _settingsRoutes,
+              ),
               VWidget(
                 path: '/search',
                 widget: Search(),
@@ -224,58 +243,43 @@ class AppRoutes {
         ),
       ];
 
-  VNester get _settingsRoute => VNester(
-        path: '/settings',
-        widgetBuilder: (child) => TwoColumnLayout(
-          mainView: Settings(),
-          sideView: child,
+  List<VRouteElement> get _settingsRoutes => [
+        VWidget(
+          path: 'emotes',
+          widget: EmotesSettings(),
+          buildTransition: _dynamicTransition,
         ),
-        buildTransition: _dynamicTransition,
-        nestedRoutes: [
-          VWidget(
-            path: '',
-            widget: EmptyPage(),
-            buildTransition: _dynamicTransition,
-            stackedRoutes: [
-              VWidget(
-                path: 'emotes',
-                widget: EmotesSettings(),
-                buildTransition: _dynamicTransition,
-              ),
-              VWidget(
-                path: 'notifications',
-                widget: SettingsNotifications(),
-                buildTransition: _dynamicTransition,
-              ),
-              VWidget(
-                path: 'ignorelist',
-                widget: SettingsIgnoreList(),
-                buildTransition: _dynamicTransition,
-              ),
-              VWidget(
-                path: 'style',
-                widget: SettingsStyle(),
-                buildTransition: _dynamicTransition,
-              ),
-              VWidget(
-                path: 'devices',
-                widget: DevicesSettings(),
-                buildTransition: _dynamicTransition,
-              ),
-              VWidget(
-                path: '/logs',
-                widget: LogViewer(),
-                buildTransition: _dynamicTransition,
-              ),
-              VWidget(
-                path: '3pid',
-                widget: Settings3Pid(),
-                buildTransition: _dynamicTransition,
-              ),
-            ],
-          ),
-        ],
-      );
+        VWidget(
+          path: 'notifications',
+          widget: SettingsNotifications(),
+          buildTransition: _dynamicTransition,
+        ),
+        VWidget(
+          path: 'ignorelist',
+          widget: SettingsIgnoreList(),
+          buildTransition: _dynamicTransition,
+        ),
+        VWidget(
+          path: 'style',
+          widget: SettingsStyle(),
+          buildTransition: _dynamicTransition,
+        ),
+        VWidget(
+          path: 'devices',
+          widget: DevicesSettings(),
+          buildTransition: _dynamicTransition,
+        ),
+        VWidget(
+          path: '/logs',
+          widget: LogViewer(),
+          buildTransition: _dynamicTransition,
+        ),
+        VWidget(
+          path: '3pid',
+          widget: Settings3Pid(),
+          buildTransition: _dynamicTransition,
+        ),
+      ];
 
   final _fadeTransition = (animation1, _, child) =>
       FadeTransition(opacity: animation1, child: child);

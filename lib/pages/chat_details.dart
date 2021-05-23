@@ -31,6 +31,7 @@ class ChatDetailsController extends State<ChatDetails> {
   void setDisplaynameAction() async {
     final room = Matrix.of(context).client.getRoomById(roomId);
     final input = await showTextInputDialog(
+      useRootNavigator: false,
       context: context,
       title: L10n.of(context).changeTheNameOfTheGroup,
       okLabel: L10n.of(context).ok,
@@ -88,6 +89,7 @@ class ChatDetailsController extends State<ChatDetails> {
       return setAliasAction();
     }
     final select = await showConfirmationDialog(
+      useRootNavigator: false,
       context: context,
       title: L10n.of(context).editRoomAliases,
       actions: [
@@ -155,6 +157,7 @@ class ChatDetailsController extends State<ChatDetails> {
     final domain = room.client.userID.domain;
 
     final input = await showTextInputDialog(
+      useRootNavigator: false,
       context: context,
       title: L10n.of(context).setInvitationLink,
       okLabel: L10n.of(context).ok,
@@ -179,6 +182,7 @@ class ChatDetailsController extends State<ChatDetails> {
   void setTopicAction() async {
     final room = Matrix.of(context).client.getRoomById(roomId);
     final input = await showTextInputDialog(
+      useRootNavigator: false,
       context: context,
       title: L10n.of(context).setGroupDescription,
       okLabel: L10n.of(context).ok,

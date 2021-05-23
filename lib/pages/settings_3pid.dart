@@ -17,6 +17,7 @@ class Settings3Pid extends StatefulWidget {
 class Settings3PidController extends State<Settings3Pid> {
   void add3PidAction() async {
     final input = await showTextInputDialog(
+      useRootNavigator: false,
       context: context,
       title: L10n.of(context).enterAnEmailAddress,
       okLabel: L10n.of(context).ok,
@@ -40,6 +41,7 @@ class Settings3PidController extends State<Settings3Pid> {
     );
     if (response.error != null) return;
     final ok = await showOkAlertDialog(
+      useRootNavigator: false,
       context: context,
       title: L10n.of(context).weSentYouAnEmail,
       message: L10n.of(context).pleaseClickOnLink,
@@ -64,6 +66,7 @@ class Settings3PidController extends State<Settings3Pid> {
 
   void delete3Pid(ThirdPartyIdentifier identifier) async {
     if (await showOkCancelAlertDialog(
+          useRootNavigator: false,
           context: context,
           title: L10n.of(context).areYouSure,
           okLabel: L10n.of(context).yes,

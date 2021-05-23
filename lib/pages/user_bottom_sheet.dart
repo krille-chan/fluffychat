@@ -30,6 +30,7 @@ class UserBottomSheetController extends State<UserBottomSheet> {
   void participantAction(String action) async {
     final Function _askConfirmation =
         () async => (await showOkCancelAlertDialog(
+              useRootNavigator: false,
               context: context,
               title: L10n.of(context).areYouSure,
               okLabel: L10n.of(context).yes,

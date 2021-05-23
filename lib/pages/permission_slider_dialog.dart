@@ -14,10 +14,12 @@ class PermissionSliderDialog extends StatefulWidget {
       ? showCupertinoDialog<int>(
           context: context,
           builder: (context) => this,
+          useRootNavigator: false,
         )
       : showDialog<int>(
           context: context,
           builder: (context) => this,
+          useRootNavigator: false,
         );
 
   final int initialPermission;

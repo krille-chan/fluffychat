@@ -233,6 +233,7 @@ class ChatController extends State<Chat> {
     if (result == null) return;
     await showDialog(
       context: context,
+      useRootNavigator: false,
       builder: (c) => SendFileDialog(
         file: MatrixFile(
           bytes: result.toUint8List(),
@@ -249,6 +250,7 @@ class ChatController extends State<Chat> {
     if (result == null) return;
     await showDialog(
       context: context,
+      useRootNavigator: false,
       builder: (c) => SendFileDialog(
         file: MatrixImageFile(
           bytes: result.toUint8List(),
@@ -265,6 +267,7 @@ class ChatController extends State<Chat> {
     final bytes = await file.readAsBytes();
     await showDialog(
       context: context,
+      useRootNavigator: false,
       builder: (c) => SendFileDialog(
         file: MatrixImageFile(
           bytes: bytes,
@@ -282,6 +285,7 @@ class ChatController extends State<Chat> {
     }
     final result = await showDialog<String>(
       context: context,
+      useRootNavigator: false,
       builder: (c) => RecordingDialog(),
     );
     if (result == null) return;
@@ -339,6 +343,7 @@ class ChatController extends State<Chat> {
         ]);
     if (score == null) return;
     final reason = await showTextInputDialog(
+        useRootNavigator: false,
         context: context,
         title: L10n.of(context).whyDoYouWantToReportThis,
         okLabel: L10n.of(context).ok,
@@ -362,6 +367,7 @@ class ChatController extends State<Chat> {
 
   void redactEventsAction() async {
     final confirmed = await showOkCancelAlertDialog(
+          useRootNavigator: false,
           context: context,
           title: L10n.of(context).messageWillBeRemovedWarning,
           okLabel: L10n.of(context).remove,
@@ -538,6 +544,7 @@ class ChatController extends State<Chat> {
   void goToNewRoomAction() async {
     if (OkCancelResult.ok !=
         await showOkCancelAlertDialog(
+          useRootNavigator: false,
           context: context,
           title: L10n.of(context).goToTheNewRoom,
           message: room

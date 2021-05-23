@@ -26,6 +26,7 @@ class _EncryptionButtonState extends State<EncryptionButton> {
     }
     if (widget.room.joinRules == JoinRules.public) {
       await showOkAlertDialog(
+        useRootNavigator: false,
         context: context,
         okLabel: L10n.of(context).ok,
         message: L10n.of(context).noEncryptionForPublicRooms,
@@ -33,6 +34,7 @@ class _EncryptionButtonState extends State<EncryptionButton> {
       return;
     }
     if (await showOkCancelAlertDialog(
+          useRootNavigator: false,
           context: context,
           title: L10n.of(context).enableEncryption,
           message: widget.room.client.encryptionEnabled

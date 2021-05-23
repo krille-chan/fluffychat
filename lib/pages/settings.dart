@@ -37,6 +37,7 @@ class SettingsController extends State<Settings> {
 
   void logoutAction() async {
     if (await showOkCancelAlertDialog(
+          useRootNavigator: false,
           context: context,
           title: L10n.of(context).areYouSureYouWantToLogout,
           okLabel: L10n.of(context).yes,
@@ -54,6 +55,7 @@ class SettingsController extends State<Settings> {
 
   void changePasswordAccountAction() async {
     final input = await showTextInputDialog(
+      useRootNavigator: false,
       context: context,
       title: L10n.of(context).changePassword,
       okLabel: L10n.of(context).ok,
@@ -88,6 +90,7 @@ class SettingsController extends State<Settings> {
 
   void deleteAccountAction() async {
     if (await showOkCancelAlertDialog(
+          useRootNavigator: false,
           context: context,
           title: L10n.of(context).warning,
           message: L10n.of(context).deactivateAccountWarning,
@@ -98,6 +101,7 @@ class SettingsController extends State<Settings> {
       return;
     }
     if (await showOkCancelAlertDialog(
+          useRootNavigator: false,
           context: context,
           title: L10n.of(context).areYouSure,
           okLabel: L10n.of(context).yes,
@@ -107,6 +111,7 @@ class SettingsController extends State<Settings> {
       return;
     }
     final input = await showTextInputDialog(
+      useRootNavigator: false,
       context: context,
       title: L10n.of(context).pleaseEnterYourPassword,
       okLabel: L10n.of(context).ok,
@@ -137,6 +142,7 @@ class SettingsController extends State<Settings> {
   void setJitsiInstanceAction() async {
     const prefix = 'https://';
     final input = await showTextInputDialog(
+      useRootNavigator: false,
       context: context,
       title: L10n.of(context).editJitsiInstance,
       okLabel: L10n.of(context).ok,
@@ -160,6 +166,7 @@ class SettingsController extends State<Settings> {
 
   void setDisplaynameAction() async {
     final input = await showTextInputDialog(
+      useRootNavigator: false,
       context: context,
       title: L10n.of(context).editDisplayname,
       okLabel: L10n.of(context).ok,
@@ -224,6 +231,7 @@ class SettingsController extends State<Settings> {
   Future<void> requestSSSSCache() async {
     final handle = Matrix.of(context).client.encryption.ssss.open();
     final input = await showTextInputDialog(
+      useRootNavigator: false,
       context: context,
       title: L10n.of(context).askSSSSCache,
       okLabel: L10n.of(context).ok,
@@ -256,6 +264,7 @@ class SettingsController extends State<Settings> {
       if (valid.result == true) {
         await handle.maybeCacheAll();
         await showOkAlertDialog(
+          useRootNavigator: false,
           context: context,
           message: L10n.of(context).cachedKeys,
           okLabel: L10n.of(context).ok,
@@ -268,6 +277,7 @@ class SettingsController extends State<Settings> {
         });
       } else {
         await showOkAlertDialog(
+          useRootNavigator: false,
           context: context,
           message: L10n.of(context).incorrectPassphraseOrKey,
           okLabel: L10n.of(context).ok,
@@ -283,6 +293,7 @@ class SettingsController extends State<Settings> {
       await AppLock.of(context).showLockScreen();
     }
     final newLock = await showTextInputDialog(
+      useRootNavigator: false,
       context: context,
       title: L10n.of(context).pleaseChooseAPasscode,
       message: L10n.of(context).pleaseEnter4Digits,
@@ -317,6 +328,7 @@ class SettingsController extends State<Settings> {
     if (await Matrix.of(context).client.encryption.keyManager.isCached()) {
       if (OkCancelResult.ok ==
           await showOkCancelAlertDialog(
+            useRootNavigator: false,
             context: context,
             title: L10n.of(context).keysCached,
             message: L10n.of(context).wipeChatBackup,

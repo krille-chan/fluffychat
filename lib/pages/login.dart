@@ -115,6 +115,7 @@ class LoginController extends State<Login> {
 
   void passwordForgotten() async {
     final input = await showTextInputDialog(
+      useRootNavigator: false,
       context: context,
       title: L10n.of(context).enterAnEmailAddress,
       okLabel: L10n.of(context).ok,
@@ -138,6 +139,7 @@ class LoginController extends State<Login> {
     );
     if (response.error != null) return;
     final ok = await showOkAlertDialog(
+      useRootNavigator: false,
       context: context,
       title: L10n.of(context).weSentYouAnEmail,
       message: L10n.of(context).pleaseClickOnLink,
@@ -145,6 +147,7 @@ class LoginController extends State<Login> {
     );
     if (ok == null) return;
     final password = await showTextInputDialog(
+      useRootNavigator: false,
       context: context,
       title: L10n.of(context).chooseAStrongPassword,
       okLabel: L10n.of(context).ok,

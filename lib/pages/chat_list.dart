@@ -155,6 +155,7 @@ class ChatListController extends State<ChatList> {
 
   Future<void> archiveAction() async {
     final confirmed = await showOkCancelAlertDialog(
+          useRootNavigator: false,
           context: context,
           title: L10n.of(context).areYouSure,
           okLabel: L10n.of(context).yes,
@@ -171,6 +172,7 @@ class ChatListController extends State<ChatList> {
 
   void setStatus() async {
     final input = await showTextInputDialog(
+        useRootNavigator: false,
         context: context,
         title: L10n.of(context).setStatus,
         okLabel: L10n.of(context).ok,
