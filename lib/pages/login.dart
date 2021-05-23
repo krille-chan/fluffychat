@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:adaptive_page_layout/adaptive_page_layout.dart';
+
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -119,7 +119,6 @@ class LoginController extends State<Login> {
       title: L10n.of(context).enterAnEmailAddress,
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
-      useRootNavigator: false,
       textFields: [
         DialogTextField(
           hintText: L10n.of(context).enterAnEmailAddress,
@@ -143,7 +142,6 @@ class LoginController extends State<Login> {
       title: L10n.of(context).weSentYouAnEmail,
       message: L10n.of(context).pleaseClickOnLink,
       okLabel: L10n.of(context).iHaveClickedOnLink,
-      useRootNavigator: false,
     );
     if (ok == null) return;
     final password = await showTextInputDialog(
@@ -151,7 +149,6 @@ class LoginController extends State<Login> {
       title: L10n.of(context).chooseAStrongPassword,
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
-      useRootNavigator: false,
       textFields: [
         DialogTextField(
           hintText: '******',
@@ -178,7 +175,7 @@ class LoginController extends State<Login> {
           ),
     );
     if (success.error == null) {
-      AdaptivePageLayout.of(context).showSnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(L10n.of(context).passwordHasBeenChanged)));
     }
   }

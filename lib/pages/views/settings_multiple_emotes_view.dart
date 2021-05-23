@@ -1,9 +1,9 @@
-import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:fluffychat/pages/settings_multiple_emotes.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:vrouter/vrouter.dart';
 
 class MultipleEmotesSettingsView extends StatelessWidget {
   final MultipleEmotesSettingsController controller;
@@ -12,8 +12,7 @@ class MultipleEmotesSettingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final room =
-        Matrix.of(context).client.getRoomById(controller.widget.roomId);
+    final room = Matrix.of(context).client.getRoomById(controller.roomId);
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(),
@@ -45,13 +44,7 @@ class MultipleEmotesSettingsView extends StatelessWidget {
                 return ListTile(
                   title: Text(packName),
                   onTap: () async {
-                    await AdaptivePageLayout.of(context).pushNamed(
-                      '/settings/emotes',
-                      arguments: {
-                        'room': room,
-                        'stateKey': keys[i],
-                      },
-                    );
+                    VRouter.of(context).push('/settings/emotes');
                   },
                 );
               });

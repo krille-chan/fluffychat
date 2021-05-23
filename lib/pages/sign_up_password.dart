@@ -1,21 +1,20 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:adaptive_page_layout/adaptive_page_layout.dart';
+
 import 'package:email_validator/email_validator.dart';
 
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/pages/sign_up.dart';
 import 'package:fluffychat/utils/get_client_secret.dart';
 import 'package:fluffychat/pages/views/sign_up_password_view.dart';
 
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:vrouter/vrouter.dart';
 import '../utils/platform_infos.dart';
 
 class SignUpPassword extends StatefulWidget {
-  final MatrixFile avatar;
-  final String username;
-  final String displayname;
-  const SignUpPassword(this.username, {this.avatar, this.displayname});
+  const SignUpPassword();
   @override
   SignUpPasswordController createState() => SignUpPasswordController();
 }
@@ -70,8 +69,10 @@ class SignUpPasswordController extends State<SignUpPassword> {
         }
       }
       final waitForLogin = matrix.client.onLoginStateChanged.stream.first;
+      final username = VRouter.of(context).pathParameters['username'];
+
       await matrix.client.uiaRequestBackground((auth) => matrix.client.register(
-            username: widget.username,
+            username: username,
             password: passwordController.text,
             initialDeviceDisplayName: PlatformInfos.clientName,
             auth: auth,
@@ -91,19 +92,20 @@ class SignUpPasswordController extends State<SignUpPassword> {
     }
     await matrix.client.onLoginStateChanged.stream
         .firstWhere((l) => l == LoginState.logged);
-    // tchncs.de
-    try {
-      await matrix.client
-          .setDisplayName(matrix.client.userID, widget.displayname);
-    } catch (exception) {
-      AdaptivePageLayout.of(context).showSnackBar(
-          SnackBar(content: Text(L10n.of(context).couldNotSetDisplayname)));
-    }
-    if (widget.avatar != null) {
+    final displayname = VRouter.of(context).queryParameters['displayname'];
+    if (displayname != null) {
       try {
-        await matrix.client.setAvatar(widget.avatar);
+        await matrix.client.setDisplayName(matrix.client.userID, displayname);
       } catch (exception) {
-        AdaptivePageLayout.of(context).showSnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(L10n.of(context).couldNotSetDisplayname)));
+      }
+    }
+    if (SignUpController.avatar != null) {
+      try {
+        await matrix.client.setAvatar(SignUpController.avatar);
+      } catch (exception) {
+        ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(L10n.of(context).couldNotSetAvatar)));
       }
     }

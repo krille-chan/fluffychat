@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:adaptive_page_layout/adaptive_page_layout.dart';
+
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
 import 'package:fluffychat/config/app_config.dart';
@@ -23,17 +23,16 @@ import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:vrouter/vrouter.dart';
 
 import 'send_file_dialog.dart';
 import '../utils/matrix_sdk_extensions.dart/filtered_timeline_extension.dart';
 import '../utils/matrix_sdk_extensions.dart/matrix_file_extension.dart';
 
 class Chat extends StatefulWidget {
-  final String id;
-  final String scrollToEventId;
+  final Widget sideView;
 
-  Chat(this.id, {Key key, this.scrollToEventId})
-      : super(key: key ?? Key('chatroom-$id'));
+  Chat({Key key, this.sideView}) : super(key: key);
 
   @override
   ChatController createState() => ChatController();
@@ -45,6 +44,8 @@ class ChatController extends State<Chat> {
   Timeline timeline;
 
   MatrixState matrix;
+
+  String get roomId => context.vRouter.pathParameters['roomid'];
 
   final AutoScrollController scrollController = AutoScrollController();
 
@@ -97,7 +98,7 @@ class ChatController extends State<Chat> {
       try {
         await timeline.requestHistory(historyCount: _loadHistoryCount);
       } catch (err) {
-        AdaptivePageLayout.of(context).showSnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(err.toLocalizedString(context))));
       }
     }
@@ -167,8 +168,9 @@ class ChatController extends State<Chat> {
       // "load more" button is visible on the screen
       SchedulerBinding.instance.addPostFrameCallback((_) async {
         if (mounted) {
-          if (widget.scrollToEventId != null) {
-            scrollToEventId(widget.scrollToEventId);
+          final event = VRouter.of(context).queryParameters['event'];
+          if (event != null) {
+            scrollToEventId(event);
           }
           _updateScrollController();
         }
@@ -231,7 +233,6 @@ class ChatController extends State<Chat> {
     if (result == null) return;
     await showDialog(
       context: context,
-      useRootNavigator: false,
       builder: (c) => SendFileDialog(
         file: MatrixFile(
           bytes: result.toUint8List(),
@@ -248,7 +249,6 @@ class ChatController extends State<Chat> {
     if (result == null) return;
     await showDialog(
       context: context,
-      useRootNavigator: false,
       builder: (c) => SendFileDialog(
         file: MatrixImageFile(
           bytes: result.toUint8List(),
@@ -265,7 +265,6 @@ class ChatController extends State<Chat> {
     final bytes = await file.readAsBytes();
     await showDialog(
       context: context,
-      useRootNavigator: false,
       builder: (c) => SendFileDialog(
         file: MatrixImageFile(
           bytes: bytes,
@@ -284,7 +283,6 @@ class ChatController extends State<Chat> {
     final result = await showDialog<String>(
       context: context,
       builder: (c) => RecordingDialog(),
-      useRootNavigator: false,
     );
     if (result == null) return;
     final audioFile = File(result);
@@ -325,7 +323,6 @@ class ChatController extends State<Chat> {
     final score = await showConfirmationDialog<int>(
         context: context,
         title: L10n.of(context).howOffensiveIsThisContent,
-        useRootNavigator: false,
         actions: [
           AlertDialogAction(
             key: -100,
@@ -346,7 +343,6 @@ class ChatController extends State<Chat> {
         title: L10n.of(context).whyDoYouWantToReportThis,
         okLabel: L10n.of(context).ok,
         cancelLabel: L10n.of(context).cancel,
-        useRootNavigator: false,
         textFields: [DialogTextField(hintText: L10n.of(context).reason)]);
     if (reason == null || reason.single.isEmpty) return;
     final result = await showFutureLoadingDialog(
@@ -360,7 +356,7 @@ class ChatController extends State<Chat> {
     );
     if (result.error != null) return;
     setState(() => selectedEvents.clear());
-    AdaptivePageLayout.of(context).showSnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(L10n.of(context).contentHasBeenReported)));
   }
 
@@ -370,7 +366,6 @@ class ChatController extends State<Chat> {
           title: L10n.of(context).messageWillBeRemovedWarning,
           okLabel: L10n.of(context).remove,
           cancelLabel: L10n.of(context).cancel,
-          useRootNavigator: false,
         ) ==
         OkCancelResult.ok;
     if (!confirmed) return;
@@ -400,7 +395,7 @@ class ChatController extends State<Chat> {
       };
     }
     setState(() => selectedEvents.clear());
-    AdaptivePageLayout.of(context).popUntilIsFirst();
+    VRouter.of(context).push('/rooms');
   }
 
   void sendAgainAction() {
@@ -566,8 +561,7 @@ class ChatController extends State<Chat> {
       future: room.leave,
     );
     if (result.error == null) {
-      await AdaptivePageLayout.of(context)
-          .pushNamedAndRemoveUntilIsFirst('/rooms/${result.result}');
+      VRouter.of(context).push('/rooms/${result.result}');
     }
   }
 
@@ -653,5 +647,29 @@ class ChatController extends State<Chat> {
       });
 
   @override
-  Widget build(BuildContext context) => ChatView(this);
+  Widget build(BuildContext context) {
+    var currentUrl = Uri.decodeFull(VRouter.of(context).url);
+    if (!currentUrl.endsWith('/')) currentUrl += '/';
+    final hideSideView = currentUrl == '/rooms/$roomId/';
+    return widget.sideView == null
+        ? ChatView(this)
+        : Row(
+            children: [
+              Expanded(
+                child: ClipRRect(child: ChatView(this)),
+              ),
+              Container(
+                width: 1.0,
+                color: Theme.of(context).dividerColor,
+              ),
+              AnimatedContainer(
+                duration: Duration(milliseconds: 300),
+                clipBehavior: Clip.antiAlias,
+                decoration: BoxDecoration(),
+                width: hideSideView ? 0 : 360.0,
+                child: hideSideView ? null : widget.sideView,
+              ),
+            ],
+          );
+  }
 }

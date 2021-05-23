@@ -1,5 +1,3 @@
-import 'package:adaptive_page_layout/adaptive_page_layout.dart';
-import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/pages/archive.dart';
 import 'package:fluffychat/pages/homeserver_picker.dart';
 import 'package:fluffychat/pages/invitation_selection.dart';
@@ -7,7 +5,7 @@ import 'package:fluffychat/pages/settings_emotes.dart';
 import 'package:fluffychat/pages/settings_multiple_emotes.dart';
 import 'package:fluffychat/pages/sign_up.dart';
 import 'package:fluffychat/pages/sign_up_password.dart';
-import 'package:fluffychat/widgets/matrix.dart';
+import 'package:fluffychat/widgets/layouts/two_column_layout.dart';
 import 'package:fluffychat/pages/chat.dart';
 import 'package:fluffychat/pages/chat_details.dart';
 import 'package:fluffychat/pages/chat_encryption_settings.dart';
@@ -27,200 +25,261 @@ import 'package:fluffychat/pages/settings_ignore_list.dart';
 import 'package:fluffychat/pages/settings_notifications.dart';
 import 'package:fluffychat/pages/settings_style.dart';
 import 'package:flutter/material.dart';
+import 'package:vrouter/vrouter.dart';
 
-class FluffyRoutes {
-  final BuildContext context;
+class AppRoutes {
+  final int columns;
 
-  const FluffyRoutes(this.context);
+  AppRoutes(this.columns);
 
-  ViewData onGenerateRoute(RouteSettings settings) {
-    final parts = settings.name.split('/');
-
-    // Routes if the app is loading
-    if (Matrix.of(context).loginState == null) {
-      return ViewData(mainView: (_) => LoadingView());
-      // Routes if user is NOT logged in
-    } else if (Matrix.of(context).loginState == LoginState.loggedOut) {
-      switch (parts[1]) {
-        case '':
-          return ViewData(mainView: (_) => HomeserverPicker());
-        case 'login':
-          return ViewData(mainView: (_) => Login());
-        case 'signup':
-          if (parts.length == 5 && parts[2] == 'password') {
-            return ViewData(
-              mainView: (_) => SignUpPassword(
-                parts[3],
-                displayname: parts[4],
-                avatar: settings.arguments,
+  List<VRouteElement> get routes => [
+        VWidget(path: '/', widget: LoadingView()),
+        VWidget(
+          path: '/home',
+          widget: HomeserverPicker(),
+          buildTransition: _fadeTransition,
+          stackedRoutes: [
+            VWidget(
+                path: '/signup',
+                widget: SignUp(),
+                buildTransition: _fadeTransition,
+                stackedRoutes: [
+                  VWidget(
+                    path: 'password/:username',
+                    widget: SignUpPassword(),
+                    buildTransition: _fadeTransition,
+                  ),
+                  VWidget(
+                    path: '/login',
+                    widget: Login(),
+                    buildTransition: _fadeTransition,
+                  ),
+                ]),
+          ],
+        ),
+        if (columns > 1) ...{
+          VNester(
+            path: '/rooms',
+            widgetBuilder: (child) => TwoColumnLayout(
+              mainView: ChatList(),
+              sideView: child,
+            ),
+            buildTransition: _fadeTransition,
+            nestedRoutes: [
+              VWidget(
+                path: '',
+                widget: EmptyPage(),
+                buildTransition: _fadeTransition,
+                stackedRoutes: [
+                  VWidget(
+                    path: '/newprivatechat',
+                    widget: NewPrivateChat(),
+                    buildTransition: _fadeTransition,
+                  ),
+                  VWidget(
+                    path: '/newgroup',
+                    widget: NewGroup(),
+                    buildTransition: _fadeTransition,
+                  ),
+                  if (columns == 2)
+                    VWidget(
+                        path: ':roomid',
+                        widget: Chat(),
+                        buildTransition: _fadeTransition,
+                        stackedRoutes: [
+                          VWidget(
+                            path: 'encryption',
+                            widget: ChatEncryptionSettings(),
+                            buildTransition: _fadeTransition,
+                          ),
+                          VWidget(
+                            path: 'details',
+                            widget: ChatDetails(),
+                            buildTransition: _fadeTransition,
+                            stackedRoutes: _chatDetailsRoutes,
+                          ),
+                          VWidget(
+                            path: 'invite',
+                            widget: InvitationSelection(),
+                            buildTransition: _fadeTransition,
+                          ),
+                        ]),
+                  if (columns > 2)
+                    VNester(
+                      path: ':roomid',
+                      widgetBuilder: (child) => Chat(sideView: child),
+                      buildTransition: _fadeTransition,
+                      nestedRoutes: [
+                        VWidget(
+                          path: '',
+                          widget: EmptyPage(),
+                          buildTransition: _fadeTransition,
+                        ),
+                        VWidget(
+                          path: 'encryption',
+                          widget: ChatEncryptionSettings(),
+                          buildTransition: _fadeTransition,
+                        ),
+                        VWidget(
+                          path: 'details',
+                          widget: ChatDetails(),
+                          buildTransition: _fadeTransition,
+                          stackedRoutes: _chatDetailsRoutes,
+                        ),
+                        VWidget(
+                          path: 'invite',
+                          widget: InvitationSelection(),
+                          buildTransition: _fadeTransition,
+                        ),
+                      ],
+                    ),
+                ],
               ),
-            );
-          }
-          return ViewData(mainView: (_) => SignUp());
-      }
-    }
-    // Routes IF user is logged in
-    else {
-      switch (parts[1]) {
-        case '':
-          return ViewData(
-              mainView: (_) => ChatList(), emptyView: (_) => EmptyPage());
-        case 'rooms':
-          final roomId = parts[2];
-          if (parts.length == 3) {
-            return ViewData(
-              leftView: (_) => ChatList(activeChat: roomId),
-              mainView: (_) => Chat(roomId),
-            );
-          } else if (parts.length == 4) {
-            final action = parts[3];
-            switch (action) {
-              case 'details':
-                return ViewData(
-                  leftView: (_) => ChatList(activeChat: roomId),
-                  mainView: (_) => Chat(roomId),
-                  rightView: (_) => ChatDetails(roomId),
-                );
-              case 'encryption':
-                return ViewData(
-                  leftView: (_) => ChatList(activeChat: roomId),
-                  mainView: (_) => Chat(roomId),
-                  rightView: (_) => ChatEncryptionSettings(roomId),
-                );
-              case 'permissions':
-                return ViewData(
-                  leftView: (_) => ChatList(activeChat: roomId),
-                  mainView: (_) => Chat(roomId),
-                  rightView: (_) => ChatPermissionsSettings(roomId),
-                );
-              case 'invite':
-                return ViewData(
-                  leftView: (_) => ChatList(activeChat: roomId),
-                  mainView: (_) => Chat(roomId),
-                  rightView: (_) => InvitationSelection(roomId),
-                );
-              case 'emotes':
-                return ViewData(
-                  leftView: (_) => ChatList(activeChat: roomId),
-                  mainView: (_) => Chat(roomId),
-                  rightView: (_) => MultipleEmotesSettings(roomId),
-                );
-              default:
-                return ViewData(
-                  leftView: (_) => ChatList(activeChat: roomId),
-                  mainView: (_) => Chat(roomId,
-                      scrollToEventId: action.sigil == '\$' ? action : null),
-                );
-            }
-          }
-          return ViewData(
-              mainView: (_) => ChatList(), emptyView: (_) => EmptyPage());
-        case 'archive':
-          return ViewData(
-            mainView: (_) => Archive(),
-            emptyView: (_) => EmptyPage(),
-          );
-        case 'logs':
-          return ViewData(
-            mainView: (_) => LogViewer(),
-          );
-        case 'newgroup':
-          return ViewData(
-            leftView: (_) => ChatList(),
-            mainView: (_) => NewGroup(),
-          );
-        case 'newprivatechat':
-          return ViewData(
-            leftView: (_) => ChatList(),
-            mainView: (_) => NewPrivateChat(),
-          );
-        case 'search':
-          if (parts.length == 3) {
-            return ViewData(
-                mainView: (_) => Search(alias: parts[2]),
-                emptyView: (_) => EmptyPage());
-          }
-          return ViewData(
-              mainView: (_) => Search(), emptyView: (_) => EmptyPage());
-        case 'settings':
-          if (parts.length == 3) {
-            final action = parts[2];
-            switch (action) {
-              case '3pid':
-                return ViewData(
-                  leftView: (_) => Settings(),
-                  mainView: (_) => Settings3Pid(),
-                );
-              case 'devices':
-                return ViewData(
-                  leftView: (_) => Settings(),
-                  mainView: (_) => DevicesSettings(),
-                );
-              case 'emotes':
-                return ViewData(
-                  leftView: (_) => Settings(),
-                  mainView: (_) => EmotesSettings(
-                    room: ((settings.arguments ?? {}) as Map)['room'],
-                    stateKey: ((settings.arguments ?? {}) as Map)['stateKey'],
-                  ),
-                );
-              case 'ignore':
-                return ViewData(
-                  leftView: (_) => Settings(),
-                  mainView: (_) => SettingsIgnoreList(
-                    initialUserId: settings.arguments,
-                  ),
-                );
-              case 'notifications':
-                return ViewData(
-                  leftView: (_) => Settings(),
-                  mainView: (_) => SettingsNotifications(),
-                );
-              case 'style':
-                return ViewData(
-                  leftView: (_) => Settings(),
-                  mainView: (_) => SettingsStyle(),
-                );
-            }
-          } else {
-            return ViewData(
-                mainView: (_) => Settings(), emptyView: (_) => EmptyPage());
-          }
-          return ViewData(
-              mainView: (_) => ChatList(), emptyView: (_) => EmptyPage());
-      }
-    }
-
-    // If route cant be found:
-    return ViewData(
-      mainView: (_) => Center(
-        child: Text('Route "${settings.name}" not found...'),
-      ),
-    );
-  }
-}
-
-class SettingsDevices {}
-
-class FadeRoute extends PageRouteBuilder {
-  final Widget page;
-  FadeRoute({this.page})
-      : super(
-          pageBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation,
-          ) =>
-              page,
-          transitionsBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation,
-            Widget child,
-          ) =>
-              FadeTransition(
-            opacity: animation,
-            child: child,
+            ],
           ),
-        );
+          VWidget(
+            path: '/rooms',
+            widget: TwoColumnLayout(
+              mainView: ChatList(),
+              sideView: EmptyPage(),
+            ),
+            buildTransition: _fadeTransition,
+            stackedRoutes: [
+              _settingsRoute,
+              VWidget(
+                path: '/search',
+                widget: TwoColumnLayout(
+                  mainView: Search(),
+                  sideView: EmptyPage(),
+                ),
+                buildTransition: _fadeTransition,
+              ),
+              VWidget(
+                path: '/archive',
+                widget: TwoColumnLayout(
+                  mainView: Archive(),
+                  sideView: EmptyPage(),
+                ),
+                buildTransition: _fadeTransition,
+              ),
+            ],
+          ),
+        },
+        if (columns == 1)
+          VWidget(
+            path: '/rooms',
+            widget: ChatList(),
+            stackedRoutes: [
+              VWidget(path: ':roomid', widget: Chat(), stackedRoutes: [
+                VWidget(
+                  path: 'encryption',
+                  widget: ChatEncryptionSettings(),
+                ),
+                VWidget(
+                  path: 'invite',
+                  widget: InvitationSelection(),
+                ),
+                VWidget(
+                  path: 'details',
+                  widget: ChatDetails(),
+                  stackedRoutes: _chatDetailsRoutes,
+                ),
+              ]),
+              _settingsRoute,
+              VWidget(
+                path: '/search',
+                widget: Search(),
+              ),
+              VWidget(
+                path: '/archive',
+                widget: Archive(),
+              ),
+              VWidget(
+                path: '/newprivatechat',
+                widget: NewPrivateChat(),
+              ),
+              VWidget(
+                path: '/newgroup',
+                widget: NewGroup(),
+              ),
+            ],
+          ),
+      ];
+
+  List<VRouteElement> get _chatDetailsRoutes => [
+        VWidget(
+          path: 'permissions',
+          widget: ChatPermissionsSettings(),
+          buildTransition: _dynamicTransition,
+        ),
+        VWidget(
+          path: 'invite',
+          widget: InvitationSelection(),
+          buildTransition: _dynamicTransition,
+        ),
+        VWidget(
+          path: 'emotes',
+          widget: MultipleEmotesSettings(),
+          buildTransition: _dynamicTransition,
+        ),
+      ];
+
+  VNester get _settingsRoute => VNester(
+        path: '/settings',
+        widgetBuilder: (child) => TwoColumnLayout(
+          mainView: Settings(),
+          sideView: child,
+        ),
+        buildTransition: _dynamicTransition,
+        nestedRoutes: [
+          VWidget(
+            path: '',
+            widget: EmptyPage(),
+            buildTransition: _dynamicTransition,
+            stackedRoutes: [
+              VWidget(
+                path: 'emotes',
+                widget: EmotesSettings(),
+                buildTransition: _dynamicTransition,
+              ),
+              VWidget(
+                path: 'notifications',
+                widget: SettingsNotifications(),
+                buildTransition: _dynamicTransition,
+              ),
+              VWidget(
+                path: 'ignorelist',
+                widget: SettingsIgnoreList(),
+                buildTransition: _dynamicTransition,
+              ),
+              VWidget(
+                path: 'style',
+                widget: SettingsStyle(),
+                buildTransition: _dynamicTransition,
+              ),
+              VWidget(
+                path: 'devices',
+                widget: DevicesSettings(),
+                buildTransition: _dynamicTransition,
+              ),
+              VWidget(
+                path: '/logs',
+                widget: LogViewer(),
+                buildTransition: _dynamicTransition,
+              ),
+              VWidget(
+                path: '3pid',
+                widget: Settings3Pid(),
+                buildTransition: _dynamicTransition,
+              ),
+            ],
+          ),
+        ],
+      );
+
+  final _fadeTransition = (animation1, _, child) =>
+      FadeTransition(opacity: animation1, child: child);
+
+  FadeTransition Function(dynamic, dynamic, dynamic) get _dynamicTransition =>
+      columns > 1 ? _fadeTransition : null;
 }

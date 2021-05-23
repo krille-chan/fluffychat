@@ -1,5 +1,4 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 
 import 'package:famedlysdk/famedlysdk.dart';
 
@@ -13,13 +12,12 @@ import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:vrouter/vrouter.dart';
 
 enum AliasActions { copy, delete, setCanonical }
 
 class ChatDetails extends StatefulWidget {
-  final String roomId;
-
-  const ChatDetails(this.roomId);
+  const ChatDetails();
 
   @override
   ChatDetailsController createState() => ChatDetailsController();
@@ -28,21 +26,16 @@ class ChatDetails extends StatefulWidget {
 class ChatDetailsController extends State<ChatDetails> {
   List<User> members;
 
-  @override
-  void initState() {
-    super.initState();
-    members ??=
-        Matrix.of(context).client.getRoomById(widget.roomId).getParticipants();
-  }
+  String get roomId => VRouter.of(context).pathParameters['roomid'];
 
   void setDisplaynameAction() async {
-    final room = Matrix.of(context).client.getRoomById(widget.roomId);
+    final room = Matrix.of(context).client.getRoomById(roomId);
     final input = await showTextInputDialog(
       context: context,
       title: L10n.of(context).changeTheNameOfTheGroup,
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
-      useRootNavigator: false,
+
       textFields: [
         DialogTextField(
           initialText: room.getLocalizedDisplayname(
@@ -59,13 +52,13 @@ class ChatDetailsController extends State<ChatDetails> {
       future: () => room.setName(input.single),
     );
     if (success.error == null) {
-      AdaptivePageLayout.of(context).showSnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(L10n.of(context).displaynameHasBeenChanged)));
     }
   }
 
   void editAliases() async {
-    final room = Matrix.of(context).client.getRoomById(widget.roomId);
+    final room = Matrix.of(context).client.getRoomById(roomId);
 
     // The current endpoint doesnt seem to be implemented in Synapse. This may
     // change in the future and then we just need to switch to this api call:
@@ -136,7 +129,7 @@ class ChatDetailsController extends State<ChatDetails> {
     switch (option) {
       case AliasActions.copy:
         await Clipboard.setData(ClipboardData(text: select));
-        AdaptivePageLayout.of(context).showSnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(L10n.of(context).copiedToClipboard)),
         );
         break;
@@ -159,7 +152,7 @@ class ChatDetailsController extends State<ChatDetails> {
   }
 
   void setAliasAction() async {
-    final room = Matrix.of(context).client.getRoomById(widget.roomId);
+    final room = Matrix.of(context).client.getRoomById(roomId);
     final domain = room.client.userID.domain;
 
     final input = await showTextInputDialog(
@@ -167,7 +160,7 @@ class ChatDetailsController extends State<ChatDetails> {
       title: L10n.of(context).setInvitationLink,
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
-      useRootNavigator: false,
+
       textFields: [
         DialogTextField(
           prefixText: '#',
@@ -186,13 +179,13 @@ class ChatDetailsController extends State<ChatDetails> {
   }
 
   void setTopicAction() async {
-    final room = Matrix.of(context).client.getRoomById(widget.roomId);
+    final room = Matrix.of(context).client.getRoomById(roomId);
     final input = await showTextInputDialog(
       context: context,
       title: L10n.of(context).setGroupDescription,
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
-      useRootNavigator: false,
+
       textFields: [
         DialogTextField(
           hintText: L10n.of(context).setGroupDescription,
@@ -208,7 +201,7 @@ class ChatDetailsController extends State<ChatDetails> {
       future: () => room.setDescription(input.single),
     );
     if (success.error == null) {
-      AdaptivePageLayout.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(L10n.of(context).groupDescriptionHasBeenChanged)));
     }
   }
@@ -217,7 +210,7 @@ class ChatDetailsController extends State<ChatDetails> {
         context: context,
         future: () => Matrix.of(context)
             .client
-            .getRoomById(widget.roomId)
+            .getRoomById(roomId)
             .setGuestAccess(guestAccess),
       );
 
@@ -226,7 +219,7 @@ class ChatDetailsController extends State<ChatDetails> {
         context: context,
         future: () => Matrix.of(context)
             .client
-            .getRoomById(widget.roomId)
+            .getRoomById(roomId)
             .setHistoryVisibility(historyVisibility),
       );
 
@@ -234,23 +227,21 @@ class ChatDetailsController extends State<ChatDetails> {
         context: context,
         future: () => Matrix.of(context)
             .client
-            .getRoomById(widget.roomId)
+            .getRoomById(roomId)
             .setJoinRules(joinRule),
       );
 
   void goToEmoteSettings() async {
-    final room = Matrix.of(context).client.getRoomById(widget.roomId);
+    final room = Matrix.of(context).client.getRoomById(roomId);
     // okay, we need to test if there are any emote state events other than the default one
     // if so, we need to be directed to a selection screen for which pack we want to look at
     // otherwise, we just open the normal one.
     if ((room.states['im.ponies.room_emotes'] ?? <String, Event>{})
         .keys
         .any((String s) => s.isNotEmpty)) {
-      await AdaptivePageLayout.of(context)
-          .pushNamed('/rooms/${room.id}/emotes');
+      VRouter.of(context).pushNamed('/rooms/${room.id}/emotes');
     } else {
-      await AdaptivePageLayout.of(context)
-          .pushNamed('/settings/emotes', arguments: {'room': room});
+      VRouter.of(context).pushNamed('/settings/emotes');
     }
   }
 
@@ -277,20 +268,20 @@ class ChatDetailsController extends State<ChatDetails> {
         name: result.fileName,
       );
     }
-    final room = Matrix.of(context).client.getRoomById(widget.roomId);
+    final room = Matrix.of(context).client.getRoomById(roomId);
 
     final success = await showFutureLoadingDialog(
       context: context,
       future: () => room.setAvatar(file),
     );
     if (success.error == null) {
-      AdaptivePageLayout.of(context).showSnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(L10n.of(context).avatarHasBeenChanged)));
     }
   }
 
   void requestMoreMembersAction() async {
-    final room = Matrix.of(context).client.getRoomById(widget.roomId);
+    final room = Matrix.of(context).client.getRoomById(roomId);
     final participants = await showFutureLoadingDialog(
         context: context, future: () => room.requestParticipants());
     if (participants.error == null) {
@@ -299,5 +290,11 @@ class ChatDetailsController extends State<ChatDetails> {
   }
 
   @override
-  Widget build(BuildContext context) => ChatDetailsView(this);
+  Widget build(BuildContext context) {
+    members ??= Matrix.of(context).client.getRoomById(roomId).getParticipants();
+    return Container(
+      width: 360.0,
+      child: ChatDetailsView(this),
+    );
+  }
 }

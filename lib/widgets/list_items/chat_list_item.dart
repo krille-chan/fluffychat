@@ -1,5 +1,5 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:adaptive_page_layout/adaptive_page_layout.dart';
+
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/event_extension.dart';
@@ -9,6 +9,7 @@ import 'package:fluffychat/utils/room_status_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:pedantic/pedantic.dart';
+import 'package:vrouter/vrouter.dart';
 
 import '../../utils/date_time_extension.dart';
 import '../avatar.dart';
@@ -46,7 +47,7 @@ class ChatListItem extends StatelessWidget {
       }
 
       if (room.membership == Membership.ban) {
-        AdaptivePageLayout.of(context).showSnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(L10n.of(context).youHaveBeenBannedFromThisChat),
           ),
@@ -96,15 +97,13 @@ class ChatListItem extends StatelessWidget {
                 file: Matrix.of(context).shareContent['file'],
                 room: room,
               ),
-              useRootNavigator: false,
             );
           } else {
             unawaited(room.sendEvent(Matrix.of(context).shareContent));
           }
           Matrix.of(context).shareContent = null;
         }
-        await AdaptivePageLayout.of(context)
-            .pushNamedAndRemoveUntilIsFirst('/rooms/${room.id}');
+        context.vRouter.push('/rooms/${room.id}');
       }
     }
   }
@@ -126,7 +125,6 @@ class ChatListItem extends StatelessWidget {
         title: L10n.of(context).areYouSure,
         okLabel: L10n.of(context).yes,
         cancelLabel: L10n.of(context).no,
-        useRootNavigator: false,
       );
       if (confirmed == OkCancelResult.cancel) return;
       await showFutureLoadingDialog(

@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/pages/views/new_private_chat_view.dart';
@@ -8,6 +7,7 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:vrouter/vrouter.dart';
 
 class NewPrivateChat extends StatefulWidget {
   @override
@@ -47,8 +47,7 @@ class NewPrivateChatController extends State<NewPrivateChat> {
     );
 
     if (roomID.error == null) {
-      await AdaptivePageLayout.of(context)
-          .popAndPushNamed('/rooms/${roomID.result}');
+      VRouter.of(context).push('/rooms/${roomID.result}');
     }
   }
 

@@ -1,4 +1,3 @@
-import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/contacts_list.dart';
@@ -8,6 +7,7 @@ import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:vrouter/vrouter.dart';
 import '../../utils/localized_exception_extension.dart';
 import '../search.dart';
 
@@ -32,21 +32,21 @@ class SearchView extends StatelessWidget {
           genericSearchTerm: controller.genericSearchTerm,
         )
         .catchError((error) {
-      if (controller.widget.alias == null) {
+      if (controller.alias == null) {
         throw error;
       }
       return PublicRoomsResponse.fromJson({
         'chunk': [],
       });
     }).then((PublicRoomsResponse res) {
-      if (controller.widget.alias != null &&
+      if (controller.alias != null &&
           !res.chunk.any((room) =>
-              (room.aliases?.contains(controller.widget.alias) ?? false) ||
-              room.canonicalAlias == controller.widget.alias)) {
+              (room.aliases?.contains(controller.alias) ?? false) ||
+              room.canonicalAlias == controller.alias)) {
         // we have to tack on the original alias
         res.chunk.add(PublicRoom.fromJson(<String, dynamic>{
-          'aliases': [controller.widget.alias],
-          'name': controller.widget.alias,
+          'aliases': [controller.alias],
+          'name': controller.alias,
         }));
       }
       return res;
@@ -238,8 +238,7 @@ class SearchView extends StatelessWidget {
                                 .startDirectChat(foundProfile.userId),
                           );
                           if (roomID.error == null) {
-                            await AdaptivePageLayout.of(context)
-                                .popAndPushNamed('/rooms/${roomID.result}');
+                            VRouter.of(context).push('/rooms/${roomID.result}');
                           }
                         },
                         leading: Avatar(

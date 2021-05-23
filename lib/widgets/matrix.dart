@@ -3,7 +3,6 @@ import 'dart:io';
 import 'dart:convert';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/encryption.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
@@ -14,7 +13,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app_lock/flutter_app_lock.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:provider/provider.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:http/http.dart' as http;
@@ -22,7 +20,6 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:desktop_notifications/desktop_notifications.dart';
 
 import '../utils/beautify_string_extension.dart';
-import '../utils/localized_exception_extension.dart';
 import '../utils/famedlysdk_store.dart';
 import '../pages/key_verification_dialog.dart';
 import '../utils/platform_infos.dart';
@@ -30,13 +27,14 @@ import '../config/app_config.dart';
 import '../config/setting_keys.dart';
 import '../utils/matrix_sdk_extensions.dart/fluffy_client.dart';
 import '../utils/background_push.dart';
+import 'package:vrouter/vrouter.dart';
 
 class Matrix extends StatefulWidget {
   static const String callNamespace = 'chat.fluffy.jitsi_call';
 
   final Widget child;
 
-  final GlobalKey<AdaptivePageLayoutState> apl;
+  final GlobalKey<VRouterState> router;
 
   final BuildContext context;
 
@@ -44,7 +42,7 @@ class Matrix extends StatefulWidget {
 
   Matrix({
     this.child,
-    @required this.apl,
+    @required this.router,
     @required this.context,
     this.testClient,
     Key key,
@@ -137,7 +135,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
                 title: L10n.of(context).pleaseEnterYourPassword,
                 okLabel: L10n.of(context).ok,
                 cancelLabel: L10n.of(context).cancel,
-                useRootNavigator: false,
                 textFields: [
                   DialogTextField(
                     minLines: 1,
@@ -190,7 +187,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
               await showOkCancelAlertDialog(
                 message: L10n.of(context).pleaseFollowInstructionsOnWeb,
                 context: context,
-                useRootNavigator: false,
                 okLabel: L10n.of(context).next,
                 cancelLabel: L10n.of(context).cancel,
               )) {
@@ -287,9 +283,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       });
     }
     client = FluffyClient();
-    LoadingDialog.defaultTitle = L10n.of(context).loadingPleaseWait;
-    LoadingDialog.defaultBackLabel = L10n.of(context).close;
-    LoadingDialog.defaultOnError = (Object e) => e.toLocalizedString(context);
 
     onRoomKeyRequestSub ??=
         client.onRoomKeyRequest.stream.listen((RoomKeyRequest request) async {
@@ -300,7 +293,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       final sender = room.getUserByMXIDSync(request.sender);
       if (await showOkCancelAlertDialog(
             context: context,
-            useRootNavigator: false,
             title: L10n.of(context).requestToReadOlderMessages,
             message:
                 '${sender.id}\n\n${L10n.of(context).device}:\n${request.requestingDevice.deviceId}\n\n${L10n.of(context).publicKey}:\n${request.requestingDevice.ed25519Key.beautified}',
@@ -324,7 +316,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       };
       if (await showOkCancelAlertDialog(
             context: context,
-            useRootNavigator: false,
             title: L10n.of(context).newVerificationRequest,
             message: L10n.of(context).askVerificationRequest(request.userId),
             okLabel: L10n.of(context).ok,
@@ -350,7 +341,8 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     onLoginStateChanged ??= client.onLoginStateChanged.stream.listen((state) {
       if (loginState != state) {
         loginState = state;
-        widget.apl.currentState.pushNamedAndRemoveAllOthers('/');
+        widget.router.currentState
+            .push(loginState == LoginState.logged ? '/rooms' : '/home');
       }
     });
 
@@ -380,7 +372,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     }
 
     if (PlatformInfos.isMobile) {
-      _backgroundPush = BackgroundPush(client, context, widget.apl);
+      _backgroundPush = BackgroundPush(client, context, widget.router);
     }
   }
 

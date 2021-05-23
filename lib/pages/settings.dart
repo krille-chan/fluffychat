@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:adaptive_page_layout/adaptive_page_layout.dart';
+
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
 
@@ -13,6 +13,7 @@ import 'package:flutter_app_lock/flutter_app_lock.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:vrouter/vrouter.dart';
 
 import 'views/settings_view.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
@@ -40,7 +41,6 @@ class SettingsController extends State<Settings> {
           title: L10n.of(context).areYouSureYouWantToLogout,
           okLabel: L10n.of(context).yes,
           cancelLabel: L10n.of(context).cancel,
-          useRootNavigator: false,
         ) ==
         OkCancelResult.cancel) {
       return;
@@ -58,7 +58,6 @@ class SettingsController extends State<Settings> {
       title: L10n.of(context).changePassword,
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
-      useRootNavigator: false,
       textFields: [
         DialogTextField(
           hintText: L10n.of(context).pleaseEnterYourPassword,
@@ -82,7 +81,7 @@ class SettingsController extends State<Settings> {
           .changePassword(input.last, oldPassword: input.first),
     );
     if (success.error == null) {
-      AdaptivePageLayout.of(context).showSnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(L10n.of(context).passwordHasBeenChanged)));
     }
   }
@@ -94,7 +93,6 @@ class SettingsController extends State<Settings> {
           message: L10n.of(context).deactivateAccountWarning,
           okLabel: L10n.of(context).ok,
           cancelLabel: L10n.of(context).cancel,
-          useRootNavigator: false,
         ) ==
         OkCancelResult.cancel) {
       return;
@@ -104,7 +102,6 @@ class SettingsController extends State<Settings> {
           title: L10n.of(context).areYouSure,
           okLabel: L10n.of(context).yes,
           cancelLabel: L10n.of(context).cancel,
-          useRootNavigator: false,
         ) ==
         OkCancelResult.cancel) {
       return;
@@ -114,7 +111,6 @@ class SettingsController extends State<Settings> {
       title: L10n.of(context).pleaseEnterYourPassword,
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
-      useRootNavigator: false,
       textFields: [
         DialogTextField(
           obscureText: true,
@@ -145,7 +141,6 @@ class SettingsController extends State<Settings> {
       title: L10n.of(context).editJitsiInstance,
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
-      useRootNavigator: false,
       textFields: [
         DialogTextField(
           initialText: AppConfig.jitsiInstance.replaceFirst(prefix, ''),
@@ -169,7 +164,6 @@ class SettingsController extends State<Settings> {
       title: L10n.of(context).editDisplayname,
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
-      useRootNavigator: false,
       textFields: [
         DialogTextField(
           initialText: profile?.displayname ??
@@ -234,7 +228,6 @@ class SettingsController extends State<Settings> {
       title: L10n.of(context).askSSSSCache,
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
-      useRootNavigator: false,
       textFields: [
         DialogTextField(
           hintText: L10n.of(context).passphraseOrKey,
@@ -266,7 +259,6 @@ class SettingsController extends State<Settings> {
           context: context,
           message: L10n.of(context).cachedKeys,
           okLabel: L10n.of(context).ok,
-          useRootNavigator: false,
         );
         setState(() {
           crossSigningCachedFuture = null;
@@ -279,7 +271,6 @@ class SettingsController extends State<Settings> {
           context: context,
           message: L10n.of(context).incorrectPassphraseOrKey,
           okLabel: L10n.of(context).ok,
-          useRootNavigator: false,
         );
       }
     }
@@ -296,7 +287,6 @@ class SettingsController extends State<Settings> {
       title: L10n.of(context).pleaseChooseAPasscode,
       message: L10n.of(context).pleaseEnter4Digits,
       cancelLabel: L10n.of(context).cancel,
-      useRootNavigator: false,
       textFields: [
         DialogTextField(
           validator: (text) {
@@ -333,7 +323,6 @@ class SettingsController extends State<Settings> {
             isDestructiveAction: true,
             okLabel: L10n.of(context).ok,
             cancelLabel: L10n.of(context).cancel,
-            useRootNavigator: false,
           )) {
         await BootstrapDialog(
           client: Matrix.of(context).client,
@@ -351,7 +340,7 @@ class SettingsController extends State<Settings> {
     await BootstrapDialog(
       client: Matrix.of(context).client,
     ).show(context);
-    AdaptivePageLayout.of(context).popUntilIsFirst();
+    VRouter.of(context).push('/rooms');
   }
 
   @override

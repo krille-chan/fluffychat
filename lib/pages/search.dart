@@ -1,18 +1,17 @@
 import 'dart:async';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:adaptive_page_layout/adaptive_page_layout.dart';
+
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:vrouter/vrouter.dart';
 import 'views/search_view.dart';
 
 class Search extends StatefulWidget {
-  final String alias;
-
-  const Search({Key key, this.alias}) : super(key: key);
+  const Search({Key key}) : super(key: key);
 
   @override
   SearchController createState() => SearchController();
@@ -24,6 +23,7 @@ class SearchController extends State<Search> {
   String lastServer;
   Timer _coolDown;
   String genericSearchTerm;
+  String alias;
 
   void search(String query) async {
     setState(() => null);
@@ -64,7 +64,6 @@ class SearchController extends State<Search> {
           title: '${room.name} (${room.numJoinedMembers ?? 0})',
           message: room.topic ?? L10n.of(context).noDescription,
           cancelLabel: L10n.of(context).cancel,
-          useRootNavigator: false,
         ) ==
         OkCancelResult.cancel) {
       return;
@@ -78,8 +77,7 @@ class SearchController extends State<Search> {
       ),
     );
     if (success.error == null) {
-      await AdaptivePageLayout.of(context)
-          .pushNamedAndRemoveUntilIsFirst('/rooms/${success.result}');
+      VRouter.of(context).push('/rooms/${success.result}');
     }
   }
 
@@ -91,7 +89,6 @@ class SearchController extends State<Search> {
         context: context,
         okLabel: L10n.of(context).ok,
         cancelLabel: L10n.of(context).cancel,
-        useRootNavigator: false,
         textFields: [
           DialogTextField(
             prefixText: 'https://',
@@ -133,11 +130,9 @@ class SearchController extends State<Search> {
   }
 
   @override
-  void initState() {
-    genericSearchTerm = widget.alias;
-    super.initState();
+  Widget build(BuildContext context) {
+    alias = VRouter.of(context).queryParameters['query'];
+    genericSearchTerm = alias;
+    return SearchView(this);
   }
-
-  @override
-  Widget build(BuildContext context) => SearchView(this);
 }

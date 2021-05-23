@@ -1,4 +1,3 @@
-import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat_details.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -15,6 +14,7 @@ import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix_link_text/link_text.dart';
+import 'package:vrouter/vrouter.dart';
 
 import '../../utils/url_launcher.dart';
 
@@ -25,12 +25,10 @@ class ChatDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final room =
-        Matrix.of(context).client.getRoomById(controller.widget.roomId);
+    final room = Matrix.of(context).client.getRoomById(controller.roomId);
     if (room == null) {
       return Scaffold(
         appBar: AppBar(
-          leading: BackButton(),
           title: Text(L10n.of(context).oopsSomethingWentWrong),
         ),
         body: Center(
@@ -52,8 +50,12 @@ class ChatDetailsView extends StatelessWidget {
               headerSliverBuilder:
                   (BuildContext context, bool innerBoxIsScrolled) => <Widget>[
                 SliverAppBar(
+                  leading: IconButton(
+                    icon: Icon(Icons.close_outlined),
+                    onPressed: () =>
+                        VRouter.of(context).push('/rooms/${controller.roomId}'),
+                  ),
                   elevation: Theme.of(context).appBarTheme.elevation,
-                  leading: BackButton(),
                   expandedHeight: 300.0,
                   floating: true,
                   pinned: true,
@@ -308,8 +310,8 @@ class ChatDetailsView extends StatelessWidget {
                                 foregroundColor: Colors.grey,
                                 child: Icon(Icons.edit_attributes_outlined),
                               ),
-                              onTap: () => AdaptivePageLayout.of(context)
-                                  .pushNamed('/rooms/${room.id}/permissions'),
+                              onTap: () => VRouter.of(context).push(
+                                  '/rooms/${room.id}/details/permissions'),
                             ),
                             Divider(thickness: 1),
                             ListTile(
@@ -334,8 +336,8 @@ class ChatDetailsView extends StatelessWidget {
                                       radius: Avatar.defaultSize / 2,
                                       child: Icon(Icons.add_outlined),
                                     ),
-                                    onTap: () => AdaptivePageLayout.of(context)
-                                        .pushNamed('/rooms/${room.id}/invite'),
+                                    onTap: () => VRouter.of(context)
+                                        .push('/rooms/${room.id}/invite'),
                                   )
                                 : Container(),
                           ],

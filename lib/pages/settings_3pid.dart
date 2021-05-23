@@ -21,7 +21,6 @@ class Settings3PidController extends State<Settings3Pid> {
       title: L10n.of(context).enterAnEmailAddress,
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
-      useRootNavigator: false,
       textFields: [
         DialogTextField(
           hintText: L10n.of(context).enterAnEmailAddress,
@@ -45,7 +44,6 @@ class Settings3PidController extends State<Settings3Pid> {
       title: L10n.of(context).weSentYouAnEmail,
       message: L10n.of(context).pleaseClickOnLink,
       okLabel: L10n.of(context).iHaveClickedOnLink,
-      useRootNavigator: false,
     );
     if (ok == null) return;
     final success = await showFutureLoadingDialog(
@@ -70,7 +68,6 @@ class Settings3PidController extends State<Settings3Pid> {
           title: L10n.of(context).areYouSure,
           okLabel: L10n.of(context).yes,
           cancelLabel: L10n.of(context).cancel,
-          useRootNavigator: false,
         ) !=
         OkCancelResult.ok) {
       return;

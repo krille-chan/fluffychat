@@ -1,4 +1,4 @@
-import 'package:adaptive_page_layout/adaptive_page_layout.dart';
+import 'package:vrouter/vrouter.dart';
 import 'package:fluffychat/pages/sign_up.dart';
 import 'package:fluffychat/widgets/fluffy_banner.dart';
 
@@ -71,29 +71,29 @@ class SignUpView extends StatelessWidget {
                   SizedBox(height: 8),
                   ListTile(
                     leading: CircleAvatar(
-                      backgroundImage: controller.avatar == null
+                      backgroundImage: SignUpController.avatar == null
                           ? null
-                          : MemoryImage(controller.avatar.bytes),
-                      backgroundColor: controller.avatar == null
+                          : MemoryImage(SignUpController.avatar.bytes),
+                      backgroundColor: SignUpController.avatar == null
                           ? Theme.of(context).brightness == Brightness.dark
                               ? Color(0xff121212)
                               : Colors.white
                           : Theme.of(context).secondaryHeaderColor,
-                      child: controller.avatar == null
+                      child: SignUpController.avatar == null
                           ? Icon(Icons.camera_alt_outlined,
                               color: Theme.of(context).primaryColor)
                           : null,
                     ),
-                    trailing: controller.avatar == null
+                    trailing: SignUpController.avatar == null
                         ? null
                         : Icon(
                             Icons.close,
                             color: Colors.red,
                           ),
-                    title: Text(controller.avatar == null
+                    title: Text(SignUpController.avatar == null
                         ? L10n.of(context).setAProfilePicture
                         : L10n.of(context).discardPicture),
-                    onTap: controller.avatar == null
+                    onTap: SignUpController.avatar == null
                         ? controller.setAvatarAction
                         : controller.resetAvatarAction,
                   ),
@@ -146,8 +146,7 @@ class SignUpView extends StatelessWidget {
                                 Theme.of(context).textTheme.bodyText1.color,
                             elevation: 2,
                           ),
-                          onPressed: () => AdaptivePageLayout.of(context)
-                              .pushNamed('/login'),
+                          onPressed: () => context.vRouter.push('/login'),
                           child: Text(L10n.of(context).login),
                         ),
                       ),

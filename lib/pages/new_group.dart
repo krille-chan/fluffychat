@@ -1,9 +1,9 @@
-import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart' as sdk;
 import 'package:fluffychat/pages/views/new_group_view.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
+import 'package:vrouter/vrouter.dart';
 
 class NewGroup extends StatefulWidget {
   @override
@@ -31,11 +31,8 @@ class NewGroupController extends State<NewGroup> {
         name: controller.text.isNotEmpty ? controller.text : null,
       ),
     );
-    AdaptivePageLayout.of(context).popUntilIsFirst();
-    if (roomID != null) {
-      await AdaptivePageLayout.of(context).pushNamed('/rooms/${roomID.result}');
-      await AdaptivePageLayout.of(context)
-          .pushNamed('/rooms/${roomID.result}/invite');
+    if (roomID.error == null) {
+      VRouter.of(context).push('/rooms/${roomID.result}/invite');
     }
   }
 

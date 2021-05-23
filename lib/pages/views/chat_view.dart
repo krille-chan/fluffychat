@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/pages/chat.dart';
@@ -28,6 +27,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:swipe_to_action/swipe_to_action.dart';
+import 'package:vrouter/vrouter.dart';
 
 class ChatView extends StatelessWidget {
   final ChatController controller;
@@ -38,7 +38,7 @@ class ChatView extends StatelessWidget {
   Widget build(BuildContext context) {
     controller.matrix = Matrix.of(context);
     final client = controller.matrix.client;
-    controller.room ??= client.getRoomById(controller.widget.id);
+    controller.room ??= client.getRoomById(controller.roomId);
     if (controller.room == null) {
       return Scaffold(
         appBar: AppBar(
@@ -49,7 +49,7 @@ class ChatView extends StatelessWidget {
         ),
       );
     }
-    controller.matrix.client.activeRoomId = controller.widget.id;
+    controller.matrix.client.activeRoomId = controller.roomId;
 
     if (controller.room.membership == Membership.invite) {
       showFutureLoadingDialog(
@@ -64,11 +64,7 @@ class ChatView extends StatelessWidget {
                 onPressed: controller.clearSelectedEvents,
                 tooltip: L10n.of(context).close,
               )
-            : AdaptivePageLayout.of(context).columnMode(context)
-                ? null
-                : UnreadBadgeBackButton(roomId: controller.widget.id),
-        titleSpacing:
-            AdaptivePageLayout.of(context).columnMode(context) ? null : 0,
+            : UnreadBadgeBackButton(roomId: controller.roomId),
         title: controller.selectedEvents.isEmpty
             ? StreamBuilder(
                 stream: controller.room.onUpdate.stream,
@@ -88,15 +84,8 @@ class ChatView extends StatelessWidget {
                                       '${controller.room.directChatMatrixID} ',
                                 ),
                               )
-                          : () => (!AdaptivePageLayout.of(context)
-                                      .columnMode(context) ||
-                                  AdaptivePageLayout.of(context)
-                                          .viewDataStack
-                                          .length <
-                                      3)
-                              ? AdaptivePageLayout.of(context).pushNamed(
-                                  '/rooms/${controller.room.id}/details')
-                              : null,
+                          : () => VRouter.of(context)
+                              .push('/rooms/${controller.room.id}/details'),
                       title: Text(
                           controller.room.getLocalizedDisplayname(
                               MatrixLocals(L10n.of(context))),
@@ -259,13 +248,7 @@ class ChatView extends StatelessWidget {
                       final horizontalPadding = max(
                               0,
                               (MediaQuery.of(context).size.width -
-                                      FluffyThemes.columnWidth *
-                                          (AdaptivePageLayout.of(context)
-                                                      .currentViewData
-                                                      ?.rightView !=
-                                                  null
-                                              ? 4.5
-                                              : 3.5)) /
+                                      FluffyThemes.columnWidth * (3.5)) /
                                   2)
                           .toDouble();
 

@@ -2,7 +2,6 @@
 import 'dart:async';
 
 import 'package:adaptive_theme/adaptive_theme.dart';
-import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/config/routes.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -10,10 +9,12 @@ import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'utils/localized_exception_extension.dart';
 import 'package:flutter_app_lock/flutter_app_lock.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:universal_html/html.dart' as html;
+import 'package:vrouter/vrouter.dart';
 
 import 'widgets/lock_screen.dart';
 import 'widgets/matrix.dart';
@@ -47,11 +48,9 @@ void main() async {
   );
 }
 
-class FluffyChatApp extends StatelessWidget {
+class FluffyChatApp extends StatefulWidget {
   final Widget testWidget;
   final Client testClient;
-  static final GlobalKey<AdaptivePageLayoutState> _apl =
-      GlobalKey<AdaptivePageLayoutState>();
 
   const FluffyChatApp({Key key, this.testWidget, this.testClient})
       : super(key: key);
@@ -62,59 +61,58 @@ class FluffyChatApp extends StatelessWidget {
   static bool gotInitialLink = false;
 
   @override
+  _FluffyChatAppState createState() => _FluffyChatAppState();
+}
+
+class _FluffyChatAppState extends State<FluffyChatApp> {
+  GlobalKey<VRouterState> _router;
+  int columns;
+  String _initialUrl = '/';
+  @override
   Widget build(BuildContext context) {
     return AdaptiveTheme(
       light: FluffyThemes.light,
       dark: FluffyThemes.dark,
       initial: AdaptiveThemeMode.system,
-      builder: (theme, darkTheme) => MaterialApp(
-        title: '${AppConfig.applicationName}',
-        theme: theme,
-        darkTheme: darkTheme,
-        localizationsDelegates: L10n.localizationsDelegates,
-        supportedLocales: L10n.supportedLocales,
-        locale: kIsWeb
-            ? Locale(html.window.navigator.language.split('-').first)
-            : null,
-        home: Builder(
-          builder: (context) {
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              SystemChrome.setSystemUIOverlayStyle(
-                SystemUiOverlayStyle(
-                  statusBarColor: Colors.transparent,
-                  systemNavigationBarColor: Theme.of(context).backgroundColor,
-                  systemNavigationBarIconBrightness:
-                      Theme.of(context).brightness == Brightness.light
-                          ? Brightness.dark
-                          : Brightness.light,
-                ),
-              );
-            });
-            return Matrix(
-              context: context,
-              apl: _apl,
-              testClient: testClient,
-              child: Builder(
-                builder: (context) => AdaptivePageLayout(
-                  key: _apl,
-                  safeAreaOnColumnView: false,
-                  onGenerateRoute: testWidget == null
-                      ? FluffyRoutes(context).onGenerateRoute
-                      : (_) => ViewData(mainView: (_) => testWidget),
-                  dividerColor: Theme.of(context).dividerColor,
-                  columnWidth: FluffyThemes.columnWidth,
-                  dividerWidth: 1.0,
-                  routeBuilder: (builder, settings) =>
-                      Matrix.of(context).loginState == LoginState.logged &&
-                              !{
-                                '/',
-                                '/search',
-                                '/contacts',
-                              }.contains(settings.name)
-                          ? MaterialPageRoute(builder: builder)
-                          : FadeRoute(page: builder(context)),
-                ),
-              ),
+      builder: (theme, darkTheme) => Matrix(
+        context: context,
+        router: _router,
+        testClient: widget.testClient,
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            var newColumns =
+                (constraints.maxWidth / AppConfig.columnWidth).floor();
+            if (newColumns > 3) newColumns = 3;
+            columns ??= newColumns;
+            _router ??= GlobalKey<VRouterState>();
+            if (columns != newColumns) {
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                setState(() {
+                  _initialUrl = _router.currentState.url;
+                  columns = newColumns;
+                  _router = GlobalKey<VRouterState>();
+                });
+              });
+            }
+            return VRouter(
+              key: _router,
+              title: '${AppConfig.applicationName}',
+              theme: theme,
+              darkTheme: darkTheme,
+              localizationsDelegates: L10n.localizationsDelegates,
+              supportedLocales: L10n.supportedLocales,
+              initialUrl: _initialUrl,
+              locale: kIsWeb
+                  ? Locale(html.window.navigator.language.split('-').first)
+                  : null,
+              routes: AppRoutes(columns).routes,
+              builder: (context, child) {
+                LoadingDialog.defaultTitle = L10n.of(context).loadingPleaseWait;
+                LoadingDialog.defaultBackLabel = L10n.of(context).close;
+                LoadingDialog.defaultOnError =
+                    (Object e) => e.toLocalizedString(context);
+                return child;
+              },
             );
           },
         ),

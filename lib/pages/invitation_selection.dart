@@ -1,19 +1,17 @@
 import 'dart:async';
 
-import 'package:adaptive_page_layout/adaptive_page_layout.dart';
-
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/pages/views/invitation_selection_view.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:vrouter/vrouter.dart';
 
 import '../utils/localized_exception_extension.dart';
 
 class InvitationSelection extends StatefulWidget {
-  final String roomId;
-  const InvitationSelection(this.roomId, {Key key}) : super(key: key);
+  const InvitationSelection({Key key}) : super(key: key);
 
   @override
   InvitationSelectionController createState() =>
@@ -27,9 +25,11 @@ class InvitationSelectionController extends State<InvitationSelection> {
   List<Profile> foundProfiles = [];
   Timer coolDown;
 
+  String get roomId => VRouter.of(context).pathParameters['roomid'];
+
   Future<List<User>> getContacts(BuildContext context) async {
     final client = Matrix.of(context).client;
-    final room = client.getRoomById(widget.roomId);
+    final room = client.getRoomById(roomId);
     final participants = await room.requestParticipants();
     participants.removeWhere(
       (u) => ![Membership.join, Membership.invite].contains(u.membership),
@@ -56,13 +56,13 @@ class InvitationSelectionController extends State<InvitationSelection> {
   }
 
   void inviteAction(BuildContext context, String id) async {
-    final room = Matrix.of(context).client.getRoomById(widget.roomId);
+    final room = Matrix.of(context).client.getRoomById(roomId);
     final success = await showFutureLoadingDialog(
       context: context,
       future: () => room.invite(id),
     );
     if (success.error == null) {
-      AdaptivePageLayout.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(L10n.of(context).contactHasBeenInvitedToTheGroup)));
     }
   }
@@ -89,7 +89,7 @@ class InvitationSelectionController extends State<InvitationSelection> {
     try {
       response = await matrix.client.searchUserDirectory(text, limit: 10);
     } catch (e) {
-      AdaptivePageLayout.of(context).showSnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text((e as Object).toLocalizedString(context))));
       return;
     } finally {
@@ -105,7 +105,7 @@ class InvitationSelectionController extends State<InvitationSelection> {
       }
       final participants = Matrix.of(context)
           .client
-          .getRoomById(widget.roomId)
+          .getRoomById(roomId)
           .getParticipants()
           .where((user) =>
               [Membership.join, Membership.invite].contains(user.membership))

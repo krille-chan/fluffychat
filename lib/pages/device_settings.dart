@@ -33,7 +33,6 @@ class DevicesSettingsController extends State<DevicesSettings> {
           title: L10n.of(context).areYouSure,
           okLabel: L10n.of(context).yes,
           cancelLabel: L10n.of(context).cancel,
-          useRootNavigator: false,
         ) ==
         OkCancelResult.cancel) return;
     final matrix = Matrix.of(context);
@@ -68,7 +67,6 @@ class DevicesSettingsController extends State<DevicesSettings> {
       title: L10n.of(context).changeDeviceName,
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
-      useRootNavigator: false,
       textFields: [
         DialogTextField(
           hintText: device.displayName,

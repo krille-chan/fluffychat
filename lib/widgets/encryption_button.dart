@@ -1,12 +1,12 @@
 import 'dart:async';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:vrouter/vrouter.dart';
 import 'matrix.dart';
 
 class EncryptionButton extends StatefulWidget {
@@ -21,14 +21,13 @@ class _EncryptionButtonState extends State<EncryptionButton> {
 
   void _enableEncryptionAction() async {
     if (widget.room.encrypted) {
-      await AdaptivePageLayout.of(context)
-          .pushNamed('/rooms/${widget.room.id}/encryption');
+      VRouter.of(context).push('/rooms/${widget.room.id}/encryption');
       return;
     }
     if (widget.room.joinRules == JoinRules.public) {
       await showOkAlertDialog(
         context: context,
-        useRootNavigator: false,
+        
         okLabel: L10n.of(context).ok,
         message: L10n.of(context).noEncryptionForPublicRooms,
       );
@@ -36,7 +35,7 @@ class _EncryptionButtonState extends State<EncryptionButton> {
     }
     if (await showOkCancelAlertDialog(
           context: context,
-          useRootNavigator: false,
+          
           title: L10n.of(context).enableEncryption,
           message: widget.room.client.encryptionEnabled
               ? L10n.of(context).enableEncryptionWarning

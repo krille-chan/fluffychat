@@ -1,4 +1,3 @@
-import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/pages/chat_list.dart';
 import 'package:fluffychat/widgets/connection_status_header.dart';
@@ -7,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:vrouter/vrouter.dart';
 import '../../widgets/matrix.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -28,7 +28,9 @@ class ChatListView extends StatelessWidget {
           return Scaffold(
             appBar: AppBar(
               elevation:
-                  AdaptivePageLayout.of(context).columnMode(context) ? 1 : null,
+                  MediaQuery.of(context).size.width > AppConfig.columnWidth * 2
+                      ? 1
+                      : null,
               leading: selectMode == SelectMode.normal
                   ? null
                   : IconButton(
@@ -82,8 +84,8 @@ class ChatListView extends StatelessWidget {
                           IconButton(
                             icon: Icon(Icons.search_outlined),
                             tooltip: L10n.of(context).search,
-                            onPressed: () => AdaptivePageLayout.of(context)
-                                .pushNamed('/search'),
+                            onPressed: () =>
+                                VRouter.of(context).push('/search'),
                           ),
                           PopupMenuButton<PopupMenuAction>(
                             onSelected: controller.onPopupMenuSelect,
@@ -223,8 +225,8 @@ class ChatListView extends StatelessWidget {
             ]),
             floatingActionButton: selectMode == SelectMode.normal
                 ? FloatingActionButton(
-                    onPressed: () => AdaptivePageLayout.of(context)
-                        .pushNamedAndRemoveUntilIsFirst('/newprivatechat'),
+                    onPressed: () =>
+                        VRouter.of(context).push('/newprivatechat'),
                     child: Icon(CupertinoIcons.chat_bubble),
                   )
                 : null,

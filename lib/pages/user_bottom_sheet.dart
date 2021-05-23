@@ -1,11 +1,12 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:adaptive_page_layout/adaptive_page_layout.dart';
+
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/pages/permission_slider_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:vrouter/vrouter.dart';
 
 import 'views/user_bottom_sheet_view.dart';
 
@@ -30,7 +31,6 @@ class UserBottomSheetController extends State<UserBottomSheet> {
     final Function _askConfirmation =
         () async => (await showOkCancelAlertDialog(
               context: context,
-              useRootNavigator: false,
               title: L10n.of(context).areYouSure,
               okLabel: L10n.of(context).yes,
               cancelLabel: L10n.of(context).no,
@@ -83,8 +83,7 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         break;
       case 'message':
         final roomId = await widget.user.startDirectChat();
-        await AdaptivePageLayout.of(widget.outerContext)
-            .pushNamedAndRemoveUntilIsFirst('/rooms/$roomId');
+        VRouter.of(widget.outerContext).push('/rooms/$roomId');
         Navigator.of(context, rootNavigator: false).pop();
         break;
     }

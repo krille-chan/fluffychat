@@ -1,11 +1,12 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:adaptive_page_layout/adaptive_page_layout.dart';
+
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:vrouter/vrouter.dart';
 
 class UrlLauncher {
   final String url;
@@ -60,11 +61,10 @@ class UrlLauncher {
       if (room != null) {
         // we have the room, so....just open it
         if (event != null) {
-          await AdaptivePageLayout.of(context)
-              .pushNamedAndRemoveUntilIsFirst('/rooms/${room.id}/$event');
+          VRouter.of(context)
+              .push('/rooms/${room.id}', queryParameters: {'event': event});
         } else {
-          await AdaptivePageLayout.of(context)
-              .pushNamedAndRemoveUntilIsFirst('/rooms/${room.id}');
+          VRouter.of(context).push('/rooms/${room.id}');
         }
         return;
       }
@@ -72,7 +72,6 @@ class UrlLauncher {
         if (await showOkCancelAlertDialog(
               context: context,
               title: 'Join room $roomIdOrAlias',
-              useRootNavigator: false,
             ) ==
             OkCancelResult.ok) {
           roomId = roomIdOrAlias;
@@ -89,16 +88,15 @@ class UrlLauncher {
               context: context,
               future: () => Future.delayed(const Duration(seconds: 2)));
           if (event != null) {
-            await AdaptivePageLayout.of(context).pushNamedAndRemoveUntilIsFirst(
-                '/rooms/${response.result}/$event');
+            VRouter.of(context).push('/rooms/${response.result}/$event');
           } else {
-            await AdaptivePageLayout.of(context)
-                .pushNamedAndRemoveUntilIsFirst('/rooms/${response.result}');
+            VRouter.of(context).push('/rooms/${response.result}');
           }
         }
       } else {
-        await AdaptivePageLayout.of(context)
-            .pushNamedAndRemoveUntilIsFirst('/search/$roomIdOrAlias');
+        VRouter.of(context).push('/search', queryParameters: {
+          if (roomIdOrAlias != null) 'query': roomIdOrAlias
+        });
       }
     } else if (identityParts.primaryIdentifier.sigil == '@') {
       final user = User(
@@ -107,8 +105,7 @@ class UrlLauncher {
       );
       var roomId = matrix.client.getDirectChatFromUserId(user.id);
       if (roomId != null) {
-        await AdaptivePageLayout.of(context)
-            .pushNamedAndRemoveUntilIsFirst('/rooms/$roomId');
+        VRouter.of(context).push('/rooms/$roomId');
 
         return;
       }
@@ -116,7 +113,6 @@ class UrlLauncher {
       if (await showOkCancelAlertDialog(
             context: context,
             title: 'Message user ${user.id}',
-            useRootNavigator: false,
           ) ==
           OkCancelResult.ok) {
         roomId = (await showFutureLoadingDialog(
@@ -126,8 +122,7 @@ class UrlLauncher {
             .result;
 
         if (roomId != null) {
-          await AdaptivePageLayout.of(context)
-              .pushNamedAndRemoveUntilIsFirst('/rooms/$roomId');
+          VRouter.of(context).push('/rooms/$roomId');
         }
       }
     }

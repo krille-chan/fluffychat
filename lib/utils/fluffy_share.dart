@@ -1,4 +1,3 @@
-import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,7 +12,7 @@ abstract class FluffyShare {
     await Clipboard.setData(
       ClipboardData(text: text),
     );
-    AdaptivePageLayout.of(context).showSnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(L10n.of(context).copiedToClipboard)));
     return;
   }

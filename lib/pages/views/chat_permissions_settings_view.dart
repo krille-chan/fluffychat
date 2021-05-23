@@ -26,7 +26,7 @@ class ChatPermissionsSettingsView extends StatelessWidget {
           stream: controller.onChanged,
           builder: (context, _) {
             final room =
-                Matrix.of(context).client.getRoomById(controller.widget.roomId);
+                Matrix.of(context).client.getRoomById(controller.roomId);
             final powerLevelsContent = Map<String, dynamic>.from(
                 room.getState(EventTypes.RoomPowerLevels).content);
             final powerLevels = Map<String, dynamic>.from(powerLevelsContent)

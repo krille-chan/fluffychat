@@ -1,9 +1,9 @@
-import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/pages/views/image_viewer_view.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
+import 'package:vrouter/vrouter.dart';
 
 import '../utils/matrix_sdk_extensions.dart/event_extension.dart';
 
@@ -21,7 +21,7 @@ class ImageViewerController extends State<ImageViewer> {
   /// Forward this image to another room.
   void forwardAction() {
     Matrix.of(context).shareContent = widget.event.content;
-    AdaptivePageLayout.of(context).popUntilIsFirst();
+    VRouter.of(context).push('/rooms');
   }
 
   /// Open this file with a system call.

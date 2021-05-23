@@ -25,13 +25,11 @@ class BootstrapDialog extends StatefulWidget {
       ? showCupertinoDialog(
           context: context,
           builder: (context) => this,
-          useRootNavigator: false,
           barrierDismissible: true,
         )
       : showDialog(
           context: context,
           builder: (context) => this,
-          useRootNavigator: false,
           barrierDismissible: true,
         );
 
@@ -196,7 +194,6 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
               if (OkCancelResult.ok ==
                   await showOkCancelAlertDialog(
                     context: context,
-                    useRootNavigator: false,
                     title: L10n.of(context).securityKeyLost,
                     message: L10n.of(context).wipeChatBackup,
                     okLabel: L10n.of(context).ok,

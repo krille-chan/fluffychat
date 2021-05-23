@@ -3,12 +3,11 @@ import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/pages/views/chat_encryption_settings_view.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
+import 'package:vrouter/vrouter.dart';
 import 'key_verification_dialog.dart';
 
 class ChatEncryptionSettings extends StatefulWidget {
-  final String id;
-
-  const ChatEncryptionSettings(this.id, {Key key}) : super(key: key);
+  const ChatEncryptionSettings({Key key}) : super(key: key);
 
   @override
   ChatEncryptionSettingsController createState() =>
@@ -16,9 +15,10 @@ class ChatEncryptionSettings extends StatefulWidget {
 }
 
 class ChatEncryptionSettingsController extends State<ChatEncryptionSettings> {
+  String get roomId => VRouter.of(context).pathParameters['roomid'];
   Future<void> onSelected(
       BuildContext context, String action, DeviceKeys key) async {
-    final room = Matrix.of(context).client.getRoomById(widget.id);
+    final room = Matrix.of(context).client.getRoomById(roomId);
     final unblock = () async {
       if (key.blocked) {
         await key.setBlocked(false);

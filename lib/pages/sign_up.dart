@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
 import 'package:fluffychat/config/app_config.dart';
@@ -17,6 +16,7 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:uni_links/uni_links.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:universal_html/html.dart' as html;
+import 'package:vrouter/vrouter.dart';
 
 import '../main.dart';
 
@@ -29,7 +29,7 @@ class SignUpController extends State<SignUp> {
   final TextEditingController usernameController = TextEditingController();
   String usernameError;
   bool loading = false;
-  MatrixFile avatar;
+  static MatrixFile avatar;
 
   LoginTypes _loginTypes;
   StreamSubscription _intentDataStreamSubscription;
@@ -48,7 +48,7 @@ class SignUpController extends State<SignUp> {
 
   void _processIncomingUris(String text) async {
     if (text == null || !text.startsWith(AppConfig.appOpenUrlScheme)) return;
-    AdaptivePageLayout.of(context).popUntilIsFirst();
+    VRouter.of(context).push('/home');
     final token = Uri.parse(text).queryParameters['loginToken'];
     if (token != null) _loginWithToken(token);
   }
@@ -151,9 +151,10 @@ class SignUpController extends State<SignUp> {
       return setState(() => loading = false);
     }
     setState(() => loading = false);
-    await AdaptivePageLayout.of(context).pushNamed(
+
+    VRouter.of(context).push(
       '/signup/password/${Uri.encodeComponent(preferredUsername)}/${Uri.encodeComponent(usernameController.text)}',
-      arguments: avatar,
+      queryParameters: {'displayname': usernameController.text},
     );
   }
 

@@ -1,5 +1,5 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:adaptive_page_layout/adaptive_page_layout.dart';
+
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -138,7 +138,6 @@ class EmotesSettingsController extends State<EmotesSettings> {
         context: context,
         message: L10n.of(context).emoteExists,
         okLabel: L10n.of(context).ok,
-        useRootNavigator: false,
       );
       return;
     }
@@ -148,7 +147,6 @@ class EmotesSettingsController extends State<EmotesSettings> {
         context: context,
         message: L10n.of(context).emoteInvalid,
         okLabel: L10n.of(context).ok,
-        useRootNavigator: false,
       );
       return;
     }
@@ -187,7 +185,6 @@ class EmotesSettingsController extends State<EmotesSettings> {
         context: context,
         message: L10n.of(context).emoteWarnNeedToPick,
         okLabel: L10n.of(context).ok,
-        useRootNavigator: false,
       );
       return;
     }
@@ -198,7 +195,6 @@ class EmotesSettingsController extends State<EmotesSettings> {
         context: context,
         message: L10n.of(context).emoteExists,
         okLabel: L10n.of(context).ok,
-        useRootNavigator: false,
       );
       return;
     }
@@ -207,7 +203,6 @@ class EmotesSettingsController extends State<EmotesSettings> {
         context: context,
         message: L10n.of(context).emoteInvalid,
         okLabel: L10n.of(context).ok,
-        useRootNavigator: false,
       );
       return;
     }
@@ -222,7 +217,7 @@ class EmotesSettingsController extends State<EmotesSettings> {
 
   void emoteImagePickerAction(TextEditingController controller) async {
     if (kIsWeb) {
-      AdaptivePageLayout.of(context).showSnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(L10n.of(context).notSupportedInWeb)));
       return;
     }

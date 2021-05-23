@@ -6,10 +6,7 @@ void main() {
   testWidgets('Test if the widget can be created', (WidgetTester tester) async {
     await tester.pumpWidget(
       FluffyChatApp(
-        testWidget: SignUpPassword(
-          'test_user',
-          displayname: 'Test User',
-        ),
+        testWidget: SignUpPassword(),
       ),
     );
   });

@@ -1,4 +1,3 @@
-import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/encryption/utils/key_verification.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/widgets/event_content/audio_player.dart';
@@ -27,7 +26,7 @@ class MessageContent extends StatelessWidget {
 
   void _verifyOrRequestKey(BuildContext context) async {
     if (event.content['can_request_session'] != true) {
-      AdaptivePageLayout.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(
         event.type == EventTypes.Encrypted
             ? L10n.of(context).needPantalaimonWarning
@@ -61,7 +60,7 @@ class MessageContent extends StatelessWidget {
         future: () => event.requestKey(),
       );
       if (success.error == null) {
-        AdaptivePageLayout.of(context).showSnackBar(SnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(L10n.of(context).requestToReadOlderMessages)));
       }
     }

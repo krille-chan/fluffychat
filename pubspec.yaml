@@ -8,7 +8,6 @@ environment:
 
 dependencies:
   adaptive_dialog: ^0.10.0+5
-  adaptive_page_layout: ^0.2.4
   adaptive_theme: ^2.2.0
   android_path_provider: ^0.2.1
   audioplayers: ^0.18.3
@@ -70,6 +69,7 @@ dependencies:
   unifiedpush: ^1.0.2
   universal_html: ^2.0.8
   url_launcher: ^6.0.3
+  vrouter: ^1.1.2+5
 
 dev_dependencies:
   dapackages: ^1.6.0

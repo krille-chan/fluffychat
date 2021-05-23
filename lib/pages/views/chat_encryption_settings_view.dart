@@ -5,6 +5,7 @@ import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:vrouter/vrouter.dart';
 import '../../utils/matrix_sdk_extensions.dart/device_extension.dart';
 
 class ChatEncryptionSettingsView extends StatelessWidget {
@@ -15,11 +16,15 @@ class ChatEncryptionSettingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final room = Matrix.of(context).client.getRoomById(controller.widget.id);
+    final room = Matrix.of(context).client.getRoomById(controller.roomId);
 
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(),
+        leading: IconButton(
+          icon: Icon(Icons.close_outlined),
+          onPressed: () =>
+              VRouter.of(context).push('/rooms/${controller.roomId}'),
+        ),
         title: Text(L10n.of(context).tapOnDeviceToVerify),
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(56),

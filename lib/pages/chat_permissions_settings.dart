@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:adaptive_page_layout/adaptive_page_layout.dart';
+
 import 'package:fluffychat/pages/views/chat_permissions_settings_view.dart';
 import 'package:fluffychat/pages/permission_slider_dialog.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
@@ -10,11 +10,10 @@ import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:vrouter/vrouter.dart';
 
 class ChatPermissionsSettings extends StatefulWidget {
-  final String roomId;
-
-  const ChatPermissionsSettings(this.roomId, {Key key}) : super(key: key);
+  const ChatPermissionsSettings({Key key}) : super(key: key);
 
   @override
   ChatPermissionsSettingsController createState() =>
@@ -22,11 +21,12 @@ class ChatPermissionsSettings extends StatefulWidget {
 }
 
 class ChatPermissionsSettingsController extends State<ChatPermissionsSettings> {
+  String get roomId => VRouter.of(context).pathParameters['roomid'];
   void editPowerLevel(BuildContext context, String key, int currentLevel,
       {String category}) async {
-    final room = Matrix.of(context).client.getRoomById(widget.roomId);
+    final room = Matrix.of(context).client.getRoomById(roomId);
     if (!room.canSendEvent(EventTypes.RoomPowerLevels)) {
-      AdaptivePageLayout.of(context)
+      ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(L10n.of(context).noPermission)));
       return;
     }
@@ -54,14 +54,14 @@ class ChatPermissionsSettingsController extends State<ChatPermissionsSettings> {
 
   Stream get onChanged => Matrix.of(context).client.onSync.stream.where(
         (e) =>
-            (e?.rooms?.join?.containsKey(widget.roomId) ?? false) &&
-            (e.rooms.join[widget.roomId]?.timeline?.events
+            (e?.rooms?.join?.containsKey(roomId) ?? false) &&
+            (e.rooms.join[roomId]?.timeline?.events
                     ?.any((s) => s.type == EventTypes.RoomPowerLevels) ??
                 false),
       );
 
   void updateRoomAction(ServerCapabilities capabilities) async {
-    final room = Matrix.of(context).client.getRoomById(widget.roomId);
+    final room = Matrix.of(context).client.getRoomById(roomId);
     final String roomVersion =
         room.getState(EventTypes.RoomCreate).content['room_version'] ?? '1';
     final newVersion = await showConfirmationDialog<String>(
@@ -87,8 +87,8 @@ class ChatPermissionsSettingsController extends State<ChatPermissionsSettings> {
     }
     await showFutureLoadingDialog(
       context: context,
-      future: () => room.client.upgradeRoom(widget.roomId, newVersion),
-    ).then((_) => AdaptivePageLayout.of(context).pop());
+      future: () => room.client.upgradeRoom(roomId, newVersion),
+    ).then((_) => VRouter.of(context).pop());
   }
 
   @override

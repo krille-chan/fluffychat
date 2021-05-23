@@ -15,13 +15,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.10.0+5"
-  adaptive_page_layout:
-    dependency: "direct main"
-    description:
-      name: adaptive_page_layout
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.2.4"
   adaptive_theme:
     dependency: "direct main"
     description:
@@ -627,6 +620,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.1"
+  move_to_background:
+    dependency: transitive
+    description:
+      name: move_to_background
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
   native_imaging:
     dependency: "direct main"
     description:
@@ -762,6 +762,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  path_to_regexp:
+    dependency: transitive
+    description:
+      name: path_to_regexp
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.0"
   pedantic:
     dependency: "direct dev"
     description:
@@ -1187,6 +1194,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  url_strategy:
+    dependency: transitive
+    description:
+      name: url_strategy
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.0"
   uuid:
     dependency: transitive
     description:
@@ -1208,6 +1222,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.0"
+  vrouter:
+    dependency: "direct main"
+    description:
+      name: vrouter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.2+5"
   watcher:
     dependency: transitive
     description:

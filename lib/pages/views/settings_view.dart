@@ -1,5 +1,5 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:adaptive_page_layout/adaptive_page_layout.dart';
+
 import 'package:fluffychat/widgets/sentry_switch_list_tile.dart';
 import 'package:fluffychat/widgets/settings_switch_list_tile.dart';
 
@@ -11,6 +11,7 @@ import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:vrouter/vrouter.dart';
 
 import '../../widgets/content_banner.dart';
 import '../../widgets/matrix.dart';
@@ -31,10 +32,6 @@ class SettingsView extends StatelessWidget {
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) =>
             <Widget>[
           SliverAppBar(
-            leading: IconButton(
-              icon: Icon(Icons.close_outlined),
-              onPressed: () => AdaptivePageLayout.of(context).popUntilIsFirst(),
-            ),
             expandedHeight: 300.0,
             floating: true,
             pinned: true,
@@ -85,8 +82,7 @@ class SettingsView extends StatelessWidget {
             ListTile(
               trailing: Icon(Icons.notifications_outlined),
               title: Text(L10n.of(context).notifications),
-              onTap: () => AdaptivePageLayout.of(context)
-                  .pushNamed('/settings/notifications'),
+              onTap: () => VRouter.of(context).push('/settings/notifications'),
             ),
             Divider(thickness: 1),
             ListTile(
@@ -100,8 +96,7 @@ class SettingsView extends StatelessWidget {
             ),
             ListTile(
               title: Text(L10n.of(context).changeTheme),
-              onTap: () =>
-                  AdaptivePageLayout.of(context).pushNamed('/settings/style'),
+              onTap: () => VRouter.of(context).push('/settings/style'),
               trailing: Icon(Icons.style_outlined),
             ),
             SettingsSwitchListTile(
@@ -124,8 +119,7 @@ class SettingsView extends StatelessWidget {
             ),
             ListTile(
               title: Text(L10n.of(context).emoteSettings),
-              onTap: () =>
-                  AdaptivePageLayout.of(context).pushNamed('/settings/emotes'),
+              onTap: () => VRouter.of(context).push('/settings/emotes'),
               trailing: Icon(Icons.insert_emoticon_outlined),
             ),
             Divider(thickness: 1),
@@ -154,14 +148,12 @@ class SettingsView extends StatelessWidget {
             ListTile(
               trailing: Icon(Icons.devices_other_outlined),
               title: Text(L10n.of(context).devices),
-              onTap: () =>
-                  AdaptivePageLayout.of(context).pushNamed('/settings/devices'),
+              onTap: () => VRouter.of(context).push('/settings/devices'),
             ),
             ListTile(
               trailing: Icon(Icons.block_outlined),
               title: Text(L10n.of(context).ignoredUsers),
-              onTap: () =>
-                  AdaptivePageLayout.of(context).pushNamed('/settings/ignore'),
+              onTap: () => VRouter.of(context).push('/settings/ignorelist'),
             ),
             SentrySwitchListTile(),
             Divider(thickness: 1),
@@ -175,8 +167,7 @@ class SettingsView extends StatelessWidget {
             ListTile(
               trailing: Icon(Icons.email_outlined),
               title: Text(L10n.of(context).passwordRecovery),
-              onTap: () =>
-                  AdaptivePageLayout.of(context).pushNamed('/settings/3pid'),
+              onTap: () => VRouter.of(context).push('/settings/3pid'),
             ),
             ListTile(
               trailing: Icon(Icons.exit_to_app_outlined),
@@ -215,7 +206,6 @@ class SettingsView extends StatelessWidget {
                   title: L10n.of(context).yourPublicKey,
                   message: client.fingerprintKey.beautified,
                   okLabel: L10n.of(context).ok,
-                  useRootNavigator: false,
                 ),
                 trailing: Icon(Icons.vpn_key_outlined),
               ),
@@ -236,7 +226,7 @@ class SettingsView extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              onTap: () => AdaptivePageLayout.of(context).pushNamed('/logs'),
+              onTap: () => VRouter.of(context).push('/logs'),
             ),
             ListTile(
               trailing: Icon(Icons.help_outlined),

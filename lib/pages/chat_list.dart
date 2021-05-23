@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:adaptive_page_layout/adaptive_page_layout.dart';
+
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/pages/views/chat_list_view.dart';
@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 import 'package:uni_links/uni_links.dart';
+import 'package:vrouter/vrouter.dart';
 import '../main.dart';
 import '../widgets/matrix.dart';
 import '../utils/matrix_sdk_extensions.dart/matrix_file_extension.dart';
@@ -43,7 +44,7 @@ class ChatListController extends State<ChatList> {
 
   void _processIncomingSharedFiles(List<SharedMediaFile> files) {
     if (files?.isEmpty ?? true) return;
-    AdaptivePageLayout.of(context).popUntilIsFirst();
+    VRouter.of(context).push('/rooms');
     final file = File(files.first.path);
 
     Matrix.of(context).shareContent = {
@@ -57,7 +58,7 @@ class ChatListController extends State<ChatList> {
 
   void _processIncomingSharedText(String text) {
     if (text == null) return;
-    AdaptivePageLayout.of(context).popUntilIsFirst();
+    VRouter.of(context).push('/rooms');
     if (text.toLowerCase().startsWith(AppConfig.inviteLinkPrefix) ||
         (text.toLowerCase().startsWith(AppConfig.schemePrefix) &&
             !RegExp(r'\s').hasMatch(text))) {
@@ -74,7 +75,7 @@ class ChatListController extends State<ChatList> {
     if (text.toLowerCase().startsWith(AppConfig.inviteLinkPrefix) ||
         (text.toLowerCase().startsWith(AppConfig.schemePrefix) &&
             !RegExp(r'\s').hasMatch(text))) {
-      AdaptivePageLayout.of(context).popUntilIsFirst();
+      VRouter.of(context).push('/rooms');
       UrlLauncher(context, text).openMatrixToUrl();
       return;
     }
@@ -158,7 +159,6 @@ class ChatListController extends State<ChatList> {
           title: L10n.of(context).areYouSure,
           okLabel: L10n.of(context).yes,
           cancelLabel: L10n.of(context).cancel,
-          useRootNavigator: false,
         ) ==
         OkCancelResult.ok;
     if (!confirmed) return;
@@ -175,7 +175,6 @@ class ChatListController extends State<ChatList> {
         title: L10n.of(context).setStatus,
         okLabel: L10n.of(context).ok,
         cancelLabel: L10n.of(context).cancel,
-        useRootNavigator: false,
         textFields: [
           DialogTextField(
             hintText: L10n.of(context).statusExampleMessage,
@@ -198,7 +197,7 @@ class ChatListController extends State<ChatList> {
         setStatus();
         break;
       case PopupMenuAction.settings:
-        AdaptivePageLayout.of(context).pushNamed('/settings');
+        VRouter.of(context).push('/settings');
         break;
       case PopupMenuAction.invite:
         FluffyShare.share(
@@ -207,10 +206,10 @@ class ChatListController extends State<ChatList> {
             context);
         break;
       case PopupMenuAction.newGroup:
-        AdaptivePageLayout.of(context).pushNamed('/newgroup');
+        VRouter.of(context).push('/newgroup');
         break;
       case PopupMenuAction.archive:
-        AdaptivePageLayout.of(context).pushNamed('/archive');
+        VRouter.of(context).push('/archive');
         break;
     }
   }

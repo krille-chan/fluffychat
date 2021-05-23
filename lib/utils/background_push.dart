@@ -22,7 +22,6 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:ui';
 
-import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
 
@@ -34,6 +33,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_gen/gen_l10n/l10n_en.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:vrouter/vrouter.dart';
 import 'platform_infos.dart';
 import '../config/app_config.dart';
 import '../config/setting_keys.dart';
@@ -51,7 +51,7 @@ class BackgroundPush {
       FlutterLocalNotificationsPlugin();
   FluffyClient client;
   BuildContext context;
-  GlobalKey<AdaptivePageLayoutState> apl;
+  GlobalKey<VRouterState> router;
   String _fcmToken;
   LoginState _loginState;
   L10n l10n;
@@ -95,10 +95,10 @@ class BackgroundPush {
   }
 
   factory BackgroundPush(FluffyClient _client, BuildContext _context,
-      GlobalKey<AdaptivePageLayoutState> _apl) {
+      GlobalKey<VRouterState> router) {
     final instance = BackgroundPush.clientOnly(_client);
     instance.context = _context;
-    instance.apl = _apl;
+    instance.router = router;
     instance.fullInit();
     return instance;
   }
@@ -235,7 +235,7 @@ class BackgroundPush {
       if (details == null ||
           !details.didNotificationLaunchApp ||
           _wentToRoomOnStartup ||
-          apl == null) {
+          router == null) {
         return;
       }
       _wentToRoomOnStartup = true;
@@ -249,7 +249,7 @@ class BackgroundPush {
     }
     if (await store.getItemBool(SettingKeys.showNoGoogle, true)) {
       await loadLocale();
-      apl.currentState.showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(
         PlatformInfos.isAndroid
             ? l10n.noGoogleServicesWarning
@@ -280,10 +280,10 @@ class BackgroundPush {
   Future<void> goToRoom(String roomId) async {
     try {
       Logs().v('[Push] Attempting to go to room $roomId...');
-      if (apl == null) {
+      if (router == null) {
         return;
       }
-      await apl.currentState.pushNamedAndRemoveUntilIsFirst('/rooms/$roomId');
+      router.currentState.push('/rooms/$roomId');
     } catch (e, s) {
       Logs().e('[Push] Failed to open room', e, s);
     }

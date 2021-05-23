@@ -13,7 +13,7 @@ class _LogViewerState extends State<LogViewer> {
   Widget build(BuildContext context) {
     final outputEvents = Logs()
         .outputEvents
-        .where((e) => e.level.index >= logLevel.index)
+        .where((e) => e.level.index <= logLevel.index)
         .toList();
     return Scaffold(
       backgroundColor: Colors.black,
@@ -44,7 +44,12 @@ class _LogViewerState extends State<LogViewer> {
         itemCount: outputEvents.length,
         itemBuilder: (context, i) => SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          child: Text(outputEvents[i].toDisplayString()),
+          child: SelectableText(
+            outputEvents[i].toDisplayString(),
+            style: TextStyle(
+              color: outputEvents[i].color,
+            ),
+          ),
         ),
       ),
     );
@@ -52,8 +57,26 @@ class _LogViewerState extends State<LogViewer> {
 }
 
 extension on LogEvent {
+  Color get color {
+    switch (level) {
+      case Level.wtf:
+        return Colors.purple;
+      case Level.error:
+        return Colors.red;
+      case Level.warning:
+        return Colors.orange;
+      case Level.info:
+        return Colors.green;
+      case Level.debug:
+        return Colors.white;
+      case Level.verbose:
+      default:
+        return Colors.grey;
+    }
+  }
+
   String toDisplayString() {
-    var str = '# $title';
+    var str = '# [${level.toString().split('.').last.toUpperCase()}] $title';
     if (exception != null) {
       str += ' - ${exception.toString()}';
     }

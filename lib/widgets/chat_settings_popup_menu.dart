@@ -1,12 +1,13 @@
 import 'dart:async';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:adaptive_page_layout/adaptive_page_layout.dart';
+
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:vrouter/vrouter.dart';
 import 'matrix.dart';
 
 class ChatSettingsPopupMenu extends StatefulWidget {
@@ -68,7 +69,6 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
           case 'leave':
             final confirmed = await showOkCancelAlertDialog(
               context: context,
-              useRootNavigator: false,
               title: L10n.of(context).areYouSure,
               okLabel: L10n.of(context).ok,
               cancelLabel: L10n.of(context).cancel,
@@ -77,8 +77,7 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
               final success = await showFutureLoadingDialog(
                   context: context, future: () => widget.room.leave());
               if (success.error == null) {
-                await AdaptivePageLayout.of(context)
-                    .pushNamedAndRemoveAllOthers('/');
+                VRouter.of(context).push('/rooms');
               }
             }
             break;
@@ -95,12 +94,7 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                     widget.room.setPushRuleState(PushRuleState.notify));
             break;
           case 'details':
-            if (!AdaptivePageLayout.of(context).columnMode(context) ||
-                AdaptivePageLayout.of(context).viewDataStack.length < 3) {
-              await AdaptivePageLayout.of(context)
-                  .pushNamed('/rooms/${widget.room.id}/details');
-            }
-
+            VRouter.of(context).push('/rooms/${widget.room.id}/details');
             break;
         }
       },

@@ -1,4 +1,3 @@
-import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:fluffychat/pages/new_private_chat.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/contacts_list.dart';
@@ -7,6 +6,7 @@ import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:vrouter/vrouter.dart';
 
 class NewPrivateChatView extends StatelessWidget {
   final NewPrivateChatController controller;
@@ -22,8 +22,7 @@ class NewPrivateChatView extends StatelessWidget {
         elevation: 0,
         actions: [
           TextButton(
-            onPressed: () => AdaptivePageLayout.of(context)
-                .pushNamedAndRemoveUntilIsFirst('/newgroup'),
+            onPressed: () => VRouter.of(context).push('/newgroup'),
             child: Text(
               L10n.of(context).createNewGroup,
               style: TextStyle(color: Theme.of(context).accentColor),

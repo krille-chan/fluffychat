@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:adaptive_page_layout/adaptive_page_layout.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:fluffychat/utils/sentry_controller.dart';
@@ -95,7 +94,7 @@ class _AudioPlayerState extends State<AudioPlayerWidget> {
       _playAction();
     } catch (e, s) {
       Logs().v('Could not download audio file', e, s);
-      AdaptivePageLayout.of(context).showSnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(e.toLocalizedString(context)),
         ),
@@ -135,7 +134,7 @@ class _AudioPlayerState extends State<AudioPlayerWidget> {
         onPlayerStateChanged ??= audioPlayer.onPlayerStateChanged
             .listen((_) => setState(() => null));
         onPlayerError ??= audioPlayer.onPlayerError.listen((e) {
-          AdaptivePageLayout.of(context).showSnackBar(
+          ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(L10n.of(context).oopsSomethingWentWrong),
             ),
