@@ -1367,7 +1367,7 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "Alusta oma esimest vestlust kohe nüüd 🙂\n- Klõpsi „+“ ikooni\n- Sisesta teise osapoole kasutajanimi\n- Ja lase vestlusel kulgeda",
+  "startYourFirstChat": "Alusta oma esimest vestlust kohe nüüd 🙂\n- klõpsi vestlusnuppu\n- sisesta teise osapoole kasutajanimi\n- ja lase vestlusel kulgeda",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -2339,6 +2339,16 @@
   },
   "invalidEmail": "Vigane e-posti aadress",
   "@invalidEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "or": "või",
+  "@or": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "useSSO": "Kasuta ühekordset sisselogimist",
+  "@useSSO": {
     "type": "text",
     "placeholders": {}
   }

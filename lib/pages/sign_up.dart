@@ -153,7 +153,7 @@ class SignUpController extends State<SignUp> {
     setState(() => loading = false);
 
     VRouter.of(context).push(
-      '/signup/password/${Uri.encodeComponent(preferredUsername)}/${Uri.encodeComponent(usernameController.text)}',
+      '/signup/password/${Uri.encodeComponent(preferredUsername)}',
       queryParameters: {'displayname': usernameController.text},
     );
   }

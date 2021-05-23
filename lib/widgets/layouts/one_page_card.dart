@@ -14,32 +14,35 @@ class OnePageCard extends StatelessWidget {
     return MediaQuery.of(context).size.width <= breakpoint ||
             MediaQuery.of(context).size.height <= breakpoint
         ? child
-        : Container(
-            decoration: BoxDecoration(
-              color: Theme.of(context).backgroundColor,
-              gradient: LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-                stops: [
-                  0.1,
-                  0.4,
-                  0.6,
-                  0.9,
-                ],
-                colors: [
-                  Theme.of(context).secondaryHeaderColor.withAlpha(alpha),
-                  Theme.of(context).primaryColor.withAlpha(alpha),
-                  Theme.of(context).accentColor.withAlpha(alpha),
-                  Theme.of(context).backgroundColor.withAlpha(alpha),
-                ],
+        : Material(
+            color: Theme.of(context).backgroundColor,
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomLeft,
+                  stops: [
+                    0.1,
+                    0.4,
+                    0.6,
+                    0.9,
+                  ],
+                  colors: [
+                    Theme.of(context).secondaryHeaderColor.withAlpha(alpha),
+                    Theme.of(context).primaryColor.withAlpha(alpha),
+                    Theme.of(context).accentColor.withAlpha(alpha),
+                    Theme.of(context).backgroundColor.withAlpha(alpha),
+                  ],
+                ),
               ),
+              padding: EdgeInsets.symmetric(
+                horizontal:
+                    max((MediaQuery.of(context).size.width - 600) / 2, 12),
+                vertical:
+                    max((MediaQuery.of(context).size.height - 800) / 2, 12),
+              ),
+              child: SafeArea(child: Card(child: child)),
             ),
-            padding: EdgeInsets.symmetric(
-              horizontal:
-                  max((MediaQuery.of(context).size.width - 600) / 2, 12),
-              vertical: max((MediaQuery.of(context).size.height - 800) / 2, 12),
-            ),
-            child: SafeArea(child: Card(child: child)),
           );
   }
 }

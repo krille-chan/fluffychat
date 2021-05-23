@@ -1271,7 +1271,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "startYourFirstChat": "Hemen ilk sohbetinize başlayın! 🙂\n- \"+\" simgesine dokunun\n- Bir arkadaşın kullanıcı adını girin\n- Eğlenceli bir şekilde sohbet edin",
+  "startYourFirstChat": "Hemen ilk sohbetinize başlayın! 🙂\n- Mesaj düğmesine dokunun\n- Bir arkadaşın kullanıcı adını girin\n- Eğlenceli bir şekilde sohbet edin",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -2339,6 +2339,16 @@
   },
   "invalidEmail": "Geçersiz e-posta",
   "@invalidEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "useSSO": "Tekli oturum açma kullan",
+  "@useSSO": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "or": "Veya",
+  "@or": {
     "type": "text",
     "placeholders": {}
   }

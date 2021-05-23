@@ -65,6 +65,7 @@ class FluffyChatApp extends StatefulWidget {
 }
 
 class _FluffyChatAppState extends State<FluffyChatApp> {
+  final GlobalKey<MatrixState> _matrix = GlobalKey<MatrixState>();
   GlobalKey<VRouterState> _router;
   int columns;
   String _initialUrl = '/';
@@ -74,48 +75,49 @@ class _FluffyChatAppState extends State<FluffyChatApp> {
       light: FluffyThemes.light,
       dark: FluffyThemes.dark,
       initial: AdaptiveThemeMode.system,
-      builder: (theme, darkTheme) => Matrix(
-        context: context,
-        router: _router,
-        testClient: widget.testClient,
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            var newColumns =
-                (constraints.maxWidth / AppConfig.columnWidth).floor();
-            if (newColumns > 3) newColumns = 3;
-            columns ??= newColumns;
-            _router ??= GlobalKey<VRouterState>();
-            if (columns != newColumns) {
-              WidgetsBinding.instance.addPostFrameCallback((_) {
-                setState(() {
-                  _initialUrl = _router.currentState.url;
-                  columns = newColumns;
-                  _router = GlobalKey<VRouterState>();
-                });
+      builder: (theme, darkTheme) => LayoutBuilder(
+        builder: (context, constraints) {
+          var newColumns =
+              (constraints.maxWidth / AppConfig.columnWidth).floor();
+          if (newColumns > 3) newColumns = 3;
+          columns ??= newColumns;
+          _router ??= GlobalKey<VRouterState>();
+          if (columns != newColumns) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              setState(() {
+                _initialUrl = _router.currentState.url;
+                columns = newColumns;
+                _router = GlobalKey<VRouterState>();
               });
-            }
-            return VRouter(
-              key: _router,
-              title: '${AppConfig.applicationName}',
-              theme: theme,
-              darkTheme: darkTheme,
-              localizationsDelegates: L10n.localizationsDelegates,
-              supportedLocales: L10n.supportedLocales,
-              initialUrl: _initialUrl,
-              locale: kIsWeb
-                  ? Locale(html.window.navigator.language.split('-').first)
-                  : null,
-              routes: AppRoutes(columns).routes,
-              builder: (context, child) {
-                LoadingDialog.defaultTitle = L10n.of(context).loadingPleaseWait;
-                LoadingDialog.defaultBackLabel = L10n.of(context).close;
-                LoadingDialog.defaultOnError =
-                    (Object e) => e.toLocalizedString(context);
-                return child;
-              },
-            );
-          },
-        ),
+            });
+          }
+          return VRouter(
+            key: _router,
+            title: '${AppConfig.applicationName}',
+            theme: theme,
+            darkTheme: darkTheme,
+            localizationsDelegates: L10n.localizationsDelegates,
+            supportedLocales: L10n.supportedLocales,
+            initialUrl: _initialUrl,
+            locale: kIsWeb
+                ? Locale(html.window.navigator.language.split('-').first)
+                : null,
+            routes: AppRoutes(columns).routes,
+            builder: (context, child) {
+              LoadingDialog.defaultTitle = L10n.of(context).loadingPleaseWait;
+              LoadingDialog.defaultBackLabel = L10n.of(context).close;
+              LoadingDialog.defaultOnError =
+                  (Object e) => e.toLocalizedString(context);
+              return Matrix(
+                key: _matrix,
+                context: context,
+                router: _router,
+                testClient: widget.testClient,
+                child: child,
+              );
+            },
+          );
+        },
       ),
     );
   }

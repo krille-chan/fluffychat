@@ -18,8 +18,6 @@ import 'package:universal_html/html.dart' as html;
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:desktop_notifications/desktop_notifications.dart';
-
-import '../utils/beautify_string_extension.dart';
 import '../utils/famedlysdk_store.dart';
 import '../pages/key_verification_dialog.dart';
 import '../utils/platform_infos.dart';
@@ -59,8 +57,7 @@ class Matrix extends StatefulWidget {
 class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   FluffyClient client;
   Store store = Store();
-  @override
-  BuildContext get context => widget.context;
+  BuildContext navigatorContext;
 
   BackgroundPush _backgroundPush;
 
@@ -131,10 +128,10 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         case AuthenticationTypes.password:
           final input = cachedPassword ??
               (await showTextInputDialog(
-                context: context,
-                title: L10n.of(context).pleaseEnterYourPassword,
-                okLabel: L10n.of(context).ok,
-                cancelLabel: L10n.of(context).cancel,
+                context: navigatorContext,
+                title: L10n.of(widget.context).pleaseEnterYourPassword,
+                okLabel: L10n.of(widget.context).ok,
+                cancelLabel: L10n.of(widget.context).cancel,
                 textFields: [
                   DialogTextField(
                     minLines: 1,
@@ -185,10 +182,10 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
           );
           if (OkCancelResult.ok ==
               await showOkCancelAlertDialog(
-                message: L10n.of(context).pleaseFollowInstructionsOnWeb,
-                context: context,
-                okLabel: L10n.of(context).next,
-                cancelLabel: L10n.of(context).cancel,
+                message: L10n.of(widget.context).pleaseFollowInstructionsOnWeb,
+                context: navigatorContext,
+                okLabel: L10n.of(widget.context).next,
+                cancelLabel: L10n.of(widget.context).cancel,
               )) {
             return uiaRequest.completeStage(
               AuthenticationData(session: uiaRequest.session),
@@ -211,9 +208,10 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     final room = client.getRoomById(roomId);
     if (room.notificationCount == 0) return;
     final event = Event.fromJson(eventUpdate.content, room);
-    final title = room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)));
+    final title =
+        room.getLocalizedDisplayname(MatrixLocals(L10n.of(widget.context)));
     final body = event.getLocalizedBody(
-      MatrixLocals(L10n.of(context)),
+      MatrixLocals(L10n.of(widget.context)),
       withSenderNamePrefix:
           !room.isDirectChat || room.lastEvent.senderId == client.userID,
     );
@@ -276,33 +274,13 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         FlutterSecureStorage().read(key: SettingKeys.appLockKey).then((lock) {
           if (lock?.isNotEmpty ?? false) {
-            AppLock.of(context).enable();
-            AppLock.of(context).showLockScreen();
+            AppLock.of(widget.context).enable();
+            AppLock.of(widget.context).showLockScreen();
           }
         });
       });
     }
     client = FluffyClient();
-
-    onRoomKeyRequestSub ??=
-        client.onRoomKeyRequest.stream.listen((RoomKeyRequest request) async {
-      final room = request.room;
-      if (request.sender != room.client.userID) {
-        return; // ignore share requests by others
-      }
-      final sender = room.getUserByMXIDSync(request.sender);
-      if (await showOkCancelAlertDialog(
-            context: context,
-            title: L10n.of(context).requestToReadOlderMessages,
-            message:
-                '${sender.id}\n\n${L10n.of(context).device}:\n${request.requestingDevice.deviceId}\n\n${L10n.of(context).publicKey}:\n${request.requestingDevice.ed25519Key.beautified}',
-            okLabel: L10n.of(context).verify,
-            cancelLabel: L10n.of(context).deny,
-          ) ==
-          OkCancelResult.ok) {
-        await request.forwardKey();
-      }
-    });
     onKeyVerificationRequestSub ??= client.onKeyVerificationRequest.stream
         .listen((KeyVerification request) async {
       var hidPopup = false;
@@ -310,22 +288,23 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         if (!hidPopup &&
             {KeyVerificationState.done, KeyVerificationState.error}
                 .contains(request.state)) {
-          Navigator.of(context, rootNavigator: true).pop('dialog');
+          Navigator.of(navigatorContext).pop('dialog');
         }
         hidPopup = true;
       };
       if (await showOkCancelAlertDialog(
-            context: context,
-            title: L10n.of(context).newVerificationRequest,
-            message: L10n.of(context).askVerificationRequest(request.userId),
-            okLabel: L10n.of(context).ok,
-            cancelLabel: L10n.of(context).cancel,
+            context: navigatorContext,
+            title: L10n.of(widget.context).newVerificationRequest,
+            message:
+                L10n.of(widget.context).askVerificationRequest(request.userId),
+            okLabel: L10n.of(widget.context).ok,
+            cancelLabel: L10n.of(widget.context).cancel,
           ) ==
           OkCancelResult.ok) {
         request.onUpdate = null;
         hidPopup = true;
         await request.acceptVerification();
-        await KeyVerificationDialog(request: request).show(context);
+        await KeyVerificationDialog(request: request).show(navigatorContext);
       } else {
         request.onUpdate = null;
         hidPopup = true;
@@ -372,7 +351,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     }
 
     if (PlatformInfos.isMobile) {
-      _backgroundPush = BackgroundPush(client, context, widget.router);
+      _backgroundPush = BackgroundPush(client, navigatorContext, widget.router);
     }
   }
 

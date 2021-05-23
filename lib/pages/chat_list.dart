@@ -245,7 +245,10 @@ class ChatListController extends State<ChatList> {
   }
 
   @override
-  Widget build(BuildContext context) => ChatListView(this);
+  Widget build(BuildContext context) {
+    Matrix.of(context).navigatorContext = context;
+    return ChatListView(this);
+  }
 }
 
 enum ChatListPopupMenuItemActions {

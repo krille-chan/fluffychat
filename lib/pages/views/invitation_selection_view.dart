@@ -7,6 +7,7 @@ import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:vrouter/vrouter.dart';
 
 class InvitationSelectionView extends StatelessWidget {
   final InvitationSelectionController controller;
@@ -20,7 +21,11 @@ class InvitationSelectionView extends StatelessWidget {
         room.name?.isEmpty ?? false ? L10n.of(context).group : room.name;
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(),
+        leading: IconButton(
+          icon: Icon(Icons.close_outlined),
+          onPressed: () =>
+              VRouter.of(context).push('/rooms/${controller.roomId}'),
+        ),
         titleSpacing: 0,
         title: DefaultAppBarSearchField(
           autofocus: true,

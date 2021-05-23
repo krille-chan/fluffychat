@@ -6,6 +6,7 @@ import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:vrouter/vrouter.dart';
 
 class ChatPermissionsSettingsView extends StatelessWidget {
   final ChatPermissionsSettingsController controller;
@@ -17,7 +18,11 @@ class ChatPermissionsSettingsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(),
+        leading: IconButton(
+          icon: Icon(Icons.close_outlined),
+          onPressed: () =>
+              VRouter.of(context).push('/rooms/${controller.roomId}'),
+        ),
         title: Text(L10n.of(context).editChatPermissions),
       ),
       body: MaxWidthBody(
