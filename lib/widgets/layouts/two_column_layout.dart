@@ -1,4 +1,4 @@
-import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/themes.dart';
 import 'package:flutter/material.dart';
 
 class TwoColumnLayout extends StatelessWidget {
@@ -10,7 +10,7 @@ class TwoColumnLayout extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    if (MediaQuery.of(context).size.width <= AppConfig.columnWidth * 2) {
+    if (MediaQuery.of(context).size.width <= FluffyThemes.columnWidth * 2) {
       return mainView;
     }
     return Scaffold(

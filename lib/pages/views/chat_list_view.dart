@@ -1,4 +1,5 @@
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list.dart';
 import 'package:fluffychat/widgets/connection_status_header.dart';
 import 'package:fluffychat/widgets/list_items/chat_list_item.dart';
@@ -27,10 +28,10 @@ class ChatListView extends StatelessWidget {
                   : SelectMode.select;
           return Scaffold(
             appBar: AppBar(
-              elevation:
-                  MediaQuery.of(context).size.width > AppConfig.columnWidth * 2
-                      ? 1
-                      : null,
+              elevation: MediaQuery.of(context).size.width >
+                      FluffyThemes.columnWidth * 2
+                  ? 1
+                  : null,
               leading: selectMode == SelectMode.normal
                   ? null
                   : IconButton(
@@ -210,7 +211,7 @@ class ChatListView extends StatelessWidget {
                                 onLongPress: () =>
                                     controller.toggleSelection(rooms[i].id),
                                 activeChat:
-                                    controller.widget.activeChat == rooms[i].id,
+                                    controller.activeChat == rooms[i].id,
                               ),
                             );
                           } else {

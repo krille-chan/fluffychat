@@ -78,7 +78,7 @@ class _FluffyChatAppState extends State<FluffyChatApp> {
       builder: (theme, darkTheme) => LayoutBuilder(
         builder: (context, constraints) {
           var newColumns =
-              (constraints.maxWidth / AppConfig.columnWidth).floor();
+              (constraints.maxWidth / FluffyThemes.columnWidth).floor();
           if (newColumns > 3) newColumns = 3;
           columnMode ??= newColumns > 1;
           _router ??= GlobalKey<VRouterState>();

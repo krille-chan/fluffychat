@@ -65,6 +65,7 @@ class ChatView extends StatelessWidget {
                 tooltip: L10n.of(context).close,
               )
             : UnreadBadgeBackButton(roomId: controller.roomId),
+        titleSpacing: 0,
         title: controller.selectedEvents.isEmpty
             ? StreamBuilder(
                 stream: controller.room.onUpdate.stream,

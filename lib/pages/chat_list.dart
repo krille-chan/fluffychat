@@ -25,9 +25,7 @@ enum SelectMode { normal, share, select }
 enum PopupMenuAction { settings, invite, newGroup, setStatus, archive }
 
 class ChatList extends StatefulWidget {
-  final String activeChat;
-
-  const ChatList({this.activeChat, Key key}) : super(key: key);
+  const ChatList({Key key}) : super(key: key);
 
   @override
   ChatListController createState() => ChatListController();
@@ -41,6 +39,8 @@ class ChatListController extends State<ChatList> {
   StreamSubscription _intentUriStreamSubscription;
 
   final selectedRoomIds = <String>{};
+
+  String get activeChat => VRouter.of(context).pathParameters['roomid'];
 
   void _processIncomingSharedFiles(List<SharedMediaFile> files) {
     if (files?.isEmpty ?? true) return;

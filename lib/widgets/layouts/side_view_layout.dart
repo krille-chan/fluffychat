@@ -1,4 +1,4 @@
-import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:vrouter/vrouter.dart';
 
@@ -15,7 +15,7 @@ class SideViewLayout extends StatelessWidget {
     final hideSideView = currentUrl.split('/').length == 4;
     return sideView == null
         ? mainView
-        : MediaQuery.of(context).size.width < AppConfig.columnWidth * 3 &&
+        : MediaQuery.of(context).size.width < FluffyThemes.columnWidth * 3 &&
                 !hideSideView
             ? sideView
             : Row(
