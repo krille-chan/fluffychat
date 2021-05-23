@@ -958,7 +958,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Il semble que vous n'ayez aucun service Google sur votre téléphone. C'est une bonne décision pour votre vie privée ! Pour recevoir des notifications push dans FluffyChat, nous vous recommandons d'utiliser microG : https://microg.org/",
+  "noGoogleServicesWarning": "Il semble que vous n'ayez aucun service Google sur votre téléphone. C'est une bonne décision pour votre vie privée ! Pour recevoir des notifications dans FluffyChat, nous vous recommandons d'utiliser https://microg.org/ ou https://unifiedpush.org/.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -1367,7 +1367,7 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "Commencez votre première conversation dès maintenant ! 🙂\n- Appuyez sur « + »\n- Entrez le nom d’utilisateur·ice d’un·e ami·e\n- Bonne discussion",
+  "startYourFirstChat": "Commencez votre première conversation dès maintenant ! 🙂\n- Appuyez sur le bouton des messages\n- Entrez l'identifiant d’un·e ami·e\n- Bonne discussion",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -2339,6 +2339,21 @@
   },
   "invalidEmail": "Courriel invalide",
   "@invalidEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "useSSO": "Utiliser l'authentification unique",
+  "@useSSO": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "or": "Ou",
+  "@or": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oopsPushError": "Oups ! Une erreur s'est malheureusement produite lors du réglage des notifications.",
+  "@oopsPushError": {
     "type": "text",
     "placeholders": {}
   }
