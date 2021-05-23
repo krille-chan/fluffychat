@@ -67,7 +67,7 @@ class FluffyChatApp extends StatefulWidget {
 class _FluffyChatAppState extends State<FluffyChatApp> {
   final GlobalKey<MatrixState> _matrix = GlobalKey<MatrixState>();
   GlobalKey<VRouterState> _router;
-  int columns;
+  bool columnMode;
   String _initialUrl = '/';
   @override
   Widget build(BuildContext context) {
@@ -80,13 +80,13 @@ class _FluffyChatAppState extends State<FluffyChatApp> {
           var newColumns =
               (constraints.maxWidth / AppConfig.columnWidth).floor();
           if (newColumns > 3) newColumns = 3;
-          columns ??= newColumns;
+          columnMode ??= newColumns > 1;
           _router ??= GlobalKey<VRouterState>();
-          if (columns != newColumns) {
+          if (columnMode != newColumns > 1) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               setState(() {
                 _initialUrl = _router.currentState.url;
-                columns = newColumns;
+                columnMode = newColumns > 1;
                 _router = GlobalKey<VRouterState>();
               });
             });
@@ -102,7 +102,7 @@ class _FluffyChatAppState extends State<FluffyChatApp> {
             locale: kIsWeb
                 ? Locale(html.window.navigator.language.split('-').first)
                 : null,
-            routes: AppRoutes(columns).routes,
+            routes: AppRoutes(columnMode).routes,
             builder: (context, child) {
               LoadingDialog.defaultTitle = L10n.of(context).loadingPleaseWait;
               LoadingDialog.defaultBackLabel = L10n.of(context).close;

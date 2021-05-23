@@ -5,6 +5,7 @@ import 'package:fluffychat/pages/settings_emotes.dart';
 import 'package:fluffychat/pages/settings_multiple_emotes.dart';
 import 'package:fluffychat/pages/sign_up.dart';
 import 'package:fluffychat/pages/sign_up_password.dart';
+import 'package:fluffychat/widgets/layouts/side_view_layout.dart';
 import 'package:fluffychat/widgets/layouts/two_column_layout.dart';
 import 'package:fluffychat/pages/chat.dart';
 import 'package:fluffychat/pages/chat_details.dart';
@@ -28,11 +29,164 @@ import 'package:flutter/material.dart';
 import 'package:vrouter/vrouter.dart';
 
 class AppRoutes {
-  final int columns;
+  final bool columnMode;
 
-  AppRoutes(this.columns);
+  AppRoutes(this.columnMode);
 
   List<VRouteElement> get routes => [
+        ..._homeRoutes,
+        if (columnMode) ..._tabletRoutes,
+        if (!columnMode) ..._mobileRoutes,
+      ];
+
+  List<VRouteElement> get _mobileRoutes => [
+        VWidget(
+          path: '/rooms',
+          widget: ChatList(),
+          stackedRoutes: [
+            VWidget(path: ':roomid', widget: Chat(), stackedRoutes: [
+              VWidget(
+                path: 'encryption',
+                widget: ChatEncryptionSettings(),
+              ),
+              VWidget(
+                path: 'invite',
+                widget: InvitationSelection(),
+              ),
+              VWidget(
+                path: 'details',
+                widget: ChatDetails(),
+                stackedRoutes: _chatDetailsRoutes,
+              ),
+            ]),
+            VWidget(
+              path: '/settings',
+              widget: Settings(),
+              stackedRoutes: _settingsRoutes,
+            ),
+            VWidget(
+              path: '/search',
+              widget: Search(),
+            ),
+            VWidget(
+              path: '/archive',
+              widget: Archive(),
+            ),
+            VWidget(
+              path: '/newprivatechat',
+              widget: NewPrivateChat(),
+            ),
+            VWidget(
+              path: '/newgroup',
+              widget: NewGroup(),
+            ),
+          ],
+        ),
+      ];
+  List<VRouteElement> get _tabletRoutes => [
+        VNester(
+          path: '/rooms',
+          widgetBuilder: (child) => TwoColumnLayout(
+            mainView: ChatList(),
+            sideView: child,
+          ),
+          buildTransition: _fadeTransition,
+          nestedRoutes: [
+            VWidget(
+              path: '',
+              widget: EmptyPage(),
+              buildTransition: _fadeTransition,
+              stackedRoutes: [
+                VWidget(
+                  path: '/newprivatechat',
+                  widget: NewPrivateChat(),
+                  buildTransition: _fadeTransition,
+                ),
+                VWidget(
+                  path: '/newgroup',
+                  widget: NewGroup(),
+                  buildTransition: _fadeTransition,
+                ),
+                VNester(
+                  path: ':roomid',
+                  widgetBuilder: (child) => SideViewLayout(
+                    mainView: Chat(),
+                    sideView: child,
+                  ),
+                  buildTransition: _fadeTransition,
+                  nestedRoutes: [
+                    VWidget(
+                      path: '',
+                      widget: EmptyPage(),
+                      buildTransition: _fadeTransition,
+                    ),
+                    VWidget(
+                      path: 'encryption',
+                      widget: ChatEncryptionSettings(),
+                      buildTransition: _fadeTransition,
+                    ),
+                    VWidget(
+                      path: 'details',
+                      widget: ChatDetails(),
+                      buildTransition: _fadeTransition,
+                      stackedRoutes: _chatDetailsRoutes,
+                    ),
+                    VWidget(
+                      path: 'invite',
+                      widget: InvitationSelection(),
+                      buildTransition: _fadeTransition,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
+        VWidget(
+          path: '/rooms',
+          widget: TwoColumnLayout(
+            mainView: ChatList(),
+            sideView: EmptyPage(),
+          ),
+          buildTransition: _fadeTransition,
+          stackedRoutes: [
+            VNester(
+              path: '/settings',
+              widgetBuilder: (child) => TwoColumnLayout(
+                mainView: Settings(),
+                sideView: child,
+              ),
+              buildTransition: _dynamicTransition,
+              nestedRoutes: [
+                VWidget(
+                  path: '',
+                  widget: EmptyPage(),
+                  buildTransition: _dynamicTransition,
+                  stackedRoutes: _settingsRoutes,
+                ),
+              ],
+            ),
+            VWidget(
+              path: '/search',
+              widget: TwoColumnLayout(
+                mainView: Search(),
+                sideView: EmptyPage(),
+              ),
+              buildTransition: _fadeTransition,
+            ),
+            VWidget(
+              path: '/archive',
+              widget: TwoColumnLayout(
+                mainView: Archive(),
+                sideView: EmptyPage(),
+              ),
+              buildTransition: _fadeTransition,
+            ),
+          ],
+        ),
+      ];
+
+  List<VRouteElement> get _homeRoutes => [
         VWidget(path: '/', widget: LoadingView()),
         VWidget(
           path: '/home',
@@ -57,172 +211,6 @@ class AppRoutes {
                 ]),
           ],
         ),
-        if (columns > 1) ...{
-          VNester(
-            path: '/rooms',
-            widgetBuilder: (child) => TwoColumnLayout(
-              mainView: ChatList(),
-              sideView: child,
-            ),
-            buildTransition: _fadeTransition,
-            nestedRoutes: [
-              VWidget(
-                path: '',
-                widget: EmptyPage(),
-                buildTransition: _fadeTransition,
-                stackedRoutes: [
-                  VWidget(
-                    path: '/newprivatechat',
-                    widget: NewPrivateChat(),
-                    buildTransition: _fadeTransition,
-                  ),
-                  VWidget(
-                    path: '/newgroup',
-                    widget: NewGroup(),
-                    buildTransition: _fadeTransition,
-                  ),
-                  if (columns == 2)
-                    VWidget(
-                        path: ':roomid',
-                        widget: Chat(),
-                        buildTransition: _fadeTransition,
-                        stackedRoutes: [
-                          VWidget(
-                            path: 'encryption',
-                            widget: ChatEncryptionSettings(),
-                            buildTransition: _fadeTransition,
-                          ),
-                          VWidget(
-                            path: 'details',
-                            widget: ChatDetails(),
-                            buildTransition: _fadeTransition,
-                            stackedRoutes: _chatDetailsRoutes,
-                          ),
-                          VWidget(
-                            path: 'invite',
-                            widget: InvitationSelection(),
-                            buildTransition: _fadeTransition,
-                          ),
-                        ]),
-                  if (columns > 2)
-                    VNester(
-                      path: ':roomid',
-                      widgetBuilder: (child) => Chat(sideView: child),
-                      buildTransition: _fadeTransition,
-                      nestedRoutes: [
-                        VWidget(
-                          path: '',
-                          widget: EmptyPage(),
-                          buildTransition: _fadeTransition,
-                        ),
-                        VWidget(
-                          path: 'encryption',
-                          widget: ChatEncryptionSettings(),
-                          buildTransition: _fadeTransition,
-                        ),
-                        VWidget(
-                          path: 'details',
-                          widget: ChatDetails(),
-                          buildTransition: _fadeTransition,
-                          stackedRoutes: _chatDetailsRoutes,
-                        ),
-                        VWidget(
-                          path: 'invite',
-                          widget: InvitationSelection(),
-                          buildTransition: _fadeTransition,
-                        ),
-                      ],
-                    ),
-                ],
-              ),
-            ],
-          ),
-          VWidget(
-            path: '/rooms',
-            widget: TwoColumnLayout(
-              mainView: ChatList(),
-              sideView: EmptyPage(),
-            ),
-            buildTransition: _fadeTransition,
-            stackedRoutes: [
-              VNester(
-                path: '/settings',
-                widgetBuilder: (child) => TwoColumnLayout(
-                  mainView: Settings(),
-                  sideView: child,
-                ),
-                buildTransition: _dynamicTransition,
-                nestedRoutes: [
-                  VWidget(
-                    path: '',
-                    widget: EmptyPage(),
-                    buildTransition: _dynamicTransition,
-                    stackedRoutes: _settingsRoutes,
-                  ),
-                ],
-              ),
-              VWidget(
-                path: '/search',
-                widget: TwoColumnLayout(
-                  mainView: Search(),
-                  sideView: EmptyPage(),
-                ),
-                buildTransition: _fadeTransition,
-              ),
-              VWidget(
-                path: '/archive',
-                widget: TwoColumnLayout(
-                  mainView: Archive(),
-                  sideView: EmptyPage(),
-                ),
-                buildTransition: _fadeTransition,
-              ),
-            ],
-          ),
-        },
-        if (columns == 1)
-          VWidget(
-            path: '/rooms',
-            widget: ChatList(),
-            stackedRoutes: [
-              VWidget(path: ':roomid', widget: Chat(), stackedRoutes: [
-                VWidget(
-                  path: 'encryption',
-                  widget: ChatEncryptionSettings(),
-                ),
-                VWidget(
-                  path: 'invite',
-                  widget: InvitationSelection(),
-                ),
-                VWidget(
-                  path: 'details',
-                  widget: ChatDetails(),
-                  stackedRoutes: _chatDetailsRoutes,
-                ),
-              ]),
-              VWidget(
-                path: '/settings',
-                widget: Settings(),
-                stackedRoutes: _settingsRoutes,
-              ),
-              VWidget(
-                path: '/search',
-                widget: Search(),
-              ),
-              VWidget(
-                path: '/archive',
-                widget: Archive(),
-              ),
-              VWidget(
-                path: '/newprivatechat',
-                widget: NewPrivateChat(),
-              ),
-              VWidget(
-                path: '/newgroup',
-                widget: NewGroup(),
-              ),
-            ],
-          ),
       ];
 
   List<VRouteElement> get _chatDetailsRoutes => [
@@ -285,5 +273,5 @@ class AppRoutes {
       FadeTransition(opacity: animation1, child: child);
 
   FadeTransition Function(dynamic, dynamic, dynamic) get _dynamicTransition =>
-      columns > 1 ? _fadeTransition : null;
+      columnMode ? _fadeTransition : null;
 }

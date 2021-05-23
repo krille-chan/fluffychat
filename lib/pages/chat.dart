@@ -654,29 +654,5 @@ class ChatController extends State<Chat> {
       });
 
   @override
-  Widget build(BuildContext context) {
-    var currentUrl = Uri.decodeFull(VRouter.of(context).url);
-    if (!currentUrl.endsWith('/')) currentUrl += '/';
-    final hideSideView = currentUrl == '/rooms/$roomId/';
-    return widget.sideView == null
-        ? ChatView(this)
-        : Row(
-            children: [
-              Expanded(
-                child: ClipRRect(child: ChatView(this)),
-              ),
-              Container(
-                width: 1.0,
-                color: Theme.of(context).dividerColor,
-              ),
-              AnimatedContainer(
-                duration: Duration(milliseconds: 300),
-                clipBehavior: Clip.antiAlias,
-                decoration: BoxDecoration(),
-                width: hideSideView ? 0 : 360.0,
-                child: hideSideView ? null : widget.sideView,
-              ),
-            ],
-          );
-  }
+  Widget build(BuildContext context) => ChatView(this);
 }
