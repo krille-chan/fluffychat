@@ -35,7 +35,6 @@ class ChatDetailsController extends State<ChatDetails> {
       title: L10n.of(context).changeTheNameOfTheGroup,
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
-
       textFields: [
         DialogTextField(
           initialText: room.getLocalizedDisplayname(
@@ -160,7 +159,6 @@ class ChatDetailsController extends State<ChatDetails> {
       title: L10n.of(context).setInvitationLink,
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
-
       textFields: [
         DialogTextField(
           prefixText: '#',
@@ -185,7 +183,6 @@ class ChatDetailsController extends State<ChatDetails> {
       title: L10n.of(context).setGroupDescription,
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
-
       textFields: [
         DialogTextField(
           hintText: L10n.of(context).setGroupDescription,

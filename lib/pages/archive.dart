@@ -28,7 +28,6 @@ class ArchiveController extends State<Archive> {
           okLabel: L10n.of(context).yes,
           cancelLabel: L10n.of(context).cancel,
           message: L10n.of(context).clearArchive,
- 
         ) !=
         OkCancelResult.ok) {
       return;
