@@ -957,7 +957,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Het lijkt erop dat je geen Google-services op je telefoon hebt. Dat is een goede beslissing voor je privacy! Om meldingen in FluffyChat te ontvangen raden we je aan om microG te gebruiken: https://microg.org/",
+  "noGoogleServicesWarning": "Het lijkt erop dat je geen Google-services op je telefoon hebt. Dat is een goede beslissing voor je privacy! Om pushmeldingen in FluffyChat te ontvangen raden we je https://microg.org/ of https://unifiedpush.org aan.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -2340,6 +2340,11 @@
   },
   "or": "Of",
   "@or": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oopsPushError": "Oeps! Helaas is er een fout opgetreden bij het instellen van de pushmeldingen.",
+  "@oopsPushError": {
     "type": "text",
     "placeholders": {}
   }
