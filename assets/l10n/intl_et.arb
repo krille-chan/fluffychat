@@ -958,7 +958,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Tundub, et sinu nutiseadmes pole Google teenuseid. Sinu privaatsuse mõttes on see kindlasti hea otsus! Kui sa soovid FluffyChat'is näha tõuketeavitusi, siis soovitame, et selle jaoks kasutad microG liidestust https://microg.org/",
+  "noGoogleServicesWarning": "Tundub, et sinu nutiseadmes pole Google teenuseid. Sinu privaatsuse mõttes on see kindlasti hea otsus! Kui sa soovid FluffyChat'is näha tõuketeavitusi, siis soovitame, et selle jaoks kasutad https://microg.org või https://unifiedpush.org liidestust.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -2349,6 +2349,11 @@
   },
   "useSSO": "Kasuta ühekordset sisselogimist",
   "@useSSO": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oopsPushError": "Hopsti! Kahjuks tekkis tõuketeavituste seadistamisel viga.",
+  "@oopsPushError": {
     "type": "text",
     "placeholders": {}
   }
