@@ -56,11 +56,11 @@ class EmotesSettingsView extends StatelessWidget {
                               prefixText: ': ',
                               suffixText: ':',
                               prefixStyle: TextStyle(
-                                color: Theme.of(context).accentColor,
+                                color: Theme.of(context).colorScheme.secondary,
                                 fontWeight: FontWeight.bold,
                               ),
                               suffixStyle: TextStyle(
-                                color: Theme.of(context).accentColor,
+                                color: Theme.of(context).colorScheme.secondary,
                                 fontWeight: FontWeight.bold,
                               ),
                               border: InputBorder.none,
@@ -140,11 +140,15 @@ class EmotesSettingsView extends StatelessWidget {
                                       prefixText: ': ',
                                       suffixText: ':',
                                       prefixStyle: TextStyle(
-                                        color: Theme.of(context).accentColor,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .secondary,
                                         fontWeight: FontWeight.bold,
                                       ),
                                       suffixStyle: TextStyle(
-                                        color: Theme.of(context).accentColor,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .secondary,
                                         fontWeight: FontWeight.bold,
                                       ),
                                       border: InputBorder.none,

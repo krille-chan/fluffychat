@@ -30,7 +30,7 @@ class OnePageCard extends StatelessWidget {
                   colors: [
                     Theme.of(context).secondaryHeaderColor.withAlpha(alpha),
                     Theme.of(context).primaryColor.withAlpha(alpha),
-                    Theme.of(context).accentColor.withAlpha(alpha),
+                    Theme.of(context).colorScheme.secondary.withAlpha(alpha),
                     Theme.of(context).backgroundColor.withAlpha(alpha),
                   ],
                 ),

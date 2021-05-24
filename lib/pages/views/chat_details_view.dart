@@ -110,7 +110,9 @@ class ChatDetailsView extends StatelessWidget {
                               title: Text(
                                   '${L10n.of(context).groupDescription}:',
                                   style: TextStyle(
-                                      color: Theme.of(context).accentColor,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .secondary,
                                       fontWeight: FontWeight.bold)),
                               subtitle: LinkText(
                                 text: room.topic?.isEmpty ?? true
@@ -136,7 +138,8 @@ class ChatDetailsView extends StatelessWidget {
                               title: Text(
                                 L10n.of(context).settings,
                                 style: TextStyle(
-                                  color: Theme.of(context).accentColor,
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -321,7 +324,8 @@ class ChatDetailsView extends StatelessWidget {
                                         actualMembersCount.toString())
                                     : L10n.of(context).emptyChat,
                                 style: TextStyle(
-                                  color: Theme.of(context).accentColor,
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),

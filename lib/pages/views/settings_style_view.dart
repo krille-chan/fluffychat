@@ -47,7 +47,7 @@ class SettingsStyleView extends StatelessWidget {
               title: Text(
                 L10n.of(context).wallpaper,
                 style: TextStyle(
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -77,7 +77,7 @@ class SettingsStyleView extends StatelessWidget {
               title: Text(
                 L10n.of(context).fontSize,
                 style: TextStyle(
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                   fontWeight: FontWeight.bold,
                 ),
               ),

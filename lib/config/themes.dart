@@ -34,7 +34,10 @@ abstract class FluffyThemes {
     primaryColorLight: Color(0xff121212),
     brightness: Brightness.light,
     primaryColor: AppConfig.primaryColor,
-    accentColor: AppConfig.primaryColor,
+    colorScheme: ThemeData.light().colorScheme.copyWith(
+          primary: AppConfig.primaryColor,
+          secondary: AppConfig.primaryColor,
+        ),
     backgroundColor: Colors.white,
     secondaryHeaderColor: lighten(AppConfig.primaryColor, .51),
     scaffoldBackgroundColor: Colors.white,
@@ -115,7 +118,10 @@ abstract class FluffyThemes {
     errorColor: Color(0xFFCF6679),
     backgroundColor: Colors.black,
     scaffoldBackgroundColor: Colors.black,
-    accentColor: AppConfig.primaryColorLight,
+    colorScheme: ThemeData.dark().colorScheme.copyWith(
+          primary: AppConfig.primaryColorLight,
+          secondary: AppConfig.primaryColorLight,
+        ),
     secondaryHeaderColor: FluffyThemes.darken(AppConfig.primaryColorLight, .65),
     textTheme: Typography.material2018().white.merge(fallback_text_theme),
     dialogTheme: DialogTheme(

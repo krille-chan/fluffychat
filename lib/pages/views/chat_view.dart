@@ -110,7 +110,8 @@ class ChatView extends StatelessWidget {
                           : Row(
                               children: <Widget>[
                                 Icon(Icons.edit_outlined,
-                                    color: Theme.of(context).accentColor,
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
                                     size: 13),
                                 SizedBox(width: 4),
                                 Expanded(
@@ -119,7 +120,9 @@ class ChatView extends StatelessWidget {
                                         .getLocalizedTypingText(context),
                                     maxLines: 1,
                                     style: TextStyle(
-                                      color: Theme.of(context).accentColor,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .secondary,
                                       fontStyle: FontStyle.italic,
                                     ),
                                   ),
@@ -209,7 +212,8 @@ class ChatView extends StatelessWidget {
                       color: Theme.of(context).secondaryHeaderColor,
                       child: ListTile(
                         leading: CircleAvatar(
-                          foregroundColor: Theme.of(context).accentColor,
+                          foregroundColor:
+                              Theme.of(context).colorScheme.secondary,
                           backgroundColor: Theme.of(context).backgroundColor,
                           child: Icon(Icons.upgrade_outlined),
                         ),
@@ -330,7 +334,8 @@ class ChatView extends StatelessWidget {
                                                 overflow: TextOverflow.ellipsis,
                                                 style: TextStyle(
                                                   color: Theme.of(context)
-                                                      .accentColor,
+                                                      .colorScheme
+                                                      .secondary,
                                                 ),
                                               ),
                                             ),

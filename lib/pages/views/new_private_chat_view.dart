@@ -25,7 +25,7 @@ class NewPrivateChatView extends StatelessWidget {
             onPressed: () => VRouter.of(context).push('/newgroup'),
             child: Text(
               L10n.of(context).createNewGroup,
-              style: TextStyle(color: Theme.of(context).accentColor),
+              style: TextStyle(color: Theme.of(context).colorScheme.secondary),
             ),
           )
         ],
@@ -78,7 +78,7 @@ class NewPrivateChatView extends StatelessWidget {
             ListTile(
               leading: CircleAvatar(
                 radius: Avatar.defaultSize / 2,
-                foregroundColor: Theme.of(context).accentColor,
+                foregroundColor: Theme.of(context).colorScheme.secondary,
                 backgroundColor: Theme.of(context).secondaryHeaderColor,
                 child: Icon(Icons.share_outlined),
               ),
@@ -86,7 +86,8 @@ class NewPrivateChatView extends StatelessWidget {
               title: Text('${L10n.of(context).yourOwnUsername}:'),
               subtitle: Text(
                 Matrix.of(context).client.userID,
-                style: TextStyle(color: Theme.of(context).accentColor),
+                style:
+                    TextStyle(color: Theme.of(context).colorScheme.secondary),
               ),
             ),
             Divider(height: 1),

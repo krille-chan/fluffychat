@@ -65,7 +65,7 @@ class SettingsNotificationsView extends StatelessWidget {
                       title: Text(
                         L10n.of(context).pushRules,
                         style: TextStyle(
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).colorScheme.secondary,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -83,7 +83,7 @@ class SettingsNotificationsView extends StatelessWidget {
                     title: Text(
                       L10n.of(context).devices,
                       style: TextStyle(
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

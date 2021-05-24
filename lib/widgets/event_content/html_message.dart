@@ -46,7 +46,7 @@ class HtmlMessage extends StatelessWidget {
       emoteSize: emoteSize,
       linkStyle: linkStyle ??
           themeData.textTheme.bodyText2.copyWith(
-            color: themeData.accentColor,
+            color: themeData.colorScheme.secondary,
             decoration: TextDecoration.underline,
           ),
       shrinkToFit: true,

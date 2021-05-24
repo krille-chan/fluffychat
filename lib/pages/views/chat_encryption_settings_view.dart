@@ -32,7 +32,7 @@ class ChatEncryptionSettingsView extends StatelessWidget {
             title: Text(L10n.of(context).deviceVerifyDescription),
             leading: CircleAvatar(
               backgroundColor: Theme.of(context).secondaryHeaderColor,
-              foregroundColor: Theme.of(context).accentColor,
+              foregroundColor: Theme.of(context).colorScheme.secondary,
               child: Icon(Icons.lock),
             ),
           ),

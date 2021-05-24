@@ -75,8 +75,8 @@ class SearchView extends StatelessWidget {
             onChanged: controller.search,
           ),
           bottom: TabBar(
-            indicatorColor: Theme.of(context).accentColor,
-            labelColor: Theme.of(context).accentColor,
+            indicatorColor: Theme.of(context).colorScheme.secondary,
+            labelColor: Theme.of(context).colorScheme.secondary,
             unselectedLabelColor: Theme.of(context).textTheme.bodyText1.color,
             labelStyle: TextStyle(fontSize: 16),
             labelPadding: EdgeInsets.symmetric(
@@ -97,7 +97,7 @@ class SearchView extends StatelessWidget {
                 SizedBox(height: 12),
                 ListTile(
                   leading: CircleAvatar(
-                    foregroundColor: Theme.of(context).accentColor,
+                    foregroundColor: Theme.of(context).colorScheme.secondary,
                     backgroundColor: Theme.of(context).secondaryHeaderColor,
                     child: Icon(Icons.edit_outlined),
                   ),

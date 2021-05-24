@@ -74,7 +74,7 @@ class SettingsView extends StatelessWidget {
               title: Text(
                 L10n.of(context).notifications,
                 style: TextStyle(
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -89,7 +89,7 @@ class SettingsView extends StatelessWidget {
               title: Text(
                 L10n.of(context).chat,
                 style: TextStyle(
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -127,7 +127,7 @@ class SettingsView extends StatelessWidget {
               title: Text(
                 L10n.of(context).account,
                 style: TextStyle(
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -188,7 +188,7 @@ class SettingsView extends StatelessWidget {
                 title: Text(
                   L10n.of(context).security,
                   style: TextStyle(
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -223,7 +223,7 @@ class SettingsView extends StatelessWidget {
               title: Text(
                 L10n.of(context).about,
                 style: TextStyle(
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                   fontWeight: FontWeight.bold,
                 ),
               ),

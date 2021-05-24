@@ -98,7 +98,7 @@ class _ContactListTile extends StatelessWidget {
             subtitle: Text(contact.getLocalizedStatusMessage(context),
                 style: contact.presence.statusMsg?.isNotEmpty ?? false
                     ? TextStyle(
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                         fontWeight: FontWeight.bold,
                       )
                     : null),

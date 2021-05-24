@@ -51,7 +51,7 @@ class _LockScreenState extends State<LockScreen> {
                   colors: [
                     Theme.of(context).secondaryHeaderColor.withAlpha(16),
                     Theme.of(context).primaryColor.withAlpha(16),
-                    Theme.of(context).accentColor.withAlpha(16),
+                    Theme.of(context).colorScheme.secondary.withAlpha(16),
                     Theme.of(context).backgroundColor.withAlpha(16),
                   ],
                 ),
