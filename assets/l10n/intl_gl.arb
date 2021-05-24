@@ -958,7 +958,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Semella que non tes os servizos de google no teu dispositivo. Ben feito! a túa privacidade agradécecho! Para recibir notificacións push en FluffyChat recomendamos usar microG: https://microg.org/",
+  "noGoogleServicesWarning": "Semella que non tes os servizos de google no teu dispositivo. Ben feito! a túa privacidade agradécecho! Para recibir notificacións push en FluffyChat recomendamos usar https://microg.org/ ou https://unifiedpush.org/.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -1367,7 +1367,7 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "Inicia unha conversa! 🙂\n- Toca en \"+\"\n- Escribe o nome de usuaria dunha amizade\n- Desfruta da conversa",
+  "startYourFirstChat": "Inicia unha conversa! 🙂\n- Toca no botón de mensaxe\n- Escribe o nome de usuaria dunha amizade\n- Desfruta da conversa",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -2339,6 +2339,21 @@
   },
   "invalidEmail": "Email non válido",
   "@invalidEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "useSSO": "Usar conexión unificada",
+  "@useSSO": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "or": "Ou",
+  "@or": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oopsPushError": "Vaites! Desgraciadamente algo fallou ao configurar as notificacións push.",
+  "@oopsPushError": {
     "type": "text",
     "placeholders": {}
   }
