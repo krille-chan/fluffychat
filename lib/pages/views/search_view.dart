@@ -62,7 +62,8 @@ class SearchView extends StatelessWidget {
     );
     return DefaultTabController(
       length: 3,
-      initialIndex: 1,
+      initialIndex:
+          controller.controller.text?.startsWith('#') ?? false ? 0 : 1,
       child: Scaffold(
         appBar: AppBar(
           leading: BackButton(),

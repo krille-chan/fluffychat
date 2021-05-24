@@ -131,11 +131,18 @@ class SearchController extends State<Search> {
     setState(() {});
   }
 
+  bool _init = false;
+
   @override
   Widget build(BuildContext context) {
-    alias = VRouter.of(context).queryParameters['query'];
-    if (alias != null) genericSearchTerm ??= alias;
+    if (!_init) {
+      _init = true;
+      controller.text = VRouter.of(context).queryParameters['query'] ?? '';
+      WidgetsBinding.instance
+          .addPostFrameCallback((_) => search(controller.text));
+    }
 
     return SearchView(this);
   }
 }
+// #fluffychat:matrix.org
