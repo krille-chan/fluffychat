@@ -37,7 +37,6 @@ class KeyVerificationDialog extends StatefulWidget {
 
 class _KeyVerificationPageState extends State<KeyVerificationDialog> {
   void Function() originalOnUpdate;
-  final _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -63,7 +62,6 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
         .contains(widget.request.state)) {
       widget.request.cancel('m.user');
     }
-    _scrollController.dispose();
     super.dispose();
   }
 
@@ -341,24 +339,19 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
       ],
     );
     final title = Text(L10n.of(context).verifyTitle);
-    final content = Scrollbar(
-      isAlwaysShown: true,
-      controller: _scrollController,
-      child: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        controller: _scrollController,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            if (PlatformInfos.isCupertinoStyle) ...[
-              SizedBox(height: 8),
-              Center(child: userNameTitle),
-              SizedBox(height: 12),
-            ],
-            body,
-            if (bottom != null) bottom,
+    final content = SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (PlatformInfos.isCupertinoStyle) ...[
+            SizedBox(height: 8),
+            Center(child: userNameTitle),
+            SizedBox(height: 12),
           ],
-        ),
+          body,
+          if (bottom != null) bottom,
+        ],
       ),
     );
     if (PlatformInfos.isCupertinoStyle) {
