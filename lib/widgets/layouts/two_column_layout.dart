@@ -13,9 +13,9 @@ class TwoColumnLayout extends StatelessWidget {
     if (MediaQuery.of(context).size.width <= FluffyThemes.columnWidth * 2) {
       return mainView;
     }
-    return Scaffold(
-      body: ScaffoldMessenger(
-        child: Row(
+    return ScaffoldMessenger(
+      child: Scaffold(
+        body: Row(
           children: [
             Container(
               clipBehavior: Clip.antiAlias,
