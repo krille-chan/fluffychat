@@ -210,13 +210,17 @@ class Message extends StatelessWidget {
       container = row;
     }
 
-    return Container(
-      color: selected
-          ? Theme.of(context).primaryColor.withAlpha(100)
-          : Theme.of(context).primaryColor.withAlpha(0),
-      child: Padding(
-        padding: EdgeInsets.only(left: 8.0, right: 8.0, bottom: 4.0, top: 4.0),
-        child: container,
+    return Center(
+      child: Container(
+        color: selected
+            ? Theme.of(context).primaryColor.withAlpha(100)
+            : Theme.of(context).primaryColor.withAlpha(0),
+        constraints: BoxConstraints(maxWidth: FluffyThemes.columnWidth * 2.5),
+        child: Padding(
+          padding:
+              EdgeInsets.only(left: 8.0, right: 8.0, bottom: 4.0, top: 4.0),
+          child: container,
+        ),
       ),
     );
   }

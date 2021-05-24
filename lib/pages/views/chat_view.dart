@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'dart:ui';
 
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
@@ -9,7 +8,6 @@ import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
 import 'package:fluffychat/widgets/connection_status_header.dart';
 import 'package:fluffychat/widgets/input_bar.dart';
 import 'package:fluffychat/widgets/unread_badge_back_button.dart';
-import 'package:fluffychat/config/themes.dart';
 
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/encryption_button.dart';
@@ -250,19 +248,10 @@ class ChatView extends StatelessWidget {
                             i;
                       }
 
-                      final horizontalPadding = max(
-                              0,
-                              (MediaQuery.of(context).size.width -
-                                      FluffyThemes.columnWidth * (3.5)) /
-                                  2)
-                          .toDouble();
-
                       return ListView.custom(
                         padding: EdgeInsets.only(
                           top: 16,
                           bottom: 4,
-                          left: horizontalPadding,
-                          right: horizontalPadding,
                         ),
                         reverse: true,
                         controller: controller.scrollController,
