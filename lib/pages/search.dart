@@ -134,7 +134,8 @@ class SearchController extends State<Search> {
   @override
   Widget build(BuildContext context) {
     alias = VRouter.of(context).queryParameters['query'];
-    genericSearchTerm = alias;
+    if (alias != null) genericSearchTerm ??= alias;
+
     return SearchView(this);
   }
 }
