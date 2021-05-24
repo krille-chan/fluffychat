@@ -144,10 +144,10 @@ class SignUpView extends StatelessWidget {
                             primary: Theme.of(context).secondaryHeaderColor,
                             onPrimary:
                                 Theme.of(context).textTheme.bodyText1.color,
-                            elevation: 2,
+                            //elevation: 1,
                           ),
                           onPressed: () => context.vRouter.push('/login'),
-                          child: Text(L10n.of(context).login),
+                          child: Text(L10n.of(context).login.toUpperCase()),
                         ),
                       ),
                     if (controller.passwordLoginSupported &&
@@ -160,10 +160,9 @@ class SignUpView extends StatelessWidget {
                             primary: Theme.of(context).secondaryHeaderColor,
                             onPrimary:
                                 Theme.of(context).textTheme.bodyText1.color,
-                            elevation: 2,
                           ),
                           onPressed: controller.ssoLoginAction,
-                          child: Text(L10n.of(context).useSSO),
+                          child: Text(L10n.of(context).useSSO.toUpperCase()),
                         ),
                       ),
                   ]),
