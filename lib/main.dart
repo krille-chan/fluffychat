@@ -102,12 +102,24 @@ class _FluffyChatAppState extends State<FluffyChatApp> {
             locale: kIsWeb
                 ? Locale(html.window.navigator.language.split('-').first)
                 : null,
-            routes: AppRoutes(columnMode).routes,
+            routes: AppRoutes(columnMode, initialUrl: _initialUrl).routes,
             builder: (context, child) {
               LoadingDialog.defaultTitle = L10n.of(context).loadingPleaseWait;
               LoadingDialog.defaultBackLabel = L10n.of(context).close;
               LoadingDialog.defaultOnError =
                   (Object e) => e.toLocalizedString(context);
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                SystemChrome.setSystemUIOverlayStyle(
+                  SystemUiOverlayStyle(
+                    statusBarColor: Colors.transparent,
+                    systemNavigationBarColor: Theme.of(context).backgroundColor,
+                    systemNavigationBarIconBrightness:
+                        Theme.of(context).brightness == Brightness.light
+                            ? Brightness.dark
+                            : Brightness.light,
+                  ),
+                );
+              });
               return Matrix(
                 key: _matrix,
                 context: context,

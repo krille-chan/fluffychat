@@ -30,10 +30,16 @@ import 'package:vrouter/vrouter.dart';
 
 class AppRoutes {
   final bool columnMode;
+  final String initialUrl;
 
-  AppRoutes(this.columnMode);
+  AppRoutes(this.columnMode, {this.initialUrl});
 
   List<VRouteElement> get routes => [
+        if (initialUrl != null && initialUrl != '/')
+          VRouteRedirector(
+            path: '/',
+            redirectTo: initialUrl,
+          ),
         ..._homeRoutes,
         if (columnMode) ..._tabletRoutes,
         if (!columnMode) ..._mobileRoutes,
