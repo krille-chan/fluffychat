@@ -1,5 +1,5 @@
 
-## Unreleased
+## v0.31.0 - 2021-05-25
 
 ### Chore
 * Format iOS stuff [584c873]
