@@ -1,6 +1,5 @@
 import 'package:fluffychat/pages/archive.dart';
 import 'package:fluffychat/pages/homeserver_picker.dart';
-import 'package:fluffychat/pages/image_viewer.dart';
 import 'package:fluffychat/pages/invitation_selection.dart';
 import 'package:fluffychat/pages/settings_emotes.dart';
 import 'package:fluffychat/pages/settings_multiple_emotes.dart';
@@ -52,11 +51,6 @@ class AppRoutes {
           widget: ChatList(),
           stackedRoutes: [
             VWidget(path: ':roomid', widget: Chat(), stackedRoutes: [
-              VWidget(
-                path: 'image/:eventid',
-                widget: ImageViewer(),
-                buildTransition: _fadeTransition,
-              ),
               VWidget(
                 path: 'encryption',
                 widget: ChatEncryptionSettings(),
@@ -130,11 +124,6 @@ class AppRoutes {
                     VWidget(
                       path: '',
                       widget: EmptyPage(),
-                      buildTransition: _fadeTransition,
-                    ),
-                    VWidget(
-                      path: 'image/:eventid',
-                      widget: ImageViewer(),
                       buildTransition: _fadeTransition,
                     ),
                     VWidget(

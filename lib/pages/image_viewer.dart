@@ -8,9 +8,10 @@ import 'package:vrouter/vrouter.dart';
 import '../utils/matrix_sdk_extensions.dart/event_extension.dart';
 
 class ImageViewer extends StatefulWidget {
+  final Event event;
   final void Function() onLoaded;
 
-  const ImageViewer({Key key, this.onLoaded}) : super(key: key);
+  const ImageViewer(this.event, {Key key, this.onLoaded}) : super(key: key);
 
   @override
   ImageViewerController createState() => ImageViewerController();
@@ -18,14 +19,13 @@ class ImageViewer extends StatefulWidget {
 
 class ImageViewerController extends State<ImageViewer> {
   /// Forward this image to another room.
-  void forwardAction(Event event) {
-    Matrix.of(context).shareContent = event.content;
+  void forwardAction() {
+    Matrix.of(context).shareContent = widget.event.content;
     VRouter.of(context).push('/rooms');
   }
 
   /// Open this file with a system call.
-  void openFileAction(Event event) =>
-      event.openFile(context, downloadOnly: true);
+  void openFileAction() => widget.event.openFile(context, downloadOnly: true);
 
   /// Go back if user swiped it away
   void onInteractionEnds(ScaleEndDetails endDetails) {
@@ -35,16 +35,6 @@ class ImageViewerController extends State<ImageViewer> {
         Navigator.of(context, rootNavigator: false).pop();
       }
     }
-  }
-
-  Future<Event> getEvent() {
-    final roomId = VRouter.of(context).pathParameters['roomid'];
-    final eventId = VRouter.of(context).pathParameters['eventid'];
-    return Matrix.of(context).client.database.getEventById(
-          Matrix.of(context).client.id,
-          eventId,
-          Matrix.of(context).client.getRoomById(roomId),
-        );
   }
 
   @override
