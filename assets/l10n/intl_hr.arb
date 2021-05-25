@@ -958,7 +958,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Čini se da na mobitelu nemaš google usluge. To je dobra odluka za tvoju privatnost! Za primanje poslanih obavijesti u FluffyChatu preporučujemo upotrebu microG-a: https://microg.org/",
+  "noGoogleServicesWarning": "Čini se da na mobitelu nemaš google usluge. To je dobra odluka za tvoju privatnost! Za automatsko primanje obavijesti u FluffyChatu preporučujemo koristiti https://microg.org/ or https://unifiedpush.org/.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -1367,7 +1367,7 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "Započni svoj prvi chat! 🙂\n- Dodirni znak „+”\n- Upiši korisničko ime prijatelja\n- Želimo ti dobru zabavu",
+  "startYourFirstChat": "Započni svoj prvi chat! 🙂\n- Dodirni gumb za poruku\n- Upiši korisničko ime prijatelja\n- Želimo ti dobru zabavu",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -2339,6 +2339,21 @@
   },
   "invalidEmail": "Neipsravna e-mail adresa",
   "@invalidEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "useSSO": "Koristi univerzalnu prijavu",
+  "@useSSO": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "or": "Ili",
+  "@or": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oopsPushError": "Ups! Nažalost se dogodila greška prilikom postavljanja automatskog primanja obavijesti.",
+  "@oopsPushError": {
     "type": "text",
     "placeholders": {}
   }
