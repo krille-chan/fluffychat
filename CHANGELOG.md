@@ -1,8 +1,9 @@
 
-## v0.31.0 - 2021-05-25
+## v0.31.0 - 2021-05-26
 
 ### Chore
 * Format iOS stuff [584c873]
+* LibOlm has been updated to 3.2.3
 
 ### Feature
 * Cute animation for hiding the + button in inputbar [37c40a2]
