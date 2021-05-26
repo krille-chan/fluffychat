@@ -7,6 +7,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../utils/matrix_sdk_extensions.dart/event_extension.dart';
+import '../matrix.dart';
 
 class ImageBubble extends StatefulWidget {
   final Event event;
@@ -237,7 +238,7 @@ class _ImageBubbleState extends State<ImageBubble> {
       child: InkWell(
         onTap: () {
           if (!widget.tapToView) return;
-          Navigator.of(context, rootNavigator: true).push(
+          Navigator.of(Matrix.of(context).navigatorContext).push(
             MaterialPageRoute(
               builder: (_) => ImageViewer(widget.event, onLoaded: () {
                 // If the original file didn't load yet, we want to do that now.
