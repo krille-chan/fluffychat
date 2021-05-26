@@ -54,7 +54,15 @@ class ChatView extends StatelessWidget {
           context: context, future: () => controller.room.join());
     }
 
-    return Scaffold(
+    return VWidgetGuard(
+      onSystemPop: (redirector) async {
+        if (controller.selectedEvents.isNotEmpty) {
+          controller.clearSelectedEvents();
+          redirector.stopRedirection();
+        }
+      },
+      child:
+            Scaffold(
       appBar: AppBar(
         leading: controller.selectMode
             ? IconButton(
@@ -694,7 +702,7 @@ class ChatView extends StatelessWidget {
           ),
         ],
       ),
-    );
+    ));
   }
 }
 

@@ -26,7 +26,15 @@ class ChatListView extends StatelessWidget {
               : controller.selectedRoomIds.isEmpty
                   ? SelectMode.normal
                   : SelectMode.select;
-          return Scaffold(
+          return VWidgetGuard(
+            onSystemPop: (redirector) async {
+                if (controller.selectedRoomIds.isNotEmpty) {
+                    controller.cancelAction();
+                    redirector.stopRedirection();
+                }
+            },
+            child:
+          Scaffold(
             appBar: AppBar(
               elevation: MediaQuery.of(context).size.width >
                       FluffyThemes.columnWidth * 2
@@ -231,7 +239,7 @@ class ChatListView extends StatelessWidget {
                     child: Icon(CupertinoIcons.chat_bubble),
                   )
                 : null,
-          );
+          ));
         });
   }
 }
