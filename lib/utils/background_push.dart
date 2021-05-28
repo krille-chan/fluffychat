@@ -54,6 +54,7 @@ class BackgroundPush {
   GlobalKey<VRouterState> router;
   String _fcmToken;
   LoginState _loginState;
+  void Function(String errorMsg) onFcmError;
   L10n l10n;
   Store _store;
   Store get store => _store ??= Store();
@@ -68,7 +69,7 @@ class BackgroundPush {
 
   DateTime lastReceivedPush;
 
-  BackgroundPush._(this.client) {
+  BackgroundPush._(this.client, {this.onFcmError}) {
     onLogin ??=
         client.onLoginStateChanged.stream.listen(handleLoginStateChanged);
     onRoomSync ??= client.onSync.stream
@@ -95,10 +96,12 @@ class BackgroundPush {
   }
 
   factory BackgroundPush(FluffyClient _client, BuildContext _context,
-      GlobalKey<VRouterState> router) {
+      GlobalKey<VRouterState> router,
+      {final void Function(String errorMsg) onFcmError}) {
     final instance = BackgroundPush.clientOnly(_client);
     instance.context = _context;
     instance.router = router;
+    instance.onFcmError = onFcmError;
     instance.fullInit();
     return instance;
   }
@@ -249,12 +252,10 @@ class BackgroundPush {
     }
     if (await store.getItemBool(SettingKeys.showNoGoogle, true)) {
       await loadLocale();
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(
-        PlatformInfos.isAndroid
-            ? l10n.noGoogleServicesWarning
-            : l10n.oopsPushError,
-      )));
+      onFcmError?.call(PlatformInfos.isAndroid
+          ? l10n.noGoogleServicesWarning
+          : l10n.oopsPushError);
+
       if (null == await store.getItem(SettingKeys.showNoGoogle)) {
         await store.setItemBool(SettingKeys.showNoGoogle, false);
       }
@@ -262,6 +263,7 @@ class BackgroundPush {
   }
 
   Future<void> setupFirebase() async {
+    Logs().v('Setup firebase');
     if (_fcmToken?.isEmpty ?? true) {
       try {
         _fcmToken = await _fcmSharedIsolate.getToken();

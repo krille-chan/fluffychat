@@ -354,7 +354,13 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     }
 
     if (PlatformInfos.isMobile) {
-      _backgroundPush = BackgroundPush(client, navigatorContext, widget.router);
+      _backgroundPush = BackgroundPush(
+        client,
+        context,
+        widget.router,
+        onFcmError: (errorMsg) => ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text(errorMsg))),
+      );
     }
   }
 

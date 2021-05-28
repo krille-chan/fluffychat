@@ -1,4 +1,9 @@
 
+## v0.31.2 - 2021-05-28
+
+### Fixes
+* Setting up push was broken
+
 ## v0.31.0 - 2021-05-26
 
 ### Chore
