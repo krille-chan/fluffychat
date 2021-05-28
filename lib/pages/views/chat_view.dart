@@ -668,11 +668,9 @@ class ChatView extends StatelessWidget {
                                       child: InputBar(
                                         room: controller.room,
                                         minLines: 1,
-                                        maxLines: kIsWeb ? 1 : 8,
+                                        maxLines: 8,
                                         autofocus: !PlatformInfos.isMobile,
-                                        keyboardType: !PlatformInfos.isMobile
-                                            ? TextInputType.text
-                                            : TextInputType.multiline,
+                                        keyboardType: TextInputType.multiline,
                                         onSubmitted:
                                             controller.onInputBarSubmitted,
                                         focusNode: controller.inputFocus,

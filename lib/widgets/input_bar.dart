@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'avatar.dart';
@@ -263,43 +264,81 @@ class InputBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TypeAheadField<Map<String, String>>(
-      direction: AxisDirection.up,
-      hideOnEmpty: true,
-      hideOnLoading: true,
-      keepSuggestionsOnSuggestionSelected: true,
-      debounceDuration: Duration(
-          milliseconds:
-              50), // show suggestions after 50ms idle time (default is 300)
-      textFieldConfiguration: TextFieldConfiguration(
-        minLines: minLines,
-        maxLines: maxLines,
-        keyboardType: keyboardType,
-        autofocus: autofocus,
-        onSubmitted: (text) {
-          // fix for library for now
-          // it sets the types for the callback incorrectly
-          onSubmitted(text);
+    return Shortcuts(
+      shortcuts: {
+        LogicalKeySet(LogicalKeyboardKey.shift, LogicalKeyboardKey.enter):
+            NewLineIntent(),
+        LogicalKeySet(LogicalKeyboardKey.enter): SubmitLineIntent(),
+      },
+      child: Actions(
+        actions: {
+          NewLineIntent: CallbackAction(onInvoke: (i) {
+            final val = controller.value;
+            final selection = val.selection.start;
+            final messageWithoutNewLine =
+                controller.text.substring(0, val.selection.start) +
+                    '\n' +
+                    controller.text.substring(val.selection.start);
+            controller.value = TextEditingValue(
+              text: messageWithoutNewLine,
+              selection: TextSelection.fromPosition(
+                TextPosition(offset: selection + 1),
+              ),
+            );
+            return null;
+          }),
+          SubmitLineIntent: CallbackAction(onInvoke: (i) {
+            if (PlatformInfos.kIsWeb || PlatformInfos.isDesktop){
+              onSubmitted(controller.text);
+            }
+            return null;
+          }),
         },
-        focusNode: focusNode,
-        controller: controller,
-        decoration: decoration,
-        onChanged: (text) {
-          // fix for the library for now
-          // it sets the types for the callback incorrectly
-          onChanged(text);
-        },
-        textCapitalization: TextCapitalization.sentences,
+        child: TypeAheadField<Map<String, String>>(
+          direction: AxisDirection.up,
+          hideOnEmpty: true,
+          hideOnLoading: true,
+          keepSuggestionsOnSuggestionSelected: true,
+          debounceDuration: Duration(
+              milliseconds:
+                  50), // show suggestions after 50ms idle time (default is 300)
+          textFieldConfiguration: TextFieldConfiguration(
+            minLines: minLines,
+            maxLines: maxLines,
+            keyboardType: keyboardType,
+            autofocus: autofocus,
+            onSubmitted: (text) {
+              // fix for library for now
+              // it sets the types for the callback incorrectly
+              onSubmitted(text);
+            },
+            //focusNode: focusNode,
+            controller: controller,
+            decoration: decoration,
+            focusNode: focusNode,
+            onChanged: (text) {
+              // fix for the library for now
+              // it sets the types for the callback incorrectly
+              onChanged(text);
+            },
+            textCapitalization: TextCapitalization.sentences,
+          ),
+          suggestionsCallback: getSuggestions,
+          itemBuilder: (c, s) =>
+              buildSuggestion(c, s, Matrix.of(context).client),
+          onSuggestionSelected: (Map<String, String> suggestion) =>
+              insertSuggestion(context, suggestion),
+          errorBuilder: (BuildContext context, Object error) => Container(),
+          loadingBuilder: (BuildContext context) =>
+              Container(), // fix loading briefly flickering a dark box
+          noItemsFoundBuilder: (BuildContext context) =>
+              Container(), // fix loading briefly showing no suggestions
+        ),
       ),
-      suggestionsCallback: getSuggestions,
-      itemBuilder: (c, s) => buildSuggestion(c, s, Matrix.of(context).client),
-      onSuggestionSelected: (Map<String, String> suggestion) =>
-          insertSuggestion(context, suggestion),
-      errorBuilder: (BuildContext context, Object error) => Container(),
-      loadingBuilder: (BuildContext context) =>
-          Container(), // fix loading briefly flickering a dark box
-      noItemsFoundBuilder: (BuildContext context) =>
-          Container(), // fix loading briefly showing no suggestions
     );
   }
 }
+
+class NewLineIntent extends Intent {}
+
+class SubmitLineIntent extends Intent {}
