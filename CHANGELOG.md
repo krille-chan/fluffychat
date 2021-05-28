@@ -1,3 +1,8 @@
+## v0.31.3 - 2021-05-28
+
+### Fixes
+* Build Linux
+* Multiline keyboard on web and desktop
 
 ## v0.31.2 - 2021-05-28
 

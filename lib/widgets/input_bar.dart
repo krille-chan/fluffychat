@@ -1,3 +1,4 @@
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:famedlysdk/famedlysdk.dart';
@@ -288,7 +289,7 @@ class InputBar extends StatelessWidget {
             return null;
           }),
           SubmitLineIntent: CallbackAction(onInvoke: (i) {
-            if (PlatformInfos.kIsWeb || PlatformInfos.isDesktop){
+            if (PlatformInfos.isWeb || PlatformInfos.isDesktop) {
               onSubmitted(controller.text);
             }
             return null;
