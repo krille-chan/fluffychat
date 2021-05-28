@@ -165,7 +165,7 @@ build_linux_x86:
   artifacts:
     when: on_success
     paths:
-      - build/linux/release/bundle/
+      - build/linux/x64/release/bundle/
 
 build_linux_arm64:
   stage: coverage
