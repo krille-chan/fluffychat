@@ -313,7 +313,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "startYourFirstChat": "Inicie sua primeira conversa agora mesmo! 🙂\n- Pressione em \"+\"\n- Insira o nome de usuário de um amigo(a)\n- Divirta-se conversando",
+  "startYourFirstChat": "Inicie sua primeira conversa agora mesmo! 🙂\n- Pressione o botão de mensagem\n- Insira o nome de usuário de um amigo(a)\n- Divirta-se conversando",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -877,7 +877,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Aparentemente você não tem serviços Google no seu celular. Boa decisão para a sua privacidade! Para receber notificações no FluffyChat, recomendamos usar microG: https://microg.org/",
+  "noGoogleServicesWarning": "Aparentemente você não tem serviços Google no seu celular. Boa decisão para a sua privacidade! Para receber notificações no FluffyChat, recomendamos usar https://microg.org/ ou https://unifiedpush.org.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -2300,6 +2300,58 @@
   },
   "chats": "Conversas",
   "@chats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "useSSO": "Use uma conta existente (Single Sign-On)",
+  "@useSSO": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "or": "Ou",
+  "@or": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterYourPin": "Por favor, insira seu PIN",
+  "@pleaseEnterYourPin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "optionalAddEmail": "(Opcional) Seu endereço de email",
+  "@optionalAddEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidEmail": "Email inválido",
+  "@invalidEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oopsPushError": "Opa! Infelizmente, um erro ocorreu ao configurar as notificações.",
+  "@oopsPushError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "goToTheNewRoom": "Ir para a sala nova",
+  "@goToTheNewRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "roomVersion": "Versão da sala",
+  "@roomVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clearArchive": "Limpar arquivo",
+  "@clearArchive": {},
+  "setAsCanonicalAlias": "Fixar como cognome principal",
+  "@setAsCanonicalAlias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAliases": "Editar cognome da sala",
+  "@editRoomAliases": {
     "type": "text",
     "placeholders": {}
   }
