@@ -2331,5 +2331,15 @@
   "@editRoomAliases": {
     "type": "text",
     "placeholders": {}
+  },
+  "goToTheNewRoom": "Iri al la nova ĉambro",
+  "@goToTheNewRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "roomVersion": "Versio de ĉambro",
+  "@roomVersion": {
+    "type": "text",
+    "placeholders": {}
   }
 }
