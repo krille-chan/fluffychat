@@ -404,7 +404,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "startYourFirstChat": "Komencu nun vian unuan babilon! 🙂\n• Tuŝetu al «+»\n• Enigu la uzantonomon de amiko\n• Ĝuu babiladon",
+  "startYourFirstChat": "Komencu nun vian unuan babilon! 🙂\n• Tuŝetu al la butono de mesaĝo\n• Enigu la uzantonomon de amiko\n• Ĝuu babiladon",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -658,7 +658,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Ŝajnas, ke via telefono ne havas servojn de Google. Tio estas bona decido por via privateco! Por ricevadi pasivajn sciigojn en FluffyChat, ni rekomendas, ke vi uzu la programaron microG: https://microg.org/",
+  "noGoogleServicesWarning": "Ŝajnas, ke via telefono ne havas servojn de Google. Tio estas bona decido por via privateco! Por ricevadi pasivajn sciigojn en FluffyChat, ni rekomendas, ke vi uzu la https://microg.org/ aŭ https://unifiedpush.org/.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -2287,6 +2287,48 @@
   },
   "chats": "Babiloj",
   "@chats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "useSSO": "Uzi ununuran saluton",
+  "@useSSO": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "or": "Aŭ",
+  "@or": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterYourPin": "Bonvolu enigi vian personan identigan numeron",
+  "@pleaseEnterYourPin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "optionalAddEmail": "(Malnepre) Via retpoŝtadreso",
+  "@optionalAddEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidEmail": "Nevalida retpoŝtadreso",
+  "@invalidEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oopsPushError": "Oj! Bedaŭrinde eraris la agordado de pasivaj sciigoj.",
+  "@oopsPushError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clearArchive": "Vakigi arĥivon",
+  "@clearArchive": {},
+  "setAsCanonicalAlias": "Agordi kiel ĉefan kromnomon",
+  "@setAsCanonicalAlias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAliases": "Ŝanĝi kromnomojn de ĉambro",
+  "@editRoomAliases": {
     "type": "text",
     "placeholders": {}
   }
