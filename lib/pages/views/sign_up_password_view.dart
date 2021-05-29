@@ -73,7 +73,7 @@ class SignUpPasswordView extends StatelessWidget {
                   child: controller.loading
                       ? LinearProgressIndicator()
                       : Text(
-                          L10n.of(context).createAccountNow.toUpperCase(),
+                          L10n.of(context).createAccountNow,
                           style: TextStyle(color: Colors.white, fontSize: 16),
                         ),
                 ),

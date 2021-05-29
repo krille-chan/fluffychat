@@ -108,7 +108,7 @@ class SignUpView extends StatelessWidget {
                         child: controller.loading
                             ? LinearProgressIndicator()
                             : Text(
-                                L10n.of(context).signUp.toUpperCase(),
+                                L10n.of(context).signUp,
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 16),
                               ),
@@ -147,7 +147,7 @@ class SignUpView extends StatelessWidget {
                             //elevation: 1,
                           ),
                           onPressed: () => context.vRouter.push('/login'),
-                          child: Text(L10n.of(context).login.toUpperCase()),
+                          child: Text(L10n.of(context).login),
                         ),
                       ),
                     if (controller.passwordLoginSupported &&
@@ -162,7 +162,7 @@ class SignUpView extends StatelessWidget {
                                 Theme.of(context).textTheme.bodyText1.color,
                           ),
                           onPressed: controller.ssoLoginAction,
-                          child: Text(L10n.of(context).useSSO.toUpperCase()),
+                          child: Text(L10n.of(context).useSSO),
                         ),
                       ),
                   ]),
