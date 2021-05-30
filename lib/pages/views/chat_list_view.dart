@@ -1,5 +1,4 @@
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list.dart';
 import 'package:fluffychat/widgets/connection_status_header.dart';
 import 'package:fluffychat/widgets/list_items/chat_list_item.dart';
@@ -35,10 +34,7 @@ class ChatListView extends StatelessWidget {
               },
               child: Scaffold(
                 appBar: AppBar(
-                  elevation: MediaQuery.of(context).size.width >
-                          FluffyThemes.columnWidth * 2
-                      ? 1
-                      : null,
+                  elevation: controller.scrolledTop ? 0 : null,
                   leading: selectMode == SelectMode.normal
                       ? null
                       : IconButton(
@@ -207,6 +203,7 @@ class ChatListView extends StatelessWidget {
                                 final totalCount = rooms.length;
                                 return ListView.builder(
                                   itemCount: totalCount,
+                                  controller: controller.scrollController,
                                   itemBuilder: (BuildContext context, int i) =>
                                       ChatListItem(
                                     rooms[i],
@@ -233,11 +230,20 @@ class ChatListView extends StatelessWidget {
                   ),
                 ]),
                 floatingActionButton: selectMode == SelectMode.normal
-                    ? FloatingActionButton(
-                        onPressed: () =>
-                            VRouter.of(context).push('/newprivatechat'),
-                        child: Icon(CupertinoIcons.chat_bubble),
-                      )
+                    ? controller.scrolledTop
+                        ? FloatingActionButton.extended(
+                            heroTag: 'main_fab',
+                            onPressed: () =>
+                                VRouter.of(context).push('/newprivatechat'),
+                            icon: Icon(CupertinoIcons.chat_bubble),
+                            label: Text(L10n.of(context).newChat),
+                          )
+                        : FloatingActionButton(
+                            heroTag: 'main_fab',
+                            onPressed: () =>
+                                VRouter.of(context).push('/newprivatechat'),
+                            child: Icon(CupertinoIcons.chat_bubble),
+                          )
                     : null,
               ));
         });
