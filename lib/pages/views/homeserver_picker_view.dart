@@ -69,10 +69,7 @@ class HomeserverPickerView extends StatelessWidget {
                       : controller.checkHomeserverAction,
                   child: controller.isLoading
                       ? LinearProgressIndicator()
-                      : Text(
-                          L10n.of(context).connect,
-                          style: TextStyle(color: Colors.white, fontSize: 16),
-                        ),
+                      : Text(L10n.of(context).connect),
                 ),
               ),
             ),

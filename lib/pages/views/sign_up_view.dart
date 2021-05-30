@@ -61,7 +61,13 @@ class SignUpView extends StatelessWidget {
                           ? null
                           : [AutofillHints.newUsername],
                       decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.account_circle_outlined),
+                        prefixIcon: Padding(
+                          padding: const EdgeInsets.only(
+                            left: 12.0,
+                            right: 22,
+                          ),
+                          child: Icon(Icons.account_circle_outlined),
+                        ),
                         hintText: L10n.of(context).username,
                         errorText: controller.usernameError,
                         labelText: L10n.of(context).chooseAUsername,
@@ -107,11 +113,7 @@ class SignUpView extends StatelessWidget {
                             controller.loading ? null : controller.signUpAction,
                         child: controller.loading
                             ? LinearProgressIndicator()
-                            : Text(
-                                L10n.of(context).signUp,
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 16),
-                              ),
+                            : Text(L10n.of(context).signUp),
                       ),
                     ),
                   ),
@@ -144,7 +146,6 @@ class SignUpView extends StatelessWidget {
                             primary: Theme.of(context).secondaryHeaderColor,
                             onPrimary:
                                 Theme.of(context).textTheme.bodyText1.color,
-                            //elevation: 1,
                           ),
                           onPressed: () => context.vRouter.push('/login'),
                           child: Text(L10n.of(context).login),

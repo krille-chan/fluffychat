@@ -57,17 +57,18 @@ class LoginView extends StatelessWidget {
                   obscureText: !controller.showPassword,
                   onSubmitted: controller.login,
                   decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.lock_outlined),
-                      hintText: '****',
-                      errorText: controller.passwordError,
-                      suffixIcon: IconButton(
-                        tooltip: L10n.of(context).showPassword,
-                        icon: Icon(controller.showPassword
-                            ? Icons.visibility_off_outlined
-                            : Icons.visibility_outlined),
-                        onPressed: controller.toggleShowPassword,
-                      ),
-                      labelText: L10n.of(context).password),
+                    prefixIcon: Icon(Icons.lock_outlined),
+                    hintText: '****',
+                    errorText: controller.passwordError,
+                    suffixIcon: IconButton(
+                      tooltip: L10n.of(context).showPassword,
+                      icon: Icon(controller.showPassword
+                          ? Icons.visibility_off_outlined
+                          : Icons.visibility_outlined),
+                      onPressed: controller.toggleShowPassword,
+                    ),
+                    labelText: L10n.of(context).password,
+                  ),
                 ),
               ),
               SizedBox(height: 12),
@@ -81,10 +82,7 @@ class LoginView extends StatelessWidget {
                         : () => controller.login(context),
                     child: controller.loading
                         ? LinearProgressIndicator()
-                        : Text(
-                            L10n.of(context).login,
-                            style: TextStyle(color: Colors.white, fontSize: 16),
-                          ),
+                        : Text(L10n.of(context).login),
                   ),
                 ),
               ),

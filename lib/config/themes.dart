@@ -71,7 +71,6 @@ abstract class FluffyThemes {
       style: ElevatedButton.styleFrom(
         primary: AppConfig.primaryColor,
         onPrimary: Colors.white,
-        elevation: 7,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         ),
@@ -171,7 +170,6 @@ abstract class FluffyThemes {
       style: ElevatedButton.styleFrom(
         primary: AppConfig.primaryColor,
         onPrimary: Colors.white,
-        elevation: 7,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         ),
