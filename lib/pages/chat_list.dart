@@ -32,7 +32,6 @@ class ChatList extends StatefulWidget {
 }
 
 class ChatListController extends State<ChatList> {
-  final ScrollController scrollController = ScrollController();
   StreamSubscription _intentDataStreamSubscription;
 
   StreamSubscription _intentFileStreamSubscription;
@@ -42,15 +41,6 @@ class ChatListController extends State<ChatList> {
   final selectedRoomIds = <String>{};
 
   String get activeChat => VRouter.of(context).pathParameters['roomid'];
-
-  bool scrolledTop = true;
-
-  void updateScrolledTop() {
-    final newScrolledTop = scrollController.offset == 0;
-    if (scrolledTop != newScrolledTop) {
-      setState(() => scrolledTop = newScrolledTop);
-    }
-  }
 
   void _processIncomingSharedFiles(List<SharedMediaFile> files) {
     if (files?.isEmpty ?? true) return;
@@ -119,7 +109,6 @@ class ChatListController extends State<ChatList> {
   @override
   void initState() {
     _initReceiveSharingIntent();
-    scrollController.addListener(updateScrolledTop);
     super.initState();
   }
 
@@ -128,7 +117,6 @@ class ChatListController extends State<ChatList> {
     _intentDataStreamSubscription?.cancel();
     _intentFileStreamSubscription?.cancel();
     _intentUriStreamSubscription?.cancel();
-    scrollController.removeListener(updateScrolledTop);
     super.dispose();
   }
 

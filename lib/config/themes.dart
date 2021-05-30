@@ -97,6 +97,7 @@ abstract class FluffyThemes {
       fillColor: lighten(AppConfig.primaryColor, .51),
     ),
     appBarTheme: AppBarTheme(
+      elevation: 2,
       brightness: Brightness.light,
       color: Colors.white,
       textTheme: TextTheme(
@@ -178,6 +179,7 @@ abstract class FluffyThemes {
     ),
     snackBarTheme: SnackBarThemeData(behavior: SnackBarBehavior.floating),
     appBarTheme: AppBarTheme(
+      elevation: 2,
       brightness: Brightness.dark,
       color: Color(0xff1D1D1D),
       textTheme: TextTheme(

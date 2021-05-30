@@ -34,7 +34,6 @@ class ChatListView extends StatelessWidget {
               },
               child: Scaffold(
                 appBar: AppBar(
-                  elevation: controller.scrolledTop ? 0 : null,
                   leading: selectMode == SelectMode.normal
                       ? null
                       : IconButton(
@@ -230,15 +229,7 @@ class ChatListView extends StatelessWidget {
                   ),
                 ]),
                 floatingActionButton: selectMode == SelectMode.normal
-                    ? controller.scrolledTop
-                        ? FloatingActionButton.extended(
-                            heroTag: 'main_fab',
-                            onPressed: () =>
-                                VRouter.of(context).push('/newprivatechat'),
-                            icon: Icon(CupertinoIcons.chat_bubble),
-                            label: Text(L10n.of(context).newChat),
-                          )
-                        : FloatingActionButton(
+                    ? FloatingActionButton(
                             heroTag: 'main_fab',
                             onPressed: () =>
                                 VRouter.of(context).push('/newprivatechat'),
