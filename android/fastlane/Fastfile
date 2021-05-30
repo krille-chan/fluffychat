@@ -27,7 +27,7 @@ platform :android do
       config = File.read("./pubspec.yaml")
       version_name = config.match(re).captures
 
-      subst = "version: #{version_name[0]}+#{last_version+1}"
+      subst = "version: #{version_name[0]}+#{last_version+2}"
 
       result = config.gsub(re, subst)
 
