@@ -77,7 +77,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "areGuestsAllowedToJoin": "Dürfen Gast-Benutzer beitreten",
+  "areGuestsAllowedToJoin": "Dürfen Gäste beitreten",
   "@areGuestsAllowedToJoin": {
     "type": "text",
     "placeholders": {}
@@ -390,7 +390,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "countParticipants": "{count} Teilnehmer:innen",
+  "countParticipants": "{count} Mitglieder",
   "@countParticipants": {
     "type": "text",
     "placeholders": {
@@ -726,7 +726,7 @@
       "targetName": {}
     }
   },
-  "invitedUsersOnly": "Nur eingeladene Benutzer",
+  "invitedUsersOnly": "Nur eingeladene Mitglieder",
   "@invitedUsersOnly": {
     "type": "text",
     "placeholders": {}
@@ -829,7 +829,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "loadCountMoreParticipants": "{count} weitere Teilnehmer:innen laden",
+  "loadCountMoreParticipants": "{count} weitere Mitglieder laden",
   "@loadCountMoreParticipants": {
     "type": "text",
     "placeholders": {
@@ -878,7 +878,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "messageWillBeRemovedWarning": "Nachricht wird für alle Teilnehmer:innen entfernt",
+  "messageWillBeRemovedWarning": "Nachricht wird für alle Mitglieder entfernt",
   "@messageWillBeRemovedWarning": {
     "type": "text",
     "placeholders": {}
@@ -1558,7 +1558,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "verifyUser": "Verifiziere Benutzer",
+  "verifyUser": "Verifiziere Mitglied",
   "@verifyUser": {
     "type": "text",
     "placeholders": {}
@@ -1573,7 +1573,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "visibleForAllParticipants": "Sichtbar für alle Teilnehmer:innen",
+  "visibleForAllParticipants": "Sichtbar für alle Mitglieder",
   "@visibleForAllParticipants": {
     "type": "text",
     "placeholders": {}
@@ -1678,7 +1678,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "ignoreListDescription": "Du kannst störende Benutzer ignorieren. Du bist dann nicht mehr in der Lage, Nachrichten oder Raumeinladungen von diesen zu erhalten.",
+  "ignoreListDescription": "Du kannst störende Personen ignorieren. Du bist dann nicht mehr in der Lage, Nachrichten oder Raumeinladungen von diesen zu erhalten.",
   "@ignoreListDescription": {
     "type": "text",
     "placeholders": {}
@@ -1688,7 +1688,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "ignoredUsers": "Ignorierte Benutzer",
+  "ignoredUsers": "Ignorierte Personen",
   "@ignoredUsers": {
     "type": "text",
     "placeholders": {}
@@ -1813,7 +1813,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "memberChanges": "Änderungen der Teilnehmer:innen",
+  "memberChanges": "Änderungen der Mitglieder",
   "@memberChanges": {
     "type": "text",
     "placeholders": {}
@@ -1883,7 +1883,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "participant": "Teilnehmer:in",
+  "participant": "Mitglieder",
   "@participant": {
     "type": "text",
     "placeholders": {}
@@ -1948,7 +1948,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "numUsersTyping": "{count} Benutzer schreiben …",
+  "numUsersTyping": "{count} Mitglieder schreiben …",
   "@numUsersTyping": {
     "type": "text",
     "placeholders": {
@@ -2127,7 +2127,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "userUnknownVerification": "Benutzer:in hat einen unbekannten Verifikationsstatus",
+  "userUnknownVerification": "Mitglied hat einen unbekannten Verifikationsstatus",
   "@userUnknownVerification": {
     "type": "text",
     "placeholders": {}
@@ -2142,12 +2142,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "userNotVerified": "Benutzer:in ist nicht verifiziert",
+  "userNotVerified": "Mitglied ist nicht verifiziert",
   "@userNotVerified": {
     "type": "text",
     "placeholders": {}
   },
-  "userVerified": "Benutzer:in ist verifiziert",
+  "userVerified": "Mitglied ist verifiziert",
   "@userVerified": {
     "type": "text",
     "placeholders": {}
