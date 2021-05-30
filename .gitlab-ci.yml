@@ -1,5 +1,5 @@
 image:
-  name: cirrusci/flutter
+  name: registry.gitlab.com/famedly/containers/flutter-dockerimages:stable
 
 variables:
   GIT_SUBMODULE_STRATEGY: recursive
