@@ -202,7 +202,6 @@ class ChatListView extends StatelessWidget {
                                 final totalCount = rooms.length;
                                 return ListView.builder(
                                   itemCount: totalCount,
-                                  controller: controller.scrollController,
                                   itemBuilder: (BuildContext context, int i) =>
                                       ChatListItem(
                                     rooms[i],
@@ -230,11 +229,11 @@ class ChatListView extends StatelessWidget {
                 ]),
                 floatingActionButton: selectMode == SelectMode.normal
                     ? FloatingActionButton(
-                            heroTag: 'main_fab',
-                            onPressed: () =>
-                                VRouter.of(context).push('/newprivatechat'),
-                            child: Icon(CupertinoIcons.chat_bubble),
-                          )
+                        heroTag: 'main_fab',
+                        onPressed: () =>
+                            VRouter.of(context).push('/newprivatechat'),
+                        child: Icon(CupertinoIcons.chat_bubble),
+                      )
                     : null,
               ));
         });
