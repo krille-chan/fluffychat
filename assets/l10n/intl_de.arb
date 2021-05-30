@@ -2351,5 +2351,10 @@
   "@or": {
     "type": "text",
     "placeholders": {}
+  },
+  "oopsPushError": "Hoppla! Leider ist beim Einrichten der Push-Benachrichtigungen ein Fehler aufgetreten.",
+  "@oopsPushError": {
+    "type": "text",
+    "placeholders": {}
   }
 }
