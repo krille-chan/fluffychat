@@ -2356,5 +2356,20 @@
   "@oopsPushError": {
     "type": "text",
     "placeholders": {}
+  },
+  "removeYourAvatar": "Supprimer votre avatar",
+  "@removeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeYourAvatar": "Changer votre avatar",
+  "@changeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChoose": "Veuillez choisir",
+  "@pleaseChoose": {
+    "type": "text",
+    "placeholders": {}
   }
 }
