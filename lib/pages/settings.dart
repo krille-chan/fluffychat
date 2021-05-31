@@ -34,6 +34,12 @@ class SettingsController extends State<Settings> {
   bool crossSigningCached;
   Future<bool> megolmBackupCachedFuture;
   bool megolmBackupCached;
+  bool profileUpdated = false;
+
+  void updateProfile() => setState(() {
+        profileUpdated = true;
+        profile = profileFuture = null;
+      });
 
   void logoutAction() async {
     if (await showOkCancelAlertDialog(
@@ -186,30 +192,29 @@ class SettingsController extends State<Settings> {
           matrix.client.setDisplayName(matrix.client.userID, input.single),
     );
     if (success.error == null) {
-      setState(() {
-        profileFuture = null;
-        profile = null;
-      });
+      updateProfile();
     }
   }
 
   void setAvatarAction() async {
-    final action = await showConfirmationDialog<AvatarAction>(
-      context: context,
-      title: L10n.of(context).pleaseChoose,
-      actions: [
-        AlertDialogAction(
-          key: AvatarAction.change,
-          label: L10n.of(context).changeYourAvatar,
-          isDefaultAction: true,
-        ),
-        AlertDialogAction(
-          key: AvatarAction.remove,
-          label: L10n.of(context).removeYourAvatar,
-          isDestructiveAction: true,
-        ),
-      ],
-    );
+    final action = profile?.avatar == null
+        ? AvatarAction.change
+        : await showConfirmationDialog<AvatarAction>(
+            context: context,
+            title: L10n.of(context).pleaseChoose,
+            actions: [
+              AlertDialogAction(
+                key: AvatarAction.change,
+                label: L10n.of(context).changeYourAvatar,
+                isDefaultAction: true,
+              ),
+              AlertDialogAction(
+                key: AvatarAction.remove,
+                label: L10n.of(context).removeYourAvatar,
+                isDestructiveAction: true,
+              ),
+            ],
+          );
     if (action == null) return;
     final matrix = Matrix.of(context);
     if (action == AvatarAction.remove) {
@@ -218,10 +223,7 @@ class SettingsController extends State<Settings> {
         future: () => matrix.client.setAvatarUrl(matrix.client.userID, null),
       );
       if (success.error == null) {
-        setState(() {
-          profileFuture = null;
-          profile = null;
-        });
+        updateProfile();
       }
       return;
     }
@@ -251,10 +253,7 @@ class SettingsController extends State<Settings> {
       future: () => matrix.client.setAvatar(file),
     );
     if (success.error == null) {
-      setState(() {
-        profileFuture = null;
-        profile = null;
-      });
+      updateProfile();
     }
   }
 
@@ -391,8 +390,8 @@ class SettingsController extends State<Settings> {
     profileFuture ??= client
         .getProfileFromUserId(
       client.userID,
-      cache: false,
-      getFromRooms: false,
+      cache: !profileUpdated,
+      getFromRooms: !profileUpdated,
     )
         .then((p) {
       if (mounted) setState(() => profile = p);
