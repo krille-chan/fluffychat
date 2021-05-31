@@ -202,18 +202,26 @@ class ChatListItem extends StatelessWidget {
                 ),
                 SizedBox(width: 4),
               },
-              if (typingText.isNotEmpty) ...{
-                Icon(
+              AnimatedContainer(
+                width: typingText.isEmpty ? 0 : 18,
+                clipBehavior: Clip.hardEdge,
+                decoration: BoxDecoration(),
+                duration: Duration(milliseconds: 300),
+                curve: Curves.bounceInOut,
+                padding: EdgeInsets.only(right: 4),
+                child: Icon(
                   Icons.edit_outlined,
                   color: Theme.of(context).colorScheme.secondary,
                   size: 14,
                 ),
-                SizedBox(width: 4),
-              },
+              ),
               if (typingText.isEmpty &&
                   !ownMessage &&
                   !room.isDirectChat &&
-                  room.lastEvent != null)
+                  room.lastEvent != null &&
+                  room.lastEvent.type == EventTypes.Message &&
+                  {MessageTypes.Text, MessageTypes.Notice}
+                      .contains(room.lastEvent.messageType))
                 Text(
                   '${room.lastEvent.sender.calcDisplayname()}: ',
                   style: TextStyle(
@@ -267,27 +275,32 @@ class ChatListItem extends StatelessWidget {
                     color: Theme.of(context).colorScheme.secondary,
                   ),
                 ),
-              if (room.isUnread)
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 7),
-                  height: room.notificationCount > 0 ? 20 : 14,
-                  decoration: BoxDecoration(
-                    color: room.highlightCount > 0 || room.markedUnread
-                        ? Colors.red
-                        : Theme.of(context).primaryColor,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Center(
-                    child: room.notificationCount > 0
-                        ? Text(
-                            room.notificationCount.toString(),
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          )
-                        : Container(),
-                  ),
+              AnimatedContainer(
+                duration: Duration(milliseconds: 300),
+                curve: Curves.bounceInOut,
+                padding: EdgeInsets.symmetric(horizontal: 7),
+                height: room.isUnread
+                    ? room.notificationCount > 0
+                        ? 20
+                        : 14
+                    : 0,
+                decoration: BoxDecoration(
+                  color: room.highlightCount > 0 || room.markedUnread
+                      ? Colors.red
+                      : Theme.of(context).primaryColor,
+                  borderRadius: BorderRadius.circular(20),
                 ),
+                child: Center(
+                  child: room.notificationCount > 0
+                      ? Text(
+                          room.notificationCount.toString(),
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        )
+                      : Container(),
+                ),
+              ),
             ],
           ),
           onTap: () => clickAction(context),
