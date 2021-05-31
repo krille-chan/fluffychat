@@ -20,17 +20,12 @@ class ChatListView extends StatelessWidget {
     return StreamBuilder<Object>(
         stream: Matrix.of(context).onShareContentChanged.stream,
         builder: (_, __) {
-          final selectMode = Matrix.of(context).shareContent != null
-              ? SelectMode.share
-              : controller.selectedRoomIds.isEmpty
-                  ? SelectMode.normal
-                  : SelectMode.select;
+          final selectMode = controller.selectMode;
           return VWidgetGuard(
               onSystemPop: (redirector) async {
-                if (controller.selectedRoomIds.isNotEmpty) {
-                  controller.cancelAction();
-                  redirector.stopRedirection();
-                }
+                final selMode = controller.selectMode;
+                if (selMode != SelectMode.normal) controller.cancelAction();
+                if (selMode == SelectMode.select) redirector.stopRedirection();
               },
               child: Scaffold(
                 appBar: AppBar(
