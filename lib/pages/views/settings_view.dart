@@ -63,8 +63,11 @@ class SettingsView extends StatelessWidget {
             ],
             backgroundColor: Theme.of(context).appBarTheme.color,
             flexibleSpace: FlexibleSpaceBar(
-              background: ContentBanner(controller.profile?.avatarUrl,
-                  onEdit: controller.setAvatarAction),
+              background: ContentBanner(
+                controller.profile?.avatarUrl,
+                onEdit: controller.setAvatarAction,
+                defaultIcon: Icons.account_circle_outlined,
+              ),
             ),
           ),
         ],

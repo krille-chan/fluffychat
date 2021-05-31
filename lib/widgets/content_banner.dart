@@ -51,13 +51,14 @@ class ContentBanner extends StatelessWidget {
             bottom: 0,
             child: Opacity(
               opacity: opacity,
-              child: (!loading && mxContent != null)
-                  ? CachedNetworkImage(
-                      imageUrl: src.toString(),
-                      height: 300,
-                      fit: BoxFit.cover,
-                    )
-                  : Icon(defaultIcon, size: 200),
+              child:
+                  (!loading && mxContent != null && mxContent.host.isNotEmpty)
+                      ? CachedNetworkImage(
+                          imageUrl: src.toString(),
+                          height: 300,
+                          fit: BoxFit.cover,
+                        )
+                      : Icon(defaultIcon, size: 200),
             ),
           ),
           if (onEdit != null)
@@ -67,6 +68,8 @@ class ContentBanner extends StatelessWidget {
               child: FloatingActionButton(
                 mini: true,
                 onPressed: onEdit,
+                backgroundColor: Theme.of(context).backgroundColor,
+                foregroundColor: Theme.of(context).textTheme.bodyText1.color,
                 child: Icon(Icons.camera_alt_outlined),
               ),
             ),

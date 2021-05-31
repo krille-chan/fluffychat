@@ -194,6 +194,37 @@ class SettingsController extends State<Settings> {
   }
 
   void setAvatarAction() async {
+    final action = await showConfirmationDialog<AvatarAction>(
+      context: context,
+      title: L10n.of(context).pleaseChoose,
+      actions: [
+        AlertDialogAction(
+          key: AvatarAction.change,
+          label: L10n.of(context).changeYourAvatar,
+          isDefaultAction: true,
+        ),
+        AlertDialogAction(
+          key: AvatarAction.remove,
+          label: L10n.of(context).removeYourAvatar,
+          isDestructiveAction: true,
+        ),
+      ],
+    );
+    if (action == null) return;
+    final matrix = Matrix.of(context);
+    if (action == AvatarAction.remove) {
+      final success = await showFutureLoadingDialog(
+        context: context,
+        future: () => matrix.client.setAvatarUrl(matrix.client.userID, null),
+      );
+      if (success.error == null) {
+        setState(() {
+          profileFuture = null;
+          profile = null;
+        });
+      }
+      return;
+    }
     MatrixFile file;
     if (PlatformInfos.isMobile) {
       final result = await ImagePicker().getImage(
@@ -215,7 +246,6 @@ class SettingsController extends State<Settings> {
         name: result.fileName,
       );
     }
-    final matrix = Matrix.of(context);
     final success = await showFutureLoadingDialog(
       context: context,
       future: () => matrix.client.setAvatar(file),
@@ -358,7 +388,13 @@ class SettingsController extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     final client = Matrix.of(context).client;
-    profileFuture ??= client.ownProfile.then((p) {
+    profileFuture ??= client
+        .getProfileFromUserId(
+      client.userID,
+      cache: false,
+      getFromRooms: false,
+    )
+        .then((p) {
       if (mounted) setState(() => profile = p);
       return p;
     });
@@ -377,3 +413,5 @@ class SettingsController extends State<Settings> {
     return SettingsView(this);
   }
 }
+
+enum AvatarAction { change, remove }

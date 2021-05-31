@@ -60,6 +60,7 @@ abstract class FluffyThemes {
       ),
     ),
     popupMenuTheme: PopupMenuThemeData(
+      elevation: 4,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(AppConfig.borderRadius),
       ),

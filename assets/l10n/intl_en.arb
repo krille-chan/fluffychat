@@ -1228,6 +1228,21 @@
     "type": "text",
     "placeholders": {}
   },
+  "pleaseChoose": "Please choose",
+  "@pleaseChoose": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeYourAvatar": "Change your avatar",
+  "@changeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeYourAvatar": "Remove your avatar",
+  "@removeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
   "oopsPushError": "Oops! Unfortunately, an error occurred when setting up the push notifications.",
   "@oopsPushError": {
     "type": "text",
