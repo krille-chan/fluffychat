@@ -2356,5 +2356,20 @@
   "@oopsPushError": {
     "type": "text",
     "placeholders": {}
+  },
+  "removeYourAvatar": "Avatarınızı kaldırın",
+  "@removeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeYourAvatar": "Avatarınızı değiştirin",
+  "@changeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChoose": "Lütfen seçin",
+  "@pleaseChoose": {
+    "type": "text",
+    "placeholders": {}
   }
 }
