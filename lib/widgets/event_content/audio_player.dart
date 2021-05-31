@@ -3,16 +3,14 @@ import 'dart:io';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:fluffychat/widgets/event_content/message_download_content.dart';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:universal_html/html.dart' as html;
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import '../../utils/ui_fake.dart' if (dart.library.html) 'dart:ui' as ui;
-import '../matrix.dart';
 import '../../utils/matrix_sdk_extensions.dart/event_extension.dart';
 
 class AudioPlayerWidget extends StatefulWidget {
@@ -44,22 +42,6 @@ class _AudioPlayerState extends State<AudioPlayerWidget> {
   double maxPosition = 0;
 
   File audioFile;
-
-  String webSrcUrl;
-
-  @override
-  void initState() {
-    super.initState();
-    if (kIsWeb) {
-      ui.platformViewRegistry.registerViewFactory(
-          'web_audio_player',
-          (int viewId) => html.AudioElement()
-            ..src = webSrcUrl
-            ..autoplay = false
-            ..controls = true
-            ..style.border = 'none');
-    }
-  }
 
   @override
   void dispose() {
@@ -149,17 +131,7 @@ class _AudioPlayerState extends State<AudioPlayerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (kIsWeb) {
-      if (widget.event.content['url'] is String) {
-        webSrcUrl = Uri.parse(widget.event.content['url'])
-            .getDownloadLink(Matrix.of(context).client)
-            .toString();
-        return Container(
-          height: 50,
-          width: 300,
-          child: HtmlElementView(viewType: 'web_audio_player'),
-        );
-      }
+    if (PlatformInfos.isLinux || PlatformInfos.isWindows) {
       return MessageDownloadContent(widget.event, widget.color);
     }
     return Row(
@@ -190,6 +162,8 @@ class _AudioPlayerState extends State<AudioPlayerWidget> {
         ),
         Expanded(
           child: Slider(
+            activeColor: Theme.of(context).colorScheme.secondaryVariant,
+            inactiveColor: widget.color.withAlpha(64),
             value: currentPosition,
             onChanged: (double position) =>
                 audioPlayer.seek(Duration(milliseconds: position.toInt())),

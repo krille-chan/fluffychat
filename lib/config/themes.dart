@@ -37,6 +37,7 @@ abstract class FluffyThemes {
     colorScheme: ThemeData.light().colorScheme.copyWith(
           primary: AppConfig.primaryColor,
           secondary: AppConfig.primaryColor,
+          secondaryVariant: AppConfig.secondaryColor,
         ),
     backgroundColor: Colors.white,
     secondaryHeaderColor: lighten(AppConfig.primaryColor, .51),
@@ -121,6 +122,7 @@ abstract class FluffyThemes {
     colorScheme: ThemeData.dark().colorScheme.copyWith(
           primary: AppConfig.primaryColorLight,
           secondary: AppConfig.primaryColorLight,
+          secondaryVariant: AppConfig.secondaryColor,
         ),
     secondaryHeaderColor: FluffyThemes.darken(AppConfig.primaryColorLight, .65),
     textTheme: Typography.material2018().white.merge(fallback_text_theme),
