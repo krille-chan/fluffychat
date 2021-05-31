@@ -115,6 +115,7 @@ class _RecordingDialogState extends State<RecordingDialog> {
                   .pop<String>(_recordedPath);
             },
             child: Row(
+              mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Text(L10n.of(context).send.toUpperCase()),
                 SizedBox(width: 4),
