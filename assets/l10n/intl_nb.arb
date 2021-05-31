@@ -2127,5 +2127,12 @@
   "@newChat": {
     "type": "text",
     "placeholders": {}
+  },
+  "numUsersTyping": "{count} brukere skriver …",
+  "@numUsersTyping": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
   }
 }
