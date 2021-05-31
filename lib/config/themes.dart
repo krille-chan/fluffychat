@@ -80,7 +80,7 @@ abstract class FluffyThemes {
       ),
     ),
     cardTheme: CardTheme(
-      elevation: 7,
+      elevation: 4,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(AppConfig.borderRadius),
       ),
