@@ -210,6 +210,16 @@ class ChatListItem extends StatelessWidget {
                 ),
                 SizedBox(width: 4),
               },
+              if (typingText.isEmpty &&
+                  !ownMessage &&
+                  !room.isDirectChat &&
+                  room.lastEvent != null)
+                Text(
+                  '${room.lastEvent.sender.calcDisplayname()}: ',
+                  style: TextStyle(
+                    color: Theme.of(context).textTheme.bodyText1.color,
+                  ),
+                ),
               Expanded(
                 child: typingText.isNotEmpty
                     ? Text(
@@ -230,8 +240,6 @@ class ChatListItem extends StatelessWidget {
                         : Text(
                             room.lastEvent?.getLocalizedBody(
                                   MatrixLocals(L10n.of(context)),
-                                  withSenderNamePrefix:
-                                      !ownMessage && !room.isDirectChat,
                                   hideReply: true,
                                 ) ??
                                 '',
@@ -239,6 +247,9 @@ class ChatListItem extends StatelessWidget {
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
+                              color: room.notificationCount > 0
+                                  ? Theme.of(context).colorScheme.secondary
+                                  : null,
                               decoration: room.lastEvent?.redacted == true
                                   ? TextDecoration.lineThrough
                                   : null,
