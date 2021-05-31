@@ -265,36 +265,39 @@ class InputBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final useShortCuts = (PlatformInfos.isWeb || PlatformInfos.isDesktop);
     return Shortcuts(
-      shortcuts: {
-        LogicalKeySet(LogicalKeyboardKey.shift, LogicalKeyboardKey.enter):
-            NewLineIntent(),
-        LogicalKeySet(LogicalKeyboardKey.enter): SubmitLineIntent(),
-      },
+      shortcuts: !useShortCuts
+          ? {}
+          : {
+              LogicalKeySet(LogicalKeyboardKey.shift, LogicalKeyboardKey.enter):
+                  NewLineIntent(),
+              LogicalKeySet(LogicalKeyboardKey.enter): SubmitLineIntent(),
+            },
       child: Actions(
-        actions: {
-          NewLineIntent: CallbackAction(onInvoke: (i) {
-            final val = controller.value;
-            final selection = val.selection.start;
-            final messageWithoutNewLine =
-                controller.text.substring(0, val.selection.start) +
-                    '\n' +
-                    controller.text.substring(val.selection.start);
-            controller.value = TextEditingValue(
-              text: messageWithoutNewLine,
-              selection: TextSelection.fromPosition(
-                TextPosition(offset: selection + 1),
-              ),
-            );
-            return null;
-          }),
-          SubmitLineIntent: CallbackAction(onInvoke: (i) {
-            if (PlatformInfos.isWeb || PlatformInfos.isDesktop) {
-              onSubmitted(controller.text);
-            }
-            return null;
-          }),
-        },
+        actions: !useShortCuts
+            ? {}
+            : {
+                NewLineIntent: CallbackAction(onInvoke: (i) {
+                  final val = controller.value;
+                  final selection = val.selection.start;
+                  final messageWithoutNewLine =
+                      controller.text.substring(0, val.selection.start) +
+                          '\n' +
+                          controller.text.substring(val.selection.start);
+                  controller.value = TextEditingValue(
+                    text: messageWithoutNewLine,
+                    selection: TextSelection.fromPosition(
+                      TextPosition(offset: selection + 1),
+                    ),
+                  );
+                  return null;
+                }),
+                SubmitLineIntent: CallbackAction(onInvoke: (i) {
+                  onSubmitted(controller.text);
+                  return null;
+                }),
+              },
         child: TypeAheadField<Map<String, String>>(
           direction: AxisDirection.up,
           hideOnEmpty: true,
