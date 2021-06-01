@@ -2356,5 +2356,20 @@
   "@oopsPushError": {
     "type": "text",
     "placeholders": {}
+  },
+  "pleaseChoose": "Palun vali",
+  "@pleaseChoose": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeYourAvatar": "Kustuta oma tunnuspilt",
+  "@removeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeYourAvatar": "Muuda oma tunnuspilti",
+  "@changeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
   }
 }
