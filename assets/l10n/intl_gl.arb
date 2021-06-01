@@ -82,7 +82,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "areYouSure": "¿estás certo?",
+  "areYouSure": "Tes a certeza?",
   "@areYouSure": {
     "type": "text",
     "placeholders": {}
@@ -559,7 +559,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enableEncryptionWarning": "Non poderás desactivar o cifrado posteriormente, ¿estás certo?",
+  "enableEncryptionWarning": "Non poderás desactivar o cifrado posteriormente, tes certeza?",
   "@enableEncryptionWarning": {
     "type": "text",
     "placeholders": {}
@@ -1097,7 +1097,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "redactedAnEvent": "{username} publicou un evento",
+  "redactedAnEvent": "{username} editou un evento",
   "@redactedAnEvent": {
     "type": "text",
     "placeholders": {
@@ -1748,7 +1748,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "hideRedactedEvents": "Agochar eventos redactados",
+  "hideRedactedEvents": "Agochar eventos editados",
   "@hideRedactedEvents": {
     "type": "text",
     "placeholders": {}
@@ -2354,6 +2354,21 @@
   },
   "oopsPushError": "Vaites! Desgraciadamente algo fallou ao configurar as notificacións push.",
   "@oopsPushError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeYourAvatar": "Elimina o avatar",
+  "@removeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeYourAvatar": "Cambia o avatar",
+  "@changeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChoose": "Por favor elixe",
+  "@pleaseChoose": {
     "type": "text",
     "placeholders": {}
   }
