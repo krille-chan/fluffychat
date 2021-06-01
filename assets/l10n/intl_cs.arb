@@ -2356,5 +2356,20 @@
   "@oopsPushError": {
     "type": "text",
     "placeholders": {}
+  },
+  "removeYourAvatar": "Odstraňte svého avatara",
+  "@removeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeYourAvatar": "Změňte svůj avatar",
+  "@changeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChoose": "Prosím vyberte si",
+  "@pleaseChoose": {
+    "type": "text",
+    "placeholders": {}
   }
 }
