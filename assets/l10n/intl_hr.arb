@@ -2356,5 +2356,20 @@
   "@oopsPushError": {
     "type": "text",
     "placeholders": {}
+  },
+  "removeYourAvatar": "Ukloni svoj avatar",
+  "@removeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeYourAvatar": "Promijeni svoj avatar",
+  "@changeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChoose": "Odaberi",
+  "@pleaseChoose": {
+    "type": "text",
+    "placeholders": {}
   }
 }
