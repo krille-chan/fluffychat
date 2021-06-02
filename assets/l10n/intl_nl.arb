@@ -2347,5 +2347,20 @@
   "@oopsPushError": {
     "type": "text",
     "placeholders": {}
+  },
+  "removeYourAvatar": "Je avatar verwijderen",
+  "@removeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeYourAvatar": "Je avatar veranderen",
+  "@changeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChoose": "Kies",
+  "@pleaseChoose": {
+    "type": "text",
+    "placeholders": {}
   }
 }
