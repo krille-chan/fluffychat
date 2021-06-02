@@ -42,6 +42,12 @@ class ChatListController extends State<ChatList> {
 
   String get activeChat => VRouter.of(context).pathParameters['roomid'];
 
+  SelectMode get selectMode => Matrix.of(context).shareContent != null
+      ? SelectMode.share
+      : selectedRoomIds.isEmpty
+          ? SelectMode.normal
+          : SelectMode.select;
+
   void _processIncomingSharedFiles(List<SharedMediaFile> files) {
     if (files?.isEmpty ?? true) return;
     VRouter.of(context).push('/rooms');
@@ -234,11 +240,6 @@ class ChatListController extends State<ChatList> {
   }
 
   void cancelAction() {
-    final selectMode = Matrix.of(context).shareContent != null
-        ? SelectMode.share
-        : selectedRoomIds.isEmpty
-            ? SelectMode.normal
-            : SelectMode.select;
     if (selectMode == SelectMode.share) {
       setState(() => Matrix.of(context).shareContent = null);
     } else {
