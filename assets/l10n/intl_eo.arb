@@ -2341,5 +2341,15 @@
   "@roomVersion": {
     "type": "text",
     "placeholders": {}
+  },
+  "removeYourAvatar": "Forigi vian profilbildon",
+  "@removeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeYourAvatar": "Ŝanĝi vian profilbildon",
+  "@changeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
   }
 }
