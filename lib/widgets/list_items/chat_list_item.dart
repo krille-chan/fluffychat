@@ -141,6 +141,11 @@ class ChatListItem extends StatelessWidget {
     final typingText = room.getLocalizedTypingText(context);
     final ownMessage =
         room.lastEvent?.senderId == Matrix.of(context).client.userID;
+    final unreadBubbleSize = room.isUnread
+        ? room.notificationCount > 0.0
+            ? 20.0
+            : 14.0
+        : 0.0;
     return Center(
       child: Material(
         color: FluffyThemes.chatListItemColor(context, activeChat, selected),
@@ -279,11 +284,8 @@ class ChatListItem extends StatelessWidget {
                 duration: Duration(milliseconds: 300),
                 curve: Curves.bounceInOut,
                 padding: EdgeInsets.symmetric(horizontal: 7),
-                height: room.isUnread
-                    ? room.notificationCount > 0
-                        ? 20
-                        : 14
-                    : 0,
+                height: unreadBubbleSize,
+                width: unreadBubbleSize,
                 decoration: BoxDecoration(
                   color: room.highlightCount > 0 || room.markedUnread
                       ? Colors.red
