@@ -29,7 +29,7 @@ class Settings extends StatefulWidget {
 
 class SettingsController extends State<Settings> {
   Future<dynamic> profileFuture;
-  dynamic profile;
+  Profile profile;
   Future<bool> crossSigningCachedFuture;
   bool crossSigningCached;
   Future<bool> megolmBackupCachedFuture;
@@ -197,7 +197,7 @@ class SettingsController extends State<Settings> {
   }
 
   void setAvatarAction() async {
-    final action = profile?.avatar == null
+    final action = profile?.avatarUrl == null
         ? AvatarAction.change
         : await showConfirmationDialog<AvatarAction>(
             context: context,
