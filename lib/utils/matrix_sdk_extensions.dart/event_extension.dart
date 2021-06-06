@@ -4,18 +4,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'matrix_file_extension.dart';
-import '../../pages/image_viewer.dart';
-import '../../widgets/matrix.dart';
 
 extension LocalizedBody on Event {
-  void openFile(BuildContext context, {bool downloadOnly = false}) async {
-    if (!downloadOnly &&
-        [MessageTypes.Image, MessageTypes.Sticker].contains(messageType)) {
-      await Navigator.of(Matrix.of(context).navigatorContext).push(
-        MaterialPageRoute(builder: (_) => ImageViewer(this)),
-      );
-      return;
-    }
+  void openFile(BuildContext context) async {
     final matrixFile = await showFutureLoadingDialog(
       context: context,
       future: () => downloadAndDecryptAttachmentCached(),

@@ -25,7 +25,7 @@ class ImageViewerController extends State<ImageViewer> {
   }
 
   /// Open this file with a system call.
-  void openFileAction() => widget.event.openFile(context, downloadOnly: true);
+  void openFileAction() => widget.event.openFile(context);
 
   /// Go back if user swiped it away
   void onInteractionEnds(ScaleEndDetails endDetails) {

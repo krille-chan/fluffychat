@@ -7,7 +7,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../utils/matrix_sdk_extensions.dart/event_extension.dart';
-import '../matrix.dart';
 
 class ImageBubble extends StatefulWidget {
   final Event event;
@@ -238,22 +237,21 @@ class _ImageBubbleState extends State<ImageBubble> {
       child: InkWell(
         onTap: () {
           if (!widget.tapToView) return;
-          Navigator.of(Matrix.of(context).navigatorContext).push(
-            MaterialPageRoute(
-              builder: (_) => ImageViewer(widget.event, onLoaded: () {
-                // If the original file didn't load yet, we want to do that now.
-                // This is so that the original file displays after going on the image viewer,
-                // waiting for it to load, and then hitting back. This ensures that we always
-                // display the best image available, with requiring as little network as possible
-                if (_file == null) {
-                  widget.event.isAttachmentCached().then((cached) {
-                    if (cached) {
-                      _requestFile();
-                    }
-                  });
-                }
-              }),
-            ),
+          showDialog(
+            context: context,
+            builder: (_) => ImageViewer(widget.event, onLoaded: () {
+              // If the original file didn't load yet, we want to do that now.
+              // This is so that the original file displays after going on the image viewer,
+              // waiting for it to load, and then hitting back. This ensures that we always
+              // display the best image available, with requiring as little network as possible
+              if (_file == null) {
+                widget.event.isAttachmentCached().then((cached) {
+                  if (cached) {
+                    _requestFile();
+                  }
+                });
+              }
+            }),
           );
         },
         child: Hero(
