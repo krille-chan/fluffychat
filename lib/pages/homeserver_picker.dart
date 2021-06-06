@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/pages/sign_up.dart';
 import 'package:fluffychat/pages/views/homeserver_picker_view.dart';
+import 'package:fluffychat/utils/famedlysdk_store.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
@@ -31,13 +33,21 @@ class HomeserverPickerController extends State<HomeserverPicker> {
 
   void _loginWithToken(String token) {
     if (token?.isEmpty ?? true) return;
+
     showFutureLoadingDialog(
       context: context,
-      future: () => Matrix.of(context).client.login(
-            type: AuthenticationTypes.token,
-            token: token,
-            initialDeviceDisplayName: PlatformInfos.clientName,
-          ),
+      future: () async {
+        if (Matrix.of(context).client.homeserver == null) {
+          await Matrix.of(context).client.checkHomeserver(
+                await Store().getItem(SignUpController.ssoHomeserverKey),
+              );
+        }
+        await Matrix.of(context).client.login(
+              type: AuthenticationTypes.token,
+              token: token,
+              initialDeviceDisplayName: PlatformInfos.clientName,
+            );
+      },
     );
   }
 

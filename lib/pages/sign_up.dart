@@ -65,14 +65,14 @@ class SignUpController extends State<SignUp> {
     return _rawLoginTypes;
   }
 
-  static const String _ssoHomeserverKey = 'sso-homeserver';
+  static const String ssoHomeserverKey = 'sso-homeserver';
 
   void ssoLoginAction(String id) {
     if (kIsWeb) {
       // We store the homserver in the local storage instead of a redirect
       // parameter because of possible CSRF attacks.
       Store().setItem(
-          _ssoHomeserverKey, Matrix.of(context).client.homeserver.toString());
+          ssoHomeserverKey, Matrix.of(context).client.homeserver.toString());
     }
     final redirectUrl = kIsWeb
         ? html.window.location.href
