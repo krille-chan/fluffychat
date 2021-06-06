@@ -2371,5 +2371,22 @@
   "@pleaseChoose": {
     "type": "text",
     "placeholders": {}
+  },
+  "singlesignon": "Tek oturum açma",
+  "@singlesignon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginWith": "{brand} ile oturum aç",
+  "@loginWith": {
+    "type": "text",
+    "placeholders": {
+      "brand": {}
+    }
+  },
+  "register": "Kaydol",
+  "@register": {
+    "type": "text",
+    "placeholders": {}
   }
 }
