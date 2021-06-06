@@ -5,7 +5,7 @@ abstract class AppConfig {
   static String get applicationName => _applicationName;
   static String _applicationWelcomeMessage;
   static String get applicationWelcomeMessage => _applicationWelcomeMessage;
-  static String _defaultHomeserver = 'tchncs.de';
+  static String _defaultHomeserver = 'matrix.org';
   static String get defaultHomeserver => _defaultHomeserver;
   static String jitsiInstance = 'https://meet.jit.si/';
   static double fontSizeFactor = 1.0;

@@ -1131,6 +1131,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "register": "Register",
+  "@register": {
+    "type": "text",
+    "placeholders": {}
+  },
   "logInTo": "Log in to {homeserver}",
   "@logInTo": {
     "type": "text",
@@ -1938,8 +1943,15 @@
     "type": "text",
     "placeholders": {}
   },
-  "useSSO": "Use single sign on",
-  "@useSSO": {
+  "loginWith": "Login with {brand}",
+  "@loginWith": {
+    "type": "text",
+    "placeholders": {
+      "brand": {}
+    }
+  },
+  "singlesignon": "Single Sign on",
+  "@singlesignon": {
     "type": "text",
     "placeholders": {}
   },

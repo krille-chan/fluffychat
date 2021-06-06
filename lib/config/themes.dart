@@ -59,6 +59,13 @@ abstract class FluffyThemes {
         borderRadius: BorderRadius.circular(AppConfig.borderRadius),
       ),
     ),
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: OutlinedButton.styleFrom(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+        ),
+      ),
+    ),
     popupMenuTheme: PopupMenuThemeData(
       elevation: 4,
       shape: RoundedRectangleBorder(
@@ -167,6 +174,13 @@ abstract class FluffyThemes {
         borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         borderSide: BorderSide(
           color: FluffyThemes.darken(AppConfig.primaryColor, .31),
+        ),
+      ),
+    ),
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: OutlinedButton.styleFrom(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         ),
       ),
     ),

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:vrouter/vrouter.dart';
 import 'package:fluffychat/pages/sign_up.dart';
 import 'package:fluffychat/widgets/fluffy_banner.dart';
@@ -8,6 +9,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import '../../utils/localized_exception_extension.dart';
+
+import 'package:famedlysdk/famedlysdk.dart';
 
 class SignUpView extends StatelessWidget {
   final SignUpController controller;
@@ -20,7 +23,6 @@ class SignUpView extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           elevation: 0,
-          leading: controller.loading ? Container() : BackButton(),
           title: Text(
             Matrix.of(context)
                 .client
@@ -48,125 +50,83 @@ class SignUpView extends StatelessWidget {
                   tag: 'loginBanner',
                   child: FluffyBanner(),
                 ),
-                SizedBox(height: 16),
-                if (controller.passwordLoginSupported) ...{
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                    child: TextField(
-                      readOnly: controller.loading,
-                      autocorrect: false,
-                      controller: controller.usernameController,
-                      onSubmitted: controller.signUpAction,
-                      autofillHints: controller.loading
-                          ? null
-                          : [AutofillHints.newUsername],
-                      decoration: InputDecoration(
-                        prefixIcon: Padding(
-                          padding: const EdgeInsets.only(
-                            left: 12.0,
-                            right: 22,
-                          ),
-                          child: Icon(Icons.account_circle_outlined),
-                        ),
-                        hintText: L10n.of(context).username,
-                        errorText: controller.usernameError,
-                        labelText: L10n.of(context).chooseAUsername,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 8),
-                  ListTile(
-                    leading: CircleAvatar(
-                      backgroundImage: SignUpController.avatar == null
-                          ? null
-                          : MemoryImage(SignUpController.avatar.bytes),
-                      backgroundColor: SignUpController.avatar == null
-                          ? Theme.of(context).brightness == Brightness.dark
-                              ? Color(0xff121212)
-                              : Colors.white
-                          : Theme.of(context).secondaryHeaderColor,
-                      child: SignUpController.avatar == null
-                          ? Icon(Icons.camera_alt_outlined,
-                              color: Theme.of(context).primaryColor)
-                          : null,
-                    ),
-                    trailing: SignUpController.avatar == null
-                        ? null
-                        : Icon(
-                            Icons.close,
-                            color: Colors.red,
-                          ),
-                    title: Text(SignUpController.avatar == null
-                        ? L10n.of(context).setAProfilePicture
-                        : L10n.of(context).discardPicture),
-                    onTap: SignUpController.avatar == null
-                        ? controller.setAvatarAction
-                        : controller.resetAvatarAction,
-                  ),
-                  SizedBox(height: 16),
-                  Hero(
-                    tag: 'loginButton',
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 12),
-                      child: ElevatedButton(
-                        onPressed:
-                            controller.loading ? null : controller.signUpAction,
-                        child: controller.loading
-                            ? LinearProgressIndicator()
-                            : Text(L10n.of(context).signUp),
-                      ),
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Expanded(
-                          child: Container(
-                        height: 1,
-                        color: Theme.of(context).dividerColor,
-                      )),
-                      Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Text(L10n.of(context).or),
-                      ),
-                      Expanded(
-                          child: Container(
-                        height: 1,
-                        color: Theme.of(context).dividerColor,
-                      )),
-                    ],
-                  ),
-                },
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 12),
-                  child: Row(children: [
-                    if (controller.passwordLoginSupported)
-                      Expanded(
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Theme.of(context).secondaryHeaderColor,
-                            onPrimary:
-                                Theme.of(context).textTheme.bodyText1.color,
+                  padding: const EdgeInsets.all(12.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      if (controller.ssoLoginSupported) ...{
+                        for (final identityProvider
+                            in controller.identityProviders)
+                          OutlinedButton.icon(
+                            onPressed: () =>
+                                controller.ssoLoginAction(identityProvider.id),
+                            icon: identityProvider.icon == null
+                                ? Icon(Icons.web_outlined)
+                                : CachedNetworkImage(
+                                    imageUrl: Uri.parse(identityProvider.icon)
+                                        .getDownloadLink(
+                                            Matrix.of(context).client)
+                                        .toString(),
+                                    width: 24,
+                                    height: 24,
+                                  ),
+                            label: Text(L10n.of(context).loginWith(
+                                identityProvider.brand ??
+                                    identityProvider.name ??
+                                    L10n.of(context).singlesignon)),
                           ),
-                          onPressed: () => context.vRouter.push('/login'),
-                          child: Text(L10n.of(context).login),
-                        ),
+                        if (controller.registrationSupported ||
+                            controller.passwordLoginSupported)
+                          Row(children: [
+                            Expanded(child: Divider()),
+                            Padding(
+                              padding: const EdgeInsets.all(12.0),
+                              child: Text(L10n.of(context).or),
+                            ),
+                            Expanded(child: Divider()),
+                          ]),
+                      },
+                      Row(
+                        children: [
+                          if (controller.passwordLoginSupported)
+                            Expanded(
+                              child: Container(
+                                height: 64,
+                                child: OutlinedButton.icon(
+                                  onPressed: () =>
+                                      context.vRouter.push('/login'),
+                                  icon: Icon(Icons.login_outlined),
+                                  label: Text(L10n.of(context).login),
+                                ),
+                              ),
+                            ),
+                          if (controller.registrationSupported &&
+                              controller.passwordLoginSupported)
+                            SizedBox(width: 12),
+                          if (controller.registrationSupported)
+                            Expanded(
+                              child: Container(
+                                height: 64,
+                                child: OutlinedButton.icon(
+                                  onPressed: controller.signUpAction,
+                                  icon: Icon(Icons.add_box_outlined),
+                                  label: Text(L10n.of(context).register),
+                                ),
+                              ),
+                            ),
+                        ],
                       ),
-                    if (controller.passwordLoginSupported &&
-                        controller.ssoLoginSupported)
-                      SizedBox(width: 12),
-                    if (controller.ssoLoginSupported)
-                      Expanded(
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Theme.of(context).secondaryHeaderColor,
-                            onPrimary:
-                                Theme.of(context).textTheme.bodyText1.color,
-                          ),
-                          onPressed: controller.ssoLoginAction,
-                          child: Text(L10n.of(context).useSSO),
-                        ),
-                      ),
-                  ]),
+                    ]
+                        .map(
+                          (widget) => Container(
+                              height: 64,
+                              padding: EdgeInsets.only(bottom: 12),
+                              child: widget),
+                        )
+                        .toList(),
+                  ),
                 ),
               ]);
             }),

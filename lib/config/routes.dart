@@ -4,7 +4,6 @@ import 'package:fluffychat/pages/invitation_selection.dart';
 import 'package:fluffychat/pages/settings_emotes.dart';
 import 'package:fluffychat/pages/settings_multiple_emotes.dart';
 import 'package:fluffychat/pages/sign_up.dart';
-import 'package:fluffychat/pages/sign_up_password.dart';
 import 'package:fluffychat/widgets/layouts/side_view_layout.dart';
 import 'package:fluffychat/widgets/layouts/two_column_layout.dart';
 import 'package:fluffychat/pages/chat.dart';
@@ -204,11 +203,6 @@ class AppRoutes {
                 widget: SignUp(),
                 buildTransition: _fadeTransition,
                 stackedRoutes: [
-                  VWidget(
-                    path: 'password/:username',
-                    widget: SignUpPassword(),
-                    buildTransition: _fadeTransition,
-                  ),
                   VWidget(
                     path: '/login',
                     widget: Login(),

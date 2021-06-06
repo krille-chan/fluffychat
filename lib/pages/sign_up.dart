@@ -1,8 +1,6 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:file_picker_cross/file_picker_cross.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/views/sign_up_view.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -11,7 +9,6 @@ import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:uni_links/uni_links.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -26,13 +23,18 @@ class SignUp extends StatefulWidget {
 }
 
 class SignUpController extends State<SignUp> {
-  final TextEditingController usernameController = TextEditingController();
-  String usernameError;
-  bool loading = false;
-  static MatrixFile avatar;
-
-  LoginTypes _loginTypes;
+  Map<String, dynamic> _rawLoginTypes;
+  bool registrationSupported;
   StreamSubscription _intentDataStreamSubscription;
+  List<IdentityProvider> get identityProviders {
+    if (!ssoLoginSupported) return [];
+    final rawProviders = _rawLoginTypes.tryGetList('flows').singleWhere(
+        (flow) =>
+            flow['type'] == AuthenticationTypes.sso)['identity_providers'];
+    return (rawProviders as List)
+        .map((json) => IdentityProvider.fromJson(json))
+        .toList();
+  }
 
   void _loginWithToken(String token) {
     if (token?.isEmpty ?? true) return;
@@ -82,82 +84,68 @@ class SignUpController extends State<SignUp> {
     _intentDataStreamSubscription?.cancel();
   }
 
-  bool get passwordLoginSupported => _loginTypes.flows
-      .any((flow) => flow.type == AuthenticationTypes.password);
+  bool get passwordLoginSupported =>
+      Matrix.of(context)
+          .client
+          .supportedLoginTypes
+          .contains(AuthenticationTypes.password) &&
+      _rawLoginTypes
+          .tryGetList('flows')
+          .any((flow) => flow['type'] == AuthenticationTypes.password);
 
   bool get ssoLoginSupported =>
-      _loginTypes.flows.any((flow) => flow.type == AuthenticationTypes.sso);
+      Matrix.of(context)
+          .client
+          .supportedLoginTypes
+          .contains(AuthenticationTypes.sso) &&
+      _rawLoginTypes
+          .tryGetList('flows')
+          .any((flow) => flow['type'] == AuthenticationTypes.sso);
 
-  Future<LoginTypes> getLoginTypes() async {
-    _loginTypes ??= await Matrix.of(context).client.getLoginFlows();
-    return _loginTypes;
+  Future<Map<String, dynamic>> getLoginTypes() async {
+    _rawLoginTypes ??= await Matrix.of(context).client.request(
+          RequestType.GET,
+          '/client/r0/login',
+        );
+    if (registrationSupported == null) {
+      try {
+        await Matrix.of(context).client.register();
+        registrationSupported = true;
+      } on MatrixException catch (e) {
+        registrationSupported = e.requireAdditionalAuthentication ?? false;
+      }
+    }
+    return _rawLoginTypes;
   }
 
-  void ssoLoginAction() {
-    if (!kIsWeb && !PlatformInfos.isMobile) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-              'Single sign on is not suppored on ${Platform.operatingSystem}'),
-        ),
-      );
-      return;
-    }
+  void ssoLoginAction(String id) {
     final redirectUrl = kIsWeb
         ? html.window.location.href
         : AppConfig.appOpenUrlScheme.toLowerCase() + '://sso';
     launch(
-        '${Matrix.of(context).client.homeserver?.toString()}/_matrix/client/r0/login/sso/redirect?redirectUrl=${Uri.encodeQueryComponent(redirectUrl)}');
+        '${Matrix.of(context).client.homeserver?.toString()}/_matrix/client/r0/login/sso/redirect/${Uri.encodeComponent(id)}?redirectUrl=${Uri.encodeQueryComponent(redirectUrl)}');
   }
 
-  void setAvatarAction() async {
-    final file =
-        await FilePickerCross.importFromStorage(type: FileTypeCross.image);
-    if (file != null) {
-      setState(
-        () => avatar = MatrixFile(
-          bytes: file.toUint8List(),
-          name: file.fileName,
-        ),
-      );
-    }
-  }
-
-  void resetAvatarAction() => setState(() => avatar = null);
-
-  void signUpAction([_]) async {
-    final matrix = Matrix.of(context);
-    if (usernameController.text.isEmpty) {
-      setState(() => usernameError = L10n.of(context).pleaseChooseAUsername);
-    } else {
-      setState(() => usernameError = null);
-    }
-
-    if (usernameController.text.isEmpty) {
-      return;
-    }
-    setState(() => loading = true);
-
-    final preferredUsername =
-        usernameController.text.toLowerCase().trim().replaceAll(' ', '-');
-
-    try {
-      await matrix.client.checkUsernameAvailability(preferredUsername);
-    } on MatrixException catch (exception) {
-      setState(() => usernameError = exception.errorMessage);
-      return setState(() => loading = false);
-    } catch (exception) {
-      setState(() => usernameError = exception.toString());
-      return setState(() => loading = false);
-    }
-    setState(() => loading = false);
-
-    VRouter.of(context).push(
-      '/signup/password/${Uri.encodeComponent(preferredUsername)}',
-      queryParameters: {'displayname': usernameController.text},
-    );
-  }
+  void signUpAction() => launch(
+      '${Matrix.of(context).client.homeserver?.toString()}/_matrix/static/client/register');
 
   @override
   Widget build(BuildContext context) => SignUpView(this);
+}
+
+class IdentityProvider {
+  final String id;
+  final String name;
+  final String icon;
+  final String brand;
+
+  IdentityProvider({this.id, this.name, this.icon, this.brand});
+
+  factory IdentityProvider.fromJson(Map<String, dynamic> json) =>
+      IdentityProvider(
+        id: json['id'],
+        name: json['name'],
+        icon: json['icon'],
+        brand: json['brand'],
+      );
 }
