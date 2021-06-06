@@ -10,7 +10,7 @@ dependencies:
   adaptive_dialog: ^0.10.0+5
   adaptive_theme: ^2.2.0
   android_path_provider: ^0.2.1
-  audioplayers: ^0.18.3
+  audioplayers: ^0.19.0
   cached_network_image: ^3.0.0
   cupertino_icons: any
   desktop_notifications: ^0.4.0

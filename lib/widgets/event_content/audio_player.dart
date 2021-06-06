@@ -45,7 +45,7 @@ class _AudioPlayerState extends State<AudioPlayerWidget> {
 
   @override
   void dispose() {
-    if (audioPlayer.state == AudioPlayerState.PLAYING) {
+    if (audioPlayer.state == PlayerState.PLAYING) {
       audioPlayer.stop();
     }
     onAudioPositionChanged?.cancel();
@@ -87,7 +87,7 @@ class _AudioPlayerState extends State<AudioPlayerWidget> {
   void _playAction() async {
     if (AudioPlayerWidget.currentId != widget.event.eventId) {
       if (AudioPlayerWidget.currentId != null) {
-        if (audioPlayer.state != AudioPlayerState.STOPPED) {
+        if (audioPlayer.state != PlayerState.STOPPED) {
           await audioPlayer.stop();
           setState(() => null);
         }
@@ -95,13 +95,13 @@ class _AudioPlayerState extends State<AudioPlayerWidget> {
       AudioPlayerWidget.currentId = widget.event.eventId;
     }
     switch (audioPlayer.state) {
-      case AudioPlayerState.PLAYING:
+      case PlayerState.PLAYING:
         await audioPlayer.pause();
         break;
-      case AudioPlayerState.PAUSED:
+      case PlayerState.PAUSED:
         await audioPlayer.resume();
         break;
-      case AudioPlayerState.STOPPED:
+      case PlayerState.STOPPED:
       default:
         onAudioPositionChanged ??=
             audioPlayer.onAudioPositionChanged.listen((state) {
@@ -143,12 +143,12 @@ class _AudioPlayerState extends State<AudioPlayerWidget> {
               ? CircularProgressIndicator(strokeWidth: 2)
               : IconButton(
                   icon: Icon(
-                    audioPlayer.state == AudioPlayerState.PLAYING
+                    audioPlayer.state == PlayerState.PLAYING
                         ? Icons.pause_outlined
                         : Icons.play_arrow_outlined,
                     color: widget.color,
                   ),
-                  tooltip: audioPlayer.state == AudioPlayerState.PLAYING
+                  tooltip: audioPlayer.state == PlayerState.PLAYING
                       ? L10n.of(context).audioPlayerPause
                       : L10n.of(context).audioPlayerPlay,
                   onPressed: () {

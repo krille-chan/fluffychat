@@ -70,7 +70,7 @@ packages:
       name: audioplayers
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.18.3"
+    version: "0.19.0"
   base58check:
     dependency: transitive
     description:
