@@ -47,7 +47,6 @@ class ChatView extends StatelessWidget {
         ),
       );
     }
-    controller.matrix.client.activeRoomId = controller.roomId;
 
     if (controller.room.membership == Membership.invite) {
       showFutureLoadingDialog(

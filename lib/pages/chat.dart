@@ -204,7 +204,6 @@ class ChatController extends State<Chat> {
   void dispose() {
     timeline?.cancelSubscriptions();
     timeline = null;
-    matrix.client.activeRoomId = '';
     super.dispose();
   }
 

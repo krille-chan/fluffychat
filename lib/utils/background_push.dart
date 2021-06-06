@@ -586,8 +586,10 @@ class BackgroundPush {
     await room.postLoad();
     final event = await client.database.getEventById(client.id, eventId, room);
 
-    if (((client.activeRoomId?.isNotEmpty ?? false) &&
-            client.activeRoomId == room.id &&
+    final activeRoomId = router.currentState.pathParameters['roomid'];
+
+    if (((activeRoomId?.isNotEmpty ?? false) &&
+            activeRoomId == room.id &&
             client.syncPresence == null) ||
         (event != null && room.notificationCount == 0)) {
       return;

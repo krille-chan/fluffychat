@@ -204,9 +204,12 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
   bool webHasFocus = true;
 
+  String get activeRoomId =>
+      VRouter.of(navigatorContext).pathParameters['roomid'];
+
   void _showLocalNotification(EventUpdate eventUpdate) async {
     final roomId = eventUpdate.roomID;
-    if (webHasFocus && client.activeRoomId == roomId) return;
+    if (webHasFocus && activeRoomId == roomId) return;
     final room = client.getRoomById(roomId);
     if (room.notificationCount == 0) return;
     final event = Event.fromJson(eventUpdate.content, room);

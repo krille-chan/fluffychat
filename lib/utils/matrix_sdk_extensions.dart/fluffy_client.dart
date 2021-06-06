@@ -7,9 +7,6 @@ import '../famedlysdk_store.dart';
 class FluffyClient extends Client {
   static FluffyClient _instance;
 
-  /// The ID of the currently active room, if there is one. May be null or emtpy
-  String activeRoomId;
-
   factory FluffyClient({testMode = false}) {
     _instance ??= FluffyClient._internal(testMode: testMode);
     return _instance;
