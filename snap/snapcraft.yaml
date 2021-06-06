@@ -45,7 +45,7 @@ slots:
 
 apps:
   fluffychat:
-    extensions: [flutter-dev]
+    extensions: [flutter-stable]
     command: fluffychat
     plugs:
       - network
