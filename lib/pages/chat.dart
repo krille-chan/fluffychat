@@ -24,6 +24,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vrouter/vrouter.dart';
+import '../utils/localized_exception_extension.dart';
 
 import 'send_file_dialog.dart';
 import '../utils/matrix_sdk_extensions.dart/filtered_timeline_extension.dart';
@@ -98,8 +99,8 @@ class ChatController extends State<Chat> {
       try {
         await timeline.requestHistory(historyCount: _loadHistoryCount);
       } catch (err) {
-        ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(err.toLocalizedString(context))));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text((err as Object).toLocalizedString(context))));
       }
     }
   }
