@@ -2371,5 +2371,22 @@
   "@pleaseChoose": {
     "type": "text",
     "placeholders": {}
+  },
+  "singlesignon": "Authentification unique",
+  "@singlesignon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginWith": "Se connecter avec {brand}",
+  "@loginWith": {
+    "type": "text",
+    "placeholders": {
+      "brand": {}
+    }
+  },
+  "register": "S'inscrire",
+  "@register": {
+    "type": "text",
+    "placeholders": {}
   }
 }
