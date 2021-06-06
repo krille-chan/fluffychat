@@ -2371,5 +2371,22 @@
   "@changeYourAvatar": {
     "type": "text",
     "placeholders": {}
+  },
+  "singlesignon": "Ühekordne sisselogimine",
+  "@singlesignon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginWith": "Logi sisse {brand} abil",
+  "@loginWith": {
+    "type": "text",
+    "placeholders": {
+      "brand": {}
+    }
+  },
+  "register": "Registreeru",
+  "@register": {
+    "type": "text",
+    "placeholders": {}
   }
 }
