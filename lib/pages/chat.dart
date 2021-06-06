@@ -99,8 +99,13 @@ class ChatController extends State<Chat> {
       try {
         await timeline.requestHistory(historyCount: _loadHistoryCount);
       } catch (err) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text((err as Object).toLocalizedString(context))));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              (err as Object).toLocalizedString(context),
+            ),
+          ),
+        );
       }
     }
   }

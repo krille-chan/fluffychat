@@ -240,6 +240,7 @@ class _ImageBubbleState extends State<ImageBubble> {
           if (!widget.tapToView) return;
           showDialog(
             context: Matrix.of(context).navigatorContext,
+            useRootNavigator: false,
             builder: (_) => ImageViewer(widget.event, onLoaded: () {
               // If the original file didn't load yet, we want to do that now.
               // This is so that the original file displays after going on the image viewer,
