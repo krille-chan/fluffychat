@@ -284,7 +284,7 @@ class InputBar extends StatelessWidget {
                   final messageWithoutNewLine =
                       controller.text.substring(0, val.selection.start) +
                           '\n' +
-                          controller.text.substring(val.selection.start);
+                          controller.text.substring(val.selection.end);
                   controller.value = TextEditingValue(
                     text: messageWithoutNewLine,
                     selection: TextSelection.fromPosition(
