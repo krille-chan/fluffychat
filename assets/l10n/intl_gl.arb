@@ -2371,5 +2371,22 @@
   "@pleaseChoose": {
     "type": "text",
     "placeholders": {}
+  },
+  "singlesignon": "Conexión Unificada SSO",
+  "@singlesignon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginWith": "Conecta con {brand}",
+  "@loginWith": {
+    "type": "text",
+    "placeholders": {
+      "brand": {}
+    }
+  },
+  "register": "Crear conta",
+  "@register": {
+    "type": "text",
+    "placeholders": {}
   }
 }
