@@ -2351,5 +2351,40 @@
   "@changeYourAvatar": {
     "type": "text",
     "placeholders": {}
+  },
+  "badServerVersionsException": "La hejmservilo subtenas la jenajn version de la specifaĵo:\n{serverVersions}\nSed ĉi tiu aplikaĵo subtenas nur {supportedVersions}",
+  "@badServerVersionsException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "singlesignon": "Ununura saluto",
+  "@singlesignon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginWith": "Saluti per {brand}",
+  "@loginWith": {
+    "type": "text",
+    "placeholders": {
+      "brand": {}
+    }
+  },
+  "redactMessage": "Forigi mesaĝon",
+  "@redactMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChoose": "Bonvolu elekti",
+  "@pleaseChoose": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "register": "Registriĝi",
+  "@register": {
+    "type": "text",
+    "placeholders": {}
   }
 }
