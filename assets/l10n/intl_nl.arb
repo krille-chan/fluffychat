@@ -2362,5 +2362,22 @@
   "@pleaseChoose": {
     "type": "text",
     "placeholders": {}
+  },
+  "singlesignon": "Eenmalig Inloggen",
+  "@singlesignon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginWith": "Inloggen met {brand}",
+  "@loginWith": {
+    "type": "text",
+    "placeholders": {
+      "brand": {}
+    }
+  },
+  "register": "Registeren",
+  "@register": {
+    "type": "text",
+    "placeholders": {}
   }
 }
