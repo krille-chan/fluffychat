@@ -1193,14 +1193,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "seenByUser": "Nähtud {username} poolt",
+  "seenByUser": "Sõnumit nägi {username}",
   "@seenByUser": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "seenByUserAndCountOthers": "Nähtud {username} ja {count} muu kasutaja poolt",
+  "seenByUserAndCountOthers": "Sõnumit nägid {username} ja veel {count} kasutajat",
   "@seenByUserAndCountOthers": {
     "type": "text",
     "placeholders": {
@@ -1208,7 +1208,7 @@
       "count": {}
     }
   },
-  "seenByUserAndUser": "Nähtud {username} ja {username2} poolt",
+  "seenByUserAndUser": "Sõnumit nägid {username} ja {username2}",
   "@seenByUserAndUser": {
     "type": "text",
     "placeholders": {
