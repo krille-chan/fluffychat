@@ -1,4 +1,8 @@
 import 'package:famedlysdk/famedlysdk.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions.dart/fluffy_client.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/widgets/avatar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:characters/characters.dart';
@@ -16,6 +20,8 @@ class MessageReactions extends StatelessWidget {
     final allReactionEvents =
         event.aggregatedEvents(timeline, RelationshipTypes.reaction);
     final reactionMap = <String, _ReactionEntry>{};
+    final client = Matrix.of(context).client;
+
     for (final e in allReactionEvents) {
       if (e.content['m.relates_to'].containsKey('key')) {
         final key = e.content['m.relates_to']['key'];
@@ -24,19 +30,22 @@ class MessageReactions extends StatelessWidget {
             key: key,
             count: 0,
             reacted: false,
+            reactors: [],
           );
         }
         reactionMap[key].count++;
+        reactionMap[key].reactors.add(e.sender);
         reactionMap[key].reacted |= e.senderId == e.room.client.userID;
       }
     }
     final reactionList = reactionMap.values.toList();
     reactionList.sort((a, b) => b.count - a.count > 0 ? 1 : -1);
     return Wrap(
-      spacing: 4.0,
-      runSpacing: 4.0,
-      children: reactionList
-          .map((r) => _Reaction(
+        spacing: 4.0,
+        runSpacing: 4.0,
+        children: reactionList
+            .map(
+              (r) => _Reaction(
                 reactionKey: r.key,
                 count: r.count,
                 reacted: r.reacted,
@@ -60,9 +69,13 @@ class MessageReactions extends StatelessWidget {
                             event.room.sendReaction(event.eventId, r.key));
                   }
                 },
-              ))
-          .toList(),
-    );
+                onLongPress: () async => await _AdaptableReactorsDialog(
+                  client: client,
+                  reactionEntry: r,
+                ).show(context),
+              ),
+            )
+            .toList());
   }
 }
 
@@ -71,8 +84,15 @@ class _Reaction extends StatelessWidget {
   final int count;
   final bool reacted;
   final void Function() onTap;
+  final void Function() onLongPress;
 
-  const _Reaction({this.reactionKey, this.count, this.reacted, this.onTap});
+  const _Reaction({
+    this.reactionKey,
+    this.count,
+    this.reacted,
+    this.onTap,
+    this.onLongPress,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -121,6 +141,7 @@ class _Reaction extends StatelessWidget {
     }
     return InkWell(
       onTap: () => onTap != null ? onTap() : null,
+      onLongPress: () => onLongPress != null ? onLongPress() : null,
       child: Container(
         decoration: BoxDecoration(
           color: color,
@@ -141,6 +162,66 @@ class _ReactionEntry {
   String key;
   int count;
   bool reacted;
+  List<User> reactors;
 
-  _ReactionEntry({this.key, this.count, this.reacted});
+  _ReactionEntry({this.key, this.count, this.reacted, this.reactors});
+}
+
+class _AdaptableReactorsDialog extends StatelessWidget {
+  final FluffyClient client;
+  final _ReactionEntry reactionEntry;
+
+  const _AdaptableReactorsDialog({
+    Key key,
+    this.client,
+    this.reactionEntry,
+  }) : super(key: key);
+
+  Future<bool> show(BuildContext context) => PlatformInfos.isCupertinoStyle
+      ? showCupertinoDialog(
+          context: context,
+          builder: (context) => this,
+          barrierDismissible: true,
+          useRootNavigator: false,
+        )
+      : showDialog(
+          context: context,
+          builder: (context) => this,
+          barrierDismissible: true,
+          useRootNavigator: false,
+        );
+
+  @override
+  Widget build(BuildContext context) {
+    final body = SingleChildScrollView(
+      child: Wrap(
+        spacing: 8.0,
+        runSpacing: 4.0,
+        alignment: WrapAlignment.center,
+        children: <Widget>[
+          for (var reactor in reactionEntry.reactors)
+            Chip(
+              avatar: Avatar(
+                reactor.avatarUrl,
+                reactor.displayName,
+                client: client,
+              ),
+              label: Text(reactor.displayName),
+            ),
+        ],
+      ),
+    );
+
+    final title = Center(child: Text(reactionEntry.key));
+
+    return PlatformInfos.isCupertinoStyle
+        ? CupertinoAlertDialog(
+            title: title,
+            content: body,
+          )
+        : AlertDialog(
+            title: title,
+            content: body,
+          );
+  }
 }
