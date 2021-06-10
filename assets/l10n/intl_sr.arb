@@ -2342,5 +2342,37 @@
   "@oopsPushError": {
     "type": "text",
     "placeholders": {}
+  },
+  "singlesignon": "Јединствена пријава",
+  "@singlesignon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginWith": "{brand} за пријаву",
+  "@loginWith": {
+    "type": "text",
+    "placeholders": {
+      "brand": {}
+    }
+  },
+  "removeYourAvatar": "Уклоните свој аватар",
+  "@removeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeYourAvatar": "Измените свој аватар",
+  "@changeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChoose": "Изаберите",
+  "@pleaseChoose": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "register": "Регистрација",
+  "@register": {
+    "type": "text",
+    "placeholders": {}
   }
 }
