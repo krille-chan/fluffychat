@@ -266,8 +266,8 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
           utf8.decode((await http.get(Uri.parse('config.json'))).bodyBytes);
       final configJson = json.decode(configJsonString);
       AppConfig.loadFromJson(configJson);
-    } catch (e, s) {
-      Logs().v('[ConfigLoader] Failed to load config.json', e, s);
+    } catch (e, _) {
+      Logs().v('[ConfigLoader] config.json not found', e);
     }
   }
 
@@ -326,8 +326,13 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     onLoginStateChanged ??= client.onLoginStateChanged.stream.listen((state) {
       if (loginState != state) {
         loginState = state;
-        widget.router.currentState
-            .push(loginState == LoginState.logged ? '/rooms' : '/home');
+        final isInLoginRoutes = {'/home', '/login', '/signup'}
+            .contains(widget.router.currentState.url);
+        if (widget.router.currentState.url == '/' ||
+            (state == LoginState.logged) == isInLoginRoutes) {
+          widget.router.currentState
+              .push(loginState == LoginState.logged ? '/rooms' : '/home');
+        }
       }
     });
 

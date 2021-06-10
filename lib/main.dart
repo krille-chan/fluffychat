@@ -17,6 +17,7 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:vrouter/vrouter.dart';
 
+import 'widgets/layouts/wait_for_login.dart';
 import 'widgets/lock_screen.dart';
 import 'widgets/matrix.dart';
 import 'config/themes.dart';
@@ -126,7 +127,7 @@ class _FluffyChatAppState extends State<FluffyChatApp> {
                 context: context,
                 router: _router,
                 testClient: widget.testClient,
-                child: child,
+                child: WaitForInitPage(child),
               );
             },
           );
