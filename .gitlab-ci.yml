@@ -171,7 +171,7 @@ build_linux_arm64:
   stage: coverage
   before_script:
     - flutter channel stable
-    - flutter upgrade
+    - flutter upgrade --force
   script: [./scripts/build-linux.sh]
   tags: [docker_arm64]
   only:
