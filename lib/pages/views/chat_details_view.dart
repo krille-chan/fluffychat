@@ -38,8 +38,8 @@ class ChatDetailsView extends StatelessWidget {
     }
 
     controller.members.removeWhere((u) => u.membership == Membership.leave);
-    final actualMembersCount =
-        room.mInvitedMemberCount + room.mJoinedMemberCount;
+    final actualMembersCount = (room.summary?.mInvitedMemberCount ?? 0) +
+        (room.summary?.mJoinedMemberCount ?? 0);
     final canRequestMoreMembers =
         controller.members.length < actualMembersCount;
     return StreamBuilder(

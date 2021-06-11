@@ -1,5 +1,6 @@
 import 'package:famedlysdk/famedlysdk.dart';
 import 'package:famedlysdk/encryption.dart';
+import 'package:fluffychat/utils/database/flutter_famedly_sdk_hive_database.dart';
 import 'package:matrix_api_lite/fake_matrix_api.dart';
 import '../platform_infos.dart';
 import '../famedlysdk_store.dart';
@@ -25,7 +26,10 @@ class FluffyClient extends Client {
           importantStateEvents: <String>{
             'im.ponies.room_emotes', // we want emotes to work properly
           },
-          databaseBuilder: testMode ? null : getDatabase,
+          databaseBuilder: testMode
+              ? null
+              : FlutterFamedlySdkHiveDatabase.hiveDatabaseBuilder,
+          legacyDatabaseBuilder: testMode ? null : getDatabase,
           supportedLoginTypes: {
             AuthenticationTypes.password,
             if (PlatformInfos.isMobile || PlatformInfos.isWeb)

@@ -222,8 +222,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: main
-      resolved-ref: "6fae2e1426fa440b09bafb9bc23e8791037c6efe"
+      ref: "krille/hive"
+      resolved-ref: bc9672d82489cdaf058c9ac00183a4611b443573
       url: "https://gitlab.com/famedly/famedlysdk.git"
     source: git
     version: "0.1.0"
@@ -459,6 +459,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.7.0"
+  hive:
+    dependency: transitive
+    description:
+      name: hive
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.4"
+  hive_flutter:
+    dependency: "direct main"
+    description:
+      name: hive_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   html:
     dependency: transitive
     description:
@@ -584,7 +598,7 @@ packages:
       name: matrix_api_lite
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.1"
+    version: "0.3.3"
   matrix_link_text:
     dependency: transitive
     description:

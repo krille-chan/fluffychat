@@ -19,7 +19,7 @@ dependencies:
   famedlysdk:
     git:
       url: https://gitlab.com/famedly/famedlysdk.git
-      ref: main
+      ref: krille/hive
   fcm_shared_isolate:
     git:
       url: https://gitlab.com/famedly/libraries/fcm_shared_isolate.git
@@ -41,6 +41,7 @@ dependencies:
   flutter_svg: ^0.21.0+1
   flutter_typeahead: ^3.1.1
   future_loading_dialog: ^0.1.2
+  hive_flutter: ^1.0.0
   image_picker: ^0.7.4
   intl: any
   localstorage: ^4.0.0+1
