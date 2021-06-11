@@ -223,7 +223,7 @@ packages:
     description:
       path: "."
       ref: "krille/hive"
-      resolved-ref: bc9672d82489cdaf058c9ac00183a4611b443573
+      resolved-ref: "71ca8640d0114e53f7c9d84850fe154795500516"
       url: "https://gitlab.com/famedly/famedlysdk.git"
     source: git
     version: "0.1.0"
