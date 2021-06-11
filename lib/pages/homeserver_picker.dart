@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:fluffychat/pages/sign_up.dart';
 import 'package:fluffychat/pages/views/homeserver_picker_view.dart';
 import 'package:fluffychat/utils/famedlysdk_store.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -10,6 +9,7 @@ import 'package:fluffychat/config/setting_keys.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../utils/localized_exception_extension.dart';
 import 'package:vrouter/vrouter.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -30,6 +30,16 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   final TextEditingController homeserverController =
       TextEditingController(text: AppConfig.defaultHomeserver);
   StreamSubscription _intentDataStreamSubscription;
+  String error;
+  Timer _coolDown;
+
+  void setDomain(String domain) {
+    this.domain = domain;
+    _coolDown?.cancel();
+    if (domain.isNotEmpty) {
+      _coolDown = Timer(Duration(seconds: 1), checkHomeserverAction);
+    }
+  }
 
   void _loginWithToken(String token) {
     if (token?.isEmpty ?? true) return;
@@ -39,7 +49,8 @@ class HomeserverPickerController extends State<HomeserverPicker> {
       future: () async {
         if (Matrix.of(context).client.homeserver == null) {
           await Matrix.of(context).client.checkHomeserver(
-                await Store().getItem(SignUpController.ssoHomeserverKey),
+                await Store()
+                    .getItem(HomeserverPickerController.ssoHomeserverKey),
               );
         }
         await Matrix.of(context).client.login(
@@ -90,9 +101,9 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   /// Starts an analysis of the given homeserver. It uses the current domain and
   /// makes sure that it is prefixed with https. Then it searches for the
   /// well-known information and forwards to the login page depending on the
-  /// login type. For SSO login only the app opens the page and otherwise it
-  /// forwards to the route `/signup`.
+  /// login type.
   void checkHomeserverAction() async {
+    _coolDown?.cancel();
     try {
       if (domain.isEmpty) throw L10n.of(context).changeTheHomeserver;
       var homeserver = domain;
@@ -101,7 +112,10 @@ class HomeserverPickerController extends State<HomeserverPicker> {
         homeserver = 'https://$homeserver';
       }
 
-      setState(() => isLoading = true);
+      setState(() {
+        error = _rawLoginTypes = registrationSupported = null;
+        isLoading = true;
+      });
       final wellKnown =
           await Matrix.of(context).client.checkHomeserver(homeserver);
 
@@ -118,13 +132,8 @@ class HomeserverPickerController extends State<HomeserverPicker> {
             .setItem(SettingKeys.jitsiInstance, jitsi);
         AppConfig.jitsiInstance = jitsi;
       }
-
-      VRouter.of(context).push(
-          AppConfig.enableRegistration ? '/signup' : '/login',
-          historyState: {'/home': '/signup'});
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text((e as Object).toLocalizedString(context))));
+      setState(() => error = '${(e as Object).toLocalizedString(context)}');
     } finally {
       if (mounted) {
         setState(() => isLoading = false);
@@ -132,9 +141,98 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     }
   }
 
+  Map<String, dynamic> _rawLoginTypes;
+  bool registrationSupported;
+
+  List<IdentityProvider> get identityProviders {
+    if (!ssoLoginSupported) return [];
+    final rawProviders = _rawLoginTypes.tryGetList('flows').singleWhere(
+        (flow) =>
+            flow['type'] == AuthenticationTypes.sso)['identity_providers'];
+    return (rawProviders as List)
+        .map((json) => IdentityProvider.fromJson(json))
+        .toList();
+  }
+
+  bool get passwordLoginSupported =>
+      Matrix.of(context)
+          .client
+          .supportedLoginTypes
+          .contains(AuthenticationTypes.password) &&
+      _rawLoginTypes
+          .tryGetList('flows')
+          .any((flow) => flow['type'] == AuthenticationTypes.password);
+
+  bool get ssoLoginSupported =>
+      Matrix.of(context)
+          .client
+          .supportedLoginTypes
+          .contains(AuthenticationTypes.sso) &&
+      _rawLoginTypes
+          .tryGetList('flows')
+          .any((flow) => flow['type'] == AuthenticationTypes.sso);
+
+  Future<Map<String, dynamic>> getLoginTypes() async {
+    _rawLoginTypes ??= await Matrix.of(context).client.request(
+          RequestType.GET,
+          '/client/r0/login',
+        );
+    if (registrationSupported == null) {
+      try {
+        await Matrix.of(context).client.register();
+        registrationSupported = true;
+      } on MatrixException catch (e) {
+        registrationSupported = e.requireAdditionalAuthentication ?? false;
+      }
+    }
+    return _rawLoginTypes;
+  }
+
+  static const String ssoHomeserverKey = 'sso-homeserver';
+
+  void ssoLoginAction(String id) {
+    if (kIsWeb) {
+      // We store the homserver in the local storage instead of a redirect
+      // parameter because of possible CSRF attacks.
+      Store().setItem(
+          ssoHomeserverKey, Matrix.of(context).client.homeserver.toString());
+    }
+    final redirectUrl = kIsWeb
+        ? html.window.location.href
+        : AppConfig.appOpenUrlScheme.toLowerCase() + '://sso';
+    launch(
+        '${Matrix.of(context).client.homeserver?.toString()}/_matrix/client/r0/login/sso/redirect/${Uri.encodeComponent(id)}?redirectUrl=${Uri.encodeQueryComponent(redirectUrl)}');
+  }
+
+  void signUpAction() => launch(
+      '${Matrix.of(context).client.homeserver?.toString()}/_matrix/static/client/register');
+
+  bool _initialized = false;
+
   @override
   Widget build(BuildContext context) {
     Matrix.of(context).navigatorContext = context;
+    if (!_initialized) {
+      _initialized = true;
+      checkHomeserverAction();
+    }
     return HomeserverPickerView(this);
   }
+}
+
+class IdentityProvider {
+  final String id;
+  final String name;
+  final String icon;
+  final String brand;
+
+  IdentityProvider({this.id, this.name, this.icon, this.brand});
+
+  factory IdentityProvider.fromJson(Map<String, dynamic> json) =>
+      IdentityProvider(
+        id: json['id'],
+        name: json['name'],
+        icon: json['icon'],
+        brand: json['brand'],
+      );
 }

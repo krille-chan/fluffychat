@@ -45,7 +45,7 @@ extension LocalizedExceptionExtension on Object {
           .badServerLoginTypesException(serverVersions, supportedVersions);
     }
     if (this is MatrixConnectionException || this is SocketException) {
-      L10n.of(context).noConnectionToTheServer;
+      return L10n.of(context).noConnectionToTheServer;
     }
     Logs().w('Something went wrong: ', this);
     return L10n.of(context).oopsSomethingWentWrong;
