@@ -50,8 +50,8 @@ class FlutterFamedlySdkHiveDatabase extends FamedlySdkHiveDatabase {
       );
       hiverCipher = HiveAesCipher(encryptionKey);
     } on MissingPluginException catch (_) {
-      Logs()
-          .i('Hive encryption is not supported on ${Platform.operatingSystem}');
+      Logs().i(
+          'Hive encryption is not supported on ${kIsWeb ? 'Web' : Platform.operatingSystem}');
     }
     final db = FamedlySdkHiveDatabase(
       client.clientName,
