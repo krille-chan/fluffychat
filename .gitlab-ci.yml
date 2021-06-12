@@ -296,6 +296,7 @@ release:
     - |
       release-cli create --name "Release ${CI_COMMIT_TAG}" --tag-name $CI_COMMIT_TAG \
         --assets-link "{\"name\":\"fluffychat.apk\",\"url\":\"${PACKAGE_REGISTRY_URL}/fluffychat.apk\"}" \
-        --assets-link "{\"name\":\"fluffychat-linux.tar.gz\",\"url\":\"${PACKAGE_REGISTRY_URL}/fluffychat-linux.tar.gz\"}" \
+        --assets-link "{\"name\":\"fluffychat-linux-x86.tar.gz\",\"url\":\"${PACKAGE_REGISTRY_URL}/fluffychat-linux-x86.tar.gz\"}" \
+        --assets-link "{\"name\":\"fluffychat-linux-arm64.tar.gz\",\"url\":\"${PACKAGE_REGISTRY_URL}/fluffychat-linux-arm64.tar.gz\"}" \
         --assets-link "{\"name\":\"fluffychat-windows.tar.gz\",\"url\":\"${PACKAGE_REGISTRY_URL}/fluffychat-windows.tar.gz\"}" \
         --assets-link "{\"name\":\"fluffychat-web.tar.gz\",\"url\":\"${PACKAGE_REGISTRY_URL}/fluffychat-web.tar.gz\"}"
