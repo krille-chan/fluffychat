@@ -1228,7 +1228,7 @@ packages:
       name: vrouter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.4+11"
+    version: "1.1.4+14"
   watcher:
     dependency: transitive
     description:
