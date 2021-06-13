@@ -215,10 +215,31 @@ class ChatController extends State<Chat> {
 
   TextEditingController sendController = TextEditingController();
 
-  void send() {
+  Future<void> send() async {
     if (sendController.text.trim().isEmpty) return;
+    var parseCommands = true;
+
+    final commandMatch = RegExp(r'^\/(\w+)').firstMatch(sendController.text);
+    if (commandMatch != null &&
+        !room.client.commands.keys.contains(commandMatch[1].toLowerCase())) {
+      final l10n = L10n.of(context);
+      final dialogResult = await showOkCancelAlertDialog(
+        context: context,
+        useRootNavigator: false,
+        title: l10n.commandInvalid,
+        message: l10n.commandMissing(commandMatch[0]),
+        okLabel: l10n.sendAsText,
+        cancelLabel: l10n.cancel,
+      );
+      if (dialogResult == null || dialogResult == OkCancelResult.cancel) return;
+      parseCommands = false;
+    }
+
+    // ignore: unawaited_futures
     room.sendTextEvent(sendController.text,
-        inReplyTo: replyEvent, editEventId: editEvent?.eventId);
+        inReplyTo: replyEvent,
+        editEventId: editEvent?.eventId,
+        parseCommands: parseCommands);
     sendController.value = TextEditingValue(
       text: pendingText,
       selection: TextSelection.collapsed(offset: 0),
