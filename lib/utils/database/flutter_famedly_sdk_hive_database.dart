@@ -3,8 +3,6 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:famedlysdk/famedlysdk.dart';
-import 'package:famedlysdk/src/utils/crypto/encrypted_file.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -17,10 +15,7 @@ class FlutterFamedlySdkHiveDatabase extends FamedlySdkHiveDatabase {
       : super(
           name,
           encryptionCipher: encryptionCipher,
-        ) {
-    _clearOldFiles();
-    Hive.registerAdapter(EncryptedFileAdapter());
-  }
+        );
 
   static bool _hiveInitialized = false;
   static const String _hiveCipherStorageKey = 'hive_encryption_key';
@@ -53,8 +48,7 @@ class FlutterFamedlySdkHiveDatabase extends FamedlySdkHiveDatabase {
       );
       hiverCipher = HiveAesCipher(encryptionKey);
     } on MissingPluginException catch (_) {
-      Logs().i(
-          'Hive encryption is not supported on ${kIsWeb ? 'Web' : Platform.operatingSystem}');
+      Logs().i('Hive encryption is not supported on this platform');
     }
     final db = FamedlySdkHiveDatabase(
       client.clientName,
@@ -67,85 +61,41 @@ class FlutterFamedlySdkHiveDatabase extends FamedlySdkHiveDatabase {
   }
 
   @override
-  int get maxFileSize => PlatformInfos.isMobile ? 100 * 1024 * 1024 : 0;
+  int get maxFileSize => supportsFileStoring ? 100 * 1024 * 1024 : 0;
   @override
-  bool get supportsFileStoring => PlatformInfos.isMobile;
+  bool get supportsFileStoring =>
+      !kIsWeb && (Platform.isIOS || Platform.isAndroid);
 
-  LazyBox<EncryptedFile> _fileEncryptionKeysBox;
-  static const String __fileEncryptionKeysBoxName = 'box.file_encryption_keys';
-
-  @override
-  Future<void> open() async {
-    await super.open();
-    _fileEncryptionKeysBox ??= await Hive.openLazyBox<EncryptedFile>(
-      __fileEncryptionKeysBoxName,
-      encryptionCipher: encryptionCipher,
-    );
+  Future<String> _getFileStoreDirectory() async {
+    try {
+      return (await getApplicationDocumentsDirectory()).path;
+    } on MissingPlatformDirectoryException catch (_) {
+      return (await getDownloadsDirectory()).path;
+    }
   }
 
   @override
   Future<Uint8List> getFile(String mxcUri) async {
-    if (!PlatformInfos.isMobile) return null;
-    final tempDirectory = (await getTemporaryDirectory()).path;
+    if (!supportsFileStoring) return null;
+    final tempDirectory = await _getFileStoreDirectory();
     final file = File('$tempDirectory/$mxcUri');
     if (await file.exists() == false) return null;
     final bytes = await file.readAsBytes();
-    final encryptedFile = await _fileEncryptionKeysBox.get(mxcUri);
-    encryptedFile.data = bytes;
-    return await decryptFile(encryptedFile);
+    return bytes;
   }
 
   @override
   Future storeFile(String mxcUri, Uint8List bytes, int time) async {
-    if (!PlatformInfos.isMobile) return null;
-    final tempDirectory = (await getTemporaryDirectory()).path;
+    if (!supportsFileStoring) return null;
+    final tempDirectory = await _getFileStoreDirectory();
     final file = File('$tempDirectory/$mxcUri');
     if (await file.exists()) return;
-    final encryptedFile = await encryptFile(bytes);
-    await _fileEncryptionKeysBox.put(mxcUri, encryptedFile);
-    await file.writeAsBytes(encryptedFile.data);
+    await file.writeAsBytes(bytes);
     return;
   }
-
-  static const int _maxAllowedFileAge = 1000 * 60 * 60 * 24 * 30;
 
   @override
   Future<void> clear(int clientId) async {
     await super.clear(clientId);
-    await _clearOldFiles(true);
-  }
-
-  Future<void> _clearOldFiles([bool clearAll = false]) async {
-    if (!PlatformInfos.isMobile) return null;
-    final tempDirectory = (await getTemporaryDirectory());
-    final entities = tempDirectory.listSync();
-    for (final entity in entities) {
-      final file = File(entity.path);
-      final createdAt = await file.lastModified();
-      final age = DateTime.now().millisecondsSinceEpoch -
-          createdAt.millisecondsSinceEpoch;
-      if (clearAll || age > _maxAllowedFileAge) {
-        final mxcUri = file.path.split('/').last;
-        Logs().v('Delete old cashed file: $mxcUri');
-        await file.delete();
-        await _fileEncryptionKeysBox.delete(mxcUri);
-      }
-    }
-  }
-}
-
-class EncryptedFileAdapter extends TypeAdapter<EncryptedFile> {
-  @override
-  final typeId = 0;
-
-  @override
-  EncryptedFile read(BinaryReader reader) {
-    final map = reader.read();
-    return EncryptedFile(k: map['k'], iv: map['iv'], sha256: map['sha256']);
-  }
-
-  @override
-  void write(BinaryWriter writer, EncryptedFile obj) {
-    writer.write({'k': obj.k, 'iv': obj.iv, 'sha256': obj.sha256});
   }
 }
