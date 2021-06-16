@@ -70,7 +70,7 @@ dependencies:
   unifiedpush: ^1.0.2
   universal_html: ^2.0.8
   url_launcher: ^6.0.3
-  vrouter: ^1.1.4+14
+  vrouter: ^1.1.4+15
 
 dev_dependencies:
   dapackages: ^1.6.0

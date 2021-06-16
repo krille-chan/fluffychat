@@ -223,7 +223,7 @@ packages:
     description:
       path: "."
       ref: "krille/hive"
-      resolved-ref: d31c5ff57efc4c33e3153dd201f0d9b538e64641
+      resolved-ref: "14ee16fe1615f1ddd67568c02b3daf551c99d66c"
       url: "https://gitlab.com/famedly/famedlysdk.git"
     source: git
     version: "0.1.0"
@@ -1228,7 +1228,7 @@ packages:
       name: vrouter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.4+14"
+    version: "1.1.4+15"
   watcher:
     dependency: transitive
     description:
