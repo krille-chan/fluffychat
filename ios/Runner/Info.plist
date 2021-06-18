@@ -26,11 +26,12 @@
 	<array>
 		<dict>
 			<key>CFBundleTypeRole</key>
-			<string>Viewer</string>
+			<string>Editor</string>
 			<key>CFBundleURLName</key>
 			<string>im.fluffychat.app.uris</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
+				<string>ShareMedia</string>
 				<string>im.fluffychat</string>
 			</array>
 		</dict>
