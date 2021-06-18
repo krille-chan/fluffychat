@@ -199,9 +199,11 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     }
     final redirectUrl = kIsWeb
         ? html.window.location.href
-        : AppConfig.appOpenUrlScheme.toLowerCase() + '://sso';
+        : AppConfig.appOpenUrlScheme.toLowerCase() + '://login';
     launch(
-        '${Matrix.of(context).client.homeserver?.toString()}/_matrix/client/r0/login/sso/redirect/${Uri.encodeComponent(id)}?redirectUrl=${Uri.encodeQueryComponent(redirectUrl)}');
+      '${Matrix.of(context).client.homeserver?.toString()}/_matrix/client/r0/login/sso/redirect/${Uri.encodeComponent(id)}?redirectUrl=${Uri.encodeQueryComponent(redirectUrl)}',
+      forceSafariVC: false,
+    );
   }
 
   void signUpAction() => launch(
