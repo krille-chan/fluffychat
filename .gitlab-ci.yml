@@ -184,7 +184,7 @@ build_linux_arm64:
 
 snap:edge:
   stage: release
-  image: "diddledan/snapcraft"
+  image: "diddledan/snapcraft:core18"
   variables:
     SNAPCRAFT_LOGIN_FILE: ${SNAPCRAFT_LOGIN_FILE}
   only: [main]
