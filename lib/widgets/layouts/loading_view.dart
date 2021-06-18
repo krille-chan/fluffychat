@@ -7,10 +7,14 @@ class LoadingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (Matrix.of(context).loginState != null) {
-      WidgetsBinding.instance.addPostFrameCallback((_) => context.vRouter.push(
+      WidgetsBinding.instance.addPostFrameCallback(
+        (_) => context.vRouter.push(
           Matrix.of(context).loginState == LoginState.logged
               ? '/rooms'
-              : '/home'));
+              : '/home',
+          queryParameters: VRouter.of(context).queryParameters,
+        ),
+      );
     }
     return Scaffold(body: Center(child: CircularProgressIndicator()));
   }

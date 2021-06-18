@@ -330,8 +330,10 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
             .contains(widget.router.currentState.url);
         if (widget.router.currentState.url == '/' ||
             (state == LoginState.logged) == isInLoginRoutes) {
-          widget.router.currentState
-              .push(loginState == LoginState.logged ? '/rooms' : '/home');
+          widget.router.currentState.push(
+            loginState == LoginState.logged ? '/rooms' : '/home',
+            queryParameters: widget.router.currentState.queryParameters,
+          );
         }
       }
     });
