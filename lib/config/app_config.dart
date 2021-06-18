@@ -18,7 +18,8 @@ abstract class AppConfig {
   static String get privacyUrl => _privacyUrl;
   static const String appId = 'im.fluffychat.FluffyChat';
   static const String appOpenUrlScheme = 'im.fluffychat';
-  static const String webBaseUrl = 'https://fluffychat.im/web';
+  static String _webBaseUrl = 'https://fluffychat.im/web';
+  static String get webBaseUrl => _webBaseUrl;
   static const String sourceCodeUrl = 'https://gitlab.com/famedly/fluffychat';
   static const String supportUrl =
       'https://gitlab.com/famedly/fluffychat/issues';
@@ -60,7 +61,10 @@ abstract class AppConfig {
       jitsiInstance = json['jitsi_instance'];
     }
     if (json['privacy_url'] is String) {
-      _privacyUrl = json['privacy_url'];
+      _webBaseUrl = json['privacy_url'];
+    }
+    if (json['web_base_url'] is String) {
+      _privacyUrl = json['web_base_url'];
     }
     if (json['render_html'] is bool) {
       renderHtml = json['render_html'];

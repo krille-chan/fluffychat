@@ -3,6 +3,7 @@
   "application_welcome_message": null,
   "default_homeserver": "matrix.org",
   "jitsi_instance": "https://meet.jit.si/",
+  "web_base_url": "https://fluffychat.im/web",
   "privacy_url": "https://fluffychat.im/en/privacy.html",
   "render_html": false,
   "hide_redacted_events": false,
