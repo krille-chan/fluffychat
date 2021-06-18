@@ -9,6 +9,7 @@ class FluffyClient extends Client {
   static FluffyClient _instance;
 
   factory FluffyClient({testMode = false}) {
+    Logs().level = Level.verbose;
     _instance ??= FluffyClient._internal(testMode: testMode);
     return _instance;
   }

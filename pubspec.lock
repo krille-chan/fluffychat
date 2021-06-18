@@ -222,8 +222,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "krille/hive"
-      resolved-ref: "14ee16fe1615f1ddd67568c02b3daf551c99d66c"
+      ref: main
+      resolved-ref: "38d81d60933b46085ad5458b0fad6e62eaf92815"
       url: "https://gitlab.com/famedly/famedlysdk.git"
     source: git
     version: "0.1.0"
