@@ -1,3 +1,20 @@
+## v0.32.0 - 2021-06-16
+FluffyChat 0.32.0 targets improved stability and a new onboarding flow where single sign on is now the more prominent way to get new users into the app. This release also introduces a complete rewritten database under the hood based on the key value store Hive instead of sqlite. This should improve the overall stability and the performance of the web version.
+
+### Feat
+* Long-press reactions to see who sent this
+* New login UI
+* Shift+Enter makes a new line on web and desktop
+* Updated translations - Thanks to all translators
+* Brand new database backend
+* Updated dependencies
+* Minor design tweaks
+
+### Fixes
+* Single sign on on iOS and web
+* Database corruptions
+* Minor fixes
+
 ## v0.31.3 - 2021-05-28
 
 ### Fixes
