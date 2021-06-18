@@ -1,5 +1,5 @@
-import 'package:famedlysdk/famedlysdk.dart';
-import 'package:famedlysdk/encryption.dart';
+import 'package:matrix/matrix.dart';
+import 'package:matrix/encryption.dart';
 import 'package:fluffychat/utils/database/flutter_famedly_sdk_hive_database.dart';
 import 'package:matrix_api_lite/fake_matrix_api.dart';
 import '../platform_infos.dart';

@@ -15,7 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../utils/localized_exception_extension.dart';
 
-import 'package:famedlysdk/famedlysdk.dart';
+import 'package:matrix/matrix.dart';
 
 class HomeserverPickerView extends StatelessWidget {
   final HomeserverPickerController controller;

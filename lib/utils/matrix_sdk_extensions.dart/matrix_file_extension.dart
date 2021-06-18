@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:android_path_provider/android_path_provider.dart';
-import 'package:famedlysdk/famedlysdk.dart';
+import 'package:matrix/matrix.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
 import 'package:open_file/open_file.dart';

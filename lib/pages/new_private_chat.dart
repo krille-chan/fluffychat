@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:famedlysdk/famedlysdk.dart';
+import 'package:matrix/matrix.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/pages/views/new_private_chat_view.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';

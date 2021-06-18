@@ -1,4 +1,4 @@
-import 'package:famedlysdk/famedlysdk.dart';
+import 'package:matrix/matrix.dart';
 import 'package:fluffychat/widgets/event_content/message_content.dart';
 import 'package:fluffychat/widgets/event_content/reply_content.dart';
 import 'package:fluffychat/config/themes.dart';

@@ -1,5 +1,5 @@
-import 'package:famedlysdk/encryption/utils/key_verification.dart';
-import 'package:famedlysdk/famedlysdk.dart';
+import 'package:matrix/encryption/utils/key_verification.dart';
+import 'package:matrix/matrix.dart';
 import 'package:fluffychat/widgets/event_content/audio_player.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/event_content/image_bubble.dart';

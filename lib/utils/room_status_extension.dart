@@ -1,4 +1,4 @@
-import 'package:famedlysdk/famedlysdk.dart';
+import 'package:matrix/matrix.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'matrix_sdk_extensions.dart/filtered_timeline_extension.dart';

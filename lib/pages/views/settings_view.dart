@@ -3,7 +3,7 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:fluffychat/widgets/sentry_switch_list_tile.dart';
 import 'package:fluffychat/widgets/settings_switch_list_tile.dart';
 
-import 'package:famedlysdk/famedlysdk.dart';
+import 'package:matrix/matrix.dart';
 import 'package:fluffychat/utils/beautify_string_extension.dart';
 
 import 'package:fluffychat/config/app_config.dart';

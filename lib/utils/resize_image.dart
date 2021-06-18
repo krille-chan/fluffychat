@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'dart:typed_data';
 
-import 'package:famedlysdk/famedlysdk.dart';
+import 'package:matrix/matrix.dart';
 import 'package:native_imaging/native_imaging.dart' as native;
 
 import 'run_in_background.dart';

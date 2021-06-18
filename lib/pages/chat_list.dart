@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 
-import 'package:famedlysdk/famedlysdk.dart';
+import 'package:matrix/matrix.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/pages/views/chat_list_view.dart';
 import 'package:flutter/cupertino.dart';

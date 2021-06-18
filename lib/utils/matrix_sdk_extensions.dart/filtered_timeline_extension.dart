@@ -1,4 +1,4 @@
-import 'package:famedlysdk/famedlysdk.dart';
+import 'package:matrix/matrix.dart';
 
 import '../../config/app_config.dart';
 

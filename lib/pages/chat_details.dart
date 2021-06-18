@@ -1,6 +1,6 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 
-import 'package:famedlysdk/famedlysdk.dart';
+import 'package:matrix/matrix.dart';
 
 import 'package:file_picker_cross/file_picker_cross.dart';
 import 'package:fluffychat/pages/views/chat_details_view.dart';

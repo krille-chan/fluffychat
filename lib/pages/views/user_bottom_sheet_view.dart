@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:famedlysdk/famedlysdk.dart';
+import 'package:matrix/matrix.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:flutter/material.dart';

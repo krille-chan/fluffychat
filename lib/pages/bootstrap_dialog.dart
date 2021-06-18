@@ -1,7 +1,7 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:famedlysdk/encryption.dart';
-import 'package:famedlysdk/encryption/utils/bootstrap.dart';
-import 'package:famedlysdk/famedlysdk.dart';
+import 'package:matrix/encryption.dart';
+import 'package:matrix/encryption/utils/bootstrap.dart';
+import 'package:matrix/matrix.dart';
 import 'package:fluffychat/widgets/adaptive_flat_button.dart';
 import 'package:flutter/services.dart';
 import 'package:fluffychat/utils/platform_infos.dart';

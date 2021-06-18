@@ -16,10 +16,6 @@ dependencies:
   desktop_notifications: ^0.4.0
   email_validator: ^2.0.1
   emoji_picker_flutter: ^1.0.5
-  famedlysdk:
-    git:
-      url: https://gitlab.com/famedly/famedlysdk.git
-      ref: krille/hive
   fcm_shared_isolate:
     git:
       url: https://gitlab.com/famedly/libraries/fcm_shared_isolate.git
@@ -45,6 +41,7 @@ dependencies:
   image_picker: ^0.7.4
   intl: any
   localstorage: ^4.0.0+1
+  matrix: ^0.1.1
   mime_type: ^1.0.0
   moor: ^4.2.1
   native_imaging:

@@ -1,4 +1,4 @@
-import 'package:famedlysdk/famedlysdk.dart';
+import 'package:matrix/matrix.dart';
 
 Future<Database> constructDb(
     {bool logStatements = false,

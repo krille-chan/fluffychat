@@ -1,7 +1,7 @@
 import 'dart:ffi';
 import 'dart:io';
 import 'dart:isolate';
-import 'package:famedlysdk/famedlysdk.dart';
+import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart' show getDatabasesPath;
 import 'package:path/path.dart' as p;

@@ -1,4 +1,4 @@
-import 'package:famedlysdk/famedlysdk.dart' as sdk;
+import 'package:matrix/matrix.dart' as sdk;
 import 'package:fluffychat/pages/views/new_group_view.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';

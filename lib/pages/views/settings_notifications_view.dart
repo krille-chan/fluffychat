@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:famedlysdk/famedlysdk.dart';
+import 'package:matrix/matrix.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:flutter/foundation.dart';

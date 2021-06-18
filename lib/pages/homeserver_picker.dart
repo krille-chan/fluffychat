@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:famedlysdk/famedlysdk.dart';
+import 'package:matrix/matrix.dart';
 import 'package:fluffychat/pages/views/homeserver_picker_view.dart';
 import 'package:fluffychat/utils/famedlysdk_store.dart';
 import 'package:fluffychat/widgets/matrix.dart';

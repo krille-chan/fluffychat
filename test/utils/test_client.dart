@@ -1,4 +1,4 @@
-import 'package:famedlysdk/famedlysdk.dart';
+import 'package:matrix/matrix.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/fluffy_client.dart';
 
 Future<FluffyClient> testClient({

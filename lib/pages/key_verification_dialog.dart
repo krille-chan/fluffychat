@@ -1,6 +1,6 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:famedlysdk/encryption.dart';
-import 'package:famedlysdk/famedlysdk.dart';
+import 'package:matrix/encryption.dart';
+import 'package:matrix/matrix.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

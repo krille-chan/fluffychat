@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
-import 'package:famedlysdk/famedlysdk.dart';
+import 'package:matrix/matrix.dart';
 import 'package:fluffychat/pages/chat.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';

@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 
-import 'package:famedlysdk/famedlysdk.dart';
+import 'package:matrix/matrix.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 

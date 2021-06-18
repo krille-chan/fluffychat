@@ -22,7 +22,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:ui';
 
-import 'package:famedlysdk/famedlysdk.dart';
+import 'package:matrix/matrix.dart';
 import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
 
 import 'package:flutter/foundation.dart';

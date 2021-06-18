@@ -1,4 +1,4 @@
-import 'package:famedlysdk/famedlysdk.dart';
+import 'package:matrix/matrix.dart';
 
 extension ClientPresenceExtension on Client {
   List<Presence> get contactList {
