@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:fluffychat/widgets/sentry_switch_list_tile.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:package_info/package_info.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
