@@ -1,3 +1,8 @@
+## v0.32.1 - 2021-06-17
+* fix: Hive breaks if room IDs contain emojis (yes there are users with hacked synapses out there who needs this)
+* feat: Also migrate inbound group sessions
+
+
 ## v0.32.0 - 2021-06-16
 FluffyChat 0.32.0 targets improved stability and a new onboarding flow where single sign on is now the more prominent way to get new users into the app. This release also introduces a complete rewritten database under the hood based on the key value store Hive instead of sqlite. This should improve the overall stability and the performance of the web version.
 

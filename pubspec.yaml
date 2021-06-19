@@ -1,7 +1,7 @@
 name: fluffychat
 description: Chat with your friends.
 publish_to: none
-version: 0.32.0+0
+version: 0.32.1+0
 
 environment:
   sdk: ">=2.6.0 <3.0.0"
@@ -41,7 +41,7 @@ dependencies:
   image_picker: ^0.7.4
   intl: any
   localstorage: ^4.0.0+1
-  matrix: ^0.1.1
+  matrix: ^0.1.2
   mime_type: ^1.0.0
   moor: ^4.2.1
   native_imaging:
