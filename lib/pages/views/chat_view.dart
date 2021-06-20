@@ -212,7 +212,6 @@ class ChatView extends StatelessWidget {
               SafeArea(
                 child: Column(
                   children: <Widget>[
-                    ConnectionStatusHeader(),
                     if (controller.room.getState(EventTypes.RoomTombstone) !=
                         null)
                       Container(
@@ -420,6 +419,7 @@ class ChatView extends StatelessWidget {
                         },
                       ),
                     ),
+                    ConnectionStatusHeader(),
                     if (!controller.showEmojiPicker)
                       AnimatedContainer(
                         duration: Duration(milliseconds: 300),

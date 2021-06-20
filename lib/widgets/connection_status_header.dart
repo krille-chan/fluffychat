@@ -1,5 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
+import '../utils/localized_exception_extension.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'matrix.dart';
 
@@ -11,13 +14,12 @@ class ConnectionStatusHeader extends StatefulWidget {
 class _ConnectionStatusHeaderState extends State<ConnectionStatusHeader> {
   StreamSubscription _onSyncSub;
   StreamSubscription _onSyncErrorSub;
-  static bool _connected = true;
-
-  set connected(bool connected) {
-    if (mounted) {
-      setState(() => _connected = connected);
-    }
-  }
+  bool get _connected =>
+      DateTime.now().millisecondsSinceEpoch -
+          _lastSyncReceived.millisecondsSinceEpoch <
+      1000 * 30;
+  static DateTime _lastSyncReceived = DateTime(0);
+  SdkError _error;
 
   @override
   void dispose() {
@@ -29,16 +31,46 @@ class _ConnectionStatusHeaderState extends State<ConnectionStatusHeader> {
   @override
   Widget build(BuildContext context) {
     _onSyncSub ??= Matrix.of(context).client.onSync.stream.listen(
-          (_) => connected = true,
+          (_) => setState(
+            () {
+              _lastSyncReceived = DateTime.now();
+              _error = null;
+            },
+          ),
         );
     _onSyncErrorSub ??= Matrix.of(context).client.onSyncError.stream.listen(
-          (_) => connected = false,
+          (error) => setState(
+            () {
+              _lastSyncReceived = DateTime(0);
+              _error = error;
+            },
+          ),
         );
 
     return AnimatedContainer(
       duration: Duration(milliseconds: 300),
-      height: _connected ? 0 : 5,
-      child: LinearProgressIndicator(),
+      height: _connected ? 0 : 36,
+      clipBehavior: Clip.hardEdge,
+      decoration: BoxDecoration(),
+      padding: EdgeInsets.symmetric(horizontal: 12),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(
+            width: 24,
+            height: 24,
+            child: CircularProgressIndicator(strokeWidth: 2),
+          ),
+          SizedBox(width: 12),
+          Text(
+            _error != null
+                ? (_error.exception as Object).toLocalizedString(context)
+                : L10n.of(context).loadingPleaseWait,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ],
+      ),
     );
   }
 }
