@@ -69,12 +69,7 @@ class Avatar extends StatelessWidget {
                   fit: BoxFit.cover,
                   width: size,
                   height: size,
-                  placeholder: (c, s) => Stack(
-                    children: [
-                      Center(child: CircularProgressIndicator(strokeWidth: 2)),
-                      textWidget,
-                    ],
-                  ),
+                  placeholder: (c, s) => textWidget,
                   errorWidget: (c, s, d) => Stack(
                     children: [
                       textWidget,
