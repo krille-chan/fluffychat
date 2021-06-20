@@ -2388,5 +2388,15 @@
   "@register": {
     "type": "text",
     "placeholders": {}
+  },
+  "enableChatBackup": "Activez la sauvegarde des discussions pour ne jamais perdre l'accès à celles-ci.",
+  "@enableChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourChatsAreBeingSynced": "La synchronisation de vos discussions est en cours...",
+  "@yourChatsAreBeingSynced": {
+    "type": "text",
+    "placeholders": {}
   }
 }
