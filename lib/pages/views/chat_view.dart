@@ -273,13 +273,13 @@ class ChatView extends StatelessWidget {
                                         ? LinearProgressIndicator()
                                         : controller.canLoadMore
                                             ? Center(
-                                              child: OutlinedButton(
+                                                child: OutlinedButton(
                                                   onPressed:
                                                       controller.requestHistory,
-                                                  child: Text(
-                                                      L10n.of(context).loadMore),
+                                                  child: Text(L10n.of(context)
+                                                      .loadMore),
                                                 ),
-                                            )
+                                              )
                                             : Container()
                                     : i == 0
                                         ? StreamBuilder(
