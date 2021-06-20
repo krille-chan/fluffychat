@@ -2388,5 +2388,15 @@
   "@register": {
     "type": "text",
     "placeholders": {}
+  },
+  "enableChatBackup": "Selleks, et sa ei kaotaks ligipääsu oma vestlustele, palun võta kasutusele vestluste varundamine.",
+  "@enableChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourChatsAreBeingSynced": "Sünkroniseerin sinu vestlusi...",
+  "@yourChatsAreBeingSynced": {
+    "type": "text",
+    "placeholders": {}
   }
 }
