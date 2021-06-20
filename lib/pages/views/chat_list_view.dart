@@ -240,11 +240,17 @@ class ChatListView extends StatelessWidget {
                                               return Container();
                                             }
                                             return Material(
-                                              color: Colors.orange,
+                                              color: Theme.of(context)
+                                                  .secondaryHeaderColor,
                                               child: ListTile(
                                                 leading: CircleAvatar(
-                                                  backgroundColor: Colors.white,
-                                                  foregroundColor: Colors.black,
+                                                  backgroundColor: Theme.of(
+                                                          context)
+                                                      .scaffoldBackgroundColor,
+                                                  foregroundColor:
+                                                      Theme.of(context)
+                                                          .colorScheme
+                                                          .secondaryVariant,
                                                   child: Icon(Icons.cloud),
                                                 ),
                                                 trailing: IconButton(
