@@ -245,7 +245,7 @@ class ChatView extends StatelessWidget {
                         builder: (BuildContext context, snapshot) {
                           if (controller.timeline == null) {
                             return Center(
-                              child: CircularProgressIndicator(),
+                              child: CircularProgressIndicator(strokeWidth: 2),
                             );
                           }
 
