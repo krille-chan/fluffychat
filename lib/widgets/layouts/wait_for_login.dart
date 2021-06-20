@@ -1,3 +1,4 @@
+import 'package:fluffychat/pages/views/empty_page_view.dart';
 import 'package:matrix/matrix.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,7 @@ class WaitForInitPage extends StatelessWidget {
           stream: Matrix.of(context).client.onLoginStateChanged.stream,
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
-              return Scaffold(body: Center(child: CircularProgressIndicator()));
+              return EmptyPage(loading: true);
             }
             return page;
           });

@@ -1,3 +1,4 @@
+import 'package:fluffychat/pages/views/empty_page_view.dart';
 import 'package:matrix/matrix.dart';
 import 'package:vrouter/vrouter.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -16,6 +17,6 @@ class LoadingView extends StatelessWidget {
         ),
       );
     }
-    return Scaffold(body: Center(child: CircularProgressIndicator()));
+    return EmptyPage(loading: true);
   }
 }
