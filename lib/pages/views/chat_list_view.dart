@@ -166,7 +166,7 @@ class ChatListView extends StatelessWidget {
                           return FutureBuilder<void>(
                             future: controller.waitForFirstSync(),
                             builder: (BuildContext context, snapshot) {
-                              if (snapshot.hasData) {
+                              if (Matrix.of(context).client.prevBatch != null) {
                                 final rooms = List<Room>.from(
                                     Matrix.of(context).client.rooms);
                                 rooms.removeWhere(
