@@ -1,3 +1,6 @@
+## v0.32.2 - 2021-06-20
+* fix: Broken hive keys
+
 ## v0.32.1 - 2021-06-17
 * fix: Hive breaks if room IDs contain emojis (yes there are users with hacked synapses out there who needs this)
 * feat: Also migrate inbound group sessions
