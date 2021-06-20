@@ -48,10 +48,11 @@ class _ConnectionStatusHeaderState extends State<ConnectionStatusHeader> {
         );
 
     return AnimatedContainer(
-      duration: Duration(milliseconds: 300),
+      duration: Duration(milliseconds: 250),
+      curve: Curves.bounceInOut,
       height: _connected ? 0 : 36,
       clipBehavior: Clip.hardEdge,
-      decoration: BoxDecoration(),
+      decoration: BoxDecoration(color: Theme.of(context).secondaryHeaderColor),
       padding: EdgeInsets.symmetric(horizontal: 12),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,

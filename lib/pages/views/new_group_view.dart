@@ -40,7 +40,7 @@ class NewGroupView extends StatelessWidget {
               onChanged: controller.setPublicGroup,
             ),
             Expanded(
-              child: Image.asset('assets/new_group_wallpaper.png'),
+              child: Image.asset('assets/private_chat_wallpaper.png'),
             ),
           ],
         ),

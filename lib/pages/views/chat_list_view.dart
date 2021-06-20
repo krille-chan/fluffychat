@@ -214,7 +214,20 @@ class ChatListView extends StatelessWidget {
                                 );
                               } else {
                                 return Center(
-                                  child: CircularProgressIndicator(),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Image.asset(
+                                        'assets/private_chat_wallpaper.png',
+                                        width: 100,
+                                      ),
+                                      Text(
+                                        L10n.of(context)
+                                            .yourChatsAreBeingSynced,
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ],
+                                  ),
                                 );
                               }
                             },
