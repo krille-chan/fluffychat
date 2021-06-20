@@ -1238,6 +1238,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "enableChatBackup": "Enable the chat backup to never lose access to your chats.",
+  "@enableChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
   "pleaseChoose": "Please choose",
   "@pleaseChoose": {
     "type": "text",

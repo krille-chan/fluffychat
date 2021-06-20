@@ -36,31 +36,6 @@ class SettingsView extends StatelessWidget {
             floating: true,
             pinned: true,
             title: Text(L10n.of(context).settings),
-            actions: [
-              FutureBuilder(
-                  future: controller.crossSigningCachedFuture,
-                  builder: (context, snapshot) {
-                    final needsBootstrap = Matrix.of(context)
-                                .client
-                                .encryption
-                                ?.crossSigning
-                                ?.enabled ==
-                            false ||
-                        snapshot.data == false;
-                    final isUnknownSession =
-                        Matrix.of(context).client.isUnknownSession;
-                    final displayHeader = needsBootstrap || isUnknownSession;
-                    if (!displayHeader) return Container();
-                    return TextButton.icon(
-                      icon: Icon(Icons.cloud, color: Colors.red),
-                      label: Text(
-                        L10n.of(context).chatBackup,
-                        style: TextStyle(color: Colors.red),
-                      ),
-                      onPressed: controller.firstRunBootstrapAction,
-                    );
-                  }),
-            ],
             backgroundColor: Theme.of(context).appBarTheme.color,
             flexibleSpace: FlexibleSpaceBar(
               background: ContentBanner(

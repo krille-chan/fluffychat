@@ -194,23 +194,73 @@ class ChatListView extends StatelessWidget {
                                     ],
                                   );
                                 }
-                                final totalCount = rooms.length;
+                                final totalCount = rooms.length + 1;
                                 return ListView.builder(
                                   itemCount: totalCount,
-                                  itemBuilder: (BuildContext context, int i) =>
-                                      ChatListItem(
-                                    rooms[i],
-                                    selected: controller.selectedRoomIds
-                                        .contains(rooms[i].id),
-                                    onTap: selectMode == SelectMode.select
-                                        ? () => controller
-                                            .toggleSelection(rooms[i].id)
-                                        : null,
-                                    onLongPress: () =>
-                                        controller.toggleSelection(rooms[i].id),
-                                    activeChat:
-                                        controller.activeChat == rooms[i].id,
-                                  ),
+                                  itemBuilder: (BuildContext context, int i) {
+                                    if (i == 0) {
+                                      return FutureBuilder(
+                                          future: controller
+                                              .crossSigningCachedFuture,
+                                          builder: (context, snapshot) {
+                                            final needsBootstrap =
+                                                Matrix.of(context)
+                                                            .client
+                                                            .encryption
+                                                            ?.crossSigning
+                                                            ?.enabled ==
+                                                        false ||
+                                                    snapshot.data == false;
+                                            final isUnknownSession =
+                                                Matrix.of(context)
+                                                    .client
+                                                    .isUnknownSession;
+                                            final displayHeader =
+                                                needsBootstrap ||
+                                                    isUnknownSession;
+                                            if (!displayHeader ||
+                                                controller
+                                                    .hideChatBackupBanner) {
+                                              return Container();
+                                            }
+                                            return Material(
+                                              color: Colors.orange,
+                                              child: ListTile(
+                                                leading: CircleAvatar(
+                                                  backgroundColor: Colors.white,
+                                                  foregroundColor: Colors.black,
+                                                  child: Icon(Icons.cloud),
+                                                ),
+                                                trailing: IconButton(
+                                                  icon: Icon(Icons.close),
+                                                  onPressed: controller
+                                                      .hideChatBackupBannerAction,
+                                                ),
+                                                title: Text(L10n.of(context)
+                                                    .chatBackup),
+                                                subtitle: Text(L10n.of(context)
+                                                    .enableChatBackup),
+                                                onTap: controller
+                                                    .firstRunBootstrapAction,
+                                              ),
+                                            );
+                                          });
+                                    }
+                                    i--;
+                                    return ChatListItem(
+                                      rooms[i],
+                                      selected: controller.selectedRoomIds
+                                          .contains(rooms[i].id),
+                                      onTap: selectMode == SelectMode.select
+                                          ? () => controller
+                                              .toggleSelection(rooms[i].id)
+                                          : null,
+                                      onLongPress: () => controller
+                                          .toggleSelection(rooms[i].id),
+                                      activeChat:
+                                          controller.activeChat == rooms[i].id,
+                                    );
+                                  },
                                 );
                               } else {
                                 return Center(

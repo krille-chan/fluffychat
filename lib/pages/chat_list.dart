@@ -21,6 +21,8 @@ import '../utils/matrix_sdk_extensions.dart/matrix_file_extension.dart';
 import '../utils/url_launcher.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
+import 'bootstrap_dialog.dart';
+
 enum SelectMode { normal, share, select }
 enum PopupMenuAction { settings, invite, newGroup, setStatus, archive }
 
@@ -39,6 +41,20 @@ class ChatListController extends State<ChatList> {
   StreamSubscription _intentUriStreamSubscription;
 
   final selectedRoomIds = <String>{};
+  Future<bool> crossSigningCachedFuture;
+  bool crossSigningCached;
+  bool hideChatBackupBanner = false;
+
+  void hideChatBackupBannerAction() =>
+      setState(() => hideChatBackupBanner = true);
+
+  void firstRunBootstrapAction() async {
+    hideChatBackupBannerAction();
+    await BootstrapDialog(
+      client: Matrix.of(context).client,
+    ).show(context);
+    VRouter.of(context).push('/rooms');
+  }
 
   String get activeChat => VRouter.of(context).pathParameters['roomid'];
 
@@ -250,6 +266,15 @@ class ChatListController extends State<ChatList> {
   @override
   Widget build(BuildContext context) {
     Matrix.of(context).navigatorContext = context;
+    crossSigningCachedFuture ??= Matrix.of(context)
+        .client
+        .encryption
+        ?.crossSigning
+        ?.isCached()
+        ?.then((c) {
+      if (mounted) setState(() => crossSigningCached = c);
+      return c;
+    });
     return ChatListView(this);
   }
 }

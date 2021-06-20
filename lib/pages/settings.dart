@@ -13,7 +13,6 @@ import 'package:flutter_app_lock/flutter_app_lock.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:vrouter/vrouter.dart';
 
 import 'views/settings_view.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
@@ -375,13 +374,6 @@ class SettingsController extends State<Settings> {
     await BootstrapDialog(
       client: Matrix.of(context).client,
     ).show(context);
-  }
-
-  void firstRunBootstrapAction() async {
-    await BootstrapDialog(
-      client: Matrix.of(context).client,
-    ).show(context);
-    VRouter.of(context).push('/rooms');
   }
 
   @override
