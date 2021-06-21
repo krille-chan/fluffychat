@@ -22,17 +22,16 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:ui';
 
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:matrix/matrix.dart';
 import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:unifiedpush/unifiedpush.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_gen/gen_l10n/l10n_en.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:vrouter/vrouter.dart';
 import 'platform_infos.dart';
 import '../config/app_config.dart';
@@ -616,15 +615,18 @@ class BackgroundPush {
     // The person object for the android message style notification
     final avatar = room.avatar == null
         ? null
-        : await downloadAndSaveAvatar(
-            room.avatar,
-            client,
-            width: 126,
-            height: 126,
+        : await DefaultCacheManager().getSingleFile(
+            event.room.avatar
+                .getThumbnail(
+                  client,
+                  width: 126,
+                  height: 126,
+                )
+                .toString(),
           );
     final person = Person(
       name: room.getLocalizedDisplayname(MatrixLocals(l10n)),
-      icon: avatar == null ? null : BitmapFilePathAndroidIcon(avatar),
+      icon: avatar == null ? null : BitmapFilePathAndroidIcon(avatar.path),
     );
 
     // Show notification
@@ -691,31 +693,6 @@ class BackgroundPush {
     } catch (e, s) {
       Logs().e('[Push] Error while processing background notification', e, s);
     }
-  }
-
-  Future<String> downloadAndSaveAvatar(Uri content, Client client,
-      {int width, int height}) async {
-    final thumbnail = width == null && height == null ? false : true;
-    final tempDirectory = (await getTemporaryDirectory()).path;
-    final prefix = thumbnail ? 'thumbnail' : '';
-    final file =
-        File('$tempDirectory/${prefix}_${content.toString().split("/").last}');
-
-    if (!file.existsSync()) {
-      final url = thumbnail
-          ? content.getThumbnail(client, width: width, height: height)
-          : content.getDownloadLink(client);
-      final request = await HttpClient().getUrl(url);
-      final response = await request.close();
-      if (response.statusCode >= 300) {
-        // we are not in the 2xx range
-        return null;
-      }
-      final bytes = await consolidateHttpClientResponseBytes(response);
-      await file.writeAsBytes(bytes);
-    }
-
-    return file.path;
   }
 
   AndroidNotificationDetails _getAndroidNotificationDetails(
