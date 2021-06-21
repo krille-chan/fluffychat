@@ -2379,5 +2379,15 @@
   "@register": {
     "type": "text",
     "placeholders": {}
+  },
+  "enableChatBackup": "Schakel de chatback-up in om nooit de toegang tot je chats te verliezen.",
+  "@enableChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourChatsAreBeingSynced": "Je chats worden gesynchroniseerd...",
+  "@yourChatsAreBeingSynced": {
+    "type": "text",
+    "placeholders": {}
   }
 }
