@@ -1114,6 +1114,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "synchronizingPleaseWait": "Synchronizing… Please wait.",
+  "@synchronizingPleaseWait": {
+    "type": "text",
+    "placeholders": {}
+  },
   "loadMore": "Load more…",
   "@loadMore": {
     "type": "text",

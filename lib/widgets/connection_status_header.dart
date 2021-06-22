@@ -19,7 +19,7 @@ class _ConnectionStatusHeaderState extends State<ConnectionStatusHeader> {
           _lastSyncReceived.millisecondsSinceEpoch <
       1000 * 30;
   static DateTime _lastSyncReceived = DateTime(0);
-  SdkError _error;
+  SyncStatusUpdate _status = SyncStatusUpdate(SyncStatus.waitingForResponse);
 
   @override
   void dispose() {
@@ -30,25 +30,19 @@ class _ConnectionStatusHeaderState extends State<ConnectionStatusHeader> {
 
   @override
   Widget build(BuildContext context) {
-    _onSyncSub ??= Matrix.of(context).client.onSync.stream.listen(
-          (_) => setState(
+    _onSyncSub ??= Matrix.of(context).client.onSyncStatus.stream.listen(
+          (status) => setState(
             () {
-              _lastSyncReceived = DateTime.now();
-              _error = null;
-            },
-          ),
-        );
-    _onSyncErrorSub ??= Matrix.of(context).client.onSyncError.stream.listen(
-          (error) => setState(
-            () {
-              _lastSyncReceived = DateTime(0);
-              _error = error;
+              if (status.status == SyncStatus.finished) {
+                _lastSyncReceived = DateTime.now();
+              }
+              _status = status;
             },
           ),
         );
 
     return AnimatedContainer(
-      duration: Duration(milliseconds: 250),
+      duration: Duration(milliseconds: 200),
       curve: Curves.bounceInOut,
       height: _connected ? 0 : 36,
       clipBehavior: Clip.hardEdge,
@@ -60,18 +54,35 @@ class _ConnectionStatusHeaderState extends State<ConnectionStatusHeader> {
           SizedBox(
             width: 24,
             height: 24,
-            child: CircularProgressIndicator(strokeWidth: 2),
+            child: CircularProgressIndicator(
+              strokeWidth: 2,
+              value: _status.progress,
+            ),
           ),
           SizedBox(width: 12),
           Text(
-            _error != null
-                ? (_error.exception as Object).toLocalizedString(context)
-                : L10n.of(context).loadingPleaseWait,
+            _status.toLocalizedString(context),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
         ],
       ),
     );
+  }
+}
+
+extension on SyncStatusUpdate {
+  String toLocalizedString(BuildContext context) {
+    switch (status) {
+      case SyncStatus.waitingForResponse:
+        return L10n.of(context).loadingPleaseWait;
+      case SyncStatus.error:
+        return (error.exception as Object).toLocalizedString(context);
+      case SyncStatus.processing:
+      case SyncStatus.cleaningUp:
+      case SyncStatus.finished:
+      default:
+        return L10n.of(context).synchronizingPleaseWait;
+    }
   }
 }
