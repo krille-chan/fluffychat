@@ -2398,5 +2398,10 @@
   "@yourChatsAreBeingSynced": {
     "type": "text",
     "placeholders": {}
+  },
+  "synchronizingPleaseWait": "Eşzamanlanıyor… Lütfen bekleyin.",
+  "@synchronizingPleaseWait": {
+    "type": "text",
+    "placeholders": {}
   }
 }
