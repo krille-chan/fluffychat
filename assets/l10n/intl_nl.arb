@@ -2389,5 +2389,10 @@
   "@yourChatsAreBeingSynced": {
     "type": "text",
     "placeholders": {}
+  },
+  "synchronizingPleaseWait": "Synchroniseren... Even geduld.",
+  "@synchronizingPleaseWait": {
+    "type": "text",
+    "placeholders": {}
   }
 }
