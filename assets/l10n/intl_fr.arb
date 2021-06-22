@@ -2398,5 +2398,96 @@
   "@yourChatsAreBeingSynced": {
     "type": "text",
     "placeholders": {}
+  },
+  "sendAsText": "Envoyer un texte",
+  "@sendAsText": {
+    "type": "text"
+  },
+  "synchronizingPleaseWait": "Synchronisation... Veuillez patienter.",
+  "@synchronizingPleaseWait": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandMissing": "{command} n'est pas une commande.",
+  "@commandMissing": {
+    "type": "text",
+    "placeholders": {
+      "command": {}
+    },
+    "description": "State that {command} is not a valid /command."
+  },
+  "commandInvalid": "Commande invalide",
+  "@commandInvalid": {
+    "type": "text"
+  },
+  "commandHintMyRoomAvatar": "Définir votre image pour ce salon (par mxc-uri)",
+  "@commandHintMyRoomAvatar": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomavatar"
+  },
+  "commandHintMyRoomNick": "Définir votre nom d'affichage pour ce salon",
+  "@commandHintMyRoomNick": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomnick"
+  },
+  "commandHintInvite": "Inviter l'utilisateur/trice donné(e) dans ce salon",
+  "@commandHintInvite": {
+    "type": "text",
+    "description": "Usage hint for the command /invite"
+  },
+  "commandHintUnBan": "Débannir l'utilisateur/trice donné(e) de ce salon",
+  "@commandHintUnBan": {
+    "type": "text",
+    "description": "Usage hint for the command /unban"
+  },
+  "commandHintBan": "Bannir l'utilisateur/trice donné(e) de ce salon",
+  "@commandHintBan": {
+    "type": "text",
+    "description": "Usage hint for the command /ban"
+  },
+  "commandHintKick": "Supprime l'utilisateur/trice donné(e) de ce salon",
+  "@commandHintKick": {
+    "type": "text",
+    "description": "Usage hint for the command /kick"
+  },
+  "commandHintOp": "Définit le niveau de puissance de l'utilisateur/trice donné(e) (par défaut : 50)",
+  "@commandHintOp": {
+    "type": "text",
+    "description": "Usage hint for the command /op"
+  },
+  "commandHintLeave": "Quitter le salon",
+  "@commandHintLeave": {
+    "type": "text",
+    "description": "Usage hint for the command /leave"
+  },
+  "commandHintJoin": "Rejoindre le salon donné",
+  "@commandHintJoin": {
+    "type": "text",
+    "description": "Usage hint for the command /join"
+  },
+  "commandHintReact": "Envoyer une réponse en tant que réaction",
+  "@commandHintReact": {
+    "type": "text",
+    "description": "Usage hint for the command /react"
+  },
+  "commandHintHtml": "Envoyer du texte au format HTML",
+  "@commandHintHtml": {
+    "type": "text",
+    "description": "Usage hint for the command /html"
+  },
+  "commandHintPlain": "Envoyer du texte non formaté",
+  "@commandHintPlain": {
+    "type": "text",
+    "description": "Usage hint for the command /plain"
+  },
+  "commandHintMe": "Décrivez-vous",
+  "@commandHintMe": {
+    "type": "text",
+    "description": "Usage hint for the command /me"
+  },
+  "commandHintSend": "Envoyer du texte",
+  "@commandHintSend": {
+    "type": "text",
+    "description": "Usage hint for the command /send"
   }
 }
