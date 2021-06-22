@@ -69,7 +69,9 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
   Widget build(BuildContext context) {
     _wipe ??= widget.wipe;
     final buttons = <AdaptiveFlatButton>[];
-    Widget body = LinearProgressIndicator();
+    Widget body = PlatformInfos.isCupertinoStyle
+        ? CupertinoActivityIndicator()
+        : LinearProgressIndicator();
     titleText = L10n.of(context).loadingPleaseWait;
 
     if (bootstrap == null) {
@@ -236,11 +238,7 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
         case BootstrapState.askBadSsss:
         case BootstrapState.error:
           titleText = L10n.of(context).oopsSomethingWentWrong;
-          body = ListTile(
-            contentPadding: EdgeInsets.zero,
-            leading: Icon(Icons.error_outline, color: Colors.red),
-            title: Text(L10n.of(context).oopsSomethingWentWrong),
-          );
+          body = Icon(Icons.error_outline, color: Colors.red, size: 40);
           buttons.add(AdaptiveFlatButton(
             label: L10n.of(context).close,
             onPressed: () =>
@@ -249,10 +247,12 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
           break;
         case BootstrapState.done:
           titleText = L10n.of(context).everythingReady;
-          body = ListTile(
-            contentPadding: EdgeInsets.zero,
-            leading: Icon(Icons.check_circle, color: Colors.green),
-            title: Text(L10n.of(context).keysCached),
+          body = Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(Icons.check_circle, color: Colors.green, size: 40),
+              Text(L10n.of(context).keysCached),
+            ],
           );
           buttons.add(AdaptiveFlatButton(
             label: L10n.of(context).close,
