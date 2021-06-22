@@ -85,6 +85,7 @@ class _FluffyChatAppState extends State<FluffyChatApp> {
           columnMode ??= newColumns > 1;
           _router ??= GlobalKey<VRouterState>();
           if (columnMode != newColumns > 1) {
+            Logs().v('Set Column Mode = $columnMode');
             WidgetsBinding.instance.addPostFrameCallback((_) {
               setState(() {
                 _initialUrl = _router.currentState.url;
@@ -104,7 +105,7 @@ class _FluffyChatAppState extends State<FluffyChatApp> {
             locale: kIsWeb
                 ? Locale(html.window.navigator.language.split('-').first)
                 : null,
-            routes: AppRoutes(columnMode, initialUrl: _initialUrl).routes,
+            routes: AppRoutes(columnMode).routes,
             builder: (context, child) {
               LoadingDialog.defaultTitle = L10n.of(context).loadingPleaseWait;
               LoadingDialog.defaultBackLabel = L10n.of(context).close;
