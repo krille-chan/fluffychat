@@ -2455,7 +2455,7 @@
     "type": "text",
     "description": "Usage hint for the command /op"
   },
-  "commandHintLeave": "Quitter le salon",
+  "commandHintLeave": "Quitter ce salon",
   "@commandHintLeave": {
     "type": "text",
     "description": "Usage hint for the command /leave"
