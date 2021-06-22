@@ -2,6 +2,7 @@ import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:matrix/matrix.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -41,9 +42,24 @@ class InputBar extends StatelessWidget {
     final searchText =
         controller.text.substring(0, controller.selection.baseOffset);
     final ret = <Map<String, String>>[];
+    const maxResults = 10;
+
+    final commandMatch = RegExp(r'^\/([\w]*)$').firstMatch(searchText);
+    if (commandMatch != null) {
+      final commandSearch = commandMatch[1].toLowerCase();
+      for (final command in room.client.commands.keys) {
+        if (command.contains(commandSearch)) {
+          ret.add({
+            'type': 'command',
+            'name': command,
+          });
+        }
+
+        if (ret.length > maxResults) return ret;
+      }
+    }
     final emojiMatch =
         RegExp(r'(?:\s|^):(?:([-\w]+)~)?([-\w]+)$').firstMatch(searchText);
-    final MAX_RESULTS = 10;
     if (emojiMatch != null) {
       final packSearch = emojiMatch[1];
       final emoteSearch = emojiMatch[2].toLowerCase();
@@ -59,11 +75,11 @@ class InputBar extends StatelessWidget {
                 'mxc': emote.value,
               });
             }
-            if (ret.length > MAX_RESULTS) {
+            if (ret.length > maxResults) {
               break;
             }
           }
-          if (ret.length > MAX_RESULTS) {
+          if (ret.length > maxResults) {
             break;
           }
         }
@@ -77,7 +93,7 @@ class InputBar extends StatelessWidget {
               'mxc': emote.value,
             });
           }
-          if (ret.length > MAX_RESULTS) {
+          if (ret.length > maxResults) {
             break;
           }
         }
@@ -97,7 +113,7 @@ class InputBar extends StatelessWidget {
             'avatar_url': user.avatarUrl?.toString(),
           });
         }
-        if (ret.length > MAX_RESULTS) {
+        if (ret.length > maxResults) {
           break;
         }
       }
@@ -133,7 +149,7 @@ class InputBar extends StatelessWidget {
             'avatar_url': r.avatar?.toString(),
           });
         }
-        if (ret.length > MAX_RESULTS) {
+        if (ret.length > maxResults) {
           break;
         }
       }
@@ -141,13 +157,64 @@ class InputBar extends StatelessWidget {
     return ret;
   }
 
+  String _commandHint(L10n l10n, String command) {
+    switch (command) {
+      case 'send':
+        return l10n.commandHintSend;
+      case 'me':
+        return l10n.commandHintMe;
+      case 'plain':
+        return l10n.commandHintPlain;
+      case 'html':
+        return l10n.commandHintHtml;
+      case 'react':
+        return l10n.commandHintReact;
+      case 'join':
+        return l10n.commandHintJoin;
+      case 'leave':
+        return l10n.commandHintLeave;
+      case 'op':
+        return l10n.commandHintOp;
+      case 'kick':
+        return l10n.commandHintKick;
+      case 'ban':
+        return l10n.commandHintBan;
+      case 'unban':
+        return l10n.commandHintUnBan;
+      case 'invite':
+        return l10n.commandHintInvite;
+      case 'myroomnick':
+        return l10n.commandHintMyRoomNick;
+      case 'myroomavatar':
+        return l10n.commandHintMyRoomAvatar;
+      default:
+        return '';
+    }
+  }
+
   Widget buildSuggestion(
     BuildContext context,
     Map<String, String> suggestion,
     Client client,
   ) {
+    const size = 30.0;
+    const padding = EdgeInsets.all(4.0);
+    if (suggestion['type'] == 'command') {
+      final command = suggestion['name'];
+      return Container(
+        padding: padding,
+        height: size + padding.bottom + padding.top,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('/' + command, style: TextStyle(fontFamily: 'monospace')),
+            Text(_commandHint(L10n.of(context), command),
+                style: Theme.of(context).textTheme.caption),
+          ],
+        ),
+      );
+    }
     if (suggestion['type'] == 'emote') {
-      final size = 30.0;
       final ratio = MediaQuery.of(context).devicePixelRatio;
       final url = Uri.parse(suggestion['mxc'] ?? '')?.getThumbnail(
         room.client,
@@ -157,7 +224,7 @@ class InputBar extends StatelessWidget {
         animated: true,
       );
       return Container(
-        padding: EdgeInsets.all(4.0),
+        padding: padding,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
@@ -182,10 +249,9 @@ class InputBar extends StatelessWidget {
       );
     }
     if (suggestion['type'] == 'user' || suggestion['type'] == 'room') {
-      final size = 30.0;
       final url = Uri.parse(suggestion['avatar_url'] ?? '');
       return Container(
-        padding: EdgeInsets.all(4.0),
+        padding: padding,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
@@ -212,6 +278,13 @@ class InputBar extends StatelessWidget {
         ? ''
         : controller.text.substring(controller.selection.baseOffset + 1);
     var insertText = '';
+    if (suggestion['type'] == 'command') {
+      insertText = suggestion['name'] + ' ';
+      startText = replaceText.replaceAllMapped(
+        RegExp(r'^(\/[\w]*)$'),
+        (Match m) => '/' + insertText,
+      );
+    }
     if (suggestion['type'] == 'emote') {
       var isUnique = true;
       final insertEmote = suggestion['name'];
