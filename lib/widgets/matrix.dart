@@ -23,7 +23,6 @@ import '../pages/key_verification_dialog.dart';
 import '../utils/platform_infos.dart';
 import '../config/app_config.dart';
 import '../config/setting_keys.dart';
-import '../utils/matrix_sdk_extensions.dart/fluffy_client.dart';
 import '../utils/background_push.dart';
 import 'package:vrouter/vrouter.dart';
 
@@ -36,13 +35,13 @@ class Matrix extends StatefulWidget {
 
   final BuildContext context;
 
-  final Client testClient;
+  final Client client;
 
   Matrix({
     this.child,
     @required this.router,
     @required this.context,
-    this.testClient,
+    @required this.client,
     Key key,
   }) : super(key: key);
 
@@ -55,13 +54,11 @@ class Matrix extends StatefulWidget {
 }
 
 class MatrixState extends State<Matrix> with WidgetsBindingObserver {
-  FluffyClient client;
+  Client get client => widget.client;
   Store store = Store();
   BuildContext navigatorContext;
 
   BackgroundPush _backgroundPush;
-
-  bool get testMode => widget.testClient != null;
 
   Map<String, dynamic> get shareContent => _shareContent;
   set shareContent(Map<String, dynamic> content) {
@@ -78,7 +75,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
   void _initWithStore() async {
     try {
-      if (!testMode) await client.init();
+      await client.init();
       if (client.isLogged()) {
         final statusMsg = await store.getItem(SettingKeys.ownStatusMessage);
         if (statusMsg?.isNotEmpty ?? false) {
@@ -285,7 +282,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         });
       });
     }
-    client = FluffyClient();
     onKeyVerificationRequestSub ??= client.onKeyVerificationRequest.stream
         .listen((KeyVerification request) async {
       var hidPopup = false;

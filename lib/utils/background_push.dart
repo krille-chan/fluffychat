@@ -37,7 +37,6 @@ import 'platform_infos.dart';
 import '../config/app_config.dart';
 import '../config/setting_keys.dart';
 import 'famedlysdk_store.dart';
-import 'matrix_sdk_extensions.dart/fluffy_client.dart';
 import 'matrix_sdk_extensions.dart/matrix_locals.dart';
 
 class NoTokenException implements Exception {
@@ -48,7 +47,7 @@ class BackgroundPush {
   static BackgroundPush _instance;
   final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
-  FluffyClient client;
+  Client client;
   BuildContext context;
   GlobalKey<VRouterState> router;
   String _fcmToken;
@@ -89,13 +88,13 @@ class BackgroundPush {
     }
   }
 
-  factory BackgroundPush.clientOnly(FluffyClient client) {
+  factory BackgroundPush.clientOnly(Client client) {
     _instance ??= BackgroundPush._(client);
     return _instance;
   }
 
-  factory BackgroundPush(FluffyClient _client, BuildContext _context,
-      GlobalKey<VRouterState> router,
+  factory BackgroundPush(
+      Client _client, BuildContext _context, GlobalKey<VRouterState> router,
       {final void Function(String errorMsg) onFcmError}) {
     final instance = BackgroundPush.clientOnly(_client);
     instance.context = _context;
