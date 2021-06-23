@@ -17,7 +17,7 @@ class _ConnectionStatusHeaderState extends State<ConnectionStatusHeader> {
   bool get _connected =>
       DateTime.now().millisecondsSinceEpoch -
           _lastSyncReceived.millisecondsSinceEpoch <
-      1000 * 30;
+      (Matrix.of(context).client.syncTimeoutSec + 2) * 1000;
   static DateTime _lastSyncReceived = DateTime(0);
   SyncStatusUpdate _status = SyncStatusUpdate(SyncStatus.waitingForResponse);
 
@@ -33,7 +33,9 @@ class _ConnectionStatusHeaderState extends State<ConnectionStatusHeader> {
     _onSyncSub ??= Matrix.of(context).client.onSyncStatus.stream.listen(
           (status) => setState(
             () {
-              if (status.status == SyncStatus.finished) {
+              if ((status.status == SyncStatus.processing &&
+                      Matrix.of(context).client.prevBatch != null) ||
+                  status.status == SyncStatus.finished) {
                 _lastSyncReceived = DateTime.now();
               }
               _status = status;
