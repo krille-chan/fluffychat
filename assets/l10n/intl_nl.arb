@@ -2394,5 +2394,91 @@
   "@synchronizingPleaseWait": {
     "type": "text",
     "placeholders": {}
+  },
+  "sendAsText": "Als tekst versturen",
+  "@sendAsText": {
+    "type": "text"
+  },
+  "commandMissing": "{command} is geen opdracht.",
+  "@commandMissing": {
+    "type": "text",
+    "placeholders": {
+      "command": {}
+    },
+    "description": "State that {command} is not a valid /command."
+  },
+  "commandInvalid": "Opdracht ongeldig",
+  "@commandInvalid": {
+    "type": "text"
+  },
+  "commandHintMyRoomAvatar": "Je avatar voor deze kamer instellen (met mxc-uri)",
+  "@commandHintMyRoomAvatar": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomavatar"
+  },
+  "commandHintMyRoomNick": "Je weergavenaam voor deze kamer instellen",
+  "@commandHintMyRoomNick": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomnick"
+  },
+  "commandHintInvite": "De gegeven persoon in deze kamer uitnodigen",
+  "@commandHintInvite": {
+    "type": "text",
+    "description": "Usage hint for the command /invite"
+  },
+  "commandHintUnBan": "De gegeven persoon weer in deze kamer toestaan",
+  "@commandHintUnBan": {
+    "type": "text",
+    "description": "Usage hint for the command /unban"
+  },
+  "commandHintBan": "De gegeven persoon uit deze kamer verbannen",
+  "@commandHintBan": {
+    "type": "text",
+    "description": "Usage hint for the command /ban"
+  },
+  "commandHintKick": "De gegeven persoon uit deze kamer verwijderen",
+  "@commandHintKick": {
+    "type": "text",
+    "description": "Usage hint for the command /kick"
+  },
+  "commandHintOp": "Stel het machtsniveau van de opgegeven gebruiker in (standaard: 50)",
+  "@commandHintOp": {
+    "type": "text",
+    "description": "Usage hint for the command /op"
+  },
+  "commandHintLeave": "Deze kamer verlaten",
+  "@commandHintLeave": {
+    "type": "text",
+    "description": "Usage hint for the command /leave"
+  },
+  "commandHintJoin": "Deelnemen aan de gegeven kamer",
+  "@commandHintJoin": {
+    "type": "text",
+    "description": "Usage hint for the command /join"
+  },
+  "commandHintReact": "Antwoord als reactie versturen",
+  "@commandHintReact": {
+    "type": "text",
+    "description": "Usage hint for the command /react"
+  },
+  "commandHintHtml": "Tekst met HTML-opmaak versturen",
+  "@commandHintHtml": {
+    "type": "text",
+    "description": "Usage hint for the command /html"
+  },
+  "commandHintPlain": "Niet-opgemaakte tekst versturen",
+  "@commandHintPlain": {
+    "type": "text",
+    "description": "Usage hint for the command /plain"
+  },
+  "commandHintMe": "Beschrijf jezelf",
+  "@commandHintMe": {
+    "type": "text",
+    "description": "Usage hint for the command /me"
+  },
+  "commandHintSend": "Tekst versturen",
+  "@commandHintSend": {
+    "type": "text",
+    "description": "Usage hint for the command /send"
   }
 }
