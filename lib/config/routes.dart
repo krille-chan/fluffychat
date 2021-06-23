@@ -1,8 +1,11 @@
 import 'package:fluffychat/pages/archive.dart';
 import 'package:fluffychat/pages/homeserver_picker.dart';
 import 'package:fluffychat/pages/invitation_selection.dart';
+import 'package:fluffychat/pages/settings_account.dart';
+import 'package:fluffychat/pages/settings_chat.dart';
 import 'package:fluffychat/pages/settings_emotes.dart';
 import 'package:fluffychat/pages/settings_multiple_emotes.dart';
+import 'package:fluffychat/pages/settings_security.dart';
 import 'package:fluffychat/widgets/layouts/side_view_layout.dart';
 import 'package:fluffychat/widgets/layouts/two_column_layout.dart';
 import 'package:fluffychat/pages/chat.dart';
@@ -220,38 +223,59 @@ class AppRoutes {
 
   List<VRouteElement> get _settingsRoutes => [
         VWidget(
-          path: 'emotes',
-          widget: EmotesSettings(),
-          buildTransition: _dynamicTransition,
-        ),
-        VWidget(
           path: 'notifications',
           widget: SettingsNotifications(),
           buildTransition: _dynamicTransition,
         ),
         VWidget(
-          path: 'ignorelist',
-          widget: SettingsIgnoreList(),
+          path: 'chat',
+          widget: SettingsChat(),
           buildTransition: _dynamicTransition,
+          stackedRoutes: [
+            VWidget(
+              path: 'emotes',
+              widget: EmotesSettings(),
+              buildTransition: _dynamicTransition,
+            ),
+            VWidget(
+              path: 'style',
+              widget: SettingsStyle(),
+              buildTransition: _dynamicTransition,
+            ),
+          ],
         ),
         VWidget(
-          path: 'style',
-          widget: SettingsStyle(),
+          path: 'account',
+          widget: SettingsAccount(),
           buildTransition: _dynamicTransition,
+          stackedRoutes: [
+            VWidget(
+              path: 'devices',
+              widget: DevicesSettings(),
+              buildTransition: _dynamicTransition,
+            ),
+          ],
         ),
         VWidget(
-          path: 'devices',
-          widget: DevicesSettings(),
+          path: 'security',
+          widget: SettingsSecurity(),
           buildTransition: _dynamicTransition,
+          stackedRoutes: [
+            VWidget(
+              path: 'ignorelist',
+              widget: SettingsIgnoreList(),
+              buildTransition: _dynamicTransition,
+            ),
+            VWidget(
+              path: '3pid',
+              widget: Settings3Pid(),
+              buildTransition: _dynamicTransition,
+            ),
+          ],
         ),
         VWidget(
           path: '/logs',
           widget: LogViewer(),
-          buildTransition: _dynamicTransition,
-        ),
-        VWidget(
-          path: '3pid',
-          widget: Settings3Pid(),
           buildTransition: _dynamicTransition,
         ),
       ];

@@ -5,21 +5,15 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:matrix/matrix.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
 
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app_lock/flutter_app_lock.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'views/settings_view.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
-import 'bootstrap_dialog.dart';
 import '../widgets/matrix.dart';
-import '../config/app_config.dart';
-import '../config/setting_keys.dart';
 
 class Settings extends StatefulWidget {
   @override
@@ -27,173 +21,18 @@ class Settings extends StatefulWidget {
 }
 
 class SettingsController extends State<Settings> {
-  Future<dynamic> profileFuture;
-  Profile profile;
   Future<bool> crossSigningCachedFuture;
   bool crossSigningCached;
   Future<bool> megolmBackupCachedFuture;
   bool megolmBackupCached;
+  Future<dynamic> profileFuture;
+  Profile profile;
   bool profileUpdated = false;
 
   void updateProfile() => setState(() {
         profileUpdated = true;
         profile = profileFuture = null;
       });
-
-  void logoutAction() async {
-    if (await showOkCancelAlertDialog(
-          useRootNavigator: false,
-          context: context,
-          title: L10n.of(context).areYouSureYouWantToLogout,
-          okLabel: L10n.of(context).yes,
-          cancelLabel: L10n.of(context).cancel,
-        ) ==
-        OkCancelResult.cancel) {
-      return;
-    }
-    final matrix = Matrix.of(context);
-    await showFutureLoadingDialog(
-      context: context,
-      future: () => matrix.client.logout(),
-    );
-  }
-
-  void changePasswordAccountAction() async {
-    final input = await showTextInputDialog(
-      useRootNavigator: false,
-      context: context,
-      title: L10n.of(context).changePassword,
-      okLabel: L10n.of(context).ok,
-      cancelLabel: L10n.of(context).cancel,
-      textFields: [
-        DialogTextField(
-          hintText: L10n.of(context).pleaseEnterYourPassword,
-          obscureText: true,
-          minLines: 1,
-          maxLines: 1,
-        ),
-        DialogTextField(
-          hintText: L10n.of(context).chooseAStrongPassword,
-          obscureText: true,
-          minLines: 1,
-          maxLines: 1,
-        ),
-      ],
-    );
-    if (input == null) return;
-    final success = await showFutureLoadingDialog(
-      context: context,
-      future: () => Matrix.of(context)
-          .client
-          .changePassword(input.last, oldPassword: input.first),
-    );
-    if (success.error == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(L10n.of(context).passwordHasBeenChanged)));
-    }
-  }
-
-  void deleteAccountAction() async {
-    if (await showOkCancelAlertDialog(
-          useRootNavigator: false,
-          context: context,
-          title: L10n.of(context).warning,
-          message: L10n.of(context).deactivateAccountWarning,
-          okLabel: L10n.of(context).ok,
-          cancelLabel: L10n.of(context).cancel,
-        ) ==
-        OkCancelResult.cancel) {
-      return;
-    }
-    if (await showOkCancelAlertDialog(
-          useRootNavigator: false,
-          context: context,
-          title: L10n.of(context).areYouSure,
-          okLabel: L10n.of(context).yes,
-          cancelLabel: L10n.of(context).cancel,
-        ) ==
-        OkCancelResult.cancel) {
-      return;
-    }
-    final input = await showTextInputDialog(
-      useRootNavigator: false,
-      context: context,
-      title: L10n.of(context).pleaseEnterYourPassword,
-      okLabel: L10n.of(context).ok,
-      cancelLabel: L10n.of(context).cancel,
-      textFields: [
-        DialogTextField(
-          obscureText: true,
-          hintText: '******',
-          minLines: 1,
-          maxLines: 1,
-        )
-      ],
-    );
-    if (input == null) return;
-    await showFutureLoadingDialog(
-      context: context,
-      future: () => Matrix.of(context).client.deactivateAccount(
-            auth: AuthenticationPassword(
-              password: input.single,
-              user: Matrix.of(context).client.userID,
-              identifier: AuthenticationUserIdentifier(
-                  user: Matrix.of(context).client.userID),
-            ),
-          ),
-    );
-  }
-
-  void setJitsiInstanceAction() async {
-    const prefix = 'https://';
-    final input = await showTextInputDialog(
-      useRootNavigator: false,
-      context: context,
-      title: L10n.of(context).editJitsiInstance,
-      okLabel: L10n.of(context).ok,
-      cancelLabel: L10n.of(context).cancel,
-      textFields: [
-        DialogTextField(
-          initialText: AppConfig.jitsiInstance.replaceFirst(prefix, ''),
-          prefixText: prefix,
-        ),
-      ],
-    );
-    if (input == null) return;
-    var jitsi = prefix + input.single;
-    if (!jitsi.endsWith('/')) {
-      jitsi += '/';
-    }
-    final matrix = Matrix.of(context);
-    await matrix.store.setItem(SettingKeys.jitsiInstance, jitsi);
-    AppConfig.jitsiInstance = jitsi;
-  }
-
-  void setDisplaynameAction() async {
-    final input = await showTextInputDialog(
-      useRootNavigator: false,
-      context: context,
-      title: L10n.of(context).editDisplayname,
-      okLabel: L10n.of(context).ok,
-      cancelLabel: L10n.of(context).cancel,
-      textFields: [
-        DialogTextField(
-          initialText: profile?.displayname ??
-              Matrix.of(context).client.userID.localpart,
-        )
-      ],
-    );
-    if (input == null) return;
-    final matrix = Matrix.of(context);
-    final success = await showFutureLoadingDialog(
-      context: context,
-      future: () =>
-          matrix.client.setDisplayName(matrix.client.userID, input.single),
-    );
-    if (success.error == null) {
-      updateProfile();
-    }
-  }
 
   void setAvatarAction() async {
     final action = profile?.avatarUrl == null
@@ -312,68 +151,6 @@ class SettingsController extends State<Settings> {
         );
       }
     }
-  }
-
-  void setAppLockAction() async {
-    final currentLock =
-        await FlutterSecureStorage().read(key: SettingKeys.appLockKey);
-    if (currentLock?.isNotEmpty ?? false) {
-      await AppLock.of(context).showLockScreen();
-    }
-    final newLock = await showTextInputDialog(
-      useRootNavigator: false,
-      context: context,
-      title: L10n.of(context).pleaseChooseAPasscode,
-      message: L10n.of(context).pleaseEnter4Digits,
-      cancelLabel: L10n.of(context).cancel,
-      textFields: [
-        DialogTextField(
-          validator: (text) {
-            if (text.isEmpty || (text.length == 4 && int.tryParse(text) >= 0)) {
-              return null;
-            }
-            return L10n.of(context).pleaseEnter4Digits;
-          },
-          keyboardType: TextInputType.number,
-          obscureText: true,
-          maxLines: 1,
-          minLines: 1,
-        )
-      ],
-    );
-    if (newLock != null) {
-      await FlutterSecureStorage()
-          .write(key: SettingKeys.appLockKey, value: newLock.single);
-      if (newLock.single.isEmpty) {
-        AppLock.of(context).disable();
-      } else {
-        AppLock.of(context).enable();
-      }
-    }
-  }
-
-  void bootstrapSettingsAction() async {
-    if (await Matrix.of(context).client.encryption.keyManager.isCached()) {
-      if (OkCancelResult.ok ==
-          await showOkCancelAlertDialog(
-            useRootNavigator: false,
-            context: context,
-            title: L10n.of(context).keysCached,
-            message: L10n.of(context).wipeChatBackup,
-            isDestructiveAction: true,
-            okLabel: L10n.of(context).ok,
-            cancelLabel: L10n.of(context).cancel,
-          )) {
-        await BootstrapDialog(
-          client: Matrix.of(context).client,
-          wipe: true,
-        ).show(context);
-      }
-      return;
-    }
-    await BootstrapDialog(
-      client: Matrix.of(context).client,
-    ).show(context);
   }
 
   @override
