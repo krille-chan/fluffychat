@@ -215,8 +215,18 @@ class AppRoutes {
           buildTransition: _dynamicTransition,
         ),
         VWidget(
-          path: 'emotes',
+          path: 'multiple_emotes',
           widget: MultipleEmotesSettings(),
+          buildTransition: _dynamicTransition,
+        ),
+        VWidget(
+          path: 'emotes',
+          widget: EmotesSettings(),
+          buildTransition: _dynamicTransition,
+        ),
+        VWidget(
+          path: 'emotes/:state_key',
+          widget: EmotesSettings(),
           buildTransition: _dynamicTransition,
         ),
       ];

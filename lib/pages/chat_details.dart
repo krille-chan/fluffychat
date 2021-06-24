@@ -240,9 +240,9 @@ class ChatDetailsController extends State<ChatDetails> {
     if ((room.states['im.ponies.room_emotes'] ?? <String, Event>{})
         .keys
         .any((String s) => s.isNotEmpty)) {
-      VRouter.of(context).pushNamed('/rooms/${room.id}/emotes');
+      VRouter.of(context).push('/rooms/${room.id}/details/multiple_emotes');
     } else {
-      VRouter.of(context).pushNamed('/settings/emotes');
+      VRouter.of(context).push('/rooms/${room.id}/details/emotes');
     }
   }
 

@@ -44,7 +44,8 @@ class MultipleEmotesSettingsView extends StatelessWidget {
                 return ListTile(
                   title: Text(packName),
                   onTap: () async {
-                    VRouter.of(context).push('/settings/emotes');
+                    VRouter.of(context)
+                        .push('/rooms/${room.id}/details/emotes/${keys[i]}');
                   },
                 );
               });
