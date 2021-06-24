@@ -195,23 +195,7 @@ class ChatListView extends StatelessWidget {
                                   );
                                 }
                                 final totalCount = rooms.length + 1;
-                                return ListView.separated(
-                                  separatorBuilder: (_, __) => Row(
-                                    children: [
-                                      Spacer(),
-                                      Container(
-                                        height: 1,
-                                        width: 200,
-                                        decoration: BoxDecoration(
-                                            gradient: LinearGradient(
-                                          colors: [
-                                            Colors.transparent,
-                                            Theme.of(context).dividerColor,
-                                          ],
-                                        )),
-                                      ),
-                                    ],
-                                  ),
+                                return ListView.builder(
                                   itemCount: totalCount,
                                   itemBuilder: (BuildContext context, int i) {
                                     if (i == 0) {
