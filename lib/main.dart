@@ -2,6 +2,8 @@
 import 'dart:async';
 
 import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:fluffychat/utils/database/flutter_famedly_sdk_hive_database.dart';
+import 'package:matrix/encryption/utils/key_verification.dart';
 import 'package:matrix/matrix.dart';
 import 'package:fluffychat/config/routes.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -10,6 +12,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'utils/famedlysdk_store.dart';
 import 'utils/localized_exception_extension.dart';
 import 'package:flutter_app_lock/flutter_app_lock.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -22,7 +25,6 @@ import 'widgets/lock_screen.dart';
 import 'widgets/matrix.dart';
 import 'config/themes.dart';
 import 'config/app_config.dart';
-import 'utils/matrix_sdk_extensions.dart/fluffy_client.dart';
 import 'utils/platform_infos.dart';
 import 'utils/background_push.dart';
 
@@ -34,27 +36,46 @@ void main() async {
   FlutterError.onError = (FlutterErrorDetails details) =>
       Zone.current.handleUncaughtError(details.exception, details.stack);
 
+  final client = Client(
+    PlatformInfos.clientName,
+    enableE2eeRecovery: true,
+    verificationMethods: {
+      KeyVerificationMethod.numbers,
+      if (PlatformInfos.isMobile || PlatformInfos.isLinux)
+        KeyVerificationMethod.emoji,
+    },
+    importantStateEvents: <String>{
+      'im.ponies.room_emotes', // we want emotes to work properly
+    },
+    databaseBuilder: FlutterFamedlySdkHiveDatabase.hiveDatabaseBuilder,
+    legacyDatabaseBuilder: getDatabase,
+    supportedLoginTypes: {
+      AuthenticationTypes.password,
+      if (PlatformInfos.isMobile || PlatformInfos.isWeb) AuthenticationTypes.sso
+    },
+  );
+
   if (PlatformInfos.isMobile) {
-    BackgroundPush.clientOnly(FluffyClient());
+    BackgroundPush.clientOnly(client);
   }
 
   runZonedGuarded(
     () => runApp(PlatformInfos.isMobile
         ? AppLock(
-            builder: (args) => FluffyChatApp(),
+            builder: (args) => FluffyChatApp(client: client),
             lockScreen: LockScreen(),
             enabled: false,
           )
-        : FluffyChatApp()),
+        : FluffyChatApp(client: client)),
     SentryController.captureException,
   );
 }
 
 class FluffyChatApp extends StatefulWidget {
   final Widget testWidget;
-  final Client testClient;
+  final Client client;
 
-  const FluffyChatApp({Key key, this.testWidget, this.testClient})
+  const FluffyChatApp({Key key, this.testWidget, @required this.client})
       : super(key: key);
 
   /// getInitialLink may rereturn the value multiple times if this view is
@@ -127,7 +148,7 @@ class _FluffyChatAppState extends State<FluffyChatApp> {
                 key: _matrix,
                 context: context,
                 router: _router,
-                testClient: widget.testClient,
+                client: widget.client,
                 child: WaitForInitPage(child),
               );
             },
