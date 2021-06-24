@@ -6,6 +6,7 @@ import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:vrouter/vrouter.dart';
 
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:image_picker/image_picker.dart';
@@ -13,10 +14,7 @@ import 'views/settings_emotes_view.dart';
 import '../widgets/matrix.dart';
 
 class EmotesSettings extends StatefulWidget {
-  final Room room;
-  final String stateKey;
-
-  EmotesSettings({this.room, this.stateKey});
+  EmotesSettings({Key key}) : super(key: key);
 
   @override
   EmotesSettingsController createState() => EmotesSettingsController();
@@ -31,6 +29,11 @@ class EmoteEntry {
 }
 
 class EmotesSettingsController extends State<EmotesSettings> {
+  String get roomId => VRouter.of(context).pathParameters['roomid'];
+  Room get room =>
+      roomId != null ? Matrix.of(context).client.getRoomById(roomId) : null;
+  String get stateKey => VRouter.of(context).pathParameters['state_key'];
+
   List<EmoteEntry> emotes;
   bool showSave = false;
   TextEditingController newEmoteController = TextEditingController();
@@ -43,11 +46,10 @@ class EmotesSettingsController extends State<EmotesSettings> {
     final client = Matrix.of(context).client;
     // be sure to preserve any data not in "short"
     Map<String, dynamic> content;
-    if (widget.room != null) {
-      content = widget.room
-              .getState('im.ponies.room_emotes', widget.stateKey ?? '')
-              ?.content ??
-          <String, dynamic>{};
+    if (room != null) {
+      content =
+          room.getState('im.ponies.room_emotes', stateKey ?? '')?.content ??
+              <String, dynamic>{};
     } else {
       content = client.accountData['im.ponies.user_emotes']?.content ??
           <String, dynamic>{};
@@ -74,11 +76,11 @@ class EmotesSettingsController extends State<EmotesSettings> {
     }
     // remove the old "short" key
     content.remove('short');
-    if (widget.room != null) {
+    if (room != null) {
       await showFutureLoadingDialog(
         context: context,
-        future: () => client.setRoomStateWithKey(widget.room.id,
-            'im.ponies.room_emotes', content, widget.stateKey ?? ''),
+        future: () => client.setRoomStateWithKey(
+            room.id, 'im.ponies.room_emotes', content, stateKey ?? ''),
       );
     } else {
       await showFutureLoadingDialog(
@@ -90,7 +92,7 @@ class EmotesSettingsController extends State<EmotesSettings> {
   }
 
   Future<void> setIsGloballyActive(bool active) async {
-    if (widget.room == null) {
+    if (room == null) {
       return;
     }
     final client = Matrix.of(context).client;
@@ -100,16 +102,14 @@ class EmotesSettingsController extends State<EmotesSettings> {
       if (!(content['rooms'] is Map)) {
         content['rooms'] = <String, dynamic>{};
       }
-      if (!(content['rooms'][widget.room.id] is Map)) {
-        content['rooms'][widget.room.id] = <String, dynamic>{};
+      if (!(content['rooms'][room.id] is Map)) {
+        content['rooms'][room.id] = <String, dynamic>{};
       }
-      if (!(content['rooms'][widget.room.id][widget.stateKey ?? ''] is Map)) {
-        content['rooms'][widget.room.id]
-            [widget.stateKey ?? ''] = <String, dynamic>{};
+      if (!(content['rooms'][room.id][stateKey ?? ''] is Map)) {
+        content['rooms'][room.id][stateKey ?? ''] = <String, dynamic>{};
       }
-    } else if (content['rooms'] is Map &&
-        content['rooms'][widget.room.id] is Map) {
-      content['rooms'][widget.room.id].remove(widget.stateKey ?? '');
+    } else if (content['rooms'] is Map && content['rooms'][room.id] is Map) {
+      content['rooms'][room.id].remove(stateKey ?? '');
     }
     // and save
     await showFutureLoadingDialog(
@@ -159,17 +159,16 @@ class EmotesSettingsController extends State<EmotesSettings> {
   }
 
   bool isGloballyActive(Client client) =>
-      widget.room != null &&
+      room != null &&
       client.accountData['im.ponies.emote_rooms']?.content is Map &&
       client.accountData['im.ponies.emote_rooms'].content['rooms'] is Map &&
-      client.accountData['im.ponies.emote_rooms'].content['rooms']
-          [widget.room.id] is Map &&
-      client.accountData['im.ponies.emote_rooms'].content['rooms']
-          [widget.room.id][widget.stateKey ?? ''] is Map;
+      client.accountData['im.ponies.emote_rooms'].content['rooms'][room.id]
+          is Map &&
+      client.accountData['im.ponies.emote_rooms'].content['rooms'][room.id]
+          [stateKey ?? ''] is Map;
 
-  bool get readonly => widget.room == null
-      ? false
-      : !(widget.room.canSendEvent('im.ponies.room_emotes'));
+  bool get readonly =>
+      room == null ? false : !(room.canSendEvent('im.ponies.room_emotes'));
 
   void saveAction() async {
     await _save(context);
@@ -264,10 +263,9 @@ class EmotesSettingsController extends State<EmotesSettings> {
     if (emotes == null) {
       emotes = <EmoteEntry>[];
       Map<String, dynamic> emoteSource;
-      if (widget.room != null) {
-        emoteSource = widget.room
-            .getState('im.ponies.room_emotes', widget.stateKey ?? '')
-            ?.content;
+      if (room != null) {
+        emoteSource =
+            room.getState('im.ponies.room_emotes', stateKey ?? '')?.content;
       } else {
         emoteSource = Matrix.of(context)
             .client

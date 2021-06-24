@@ -28,7 +28,7 @@ class EmotesSettingsView extends StatelessWidget {
           : null,
       body: MaxWidthBody(
         child: StreamBuilder(
-            stream: controller.widget.room?.onUpdate?.stream,
+            stream: controller.room?.onUpdate?.stream,
             builder: (context, snapshot) {
               return Column(
                 children: <Widget>[
@@ -81,7 +81,7 @@ class EmotesSettingsView extends StatelessWidget {
                         ),
                       ),
                     ),
-                  if (controller.widget.room != null)
+                  if (controller.room != null)
                     ListTile(
                       title: Text(L10n.of(context).enableEmotesGlobally),
                       trailing: Switch(
@@ -89,7 +89,7 @@ class EmotesSettingsView extends StatelessWidget {
                         onChanged: controller.setIsGloballyActive,
                       ),
                     ),
-                  if (!controller.readonly || controller.widget.room != null)
+                  if (!controller.readonly || controller.room != null)
                     Divider(
                       height: 2,
                       thickness: 2,
