@@ -50,7 +50,7 @@ class FlutterFamedlySdkHiveDatabase extends FamedlySdkHiveDatabase {
     } on MissingPluginException catch (_) {
       Logs().i('Hive encryption is not supported on this platform');
     }
-    final db = FamedlySdkHiveDatabase(
+    final db = FlutterFamedlySdkHiveDatabase(
       client.clientName,
       encryptionCipher: hiverCipher,
     );
@@ -78,7 +78,7 @@ class FlutterFamedlySdkHiveDatabase extends FamedlySdkHiveDatabase {
   Future<Uint8List> getFile(String mxcUri) async {
     if (!supportsFileStoring) return null;
     final tempDirectory = await _getFileStoreDirectory();
-    final file = File('$tempDirectory/$mxcUri');
+    final file = File('$tempDirectory/${Uri.encodeComponent(mxcUri)}');
     if (await file.exists() == false) return null;
     final bytes = await file.readAsBytes();
     return bytes;
@@ -88,7 +88,7 @@ class FlutterFamedlySdkHiveDatabase extends FamedlySdkHiveDatabase {
   Future storeFile(String mxcUri, Uint8List bytes, int time) async {
     if (!supportsFileStoring) return null;
     final tempDirectory = await _getFileStoreDirectory();
-    final file = File('$tempDirectory/$mxcUri');
+    final file = File('$tempDirectory/${Uri.encodeComponent(mxcUri)}');
     if (await file.exists()) return;
     await file.writeAsBytes(bytes);
     return;
