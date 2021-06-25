@@ -2398,5 +2398,96 @@
   "@yourChatsAreBeingSynced": {
     "type": "text",
     "placeholders": {}
+  },
+  "sendAsText": "Enviar como texto",
+  "@sendAsText": {
+    "type": "text"
+  },
+  "synchronizingPleaseWait": "Sincronizando... Agarda.",
+  "@synchronizingPleaseWait": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandMissing": "{command} non é un comando.",
+  "@commandMissing": {
+    "type": "text",
+    "placeholders": {
+      "command": {}
+    },
+    "description": "State that {command} is not a valid /command."
+  },
+  "commandInvalid": "Comando non válido",
+  "@commandInvalid": {
+    "type": "text"
+  },
+  "commandHintMyRoomAvatar": "Establece a túa imaxe para esta sala (por mxc-uri)",
+  "@commandHintMyRoomAvatar": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomavatar"
+  },
+  "commandHintMyRoomNick": "Establece o teu nome público para esta sala",
+  "@commandHintMyRoomNick": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomnick"
+  },
+  "commandHintInvite": "Convidar á usuaria a esta sala",
+  "@commandHintInvite": {
+    "type": "text",
+    "description": "Usage hint for the command /invite"
+  },
+  "commandHintUnBan": "Retirar veto á usuaria para esta sala",
+  "@commandHintUnBan": {
+    "type": "text",
+    "description": "Usage hint for the command /unban"
+  },
+  "commandHintBan": "Vetar a usuaria indicada desta sala",
+  "@commandHintBan": {
+    "type": "text",
+    "description": "Usage hint for the command /ban"
+  },
+  "commandHintKick": "Eliminar a usuaria indicada desta sala",
+  "@commandHintKick": {
+    "type": "text",
+    "description": "Usage hint for the command /kick"
+  },
+  "commandHintOp": "Establecer o nivel de responsabilidade da usuaria (por defecto: 50)",
+  "@commandHintOp": {
+    "type": "text",
+    "description": "Usage hint for the command /op"
+  },
+  "commandHintLeave": "Saír desta sala",
+  "@commandHintLeave": {
+    "type": "text",
+    "description": "Usage hint for the command /leave"
+  },
+  "commandHintJoin": "Unirte á sala indicada",
+  "@commandHintJoin": {
+    "type": "text",
+    "description": "Usage hint for the command /join"
+  },
+  "commandHintReact": "Enviar resposta como reacción",
+  "@commandHintReact": {
+    "type": "text",
+    "description": "Usage hint for the command /react"
+  },
+  "commandHintHtml": "Enviar texto con formato HTML",
+  "@commandHintHtml": {
+    "type": "text",
+    "description": "Usage hint for the command /html"
+  },
+  "commandHintPlain": "Enviar texto sen formato",
+  "@commandHintPlain": {
+    "type": "text",
+    "description": "Usage hint for the command /plain"
+  },
+  "commandHintMe": "Conta algo sobre ti",
+  "@commandHintMe": {
+    "type": "text",
+    "description": "Usage hint for the command /me"
+  },
+  "commandHintSend": "Enviar texto",
+  "@commandHintSend": {
+    "type": "text",
+    "description": "Usage hint for the command /send"
   }
 }
