@@ -1,3 +1,19 @@
+## v0.33.0 - 2021-06-26
+Just a more minor bugfixing release with some design changes in the settings, updated missing translations and for rebuilding the arm64 Linux Flatpak.
+
+### Features
+* redesigned settings
+* Updated translations - thanks to all translators
+* display progress bar in first sync
+* changed Linux window default size
+* update some dependencies
+
+### Fixes
+* Favicon on web
+* Database not storing files correctly
+* Linux builds for arm64
+* a lot of minor bugs
+
 ## v0.32.2 - 2021-06-20
 * fix: Broken hive keys
 
