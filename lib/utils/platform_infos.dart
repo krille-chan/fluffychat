@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:vrouter/vrouter.dart';
 
 import '../config/app_config.dart';
 
@@ -53,6 +54,10 @@ abstract class PlatformInfos {
         OutlinedButton(
           onPressed: () => launch(AppConfig.emojiFontUrl),
           child: Text(AppConfig.emojiFontName),
+        ),
+        OutlinedButton(
+          onPressed: () => VRouter.of(context).push('logs'),
+          child: Text('Logs'),
         ),
         SentrySwitchListTile(label: L10n.of(context).sendBugReports),
       ],

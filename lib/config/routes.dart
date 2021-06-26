@@ -199,6 +199,11 @@ class AppRoutes {
               widget: Login(),
               buildTransition: _fadeTransition,
             ),
+            VWidget(
+              path: 'logs',
+              widget: LogViewer(),
+              buildTransition: _dynamicTransition,
+            ),
           ],
         ),
       ];
@@ -284,7 +289,7 @@ class AppRoutes {
           ],
         ),
         VWidget(
-          path: '/logs',
+          path: 'logs',
           widget: LogViewer(),
           buildTransition: _dynamicTransition,
         ),
