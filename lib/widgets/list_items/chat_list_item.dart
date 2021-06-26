@@ -1,4 +1,5 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:fluffychat/config/app_config.dart';
 
 import 'package:matrix/matrix.dart';
 import 'package:fluffychat/config/themes.dart';
@@ -285,12 +286,12 @@ class ChatListItem extends StatelessWidget {
                 curve: Curves.bounceInOut,
                 padding: EdgeInsets.symmetric(horizontal: 7),
                 height: unreadBubbleSize,
-                width: unreadBubbleSize,
+                width: room.notificationCount == 0 && room.isUnread ? 0 : null,
                 decoration: BoxDecoration(
                   color: room.highlightCount > 0 || room.markedUnread
                       ? Colors.red
                       : Theme.of(context).primaryColor,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(AppConfig.borderRadius),
                 ),
                 child: Center(
                   child: room.notificationCount > 0
@@ -298,6 +299,7 @@ class ChatListItem extends StatelessWidget {
                           room.notificationCount.toString(),
                           style: TextStyle(
                             color: Colors.white,
+                            fontSize: 13,
                           ),
                         )
                       : Container(),
