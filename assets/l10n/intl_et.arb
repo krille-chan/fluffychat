@@ -1131,7 +1131,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "removedBy": "Eemaldatud {username} poolt",
+  "removedBy": "{username} eemaldas sündmuse",
   "@removedBy": {
     "type": "text",
     "placeholders": {
