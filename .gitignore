@@ -5,6 +5,7 @@
 *.swp
 *.snap
 .DS_Store
+.local/
 .atom/
 .buildlog/
 .history
