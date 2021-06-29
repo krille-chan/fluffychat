@@ -25,7 +25,7 @@ class FlutterFamedlySdkHiveDatabase extends FamedlySdkHiveDatabase {
     if (!kIsWeb && !_hiveInitialized) {
       Logs().i('Init Hive database...');
       if (!kIsWeb && Platform.isLinux) {
-        Hive.init('.local/share/fluffychat/');
+        Hive.init((await getApplicationSupportDirectory()).path);
       } else {
         await Hive.initFlutter();
       }

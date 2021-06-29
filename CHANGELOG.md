@@ -1,4 +1,4 @@
-## v0.33.1 - 2021-06-29
+## v0.33.2 - 2021-06-29
 * Fix Linux Flatpak persistent storing of data
 
 ## v0.33.0 - 2021-06-26
