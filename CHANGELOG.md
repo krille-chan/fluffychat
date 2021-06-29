@@ -1,3 +1,6 @@
+## v0.33.1 - 2021-06-29
+* Fix Linux Flatpak persistent storing of data
+
 ## v0.33.0 - 2021-06-26
 Just a more minor bugfixing release with some design changes in the settings, updated missing translations and for rebuilding the arm64 Linux Flatpak.
 
