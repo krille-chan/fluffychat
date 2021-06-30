@@ -34,8 +34,6 @@ parts:
   fluffychat:
     plugin: dump
     source: ./build/linux/x64/release/bundle/
-    stage-packages:
-      - libsqlite3-dev
 
 slots:
   dbus-svc:

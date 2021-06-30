@@ -626,7 +626,7 @@ packages:
     source: hosted
     version: "1.0.0"
   moor:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: moor
       url: "https://pub.dartlang.org"
@@ -1039,7 +1039,7 @@ packages:
     source: hosted
     version: "1.8.1"
   sqflite:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: sqflite
       url: "https://pub.dartlang.org"
@@ -1053,7 +1053,7 @@ packages:
     source: hosted
     version: "2.0.0+2"
   sqlite3:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: sqlite3
       url: "https://pub.dartlang.org"
