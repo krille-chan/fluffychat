@@ -557,7 +557,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "setPermissionsLevel": "Stel het machtigingsniveau in",
+  "setPermissionsLevel": "Machtigingsniveau instellen",
   "@setPermissionsLevel": {
     "type": "text",
     "placeholders": {}
