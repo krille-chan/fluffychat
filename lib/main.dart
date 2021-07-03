@@ -2,7 +2,6 @@
 import 'dart:async';
 
 import 'package:adaptive_theme/adaptive_theme.dart';
-import 'package:fluffychat/utils/database/flutter_famedly_sdk_hive_database.dart';
 import 'package:matrix/encryption/utils/key_verification.dart';
 import 'package:matrix/matrix.dart';
 import 'package:fluffychat/config/routes.dart';
@@ -12,7 +11,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'utils/famedlysdk_store.dart';
 import 'utils/localized_exception_extension.dart';
 import 'package:flutter_app_lock/flutter_app_lock.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -20,6 +18,7 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:vrouter/vrouter.dart';
 
+import 'utils/matrix_sdk_extensions.dart/flutter_famedly_sdk_hive_database.dart';
 import 'widgets/layouts/wait_for_login.dart';
 import 'widgets/lock_screen.dart';
 import 'widgets/matrix.dart';
@@ -48,7 +47,6 @@ void main() async {
       'im.ponies.room_emotes', // we want emotes to work properly
     },
     databaseBuilder: FlutterFamedlySdkHiveDatabase.hiveDatabaseBuilder,
-    legacyDatabaseBuilder: getDatabase,
     supportedLoginTypes: {
       AuthenticationTypes.password,
       if (PlatformInfos.isMobile || PlatformInfos.isWeb) AuthenticationTypes.sso
