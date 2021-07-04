@@ -63,16 +63,18 @@ class InputBar extends StatelessWidget {
     if (emojiMatch != null) {
       final packSearch = emojiMatch[1];
       final emoteSearch = emojiMatch[2].toLowerCase();
-      final emotePacks = room.emotePacks;
+      final emotePacks = room.getImagePacks(ImagePackUsage.emoticon);
       if (packSearch == null || packSearch.isEmpty) {
         for (final pack in emotePacks.entries) {
-          for (final emote in pack.value.entries) {
+          for (final emote in pack.value.images.entries) {
             if (emote.key.toLowerCase().contains(emoteSearch)) {
               ret.add({
                 'type': 'emote',
                 'name': emote.key,
                 'pack': pack.key,
-                'mxc': emote.value,
+                'pack_avatar_url': pack.value.pack.avatarUrl?.toString(),
+                'pack_display_name': pack.value.pack.displayName ?? pack.key,
+                'mxc': emote.value.url.toString(),
               });
             }
             if (ret.length > maxResults) {
@@ -84,13 +86,17 @@ class InputBar extends StatelessWidget {
           }
         }
       } else if (emotePacks[packSearch] != null) {
-        for (final emote in emotePacks[packSearch].entries) {
+        for (final emote in emotePacks[packSearch].images.entries) {
           if (emote.key.toLowerCase().contains(emoteSearch)) {
             ret.add({
               'type': 'emote',
               'name': emote.key,
               'pack': packSearch,
-              'mxc': emote.value,
+              'pack_avatar_url':
+                  emotePacks[packSearch].pack.avatarUrl?.toString(),
+              'pack_display_name':
+                  emotePacks[packSearch].pack.displayName ?? packSearch,
+              'mxc': emote.value.url.toString(),
             });
           }
           if (ret.length > maxResults) {
@@ -239,8 +245,15 @@ class InputBar extends StatelessWidget {
               child: Align(
                 alignment: Alignment.centerRight,
                 child: Opacity(
-                  opacity: 0.5,
-                  child: Text(suggestion['pack']),
+                  opacity: suggestion['pack_avatar_url'] != null ? 0.8 : 0.5,
+                  child: suggestion['pack_avatar_url'] != null
+                      ? Avatar(
+                          Uri.parse(suggestion['pack_avatar_url']),
+                          suggestion['pack_display_name'],
+                          size: size * 0.9,
+                          client: client,
+                        )
+                      : Text(suggestion['pack_display_name']),
                 ),
               ),
             ),
@@ -289,12 +302,12 @@ class InputBar extends StatelessWidget {
       var isUnique = true;
       final insertEmote = suggestion['name'];
       final insertPack = suggestion['pack'];
-      final emotePacks = room.emotePacks;
+      final emotePacks = room.getImagePacks(ImagePackUsage.emoticon);
       for (final pack in emotePacks.entries) {
         if (pack.key == insertPack) {
           continue;
         }
-        for (final emote in pack.value.entries) {
+        for (final emote in pack.value.images.entries) {
           if (emote.key == insertEmote) {
             isUnique = false;
             break;
@@ -304,10 +317,7 @@ class InputBar extends StatelessWidget {
           break;
         }
       }
-      insertText = (isUnique
-              ? insertEmote
-              : ':$insertPack~${insertEmote.substring(1)}') +
-          ' ';
+      insertText = ':${isUnique ? '' : insertPack + '~'}$insertEmote: ';
       startText = replaceText.replaceAllMapped(
         RegExp(r'(\s|^)(:(?:[-\w]+~)?[-\w]+)$'),
         (Match m) => '${m[1]}$insertText',

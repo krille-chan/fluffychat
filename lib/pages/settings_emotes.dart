@@ -24,8 +24,6 @@ class EmoteEntry {
   String emote;
   String mxc;
   EmoteEntry({this.emote, this.mxc});
-
-  String get emoteClean => emote.substring(1, emote.length - 1);
 }
 
 class EmotesSettingsController extends State<EmotesSettings> {
@@ -39,54 +37,57 @@ class EmotesSettingsController extends State<EmotesSettings> {
   TextEditingController newEmoteController = TextEditingController();
   TextEditingController newMxcController = TextEditingController();
 
+  ImagePackContent _getPack(BuildContext context) {
+    final client = Matrix.of(context).client;
+    final event = (room != null
+            ? room.getState('im.ponies.room_emotes', stateKey ?? '')
+            : client.accountData['im.ponies.user_emotes']) ??
+        BasicEvent.fromJson(<String, dynamic>{
+          'type': 'm.dummy',
+          'content': <String, dynamic>{},
+        });
+    // make sure we work on a *copy* of the event
+    return BasicEvent.fromJson(event.toJson()).parsedImagePackContent;
+  }
+
   Future<void> _save(BuildContext context) async {
     if (readonly) {
       return;
     }
     final client = Matrix.of(context).client;
-    // be sure to preserve any data not in "short"
-    Map<String, dynamic> content;
-    if (room != null) {
-      content =
-          room.getState('im.ponies.room_emotes', stateKey ?? '')?.content ??
-              <String, dynamic>{};
-    } else {
-      content = client.accountData['im.ponies.user_emotes']?.content ??
-          <String, dynamic>{};
-    }
-    if (!(content['emoticons'] is Map)) {
-      content['emoticons'] = <String, dynamic>{};
-    }
+    final pack = _getPack(context);
     // add / update changed emotes
     final allowedShortcodes = <String>{};
     for (final emote in emotes) {
       allowedShortcodes.add(emote.emote);
-      if (!(content['emoticons'][emote.emote] is Map)) {
-        content['emoticons'][emote.emote] = <String, dynamic>{};
+      if (pack.images.containsKey(emote.emote)) {
+        pack.images[emote.emote].url = Uri.parse(emote.mxc);
+      } else {
+        pack.images[emote.emote] =
+            ImagePackImageContent.fromJson(<String, dynamic>{
+          'url': emote.mxc,
+        });
       }
-      content['emoticons'][emote.emote]['url'] = emote.mxc;
     }
     // remove emotes no more needed
     // we make the iterator .toList() here so that we don't get into trouble modifying the very
     // thing we are iterating over
-    for (final shortcode in content['emoticons'].keys.toList()) {
+    for (final shortcode in pack.images.keys.toList()) {
       if (!allowedShortcodes.contains(shortcode)) {
-        content['emoticons'].remove(shortcode);
+        pack.images.remove(shortcode);
       }
     }
-    // remove the old "short" key
-    content.remove('short');
     if (room != null) {
       await showFutureLoadingDialog(
         context: context,
         future: () => client.setRoomStateWithKey(
-            room.id, 'im.ponies.room_emotes', content, stateKey ?? ''),
+            room.id, 'im.ponies.room_emotes', pack.toJson(), stateKey ?? ''),
       );
     } else {
       await showFutureLoadingDialog(
         context: context,
         future: () => client.setAccountData(
-            client.userID, 'im.ponies.user_emotes', content),
+            client.userID, 'im.ponies.user_emotes', pack.toJson()),
       );
     }
   }
@@ -126,14 +127,13 @@ class EmotesSettingsController extends State<EmotesSettings> {
       });
 
   void submitEmoteAction(
-    String s,
+    String emoteCode,
     EmoteEntry emote,
     TextEditingController controller,
   ) {
-    final emoteCode = ':$s:';
     if (emotes.indexWhere((e) => e.emote == emoteCode && e.mxc != emote.mxc) !=
         -1) {
-      controller.text = emote.emoteClean;
+      controller.text = emote.emote;
       showOkAlertDialog(
         useRootNavigator: false,
         context: context,
@@ -142,8 +142,8 @@ class EmotesSettingsController extends State<EmotesSettings> {
       );
       return;
     }
-    if (!RegExp(r'^:[-\w]+:$').hasMatch(emoteCode)) {
-      controller.text = emote.emoteClean;
+    if (!RegExp(r'^[-\w]+$').hasMatch(emoteCode)) {
+      controller.text = emote.emote;
       showOkAlertDialog(
         useRootNavigator: false,
         context: context,
@@ -190,7 +190,7 @@ class EmotesSettingsController extends State<EmotesSettings> {
       );
       return;
     }
-    final emoteCode = ':${newEmoteController.text}:';
+    final emoteCode = '${newEmoteController.text}';
     final mxc = newMxcController.text;
     if (emotes.indexWhere((e) => e.emote == emoteCode && e.mxc != mxc) != -1) {
       await showOkAlertDialog(
@@ -201,7 +201,7 @@ class EmotesSettingsController extends State<EmotesSettings> {
       );
       return;
     }
-    if (!RegExp(r'^:[-\w]+:$').hasMatch(emoteCode)) {
+    if (!RegExp(r'^[-\w]+$').hasMatch(emoteCode)) {
       await showOkAlertDialog(
         useRootNavigator: false,
         context: context,
@@ -262,35 +262,10 @@ class EmotesSettingsController extends State<EmotesSettings> {
   Widget build(BuildContext context) {
     if (emotes == null) {
       emotes = <EmoteEntry>[];
-      Map<String, dynamic> emoteSource;
-      if (room != null) {
-        emoteSource =
-            room.getState('im.ponies.room_emotes', stateKey ?? '')?.content;
-      } else {
-        emoteSource = Matrix.of(context)
-            .client
-            .accountData['im.ponies.user_emotes']
-            ?.content;
-      }
-      if (emoteSource != null) {
-        if (emoteSource['emoticons'] is Map) {
-          emoteSource['emoticons'].forEach((key, value) {
-            if (key is String &&
-                value is Map &&
-                value['url'] is String &&
-                value['url'].startsWith('mxc://')) {
-              emotes.add(EmoteEntry(emote: key, mxc: value['url']));
-            }
-          });
-        } else if (emoteSource['short'] is Map) {
-          emoteSource['short'].forEach((key, value) {
-            if (key is String &&
-                value is String &&
-                value.startsWith('mxc://')) {
-              emotes.add(EmoteEntry(emote: key, mxc: value));
-            }
-          });
-        }
+      final pack = _getPack(context);
+      for (final entry in pack.images.entries) {
+        emotes
+            .add(EmoteEntry(emote: entry.key, mxc: entry.value.url.toString()));
       }
     }
     return EmotesSettingsView(this);

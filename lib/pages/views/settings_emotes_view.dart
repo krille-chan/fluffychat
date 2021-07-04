@@ -1,8 +1,10 @@
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:matrix/matrix.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import '../../widgets/matrix.dart';
 import '../settings_emotes.dart';
@@ -117,7 +119,9 @@ class EmotesSettingsView extends StatelessWidget {
                               final emote = controller.emotes[i];
                               final textEditingController =
                                   TextEditingController();
-                              textEditingController.text = emote.emoteClean;
+                              textEditingController.text = emote.emote;
+                              final useShortCuts = (PlatformInfos.isWeb ||
+                                  PlatformInfos.isDesktop);
                               return ListTile(
                                 leading: Container(
                                   width: 180.0,
@@ -129,35 +133,60 @@ class EmotesSettingsView extends StatelessWidget {
                                     color:
                                         Theme.of(context).secondaryHeaderColor,
                                   ),
-                                  child: TextField(
-                                    readOnly: controller.readonly,
-                                    controller: textEditingController,
-                                    autocorrect: false,
-                                    minLines: 1,
-                                    maxLines: 1,
-                                    decoration: InputDecoration(
-                                      hintText: L10n.of(context).emoteShortcode,
-                                      prefixText: ': ',
-                                      suffixText: ':',
-                                      prefixStyle: TextStyle(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .secondary,
-                                        fontWeight: FontWeight.bold,
+                                  child: Shortcuts(
+                                    shortcuts: !useShortCuts
+                                        ? {}
+                                        : {
+                                            LogicalKeySet(
+                                                    LogicalKeyboardKey.enter):
+                                                SubmitLineIntent(),
+                                          },
+                                    child: Actions(
+                                      actions: !useShortCuts
+                                          ? {}
+                                          : {
+                                              SubmitLineIntent:
+                                                  CallbackAction(onInvoke: (i) {
+                                                controller.submitEmoteAction(
+                                                  textEditingController.text,
+                                                  emote,
+                                                  textEditingController,
+                                                );
+                                                return null;
+                                              }),
+                                            },
+                                      child: TextField(
+                                        readOnly: controller.readonly,
+                                        controller: textEditingController,
+                                        autocorrect: false,
+                                        minLines: 1,
+                                        maxLines: 1,
+                                        decoration: InputDecoration(
+                                          hintText:
+                                              L10n.of(context).emoteShortcode,
+                                          prefixText: ': ',
+                                          suffixText: ':',
+                                          prefixStyle: TextStyle(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .secondary,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          suffixStyle: TextStyle(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .secondary,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          border: InputBorder.none,
+                                        ),
+                                        onSubmitted: (s) =>
+                                            controller.submitEmoteAction(
+                                          s,
+                                          emote,
+                                          textEditingController,
+                                        ),
                                       ),
-                                      suffixStyle: TextStyle(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .secondary,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                      border: InputBorder.none,
-                                    ),
-                                    onSubmitted: (s) =>
-                                        controller.submitEmoteAction(
-                                      s,
-                                      emote,
-                                      textEditingController,
                                     ),
                                   ),
                                 ),
@@ -232,3 +261,5 @@ class _EmoteImagePickerState extends State<_EmoteImagePicker> {
     }
   }
 }
+
+class SubmitLineIntent extends Intent {}
