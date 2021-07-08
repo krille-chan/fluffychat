@@ -22,6 +22,7 @@ class _RecordingDialogState extends State<RecordingDialog> {
 
   bool error = false;
   String _recordedPath;
+  final _audioRecorder = Record();
 
   void startRecording() async {
     try {
@@ -29,12 +30,13 @@ class _RecordingDialogState extends State<RecordingDialog> {
       _recordedPath =
           '${tempDir.path}/recording${DateTime.now().microsecondsSinceEpoch}.${RecordingDialog.recordingFileType}';
 
-      final result = await Record.hasPermission();
+      final result = await _audioRecorder.hasPermission();
       if (result != true) {
         setState(() => error = true);
         return;
       }
-      await Record.start(path: _recordedPath, encoder: AudioEncoder.AAC);
+      await _audioRecorder.start(
+          path: _recordedPath, encoder: AudioEncoder.AAC);
       setState(() => _duration = Duration.zero);
       _recorderSubscription?.cancel();
       _recorderSubscription = Timer.periodic(Duration(seconds: 1),
@@ -54,7 +56,7 @@ class _RecordingDialogState extends State<RecordingDialog> {
   @override
   void dispose() {
     _recorderSubscription?.cancel();
-    Record.stop();
+    _audioRecorder.stop();
     super.dispose();
   }
 
@@ -110,7 +112,7 @@ class _RecordingDialogState extends State<RecordingDialog> {
           TextButton(
             onPressed: () async {
               _recorderSubscription?.cancel();
-              await Record.stop();
+              await _audioRecorder.stop();
               Navigator.of(context, rootNavigator: false)
                   .pop<String>(_recordedPath);
             },
