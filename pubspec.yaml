@@ -13,7 +13,7 @@ dependencies:
   audioplayers: ^0.19.1
   cached_network_image: ^3.0.0
   cupertino_icons: any
-  desktop_notifications: ^0.5.0
+  desktop_notifications: ^0.4.0 # Version 0.5.0 breaks web builds: https://github.com/canonical/dbus.dart/issues/250
   email_validator: ^2.0.1
   emoji_picker_flutter: ^1.0.6
   fcm_shared_isolate:
