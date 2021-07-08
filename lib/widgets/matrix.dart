@@ -37,11 +37,14 @@ class Matrix extends StatefulWidget {
 
   final Client client;
 
+  final Map<String, String> queryParameters;
+
   Matrix({
     this.child,
     @required this.router,
     @required this.context,
     @required this.client,
+    this.queryParameters,
     Key key,
   }) : super(key: key);
 

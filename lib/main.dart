@@ -57,14 +57,23 @@ void main() async {
     BackgroundPush.clientOnly(client);
   }
 
+  final queryParameters = <String, String>{};
+  if (kIsWeb) {
+    queryParameters
+        .addAll(Uri.parse(html.window.location.href).queryParameters);
+  }
+
   runZonedGuarded(
     () => runApp(PlatformInfos.isMobile
         ? AppLock(
-            builder: (args) => FluffyChatApp(client: client),
+            builder: (args) => FluffyChatApp(
+              client: client,
+              queryParameters: queryParameters,
+            ),
             lockScreen: LockScreen(),
             enabled: false,
           )
-        : FluffyChatApp(client: client)),
+        : FluffyChatApp(client: client, queryParameters: queryParameters)),
     SentryController.captureException,
   );
 }
@@ -72,8 +81,10 @@ void main() async {
 class FluffyChatApp extends StatefulWidget {
   final Widget testWidget;
   final Client client;
+  final Map<String, String> queryParameters;
 
-  const FluffyChatApp({Key key, this.testWidget, @required this.client})
+  const FluffyChatApp(
+      {Key key, this.testWidget, @required this.client, this.queryParameters})
       : super(key: key);
 
   /// getInitialLink may rereturn the value multiple times if this view is

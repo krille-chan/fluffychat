@@ -15,7 +15,6 @@ import 'package:vrouter/vrouter.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:uni_links/uni_links.dart';
-import 'package:universal_html/html.dart' as html;
 
 import '../main.dart';
 
@@ -85,9 +84,8 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     _initReceiveUri();
     if (kIsWeb) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        final token =
-            Uri.parse(html.window.location.href).queryParameters['loginToken'];
-        _loginWithToken(token);
+        final token = Matrix.of(context).widget.queryParameters['loginToken'];
+        if (token != null) _loginWithToken(token);
       });
     }
   }
