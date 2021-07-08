@@ -122,8 +122,8 @@ class HomeserverPickerView extends StatelessWidget {
                                       child: Container(
                                         height: 64,
                                         child: OutlinedButton.icon(
-                                          onPressed: () => VRouter.of(context)
-                                              .push('/login'),
+                                          onPressed: () =>
+                                              VRouter.of(context).to('/login'),
                                           icon: Icon(Icons.login_outlined),
                                           label: Text(L10n.of(context).login),
                                         ),

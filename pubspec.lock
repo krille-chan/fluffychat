@@ -589,7 +589,7 @@ packages:
       name: matrix
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.5"
+    version: "0.1.6"
   matrix_api_lite:
     dependency: transitive
     description:
@@ -1170,7 +1170,7 @@ packages:
       name: unifiedpush
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.6"
+    version: "1.0.3"
   universal_html:
     dependency: "direct main"
     description:
@@ -1268,7 +1268,7 @@ packages:
       name: vrouter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.4+16"
+    version: "1.2.0+4"
   watcher:
     dependency: transitive
     description:

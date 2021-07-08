@@ -36,7 +36,7 @@ class SettingsAccountView extends StatelessWidget {
             ListTile(
               trailing: Icon(Icons.devices_other_outlined),
               title: Text(L10n.of(context).devices),
-              onTap: () => VRouter.of(context).push('devices'),
+              onTap: () => VRouter.of(context).to('devices'),
             ),
             ListTile(
               trailing: Icon(Icons.exit_to_app_outlined),

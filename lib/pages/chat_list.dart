@@ -53,7 +53,7 @@ class ChatListController extends State<ChatList> {
     await BootstrapDialog(
       client: Matrix.of(context).client,
     ).show(context);
-    VRouter.of(context).push('/rooms');
+    VRouter.of(context).to('/rooms');
   }
 
   String get activeChat => VRouter.of(context).pathParameters['roomid'];
@@ -66,7 +66,7 @@ class ChatListController extends State<ChatList> {
 
   void _processIncomingSharedFiles(List<SharedMediaFile> files) {
     if (files?.isEmpty ?? true) return;
-    VRouter.of(context).push('/rooms');
+    VRouter.of(context).to('/rooms');
     final file = File(files.first.path);
 
     Matrix.of(context).shareContent = {
@@ -80,7 +80,7 @@ class ChatListController extends State<ChatList> {
 
   void _processIncomingSharedText(String text) {
     if (text == null) return;
-    VRouter.of(context).push('/rooms');
+    VRouter.of(context).to('/rooms');
     if (text.toLowerCase().startsWith(AppConfig.inviteLinkPrefix) ||
         (text.toLowerCase().startsWith(AppConfig.schemePrefix) &&
             !RegExp(r'\s').hasMatch(text))) {
@@ -97,7 +97,7 @@ class ChatListController extends State<ChatList> {
     if (text.toLowerCase().startsWith(AppConfig.inviteLinkPrefix) ||
         (text.toLowerCase().startsWith(AppConfig.schemePrefix) &&
             !RegExp(r'\s').hasMatch(text))) {
-      VRouter.of(context).push('/rooms');
+      VRouter.of(context).to('/rooms');
       UrlLauncher(context, text).openMatrixToUrl();
       return;
     }
@@ -221,7 +221,7 @@ class ChatListController extends State<ChatList> {
         setStatus();
         break;
       case PopupMenuAction.settings:
-        VRouter.of(context).push('/settings');
+        VRouter.of(context).to('/settings');
         break;
       case PopupMenuAction.invite:
         FluffyShare.share(
@@ -230,10 +230,10 @@ class ChatListController extends State<ChatList> {
             context);
         break;
       case PopupMenuAction.newGroup:
-        VRouter.of(context).push('/newgroup');
+        VRouter.of(context).to('/newgroup');
         break;
       case PopupMenuAction.archive:
-        VRouter.of(context).push('/archive');
+        VRouter.of(context).to('/archive');
         break;
     }
   }

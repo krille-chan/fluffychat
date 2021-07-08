@@ -21,7 +21,7 @@ class ChatPermissionsSettingsView extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.close_outlined),
           onPressed: () =>
-              VRouter.of(context).push('/rooms/${controller.roomId}'),
+              VRouter.of(context).to('/rooms/${controller.roomId}'),
         ),
         title: Text(L10n.of(context).editChatPermissions),
       ),

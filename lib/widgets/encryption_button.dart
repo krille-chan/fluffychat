@@ -21,7 +21,7 @@ class _EncryptionButtonState extends State<EncryptionButton> {
 
   void _enableEncryptionAction() async {
     if (widget.room.encrypted) {
-      VRouter.of(context).push('/rooms/${widget.room.id}/encryption');
+      VRouter.of(context).to('/rooms/${widget.room.id}/encryption');
       return;
     }
     if (widget.room.joinRules == JoinRules.public) {

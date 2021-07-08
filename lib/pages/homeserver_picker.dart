@@ -64,7 +64,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
 
   void _processIncomingUris(String text) async {
     if (text == null || !text.startsWith(AppConfig.appOpenUrlScheme)) return;
-    VRouter.of(context).push('/home');
+    VRouter.of(context).to('/home');
     final token = Uri.parse(text).queryParameters['loginToken'];
     if (token != null) _loginWithToken(token);
   }

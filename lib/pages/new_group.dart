@@ -32,7 +32,7 @@ class NewGroupController extends State<NewGroup> {
       ),
     );
     if (roomID.error == null) {
-      VRouter.of(context).push('/rooms/${roomID.result}/invite');
+      VRouter.of(context).to('/rooms/${roomID.result}/invite');
     }
   }
 

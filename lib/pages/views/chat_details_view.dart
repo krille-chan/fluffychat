@@ -53,7 +53,7 @@ class ChatDetailsView extends StatelessWidget {
                   leading: IconButton(
                     icon: Icon(Icons.close_outlined),
                     onPressed: () =>
-                        VRouter.of(context).push('/rooms/${controller.roomId}'),
+                        VRouter.of(context).to('/rooms/${controller.roomId}'),
                   ),
                   elevation: Theme.of(context).appBarTheme.elevation,
                   expandedHeight: 300.0,
@@ -313,8 +313,8 @@ class ChatDetailsView extends StatelessWidget {
                                 foregroundColor: Colors.grey,
                                 child: Icon(Icons.edit_attributes_outlined),
                               ),
-                              onTap: () => VRouter.of(context).push(
-                                  '/rooms/${room.id}/details/permissions'),
+                              onTap: () => VRouter.of(context)
+                                  .to('/rooms/${room.id}/details/permissions'),
                             ),
                             Divider(thickness: 1),
                             ListTile(
@@ -341,7 +341,7 @@ class ChatDetailsView extends StatelessWidget {
                                       child: Icon(Icons.add_outlined),
                                     ),
                                     onTap: () => VRouter.of(context)
-                                        .push('/rooms/${room.id}/invite'),
+                                        .to('/rooms/${room.id}/invite'),
                                   )
                                 : Container(),
                           ],

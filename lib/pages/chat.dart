@@ -427,7 +427,7 @@ class ChatController extends State<Chat> {
       };
     }
     setState(() => selectedEvents.clear());
-    VRouter.of(context).push('/rooms');
+    VRouter.of(context).to('/rooms');
   }
 
   void sendAgainAction() {
@@ -594,7 +594,7 @@ class ChatController extends State<Chat> {
       future: room.leave,
     );
     if (result.error == null) {
-      VRouter.of(context).push('/rooms/${result.result}');
+      VRouter.of(context).to('/rooms/${result.result}');
     }
   }
 

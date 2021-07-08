@@ -78,7 +78,7 @@ class SearchController extends State<Search> {
       ),
     );
     if (success.error == null) {
-      VRouter.of(context).push('/rooms/${success.result}');
+      VRouter.of(context).to('/rooms/${success.result}');
     }
   }
 

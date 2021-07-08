@@ -47,7 +47,7 @@ class NewPrivateChatController extends State<NewPrivateChat> {
     );
 
     if (roomID.error == null) {
-      VRouter.of(context).push('/rooms/${roomID.result}');
+      VRouter.of(context).to('/rooms/${roomID.result}');
     }
   }
 

@@ -84,7 +84,7 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         break;
       case 'message':
         final roomId = await widget.user.startDirectChat();
-        VRouter.of(widget.outerContext).push('/rooms/$roomId');
+        VRouter.of(widget.outerContext).to('/rooms/$roomId');
         Navigator.of(context, rootNavigator: false).pop();
         break;
     }

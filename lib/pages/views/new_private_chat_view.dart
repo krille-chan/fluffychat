@@ -22,7 +22,7 @@ class NewPrivateChatView extends StatelessWidget {
         elevation: 0,
         actions: [
           TextButton(
-            onPressed: () => VRouter.of(context).push('/newgroup'),
+            onPressed: () => VRouter.of(context).to('/newgroup'),
             child: Text(
               L10n.of(context).createNewGroup,
               style: TextStyle(color: Theme.of(context).colorScheme.secondary),

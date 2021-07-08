@@ -78,7 +78,7 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
               final success = await showFutureLoadingDialog(
                   context: context, future: () => widget.room.leave());
               if (success.error == null) {
-                VRouter.of(context).push('/rooms');
+                VRouter.of(context).to('/rooms');
               }
             }
             break;
@@ -95,7 +95,7 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                     widget.room.setPushRuleState(PushRuleState.notify));
             break;
           case 'details':
-            VRouter.of(context).push('/rooms/${widget.room.id}/details');
+            VRouter.of(context).to('/rooms/${widget.room.id}/details');
             break;
         }
       },

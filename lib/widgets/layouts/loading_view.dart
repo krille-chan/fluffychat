@@ -9,7 +9,7 @@ class LoadingView extends StatelessWidget {
   Widget build(BuildContext context) {
     if (Matrix.of(context).loginState != null) {
       WidgetsBinding.instance.addPostFrameCallback(
-        (_) => context.vRouter.push(
+        (_) => VRouter.of(context).to(
           Matrix.of(context).loginState == LoginState.logged
               ? '/rooms'
               : '/home',

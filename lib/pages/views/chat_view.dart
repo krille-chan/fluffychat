@@ -90,7 +90,7 @@ class ChatView extends StatelessWidget {
                                     ),
                                   )
                               : () => VRouter.of(context)
-                                  .push('/rooms/${controller.room.id}/details'),
+                                  .to('/rooms/${controller.room.id}/details'),
                           title: Text(
                               controller.room.getLocalizedDisplayname(
                                   MatrixLocals(L10n.of(context))),

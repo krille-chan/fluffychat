@@ -24,7 +24,7 @@ class SettingsSecurityView extends StatelessWidget {
             ListTile(
               trailing: Icon(Icons.block_outlined),
               title: Text(L10n.of(context).ignoredUsers),
-              onTap: () => VRouter.of(context).push('ignorelist'),
+              onTap: () => VRouter.of(context).to('ignorelist'),
             ),
             ListTile(
               trailing: Icon(Icons.security_outlined),
@@ -36,7 +36,7 @@ class SettingsSecurityView extends StatelessWidget {
             ListTile(
               trailing: Icon(Icons.email_outlined),
               title: Text(L10n.of(context).passwordRecovery),
-              onTap: () => VRouter.of(context).push('3pid'),
+              onTap: () => VRouter.of(context).to('3pid'),
             ),
             if (Matrix.of(context).client.encryption != null) ...{
               Divider(thickness: 1),

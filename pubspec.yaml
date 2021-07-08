@@ -41,7 +41,7 @@ dependencies:
   image_picker: ^0.7.4
   intl: any
   localstorage: ^4.0.0+1
-  matrix: ^0.1.5
+  matrix: ^0.1.6
   mime_type: ^1.0.0
   native_imaging:
     git:
@@ -64,7 +64,7 @@ dependencies:
   unifiedpush: ^1.0.2
   universal_html: ^2.0.8
   url_launcher: ^6.0.3
-  vrouter: ^1.1.4+16
+  vrouter: ^1.2.0+4
 
 dev_dependencies:
   dapackages: ^1.6.0

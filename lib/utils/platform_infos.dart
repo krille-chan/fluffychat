@@ -56,7 +56,7 @@ abstract class PlatformInfos {
           child: Text(AppConfig.emojiFontName),
         ),
         OutlinedButton(
-          onPressed: () => VRouter.of(context).push('logs'),
+          onPressed: () => VRouter.of(context).to('logs'),
           child: Text('Logs'),
         ),
         SentrySwitchListTile(label: L10n.of(context).sendBugReports),

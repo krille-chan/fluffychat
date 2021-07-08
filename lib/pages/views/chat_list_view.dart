@@ -83,7 +83,7 @@ class ChatListView extends StatelessWidget {
                                 icon: Icon(Icons.search_outlined),
                                 tooltip: L10n.of(context).search,
                                 onPressed: () =>
-                                    VRouter.of(context).push('/search'),
+                                    VRouter.of(context).to('/search'),
                               ),
                               PopupMenuButton<PopupMenuAction>(
                                 onSelected: controller.onPopupMenuSelect,
@@ -295,7 +295,7 @@ class ChatListView extends StatelessWidget {
                     ? FloatingActionButton(
                         heroTag: 'main_fab',
                         onPressed: () =>
-                            VRouter.of(context).push('/newprivatechat'),
+                            VRouter.of(context).to('/newprivatechat'),
                         child: Icon(CupertinoIcons.chat_bubble),
                       )
                     : null,

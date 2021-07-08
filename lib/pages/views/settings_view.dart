@@ -40,22 +40,22 @@ class SettingsView extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.notifications_outlined),
               title: Text(L10n.of(context).notifications),
-              onTap: () => VRouter.of(context).push('/settings/notifications'),
+              onTap: () => VRouter.of(context).to('/settings/notifications'),
             ),
             ListTile(
               leading: Icon(Icons.chat_bubble_outline),
               title: Text(L10n.of(context).chat),
-              onTap: () => VRouter.of(context).push('/settings/chat'),
+              onTap: () => VRouter.of(context).to('/settings/chat'),
             ),
             ListTile(
               leading: Icon(Icons.account_box_outlined),
               title: Text(L10n.of(context).account),
-              onTap: () => VRouter.of(context).push('/settings/account'),
+              onTap: () => VRouter.of(context).to('/settings/account'),
             ),
             ListTile(
               leading: Icon(Icons.security_outlined),
               title: Text(L10n.of(context).security),
-              onTap: () => VRouter.of(context).push('/settings/security'),
+              onTap: () => VRouter.of(context).to('/settings/security'),
             ),
             Divider(thickness: 1),
             ListTile(
