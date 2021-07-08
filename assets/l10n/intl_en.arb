@@ -2044,7 +2044,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "loginWith": "Login with {brand}",
+  "loginWith": "Sign in with {brand}",
   "@loginWith": {
     "type": "text",
     "placeholders": {

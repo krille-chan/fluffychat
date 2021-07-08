@@ -149,9 +149,13 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     final rawProviders = _rawLoginTypes.tryGetList('flows').singleWhere(
         (flow) =>
             flow['type'] == AuthenticationTypes.sso)['identity_providers'];
-    return (rawProviders as List)
+    final list = (rawProviders as List)
         .map((json) => IdentityProvider.fromJson(json))
         .toList();
+    if (!PlatformInfos.isCupertinoStyle) {
+      list.sort((a, b) => a.brand == 'apple' ? -1 : 1);
+    }
+    return list;
   }
 
   bool get passwordLoginSupported =>

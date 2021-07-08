@@ -85,24 +85,26 @@ class HomeserverPickerView extends StatelessWidget {
                               if (controller.ssoLoginSupported) ...{
                                 for (final identityProvider
                                     in controller.identityProviders)
-                                  OutlinedButton.icon(
-                                    onPressed: () => controller
-                                        .ssoLoginAction(identityProvider.id),
-                                    icon: identityProvider.icon == null
-                                        ? Icon(Icons.web_outlined)
-                                        : CachedNetworkImage(
-                                            imageUrl: Uri.parse(
-                                                    identityProvider.icon)
-                                                .getDownloadLink(
-                                                    Matrix.of(context).client)
-                                                .toString(),
-                                            width: 24,
-                                            height: 24,
-                                          ),
-                                    label: Text(L10n.of(context).loginWith(
-                                        identityProvider.brand ??
-                                            identityProvider.name ??
-                                            L10n.of(context).singlesignon)),
+                                  Center(
+                                    child: _LoginButton(
+                                      onPressed: () => controller
+                                          .ssoLoginAction(identityProvider.id),
+                                      icon: identityProvider.icon == null
+                                          ? Icon(Icons.web_outlined)
+                                          : CachedNetworkImage(
+                                              imageUrl: Uri.parse(
+                                                      identityProvider.icon)
+                                                  .getDownloadLink(
+                                                      Matrix.of(context).client)
+                                                  .toString(),
+                                              width: 24,
+                                              height: 24,
+                                            ),
+                                      labelText: L10n.of(context).loginWith(
+                                          identityProvider.name ??
+                                              identityProvider.brand ??
+                                              L10n.of(context).singlesignon),
+                                    ),
                                   ),
                                 if (controller.registrationSupported ||
                                     controller.passwordLoginSupported)
@@ -119,14 +121,11 @@ class HomeserverPickerView extends StatelessWidget {
                                 children: [
                                   if (controller.passwordLoginSupported)
                                     Expanded(
-                                      child: Container(
-                                        height: 64,
-                                        child: OutlinedButton.icon(
-                                          onPressed: () =>
-                                              VRouter.of(context).to('/login'),
-                                          icon: Icon(Icons.login_outlined),
-                                          label: Text(L10n.of(context).login),
-                                        ),
+                                      child: _LoginButton(
+                                        onPressed: () =>
+                                            VRouter.of(context).to('/login'),
+                                        icon: Icon(Icons.login_outlined),
+                                        labelText: L10n.of(context).login,
                                       ),
                                     ),
                                   if (controller.registrationSupported &&
@@ -134,14 +133,10 @@ class HomeserverPickerView extends StatelessWidget {
                                     SizedBox(width: 12),
                                   if (controller.registrationSupported)
                                     Expanded(
-                                      child: Container(
-                                        height: 64,
-                                        child: OutlinedButton.icon(
-                                          onPressed: controller.signUpAction,
-                                          icon: Icon(Icons.add_box_outlined),
-                                          label:
-                                              Text(L10n.of(context).register),
-                                        ),
+                                      child: _LoginButton(
+                                        onPressed: controller.signUpAction,
+                                        icon: Icon(Icons.add_box_outlined),
+                                        labelText: L10n.of(context).register,
                                       ),
                                     ),
                                 ],
@@ -157,11 +152,7 @@ class HomeserverPickerView extends StatelessWidget {
                           ),
                         );
                       }),
-        ]),
-        bottomNavigationBar: Material(
-          elevation: 7,
-          color: Theme.of(context).scaffoldBackgroundColor,
-          child: Wrap(
+          Wrap(
             alignment: WrapAlignment.center,
             children: [
               TextButton(
@@ -186,6 +177,39 @@ class HomeserverPickerView extends StatelessWidget {
               ),
             ],
           ),
+        ]),
+      ),
+    );
+  }
+}
+
+class _LoginButton extends StatelessWidget {
+  final String labelText;
+  final Widget icon;
+  final void Function() onPressed;
+  const _LoginButton({
+    Key key,
+    this.labelText,
+    this.icon,
+    this.onPressed,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return OutlinedButton.icon(
+      style: OutlinedButton.styleFrom(
+          minimumSize: Size(256, 56),
+          side: BorderSide(
+            color: Theme.of(context).textTheme.bodyText1.color,
+          ),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(90))),
+      onPressed: onPressed,
+      icon: icon,
+      label: Text(
+        labelText,
+        style: TextStyle(
+          color: Theme.of(context).textTheme.bodyText1.color,
         ),
       ),
     );
