@@ -458,7 +458,7 @@ packages:
       name: flutter_typeahead
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.1.3"
+    version: "3.2.0"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
@@ -1345,7 +1345,7 @@ packages:
       name: vrouter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.0+4"
+    version: "1.2.0+5"
   watcher:
     dependency: transitive
     description:
