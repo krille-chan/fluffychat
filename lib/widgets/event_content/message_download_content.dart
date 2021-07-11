@@ -24,7 +24,7 @@ class MessageDownloadContent extends StatelessWidget {
               primary: Theme.of(context).scaffoldBackgroundColor,
               onPrimary: Theme.of(context).textTheme.bodyText1.color,
             ),
-            onPressed: () => event.openFile(context),
+            onPressed: () => event.saveFile(context),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [

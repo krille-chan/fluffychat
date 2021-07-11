@@ -1,45 +1,53 @@
 import 'dart:io';
 
-import 'package:android_path_provider/android_path_provider.dart';
 import 'package:matrix/matrix.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:flutter/foundation.dart';
-import 'package:open_file/open_file.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:universal_html/html.dart' as html;
-import 'package:mime_type/mime_type.dart';
+import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:file_picker_cross/file_picker_cross.dart';
+import 'package:filesystem_picker/filesystem_picker.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 extension MatrixFileExtension on MatrixFile {
-  void open() async {
-    if (kIsWeb) {
-      final fileName = name.split('/').last;
-      final mimeType = mime(fileName);
-      final element = html.document.createElement('a');
-      element.setAttribute(
-          'href', html.Url.createObjectUrlFromBlob(html.Blob([bytes])));
-      element.setAttribute('target', '_blank');
-      element.setAttribute('rel', 'noopener');
-      element.setAttribute('download', fileName);
-      element.setAttribute('type', mimeType);
-      element.style.display = 'none';
-      html.document.body.append(element);
-      element.click();
-      element.remove();
+  void save(BuildContext context) async {
+    if (PlatformInfos.isMobile &&
+        !(await Permission.storage.request()).isGranted) return;
+    final fileName = name.split('/').last;
+    if (PlatformInfos.isAndroid) {
+      final path = await FilesystemPicker.open(
+        title: L10n.of(context).saveFile,
+        context: context,
+        rootDirectory: Directory('/sdcard/'),
+        fsType: FilesystemType.folder,
+        pickText: L10n.of(context).saveFileToFolder,
+        folderIconColor: Theme.of(context).primaryColor,
+        requestPermission: () async =>
+            await Permission.storage.request().isGranted,
+      );
+      if (path != null) {
+        // determine a unique filename
+        // somefile-number.extension, e.g. helloworld-1.txt
+        var file = File('$path/$fileName');
+        var i = 0;
+        var extension = '';
+        if (fileName.contains('.')) {
+          extension = fileName.substring(fileName.lastIndexOf('.'));
+        }
+        final fileNameWithoutExtension =
+            fileName.substring(0, fileName.lastIndexOf('.'));
+        while (await file.exists()) {
+          i++;
+          file = File('$path/$fileNameWithoutExtension-$i$extension');
+        }
+        await file.writeAsBytes(bytes);
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content:
+                Text(L10n.of(context).savedFileAs(file.path.split('/').last))));
+      }
     } else {
-      if (PlatformInfos.isMobile &&
-          !(await Permission.storage.request()).isGranted) return;
-      final downloadsDir = PlatformInfos.isDesktop
-          ? (await getDownloadsDirectory()).path
-          : Platform.isAndroid
-              ? (await AndroidPathProvider.downloadsPath)
-              : (await getApplicationDocumentsDirectory()).path;
-
-      final file = File(downloadsDir + '/' + name.split('/').last);
-      file.writeAsBytesSync(bytes);
-      await OpenFile.open(file.path);
+      final file = FilePickerCross(bytes);
+      await file.exportToStorage(fileName: fileName);
     }
-    return;
   }
 
   MatrixFile get detectFileType {

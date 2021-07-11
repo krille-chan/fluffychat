@@ -9,7 +9,6 @@ environment:
 dependencies:
   adaptive_dialog: ^1.0.1
   adaptive_theme: ^2.2.0
-  android_path_provider: ^0.2.1
   audioplayers: ^0.19.1
   cached_network_image: ^3.0.0
   cupertino_icons: any
@@ -21,6 +20,7 @@ dependencies:
       url: https://gitlab.com/famedly/libraries/fcm_shared_isolate.git
       ref: main
   file_picker_cross: ^4.4.2
+  filesystem_picker: ^1.0.4
   flutter:
     sdk: flutter
   flutter_app_lock: ^1.5.0
@@ -42,12 +42,10 @@ dependencies:
   intl: any
   localstorage: ^4.0.0+1
   matrix: ^0.1.7
-  mime_type: ^1.0.0
   native_imaging:
     git:
       url: https://gitlab.com/famedly/libraries/native_imaging.git
       ref: master
-  open_file: ^3.2.1
   open_noti_settings: ^0.2.0
   package_info_plus: ^1.0.3
   path_provider: ^2.0.2

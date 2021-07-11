@@ -2471,5 +2471,22 @@
   "@yourOwnUsername": {
     "type": "text",
     "placeholders": {}
+  },
+  "saveFile": "Save file",
+  "@saveFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveFileToFolder": "Save file to this foler",
+  "@saveFileToFolder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "savedFileAs": "Saved file as {filename}",
+  "@savedFileAs": {
+    "type": "text",
+    "placeholders": {
+      "filename": {}
+    }
   }
 }
