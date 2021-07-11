@@ -10,6 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import '../utils/platform_infos.dart';
 import 'package:email_validator/email_validator.dart';
+import '../config/app_config.dart';
+import '../config/setting_keys.dart';
 
 import 'views/login_view.dart';
 
@@ -102,6 +104,19 @@ class LoginController extends State<Login> {
       final newDomain = wellKnownInformations.mHomeserver?.baseUrl;
       if ((newDomain?.isNotEmpty ?? false) &&
           newDomain != Matrix.of(context).client.homeserver.toString()) {
+        var jitsi = wellKnownInformations?.content
+            ?.tryGet<Map<String, dynamic>>('im.vector.riot.jitsi')
+            ?.tryGet<String>('preferredDomain');
+        if (jitsi != null) {
+          if (!jitsi.endsWith('/')) {
+            jitsi += '/';
+          }
+          Logs().v('Found custom jitsi instance $jitsi');
+          await Matrix.of(context)
+              .store
+              .setItem(SettingKeys.jitsiInstance, jitsi);
+          AppConfig.jitsiInstance = jitsi;
+        }
         await showFutureLoadingDialog(
           context: context,
           future: () => Matrix.of(context).client.checkHomeserver(newDomain),
