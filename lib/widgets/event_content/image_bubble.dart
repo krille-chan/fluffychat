@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:matrix/matrix.dart';
 import 'package:fluffychat/pages/image_viewer.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_blurhash/flutter_blurhash.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../utils/matrix_sdk_extensions.dart/event_extension.dart';
 import '../matrix.dart';
@@ -42,10 +45,15 @@ class _ImageBubbleState extends State<ImageBubble> {
   MatrixFile _thumbnail;
   bool _requestedThumbnailOnFailure = false;
 
-  bool get isSvg =>
-      widget.event.attachmentMimetype.split('+').first == 'image/svg';
-  bool get isThumbnailSvg =>
-      widget.event.thumbnailMimetype.split('+').first == 'image/svg';
+  // overrides for certain mimetypes if they need different images to render
+  // memory are for in-memory renderers (e2ee rooms), network for network url renderers.
+  // The map values themself are set in initState() as they need to be able to access
+  // `this`.
+  final _contentRenderers = <String, _ImageBubbleContentRenderer>{};
+
+  String getMimetype([bool thumbnail = false]) => thumbnail
+      ? widget.event.thumbnailMimetype
+      : widget.event.attachmentMimetype;
 
   MatrixFile get _displayFile => _file ?? _thumbnail;
   String get displayUrl => widget.thumbnailOnly ? thumbnailUrl : attachmentUrl;
@@ -81,6 +89,32 @@ class _ImageBubbleState extends State<ImageBubble> {
 
   @override
   void initState() {
+    _contentRenderers['image/svg+xml'] = _ImageBubbleContentRenderer(
+      memory: (Uint8List bytes, String key) => SvgPicture.memory(
+        bytes,
+        key: ValueKey(key),
+        fit: widget.fit,
+      ),
+      network: (String url) => SvgPicture.network(
+        url,
+        key: ValueKey(url),
+        placeholderBuilder: (context) => getPlaceholderWidget(),
+        fit: widget.fit,
+      ),
+    );
+    _contentRenderers['image/lottie+json'] = _ImageBubbleContentRenderer(
+      memory: (Uint8List bytes, String key) => Lottie.memory(
+        bytes,
+        key: ValueKey(key),
+        fit: widget.fit,
+      ),
+      network: (String url) => Lottie.network(
+        url,
+        key: ValueKey(url),
+        fit: widget.fit,
+      ),
+    );
+
     thumbnailUrl = widget.event
         .getAttachmentUrl(getThumbnail: true, animated: true)
         ?.toString();
@@ -148,12 +182,9 @@ class _ImageBubbleState extends State<ImageBubble> {
     final key = isOriginal
         ? widget.event.attachmentMxcUrl
         : widget.event.thumbnailMxcUrl;
-    if (isOriginal ? isSvg : isThumbnailSvg) {
-      return SvgPicture.memory(
-        _displayFile.bytes,
-        key: ValueKey(key),
-        fit: widget.fit,
-      );
+    final mimetype = getMimetype(!isOriginal);
+    if (_contentRenderers.containsKey(mimetype)) {
+      return _contentRenderers[mimetype].memory(_displayFile.bytes, key);
     } else {
       return Image.memory(
         _displayFile.bytes,
@@ -164,14 +195,10 @@ class _ImageBubbleState extends State<ImageBubble> {
   }
 
   Widget getNetworkWidget() {
+    final mimetype = getMimetype(!_requestedThumbnailOnFailure);
     if (displayUrl == attachmentUrl &&
-        (_requestedThumbnailOnFailure ? isSvg : isThumbnailSvg)) {
-      return SvgPicture.network(
-        displayUrl,
-        key: ValueKey(displayUrl),
-        placeholderBuilder: (context) => getPlaceholderWidget(),
-        fit: widget.fit,
-      );
+        _contentRenderers.containsKey(mimetype)) {
+      return _contentRenderers[mimetype].network(displayUrl);
     } else {
       return CachedNetworkImage(
         // as we change the url on-error we need a key so that the widget actually updates
@@ -271,4 +298,11 @@ class _ImageBubbleState extends State<ImageBubble> {
       ),
     );
   }
+}
+
+class _ImageBubbleContentRenderer {
+  final Widget Function(Uint8List, String) memory;
+  final Widget Function(String) network;
+
+  _ImageBubbleContentRenderer({this.memory, this.network});
 }
