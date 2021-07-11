@@ -2377,7 +2377,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "loginWith": "Prijava s {brand}",
+  "loginWith": "Prijavi se s {brand}",
   "@loginWith": {
     "type": "text",
     "placeholders": {

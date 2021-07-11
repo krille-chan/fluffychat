@@ -2377,7 +2377,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "loginWith": "Přihlaste se pomocí {brand}",
+  "loginWith": "Přihlásit se pomocí {značky}",
   "@loginWith": {
     "type": "text",
     "placeholders": {
