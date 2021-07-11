@@ -1,3 +1,11 @@
+## v0.33.3 - 2021-07-11
+Another bugfixing release to solve some problems and republish the app on iOS.
+
+### Changes
+* Redesign SSO buttons
+* Update dependencies [8fef28a]
+* Remove moor database (no migration from here possible) [9c47cbf]
+
 ## v0.33.2 - 2021-06-29
 * Fix Linux Flatpak persistent storing of data
 
