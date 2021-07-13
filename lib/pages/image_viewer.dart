@@ -24,8 +24,8 @@ class ImageViewerController extends State<ImageViewer> {
     VRouter.of(context).to('/rooms');
   }
 
-  /// Open this file with a system call.
-  void openFileAction() => widget.event.openFile(context);
+  /// Save this file with a system call.
+  void saveFileAction() => widget.event.saveFile(context);
 
   /// Go back if user swiped it away
   void onInteractionEnds(ScaleEndDetails endDetails) {

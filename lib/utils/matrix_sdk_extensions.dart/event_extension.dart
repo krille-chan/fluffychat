@@ -6,12 +6,13 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'matrix_file_extension.dart';
 
 extension LocalizedBody on Event {
-  void openFile(BuildContext context) async {
+  void saveFile(BuildContext context) async {
     final matrixFile = await showFutureLoadingDialog(
       context: context,
       future: () => downloadAndDecryptAttachmentCached(),
     );
-    matrixFile.result?.open();
+
+    matrixFile.result?.save(context);
   }
 
   IconData get statusIcon {

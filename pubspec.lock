@@ -29,13 +29,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.5.0"
-  android_path_provider:
-    dependency: "direct main"
-    description:
-      name: android_path_provider
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.2.1"
   animations:
     dependency: transitive
     description:
@@ -297,6 +290,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.0.2"
+  filesystem_picker:
+    dependency: "direct main"
+    description:
+      name: filesystem_picker
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.4"
   firebase_core:
     dependency: transitive
     description:
@@ -653,13 +653,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
-  mime_type:
-    dependency: "direct main"
-    description:
-      name: mime_type
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0"
   moor:
     dependency: transitive
     description:
@@ -711,13 +704,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
-  open_file:
-    dependency: "direct main"
-    description:
-      name: open_file
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.2.1"
   open_noti_settings:
     dependency: "direct main"
     description:
