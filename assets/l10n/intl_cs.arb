@@ -2489,5 +2489,22 @@
   "@commandHintSend": {
     "type": "text",
     "description": "Usage hint for the command /send"
+  },
+  "savedFileAs": "Uložený soubor jako {název souboru}",
+  "@savedFileAs": {
+    "type": "text",
+    "placeholders": {
+      "filename": {}
+    }
+  },
+  "saveFileToFolder": "Uložte soubor do této složky",
+  "@saveFileToFolder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveFile": "Uložit soubor",
+  "@saveFile": {
+    "type": "text",
+    "placeholders": {}
   }
 }
