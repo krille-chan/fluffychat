@@ -2480,5 +2480,22 @@
   "@commandHintSend": {
     "type": "text",
     "description": "Usage hint for the command /send"
+  },
+  "savedFileAs": "Bestand opgeslagen als {filename}",
+  "@savedFileAs": {
+    "type": "text",
+    "placeholders": {
+      "filename": {}
+    }
+  },
+  "saveFileToFolder": "Bestand opslaan in deze map",
+  "@saveFileToFolder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveFile": "Bestand opslaan",
+  "@saveFile": {
+    "type": "text",
+    "placeholders": {}
   }
 }
