@@ -10,6 +10,8 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart';
 
+import '../platform_infos.dart';
+
 class FlutterFamedlySdkHiveDatabase extends FamedlySdkHiveDatabase {
   FlutterFamedlySdkHiveDatabase(String name, {HiveCipher encryptionCipher})
       : super(
@@ -24,7 +26,7 @@ class FlutterFamedlySdkHiveDatabase extends FamedlySdkHiveDatabase {
       Client client) async {
     if (!kIsWeb && !_hiveInitialized) {
       Logs().i('Init Hive database...');
-      if (!kIsWeb && Platform.isLinux) {
+      if (PlatformInfos.isLinux) {
         Hive.init((await getApplicationSupportDirectory()).path);
       } else {
         await Hive.initFlutter();
@@ -67,13 +69,18 @@ class FlutterFamedlySdkHiveDatabase extends FamedlySdkHiveDatabase {
   @override
   int get maxFileSize => supportsFileStoring ? 100 * 1024 * 1024 : 0;
   @override
-  bool get supportsFileStoring =>
-      !kIsWeb && (Platform.isIOS || Platform.isAndroid);
+  bool get supportsFileStoring => (PlatformInfos.isIOS ||
+      PlatformInfos.isAndroid ||
+      PlatformInfos.isDesktop);
 
   Future<String> _getFileStoreDirectory() async {
     try {
-      return (await getApplicationDocumentsDirectory()).path;
-    } on MissingPlatformDirectoryException catch (_) {
+      try {
+        return (await getApplicationSupportDirectory()).path;
+      } on MissingPlatformDirectoryException {
+        return (await getApplicationDocumentsDirectory()).path;
+      }
+    } on MissingPlatformDirectoryException {
       return (await getDownloadsDirectory()).path;
     }
   }
