@@ -288,6 +288,7 @@ class ChatController extends State<Chat> {
   }
 
   void openCameraAction() async {
+    inputFocus.unfocus();
     final file = await ImagePicker().getImage(source: ImageSource.camera);
     if (file == null) return;
     final bytes = await file.readAsBytes();
