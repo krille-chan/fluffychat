@@ -1,3 +1,17 @@
+## v0.34.0 - 2021-07-21
+Mostly bugfixes and one new feature: Lottie file rendering.
+
+### All changes:
+* feat: Add rendering of lottie files
+* fix: Check for jitsi server in well-known lookup also on login screen
+* fix: show thumbnails in timeline on desktop
+* feat: Add a proper file saver
+* feat: Better detect the device type from the device name
+* fix: Workaround for iOS not removing the app badge
+* fix: Keyboard hides imagePicker buttons on iOS
+* feat: Add rendering of lottie files
+* fix: Don't allow backup of the android app
+
 ## v0.33.3 - 2021-07-11
 Another bugfixing release to solve some problems and republish the app on iOS.
 
