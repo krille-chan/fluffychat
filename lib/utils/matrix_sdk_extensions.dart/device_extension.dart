@@ -1,19 +1,38 @@
 import 'package:matrix/matrix.dart';
 import 'package:flutter/material.dart';
 
+IconData _getIconFromName(String displayname) {
+  final name = displayname.toLowerCase();
+  if ({'android'}.any((s) => name.contains(s))) {
+    return Icons.phone_android_outlined;
+  }
+  if ({'ios', 'ipad', 'iphone', 'ipod'}.any((s) => name.contains(s))) {
+    return Icons.phone_iphone_outlined;
+  }
+  if ({
+    'web',
+    'http://',
+    'https://',
+    'firefox',
+    'chrome',
+    '/_matrix',
+    'safari',
+    'opera',
+  }.any((s) => name.contains(s))) {
+    return Icons.web_outlined;
+  }
+  if ({'desktop', 'windows', 'macos', 'linux', 'ubuntu'}
+      .any((s) => name.contains(s))) {
+    return Icons.desktop_mac_outlined;
+  }
+  return Icons.device_unknown_outlined;
+}
+
 extension DeviceExtension on Device {
   String get displayname =>
       (displayName?.isNotEmpty ?? false) ? displayName : 'Unknown device';
 
-  IconData get icon => displayname.toLowerCase().contains('android')
-      ? Icons.phone_android_outlined
-      : displayname.toLowerCase().contains('ios')
-          ? Icons.phone_iphone_outlined
-          : displayname.toLowerCase().contains('web')
-              ? Icons.web_outlined
-              : displayname.toLowerCase().contains('desktop')
-                  ? Icons.desktop_mac_outlined
-                  : Icons.device_unknown_outlined;
+  IconData get icon => _getIconFromName(displayname);
 }
 
 extension DeviceKeysExtension on DeviceKeys {
@@ -21,13 +40,5 @@ extension DeviceKeysExtension on DeviceKeys {
       ? deviceDisplayName
       : 'Unknown device';
 
-  IconData get icon => displayname.toLowerCase().contains('android')
-      ? Icons.phone_android_outlined
-      : displayname.toLowerCase().contains('ios')
-          ? Icons.phone_iphone_outlined
-          : displayname.toLowerCase().contains('web')
-              ? Icons.web_outlined
-              : displayname.toLowerCase().contains('desktop')
-                  ? Icons.desktop_mac_outlined
-                  : Icons.device_unknown_outlined;
+  IconData get icon => _getIconFromName(displayname);
 }
