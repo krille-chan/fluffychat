@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:flutter_app_badger/flutter_app_badger.dart';
 
 import 'package:matrix/matrix.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
@@ -200,6 +201,7 @@ class ChatController extends State<Chat> {
             (r.notificationCount != null && r.notificationCount > 0))) {
           // ignore: unawaited_futures
           FlutterLocalNotificationsPlugin().cancelAll();
+          FlutterAppBadger.removeBadge();
         }
       }
     }

@@ -23,6 +23,7 @@ dependencies:
   file_picker_cross: ^4.4.2
   flutter:
     sdk: flutter
+  flutter_app_badger: ^1.2.0
   flutter_app_lock: ^1.5.0
   flutter_blurhash: ^0.6.0
   flutter_cache_manager: ^3.1.2
