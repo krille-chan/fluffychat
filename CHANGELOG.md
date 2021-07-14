@@ -1,4 +1,7 @@
-## v0.34.0 - 2021-07-21
+## v0.34.1 - 2021-07-14
+Bugfix image picker on Android 11
+
+## v0.34.0 - 2021-07-13
 Mostly bugfixes and one new feature: Lottie file rendering.
 
 ### All changes:
