@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:matrix/matrix.dart';
 import 'package:fluffychat/pages/views/homeserver_picker_view.dart';
 import 'package:fluffychat/utils/famedlysdk_store.dart';
@@ -63,6 +64,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
 
   void _processIncomingUris(String text) async {
     if (text == null || !text.startsWith(AppConfig.appOpenUrlScheme)) return;
+    await browser?.close();
     VRouter.of(context).to('/home');
     final token = Uri.parse(text).queryParameters['loginToken'];
     if (token != null) _loginWithToken(token);
@@ -150,7 +152,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     final list = (rawProviders as List)
         .map((json) => IdentityProvider.fromJson(json))
         .toList();
-    if (!PlatformInfos.isCupertinoStyle) {
+    if (PlatformInfos.isCupertinoStyle) {
       list.sort((a, b) => a.brand == 'apple' ? -1 : 1);
     }
     return list;
@@ -190,6 +192,8 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     return _rawLoginTypes;
   }
 
+  ChromeSafariBrowser browser;
+
   static const String ssoHomeserverKey = 'sso-homeserver';
 
   void ssoLoginAction(String id) {
@@ -202,14 +206,21 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     final redirectUrl = kIsWeb
         ? AppConfig.webBaseUrl + '/#/'
         : AppConfig.appOpenUrlScheme.toLowerCase() + '://login';
-    launch(
-      '${Matrix.of(context).client.homeserver?.toString()}/_matrix/client/r0/login/sso/redirect/${Uri.encodeComponent(id)}?redirectUrl=${Uri.encodeQueryComponent(redirectUrl)}',
-      forceSafariVC: false,
-    );
+    final url =
+        '${Matrix.of(context).client.homeserver?.toString()}/_matrix/client/r0/login/sso/redirect/${Uri.encodeComponent(id)}?redirectUrl=${Uri.encodeQueryComponent(redirectUrl)}';
+    if (PlatformInfos.isIOS) {
+      browser ??= ChromeSafariBrowser();
+      browser.open(url: Uri.parse(url));
+    } else {
+      launch(redirectUrl, forceWebView: true);
+    }
   }
 
   void signUpAction() => launch(
-      '${Matrix.of(context).client.homeserver?.toString()}/_matrix/static/client/register');
+        '${Matrix.of(context).client.homeserver?.toString()}/_matrix/static/client/register',
+        forceSafariVC: true,
+        forceWebView: true,
+      );
 
   bool _initialized = false;
 

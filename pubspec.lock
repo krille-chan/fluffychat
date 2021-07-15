@@ -365,6 +365,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.7.0"
+  flutter_inappwebview:
+    dependency: "direct main"
+    description:
+      name: flutter_inappwebview
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.3.2"
   flutter_keyboard_visibility:
     dependency: transitive
     description:
@@ -551,10 +558,12 @@ packages:
   image_picker:
     dependency: "direct main"
     description:
-      name: image_picker
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.8.1+3"
+      path: "packages/image_picker/image_picker"
+      ref: image_picker_camera_on_android11
+      resolved-ref: "6cfc8b8812a71e4eb3480110298d9487da75c560"
+      url: "https://gitlab.com/famedly/company/frontend/flutter-plugins.git"
+    source: git
+    version: "0.8.1+4"
   image_picker_for_web:
     dependency: transitive
     description:

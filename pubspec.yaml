@@ -1,7 +1,7 @@
 name: fluffychat
 description: Chat with your friends.
 publish_to: none
-version: 0.34.1+0
+version: 0.34.1+1
 
 environment:
   sdk: ">=2.6.0 <3.0.0"
@@ -27,6 +27,7 @@ dependencies:
   flutter_app_lock: ^1.5.0
   flutter_blurhash: ^0.6.0
   flutter_cache_manager: ^3.1.2
+  flutter_inappwebview: ^5.3.2
   flutter_local_notifications: ^6.0.0
   flutter_localizations:
     sdk: flutter
