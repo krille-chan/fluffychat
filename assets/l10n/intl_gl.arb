@@ -2489,5 +2489,22 @@
   "@commandHintSend": {
     "type": "text",
     "description": "Usage hint for the command /send"
+  },
+  "savedFileAs": "Ficheiro gardado como {filename}",
+  "@savedFileAs": {
+    "type": "text",
+    "placeholders": {
+      "filename": {}
+    }
+  },
+  "saveFileToFolder": "Gardar ficheiro neste cartafol",
+  "@saveFileToFolder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveFile": "Gardar ficheiro",
+  "@saveFile": {
+    "type": "text",
+    "placeholders": {}
   }
 }
