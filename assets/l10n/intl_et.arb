@@ -2489,5 +2489,22 @@
   "@commandHintSend": {
     "type": "text",
     "description": "Usage hint for the command /send"
+  },
+  "savedFileAs": "Salvestasin faili nimega {filename}",
+  "@savedFileAs": {
+    "type": "text",
+    "placeholders": {
+      "filename": {}
+    }
+  },
+  "saveFileToFolder": "Salvesta fail sellesse kausta",
+  "@saveFileToFolder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveFile": "Salvesta fail",
+  "@saveFile": {
+    "type": "text",
+    "placeholders": {}
   }
 }
