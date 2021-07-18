@@ -1179,7 +1179,7 @@ packages:
       name: swipe_to_action
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.0"
+    version: "0.2.0"
   synchronized:
     dependency: transitive
     description:

@@ -208,11 +208,11 @@ class HomeserverPickerController extends State<HomeserverPicker> {
         : AppConfig.appOpenUrlScheme.toLowerCase() + '://login';
     final url =
         '${Matrix.of(context).client.homeserver?.toString()}/_matrix/client/r0/login/sso/redirect/${Uri.encodeComponent(id)}?redirectUrl=${Uri.encodeQueryComponent(redirectUrl)}';
-    if (PlatformInfos.isIOS) {
+    if (PlatformInfos.isMobile) {
       browser ??= ChromeSafariBrowser();
       browser.open(url: Uri.parse(url));
     } else {
-      launch(redirectUrl, forceWebView: true);
+      launch(redirectUrl);
     }
   }
 
