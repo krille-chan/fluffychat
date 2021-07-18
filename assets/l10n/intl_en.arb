@@ -2086,6 +2086,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "tapToShowImage": "Tap to show image",
+  "@tapToShowImage": {
+    "type": "text",
+    "placeholders": {}
+  },
   "theyDontMatch": "They Don't Match",
   "@theyDontMatch": {
     "type": "text",
