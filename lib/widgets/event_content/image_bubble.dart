@@ -8,6 +8,7 @@ import 'package:flutter_blurhash/flutter_blurhash.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lottie/lottie.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import '../../utils/matrix_sdk_extensions.dart/event_extension.dart';
 import '../matrix.dart';
@@ -39,11 +40,25 @@ class ImageBubble extends StatefulWidget {
 }
 
 class _ImageBubbleState extends State<ImageBubble> {
+  // for plaintext: holds the http URL for the thumbnail
   String thumbnailUrl;
+  // for plaintext: holds the http URL of the original
   String attachmentUrl;
   MatrixFile _file;
   MatrixFile _thumbnail;
   bool _requestedThumbnailOnFailure = false;
+
+  // the mimetypes that we know how to render, from the flutter Image widget
+  final _knownMimetypes = <String>{
+    'image/jpg',
+    'image/jpeg',
+    'image/png',
+    'image/apng',
+    'image/webp',
+    'image/gif',
+    'image/bmp',
+    'image/x-bmp',
+  };
 
   // overrides for certain mimetypes if they need different images to render
   // memory are for in-memory renderers (e2ee rooms), network for network url renderers.
@@ -52,8 +67,8 @@ class _ImageBubbleState extends State<ImageBubble> {
   final _contentRenderers = <String, _ImageBubbleContentRenderer>{};
 
   String getMimetype([bool thumbnail = false]) => thumbnail
-      ? widget.event.thumbnailMimetype
-      : widget.event.attachmentMimetype;
+      ? widget.event.thumbnailMimetype.toLowerCase()
+      : widget.event.attachmentMimetype.toLowerCase();
 
   MatrixFile get _displayFile => _file ?? _thumbnail;
   String get displayUrl => widget.thumbnailOnly ? thumbnailUrl : attachmentUrl;
@@ -89,6 +104,7 @@ class _ImageBubbleState extends State<ImageBubble> {
 
   @override
   void initState() {
+    // add the custom renderers for other mimetypes
     _contentRenderers['image/svg+xml'] = _ImageBubbleContentRenderer(
       memory: (Uint8List bytes, String key) => SvgPicture.memory(
         bytes,
@@ -107,13 +123,22 @@ class _ImageBubbleState extends State<ImageBubble> {
         bytes,
         key: ValueKey(key),
         fit: widget.fit,
+        errorBuilder: (context, error, stacktrace) =>
+            getErrorWidget(context, error),
       ),
       network: (String url) => Lottie.network(
         url,
         key: ValueKey(url),
         fit: widget.fit,
+        errorBuilder: (context, error, stacktrace) =>
+            getErrorWidget(context, error),
       ),
     );
+
+    // add all the custom content renderer mimetypes to the known mimetypes set
+    for (final key in _contentRenderers.keys) {
+      _knownMimetypes.add(key);
+    }
 
     thumbnailUrl = widget.event
         .getAttachmentUrl(getThumbnail: true, animated: true)
@@ -136,15 +161,43 @@ class _ImageBubbleState extends State<ImageBubble> {
     super.initState();
   }
 
-  Widget getErrorWidget() {
+  Widget getErrorWidget(BuildContext context, [dynamic error]) {
+    final String filename = widget.event.content.containsKey('filename')
+        ? widget.event.content['filename']
+        : widget.event.body;
     return Center(
-      child: Text(
-        _error.toString(),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Theme.of(context).scaffoldBackgroundColor,
+              onPrimary: Theme.of(context).textTheme.bodyText1.color,
+            ),
+            onPressed: () => widget.event.saveFile(context),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(Icons.download_outlined),
+                SizedBox(width: 8),
+                Text(
+                  filename,
+                  overflow: TextOverflow.fade,
+                  softWrap: false,
+                  maxLines: 1,
+                ),
+              ],
+            ),
+          ),
+          if (widget.event.sizeString != null) Text(widget.event.sizeString),
+          SizedBox(height: 8),
+          Text((error ?? _error).toString()),
+        ],
       ),
     );
   }
 
-  Widget getPlaceholderWidget() {
+  Widget getPlaceholderWidget({Widget child}) {
     Widget blurhash;
     if (widget.event.infoMap['xyz.amorgan.blurhash'] is String) {
       final ratio =
@@ -169,12 +222,13 @@ class _ImageBubbleState extends State<ImageBubble> {
       children: <Widget>[
         if (blurhash != null) blurhash,
         Center(
-          child: CircularProgressIndicator(strokeWidth: 2),
+          child: child ?? CircularProgressIndicator(strokeWidth: 2),
         ),
       ],
     );
   }
 
+  // Build a memory file (e2ee)
   Widget getMemoryWidget() {
     final isOriginal = _file != null ||
         widget.event.attachmentOrThumbnailMxcUrl(getThumbnail: true) ==
@@ -190,12 +244,20 @@ class _ImageBubbleState extends State<ImageBubble> {
         _displayFile.bytes,
         key: ValueKey(key),
         fit: widget.fit,
+        errorBuilder: (context, error, stacktrace) =>
+            getErrorWidget(context, error),
       );
     }
   }
 
+  // build a network file (plaintext)
   Widget getNetworkWidget() {
-    final mimetype = getMimetype(!_requestedThumbnailOnFailure);
+    // For network files we try to utilize server-side thumbnailing as much as possible.
+    // Thus, we do the following logic:
+    // - try to display our URL
+    // - on failure: Attempt to display the in-event thumbnail instead
+    // - on failrue / non-existance: Display button to download or view in-app
+    final mimetype = getMimetype(_requestedThumbnailOnFailure);
     if (displayUrl == attachmentUrl &&
         _contentRenderers.containsKey(mimetype)) {
       return _contentRenderers[mimetype].network(displayUrl);
@@ -219,8 +281,9 @@ class _ImageBubbleState extends State<ImageBubble> {
           return getPlaceholderWidget();
         },
         errorWidget: (context, url, error) {
-          // we can re-request the thumbnail
-          if (!_requestedThumbnailOnFailure) {
+          if (widget.event.hasThumbnail && !_requestedThumbnailOnFailure) {
+            // the image failed to load but the event has a thumbnail attached....so we can
+            // try to load this one!
             _requestedThumbnailOnFailure = true;
             WidgetsBinding.instance.addPostFrameCallback((_) {
               setState(() {
@@ -235,8 +298,36 @@ class _ImageBubbleState extends State<ImageBubble> {
                     ?.toString();
               });
             });
+            return getPlaceholderWidget();
+          } else if (widget.thumbnailOnly &&
+              displayUrl != attachmentUrl &&
+              _knownMimetypes.contains(mimetype)) {
+            // Okay, the thumbnail failed to load, but we do know how to render the image
+            // ourselves. Let's offer the user a button to view it.
+            return getPlaceholderWidget(
+                child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Theme.of(context).scaffoldBackgroundColor,
+                    onPrimary: Theme.of(context).textTheme.bodyText1.color,
+                  ),
+                  onPressed: () => onTap(context),
+                  child: Text(
+                    L10n.of(context).tapToShowImage,
+                    overflow: TextOverflow.fade,
+                    softWrap: false,
+                    maxLines: 1,
+                  ),
+                ),
+                if (widget.event.sizeString != null)
+                  Text(widget.event.sizeString),
+              ],
+            ));
           }
-          return getPlaceholderWidget();
+          return getErrorWidget(context, error);
         },
         fit: widget.fit,
       );
@@ -248,7 +339,7 @@ class _ImageBubbleState extends State<ImageBubble> {
     Widget content;
     String key;
     if (_error != null) {
-      content = getErrorWidget();
+      content = getErrorWidget(context);
       key = 'error';
     } else if (_displayFile != null) {
       content = getMemoryWidget();
@@ -263,26 +354,7 @@ class _ImageBubbleState extends State<ImageBubble> {
     return ClipRRect(
       borderRadius: BorderRadius.circular(widget.radius),
       child: InkWell(
-        onTap: () {
-          if (!widget.tapToView) return;
-          showDialog(
-            context: Matrix.of(context).navigatorContext,
-            useRootNavigator: false,
-            builder: (_) => ImageViewer(widget.event, onLoaded: () {
-              // If the original file didn't load yet, we want to do that now.
-              // This is so that the original file displays after going on the image viewer,
-              // waiting for it to load, and then hitting back. This ensures that we always
-              // display the best image available, with requiring as little network as possible
-              if (_file == null) {
-                widget.event.isAttachmentCached().then((cached) {
-                  if (cached) {
-                    _requestFile();
-                  }
-                });
-              }
-            }),
-          );
-        },
+        onTap: () => onTap(context),
         child: Hero(
           tag: widget.event.eventId,
           child: AnimatedSwitcher(
@@ -296,6 +368,27 @@ class _ImageBubbleState extends State<ImageBubble> {
           ),
         ),
       ),
+    );
+  }
+
+  void onTap(BuildContext context) {
+    if (!widget.tapToView) return;
+    showDialog(
+      context: Matrix.of(context).navigatorContext,
+      useRootNavigator: false,
+      builder: (_) => ImageViewer(widget.event, onLoaded: () {
+        // If the original file didn't load yet, we want to do that now.
+        // This is so that the original file displays after going on the image viewer,
+        // waiting for it to load, and then hitting back. This ensures that we always
+        // display the best image available, with requiring as little network as possible
+        if (_file == null) {
+          widget.event.isAttachmentCached().then((cached) {
+            if (cached) {
+              _requestFile();
+            }
+          });
+        }
+      }),
     );
   }
 }
