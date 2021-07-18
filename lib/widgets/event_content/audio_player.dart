@@ -177,6 +177,14 @@ class _AudioPlayerState extends State<AudioPlayerWidget> {
             color: widget.color,
           ),
         ),
+        SizedBox(width: 8),
+        IconButton(
+          icon: Icon(
+            Icons.download_outlined,
+            color: widget.color,
+          ),
+          onPressed: () => widget.event.saveFile(context),
+        ),
       ],
     );
   }
