@@ -2506,5 +2506,10 @@
   "@saveFile": {
     "type": "text",
     "placeholders": {}
+  },
+  "tapToShowImage": "Pildi vaatamiseks klõpsi",
+  "@tapToShowImage": {
+    "type": "text",
+    "placeholders": {}
   }
 }
