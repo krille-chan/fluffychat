@@ -2506,5 +2506,10 @@
   "@saveFile": {
     "type": "text",
     "placeholders": {}
+  },
+  "tapToShowImage": "Klepnutím zobrazíte obrázek",
+  "@tapToShowImage": {
+    "type": "text",
+    "placeholders": {}
   }
 }
