@@ -353,7 +353,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "tapToShowMenu": "Tik om het menu weer te geven",
+  "tapToShowMenu": "Tik om menu weer te geven",
   "@tapToShowMenu": {
     "type": "text",
     "placeholders": {}
@@ -373,7 +373,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "startYourFirstChat": "Start nu je eerste chat! 🙂\n- Tik op chat-knop\n- Voer de gebruikersnaam van een vriend in\n- Veel plezier met chatten",
+  "startYourFirstChat": "Start nu je eerste chat! 🙂\n- Tik op de chat-knop\n- Voer de gebruikersnaam van een vriend in\n- Veel plezier met chatten",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -470,7 +470,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "setAProfilePicture": "Stel een profielfoto in",
+  "setAProfilePicture": "Profielfoto instellen",
   "@setAProfilePicture": {
     "type": "text",
     "placeholders": {}
@@ -895,7 +895,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "onlineKeyBackupEnabled": "Online Sleutelback-up is ingeschakeld",
+  "onlineKeyBackupEnabled": "Online sleutelback-up is ingeschakeld",
   "@onlineKeyBackupEnabled": {
     "type": "text",
     "placeholders": {}
@@ -915,7 +915,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "onlineKeyBackupDisabled": "Online Sleutelback-up is uitgeschakeld",
+  "onlineKeyBackupDisabled": "Online sleutelback-up is uitgeschakeld",
   "@onlineKeyBackupDisabled": {
     "type": "text",
     "placeholders": {}
@@ -962,12 +962,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "Zet in plaats daarvan de Online Sleutelback-up aan vanuit Element.",
+  "noMegolmBootstrap": "Zet in plaats daarvan de online sleutelback-up aan vanuit Element.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "FluffyChat biedt momenteel geen ondersteuning voor het inschakelen van Kruislings Ondertekenen. Schakel het in vanuit Element.",
+  "noCrossSignBootstrap": "FluffyChat biedt momenteel geen ondersteuning voor het inschakelen van kruislings ondertekenen. Schakel het in vanuit Element.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -1131,12 +1131,12 @@
       "targetName": {}
     }
   },
-  "keysMissing": "Sleutels ontbreken",
+  "keysMissing": "Er zitten geen sleutels in de cache",
   "@keysMissing": {
     "type": "text",
     "placeholders": {}
   },
-  "keysCached": "Sleutels worden in de cache opgeslagen",
+  "keysCached": "Er zitten sleutels in de cache",
   "@keysCached": {
     "type": "text",
     "placeholders": {}
@@ -1578,12 +1578,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "crossSigningEnabled": "Kruislings Ondertekenen ingeschakeld",
+  "crossSigningEnabled": "Kruislings ondertekenen ingeschakeld",
   "@crossSigningEnabled": {
     "type": "text",
     "placeholders": {}
   },
-  "crossSigningDisabled": "Kruislings Ondertekenen uitgeschakeld",
+  "crossSigningDisabled": "Kruislings ondertekenen uitgeschakeld",
   "@crossSigningDisabled": {
     "type": "text",
     "placeholders": {}
@@ -1845,7 +1845,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "cachedKeys": "Sleutels in de cache",
+  "cachedKeys": "Sleutels in cache",
   "@cachedKeys": {
     "type": "text",
     "placeholders": {}
@@ -1907,7 +1907,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSCache": "Voer je beveiligde opslag wachtwoordzin of herstelsleutel in om de sleutels in de cache te bewaren.",
+  "askSSSSCache": "Voer je chatback-up veiligheidswachtwoord of veiligheidssleutel in om de sleutels in de cache te bewaren.",
   "@askSSSSCache": {
     "type": "text",
     "placeholders": {}
@@ -2073,7 +2073,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseFollowInstructionsOnWeb": "Volg de instructies op de website en klik op volgende.",
+  "pleaseFollowInstructionsOnWeb": "Volg de instructies op de website en tik op volgende.",
   "@pleaseFollowInstructionsOnWeb": {
     "type": "text",
     "placeholders": {}
@@ -2174,7 +2174,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wipeChatBackup": "Je chatback-up wissen om een nieuwe veiligheidssleutel te maken?",
+  "wipeChatBackup": "Wil je de chatback-up wissen en een nieuwe veiligheidssleutel te maken?",
   "@wipeChatBackup": {
     "type": "text",
     "placeholders": {}
@@ -2495,6 +2495,11 @@
   },
   "saveFile": "Bestand opslaan",
   "@saveFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapToShowImage": "Tik om afbeelding weer te geven",
+  "@tapToShowImage": {
     "type": "text",
     "placeholders": {}
   }
