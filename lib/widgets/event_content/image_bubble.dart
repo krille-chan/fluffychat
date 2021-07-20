@@ -21,6 +21,8 @@ class ImageBubble extends StatefulWidget {
   final Color backgroundColor;
   final double radius;
   final bool thumbnailOnly;
+  final double width;
+  final double height;
   final void Function() onLoaded;
 
   const ImageBubble(
@@ -32,6 +34,8 @@ class ImageBubble extends StatefulWidget {
     this.radius = 10.0,
     this.thumbnailOnly = true,
     this.onLoaded,
+    this.width = 400,
+    this.height = 300,
     Key key,
   }) : super(key: key);
 
@@ -361,8 +365,8 @@ class _ImageBubbleState extends State<ImageBubble> {
             duration: Duration(milliseconds: 1000),
             child: Container(
               key: ValueKey(key),
-              height: widget.maxSize ? 300 : null,
-              width: widget.maxSize ? 400 : null,
+              height: widget.maxSize ? widget.height : null,
+              width: widget.maxSize ? widget.width : null,
               child: content,
             ),
           ),

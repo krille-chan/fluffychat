@@ -78,7 +78,31 @@ class MessageContent extends StatelessWidget {
           case MessageTypes.Image:
           case MessageTypes.Sticker:
             if (event.showThumbnail) {
-              return ImageBubble(event);
+              // normal images should have a ratio of 4:3
+              var ratio = 4.0 / 3.0;
+              if (event.messageType == MessageTypes.Sticker) {
+                // stickers should default to a ratio of 1:1
+                ratio = 1.0;
+                // if a width and a height is specified for stickers, use those!
+                if (event.infoMap['w'] is int && event.infoMap['h'] is int) {
+                  ratio = event.infoMap['w'] / event.infoMap['h'];
+                  // make sure the ratio is within 0.9 - 2.0
+                  if (ratio > 2.0) {
+                    ratio = 2.0;
+                  }
+                  if (ratio < 0.9) {
+                    ratio = 0.9;
+                  }
+                }
+              }
+              return ImageBubble(
+                event,
+                width: 400,
+                height: 400 / ratio,
+                fit: event.messageType == MessageTypes.Sticker && ratio < 1.0
+                    ? BoxFit.contain
+                    : BoxFit.cover,
+              );
             }
             return MessageDownloadContent(event, textColor);
           case MessageTypes.Audio:
