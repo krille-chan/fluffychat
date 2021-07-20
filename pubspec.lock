@@ -647,14 +647,14 @@ packages:
       name: matrix
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.7"
+    version: "0.1.8"
   matrix_api_lite:
     dependency: transitive
     description:
       name: matrix_api_lite
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.3"
+    version: "0.3.5"
   matrix_link_text:
     dependency: transitive
     description:
@@ -1110,6 +1110,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  slugify:
+    dependency: transitive
+    description:
+      name: slugify
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   source_map_stack_trace:
     dependency: transitive
     description:
