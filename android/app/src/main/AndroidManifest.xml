@@ -15,7 +15,8 @@
         android:label="FluffyChat"
         android:icon="@mipmap/ic_launcher"
         android:requestLegacyExternalStorage="true"
-        android:allowBackup="false">
+        android:allowBackup="false"
+        android:fullBackupContent="false">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTask"

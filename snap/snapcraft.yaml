@@ -34,6 +34,12 @@ parts:
   fluffychat:
     plugin: dump
     source: ./build/linux/x64/release/bundle/
+    build-packages:
+     - libsecret-1-dev
+     - libjsoncpp-dev
+    stage-packages:
+     - libsecret-1-dev
+     - libjsoncpp1-dev
 
 slots:
   dbus-svc:

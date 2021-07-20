@@ -453,7 +453,7 @@ packages:
       name: flutter_secure_storage
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.3.5"
+    version: "4.2.0"
   flutter_slidable:
     dependency: "direct main"
     description:
