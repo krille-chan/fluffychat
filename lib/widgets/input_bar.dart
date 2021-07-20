@@ -115,6 +115,7 @@ class InputBar extends StatelessWidget {
           ret.add({
             'type': 'user',
             'mxid': user.id,
+            'mention': user.mention,
             'displayname': user.displayName,
             'avatar_url': user.avatarUrl?.toString(),
           });
@@ -324,7 +325,7 @@ class InputBar extends StatelessWidget {
       );
     }
     if (suggestion['type'] == 'user') {
-      insertText = suggestion['mxid'] + ' ';
+      insertText = suggestion['mention'] + ' ';
       startText = replaceText.replaceAllMapped(
         RegExp(r'(\s|^)(@[-\w]+)$'),
         (Match m) => '${m[1]}$insertText',
