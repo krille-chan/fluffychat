@@ -2416,32 +2416,32 @@
     "type": "text",
     "description": "Usage hint for the command /myroomavatar"
   },
-  "commandHintMyRoomNick": "Je weergavenaam voor deze kamer instellen",
+  "commandHintMyRoomNick": "Je naam voor deze kamer instellen",
   "@commandHintMyRoomNick": {
     "type": "text",
     "description": "Usage hint for the command /myroomnick"
   },
-  "commandHintInvite": "De gegeven persoon in deze kamer uitnodigen",
+  "commandHintInvite": "Persoon in deze kamer uitnodigen",
   "@commandHintInvite": {
     "type": "text",
     "description": "Usage hint for the command /invite"
   },
-  "commandHintUnBan": "De gegeven persoon weer in deze kamer toestaan",
+  "commandHintUnBan": "Persoon weer in deze kamer toestaan",
   "@commandHintUnBan": {
     "type": "text",
     "description": "Usage hint for the command /unban"
   },
-  "commandHintBan": "De gegeven persoon uit deze kamer verbannen",
+  "commandHintBan": "Persoon uit deze kamer verbannen",
   "@commandHintBan": {
     "type": "text",
     "description": "Usage hint for the command /ban"
   },
-  "commandHintKick": "De gegeven persoon uit deze kamer verwijderen",
+  "commandHintKick": "Persoon uit deze kamer verwijderen",
   "@commandHintKick": {
     "type": "text",
     "description": "Usage hint for the command /kick"
   },
-  "commandHintOp": "Stel het machtsniveau van de opgegeven gebruiker in (standaard: 50)",
+  "commandHintOp": "Machtsniveau van de persoon instellen (standaard: 50)",
   "@commandHintOp": {
     "type": "text",
     "description": "Usage hint for the command /op"
