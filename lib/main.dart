@@ -51,6 +51,7 @@ void main() async {
       AuthenticationTypes.password,
       if (PlatformInfos.isMobile || PlatformInfos.isWeb) AuthenticationTypes.sso
     },
+    compute: compute,
   );
 
   if (PlatformInfos.isMobile) {

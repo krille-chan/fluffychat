@@ -48,7 +48,7 @@ dependencies:
   intl: any
   localstorage: ^4.0.0+1
   lottie: ^1.1.0
-  matrix: ^0.1.9
+  matrix: ^0.1.10
   native_imaging:
     git:
       url: https://gitlab.com/famedly/libraries/native_imaging.git
