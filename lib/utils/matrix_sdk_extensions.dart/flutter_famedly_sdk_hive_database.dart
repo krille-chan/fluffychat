@@ -49,9 +49,12 @@ class FlutterFamedlySdkHiveDatabase extends FamedlySdkHiveDatabase {
         );
       }
 
-      final encryptionKey = base64Url.decode(
-        await secureStorage.read(key: _hiveCipherStorageKey),
-      );
+      // workaround for if we just wrote to the key and it still doesn't exist
+      final rawEncryptionKey =
+          await secureStorage.read(key: _hiveCipherStorageKey);
+      if (rawEncryptionKey == null) throw MissingPluginException();
+
+      final encryptionKey = base64Url.decode(rawEncryptionKey);
       hiverCipher = HiveAesCipher(encryptionKey);
     } on MissingPluginException catch (_) {
       Logs().i('Hive encryption is not supported on this platform');
