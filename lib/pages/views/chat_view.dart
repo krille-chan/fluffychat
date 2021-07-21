@@ -86,7 +86,7 @@ class ChatView extends StatelessWidget {
                                       outerContext: context,
                                       onMention: () => controller
                                               .sendController.text +=
-                                          '${controller.room.directChatMatrixID} ',
+                                          '${controller.room.getUserByMXIDSync(controller.room.directChatMatrixID).mention} ',
                                     ),
                                   )
                               : () => VRouter.of(context)
@@ -376,7 +376,7 @@ class ChatView extends StatelessWidget {
                                                           onMention: () => controller
                                                                   .sendController
                                                                   .text +=
-                                                              '${event.senderId} ',
+                                                              '${event.sender.mention} ',
                                                         ),
                                                       ),
                                                   unfold: controller.unfold,
