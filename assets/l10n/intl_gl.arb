@@ -2506,5 +2506,10 @@
   "@saveFile": {
     "type": "text",
     "placeholders": {}
+  },
+  "tapToShowImage": "Toca para mostrar a imaxe",
+  "@tapToShowImage": {
+    "type": "text",
+    "placeholders": {}
   }
 }
