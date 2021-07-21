@@ -6,6 +6,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:slugify/slugify.dart';
 import 'avatar.dart';
 import 'matrix.dart';
 
@@ -110,7 +111,9 @@ class InputBar extends StatelessWidget {
       final userSearch = userMatch[1].toLowerCase();
       for (final user in room.getParticipants()) {
         if ((user.displayName != null &&
-                user.displayName.toLowerCase().contains(userSearch)) ||
+                (user.displayName.toLowerCase().contains(userSearch) ||
+                    slugify(user.displayName.toLowerCase())
+                        .contains(userSearch))) ||
             user.id.split(':')[0].toLowerCase().contains(userSearch)) {
           ret.add({
             'type': 'user',
