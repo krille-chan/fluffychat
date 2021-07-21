@@ -355,6 +355,12 @@ class _ImageBubbleState extends State<ImageBubble> {
       content = getPlaceholderWidget();
       key = 'placeholder';
     }
+    if (widget.maxSize) {
+      content = AspectRatio(
+        aspectRatio: widget.width / widget.height,
+        child: content,
+      );
+    }
     return ClipRRect(
       borderRadius: BorderRadius.circular(widget.radius),
       child: InkWell(
@@ -365,8 +371,12 @@ class _ImageBubbleState extends State<ImageBubble> {
             duration: Duration(milliseconds: 1000),
             child: Container(
               key: ValueKey(key),
-              height: widget.maxSize ? widget.height : null,
-              width: widget.maxSize ? widget.width : null,
+              constraints: widget.maxSize
+                  ? BoxConstraints.loose(Size(
+                      widget.width,
+                      widget.height,
+                    ))
+                  : null,
               child: content,
             ),
           ),
