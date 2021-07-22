@@ -1608,7 +1608,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerEmoji": "В ожидании партнёра, чтобы принять эмодзи...",
+  "waitingPartnerEmoji": "Ожидание, когда партнер примет эмодзи…",
   "@waitingPartnerEmoji": {
     "type": "text",
     "placeholders": {}
