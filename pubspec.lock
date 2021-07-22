@@ -1111,7 +1111,7 @@ packages:
     source: sdk
     version: "0.0.99"
   slugify:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: slugify
       url: "https://pub.dartlang.org"
