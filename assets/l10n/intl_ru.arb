@@ -2481,5 +2481,25 @@
   "@commandHintReact": {
     "type": "text",
     "description": "Usage hint for the command /react"
+  },
+  "commandHintHtml": "Отправить текст формата HTML",
+  "@commandHintHtml": {
+    "type": "text",
+    "description": "Usage hint for the command /html"
+  },
+  "commandHintPlain": "Отправить неотформатированный текст",
+  "@commandHintPlain": {
+    "type": "text",
+    "description": "Usage hint for the command /plain"
+  },
+  "commandHintMe": "Опишите себя",
+  "@commandHintMe": {
+    "type": "text",
+    "description": "Usage hint for the command /me"
+  },
+  "commandHintSend": "Отправить текст",
+  "@commandHintSend": {
+    "type": "text",
+    "description": "Usage hint for the command /send"
   }
 }
