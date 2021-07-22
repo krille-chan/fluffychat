@@ -87,7 +87,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSCache": "Пожалуйста, введите вашу парольную фразу или ключ восстановления для кэширования ключей",
+  "askSSSSCache": "Введите кодовую фразу для безопасного хранилища или ключ восстановления, чтобы кэшировать ключи.",
   "@askSSSSCache": {
     "type": "text",
     "placeholders": {}
@@ -519,12 +519,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteExists": "Эмодзи уже существует",
+  "emoteExists": "Эмодзи уже существует!",
   "@emoteExists": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteInvalid": "Недопустимый краткий код эмодзи",
+  "emoteInvalid": "Недопустимый краткий код эмодзи!",
   "@emoteInvalid": {
     "type": "text",
     "placeholders": {}
@@ -539,7 +539,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteWarnNeedToPick": "Выберите краткий код эмодзи и изображение",
+  "emoteWarnNeedToPick": "Вам нужно выбрать шорткод эмодзи и изображение!",
   "@emoteWarnNeedToPick": {
     "type": "text",
     "placeholders": {}
@@ -851,7 +851,7 @@
       "count": {}
     }
   },
-  "loadingPleaseWait": "Пожалуйста, подождите…",
+  "loadingPleaseWait": "Загрузка... Пожалуйста, подождите.",
   "@loadingPleaseWait": {
     "type": "text",
     "placeholders": {}
@@ -928,7 +928,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "newVerificationRequest": "Новый запрос на подтверждение",
+  "newVerificationRequest": "Новый запрос на подтверждение!",
   "@newVerificationRequest": {
     "type": "text",
     "placeholders": {}
@@ -948,7 +948,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Похоже, у вас нет служб Google на вашем телефоне. Это хорошее решение для вашей конфиденциальности! Для получения push-уведомлений во FluffyChat мы рекомендуем использовать microG: https://microg.org/",
+  "noGoogleServicesWarning": "Похоже, у вас нет служб Google на вашем телефоне. Это хорошее решение для вашей конфиденциальности! Для получения push-уведомлений во FluffyChat мы рекомендуем использовать https://microg.org/ или https://unifiedpush.org/.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -1057,7 +1057,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterAMatrixIdentifier": "Пожалуйста, введите Matrix ID",
+  "pleaseEnterAMatrixIdentifier": "Пожалуйста, введите Matrix ID.",
   "@pleaseEnterAMatrixIdentifier": {
     "type": "text",
     "placeholders": {}
@@ -1352,7 +1352,7 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "Начни свой первый чат прямо сейчас! 🙂\n- Нажмите \"+\"\n- Введите логин друга\n- Веселитесь в чате",
+  "startYourFirstChat": "Начни свой первый чат прямо сейчас! 🙂\n- Нажмите кнопку сообщения\n- Введите логин друга\n- Веселитесь в чате",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -1495,7 +1495,7 @@
       "unreadChats": {}
     }
   },
-  "useAmoledTheme": "AMOLED-совместимые цвета",
+  "useAmoledTheme": "Использовать цвета, совместимые с AMOLED?",
   "@useAmoledTheme": {
     "type": "text",
     "placeholders": {}
@@ -1563,7 +1563,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "verifySuccess": "Проверка успешно завершена",
+  "verifySuccess": "Вы успешно проверены!",
   "@verifySuccess": {
     "type": "text",
     "placeholders": {}
@@ -1603,7 +1603,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerAcceptRequest": "В ожидании партнёра, чтобы принять запрос...",
+  "waitingPartnerAcceptRequest": "Жду, когда партнер примет запрос…",
   "@waitingPartnerAcceptRequest": {
     "type": "text",
     "placeholders": {}
@@ -2312,6 +2312,70 @@
   },
   "roomVersion": "Версия комнаты",
   "@roomVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginWith": "Войти через {brand}",
+  "@loginWith": {
+    "type": "text",
+    "placeholders": {
+      "brand": {}
+    }
+  },
+  "or": "Или",
+  "@or": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterYourPin": "Пожалуйста, введите свой пин-код",
+  "@pleaseEnterYourPin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "optionalAddEmail": "(Необязательно) Ваш адрес электронной почты",
+  "@optionalAddEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidEmail": "Неверный адрес",
+  "@invalidEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oopsPushError": "Ой! К сожалению, при настройке push-уведомлений произошла ошибка.",
+  "@oopsPushError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeYourAvatar": "Удалить свой аватар",
+  "@removeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeYourAvatar": "Изменить свой аватар",
+  "@changeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChoose": "Пожалуйста, выберите",
+  "@pleaseChoose": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "register": "Зарегистрироваться",
+  "@register": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clearArchive": "Очистить архив",
+  "@clearArchive": {},
+  "setAsCanonicalAlias": "Установить как основной псевдоним",
+  "@setAsCanonicalAlias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAliases": "Редактировать псевдонимы комнаты",
+  "@editRoomAliases": {
     "type": "text",
     "placeholders": {}
   }
