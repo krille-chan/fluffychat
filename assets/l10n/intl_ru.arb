@@ -1543,7 +1543,7 @@
       "type": {}
     }
   },
-  "verifiedSession": "Сессия успешно проверена",
+  "verifiedSession": "Сессия успешно проверена!",
   "@verifiedSession": {
     "type": "text",
     "placeholders": {}
@@ -2378,5 +2378,108 @@
   "@editRoomAliases": {
     "type": "text",
     "placeholders": {}
+  },
+  "savedFileAs": "Файл сохранён как {filename}",
+  "@savedFileAs": {
+    "type": "text",
+    "placeholders": {
+      "filename": {}
+    }
+  },
+  "saveFileToFolder": "Сохранить файл в эту папку",
+  "@saveFileToFolder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveFile": "Сохранить файл",
+  "@saveFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapToShowImage": "Нажмите, чтобы показать изображение",
+  "@tapToShowImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "singlesignon": "Единая точка входа",
+  "@singlesignon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendAsText": "Отправить как текст",
+  "@sendAsText": {
+    "type": "text"
+  },
+  "enableChatBackup": "Включите резервное копирование чатов, чтобы никогда не терять доступ к своим чатам.",
+  "@enableChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourChatsAreBeingSynced": "Ваши чаты синхронизируются...",
+  "@yourChatsAreBeingSynced": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "synchronizingPleaseWait": "Синхронизация… Пожалуйста, подождите.",
+  "@synchronizingPleaseWait": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandMissing": "{command} не является командой.",
+  "@commandMissing": {
+    "type": "text",
+    "placeholders": {
+      "command": {}
+    },
+    "description": "State that {command} is not a valid /command."
+  },
+  "commandInvalid": "Недопустимая команда",
+  "@commandInvalid": {
+    "type": "text"
+  },
+  "commandHintMyRoomNick": "Задайте отображаемое имя для этой комнаты",
+  "@commandHintMyRoomNick": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomnick"
+  },
+  "commandHintInvite": "Пригласить данного пользователя в эту комнату",
+  "@commandHintInvite": {
+    "type": "text",
+    "description": "Usage hint for the command /invite"
+  },
+  "commandHintUnBan": "Разблокировать данного пользователя в этой комнате",
+  "@commandHintUnBan": {
+    "type": "text",
+    "description": "Usage hint for the command /unban"
+  },
+  "commandHintBan": "Заблокировать данного пользователя в этой комнате",
+  "@commandHintBan": {
+    "type": "text",
+    "description": "Usage hint for the command /ban"
+  },
+  "commandHintKick": "Удалить данного пользователя из этой комнаты",
+  "@commandHintKick": {
+    "type": "text",
+    "description": "Usage hint for the command /kick"
+  },
+  "commandHintOp": "Установить уровень прав данного пользователя (по умолчанию: 50)",
+  "@commandHintOp": {
+    "type": "text",
+    "description": "Usage hint for the command /op"
+  },
+  "commandHintLeave": "Покинуть эту комнату",
+  "@commandHintLeave": {
+    "type": "text",
+    "description": "Usage hint for the command /leave"
+  },
+  "commandHintJoin": "Присоединяйтесь к данной комнате",
+  "@commandHintJoin": {
+    "type": "text",
+    "description": "Usage hint for the command /join"
+  },
+  "commandHintReact": "Отправить ответ как реакцию",
+  "@commandHintReact": {
+    "type": "text",
+    "description": "Usage hint for the command /react"
   }
 }
