@@ -1603,7 +1603,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerAcceptRequest": "Жду, когда партнер примет запрос…",
+  "waitingPartnerAcceptRequest": "Жду, когда партнер примет запроc…",
   "@waitingPartnerAcceptRequest": {
     "type": "text",
     "placeholders": {}
