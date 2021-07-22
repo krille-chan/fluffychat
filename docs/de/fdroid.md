@@ -57,6 +57,6 @@ Falls es weitherhin nicht funktioniert folge den nächsten Schritten:
 4. Drücke auf das Plus Symbol in der oberen Leiste
 5. Trag in das erste Feld `https://nightly.fdroid.fluffychat.im` und in das zweite Feld `21A469657300576478B623DF99D8EB889A80BCD939ACA60A4074741BEAEC397D` ein
 
-## Wie lautet der Fingerabdruck der stabilen Paketquelle?
+## Wie lautet der Fingerabdruck der nightly Paketquelle?
 
 Der Fingerabdruck dieser Paketquelle ist: `21A469657300576478B623DF99D8EB889A80BCD939ACA60A4074741BEAEC397D`
