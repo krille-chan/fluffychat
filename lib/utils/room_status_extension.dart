@@ -72,6 +72,7 @@ extension RoomStatusExtension on Room {
     var seenByText = '';
     if (timeline.events.isNotEmpty) {
       final filteredEvents = timeline.getFilteredEvents(unfolded: unfolded);
+      if (filteredEvents.isEmpty) return '';
       final lastReceipts = <User>{};
       // now we iterate the timeline events until we hit the first rendered event
       for (final event in timeline.events) {
