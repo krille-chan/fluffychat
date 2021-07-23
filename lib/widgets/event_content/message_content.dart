@@ -99,7 +99,7 @@ class MessageContent extends StatelessWidget {
                 event,
                 width: 400,
                 height: 400 / ratio,
-                fit: event.messageType == MessageTypes.Sticker && ratio < 1.0
+                fit: event.messageType == MessageTypes.Sticker && ratio <= 1.0
                     ? BoxFit.contain
                     : BoxFit.cover,
               );
