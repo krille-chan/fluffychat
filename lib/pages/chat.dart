@@ -28,6 +28,7 @@ import 'package:vrouter/vrouter.dart';
 import '../utils/localized_exception_extension.dart';
 
 import 'send_file_dialog.dart';
+import 'sticker_picker_dialog.dart';
 import '../utils/matrix_sdk_extensions.dart/filtered_timeline_extension.dart';
 import '../utils/matrix_sdk_extensions.dart/matrix_file_extension.dart';
 
@@ -304,6 +305,28 @@ class ChatController extends State<Chat> {
           name: file.path,
         ),
         room: room,
+      ),
+    );
+  }
+
+  void sendStickerAction() async {
+    final sticker = await showModalBottomSheet<ImagePackImageContent>(
+      context: context,
+      useRootNavigator: false,
+      builder: (c) => StickerPickerDialog(room: room),
+    );
+    if (sticker == null) return;
+    final eventContent = <String, dynamic>{
+      'body': sticker.body,
+      if (sticker.info != null) 'info': sticker.info,
+      'url': sticker.url.toString(),
+    };
+    // send the sticker
+    await showFutureLoadingDialog(
+      context: context,
+      future: () => room.sendEvent(
+        eventContent,
+        type: EventTypes.Sticker,
       ),
     );
   }
@@ -645,11 +668,15 @@ class ChatController extends State<Chat> {
   void onAddPopupMenuButtonSelected(String choice) {
     if (choice == 'file') {
       sendFileAction();
-    } else if (choice == 'image') {
+    }
+    if (choice == 'image') {
       sendImageAction();
     }
     if (choice == 'camera') {
       openCameraAction();
+    }
+    if (choice == 'sticker') {
+      sendStickerAction();
     }
     if (choice == 'voice') {
       voiceMessageAction();
