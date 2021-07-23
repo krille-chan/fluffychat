@@ -1,4 +1,4 @@
-import 'package:fluffychat/utils/matrix_sdk_extensions.dart/flutter_famedly_sdk_hive_database.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions.dart/flutter_matrix_hive_database.dart';
 import 'package:matrix/encryption/utils/key_verification.dart';
 import 'package:matrix/matrix.dart';
 import 'package:matrix_api_lite/fake_matrix_api.dart';
@@ -19,7 +19,7 @@ Future<Client> prepareTestClient({
     importantStateEvents: <String>{
       'im.ponies.room_emotes', // we want emotes to work properly
     },
-    databaseBuilder: FlutterFamedlySdkHiveDatabase.hiveDatabaseBuilder,
+    databaseBuilder: FlutterMatrixHiveStore.hiveDatabaseBuilder,
     supportedLoginTypes: {
       AuthenticationTypes.password,
       AuthenticationTypes.sso

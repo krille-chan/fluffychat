@@ -18,7 +18,7 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:vrouter/vrouter.dart';
 
-import 'utils/matrix_sdk_extensions.dart/flutter_famedly_sdk_hive_database.dart';
+import 'utils/matrix_sdk_extensions.dart/flutter_matrix_hive_database.dart';
 import 'widgets/layouts/wait_for_login.dart';
 import 'widgets/lock_screen.dart';
 import 'widgets/matrix.dart';
@@ -46,7 +46,7 @@ void main() async {
     importantStateEvents: <String>{
       'im.ponies.room_emotes', // we want emotes to work properly
     },
-    databaseBuilder: FlutterFamedlySdkHiveDatabase.hiveDatabaseBuilder,
+    databaseBuilder: FlutterMatrixHiveStore.hiveDatabaseBuilder,
     supportedLoginTypes: {
       AuthenticationTypes.password,
       if (PlatformInfos.isMobile || PlatformInfos.isWeb) AuthenticationTypes.sso

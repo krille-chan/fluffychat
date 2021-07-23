@@ -12,15 +12,38 @@ import 'package:path_provider/path_provider.dart';
 
 import '../platform_infos.dart';
 
-class FlutterFamedlySdkHiveDatabase extends FamedlySdkHiveDatabase {
-  FlutterFamedlySdkHiveDatabase(String name, {HiveCipher encryptionCipher})
+class FlutterMatrixHiveStore extends FamedlySdkHiveDatabase {
+  FlutterMatrixHiveStore(String name, {HiveCipher encryptionCipher})
       : super(
           name,
           encryptionCipher: encryptionCipher,
         );
 
+  Box _customBox;
+  String get _customBoxName => '$name.box.custom';
+
   static bool _hiveInitialized = false;
   static const String _hiveCipherStorageKey = 'hive_encryption_key';
+
+  @override
+  Future<void> open() async {
+    await super.open();
+    _customBox = await Hive.openBox(
+      _customBoxName,
+      encryptionCipher: encryptionCipher,
+    );
+    return;
+  }
+
+  @override
+  Future<void> clear(int clientId) async {
+    await super.clear(clientId);
+    await _customBox.deleteAll(_customBox.keys);
+    await _customBox.close();
+  }
+
+  dynamic get(dynamic key) => _customBox.get(key);
+  Future<void> put(dynamic key, dynamic value) => _customBox.put(key, value);
 
   static Future<FamedlySdkHiveDatabase> hiveDatabaseBuilder(
       Client client) async {
@@ -59,7 +82,7 @@ class FlutterFamedlySdkHiveDatabase extends FamedlySdkHiveDatabase {
     } on MissingPluginException catch (_) {
       Logs().i('Hive encryption is not supported on this platform');
     }
-    final db = FlutterFamedlySdkHiveDatabase(
+    final db = FlutterMatrixHiveStore(
       client.clientName,
       encryptionCipher: hiverCipher,
     );
@@ -106,10 +129,5 @@ class FlutterFamedlySdkHiveDatabase extends FamedlySdkHiveDatabase {
     if (await file.exists()) return;
     await file.writeAsBytes(bytes);
     return;
-  }
-
-  @override
-  Future<void> clear(int clientId) async {
-    await super.clear(clientId);
   }
 }
