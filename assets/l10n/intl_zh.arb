@@ -923,7 +923,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "看起来您手机上没有谷歌服务框架。这对您保护隐私而言是个好决定！为收取FluffyChat的推送通知，推荐您使用microG: https://microg.org/",
+  "noGoogleServicesWarning": "看起来您手机上没有谷歌服务框架。这对您保护隐私而言是个好决定！为收取 FluffyChat 的推送通知，推荐您使用https://microg.org/ 或 https://unifiedpush.org/。",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -2096,9 +2096,19 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHintLeave": "推出该聊天室",
+  "commandHintLeave": "退出该聊天室",
   "@commandHintLeave": {
     "type": "text",
     "description": "Usage hint for the command /leave"
+  },
+  "commandHintJoin": "加入该聊天室",
+  "@commandHintJoin": {
+    "type": "text",
+    "description": "Usage hint for the command /join"
+  },
+  "commandHintSend": "发送文本",
+  "@commandHintSend": {
+    "type": "text",
+    "description": "Usage hint for the command /send"
   }
 }
