@@ -2489,5 +2489,27 @@
   "@commandHintSend": {
     "type": "text",
     "description": "Usage hint for the command /send"
+  },
+  "savedFileAs": "Enregistrement du fichier sous {filename}",
+  "@savedFileAs": {
+    "type": "text",
+    "placeholders": {
+      "filename": {}
+    }
+  },
+  "saveFileToFolder": "Enregistrer le fichier dans ce dossier",
+  "@saveFileToFolder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveFile": "Enregistrer le fichier",
+  "@saveFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapToShowImage": "Appuyez pour afficher l'image",
+  "@tapToShowImage": {
+    "type": "text",
+    "placeholders": {}
   }
 }
