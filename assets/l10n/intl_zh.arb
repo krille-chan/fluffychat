@@ -2464,5 +2464,15 @@
   "@sendSticker": {
     "type": "text",
     "placeholders": {}
+  },
+  "withTheseAddressesRecoveryDescription": "通过这些地址，您可以恢复密码。",
+  "@withTheseAddressesRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setCustomEmotes": "设置自定义表情",
+  "@setCustomEmotes": {
+    "type": "text",
+    "placeholders": {}
   }
 }
