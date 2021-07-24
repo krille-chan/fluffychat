@@ -831,7 +831,7 @@
       "count": {}
     }
   },
-  "loadingPleaseWait": "加载中...请等待",
+  "loadingPleaseWait": "加载中…请等待。",
   "@loadingPleaseWait": {
     "type": "text",
     "placeholders": {}
