@@ -3,17 +3,25 @@ import 'dart:io';
 import 'package:matrix/matrix.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
 import 'package:filesystem_picker/filesystem_picker.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:share/share.dart';
 
 extension MatrixFileExtension on MatrixFile {
   void save(BuildContext context) async {
-    if (PlatformInfos.isMobile &&
-        !(await Permission.storage.request()).isGranted) return;
     final fileName = name.split('/').last;
+    if (PlatformInfos.isIOS) {
+      final tmpDirectory = await getTemporaryDirectory();
+      final path = '${tmpDirectory.path}$fileName';
+      await File(path).writeAsBytes(bytes);
+      await Share.shareFiles([path]);
+      return;
+    }
     if (PlatformInfos.isAndroid) {
+      if (!(await Permission.storage.request()).isGranted) return;
       final path = await FilesystemPicker.open(
         title: L10n.of(context).saveFile,
         context: context,
