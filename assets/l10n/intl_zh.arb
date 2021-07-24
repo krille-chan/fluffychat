@@ -2474,5 +2474,17 @@
   "@setCustomEmotes": {
     "type": "text",
     "placeholders": {}
+  },
+  "xMoreEvents": "{count} 个更多事件",
+  "@xMoreEvents": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "oneMoreEvent": "1 个更多事件",
+  "@oneMoreEvent": {
+    "type": "text",
+    "placeholders": {}
   }
 }
