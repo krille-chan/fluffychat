@@ -116,13 +116,21 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
             (_) => bootstrap.wipeSsss(_wipe),
           );
           break;
+        case BootstrapState.askBadSsss:
+          WidgetsBinding.instance.addPostFrameCallback(
+            (_) => bootstrap.ignoreBadSecrets(true),
+          );
+          break;
         case BootstrapState.askUseExistingSsss:
           WidgetsBinding.instance.addPostFrameCallback(
             (_) => bootstrap.useExistingSsss(!_wipe),
           );
           break;
         case BootstrapState.askUnlockSsss:
-          throw Exception('This state is not supposed to be implemented');
+          WidgetsBinding.instance.addPostFrameCallback(
+            (_) => bootstrap.unlockedSsss(),
+          );
+          break;
         case BootstrapState.askNewSsss:
           WidgetsBinding.instance.addPostFrameCallback(
             (_) => bootstrap.newSsss(),
@@ -235,7 +243,6 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
             (_) => bootstrap.askSetupOnlineKeyBackup(true),
           );
           break;
-        case BootstrapState.askBadSsss:
         case BootstrapState.error:
           titleText = L10n.of(context).oopsSomethingWentWrong;
           body = Icon(Icons.error_outline, color: Colors.red, size: 40);
