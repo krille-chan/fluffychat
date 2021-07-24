@@ -2162,5 +2162,20 @@
   "@noConnectionToTheServer": {
     "type": "text",
     "placeholders": {}
+  },
+  "noEncryptionForPublicRooms": "您只能在房间不可被公众访问时才能启用加密。",
+  "@noEncryptionForPublicRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceVerifyDescription": "加密仅在所有设备都被验证时才安全。",
+  "@deviceVerifyDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewFriend": "添加新的好友",
+  "@addNewFriend": {
+    "type": "text",
+    "placeholders": {}
   }
 }
