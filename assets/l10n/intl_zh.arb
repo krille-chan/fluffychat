@@ -2128,7 +2128,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "toggleFavorite": "切换收藏夹",
+  "toggleFavorite": "切换收藏",
   "@toggleFavorite": {
     "type": "text",
     "placeholders": {}
