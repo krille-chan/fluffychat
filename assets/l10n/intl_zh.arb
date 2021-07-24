@@ -2249,5 +2249,7 @@
   "@setAsCanonicalAlias": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "clearArchive": "清除存档",
+  "@clearArchive": {}
 }
