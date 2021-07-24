@@ -1458,7 +1458,7 @@
       "count": {}
     }
   },
-  "userAndUserAreTyping": "{username} 和 {username2} 正在打字...",
+  "userAndUserAreTyping": "{username} 和 {username2} 正在输入…",
   "@userAndUserAreTyping": {
     "type": "text",
     "placeholders": {
