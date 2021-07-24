@@ -149,7 +149,7 @@
       "homeserver": {}
     }
   },
-  "cachedKeys": "密钥已保存",
+  "cachedKeys": "密钥已缓存",
   "@cachedKeys": {
     "type": "text",
     "placeholders": {}
