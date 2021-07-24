@@ -28,7 +28,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "activatedEndToEndEncryption": "{username}已激活端到端加密",
+  "activatedEndToEndEncryption": "{username} 激活了端到端加密",
   "@activatedEndToEndEncryption": {
     "type": "text",
     "placeholders": {
@@ -45,7 +45,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "alias": "别称",
+  "alias": "别名",
   "@alias": {
     "type": "text",
     "placeholders": {}
@@ -72,17 +72,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "archivedRoom": "已存档的会话",
+  "archivedRoom": "已存档的聊天室",
   "@archivedRoom": {
     "type": "text",
     "placeholders": {}
   },
-  "areGuestsAllowedToJoin": "是否允许游客用户加入",
+  "areGuestsAllowedToJoin": "是否允许游客加入",
   "@areGuestsAllowedToJoin": {
     "type": "text",
     "placeholders": {}
   },
-  "areYouSure": "你确定吗？",
+  "areYouSure": "您确定吗？",
   "@areYouSure": {
     "type": "text",
     "placeholders": {}
@@ -102,7 +102,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "askVerificationRequest": "是否接受来自{username}的验证申请？",
+  "askVerificationRequest": "是否接受来自 {username} 的验证申请？",
   "@askVerificationRequest": {
     "type": "text",
     "placeholders": {
@@ -119,17 +119,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "banFromChat": "已被从对话中禁止",
+  "banFromChat": "从对话中封禁",
   "@banFromChat": {
     "type": "text",
     "placeholders": {}
   },
-  "banned": "已被禁止",
+  "banned": "已被封禁",
   "@banned": {
     "type": "text",
     "placeholders": {}
   },
-  "bannedUser": "{username}禁止了{targetName}",
+  "bannedUser": "{username} 封禁了 {targetName}",
   "@bannedUser": {
     "type": "text",
     "placeholders": {
@@ -249,7 +249,7 @@
       "username": {}
     }
   },
-  "changedTheRoomAliases": "{username} 更改了房间名",
+  "changedTheRoomAliases": "{username} 更改了聊天室别名",
   "@changedTheRoomAliases": {
     "type": "text",
     "placeholders": {
@@ -653,12 +653,12 @@
       "displayname": {}
     }
   },
-  "guestsAreForbidden": "访客被禁止",
+  "guestsAreForbidden": "游客被禁止",
   "@guestsAreForbidden": {
     "type": "text",
     "placeholders": {}
   },
-  "guestsCanJoin": "访客可以加入",
+  "guestsCanJoin": "游客可以加入",
   "@guestsCanJoin": {
     "type": "text",
     "placeholders": {}
@@ -841,7 +841,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "login": "登入",
+  "login": "登录",
   "@login": {
     "type": "text",
     "placeholders": {}
@@ -853,7 +853,7 @@
       "homeserver": {}
     }
   },
-  "logout": "登出",
+  "logout": "注销",
   "@logout": {
     "type": "text",
     "placeholders": {}
@@ -1868,12 +1868,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "next": "下一个",
+  "next": "下一步",
   "@next": {
     "type": "text",
     "placeholders": {}
   },
-  "youWillBeConnectedTo": "您将连接到{homeserver}",
+  "youWillBeConnectedTo": "您将连接到 {homeserver}",
   "@youWillBeConnectedTo": {
     "type": "text",
     "placeholders": {
@@ -1885,12 +1885,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "areYouSureYouWantToLogout": "你确定要注销吗？",
+  "areYouSureYouWantToLogout": "您确定要注销吗？",
   "@areYouSureYouWantToLogout": {
     "type": "text",
     "placeholders": {}
   },
-  "noPublicRoomsFound": "没有找到公共房间...",
+  "noPublicRoomsFound": "没有找到公共聊天室…",
   "@noPublicRoomsFound": {
     "type": "text",
     "placeholders": {}
@@ -1941,7 +1941,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "editRoomAvatar": "编辑房间头像",
+  "editRoomAvatar": "编辑聊天室头像",
   "@editRoomAvatar": {
     "type": "text",
     "placeholders": {}
@@ -2252,7 +2252,7 @@
   },
   "clearArchive": "清除存档",
   "@clearArchive": {},
-  "commandHintInvite": "邀请用户加入此聊天室",
+  "commandHintInvite": "邀请该用户加入此聊天室",
   "@commandHintInvite": {
     "type": "text",
     "description": "Usage hint for the command /invite"
@@ -2286,5 +2286,118 @@
   "@commandHintMyRoomNick": {
     "type": "text",
     "description": "Usage hint for the command /myroomnick"
+  },
+  "savedFileAs": "保存文件为 {filename}",
+  "@savedFileAs": {
+    "type": "text",
+    "placeholders": {
+      "filename": {}
+    }
+  },
+  "fontSize": "字体大小",
+  "@fontSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userNotVerified": "用户未验证",
+  "@userNotVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userVerified": "用户已验证",
+  "@userVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPlay": "播放",
+  "@audioPlayerPlay": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPause": "暂停",
+  "@audioPlayerPause": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "singlesignon": "单点登录",
+  "@singlesignon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginWith": "使用 {brand} 登录",
+  "@loginWith": {
+    "type": "text",
+    "placeholders": {
+      "brand": {}
+    }
+  },
+  "sendAsText": "以文本发送",
+  "@sendAsText": {
+    "type": "text"
+  },
+  "yourChatsAreBeingSynced": "正在同步您的聊天…",
+  "@yourChatsAreBeingSynced": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addEmail": "添加电子邮件",
+  "@addEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "blocked": "已屏蔽",
+  "@blocked": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "or": "或",
+  "@or": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "security": "安全",
+  "@security": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "friends": "好友",
+  "@friends": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "optionalAddEmail": "（可选）您的电子邮件地址",
+  "@optionalAddEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidEmail": "无效的电子邮件",
+  "@invalidEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeYourAvatar": "移除您的头像",
+  "@removeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeYourAvatar": "更改您的头像",
+  "@changeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChoose": "请选择",
+  "@pleaseChoose": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "register": "注册",
+  "@register": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verified": "已验证",
+  "@verified": {
+    "type": "text",
+    "placeholders": {}
   }
 }
