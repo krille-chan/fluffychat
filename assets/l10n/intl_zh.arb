@@ -913,7 +913,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "Fluffychat目前不支持启用Cross-Signing. 请在Riot中启用.",
+  "noCrossSignBootstrap": "Fluffychat 目前不支持启用交叉签名。请在 Element 中启用。",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -1583,7 +1583,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "welcomeText": "欢迎来到matrix网络中最可爱的即时通讯应用。",
+  "welcomeText": "欢迎来到 Matrix 网络中最可爱的即时通讯应用。",
   "@welcomeText": {
     "type": "text",
     "placeholders": {}
@@ -2111,7 +2111,7 @@
     "type": "text",
     "description": "Usage hint for the command /send"
   },
-  "numUsersTyping": "{count} 正在输入…",
+  "numUsersTyping": "{count} 人正在输入…",
   "@numUsersTyping": {
     "type": "text",
     "placeholders": {
@@ -2150,6 +2150,16 @@
   },
   "weSentYouAnEmail": "我们向您发送了一封电子邮件",
   "@weSentYouAnEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleUnread": "标记已读/未读",
+  "@toggleUnread": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noConnectionToTheServer": "未与服务器建立连接",
+  "@noConnectionToTheServer": {
     "type": "text",
     "placeholders": {}
   }
