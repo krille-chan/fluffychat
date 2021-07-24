@@ -1466,7 +1466,7 @@
       "username2": {}
     }
   },
-  "userIsTyping": "{username} 正在打字...",
+  "userIsTyping": "{username} 正在输入…",
   "@userIsTyping": {
     "type": "text",
     "placeholders": {
