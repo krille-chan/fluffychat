@@ -2127,5 +2127,30 @@
   "@saveFile": {
     "type": "text",
     "placeholders": {}
+  },
+  "toggleFavorite": "切换收藏夹",
+  "@toggleFavorite": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleMuted": "切换静音",
+  "@toggleMuted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tooManyRequestsWarning": "请求太多。请稍后再试！",
+  "@tooManyRequestsWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourPublicKey": "您的公钥",
+  "@yourPublicKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "weSentYouAnEmail": "我们向您发送了一封电子邮件",
+  "@weSentYouAnEmail": {
+    "type": "text",
+    "placeholders": {}
   }
 }
