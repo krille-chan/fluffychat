@@ -1450,7 +1450,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "userAndOthersAreTyping": "{username} 和 {count} 其他人正在输入…",
+  "userAndOthersAreTyping": "{username} 和其他 {count} 人正在输入…",
   "@userAndOthersAreTyping": {
     "type": "text",
     "placeholders": {
