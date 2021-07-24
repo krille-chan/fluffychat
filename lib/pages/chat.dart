@@ -21,7 +21,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:record/record.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vrouter/vrouter.dart';
@@ -332,10 +332,7 @@ class ChatController extends State<Chat> {
   }
 
   void voiceMessageAction() async {
-    if (await Permission.microphone.isGranted != true) {
-      final status = await Permission.microphone.request();
-      if (status != PermissionStatus.granted) return;
-    }
+    if (await Record().hasPermission() == false) return;
     final result = await showDialog<String>(
       context: context,
       useRootNavigator: false,
