@@ -626,20 +626,24 @@ class ChatView extends StatelessWidget {
                                               contentPadding: EdgeInsets.all(0),
                                             ),
                                           ),
-                                        PopupMenuItem<String>(
-                                          value: 'sticker',
-                                          child: ListTile(
-                                            leading: CircleAvatar(
-                                              backgroundColor: Colors.orange,
-                                              foregroundColor: Colors.white,
-                                              child: Icon(Icons
-                                                  .emoji_emotions_outlined),
+                                        if (controller.room
+                                            .getImagePacks(
+                                                ImagePackUsage.sticker)
+                                            .isNotEmpty)
+                                          PopupMenuItem<String>(
+                                            value: 'sticker',
+                                            child: ListTile(
+                                              leading: CircleAvatar(
+                                                backgroundColor: Colors.orange,
+                                                foregroundColor: Colors.white,
+                                                child: Icon(Icons
+                                                    .emoji_emotions_outlined),
+                                              ),
+                                              title: Text(
+                                                  L10n.of(context).sendSticker),
+                                              contentPadding: EdgeInsets.all(0),
                                             ),
-                                            title: Text(
-                                                L10n.of(context).sendSticker),
-                                            contentPadding: EdgeInsets.all(0),
                                           ),
-                                        ),
                                         if (PlatformInfos.isMobile)
                                           PopupMenuItem<String>(
                                             value: 'voice',
