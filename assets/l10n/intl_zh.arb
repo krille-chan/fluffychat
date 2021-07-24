@@ -2207,5 +2207,15 @@
   "@tapOnDeviceToVerify": {
     "type": "text",
     "placeholders": {}
+  },
+  "roomVersion": "房间版本",
+  "@roomVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicGroups": "公共群组",
+  "@publicGroups": {
+    "type": "text",
+    "placeholders": {}
   }
 }
