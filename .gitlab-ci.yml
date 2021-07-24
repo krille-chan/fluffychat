@@ -32,30 +32,16 @@ build_web:
     paths:
       - build/web/
 
-#build_windows:
-#  extends:
-#    - .shared_windows_runners
-#  stage: coverage
-#  script:
-#    # Install chocolately
-#    - Set-ExecutionPolicy Bypass -Scope Process
-#    - Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-#    - choco install git -y
-#    - choco install visualstudio2019community -y --package-parameters "--add Microsoft.VisualStudio.Product.BuildTools --includeRecommended --includeOptional --passive --locale en-US"
-#    - cd ..; git clone https://github.com/flutter/flutter.git -b dev; $env:path += ";C:\GitLab-Runner\builds\famedly\flutter\bin"; cd fluffychat
-#    - flutter doctor
-#    - flutter config --enable-windows-desktop
-#    - '$package_override = "`r`ndependency_overrides:`r`n  intl: 0.17.0-nullsafety.2"'
-#    - '[System.IO.File]::AppendAllText("$CI_PROJECT_DIR/pubspec.yaml", $package_override, [System.Text.Encoding]::UTF8)'
-#    - flutter clean
-#    - flutter pub get
-#    - flutter build windows
-#  needs: []
-#  artifacts:
-#    paths:
-#      - build/windows/runner/Release/
-#    name: "Binaries"
-#  allow_failure: true
+build_windows:
+  extends:
+    - .shared_windows_runners
+  stage: coverage
+  before_script: [./scripts/prepare-windows.ps1]
+  script: [./scripts/build-windows.ps1]
+  artifacts:
+    paths:
+      - build/windows/runner/Release
+  allow_failure: true
 
 build_android_debug:
   stage: coverage
