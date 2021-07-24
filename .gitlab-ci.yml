@@ -231,12 +231,12 @@ upload-linux-arm64:
     - |
       curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file package.tar.gz ${PACKAGE_REGISTRY_URL}/fluffychat-linux-arm64.tar.gz
 
-#upload-windows:
-#  extends: .release
-#  script:
-#    - tar czf package.tar.gz -C build/windows/runner/Release/ .
-#    - |
-#      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file package.tar.gz ${PACKAGE_REGISTRY_URL}/fluffychat-windows.tar.gz
+upload-windows:
+  extends: .release
+  script:
+    - pushd build/windows/runner/Release; zip -r ../../../../package.zip  . ; popd
+    - |
+      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file package.zip ${PACKAGE_REGISTRY_URL}/fluffychat-windows.zip
 
 upload-playstore:
   stage: release
@@ -256,5 +256,5 @@ release:
         --assets-link "{\"name\":\"fluffychat.apk\",\"url\":\"${PACKAGE_REGISTRY_URL}/fluffychat.apk\"}" \
         --assets-link "{\"name\":\"fluffychat-linux-x86.tar.gz\",\"url\":\"${PACKAGE_REGISTRY_URL}/fluffychat-linux-x86.tar.gz\"}" \
         --assets-link "{\"name\":\"fluffychat-linux-arm64.tar.gz\",\"url\":\"${PACKAGE_REGISTRY_URL}/fluffychat-linux-arm64.tar.gz\"}" \
-        --assets-link "{\"name\":\"fluffychat-windows.tar.gz\",\"url\":\"${PACKAGE_REGISTRY_URL}/fluffychat-windows.tar.gz\"}" \
+        --assets-link "{\"name\":\"fluffychat-windows.zip\",\"url\":\"${PACKAGE_REGISTRY_URL}/fluffychat-windows.zip\"}" \
         --assets-link "{\"name\":\"fluffychat-web.tar.gz\",\"url\":\"${PACKAGE_REGISTRY_URL}/fluffychat-web.tar.gz\"}"
