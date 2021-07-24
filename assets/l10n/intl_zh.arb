@@ -2095,5 +2095,10 @@
   "@changePassword": {
     "type": "text",
     "placeholders": {}
+  },
+  "commandHintLeave": "推出该聊天室",
+  "@commandHintLeave": {
+    "type": "text",
+    "description": "Usage hint for the command /leave"
   }
 }
