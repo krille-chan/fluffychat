@@ -739,7 +739,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "isTyping": "正在打字…",
+  "isTyping": "正在输入…",
   "@isTyping": {
     "type": "text",
     "placeholders": {}
@@ -1553,17 +1553,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerAcceptRequest": "等待对方接受请求...",
+  "waitingPartnerAcceptRequest": "等待对方接受请求…",
   "@waitingPartnerAcceptRequest": {
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerEmoji": "等待对方接受emoji...",
+  "waitingPartnerEmoji": "等待对方接受 emoji…",
   "@waitingPartnerEmoji": {
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerNumbers": "等待对方接受数字...",
+  "waitingPartnerNumbers": "等待对方接受数字…",
   "@waitingPartnerNumbers": {
     "type": "text",
     "placeholders": {}
@@ -1593,7 +1593,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "writeAMessage": "写一条消息...",
+  "writeAMessage": "写一条消息…",
   "@writeAMessage": {
     "type": "text",
     "placeholders": {}
@@ -2117,5 +2117,15 @@
     "placeholders": {
       "count": {}
     }
+  },
+  "synchronizingPleaseWait": "同步中…请等待。",
+  "@synchronizingPleaseWait": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveFile": "保存文件",
+  "@saveFile": {
+    "type": "text",
+    "placeholders": {}
   }
 }
