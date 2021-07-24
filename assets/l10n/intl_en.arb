@@ -222,7 +222,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noPublicRoomsFound": "No public rooms found...",
+  "noPublicRoomsFound": "No public rooms found…",
   "@noPublicRoomsFound": {
     "type": "text",
     "placeholders": {}
@@ -1317,7 +1317,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "yourChatsAreBeingSynced": "Your chats are being synced...",
+  "yourChatsAreBeingSynced": "Your chats are being synced…",
   "@yourChatsAreBeingSynced": {
     "type": "text",
     "placeholders": {}
