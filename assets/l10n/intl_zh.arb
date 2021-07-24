@@ -2251,5 +2251,20 @@
     "placeholders": {}
   },
   "clearArchive": "清除存档",
-  "@clearArchive": {}
+  "@clearArchive": {},
+  "commandHintInvite": "邀请用户加入此聊天室",
+  "@commandHintInvite": {
+    "type": "text",
+    "description": "Usage hint for the command /invite"
+  },
+  "commandHintUnBan": "在此聊天室解封该用户",
+  "@commandHintUnBan": {
+    "type": "text",
+    "description": "Usage hint for the command /unban"
+  },
+  "commandHintBan": "在此聊天室封禁该用户",
+  "@commandHintBan": {
+    "type": "text",
+    "description": "Usage hint for the command /ban"
+  }
 }
