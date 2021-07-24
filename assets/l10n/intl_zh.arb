@@ -2163,7 +2163,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noEncryptionForPublicRooms": "您只能在房间不可被公众访问时才能启用加密。",
+  "noEncryptionForPublicRooms": "您只能在聊天室不可被公众访问时才能启用加密。",
   "@noEncryptionForPublicRooms": {
     "type": "text",
     "placeholders": {}
