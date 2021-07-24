@@ -2208,7 +2208,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "roomVersion": "房间版本",
+  "roomVersion": "聊天室版本",
   "@roomVersion": {
     "type": "text",
     "placeholders": {}
