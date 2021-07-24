@@ -2217,5 +2217,37 @@
   "@publicGroups": {
     "type": "text",
     "placeholders": {}
+  },
+  "commandHintKick": "将该用户移出聊天室",
+  "@commandHintKick": {
+    "type": "text",
+    "description": "Usage hint for the command /kick"
+  },
+  "commandHintOp": "设置该用户的权限等级（默认：50）",
+  "@commandHintOp": {
+    "type": "text",
+    "description": "Usage hint for the command /op"
+  },
+  "commandInvalid": "指令无效",
+  "@commandInvalid": {
+    "type": "text"
+  },
+  "commandMissing": "{command} 不是指令。",
+  "@commandMissing": {
+    "type": "text",
+    "placeholders": {
+      "command": {}
+    },
+    "description": "State that {command} is not a valid /command."
+  },
+  "editRoomAliases": "编辑聊天室别名",
+  "@editRoomAliases": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setAsCanonicalAlias": "设为主要别名",
+  "@setAsCanonicalAlias": {
+    "type": "text",
+    "placeholders": {}
   }
 }
