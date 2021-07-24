@@ -1032,7 +1032,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterAMatrixIdentifier": "请输入matrix识别码",
+  "pleaseEnterAMatrixIdentifier": "请输入matrix ID.",
   "@pleaseEnterAMatrixIdentifier": {
     "type": "text",
     "placeholders": {}
