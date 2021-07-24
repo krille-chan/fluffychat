@@ -2177,5 +2177,10 @@
   "@addNewFriend": {
     "type": "text",
     "placeholders": {}
+  },
+  "setPermissionsLevel": "设置权限级别",
+  "@setPermissionsLevel": {
+    "type": "text",
+    "placeholders": {}
   }
 }
