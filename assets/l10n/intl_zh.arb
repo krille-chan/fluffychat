@@ -1833,7 +1833,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterSecurityKey": "请键入您的安全密钥",
+  "pleaseEnterSecurityKey": "请键入您的安全密钥:",
   "@pleaseEnterSecurityKey": {
     "type": "text",
     "placeholders": {}
