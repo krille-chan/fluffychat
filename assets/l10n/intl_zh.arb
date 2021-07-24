@@ -2182,5 +2182,30 @@
   "@setPermissionsLevel": {
     "type": "text",
     "placeholders": {}
+  },
+  "goToTheNewRoom": "前往新的房间",
+  "@goToTheNewRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zoomIn": "放大",
+  "@zoomIn": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zoomOut": "缩小",
+  "@zoomOut": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showPassword": "显示密码",
+  "@showPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapOnDeviceToVerify": "点选一部设备进行验证",
+  "@tapOnDeviceToVerify": {
+    "type": "text",
+    "placeholders": {}
   }
 }
