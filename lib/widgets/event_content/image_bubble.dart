@@ -24,6 +24,7 @@ class ImageBubble extends StatefulWidget {
   final double width;
   final double height;
   final void Function() onLoaded;
+  final void Function() onTap;
 
   const ImageBubble(
     this.event, {
@@ -36,6 +37,7 @@ class ImageBubble extends StatefulWidget {
     this.onLoaded,
     this.width = 400,
     this.height = 300,
+    this.onTap,
     Key key,
   }) : super(key: key);
 
@@ -386,6 +388,10 @@ class _ImageBubbleState extends State<ImageBubble> {
   }
 
   void onTap(BuildContext context) {
+    if (widget.onTap != null) {
+      widget.onTap();
+      return;
+    }
     if (!widget.tapToView) return;
     showDialog(
       context: Matrix.of(context).navigatorContext,
