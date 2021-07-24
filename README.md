@@ -35,7 +35,13 @@ sudo apt install ninja-build
 
 ### iOS / iPadOS
 
-* With xcode you can't build a release version without our cert. :-/ Use `flutter run --profile` to have a working version on your iOS device.
+* Have a Mac with Xcode installed, and set up for Xcode-managed app signing
+* If you want automatic app installation to connected devices, make sure you have Apple Configurator installed, with the Automation Tools (`cfgutil`) enabled
+* Set a few environment variables
+    * FLUFFYCHAT_NEW_TEAM: the Apple Developer team that your certificates should live under
+    * FLUFFYCHAT_NEW_GROUP: the group you want App IDs and such to live under (ie: com.example.fluffychat)
+    * FLUFFYCHAT_INSTALL_IPA: set to `1` if you want the IPA to be deployed to connected devices after building, otherwise unset
+* Run `./scripts/build-ios.sh`
 
 ### Web
 
