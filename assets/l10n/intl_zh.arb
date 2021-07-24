@@ -2110,5 +2110,12 @@
   "@commandHintSend": {
     "type": "text",
     "description": "Usage hint for the command /send"
+  },
+  "numUsersTyping": "{count} 正在输入…",
+  "@numUsersTyping": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
   }
 }
