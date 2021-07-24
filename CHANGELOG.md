@@ -1,3 +1,33 @@
+## v0.35.0 - 2021-07-24
+This release introduces stickers and a lot of minor bug fixes and improvements.
+
+### All changes:
+### Feature
+* Add sticker picker [205d7e8]
+* Also suggest username completions based on their slugs [3d980df]
+* Nicer mentions [99bc819]
+* Render stickers nicer [35523a5]
+* Add download button to audio messages [bbb2f43]
+* Android SSO in webview [befd8e1]
+
+### Fixes
+* Reset bootstrap on bad ssss [b78b654]
+* Hide stickers button when there is not sticker pack [b71dd4b]
+* Download files on iOS [a8201c4]
+* Record voice messages on iOS [4c2e690]
+* cropped sticker [a4ec2a0]
+* busy loop due to CircularProgressIndicator [15856e1]
+* Crash on timeline [a206f23]
+* typo on webiste [00a693e]
+* Make sure the aspect ratio of image bubbles stays the same [a4579a5]
+* Linux failing on attempting to open hive [76e476e]
+* Secure storage [0a52496]
+* Make sure the textfield is unfocused before opening the camera [6821a42]
+* Close safariviewcontroller on SSO [ba685b7]
+
+### Refactor
+* Rename store and allow storing custom values [b1c35e5]
+
 ## v0.34.1 - 2021-07-14
 Bugfix image picker on Android 11
 
