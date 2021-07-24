@@ -2511,5 +2511,10 @@
   "@tapToShowImage": {
     "type": "text",
     "placeholders": {}
+  },
+  "sendSticker": "Envoyer un autocollant",
+  "@sendSticker": {
+    "type": "text",
+    "placeholders": {}
   }
 }
