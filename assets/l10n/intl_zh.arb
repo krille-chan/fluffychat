@@ -2218,7 +2218,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHintKick": "将该用户移出聊天室",
+  "commandHintKick": "将该用户移出此聊天室",
   "@commandHintKick": {
     "type": "text",
     "description": "Usage hint for the command /kick"
