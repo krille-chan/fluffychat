@@ -2183,7 +2183,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "goToTheNewRoom": "前往新的房间",
+  "goToTheNewRoom": "前往新的聊天室",
   "@goToTheNewRoom": {
     "type": "text",
     "placeholders": {}
