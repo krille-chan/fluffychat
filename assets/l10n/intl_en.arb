@@ -16,72 +16,72 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHintSend" : "Send text",
+  "commandHintSend": "Send text",
   "@commandHintSend": {
     "type": "text",
     "description": "Usage hint for the command /send"
   },
-  "commandHintMe" : "Describe yourself",
+  "commandHintMe": "Describe yourself",
   "@commandHintMe": {
     "type": "text",
     "description": "Usage hint for the command /me"
   },
-  "commandHintPlain" : "Send unformatted text",
+  "commandHintPlain": "Send unformatted text",
   "@commandHintPlain": {
     "type": "text",
     "description": "Usage hint for the command /plain"
   },
-  "commandHintHtml" : "Send HTML-formatted text",
+  "commandHintHtml": "Send HTML-formatted text",
   "@commandHintHtml": {
     "type": "text",
     "description": "Usage hint for the command /html"
   },
-  "commandHintReact" : "Send reply as a reaction",
+  "commandHintReact": "Send reply as a reaction",
   "@commandHintReact": {
     "type": "text",
     "description": "Usage hint for the command /react"
   },
-  "commandHintJoin" : "Join the given room",
+  "commandHintJoin": "Join the given room",
   "@commandHintJoin": {
     "type": "text",
     "description": "Usage hint for the command /join"
   },
-  "commandHintLeave" : "Leave this room",
+  "commandHintLeave": "Leave this room",
   "@commandHintLeave": {
     "type": "text",
     "description": "Usage hint for the command /leave"
   },
-  "commandHintOp" : "Set the given user's power level (default: 50)",
+  "commandHintOp": "Set the given user's power level (default: 50)",
   "@commandHintOp": {
     "type": "text",
     "description": "Usage hint for the command /op"
   },
-  "commandHintKick" : "Remove the given user from this room",
+  "commandHintKick": "Remove the given user from this room",
   "@commandHintKick": {
     "type": "text",
     "description": "Usage hint for the command /kick"
   },
-  "commandHintBan" : "Ban the given user from this room",
+  "commandHintBan": "Ban the given user from this room",
   "@commandHintBan": {
     "type": "text",
     "description": "Usage hint for the command /ban"
   },
-  "commandHintUnBan" : "Unban the given user from this room",
+  "commandHintUnBan": "Unban the given user from this room",
   "@commandHintUnBan": {
     "type": "text",
     "description": "Usage hint for the command /unban"
   },
-  "commandHintInvite" : "Invite the given user to this room",
+  "commandHintInvite": "Invite the given user to this room",
   "@commandHintInvite": {
     "type": "text",
     "description": "Usage hint for the command /invite"
   },
-  "commandHintMyRoomNick" : "Set your display name for this room",
+  "commandHintMyRoomNick": "Set your display name for this room",
   "@commandHintMyRoomNick": {
     "type": "text",
     "description": "Usage hint for the command /myroomnick"
   },
-  "commandHintMyRoomAvatar" : "Set your picture for this room (by mxc-uri)",
+  "commandHintMyRoomAvatar": "Set your picture for this room (by mxc-uri)",
   "@commandHintMyRoomAvatar": {
     "type": "text",
     "description": "Usage hint for the command /myroomavatar"
@@ -114,10 +114,7 @@
     "placeholders": {}
   },
   "clearArchive": "Clear archive",
-  "@people": {
-    "type": "text",
-    "placeholders": {}
-  },
+  "@clearArchive": {},
   "publicGroups": "Public Groups",
   "@publicGroups": {
     "type": "text",
@@ -1727,7 +1724,6 @@
     "type": "text",
     "placeholders": {}
   },
-
   "searchForAChat": "Search for a chat",
   "@searchForAChat": {
     "type": "text",
@@ -2041,11 +2037,6 @@
   },
   "or": "Or",
   "@or": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "login": "Login",
-  "@login": {
     "type": "text",
     "placeholders": {}
   },
@@ -2412,7 +2403,7 @@
     "type": "text",
     "placeholders": {}
   },
-    "userVerified": "User is verified",
+  "userVerified": "User is verified",
   "@userVerified": {
     "type": "text",
     "placeholders": {}
@@ -2487,7 +2478,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "saveFileToFolder": "Save file to this foler",
+  "saveFileToFolder": "Save file to this folder",
   "@saveFileToFolder": {
     "type": "text",
     "placeholders": {}
