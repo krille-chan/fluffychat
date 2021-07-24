@@ -2266,5 +2266,25 @@
   "@commandHintBan": {
     "type": "text",
     "description": "Usage hint for the command /ban"
+  },
+  "commandHintHtml": "发送HTML格式化文本",
+  "@commandHintHtml": {
+    "type": "text",
+    "description": "Usage hint for the command /html"
+  },
+  "commandHintPlain": "发送纯文本",
+  "@commandHintPlain": {
+    "type": "text",
+    "description": "Usage hint for the command /plain"
+  },
+  "commandHintMe": "介绍自己",
+  "@commandHintMe": {
+    "type": "text",
+    "description": "Usage hint for the command /me"
+  },
+  "commandHintMyRoomNick": "设置您的聊天室昵称",
+  "@commandHintMyRoomNick": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomnick"
   }
 }
