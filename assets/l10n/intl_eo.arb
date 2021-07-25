@@ -2478,5 +2478,32 @@
   "@commandHintMe": {
     "type": "text",
     "description": "Usage hint for the command /me"
+  },
+  "savedFileAs": "Konservi dosieron kun la nomo: {filename}",
+  "@savedFileAs": {
+    "type": "text",
+    "placeholders": {
+      "filename": {}
+    }
+  },
+  "saveFileToFolder": "Konservi dosieron al tiu ĉi dosierujo",
+  "@saveFileToFolder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveFile": "Konservi dosieron",
+  "@saveFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapToShowImage": "Tuŝetu por montri bildon",
+  "@tapToShowImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendSticker": "Sendi glumarkon",
+  "@sendSticker": {
+    "type": "text",
+    "placeholders": {}
   }
 }
