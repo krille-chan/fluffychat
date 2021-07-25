@@ -2486,5 +2486,15 @@
   "@oneMoreEvent": {
     "type": "text",
     "placeholders": {}
+  },
+  "commandHintReact": "用答复作为响应",
+  "@commandHintReact": {
+    "type": "text",
+    "description": "Usage hint for the command /react"
+  },
+  "commandHintMyRoomAvatar": "设置您的聊天室头像（通过mxc-uri）",
+  "@commandHintMyRoomAvatar": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomavatar"
   }
 }
