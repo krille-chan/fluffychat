@@ -2487,7 +2487,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHintReact": "用答复作为响应",
+  "commandHintReact": "将回复作为响应发送",
   "@commandHintReact": {
     "type": "text",
     "description": "Usage hint for the command /react"
