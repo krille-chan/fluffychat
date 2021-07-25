@@ -2117,7 +2117,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noPublicRoomsFound": "Avalikke jututubasid ei leidunud...",
+  "noPublicRoomsFound": "Avalikke jututubasid ei leidunud…",
   "@noPublicRoomsFound": {
     "type": "text",
     "placeholders": {}
@@ -2394,7 +2394,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "yourChatsAreBeingSynced": "Sünkroniseerin sinu vestlusi...",
+  "yourChatsAreBeingSynced": "Sünkroniseerin sinu vestlusi…",
   "@yourChatsAreBeingSynced": {
     "type": "text",
     "placeholders": {}
@@ -2509,6 +2509,11 @@
   },
   "tapToShowImage": "Pildi vaatamiseks klõpsi",
   "@tapToShowImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendSticker": "Saada kleeps",
+  "@sendSticker": {
     "type": "text",
     "placeholders": {}
   }
