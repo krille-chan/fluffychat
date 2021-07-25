@@ -21,7 +21,8 @@ FLUFFYCHAT_ORIG_TEAM="4NXF6Z997G"
 	# Bundle identifiers
 	sed -i "" "s/${FLUFFYCHAT_ORIG_GROUP}.app/${FLUFFYCHAT_NEW_GROUP}.app/g" "ios/Runner.xcodeproj/project.pbxproj"
 }
-[ -n "${FLUFFYCHAT_NEW_TEAM" ] && {
+
+[ -n "${FLUFFYCHAT_NEW_TEAM}" ] && {
 	# Code signing team
 	sed -i "" "s/${FLUFFYCHAT_ORIG_TEAM}/${FLUFFYCHAT_NEW_TEAM}/g" "ios/Runner.xcodeproj/project.pbxproj"
 }
@@ -39,7 +40,7 @@ If something later in the build explodes, and looks possibly related to App IDs:
 EOHELP
 
 ### [optional] override pods minimum iphoneos deployment target ###
-[ -n ${I_PROMISE_IM_REALLY_SMART} ] && {
+[ -n "${I_PROMISE_IM_REALLY_SMART}" ] && {
 # 1. I'm sorry about the indentation't ;_; heredocs are weird about it
 # 2. The patch basically just removes any preference on target iOS version
 #    This lets our default from ios/Flutter/AppFrameworkInfo.plist take precendence
@@ -65,7 +66,7 @@ rm -f apple_please_fix_your_coreutils
 flutter build ipa --release
 
 ### [optional] Install release build ###
-[ -n ${FLUFFYCHAT_INSTALL_IPA} ] && {
+[ -n "${FLUFFYCHAT_INSTALL_IPA}" ] && {
   TMPDIR=$(mktemp -d)
   # 1. Turn the xcarchive that flutter created into a dev-signed IPA
   echo '{"compileBitcode":false,"method":"development"}' | plutil -convert xml1 -o "${TMPDIR}/options.plist" -
