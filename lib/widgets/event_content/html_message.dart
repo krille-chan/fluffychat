@@ -1,8 +1,10 @@
 import 'package:matrix/matrix.dart';
 import 'package:flutter_matrix_html/flutter_html.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import '../../utils/url_launcher.dart';
 import '../../config/setting_keys.dart';
+import '../../utils/matrix_sdk_extensions.dart/matrix_locals.dart';
 
 import '../matrix.dart';
 
@@ -108,7 +110,8 @@ class HtmlMessage extends StatelessWidget {
                         state.content['alt_aliases'].contains(identifier)))) {
               // we have a room!
               return {
-                'displayname': identifier,
+                'displayname':
+                    r.getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
                 'avatar_url': r.getState('m.room.avatar')?.content['url'],
               };
             }
@@ -122,7 +125,8 @@ class HtmlMessage extends StatelessWidget {
             return null;
           }
           return {
-            'displayname': r.canonicalAlias,
+            'displayname':
+                r.getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
             'avatar_url': r.getState('m.room.avatar')?.content['url'],
           };
         }
