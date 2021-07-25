@@ -268,7 +268,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changeTheHomeserver": "更改主机地址",
+  "changeTheHomeserver": "更改主服务器",
   "@changeTheHomeserver": {
     "type": "text",
     "placeholders": {}
