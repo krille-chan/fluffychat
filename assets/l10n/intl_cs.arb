@@ -2117,7 +2117,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noPublicRoomsFound": "Nebyly nalezeny žádné veřejné místnosti...",
+  "noPublicRoomsFound": "Nebyly nalezeny žádné veřejné místnosti…",
   "@noPublicRoomsFound": {
     "type": "text",
     "placeholders": {}
@@ -2490,7 +2490,7 @@
     "type": "text",
     "description": "Usage hint for the command /send"
   },
-  "savedFileAs": "Uložený soubor jako {název souboru}",
+  "savedFileAs": "Uložený soubor jako {filename}",
   "@savedFileAs": {
     "type": "text",
     "placeholders": {
@@ -2509,6 +2509,11 @@
   },
   "tapToShowImage": "Klepnutím zobrazíte obrázek",
   "@tapToShowImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendSticker": "Odeslat nálepku",
+  "@sendSticker": {
     "type": "text",
     "placeholders": {}
   }
