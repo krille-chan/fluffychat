@@ -534,7 +534,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteWarnNeedToPick": "你需要取一个快捷码和一张图片！",
+  "emoteWarnNeedToPick": "您需要选择一个表情快捷码和一张图片！",
   "@emoteWarnNeedToPick": {
     "type": "text",
     "placeholders": {}
@@ -544,7 +544,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enableEncryptionWarning": "你将不能再停用加密，确定吗？",
+  "enableEncryptionWarning": "您将不能再停用加密，确定吗？",
   "@enableEncryptionWarning": {
     "type": "text",
     "placeholders": {}
@@ -586,7 +586,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enterYourHomeserver": "输入服务器地址",
+  "enterYourHomeserver": "输入您的主服务器地址",
   "@enterYourHomeserver": {
     "type": "text",
     "placeholders": {}
@@ -676,7 +676,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "homeserverIsNotCompatible": "服务器不兼容",
+  "homeserverIsNotCompatible": "主服务器不兼容",
   "@homeserverIsNotCompatible": {
     "type": "text",
     "placeholders": {}
@@ -726,7 +726,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "{username} 邀请您到 FluffyChat. \n1. 安装 FluffyChat: https://fluffychat.im \n2. 注册或登录 \n3. 打开该邀请链接: {link}",
+  "inviteText": "{username} 邀请您使用 FluffyChat。 \n1. 安装 FluffyChat：https://fluffychat.im \n2. 注册或登录 \n3. 打开该邀请链接：{link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {
@@ -846,7 +846,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "logInTo": "登入 {homeserver}",
+  "logInTo": "登录 {homeserver}",
   "@logInTo": {
     "type": "text",
     "placeholders": {
@@ -928,7 +928,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "Fluffychat 目前不支持启用在线密钥备份。请在 Element 中启用。",
+  "noMegolmBootstrap": "FluffyChat 目前不支持启用在线密钥备份。请在 Element 中启用。",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -975,7 +975,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "oopsSomethingWentWrong": "哦！出了一些错误…",
+  "oopsSomethingWentWrong": "哎呀，出了一些错误…",
   "@oopsSomethingWentWrong": {
     "type": "text",
     "placeholders": {}
@@ -1302,12 +1302,12 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "现在开始你的第一个聊天！🙂\n- 点击消息按钮\n- 输入好友的用户名\n- 聊得开心",
+  "startYourFirstChat": "现在开始您的第一个聊天！🙂\n- 点击消息按钮\n- 输入好友的用户名\n- 聊得开心",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
   },
-  "statusExampleMessage": "你今天怎么样？",
+  "statusExampleMessage": "您今天怎么样？",
   "@statusExampleMessage": {
     "type": "text",
     "placeholders": {}
@@ -1445,7 +1445,7 @@
       "unreadChats": {}
     }
   },
-  "useAmoledTheme": "使用适合AMOLED屏的颜色？",
+  "useAmoledTheme": "使用适合 AMOLED 屏的颜色？",
   "@useAmoledTheme": {
     "type": "text",
     "placeholders": {}
@@ -1603,22 +1603,22 @@
     "type": "text",
     "placeholders": {}
   },
-  "you": "你",
+  "you": "您",
   "@you": {
     "type": "text",
     "placeholders": {}
   },
-  "youAreInvitedToThisChat": "你被邀请到该聊天",
+  "youAreInvitedToThisChat": "您被邀请到该聊天",
   "@youAreInvitedToThisChat": {
     "type": "text",
     "placeholders": {}
   },
-  "youAreNoLongerParticipatingInThisChat": "你已不再参与此聊天",
+  "youAreNoLongerParticipatingInThisChat": "您已不再参与此聊天",
   "@youAreNoLongerParticipatingInThisChat": {
     "type": "text",
     "placeholders": {}
   },
-  "youCannotInviteYourself": "你不能邀请自己",
+  "youCannotInviteYourself": "您不能邀请您自己",
   "@youCannotInviteYourself": {
     "type": "text",
     "placeholders": {}
@@ -1683,7 +1683,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "ignoreListDescription": "你可以忽略打扰你的用户。你将不会收到来自忽略列表中用户的任何消息或聊天室邀请。",
+  "ignoreListDescription": "您可以忽略打扰您的用户。您将不会收到来自忽略列表中用户的任何消息或聊天室邀请。",
   "@ignoreListDescription": {
     "type": "text",
     "placeholders": {}
@@ -1748,7 +1748,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "whyDoYouWantToReportThis": "你举报的理由是什么？",
+  "whyDoYouWantToReportThis": "您举报的理由是什么？",
   "@whyDoYouWantToReportThis": {
     "type": "text",
     "placeholders": {}
@@ -1895,7 +1895,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "badServerLoginTypesException": "服务器支持登录方式：\n{serverVersions}\n但本应用只支持以下登录方式：\n{supportedVersions}",
+  "badServerLoginTypesException": "主服务器支持的登录方式：\n{serverVersions}\n但本应用仅支持：\n{supportedVersions}",
   "@badServerLoginTypesException": {
     "type": "text",
     "placeholders": {
@@ -1903,7 +1903,7 @@
       "supportedVersions": {}
     }
   },
-  "badServerVersionsException": "服务器支持系统版本:\n{serverVersions}\n但本应用仅支持{supportedVersions}",
+  "badServerVersionsException": "主服务器支持的 Spec 版本：\n{serverVersions}\n但本应用仅支持 {supportedVersions}",
   "@badServerVersionsException": {
     "type": "text",
     "placeholders": {
@@ -2496,5 +2496,20 @@
   "@commandHintMyRoomAvatar": {
     "type": "text",
     "description": "Usage hint for the command /myroomavatar"
+  },
+  "pleaseChooseAPasscode": "请选择一个密码",
+  "@pleaseChooseAPasscode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userUnknownVerification": "用户的验证状态未知",
+  "@userUnknownVerification": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oopsPushError": "哎呀！十分不幸，配置推送通知时发生了错误。",
+  "@oopsPushError": {
+    "type": "text",
+    "placeholders": {}
   }
 }
