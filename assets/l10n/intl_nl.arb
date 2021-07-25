@@ -522,12 +522,12 @@
       "username": {}
     }
   },
-  "sendVideo": "Stuur video",
+  "sendVideo": "Video versturen",
   "@sendVideo": {
     "type": "text",
     "placeholders": {}
   },
-  "sendOriginal": "Stuur origineel",
+  "sendOriginal": "Origineel versturen",
   "@sendOriginal": {
     "type": "text",
     "placeholders": {}
@@ -542,7 +542,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sendAudio": "Stuur audio",
+  "sendAudio": "Audio versturen",
   "@sendAudio": {
     "type": "text",
     "placeholders": {}
@@ -2500,6 +2500,11 @@
   },
   "tapToShowImage": "Tik om afbeelding weer te geven",
   "@tapToShowImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendSticker": "Sticker versturen",
+  "@sendSticker": {
     "type": "text",
     "placeholders": {}
   }
