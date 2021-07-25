@@ -288,7 +288,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changeWallpaper": "更改会话壁纸",
+  "changeWallpaper": "更改壁纸",
   "@changeWallpaper": {
     "type": "text",
     "placeholders": {}
@@ -509,7 +509,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "editJitsiInstance": "编辑Jitsi实例",
+  "editJitsiInstance": "编辑 Jitsi 实例",
   "@editJitsiInstance": {
     "type": "text",
     "placeholders": {}
@@ -774,7 +774,7 @@
       "targetName": {}
     }
   },
-  "kickedAndBanned": "{username} 踢了 {targetName} 并将其封锁",
+  "kickedAndBanned": "{username} 踢了 {targetName} 并将其封禁",
   "@kickedAndBanned": {
     "type": "text",
     "placeholders": {
@@ -782,7 +782,7 @@
       "targetName": {}
     }
   },
-  "kickFromChat": "从聊天室移除",
+  "kickFromChat": "从聊天室踢出",
   "@kickFromChat": {
     "type": "text",
     "placeholders": {}
@@ -928,7 +928,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "Fluffychat目前不支持启用在线密钥备份. 请在Riot中启用.",
+  "noMegolmBootstrap": "Fluffychat 目前不支持启用在线密钥备份。请在 Element 中启用。",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -1302,7 +1302,7 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "开始你的第一个聊天 :-)",
+  "startYourFirstChat": "现在开始你的第一个聊天！🙂\n- 点击消息按钮\n- 输入好友的用户名\n- 聊得开心",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -1378,7 +1378,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unbannedUser": "{username} 解除了 {targetName} 的封锁",
+  "unbannedUser": "{username} 解封了 {targetName}",
   "@unbannedUser": {
     "type": "text",
     "placeholders": {
@@ -1423,21 +1423,21 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount} 未读聊天",
+  "unreadChats": "{unreadCount} 个未读聊天",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents} 未读消息",
+  "unreadMessages": "{unreadEvents} 条未读消息",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
       "unreadEvents": {}
     }
   },
-  "unreadMessagesInChats": "来自 {unreadChats} 聊天的 {unreadEvents} 未读消息",
+  "unreadMessagesInChats": "来自 {unreadChats} 个聊天的 {unreadEvents} 条未读消息",
   "@unreadMessagesInChats": {
     "type": "text",
     "placeholders": {
@@ -1623,12 +1623,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "youHaveBeenBannedFromThisChat": "你已被该聊天封锁",
+  "youHaveBeenBannedFromThisChat": "您已被该聊天封禁",
   "@youHaveBeenBannedFromThisChat": {
     "type": "text",
     "placeholders": {}
   },
-  "yourOwnUsername": "你自己的用户名",
+  "yourOwnUsername": "您自己的用户名",
   "@yourOwnUsername": {
     "type": "text",
     "placeholders": {}
@@ -1668,7 +1668,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sendBugReports": "允许向sentry.io发送错误报告",
+  "sendBugReports": "允许向 sentry.io 发送错误报告",
   "@sendBugReports": {
     "type": "text",
     "placeholders": {}
@@ -2021,7 +2021,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "hideRedactedEvents": "隐藏密文事件",
+  "hideRedactedEvents": "隐藏编辑事件",
   "@hideRedactedEvents": {
     "type": "text",
     "placeholders": {}
@@ -2036,7 +2036,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "notificationsEnabledForThisAccount": "已为此帐户启用通知",
+  "notificationsEnabledForThisAccount": "已为此账户启用通知",
   "@notificationsEnabledForThisAccount": {
     "type": "text",
     "placeholders": {}
@@ -2267,7 +2267,7 @@
     "type": "text",
     "description": "Usage hint for the command /ban"
   },
-  "commandHintHtml": "发送HTML格式化文本",
+  "commandHintHtml": "发送 HTML 格式化文本",
   "@commandHintHtml": {
     "type": "text",
     "description": "Usage hint for the command /html"
@@ -2365,7 +2365,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "optionalAddEmail": "（可选）您的电子邮件地址",
+  "optionalAddEmail": "(可选) 您的电子邮件地址",
   "@optionalAddEmail": {
     "type": "text",
     "placeholders": {}
@@ -2397,6 +2397,71 @@
   },
   "verified": "已验证",
   "@verified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clearText": "清除文本",
+  "@clearText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "soundVibrationLedColor": "声音、振动和 LED 颜色",
+  "@soundVibrationLedColor": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterYourPin": "请输入您的 PIN",
+  "@pleaseEnterYourPin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wipeChatBackup": "确定要清除您的聊天记录备份以创建新的安全密钥吗？",
+  "@wipeChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unlockChatBackup": "解锁聊天记录备份",
+  "@unlockChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableChatBackup": "启用聊天记录备份以确保不会丢失您的聊天记录。",
+  "@enableChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnter4Digits": "请输入 4 位数字或留空以停用应用锁。",
+  "@pleaseEnter4Digits": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appLock": "应用锁",
+  "@appLock": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "people": "联系人",
+  "@people": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chats": "聊天",
+  "@chats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapToShowImage": "点击以显示图片",
+  "@tapToShowImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveFileToFolder": "将文件保存到此文件夹",
+  "@saveFileToFolder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendSticker": "发送贴纸",
+  "@sendSticker": {
     "type": "text",
     "placeholders": {}
   }
