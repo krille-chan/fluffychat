@@ -6,6 +6,7 @@ import 'package:fluffychat/widgets/event_content/image_bubble.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/event_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
 import 'package:fluffychat/pages/key_verification_dialog.dart';
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -76,32 +77,40 @@ class MessageContent extends StatelessWidget {
       case EventTypes.Sticker:
         switch (event.messageType) {
           case MessageTypes.Image:
+            if (event.showThumbnail) {
+              return ImageBubble(
+                event,
+                width: 400,
+                height: 300,
+                fit: BoxFit.cover,
+              );
+            }
+            return MessageDownloadContent(event, textColor);
           case MessageTypes.Sticker:
             if (event.showThumbnail) {
-              // normal images should have a ratio of 4:3
-              var ratio = 4.0 / 3.0;
-              if (event.messageType == MessageTypes.Sticker) {
-                // stickers should default to a ratio of 1:1
-                ratio = 1.0;
-                // if a width and a height is specified for stickers, use those!
-                if (event.infoMap['w'] is int && event.infoMap['h'] is int) {
-                  ratio = event.infoMap['w'] / event.infoMap['h'];
-                  // make sure the ratio is within 0.9 - 2.0
-                  if (ratio > 2.0) {
-                    ratio = 2.0;
-                  }
-                  if (ratio < 0.9) {
-                    ratio = 0.9;
-                  }
+              // stickers should default to a ratio of 1:1
+              var ratio = 1.0;
+              // if a width and a height is specified for stickers, use those!
+              if (event.infoMap['w'] is int && event.infoMap['h'] is int) {
+                ratio = event.infoMap['w'] / event.infoMap['h'];
+                // make sure the ratio is within 0.9 - 2.0
+                if (ratio > 2.0) {
+                  ratio = 2.0;
+                }
+                if (ratio < 0.9) {
+                  ratio = 0.9;
                 }
               }
               return ImageBubble(
                 event,
                 width: 400,
                 height: 400 / ratio,
-                fit: event.messageType == MessageTypes.Sticker && ratio <= 1.0
-                    ? BoxFit.contain
-                    : BoxFit.cover,
+                fit: ratio <= 1.0 ? BoxFit.contain : BoxFit.cover,
+                onTap: () => showOkAlertDialog(
+                  context: context,
+                  message: event.body,
+                  okLabel: L10n.of(context).ok,
+                ),
               );
             }
             return MessageDownloadContent(event, textColor);
