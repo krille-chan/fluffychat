@@ -258,6 +258,7 @@ class ChatListItem extends StatelessWidget {
                             L10n.of(context).youAreInvitedToThisChat,
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.secondary,
+                              fontWeight: FontWeight.bold,
                             ),
                             softWrap: false,
                           )
@@ -271,9 +272,11 @@ class ChatListItem extends StatelessWidget {
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
-                              color: room.notificationCount > 0
+                              color: room.isUnread
                                   ? Theme.of(context).colorScheme.secondary
                                   : null,
+                              fontWeight:
+                                  room.isUnread ? FontWeight.bold : null,
                               decoration: room.lastEvent?.redacted == true
                                   ? TextDecoration.lineThrough
                                   : null,
@@ -286,9 +289,9 @@ class ChatListItem extends StatelessWidget {
                 curve: Curves.bounceInOut,
                 padding: EdgeInsets.symmetric(horizontal: 7),
                 height: unreadBubbleSize,
-                width: room.notificationCount == 0 && room.isUnread ? 0 : null,
+                width: room.notificationCount == 0 && !room.isUnread ? 0 : null,
                 decoration: BoxDecoration(
-                  color: room.highlightCount > 0 || room.markedUnread
+                  color: room.highlightCount > 0
                       ? Colors.red
                       : Theme.of(context).primaryColor,
                   borderRadius: BorderRadius.circular(AppConfig.borderRadius),
