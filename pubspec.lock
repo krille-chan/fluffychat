@@ -222,8 +222,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: main
-      resolved-ref: "3596b18643435c72f08b22632810f6ab9aa05e39"
+      ref: HEAD
+      resolved-ref: eba99721714703f0305d094f4d7296bf2c2230db
       url: "https://gitlab.com/famedly/libraries/fcm_shared_isolate.git"
     source: git
     version: "0.0.1"
@@ -694,7 +694,7 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: master
+      ref: HEAD
       resolved-ref: b3239a12a61a31efb8d02d3d665f2041be6651d6
       url: "https://gitlab.com/famedly/libraries/native_imaging.git"
     source: git

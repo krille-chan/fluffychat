@@ -16,9 +16,7 @@ dependencies:
   email_validator: ^2.0.1
   emoji_picker_flutter: ^1.0.6
   fcm_shared_isolate:
-    git:
-      url: https://gitlab.com/famedly/libraries/fcm_shared_isolate.git
-      ref: main
+    git: https://gitlab.com/famedly/libraries/fcm_shared_isolate.git
   file_picker_cross: ^4.4.2
   filesystem_picker: ^1.0.4
   flutter:
@@ -50,9 +48,7 @@ dependencies:
   lottie: ^1.1.0
   matrix: ^0.1.11
   native_imaging:
-    git:
-      url: https://gitlab.com/famedly/libraries/native_imaging.git
-      ref: master
+    git: https://gitlab.com/famedly/libraries/native_imaging.git
   open_noti_settings: ^0.2.0
   package_info_plus: ^1.0.3
   path_provider: ^2.0.2
