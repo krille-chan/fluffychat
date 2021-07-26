@@ -7,10 +7,10 @@ environment:
   sdk: ">=2.6.0 <3.0.0"
 
 dependencies:
-  adaptive_dialog: ^1.0.1
+  adaptive_dialog: ^1.1.0
   adaptive_theme: ^2.2.0
   audioplayers: ^0.19.1
-  cached_network_image: ^3.0.0
+  cached_network_image: ^3.1.0
   cupertino_icons: any
   desktop_notifications: ">=0.4.0 <0.5.0" # Version 0.5.0 breaks web builds: https://github.com/canonical/dbus.dart/issues/250
   email_validator: ^2.0.1
@@ -54,9 +54,9 @@ dependencies:
       url: https://gitlab.com/famedly/libraries/native_imaging.git
       ref: master
   open_noti_settings: ^0.2.0
-  package_info_plus: ^1.0.3
+  package_info_plus: ^1.0.4
   path_provider: ^2.0.2
-  permission_handler: ^8.1.2
+  permission_handler: ^8.1.4+1
   pin_code_text_field: ^1.8.0
   provider: ^5.0.0
   receive_sharing_intent: ^1.4.5
@@ -70,7 +70,7 @@ dependencies:
   unifiedpush: ^1.0.6
   universal_html: ^2.0.8
   url_launcher: ^6.0.9
-  vrouter: ^1.2.0+5
+  vrouter: ^1.2.0+6
 
 dev_dependencies:
   dapackages: ^1.6.0
