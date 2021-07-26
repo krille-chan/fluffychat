@@ -184,6 +184,16 @@ class ChatListItem extends StatelessWidget {
                     size: 16,
                   ),
                 ),
+              if (room.isFavourite)
+                Padding(
+                  padding: EdgeInsets.only(
+                      right: room.notificationCount > 0 ? 4.0 : 0.0),
+                  child: Icon(
+                    Icons.push_pin_outlined,
+                    size: 16,
+                    color: Theme.of(context).colorScheme.secondary,
+                  ),
+                ),
               Padding(
                 padding: const EdgeInsets.only(left: 4.0),
                 child: Text(
@@ -271,16 +281,6 @@ class ChatListItem extends StatelessWidget {
                           ),
               ),
               SizedBox(width: 8),
-              if (room.isFavourite)
-                Padding(
-                  padding: EdgeInsets.only(
-                      right: room.notificationCount > 0 ? 4.0 : 0.0),
-                  child: Icon(
-                    Icons.push_pin_outlined,
-                    size: 20,
-                    color: Theme.of(context).colorScheme.secondary,
-                  ),
-                ),
               AnimatedContainer(
                 duration: Duration(milliseconds: 300),
                 curve: Curves.bounceInOut,
