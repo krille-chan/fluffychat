@@ -2489,5 +2489,32 @@
   "@commandHintSend": {
     "type": "text",
     "description": "Usage hint for the command /send"
+  },
+  "savedFileAs": "Datoteka je spremljena kao {filename}",
+  "@savedFileAs": {
+    "type": "text",
+    "placeholders": {
+      "filename": {}
+    }
+  },
+  "saveFileToFolder": "Spremi datoteku u ovu mapu",
+  "@saveFileToFolder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveFile": "Spremi datoteku",
+  "@saveFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapToShowImage": "Dodirni za prikaz slike",
+  "@tapToShowImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendSticker": "Pošalji naljepnicu",
+  "@sendSticker": {
+    "type": "text",
+    "placeholders": {}
   }
 }
