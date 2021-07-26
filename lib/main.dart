@@ -129,6 +129,7 @@ class _FluffyChatAppState extends State<FluffyChatApp> {
             key: _router,
             title: '${AppConfig.applicationName}',
             theme: theme,
+            logs: kReleaseMode ? VLogs.none : null,
             darkTheme: darkTheme,
             localizationsDelegates: L10n.localizationsDelegates,
             supportedLocales: L10n.supportedLocales,
