@@ -2117,7 +2117,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noPublicRoomsFound": "Non se atoparon salas públicas...",
+  "noPublicRoomsFound": "Non se atoparon salas públicas…",
   "@noPublicRoomsFound": {
     "type": "text",
     "placeholders": {}
@@ -2394,7 +2394,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "yourChatsAreBeingSynced": "Estanse sincronizando os teus chats...",
+  "yourChatsAreBeingSynced": "Estanse sincronizando os teus chats…",
   "@yourChatsAreBeingSynced": {
     "type": "text",
     "placeholders": {}
@@ -2509,6 +2509,11 @@
   },
   "tapToShowImage": "Toca para mostrar a imaxe",
   "@tapToShowImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendSticker": "Enviar adhesivo",
+  "@sendSticker": {
     "type": "text",
     "placeholders": {}
   }
