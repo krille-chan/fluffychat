@@ -2415,7 +2415,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "yourChatsAreBeingSynced": "Ваши чаты синхронизируются...",
+  "yourChatsAreBeingSynced": "Ваши чаты синхронизируются…",
   "@yourChatsAreBeingSynced": {
     "type": "text",
     "placeholders": {}
@@ -2501,5 +2501,10 @@
   "@commandHintSend": {
     "type": "text",
     "description": "Usage hint for the command /send"
+  },
+  "sendSticker": "Отправить стикер",
+  "@sendSticker": {
+    "type": "text",
+    "placeholders": {}
   }
 }
