@@ -2389,7 +2389,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "yourChatsAreBeingSynced": "Deine Chats werden synchronisiert...",
+  "yourChatsAreBeingSynced": "Deine Chats werden synchronisiert …",
   "@yourChatsAreBeingSynced": {
     "type": "text",
     "placeholders": {}
@@ -2403,5 +2403,118 @@
   "@synchronizingPleaseWait": {
     "type": "text",
     "placeholders": {}
+  },
+  "savedFileAs": "Datei gespeichert als {filename}",
+  "@savedFileAs": {
+    "type": "text",
+    "placeholders": {
+      "filename": {}
+    }
+  },
+  "saveFileToFolder": "Datei in diesem Ordner speichern",
+  "@saveFileToFolder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveFile": "Datei speichern",
+  "@saveFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapToShowImage": "Antippen, um das Bild anzuzeigen",
+  "@tapToShowImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendSticker": "Sticker senden",
+  "@sendSticker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendAsText": "Sende als Text",
+  "@sendAsText": {
+    "type": "text"
+  },
+  "commandMissing": "{command} ist kein Befehl.",
+  "@commandMissing": {
+    "type": "text",
+    "placeholders": {
+      "command": {}
+    },
+    "description": "State that {command} is not a valid /command."
+  },
+  "commandInvalid": "Befehl ungültig",
+  "@commandInvalid": {
+    "type": "text"
+  },
+  "commandHintMyRoomAvatar": "Setze dein Profilbild nur für diesen Raum (MXC-Uri)",
+  "@commandHintMyRoomAvatar": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomavatar"
+  },
+  "commandHintMyRoomNick": "Setze deinen Anzeigenamen nur für diesen Raum",
+  "@commandHintMyRoomNick": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomnick"
+  },
+  "commandHintInvite": "Lade den Benutzer in diesen Raum ein",
+  "@commandHintInvite": {
+    "type": "text",
+    "description": "Usage hint for the command /invite"
+  },
+  "commandHintUnBan": "Hebe die Verbannung dieses Benutzers in diesem Raum auf",
+  "@commandHintUnBan": {
+    "type": "text",
+    "description": "Usage hint for the command /unban"
+  },
+  "commandHintBan": "Verbanne den übergebenen Benutzer aus diesen Raum",
+  "@commandHintBan": {
+    "type": "text",
+    "description": "Usage hint for the command /ban"
+  },
+  "commandHintKick": "Entferne den übergebenen Benutzer aus diesem Raum",
+  "@commandHintKick": {
+    "type": "text",
+    "description": "Usage hint for the command /kick"
+  },
+  "commandHintOp": "Setze den übergeben Powerlevel des Benutzers (Standard: 50)",
+  "@commandHintOp": {
+    "type": "text",
+    "description": "Usage hint for the command /op"
+  },
+  "commandHintLeave": "Diesen Raum verlassen",
+  "@commandHintLeave": {
+    "type": "text",
+    "description": "Usage hint for the command /leave"
+  },
+  "commandHintJoin": "Betrete den übergebenen Raum",
+  "@commandHintJoin": {
+    "type": "text",
+    "description": "Usage hint for the command /join"
+  },
+  "commandHintReact": "Sende die Antwort als Reaction",
+  "@commandHintReact": {
+    "type": "text",
+    "description": "Usage hint for the command /react"
+  },
+  "commandHintHtml": "Sende HTML-formatierten Text",
+  "@commandHintHtml": {
+    "type": "text",
+    "description": "Usage hint for the command /html"
+  },
+  "commandHintPlain": "Sende unformatierten Text",
+  "@commandHintPlain": {
+    "type": "text",
+    "description": "Usage hint for the command /plain"
+  },
+  "commandHintMe": "Beschreibe dich selbst",
+  "@commandHintMe": {
+    "type": "text",
+    "description": "Usage hint for the command /me"
+  },
+  "commandHintSend": "Text senden",
+  "@commandHintSend": {
+    "type": "text",
+    "description": "Usage hint for the command /send"
   }
 }
