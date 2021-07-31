@@ -1,3 +1,18 @@
+## v0.36.0 - 2021-07-31
+Minor design improvements and bug fixes.
+
+### All changes:
+* design: Make unread listtiles more visible
+* design: Move pinned icon in title
+* feat: Rate limit streams so that large accounts have a smoother UI
+* feat: Display the room name in room pills
+* feat: Increase the amount of suggestions for the input bar
+* feat: Tapping on stickers shows the sticker body
+* fix: Windows
+* fix: Disable vrouter logs in release mode
+* fix: No longer hide google services key file
+* fix: Tests
+
 ## v0.35.0 - 2021-07-24
 This release introduces stickers and a lot of minor bug fixes and improvements.
 
