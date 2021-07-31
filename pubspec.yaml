@@ -47,6 +47,7 @@ dependencies:
   localstorage: ^4.0.0+1
   lottie: ^1.1.0
   matrix: ^0.1.11
+  matrix_link_text: ^0.4.2
   native_imaging:
     git: https://gitlab.com/famedly/libraries/native_imaging.git
   open_noti_settings: ^0.2.0
@@ -55,6 +56,7 @@ dependencies:
   permission_handler: ^8.1.4+1
   pin_code_text_field: ^1.8.0
   provider: ^5.0.0
+  punycode: ^1.0.0
   receive_sharing_intent: ^1.4.5
   record: ^3.0.0
   scroll_to_index: ^2.0.0
