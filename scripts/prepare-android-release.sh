@@ -10,5 +10,4 @@ ls | grep key
 bundle install
 bundle update fastlane
 bundle exec fastlane set_build_code_internal
-echo $GOOGLE_SERVICES >> app/google-services.json
 cd ..
