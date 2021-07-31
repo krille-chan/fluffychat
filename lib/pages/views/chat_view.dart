@@ -27,6 +27,8 @@ import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:swipe_to_action/swipe_to_action.dart';
 import 'package:vrouter/vrouter.dart';
 
+import '../../utils/stream_extension.dart';
+
 class ChatView extends StatelessWidget {
   final ChatController controller;
 
@@ -72,7 +74,8 @@ class ChatView extends StatelessWidget {
             titleSpacing: 0,
             title: controller.selectedEvents.isEmpty
                 ? StreamBuilder(
-                    stream: controller.room.onUpdate.stream,
+                    stream: controller.room.onUpdate.stream
+                        .rateLimit(Duration(milliseconds: 250)),
                     builder: (context, snapshot) => ListTile(
                           leading: Avatar(controller.room.avatar,
                               controller.room.displayname),
@@ -105,7 +108,8 @@ class ChatView extends StatelessWidget {
                                       .stream
                                       .where((p) =>
                                           p.senderId ==
-                                          controller.room.directChatMatrixID),
+                                          controller.room.directChatMatrixID)
+                                      .rateLimit(Duration(seconds: 1)),
                                   builder: (context, snapshot) => Text(
                                         controller.room
                                             .getLocalizedStatus(context),
@@ -283,8 +287,10 @@ class ChatView extends StatelessWidget {
                                             : Container()
                                     : i == 0
                                         ? StreamBuilder(
-                                            stream:
-                                                controller.room.onUpdate.stream,
+                                            stream: controller
+                                                .room.onUpdate.stream
+                                                .rateLimit(Duration(
+                                                    milliseconds: 250)),
                                             builder: (_, __) {
                                               final seenByText = controller.room
                                                   .getLocalizedSeenByText(
