@@ -40,14 +40,14 @@ class Avatar extends StatelessWidget {
       child: Text(
         fallbackLetters,
         style: TextStyle(
-          color: Theme.of(context).brightness == Brightness.light
-              ? name?.darkColor
-              : name?.lightColor ?? Colors.white,
+          color: Colors.white,
           fontSize: 18,
         ),
       ),
     );
-    final noPic = mxContent == null || mxContent.toString().isEmpty;
+    final noPic = mxContent == null ||
+        mxContent.toString().isEmpty ||
+        mxContent.toString() == 'null';
     final borderRadius = BorderRadius.circular(size / 2);
     return InkWell(
       onTap: onTap,
@@ -57,11 +57,7 @@ class Avatar extends StatelessWidget {
         child: Container(
           width: size,
           height: size,
-          color: noPic
-              ? Theme.of(context).brightness == Brightness.light
-                  ? name?.lightColor
-                  : name?.darkColor ?? Theme.of(context).secondaryHeaderColor
-              : Theme.of(context).secondaryHeaderColor,
+          color: name?.color,
           child: noPic
               ? textWidget
               : CachedNetworkImage(
