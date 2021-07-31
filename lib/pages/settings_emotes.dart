@@ -2,16 +2,15 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 
 import 'package:matrix/matrix.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:vrouter/vrouter.dart';
 
 import 'package:future_loading_dialog/future_loading_dialog.dart';
-import 'package:image_picker/image_picker.dart';
 import 'views/settings_emotes_view.dart';
 import '../widgets/matrix.dart';
+import '../utils/resize_image.dart';
 
 class EmotesSettings extends StatefulWidget {
   EmotesSettings({Key key}) : super(key: key);
@@ -20,24 +19,18 @@ class EmotesSettings extends StatefulWidget {
   EmotesSettingsController createState() => EmotesSettingsController();
 }
 
-class EmoteEntry {
-  String emote;
-  String mxc;
-  EmoteEntry({this.emote, this.mxc});
-}
-
 class EmotesSettingsController extends State<EmotesSettings> {
   String get roomId => VRouter.of(context).pathParameters['roomid'];
   Room get room =>
       roomId != null ? Matrix.of(context).client.getRoomById(roomId) : null;
   String get stateKey => VRouter.of(context).pathParameters['state_key'];
 
-  List<EmoteEntry> emotes;
   bool showSave = false;
-  TextEditingController newEmoteController = TextEditingController();
-  TextEditingController newMxcController = TextEditingController();
+  TextEditingController newImageCodeController = TextEditingController();
+  ValueNotifier<ImagePackImageContent> newImageController =
+      ValueNotifier<ImagePackImageContent>(null);
 
-  ImagePackContent _getPack(BuildContext context) {
+  ImagePackContent _getPack() {
     final client = Matrix.of(context).client;
     final event = (room != null
             ? room.getState('im.ponies.room_emotes', stateKey ?? '')
@@ -50,33 +43,20 @@ class EmotesSettingsController extends State<EmotesSettings> {
     return BasicEvent.fromJson(event.toJson()).parsedImagePackContent;
   }
 
+  ImagePackContent _pack;
+  ImagePackContent get pack {
+    if (_pack != null) {
+      return _pack;
+    }
+    _pack = _getPack();
+    return _pack;
+  }
+
   Future<void> _save(BuildContext context) async {
     if (readonly) {
       return;
     }
     final client = Matrix.of(context).client;
-    final pack = _getPack(context);
-    // add / update changed emotes
-    final allowedShortcodes = <String>{};
-    for (final emote in emotes) {
-      allowedShortcodes.add(emote.emote);
-      if (pack.images.containsKey(emote.emote)) {
-        pack.images[emote.emote].url = Uri.parse(emote.mxc);
-      } else {
-        pack.images[emote.emote] =
-            ImagePackImageContent.fromJson(<String, dynamic>{
-          'url': emote.mxc,
-        });
-      }
-    }
-    // remove emotes no more needed
-    // we make the iterator .toList() here so that we don't get into trouble modifying the very
-    // thing we are iterating over
-    for (final shortcode in pack.images.keys.toList()) {
-      if (!allowedShortcodes.contains(shortcode)) {
-        pack.images.remove(shortcode);
-      }
-    }
     if (room != null) {
       await showFutureLoadingDialog(
         context: context,
@@ -121,19 +101,19 @@ class EmotesSettingsController extends State<EmotesSettings> {
     setState(() => null);
   }
 
-  void removeEmoteAction(EmoteEntry emote) => setState(() {
-        emotes.removeWhere((e) => e.emote == emote.emote);
+  void removeImageAction(String oldImageCode) => setState(() {
+        pack.images.remove(oldImageCode);
         showSave = true;
       });
 
-  void submitEmoteAction(
-    String emoteCode,
-    EmoteEntry emote,
+  void submitImageAction(
+    String oldImageCode,
+    String imageCode,
+    ImagePackImageContent image,
     TextEditingController controller,
   ) {
-    if (emotes.indexWhere((e) => e.emote == emoteCode && e.mxc != emote.mxc) !=
-        -1) {
-      controller.text = emote.emote;
+    if (pack.images.keys.any((k) => k == imageCode && k != oldImageCode)) {
+      controller.text = oldImageCode;
       showOkAlertDialog(
         useRootNavigator: false,
         context: context,
@@ -142,8 +122,8 @@ class EmotesSettingsController extends State<EmotesSettings> {
       );
       return;
     }
-    if (!RegExp(r'^[-\w]+$').hasMatch(emoteCode)) {
-      controller.text = emote.emote;
+    if (!RegExp(r'^[-\w]+$').hasMatch(imageCode)) {
+      controller.text = oldImageCode;
       showOkAlertDialog(
         useRootNavigator: false,
         context: context,
@@ -153,7 +133,8 @@ class EmotesSettingsController extends State<EmotesSettings> {
       return;
     }
     setState(() {
-      emote.emote = emoteCode;
+      pack.images[imageCode] = image;
+      pack.images.remove(oldImageCode);
       showSave = true;
     });
   }
@@ -177,11 +158,10 @@ class EmotesSettingsController extends State<EmotesSettings> {
     });
   }
 
-  void addEmoteAction() async {
-    if (newEmoteController.text == null ||
-        newEmoteController.text.isEmpty ||
-        newMxcController.text == null ||
-        newMxcController.text.isEmpty) {
+  void addImageAction() async {
+    if (newImageCodeController.text == null ||
+        newImageCodeController.text.isEmpty ||
+        newImageController.value == null) {
       await showOkAlertDialog(
         useRootNavigator: false,
         context: context,
@@ -190,9 +170,8 @@ class EmotesSettingsController extends State<EmotesSettings> {
       );
       return;
     }
-    final emoteCode = '${newEmoteController.text}';
-    final mxc = newMxcController.text;
-    if (emotes.indexWhere((e) => e.emote == emoteCode && e.mxc != mxc) != -1) {
+    final imageCode = newImageCodeController.text;
+    if (pack.images.containsKey(imageCode)) {
       await showOkAlertDialog(
         useRootNavigator: false,
         context: context,
@@ -201,7 +180,7 @@ class EmotesSettingsController extends State<EmotesSettings> {
       );
       return;
     }
-    if (!RegExp(r'^[-\w]+$').hasMatch(emoteCode)) {
+    if (!RegExp(r'^[-\w]+$').hasMatch(imageCode)) {
       await showOkAlertDialog(
         useRootNavigator: false,
         context: context,
@@ -210,41 +189,28 @@ class EmotesSettingsController extends State<EmotesSettings> {
       );
       return;
     }
-    emotes.add(EmoteEntry(emote: emoteCode, mxc: mxc));
+    pack.images[imageCode] = newImageController.value;
     await _save(context);
     setState(() {
-      newEmoteController.text = '';
-      newMxcController.text = '';
+      newImageCodeController.text = '';
+      newImageController.value = null;
       showSave = false;
     });
   }
 
-  void emoteImagePickerAction(TextEditingController controller) async {
-    if (kIsWeb) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(L10n.of(context).notSupportedInWeb)));
-      return;
-    }
-    MatrixFile file;
-    if (PlatformInfos.isMobile) {
-      final result = await ImagePicker().getImage(
-          source: ImageSource.gallery,
-          imageQuality: 50,
-          maxWidth: 1600,
-          maxHeight: 1600);
-      if (result == null) return;
-      file = MatrixFile(
-        bytes: await result.readAsBytes(),
-        name: result.path,
-      );
-    } else {
-      final result =
-          await FilePickerCross.importFromStorage(type: FileTypeCross.image);
-      if (result == null) return;
-      file = MatrixFile(
-        bytes: result.toUint8List(),
-        name: result.fileName,
-      );
+  void imagePickerAction(
+      ValueNotifier<ImagePackImageContent> controller) async {
+    final result =
+        await FilePickerCross.importFromStorage(type: FileTypeCross.image);
+    if (result == null) return;
+    var file = MatrixImageFile(
+      bytes: result.toUint8List(),
+      name: result.fileName,
+    );
+    try {
+      file = await resizeImage(file, max: 1600);
+    } catch (_) {
+      // do nothing
     }
     final uploadResp = await showFutureLoadingDialog(
       context: context,
@@ -253,21 +219,30 @@ class EmotesSettingsController extends State<EmotesSettings> {
     );
     if (uploadResp.error == null) {
       setState(() {
-        controller.text = uploadResp.result;
+        final info = <String, dynamic>{
+          ...file.info,
+        };
+        // normalize width / height to 256, required for stickers
+        if (info['w'] is int && info['h'] is int) {
+          final ratio = info['w'] / info['h'];
+          if (info['w'] > info['h']) {
+            info['w'] = 256;
+            info['h'] = (256.0 / ratio).round();
+          } else {
+            info['h'] = 256;
+            info['w'] = (ratio * 256.0).round();
+          }
+        }
+        controller.value = ImagePackImageContent.fromJson(<String, dynamic>{
+          'url': uploadResp.result,
+          'info': info,
+        });
       });
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    if (emotes == null) {
-      emotes = <EmoteEntry>[];
-      final pack = _getPack(context);
-      for (final entry in pack.images.entries) {
-        emotes
-            .add(EmoteEntry(emote: entry.key, mxc: entry.value.url.toString()));
-      }
-    }
     return EmotesSettingsView(this);
   }
 }
