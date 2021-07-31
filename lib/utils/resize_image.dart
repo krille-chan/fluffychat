@@ -12,7 +12,16 @@ Future<MatrixImageFile> resizeImage(MatrixImageFile file,
   // freeze up the UI a bit
 
   // we can't do width / height fetching in a separate isolate, as that may use the UI stuff
-  await native.init();
+
+  // somehow doing native.init twice fixes it for linux desktop?
+  // TODO: once native imaging is on sound null safety the errors are consistent and
+  // then we can properly handle this instead
+  // https://gitlab.com/famedly/company/frontend/libraries/native_imaging/-/issues/5
+  try {
+    await native.init();
+  } catch (_) {
+    await native.init();
+  }
 
   _IsolateArgs args;
   try {
@@ -47,9 +56,14 @@ Future<MatrixImageFile> resizeImage(MatrixImageFile file,
     mimeType: 'image/jpeg',
     width: res.width,
     height: res.height,
+    blurhash: res.blurhash,
   );
   // only return the thumbnail if the size actually decreased
-  return thumbnail.size >= file.size ? file : thumbnail;
+  return thumbnail.size >= file.size ||
+          thumbnail.width >= file.width ||
+          thumbnail.height >= file.height
+      ? file
+      : thumbnail;
 }
 
 class _IsolateArgs {
@@ -70,7 +84,12 @@ class _IsolateResponse {
 }
 
 Future<_IsolateResponse> _isolateFunction(_IsolateArgs args) async {
-  await native.init();
+  // Hack for desktop, see above why
+  try {
+    await native.init();
+  } catch (_) {
+    await native.init();
+  }
   var nativeImg = native.Image();
 
   try {
