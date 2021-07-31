@@ -55,5 +55,4 @@ android/keys.json
 android/Gemfile.lock
 lib/l10n_old
 ios/Flutter/.last_build_id
-ios/Runner/GoogleService-Info.plist
 ios/Podfile.lock
