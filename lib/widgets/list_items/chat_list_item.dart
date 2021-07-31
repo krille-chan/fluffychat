@@ -289,7 +289,9 @@ class ChatListItem extends StatelessWidget {
                 curve: Curves.bounceInOut,
                 padding: EdgeInsets.symmetric(horizontal: 7),
                 height: unreadBubbleSize,
-                width: room.notificationCount == 0 && !room.isUnread ? 0 : null,
+                width: room.notificationCount == 0 && !room.isUnread
+                    ? 0
+                    : unreadBubbleSize,
                 decoration: BoxDecoration(
                   color: room.highlightCount > 0
                       ? Colors.red
