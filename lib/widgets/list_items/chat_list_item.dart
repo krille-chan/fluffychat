@@ -17,7 +17,6 @@ import '../avatar.dart';
 import '../../pages/send_file_dialog.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import '../matrix.dart';
-import '../mouse_over_builder.dart';
 
 enum ArchivedRoomAction { delete, rejoin }
 
@@ -152,20 +151,17 @@ class ChatListItem extends StatelessWidget {
         color: FluffyThemes.chatListItemColor(context, activeChat, selected),
         child: ListTile(
           onLongPress: onLongPress,
-          leading: MouseOverBuilder(
-            builder: (context, hover) =>
-                onLongPress != null && (hover || selected)
-                    ? Container(
-                        width: Avatar.defaultSize,
-                        height: Avatar.defaultSize,
-                        alignment: Alignment.center,
-                        child: Checkbox(
-                          value: selected,
-                          onChanged: (_) => onLongPress(),
-                        ),
-                      )
-                    : Avatar(room.avatar, room.displayname),
-          ),
+          leading: selected
+              ? Container(
+                  width: Avatar.defaultSize,
+                  height: Avatar.defaultSize,
+                  child: Material(
+                    color: Theme.of(context).primaryColor,
+                    borderRadius: BorderRadius.circular(Avatar.defaultSize),
+                    child: Icon(Icons.check, color: Colors.white),
+                  ),
+                )
+              : Avatar(room.avatar, room.displayname, onTap: onLongPress),
           title: Row(
             children: <Widget>[
               Expanded(
