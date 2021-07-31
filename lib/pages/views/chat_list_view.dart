@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:vrouter/vrouter.dart';
 import '../../widgets/matrix.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import '../../utils/stream_extension.dart';
 
 class ChatListView extends StatelessWidget {
   final ChatListController controller;
@@ -161,7 +162,8 @@ class ChatListView extends StatelessWidget {
                             .client
                             .onSync
                             .stream
-                            .where((s) => s.hasRoomUpdate),
+                            .where((s) => s.hasRoomUpdate)
+                            .rateLimit(Duration(seconds: 1)),
                         builder: (context, snapshot) {
                           return FutureBuilder<void>(
                             future: controller.waitForFirstSync(),
