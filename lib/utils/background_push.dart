@@ -346,7 +346,9 @@ class BackgroundPush {
           .first;
       final res =
           json.decode(utf8.decode((await http.get(Uri.parse(url))).bodyBytes));
-      if (res['gateway'] == 'matrix') {
+      if (res['gateway'] == 'matrix' ||
+          (res['unifiedpush'] is Map &&
+              res['unifiedpush']['gateway'] == 'matrix')) {
         endpoint = url;
       }
     } catch (e) {
