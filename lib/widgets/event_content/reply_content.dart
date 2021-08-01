@@ -21,6 +21,8 @@ class ReplyContent extends StatelessWidget {
     final displayEvent = replyEvent != null && timeline != null
         ? replyEvent.getDisplayEvent(timeline)
         : replyEvent;
+    final fontSize =
+        DefaultTextStyle.of(context).style.fontSize * AppConfig.fontSizeFactor;
     if (displayEvent != null &&
         AppConfig.renderHtml &&
         [EventTypes.Message, EventTypes.Encrypted]
@@ -34,7 +36,6 @@ class ReplyContent extends StatelessWidget {
       if (displayEvent.messageType == MessageTypes.Emote) {
         html = '* $html';
       }
-      final fontSize = DefaultTextStyle.of(context).style.fontSize;
       replyBody = HtmlMessage(
         html: html,
         defaultTextStyle: TextStyle(
@@ -61,7 +62,7 @@ class ReplyContent extends StatelessWidget {
           color: lightText
               ? Colors.white
               : Theme.of(context).textTheme.bodyText2.color,
-          fontSize: DefaultTextStyle.of(context).style.fontSize,
+          fontSize: fontSize,
         ),
       );
     }
@@ -70,7 +71,7 @@ class ReplyContent extends StatelessWidget {
       children: <Widget>[
         Container(
           width: 3,
-          height: 36,
+          height: fontSize * 2 + 6,
           color: lightText ? Colors.white : Theme.of(context).primaryColor,
         ),
         SizedBox(width: 6),
@@ -87,6 +88,7 @@ class ReplyContent extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   color:
                       lightText ? Colors.white : Theme.of(context).primaryColor,
+                  fontSize: fontSize,
                 ),
               ),
               replyBody,
