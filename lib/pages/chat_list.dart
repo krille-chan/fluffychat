@@ -40,6 +40,17 @@ class ChatListController extends State<ChatList> {
 
   StreamSubscription _intentUriStreamSubscription;
 
+  String _activeSpaceId;
+  String get activeSpaceId => _activeSpaceId;
+
+  void setActiveSpaceId(BuildContext context, String spaceId) {
+    Scaffold.of(context).openEndDrawer();
+    setState(() => _activeSpaceId = spaceId);
+  }
+
+  List<Room> get spaces =>
+      Matrix.of(context).client.rooms.where((r) => r.isSpace).toList();
+
   final selectedRoomIds = <String>{};
   Future<bool> crossSigningCachedFuture;
   bool crossSigningCached;

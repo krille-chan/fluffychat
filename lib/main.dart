@@ -44,6 +44,9 @@ void main() async {
         KeyVerificationMethod.emoji,
     },
     importantStateEvents: <String>{
+      EventTypes.spaceChild,
+      EventTypes.spaceParent,
+      EventTypes.RoomCreate,
       'im.ponies.room_emotes', // we want emotes to work properly
     },
     databaseBuilder: FlutterMatrixHiveStore.hiveDatabaseBuilder,
