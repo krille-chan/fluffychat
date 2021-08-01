@@ -2516,5 +2516,39 @@
   "@sendSticker": {
     "type": "text",
     "placeholders": {}
+  },
+  "spaceName": "Kogukonna nimi",
+  "@spaceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceIsPublic": "Kogukond on avalik",
+  "@spaceIsPublic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterASpacepName": "Sisesta kogukonna nimi",
+  "@enterASpacepName": {},
+  "dontAskAgain": "Katkesta ja ära küsi enam uuesti",
+  "@dontAskAgain": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createNewSpace": "Loo uus kogukond",
+  "@createNewSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicSpace": "Avalik kogukond",
+  "@publicSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cantOpenUri": "{uri} aadressi avamine ei õnnestu",
+  "@cantOpenUri": {
+    "type": "text",
+    "placeholders": {
+      "uri": {}
+    }
   }
 }
