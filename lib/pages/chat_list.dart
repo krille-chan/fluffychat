@@ -158,6 +158,7 @@ class ChatListController extends State<ChatList> {
     _initReceiveSharingIntent();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (!Matrix.of(context).client.encryptionEnabled) return;
+      await waitForFirstSync();
       if ((Matrix.of(context).client.database as FlutterMatrixHiveStore)
               .get(SettingKeys.dontAskForBootstrapKey) ==
           true) {
@@ -173,6 +174,7 @@ class ChatListController extends State<ChatList> {
         firstRunBootstrapAction();
       }
     });
+
     super.initState();
   }
 
