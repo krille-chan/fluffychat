@@ -43,7 +43,7 @@ class Avatar extends StatelessWidget {
       child: Text(
         fallbackLetters,
         style: TextStyle(
-          color: noPic ? Colors.white : null,
+          color: noPic ? name?.darkColor : null,
           fontSize: 18,
         ),
       ),
@@ -57,7 +57,8 @@ class Avatar extends StatelessWidget {
         child: Container(
           width: size,
           height: size,
-          color: noPic ? name?.color : Theme.of(context).secondaryHeaderColor,
+          color:
+              noPic ? name?.lightColor : Theme.of(context).secondaryHeaderColor,
           child: noPic
               ? textWidget
               : CachedNetworkImage(
