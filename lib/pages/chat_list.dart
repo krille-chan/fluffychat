@@ -177,6 +177,28 @@ class ChatListController extends State<ChatList> {
     super.dispose();
   }
 
+  bool roomCheck(Room room) {
+    if (room.isSpace) return false;
+    if (activeSpaceId != null) {
+      final space = Matrix.of(context).client.getRoomById(activeSpaceId);
+      if (space.spaceChildren.any((child) => child.roomId == room.id)) {
+        return true;
+      }
+      if (room.spaceParents.any((parent) => parent.roomId == activeSpaceId)) {
+        return true;
+      }
+      if (room.isDirectChat &&
+          room.summary.mHeroes.any((userId) {
+            final user = space.getState(EventTypes.RoomMember, userId)?.asUser;
+            return user != null && user.membership == Membership.join;
+          })) {
+        return true;
+      }
+      return false;
+    }
+    return true;
+  }
+
   void toggleSelection(String roomId) {
     setState(() => selectedRoomIds.contains(roomId)
         ? selectedRoomIds.remove(roomId)

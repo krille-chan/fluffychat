@@ -252,12 +252,8 @@ class _ChatListViewBody extends StatelessWidget {
           builder: (BuildContext context, snapshot) {
             if (Matrix.of(context).client.prevBatch != null) {
               final rooms = List<Room>.from(Matrix.of(context).client.rooms)
-                  .where((r) => !r.isSpace)
+                  .where(controller.roomCheck)
                   .toList();
-              if (controller.activeSpaceId != null) {
-                rooms.removeWhere((room) => !room.spaceParents.any(
-                    (parent) => parent.roomId == controller.activeSpaceId));
-              }
               rooms.removeWhere((room) => room.lastEvent == null);
               if (rooms.isEmpty) {
                 return Column(
