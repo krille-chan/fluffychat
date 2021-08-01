@@ -414,12 +414,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "crossSigningDisabled": "社会化登录未启用",
+  "crossSigningDisabled": "交叉签名未启用",
   "@crossSigningDisabled": {
     "type": "text",
     "placeholders": {}
   },
-  "crossSigningEnabled": "社会化登录已启用",
+  "crossSigningEnabled": "交叉签名已启用",
   "@crossSigningEnabled": {
     "type": "text",
     "placeholders": {}
