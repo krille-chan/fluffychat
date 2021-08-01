@@ -200,6 +200,7 @@ class ChatListController extends State<ChatList> {
         return true;
       }
       if (room.isDirectChat &&
+          room.summary?.mHeroes != null &&
           room.summary.mHeroes.any((userId) {
             final user = space.getState(EventTypes.RoomMember, userId)?.asUser;
             return user != null && user.membership == Membership.join;
