@@ -2516,5 +2516,39 @@
   "@sendSticker": {
     "type": "text",
     "placeholders": {}
+  },
+  "spaceName": "Ime prostora",
+  "@spaceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceIsPublic": "Prostor je javan",
+  "@spaceIsPublic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterASpacepName": "Upiši ime prostora",
+  "@enterASpacepName": {},
+  "dontAskAgain": "Prekini i nemoj ponovo pitati",
+  "@dontAskAgain": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createNewSpace": "Stvori novi prostor",
+  "@createNewSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicSpace": "Javni prostor",
+  "@publicSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cantOpenUri": "URI adresa {uri} se ne može otvoriti",
+  "@cantOpenUri": {
+    "type": "text",
+    "placeholders": {
+      "uri": {}
+    }
   }
 }
