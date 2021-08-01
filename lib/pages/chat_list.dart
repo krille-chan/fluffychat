@@ -24,7 +24,14 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'bootstrap_dialog.dart';
 
 enum SelectMode { normal, share, select }
-enum PopupMenuAction { settings, invite, newGroup, setStatus, archive }
+enum PopupMenuAction {
+  settings,
+  invite,
+  newGroup,
+  newSpace,
+  setStatus,
+  archive,
+}
 
 class ChatList extends StatefulWidget {
   const ChatList({Key key}) : super(key: key);
@@ -248,6 +255,9 @@ class ChatListController extends State<ChatList> {
       case PopupMenuAction.newGroup:
         VRouter.of(context).to('/newgroup');
         break;
+      case PopupMenuAction.newSpace:
+        VRouter.of(context).to('/newspace');
+        break;
       case PopupMenuAction.archive:
         VRouter.of(context).to('/archive');
         break;
@@ -293,12 +303,4 @@ class ChatListController extends State<ChatList> {
     });
     return ChatListView(this);
   }
-}
-
-enum ChatListPopupMenuItemActions {
-  createGroup,
-  discover,
-  setStatus,
-  inviteContact,
-  settings,
 }

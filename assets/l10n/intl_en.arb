@@ -120,6 +120,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "publicSpace": "Public space",
+  "@publicSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
   "acceptedTheInvitation": "{username} accepted the invitation",
   "@acceptedTheInvitation": {
     "type": "text",
@@ -671,6 +676,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "createNewSpace": "Create new space",
+  "@createNewSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
   "crossSigningDisabled": "Cross-signing off",
   "@crossSigningDisabled": {
     "type": "text",
@@ -908,6 +918,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "enterASpacepName": "Enter a space name",
+  "@enterASpaceName": {
+    "type": "text",
+    "placeholders": {}
+  },
   "enterAUsername": "Enter a username",
   "@enterAUsername": {
     "type": "text",
@@ -970,6 +985,11 @@
   },
   "groupIsPublic": "Group is public",
   "@groupIsPublic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceIsPublic": "Space is public",
+  "@spaceIsPublic": {
     "type": "text",
     "placeholders": {}
   },
@@ -1426,6 +1446,11 @@
   },
   "optionalGroupName": "(Optional) Group name",
   "@optionalGroupName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceName": "Space name",
+  "@spaceName": {
     "type": "text",
     "placeholders": {}
   },

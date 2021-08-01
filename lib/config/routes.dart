@@ -1,6 +1,7 @@
 import 'package:fluffychat/pages/archive.dart';
 import 'package:fluffychat/pages/homeserver_picker.dart';
 import 'package:fluffychat/pages/invitation_selection.dart';
+import 'package:fluffychat/pages/new_space.dart';
 import 'package:fluffychat/pages/settings_account.dart';
 import 'package:fluffychat/pages/settings_chat.dart';
 import 'package:fluffychat/pages/settings_emotes.dart';
@@ -81,6 +82,10 @@ class AppRoutes {
               path: '/newgroup',
               widget: NewGroup(),
             ),
+            VWidget(
+              path: '/newspace',
+              widget: NewSpace(),
+            ),
           ],
         ),
       ];
@@ -106,6 +111,11 @@ class AppRoutes {
                 VWidget(
                   path: '/newgroup',
                   widget: NewGroup(),
+                  buildTransition: _fadeTransition,
+                ),
+                VWidget(
+                  path: '/newspace',
+                  widget: NewSpace(),
                   buildTransition: _fadeTransition,
                 ),
                 VNester(

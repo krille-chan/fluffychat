@@ -120,6 +120,17 @@ class ChatListView extends StatelessWidget {
                                   ),
                                 ),
                                 PopupMenuItem(
+                                  value: PopupMenuAction.newSpace,
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Icon(Icons.group_work_outlined),
+                                      SizedBox(width: 12),
+                                      Text(L10n.of(context).createNewSpace),
+                                    ],
+                                  ),
+                                ),
+                                PopupMenuItem(
                                   value: PopupMenuAction.invite,
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
@@ -366,6 +377,7 @@ class ChatListView extends StatelessWidget {
 
 enum ChatListPopupMenuItemActions {
   createGroup,
+  createSpace,
   discover,
   setStatus,
   inviteContact,
