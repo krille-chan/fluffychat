@@ -2108,7 +2108,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noPublicRoomsFound": "Geen publieke kamers gevonden...",
+  "noPublicRoomsFound": "Geen publieke kamers gevonden…",
   "@noPublicRoomsFound": {
     "type": "text",
     "placeholders": {}
@@ -2385,7 +2385,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "yourChatsAreBeingSynced": "Je chats worden gesynchroniseerd...",
+  "yourChatsAreBeingSynced": "Je chats worden gesynchroniseerd…",
   "@yourChatsAreBeingSynced": {
     "type": "text",
     "placeholders": {}
@@ -2505,6 +2505,28 @@
   },
   "sendSticker": "Sticker versturen",
   "@sendSticker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceName": "Spacenaam",
+  "@spaceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceIsPublic": "Space is publiek",
+  "@spaceIsPublic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterASpacepName": "Vul een spacenaam in",
+  "@enterASpacepName": {},
+  "createNewSpace": "Nieuwe space",
+  "@createNewSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicSpace": "Publieke space",
+  "@publicSpace": {
     "type": "text",
     "placeholders": {}
   }
