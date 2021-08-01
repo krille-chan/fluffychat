@@ -2529,5 +2529,17 @@
   "@publicSpace": {
     "type": "text",
     "placeholders": {}
+  },
+  "dontAskAgain": "Annuleer en vraag niet opnieuw",
+  "@dontAskAgain": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cantOpenUri": "Kan de URI {uri} niet openen",
+  "@cantOpenUri": {
+    "type": "text",
+    "placeholders": {
+      "uri": {}
+    }
   }
 }
