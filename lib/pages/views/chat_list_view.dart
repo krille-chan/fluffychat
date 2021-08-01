@@ -348,6 +348,11 @@ class ChatListView extends StatelessWidget {
                               title: Text(space.displayname),
                               onTap: () => controller.setActiveSpaceId(
                                   context, space.id),
+                              trailing: IconButton(
+                                icon: Icon(Icons.edit_outlined),
+                                onPressed: () =>
+                                    controller.editSpace(context, space.id),
+                              ),
                             );
                           },
                         ),

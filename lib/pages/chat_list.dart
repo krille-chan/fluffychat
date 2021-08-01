@@ -48,6 +48,11 @@ class ChatListController extends State<ChatList> {
     setState(() => _activeSpaceId = spaceId);
   }
 
+  void editSpace(BuildContext context, String spaceId) {
+    Scaffold.of(context).openEndDrawer();
+    VRouter.of(context).to('/rooms/$spaceId');
+  }
+
   List<Room> get spaces =>
       Matrix.of(context).client.rooms.where((r) => r.isSpace).toList();
 
