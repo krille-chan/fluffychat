@@ -903,6 +903,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "dontAskAgain": "Cancel and don't ask again",
+  "@dontAskAgain": {
+    "type": "text",
+    "placeholders": {}
+  },
   "encrypted": "Encrypted",
   "@encrypted": {
     "type": "text",

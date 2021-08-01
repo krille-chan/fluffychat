@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:fluffychat/config/setting_keys.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions.dart/flutter_matrix_hive_database.dart';
 
 import 'package:matrix/matrix.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
@@ -156,6 +158,11 @@ class ChatListController extends State<ChatList> {
     _initReceiveSharingIntent();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (!Matrix.of(context).client.encryptionEnabled) return;
+      if ((Matrix.of(context).client.database as FlutterMatrixHiveStore)
+              .get(SettingKeys.dontAskForBootstrapKey) ==
+          true) {
+        return;
+      }
       final crossSigning = await crossSigningCachedFuture;
       final needsBootstrap =
           Matrix.of(context).client.encryption?.crossSigning?.enabled ==
@@ -181,10 +188,12 @@ class ChatListController extends State<ChatList> {
     if (room.isSpace) return false;
     if (activeSpaceId != null) {
       final space = Matrix.of(context).client.getRoomById(activeSpaceId);
-      if (space.spaceChildren.any((child) => child.roomId == room.id)) {
+      if (space.spaceChildren?.any((child) => child.roomId == room.id) ??
+          false) {
         return true;
       }
-      if (room.spaceParents.any((parent) => parent.roomId == activeSpaceId)) {
+      if (room.spaceParents?.any((parent) => parent.roomId == activeSpaceId) ??
+          false) {
         return true;
       }
       if (room.isDirectChat &&

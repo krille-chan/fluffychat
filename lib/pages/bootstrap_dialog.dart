@@ -1,4 +1,6 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:fluffychat/config/setting_keys.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions.dart/flutter_matrix_hive_database.dart';
 import 'package:matrix/encryption.dart';
 import 'package:matrix/encryption/utils/bootstrap.dart';
 import 'package:matrix/matrix.dart';
@@ -65,6 +67,12 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
     });
   }
 
+  void cancelAndDontAskAgain() async {
+    await (widget.client.database as FlutterMatrixHiveStore)
+        .put(SettingKeys.dontAskForBootstrapKey, true);
+    Navigator.of(context, rootNavigator: false).pop<bool>(false);
+  }
+
   @override
   Widget build(BuildContext context) {
     _wipe ??= widget.wipe;
@@ -80,6 +88,11 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
       buttons.add(AdaptiveFlatButton(
         label: L10n.of(context).next,
         onPressed: () => _createBootstrap(false),
+      ));
+      buttons.add(AdaptiveFlatButton(
+        label: L10n.of(context).dontAskAgain,
+        onPressed: cancelAndDontAskAgain,
+        textColor: Colors.red,
       ));
     } else if (bootstrap.newSsssKey?.recoveryKey != null &&
         _recoveryKeyStored == false) {
