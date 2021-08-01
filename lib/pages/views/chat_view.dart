@@ -665,6 +665,21 @@ class ChatView extends StatelessWidget {
                                               contentPadding: EdgeInsets.all(0),
                                             ),
                                           ),
+                                        if (PlatformInfos.isMobile)
+                                          PopupMenuItem<String>(
+                                            value: 'location',
+                                            child: ListTile(
+                                              leading: CircleAvatar(
+                                                backgroundColor: Colors.brown,
+                                                foregroundColor: Colors.white,
+                                                child: Icon(
+                                                    Icons.gps_fixed_outlined),
+                                              ),
+                                              title: Text(L10n.of(context)
+                                                  .shareLocation),
+                                              contentPadding: EdgeInsets.all(0),
+                                            ),
+                                          ),
                                       ],
                                     ),
                                   ),

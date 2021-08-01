@@ -28,6 +28,7 @@ import 'package:vrouter/vrouter.dart';
 import '../utils/localized_exception_extension.dart';
 
 import 'send_file_dialog.dart';
+import 'send_location_dialog.dart';
 import 'sticker_picker_dialog.dart';
 import '../utils/matrix_sdk_extensions.dart/filtered_timeline_extension.dart';
 import '../utils/matrix_sdk_extensions.dart/matrix_file_extension.dart';
@@ -348,6 +349,14 @@ class ChatController extends State<Chat> {
         MatrixAudioFile(
             bytes: audioFile.readAsBytesSync(), name: audioFile.path),
       ),
+    );
+  }
+
+  void sendLocationAction() async {
+    await showDialog(
+      context: context,
+      useRootNavigator: false,
+      builder: (c) => SendLocationDialog(room: room),
     );
   }
 
@@ -677,6 +686,9 @@ class ChatController extends State<Chat> {
     }
     if (choice == 'voice') {
       voiceMessageAction();
+    }
+    if (choice == 'location') {
+      sendLocationAction();
     }
   }
 

@@ -29,6 +29,7 @@ dependencies:
   flutter_local_notifications: ^6.0.0
   flutter_localizations:
     sdk: flutter
+  flutter_map: ^0.13.1
   flutter_matrix_html: ^0.3.0
   flutter_olm: ^1.1.2
   flutter_openssl_crypto: ^0.0.1
@@ -37,6 +38,7 @@ dependencies:
   flutter_svg: ^0.22.0
   flutter_typeahead: ^3.2.0
   future_loading_dialog: ^0.2.1
+  geolocator: ^7.4.0
   hive_flutter: ^1.1.0
   image_picker:
     git:

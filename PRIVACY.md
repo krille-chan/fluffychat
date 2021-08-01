@@ -14,7 +14,7 @@ FluffyChat uses the Matrix protocol. This means that FluffyChat is just a client
 
 For convenience, one or more servers are set as default that the FluffyChat developers consider trustworthy. The developers of FluffyChat do not guarantee their trustworthiness. Before the first communication, users are informed which server they are connecting to.
 
-FluffyChat only communicates with the selected server and with sentry.io if enabled.
+FluffyChat only communicates with the selected server, with sentry.io if enabled and with [OpenStreetMap](https://openstreetmap.org) to display maps.
 
 More information is available at: [https://matrix.org](https://matrix.org)
 
@@ -52,6 +52,9 @@ The user is able to save received files and therefore app needs this permission.
 
 #### Read External Storage
 The user is able to send files from the device's file system.
+
+#### Location
+FluffyChat makes it possible to share the current location via the chat. When the user shares their location, FluffyChat uses the device location service and sends the geo-data via Matrix.
 
 ## Push Notifications<a id="6"/>
 FluffyChat uses the Firebase Cloud Messaging service for push notifications on Android and iOS. This takes place in the following steps:
