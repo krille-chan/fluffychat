@@ -2516,5 +2516,12 @@
   "@sendSticker": {
     "type": "text",
     "placeholders": {}
+  },
+  "cantOpenUri": "Impossible d'ouvrir l'URI {uri}",
+  "@cantOpenUri": {
+    "type": "text",
+    "placeholders": {
+      "uri": {}
+    }
   }
 }
