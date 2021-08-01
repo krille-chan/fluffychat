@@ -156,26 +156,27 @@ class ChatListController extends State<ChatList> {
   @override
   void initState() {
     _initReceiveSharingIntent();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      if (!Matrix.of(context).client.encryptionEnabled) return;
-      await waitForFirstSync();
-      if ((Matrix.of(context).client.database as FlutterMatrixHiveStore)
-              .get(SettingKeys.dontAskForBootstrapKey) ==
-          true) {
-        return;
-      }
-      final crossSigning = await crossSigningCachedFuture;
-      final needsBootstrap =
-          Matrix.of(context).client.encryption?.crossSigning?.enabled ==
-                  false ||
-              crossSigning == false;
-      final isUnknownSession = Matrix.of(context).client.isUnknownSession;
-      if (needsBootstrap || isUnknownSession) {
-        firstRunBootstrapAction();
-      }
-    });
-
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => waitForFirstSync().then((_) => checkBootstrap()),
+    );
     super.initState();
+  }
+
+  void checkBootstrap() async {
+    if (!Matrix.of(context).client.encryptionEnabled) return;
+    if ((Matrix.of(context).client.database as FlutterMatrixHiveStore)
+            .get(SettingKeys.dontAskForBootstrapKey) ==
+        true) {
+      return;
+    }
+    final crossSigning = await crossSigningCachedFuture;
+    final needsBootstrap =
+        Matrix.of(context).client.encryption?.crossSigning?.enabled == false ||
+            crossSigning == false;
+    final isUnknownSession = Matrix.of(context).client.isUnknownSession;
+    if (needsBootstrap || isUnknownSession) {
+      firstRunBootstrapAction();
+    }
   }
 
   @override
