@@ -7,6 +7,8 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vrouter/vrouter.dart';
+import 'package:punycode/punycode.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class UrlLauncher {
   final String url;
@@ -19,7 +21,34 @@ class UrlLauncher {
         url.toLowerCase().startsWith(AppConfig.schemePrefix)) {
       return openMatrixToUrl();
     }
-    launch(url);
+    final uri = Uri.tryParse(url);
+    if (uri == null) {
+      // we can't open this thing
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(L10n.of(context).cantOpenUri(url))));
+      return;
+    }
+    if (!{'https', 'http'}.contains(uri.scheme)) {
+      // just launch non-https / non-http uris directly
+      launch(url);
+      return;
+    }
+    if (uri.host == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(L10n.of(context).cantOpenUri(url))));
+      return;
+    }
+    // okay, we have either an http or an https URI.
+    // As some platforms have issues with opening unicode URLs, we are going to help
+    // them out by punycode-encoding them for them ourself.
+    final newHost = uri.host.split('.').map((hostPartEncoded) {
+      final hostPart = Uri.decodeComponent(hostPartEncoded);
+      final hostPartPunycode = punycodeEncode(hostPart);
+      return hostPartPunycode != hostPart + '-'
+          ? 'xn--$hostPartPunycode'
+          : hostPart;
+    }).join('.');
+    launch(uri.replace(host: newHost).toString());
   }
 
   void openMatrixToUrl() async {

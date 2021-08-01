@@ -11,6 +11,13 @@
     "type": "text",
     "placeholders": {}
   },
+  "cantOpenUri": "Can't open the URI {uri}",
+  "@cantOpenUri": {
+    "type": "text",
+    "placeholders": {
+      "uri": {}
+    }
+  },
   "chats": "Chats",
   "@chats": {
     "type": "text",
