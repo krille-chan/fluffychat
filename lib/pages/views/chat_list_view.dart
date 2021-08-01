@@ -180,148 +180,7 @@ class ChatListView extends StatelessWidget {
               ),
               body: Column(children: [
                 ConnectionStatusHeader(),
-                Expanded(
-                  child: StreamBuilder(
-                      stream: Matrix.of(context)
-                          .client
-                          .onSync
-                          .stream
-                          .where((s) => s.hasRoomUpdate)
-                          .rateLimit(Duration(seconds: 1)),
-                      builder: (context, snapshot) {
-                        return FutureBuilder<void>(
-                          future: controller.waitForFirstSync(),
-                          builder: (BuildContext context, snapshot) {
-                            if (Matrix.of(context).client.prevBatch != null) {
-                              final rooms = List<Room>.from(
-                                      Matrix.of(context).client.rooms)
-                                  .where((r) => !r.isSpace)
-                                  .toList();
-                              if (controller.activeSpaceId != null) {
-                                rooms.removeWhere((room) => !room.spaceParents
-                                    .any((parent) =>
-                                        parent.roomId ==
-                                        controller.activeSpaceId));
-                              }
-                              rooms.removeWhere(
-                                  (room) => room.lastEvent == null);
-                              if (rooms.isEmpty) {
-                                return Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: <Widget>[
-                                    Icon(
-                                      Icons.maps_ugc_outlined,
-                                      size: 80,
-                                      color: Colors.grey,
-                                    ),
-                                    Center(
-                                      child: Text(
-                                        L10n.of(context).startYourFirstChat,
-                                        textAlign: TextAlign.start,
-                                        style: TextStyle(
-                                          color: Colors.grey,
-                                          fontSize: 16,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                );
-                              }
-                              final totalCount = rooms.length + 1;
-                              return ListView.builder(
-                                itemCount: totalCount,
-                                itemBuilder: (BuildContext context, int i) {
-                                  if (i == 0) {
-                                    return FutureBuilder(
-                                        future:
-                                            controller.crossSigningCachedFuture,
-                                        builder: (context, snapshot) {
-                                          final needsBootstrap =
-                                              Matrix.of(context)
-                                                          .client
-                                                          .encryption
-                                                          ?.crossSigning
-                                                          ?.enabled ==
-                                                      false ||
-                                                  snapshot.data == false;
-                                          final isUnknownSession =
-                                              Matrix.of(context)
-                                                  .client
-                                                  .isUnknownSession;
-                                          final displayHeader =
-                                              needsBootstrap ||
-                                                  isUnknownSession;
-                                          if (!displayHeader ||
-                                              controller.hideChatBackupBanner) {
-                                            return Container();
-                                          }
-                                          return Material(
-                                            color: Theme.of(context)
-                                                .secondaryHeaderColor,
-                                            child: ListTile(
-                                              leading: CircleAvatar(
-                                                backgroundColor: Theme.of(
-                                                        context)
-                                                    .scaffoldBackgroundColor,
-                                                foregroundColor:
-                                                    Theme.of(context)
-                                                        .colorScheme
-                                                        .secondaryVariant,
-                                                child: Icon(Icons.cloud),
-                                              ),
-                                              trailing: IconButton(
-                                                icon: Icon(Icons.close),
-                                                onPressed: controller
-                                                    .hideChatBackupBannerAction,
-                                              ),
-                                              title: Text(
-                                                  L10n.of(context).chatBackup),
-                                              subtitle: Text(L10n.of(context)
-                                                  .enableChatBackup),
-                                              onTap: controller
-                                                  .firstRunBootstrapAction,
-                                            ),
-                                          );
-                                        });
-                                  }
-                                  i--;
-                                  return ChatListItem(
-                                    rooms[i],
-                                    selected: controller.selectedRoomIds
-                                        .contains(rooms[i].id),
-                                    onTap: selectMode == SelectMode.select
-                                        ? () => controller
-                                            .toggleSelection(rooms[i].id)
-                                        : null,
-                                    onLongPress: () =>
-                                        controller.toggleSelection(rooms[i].id),
-                                    activeChat:
-                                        controller.activeChat == rooms[i].id,
-                                  );
-                                },
-                              );
-                            } else {
-                              return Center(
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Image.asset(
-                                      'assets/private_chat_wallpaper.png',
-                                      width: 100,
-                                    ),
-                                    Text(
-                                      L10n.of(context).yourChatsAreBeingSynced,
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ],
-                                ),
-                              );
-                            }
-                          },
-                        );
-                      }),
-                ),
+                Expanded(child: _ChatListViewBody(controller)),
               ]),
               floatingActionButton: selectMode == SelectMode.normal
                   ? FloatingActionButton(
@@ -373,6 +232,91 @@ class ChatListView extends StatelessWidget {
           );
         });
   }
+}
+
+class _ChatListViewBody extends StatelessWidget {
+  final ChatListController controller;
+  const _ChatListViewBody(this.controller, {Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) => StreamBuilder(
+      stream: Matrix.of(context)
+          .client
+          .onSync
+          .stream
+          .where((s) => s.hasRoomUpdate)
+          .rateLimit(Duration(seconds: 1)),
+      builder: (context, snapshot) {
+        return FutureBuilder<void>(
+          future: controller.waitForFirstSync(),
+          builder: (BuildContext context, snapshot) {
+            if (Matrix.of(context).client.prevBatch != null) {
+              final rooms = List<Room>.from(Matrix.of(context).client.rooms)
+                  .where((r) => !r.isSpace)
+                  .toList();
+              if (controller.activeSpaceId != null) {
+                rooms.removeWhere((room) => !room.spaceParents.any(
+                    (parent) => parent.roomId == controller.activeSpaceId));
+              }
+              rooms.removeWhere((room) => room.lastEvent == null);
+              if (rooms.isEmpty) {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Icon(
+                      Icons.maps_ugc_outlined,
+                      size: 80,
+                      color: Colors.grey,
+                    ),
+                    Center(
+                      child: Text(
+                        L10n.of(context).startYourFirstChat,
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              }
+              final totalCount = rooms.length;
+              return ListView.builder(
+                itemCount: totalCount,
+                itemBuilder: (BuildContext context, int i) {
+                  return ChatListItem(
+                    rooms[i],
+                    selected: controller.selectedRoomIds.contains(rooms[i].id),
+                    onTap: controller.selectMode == SelectMode.select
+                        ? () => controller.toggleSelection(rooms[i].id)
+                        : null,
+                    onLongPress: () => controller.toggleSelection(rooms[i].id),
+                    activeChat: controller.activeChat == rooms[i].id,
+                  );
+                },
+              );
+            } else {
+              return Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Image.asset(
+                      'assets/private_chat_wallpaper.png',
+                      width: 100,
+                    ),
+                    Text(
+                      L10n.of(context).yourChatsAreBeingSynced,
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              );
+            }
+          },
+        );
+      });
 }
 
 enum ChatListPopupMenuItemActions {

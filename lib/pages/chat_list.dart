@@ -154,6 +154,18 @@ class ChatListController extends State<ChatList> {
   @override
   void initState() {
     _initReceiveSharingIntent();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if (!Matrix.of(context).client.encryptionEnabled) return;
+      final crossSigning = await crossSigningCachedFuture;
+      final needsBootstrap =
+          Matrix.of(context).client.encryption?.crossSigning?.enabled ==
+                  false ||
+              crossSigning == false;
+      final isUnknownSession = Matrix.of(context).client.isUnknownSession;
+      if (needsBootstrap || isUnknownSession) {
+        firstRunBootstrapAction();
+      }
+    });
     super.initState();
   }
 
