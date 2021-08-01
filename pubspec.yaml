@@ -22,7 +22,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_app_badger: ^1.2.0
-  flutter_app_lock: ^1.5.0
+  flutter_app_lock: ^2.0.0
   flutter_blurhash: ^0.6.0
   flutter_cache_manager: ^3.1.2
   flutter_inappwebview: ^5.3.2
@@ -32,7 +32,7 @@ dependencies:
   flutter_matrix_html: ^0.3.0
   flutter_olm: ^1.1.2
   flutter_openssl_crypto: ^0.0.1
-  flutter_secure_storage: ^4.2.0
+  flutter_secure_storage: ^4.2.1
   flutter_slidable: ^0.6.0
   flutter_svg: ^0.22.0
   flutter_typeahead: ^3.2.0
@@ -52,7 +52,7 @@ dependencies:
   open_noti_settings: ^0.2.0
   package_info_plus: ^1.0.4
   path_provider: ^2.0.2
-  permission_handler: ^8.1.4+1
+  permission_handler: ^8.1.4+2
   pin_code_text_field: ^1.8.0
   provider: ^5.0.0
   receive_sharing_intent: ^1.4.5
@@ -66,7 +66,7 @@ dependencies:
   unifiedpush: ^1.0.6
   universal_html: ^2.0.8
   url_launcher: ^6.0.9
-  vrouter: ^1.2.0+6
+  vrouter: ^1.2.0+9
 
 dev_dependencies:
   dapackages: ^1.6.0
