@@ -146,7 +146,7 @@ class ChatListController extends State<ChatList> {
     ReceiveSharingIntent.getInitialText().then(_processIncomingSharedText);
 
     // For receiving shared Uris
-    _intentDataStreamSubscription = linkStream.listen(_processIncomingUris);
+    _intentUriStreamSubscription = linkStream.listen(_processIncomingUris);
     if (FluffyChatApp.gotInitialLink == false) {
       FluffyChatApp.gotInitialLink = true;
       getInitialLink().then(_processIncomingUris);
