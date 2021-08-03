@@ -1,3 +1,6 @@
+## v0.36.1 - 2021-08-03
+Hotfix uploading to many OTKs.
+
 ## v0.36.0 - 2021-07-31
 Minor design improvements and bug fixes.
 
