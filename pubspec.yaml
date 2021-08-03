@@ -68,7 +68,7 @@ dependencies:
   unifiedpush: ^1.0.6
   universal_html: ^2.0.8
   url_launcher: ^6.0.9
-  vrouter: 1.2.0+6 # vrouter 1.2.0+9 is bugged
+  vrouter: 1.2.0+5 # vrouter 1.2.0+9 is bugged
 
 dev_dependencies:
   dapackages: ^1.6.0
