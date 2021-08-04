@@ -233,8 +233,10 @@ upload-linux-arm64:
 
 upload-windows:
   extends: .release
+  image: alpine:latest
   script:
-    - pushd build/windows/runner/Release; zip -r ../../../../package.zip  . ; popd
+    - apk add --no-cache curl zip
+    - cd build/windows/runner/Release; zip -r ../../../../package.zip  . ; cd -
     - |
       curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file package.zip ${PACKAGE_REGISTRY_URL}/fluffychat-windows.zip
 
