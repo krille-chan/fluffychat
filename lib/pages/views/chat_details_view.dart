@@ -316,8 +316,8 @@ class ChatDetailsView extends StatelessWidget {
                                 foregroundColor: Colors.grey,
                                 child: Icon(Icons.edit_attributes_outlined),
                               ),
-                              onTap: () => VRouter.of(context)
-                                  .to('/rooms/${room.id}/details/permissions'),
+                              onTap: () =>
+                                  VRouter.of(context).to('permissions'),
                             ),
                             Divider(thickness: 1),
                             ListTile(
@@ -343,8 +343,8 @@ class ChatDetailsView extends StatelessWidget {
                                       radius: Avatar.defaultSize / 2,
                                       child: Icon(Icons.add_outlined),
                                     ),
-                                    onTap: () => VRouter.of(context)
-                                        .to('/rooms/${room.id}/invite'),
+                                    onTap: () =>
+                                        VRouter.of(context).to('invite'),
                                   )
                                 : Container(),
                           ],

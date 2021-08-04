@@ -21,11 +21,13 @@ class InvitationSelectionView extends StatelessWidget {
         room.name?.isEmpty ?? false ? L10n.of(context).group : room.name;
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.close_outlined),
-          onPressed: () =>
-              VRouter.of(context).to('/rooms/${controller.roomId}'),
-        ),
+        leading: VRouter.of(context).path.startsWith('/spaces/')
+            ? null
+            : IconButton(
+                icon: Icon(Icons.close_outlined),
+                onPressed: () =>
+                    VRouter.of(context).to('/rooms/${controller.roomId}'),
+              ),
         titleSpacing: 0,
         title: DefaultAppBarSearchField(
           autofocus: true,
