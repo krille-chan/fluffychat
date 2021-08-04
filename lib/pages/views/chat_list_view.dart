@@ -289,9 +289,8 @@ class _ChatListViewBody extends StatelessWidget {
                   ],
                 );
               }
-              final totalCount = rooms.length;
               return ListView.builder(
-                itemCount: totalCount,
+                itemCount: rooms.length,
                 itemBuilder: (BuildContext context, int i) {
                   return ChatListItem(
                     rooms[i],
