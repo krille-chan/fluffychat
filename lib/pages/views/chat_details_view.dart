@@ -52,8 +52,11 @@ class ChatDetailsView extends StatelessWidget {
                 SliverAppBar(
                   leading: IconButton(
                     icon: Icon(Icons.close_outlined),
-                    onPressed: () =>
-                        VRouter.of(context).to('/rooms/${controller.roomId}'),
+                    onPressed: () => VRouter.of(context)
+                            .path
+                            .startsWith('/spaces/')
+                        ? VRouter.of(context).pop()
+                        : VRouter.of(context).to('/rooms/${controller.roomId}'),
                   ),
                   elevation: Theme.of(context).appBarTheme.elevation,
                   expandedHeight: 300.0,

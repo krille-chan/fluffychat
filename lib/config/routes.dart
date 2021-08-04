@@ -46,6 +46,11 @@ class AppRoutes {
           path: '/rooms',
           widget: ChatList(),
           stackedRoutes: [
+            VWidget(
+              path: '/spaces/:roomid',
+              widget: ChatDetails(),
+              stackedRoutes: _chatDetailsRoutes,
+            ),
             VWidget(path: ':roomid', widget: Chat(), stackedRoutes: [
               VWidget(
                 path: 'encryption',
@@ -103,6 +108,12 @@ class AppRoutes {
               widget: EmptyPage(),
               buildTransition: _fadeTransition,
               stackedRoutes: [
+                VWidget(
+                  path: '/spaces/:roomid',
+                  widget: ChatDetails(),
+                  buildTransition: _fadeTransition,
+                  stackedRoutes: _chatDetailsRoutes,
+                ),
                 VWidget(
                   path: '/newprivatechat',
                   widget: NewPrivateChat(),
