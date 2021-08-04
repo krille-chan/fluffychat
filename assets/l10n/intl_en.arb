@@ -18,6 +18,11 @@
       "uri": {}
     }
   },
+  "allChats": "All chats",
+  "@allChats": {
+    "type": "text",
+    "placeholders": {}
+  },
   "chats": "Chats",
   "@chats": {
     "type": "text",

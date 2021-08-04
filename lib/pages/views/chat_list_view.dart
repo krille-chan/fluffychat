@@ -199,23 +199,33 @@ class ChatListView extends StatelessWidget {
                           itemBuilder: (context, i) {
                             if (i == 0) {
                               return ListTile(
+                                selected: controller.activeSpaceId == null,
+                                selectedTileColor:
+                                    Theme.of(context).secondaryHeaderColor,
                                 leading: CircleAvatar(
                                   foregroundColor:
-                                      Theme.of(context).primaryColor,
-                                  backgroundColor:
                                       Theme.of(context).secondaryHeaderColor,
+                                  backgroundColor:
+                                      Theme.of(context).primaryColor,
                                   radius: Avatar.defaultSize / 2,
                                   child: Icon(Icons.home_outlined),
                                 ),
-                                title: Text(L10n.of(context).chats),
+                                title: Text(L10n.of(context).allChats),
                                 onTap: () =>
                                     controller.setActiveSpaceId(context, null),
                               );
                             }
                             final space = controller.spaces[i - 1];
                             return ListTile(
+                              selected: controller.activeSpaceId == space.id,
+                              selectedTileColor:
+                                  Theme.of(context).secondaryHeaderColor,
                               leading: Avatar(space.avatar, space.displayname),
-                              title: Text(space.displayname),
+                              title: Text(space.displayname, maxLines: 1),
+                              subtitle: Text(L10n.of(context).countParticipants(
+                                  (space.summary.mJoinedMemberCount +
+                                          space.summary.mInvitedMemberCount)
+                                      .toString())),
                               onTap: () => controller.setActiveSpaceId(
                                   context, space.id),
                               trailing: IconButton(
