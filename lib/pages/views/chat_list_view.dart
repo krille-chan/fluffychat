@@ -264,7 +264,6 @@ class _ChatListViewBody extends StatelessWidget {
               final rooms = List<Room>.from(Matrix.of(context).client.rooms)
                   .where(controller.roomCheck)
                   .toList();
-              rooms.removeWhere((room) => room.lastEvent == null);
               if (rooms.isEmpty) {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
