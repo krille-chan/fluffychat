@@ -2,7 +2,6 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:fluffychat/config/app_config.dart';
 
 import 'package:matrix/matrix.dart';
-import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/event_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
 import 'package:fluffychat/utils/room_status_extension.dart';
@@ -147,9 +146,10 @@ class ChatListItem extends StatelessWidget {
             : 14.0
         : 0.0;
     return ListTile(
-      selected: selected,
-      selectedTileColor:
-          FluffyThemes.chatListItemColor(context, activeChat, selected),
+      selected: selected || activeChat,
+      selectedTileColor: selected
+          ? Theme.of(context).primaryColor.withAlpha(100)
+          : Theme.of(context).secondaryHeaderColor,
       onLongPress: onLongPress,
       leading: selected
           ? Container(
@@ -170,6 +170,12 @@ class ChatListItem extends StatelessWidget {
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               softWrap: false,
+              style: TextStyle(
+                fontWeight: room.isUnread ? FontWeight.bold : null,
+                color: room.isUnread
+                    ? Theme.of(context).colorScheme.secondary
+                    : Theme.of(context).textTheme.bodyText1.color,
+              ),
             ),
           ),
           if (isMuted)
@@ -196,9 +202,9 @@ class ChatListItem extends StatelessWidget {
               room.timeCreated.localizedTimeShort(context),
               style: TextStyle(
                 fontSize: 13,
-                color: room.notificationCount > 0
+                color: room.isUnread
                     ? Theme.of(context).colorScheme.secondary
-                    : null,
+                    : Theme.of(context).textTheme.bodyText2.color,
               ),
             ),
           ),
@@ -270,8 +276,7 @@ class ChatListItem extends StatelessWidget {
                         style: TextStyle(
                           color: room.isUnread
                               ? Theme.of(context).colorScheme.secondary
-                              : null,
-                          fontWeight: room.isUnread ? FontWeight.bold : null,
+                              : Theme.of(context).textTheme.bodyText2.color,
                           decoration: room.lastEvent?.redacted == true
                               ? TextDecoration.lineThrough
                               : null,

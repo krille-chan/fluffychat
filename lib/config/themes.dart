@@ -209,18 +209,6 @@ abstract class FluffyThemes {
     ),
   );
 
-  static Color chatListItemColor(
-          BuildContext context, bool activeChat, bool selected) =>
-      selected
-          ? Theme.of(context).primaryColor.withAlpha(100)
-          : Theme.of(context).brightness == Brightness.light
-              ? activeChat
-                  ? Color(0xFFE8E8E8)
-                  : Colors.white
-              : activeChat
-                  ? Color(0xff121212)
-                  : Colors.black;
-
   static Color blackWhiteColor(BuildContext context) =>
       Theme.of(context).brightness == Brightness.light
           ? Colors.white
