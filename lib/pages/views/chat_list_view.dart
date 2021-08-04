@@ -261,7 +261,9 @@ class _ChatListViewBody extends StatelessWidget {
           future: controller.waitForFirstSync(),
           builder: (BuildContext context, snapshot) {
             if (Matrix.of(context).client.prevBatch != null) {
-              final rooms = List<Room>.from(Matrix.of(context).client.rooms)
+              final rooms = Matrix.of(context)
+                  .client
+                  .rooms
                   .where(controller.roomCheck)
                   .toList();
               if (rooms.isEmpty) {
