@@ -74,7 +74,7 @@ class SearchController extends State<Search> {
       future: () => _joinRoomAndWait(
         context,
         room.roomId,
-        room.canonicalAlias ?? room.aliases.first,
+        room.canonicalAlias ?? room.aliases?.first,
       ),
     );
     if (success.error == null) {
