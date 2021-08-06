@@ -2117,7 +2117,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noPublicRoomsFound": "Aucun salon public n'a été trouvé...",
+  "noPublicRoomsFound": "Aucun salon public n'a été trouvé…",
   "@noPublicRoomsFound": {
     "type": "text",
     "placeholders": {}
@@ -2394,7 +2394,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "yourChatsAreBeingSynced": "La synchronisation de vos discussions est en cours...",
+  "yourChatsAreBeingSynced": "La synchronisation de vos discussions est en cours…",
   "@yourChatsAreBeingSynced": {
     "type": "text",
     "placeholders": {}
@@ -2523,5 +2523,69 @@
     "placeholders": {
       "uri": {}
     }
+  },
+  "publicSpace": "Espace public",
+  "@publicSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationPermissionDeniedNotice": "L'application n'a pas la permission d'accéder à votre localisation. Merci de l'accorder afin de pouvoir partager votre localisation.",
+  "@locationPermissionDeniedNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationDisabledNotice": "Les services de localisation sont désactivés. Il est nécessaire de les activer avant de pouvoir partager votre localisation.",
+  "@locationDisabledNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareLocation": "Partager la localisation",
+  "@shareLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceName": "Nom de l'espace",
+  "@spaceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openInMaps": "Ouvrir dans maps",
+  "@openInMaps": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "obtainingLocation": "Obtention de la localisation…",
+  "@obtainingLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceIsPublic": "L'espace est public",
+  "@spaceIsPublic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterASpacepName": "Entrer un nom d'espace",
+  "@enterASpacepName": {},
+  "dontAskAgain": "Annuler et ne plus me redemander",
+  "@dontAskAgain": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorObtainingLocation": "Erreur lors de l'obtention de la localisation : {error}",
+  "@errorObtainingLocation": {
+    "type": "text",
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "createNewSpace": "Créer un nouvel espace",
+  "@createNewSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "allChats": "Toutes les discussions",
+  "@allChats": {
+    "type": "text",
+    "placeholders": {}
   }
 }
