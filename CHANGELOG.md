@@ -1,3 +1,9 @@
+## v0.37.0 - 2021-08-06
+- Implement location sharing
+- Updated translations
+- Improved spaces support
+- Minor bug fixes
+
 ## v0.36.2 - 2021-08-03
 Hotfix a routing problem on web and desktop
 
