@@ -2516,5 +2516,76 @@
   "@commandHintSend": {
     "type": "text",
     "description": "Usage hint for the command /send"
+  },
+  "locationPermissionDeniedNotice": "Standort-Berechtigung wurde abgelehnt. Bitte akzeptieren, um den Standort teilen zu können.",
+  "@locationPermissionDeniedNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationDisabledNotice": "Standort ist deaktiviert. Bitte aktivieren, um den Standort teilen zu können.",
+  "@locationDisabledNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareLocation": "Standort teilen",
+  "@shareLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceName": "Space-Name",
+  "@spaceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openInMaps": "In Maps öffnen",
+  "@openInMaps": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "obtainingLocation": "Standort wird ermittelt …",
+  "@obtainingLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceIsPublic": "Space ist öffentlich",
+  "@spaceIsPublic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterASpacepName": "Namen für den Space eingeben",
+  "@enterASpacepName": {},
+  "dontAskAgain": "Abbrechen und nicht erneut fragen",
+  "@dontAskAgain": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorObtainingLocation": "Fehler beim Suchen des Standortes: {error}",
+  "@errorObtainingLocation": {
+    "type": "text",
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "createNewSpace": "Neuen Space erstellen",
+  "@createNewSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicSpace": "Öffentlicher Space",
+  "@publicSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "allChats": "Alle Chats",
+  "@allChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cantOpenUri": "Die URI {uri} kann nicht geöffnet werden",
+  "@cantOpenUri": {
+    "type": "text",
+    "placeholders": {
+      "uri": {}
+    }
   }
 }
