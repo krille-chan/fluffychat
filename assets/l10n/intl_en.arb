@@ -833,6 +833,13 @@
     "type": "text",
     "placeholders": {}
   },
+  "errorObtainingLocation": "Error obtaining location: {error}",
+  "@errorObtainingLocation": {
+    "type": "text",
+    "placeholders": {
+      "error": {}
+    }
+  },
   "directChats": "Direct Chats",
   "@directChats": {
     "type": "text",
@@ -1416,6 +1423,11 @@
       "number": {}
     }
   },
+  "obtainingLocation": "Obtaining location…",
+  "@obtainingLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
   "ok": "ok",
   "@ok": {
     "type": "text",
@@ -1458,6 +1470,11 @@
   },
   "openCamera": "Open camera",
   "@openCamera": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openInMaps": "Open in maps",
+  "@openInMaps": {
     "type": "text",
     "placeholders": {}
   },
@@ -1671,6 +1688,11 @@
   },
   "share": "Share",
   "@share": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareLocation": "Share location",
+  "@shareLocation": {
     "type": "text",
     "placeholders": {}
   },
@@ -2088,6 +2110,16 @@
     "placeholders": {
       "brand": {}
     }
+  },
+  "locationDisabledNotice": "Location services are disabled. Please enable them to be able to share your location.",
+  "@locationDisabledNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationPermissionDeniedNotice": "Location permission denied. Please grant them to be able to share your location.",
+  "@locationPermissionDeniedNotice": {
+    "type": "text",
+    "placeholders": {}
   },
   "singlesignon": "Single Sign on",
   "@singlesignon": {

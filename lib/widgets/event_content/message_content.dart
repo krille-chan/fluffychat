@@ -18,6 +18,7 @@ import '../../config/app_config.dart';
 import 'html_message.dart';
 import '../matrix.dart';
 import 'message_download_content.dart';
+import 'map_bubble.dart';
 
 class MessageContent extends StatelessWidget {
   final Event event;
@@ -164,6 +165,42 @@ class MessageContent extends StatelessWidget {
               label: Text(L10n.of(context).encrypted),
             );
           case MessageTypes.Location:
+            final geoUri =
+                Uri.tryParse(event.content.tryGet<String>('geo_uri'));
+            if (geoUri != null &&
+                geoUri.scheme == 'geo' &&
+                geoUri.path != null) {
+              final latlong = geoUri.path
+                  .split(';')
+                  .first
+                  .split(',')
+                  .map((s) => double.tryParse(s))
+                  .toList();
+              if (latlong.length == 2 &&
+                  latlong.first != null &&
+                  latlong.last != null) {
+                return Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    MapBubble(
+                      latitude: latlong.first,
+                      longitude: latlong.last,
+                    ),
+                    SizedBox(height: 6),
+                    OutlinedButton.icon(
+                      icon: Icon(Icons.location_on_outlined, color: textColor),
+                      onPressed:
+                          UrlLauncher(context, geoUri.toString()).launchUrl,
+                      label: Text(
+                        L10n.of(context).openInMaps,
+                        style: TextStyle(color: textColor),
+                      ),
+                    ),
+                  ],
+                );
+              }
+            }
+            continue textmessage;
           case MessageTypes.None:
           textmessage:
           default:
