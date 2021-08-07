@@ -21,6 +21,7 @@ class ImageBubble extends StatefulWidget {
   final Color backgroundColor;
   final double radius;
   final bool thumbnailOnly;
+  final bool animated;
   final double width;
   final double height;
   final void Function() onLoaded;
@@ -37,6 +38,7 @@ class ImageBubble extends StatefulWidget {
     this.onLoaded,
     this.width = 400,
     this.height = 300,
+    this.animated = false,
     this.onTap,
     Key key,
   }) : super(key: key);
@@ -53,6 +55,9 @@ class _ImageBubbleState extends State<ImageBubble> {
   MatrixFile _file;
   MatrixFile _thumbnail;
   bool _requestedThumbnailOnFailure = false;
+  // In case we have animated = false, this will hold the first frame so that we make
+  // sure that things are never animated
+  Widget _firstFrame;
 
   // the mimetypes that we know how to render, from the flutter Image widget
   final _knownMimetypes = <String>{
@@ -108,6 +113,19 @@ class _ImageBubbleState extends State<ImageBubble> {
     }
   }
 
+  Widget frameBuilder(
+      BuildContext context, Widget child, int frame, bool sync) {
+    // as servers might return animated gifs as thumbnails and we want them to *not* play
+    // animated, we'll have to store the first frame in a variable and display that instead
+    if (widget.animated) {
+      return child;
+    }
+    if (frame == 0) {
+      _firstFrame = child;
+    }
+    return _firstFrame ?? child;
+  }
+
   @override
   void initState() {
     // add the custom renderers for other mimetypes
@@ -131,6 +149,7 @@ class _ImageBubbleState extends State<ImageBubble> {
         fit: widget.fit,
         errorBuilder: (context, error, stacktrace) =>
             getErrorWidget(context, error),
+        animate: widget.animated,
       ),
       network: (String url) => Lottie.network(
         url,
@@ -138,6 +157,7 @@ class _ImageBubbleState extends State<ImageBubble> {
         fit: widget.fit,
         errorBuilder: (context, error, stacktrace) =>
             getErrorWidget(context, error),
+        animate: widget.animated,
       ),
     );
 
@@ -147,9 +167,10 @@ class _ImageBubbleState extends State<ImageBubble> {
     }
 
     thumbnailUrl = widget.event
-        .getAttachmentUrl(getThumbnail: true, animated: true)
+        .getAttachmentUrl(getThumbnail: true, animated: widget.animated)
         ?.toString();
-    attachmentUrl = widget.event.getAttachmentUrl(animated: true)?.toString();
+    attachmentUrl =
+        widget.event.getAttachmentUrl(animated: widget.animated)?.toString();
     if (thumbnailUrl == null) {
       _requestFile(getThumbnail: true);
     }
@@ -263,6 +284,7 @@ class _ImageBubbleState extends State<ImageBubble> {
           }
           return getErrorWidget(context, error);
         },
+        frameBuilder: frameBuilder,
       );
     }
   }
@@ -292,11 +314,20 @@ class _ImageBubbleState extends State<ImageBubble> {
               key: ValueKey(thumbnailUrl),
               imageUrl: thumbnailUrl,
               placeholder: (c, u) => getPlaceholderWidget(),
-              fit: widget.fit,
+              imageBuilder: (context, imageProvider) => Image(
+                image: imageProvider,
+                frameBuilder: frameBuilder,
+                fit: widget.fit,
+              ),
             );
           }
           return getPlaceholderWidget();
         },
+        imageBuilder: (context, imageProvider) => Image(
+          image: imageProvider,
+          frameBuilder: frameBuilder,
+          fit: widget.fit,
+        ),
         errorWidget: (context, url, error) {
           if (widget.event.hasThumbnail && !_requestedThumbnailOnFailure) {
             // the image failed to load but the event has a thumbnail attached....so we can
@@ -308,10 +339,11 @@ class _ImageBubbleState extends State<ImageBubble> {
                     .getAttachmentUrl(
                         getThumbnail: true,
                         useThumbnailMxcUrl: true,
-                        animated: true)
+                        animated: widget.animated)
                     ?.toString();
                 attachmentUrl = widget.event
-                    .getAttachmentUrl(useThumbnailMxcUrl: true, animated: true)
+                    .getAttachmentUrl(
+                        useThumbnailMxcUrl: true, animated: widget.animated)
                     ?.toString();
               });
             });
@@ -346,7 +378,6 @@ class _ImageBubbleState extends State<ImageBubble> {
           }
           return getErrorWidget(context, error);
         },
-        fit: widget.fit,
       );
     }
   }

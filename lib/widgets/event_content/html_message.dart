@@ -3,8 +3,10 @@ import 'package:flutter_matrix_html/flutter_html.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import '../../utils/url_launcher.dart';
+import '../../config/app_config.dart';
 import '../../config/setting_keys.dart';
 import '../../utils/matrix_sdk_extensions.dart/matrix_locals.dart';
+import '../../pages/image_viewer.dart';
 
 import '../matrix.dart';
 
@@ -64,10 +66,22 @@ class HtmlMessage extends StatelessWidget {
               width: (width ?? 800) * ratio,
               height: (height ?? 800) * ratio,
               method: ThumbnailMethod.scale,
-              animated: animated,
+              animated: AppConfig.autoplayImages ? animated : false,
             )
             .toString();
       },
+      onImageTap: (String mxc) => showDialog(
+          context: Matrix.of(context).navigatorContext,
+          useRootNavigator: false,
+          builder: (_) => ImageViewer(Event.fromJson({
+                'type': EventTypes.Message,
+                'content': <String, dynamic>{
+                  'body': mxc,
+                  'url': mxc,
+                  'msgtype': MessageTypes.Image,
+                },
+                'event_id': 'fake_event',
+              }, room))),
       setCodeLanguage: (String key, String value) async {
         await matrix.store.setItem('${SettingKeys.codeLanguage}.$key', value);
       },
