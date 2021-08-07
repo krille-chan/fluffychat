@@ -40,8 +40,7 @@ class LoginView extends StatelessWidget {
                       controller.loading ? null : [AutofillHints.username],
                   decoration: InputDecoration(
                       prefixIcon: Icon(Icons.account_box_outlined),
-                      hintText:
-                          '@${L10n.of(context).username.toLowerCase()}:domain',
+                      hintText: L10n.of(context).username,
                       errorText: controller.usernameError,
                       labelText: L10n.of(context).username),
                 ),
