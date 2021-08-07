@@ -1543,7 +1543,7 @@
       "type": {}
     }
   },
-  "verifiedSession": "Сессия успешно проверена!",
+  "verifiedSession": "Успешно проверенная сессия!",
   "@verifiedSession": {
     "type": "text",
     "placeholders": {}
@@ -2506,5 +2506,81 @@
   "@sendSticker": {
     "type": "text",
     "placeholders": {}
+  },
+  "locationPermissionDeniedNotice": "Разрешение на определение местоположения отклонено. Пожалуйста, предоставьте это разрешение, чтобы иметь возможность делиться своим местоположением.",
+  "@locationPermissionDeniedNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationDisabledNotice": "Службы определения местоположения отключены. Включите их, чтобы иметь возможность обмениваться информацией о своем местоположении.",
+  "@locationDisabledNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareLocation": "Поделиться местоположением",
+  "@shareLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceName": "Название пространства",
+  "@spaceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openInMaps": "Открыть на картах",
+  "@openInMaps": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "obtainingLocation": "Получение местоположения…",
+  "@obtainingLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceIsPublic": "Пространство публичное",
+  "@spaceIsPublic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterASpacepName": "Введите название пространства",
+  "@enterASpacepName": {},
+  "dontAskAgain": "Отменить и больше не спрашивать",
+  "@dontAskAgain": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorObtainingLocation": "Ошибка получения местоположения: {error}",
+  "@errorObtainingLocation": {
+    "type": "text",
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "createNewSpace": "Создать новое пространство",
+  "@createNewSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicSpace": "Публичное пространство",
+  "@publicSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHintMyRoomAvatar": "Установите свою фотографию для этой комнаты (автор: mxc-uri)",
+  "@commandHintMyRoomAvatar": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomavatar"
+  },
+  "allChats": "Все чаты",
+  "@allChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cantOpenUri": "Не удается открыть URI {uri}",
+  "@cantOpenUri": {
+    "type": "text",
+    "placeholders": {
+      "uri": {}
+    }
   }
 }
