@@ -12,6 +12,7 @@ import '../avatar.dart';
 import '../matrix.dart';
 import 'message_reactions.dart';
 import 'state_message.dart';
+import 'verification_request_content.dart';
 
 class Message extends StatelessWidget {
   final Event event;
@@ -43,6 +44,11 @@ class Message extends StatelessWidget {
     if (![EventTypes.Message, EventTypes.Sticker, EventTypes.Encrypted]
         .contains(event.type)) {
       return StateMessage(event, unfold: unfold);
+    }
+
+    if (event.type == EventTypes.Message &&
+        event.messageType == EventTypes.KeyVerificationRequest) {
+      return VerificationRequestContent(event: event, timeline: timeline);
     }
 
     final client = Matrix.of(context).client;
