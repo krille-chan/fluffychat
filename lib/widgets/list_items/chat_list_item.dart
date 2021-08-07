@@ -291,7 +291,9 @@ class ChatListItem extends StatelessWidget {
             height: unreadBubbleSize,
             width: room.notificationCount == 0 && !room.isUnread
                 ? 0
-                : unreadBubbleSize,
+                : (unreadBubbleSize - 10) *
+                        room.notificationCount.toString().length +
+                    10,
             decoration: BoxDecoration(
               color: room.highlightCount > 0
                   ? Colors.red
