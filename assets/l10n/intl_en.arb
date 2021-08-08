@@ -1351,6 +1351,14 @@
     "type": "text",
     "placeholders": {}
   },
+  "noMatrixServer": "{server1} is no matrix server, use {server2} instead?",
+  "@noMatrixServer": {
+    "type": "text",
+    "placeholders": {
+      "server1": {},
+      "server2": {}
+    }
+  },
   "noMegolmBootstrap": "Please turn on online key backup from within Element instead.",
   "@noMegolmBootstrap": {
     "type": "text",
