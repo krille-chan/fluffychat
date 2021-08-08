@@ -1783,7 +1783,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "areYouSureYouWantToLogout": "¿Estás seguro de que quieres cerrar sesión?",
+  "areYouSureYouWantToLogout": "¿Confirma que quiere cerrar sesión?",
   "@areYouSureYouWantToLogout": {
     "type": "text",
     "placeholders": {}
