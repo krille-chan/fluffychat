@@ -14,7 +14,9 @@ import 'package:matrix_link_text/link_text.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../utils/url_launcher.dart';
+import '../../utils/platform_infos.dart';
 import '../../config/app_config.dart';
+import '../../pages/video_viewer.dart';
 import 'html_message.dart';
 import '../matrix.dart';
 import 'message_download_content.dart';
@@ -121,6 +123,31 @@ class MessageContent extends StatelessWidget {
               color: textColor,
             );
           case MessageTypes.Video:
+            if (event.showThumbnail &&
+                (PlatformInfos.isMobile || PlatformInfos.isWeb)) {
+              return InkWell(
+                onTap: () => showDialog(
+                  context: Matrix.of(context).navigatorContext,
+                  useRootNavigator: false,
+                  builder: (_) => VideoViewer(event),
+                ),
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: <Widget>[
+                    ImageBubble(
+                      event,
+                      width: 400,
+                      height: 300,
+                      fit: BoxFit.cover,
+                      tapToView: false,
+                    ),
+                    Icon(Icons.play_circle_outline,
+                        size: 200, color: Colors.grey),
+                  ],
+                ),
+              );
+            }
+            return MessageDownloadContent(event, textColor);
           case MessageTypes.File:
             return MessageDownloadContent(event, textColor);
           case MessageTypes.Text:

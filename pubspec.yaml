@@ -11,6 +11,7 @@ dependencies:
   adaptive_theme: ^2.2.0
   audioplayers: ^0.19.1
   cached_network_image: ^3.1.0
+  chewie: ^1.2.2
   cupertino_icons: any
   desktop_notifications: ">=0.4.0 <0.5.0" # Version 0.5.0 breaks web builds: https://github.com/canonical/dbus.dart/issues/250
   email_validator: ^2.0.1
