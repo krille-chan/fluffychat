@@ -2550,5 +2550,42 @@
     "placeholders": {
       "uri": {}
     }
+  },
+  "locationPermissionDeniedNotice": "Puudub luba asukohateenuste kasutamiseks. Asukoha jagamiseks palun anna rakendusele vastavad õigused.",
+  "@locationPermissionDeniedNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationDisabledNotice": "Asukohateenused on seadmes väljalülitatud. Asukoha jagamiseks palun lülita nad sisse.",
+  "@locationDisabledNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareLocation": "Jaga asukohta",
+  "@shareLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openInMaps": "Ava kaardirakendusega",
+  "@openInMaps": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "obtainingLocation": "Tuvastan asukohta…",
+  "@obtainingLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorObtainingLocation": "Viga asukoha tuvastamisel: {error}",
+  "@errorObtainingLocation": {
+    "type": "text",
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "allChats": "Kõik vestlused",
+  "@allChats": {
+    "type": "text",
+    "placeholders": {}
   }
 }
