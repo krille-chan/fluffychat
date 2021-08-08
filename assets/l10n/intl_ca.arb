@@ -198,7 +198,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "startYourFirstChat": "Inicia el teu primer xat :-)",
+  "startYourFirstChat": "Crea el teu primer xat ara mateix! 🙂\n- Clica al botó de missatge\n- Introdueix el nom d'usuari d'un conegut\n- Diverteix-te xatejant",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -588,7 +588,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Sembla que no tens els Serveis de Google al telèfon. Això és una bona decisió respecte a la teva privadesa! Per a rebre notificacions push de FluffyChat, et recomanem utilitzar microG: https://microg.org/",
+  "noGoogleServicesWarning": "Sembla que no tens els Serveis de Google al telèfon. Això és una bona decisió respecte a la teva privadesa! Per a rebre notificacions push de FluffyChat, et recomanem utilitzar https://microg.org/ o https://unifiedpush.org/.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -608,7 +608,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterAMatrixIdentifier": "Introdueix un identificador de matrix",
+  "pleaseEnterAMatrixIdentifier": "Introdueix un identificador de Matrix.",
   "@pleaseEnterAMatrixIdentifier": {
     "type": "text",
     "placeholders": {}
@@ -850,7 +850,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "leave": "Marxa",
+  "leave": "Abandona",
   "@leave": {
     "type": "text",
     "placeholders": {}
@@ -1842,5 +1842,145 @@
   "@soundVibrationLedColor": {
     "type": "text",
     "placeholders": {}
+  },
+  "waitingPartnerEmoji": "Esperant que l'altre accepti l'emoticona…",
+  "@waitingPartnerEmoji": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "numUsersTyping": "{count} usuaris escrivint…",
+  "@numUsersTyping": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "yourPublicKey": "La teva clau pública",
+  "@yourPublicKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tooManyRequestsWarning": "Massa sol·licituds. Torna-ho a provar més tard!",
+  "@tooManyRequestsWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noConnectionToTheServer": "Sense connexió al servidor",
+  "@noConnectionToTheServer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleUnread": "Marca com a llegit/sense llegir",
+  "@toggleUnread": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapToShowImage": "Clica per mostrar la imatge",
+  "@tapToShowImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "singlesignon": "Autenticació única",
+  "@singlesignon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationDisabledNotice": "La ubicació està desactivada. Activa-la per poder compartir la teva ubicació.",
+  "@locationDisabledNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationPermissionDeniedNotice": "Permís d'ubicació denegat. Has de donar permisos per poder compartir la teva ubicació.",
+  "@locationPermissionDeniedNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginWith": "Inicia sessió amb {brand}",
+  "@loginWith": {
+    "type": "text",
+    "placeholders": {
+      "brand": {}
+    }
+  },
+  "or": "O",
+  "@or": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "security": "Seguretat",
+  "@security": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appLock": "Bloqueig d'aplicació",
+  "@appLock": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChooseAPasscode": "Tria un codi d'accés",
+  "@pleaseChooseAPasscode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendSticker": "Envia adhesiu",
+  "@sendSticker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendAsText": "Envia com a text",
+  "@sendAsText": {
+    "type": "text"
+  },
+  "setPermissionsLevel": "Estableix el nivell de permisos",
+  "@setPermissionsLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHintOp": "Estableix el nivell d'autoritat de l'usuari (per defecte: 50)",
+  "@commandHintOp": {
+    "type": "text",
+    "description": "Usage hint for the command /op"
+  },
+  "pleaseEnter4Digits": "Introdueix 4 dígits o deixa-ho buit per desactivar el bloqueig.",
+  "@pleaseEnter4Digits": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHintLeave": "Abandona aquesta sala",
+  "@commandHintLeave": {
+    "type": "text",
+    "description": "Usage hint for the command /leave"
+  },
+  "commandHintHtml": "Envia text en format HTML",
+  "@commandHintHtml": {
+    "type": "text",
+    "description": "Usage hint for the command /html"
+  },
+  "commandHintPlain": "Envia text sense format",
+  "@commandHintPlain": {
+    "type": "text",
+    "description": "Usage hint for the command /plain"
+  },
+  "commandHintSend": "Envia text",
+  "@commandHintSend": {
+    "type": "text",
+    "description": "Usage hint for the command /send"
+  },
+  "chats": "Xats",
+  "@chats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "allChats": "Tots els xats",
+  "@allChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cantOpenUri": "No es pot obrir l'URI {uri}",
+  "@cantOpenUri": {
+    "type": "text",
+    "placeholders": {
+      "uri": {}
+    }
   }
 }
