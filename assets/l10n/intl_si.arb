@@ -247,5 +247,127 @@
   "@about": {
     "type": "text",
     "placeholders": {}
+  },
+  "cachedKeys": "යතුරු නිහිතගතයි",
+  "@cachedKeys": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "blockDevice": "උපාංගය අවහිර කරන්න",
+  "@blockDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encryption": "සංකේතාංකනය",
+  "@encryption": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "keysCached": "යතුරු නිහිතගත යි",
+  "@keysCached": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "joinRoom": "කාමරයට එක්වන්න",
+  "@joinRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeDevice": "උපාංගය ඉවත්කරන්න",
+  "@removeDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "send": "යවන්න",
+  "@send": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "donate": "පරිත්‍යාග",
+  "@donate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sunday": "ඉරිදා",
+  "@sunday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "username": "පරිශීලක නාමය",
+  "@username": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "videoCall": "දෘශ්‍ය ඇමතුම",
+  "@videoCall": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wallpaper": "බිතුපත",
+  "@wallpaper": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "warning": "අවවාදයයි!",
+  "@warning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wednesday": "බදාදා",
+  "@wednesday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPlay": "ධාවනය",
+  "@audioPlayerPlay": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fontSize": "මුද්‍රණඅකුරේ ප්‍රමාණය",
+  "@fontSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "you": "ඔබ",
+  "@you": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yes": "ඔව්",
+  "@yes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "writeAMessage": "පණිවිඩයක් ලියන්න…",
+  "@writeAMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourOwnUsername": "ඔබට හිමි පරිශීලකනාමය",
+  "@yourOwnUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveFile": "ගොනුව සුරකින්න",
+  "@saveFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveFileToFolder": "ගොනුව මෙම බහාලුමට සුරකින්න",
+  "@saveFileToFolder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "savedFileAs": "ලෙස ගොනුව සුරකින්න {filename}",
+  "@savedFileAs": {
+    "type": "text",
+    "placeholders": {
+      "filename": {}
+    }
+  },
+  "allChats": "සියලුම සංවාද",
+  "@allChats": {
+    "type": "text",
+    "placeholders": {}
   }
 }
