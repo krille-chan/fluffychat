@@ -2587,5 +2587,18 @@
   "@allChats": {
     "type": "text",
     "placeholders": {}
+  },
+  "noMatrixServer": "{server1} pole Matrix'i server, kas kasutame selle asemel {server2} serverit?",
+  "@noMatrixServer": {
+    "type": "text",
+    "placeholders": {
+      "server1": {},
+      "server2": {}
+    }
+  },
+  "autoplayImages": "Esita automaatselt liikuvad kleepse ja emotikone",
+  "@autoplayImages": {
+    "type": "text",
+    "placeholder": {}
   }
 }
