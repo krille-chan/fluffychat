@@ -2541,5 +2541,42 @@
     "placeholders": {
       "uri": {}
     }
+  },
+  "locationPermissionDeniedNotice": "Locatievoorzieningen is geweigerd. Zet hem aan om locatie delen te gebruiken.",
+  "@locationPermissionDeniedNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareLocation": "Locatie delen",
+  "@shareLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "obtainingLocation": "Locatie ophalen…",
+  "@obtainingLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorObtainingLocation": "Locatie ophalen fout: {error}",
+  "@errorObtainingLocation": {
+    "type": "text",
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "locationDisabledNotice": "Locatievoorzieningen is uitgeschakeld. Zet dit eerst aan om je locatie te delen.",
+  "@locationDisabledNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openInMaps": "In kaarten openen",
+  "@openInMaps": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "allChats": "Alle chats",
+  "@allChats": {
+    "type": "text",
+    "placeholders": {}
   }
 }
