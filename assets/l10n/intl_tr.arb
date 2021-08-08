@@ -2117,7 +2117,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noPublicRoomsFound": "Herkese açık oda bulunamadı...",
+  "noPublicRoomsFound": "Herkese açık oda bulunamadı…",
   "@noPublicRoomsFound": {
     "type": "text",
     "placeholders": {}
@@ -2394,7 +2394,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "yourChatsAreBeingSynced": "Sohbetleriniz eşzamanlanıyor...",
+  "yourChatsAreBeingSynced": "Sohbetleriniz eşzamanlanıyor…",
   "@yourChatsAreBeingSynced": {
     "type": "text",
     "placeholders": {}
@@ -2403,5 +2403,189 @@
   "@synchronizingPleaseWait": {
     "type": "text",
     "placeholders": {}
+  },
+  "savedFileAs": "Dosya {filename} olarak kaydedildi",
+  "@savedFileAs": {
+    "type": "text",
+    "placeholders": {
+      "filename": {}
+    }
+  },
+  "saveFileToFolder": "Dosyayı bu klasöre kaydet",
+  "@saveFileToFolder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveFile": "Dosyayı kaydet",
+  "@saveFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapToShowImage": "Resmi göstermek için dokunun",
+  "@tapToShowImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationPermissionDeniedNotice": "Konum izni reddedildi. Lütfen konumunuzu paylaşabilmek için izin verin.",
+  "@locationPermissionDeniedNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationDisabledNotice": "Konum hizmetleri devre dışı. Lütfen konumunuzu paylaşabilmek için etkinleştirin.",
+  "@locationDisabledNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendSticker": "Çıkartma gönder",
+  "@sendSticker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendAsText": "Metin olarak gönder",
+  "@sendAsText": {
+    "type": "text"
+  },
+  "shareLocation": "Konumu paylaş",
+  "@shareLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceName": "Alan adı",
+  "@spaceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openInMaps": "Haritalarda aç",
+  "@openInMaps": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "obtainingLocation": "Konum alınıyor…",
+  "@obtainingLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceIsPublic": "Alan herkese açık",
+  "@spaceIsPublic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterASpacepName": "Bir alan adı girin",
+  "@enterASpacepName": {},
+  "dontAskAgain": "İptal et ve bir daha sorma",
+  "@dontAskAgain": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorObtainingLocation": "Konum alınırken hata oluştu: {error}",
+  "@errorObtainingLocation": {
+    "type": "text",
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "createNewSpace": "Yeni alan oluştur",
+  "@createNewSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicSpace": "Herkese açık alan",
+  "@publicSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandMissing": "{command} bir komut değil.",
+  "@commandMissing": {
+    "type": "text",
+    "placeholders": {
+      "command": {}
+    },
+    "description": "State that {command} is not a valid /command."
+  },
+  "commandInvalid": "Komut geçersiz",
+  "@commandInvalid": {
+    "type": "text"
+  },
+  "commandHintMyRoomAvatar": "Bu oda için resminizi ayarlayın (mxc-uri ile)",
+  "@commandHintMyRoomAvatar": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomavatar"
+  },
+  "commandHintMyRoomNick": "Bu oda için görünen adınızı ayarlayın",
+  "@commandHintMyRoomNick": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomnick"
+  },
+  "commandHintInvite": "Verilen kullanıcıyı bu odaya davet edin",
+  "@commandHintInvite": {
+    "type": "text",
+    "description": "Usage hint for the command /invite"
+  },
+  "commandHintUnBan": "Verilen kullanıcının bu odadaki yasağını kaldırın",
+  "@commandHintUnBan": {
+    "type": "text",
+    "description": "Usage hint for the command /unban"
+  },
+  "commandHintBan": "Verilen kullanıcıyı bu odadan yasaklayın",
+  "@commandHintBan": {
+    "type": "text",
+    "description": "Usage hint for the command /ban"
+  },
+  "commandHintKick": "Verilen kullanıcıyı bu odadan kaldırın",
+  "@commandHintKick": {
+    "type": "text",
+    "description": "Usage hint for the command /kick"
+  },
+  "commandHintOp": "Verilen kullanıcının güç seviyesini ayarlayın (öntanımlı: 50)",
+  "@commandHintOp": {
+    "type": "text",
+    "description": "Usage hint for the command /op"
+  },
+  "commandHintLeave": "Bu odadan ayrılın",
+  "@commandHintLeave": {
+    "type": "text",
+    "description": "Usage hint for the command /leave"
+  },
+  "commandHintJoin": "Verilen odaya katılın",
+  "@commandHintJoin": {
+    "type": "text",
+    "description": "Usage hint for the command /join"
+  },
+  "commandHintReact": "Tepki olarak yanıt gönderin",
+  "@commandHintReact": {
+    "type": "text",
+    "description": "Usage hint for the command /react"
+  },
+  "commandHintHtml": "HTML biçimli metin gönderin",
+  "@commandHintHtml": {
+    "type": "text",
+    "description": "Usage hint for the command /html"
+  },
+  "commandHintPlain": "Biçimlendirilmemiş metin gönderin",
+  "@commandHintPlain": {
+    "type": "text",
+    "description": "Usage hint for the command /plain"
+  },
+  "commandHintMe": "Kendinizi tanımlayın",
+  "@commandHintMe": {
+    "type": "text",
+    "description": "Usage hint for the command /me"
+  },
+  "commandHintSend": "Metin gönderin",
+  "@commandHintSend": {
+    "type": "text",
+    "description": "Usage hint for the command /send"
+  },
+  "allChats": "Tüm sohbetler",
+  "@allChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cantOpenUri": "{uri} URI'si açılamıyor",
+  "@cantOpenUri": {
+    "type": "text",
+    "placeholders": {
+      "uri": {}
+    }
   }
 }
