@@ -1240,7 +1240,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changedTheDisplaynameTo": "{username} ŝanĝis la prezentan nomon al: {username}",
+  "changedTheDisplaynameTo": "{username} ŝanĝis sian prezentan nomon al: {username}",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -2505,5 +2505,61 @@
   "@sendSticker": {
     "type": "text",
     "placeholders": {}
+  },
+  "shareLocation": "Konigi lokon",
+  "@shareLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceName": "Nomo de aro",
+  "@spaceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "obtainingLocation": "Akirante lokon…",
+  "@obtainingLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceIsPublic": "Aro estas publika",
+  "@spaceIsPublic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterASpacepName": "Enigi nomon de aro",
+  "@enterASpacepName": {},
+  "dontAskAgain": "Nuligi kaj ne redemandi",
+  "@dontAskAgain": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorObtainingLocation": "Eraris akirado de loko: {error}",
+  "@errorObtainingLocation": {
+    "type": "text",
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "createNewSpace": "Krei novan aron",
+  "@createNewSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicSpace": "Publika aro",
+  "@publicSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "allChats": "Ĉiuj babiloj",
+  "@allChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cantOpenUri": "Ne povis malfermi URI {uri}",
+  "@cantOpenUri": {
+    "type": "text",
+    "placeholders": {
+      "uri": {}
+    }
   }
 }
