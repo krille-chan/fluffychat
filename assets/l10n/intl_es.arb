@@ -1805,5 +1805,22 @@
   "@chats": {
     "type": "text",
     "placeholders": {}
+  },
+  "youWillBeConnectedTo": "Serás conectado a {homeserver}",
+  "@youWillBeConnectedTo": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "publicGroups": "Grupos Publicos",
+  "@publicGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "people": "Personas",
+  "@people": {
+    "type": "text",
+    "placeholders": {}
   }
 }
