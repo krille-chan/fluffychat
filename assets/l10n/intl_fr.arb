@@ -2587,5 +2587,13 @@
   "@allChats": {
     "type": "text",
     "placeholders": {}
+  },
+  "noMatrixServer": "{server1} n'est pas un serveur Matrix, souhaitez-vous utiliser {server2} à la place ?",
+  "@noMatrixServer": {
+    "type": "text",
+    "placeholders": {
+      "server1": {},
+      "server2": {}
+    }
   }
 }
