@@ -2587,5 +2587,18 @@
     "placeholders": {
       "uri": {}
     }
+  },
+  "noMatrixServer": "{server1} matrix sunucusu değil, onun yerine {server2} kullanılsın mı?",
+  "@noMatrixServer": {
+    "type": "text",
+    "placeholders": {
+      "server1": {},
+      "server2": {}
+    }
+  },
+  "autoplayImages": "Canlandırmalı çıkartmaları ve ifadeleri otomatik olarak oynat",
+  "@autoplayImages": {
+    "type": "text",
+    "placeholder": {}
   }
 }
