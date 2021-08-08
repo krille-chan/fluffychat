@@ -2595,5 +2595,10 @@
       "server1": {},
       "server2": {}
     }
+  },
+  "autoplayImages": "Lire automatiquement les autocollants et les émojis animés",
+  "@autoplayImages": {
+    "type": "text",
+    "placeholder": {}
   }
 }
