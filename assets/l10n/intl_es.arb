@@ -1823,7 +1823,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noPublicRoomsFound": "No se hallaron salas públicas…",
+  "noPublicRoomsFound": "Sin salas públicas…",
   "@noPublicRoomsFound": {
     "type": "text",
     "placeholders": {}
