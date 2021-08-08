@@ -50,7 +50,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "alreadyHaveAnAccount": "¿xa tes unha conta?",
+  "alreadyHaveAnAccount": "Xa tes unha conta?",
   "@alreadyHaveAnAccount": {
     "type": "text",
     "placeholders": {}
@@ -77,7 +77,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "areGuestsAllowedToJoin": "Teñen permitido as convidadas o acceso",
+  "areGuestsAllowedToJoin": "Permitir o acceso de convidadas",
   "@areGuestsAllowedToJoin": {
     "type": "text",
     "placeholders": {}
@@ -92,7 +92,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSSign": "Para poder conectar a outra persoa, escribe a túa frase de paso ou chave de recuperación.",
+  "askSSSSSign": "Para poder asinar a outra persoa, escribe a túa frase de paso ou chave de recuperación.",
   "@askSSSSSign": {
     "type": "text",
     "placeholders": {}
@@ -918,7 +918,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "muteChat": "Desactiva notif.",
+  "muteChat": "Acalar chat",
   "@muteChat": {
     "type": "text",
     "placeholders": {}
@@ -1478,7 +1478,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unmuteChat": "Reactivar notif.",
+  "unmuteChat": "Reactivar notificacións",
   "@unmuteChat": {
     "type": "text",
     "placeholders": {}
@@ -2007,7 +2007,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "redactMessage": "Redactar mensaxe",
+  "redactMessage": "Eliminar mensaxe",
   "@redactMessage": {
     "type": "text",
     "placeholders": {}
@@ -2516,5 +2516,76 @@
   "@sendSticker": {
     "type": "text",
     "placeholders": {}
+  },
+  "locationPermissionDeniedNotice": "Permiso de localización denegado. Concede este permiso para poder compartir a localización.",
+  "@locationPermissionDeniedNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationDisabledNotice": "Os servizos de localización están desactivados. Actívaos para poder compartir a localización.",
+  "@locationDisabledNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareLocation": "Compartir localización",
+  "@shareLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceName": "Nome do Espazo",
+  "@spaceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openInMaps": "Abrir en mapas",
+  "@openInMaps": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "obtainingLocation": "Obtendo a localización…",
+  "@obtainingLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceIsPublic": "O Espazo é público",
+  "@spaceIsPublic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterASpacepName": "Escribe o nome para o espazo",
+  "@enterASpacepName": {},
+  "dontAskAgain": "Cancelar e non volver a preguntar",
+  "@dontAskAgain": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorObtainingLocation": "Erro ao obter a localización: {error}",
+  "@errorObtainingLocation": {
+    "type": "text",
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "createNewSpace": "Crear novo espazo",
+  "@createNewSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicSpace": "Espazo público",
+  "@publicSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "allChats": "Tódolos chats",
+  "@allChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cantOpenUri": "Non se pode abrir o URI {uri}",
+  "@cantOpenUri": {
+    "type": "text",
+    "placeholders": {
+      "uri": {}
+    }
   }
 }
