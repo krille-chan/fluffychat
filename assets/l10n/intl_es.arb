@@ -114,7 +114,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "avatarHasBeenChanged": "La imagen de perfil ha sido cambiada",
+  "avatarHasBeenChanged": "Imagen de perfil modificada",
   "@avatarHasBeenChanged": {
     "type": "text",
     "placeholders": {}
@@ -1822,5 +1822,18 @@
   "@people": {
     "type": "text",
     "placeholders": {}
+  },
+  "noPublicRoomsFound": "No se hallaron salas públicas…",
+  "@noPublicRoomsFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "badServerLoginTypesException": "El servidor soporta los siguientes mecanismos para autenticación:\n{serverVersions}\npero esta aplicación sólo soporta:\n{supportedVersions}",
+  "@badServerLoginTypesException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
   }
 }
