@@ -2590,5 +2590,20 @@
   "iUnderstand": "",
   "@iUnderstand": {},
   "screenSharingDetail": "",
-  "@screenSharingDetail": {}
+  "@screenSharingDetail": {},
+  "changedTheDisplaynameTo": "",
+  "@changedTheDisplaynameTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "displayname": {}
+    }
+  },
+  "unreadChats": "",
+  "@unreadChats": {
+    "type": "text",
+    "placeholders": {
+      "unreadCount": {}
+    }
+  }
 }
