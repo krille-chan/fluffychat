@@ -49,6 +49,12 @@ class SettingsChatView extends StatelessWidget {
               storeKey: SettingKeys.hideUnknownEvents,
               defaultValue: AppConfig.hideUnknownEvents,
             ),
+            SettingsSwitchListTile(
+              title: L10n.of(context).autoplayImages,
+              onChanged: (b) => AppConfig.autoplayImages = b,
+              storeKey: SettingKeys.autoplayImages,
+              defaultValue: AppConfig.autoplayImages,
+            ),
           ],
         ),
       ),

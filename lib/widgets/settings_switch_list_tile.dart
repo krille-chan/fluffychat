@@ -24,7 +24,9 @@ class _SettingsSwitchListTileState extends State<SettingsSwitchListTile> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<bool>(
-      future: Matrix.of(context).store.getItemBool(widget.storeKey),
+      future: Matrix.of(context)
+          .store
+          .getItemBool(widget.storeKey, widget.defaultValue),
       builder: (context, snapshot) => SwitchListTile(
         value: snapshot.data ?? widget.defaultValue,
         title: Text(widget.title),

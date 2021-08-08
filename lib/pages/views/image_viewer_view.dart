@@ -51,6 +51,7 @@ class ImageViewerView extends StatelessWidget {
             maxSize: false,
             radius: 0.0,
             thumbnailOnly: false,
+            animated: true,
           ),
         ),
       ),

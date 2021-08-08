@@ -6,7 +6,6 @@ import 'package:fluffychat/widgets/event_content/image_bubble.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/event_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
 import 'package:fluffychat/pages/key_verification_dialog.dart';
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -21,6 +20,7 @@ import 'html_message.dart';
 import '../matrix.dart';
 import 'message_download_content.dart';
 import 'map_bubble.dart';
+import 'sticker.dart';
 
 class MessageContent extends StatelessWidget {
   final Event event;
@@ -91,30 +91,7 @@ class MessageContent extends StatelessWidget {
             return MessageDownloadContent(event, textColor);
           case MessageTypes.Sticker:
             if (event.showThumbnail) {
-              // stickers should default to a ratio of 1:1
-              var ratio = 1.0;
-              // if a width and a height is specified for stickers, use those!
-              if (event.infoMap['w'] is int && event.infoMap['h'] is int) {
-                ratio = event.infoMap['w'] / event.infoMap['h'];
-                // make sure the ratio is within 0.9 - 2.0
-                if (ratio > 2.0) {
-                  ratio = 2.0;
-                }
-                if (ratio < 0.9) {
-                  ratio = 0.9;
-                }
-              }
-              return ImageBubble(
-                event,
-                width: 400,
-                height: 400 / ratio,
-                fit: ratio <= 1.0 ? BoxFit.contain : BoxFit.cover,
-                onTap: () => showOkAlertDialog(
-                  context: context,
-                  message: event.body,
-                  okLabel: L10n.of(context).ok,
-                ),
-              );
+              return Sticker(event);
             }
             return MessageDownloadContent(event, textColor);
           case MessageTypes.Audio:
