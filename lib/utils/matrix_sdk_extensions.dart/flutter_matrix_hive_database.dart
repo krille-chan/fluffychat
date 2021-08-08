@@ -109,10 +109,10 @@ class FlutterMatrixHiveStore extends FamedlySdkHiveDatabase {
     try {
       try {
         return (await getApplicationSupportDirectory()).path;
-      } on MissingPlatformDirectoryException {
+      } catch (_) {
         return (await getApplicationDocumentsDirectory()).path;
       }
-    } on MissingPlatformDirectoryException {
+    } catch (_) {
       return (await getDownloadsDirectory()).path;
     }
   }
