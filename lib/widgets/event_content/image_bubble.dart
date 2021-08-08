@@ -250,8 +250,19 @@ class _ImageBubbleState extends State<ImageBubble> {
         _displayFile.bytes,
         key: ValueKey(key),
         fit: widget.fit,
-        errorBuilder: (context, error, stacktrace) =>
-            getErrorWidget(context, error),
+        errorBuilder: (context, error, stacktrace) {
+          if (widget.event.hasThumbnail && !_requestedThumbnailOnFailure) {
+            _requestedThumbnailOnFailure = true;
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              setState(() {
+                _file = null;
+                _requestFile(getThumbnail: true);
+              });
+            });
+            return getPlaceholderWidget();
+          }
+          return getErrorWidget(context, error);
+        },
       );
     }
   }

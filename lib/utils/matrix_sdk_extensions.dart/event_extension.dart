@@ -38,7 +38,8 @@ extension LocalizedBody on Event {
       thumbnailInfoMap['size'] < room.client.database.maxFileSize;
 
   bool get showThumbnail =>
-      [MessageTypes.Image, MessageTypes.Sticker].contains(messageType) &&
+      [MessageTypes.Image, MessageTypes.Sticker, MessageTypes.Video]
+          .contains(messageType) &&
       (kIsWeb ||
           isAttachmentSmallEnough ||
           isThumbnailSmallEnough ||
