@@ -2249,5 +2249,10 @@
   "@securityKey": {
     "type": "text",
     "placeholders": {}
+  },
+  "pleaseFollowInstructionsOnWeb": "ウェブサイトにあるやり方を見てから次をタップしてください。",
+  "@pleaseFollowInstructionsOnWeb": {
+    "type": "text",
+    "placeholders": {}
   }
 }
