@@ -117,10 +117,33 @@ class LoginController extends State<Login> {
               .setItem(SettingKeys.jitsiInstance, jitsi);
           AppConfig.jitsiInstance = jitsi;
         }
+        final oldHomeserver = Matrix.of(context).client.homeserver;
         await showFutureLoadingDialog(
           context: context,
-          future: () => Matrix.of(context).client.checkHomeserver(newDomain),
+          // do nothing if we error, we'll handle it below
+          future: () => Matrix.of(context)
+              .client
+              .checkHomeserver(newDomain)
+              .catchError((e) => null),
         );
+        if (Matrix.of(context).client.homeserver == null) {
+          Matrix.of(context).client.homeserver = oldHomeserver;
+          // okay, the server we checked does not appear to be a matrix server
+          Logs().v(
+              '$newDomain is not running a homeserver, asking to use $oldHomeserver');
+          final dialogResult = await showOkCancelAlertDialog(
+            context: context,
+            useRootNavigator: false,
+            message: L10n.of(context).noMatrixServer(newDomain, oldHomeserver),
+            okLabel: L10n.of(context).ok,
+            cancelLabel: L10n.of(context).cancel,
+          );
+          if (dialogResult == OkCancelResult.ok) {
+            setState(() => usernameError = null);
+          } else {
+            Navigator.of(context, rootNavigator: false).pop();
+          }
+        }
         setState(() => usernameError = null);
       }
     } catch (e) {
