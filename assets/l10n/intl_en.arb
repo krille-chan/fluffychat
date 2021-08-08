@@ -366,7 +366,7 @@
       "username": {}
     }
   },
-  "changedTheDisplaynameTo": "{username} changed the displayname to: '{displayname}'",
+  "changedTheDisplaynameTo": "{username} changed their displayname to: '{displayname}'",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -943,10 +943,7 @@
     "placeholders": {}
   },
   "enterASpacepName": "Enter a space name",
-  "@enterASpaceName": {
-    "type": "text",
-    "placeholders": {}
-  },
+  "@enterASpacepName": {},
   "enterAUsername": "Enter a username",
   "@enterAUsername": {
     "type": "text",
