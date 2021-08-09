@@ -2516,5 +2516,89 @@
   "@sendSticker": {
     "type": "text",
     "placeholders": {}
+  },
+  "enterASpacepName": "Zadejte název prostoru",
+  "@enterASpacepName": {},
+  "locationDisabledNotice": "Služby určování polohy jsou deaktivovány. Povolte jim, aby mohli sdílet vaši polohu.",
+  "@locationDisabledNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationPermissionDeniedNotice": "Oprávnění k poloze odepřeno. Udělte jim prosím možnost sdílet vaši polohu.",
+  "@locationPermissionDeniedNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareLocation": "Sdílet polohu",
+  "@shareLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceName": "Název prostoru",
+  "@spaceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openInMaps": "Otevřít v mapách",
+  "@openInMaps": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "obtainingLocation": "Získávání polohy…",
+  "@obtainingLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noMatrixServer": "{server1} není matrixový server, použít místo toho server {server2}?",
+  "@noMatrixServer": {
+    "type": "text",
+    "placeholders": {
+      "server1": {},
+      "server2": {}
+    }
+  },
+  "spaceIsPublic": "Prostor je veřejný",
+  "@spaceIsPublic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dontAskAgain": "Zrušit a znovu se neptat",
+  "@dontAskAgain": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorObtainingLocation": "Chyba při získávání polohy: {error}",
+  "@errorObtainingLocation": {
+    "type": "text",
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "createNewSpace": "Vytvořte nový prostor",
+  "@createNewSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicSpace": "Veřejný prostor",
+  "@publicSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "autoplayImages": "Automaticky přehrajte animované nálepky a emoce",
+  "@autoplayImages": {
+    "type": "text",
+    "placeholder": {}
+  },
+  "allChats": "Všechny chaty",
+  "@allChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cantOpenUri": "Nelze otevřít URI {uri}",
+  "@cantOpenUri": {
+    "type": "text",
+    "placeholders": {
+      "uri": {}
+    }
   }
 }
