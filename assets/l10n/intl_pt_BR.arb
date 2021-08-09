@@ -2115,7 +2115,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noPublicRoomsFound": "Não foram encontradas salas públicas...",
+  "noPublicRoomsFound": "Não foram encontradas salas públicas…",
   "@noPublicRoomsFound": {
     "type": "text",
     "placeholders": {}
@@ -2354,5 +2354,138 @@
   "@editRoomAliases": {
     "type": "text",
     "placeholders": {}
+  },
+  "synchronizingPleaseWait": "Sincronizando… Por favor, aguarde.",
+  "@synchronizingPleaseWait": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceIsPublic": "Espaço é público",
+  "@spaceIsPublic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterASpacepName": "Insira um nome pro espaço",
+  "@enterASpacepName": {},
+  "dontAskAgain": "Cancelar e não perguntar novamente",
+  "@dontAskAgain": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorObtainingLocation": "Erro ao obter local: {error}",
+  "@errorObtainingLocation": {
+    "type": "text",
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "createNewSpace": "Criar novo espaço",
+  "@createNewSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicSpace": "Espaço público",
+  "@publicSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandMissing": "{command} não é um comando.",
+  "@commandMissing": {
+    "type": "text",
+    "placeholders": {
+      "command": {}
+    },
+    "description": "State that {command} is not a valid /command."
+  },
+  "commandInvalid": "Comando inválido",
+  "@commandInvalid": {
+    "type": "text"
+  },
+  "commandHintMyRoomAvatar": "Determinar sua imagem para esta sala (via mxc-uri)",
+  "@commandHintMyRoomAvatar": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomavatar"
+  },
+  "commandHintMyRoomNick": "Determinar seu nome de exibição para esta sala",
+  "@commandHintMyRoomNick": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomnick"
+  },
+  "commandHintInvite": "Convidar um(a) usuário(a) para esta sala",
+  "@commandHintInvite": {
+    "type": "text",
+    "description": "Usage hint for the command /invite"
+  },
+  "commandHintUnBan": "Revogar o banimento de um(a) usuário(a) desta sala",
+  "@commandHintUnBan": {
+    "type": "text",
+    "description": "Usage hint for the command /unban"
+  },
+  "commandHintBan": "Banir um(a) usuário(a) desta sala",
+  "@commandHintBan": {
+    "type": "text",
+    "description": "Usage hint for the command /ban"
+  },
+  "commandHintKick": "Remover um(a) usuário(a) desta sala",
+  "@commandHintKick": {
+    "type": "text",
+    "description": "Usage hint for the command /kick"
+  },
+  "commandHintOp": "Determinar o grau de poderes de um(a) usuário(a) (padrão: 50)",
+  "@commandHintOp": {
+    "type": "text",
+    "description": "Usage hint for the command /op"
+  },
+  "commandHintLeave": "Sair desta sala",
+  "@commandHintLeave": {
+    "type": "text",
+    "description": "Usage hint for the command /leave"
+  },
+  "commandHintJoin": "Entrar numa sala",
+  "@commandHintJoin": {
+    "type": "text",
+    "description": "Usage hint for the command /join"
+  },
+  "commandHintReact": "Enviar uma resposta como reação",
+  "@commandHintReact": {
+    "type": "text",
+    "description": "Usage hint for the command /react"
+  },
+  "commandHintMe": "Descrever você mesmo",
+  "@commandHintMe": {
+    "type": "text",
+    "description": "Usage hint for the command /me"
+  },
+  "commandHintHtml": "Enviar mensagem formatada em HTML",
+  "@commandHintHtml": {
+    "type": "text",
+    "description": "Usage hint for the command /html"
+  },
+  "commandHintPlain": "Enviar mensagem sem formatação",
+  "@commandHintPlain": {
+    "type": "text",
+    "description": "Usage hint for the command /plain"
+  },
+  "commandHintSend": "Enviar mensagem",
+  "@commandHintSend": {
+    "type": "text",
+    "description": "Usage hint for the command /send"
+  },
+  "autoplayImages": "Reproduzir automaticamente figurinhas animadas e emojis",
+  "@autoplayImages": {
+    "type": "text",
+    "placeholder": {}
+  },
+  "allChats": "Todas conversas",
+  "@allChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cantOpenUri": "Não foi possível abrir a URI {uri}",
+  "@cantOpenUri": {
+    "type": "text",
+    "placeholders": {
+      "uri": {}
+    }
   }
 }
