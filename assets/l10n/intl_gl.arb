@@ -189,7 +189,7 @@
       "username": {}
     }
   },
-  "changedTheDisplaynameTo": "{username} cambiou o nome público a: {displayname}",
+  "changedTheDisplaynameTo": "{username} cambiou o nome público a: '{displayname}'",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -2587,5 +2587,18 @@
     "placeholders": {
       "uri": {}
     }
+  },
+  "noMatrixServer": "{server1} non é un servidor matrix, usar {server2} no seu lugar?",
+  "@noMatrixServer": {
+    "type": "text",
+    "placeholders": {
+      "server1": {},
+      "server2": {}
+    }
+  },
+  "autoplayImages": "Reproducir automáticamente adhesivos e emotes",
+  "@autoplayImages": {
+    "type": "text",
+    "placeholder": {}
   }
 }
