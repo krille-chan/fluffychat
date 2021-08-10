@@ -16,7 +16,8 @@ class SettingsStyle extends StatefulWidget {
 
 class SettingsStyleController extends State<SettingsStyle> {
   void setWallpaperAction() async {
-    final wallpaper = await ImagePicker().getImage(source: ImageSource.gallery);
+    final wallpaper =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
     if (wallpaper == null) return;
     Matrix.of(context).wallpaper = File(wallpaper.path);
     await Matrix.of(context)
