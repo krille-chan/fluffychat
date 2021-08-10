@@ -249,7 +249,7 @@ class ChatDetailsController extends State<ChatDetails> {
   void setAvatarAction() async {
     MatrixFile file;
     if (PlatformInfos.isMobile) {
-      final result = await ImagePicker().getImage(
+      final result = await ImagePicker().pickImage(
           source: ImageSource.gallery,
           imageQuality: 50,
           maxWidth: 1600,

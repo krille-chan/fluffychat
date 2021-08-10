@@ -621,26 +621,24 @@ packages:
   image_picker:
     dependency: "direct main"
     description:
-      path: "packages/image_picker/image_picker"
-      ref: image_picker_camera_on_android11
-      resolved-ref: "6cfc8b8812a71e4eb3480110298d9487da75c560"
-      url: "https://gitlab.com/famedly/company/frontend/flutter-plugins.git"
-    source: git
-    version: "0.8.1+4"
+      name: image_picker
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.8.3+2"
   image_picker_for_web:
     dependency: transitive
     description:
       name: image_picker_for_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "2.1.2"
   image_picker_platform_interface:
     dependency: transitive
     description:
       name: image_picker_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.0"
+    version: "2.2.0"
   intl:
     dependency: "direct main"
     description:

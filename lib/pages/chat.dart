@@ -294,7 +294,7 @@ class ChatController extends State<Chat> {
   void openCameraAction() async {
     // Make sure the textfield is unfocused before opening the camera
     FocusScope.of(context).requestFocus(FocusNode());
-    final file = await ImagePicker().getImage(source: ImageSource.camera);
+    final file = await ImagePicker().pickImage(source: ImageSource.camera);
     if (file == null) return;
     final bytes = await file.readAsBytes();
     await showDialog(

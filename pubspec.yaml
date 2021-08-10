@@ -41,11 +41,7 @@ dependencies:
   future_loading_dialog: ^0.2.1
   geolocator: ^7.4.0
   hive_flutter: ^1.1.0
-  image_picker:
-    git:
-      url: https://gitlab.com/famedly/company/frontend/flutter-plugins.git
-      ref: image_picker_camera_on_android11
-      path: packages/image_picker/image_picker
+  image_picker: ^0.8.3+2
   intl: any
   localstorage: ^4.0.0+1
   lottie: ^1.1.0
