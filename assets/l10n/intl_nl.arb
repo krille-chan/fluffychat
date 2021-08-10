@@ -885,7 +885,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "openAppToReadMessages": "Open app om berichten te lezen",
+  "openAppToReadMessages": "Open app om de berichten te lezen",
   "@openAppToReadMessages": {
     "type": "text",
     "placeholders": {}
@@ -1032,7 +1032,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "makeAnAdmin": "Maak admin",
+  "makeAnAdmin": "Beheerder maken",
   "@makeAnAdmin": {
     "type": "text",
     "placeholders": {}
@@ -1105,7 +1105,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "leave": "Verlaten",
+  "leave": "Chat verlaten",
   "@leave": {
     "type": "text",
     "placeholders": {}
@@ -1543,7 +1543,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "delete": "Verwijderen",
+  "delete": "Bericht verwijderen",
   "@delete": {
     "type": "text",
     "placeholders": {}
@@ -1634,7 +1634,7 @@
       "error": {}
     }
   },
-  "copy": "Kopieer",
+  "copy": "Bericht kopiëren",
   "@copy": {
     "type": "text",
     "placeholders": {}
@@ -1954,7 +1954,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "admin": "Admin",
+  "admin": "Beheerder",
   "@admin": {
     "type": "text",
     "placeholders": {}
@@ -2003,7 +2003,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "contentHasBeenReported": "De inhoud is gemeld aan de serverbeheerders",
+  "contentHasBeenReported": "De inhoud is gerapporteerd aan de serverbeheerders",
   "@contentHasBeenReported": {
     "type": "text",
     "placeholders": {}
@@ -2578,5 +2578,18 @@
   "@allChats": {
     "type": "text",
     "placeholders": {}
+  },
+  "autoplayImages": "Automatisch geanimeerde stickers en emoticons afspelen",
+  "@autoplayImages": {
+    "type": "text",
+    "placeholder": {}
+  },
+  "noMatrixServer": "{server1} is geen Matrix-server, wil je {server2} gebruiken?",
+  "@noMatrixServer": {
+    "type": "text",
+    "placeholders": {
+      "server1": {},
+      "server2": {}
+    }
   }
 }
