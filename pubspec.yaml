@@ -68,6 +68,7 @@ dependencies:
   universal_html: ^2.0.8
   url_launcher: ^6.0.9
   vrouter: 1.2.0+11
+  wakelock: ^0.5.3+3
 
 dev_dependencies:
   dapackages: ^1.6.0

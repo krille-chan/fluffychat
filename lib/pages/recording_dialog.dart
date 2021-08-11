@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:record/record.dart';
+import 'package:wakelock/wakelock.dart';
 
 class RecordingDialog extends StatefulWidget {
   static const String recordingFileType = 'aac';
@@ -35,6 +36,7 @@ class _RecordingDialogState extends State<RecordingDialog> {
         setState(() => error = true);
         return;
       }
+      await Wakelock.enable();
       await _audioRecorder.start(
           path: _recordedPath, encoder: AudioEncoder.AAC);
       setState(() => _duration = Duration.zero);
@@ -55,6 +57,7 @@ class _RecordingDialogState extends State<RecordingDialog> {
 
   @override
   void dispose() {
+    Wakelock.disable();
     _recorderSubscription?.cancel();
     _audioRecorder.stop();
     super.dispose();
