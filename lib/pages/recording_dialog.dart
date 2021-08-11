@@ -24,6 +24,7 @@ class _RecordingDialogState extends State<RecordingDialog> {
   bool error = false;
   String _recordedPath;
   final _audioRecorder = Record();
+  Amplitude _amplitude;
 
   void startRecording() async {
     try {
@@ -41,8 +42,12 @@ class _RecordingDialogState extends State<RecordingDialog> {
           path: _recordedPath, encoder: AudioEncoder.AAC);
       setState(() => _duration = Duration.zero);
       _recorderSubscription?.cancel();
-      _recorderSubscription = Timer.periodic(Duration(seconds: 1),
-          (_) => setState(() => _duration += Duration(seconds: 1)));
+      _recorderSubscription = Timer.periodic(Duration(seconds: 1), (_) async {
+        _amplitude = await _audioRecorder.getAmplitude();
+        setState(() {
+          _duration += Duration(seconds: 1);
+        });
+      });
     } catch (e, s) {
       SentryController.captureException(e, s);
       setState(() => error = true);
@@ -66,8 +71,8 @@ class _RecordingDialogState extends State<RecordingDialog> {
   @override
   Widget build(BuildContext context) {
     const maxDecibalWidth = 64.0;
-    final decibalWidth =
-        ((_duration.inSeconds % 2) + 1) * (maxDecibalWidth / 4).toDouble();
+    final decibalWidth = ((_amplitude.current / _amplitude.max) * 2) *
+        (maxDecibalWidth / 4).toDouble();
     final time =
         '${_duration.inMinutes.toString().padLeft(2, '0')}:${(_duration.inSeconds % 60).toString().padLeft(2, '0')}';
 
