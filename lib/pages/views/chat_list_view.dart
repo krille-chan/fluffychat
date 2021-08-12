@@ -57,7 +57,12 @@ class ChatListView extends StatelessWidget {
                     : selectMode == SelectMode.select
                         ? [
                             if (controller.selectedRoomIds.length == 1 &&
-                                controller.spaces.isNotEmpty)
+                                controller.spaces.isNotEmpty &&
+                                !Matrix.of(context)
+                                    .client
+                                    .getRoomById(
+                                        controller.selectedRoomIds.single)
+                                    .isDirectChat)
                               IconButton(
                                 tooltip: L10n.of(context).addToSpace,
                                 icon: Icon(Icons.group_work_outlined),
