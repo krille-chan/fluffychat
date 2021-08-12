@@ -2600,5 +2600,14 @@
   "@autoplayImages": {
     "type": "text",
     "placeholder": {}
-  }
+  },
+  "chatHasBeenRemovedFromThisSpace": "La discussion a été retirée de l'espace",
+  "@chatHasBeenRemovedFromThisSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatHasBeenAddedToThisSpace": "La discussion a été ajoutée à l'espace",
+  "@chatHasBeenAddedToThisSpace": {},
+  "addToSpace": "Ajouter à l'espace",
+  "@addToSpace": {}
 }
