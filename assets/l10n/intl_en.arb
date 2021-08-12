@@ -6,8 +6,15 @@
     "type": "text",
     "placeholders": {}
   },
+  "addToSpace": "Add to space",
   "accept": "Accept",
+  "chatHasBeenAddedToThisSpace": "Chat has been added to this space",
   "@accept": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatHasBeenRemovedFromThisSpace": "Chat has been removed from this space",
+  "@chatHasBeenRemovedFromThisSpace": {
     "type": "text",
     "placeholders": {}
   },

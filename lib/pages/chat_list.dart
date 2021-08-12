@@ -321,6 +321,54 @@ class ChatListController extends State<ChatList> {
     }
   }
 
+  Future<void> addOrRemoveToSpace() async {
+    if (activeSpaceId != null) {
+      final space = Matrix.of(context).client.getRoomById(activeSpaceId);
+      final result = await showFutureLoadingDialog(
+        context: context,
+        future: () => space.removeSpaceChild(selectedRoomIds.single),
+      );
+      if (result.error == null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(L10n.of(context).chatHasBeenRemovedFromThisSpace),
+          ),
+        );
+      }
+    } else {
+      final selectedSpace = await showConfirmationDialog<String>(
+          context: context,
+          title: L10n.of(context).addToSpace,
+          actions: Matrix.of(context)
+              .client
+              .rooms
+              .where((r) => r.isSpace)
+              .map(
+                (space) => AlertDialogAction(
+                  key: space.id,
+                  label: space.displayname,
+                ),
+              )
+              .toList());
+      if (selectedSpace == null) return;
+      final result = await showFutureLoadingDialog(
+        context: context,
+        future: () => Matrix.of(context)
+            .client
+            .getRoomById(selectedSpace)
+            .setSpaceChild(selectedRoomIds.single),
+      );
+      if (result.error == null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(L10n.of(context).chatHasBeenAddedToThisSpace),
+          ),
+        );
+      }
+    }
+    setState(() => selectedRoomIds.clear());
+  }
+
   Future<void> waitForFirstSync() async {
     final client = Matrix.of(context).client;
     if (client.prevBatch?.isEmpty ?? true) {
