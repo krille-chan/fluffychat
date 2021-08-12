@@ -539,7 +539,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteWarnNeedToPick": "Вам нужно выбрать шорткод эмодзи и изображение!",
+  "emoteWarnNeedToPick": "Вам нужно задать код эмодзи и изображение!",
   "@emoteWarnNeedToPick": {
     "type": "text",
     "placeholders": {}
@@ -759,7 +759,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "isTyping": "Печатает…",
+  "isTyping": "печатает…",
   "@isTyping": {
     "type": "text",
     "placeholders": {}
@@ -1813,7 +1813,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "setCustomEmotes": "Установить пользовательские эмоции",
+  "setCustomEmotes": "Установить пользовательские эмодзи",
   "@setCustomEmotes": {
     "type": "text",
     "placeholders": {}
@@ -2210,7 +2210,7 @@
       "supportedVersions": {}
     }
   },
-  "badServerVersionsException": "Домашний сервер поддерживает версии:\n{serverVersions}\nНо это приложение поддерживает только {supportedVersions}",
+  "badServerVersionsException": "Домашний сервер поддерживает следующие версии спецификации:\n{serverVersions}\nНо это приложение поддерживает только {supportedVersions}",
   "@badServerVersionsException": {
     "type": "text",
     "placeholders": {
@@ -2472,7 +2472,7 @@
     "type": "text",
     "description": "Usage hint for the command /leave"
   },
-  "commandHintJoin": "Присоединяйтесь к данной комнате",
+  "commandHintJoin": "Присоединиться к данной комнате",
   "@commandHintJoin": {
     "type": "text",
     "description": "Usage hint for the command /join"
@@ -2582,5 +2582,18 @@
     "placeholders": {
       "uri": {}
     }
+  },
+  "noMatrixServer": "{server1} не является matrix-сервером, использовать {server2} вместо него?",
+  "@noMatrixServer": {
+    "type": "text",
+    "placeholders": {
+      "server1": {},
+      "server2": {}
+    }
+  },
+  "autoplayImages": "Автоматически воспроизводить анимированные стикеры и эмодзи",
+  "@autoplayImages": {
+    "type": "text",
+    "placeholder": {}
   }
 }
