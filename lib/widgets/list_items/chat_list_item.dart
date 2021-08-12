@@ -39,7 +39,16 @@ class ChatListItem extends StatelessWidget {
     if (!activeChat) {
       if (room.membership == Membership.invite &&
           (await showFutureLoadingDialog(
-                      context: context, future: () => room.join()))
+                      context: context,
+                      future: () async {
+                        final joinedFuture = room.client.onRoomUpdate.stream
+                            .where((u) =>
+                                u.id == room.id &&
+                                u.membership == Membership.join)
+                            .first;
+                        await room.join();
+                        await joinedFuture;
+                      }))
                   .error !=
               null) {
         return;
