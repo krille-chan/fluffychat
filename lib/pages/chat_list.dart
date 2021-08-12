@@ -326,6 +326,16 @@ class ChatListController extends State<ChatList> {
     if (client.prevBatch?.isEmpty ?? true) {
       await client.onFirstSync.stream.first;
     }
+    // Load space members to display DM rooms
+    if (activeSpaceId != null) {
+      final space = client.getRoomById(activeSpaceId);
+      final localMembers = space.getParticipants().length;
+      final actualMembersCount = (space.summary?.mInvitedMemberCount ?? 0) +
+          (space.summary?.mJoinedMemberCount ?? 0);
+      if (localMembers < actualMembersCount) {
+        await space.requestParticipants();
+      }
+    }
     return true;
   }
 
