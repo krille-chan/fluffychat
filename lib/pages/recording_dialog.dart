@@ -73,11 +73,15 @@ class _RecordingDialogState extends State<RecordingDialog> {
   Widget build(BuildContext context) {
     const maxDecibalWidth = 64.0;
     final decibalWidth =
-        ((_amplitude == null ? 0 : _amplitude.current / _amplitude.max) * 2) *
+        ((_amplitude == null || _amplitude.current == double.negativeInfinity
+                        ? 0
+                        : _amplitude.current / _amplitude.max)
+                    .abs() +
+                1) *
             (maxDecibalWidth / 4).toDouble();
     final time =
         '${_duration.inMinutes.toString().padLeft(2, '0')}:${(_duration.inSeconds % 60).toString().padLeft(2, '0')}';
-
+    print('Decibal width: $decibalWidth');
     return AlertDialog(
       content: error
           ? Text(L10n.of(context).oopsSomethingWentWrong)
