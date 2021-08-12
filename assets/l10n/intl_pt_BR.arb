@@ -1985,7 +1985,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changedTheDisplaynameTo": "{username} mudou seu nome de exibição para: '{displayname}'",
+  "changedTheDisplaynameTo": "{username} mudou o seu nome de exibição para: '{displayname}'",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -2487,5 +2487,116 @@
     "placeholders": {
       "uri": {}
     }
+  },
+  "savedFileAs": "Salvar arquivo como {filename}",
+  "@savedFileAs": {
+    "type": "text",
+    "placeholders": {
+      "filename": {}
+    }
+  },
+  "saveFileToFolder": "Salvar arquivo nesta pasta",
+  "@saveFileToFolder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveFile": "Salvar arquivo",
+  "@saveFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapToShowImage": "Toque para mostrar a imagem",
+  "@tapToShowImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "singlesignon": "Identidade Única",
+  "@singlesignon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationPermissionDeniedNotice": "Permissão de localização negada. Conceda as permissões para habilitar o compartilhamento de localização.",
+  "@locationPermissionDeniedNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationDisabledNotice": "O serviço de localização está desabilitado. Por favor, habilite-o para compartilhar sua localização.",
+  "@locationDisabledNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginWith": "Entrar com {brand}",
+  "@loginWith": {
+    "type": "text",
+    "placeholders": {
+      "brand": {}
+    }
+  },
+  "sendSticker": "Enviar figurinha",
+  "@sendSticker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendAsText": "Enviar como texto",
+  "@sendAsText": {
+    "type": "text"
+  },
+  "shareLocation": "Compartilhar localização",
+  "@shareLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceName": "Nome do espaço",
+  "@spaceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openInMaps": "Abrir no mapas",
+  "@openInMaps": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "obtainingLocation": "Obtendo localização…",
+  "@obtainingLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeYourAvatar": "Remover seu avatar",
+  "@removeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeYourAvatar": "Alterar seu avatar",
+  "@changeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChoose": "Por favor, selecione",
+  "@pleaseChoose": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableChatBackup": "Habilite o backup de conversas para nunca perder acesso a elas.",
+  "@enableChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourChatsAreBeingSynced": "Sua conversas estão sendo sincronizadas…",
+  "@yourChatsAreBeingSynced": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noMatrixServer": "{server1} não é um servidor matrix, usar {server2} talvez?",
+  "@noMatrixServer": {
+    "type": "text",
+    "placeholders": {
+      "server1": {},
+      "server2": {}
+    }
+  },
+  "register": "Registrar",
+  "@register": {
+    "type": "text",
+    "placeholders": {}
   }
 }
