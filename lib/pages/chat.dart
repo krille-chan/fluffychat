@@ -348,8 +348,12 @@ class ChatController extends State<Chat> {
       future: () => room.sendFileEvent(
         MatrixAudioFile(
             bytes: audioFile.readAsBytesSync(), name: audioFile.path),
+        inReplyTo: replyEvent,
       ),
     );
+    setState(() {
+      replyEvent = null;
+    });
   }
 
   void sendLocationAction() async {
