@@ -2600,5 +2600,14 @@
   "@autoplayImages": {
     "type": "text",
     "placeholder": {}
-  }
+  },
+  "chatHasBeenRemovedFromThisSpace": "Sohbet bu alandan kaldırıldı",
+  "@chatHasBeenRemovedFromThisSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatHasBeenAddedToThisSpace": "Sohbet bu alana eklendi",
+  "@chatHasBeenAddedToThisSpace": {},
+  "addToSpace": "Alana ekle",
+  "@addToSpace": {}
 }
