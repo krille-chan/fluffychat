@@ -64,11 +64,17 @@ class ChatView extends StatelessWidget {
         },
         child: Scaffold(
           appBar: AppBar(
+            actionsIconTheme: IconThemeData(
+              color: controller.selectedEvents.isEmpty
+                  ? null
+                  : Theme.of(context).colorScheme.primary,
+            ),
             leading: controller.selectMode
                 ? IconButton(
                     icon: Icon(Icons.close),
                     onPressed: controller.clearSelectedEvents,
                     tooltip: L10n.of(context).close,
+                    color: Theme.of(context).colorScheme.primary,
                   )
                 : UnreadBadgeBackButton(roomId: controller.roomId),
             titleSpacing: 0,
@@ -140,8 +146,7 @@ class ChatView extends StatelessWidget {
                                   ],
                                 ),
                         ))
-                : Text(L10n.of(context).numberSelected(
-                    controller.selectedEvents.length.toString())),
+                : Text(controller.selectedEvents.length.toString()),
             actions: controller.selectMode
                 ? <Widget>[
                     if (controller.selectedEvents.length == 1 &&
@@ -153,31 +158,23 @@ class ChatView extends StatelessWidget {
                         tooltip: L10n.of(context).edit,
                         onPressed: controller.editSelectedEventAction,
                       ),
-                    PopupMenuButton(
-                      onSelected: controller.onEventActionPopupMenuSelected,
-                      itemBuilder: (_) => [
-                        PopupMenuItem(
-                          value: 'copy',
-                          child: Text(L10n.of(context).copy),
-                        ),
-                        if (controller.canRedactSelectedEvents)
-                          PopupMenuItem(
-                            value: 'redact',
-                            child: Text(
-                              L10n.of(context).redactMessage,
-                              style: TextStyle(color: Colors.orange),
-                            ),
-                          ),
-                        if (controller.selectedEvents.length == 1)
-                          PopupMenuItem(
-                            value: 'report',
-                            child: Text(
-                              L10n.of(context).reportMessage,
-                              style: TextStyle(color: Colors.red),
-                            ),
-                          ),
-                      ],
+                    IconButton(
+                      icon: Icon(Icons.copy_outlined),
+                      tooltip: L10n.of(context).copy,
+                      onPressed: controller.copyEventsAction,
                     ),
+                    if (controller.canRedactSelectedEvents)
+                      IconButton(
+                        icon: Icon(Icons.report_outlined),
+                        tooltip: L10n.of(context).reportMessage,
+                        onPressed: controller.reportEventAction,
+                      ),
+                    if (controller.canRedactSelectedEvents)
+                      IconButton(
+                        icon: Icon(Icons.delete_outlined),
+                        tooltip: L10n.of(context).redactMessage,
+                        onPressed: controller.redactEventsAction,
+                      ),
                   ]
                 : <Widget>[
                     if (controller.room.canSendDefaultStates)

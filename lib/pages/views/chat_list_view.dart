@@ -31,6 +31,11 @@ class ChatListView extends StatelessWidget {
             },
             child: Scaffold(
               appBar: AppBar(
+                actionsIconTheme: IconThemeData(
+                  color: controller.selectedRoomIds.isEmpty
+                      ? null
+                      : Theme.of(context).colorScheme.primary,
+                ),
                 leading: selectMode == SelectMode.normal
                     ? controller.spaces.isEmpty
                         ? null
@@ -43,6 +48,7 @@ class ChatListView extends StatelessWidget {
                         tooltip: L10n.of(context).cancel,
                         icon: Icon(Icons.close_outlined),
                         onPressed: controller.cancelAction,
+                        color: Theme.of(context).colorScheme.primary,
                       ),
                 centerTitle: false,
                 titleSpacing: controller.spaces.isEmpty ? null : 0,
@@ -89,7 +95,7 @@ class ChatListView extends StatelessWidget {
                                 onPressed: controller.toggleMuted,
                               ),
                             IconButton(
-                              icon: Icon(Icons.archive_outlined),
+                              icon: Icon(Icons.delete_outlined),
                               tooltip: L10n.of(context).archive,
                               onPressed: controller.archiveAction,
                             ),
@@ -176,8 +182,7 @@ class ChatListView extends StatelessWidget {
                 title: Text(selectMode == SelectMode.share
                     ? L10n.of(context).share
                     : selectMode == SelectMode.select
-                        ? L10n.of(context).numberSelected(
-                            controller.selectedRoomIds.length.toString())
+                        ? controller.selectedRoomIds.length.toString()
                         : controller.activeSpaceId == null
                             ? AppConfig.applicationName
                             : Matrix.of(context)

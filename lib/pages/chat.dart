@@ -590,20 +590,6 @@ class ChatController extends State<Chat> {
     inputFocus.requestFocus();
   }
 
-  void onEventActionPopupMenuSelected(selected) {
-    switch (selected) {
-      case 'copy':
-        copyEventsAction();
-        break;
-      case 'redact':
-        redactEventsAction();
-        break;
-      case 'report':
-        reportEventAction();
-        break;
-    }
-  }
-
   void goToNewRoomAction() async {
     if (OkCancelResult.ok !=
         await showOkCancelAlertDialog(
