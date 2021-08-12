@@ -73,7 +73,7 @@ The source code of the push gateway can be viewed here:
 - Information about the device that is to receive the message
 
 A typical push notification could look like this:
-```
+```json
 {
   "notification": {
     "event_id": "$3957tyerfgewrf384",
