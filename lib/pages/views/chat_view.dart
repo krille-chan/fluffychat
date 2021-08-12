@@ -163,7 +163,7 @@ class ChatView extends StatelessWidget {
                       tooltip: L10n.of(context).copy,
                       onPressed: controller.copyEventsAction,
                     ),
-                    if (controller.canRedactSelectedEvents)
+                    if (controller.selectedEvents.length == 1)
                       IconButton(
                         icon: Icon(Icons.report_outlined),
                         tooltip: L10n.of(context).reportMessage,
