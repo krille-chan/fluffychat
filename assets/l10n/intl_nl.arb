@@ -2591,5 +2591,14 @@
       "server1": {},
       "server2": {}
     }
-  }
+  },
+  "chatHasBeenRemovedFromThisSpace": "Chat is verwijderd van deze space",
+  "@chatHasBeenRemovedFromThisSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatHasBeenAddedToThisSpace": "Chat is toegevoegd aan deze space",
+  "@chatHasBeenAddedToThisSpace": {},
+  "addToSpace": "Aan space toevoegen",
+  "@addToSpace": {}
 }
