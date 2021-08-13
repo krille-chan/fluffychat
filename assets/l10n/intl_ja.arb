@@ -1408,7 +1408,7 @@
       "type": {}
     }
   },
-  "unknownSessionVerify": "未知のセッションです。確認してください。",
+  "unknownSessionVerify": "不明なセッションです。再確認してください。",
   "@unknownSessionVerify": {
     "type": "text",
     "placeholders": {}
@@ -2314,6 +2314,16 @@
   },
   "zoomIn": "拡大",
   "@zoomIn": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "blocked": "ブロックしました",
+  "@blocked": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clearText": "テキストを消す",
+  "@clearText": {
     "type": "text",
     "placeholders": {}
   }
