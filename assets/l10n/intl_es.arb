@@ -2254,5 +2254,11 @@
     "placeholders": {}
   },
   "replace": "Reemplazar",
-  "@replace": {}
+  "@replace": {},
+  "unsupportedAndroidVersionLong": "",
+  "@unsupportedAndroidVersionLong": {},
+  "storeSecurlyOnThisDevice": "",
+  "@storeSecurlyOnThisDevice": {},
+  "iUnderstand": "",
+  "@iUnderstand": {}
 }
