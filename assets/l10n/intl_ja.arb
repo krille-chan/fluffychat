@@ -1032,7 +1032,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterAMatrixIdentifier": "Matrix IDを入力してください",
+  "pleaseEnterAMatrixIdentifier": "マトリックスIDを入力してください。",
   "@pleaseEnterAMatrixIdentifier": {
     "type": "text",
     "placeholders": {}
@@ -2235,7 +2235,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "addEmail": "メールアドレスを追加する",
+  "addEmail": "Eメールを追加",
   "@addEmail": {
     "type": "text",
     "placeholders": {}
@@ -2299,6 +2299,11 @@
   },
   "transferFromAnotherDevice": "違うデバイスから移行する",
   "@transferFromAnotherDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "everythingReady": "すべての準備は完了しました！",
+  "@everythingReady": {
     "type": "text",
     "placeholders": {}
   }
