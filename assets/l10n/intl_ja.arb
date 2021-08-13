@@ -2135,7 +2135,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noEncryptionForPublicRooms": "ルームを非公開にした後暗号化を有効にできます",
+  "noEncryptionForPublicRooms": "ルームを非公開にした後暗号化を有効にできます。",
   "@noEncryptionForPublicRooms": {
     "type": "text",
     "placeholders": {}
@@ -2252,6 +2252,53 @@
   },
   "pleaseFollowInstructionsOnWeb": "ウェブサイトにあるやり方を見てから次をタップしてください。",
   "@pleaseFollowInstructionsOnWeb": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setCustomEmotes": "カスタムEmoteの設定",
+  "@setCustomEmotes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "howOffensiveIsThisContent": "どのくらい攻撃的でしたか？",
+  "@howOffensiveIsThisContent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "optionalAddEmail": "(オプション) メールアドレス",
+  "@optionalAddEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidEmail": "無効なメールアドレス",
+  "@invalidEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noStatusesFound": "ステータスが見つかりませんでした。",
+  "@noStatusesFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "xMoreEvents": "{count}個のイベント",
+  "@xMoreEvents": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "pleaseEnterSecurityKey": "セキュリティーキーを入力してください：",
+  "@pleaseEnterSecurityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceVerifyDescription": "安全に暗号化を使うためには全てのデバイスを認証する必要があります。",
+  "@deviceVerifyDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transferFromAnotherDevice": "違うデバイスから移行する",
+  "@transferFromAnotherDevice": {
     "type": "text",
     "placeholders": {}
   }
