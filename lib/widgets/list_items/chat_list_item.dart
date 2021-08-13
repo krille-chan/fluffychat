@@ -149,7 +149,8 @@ class ChatListItem extends StatelessWidget {
     final typingText = room.getLocalizedTypingText(context);
     final ownMessage =
         room.lastEvent?.senderId == Matrix.of(context).client.userID;
-    final unreadBubbleSize = room.isUnread
+    final unread = room.isUnread || room.membership == Membership.invite;
+    final unreadBubbleSize = unread
         ? room.notificationCount > 0.0
             ? 20.0
             : 14.0
@@ -180,8 +181,8 @@ class ChatListItem extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               softWrap: false,
               style: TextStyle(
-                fontWeight: room.isUnread ? FontWeight.bold : null,
-                color: room.isUnread
+                fontWeight: unread ? FontWeight.bold : null,
+                color: unread
                     ? Theme.of(context).colorScheme.secondary
                     : Theme.of(context).textTheme.bodyText1.color,
               ),
@@ -211,7 +212,7 @@ class ChatListItem extends StatelessWidget {
               room.timeCreated.localizedTimeShort(context),
               style: TextStyle(
                 fontSize: 13,
-                color: room.isUnread
+                color: unread
                     ? Theme.of(context).colorScheme.secondary
                     : Theme.of(context).textTheme.bodyText2.color,
               ),
@@ -264,33 +265,26 @@ class ChatListItem extends StatelessWidget {
                     ),
                     softWrap: false,
                   )
-                : room.membership == Membership.invite
-                    ? Text(
-                        L10n.of(context).youAreInvitedToThisChat,
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.secondary,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        softWrap: false,
-                      )
-                    : Text(
-                        room.lastEvent?.getLocalizedBody(
+                : Text(
+                    room.membership == Membership.invite
+                        ? L10n.of(context).youAreInvitedToThisChat
+                        : room.lastEvent?.getLocalizedBody(
                               MatrixLocals(L10n.of(context)),
                               hideReply: true,
                             ) ??
                             '',
-                        softWrap: false,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          color: room.isUnread
-                              ? Theme.of(context).colorScheme.secondary
-                              : Theme.of(context).textTheme.bodyText2.color,
-                          decoration: room.lastEvent?.redacted == true
-                              ? TextDecoration.lineThrough
-                              : null,
-                        ),
-                      ),
+                    softWrap: false,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: unread
+                          ? Theme.of(context).colorScheme.secondary
+                          : Theme.of(context).textTheme.bodyText2.color,
+                      decoration: room.lastEvent?.redacted == true
+                          ? TextDecoration.lineThrough
+                          : null,
+                    ),
+                  ),
           ),
           SizedBox(width: 8),
           AnimatedContainer(
@@ -298,7 +292,7 @@ class ChatListItem extends StatelessWidget {
             curve: Curves.bounceInOut,
             padding: EdgeInsets.symmetric(horizontal: 7),
             height: unreadBubbleSize,
-            width: room.notificationCount == 0 && !room.isUnread
+            width: room.notificationCount == 0 && !unread
                 ? 0
                 : (unreadBubbleSize - 10) *
                         room.notificationCount.toString().length +
