@@ -2306,5 +2306,10 @@
   "@everythingReady": {
     "type": "text",
     "placeholders": {}
+  },
+  "zoomOut": "縮小",
+  "@zoomOut": {
+    "type": "text",
+    "placeholders": {}
   }
 }
