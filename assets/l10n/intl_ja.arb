@@ -1302,7 +1302,7 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "初めてのチャットを開始してください(^_^)",
+  "startYourFirstChat": "初めてのチャットを開始しましょう！🙂\n・＋をタップして\n・友達のユーザー名を入力してください\n・楽しんでください",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -2324,6 +2324,11 @@
   },
   "clearText": "テキストを消す",
   "@clearText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnter4Digits": "アプリのロック用に4桁の数字を入力してください。空欄の場合は無効になります。",
+  "@pleaseEnter4Digits": {
     "type": "text",
     "placeholders": {}
   }
