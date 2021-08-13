@@ -2255,7 +2255,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "setCustomEmotes": "カスタムEmoteの設定",
+  "setCustomEmotes": "カスタムエモートの設定",
   "@setCustomEmotes": {
     "type": "text",
     "placeholders": {}
