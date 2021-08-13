@@ -1032,7 +1032,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterAMatrixIdentifier": "Matrix IDを入力してください",
+  "pleaseEnterAMatrixIdentifier": "マトリックスIDを入力してください。",
   "@pleaseEnterAMatrixIdentifier": {
     "type": "text",
     "placeholders": {}
@@ -1302,7 +1302,7 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "初めてのチャットを開始してください(^_^)",
+  "startYourFirstChat": "初めてのチャットを開始しましょう！🙂\n・＋をタップして\n・友達のユーザー名を入力してください\n・楽しんでください",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -1408,7 +1408,7 @@
       "type": {}
     }
   },
-  "unknownSessionVerify": "未知のセッションです。確認してください。",
+  "unknownSessionVerify": "不明なセッションです。再確認してください。",
   "@unknownSessionVerify": {
     "type": "text",
     "placeholders": {}
@@ -2135,7 +2135,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noEncryptionForPublicRooms": "ルームを非公開にした後暗号化を有効にできます",
+  "noEncryptionForPublicRooms": "ルームを非公開にした後暗号化を有効にできます。",
   "@noEncryptionForPublicRooms": {
     "type": "text",
     "placeholders": {}
@@ -2235,7 +2235,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "addEmail": "メールアドレスを追加する",
+  "addEmail": "Eメールを追加",
   "@addEmail": {
     "type": "text",
     "placeholders": {}
@@ -2252,6 +2252,83 @@
   },
   "pleaseFollowInstructionsOnWeb": "ウェブサイトにあるやり方を見てから次をタップしてください。",
   "@pleaseFollowInstructionsOnWeb": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setCustomEmotes": "カスタムエモートの設定",
+  "@setCustomEmotes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "howOffensiveIsThisContent": "どのくらい攻撃的でしたか？",
+  "@howOffensiveIsThisContent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "optionalAddEmail": "(オプション) メールアドレス",
+  "@optionalAddEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidEmail": "無効なメールアドレス",
+  "@invalidEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noStatusesFound": "ステータスが見つかりませんでした。",
+  "@noStatusesFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "xMoreEvents": "{count}個のイベント",
+  "@xMoreEvents": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "pleaseEnterSecurityKey": "セキュリティーキーを入力してください：",
+  "@pleaseEnterSecurityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceVerifyDescription": "安全に暗号化を使うためには全てのデバイスを認証する必要があります。",
+  "@deviceVerifyDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transferFromAnotherDevice": "違うデバイスから移行する",
+  "@transferFromAnotherDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "everythingReady": "すべての準備は完了しました！",
+  "@everythingReady": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zoomOut": "縮小",
+  "@zoomOut": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zoomIn": "拡大",
+  "@zoomIn": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "blocked": "ブロックしました",
+  "@blocked": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clearText": "テキストを消す",
+  "@clearText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnter4Digits": "アプリのロック用に4桁の数字を入力してください。空欄の場合は無効になります。",
+  "@pleaseEnter4Digits": {
     "type": "text",
     "placeholders": {}
   }

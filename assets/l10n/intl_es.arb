@@ -1588,12 +1588,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerAcceptRequest": "Esperando a que el socio acepte la solicitud...",
+  "waitingPartnerAcceptRequest": "Esperando a que el socio acepte la solicitud…",
   "@waitingPartnerAcceptRequest": {
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerEmoji": "Esperando a que el socio acepte los emojis...",
+  "waitingPartnerEmoji": "Esperando a que el socio acepte los emojis…",
   "@waitingPartnerEmoji": {
     "type": "text",
     "placeholders": {}
@@ -1835,5 +1835,114 @@
       "serverVersions": {},
       "supportedVersions": {}
     }
+  },
+  "xMoreEvents": "{count} más eventos",
+  "@xMoreEvents": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "oneMoreEvent": "1 evento más",
+  "@oneMoreEvent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackupDescription": "Tu copia de seguridad del chat está protegida con una clave de seguridad. Por favor, asegúrate de no perderla.",
+  "@chatBackupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterSecurityKey": "Por favor, introduzca su clave de seguridad:",
+  "@pleaseEnterSecurityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noEncryptionForPublicRooms": "Sólo se puede activar el cifrado en cuanto la sala deja de ser de acceso público.",
+  "@noEncryptionForPublicRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceVerifyDescription": "El cifrado solo es seguro cuando se han verificado todos los dispositivos.",
+  "@deviceVerifyDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapOnDeviceToVerify": "Toque en otro dispositivo para verificar",
+  "@tapOnDeviceToVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transferFromAnotherDevice": "Transferir desde otro dispositivo",
+  "@transferFromAnotherDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "everythingReady": "¡Todo listo!",
+  "@everythingReady": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKeyLost": "¿Perdiste tu llave de seguridad?",
+  "@securityKeyLost": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackup": "Backup del chat",
+  "@chatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showPassword": "Mostrar contraseña",
+  "@showPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zoomOut": "Alejar zoom",
+  "@zoomOut": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zoomIn": "Acercar zoom",
+  "@zoomIn": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "blocked": "Bloqueado",
+  "@blocked": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verified": "Verificado",
+  "@verified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copyToClipboard": "Copiar al portapapeles",
+  "@copyToClipboard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKey": "Clave de seguridad",
+  "@securityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "roomVersion": "Versión de sala",
+  "@roomVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clearArchive": "Borrar archivo",
+  "@clearArchive": {},
+  "setAsCanonicalAlias": "Fijar alias principal",
+  "@setAsCanonicalAlias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAliases": "Editar alias de la sala",
+  "@editRoomAliases": {
+    "type": "text",
+    "placeholders": {}
   }
 }
