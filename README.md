@@ -177,3 +177,5 @@ location /_matrix/push/v1/notify {
 * Also thanks to all translators and testers! With your help, fluffychat is now available in more than 12 languages.
 
 * <a href="https://github.com/googlefonts/noto-emoji/">Noto Emoji Font</a> for the awesome emojis.
+
+* The Matrix Foundation for making and maintaining the [emoji translations](https://github.com/matrix-org/matrix-doc/blob/master/data-definitions/sas-emoji.json) used for emoji verification, licensed Apache 2.0
