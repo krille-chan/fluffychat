@@ -1,9 +1,13 @@
+import 'dart:ui';
+import 'dart:convert';
+
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:matrix/encryption.dart';
 import 'package:matrix/matrix.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import '../widgets/adaptive_flat_button.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
@@ -37,6 +41,7 @@ class KeyVerificationDialog extends StatefulWidget {
 
 class _KeyVerificationPageState extends State<KeyVerificationDialog> {
   void Function() originalOnUpdate;
+  List<dynamic> sasEmoji;
 
   @override
   void initState() {
@@ -49,6 +54,10 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
     };
     widget.request.client.getProfileFromUserId(widget.request.userId).then((p) {
       profile = p;
+      setState(() => null);
+    });
+    rootBundle.loadString('assets/sas-emoji.json').then((e) {
+      sasEmoji = json.decode(e);
       setState(() => null);
     });
     super.initState();
@@ -208,7 +217,7 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
           compareText = L10n.of(context).compareEmojiMatch;
           compareWidget = TextSpan(
             children: widget.request.sasEmojis
-                .map((e) => WidgetSpan(child: _Emoji(e)))
+                .map((e) => WidgetSpan(child: _Emoji(e, sasEmoji)))
                 .toList(),
           );
         } else {
@@ -371,8 +380,33 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
 
 class _Emoji extends StatelessWidget {
   final KeyVerificationEmoji emoji;
+  final List<dynamic> sasEmoji;
 
-  _Emoji(this.emoji);
+  _Emoji(this.emoji, this.sasEmoji);
+
+  String getLocalizedName() {
+    if (sasEmoji == null) {
+      // asset is still being loaded
+      return emoji.name;
+    }
+    final translations = Map<String, String>.from(
+        sasEmoji[emoji.number]['translated_descriptions']);
+    translations['en'] = emoji.name;
+    for (final locale in window.locales) {
+      final wantLocaleParts = locale.toString().split('_');
+      final wantLanguage = wantLocaleParts.removeAt(0);
+      for (final haveLocale in translations.keys) {
+        final haveLocaleParts = haveLocale.split('_');
+        final haveLanguage = haveLocaleParts.removeAt(0);
+        if (haveLanguage == wantLanguage &&
+            (Set.from(haveLocaleParts)..removeAll(wantLocaleParts)).isEmpty &&
+            (translations[haveLocale]?.isNotEmpty ?? false)) {
+          return translations[haveLocale];
+        }
+      }
+    }
+    return emoji.name;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -380,7 +414,7 @@ class _Emoji extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Text(emoji.emoji, style: TextStyle(fontSize: 50)),
-        Text(emoji.name),
+        Text(getLocalizedName()),
         Container(height: 10, width: 5),
       ],
     );
