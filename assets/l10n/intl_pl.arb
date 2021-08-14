@@ -1,6 +1,6 @@
 {
   "@@locale": "pl",
-  "@@last_modified": "2021-08-14 12:06:11.567300",
+  "@@last_modified": "2021-08-14 12:41:09.943634",
   "about": "O nas",
   "@about": {
     "type": "text",
@@ -1467,7 +1467,7 @@
       "username": {}
     }
   },
-  "seenByUserAndCountOthers": "Zobaczone przez {username} oraz {count} innych",
+  "seenByUserAndCountOthers": "{count, plural, other{Zobaczone przez {username} oraz {count} innych}}",
   "@seenByUserAndCountOthers": {
     "type": "text",
     "placeholders": {
@@ -1706,26 +1706,18 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount} nieprzeczytanych czatów",
+  "unreadChats": "{unreadCount, plural, other{{unreadCount} nieprzeczytanych czatów}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents} nieprzeczytanych wiadomości",
+  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents} nieprzeczytanych wiadomości}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
       "unreadEvents": {}
-    }
-  },
-  "unreadMessagesInChats": "{unreadEvents} nieprzeczytanych wiadomości w {unreadChats} czatach",
-  "@unreadMessagesInChats": {
-    "type": "text",
-    "placeholders": {
-      "unreadEvents": {},
-      "unreadChats": {}
     }
   },
   "useAmoledTheme": "Użyć kolorów kompatybilnych z ekranami AMOLED?",

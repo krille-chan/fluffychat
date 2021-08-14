@@ -1,6 +1,6 @@
 {
   "@@locale": "hr",
-  "@@last_modified": "2021-08-14 12:06:11.683939",
+  "@@last_modified": "2021-08-14 12:41:10.025984",
   "about": "Informacije",
   "@about": {
     "type": "text",
@@ -1835,7 +1835,7 @@
       "username": {}
     }
   },
-  "seenByUserAndCountOthers": "Viđeno od {username} i još {count} korisnika",
+  "seenByUserAndCountOthers": "{count, plural, other{Viđeno od {username} i još {count} korisnika}}",
   "@seenByUserAndCountOthers": {
     "type": "text",
     "placeholders": {
@@ -2232,26 +2232,18 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount} nepročitana chata",
+  "unreadChats": "{unreadCount, plural, other{{unreadCount} nepročitana chata}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents} nepročitane poruke",
+  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents} nepročitane poruke}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
       "unreadEvents": {}
-    }
-  },
-  "unreadMessagesInChats": "{unreadEvents} nepročitane poruke u {unreadChats} chata",
-  "@unreadMessagesInChats": {
-    "type": "text",
-    "placeholders": {
-      "unreadEvents": {},
-      "unreadChats": {}
     }
   },
   "useAmoledTheme": "Koristiti kompatibilne boje AMOLED-a?",

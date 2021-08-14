@@ -1,6 +1,6 @@
 {
   "@@locale": "cs",
-  "@@last_modified": "2021-08-14 12:06:11.842900",
+  "@@last_modified": "2021-08-14 12:41:10.131133",
   "about": "O aplikaci",
   "@about": {
     "type": "text",
@@ -1880,7 +1880,7 @@
       "username": {}
     }
   },
-  "seenByUserAndCountOthers": "Viděno uživatelem {username} a {count} dalšími",
+  "seenByUserAndCountOthers": "{count, plural, other{Viděno uživatelem {username} a {count} dalšími}}",
   "@seenByUserAndCountOthers": {
     "type": "text",
     "placeholders": {
@@ -2282,26 +2282,18 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount} nepřečtených chatů",
+  "unreadChats": "{unreadCount, plural, other{{unreadCount} nepřečtených chatů}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents} nepřečtených zpráv",
+  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents} nepřečtených zpráv}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
       "unreadEvents": {}
-    }
-  },
-  "unreadMessagesInChats": "{unreadEvents} nepřečtených zpráv v {unreadChats} chatech",
-  "@unreadMessagesInChats": {
-    "type": "text",
-    "placeholders": {
-      "unreadEvents": {},
-      "unreadChats": {}
     }
   },
   "useAmoledTheme": "Použít barvy kompatibilní s AMOLED?",

@@ -1,6 +1,6 @@
 {
   "@@locale": "ar",
-  "@@last_modified": "2021-08-14 12:06:11.879921",
+  "@@last_modified": "2021-08-14 12:41:10.156221",
   "about": "حول",
   "@about": {
     "type": "text",
@@ -1193,7 +1193,7 @@
       "username": {}
     }
   },
-  "seenByUserAndCountOthers": "رآه {username} و {count} أخرون",
+  "seenByUserAndCountOthers": "{count, plural, other{رآه {username} و {count} أخرون}}",
   "@seenByUserAndCountOthers": {
     "type": "text",
     "placeholders": {
@@ -1481,26 +1481,18 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount} رسالة غير مقروءة",
+  "unreadChats": "{unreadCount, plural, other{{unreadCount} رسالة غير مقروءة}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents} رسالة غير مقروءة",
+  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents} رسالة غير مقروءة}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
       "unreadEvents": {}
-    }
-  },
-  "unreadMessagesInChats": "{unreadEvents} رسالة غير مقروءة من {unreadChats} محادثة",
-  "@unreadMessagesInChats": {
-    "type": "text",
-    "placeholders": {
-      "unreadEvents": {},
-      "unreadChats": {}
     }
   },
   "useAmoledTheme": "هل تريد استخدم ألوان متوافقة مع AMOLED؟",

@@ -1,6 +1,6 @@
 {
   "@@locale": "de",
-  "@@last_modified": "2021-08-14 12:06:11.827374",
+  "@@last_modified": "2021-08-14 12:41:10.119255",
   "about": "Über",
   "@about": {
     "type": "text",
@@ -1867,7 +1867,7 @@
       "username": {}
     }
   },
-  "seenByUserAndCountOthers": "Gelesen von {username} und {count} anderen",
+  "seenByUserAndCountOthers": "{count, plural, other{Gelesen von {username} und {count} anderen}}",
   "@seenByUserAndCountOthers": {
     "type": "text",
     "placeholders": {
@@ -2269,26 +2269,18 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount} ungelesene Unterhaltungen",
+  "unreadChats": "{unreadCount, plural, other{{unreadCount} ungelesene Unterhaltungen}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents} ungelesene Nachrichten",
+  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents} ungelesene Nachrichten}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
       "unreadEvents": {}
-    }
-  },
-  "unreadMessagesInChats": "{unreadEvents} ungelesene Nachrichten in {unreadChats} Chats",
-  "@unreadMessagesInChats": {
-    "type": "text",
-    "placeholders": {
-      "unreadEvents": {},
-      "unreadChats": {}
     }
   },
   "useAmoledTheme": "AMOLED-optimierte Farben verwenden?",

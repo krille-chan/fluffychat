@@ -1,6 +1,6 @@
 {
   "@@locale": "hy",
-  "@@last_modified": "2021-08-14 12:06:11.654188",
+  "@@last_modified": "2021-08-14 12:41:10.006533",
   "about": "Հավելվածի մասին",
   "@about": {
     "type": "text",
@@ -1124,14 +1124,6 @@
       "username": {}
     }
   },
-  "seenByUserAndCountOthers": "",
-  "@seenByUserAndCountOthers": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "count": {}
-    }
-  },
   "seenByUserAndUser": "",
   "@seenByUserAndUser": {
     "type": "text",
@@ -1367,28 +1359,6 @@
   "@unmuteChat": {
     "type": "text",
     "placeholders": {}
-  },
-  "unreadChats": "",
-  "@unreadChats": {
-    "type": "text",
-    "placeholders": {
-      "unreadCount": {}
-    }
-  },
-  "unreadMessages": "",
-  "@unreadMessages": {
-    "type": "text",
-    "placeholders": {
-      "unreadEvents": {}
-    }
-  },
-  "unreadMessagesInChats": "",
-  "@unreadMessagesInChats": {
-    "type": "text",
-    "placeholders": {
-      "unreadEvents": {},
-      "unreadChats": {}
-    }
   },
   "useAmoledTheme": "",
   "@useAmoledTheme": {

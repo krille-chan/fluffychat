@@ -1,6 +1,6 @@
 {
   "@@locale": "hu",
-  "@@last_modified": "2021-08-14 12:06:11.663361",
+  "@@last_modified": "2021-08-14 12:41:10.016566",
   "about": "Névjegy",
   "@about": {
     "type": "text",
@@ -1238,7 +1238,7 @@
       "username": {}
     }
   },
-  "seenByUserAndCountOthers": "{username} és {count} másik résztvevő látta",
+  "seenByUserAndCountOthers": "{count, plural, other{{username} és {count} másik résztvevő látta}}",
   "@seenByUserAndCountOthers": {
     "type": "text",
     "placeholders": {
@@ -1531,26 +1531,18 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount} olvasatlan csevegés",
+  "unreadChats": "{unreadCount, plural, other{{unreadCount} olvasatlan csevegés}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents} olvasatlan üzenet",
+  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents} olvasatlan üzenet}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
       "unreadEvents": {}
-    }
-  },
-  "unreadMessagesInChats": "{unreadEvents} olvasatlan üzenet {unreadChats} csevegésben",
-  "@unreadMessagesInChats": {
-    "type": "text",
-    "placeholders": {
-      "unreadEvents": {},
-      "unreadChats": {}
     }
   },
   "useAmoledTheme": "AMOLED kompatibilis színek használata?",

@@ -591,7 +591,7 @@ class BackgroundPush {
     client.rooms.forEach((Room room) => unreadEvents += room.notificationCount);
 
     // Calculate title
-    final title = l10n.unreadMessages(room.notificationCount.toString());
+    final title = l10n.unreadMessages(room.notificationCount);
 
     // Calculate the body
     final body = event?.getLocalizedBody(
@@ -671,7 +671,7 @@ class BackgroundPush {
         android: androidPlatformChannelSpecifics,
         iOS: iOSPlatformChannelSpecifics,
       );
-      final title = l10n.unreadChats(unread.toString());
+      final title = l10n.unreadChats(unread);
       await _flutterLocalNotificationsPlugin.show(
         await mapRoomIdToInt(roomId),
         title,

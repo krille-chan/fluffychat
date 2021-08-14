@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2021-08-14 12:06:11.807738",
+  "@@last_modified": "2021-08-14 12:41:10.107750",
   "about": "Prio",
   "@about": {
     "type": "text",
@@ -1846,7 +1846,7 @@
       "username": {}
     }
   },
-  "seenByUserAndCountOthers": "Vidita de {username} kaj {count} aliaj",
+  "seenByUserAndCountOthers": "{count, plural, other{Vidita de {username} kaj {count} aliaj}}",
   "@seenByUserAndCountOthers": {
     "type": "text",
     "placeholders": {
@@ -2244,26 +2244,18 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount} nelegitaj babiloj",
+  "unreadChats": "{unreadCount, plural, other{{unreadCount} nelegitaj babiloj}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents} nelegitaj mesaĝoj",
+  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents} nelegitaj mesaĝoj}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
       "unreadEvents": {}
-    }
-  },
-  "unreadMessagesInChats": "{unreadEvents} nelegitaj mesaĝoj en {unreadChats} babiloj",
-  "@unreadMessagesInChats": {
-    "type": "text",
-    "placeholders": {
-      "unreadEvents": {},
-      "unreadChats": {}
     }
   },
   "useAmoledTheme": "Ĉu uzi kolorojn adaptitajn por AMOLED?",

@@ -92,8 +92,7 @@ extension RoomStatusExtension on Room {
             lastReceipts.last.calcDisplayname());
       } else if (lastReceipts.length > 2) {
         seenByText = L10n.of(context).seenByUserAndCountOthers(
-            lastReceipts.first.calcDisplayname(),
-            (lastReceipts.length - 1).toString());
+            lastReceipts.first.calcDisplayname(), lastReceipts.length - 1);
       }
     }
     return seenByText;

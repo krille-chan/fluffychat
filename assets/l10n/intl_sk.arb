@@ -1,6 +1,6 @@
 {
   "@@locale": "sk",
-  "@@last_modified": "2021-08-14 12:06:11.489636",
+  "@@last_modified": "2021-08-14 12:41:09.879987",
   "about": "O aplikácii",
   "@about": {
     "type": "text",
@@ -1124,7 +1124,7 @@
       "username": {}
     }
   },
-  "seenByUserAndCountOthers": "Videné užívateľom {username} a {count} dalšími",
+  "seenByUserAndCountOthers": "{count, plural, other{Videné užívateľom {username} a {count} dalšími}}",
   "@seenByUserAndCountOthers": {
     "type": "text",
     "placeholders": {
@@ -1368,26 +1368,18 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount} neprečítaných chatov",
+  "unreadChats": "{unreadCount, plural, other{{unreadCount} neprečítaných chatov}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents} neprečítaných správ",
+  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents} neprečítaných správ}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
       "unreadEvents": {}
-    }
-  },
-  "unreadMessagesInChats": "{unreadEvents} neprečítaných správ v {unreadChats} chatoch",
-  "@unreadMessagesInChats": {
-    "type": "text",
-    "placeholders": {
-      "unreadEvents": {},
-      "unreadChats": {}
     }
   },
   "useAmoledTheme": "Použiť AMOLED kompatibilné farby?",

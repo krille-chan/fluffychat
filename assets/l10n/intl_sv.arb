@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2021-08-14 12:06:11.436593",
+  "@@last_modified": "2021-08-14 12:41:09.835634",
   "about": "Om Fluffychat",
   "@about": {
     "type": "text",
@@ -1522,7 +1522,7 @@
       "username": {}
     }
   },
-  "seenByUserAndCountOthers": "Sedd av {username} och {count} andra",
+  "seenByUserAndCountOthers": "{count, plural, other{Sedd av {username} och {count} andra}}",
   "@seenByUserAndCountOthers": {
     "type": "text",
     "placeholders": {
@@ -1860,26 +1860,18 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount} olästa chattar",
+  "unreadChats": "{unreadCount, plural, other{{unreadCount} olästa chattar}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents} olästa meddelanden",
+  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents} olästa meddelanden}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
       "unreadEvents": {}
-    }
-  },
-  "unreadMessagesInChats": "{unreadEvents} olästa meddelanden i {unreadChats} chattar",
-  "@unreadMessagesInChats": {
-    "type": "text",
-    "placeholders": {
-      "unreadEvents": {},
-      "unreadChats": {}
     }
   },
   "useAmoledTheme": "Använd AMOLED kompatibla färger?",

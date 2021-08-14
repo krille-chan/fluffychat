@@ -1,6 +1,6 @@
 {
   "@@locale": "ja",
-  "@@last_modified": "2021-08-14 12:06:11.620131",
+  "@@last_modified": "2021-08-14 12:41:09.978060",
   "about": "このアプリについて",
   "@about": {
     "type": "text",
@@ -1670,7 +1670,7 @@
       "username": {}
     }
   },
-  "seenByUserAndCountOthers": "{username}と他{count}名が既読",
+  "seenByUserAndCountOthers": "{count, plural, other{{username}と他{count}名が既読}}",
   "@seenByUserAndCountOthers": {
     "type": "text",
     "placeholders": {
@@ -2033,26 +2033,18 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount}の未読メッセージ",
+  "unreadChats": "{unreadCount, plural, other{{unreadCount}の未読メッセージ}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents}件の未読メッセージ",
+  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents}件の未読メッセージ}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
       "unreadEvents": {}
-    }
-  },
-  "unreadMessagesInChats": "{unreadChats}で{unreadEvents}件の未読メッセージ",
-  "@unreadMessagesInChats": {
-    "type": "text",
-    "placeholders": {
-      "unreadEvents": {},
-      "unreadChats": {}
     }
   },
   "useAmoledTheme": "有機EL(AMOLED)対応の色にしますか？",

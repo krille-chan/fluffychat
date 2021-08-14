@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2021-08-14 12:06:11.604489",
+  "@@last_modified": "2021-08-14 12:41:09.967351",
   "about": "Om",
   "@about": {
     "type": "text",
@@ -1544,7 +1544,7 @@
       "username": {}
     }
   },
-  "seenByUserAndCountOthers": "Sett av {username} og {count} andre",
+  "seenByUserAndCountOthers": "{count, plural, other{Sett av {username} og {count} andre}}",
   "@seenByUserAndCountOthers": {
     "type": "text",
     "placeholders": {
@@ -1862,26 +1862,18 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount} uleste sludringer",
+  "unreadChats": "{unreadCount, plural, other{{unreadCount} uleste sludringer}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents} uleste meldinger",
+  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents} uleste meldinger}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
       "unreadEvents": {}
-    }
-  },
-  "unreadMessagesInChats": "{unreadEvents} uleste meldinger i {unreadChats} sludringer",
-  "@unreadMessagesInChats": {
-    "type": "text",
-    "placeholders": {
-      "unreadEvents": {},
-      "unreadChats": {}
     }
   },
   "useAmoledTheme": "Bruk AMOLED-kompatible farger?",

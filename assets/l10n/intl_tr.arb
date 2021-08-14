@@ -1,6 +1,6 @@
 {
   "@@locale": "tr",
-  "@@last_modified": "2021-08-14 12:06:11.404006",
+  "@@last_modified": "2021-08-14 12:41:09.803728",
   "about": "Hakkında",
   "@about": {
     "type": "text",
@@ -1889,7 +1889,7 @@
       "username": {}
     }
   },
-  "seenByUserAndCountOthers": "{username} ve {count} diğerleri tarafından görüldü",
+  "seenByUserAndCountOthers": "{count, plural, other{{username} ve {count} diğerleri tarafından görüldü}}",
   "@seenByUserAndCountOthers": {
     "type": "text",
     "placeholders": {
@@ -2291,26 +2291,18 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount} okunmamış sohbet",
+  "unreadChats": "{unreadCount, plural, other{{unreadCount} okunmamış sohbet}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents} okunmamış mesaj",
+  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents} okunmamış mesaj}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
       "unreadEvents": {}
-    }
-  },
-  "unreadMessagesInChats": "{unreadChats} sohbetten {unreadEvents} okunmamış mesaj",
-  "@unreadMessagesInChats": {
-    "type": "text",
-    "placeholders": {
-      "unreadEvents": {},
-      "unreadChats": {}
     }
   },
   "useAmoledTheme": "AMOLED ile uyumlu renkler kullanılsın mı?",

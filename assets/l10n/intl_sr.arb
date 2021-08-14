@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2021-08-14 12:06:11.463128",
+  "@@last_modified": "2021-08-14 12:41:09.857024",
   "about": "О програму",
   "@about": {
     "type": "text",
@@ -1764,7 +1764,7 @@
       "username": {}
     }
   },
-  "seenByUserAndCountOthers": "{username} прегледа и {count} осталих",
+  "seenByUserAndCountOthers": "{count, plural, other{{username} прегледа и {count} осталих}}",
   "@seenByUserAndCountOthers": {
     "type": "text",
     "placeholders": {
@@ -2132,26 +2132,18 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "непрочитаних ћаскања: {unreadCount}",
+  "unreadChats": "{unreadCount, plural, other{непрочитаних ћаскања: {unreadCount}}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "непрочитаних порука: {unreadEvents}",
+  "unreadMessages": "{unreadEvents, plural, other{непрочитаних порука: {unreadEvents}}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
       "unreadEvents": {}
-    }
-  },
-  "unreadMessagesInChats": "непрочитаних порука {unreadEvents} у {unreadChats} ћаскања",
-  "@unreadMessagesInChats": {
-    "type": "text",
-    "placeholders": {
-      "unreadEvents": {},
-      "unreadChats": {}
     }
   },
   "useAmoledTheme": "Користити боје за АМОЛЕД?",

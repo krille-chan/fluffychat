@@ -1,6 +1,6 @@
 {
   "@@locale": "eu",
-  "@@last_modified": "2021-08-14 12:06:11.763625",
+  "@@last_modified": "2021-08-14 12:41:10.062383",
   "about": "Honi buruz",
   "@about": {
     "type": "text",
@@ -1158,14 +1158,6 @@
       "username": {}
     }
   },
-  "seenByUserAndCountOthers": "",
-  "@seenByUserAndCountOthers": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "count": {}
-    }
-  },
   "seenByUserAndUser": "",
   "@seenByUserAndUser": {
     "type": "text",
@@ -1445,28 +1437,6 @@
   "@unpin": {
     "type": "text",
     "placeholders": {}
-  },
-  "unreadChats": "",
-  "@unreadChats": {
-    "type": "text",
-    "placeholders": {
-      "unreadCount": {}
-    }
-  },
-  "unreadMessages": "",
-  "@unreadMessages": {
-    "type": "text",
-    "placeholders": {
-      "unreadEvents": {}
-    }
-  },
-  "unreadMessagesInChats": "",
-  "@unreadMessagesInChats": {
-    "type": "text",
-    "placeholders": {
-      "unreadEvents": {},
-      "unreadChats": {}
-    }
   },
   "useAmoledTheme": "",
   "@useAmoledTheme": {

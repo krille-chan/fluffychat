@@ -1,6 +1,6 @@
 {
   "@@locale": "ru",
-  "@@last_modified": "2021-08-14 12:06:11.510762",
+  "@@last_modified": "2021-08-14 12:41:09.903021",
   "about": "О приложении",
   "@about": {
     "type": "text",
@@ -1880,7 +1880,7 @@
       "username": {}
     }
   },
-  "seenByUserAndCountOthers": "Просмотрено пользователями {username} и {count} другими",
+  "seenByUserAndCountOthers": "{count, plural, other{Просмотрено пользователями {username} и {count} другими}}",
   "@seenByUserAndCountOthers": {
     "type": "text",
     "placeholders": {
@@ -2282,26 +2282,18 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount} непрочитанных чата(ов)",
+  "unreadChats": "{unreadCount, plural, other{{unreadCount} непрочитанных чата(ов)}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents} непрочитанных сообщения(ий)",
+  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents} непрочитанных сообщения(ий)}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
       "unreadEvents": {}
-    }
-  },
-  "unreadMessagesInChats": "{unreadEvents} непрочитанное(ых) сообщение(ий) в {unreadChats} чате(ах)",
-  "@unreadMessagesInChats": {
-    "type": "text",
-    "placeholders": {
-      "unreadEvents": {},
-      "unreadChats": {}
     }
   },
   "useAmoledTheme": "Использовать цвета, совместимые с AMOLED?",

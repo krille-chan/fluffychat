@@ -1,6 +1,6 @@
 {
   "@@locale": "gl",
-  "@@last_modified": "2021-08-14 12:06:11.719837",
+  "@@last_modified": "2021-08-14 12:41:10.040321",
   "about": "Acerca de",
   "@about": {
     "type": "text",
@@ -1880,7 +1880,7 @@
       "username": {}
     }
   },
-  "seenByUserAndCountOthers": "Visto por {username} e {count} outras",
+  "seenByUserAndCountOthers": "{count, plural, other{Visto por {username} e {count} outras}}",
   "@seenByUserAndCountOthers": {
     "type": "text",
     "placeholders": {
@@ -2282,26 +2282,18 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount} chats non lidos",
+  "unreadChats": "{unreadCount, plural, other{{unreadCount} chats non lidos}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents} mensaxes non lidas",
+  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents} mensaxes non lidas}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
       "unreadEvents": {}
-    }
-  },
-  "unreadMessagesInChats": "{unreadEvents} mensaxes non lidas en {unreadChats} conversas",
-  "@unreadMessagesInChats": {
-    "type": "text",
-    "placeholders": {
-      "unreadEvents": {},
-      "unreadChats": {}
     }
   },
   "useAmoledTheme": "¿Usar cores compatibles con AMOLED?",

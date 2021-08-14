@@ -1,6 +1,6 @@
 {
   "@@locale": "uk",
-  "@@last_modified": "2021-08-14 12:06:11.379320",
+  "@@last_modified": "2021-08-14 12:41:09.790615",
   "about": "Про програму",
   "@about": {
     "type": "text",
@@ -1138,14 +1138,6 @@
       "username": {}
     }
   },
-  "seenByUserAndCountOthers": "",
-  "@seenByUserAndCountOthers": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "count": {}
-    }
-  },
   "seenByUserAndUser": "",
   "@seenByUserAndUser": {
     "type": "text",
@@ -1381,28 +1373,6 @@
   "@unmuteChat": {
     "type": "text",
     "placeholders": {}
-  },
-  "unreadChats": "",
-  "@unreadChats": {
-    "type": "text",
-    "placeholders": {
-      "unreadCount": {}
-    }
-  },
-  "unreadMessages": "",
-  "@unreadMessages": {
-    "type": "text",
-    "placeholders": {
-      "unreadEvents": {}
-    }
-  },
-  "unreadMessagesInChats": "",
-  "@unreadMessagesInChats": {
-    "type": "text",
-    "placeholders": {
-      "unreadEvents": {},
-      "unreadChats": {}
-    }
   },
   "useAmoledTheme": "",
   "@useAmoledTheme": {

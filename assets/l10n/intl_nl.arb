@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2021-08-14 12:06:11.584659",
+  "@@last_modified": "2021-08-14 12:41:09.955292",
   "about": "Over",
   "@about": {
     "type": "text",
@@ -1888,7 +1888,7 @@
       "username": {}
     }
   },
-  "seenByUserAndCountOthers": "Gezien door {username} en {count} anderen",
+  "seenByUserAndCountOthers": "{count, plural, other{Gezien door {username} en {count} anderen}}",
   "@seenByUserAndCountOthers": {
     "type": "text",
     "placeholders": {
@@ -2290,26 +2290,18 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount} ongelezen chats",
+  "unreadChats": "{unreadCount, plural, other{{unreadCount} ongelezen chats}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents} ongelezen berichten",
+  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents} ongelezen berichten}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
       "unreadEvents": {}
-    }
-  },
-  "unreadMessagesInChats": "{unreadEvents} ongelezen berichten in {unreadChats} chats",
-  "@unreadMessagesInChats": {
-    "type": "text",
-    "placeholders": {
-      "unreadEvents": {},
-      "unreadChats": {}
     }
   },
   "useAmoledTheme": "AMOLED-compatibele kleuren gebruiken?",

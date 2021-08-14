@@ -1,6 +1,6 @@
 {
   "@@locale": "et",
-  "@@last_modified": "2021-08-14 12:06:11.772809",
+  "@@last_modified": "2021-08-14 12:41:10.079944",
   "about": "Rakenduse teave",
   "@about": {
     "type": "text",
@@ -1880,7 +1880,7 @@
       "username": {}
     }
   },
-  "seenByUserAndCountOthers": "Sõnumit nägid {username} ja veel {count} kasutajat",
+  "seenByUserAndCountOthers": "{count, plural, other{Sõnumit nägid {username} ja veel {count} kasutajat}}",
   "@seenByUserAndCountOthers": {
     "type": "text",
     "placeholders": {
@@ -2282,26 +2282,18 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount} lugemata vestlus(t)",
+  "unreadChats": "{unreadCount, plural, other{{unreadCount} lugemata vestlus(t)}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents} lugemata sõnum(it)",
+  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents} lugemata sõnum(it)}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
       "unreadEvents": {}
-    }
-  },
-  "unreadMessagesInChats": "{unreadEvents} lugemata sõnum(it) {unreadChats} vestluses",
-  "@unreadMessagesInChats": {
-    "type": "text",
-    "placeholders": {
-      "unreadEvents": {},
-      "unreadChats": {}
     }
   },
   "useAmoledTheme": "Kas kasutame AMOLED-tehnoloogiaga ühilduvaid värve?",

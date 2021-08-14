@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2021-08-14 12:06:11.636132",
+  "@@last_modified": "2021-08-14 12:41:09.992206",
   "about": "Informazioni",
   "@about": {
     "type": "text",
@@ -1647,7 +1647,7 @@
       "username": {}
     }
   },
-  "seenByUserAndCountOthers": "Visto da {username} e {count} altri",
+  "seenByUserAndCountOthers": "{count, plural, other{Visto da {username} e {count} altri}}",
   "@seenByUserAndCountOthers": {
     "type": "text",
     "placeholders": {
@@ -2005,26 +2005,18 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount} discussioni non lette",
+  "unreadChats": "{unreadCount, plural, other{{unreadCount} discussioni non lette}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents} messaggi non letti",
+  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents} messaggi non letti}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
       "unreadEvents": {}
-    }
-  },
-  "unreadMessagesInChats": "{unreadEvents} messaggi non letti in {unreadChats} discussioni",
-  "@unreadMessagesInChats": {
-    "type": "text",
-    "placeholders": {
-      "unreadEvents": {},
-      "unreadChats": {}
     }
   },
   "useAmoledTheme": "Usare i colori compatibili con AMOLED?",

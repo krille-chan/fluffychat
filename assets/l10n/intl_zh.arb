@@ -1,6 +1,6 @@
 {
   "@@locale": "zh",
-  "@@last_modified": "2021-08-14 12:06:11.342477",
+  "@@last_modified": "2021-08-14 12:41:09.767805",
   "about": "关于",
   "@about": {
     "type": "text",
@@ -1811,7 +1811,7 @@
       "username": {}
     }
   },
-  "seenByUserAndCountOthers": "被 {username} 和 {count} 个其他人看见",
+  "seenByUserAndCountOthers": "{count, plural, other{被 {username} 和 {count} 个其他人看见}}",
   "@seenByUserAndCountOthers": {
     "type": "text",
     "placeholders": {
@@ -2198,26 +2198,18 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount} 个未读聊天",
+  "unreadChats": "{unreadCount, plural, other{{unreadCount} 个未读聊天}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents} 条未读消息",
+  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents} 条未读消息}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
       "unreadEvents": {}
-    }
-  },
-  "unreadMessagesInChats": "来自 {unreadChats} 个聊天的 {unreadEvents} 条未读消息",
-  "@unreadMessagesInChats": {
-    "type": "text",
-    "placeholders": {
-      "unreadEvents": {},
-      "unreadChats": {}
     }
   },
   "useAmoledTheme": "使用适合 AMOLED 屏的颜色？",

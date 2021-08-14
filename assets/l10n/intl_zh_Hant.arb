@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2021-08-14 12:06:11.255136",
+  "@@last_modified": "2021-08-14 12:41:09.708353",
   "about": "關於",
   "@about": {
     "type": "text",
@@ -1622,7 +1622,7 @@
       "username": {}
     }
   },
-  "seenByUserAndCountOthers": "{username}和其他{count}個人已讀",
+  "seenByUserAndCountOthers": "{count, plural, other{{username}和其他{count}個人已讀}}",
   "@seenByUserAndCountOthers": {
     "type": "text",
     "placeholders": {
@@ -1980,26 +1980,18 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount}個未讀聊天室",
+  "unreadChats": "{unreadCount, plural, other{{unreadCount}個未讀聊天室}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents}個未讀訊息",
+  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents}個未讀訊息}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
       "unreadEvents": {}
-    }
-  },
-  "unreadMessagesInChats": "來自{unreadChats}聊天室的{unreadEvents}個未讀訊息",
-  "@unreadMessagesInChats": {
-    "type": "text",
-    "placeholders": {
-      "unreadEvents": {},
-      "unreadChats": {}
     }
   },
   "useAmoledTheme": "使用適合AMOLED螢幕的顏色？",
