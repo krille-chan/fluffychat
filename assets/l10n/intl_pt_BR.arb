@@ -2191,17 +2191,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "xMoreEvents": "Mais {count} eventos",
-  "@xMoreEvents": {
+  "moreEvents": "{count,plural, =1{Mais 1 evento} other{Mais {count} eventos}}",
+  "@moreEvents": {
     "type": "text",
     "placeholders": {
       "count": {}
     }
-  },
-  "oneMoreEvent": "Mais 1 evento",
-  "@oneMoreEvent": {
-    "type": "text",
-    "placeholders": {}
   },
   "chatBackupDescription": "O backup da sua conversa é protegido com sua chave de segurança. Por favor, evite perdê-la.",
   "@chatBackupDescription": {

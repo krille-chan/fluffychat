@@ -2246,17 +2246,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "xMoreEvents": "{count} altri eventi",
-  "@xMoreEvents": {
+  "moreEvents": "{count,plural =1{1 altro evento} other{{count} altri eventi}}",
+  "@moreEvents": {
     "type": "text",
     "placeholders": {
       "count": {}
     }
-  },
-  "oneMoreEvent": "1 altro evento",
-  "@oneMoreEvent": {
-    "type": "text",
-    "placeholders": {}
   },
   "unlockChatBackup": "Sblocca il backup della discussione",
   "@unlockChatBackup": {

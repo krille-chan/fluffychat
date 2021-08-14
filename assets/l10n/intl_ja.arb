@@ -2125,10 +2125,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "oneMoreEvent": "もう1つのイベント",
-  "@oneMoreEvent": {
+  "moreEvents": "{count,plural, =1{もう1つのイベント} other{{count}個のイベント}}",
+  "@moreEvents": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": {
+      "count": {}
+    }
   },
   "chatBackupDescription": "チャットのバックアップは秘密鍵によって保存されます。失くさないように気をつけてください。",
   "@chatBackupDescription": {
@@ -2279,13 +2281,6 @@
   "@noStatusesFound": {
     "type": "text",
     "placeholders": {}
-  },
-  "xMoreEvents": "{count}個のイベント",
-  "@xMoreEvents": {
-    "type": "text",
-    "placeholders": {
-      "count": {}
-    }
   },
   "pleaseEnterSecurityKey": "セキュリティーキーを入力してください：",
   "@pleaseEnterSecurityKey": {

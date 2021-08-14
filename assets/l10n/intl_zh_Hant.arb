@@ -263,17 +263,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "xMoreEvents": "還有{count}個事件",
-  "@xMoreEvents": {
+  "moreEvents": "{count,plural, =1{還有1個事件} other{還有{count}個事件}}",
+  "@moreEvents": {
     "type": "text",
     "placeholders": {
       "count": {}
     }
-  },
-  "oneMoreEvent": "還有1個事件",
-  "@oneMoreEvent": {
-    "type": "text",
-    "placeholders": {}
   },
   "hideUnknownEvents": "隱藏未知事件",
   "@hideUnknownEvents": {

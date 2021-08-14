@@ -1587,17 +1587,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "xMoreEvents": "{count}  więcej wydarzeń",
-  "@xMoreEvents": {
+  "moreEvents": "{count,plural, =1{1 kolejne wydarzenie} other{{count}  więcej wydarzeń}}",
+  "@moreEvents": {
     "type": "text",
     "placeholders": {
       "count": {}
     }
-  },
-  "oneMoreEvent": "1 kolejne wydarzenie",
-  "@oneMoreEvent": {
-    "type": "text",
-    "placeholders": {}
   },
   "chatBackupDescription": "Twoja kopia zapasowa Rozmów jest zabezpieczona kluczem bezpieczeństwa. Uważaj żeby go nie zgubić.",
   "@chatBackupDescription": {

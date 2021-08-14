@@ -2248,17 +2248,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "xMoreEvents": "Veel {count} sündmust",
-  "@xMoreEvents": {
+  "moreEvents": "{count,plural, =1{Veel 1 sündmus}, other{Veel {count} sündmust}}",
+  "@moreEvents": {
     "type": "text",
     "placeholders": {
       "count": {}
     }
-  },
-  "oneMoreEvent": "Veel 1 sündmus",
-  "@oneMoreEvent": {
-    "type": "text",
-    "placeholders": {}
   },
   "unlockChatBackup": "Krüpti lahti oma vestluste varukoopia",
   "@unlockChatBackup": {

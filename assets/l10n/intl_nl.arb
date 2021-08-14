@@ -2239,17 +2239,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "xMoreEvents": "Nog {count} gebeurtenissen",
-  "@xMoreEvents": {
+  "moreEvents": "{count,plural, =1{Nog 1 gebeurtenis} other{Nog {count} gebeurtenissen}}",
+  "@moreEvents": {
     "type": "text",
     "placeholders": {
       "count": {}
     }
-  },
-  "oneMoreEvent": "Nog 1 gebeurtenis",
-  "@oneMoreEvent": {
-    "type": "text",
-    "placeholders": {}
   },
   "unlockChatBackup": "Chatback-up ontgrendelen",
   "@unlockChatBackup": {

@@ -2248,17 +2248,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "xMoreEvents": "{count} évènements en plus",
-  "@xMoreEvents": {
+  "moreEvents": "{count,plural, =1{1 évènement en plus} other{{count} évènements en plus}}",
+  "@moreEvents": {
     "type": "text",
     "placeholders": {
       "count": {}
     }
-  },
-  "oneMoreEvent": "1 évènement en plus",
-  "@oneMoreEvent": {
-    "type": "text",
-    "placeholders": {}
   },
   "unlockChatBackup": "Déverrouiller la sauvegarde de la discussion",
   "@unlockChatBackup": {

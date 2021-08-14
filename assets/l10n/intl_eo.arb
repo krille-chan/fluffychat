@@ -2210,17 +2210,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "xMoreEvents": "{count} pliaj eventoj",
-  "@xMoreEvents": {
+  "moreEvents": "{count,plural, =1{1 plia evento} other{{count} pliaj eventoj}}",
+  "@moreEvents": {
     "type": "text",
     "placeholders": {
       "count": {}
     }
-  },
-  "oneMoreEvent": "1 plia evento",
-  "@oneMoreEvent": {
-    "type": "text",
-    "placeholders": {}
   },
   "noEncryptionForPublicRooms": "Vi nur povas aktivigi ĉifradon kiam la ĉambro ne plu estas publike alirebla.",
   "@noEncryptionForPublicRooms": {

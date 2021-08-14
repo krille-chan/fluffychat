@@ -50,9 +50,7 @@ class StateMessage extends StatelessWidget {
                 ),
                 if (counter != 0)
                   Text(
-                    counter == 1
-                        ? L10n.of(context).oneMoreEvent
-                        : L10n.of(context).xMoreEvents(counter.toString()),
+                    L10n.of(context).moreEvents(counter),
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),

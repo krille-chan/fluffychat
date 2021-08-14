@@ -2248,17 +2248,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "xMoreEvents": "{count} eventos máis",
-  "@xMoreEvents": {
+  "moreEvents": "{count,plural, =1{Un evento máis} other{{count} eventos máis}}",
+  "@moreEvents": {
     "type": "text",
     "placeholders": {
       "count": {}
     }
-  },
-  "oneMoreEvent": "Un evento máis",
-  "@oneMoreEvent": {
-    "type": "text",
-    "placeholders": {}
   },
   "unlockChatBackup": "Desbloquear copia do chat",
   "@unlockChatBackup": {

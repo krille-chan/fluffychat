@@ -2248,17 +2248,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "xMoreEvents": "ещё {count} событий",
-  "@xMoreEvents": {
+  "moreEvents": "{count,plural, =1{Еще 1 событие} other{ещё {count} событий}}",
+  "@moreEvents": {
     "type": "text",
     "placeholders": {
       "count": {}
     }
-  },
-  "oneMoreEvent": "Еще 1 событие",
-  "@oneMoreEvent": {
-    "type": "text",
-    "placeholders": {}
   },
   "unlockChatBackup": "Разблокировать резервную копию чата",
   "@unlockChatBackup": {

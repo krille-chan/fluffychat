@@ -2475,17 +2475,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "xMoreEvents": "{count} 个更多事件",
-  "@xMoreEvents": {
+  "moreEvents": "{count,plural, =1{1 个更多事件} other{{count} 个更多事件}}",
+  "@moreEvents": {
     "type": "text",
     "placeholders": {
       "count": {}
     }
-  },
-  "oneMoreEvent": "1 个更多事件",
-  "@oneMoreEvent": {
-    "type": "text",
-    "placeholders": {}
   },
   "commandHintReact": "将回复作为响应发送",
   "@commandHintReact": {

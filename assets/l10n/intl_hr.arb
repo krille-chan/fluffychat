@@ -2278,17 +2278,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "xMoreEvents": "Još {count} događaja",
-  "@xMoreEvents": {
+  "moreEvents": "{count,plural, =1{Još jedan događaj} other{Još {count} događaja}}",
+  "@moreEvents": {
     "type": "text",
     "placeholders": {
       "count": {}
     }
-  },
-  "oneMoreEvent": "Još jedan događaj",
-  "@oneMoreEvent": {
-    "type": "text",
-    "placeholders": {}
   },
   "chats": "Chatovi",
   "@chats": {

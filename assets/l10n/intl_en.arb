@@ -676,13 +676,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "oneMoreEvent": "1 more event",
-  "@oneMoreEvent": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "xMoreEvents": "{count} more events",
-  "@xMoreEvents": {
+  "moreEvents": "{count,plural, =1{1 more event} other{{count} more events}}",
+  "@moreEvents": {
     "type": "text",
     "placeholders": {
       "count": {}

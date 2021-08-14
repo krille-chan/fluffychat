@@ -2283,17 +2283,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "xMoreEvents": "{count} dalších událostí",
-  "@xMoreEvents": {
+  "moreEvents": "{count, plural, =1{1 další událost} other{{count} dalších událostí}}",
+  "@moreEvents": {
     "type": "text",
     "placeholders": {
       "count": {}
     }
-  },
-  "oneMoreEvent": "1 další událost",
-  "@oneMoreEvent": {
-    "type": "text",
-    "placeholders": {}
   },
   "goToTheNewRoom": "Přejít do nové místnost",
   "@goToTheNewRoom": {

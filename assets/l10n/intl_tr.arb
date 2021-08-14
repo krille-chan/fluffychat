@@ -2248,17 +2248,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "xMoreEvents": "{count} etkinlik daha",
-  "@xMoreEvents": {
+  "moreEvents": "{count,plural, =1{1 etkinlik daha} other{{count} etkinlik daha}}",
+  "@moreEvents": {
     "type": "text",
     "placeholders": {
       "count": {}
     }
-  },
-  "oneMoreEvent": "1 etkinlik daha",
-  "@oneMoreEvent": {
-    "type": "text",
-    "placeholders": {}
   },
   "unlockChatBackup": "Sohbet yedeklemesinin kilidini aç",
   "@unlockChatBackup": {

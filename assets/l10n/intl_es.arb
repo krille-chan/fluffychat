@@ -1836,17 +1836,12 @@
       "supportedVersions": {}
     }
   },
-  "xMoreEvents": "{count} más eventos",
-  "@xMoreEvents": {
+  "moreEvents": "{count,plural, =1{1 evento más} other{{count} más eventos}}",
+  "@moreEvents": {
     "type": "text",
     "placeholders": {
       "count": {}
     }
-  },
-  "oneMoreEvent": "1 evento más",
-  "@oneMoreEvent": {
-    "type": "text",
-    "placeholders": {}
   },
   "chatBackupDescription": "Tu copia de seguridad del chat está protegida con una clave de seguridad. Por favor, asegúrate de no perderla.",
   "@chatBackupDescription": {
