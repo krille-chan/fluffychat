@@ -1,11 +1,12 @@
 {
-  "accountInformation": "অ্যাকাউন্ট তথ্য",
-  "@accountInformation": {
+  "@@last_modified": "2021-08-14 12:06:11.873762",
+  "about": "সম্পর্কে",
+  "@about": {
     "type": "text",
     "placeholders": {}
   },
-  "account": "অ্যাকাউন্ট",
-  "@account": {
+  "accept": "স্বীকার করি",
+  "@accept": {
     "type": "text",
     "placeholders": {}
   },
@@ -16,13 +17,13 @@
       "username": {}
     }
   },
-  "accept": "স্বীকার করি",
-  "@accept": {
+  "account": "অ্যাকাউন্ট",
+  "@account": {
     "type": "text",
     "placeholders": {}
   },
-  "about": "সম্পর্কে",
-  "@about": {
+  "accountInformation": "অ্যাকাউন্ট তথ্য",
+  "@accountInformation": {
     "type": "text",
     "placeholders": {}
   }

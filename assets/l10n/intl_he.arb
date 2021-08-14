@@ -1,97 +1,12 @@
 {
-  "authentication": "אימות",
-  "@authentication": {
+  "@@last_modified": "2021-08-14 12:06:11.713249",
+  "about": "אודות",
+  "@about": {
     "type": "text",
     "placeholders": {}
   },
-  "askVerificationRequest": "לקבל בקשת אימות זו מ- {username}?",
-  "@askVerificationRequest": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "askSSSSVerify": "אנא הזן את משפט הסיסמה המאובטח שלך או מפתח השחזור כדי לאמת את ההפעלה שלך.",
-  "@askSSSSVerify": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "askSSSSSign": "כדי שתוכל לחתום על האדם האחר, הזן את ביטוי הסיסמה או t, מפתח השחזור.",
-  "@askSSSSSign": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "askSSSSCache": "אנא הזן את ביטוי הסיסמה המאובטח שלך או מפתח שחזור כדי לשמור את המפתחות במטמון.",
-  "@askSSSSCache": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "areYouSure": "האם אתה בטוח?",
-  "@areYouSure": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "areGuestsAllowedToJoin": "האם משתמשים אורחים מורשים להצטרף",
-  "@areGuestsAllowedToJoin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "archivedRoom": "חדר בארכיון",
-  "@archivedRoom": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "archive": "ארכיון",
-  "@archive": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "anyoneCanJoin": "כל אחד יכול להצטרף",
-  "@anyoneCanJoin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "answeredTheCall": "{senderName} ענה לשיחה",
-  "@answeredTheCall": {
-    "type": "text",
-    "placeholders": {
-      "senderName": {}
-    }
-  },
-  "alreadyHaveAnAccount": "כבר יש לך חשבון?",
-  "@alreadyHaveAnAccount": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "alias": "כינוי",
-  "@alias": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "admin": "מנהל",
-  "@admin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "addGroupDescription": "הוספת תיאור קבוצה",
-  "@addGroupDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "activatedEndToEndEncryption": "{username} הפעיל הצפנה מקצה לקצה",
-  "@activatedEndToEndEncryption": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "accountInformation": "פרטי חשבון",
-  "@accountInformation": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "account": "חשבון",
-  "@account": {
+  "accept": "קבל",
+  "@accept": {
     "type": "text",
     "placeholders": {}
   },
@@ -102,13 +17,99 @@
       "username": {}
     }
   },
-  "accept": "קבל",
-  "@accept": {
+  "account": "חשבון",
+  "@account": {
     "type": "text",
     "placeholders": {}
   },
-  "about": "אודות",
-  "@about": {
+  "accountInformation": "פרטי חשבון",
+  "@accountInformation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "activatedEndToEndEncryption": "{username} הפעיל הצפנה מקצה לקצה",
+  "@activatedEndToEndEncryption": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "addGroupDescription": "הוספת תיאור קבוצה",
+  "@addGroupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "admin": "מנהל",
+  "@admin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "alias": "כינוי",
+  "@alias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "alreadyHaveAnAccount": "כבר יש לך חשבון?",
+  "@alreadyHaveAnAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "answeredTheCall": "{senderName} ענה לשיחה",
+  "@answeredTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "anyoneCanJoin": "כל אחד יכול להצטרף",
+  "@anyoneCanJoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "archive": "ארכיון",
+  "@archive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "archivedRoom": "חדר בארכיון",
+  "@archivedRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areGuestsAllowedToJoin": "האם משתמשים אורחים מורשים להצטרף",
+  "@areGuestsAllowedToJoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSure": "האם אתה בטוח?",
+  "@areYouSure": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askSSSSCache": "אנא הזן את ביטוי הסיסמה המאובטח שלך או מפתח שחזור כדי לשמור את המפתחות במטמון.",
+  "@askSSSSCache": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askSSSSSign": "כדי שתוכל לחתום על האדם האחר, הזן את ביטוי הסיסמה או t, מפתח השחזור.",
+  "@askSSSSSign": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askSSSSVerify": "אנא הזן את משפט הסיסמה המאובטח שלך או מפתח השחזור כדי לאמת את ההפעלה שלך.",
+  "@askSSSSVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askVerificationRequest": "לקבל בקשת אימות זו מ- {username}?",
+  "@askVerificationRequest": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "authentication": "אימות",
+  "@authentication": {
     "type": "text",
     "placeholders": {}
   }

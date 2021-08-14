@@ -1,6 +1,6 @@
 {
   "@@locale": "tr",
-  "@@last_modified": "2020-09-23 11:46:01.744355",
+  "@@last_modified": "2021-08-14 12:06:11.404006",
   "about": "Hakkında",
   "@about": {
     "type": "text",
@@ -35,11 +35,23 @@
       "username": {}
     }
   },
+  "addEmail": "E-posta ekle",
+  "@addEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
   "addGroupDescription": "Grup açıklaması ekle",
   "@addGroupDescription": {
     "type": "text",
     "placeholders": {}
   },
+  "addNewFriend": "Yeni arkadaş ekle",
+  "@addNewFriend": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addToSpace": "Alana ekle",
+  "@addToSpace": {},
   "admin": "Yönetici",
   "@admin": {
     "type": "text",
@@ -47,6 +59,16 @@
   },
   "alias": "takma ad",
   "@alias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "all": "Tümü",
+  "@all": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "allChats": "Tüm sohbetler",
+  "@allChats": {
     "type": "text",
     "placeholders": {}
   },
@@ -67,6 +89,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "appLock": "Uygulama kilidi",
+  "@appLock": {
+    "type": "text",
+    "placeholders": {}
+  },
   "archive": "Arşiv",
   "@archive": {
     "type": "text",
@@ -84,6 +111,11 @@
   },
   "areYouSure": "Emin misiniz?",
   "@areYouSure": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSureYouWantToLogout": "Oturumu açmak istediğinizden emin misiniz?",
+  "@areYouSureYouWantToLogout": {
     "type": "text",
     "placeholders": {}
   },
@@ -109,15 +141,46 @@
       "username": {}
     }
   },
+  "audioPlayerPause": "Duraklat",
+  "@audioPlayerPause": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPlay": "Oynat",
+  "@audioPlayerPlay": {
+    "type": "text",
+    "placeholders": {}
+  },
   "authentication": "Doğrulama",
   "@authentication": {
     "type": "text",
     "placeholders": {}
   },
+  "autoplayImages": "Canlandırmalı çıkartmaları ve ifadeleri otomatik olarak oynat",
+  "@autoplayImages": {
+    "type": "text",
+    "placeholder": {}
+  },
   "avatarHasBeenChanged": "Avatar değiştirildi",
   "@avatarHasBeenChanged": {
     "type": "text",
     "placeholders": {}
+  },
+  "badServerLoginTypesException": "Ana sunucu aşağıdaki oturum açma türlerini destekliyor:\n{serverVersions}\nAncak bu uygulama yalnızca aşağıdakileri destekliyor:\n{supportedVersions}",
+  "@badServerLoginTypesException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "badServerVersionsException": "Ana sunucu aşağıdaki Spec sürümlerini destekliyor:\n{serverVersions}\nAncak bu uygulama yalnızca {supportedVersions} destekliyor",
+  "@badServerVersionsException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
   },
   "banFromChat": "Sohbetten engelle",
   "@banFromChat": {
@@ -142,12 +205,15 @@
     "type": "text",
     "placeholders": {}
   },
-  "byDefaultYouWillBeConnectedTo": "Öntanımlı olarak {homeserver} sunucusuna bağlanacaksınız",
-  "@byDefaultYouWillBeConnectedTo": {
+  "blocked": "Engellendi",
+  "@blocked": {
     "type": "text",
-    "placeholders": {
-      "homeserver": {}
-    }
+    "placeholders": {}
+  },
+  "botMessages": "Bot mesajları",
+  "@botMessages": {
+    "type": "text",
+    "placeholders": {}
   },
   "cachedKeys": "Önbelleğe alınan anahtarlar",
   "@cachedKeys": {
@@ -156,6 +222,18 @@
   },
   "cancel": "İptal",
   "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cantOpenUri": "{uri} URI'si açılamıyor",
+  "@cantOpenUri": {
+    "type": "text",
+    "placeholders": {
+      "uri": {}
+    }
+  },
+  "changeDeviceName": "Aygıt adını değiştir",
+  "@changeDeviceName": {
     "type": "text",
     "placeholders": {}
   },
@@ -268,6 +346,16 @@
     "type": "text",
     "placeholders": {}
   },
+  "changePassword": "Parolayı değiştir",
+  "@changePassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changesHaveBeenSaved": "Değişiklikler kaydedildi",
+  "@changesHaveBeenSaved": {
+    "type": "text",
+    "placeholders": {}
+  },
   "changeTheHomeserver": "Ana sunucuyu değiştir",
   "@changeTheHomeserver": {
     "type": "text",
@@ -293,6 +381,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "changeYourAvatar": "Avatarınızı değiştirin",
+  "@changeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
   "channelCorruptedDecryptError": "Şifreleme bozuldu",
   "@channelCorruptedDecryptError": {
     "type": "text",
@@ -303,8 +396,30 @@
     "type": "text",
     "placeholders": {}
   },
+  "chatBackup": "Sohbet yedekleme",
+  "@chatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackupDescription": "Sohbet yedeklemeniz bir güvenlik anahtarı ile güvence altına alındı. Lütfen kaybetmediğinizden emin olun.",
+  "@chatBackupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
   "chatDetails": "Sohbet ayrıntıları",
   "@chatDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatHasBeenAddedToThisSpace": "Sohbet bu alana eklendi",
+  "@chatHasBeenAddedToThisSpace": {},
+  "chatHasBeenRemovedFromThisSpace": "Sohbet bu alandan kaldırıldı",
+  "@chatHasBeenRemovedFromThisSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chats": "Sohbetler",
+  "@chats": {
     "type": "text",
     "placeholders": {}
   },
@@ -318,10 +433,99 @@
     "type": "text",
     "placeholders": {}
   },
+  "clearArchive": "Arşivi temizle",
+  "@clearArchive": {},
+  "clearText": "Metni temizle",
+  "@clearText": {
+    "type": "text",
+    "placeholders": {}
+  },
   "close": "Kapat",
   "@close": {
     "type": "text",
     "placeholders": {}
+  },
+  "commandHintBan": "Verilen kullanıcıyı bu odadan yasaklayın",
+  "@commandHintBan": {
+    "type": "text",
+    "description": "Usage hint for the command /ban"
+  },
+  "commandHintHtml": "HTML biçimli metin gönderin",
+  "@commandHintHtml": {
+    "type": "text",
+    "description": "Usage hint for the command /html"
+  },
+  "commandHintInvite": "Verilen kullanıcıyı bu odaya davet edin",
+  "@commandHintInvite": {
+    "type": "text",
+    "description": "Usage hint for the command /invite"
+  },
+  "commandHintJoin": "Verilen odaya katılın",
+  "@commandHintJoin": {
+    "type": "text",
+    "description": "Usage hint for the command /join"
+  },
+  "commandHintKick": "Verilen kullanıcıyı bu odadan kaldırın",
+  "@commandHintKick": {
+    "type": "text",
+    "description": "Usage hint for the command /kick"
+  },
+  "commandHintLeave": "Bu odadan ayrılın",
+  "@commandHintLeave": {
+    "type": "text",
+    "description": "Usage hint for the command /leave"
+  },
+  "commandHintMe": "Kendinizi tanımlayın",
+  "@commandHintMe": {
+    "type": "text",
+    "description": "Usage hint for the command /me"
+  },
+  "commandHintMyRoomAvatar": "Bu oda için resminizi ayarlayın (mxc-uri ile)",
+  "@commandHintMyRoomAvatar": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomavatar"
+  },
+  "commandHintMyRoomNick": "Bu oda için görünen adınızı ayarlayın",
+  "@commandHintMyRoomNick": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomnick"
+  },
+  "commandHintOp": "Verilen kullanıcının güç seviyesini ayarlayın (öntanımlı: 50)",
+  "@commandHintOp": {
+    "type": "text",
+    "description": "Usage hint for the command /op"
+  },
+  "commandHintPlain": "Biçimlendirilmemiş metin gönderin",
+  "@commandHintPlain": {
+    "type": "text",
+    "description": "Usage hint for the command /plain"
+  },
+  "commandHintReact": "Tepki olarak yanıt gönderin",
+  "@commandHintReact": {
+    "type": "text",
+    "description": "Usage hint for the command /react"
+  },
+  "commandHintSend": "Metin gönderin",
+  "@commandHintSend": {
+    "type": "text",
+    "description": "Usage hint for the command /send"
+  },
+  "commandHintUnBan": "Verilen kullanıcının bu odadaki yasağını kaldırın",
+  "@commandHintUnBan": {
+    "type": "text",
+    "description": "Usage hint for the command /unban"
+  },
+  "commandInvalid": "Komut geçersiz",
+  "@commandInvalid": {
+    "type": "text"
+  },
+  "commandMissing": "{command} bir komut değil.",
+  "@commandMissing": {
+    "type": "text",
+    "placeholders": {
+      "command": {}
+    },
+    "description": "State that {command} is not a valid /command."
   },
   "compareEmojiMatch": "Karşılaştırın ve aşağıdaki emojilerin diğer aygıttaki emojilerle eşleştiğinden emin olun:",
   "@compareEmojiMatch": {
@@ -330,6 +534,11 @@
   },
   "compareNumbersMatch": "Karşılaştırın ve aşağıdaki numaraların diğer aygıttaki numaralarla eşleştiğinden emin olun:",
   "@compareNumbersMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "configureChat": "Sohbeti yapılandır",
+  "@configureChat": {
     "type": "text",
     "placeholders": {}
   },
@@ -353,6 +562,21 @@
     "type": "text",
     "placeholders": {}
   },
+  "containsDisplayName": "Görünen ad içerir",
+  "@containsDisplayName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsUserName": "Kullanıcı adı içerir",
+  "@containsUserName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contentHasBeenReported": "İçerik, sunucu yöneticilerine bildirildi",
+  "@contentHasBeenReported": {
+    "type": "text",
+    "placeholders": {}
+  },
   "contentViewer": "İçerik görüntüleyici",
   "@contentViewer": {
     "type": "text",
@@ -365,6 +589,11 @@
   },
   "copy": "Kopyala",
   "@copy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copyToClipboard": "Panoya kopyala",
+  "@copyToClipboard": {
     "type": "text",
     "placeholders": {}
   },
@@ -414,6 +643,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "createNewSpace": "Yeni alan oluştur",
+  "@createNewSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
   "crossSigningDisabled": "Çapraz imzalama kapalı",
   "@crossSigningDisabled": {
     "type": "text",
@@ -459,8 +693,23 @@
       "day": {}
     }
   },
+  "deactivateAccountWarning": "Bu, kullanıcı hesabınızı devre dışı bırakacak. Bu geri alınamaz! Emin misiniz?",
+  "@deactivateAccountWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "defaultPermissionLevel": "Öntanımlı izin seviyesi",
+  "@defaultPermissionLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
   "delete": "Sil",
   "@delete": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteAccount": "Hesabı sil",
+  "@deleteAccount": {
     "type": "text",
     "placeholders": {}
   },
@@ -479,13 +728,38 @@
     "type": "text",
     "placeholders": {}
   },
+  "deviceId": "Aygıt kimliği",
+  "@deviceId": {
+    "type": "text",
+    "placeholders": {}
+  },
   "devices": "Aygıtlar",
   "@devices": {
     "type": "text",
     "placeholders": {}
   },
+  "deviceVerifyDescription": "Şifreleme yalnızca tüm aygıtlar doğrulandığında güvenlidir.",
+  "@deviceVerifyDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "directChats": "Doğrudan Sohbetler",
+  "@directChats": {
+    "type": "text",
+    "placeholders": {}
+  },
   "discardPicture": "Resmi at",
   "@discardPicture": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discover": "Keşfet",
+  "@discover": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discoverGroups": "Grupları keşfet",
+  "@discoverGroups": {
     "type": "text",
     "placeholders": {}
   },
@@ -499,8 +773,28 @@
     "type": "text",
     "placeholders": {}
   },
+  "dontAskAgain": "İptal et ve bir daha sorma",
+  "@dontAskAgain": {
+    "type": "text",
+    "placeholders": {}
+  },
   "downloadFile": "Dosyayı indir",
   "@downloadFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "edit": "Düzenle",
+  "@edit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editBlockedServers": "Engellenen sunucuları düzenle",
+  "@editBlockedServers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editChatPermissions": "Sohbet izinlerini düzenle",
+  "@editChatPermissions": {
     "type": "text",
     "placeholders": {}
   },
@@ -514,6 +808,16 @@
     "type": "text",
     "placeholders": {}
   },
+  "editRoomAliases": "Oda takma adlarını düzenle",
+  "@editRoomAliases": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAvatar": "Oda avatarını düzenle",
+  "@editRoomAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
   "emoteExists": "İfade zaten var!",
   "@emoteExists": {
     "type": "text",
@@ -521,6 +825,11 @@
   },
   "emoteInvalid": "Geçersiz ifade kısa kodu!",
   "@emoteInvalid": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emotePacks": "Oda için ifade paketleri",
+  "@emotePacks": {
     "type": "text",
     "placeholders": {}
   },
@@ -544,8 +853,28 @@
     "type": "text",
     "placeholders": {}
   },
+  "enableChatBackup": "Sohbetlerinize erişimi asla kaybetmemek için sohbet yedeklemeyi etkinleştirin.",
+  "@enableChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEmotesGlobally": "İfade paketini küresel olarak etkinleştir",
+  "@enableEmotesGlobally": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEncryption": "Şifrelemeyi etkinleştir",
+  "@enableEncryption": {
+    "type": "text",
+    "placeholders": {}
+  },
   "enableEncryptionWarning": "Artık şifrelemeyi devre dışı bırakamayacaksınız. Emin misiniz?",
   "@enableEncryptionWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encrypted": "Şifreli",
+  "@encrypted": {
     "type": "text",
     "placeholders": {}
   },
@@ -569,11 +898,25 @@
     "type": "text",
     "placeholders": {}
   },
+  "endedTheCall": "{senderName} aramayı sonlandırdı",
+  "@endedTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
   "enterAGroupName": "Bir grup adı girin",
   "@enterAGroupName": {
     "type": "text",
     "placeholders": {}
   },
+  "enterAnEmailAddress": "Bir e-posta adresi girin",
+  "@enterAnEmailAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterASpacepName": "Bir alan adı girin",
+  "@enterASpacepName": {},
   "enterAUsername": "Bir kullanıcı adı girin",
   "@enterAUsername": {
     "type": "text",
@@ -581,6 +924,23 @@
   },
   "enterYourHomeserver": "Ana sunucunuzu girin",
   "@enterYourHomeserver": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorObtainingLocation": "Konum alınırken hata oluştu: {error}",
+  "@errorObtainingLocation": {
+    "type": "text",
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "everythingReady": "Herşey hazır!",
+  "@everythingReady": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "extremeOffensive": "Aşırı rahatsız edici",
+  "@extremeOffensive": {
     "type": "text",
     "placeholders": {}
   },
@@ -599,6 +959,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "fontSize": "Yazı tipi boyutu",
+  "@fontSize": {
+    "type": "text",
+    "placeholders": {}
+  },
   "forward": "İlet",
   "@forward": {
     "type": "text",
@@ -609,6 +974,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "friends": "Arkadaşlar",
+  "@friends": {
+    "type": "text",
+    "placeholders": {}
+  },
   "fromJoining": "Katılmadan",
   "@fromJoining": {
     "type": "text",
@@ -616,6 +986,11 @@
   },
   "fromTheInvitation": "Davetten",
   "@fromTheInvitation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "goToTheNewRoom": "Yeni odaya git",
+  "@goToTheNewRoom": {
     "type": "text",
     "placeholders": {}
   },
@@ -636,6 +1011,11 @@
   },
   "groupIsPublic": "Grup herkese açık",
   "@groupIsPublic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groups": "Gruplar",
+  "@groups": {
     "type": "text",
     "placeholders": {}
   },
@@ -669,8 +1049,23 @@
     "type": "text",
     "placeholders": {}
   },
+  "hideRedactedEvents": "Düzenlenmiş etkinlikleri gizle",
+  "@hideRedactedEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideUnknownEvents": "Bilinmeyen etkinlikleri gizle",
+  "@hideUnknownEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
   "homeserverIsNotCompatible": "Ana sunucu uyumlu değil",
   "@homeserverIsNotCompatible": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "howOffensiveIsThisContent": "Bu içerik ne kadar rahatsız edici?",
+  "@howOffensiveIsThisContent": {
     "type": "text",
     "placeholders": {}
   },
@@ -684,8 +1079,43 @@
     "type": "text",
     "placeholders": {}
   },
+  "ignore": "Yok say",
+  "@ignore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignoredUsers": "Yok sayılan kullanıcılar",
+  "@ignoredUsers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignoreListDescription": "Sizi rahatsız eden kullanıcıları yok sayabilirsiniz. Kişisel yok sayma listenizdeki kullanıcılardan herhangi bir mesaj veya oda daveti alamayacaksınız.",
+  "@ignoreListDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignoreUsername": "Kullanıcıyı yok say",
+  "@ignoreUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iHaveClickedOnLink": "Bağlantıya tıkladım",
+  "@iHaveClickedOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
   "incorrectPassphraseOrKey": "Yanlış parola veya kurtarma anahtarı",
   "@incorrectPassphraseOrKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inoffensive": "Rahatsız edici değil",
+  "@inoffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidEmail": "Geçersiz e-posta",
+  "@invalidEmail": {
     "type": "text",
     "placeholders": {}
   },
@@ -719,6 +1149,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "inviteForMe": "Benim için davet et",
+  "@inviteForMe": {
+    "type": "text",
+    "placeholders": {}
+  },
   "inviteText": "{username} sizi FluffyChat'e davet etti. \n1. FluffyChat kurun: https://fluffychat.im \n2. Kaydolun veya giriş yapın \n3. Davet bağlantısını açın: {link}",
   "@inviteText": {
     "type": "text",
@@ -743,6 +1178,11 @@
     "placeholders": {
       "username": {}
     }
+  },
+  "joinRoom": "Odaya katıl",
+  "@joinRoom": {
+    "type": "text",
+    "placeholders": {}
   },
   "keysCached": "Anahtarlar önbelleğe alındı",
   "@keysCached": {
@@ -829,6 +1269,16 @@
     "type": "text",
     "placeholders": {}
   },
+  "locationDisabledNotice": "Konum hizmetleri devre dışı. Lütfen konumunuzu paylaşabilmek için etkinleştirin.",
+  "@locationDisabledNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationPermissionDeniedNotice": "Konum izni reddedildi. Lütfen konumunuzu paylaşabilmek için izin verin.",
+  "@locationPermissionDeniedNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
   "login": "Oturum aç",
   "@login": {
     "type": "text",
@@ -839,6 +1289,13 @@
     "type": "text",
     "placeholders": {
       "homeserver": {}
+    }
+  },
+  "loginWith": "{brand} ile oturum aç",
+  "@loginWith": {
+    "type": "text",
+    "placeholders": {
+      "brand": {}
     }
   },
   "logout": "Oturumu kapat",
@@ -861,6 +1318,21 @@
     "type": "text",
     "placeholders": {}
   },
+  "memberChanges": "Üye değişiklikleri",
+  "@memberChanges": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "mention": "Bahset",
+  "@mention": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "messages": "Mesajlar",
+  "@messages": {
+    "type": "text",
+    "placeholders": {}
+  },
   "messageWillBeRemovedWarning": "Mesaj tüm katılımcılar için kaldırılacak",
   "@messageWillBeRemovedWarning": {
     "type": "text",
@@ -876,6 +1348,13 @@
     "type": "text",
     "placeholders": {}
   },
+  "moreEvents": "{count,plural, =1{1 etkinlik daha} other{{count} etkinlik daha}}",
+  "@moreEvents": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
   "muteChat": "Sohbeti sessize al",
   "@muteChat": {
     "type": "text",
@@ -886,13 +1365,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "newMessageInFluffyChat": "FluffyChat'te yeni mesaj",
-  "@newMessageInFluffyChat": {
+  "newChat": "Yeni sohbet",
+  "@newChat": {
     "type": "text",
     "placeholders": {}
   },
-  "newPrivateChat": "Yeni özel sohbet",
-  "@newPrivateChat": {
+  "newMessageInFluffyChat": "FluffyChat'te yeni mesaj",
+  "@newMessageInFluffyChat": {
     "type": "text",
     "placeholders": {}
   },
@@ -901,8 +1380,28 @@
     "type": "text",
     "placeholders": {}
   },
+  "next": "İleri",
+  "@next": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "no": "Hayır",
+  "@no": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noConnectionToTheServer": "Sunucuyla bağlantı yok",
+  "@noConnectionToTheServer": {
+    "type": "text",
+    "placeholders": {}
+  },
   "noCrossSignBootstrap": "FluffyChat şu anda çapraz imzalamanın etkinleştirilmesini desteklemiyor. Lütfen bunu Element içinden etkinleştirin.",
   "@noCrossSignBootstrap": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noDescription": "Açıklama yok",
+  "@noDescription": {
     "type": "text",
     "placeholders": {}
   },
@@ -911,10 +1410,23 @@
     "type": "text",
     "placeholders": {}
   },
+  "noEncryptionForPublicRooms": "Şifrelemeyi yalnızca oda artık herkese açık olmadığında etkinleştirebilirsiniz.",
+  "@noEncryptionForPublicRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
   "noGoogleServicesWarning": "Görünüşe göre telefonunuzda Google hizmetleri yok. Bu, gizliliğiniz için iyi bir karar! FluffyChat'te anlık bildirimler almak için https://microg.org/ veya https://unifiedpush.org/ kullanmanızı tavsiye ediyoruz.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
+  },
+  "noMatrixServer": "{server1} matrix sunucusu değil, onun yerine {server2} kullanılsın mı?",
+  "@noMatrixServer": {
+    "type": "text",
+    "placeholders": {
+      "server1": {},
+      "server2": {}
+    }
   },
   "noMegolmBootstrap": "Lütfen bunun yerine Element içinden çevrim içi anahtar yedeklemeyi açın.",
   "@noMegolmBootstrap": {
@@ -926,13 +1438,38 @@
     "type": "text",
     "placeholders": {}
   },
+  "noPasswordRecoveryDescription": "Henüz parolanızı kurtarmak için bir yol eklemediniz.",
+  "@noPasswordRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
   "noPermission": "İzin yok",
   "@noPermission": {
     "type": "text",
     "placeholders": {}
   },
+  "noPublicRoomsFound": "Herkese açık oda bulunamadı…",
+  "@noPublicRoomsFound": {
+    "type": "text",
+    "placeholders": {}
+  },
   "noRoomsFound": "Oda bulunamadı…",
   "@noRoomsFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noStatusesFound": "Şimdiye kadar hiçbir durum bulunamadı.",
+  "@noStatusesFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notifications": "Bildirimler",
+  "@notifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationsEnabledForThisAccount": "Bu hesap için bildirimler etkinleştirildi",
+  "@notificationsEnabledForThisAccount": {
     "type": "text",
     "placeholders": {}
   },
@@ -948,8 +1485,35 @@
       "number": {}
     }
   },
+  "numUsersTyping": "{count} kullanıcı yazıyor…",
+  "@numUsersTyping": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "obtainingLocation": "Konum alınıyor…",
+  "@obtainingLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offensive": "Rahatsız edici",
+  "@offensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offline": "Çevrim dışı",
+  "@offline": {
+    "type": "text",
+    "placeholders": {}
+  },
   "ok": "tamam",
   "@ok": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "online": "Çevrim içi",
+  "@online": {
     "type": "text",
     "placeholders": {}
   },
@@ -960,6 +1524,11 @@
   },
   "onlineKeyBackupEnabled": "Çevrim içi anahtar yedekleme etkinleştirildi",
   "@onlineKeyBackupEnabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oopsPushError": "Tüh! Maalesef anlık bildirimlerini ayarlarken bir hata oluştu.",
+  "@oopsPushError": {
     "type": "text",
     "placeholders": {}
   },
@@ -978,8 +1547,28 @@
     "type": "text",
     "placeholders": {}
   },
+  "openInMaps": "Haritalarda aç",
+  "@openInMaps": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "optionalAddEmail": "(İsteğe bağlı) E-posta adresiniz",
+  "@optionalAddEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
   "optionalGroupName": "(İsteğe bağlı) Grup adı",
   "@optionalGroupName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "or": "Veya",
+  "@or": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "participant": "Katılımcı",
+  "@participant": {
     "type": "text",
     "placeholders": {}
   },
@@ -998,8 +1587,33 @@
     "type": "text",
     "placeholders": {}
   },
+  "passwordForgotten": "Parola unutuldu",
+  "@passwordForgotten": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordHasBeenChanged": "Parola değiştirildi",
+  "@passwordHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordRecovery": "Parola kurtarma",
+  "@passwordRecovery": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "people": "İnsanlar",
+  "@people": {
+    "type": "text",
+    "placeholders": {}
+  },
   "pickImage": "Bir resim seç",
   "@pickImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pin": "Sabitle",
+  "@pin": {
     "type": "text",
     "placeholders": {}
   },
@@ -1010,8 +1624,28 @@
       "fileName": {}
     }
   },
+  "pleaseChoose": "Lütfen seçin",
+  "@pleaseChoose": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChooseAPasscode": "Lütfen bir geçiş kodu seçin",
+  "@pleaseChooseAPasscode": {
+    "type": "text",
+    "placeholders": {}
+  },
   "pleaseChooseAUsername": "Lütfen bir kullanıcı adı seçin",
   "@pleaseChooseAUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseClickOnLink": "Lütfen e-postadaki bağlantıya tıklayın ve devam edin.",
+  "@pleaseClickOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnter4Digits": "Lütfen 4 basamak girin veya uygulama kilidini devre dışı bırakmak için boş bırakın.",
+  "@pleaseEnter4Digits": {
     "type": "text",
     "placeholders": {}
   },
@@ -1020,8 +1654,18 @@
     "type": "text",
     "placeholders": {}
   },
+  "pleaseEnterSecurityKey": "Lütfen güvenlik anahtarınızı girin:",
+  "@pleaseEnterSecurityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
   "pleaseEnterYourPassword": "Lütfen parolanızı girin",
   "@pleaseEnterYourPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterYourPin": "Lütfen PIN kodunuzu girin",
+  "@pleaseEnterYourPin": {
     "type": "text",
     "placeholders": {}
   },
@@ -1030,8 +1674,43 @@
     "type": "text",
     "placeholders": {}
   },
+  "pleaseFollowInstructionsOnWeb": "Lütfen web sitesindeki talimatları izleyin ve \"İleri\" düğmesine dokunun.",
+  "@pleaseFollowInstructionsOnWeb": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "privacy": "Gizlilik",
+  "@privacy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicGroups": "Herkese Açık Gruplar",
+  "@publicGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicKey": "Ortak Anahtar",
+  "@publicKey": {
+    "type": "text",
+    "placeholders": {}
+  },
   "publicRooms": "Herkese Açık Odalar",
   "@publicRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicSpace": "Herkese açık alan",
+  "@publicSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pushRules": "Gönderme kuralları",
+  "@pushRules": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reason": "Neden",
+  "@reason": {
     "type": "text",
     "placeholders": {}
   },
@@ -1046,6 +1725,16 @@
     "placeholders": {
       "username": {}
     }
+  },
+  "redactMessage": "Mesajı düzenle",
+  "@redactMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "register": "Kaydol",
+  "@register": {
+    "type": "text",
+    "placeholders": {}
   },
   "reject": "Reddet",
   "@reject": {
@@ -1096,13 +1785,28 @@
     "type": "text",
     "placeholders": {}
   },
+  "removeYourAvatar": "Avatarınızı kaldırın",
+  "@removeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
   "renderRichContent": "Zengin mesaj içeriğini görüntüle",
   "@renderRichContent": {
     "type": "text",
     "placeholders": {}
   },
+  "replaceRoomWithNewerVersion": "Odayı yeni sürümle değiştir",
+  "@replaceRoomWithNewerVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
   "reply": "Yanıtla",
   "@reply": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reportMessage": "Mesajı bildir",
+  "@reportMessage": {
     "type": "text",
     "placeholders": {}
   },
@@ -1126,13 +1830,55 @@
     "type": "text",
     "placeholders": {}
   },
+  "roomVersion": "Oda sürümü",
+  "@roomVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
   "saturday": "Cumartesi",
   "@saturday": {
     "type": "text",
     "placeholders": {}
   },
+  "savedFileAs": "Dosya {filename} olarak kaydedildi",
+  "@savedFileAs": {
+    "type": "text",
+    "placeholders": {
+      "filename": {}
+    }
+  },
+  "saveFile": "Dosyayı kaydet",
+  "@saveFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveFileToFolder": "Dosyayı bu klasöre kaydet",
+  "@saveFileToFolder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "search": "Ara",
+  "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
   "searchForAChat": "Sohbet ara",
   "@searchForAChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "security": "Güvenlik",
+  "@security": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKey": "Güvenlik anahtarı",
+  "@securityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKeyLost": "Güvenlik anahtarı kayıp mı?",
+  "@securityKeyLost": {
     "type": "text",
     "placeholders": {}
   },
@@ -1169,6 +1915,20 @@
     "type": "text",
     "placeholders": {}
   },
+  "sendAsText": "Metin olarak gönder",
+  "@sendAsText": {
+    "type": "text"
+  },
+  "sendAudio": "Ses gönder",
+  "@sendAudio": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendBugReports": "sentry.io ile hata raporları göndermeye izin ver",
+  "@sendBugReports": {
+    "type": "text",
+    "placeholders": {}
+  },
   "sendFile": "Dosya gönder",
   "@sendFile": {
     "type": "text",
@@ -1176,6 +1936,26 @@
   },
   "sendImage": "Resim gönder",
   "@sendImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendMessages": "Mesaj gönder",
+  "@sendMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendOriginal": "Orijinali gönder",
+  "@sendOriginal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendSticker": "Çıkartma gönder",
+  "@sendSticker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendVideo": "Video gönder",
+  "@sendVideo": {
     "type": "text",
     "placeholders": {}
   },
@@ -1214,6 +1994,18 @@
       "username": {}
     }
   },
+  "sentCallInformations": "{senderName} arama bilgilerini gönderdi",
+  "@sentCallInformations": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "sentryInfo": "Gizliliğiniz hakkında bilgiler: https://sentry.io/security/",
+  "@sentryInfo": {
+    "type": "text",
+    "placeholders": {}
+  },
   "sessionVerified": "Oturum doğrulandı",
   "@sessionVerified": {
     "type": "text",
@@ -1224,6 +2016,16 @@
     "type": "text",
     "placeholders": {}
   },
+  "setAsCanonicalAlias": "Ana takma ad olarak ayarla",
+  "@setAsCanonicalAlias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setCustomEmotes": "Özel ifadeler ayarla",
+  "@setCustomEmotes": {
+    "type": "text",
+    "placeholders": {}
+  },
   "setGroupDescription": "Grup açıklaması ayarla",
   "@setGroupDescription": {
     "type": "text",
@@ -1231,6 +2033,11 @@
   },
   "setInvitationLink": "Davet bağlantısı ayarla",
   "@setInvitationLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setPermissionsLevel": "İzin seviyesini ayarla",
+  "@setPermissionsLevel": {
     "type": "text",
     "placeholders": {}
   },
@@ -1256,8 +2063,23 @@
       "username": {}
     }
   },
+  "shareLocation": "Konumu paylaş",
+  "@shareLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showPassword": "Parolayı göster",
+  "@showPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
   "signUp": "Hesap oluştur",
   "@signUp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "singlesignon": "Tek oturum açma",
+  "@singlesignon": {
     "type": "text",
     "placeholders": {}
   },
@@ -1266,13 +2088,40 @@
     "type": "text",
     "placeholders": {}
   },
+  "soundVibrationLedColor": "Ses, titreşim, LED rengi",
+  "@soundVibrationLedColor": {
+    "type": "text",
+    "placeholders": {}
+  },
   "sourceCode": "Kaynak kodları",
   "@sourceCode": {
     "type": "text",
     "placeholders": {}
   },
+  "spaceIsPublic": "Alan herkese açık",
+  "@spaceIsPublic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceName": "Alan adı",
+  "@spaceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "startedACall": "{senderName} bir arama başlattı",
+  "@startedACall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
   "startYourFirstChat": "Hemen ilk sohbetinize başlayın! 🙂\n- Mesaj düğmesine dokunun\n- Bir arkadaşın kullanıcı adını girin\n- Eğlenceli bir şekilde sohbet edin",
   "@startYourFirstChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "status": "Durum",
+  "@status": {
     "type": "text",
     "placeholders": {}
   },
@@ -1291,8 +2140,23 @@
     "type": "text",
     "placeholders": {}
   },
+  "synchronizingPleaseWait": "Eşzamanlanıyor… Lütfen bekleyin.",
+  "@synchronizingPleaseWait": {
+    "type": "text",
+    "placeholders": {}
+  },
   "systemTheme": "Sistem",
   "@systemTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapOnDeviceToVerify": "Doğrulamak için bir aygıta dokunun",
+  "@tapOnDeviceToVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapToShowImage": "Resmi göstermek için dokunun",
+  "@tapToShowImage": {
     "type": "text",
     "placeholders": {}
   },
@@ -1337,6 +2201,31 @@
     "type": "text",
     "placeholders": {}
   },
+  "toggleFavorite": "Sık Kullanılanlara Ekle/Çıkar",
+  "@toggleFavorite": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleMuted": "Sessize Al/Sessizden Çıkar",
+  "@toggleMuted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleUnread": "Okundu/Okunmadı Olarak İşaretle",
+  "@toggleUnread": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tooManyRequestsWarning": "Çok fazla istek. Lütfen daha sonra tekrar deneyin!",
+  "@tooManyRequestsWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transferFromAnotherDevice": "Başka bir aygıttan aktar",
+  "@transferFromAnotherDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
   "tryToSendAgain": "Tekrar göndermeyi deneyin",
   "@tryToSendAgain": {
     "type": "text",
@@ -1344,6 +2233,11 @@
   },
   "tuesday": "Salı",
   "@tuesday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unavailable": "Yok",
+  "@unavailable": {
     "type": "text",
     "placeholders": {}
   },
@@ -1382,8 +2276,18 @@
     "type": "text",
     "placeholders": {}
   },
+  "unlockChatBackup": "Sohbet yedeklemesinin kilidini aç",
+  "@unlockChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
   "unmuteChat": "Sohbeti sessizden çıkar",
   "@unmuteChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unpin": "Sabitlemeyi kaldır",
+  "@unpin": {
     "type": "text",
     "placeholders": {}
   },
@@ -1449,6 +2353,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "userNotVerified": "Kullanıcı doğrulanmadı",
+  "@userNotVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
   "userSentUnknownEvent": "{username} bir {type} etkinliği gönderdi",
   "@userSentUnknownEvent": {
     "type": "text",
@@ -1456,6 +2365,21 @@
       "username": {},
       "type": {}
     }
+  },
+  "userUnknownVerification": "Kullanıcının bilinmeyen bir doğrulama durumu var",
+  "@userUnknownVerification": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userVerified": "Kullanıcı doğrulandı",
+  "@userVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verified": "Doğrulandı",
+  "@verified": {
+    "type": "text",
+    "placeholders": {}
   },
   "verifiedSession": "Oturum başarıyla doğrulandı!",
   "@verifiedSession": {
@@ -1537,6 +2461,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "warning": "Uyarı!",
+  "@warning": {
+    "type": "text",
+    "placeholders": {}
+  },
   "warningEncryptionInBeta": "Uçtan uca şifreleme şimdilik Beta aşamasında! Risk alarak kullanın!",
   "@warningEncryptionInBeta": {
     "type": "text",
@@ -1552,8 +2481,33 @@
     "type": "text",
     "placeholders": {}
   },
+  "weSentYouAnEmail": "Size bir e-posta gönderdik",
+  "@weSentYouAnEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whoCanPerformWhichAction": "Kim hangi eylemi gerçekleştirebilir",
+  "@whoCanPerformWhichAction": {
+    "type": "text",
+    "placeholders": {}
+  },
   "whoIsAllowedToJoinThisGroup": "Bu gruba kimler katılabilir",
   "@whoIsAllowedToJoinThisGroup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whyDoYouWantToReportThis": "Bunu neden bildirmek istiyorsunuz?",
+  "@whyDoYouWantToReportThis": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wipeChatBackup": "Yeni bir güvenlik anahtarı oluşturmak için sohbet yedeğiniz silinsin mi?",
+  "@wipeChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "withTheseAddressesRecoveryDescription": "Bu adresler ile parolanızı kurtarabilirsiniz.",
+  "@withTheseAddressesRecoveryDescription": {
     "type": "text",
     "placeholders": {}
   },
@@ -1592,406 +2546,18 @@
     "type": "text",
     "placeholders": {}
   },
+  "yourChatsAreBeingSynced": "Sohbetleriniz eşzamanlanıyor…",
+  "@yourChatsAreBeingSynced": {
+    "type": "text",
+    "placeholders": {}
+  },
   "yourOwnUsername": "Kullanıcı adınız",
   "@yourOwnUsername": {
     "type": "text",
     "placeholders": {}
   },
-  "warning": "Uyarı!",
-  "@warning": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "unpin": "Sabitlemeyi kaldır",
-  "@unpin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "startedACall": "{senderName} bir arama başlattı",
-  "@startedACall": {
-    "type": "text",
-    "placeholders": {
-      "senderName": {}
-    }
-  },
-  "sentCallInformations": "{senderName} arama bilgilerini gönderdi",
-  "@sentCallInformations": {
-    "type": "text",
-    "placeholders": {
-      "senderName": {}
-    }
-  },
-  "sendVideo": "Video gönder",
-  "@sendVideo": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sendOriginal": "Orijinali gönder",
-  "@sendOriginal": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sendAudio": "Ses gönder",
-  "@sendAudio": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "changesHaveBeenSaved": "Değişiklikler kaydedildi",
-  "@changesHaveBeenSaved": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sentryInfo": "Gizliliğiniz hakkında bilgiler: https://sentry.io/security/",
-  "@sentryInfo": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sendBugReports": "sentry.io ile hata raporları göndermeye izin ver",
-  "@sendBugReports": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pin": "Sabitle",
-  "@pin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "passwordHasBeenChanged": "Parola değiştirildi",
-  "@passwordHasBeenChanged": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "privacy": "Gizlilik",
-  "@privacy": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "no": "Hayır",
-  "@no": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "joinRoom": "Odaya katıl",
-  "@joinRoom": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "ignoreListDescription": "Sizi rahatsız eden kullanıcıları yok sayabilirsiniz. Kişisel yok sayma listenizdeki kullanıcılardan herhangi bir mesaj veya oda daveti alamayacaksınız.",
-  "@ignoreListDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "ignoreUsername": "Kullanıcıyı yok say",
-  "@ignoreUsername": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "ignoredUsers": "Yok sayılan kullanıcılar",
-  "@ignoredUsers": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "endedTheCall": "{senderName} aramayı sonlandırdı",
-  "@endedTheCall": {
-    "type": "text",
-    "placeholders": {
-      "senderName": {}
-    }
-  },
-  "enableEmotesGlobally": "İfade paketini küresel olarak etkinleştir",
-  "@enableEmotesGlobally": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "emotePacks": "Oda için ifade paketleri",
-  "@emotePacks": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "deleteAccount": "Hesabı sil",
-  "@deleteAccount": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "deactivateAccountWarning": "Bu, kullanıcı hesabınızı devre dışı bırakacak. Bu geri alınamaz! Emin misiniz?",
-  "@deactivateAccountWarning": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "changeDeviceName": "Aygıt adını değiştir",
-  "@changeDeviceName": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "mention": "Bahset",
-  "@mention": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "unavailable": "Yok",
-  "@unavailable": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "offline": "Çevrim dışı",
-  "@offline": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "online": "Çevrim içi",
-  "@online": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "hideUnknownEvents": "Bilinmeyen etkinlikleri gizle",
-  "@hideUnknownEvents": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "hideRedactedEvents": "Düzenlenmiş etkinlikleri gizle",
-  "@hideRedactedEvents": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "changePassword": "Parolayı değiştir",
-  "@changePassword": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "encrypted": "Şifreli",
-  "@encrypted": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "deviceId": "Aygıt kimliği",
-  "@deviceId": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "withTheseAddressesRecoveryDescription": "Bu adresler ile parolanızı kurtarabilirsiniz.",
-  "@withTheseAddressesRecoveryDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "weSentYouAnEmail": "Size bir e-posta gönderdik",
-  "@weSentYouAnEmail": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pleaseClickOnLink": "Lütfen e-postadaki bağlantıya tıklayın ve devam edin.",
-  "@pleaseClickOnLink": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "passwordForgotten": "Parola unutuldu",
-  "@passwordForgotten": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "passwordRecovery": "Parola kurtarma",
-  "@passwordRecovery": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "iHaveClickedOnLink": "Bağlantıya tıkladım",
-  "@iHaveClickedOnLink": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "edit": "Düzenle",
-  "@edit": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "enterAnEmailAddress": "Bir e-posta adresi girin",
-  "@enterAnEmailAddress": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noPasswordRecoveryDescription": "Henüz parolanızı kurtarmak için bir yol eklemediniz.",
-  "@noPasswordRecoveryDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "notificationsEnabledForThisAccount": "Bu hesap için bildirimler etkinleştirildi",
-  "@notificationsEnabledForThisAccount": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "notifications": "Bildirimler",
-  "@notifications": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pushRules": "Gönderme kuralları",
-  "@pushRules": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "botMessages": "Bot mesajları",
-  "@botMessages": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "memberChanges": "Üye değişiklikleri",
-  "@memberChanges": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "inviteForMe": "Benim için davet et",
-  "@inviteForMe": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "containsUserName": "Kullanıcı adı içerir",
-  "@containsUserName": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "containsDisplayName": "Görünen ad içerir",
-  "@containsDisplayName": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "directChats": "Doğrudan Sohbetler",
-  "@directChats": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "soundVibrationLedColor": "Ses, titreşim, LED rengi",
-  "@soundVibrationLedColor": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "setPermissionsLevel": "İzin seviyesini ayarla",
-  "@setPermissionsLevel": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "setCustomEmotes": "Özel ifadeler ayarla",
-  "@setCustomEmotes": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "editChatPermissions": "Sohbet izinlerini düzenle",
-  "@editChatPermissions": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "whoCanPerformWhichAction": "Kim hangi eylemi gerçekleştirebilir",
-  "@whoCanPerformWhichAction": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "participant": "Katılımcı",
-  "@participant": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "configureChat": "Sohbeti yapılandır",
-  "@configureChat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sendMessages": "Mesaj gönder",
-  "@sendMessages": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "defaultPermissionLevel": "Öntanımlı izin seviyesi",
-  "@defaultPermissionLevel": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "editRoomAvatar": "Oda avatarını düzenle",
-  "@editRoomAvatar": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "replaceRoomWithNewerVersion": "Odayı yeni sürümle değiştir",
-  "@replaceRoomWithNewerVersion": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "enableEncryption": "Şifrelemeyi etkinleştir",
-  "@enableEncryption": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "editBlockedServers": "Engellenen sunucuları düzenle",
-  "@editBlockedServers": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noDescription": "Açıklama yok",
-  "@noDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "discoverGroups": "Grupları keşfet",
-  "@discoverGroups": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "toggleUnread": "Okundu/Okunmadı Olarak İşaretle",
-  "@toggleUnread": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "toggleMuted": "Sessize Al/Sessizden Çıkar",
-  "@toggleMuted": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "toggleFavorite": "Sık Kullanılanlara Ekle/Çıkar",
-  "@toggleFavorite": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "numUsersTyping": "{count} kullanıcı yazıyor…",
-  "@numUsersTyping": {
-    "type": "text",
-    "placeholders": {
-      "count": {}
-    }
-  },
   "yourPublicKey": "Ortak anahtarınız",
   "@yourPublicKey": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "publicKey": "Ortak Anahtar",
-  "@publicKey": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "tooManyRequestsWarning": "Çok fazla istek. Lütfen daha sonra tekrar deneyin!",
-  "@tooManyRequestsWarning": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noConnectionToTheServer": "Sunucuyla bağlantı yok",
-  "@noConnectionToTheServer": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "security": "Güvenlik",
-  "@security": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "appLock": "Uygulama kilidi",
-  "@appLock": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pleaseChooseAPasscode": "Lütfen bir geçiş kodu seçin",
-  "@pleaseChooseAPasscode": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pleaseEnter4Digits": "Lütfen 4 basamak girin veya uygulama kilidini devre dışı bırakmak için boş bırakın.",
-  "@pleaseEnter4Digits": {
     "type": "text",
     "placeholders": {}
   },
@@ -2002,229 +2568,8 @@
       "homeserver": {}
     }
   },
-  "pleaseFollowInstructionsOnWeb": "Lütfen web sitesindeki talimatları izleyin ve \"İleri\" düğmesine dokunun.",
-  "@pleaseFollowInstructionsOnWeb": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "next": "İleri",
-  "@next": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "discover": "Keşfet",
-  "@discover": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "groups": "Gruplar",
-  "@groups": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "messages": "Mesajlar",
-  "@messages": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "status": "Durum",
-  "@status": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "search": "Ara",
-  "@search": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "ignore": "Yok say",
-  "@ignore": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "inoffensive": "Rahatsız edici değil",
-  "@inoffensive": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "reportMessage": "Mesajı bildir",
-  "@reportMessage": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "redactMessage": "Mesajı düzenle",
-  "@redactMessage": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "contentHasBeenReported": "İçerik, sunucu yöneticilerine bildirildi",
-  "@contentHasBeenReported": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "reason": "Neden",
-  "@reason": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "whyDoYouWantToReportThis": "Bunu neden bildirmek istiyorsunuz?",
-  "@whyDoYouWantToReportThis": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "offensive": "Rahatsız edici",
-  "@offensive": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "extremeOffensive": "Aşırı rahatsız edici",
-  "@extremeOffensive": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "howOffensiveIsThisContent": "Bu içerik ne kadar rahatsız edici?",
-  "@howOffensiveIsThisContent": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "all": "Tümü",
-  "@all": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "contacts": "Kişiler",
-  "@contacts": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "newChat": "Yeni sohbet",
-  "@newChat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noStatusesFound": "Şimdiye kadar hiçbir durum bulunamadı.",
-  "@noStatusesFound": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "addNewContact": "Yeni kişi ekle",
-  "@addNewContact": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "areYouSureYouWantToLogout": "Oturumu açmak istediğinizden emin misiniz?",
-  "@areYouSureYouWantToLogout": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noPublicRoomsFound": "Herkese açık oda bulunamadı…",
-  "@noPublicRoomsFound": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "badServerLoginTypesException": "Ana sunucu aşağıdaki oturum açma türlerini destekliyor:\n{serverVersions}\nAncak bu uygulama yalnızca aşağıdakileri destekliyor:\n{supportedVersions}",
-  "@badServerLoginTypesException": {
-    "type": "text",
-    "placeholders": {
-      "serverVersions": {},
-      "supportedVersions": {}
-    }
-  },
-  "badServerVersionsException": "Ana sunucu aşağıdaki Spec sürümlerini destekliyor:\n{serverVersions}\nAncak bu uygulama yalnızca {supportedVersions} destekliyor",
-  "@badServerVersionsException": {
-    "type": "text",
-    "placeholders": {
-      "serverVersions": {},
-      "supportedVersions": {}
-    }
-  },
-  "wipeChatBackup": "Yeni bir güvenlik anahtarı oluşturmak için sohbet yedeğiniz silinsin mi?",
-  "@wipeChatBackup": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "fontSize": "Yazı tipi boyutu",
-  "@fontSize": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "audioPlayerPause": "Duraklat",
-  "@audioPlayerPause": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "chatBackupDescription": "Sohbet yedeklemeniz bir güvenlik anahtarı ile güvence altına alındı. Lütfen kaybetmediğinizden emin olun.",
-  "@chatBackupDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pleaseEnterSecurityKey": "Lütfen güvenlik anahtarınızı girin:",
-  "@pleaseEnterSecurityKey": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "transferFromAnotherDevice": "Başka bir aygıttan aktar",
-  "@transferFromAnotherDevice": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "everythingReady": "Herşey hazır!",
-  "@everythingReady": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "securityKeyLost": "Güvenlik anahtarı kayıp mı?",
-  "@securityKeyLost": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "chatBackup": "Sohbet yedekleme",
-  "@chatBackup": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "copyToClipboard": "Panoya kopyala",
-  "@copyToClipboard": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "securityKey": "Güvenlik anahtarı",
-  "@securityKey": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "clearText": "Metni temizle",
-  "@clearText": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "userUnknownVerification": "Kullanıcının bilinmeyen bir doğrulama durumu var",
-  "@userUnknownVerification": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "userNotVerified": "Kullanıcı doğrulanmadı",
-  "@userNotVerified": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "userVerified": "Kullanıcı doğrulandı",
-  "@userVerified": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "audioPlayerPlay": "Oynat",
-  "@audioPlayerPlay": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "showPassword": "Parolayı göster",
-  "@showPassword": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "addEmail": "E-posta ekle",
-  "@addEmail": {
+  "zoomIn": "Yakınlaştır",
+  "@zoomIn": {
     "type": "text",
     "placeholders": {}
   },
@@ -2232,377 +2577,5 @@
   "@zoomOut": {
     "type": "text",
     "placeholders": {}
-  },
-  "zoomIn": "Yakınlaştır",
-  "@zoomIn": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "blocked": "Engellendi",
-  "@blocked": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "verified": "Doğrulandı",
-  "@verified": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "moreEvents": "{count,plural, =1{1 etkinlik daha} other{{count} etkinlik daha}}",
-  "@moreEvents": {
-    "type": "text",
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "unlockChatBackup": "Sohbet yedeklemesinin kilidini aç",
-  "@unlockChatBackup": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noEncryptionForPublicRooms": "Şifrelemeyi yalnızca oda artık herkese açık olmadığında etkinleştirebilirsiniz.",
-  "@noEncryptionForPublicRooms": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "deviceVerifyDescription": "Şifreleme yalnızca tüm aygıtlar doğrulandığında güvenlidir.",
-  "@deviceVerifyDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "tapOnDeviceToVerify": "Doğrulamak için bir aygıta dokunun",
-  "@tapOnDeviceToVerify": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "friends": "Arkadaşlar",
-  "@friends": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "addNewFriend": "Yeni arkadaş ekle",
-  "@addNewFriend": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "publicGroups": "Herkese Açık Gruplar",
-  "@publicGroups": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "people": "İnsanlar",
-  "@people": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "chats": "Sohbetler",
-  "@chats": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "goToTheNewRoom": "Yeni odaya git",
-  "@goToTheNewRoom": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "roomVersion": "Oda sürümü",
-  "@roomVersion": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pleaseEnterYourPin": "Lütfen PIN kodunuzu girin",
-  "@pleaseEnterYourPin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "clearArchive": "Arşivi temizle",
-  "@clearArchive": {},
-  "setAsCanonicalAlias": "Ana takma ad olarak ayarla",
-  "@setAsCanonicalAlias": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "editRoomAliases": "Oda takma adlarını düzenle",
-  "@editRoomAliases": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "optionalAddEmail": "(İsteğe bağlı) E-posta adresiniz",
-  "@optionalAddEmail": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "invalidEmail": "Geçersiz e-posta",
-  "@invalidEmail": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "useSSO": "Tekli oturum açma kullan",
-  "@useSSO": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "or": "Veya",
-  "@or": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "oopsPushError": "Tüh! Maalesef anlık bildirimlerini ayarlarken bir hata oluştu.",
-  "@oopsPushError": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "removeYourAvatar": "Avatarınızı kaldırın",
-  "@removeYourAvatar": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "changeYourAvatar": "Avatarınızı değiştirin",
-  "@changeYourAvatar": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pleaseChoose": "Lütfen seçin",
-  "@pleaseChoose": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "singlesignon": "Tek oturum açma",
-  "@singlesignon": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "loginWith": "{brand} ile oturum aç",
-  "@loginWith": {
-    "type": "text",
-    "placeholders": {
-      "brand": {}
-    }
-  },
-  "register": "Kaydol",
-  "@register": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "enableChatBackup": "Sohbetlerinize erişimi asla kaybetmemek için sohbet yedeklemeyi etkinleştirin.",
-  "@enableChatBackup": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "yourChatsAreBeingSynced": "Sohbetleriniz eşzamanlanıyor…",
-  "@yourChatsAreBeingSynced": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "synchronizingPleaseWait": "Eşzamanlanıyor… Lütfen bekleyin.",
-  "@synchronizingPleaseWait": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "savedFileAs": "Dosya {filename} olarak kaydedildi",
-  "@savedFileAs": {
-    "type": "text",
-    "placeholders": {
-      "filename": {}
-    }
-  },
-  "saveFileToFolder": "Dosyayı bu klasöre kaydet",
-  "@saveFileToFolder": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "saveFile": "Dosyayı kaydet",
-  "@saveFile": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "tapToShowImage": "Resmi göstermek için dokunun",
-  "@tapToShowImage": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "locationPermissionDeniedNotice": "Konum izni reddedildi. Lütfen konumunuzu paylaşabilmek için izin verin.",
-  "@locationPermissionDeniedNotice": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "locationDisabledNotice": "Konum hizmetleri devre dışı. Lütfen konumunuzu paylaşabilmek için etkinleştirin.",
-  "@locationDisabledNotice": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sendSticker": "Çıkartma gönder",
-  "@sendSticker": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sendAsText": "Metin olarak gönder",
-  "@sendAsText": {
-    "type": "text"
-  },
-  "shareLocation": "Konumu paylaş",
-  "@shareLocation": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "spaceName": "Alan adı",
-  "@spaceName": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "openInMaps": "Haritalarda aç",
-  "@openInMaps": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "obtainingLocation": "Konum alınıyor…",
-  "@obtainingLocation": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "spaceIsPublic": "Alan herkese açık",
-  "@spaceIsPublic": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "enterASpacepName": "Bir alan adı girin",
-  "@enterASpacepName": {},
-  "dontAskAgain": "İptal et ve bir daha sorma",
-  "@dontAskAgain": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "errorObtainingLocation": "Konum alınırken hata oluştu: {error}",
-  "@errorObtainingLocation": {
-    "type": "text",
-    "placeholders": {
-      "error": {}
-    }
-  },
-  "createNewSpace": "Yeni alan oluştur",
-  "@createNewSpace": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "publicSpace": "Herkese açık alan",
-  "@publicSpace": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "commandMissing": "{command} bir komut değil.",
-  "@commandMissing": {
-    "type": "text",
-    "placeholders": {
-      "command": {}
-    },
-    "description": "State that {command} is not a valid /command."
-  },
-  "commandInvalid": "Komut geçersiz",
-  "@commandInvalid": {
-    "type": "text"
-  },
-  "commandHintMyRoomAvatar": "Bu oda için resminizi ayarlayın (mxc-uri ile)",
-  "@commandHintMyRoomAvatar": {
-    "type": "text",
-    "description": "Usage hint for the command /myroomavatar"
-  },
-  "commandHintMyRoomNick": "Bu oda için görünen adınızı ayarlayın",
-  "@commandHintMyRoomNick": {
-    "type": "text",
-    "description": "Usage hint for the command /myroomnick"
-  },
-  "commandHintInvite": "Verilen kullanıcıyı bu odaya davet edin",
-  "@commandHintInvite": {
-    "type": "text",
-    "description": "Usage hint for the command /invite"
-  },
-  "commandHintUnBan": "Verilen kullanıcının bu odadaki yasağını kaldırın",
-  "@commandHintUnBan": {
-    "type": "text",
-    "description": "Usage hint for the command /unban"
-  },
-  "commandHintBan": "Verilen kullanıcıyı bu odadan yasaklayın",
-  "@commandHintBan": {
-    "type": "text",
-    "description": "Usage hint for the command /ban"
-  },
-  "commandHintKick": "Verilen kullanıcıyı bu odadan kaldırın",
-  "@commandHintKick": {
-    "type": "text",
-    "description": "Usage hint for the command /kick"
-  },
-  "commandHintOp": "Verilen kullanıcının güç seviyesini ayarlayın (öntanımlı: 50)",
-  "@commandHintOp": {
-    "type": "text",
-    "description": "Usage hint for the command /op"
-  },
-  "commandHintLeave": "Bu odadan ayrılın",
-  "@commandHintLeave": {
-    "type": "text",
-    "description": "Usage hint for the command /leave"
-  },
-  "commandHintJoin": "Verilen odaya katılın",
-  "@commandHintJoin": {
-    "type": "text",
-    "description": "Usage hint for the command /join"
-  },
-  "commandHintReact": "Tepki olarak yanıt gönderin",
-  "@commandHintReact": {
-    "type": "text",
-    "description": "Usage hint for the command /react"
-  },
-  "commandHintHtml": "HTML biçimli metin gönderin",
-  "@commandHintHtml": {
-    "type": "text",
-    "description": "Usage hint for the command /html"
-  },
-  "commandHintPlain": "Biçimlendirilmemiş metin gönderin",
-  "@commandHintPlain": {
-    "type": "text",
-    "description": "Usage hint for the command /plain"
-  },
-  "commandHintMe": "Kendinizi tanımlayın",
-  "@commandHintMe": {
-    "type": "text",
-    "description": "Usage hint for the command /me"
-  },
-  "commandHintSend": "Metin gönderin",
-  "@commandHintSend": {
-    "type": "text",
-    "description": "Usage hint for the command /send"
-  },
-  "allChats": "Tüm sohbetler",
-  "@allChats": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "cantOpenUri": "{uri} URI'si açılamıyor",
-  "@cantOpenUri": {
-    "type": "text",
-    "placeholders": {
-      "uri": {}
-    }
-  },
-  "noMatrixServer": "{server1} matrix sunucusu değil, onun yerine {server2} kullanılsın mı?",
-  "@noMatrixServer": {
-    "type": "text",
-    "placeholders": {
-      "server1": {},
-      "server2": {}
-    }
-  },
-  "autoplayImages": "Canlandırmalı çıkartmaları ve ifadeleri otomatik olarak oynat",
-  "@autoplayImages": {
-    "type": "text",
-    "placeholder": {}
-  },
-  "chatHasBeenRemovedFromThisSpace": "Sohbet bu alandan kaldırıldı",
-  "@chatHasBeenRemovedFromThisSpace": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "chatHasBeenAddedToThisSpace": "Sohbet bu alana eklendi",
-  "@chatHasBeenAddedToThisSpace": {},
-  "addToSpace": "Alana ekle",
-  "@addToSpace": {}
+  }
 }

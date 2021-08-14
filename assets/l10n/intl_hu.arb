@@ -1,6 +1,6 @@
 {
   "@@locale": "hu",
-  "@@last_modified": "2020-09-23 11:46:02.295098",
+  "@@last_modified": "2021-08-14 12:06:11.663361",
   "about": "Névjegy",
   "@about": {
     "type": "text",
@@ -54,6 +54,13 @@
   "@alreadyHaveAnAccount": {
     "type": "text",
     "placeholders": {}
+  },
+  "answeredTheCall": "{senderName} megválaszolta a hívást",
+  "@answeredTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
   },
   "anyoneCanJoin": "Bárki csatlakozhat",
   "@anyoneCanJoin": {
@@ -135,13 +142,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "byDefaultYouWillBeConnectedTo": "Alapértelmezetten ehhez kapcsolódik: {homeserver}",
-  "@byDefaultYouWillBeConnectedTo": {
-    "type": "text",
-    "placeholders": {
-      "homeserver": {}
-    }
-  },
   "cachedKeys": "Kulcsok gyorsítótárazása sikeres!",
   "@cachedKeys": {
     "type": "text",
@@ -149,6 +149,11 @@
   },
   "cancel": "Mégse",
   "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeDeviceName": "Eszköznév módosítása",
+  "@changeDeviceName": {
     "type": "text",
     "placeholders": {}
   },
@@ -258,6 +263,16 @@
   },
   "changelog": "Változásnapló",
   "@changelog": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changePassword": "Jelszó módosítása",
+  "@changePassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changesHaveBeenSaved": "A változások mentve",
+  "@changesHaveBeenSaved": {
     "type": "text",
     "placeholders": {}
   },
@@ -452,8 +467,18 @@
       "day": {}
     }
   },
+  "deactivateAccountWarning": "Ez deaktiválja a felhasználói fiókodat. Ez nem vonható vissza! Biztos vagy benne?",
+  "@deactivateAccountWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
   "delete": "Törlés",
   "@delete": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteAccount": "Fiók törlése",
+  "@deleteAccount": {
     "type": "text",
     "placeholders": {}
   },
@@ -517,6 +542,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "emotePacks": "Hangulatjel-csomagok a szobához",
+  "@emotePacks": {
+    "type": "text",
+    "placeholders": {}
+  },
   "emoteSettings": "Hangulatjel-beállítások",
   "@emoteSettings": {
     "type": "text",
@@ -534,6 +564,11 @@
   },
   "emptyChat": "Üres csevegés",
   "@emptyChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEmotesGlobally": "Hangulatjel-csomag engedélyezése globálisan",
+  "@enableEmotesGlobally": {
     "type": "text",
     "placeholders": {}
   },
@@ -561,6 +596,13 @@
   "@end2endEncryptionSettings": {
     "type": "text",
     "placeholders": {}
+  },
+  "endedTheCall": "{senderName} befejezte a hívást",
+  "@endedTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
   },
   "enterAGroupName": "Adj meg egy csoportnevet",
   "@enterAGroupName": {
@@ -662,6 +704,16 @@
     "type": "text",
     "placeholders": {}
   },
+  "hideRedactedEvents": "Visszavont események elrejtése",
+  "@hideRedactedEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideUnknownEvents": "Ismeretlen események elrejtése",
+  "@hideUnknownEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
   "homeserverIsNotCompatible": "Ez a Matrix-kiszolgáló nem kompatibilis",
   "@homeserverIsNotCompatible": {
     "type": "text",
@@ -674,6 +726,21 @@
   },
   "identity": "Azonosító",
   "@identity": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignoredUsers": "Figyelmen kívül hagyott felhasználók",
+  "@ignoredUsers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignoreListDescription": "Figyelmen kívül hagyhatja azon felhasználókat, akik zavarják. Nem fog üzeneteket vagy szobameghívókat kapni a személyes listáján szereplő felhasználóktól.",
+  "@ignoreListDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignoreUsername": "Felhasználó figyelmen kívül hagyása",
+  "@ignoreUsername": {
     "type": "text",
     "placeholders": {}
   },
@@ -736,6 +803,11 @@
     "placeholders": {
       "username": {}
     }
+  },
+  "joinRoom": "Csatlakozás a szobához",
+  "@joinRoom": {
+    "type": "text",
+    "placeholders": {}
   },
   "keysCached": "Kulcsok gyorsítótárazva",
   "@keysCached": {
@@ -854,6 +926,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "mention": "Megemlítés",
+  "@mention": {
+    "type": "text",
+    "placeholders": {}
+  },
   "messageWillBeRemovedWarning": "Az üzenet minden résztvevő számára törlődni fog",
   "@messageWillBeRemovedWarning": {
     "type": "text",
@@ -884,13 +961,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "newPrivateChat": "Új privát csevegés",
-  "@newPrivateChat": {
+  "newVerificationRequest": "Új hitelesítési kérelem!",
+  "@newVerificationRequest": {
     "type": "text",
     "placeholders": {}
   },
-  "newVerificationRequest": "Új hitelesítési kérelem!",
-  "@newVerificationRequest": {
+  "no": "Nem",
+  "@no": {
     "type": "text",
     "placeholders": {}
   },
@@ -941,8 +1018,18 @@
       "number": {}
     }
   },
+  "offline": "Offline",
+  "@offline": {
+    "type": "text",
+    "placeholders": {}
+  },
   "ok": "OK",
   "@ok": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "online": "Online",
+  "@online": {
     "type": "text",
     "placeholders": {}
   },
@@ -991,8 +1078,18 @@
     "type": "text",
     "placeholders": {}
   },
+  "passwordHasBeenChanged": "A jelszó módosítva",
+  "@passwordHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
   "pickImage": "Kép választása",
   "@pickImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pin": "Rögzítés",
+  "@pin": {
     "type": "text",
     "placeholders": {}
   },
@@ -1020,6 +1117,11 @@
   },
   "pleaseEnterYourUsername": "Add meg a felhasználónevedet",
   "@pleaseEnterYourUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "privacy": "Adatvédelem",
+  "@privacy": {
     "type": "text",
     "placeholders": {}
   },
@@ -1162,6 +1264,16 @@
     "type": "text",
     "placeholders": {}
   },
+  "sendAudio": "Hangüzenet küldése",
+  "@sendAudio": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendBugReports": "Hibajelentések engedélyezése a sentry.io-val",
+  "@sendBugReports": {
+    "type": "text",
+    "placeholders": {}
+  },
   "sendFile": "Fájl küldése",
   "@sendFile": {
     "type": "text",
@@ -1169,6 +1281,16 @@
   },
   "sendImage": "Kép küldése",
   "@sendImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendOriginal": "Eredeti küldése",
+  "@sendOriginal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendVideo": "Videó küldése",
+  "@sendVideo": {
     "type": "text",
     "placeholders": {}
   },
@@ -1206,6 +1328,18 @@
     "placeholders": {
       "username": {}
     }
+  },
+  "sentCallInformations": "{senderName} hívásinformációt küldött",
+  "@sentCallInformations": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "sentryInfo": "Adatvédelmi információk: https://sentry.io/security/",
+  "@sentryInfo": {
+    "type": "text",
+    "placeholders": {}
   },
   "sessionVerified": "Munkamenet hitelesítve",
   "@sessionVerified": {
@@ -1263,6 +1397,13 @@
   "@sourceCode": {
     "type": "text",
     "placeholders": {}
+  },
+  "startedACall": "{senderName} hívást indított",
+  "@startedACall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
   },
   "startYourFirstChat": "Kezdj el csevegni :-)",
   "@startYourFirstChat": {
@@ -1340,6 +1481,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "unavailable": "Nem érhető el",
+  "@unavailable": {
+    "type": "text",
+    "placeholders": {}
+  },
   "unbannedUser": "{username} feloldotta {targetName} kitiltását",
   "@unbannedUser": {
     "type": "text",
@@ -1377,6 +1523,11 @@
   },
   "unmuteChat": "Csevegés némításának megszüntetése",
   "@unmuteChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unpin": "Rögzítés megszüntetése",
+  "@unpin": {
     "type": "text",
     "placeholders": {}
   },
@@ -1530,6 +1681,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "warning": "Figyelmeztetés!",
+  "@warning": {
+    "type": "text",
+    "placeholders": {}
+  },
   "warningEncryptionInBeta": "A végpontok közötti titkosítás egyelőre béta! Csak saját felelősségre!",
   "@warningEncryptionInBeta": {
     "type": "text",
@@ -1589,173 +1745,5 @@
   "@yourOwnUsername": {
     "type": "text",
     "placeholders": {}
-  },
-  "ignoreListDescription": "Figyelmen kívül hagyhatja azon felhasználókat, akik zavarják. Nem fog üzeneteket vagy szobameghívókat kapni a személyes listáján szereplő felhasználóktól.",
-  "@ignoreListDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "hideRedactedEvents": "Visszavont események elrejtése",
-  "@hideRedactedEvents": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "warning": "Figyelmeztetés!",
-  "@warning": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "unpin": "Rögzítés megszüntetése",
-  "@unpin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "startedACall": "{senderName} hívást indított",
-  "@startedACall": {
-    "type": "text",
-    "placeholders": {
-      "senderName": {}
-    }
-  },
-  "sentCallInformations": "{senderName} hívásinformációt küldött",
-  "@sentCallInformations": {
-    "type": "text",
-    "placeholders": {
-      "senderName": {}
-    }
-  },
-  "sendAudio": "Hangüzenet küldése",
-  "@sendAudio": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sendVideo": "Videó küldése",
-  "@sendVideo": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sendOriginal": "Eredeti küldése",
-  "@sendOriginal": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "no": "Nem",
-  "@no": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "changesHaveBeenSaved": "A változások mentve",
-  "@changesHaveBeenSaved": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sentryInfo": "Adatvédelmi információk: https://sentry.io/security/",
-  "@sentryInfo": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sendBugReports": "Hibajelentések engedélyezése a sentry.io-val",
-  "@sendBugReports": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "privacy": "Adatvédelem",
-  "@privacy": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pin": "Rögzítés",
-  "@pin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "passwordHasBeenChanged": "A jelszó módosítva",
-  "@passwordHasBeenChanged": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "unavailable": "Nem érhető el",
-  "@unavailable": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "offline": "Offline",
-  "@offline": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "online": "Online",
-  "@online": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "mention": "Megemlítés",
-  "@mention": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "joinRoom": "Csatlakozás a szobához",
-  "@joinRoom": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "ignoreUsername": "Felhasználó figyelmen kívül hagyása",
-  "@ignoreUsername": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "ignoredUsers": "Figyelmen kívül hagyott felhasználók",
-  "@ignoredUsers": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "hideUnknownEvents": "Ismeretlen események elrejtése",
-  "@hideUnknownEvents": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "endedTheCall": "{senderName} befejezte a hívást",
-  "@endedTheCall": {
-    "type": "text",
-    "placeholders": {
-      "senderName": {}
-    }
-  },
-  "enableEmotesGlobally": "Hangulatjel-csomag engedélyezése globálisan",
-  "@enableEmotesGlobally": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "emotePacks": "Hangulatjel-csomagok a szobához",
-  "@emotePacks": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "deleteAccount": "Fiók törlése",
-  "@deleteAccount": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "deactivateAccountWarning": "Ez deaktiválja a felhasználói fiókodat. Ez nem vonható vissza! Biztos vagy benne?",
-  "@deactivateAccountWarning": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "changePassword": "Jelszó módosítása",
-  "@changePassword": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "changeDeviceName": "Eszköznév módosítása",
-  "@changeDeviceName": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "answeredTheCall": "{senderName} megválaszolta a hívást",
-  "@answeredTheCall": {
-    "type": "text",
-    "placeholders": {
-      "senderName": {}
-    }
   }
 }

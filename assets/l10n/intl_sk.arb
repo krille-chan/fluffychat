@@ -1,6 +1,6 @@
 {
   "@@locale": "sk",
-  "@@last_modified": "2020-09-23 11:46:01.877200",
+  "@@last_modified": "2021-08-14 12:06:11.489636",
   "about": "O aplikácii",
   "@about": {
     "type": "text",
@@ -134,13 +134,6 @@
   "@blockDevice": {
     "type": "text",
     "placeholders": {}
-  },
-  "byDefaultYouWillBeConnectedTo": "V základnom nastavení budete pripojený k {homeserver}",
-  "@byDefaultYouWillBeConnectedTo": {
-    "type": "text",
-    "placeholders": {
-      "homeserver": {}
-    }
   },
   "cachedKeys": "Klúče sa úspešne uložili!",
   "@cachedKeys": {
@@ -881,11 +874,6 @@
   },
   "newMessageInFluffyChat": "Nová správa v FluffyChate",
   "@newMessageInFluffyChat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "newPrivateChat": "Nový súkromný chat",
-  "@newPrivateChat": {
     "type": "text",
     "placeholders": {}
   },

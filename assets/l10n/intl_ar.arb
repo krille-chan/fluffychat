@@ -1,6 +1,6 @@
 {
   "@@locale": "ar",
-  "@@last_modified": "2020-09-23T11:45:42.519831",
+  "@@last_modified": "2021-08-14 12:06:11.879921",
   "about": "حول",
   "@about": {
     "type": "text",
@@ -142,13 +142,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "byDefaultYouWillBeConnectedTo": "{homeserver} هو الخادم الافتراضي",
-  "@byDefaultYouWillBeConnectedTo": {
-    "type": "text",
-    "placeholders": {
-      "homeserver": {}
-    }
-  },
   "cachedKeys": "",
   "@cachedKeys": {
     "type": "text",
@@ -166,20 +159,20 @@
       "username": {}
     }
   },
-  "changedTheChatNameTo": "غيَّر {username} اسم المحادثة الى: '{chatname}'",
-  "@changedTheChatNameTo": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "chatname": {}
-    }
-  },
   "changedTheChatDescriptionTo": "غيَّر {username} وصف المحادثة الى: '{description}'",
   "@changedTheChatDescriptionTo": {
     "type": "text",
     "placeholders": {
       "username": {},
       "description": {}
+    }
+  },
+  "changedTheChatNameTo": "غيَّر {username} اسم المحادثة الى: '{chatname}'",
+  "@changedTheChatNameTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "chatname": {}
     }
   },
   "changedTheChatPermissions": "غيَّر {username} أذون المحادثة",
@@ -196,11 +189,6 @@
       "username": {},
       "displayname": {}
     }
-  },
-  "changeTheHomeserver": "غيّر الخادم",
-  "@changeTheHomeserver": {
-    "type": "text",
-    "placeholders": {}
   },
   "changedTheGuestAccessRules": "غيّر {username} قواعد وصول الزوار",
   "@changedTheGuestAccessRules": {
@@ -273,18 +261,33 @@
     "type": "text",
     "placeholders": {}
   },
+  "changesHaveBeenSaved": "حُفظت التغييرات",
+  "@changesHaveBeenSaved": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeTheHomeserver": "غيّر الخادم",
+  "@changeTheHomeserver": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeTheme": "غيّر أسلوبك",
+  "@changeTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
   "changeTheNameOfTheGroup": "غيِّر اسم المجموعة",
   "@changeTheNameOfTheGroup": {
     "type": "text",
     "placeholders": {}
   },
-  "changeWallpaper": "غيِّر الخلفية",
-  "@changeWallpaper": {
+  "changeTheServer": "غيِّر الخادم",
+  "@changeTheServer": {
     "type": "text",
     "placeholders": {}
   },
-  "changeTheServer": "غيِّر الخادم",
-  "@changeTheServer": {
+  "changeWallpaper": "غيِّر الخلفية",
+  "@changeWallpaper": {
     "type": "text",
     "placeholders": {}
   },
@@ -424,6 +427,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "darkTheme": "داكن",
+  "@darkTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
   "dateAndTimeOfDay": "",
   "@dateAndTimeOfDay": {
     "type": "text",
@@ -449,13 +457,13 @@
       "day": {}
     }
   },
-  "delete": "احذف",
-  "@delete": {
+  "deactivateAccountWarning": "لا مجال للعودة، أتأكد تعطيل حسابك؟",
+  "@deactivateAccountWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "deactivateAccountWarning": "لا مجال للعودة، أتأكد تعطيل حسابك؟",
-  "@deactivateAccountWarning": {
+  "delete": "احذف",
+  "@delete": {
     "type": "text",
     "placeholders": {}
   },
@@ -494,6 +502,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "donate": "تبرع",
+  "@donate": {
+    "type": "text",
+    "placeholders": {}
+  },
   "downloadFile": "نزِّل الملف",
   "@downloadFile": {
     "type": "text",
@@ -501,6 +514,21 @@
   },
   "editDisplayname": "حرر الاسم العلني",
   "@editDisplayname": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editJitsiInstance": "غيِّر خادم جيتسي",
+  "@editJitsiInstance": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteExists": "الانفعالة موجودة مسبقا!",
+  "@emoteExists": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteInvalid": "رمز الانفعالة غير صالح!",
+  "@emoteInvalid": {
     "type": "text",
     "placeholders": {}
   },
@@ -516,16 +544,6 @@
   },
   "emoteWarnNeedToPick": "اختر صورة ورمزا للانفعالة!",
   "@emoteWarnNeedToPick": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "emoteExists": "الانفعالة موجودة مسبقا!",
-  "@emoteExists": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "emoteInvalid": "رمز الانفعالة غير صالح!",
-  "@emoteInvalid": {
     "type": "text",
     "placeholders": {}
   },
@@ -686,13 +704,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "ignoreUsername": "تجاهل اسم المستخدم",
-  "@ignoreUsername": {
+  "ignoreListDescription": "يمكنك تجاهل المستخدمين المزعجين، لن يتمكنوا من مراسلتك أو دعوتك لغرفة ما داموا في قائمة التجاهل.",
+  "@ignoreListDescription": {
     "type": "text",
     "placeholders": {}
   },
-  "ignoreListDescription": "يمكنك تجاهل المستخدمين المزعجين، لن يتمكنوا من مراسلتك أو دعوتك لغرفة ما داموا في قائمة التجاهل.",
-  "@ignoreListDescription": {
+  "ignoreUsername": "تجاهل اسم المستخدم",
+  "@ignoreUsername": {
     "type": "text",
     "placeholders": {}
   },
@@ -718,14 +736,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "دعاك {username} لاستخدام فلافي-شات. \n1. ثبت فلافي-شات: https://fluffychat.im \n2. لج أو سجل\n3. افتح رابط الدعوة: {link}",
-  "@inviteText": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "link": {}
-    }
-  },
   "invitedUser": "{username} دعا {targetName}",
   "@invitedUser": {
     "type": "text",
@@ -739,6 +749,14 @@
     "type": "text",
     "placeholders": {}
   },
+  "inviteText": "دعاك {username} لاستخدام فلافي-شات. \n1. ثبت فلافي-شات: https://fluffychat.im \n2. لج أو سجل\n3. افتح رابط الدعوة: {link}",
+  "@inviteText": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "link": {}
+    }
+  },
   "isDeviceKeyCorrect": "هل مفتاح الجهاز صحيح؟",
   "@isDeviceKeyCorrect": {
     "type": "text",
@@ -746,11 +764,6 @@
   },
   "isTyping": "يكتب...",
   "@isTyping": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "editJitsiInstance": "غيِّر خادم جيتسي",
-  "@editJitsiInstance": {
     "type": "text",
     "placeholders": {}
   },
@@ -797,28 +810,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "leave": "غادر",
-  "@leave": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "leftTheChat": "غادر المحادثة",
-  "@leftTheChat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "logout": "خروج",
-  "@logout": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "userLeftTheChat": "غادر {username} المحادثة",
-  "@userLeftTheChat": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
   "lastActiveAgo": "آخر نشاط: {localizedTimeShort}",
   "@lastActiveAgo": {
     "type": "text",
@@ -831,10 +822,37 @@
     "type": "text",
     "placeholders": {}
   },
+  "lastSeenLongTimeAgo": "",
+  "@lastSeenLongTimeAgo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "leave": "غادر",
+  "@leave": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "leftTheChat": "غادر المحادثة",
+  "@leftTheChat": {
+    "type": "text",
+    "placeholders": {}
+  },
   "license": "الرخصة",
   "@license": {
     "type": "text",
     "placeholders": {}
+  },
+  "lightTheme": "فاتح",
+  "@lightTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loadCountMoreParticipants": "حمِّل {count} منتسبًا إضافيًا",
+  "@loadCountMoreParticipants": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
   },
   "loadingPleaseWait": "يحمّل... يرجى الانتظار",
   "@loadingPleaseWait": {
@@ -845,13 +863,6 @@
   "@loadMore": {
     "type": "text",
     "placeholders": {}
-  },
-  "loadCountMoreParticipants": "حمِّل {count} منتسبًا إضافيًا",
-  "@loadCountMoreParticipants": {
-    "type": "text",
-    "placeholders": {
-      "count": {}
-    }
   },
   "login": "لِج",
   "@login": {
@@ -864,6 +875,11 @@
     "placeholders": {
       "homeserver": {}
     }
+  },
+  "logout": "خروج",
+  "@logout": {
+    "type": "text",
+    "placeholders": {}
   },
   "makeAModerator": "اجعله مشرفًا",
   "@makeAModerator": {
@@ -910,13 +926,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "newPrivateChat": "محادثة خاصة جديدة",
-  "@newPrivateChat": {
+  "newVerificationRequest": "طلب تحقق جديد!",
+  "@newVerificationRequest": {
     "type": "text",
     "placeholders": {}
   },
-  "newVerificationRequest": "طلب تحقق جديد!",
-  "@newVerificationRequest": {
+  "no": "لا",
+  "@no": {
     "type": "text",
     "placeholders": {}
   },
@@ -925,8 +941,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "",
-  "@noMegolmBootstrap": {
+  "noEmotesFound": "لم يُعثر على انفعالة. 😕",
+  "@noEmotesFound": {
     "type": "text",
     "placeholders": {}
   },
@@ -935,13 +951,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "none": "بدون",
-  "@none": {
+  "noMegolmBootstrap": "",
+  "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
   },
-  "noEmotesFound": "لم يُعثر على انفعالة. 😕",
-  "@noEmotesFound": {
+  "none": "بدون",
+  "@none": {
     "type": "text",
     "placeholders": {}
   },
@@ -1059,23 +1075,13 @@
     "type": "text",
     "placeholders": {}
   },
+  "privacy": "الخصوصية",
+  "@privacy": {
+    "type": "text",
+    "placeholders": {}
+  },
   "publicRooms": "الغرف العامة",
   "@publicRooms": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "reject": "رفض",
-  "@reject": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "rejoin": "أعد الانضمام",
-  "@rejoin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "renderRichContent": "صيّر الرسائل ذات المحتوى الكبير",
-  "@renderRichContent": {
     "type": "text",
     "placeholders": {}
   },
@@ -1091,12 +1097,27 @@
       "username": {}
     }
   },
+  "reject": "رفض",
+  "@reject": {
+    "type": "text",
+    "placeholders": {}
+  },
   "rejectedTheInvitation": "رفض {username} الدعوة",
   "@rejectedTheInvitation": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
+  },
+  "rejoin": "أعد الانضمام",
+  "@rejoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "remove": "أزِل",
+  "@remove": {
+    "type": "text",
+    "placeholders": {}
   },
   "removeAllOtherDevices": "أزِل كل الأجهزة الأخرى",
   "@removeAllOtherDevices": {
@@ -1120,18 +1141,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "revokeAllPermissions": "أبطل كل الأذون",
-  "@revokeAllPermissions": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "remove": "أزِل",
-  "@remove": {
-    "type": "text",
-    "placeholders": {}
-  },
   "removeMessage": "أزل رسالة",
   "@removeMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "renderRichContent": "صيّر الرسائل ذات المحتوى الكبير",
+  "@renderRichContent": {
     "type": "text",
     "placeholders": {}
   },
@@ -1150,6 +1166,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "revokeAllPermissions": "أبطل كل الأذون",
+  "@revokeAllPermissions": {
+    "type": "text",
+    "placeholders": {}
+  },
   "roomHasBeenUpgraded": "رُقيّت الغرفة",
   "@roomHasBeenUpgraded": {
     "type": "text",
@@ -1160,45 +1181,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "share": "شارك",
-  "@share": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sharedTheLocation": "شارك {username} الموقع",
-  "@sharedTheLocation": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
   "searchForAChat": "ابحث عن محادثة",
   "@searchForAChat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "lastSeenLongTimeAgo": "",
-  "@lastSeenLongTimeAgo": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sendBugReports": "اسمح بإرسال تقريرات عن العلل باستخدام sentry.io",
-  "@sendBugReports": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sentryInfo": "معلومات عن خصوصيتك: https://sentry.io/security/",
-  "@sentryInfo": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "changesHaveBeenSaved": "حُفظت التغييرات",
-  "@changesHaveBeenSaved": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "no": "لا",
-  "@no": {
     "type": "text",
     "placeholders": {}
   },
@@ -1209,20 +1193,20 @@
       "username": {}
     }
   },
-  "seenByUserAndUser": "رآه {username} و {username2}",
-  "@seenByUserAndUser": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "username2": {}
-    }
-  },
   "seenByUserAndCountOthers": "رآه {username} و {count} أخرون",
   "@seenByUserAndCountOthers": {
     "type": "text",
     "placeholders": {
       "username": {},
       "count": {}
+    }
+  },
+  "seenByUserAndUser": "رآه {username} و {username2}",
+  "@seenByUserAndUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "username2": {}
     }
   },
   "send": "أرسل",
@@ -1237,6 +1221,11 @@
   },
   "sendAudio": "أرسل ملفًا صوتيًا",
   "@sendAudio": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendBugReports": "اسمح بإرسال تقريرات عن العلل باستخدام sentry.io",
+  "@sendBugReports": {
     "type": "text",
     "placeholders": {}
   },
@@ -1302,6 +1291,11 @@
       "senderName": {}
     }
   },
+  "sentryInfo": "معلومات عن خصوصيتك: https://sentry.io/security/",
+  "@sentryInfo": {
+    "type": "text",
+    "placeholders": {}
+  },
   "sessionVerified": "تُحقق من الجلسة",
   "@sessionVerified": {
     "type": "text",
@@ -1332,6 +1326,18 @@
     "type": "text",
     "placeholders": {}
   },
+  "share": "شارك",
+  "@share": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sharedTheLocation": "شارك {username} الموقع",
+  "@sharedTheLocation": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
   "signUp": "سجّل",
   "@signUp": {
     "type": "text",
@@ -1342,6 +1348,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "sourceCode": "الشفرة المصدرية",
+  "@sourceCode": {
+    "type": "text",
+    "placeholders": {}
+  },
   "startedACall": "بدأ {senderName} مكالمة",
   "@startedACall": {
     "type": "text",
@@ -1349,43 +1360,13 @@
       "senderName": {}
     }
   },
-  "changeTheme": "غيّر أسلوبك",
-  "@changeTheme": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "systemTheme": "النظام",
-  "@systemTheme": {
+  "startYourFirstChat": "ابدأ محادثتك الأولى :-)",
+  "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
   },
   "statusExampleMessage": "ماهو وضعك؟",
   "@statusExampleMessage": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "lightTheme": "فاتح",
-  "@lightTheme": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "darkTheme": "داكن",
-  "@darkTheme": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "useAmoledTheme": "هل تريد استخدم ألوان متوافقة مع AMOLED؟",
-  "@useAmoledTheme": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sourceCode": "الشفرة المصدرية",
-  "@sourceCode": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "startYourFirstChat": "ابدأ محادثتك الأولى :-)",
-  "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
   },
@@ -1399,8 +1380,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "donate": "تبرع",
-  "@donate": {
+  "systemTheme": "النظام",
+  "@systemTheme": {
     "type": "text",
     "placeholders": {}
   },
@@ -1468,11 +1449,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "unmuteChat": "ألغِ كتم المحادثة",
-  "@unmuteChat": {
-    "type": "text",
-    "placeholders": {}
-  },
   "unknownDevice": "جهز مجهول",
   "@unknownDevice": {
     "type": "text",
@@ -1483,17 +1459,22 @@
     "type": "text",
     "placeholders": {}
   },
-  "unknownSessionVerify": "الجلسة مجهولة، تحقق منها",
-  "@unknownSessionVerify": {
-    "type": "text",
-    "placeholders": {}
-  },
   "unknownEvent": "",
   "@unknownEvent": {
     "type": "text",
     "placeholders": {
       "type": {}
     }
+  },
+  "unknownSessionVerify": "الجلسة مجهولة، تحقق منها",
+  "@unknownSessionVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unmuteChat": "ألغِ كتم المحادثة",
+  "@unmuteChat": {
+    "type": "text",
+    "placeholders": {}
   },
   "unpin": "ألغِ التثبيت",
   "@unpin": {
@@ -1522,6 +1503,11 @@
       "unreadChats": {}
     }
   },
+  "useAmoledTheme": "هل تريد استخدم ألوان متوافقة مع AMOLED؟",
+  "@useAmoledTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
   "userAndOthersAreTyping": "{username} و {count} أخرون يكتبون...",
   "@userAndOthersAreTyping": {
     "type": "text",
@@ -1538,17 +1524,24 @@
       "username2": {}
     }
   },
-  "username": "اسم المستخدم",
-  "@username": {
-    "type": "text",
-    "placeholders": {}
-  },
   "userIsTyping": "{username} يكتب...",
   "@userIsTyping": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
+  },
+  "userLeftTheChat": "غادر {username} المحادثة",
+  "@userLeftTheChat": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "username": "اسم المستخدم",
+  "@username": {
+    "type": "text",
+    "placeholders": {}
   },
   "userSentUnknownEvent": "",
   "@userSentUnknownEvent": {
@@ -1558,6 +1551,11 @@
       "type": {}
     }
   },
+  "verifiedSession": "تُحقق من الجلسة بنجاح!",
+  "@verifiedSession": {
+    "type": "text",
+    "placeholders": {}
+  },
   "verify": "تحقق",
   "@verify": {
     "type": "text",
@@ -1565,11 +1563,6 @@
   },
   "verifyManual": "تحقق يدويا",
   "@verifyManual": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "verifiedSession": "تُحقق من الجلسة بنجاح!",
-  "@verifiedSession": {
     "type": "text",
     "placeholders": {}
   },
@@ -1598,6 +1591,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "visibilityOfTheChatHistory": "غيّر مرئية تأريخ المحادثة",
+  "@visibilityOfTheChatHistory": {
+    "type": "text",
+    "placeholders": {}
+  },
   "visibleForAllParticipants": "مرئي لكل المنتسبين",
   "@visibleForAllParticipants": {
     "type": "text",
@@ -1605,11 +1603,6 @@
   },
   "visibleForEveryone": "مرئي للجميع",
   "@visibleForEveryone": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "visibilityOfTheChatHistory": "غيّر مرئية تأريخ المحادثة",
-  "@visibilityOfTheChatHistory": {
     "type": "text",
     "placeholders": {}
   },
@@ -1633,13 +1626,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "warning": "تحذير!",
-  "@warning": {
+  "wallpaper": "الخلفية",
+  "@wallpaper": {
     "type": "text",
     "placeholders": {}
   },
-  "wallpaper": "الخلفية",
-  "@wallpaper": {
+  "warning": "تحذير!",
+  "@warning": {
     "type": "text",
     "placeholders": {}
   },
@@ -1700,11 +1693,6 @@
   },
   "yourOwnUsername": "اسم المستخدم الخاص بك",
   "@yourOwnUsername": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "privacy": "الخصوصية",
-  "@privacy": {
     "type": "text",
     "placeholders": {}
   }

@@ -1,31 +1,22 @@
 {
-  "createNewGroup": "නව සමූහයක් සාදන්න",
-  "@createNewGroup": {
+  "@@last_modified": "2021-08-14 12:06:11.502278",
+  "about": "පිළිබඳව",
+  "@about": {
     "type": "text",
     "placeholders": {}
   },
-  "createAccountNow": "දැන් ගිණුමක් සාදන්න",
-  "@createAccountNow": {
+  "accept": "පිළිගන්න",
+  "@accept": {
     "type": "text",
     "placeholders": {}
   },
-  "everythingReady": "සියල්ල සූදානම්!",
-  "@everythingReady": {
+  "account": "ගිණුම",
+  "@account": {
     "type": "text",
     "placeholders": {}
   },
-  "securityKeyLost": "ආරක්ෂක යතුර නැතිවුනාද?",
-  "@securityKeyLost": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "chatBackup": "සංවාද උපස්ථය",
-  "@chatBackup": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "showPassword": "මුරපදය පෙන්වන්න",
-  "@showPassword": {
+  "accountInformation": "ගිණුමේ තොරතුරු",
+  "@accountInformation": {
     "type": "text",
     "placeholders": {}
   },
@@ -34,73 +25,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "zoomOut": "කුඩාලනය",
-  "@zoomOut": {
+  "admin": "පරිපාලක",
+  "@admin": {
     "type": "text",
     "placeholders": {}
   },
-  "zoomIn": "විශාලනය",
-  "@zoomIn": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "create": "සාදන්න",
-  "@create": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "copy": "පිටපත්",
-  "@copy": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "securityKey": "ආරක්ෂක යතුර",
-  "@securityKey": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "changePassword": "මුරපදය වෙනස් කරන්න",
-  "@changePassword": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "changeDeviceName": "උපාංගයේ නම වෙනස් කරන්න",
-  "@changeDeviceName": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "cancel": "අවලංගු කරන්න",
-  "@cancel": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "next": "ඊලඟ",
-  "@next": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "areYouSure": "ඔබට විශ්වාසද?",
-  "@areYouSure": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "areGuestsAllowedToJoin": "ආගන්තුක පරිශීලකයින්ට එක්වීමට අවසර තිබේද",
-  "@areGuestsAllowedToJoin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "archivedRoom": "සංරක්ෂිත කාමරය",
-  "@archivedRoom": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "archive": "සංරක්ෂිතය",
-  "@archive": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "anyoneCanJoin": "ඕනෑම කෙනෙකුට එක්විය හැකිය",
-  "@anyoneCanJoin": {
+  "allChats": "සියලුම සංවාද",
+  "@allChats": {
     "type": "text",
     "placeholders": {}
   },
@@ -109,15 +40,116 @@
     "type": "text",
     "placeholders": {}
   },
-  "goToTheNewRoom": "නව කාමරයට යන්න",
-  "@goToTheNewRoom": {
+  "anyoneCanJoin": "ඕනෑම කෙනෙකුට එක්විය හැකිය",
+  "@anyoneCanJoin": {
     "type": "text",
     "placeholders": {}
   },
-  "roomVersion": "කාමරයේ අනුවාදය",
-  "@roomVersion": {
+  "archive": "සංරක්ෂිතය",
+  "@archive": {
     "type": "text",
     "placeholders": {}
+  },
+  "archivedRoom": "සංරක්ෂිත කාමරය",
+  "@archivedRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areGuestsAllowedToJoin": "ආගන්තුක පරිශීලකයින්ට එක්වීමට අවසර තිබේද",
+  "@areGuestsAllowedToJoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSure": "ඔබට විශ්වාසද?",
+  "@areYouSure": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSureYouWantToLogout": "ඔබට නික්මීමට අවශ්‍ය බව විශ්වාසද?",
+  "@areYouSureYouWantToLogout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPlay": "ධාවනය",
+  "@audioPlayerPlay": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "blockDevice": "උපාංගය අවහිර කරන්න",
+  "@blockDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cachedKeys": "යතුරු නිහිතගතයි",
+  "@cachedKeys": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "අවලංගු කරන්න",
+  "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeDeviceName": "උපාංගයේ නම වෙනස් කරන්න",
+  "@changeDeviceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changePassword": "මුරපදය වෙනස් කරන්න",
+  "@changePassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chat": "සංවාදය",
+  "@chat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackup": "සංවාද උපස්ථය",
+  "@chatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatDetails": "සංවාදයේ විස්තර",
+  "@chatDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chats": "සංවාද",
+  "@chats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseAStrongPassword": "ශක්තිමත් මුරපදයක් තෝරන්න",
+  "@chooseAStrongPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseAUsername": "පරිශීලක නාමයක් තෝරන්න",
+  "@chooseAUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clearArchive": "සංරක්ෂිතය හිස් කරන්න",
+  "@clearArchive": {},
+  "close": "වසන්න",
+  "@close": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHintJoin": "දී ඇති කාමරයට එක්වන්න",
+  "@commandHintJoin": {
+    "type": "text",
+    "description": "Usage hint for the command /join"
+  },
+  "commandHintLeave": "මෙම කාමරය හැරයන්න",
+  "@commandHintLeave": {
+    "type": "text",
+    "description": "Usage hint for the command /leave"
+  },
+  "commandInvalid": "විධානය වලංගු නොවේ",
+  "@commandInvalid": {
+    "type": "text"
   },
   "commandMissing": "{{command} විධානයක් නොවේ.",
   "@commandMissing": {
@@ -127,42 +159,8 @@
     },
     "description": "State that {command} is not a valid /command."
   },
-  "commandInvalid": "විධානය වලංගු නොවේ",
-  "@commandInvalid": {
-    "type": "text"
-  },
-  "commandHintJoin": "දී ඇති කාමරයට එක්වන්න",
-  "@commandHintJoin": {
-    "type": "text",
-    "description": "Usage hint for the command /join"
-  },
-  "areYouSureYouWantToLogout": "ඔබට නික්මීමට අවශ්‍ය බව විශ්වාසද?",
-  "@areYouSureYouWantToLogout": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noPublicRoomsFound": "ප්‍රසිද්ධ කාමර හමු නොවිණි...",
-  "@noPublicRoomsFound": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "contactHasBeenInvitedToTheGroup": "සමූහය වෙත සබඳතාවයකට ආරාධනා කර ඇත",
-  "@contactHasBeenInvitedToTheGroup": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "connectionAttemptFailed": "සබැඳීමේ උත්සාහය අසාර්ථකයි",
-  "@connectionAttemptFailed": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "connect": "සබඳින්න",
-  "@connect": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "confirm": "තහවුරු කරන්න",
-  "@confirm": {
+  "compareEmojiMatch": "සසඳා බලා පහත දැක්වෙන ඉමොජි අනෙක් උපාංගයට නිසැකවම ගැලපෙන බවට වග බලා ගන්න:",
+  "@compareEmojiMatch": {
     "type": "text",
     "placeholders": {}
   },
@@ -171,90 +169,48 @@
     "type": "text",
     "placeholders": {}
   },
-  "compareEmojiMatch": "සසඳා බලා පහත දැක්වෙන ඉමොජි අනෙක් උපාංගයට නිසැකවම ගැලපෙන බවට වග බලා ගන්න:",
-  "@compareEmojiMatch": {
+  "confirm": "තහවුරු කරන්න",
+  "@confirm": {
     "type": "text",
     "placeholders": {}
   },
-  "close": "වසන්න",
-  "@close": {
+  "connect": "සබඳින්න",
+  "@connect": {
     "type": "text",
     "placeholders": {}
   },
-  "chooseAUsername": "පරිශීලක නාමයක් තෝරන්න",
-  "@chooseAUsername": {
+  "connectionAttemptFailed": "සබැඳීමේ උත්සාහය අසාර්ථකයි",
+  "@connectionAttemptFailed": {
     "type": "text",
     "placeholders": {}
   },
-  "chooseAStrongPassword": "ශක්තිමත් මුරපදයක් තෝරන්න",
-  "@chooseAStrongPassword": {
+  "contactHasBeenInvitedToTheGroup": "සමූහය වෙත සබඳතාවයකට ආරාධනා කර ඇත",
+  "@contactHasBeenInvitedToTheGroup": {
     "type": "text",
     "placeholders": {}
   },
-  "chatDetails": "සංවාදයේ විස්තර",
-  "@chatDetails": {
+  "copy": "පිටපත්",
+  "@copy": {
     "type": "text",
     "placeholders": {}
   },
-  "chat": "සංවාදය",
-  "@chat": {
+  "create": "සාදන්න",
+  "@create": {
     "type": "text",
     "placeholders": {}
   },
-  "admin": "පරිපාලක",
-  "@admin": {
+  "createAccountNow": "දැන් ගිණුමක් සාදන්න",
+  "@createAccountNow": {
     "type": "text",
     "placeholders": {}
   },
-  "accountInformation": "ගිණුමේ තොරතුරු",
-  "@accountInformation": {
+  "createNewGroup": "නව සමූහයක් සාදන්න",
+  "@createNewGroup": {
     "type": "text",
     "placeholders": {}
   },
-  "account": "ගිණුම",
-  "@account": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "publicGroups": "ප්‍රසිද්ධ සමූහ",
-  "@publicGroups": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "clearArchive": "සංරක්ෂිතය හිස් කරන්න",
-  "@clearArchive": {},
-  "people": "මිනිසුන්",
-  "@people": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "commandHintLeave": "මෙම කාමරය හැරයන්න",
-  "@commandHintLeave": {
-    "type": "text",
-    "description": "Usage hint for the command /leave"
-  },
-  "chats": "සංවාද",
-  "@chats": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "accept": "පිළිගන්න",
-  "@accept": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "about": "පිළිබඳව",
-  "@about": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "cachedKeys": "යතුරු නිහිතගතයි",
-  "@cachedKeys": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "blockDevice": "උපාංගය අවහිර කරන්න",
-  "@blockDevice": {
+  "donate": "පරිත්‍යාග",
+  "@donate": {
     "type": "text",
     "placeholders": {}
   },
@@ -263,8 +219,18 @@
     "type": "text",
     "placeholders": {}
   },
-  "keysCached": "යතුරු නිහිතගත යි",
-  "@keysCached": {
+  "everythingReady": "සියල්ල සූදානම්!",
+  "@everythingReady": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fontSize": "මුද්‍රණඅකුරේ ප්‍රමාණය",
+  "@fontSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "goToTheNewRoom": "නව කාමරයට යන්න",
+  "@goToTheNewRoom": {
     "type": "text",
     "placeholders": {}
   },
@@ -273,8 +239,65 @@
     "type": "text",
     "placeholders": {}
   },
+  "keysCached": "යතුරු නිහිතගත යි",
+  "@keysCached": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "next": "ඊලඟ",
+  "@next": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPublicRoomsFound": "ප්‍රසිද්ධ කාමර හමු නොවිණි...",
+  "@noPublicRoomsFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "people": "මිනිසුන්",
+  "@people": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicGroups": "ප්‍රසිද්ධ සමූහ",
+  "@publicGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
   "removeDevice": "උපාංගය ඉවත්කරන්න",
   "@removeDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "roomVersion": "කාමරයේ අනුවාදය",
+  "@roomVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "savedFileAs": "ලෙස ගොනුව සුරකින්න {filename}",
+  "@savedFileAs": {
+    "type": "text",
+    "placeholders": {
+      "filename": {}
+    }
+  },
+  "saveFile": "ගොනුව සුරකින්න",
+  "@saveFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveFileToFolder": "ගොනුව මෙම බහාලුමට සුරකින්න",
+  "@saveFileToFolder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKey": "ආරක්ෂක යතුර",
+  "@securityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKeyLost": "ආරක්ෂක යතුර නැතිවුනාද?",
+  "@securityKeyLost": {
     "type": "text",
     "placeholders": {}
   },
@@ -283,8 +306,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "donate": "පරිත්‍යාග",
-  "@donate": {
+  "showPassword": "මුරපදය පෙන්වන්න",
+  "@showPassword": {
     "type": "text",
     "placeholders": {}
   },
@@ -318,18 +341,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "audioPlayerPlay": "ධාවනය",
-  "@audioPlayerPlay": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "fontSize": "මුද්‍රණඅකුරේ ප්‍රමාණය",
-  "@fontSize": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "you": "ඔබ",
-  "@you": {
+  "writeAMessage": "පණිවිඩයක් ලියන්න…",
+  "@writeAMessage": {
     "type": "text",
     "placeholders": {}
   },
@@ -338,8 +351,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "writeAMessage": "පණිවිඩයක් ලියන්න…",
-  "@writeAMessage": {
+  "you": "ඔබ",
+  "@you": {
     "type": "text",
     "placeholders": {}
   },
@@ -348,25 +361,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "saveFile": "ගොනුව සුරකින්න",
-  "@saveFile": {
+  "zoomIn": "විශාලනය",
+  "@zoomIn": {
     "type": "text",
     "placeholders": {}
   },
-  "saveFileToFolder": "ගොනුව මෙම බහාලුමට සුරකින්න",
-  "@saveFileToFolder": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "savedFileAs": "ලෙස ගොනුව සුරකින්න {filename}",
-  "@savedFileAs": {
-    "type": "text",
-    "placeholders": {
-      "filename": {}
-    }
-  },
-  "allChats": "සියලුම සංවාද",
-  "@allChats": {
+  "zoomOut": "කුඩාලනය",
+  "@zoomOut": {
     "type": "text",
     "placeholders": {}
   }

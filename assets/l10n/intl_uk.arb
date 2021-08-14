@@ -1,6 +1,6 @@
 {
   "@@locale": "uk",
-  "@@last_modified": "2020-09-23 11:46:01.661966",
+  "@@last_modified": "2021-08-14 12:06:11.379320",
   "about": "Про програму",
   "@about": {
     "type": "text",
@@ -141,13 +141,6 @@
   "@blockDevice": {
     "type": "text",
     "placeholders": {}
-  },
-  "byDefaultYouWillBeConnectedTo": "За замовчуванням ви будете підключені до {homeserver}",
-  "@byDefaultYouWillBeConnectedTo": {
-    "type": "text",
-    "placeholders": {
-      "homeserver": {}
-    }
   },
   "cachedKeys": "Ключі було успішно збережено в кеші",
   "@cachedKeys": {
@@ -895,11 +888,6 @@
   },
   "newMessageInFluffyChat": "",
   "@newMessageInFluffyChat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "newPrivateChat": "",
-  "@newPrivateChat": {
     "type": "text",
     "placeholders": {}
   },

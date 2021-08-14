@@ -1,6 +1,6 @@
 {
   "@@locale": "zh",
-  "@@last_modified": "2020-09-23 11:46:01.529862",
+  "@@last_modified": "2021-08-14 12:06:11.342477",
   "about": "关于",
   "@about": {
     "type": "text",
@@ -35,8 +35,18 @@
       "username": {}
     }
   },
+  "addEmail": "添加电子邮件",
+  "@addEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
   "addGroupDescription": "添加一条群组介绍",
   "@addGroupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewFriend": "添加新的好友",
+  "@addNewFriend": {
     "type": "text",
     "placeholders": {}
   },
@@ -47,6 +57,11 @@
   },
   "alias": "别名",
   "@alias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "all": "全部",
+  "@all": {
     "type": "text",
     "placeholders": {}
   },
@@ -67,6 +82,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "appLock": "应用锁",
+  "@appLock": {
+    "type": "text",
+    "placeholders": {}
+  },
   "archive": "存档",
   "@archive": {
     "type": "text",
@@ -84,6 +104,11 @@
   },
   "areYouSure": "您确定吗？",
   "@areYouSure": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSureYouWantToLogout": "您确定要注销吗？",
+  "@areYouSureYouWantToLogout": {
     "type": "text",
     "placeholders": {}
   },
@@ -109,6 +134,16 @@
       "username": {}
     }
   },
+  "audioPlayerPause": "暂停",
+  "@audioPlayerPause": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPlay": "播放",
+  "@audioPlayerPlay": {
+    "type": "text",
+    "placeholders": {}
+  },
   "authentication": "身份验证",
   "@authentication": {
     "type": "text",
@@ -118,6 +153,22 @@
   "@avatarHasBeenChanged": {
     "type": "text",
     "placeholders": {}
+  },
+  "badServerLoginTypesException": "主服务器支持的登录方式：\n{serverVersions}\n但本应用仅支持：\n{supportedVersions}",
+  "@badServerLoginTypesException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "badServerVersionsException": "主服务器支持的 Spec 版本：\n{serverVersions}\n但本应用仅支持 {supportedVersions}",
+  "@badServerVersionsException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
   },
   "banFromChat": "从对话中封禁",
   "@banFromChat": {
@@ -142,12 +193,15 @@
     "type": "text",
     "placeholders": {}
   },
-  "byDefaultYouWillBeConnectedTo": "您将会默认连接到{homeserver}",
-  "@byDefaultYouWillBeConnectedTo": {
+  "blocked": "已屏蔽",
+  "@blocked": {
     "type": "text",
-    "placeholders": {
-      "homeserver": {}
-    }
+    "placeholders": {}
+  },
+  "botMessages": "机器人消息",
+  "@botMessages": {
+    "type": "text",
+    "placeholders": {}
   },
   "cachedKeys": "密钥已缓存",
   "@cachedKeys": {
@@ -156,6 +210,11 @@
   },
   "cancel": "取消",
   "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeDeviceName": "更改设备名称",
+  "@changeDeviceName": {
     "type": "text",
     "placeholders": {}
   },
@@ -268,6 +327,16 @@
     "type": "text",
     "placeholders": {}
   },
+  "changePassword": "更改密码",
+  "@changePassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changesHaveBeenSaved": "更改已被保存",
+  "@changesHaveBeenSaved": {
+    "type": "text",
+    "placeholders": {}
+  },
   "changeTheHomeserver": "更改主服务器",
   "@changeTheHomeserver": {
     "type": "text",
@@ -293,6 +362,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "changeYourAvatar": "更改您的头像",
+  "@changeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
   "channelCorruptedDecryptError": "加密已被破坏",
   "@channelCorruptedDecryptError": {
     "type": "text",
@@ -303,8 +377,23 @@
     "type": "text",
     "placeholders": {}
   },
+  "chatBackup": "聊天记录备份",
+  "@chatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackupDescription": "您的聊天记录备份已被安全密钥加密。请确保您不会丢失它。",
+  "@chatBackupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
   "chatDetails": "会话详情",
   "@chatDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chats": "聊天",
+  "@chats": {
     "type": "text",
     "placeholders": {}
   },
@@ -318,10 +407,99 @@
     "type": "text",
     "placeholders": {}
   },
+  "clearArchive": "清除存档",
+  "@clearArchive": {},
+  "clearText": "清除文本",
+  "@clearText": {
+    "type": "text",
+    "placeholders": {}
+  },
   "close": "关闭",
   "@close": {
     "type": "text",
     "placeholders": {}
+  },
+  "commandHintBan": "在此聊天室封禁该用户",
+  "@commandHintBan": {
+    "type": "text",
+    "description": "Usage hint for the command /ban"
+  },
+  "commandHintHtml": "发送 HTML 格式化文本",
+  "@commandHintHtml": {
+    "type": "text",
+    "description": "Usage hint for the command /html"
+  },
+  "commandHintInvite": "邀请该用户加入此聊天室",
+  "@commandHintInvite": {
+    "type": "text",
+    "description": "Usage hint for the command /invite"
+  },
+  "commandHintJoin": "加入该聊天室",
+  "@commandHintJoin": {
+    "type": "text",
+    "description": "Usage hint for the command /join"
+  },
+  "commandHintKick": "将该用户移出此聊天室",
+  "@commandHintKick": {
+    "type": "text",
+    "description": "Usage hint for the command /kick"
+  },
+  "commandHintLeave": "退出该聊天室",
+  "@commandHintLeave": {
+    "type": "text",
+    "description": "Usage hint for the command /leave"
+  },
+  "commandHintMe": "介绍自己",
+  "@commandHintMe": {
+    "type": "text",
+    "description": "Usage hint for the command /me"
+  },
+  "commandHintMyRoomAvatar": "设置您的聊天室头像（通过mxc-uri）",
+  "@commandHintMyRoomAvatar": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomavatar"
+  },
+  "commandHintMyRoomNick": "设置您的聊天室昵称",
+  "@commandHintMyRoomNick": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomnick"
+  },
+  "commandHintOp": "设置该用户的权限等级（默认：50）",
+  "@commandHintOp": {
+    "type": "text",
+    "description": "Usage hint for the command /op"
+  },
+  "commandHintPlain": "发送纯文本",
+  "@commandHintPlain": {
+    "type": "text",
+    "description": "Usage hint for the command /plain"
+  },
+  "commandHintReact": "将回复作为响应发送",
+  "@commandHintReact": {
+    "type": "text",
+    "description": "Usage hint for the command /react"
+  },
+  "commandHintSend": "发送文本",
+  "@commandHintSend": {
+    "type": "text",
+    "description": "Usage hint for the command /send"
+  },
+  "commandHintUnBan": "在此聊天室解封该用户",
+  "@commandHintUnBan": {
+    "type": "text",
+    "description": "Usage hint for the command /unban"
+  },
+  "commandInvalid": "指令无效",
+  "@commandInvalid": {
+    "type": "text"
+  },
+  "commandMissing": "{command} 不是指令。",
+  "@commandMissing": {
+    "type": "text",
+    "placeholders": {
+      "command": {}
+    },
+    "description": "State that {command} is not a valid /command."
   },
   "compareEmojiMatch": "对比并确认这些表情匹配其他那些设备:",
   "@compareEmojiMatch": {
@@ -330,6 +508,11 @@
   },
   "compareNumbersMatch": "比较以下数字，确保它们和另一设备上的相同:",
   "@compareNumbersMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "configureChat": "配置聊天",
+  "@configureChat": {
     "type": "text",
     "placeholders": {}
   },
@@ -353,6 +536,21 @@
     "type": "text",
     "placeholders": {}
   },
+  "containsDisplayName": "包含显示名称",
+  "@containsDisplayName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsUserName": "包含用户名",
+  "@containsUserName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contentHasBeenReported": "此内容已被报告至服务器管理员处",
+  "@contentHasBeenReported": {
+    "type": "text",
+    "placeholders": {}
+  },
   "contentViewer": "内容查看器",
   "@contentViewer": {
     "type": "text",
@@ -365,6 +563,11 @@
   },
   "copy": "复制",
   "@copy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copyToClipboard": "复制到剪贴板",
+  "@copyToClipboard": {
     "type": "text",
     "placeholders": {}
   },
@@ -459,8 +662,23 @@
       "day": {}
     }
   },
+  "deactivateAccountWarning": "这将停用您的用户账号。这不能被撤销，您确定吗？",
+  "@deactivateAccountWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "defaultPermissionLevel": "默认权限级别",
+  "@defaultPermissionLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
   "delete": "删除",
   "@delete": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteAccount": "删除账号",
+  "@deleteAccount": {
     "type": "text",
     "placeholders": {}
   },
@@ -479,13 +697,38 @@
     "type": "text",
     "placeholders": {}
   },
+  "deviceId": "设备 ID",
+  "@deviceId": {
+    "type": "text",
+    "placeholders": {}
+  },
   "devices": "设备",
   "@devices": {
     "type": "text",
     "placeholders": {}
   },
+  "deviceVerifyDescription": "加密仅在所有设备都被验证时才安全。",
+  "@deviceVerifyDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "directChats": "直接聊天",
+  "@directChats": {
+    "type": "text",
+    "placeholders": {}
+  },
   "discardPicture": "丢弃图片",
   "@discardPicture": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discover": "探索",
+  "@discover": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discoverGroups": "发现群组",
+  "@discoverGroups": {
     "type": "text",
     "placeholders": {}
   },
@@ -504,6 +747,21 @@
     "type": "text",
     "placeholders": {}
   },
+  "edit": "编辑",
+  "@edit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editBlockedServers": "编辑被阻止的服务器",
+  "@editBlockedServers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editChatPermissions": "编辑聊天权限",
+  "@editChatPermissions": {
+    "type": "text",
+    "placeholders": {}
+  },
   "editDisplayname": "编辑显示名称",
   "@editDisplayname": {
     "type": "text",
@@ -514,6 +772,16 @@
     "type": "text",
     "placeholders": {}
   },
+  "editRoomAliases": "编辑聊天室别名",
+  "@editRoomAliases": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAvatar": "编辑聊天室头像",
+  "@editRoomAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
   "emoteExists": "表情已存在！",
   "@emoteExists": {
     "type": "text",
@@ -521,6 +789,11 @@
   },
   "emoteInvalid": "无效的表情快捷码！",
   "@emoteInvalid": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emotePacks": "聊天室的表情包",
+  "@emotePacks": {
     "type": "text",
     "placeholders": {}
   },
@@ -544,8 +817,28 @@
     "type": "text",
     "placeholders": {}
   },
+  "enableChatBackup": "启用聊天记录备份以确保不会丢失您的聊天记录。",
+  "@enableChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEmotesGlobally": "在全局启用表情包",
+  "@enableEmotesGlobally": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEncryption": "启用加密",
+  "@enableEncryption": {
+    "type": "text",
+    "placeholders": {}
+  },
   "enableEncryptionWarning": "您将不能再停用加密，确定吗？",
   "@enableEncryptionWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encrypted": "加密的",
+  "@encrypted": {
     "type": "text",
     "placeholders": {}
   },
@@ -581,6 +874,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "enterAnEmailAddress": "输入一个电子邮件地址",
+  "@enterAnEmailAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
   "enterAUsername": "输入用户名",
   "@enterAUsername": {
     "type": "text",
@@ -588,6 +886,16 @@
   },
   "enterYourHomeserver": "输入您的主服务器地址",
   "@enterYourHomeserver": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "everythingReady": "一切就绪！",
+  "@everythingReady": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "extremeOffensive": "极端令人反感",
+  "@extremeOffensive": {
     "type": "text",
     "placeholders": {}
   },
@@ -606,6 +914,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "fontSize": "字体大小",
+  "@fontSize": {
+    "type": "text",
+    "placeholders": {}
+  },
   "forward": "转发",
   "@forward": {
     "type": "text",
@@ -616,6 +929,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "friends": "好友",
+  "@friends": {
+    "type": "text",
+    "placeholders": {}
+  },
   "fromJoining": "自加入起",
   "@fromJoining": {
     "type": "text",
@@ -623,6 +941,11 @@
   },
   "fromTheInvitation": "自邀请起",
   "@fromTheInvitation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "goToTheNewRoom": "前往新的聊天室",
+  "@goToTheNewRoom": {
     "type": "text",
     "placeholders": {}
   },
@@ -643,6 +966,11 @@
   },
   "groupIsPublic": "群组是公开的",
   "@groupIsPublic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groups": "群组",
+  "@groups": {
     "type": "text",
     "placeholders": {}
   },
@@ -676,8 +1004,23 @@
     "type": "text",
     "placeholders": {}
   },
+  "hideRedactedEvents": "隐藏编辑事件",
+  "@hideRedactedEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideUnknownEvents": "隐藏未知事件",
+  "@hideUnknownEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
   "homeserverIsNotCompatible": "主服务器不兼容",
   "@homeserverIsNotCompatible": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "howOffensiveIsThisContent": "这些内容有多让人反感？",
+  "@howOffensiveIsThisContent": {
     "type": "text",
     "placeholders": {}
   },
@@ -691,8 +1034,43 @@
     "type": "text",
     "placeholders": {}
   },
+  "ignore": "忽略",
+  "@ignore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignoredUsers": "已忽略的用户",
+  "@ignoredUsers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignoreListDescription": "您可以忽略打扰您的用户。您将不会收到来自忽略列表中用户的任何消息或聊天室邀请。",
+  "@ignoreListDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignoreUsername": "忽略用户名",
+  "@ignoreUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iHaveClickedOnLink": "我已经点击了链接",
+  "@iHaveClickedOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
   "incorrectPassphraseOrKey": "不正确的密码短语或恢复密钥",
   "@incorrectPassphraseOrKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inoffensive": "不令人反感",
+  "@inoffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidEmail": "无效的电子邮件",
+  "@invalidEmail": {
     "type": "text",
     "placeholders": {}
   },
@@ -723,6 +1101,11 @@
   },
   "invitedUsersOnly": "仅被邀请用户",
   "@invitedUsersOnly": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteForMe": "来自我的邀请",
+  "@inviteForMe": {
     "type": "text",
     "placeholders": {}
   },
@@ -853,6 +1236,13 @@
       "homeserver": {}
     }
   },
+  "loginWith": "使用 {brand} 登录",
+  "@loginWith": {
+    "type": "text",
+    "placeholders": {
+      "brand": {}
+    }
+  },
   "logout": "注销",
   "@logout": {
     "type": "text",
@@ -873,6 +1263,21 @@
     "type": "text",
     "placeholders": {}
   },
+  "memberChanges": "成员变更",
+  "@memberChanges": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "mention": "提到",
+  "@mention": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "messages": "消息",
+  "@messages": {
+    "type": "text",
+    "placeholders": {}
+  },
   "messageWillBeRemovedWarning": "消息将对所有参与者移除",
   "@messageWillBeRemovedWarning": {
     "type": "text",
@@ -888,6 +1293,13 @@
     "type": "text",
     "placeholders": {}
   },
+  "moreEvents": "{count,plural, =1{1 个更多事件} other{{count} 个更多事件}}",
+  "@moreEvents": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
   "muteChat": "将该聊天静音",
   "@muteChat": {
     "type": "text",
@@ -898,13 +1310,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "newMessageInFluffyChat": "来自 FluffyChat 的新消息",
-  "@newMessageInFluffyChat": {
+  "newChat": "新的聊天",
+  "@newChat": {
     "type": "text",
     "placeholders": {}
   },
-  "newPrivateChat": "新私密聊天",
-  "@newPrivateChat": {
+  "newMessageInFluffyChat": "来自 FluffyChat 的新消息",
+  "@newMessageInFluffyChat": {
     "type": "text",
     "placeholders": {}
   },
@@ -913,13 +1325,38 @@
     "type": "text",
     "placeholders": {}
   },
+  "next": "下一步",
+  "@next": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "no": "不",
+  "@no": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noConnectionToTheServer": "未与服务器建立连接",
+  "@noConnectionToTheServer": {
+    "type": "text",
+    "placeholders": {}
+  },
   "noCrossSignBootstrap": "Fluffychat 目前不支持启用交叉签名。请在 Element 中启用。",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
   },
+  "noDescription": "没有说明",
+  "@noDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
   "noEmotesFound": "未找到表情。😕",
   "@noEmotesFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noEncryptionForPublicRooms": "您只能在聊天室不可被公众访问时才能启用加密。",
+  "@noEncryptionForPublicRooms": {
     "type": "text",
     "placeholders": {}
   },
@@ -938,13 +1375,38 @@
     "type": "text",
     "placeholders": {}
   },
+  "noPasswordRecoveryDescription": "您尚未添加恢复密码的方法。",
+  "@noPasswordRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
   "noPermission": "没有权限",
   "@noPermission": {
     "type": "text",
     "placeholders": {}
   },
+  "noPublicRoomsFound": "没有找到公共聊天室…",
+  "@noPublicRoomsFound": {
+    "type": "text",
+    "placeholders": {}
+  },
   "noRoomsFound": "未找到聊天室…",
   "@noRoomsFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noStatusesFound": "目前还没有发现任何状态。",
+  "@noStatusesFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notifications": "通知",
+  "@notifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationsEnabledForThisAccount": "已为此账户启用通知",
+  "@notificationsEnabledForThisAccount": {
     "type": "text",
     "placeholders": {}
   },
@@ -960,8 +1422,30 @@
       "number": {}
     }
   },
+  "numUsersTyping": "{count} 人正在输入…",
+  "@numUsersTyping": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "offensive": "令人反感",
+  "@offensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offline": "离线",
+  "@offline": {
+    "type": "text",
+    "placeholders": {}
+  },
   "ok": "ok",
   "@ok": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "online": "在线",
+  "@online": {
     "type": "text",
     "placeholders": {}
   },
@@ -972,6 +1456,11 @@
   },
   "onlineKeyBackupEnabled": "在线密钥备份已启用",
   "@onlineKeyBackupEnabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oopsPushError": "哎呀！十分不幸，配置推送通知时发生了错误。",
+  "@oopsPushError": {
     "type": "text",
     "placeholders": {}
   },
@@ -990,8 +1479,23 @@
     "type": "text",
     "placeholders": {}
   },
+  "optionalAddEmail": "(可选) 您的电子邮件地址",
+  "@optionalAddEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
   "optionalGroupName": "(可选) 群组名称",
   "@optionalGroupName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "or": "或",
+  "@or": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "participant": "参与者",
+  "@participant": {
     "type": "text",
     "placeholders": {}
   },
@@ -1007,6 +1511,26 @@
   },
   "password": "密码",
   "@password": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordForgotten": "忘记密码",
+  "@passwordForgotten": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordHasBeenChanged": "密码已被更改",
+  "@passwordHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordRecovery": "密码恢复",
+  "@passwordRecovery": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "people": "联系人",
+  "@people": {
     "type": "text",
     "placeholders": {}
   },
@@ -1027,8 +1551,28 @@
       "fileName": {}
     }
   },
+  "pleaseChoose": "请选择",
+  "@pleaseChoose": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChooseAPasscode": "请选择一个密码",
+  "@pleaseChooseAPasscode": {
+    "type": "text",
+    "placeholders": {}
+  },
   "pleaseChooseAUsername": "请选择用户名",
   "@pleaseChooseAUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseClickOnLink": "请点击电子邮件中的链接，然后继续。",
+  "@pleaseClickOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnter4Digits": "请输入 4 位数字或留空以停用应用锁。",
+  "@pleaseEnter4Digits": {
     "type": "text",
     "placeholders": {}
   },
@@ -1037,8 +1581,18 @@
     "type": "text",
     "placeholders": {}
   },
+  "pleaseEnterSecurityKey": "请键入您的安全密钥：",
+  "@pleaseEnterSecurityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
   "pleaseEnterYourPassword": "请输入您的密码",
   "@pleaseEnterYourPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterYourPin": "请输入您的 PIN",
+  "@pleaseEnterYourPin": {
     "type": "text",
     "placeholders": {}
   },
@@ -1047,8 +1601,38 @@
     "type": "text",
     "placeholders": {}
   },
+  "pleaseFollowInstructionsOnWeb": "请按照网站上的提示，点击下一步。",
+  "@pleaseFollowInstructionsOnWeb": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "privacy": "隐私",
+  "@privacy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicGroups": "公共群组",
+  "@publicGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicKey": "公钥",
+  "@publicKey": {
+    "type": "text",
+    "placeholders": {}
+  },
   "publicRooms": "公开聊天室",
   "@publicRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pushRules": "推送规则",
+  "@pushRules": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reason": "原因",
+  "@reason": {
     "type": "text",
     "placeholders": {}
   },
@@ -1063,6 +1647,16 @@
     "placeholders": {
       "username": {}
     }
+  },
+  "redactMessage": "重新编辑信息",
+  "@redactMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "register": "注册",
+  "@register": {
+    "type": "text",
+    "placeholders": {}
   },
   "reject": "拒绝",
   "@reject": {
@@ -1113,13 +1707,28 @@
     "type": "text",
     "placeholders": {}
   },
+  "removeYourAvatar": "移除您的头像",
+  "@removeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
   "renderRichContent": "渲染富文本内容",
   "@renderRichContent": {
     "type": "text",
     "placeholders": {}
   },
+  "replaceRoomWithNewerVersion": "用较新的版本替换聊天室",
+  "@replaceRoomWithNewerVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
   "reply": "回复",
   "@reply": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reportMessage": "举报信息",
+  "@reportMessage": {
     "type": "text",
     "placeholders": {}
   },
@@ -1143,13 +1752,55 @@
     "type": "text",
     "placeholders": {}
   },
+  "roomVersion": "聊天室版本",
+  "@roomVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
   "saturday": "星期六",
   "@saturday": {
     "type": "text",
     "placeholders": {}
   },
+  "savedFileAs": "保存文件为 {filename}",
+  "@savedFileAs": {
+    "type": "text",
+    "placeholders": {
+      "filename": {}
+    }
+  },
+  "saveFile": "保存文件",
+  "@saveFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveFileToFolder": "将文件保存到此文件夹",
+  "@saveFileToFolder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "search": "搜索",
+  "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
   "searchForAChat": "搜索聊天室",
   "@searchForAChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "security": "安全",
+  "@security": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKey": "安全密钥",
+  "@securityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKeyLost": "丢失安全密钥？",
+  "@securityKeyLost": {
     "type": "text",
     "placeholders": {}
   },
@@ -1186,6 +1837,20 @@
     "type": "text",
     "placeholders": {}
   },
+  "sendAsText": "以文本发送",
+  "@sendAsText": {
+    "type": "text"
+  },
+  "sendAudio": "发送音频",
+  "@sendAudio": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendBugReports": "允许向 sentry.io 发送错误报告",
+  "@sendBugReports": {
+    "type": "text",
+    "placeholders": {}
+  },
   "sendFile": "发送文件",
   "@sendFile": {
     "type": "text",
@@ -1193,6 +1858,26 @@
   },
   "sendImage": "发送图像",
   "@sendImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendMessages": "发送消息",
+  "@sendMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendOriginal": "发送原创内容",
+  "@sendOriginal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendSticker": "发送贴纸",
+  "@sendSticker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendVideo": "发送视频",
+  "@sendVideo": {
     "type": "text",
     "placeholders": {}
   },
@@ -1238,6 +1923,11 @@
       "senderName": {}
     }
   },
+  "sentryInfo": "关于您隐私的信息: https://sentry.io/security/",
+  "@sentryInfo": {
+    "type": "text",
+    "placeholders": {}
+  },
   "sessionVerified": "会话已验证",
   "@sessionVerified": {
     "type": "text",
@@ -1248,6 +1938,16 @@
     "type": "text",
     "placeholders": {}
   },
+  "setAsCanonicalAlias": "设为主要别名",
+  "@setAsCanonicalAlias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setCustomEmotes": "设置自定义表情",
+  "@setCustomEmotes": {
+    "type": "text",
+    "placeholders": {}
+  },
   "setGroupDescription": "设置群组描述",
   "@setGroupDescription": {
     "type": "text",
@@ -1255,6 +1955,11 @@
   },
   "setInvitationLink": "设置邀请链接",
   "@setInvitationLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setPermissionsLevel": "设置权限级别",
+  "@setPermissionsLevel": {
     "type": "text",
     "placeholders": {}
   },
@@ -1280,13 +1985,28 @@
       "username": {}
     }
   },
+  "showPassword": "显示密码",
+  "@showPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
   "signUp": "注册",
   "@signUp": {
     "type": "text",
     "placeholders": {}
   },
+  "singlesignon": "单点登录",
+  "@singlesignon": {
+    "type": "text",
+    "placeholders": {}
+  },
   "skip": "跳过",
   "@skip": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "soundVibrationLedColor": "声音、振动和 LED 颜色",
+  "@soundVibrationLedColor": {
     "type": "text",
     "placeholders": {}
   },
@@ -1307,6 +2027,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "status": "状态",
+  "@status": {
+    "type": "text",
+    "placeholders": {}
+  },
   "statusExampleMessage": "您今天怎么样？",
   "@statusExampleMessage": {
     "type": "text",
@@ -1322,8 +2047,23 @@
     "type": "text",
     "placeholders": {}
   },
+  "synchronizingPleaseWait": "同步中…请等待。",
+  "@synchronizingPleaseWait": {
+    "type": "text",
+    "placeholders": {}
+  },
   "systemTheme": "系统",
   "@systemTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapOnDeviceToVerify": "点选一部设备进行验证",
+  "@tapOnDeviceToVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapToShowImage": "点击以显示图片",
+  "@tapToShowImage": {
     "type": "text",
     "placeholders": {}
   },
@@ -1368,6 +2108,31 @@
     "type": "text",
     "placeholders": {}
   },
+  "toggleFavorite": "切换收藏",
+  "@toggleFavorite": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleMuted": "切换静音",
+  "@toggleMuted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleUnread": "标记已读/未读",
+  "@toggleUnread": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tooManyRequestsWarning": "请求太多。请稍后再试！",
+  "@tooManyRequestsWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transferFromAnotherDevice": "从其他设备传输",
+  "@transferFromAnotherDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
   "tryToSendAgain": "尝试重新发送",
   "@tryToSendAgain": {
     "type": "text",
@@ -1375,6 +2140,11 @@
   },
   "tuesday": "星期二",
   "@tuesday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unavailable": "不可用",
+  "@unavailable": {
     "type": "text",
     "placeholders": {}
   },
@@ -1410,6 +2180,11 @@
   },
   "unknownSessionVerify": "未知会话，请验证",
   "@unknownSessionVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unlockChatBackup": "解锁聊天记录备份",
+  "@unlockChatBackup": {
     "type": "text",
     "placeholders": {}
   },
@@ -1485,6 +2260,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "userNotVerified": "用户未验证",
+  "@userNotVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
   "userSentUnknownEvent": "{username} 发送了一个 {type} 事件",
   "@userSentUnknownEvent": {
     "type": "text",
@@ -1492,6 +2272,21 @@
       "username": {},
       "type": {}
     }
+  },
+  "userUnknownVerification": "用户的验证状态未知",
+  "@userUnknownVerification": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userVerified": "用户已验证",
+  "@userVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verified": "已验证",
+  "@verified": {
+    "type": "text",
+    "placeholders": {}
   },
   "verifiedSession": "成功验证会话！",
   "@verifiedSession": {
@@ -1573,6 +2368,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "warning": "警告！",
+  "@warning": {
+    "type": "text",
+    "placeholders": {}
+  },
   "warningEncryptionInBeta": "端到端加密目前在测试阶段！请自行承担风险！",
   "@warningEncryptionInBeta": {
     "type": "text",
@@ -1588,8 +2388,33 @@
     "type": "text",
     "placeholders": {}
   },
+  "weSentYouAnEmail": "我们向您发送了一封电子邮件",
+  "@weSentYouAnEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whoCanPerformWhichAction": "谁可以执行哪些操作",
+  "@whoCanPerformWhichAction": {
+    "type": "text",
+    "placeholders": {}
+  },
   "whoIsAllowedToJoinThisGroup": "谁被允许加入本群组",
   "@whoIsAllowedToJoinThisGroup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whyDoYouWantToReportThis": "您举报的理由是什么？",
+  "@whyDoYouWantToReportThis": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wipeChatBackup": "确定要清除您的聊天记录备份以创建新的安全密钥吗？",
+  "@wipeChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "withTheseAddressesRecoveryDescription": "通过这些地址，您可以恢复密码。",
+  "@withTheseAddressesRecoveryDescription": {
     "type": "text",
     "placeholders": {}
   },
@@ -1628,248 +2453,18 @@
     "type": "text",
     "placeholders": {}
   },
+  "yourChatsAreBeingSynced": "正在同步您的聊天…",
+  "@yourChatsAreBeingSynced": {
+    "type": "text",
+    "placeholders": {}
+  },
   "yourOwnUsername": "您自己的用户名",
   "@yourOwnUsername": {
     "type": "text",
     "placeholders": {}
   },
-  "warning": "警告！",
-  "@warning": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sendVideo": "发送视频",
-  "@sendVideo": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sendOriginal": "发送原创内容",
-  "@sendOriginal": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sendAudio": "发送音频",
-  "@sendAudio": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "no": "不",
-  "@no": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "changesHaveBeenSaved": "更改已被保存",
-  "@changesHaveBeenSaved": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sentryInfo": "关于您隐私的信息: https://sentry.io/security/",
-  "@sentryInfo": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sendBugReports": "允许向 sentry.io 发送错误报告",
-  "@sendBugReports": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "privacy": "隐私",
-  "@privacy": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "passwordHasBeenChanged": "密码已被更改",
-  "@passwordHasBeenChanged": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "ignoreListDescription": "您可以忽略打扰您的用户。您将不会收到来自忽略列表中用户的任何消息或聊天室邀请。",
-  "@ignoreListDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "ignoreUsername": "忽略用户名",
-  "@ignoreUsername": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "ignoredUsers": "已忽略的用户",
-  "@ignoredUsers": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "enableEmotesGlobally": "在全局启用表情包",
-  "@enableEmotesGlobally": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "emotePacks": "聊天室的表情包",
-  "@emotePacks": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "deleteAccount": "删除账号",
-  "@deleteAccount": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "deactivateAccountWarning": "这将停用您的用户账号。这不能被撤销，您确定吗？",
-  "@deactivateAccountWarning": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "changeDeviceName": "更改设备名称",
-  "@changeDeviceName": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "discoverGroups": "发现群组",
-  "@discoverGroups": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "reportMessage": "举报信息",
-  "@reportMessage": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "redactMessage": "重新编辑信息",
-  "@redactMessage": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "contentHasBeenReported": "此内容已被报告至服务器管理员处",
-  "@contentHasBeenReported": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "reason": "原因",
-  "@reason": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "whyDoYouWantToReportThis": "您举报的理由是什么？",
-  "@whyDoYouWantToReportThis": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "inoffensive": "不令人反感",
-  "@inoffensive": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "offensive": "令人反感",
-  "@offensive": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "extremeOffensive": "极端令人反感",
-  "@extremeOffensive": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "howOffensiveIsThisContent": "这些内容有多让人反感？",
-  "@howOffensiveIsThisContent": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "search": "搜索",
-  "@search": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "discover": "探索",
-  "@discover": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "all": "全部",
-  "@all": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "contacts": "联系人",
-  "@contacts": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "groups": "群组",
-  "@groups": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "messages": "消息",
-  "@messages": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "status": "状态",
-  "@status": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "ignore": "忽略",
-  "@ignore": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "addNewContact": "添加新的联系人",
-  "@addNewContact": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "newChat": "新的聊天",
-  "@newChat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noStatusesFound": "目前还没有发现任何状态。",
-  "@noStatusesFound": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "chatBackupDescription": "您的聊天记录备份已被安全密钥加密。请确保您不会丢失它。",
-  "@chatBackupDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pleaseEnterSecurityKey": "请键入您的安全密钥：",
-  "@pleaseEnterSecurityKey": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "transferFromAnotherDevice": "从其他设备传输",
-  "@transferFromAnotherDevice": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "everythingReady": "一切就绪！",
-  "@everythingReady": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "securityKeyLost": "丢失安全密钥？",
-  "@securityKeyLost": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "chatBackup": "聊天记录备份",
-  "@chatBackup": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "copyToClipboard": "复制到剪贴板",
-  "@copyToClipboard": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "securityKey": "安全密钥",
-  "@securityKey": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "next": "下一步",
-  "@next": {
+  "yourPublicKey": "您的公钥",
+  "@yourPublicKey": {
     "type": "text",
     "placeholders": {}
   },
@@ -1880,314 +2475,6 @@
       "homeserver": {}
     }
   },
-  "pleaseFollowInstructionsOnWeb": "请按照网站上的提示，点击下一步。",
-  "@pleaseFollowInstructionsOnWeb": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "areYouSureYouWantToLogout": "您确定要注销吗？",
-  "@areYouSureYouWantToLogout": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noPublicRoomsFound": "没有找到公共聊天室…",
-  "@noPublicRoomsFound": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "badServerLoginTypesException": "主服务器支持的登录方式：\n{serverVersions}\n但本应用仅支持：\n{supportedVersions}",
-  "@badServerLoginTypesException": {
-    "type": "text",
-    "placeholders": {
-      "serverVersions": {},
-      "supportedVersions": {}
-    }
-  },
-  "badServerVersionsException": "主服务器支持的 Spec 版本：\n{serverVersions}\n但本应用仅支持 {supportedVersions}",
-  "@badServerVersionsException": {
-    "type": "text",
-    "placeholders": {
-      "serverVersions": {},
-      "supportedVersions": {}
-    }
-  },
-  "editChatPermissions": "编辑聊天权限",
-  "@editChatPermissions": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "whoCanPerformWhichAction": "谁可以执行哪些操作",
-  "@whoCanPerformWhichAction": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "participant": "参与者",
-  "@participant": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "configureChat": "配置聊天",
-  "@configureChat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sendMessages": "发送消息",
-  "@sendMessages": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "defaultPermissionLevel": "默认权限级别",
-  "@defaultPermissionLevel": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "editRoomAvatar": "编辑聊天室头像",
-  "@editRoomAvatar": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "replaceRoomWithNewerVersion": "用较新的版本替换聊天室",
-  "@replaceRoomWithNewerVersion": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "enableEncryption": "启用加密",
-  "@enableEncryption": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "editBlockedServers": "编辑被阻止的服务器",
-  "@editBlockedServers": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noDescription": "没有说明",
-  "@noDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "publicKey": "公钥",
-  "@publicKey": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pleaseClickOnLink": "请点击电子邮件中的链接，然后继续。",
-  "@pleaseClickOnLink": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "passwordForgotten": "忘记密码",
-  "@passwordForgotten": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "passwordRecovery": "密码恢复",
-  "@passwordRecovery": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "unavailable": "不可用",
-  "@unavailable": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "offline": "离线",
-  "@offline": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "online": "在线",
-  "@online": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noPasswordRecoveryDescription": "您尚未添加恢复密码的方法。",
-  "@noPasswordRecoveryDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "mention": "提到",
-  "@mention": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "iHaveClickedOnLink": "我已经点击了链接",
-  "@iHaveClickedOnLink": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "hideUnknownEvents": "隐藏未知事件",
-  "@hideUnknownEvents": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "hideRedactedEvents": "隐藏编辑事件",
-  "@hideRedactedEvents": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "encrypted": "加密的",
-  "@encrypted": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "edit": "编辑",
-  "@edit": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "notificationsEnabledForThisAccount": "已为此账户启用通知",
-  "@notificationsEnabledForThisAccount": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "notifications": "通知",
-  "@notifications": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pushRules": "推送规则",
-  "@pushRules": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "botMessages": "机器人消息",
-  "@botMessages": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "memberChanges": "成员变更",
-  "@memberChanges": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "inviteForMe": "来自我的邀请",
-  "@inviteForMe": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "containsUserName": "包含用户名",
-  "@containsUserName": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "containsDisplayName": "包含显示名称",
-  "@containsDisplayName": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "directChats": "直接聊天",
-  "@directChats": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "enterAnEmailAddress": "输入一个电子邮件地址",
-  "@enterAnEmailAddress": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "deviceId": "设备 ID",
-  "@deviceId": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "changePassword": "更改密码",
-  "@changePassword": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "commandHintLeave": "退出该聊天室",
-  "@commandHintLeave": {
-    "type": "text",
-    "description": "Usage hint for the command /leave"
-  },
-  "commandHintJoin": "加入该聊天室",
-  "@commandHintJoin": {
-    "type": "text",
-    "description": "Usage hint for the command /join"
-  },
-  "commandHintSend": "发送文本",
-  "@commandHintSend": {
-    "type": "text",
-    "description": "Usage hint for the command /send"
-  },
-  "numUsersTyping": "{count} 人正在输入…",
-  "@numUsersTyping": {
-    "type": "text",
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "synchronizingPleaseWait": "同步中…请等待。",
-  "@synchronizingPleaseWait": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "saveFile": "保存文件",
-  "@saveFile": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "toggleFavorite": "切换收藏",
-  "@toggleFavorite": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "toggleMuted": "切换静音",
-  "@toggleMuted": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "tooManyRequestsWarning": "请求太多。请稍后再试！",
-  "@tooManyRequestsWarning": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "yourPublicKey": "您的公钥",
-  "@yourPublicKey": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "weSentYouAnEmail": "我们向您发送了一封电子邮件",
-  "@weSentYouAnEmail": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "toggleUnread": "标记已读/未读",
-  "@toggleUnread": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noConnectionToTheServer": "未与服务器建立连接",
-  "@noConnectionToTheServer": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noEncryptionForPublicRooms": "您只能在聊天室不可被公众访问时才能启用加密。",
-  "@noEncryptionForPublicRooms": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "deviceVerifyDescription": "加密仅在所有设备都被验证时才安全。",
-  "@deviceVerifyDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "addNewFriend": "添加新的好友",
-  "@addNewFriend": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "setPermissionsLevel": "设置权限级别",
-  "@setPermissionsLevel": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "goToTheNewRoom": "前往新的聊天室",
-  "@goToTheNewRoom": {
-    "type": "text",
-    "placeholders": {}
-  },
   "zoomIn": "放大",
   "@zoomIn": {
     "type": "text",
@@ -2195,315 +2482,6 @@
   },
   "zoomOut": "缩小",
   "@zoomOut": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "showPassword": "显示密码",
-  "@showPassword": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "tapOnDeviceToVerify": "点选一部设备进行验证",
-  "@tapOnDeviceToVerify": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "roomVersion": "聊天室版本",
-  "@roomVersion": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "publicGroups": "公共群组",
-  "@publicGroups": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "commandHintKick": "将该用户移出此聊天室",
-  "@commandHintKick": {
-    "type": "text",
-    "description": "Usage hint for the command /kick"
-  },
-  "commandHintOp": "设置该用户的权限等级（默认：50）",
-  "@commandHintOp": {
-    "type": "text",
-    "description": "Usage hint for the command /op"
-  },
-  "commandInvalid": "指令无效",
-  "@commandInvalid": {
-    "type": "text"
-  },
-  "commandMissing": "{command} 不是指令。",
-  "@commandMissing": {
-    "type": "text",
-    "placeholders": {
-      "command": {}
-    },
-    "description": "State that {command} is not a valid /command."
-  },
-  "editRoomAliases": "编辑聊天室别名",
-  "@editRoomAliases": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "setAsCanonicalAlias": "设为主要别名",
-  "@setAsCanonicalAlias": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "clearArchive": "清除存档",
-  "@clearArchive": {},
-  "commandHintInvite": "邀请该用户加入此聊天室",
-  "@commandHintInvite": {
-    "type": "text",
-    "description": "Usage hint for the command /invite"
-  },
-  "commandHintUnBan": "在此聊天室解封该用户",
-  "@commandHintUnBan": {
-    "type": "text",
-    "description": "Usage hint for the command /unban"
-  },
-  "commandHintBan": "在此聊天室封禁该用户",
-  "@commandHintBan": {
-    "type": "text",
-    "description": "Usage hint for the command /ban"
-  },
-  "commandHintHtml": "发送 HTML 格式化文本",
-  "@commandHintHtml": {
-    "type": "text",
-    "description": "Usage hint for the command /html"
-  },
-  "commandHintPlain": "发送纯文本",
-  "@commandHintPlain": {
-    "type": "text",
-    "description": "Usage hint for the command /plain"
-  },
-  "commandHintMe": "介绍自己",
-  "@commandHintMe": {
-    "type": "text",
-    "description": "Usage hint for the command /me"
-  },
-  "commandHintMyRoomNick": "设置您的聊天室昵称",
-  "@commandHintMyRoomNick": {
-    "type": "text",
-    "description": "Usage hint for the command /myroomnick"
-  },
-  "savedFileAs": "保存文件为 {filename}",
-  "@savedFileAs": {
-    "type": "text",
-    "placeholders": {
-      "filename": {}
-    }
-  },
-  "fontSize": "字体大小",
-  "@fontSize": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "userNotVerified": "用户未验证",
-  "@userNotVerified": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "userVerified": "用户已验证",
-  "@userVerified": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "audioPlayerPlay": "播放",
-  "@audioPlayerPlay": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "audioPlayerPause": "暂停",
-  "@audioPlayerPause": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "singlesignon": "单点登录",
-  "@singlesignon": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "loginWith": "使用 {brand} 登录",
-  "@loginWith": {
-    "type": "text",
-    "placeholders": {
-      "brand": {}
-    }
-  },
-  "sendAsText": "以文本发送",
-  "@sendAsText": {
-    "type": "text"
-  },
-  "yourChatsAreBeingSynced": "正在同步您的聊天…",
-  "@yourChatsAreBeingSynced": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "addEmail": "添加电子邮件",
-  "@addEmail": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "blocked": "已屏蔽",
-  "@blocked": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "or": "或",
-  "@or": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "security": "安全",
-  "@security": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "friends": "好友",
-  "@friends": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "optionalAddEmail": "(可选) 您的电子邮件地址",
-  "@optionalAddEmail": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "invalidEmail": "无效的电子邮件",
-  "@invalidEmail": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "removeYourAvatar": "移除您的头像",
-  "@removeYourAvatar": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "changeYourAvatar": "更改您的头像",
-  "@changeYourAvatar": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pleaseChoose": "请选择",
-  "@pleaseChoose": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "register": "注册",
-  "@register": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "verified": "已验证",
-  "@verified": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "clearText": "清除文本",
-  "@clearText": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "soundVibrationLedColor": "声音、振动和 LED 颜色",
-  "@soundVibrationLedColor": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pleaseEnterYourPin": "请输入您的 PIN",
-  "@pleaseEnterYourPin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "wipeChatBackup": "确定要清除您的聊天记录备份以创建新的安全密钥吗？",
-  "@wipeChatBackup": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "unlockChatBackup": "解锁聊天记录备份",
-  "@unlockChatBackup": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "enableChatBackup": "启用聊天记录备份以确保不会丢失您的聊天记录。",
-  "@enableChatBackup": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pleaseEnter4Digits": "请输入 4 位数字或留空以停用应用锁。",
-  "@pleaseEnter4Digits": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "appLock": "应用锁",
-  "@appLock": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "people": "联系人",
-  "@people": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "chats": "聊天",
-  "@chats": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "tapToShowImage": "点击以显示图片",
-  "@tapToShowImage": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "saveFileToFolder": "将文件保存到此文件夹",
-  "@saveFileToFolder": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sendSticker": "发送贴纸",
-  "@sendSticker": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "withTheseAddressesRecoveryDescription": "通过这些地址，您可以恢复密码。",
-  "@withTheseAddressesRecoveryDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "setCustomEmotes": "设置自定义表情",
-  "@setCustomEmotes": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "moreEvents": "{count,plural, =1{1 个更多事件} other{{count} 个更多事件}}",
-  "@moreEvents": {
-    "type": "text",
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "commandHintReact": "将回复作为响应发送",
-  "@commandHintReact": {
-    "type": "text",
-    "description": "Usage hint for the command /react"
-  },
-  "commandHintMyRoomAvatar": "设置您的聊天室头像（通过mxc-uri）",
-  "@commandHintMyRoomAvatar": {
-    "type": "text",
-    "description": "Usage hint for the command /myroomavatar"
-  },
-  "pleaseChooseAPasscode": "请选择一个密码",
-  "@pleaseChooseAPasscode": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "userUnknownVerification": "用户的验证状态未知",
-  "@userUnknownVerification": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "oopsPushError": "哎呀！十分不幸，配置推送通知时发生了错误。",
-  "@oopsPushError": {
     "type": "text",
     "placeholders": {}
   }

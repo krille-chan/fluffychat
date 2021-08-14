@@ -1,6 +1,6 @@
 {
   "@@locale": "hy",
-  "@@last_modified": "2020-09-23 11:46:02.219595",
+  "@@last_modified": "2021-08-14 12:06:11.654188",
   "about": "Հավելվածի մասին",
   "@about": {
     "type": "text",
@@ -134,13 +134,6 @@
   "@blockDevice": {
     "type": "text",
     "placeholders": {}
-  },
-  "byDefaultYouWillBeConnectedTo": "",
-  "@byDefaultYouWillBeConnectedTo": {
-    "type": "text",
-    "placeholders": {
-      "homeserver": {}
-    }
   },
   "cachedKeys": "",
   "@cachedKeys": {
@@ -881,11 +874,6 @@
   },
   "newMessageInFluffyChat": "",
   "@newMessageInFluffyChat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "newPrivateChat": "",
-  "@newPrivateChat": {
     "type": "text",
     "placeholders": {}
   },

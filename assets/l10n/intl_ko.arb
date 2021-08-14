@@ -1,46 +1,12 @@
 {
-  "commandHintInvite": "주어진 유저 이 룸에 초대하기",
-  "@commandHintInvite": {
+  "@@last_modified": "2021-08-14 12:06:11.617299",
+  "about": "소개",
+  "@about": {
     "type": "text",
-    "description": "Usage hint for the command /invite"
+    "placeholders": {}
   },
-  "commandHintUnBan": "주어진 유저 이 룸에서 밴 해제하기",
-  "@commandHintUnBan": {
-    "type": "text",
-    "description": "Usage hint for the command /unban"
-  },
-  "commandHintBan": "이 룸에서 주어진 유저 밴하기",
-  "@commandHintBan": {
-    "type": "text",
-    "description": "Usage hint for the command /ban"
-  },
-  "commandHintLeave": "이 룸 나가기",
-  "@commandHintLeave": {
-    "type": "text",
-    "description": "Usage hint for the command /leave"
-  },
-  "commandHintHtml": "HTML 형식의 문자 보내기",
-  "@commandHintHtml": {
-    "type": "text",
-    "description": "Usage hint for the command /html"
-  },
-  "commandHintPlain": "형식이 지정되지 않은 문자 보내기",
-  "@commandHintPlain": {
-    "type": "text",
-    "description": "Usage hint for the command /plain"
-  },
-  "commandHintMe": "자신을 소개하세요",
-  "@commandHintMe": {
-    "type": "text",
-    "description": "Usage hint for the command /me"
-  },
-  "commandHintSend": "문자 보내기",
-  "@commandHintSend": {
-    "type": "text",
-    "description": "Usage hint for the command /send"
-  },
-  "chats": "채팅",
-  "@chats": {
+  "accept": "수락",
+  "@accept": {
     "type": "text",
     "placeholders": {}
   },
@@ -56,14 +22,49 @@
       "uri": {}
     }
   },
-  "accept": "수락",
-  "@accept": {
+  "chats": "채팅",
+  "@chats": {
     "type": "text",
     "placeholders": {}
   },
-  "about": "소개",
-  "@about": {
+  "commandHintBan": "이 룸에서 주어진 유저 밴하기",
+  "@commandHintBan": {
     "type": "text",
-    "placeholders": {}
+    "description": "Usage hint for the command /ban"
+  },
+  "commandHintHtml": "HTML 형식의 문자 보내기",
+  "@commandHintHtml": {
+    "type": "text",
+    "description": "Usage hint for the command /html"
+  },
+  "commandHintInvite": "주어진 유저 이 룸에 초대하기",
+  "@commandHintInvite": {
+    "type": "text",
+    "description": "Usage hint for the command /invite"
+  },
+  "commandHintLeave": "이 룸 나가기",
+  "@commandHintLeave": {
+    "type": "text",
+    "description": "Usage hint for the command /leave"
+  },
+  "commandHintMe": "자신을 소개하세요",
+  "@commandHintMe": {
+    "type": "text",
+    "description": "Usage hint for the command /me"
+  },
+  "commandHintPlain": "형식이 지정되지 않은 문자 보내기",
+  "@commandHintPlain": {
+    "type": "text",
+    "description": "Usage hint for the command /plain"
+  },
+  "commandHintSend": "문자 보내기",
+  "@commandHintSend": {
+    "type": "text",
+    "description": "Usage hint for the command /send"
+  },
+  "commandHintUnBan": "주어진 유저 이 룸에서 밴 해제하기",
+  "@commandHintUnBan": {
+    "type": "text",
+    "description": "Usage hint for the command /unban"
   }
 }

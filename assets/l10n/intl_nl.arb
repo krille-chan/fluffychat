@@ -1,1019 +1,24 @@
 {
-  "pickImage": "Kies een afbeelding",
-  "@pickImage": {
+  "@@last_modified": "2021-08-14 12:06:11.584659",
+  "about": "Over",
+  "@about": {
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerEmoji": "Wachten tot partner de emoji accepteert …",
-  "@waitingPartnerEmoji": {
+  "accept": "Accepteren",
+  "@accept": {
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerAcceptRequest": "Wachten tot partner het verzoek accepteert …",
-  "@waitingPartnerAcceptRequest": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "changedTheDisplaynameTo": "{username}'s naam is nu {displayname}",
-  "@changedTheDisplaynameTo": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "displayname": {}
-    }
-  },
-  "yourOwnUsername": "Je eigen gebruikersnaam",
-  "@yourOwnUsername": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "youHaveBeenBannedFromThisChat": "Je bent verbannen uit deze chat",
-  "@youHaveBeenBannedFromThisChat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "youCannotInviteYourself": "Je kunt jezelf niet uitnodigen",
-  "@youCannotInviteYourself": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "youAreNoLongerParticipatingInThisChat": "Je neemt niet langer deel aan deze chat",
-  "@youAreNoLongerParticipatingInThisChat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "youAreInvitedToThisChat": "Je bent uitgenodigd voor deze chat",
-  "@youAreInvitedToThisChat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "you": "Jij",
-  "@you": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "yes": "Ja",
-  "@yes": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "writeAMessage": "Schrijf een bericht…",
-  "@writeAMessage": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "whoIsAllowedToJoinThisGroup": "Wie mag deelnemen aan deze groep",
-  "@whoIsAllowedToJoinThisGroup": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "withTheseAddressesRecoveryDescription": "Met deze adressen kan je je wachtwoord herstellen.",
-  "@withTheseAddressesRecoveryDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "welcomeText": "Welkom bij de schattigste instant messenger in het Matrix-netwerk.",
-  "@welcomeText": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "weSentYouAnEmail": "We hebben je een email gestuurd",
-  "@weSentYouAnEmail": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "wednesday": "Woensdag",
-  "@wednesday": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "warningEncryptionInBeta": "Eind-tot-eindversleuteling bevindt zich momenteel in beta! Gebruik op eigen risico!",
-  "@warningEncryptionInBeta": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "wallpaper": "Achtergrond",
-  "@wallpaper": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "warning": "Waarschuwing!",
-  "@warning": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "waitingPartnerNumbers": "Wachten tot partner de nummers accepteert …",
-  "@waitingPartnerNumbers": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "voiceMessage": "Spraakbericht versturen",
-  "@voiceMessage": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "visibilityOfTheChatHistory": "Chatgeschiedenis zichtbaarheid",
-  "@visibilityOfTheChatHistory": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "visibleForEveryone": "Zichtbaar voor iedereen",
-  "@visibleForEveryone": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "visibleForAllParticipants": "Zichtbaar voor alle personen",
-  "@visibleForAllParticipants": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "videoCall": "Videogesprek",
-  "@videoCall": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "verifyUser": "Verifieer Persoon",
-  "@verifyUser": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "verifyTitle": "Ander account verifiëren",
-  "@verifyTitle": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "verifySuccess": "Je bent succesvol geverifieerd!",
-  "@verifySuccess": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "verifyStart": "Start de verificatie",
-  "@verifyStart": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "verifiedSession": "Succesvol geverifieerde sessie!",
-  "@verifiedSession": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "verifyManual": "Handmatig verifiëren",
-  "@verifyManual": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "verify": "Verifieer",
-  "@verify": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "userSentUnknownEvent": "{username} heeft een {type} -gebeurtenis gestuurd",
-  "@userSentUnknownEvent": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "type": {}
-    }
-  },
-  "userIsTyping": "{username} is aan het typen …",
-  "@userIsTyping": {
+  "acceptedTheInvitation": "{username} heeft de uitnodiging geaccepteerd",
+  "@acceptedTheInvitation": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "username": "Gebruikersnaam",
-  "@username": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "userAndUserAreTyping": "{username} en {username2} zijn aan het typen …",
-  "@userAndUserAreTyping": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "username2": {}
-    }
-  },
-  "userAndOthersAreTyping": "{username} en {count} anderen zijn aan het typen …",
-  "@userAndOthersAreTyping": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "count": {}
-    }
-  },
-  "numUsersTyping": "{count} personen typen…",
-  "@numUsersTyping": {
-    "type": "text",
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "yourPublicKey": "Je openbare sleutel",
-  "@yourPublicKey": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "unreadMessagesInChats": "{unreadEvents} ongelezen berichten in {unreadChats} chats",
-  "@unreadMessagesInChats": {
-    "type": "text",
-    "placeholders": {
-      "unreadEvents": {},
-      "unreadChats": {}
-    }
-  },
-  "unreadMessages": "{unreadEvents} ongelezen berichten",
-  "@unreadMessages": {
-    "type": "text",
-    "placeholders": {
-      "unreadEvents": {}
-    }
-  },
-  "unreadChats": "{unreadCount} ongelezen chats",
-  "@unreadChats": {
-    "type": "text",
-    "placeholders": {
-      "unreadCount": {}
-    }
-  },
-  "unpin": "Losmaken",
-  "@unpin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "tooManyRequestsWarning": "Te veel verzoeken. Probeer het later nog eens!",
-  "@tooManyRequestsWarning": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noConnectionToTheServer": "Geen verbinding met de server",
-  "@noConnectionToTheServer": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "unknownEvent": "Onbekend evenement '{type}'",
-  "@unknownEvent": {
-    "type": "text",
-    "placeholders": {
-      "type": {}
-    }
-  },
-  "unknownSessionVerify": "Onbekende sessie, verifieer a.j.b.",
-  "@unknownSessionVerify": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "unknownEncryptionAlgorithm": "Onbekend versleutelingsalgoritme",
-  "@unknownEncryptionAlgorithm": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "unknownDevice": "Onbekend apparaat",
-  "@unknownDevice": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "unmuteChat": "Meldingen inschakelen",
-  "@unmuteChat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "unblockDevice": "Deblokkeer apparaat",
-  "@unblockDevice": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "unbannedUser": "{username} heeft verbanning {targetName} ongedaan gemaakt",
-  "@unbannedUser": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "targetName": {}
-    }
-  },
-  "tuesday": "Dinsdag",
-  "@tuesday": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "tryToSendAgain": "Probeer nogmaals te verzenden",
-  "@tryToSendAgain": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "toggleUnread": "Markeer gelezen/ongelezen",
-  "@toggleUnread": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "toggleMuted": "Meldingen in- of uitschakelen",
-  "@toggleMuted": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "toggleFavorite": "Favoriet in- of uitschakelen",
-  "@toggleFavorite": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "title": "FluffyChat",
-  "@title": {
-    "description": "Title for the application",
-    "type": "text",
-    "placeholders": {}
-  },
-  "timeOfDay": "{hours12}.{minutes} {suffix}",
-  "@timeOfDay": {
-    "type": "text",
-    "placeholders": {
-      "hours12": {},
-      "hours24": {},
-      "minutes": {},
-      "suffix": {}
-    }
-  },
-  "thursday": "Donderdag",
-  "@thursday": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "thisRoomHasBeenArchived": "Deze kamer is gearchiveerd.",
-  "@thisRoomHasBeenArchived": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "theyMatch": "Ze komen overeen",
-  "@theyMatch": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "theyDontMatch": "Ze komen niet overeen",
-  "@theyDontMatch": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "tapToShowMenu": "Tik om menu weer te geven",
-  "@tapToShowMenu": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "donate": "Doneer",
-  "@donate": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sunday": "Zondag",
-  "@sunday": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "submit": "Verstuur",
-  "@submit": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "startYourFirstChat": "Start nu je eerste chat! 🙂\n- Tik op de chat-knop\n- Voer de gebruikersnaam van een vriend in\n- Veel plezier met chatten",
-  "@startYourFirstChat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sourceCode": "Broncode",
-  "@sourceCode": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "security": "Beveiliging",
-  "@security": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "appLock": "App-vergrendeling",
-  "@appLock": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pleaseChooseAPasscode": "Kies een toegangscode",
-  "@pleaseChooseAPasscode": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pleaseEnter4Digits": "Voer 4 cijfers in of laat leeg om app-vergrendeling uit te schakelen.",
-  "@pleaseEnter4Digits": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "useAmoledTheme": "AMOLED-compatibele kleuren gebruiken?",
-  "@useAmoledTheme": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "darkTheme": "Donker",
-  "@darkTheme": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "lightTheme": "Licht",
-  "@lightTheme": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "statusExampleMessage": "Hoe gaat het met je vandaag?",
-  "@statusExampleMessage": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "systemTheme": "Systeem",
-  "@systemTheme": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "changeTheme": "Stijl veranderen",
-  "@changeTheme": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "startedACall": "{senderName} heeft een gesprek gestart",
-  "@startedACall": {
-    "type": "text",
-    "placeholders": {
-      "senderName": {}
-    }
-  },
-  "skip": "Overslaan",
-  "@skip": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "signUp": "Registreren",
-  "@signUp": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "settings": "Instellingen",
-  "@settings": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "setStatus": "Status instellen",
-  "@setStatus": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "setInvitationLink": "Uitnodigingslink instellen",
-  "@setInvitationLink": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "setGroupDescription": "Stel een groepsomschrijving in",
-  "@setGroupDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "setAProfilePicture": "Profielfoto instellen",
-  "@setAProfilePicture": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sessionVerified": "Sessie is geverifieerd",
-  "@sessionVerified": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sentCallInformations": "{senderName} heeft oproepgegevens verzonden",
-  "@sentCallInformations": {
-    "type": "text",
-    "placeholders": {
-      "senderName": {}
-    }
-  },
-  "sentAVideo": "{username} heeft een video verzonden",
-  "@sentAVideo": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "sentASticker": "{username} heeft een sticker verzonden",
-  "@sentASticker": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "sentAPicture": "{username} heeft een afbeelding verzonden",
-  "@sentAPicture": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "sentAnAudio": "{username} heeft een audio verzonden",
-  "@sentAnAudio": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "sentAFile": "{username} heeft een bestand verzonden",
-  "@sentAFile": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "sendVideo": "Video versturen",
-  "@sendVideo": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sendOriginal": "Origineel versturen",
-  "@sendOriginal": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sendImage": "Afbeelding versturen",
-  "@sendImage": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sendFile": "Bestand versturen",
-  "@sendFile": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sendAudio": "Audio versturen",
-  "@sendAudio": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "soundVibrationLedColor": "Geluid, vibratie LED-kleur",
-  "@soundVibrationLedColor": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sendAMessage": "Stuur een bericht",
-  "@sendAMessage": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "setPermissionsLevel": "Machtigingsniveau instellen",
-  "@setPermissionsLevel": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "setCustomEmotes": "Aangepaste emoticons inschakelen",
-  "@setCustomEmotes": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "editChatPermissions": "Chatrechten wijzigen",
-  "@editChatPermissions": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "whoCanPerformWhichAction": "Wie kan welke actie uitvoeren",
-  "@whoCanPerformWhichAction": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "send": "Verstuur",
-  "@send": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "participant": "Personen",
-  "@participant": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "configureChat": "Chat configureren",
-  "@configureChat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sendMessages": "Berichten versturen",
-  "@sendMessages": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "defaultPermissionLevel": "Standaardmachtigingsniveau",
-  "@defaultPermissionLevel": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "editRoomAvatar": "Kameravatar wijzigen",
-  "@editRoomAvatar": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "replaceRoomWithNewerVersion": "Kamerversie upgraden",
-  "@replaceRoomWithNewerVersion": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "enableEncryption": "Versleuteling inschakelen",
-  "@enableEncryption": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "editBlockedServers": "Geblokkeerde servers wijzigen",
-  "@editBlockedServers": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noDescription": "Geen omschrijving",
-  "@noDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "discoverGroups": "Groepen ontdekken",
-  "@discoverGroups": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "seenByUserAndCountOthers": "Gezien door {username} en {count} anderen",
-  "@seenByUserAndCountOthers": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "count": {}
-    }
-  },
-  "seenByUserAndUser": "Gezien door {username} en {username2}",
-  "@seenByUserAndUser": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "username2": {}
-    }
-  },
-  "seenByUser": "Gezien door {username}",
-  "@seenByUser": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "no": "Nee",
-  "@no": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "changesHaveBeenSaved": "Wijzigingen zijn opgeslagen",
-  "@changesHaveBeenSaved": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sentryInfo": "Informatie over je privacy: https://sentry.io/security/",
-  "@sentryInfo": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sendBugReports": "Bugrapporten met sentry.io versturen",
-  "@sendBugReports": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "lastSeenLongTimeAgo": "Lang geleden gezien",
-  "@lastSeenLongTimeAgo": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "searchForAChat": "Zoek een chat",
-  "@searchForAChat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sharedTheLocation": "{username} heeft de locatie gedeeld",
-  "@sharedTheLocation": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "share": "Delen",
-  "@share": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "saturday": "Zaterdag",
-  "@saturday": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "roomHasBeenUpgraded": "Kamer is geüpgrade",
-  "@roomHasBeenUpgraded": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "requestToReadOlderMessages": "Vraag om oudere berichten te lezen",
-  "@requestToReadOlderMessages": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "requestPermission": "Vraag toestemming",
-  "@requestPermission": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "reply": "Antwoord",
-  "@reply": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "removeMessage": "Verwijder bericht",
-  "@removeMessage": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "remove": "Verwijder",
-  "@remove": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "revokeAllPermissions": "Alle machtigingen intrekken",
-  "@revokeAllPermissions": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "removeExile": "Verwijder verbanning",
-  "@removeExile": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "removeDevice": "Verwijder apparaat",
-  "@removeDevice": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "removedBy": "Verwijderd door {username}",
-  "@removedBy": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "removeAllOtherDevices": "Verwijder alle andere apparaten",
-  "@removeAllOtherDevices": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "rejectedTheInvitation": "{username} heeft de uitnodiging afgewezen",
-  "@rejectedTheInvitation": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "redactedAnEvent": "{username} heeft een event verwijderd",
-  "@redactedAnEvent": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "recording": "Opnemen",
-  "@recording": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "renderRichContent": "Uitgebreide berichtinhoud weergeven",
-  "@renderRichContent": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "rejoin": "Opnieuw deelnemen",
-  "@rejoin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "reject": "Weigeren",
-  "@reject": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "publicRooms": "Openbare Kamers",
-  "@publicRooms": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "publicKey": "Publieke sleutel",
-  "@publicKey": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "privacy": "Privacy",
-  "@privacy": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pleaseEnterYourUsername": "Voer je gebruikersnaam in",
-  "@pleaseEnterYourUsername": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pleaseEnterYourPassword": "Voer je wachtwoord in",
-  "@pleaseEnterYourPassword": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pleaseEnterAMatrixIdentifier": "Voer een Matrix ID in.",
-  "@pleaseEnterAMatrixIdentifier": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pleaseClickOnLink": "Klik op de link in de email en ga dan verder.",
-  "@pleaseClickOnLink": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pleaseChooseAUsername": "Kies een gebruikersnaam",
-  "@pleaseChooseAUsername": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "play": "Speel {fileName}",
-  "@play": {
-    "type": "text",
-    "placeholders": {
-      "fileName": {}
-    }
-  },
-  "pin": "Pin",
-  "@pin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "passwordForgotten": "Wachtwoord vergeten",
-  "@passwordForgotten": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "passwordRecovery": "Wachtwoordherstel",
-  "@passwordRecovery": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "passwordHasBeenChanged": "Wachtwoord gewijzigd",
-  "@passwordHasBeenChanged": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "password": "Wachtwoord",
-  "@password": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "passphraseOrKey": "wachtwoordzin of herstelsleutel",
-  "@passphraseOrKey": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "participatingUserDevices": "Deelnemende apparaten",
-  "@participatingUserDevices": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "optionalGroupName": "Groepsnaam (optioneel)",
-  "@optionalGroupName": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "openCamera": "Camera openen",
-  "@openCamera": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "openAppToReadMessages": "Open app om de berichten te lezen",
-  "@openAppToReadMessages": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "oopsSomethingWentWrong": "Oeps, er ging iets mis…",
-  "@oopsSomethingWentWrong": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "onlineKeyBackupEnabled": "Online sleutelback-up is ingeschakeld",
-  "@onlineKeyBackupEnabled": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "unavailable": "Niet beschikbaar",
-  "@unavailable": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "offline": "Offline",
-  "@offline": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "online": "Online",
-  "@online": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "onlineKeyBackupDisabled": "Online sleutelback-up is uitgeschakeld",
-  "@onlineKeyBackupDisabled": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "ok": "OK",
-  "@ok": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "numberSelected": "{number} geselecteerd",
-  "@numberSelected": {
-    "type": "text",
-    "placeholders": {
-      "number": {}
-    }
-  },
-  "notSupportedInWeb": "Niet ondersteund in web",
-  "@notSupportedInWeb": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noRoomsFound": "Geen kamers gevonden …",
-  "@noRoomsFound": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noPermission": "Geen toestemming",
-  "@noPermission": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noEmotesFound": "Geen emoticons gevonden. 😕",
-  "@noEmotesFound": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "none": "Geen",
-  "@none": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noGoogleServicesWarning": "Het lijkt erop dat je geen Google-services op je telefoon hebt. Dat is een goede beslissing voor je privacy! Om pushmeldingen in FluffyChat te ontvangen raden we je https://microg.org/ of https://unifiedpush.org aan.",
-  "@noGoogleServicesWarning": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noMegolmBootstrap": "Zet in plaats daarvan de online sleutelback-up aan vanuit Element.",
-  "@noMegolmBootstrap": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noCrossSignBootstrap": "FluffyChat biedt momenteel geen ondersteuning voor het inschakelen van kruislings ondertekenen. Schakel het in vanuit Element.",
-  "@noCrossSignBootstrap": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noPasswordRecoveryDescription": "Je hebt nog geen manier toegevoegd om je wachtwoord te herstellen.",
-  "@noPasswordRecoveryDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "newVerificationRequest": "Nieuw verificatieverzoek!",
-  "@newVerificationRequest": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "newPrivateChat": "Nieuwe privéchat",
-  "@newPrivateChat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "newMessageInFluffyChat": "Nieuw bericht in FluffyChat",
-  "@newMessageInFluffyChat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "needPantalaimonWarning": "Houd er rekening mee dat je voorlopig Pantalaimon nodig hebt om eind-tot-eindversleuteling te gebruiken.",
-  "@needPantalaimonWarning": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "muteChat": "Meldingen uitschakelen",
-  "@muteChat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "monday": "Maandag",
-  "@monday": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "moderator": "Moderator",
-  "@moderator": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "messageWillBeRemovedWarning": "Bericht wordt verwijderd voor alle personen",
-  "@messageWillBeRemovedWarning": {
+  "account": "Account",
+  "@account": {
     "type": "text",
     "placeholders": {}
   },
@@ -1022,399 +27,185 @@
     "type": "text",
     "placeholders": {}
   },
-  "mention": "Vermeld",
-  "@mention": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "makeSureTheIdentifierIsValid": "Zorg ervoor dat de identificatie geldig is",
-  "@makeSureTheIdentifierIsValid": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "makeAnAdmin": "Beheerder maken",
-  "@makeAnAdmin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "makeAModerator": "Maak moderator",
-  "@makeAModerator": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "logInTo": "Inloggen bij {homeserver}",
-  "@logInTo": {
-    "type": "text",
-    "placeholders": {
-      "homeserver": {}
-    }
-  },
-  "login": "Inloggen",
-  "@login": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "loadCountMoreParticipants": "Laad nog {count} personen",
-  "@loadCountMoreParticipants": {
-    "type": "text",
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "loadMore": "Meer laden…",
-  "@loadMore": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "loadingPleaseWait": "Bezig met laden… Even geduld.",
-  "@loadingPleaseWait": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "license": "Licentie",
-  "@license": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "lastSeenIp": "Laatst bekende IP",
-  "@lastSeenIp": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "lastActiveAgo": "Laatst actief: {localizedTimeShort}",
-  "@lastActiveAgo": {
-    "type": "text",
-    "placeholders": {
-      "localizedTimeShort": {}
-    }
-  },
-  "userLeftTheChat": "{username} is vertrokken uit de chat",
-  "@userLeftTheChat": {
+  "activatedEndToEndEncryption": "{username} heeft eind-tot-eindversleuteling geactiveerd",
+  "@activatedEndToEndEncryption": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "logout": "Uitloggen",
-  "@logout": {
+  "addEmail": "Email toevoegen",
+  "@addEmail": {
     "type": "text",
     "placeholders": {}
   },
-  "leftTheChat": "Verliet de chat",
-  "@leftTheChat": {
+  "addGroupDescription": "Voeg een groepsomschrijving toe",
+  "@addGroupDescription": {
     "type": "text",
     "placeholders": {}
   },
-  "leave": "Chat verlaten",
-  "@leave": {
+  "addNewFriend": "Nieuwe vriend toevoegen",
+  "@addNewFriend": {
     "type": "text",
     "placeholders": {}
   },
-  "kickFromChat": "Uit chat verwijderen",
-  "@kickFromChat": {
+  "addToSpace": "Aan space toevoegen",
+  "@addToSpace": {},
+  "admin": "Beheerder",
+  "@admin": {
     "type": "text",
     "placeholders": {}
   },
-  "kickedAndBanned": "{username} heeft {targetName} verwijderd en verbannen",
-  "@kickedAndBanned": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "targetName": {}
-    }
-  },
-  "kicked": "{username} heeft {targetName} verwijderd",
-  "@kicked": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "targetName": {}
-    }
-  },
-  "keysMissing": "Er zitten geen sleutels in de cache",
-  "@keysMissing": {
+  "alias": "alias",
+  "@alias": {
     "type": "text",
     "placeholders": {}
   },
-  "keysCached": "Er zitten sleutels in de cache",
-  "@keysCached": {
+  "all": "Alle",
+  "@all": {
     "type": "text",
     "placeholders": {}
   },
-  "joinRoom": "Deelnemen",
-  "@joinRoom": {
+  "allChats": "Alle chats",
+  "@allChats": {
     "type": "text",
     "placeholders": {}
   },
-  "joinedTheChat": "{username} is toegetreden tot de chat",
-  "@joinedTheChat": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "editJitsiInstance": "Jitsi-server wijzigen",
-  "@editJitsiInstance": {
+  "alreadyHaveAnAccount": "Heb je al een account?",
+  "@alreadyHaveAnAccount": {
     "type": "text",
     "placeholders": {}
   },
-  "iHaveClickedOnLink": "Ik heb op de link geklikt",
-  "@iHaveClickedOnLink": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "isTyping": "is aan het typen…",
-  "@isTyping": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "isDeviceKeyCorrect": "Is de volgende apparaatsleutel correct?",
-  "@isDeviceKeyCorrect": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "invitedUsersOnly": "Alleen uitgenodigde personen",
-  "@invitedUsersOnly": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "invitedUser": "{username} heeft {targetName} uitgenodigd",
-  "@invitedUser": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "targetName": {}
-    }
-  },
-  "inviteText": "{username} heeft je uitgenodigd voor FluffyChat.\n1. Installeer FluffyChat: https://fluffychat.im\n2. Registreer of log in\n3. Open deze uitnodigingslink: {link}",
-  "@inviteText": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "link": {}
-    }
-  },
-  "invited": "Uitgenodigd",
-  "@invited": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "inviteContactToGroup": "Contact voor {groupName} uitnodigen",
-  "@inviteContactToGroup": {
-    "type": "text",
-    "placeholders": {
-      "groupName": {}
-    }
-  },
-  "inviteContact": "Contact uitnodigen",
-  "@inviteContact": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "incorrectPassphraseOrKey": "Onjuiste wachtwoordzin of herstelsleutel",
-  "@incorrectPassphraseOrKey": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "ignoreListDescription": "Je kunt personen die je storen negeren. Je kunt geen berichten of kameruitnodigingen ontvangen van de personen op je negeerlijst.",
-  "@ignoreListDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "ignoreUsername": "Negeer persoon",
-  "@ignoreUsername": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "ignoredUsers": "Genegeerde personen",
-  "@ignoredUsers": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "identity": "Identiteit",
-  "@identity": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "id": "ID",
-  "@id": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "homeserverIsNotCompatible": "Homeserver is niet compatibel",
-  "@homeserverIsNotCompatible": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "hideUnknownEvents": "Onbekende gebeurtenissen verbergen",
-  "@hideUnknownEvents": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "hideRedactedEvents": "Bewerkte gebeurtenissen verbergen",
-  "@hideRedactedEvents": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "help": "Help",
-  "@help": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "hasWithdrawnTheInvitationFor": "{username} heeft de uitnodiging voor {targetName} ingetrokken",
-  "@hasWithdrawnTheInvitationFor": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "targetName": {}
-    }
-  },
-  "guestsCanJoin": "Gasten kunnen deelnemen",
-  "@guestsCanJoin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "guestsAreForbidden": "Gasten zijn verboden",
-  "@guestsAreForbidden": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "groupWith": "Groep met {displayname}",
-  "@groupWith": {
-    "type": "text",
-    "placeholders": {
-      "displayname": {}
-    }
-  },
-  "groupIsPublic": "Groep is openbaar",
-  "@groupIsPublic": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "groupDescriptionHasBeenChanged": "Groepsomschrijving gewijzigd",
-  "@groupDescriptionHasBeenChanged": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "groupDescription": "Groepsomschrijving",
-  "@groupDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "group": "Groep",
-  "@group": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "fromTheInvitation": "Vanaf uitnodiging",
-  "@fromTheInvitation": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "fromJoining": "Vanaf deelname",
-  "@fromJoining": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "friday": "Vrijdag",
-  "@friday": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "forward": "Stuur door",
-  "@forward": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "fluffychat": "FluffyChat",
-  "@fluffychat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "fileSize": "Bestandsgrootte",
-  "@fileSize": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "fileName": "Bestandsnaam",
-  "@fileName": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "enterYourHomeserver": "Vul je homeserver in",
-  "@enterYourHomeserver": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "enterAUsername": "Vul een gebruikersnaam in",
-  "@enterAUsername": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "enterAGroupName": "Vul een groepsnaam in",
-  "@enterAGroupName": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "endedTheCall": "{senderName} heeft het gesprek beëindigd",
-  "@endedTheCall": {
+  "answeredTheCall": "{senderName} heeft de oproep beantwoord",
+  "@answeredTheCall": {
     "type": "text",
     "placeholders": {
       "senderName": {}
     }
   },
-  "end2endEncryptionSettings": "Eind-tot-eindversleutelingsinstellingen",
-  "@end2endEncryptionSettings": {
+  "anyoneCanJoin": "Iedereen kan deelnemen",
+  "@anyoneCanJoin": {
     "type": "text",
     "placeholders": {}
   },
-  "encrypted": "Versleuteld",
-  "@encrypted": {
+  "appLock": "App-vergrendeling",
+  "@appLock": {
     "type": "text",
     "placeholders": {}
   },
-  "encryptionNotEnabled": "Versleuteling is niet ingeschakeld",
-  "@encryptionNotEnabled": {
+  "archive": "Archief",
+  "@archive": {
     "type": "text",
     "placeholders": {}
   },
-  "encryptionAlgorithm": "Versleutelingsalgoritme",
-  "@encryptionAlgorithm": {
+  "archivedRoom": "Gearchiveerde Kamer",
+  "@archivedRoom": {
     "type": "text",
     "placeholders": {}
   },
-  "encryption": "Versleuteling",
-  "@encryption": {
+  "areGuestsAllowedToJoin": "Mogen gasten deelnemen",
+  "@areGuestsAllowedToJoin": {
     "type": "text",
     "placeholders": {}
   },
-  "enableEncryptionWarning": "Je kunt de versleuteling hierna niet meer uitschakelen. Weet je het zeker?",
-  "@enableEncryptionWarning": {
+  "areYouSure": "Weet je het zeker?",
+  "@areYouSure": {
     "type": "text",
     "placeholders": {}
   },
-  "enableEmotesGlobally": "Emoticonpakket overal inschakelen",
-  "@enableEmotesGlobally": {
+  "areYouSureYouWantToLogout": "Weet je zeker dat je wilt uitloggen?",
+  "@areYouSureYouWantToLogout": {
     "type": "text",
     "placeholders": {}
   },
-  "edit": "Wijzig",
-  "@edit": {
+  "askSSSSCache": "Voer je chatback-up veiligheidswachtwoord of veiligheidssleutel in om de sleutels in de cache te bewaren.",
+  "@askSSSSCache": {
     "type": "text",
     "placeholders": {}
   },
-  "notificationsEnabledForThisAccount": "Meldingen ingeschakeld voor dit account",
-  "@notificationsEnabledForThisAccount": {
+  "askSSSSSign": "Voer je beveiligde opslag wachtwoordzin of herstelsleutel in om de andere persoon te kunnen ondertekenen.",
+  "@askSSSSSign": {
     "type": "text",
     "placeholders": {}
   },
-  "notifications": "Meldingen",
-  "@notifications": {
+  "askSSSSVerify": "Voer je beveiligde opslag wachtwoordzin of herstelsleutel in om je sessie te verifiëren.",
+  "@askSSSSVerify": {
     "type": "text",
     "placeholders": {}
   },
-  "pushRules": "Meldingsinstellingen",
-  "@pushRules": {
+  "askVerificationRequest": "Accepteer je dit verificatieverzoek van {username}?",
+  "@askVerificationRequest": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "audioPlayerPause": "Pause",
+  "@audioPlayerPause": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPlay": "Afspelen",
+  "@audioPlayerPlay": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "authentication": "Authenticatie",
+  "@authentication": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "autoplayImages": "Automatisch geanimeerde stickers en emoticons afspelen",
+  "@autoplayImages": {
+    "type": "text",
+    "placeholder": {}
+  },
+  "avatarHasBeenChanged": "Avatar is gewijzigd",
+  "@avatarHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "badServerLoginTypesException": "De homeserver ondersteunt de login types:\n{serverVersions}\nMaar deze app ondersteunt alleen:\n{supportedVersions}",
+  "@badServerLoginTypesException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "badServerVersionsException": "De homeserver ondersteunt de Spec-versies:\n{serverVersions}\nMaar deze app ondersteunt alleen {supportedVersions}",
+  "@badServerVersionsException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "banFromChat": "Van chat verbannen",
+  "@banFromChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "banned": "Verbannen",
+  "@banned": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bannedUser": "{username} verbant {targetName}",
+  "@bannedUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "blockDevice": "Blokkeer Apparaat",
+  "@blockDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "blocked": "Geblokkeerd",
+  "@blocked": {
     "type": "text",
     "placeholders": {}
   },
@@ -1423,390 +214,30 @@
     "type": "text",
     "placeholders": {}
   },
-  "memberChanges": "Persoon wijzigingen",
-  "@memberChanges": {
+  "cachedKeys": "Sleutels in cache",
+  "@cachedKeys": {
     "type": "text",
     "placeholders": {}
   },
-  "inviteForMe": "Persoonlijke uitnodiging",
-  "@inviteForMe": {
+  "cancel": "Annuleer",
+  "@cancel": {
     "type": "text",
     "placeholders": {}
   },
-  "containsUserName": "Bevat gebruikersnaam",
-  "@containsUserName": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "containsDisplayName": "Bevat naam",
-  "@containsDisplayName": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "directChats": "Directe Chats",
-  "@directChats": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "emptyChat": "Lege chat",
-  "@emptyChat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "emotePacks": "Emoticonpakketten voor de kamer",
-  "@emotePacks": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "emoteInvalid": "Ongeldige emoticon korte code!",
-  "@emoteInvalid": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "emoteExists": "Emoticon bestaat al!",
-  "@emoteExists": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "enterAnEmailAddress": "Voer een email in",
-  "@enterAnEmailAddress": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "emoteWarnNeedToPick": "Je moet een emoticon korte code en afbeelding kiezen!",
-  "@emoteWarnNeedToPick": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "emoteShortcode": "Emoticon korte code",
-  "@emoteShortcode": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "emoteSettings": "Emoticon-instellingen",
-  "@emoteSettings": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "editDisplayname": "Naam wijzigen",
-  "@editDisplayname": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "downloadFile": "Bestand downloaden",
-  "@downloadFile": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "displaynameHasBeenChanged": "De naam is gewijzigd",
-  "@displaynameHasBeenChanged": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "discardPicture": "Afbeelding verwijderen",
-  "@discardPicture": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "devices": "Apparaten",
-  "@devices": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "deviceId": "Apparaat ID",
-  "@deviceId": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "device": "Apparaat",
-  "@device": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "deny": "Weigeren",
-  "@deny": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "deleteMessage": "Bericht verwijderen",
-  "@deleteMessage": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "deleteAccount": "Account verwijderen",
-  "@deleteAccount": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "deactivateAccountWarning": "Hierdoor wordt je account gedeactiveerd. Dit kan niet ongedaan gemaakt worden! Weet je het zeker?",
-  "@deactivateAccountWarning": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "delete": "Bericht verwijderen",
-  "@delete": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "dateWithYear": "{year}-{month}-{day}",
-  "@dateWithYear": {
+  "cantOpenUri": "Kan de URI {uri} niet openen",
+  "@cantOpenUri": {
     "type": "text",
     "placeholders": {
-      "year": {},
-      "month": {},
-      "day": {}
+      "uri": {}
     }
   },
-  "dateWithoutYear": "{month}-{day}",
-  "@dateWithoutYear": {
-    "type": "text",
-    "placeholders": {
-      "month": {},
-      "day": {}
-    }
-  },
-  "dateAndTimeOfDay": "{date}, {timeOfDay}",
-  "@dateAndTimeOfDay": {
-    "type": "text",
-    "placeholders": {
-      "date": {},
-      "timeOfDay": {}
-    }
-  },
-  "currentlyActive": "Momenteel actief",
-  "@currentlyActive": {
+  "changeDeviceName": "Wijzig de apparaatnaam",
+  "@changeDeviceName": {
     "type": "text",
     "placeholders": {}
   },
-  "crossSigningEnabled": "Kruislings ondertekenen ingeschakeld",
-  "@crossSigningEnabled": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "crossSigningDisabled": "Kruislings ondertekenen uitgeschakeld",
-  "@crossSigningDisabled": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "createNewGroup": "Nieuwe groep",
-  "@createNewGroup": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "createdTheChat": "{username} heeft de chat gemaakt",
-  "@createdTheChat": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "createAccountNow": "Maak nu een account aan",
-  "@createAccountNow": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "create": "Aanmaken",
-  "@create": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "countParticipants": "{count} personen",
-  "@countParticipants": {
-    "type": "text",
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "couldNotSetDisplayname": "Kan naam niet instellen",
-  "@couldNotSetDisplayname": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "couldNotSetAvatar": "Kan avatar niet instellen",
-  "@couldNotSetAvatar": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "couldNotDecryptMessage": "Kan het bericht niet decoderen: {error}",
-  "@couldNotDecryptMessage": {
-    "type": "text",
-    "placeholders": {
-      "error": {}
-    }
-  },
-  "copy": "Bericht kopiëren",
-  "@copy": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "copiedToClipboard": "Gekopieerd naar het klembord",
-  "@copiedToClipboard": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "contentViewer": "Contentvoorvertoning",
-  "@contentViewer": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "contactHasBeenInvitedToTheGroup": "Contact is voor de groep uitgenodigd",
-  "@contactHasBeenInvitedToTheGroup": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "connectionAttemptFailed": "Verbindingspoging is mislukt",
-  "@connectionAttemptFailed": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "connect": "Verbinden",
-  "@connect": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "confirm": "Bevestigen",
-  "@confirm": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "compareNumbersMatch": "Vergelijk en zorg ervoor dat de volgende nummers overeenkomen met die van het andere apparaat:",
-  "@compareNumbersMatch": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "compareEmojiMatch": "Vergelijk en zorg ervoor dat de volgende emoji overeenkomen met die van het andere apparaat:",
-  "@compareEmojiMatch": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "close": "Sluiten",
-  "@close": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "chooseAUsername": "Kies een gebruikersnaam",
-  "@chooseAUsername": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "chooseAStrongPassword": "Kies een sterk wachtwoord",
-  "@chooseAStrongPassword": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "chatDetails": "Chatdetails",
-  "@chatDetails": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "chat": "Chat",
-  "@chat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "channelCorruptedDecryptError": "De encryptie is beschadigd",
-  "@channelCorruptedDecryptError": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "changeTheServer": "Server wijzigen",
-  "@changeTheServer": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "changeWallpaper": "Achtergrond wijzigen",
-  "@changeWallpaper": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "changePassword": "Wachtwoord wijzigen",
-  "@changePassword": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "changeTheNameOfTheGroup": "Groepsnaam wijzigen",
-  "@changeTheNameOfTheGroup": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "changelog": "Wijzigingslogboek",
-  "@changelog": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "changedTheRoomInvitationLink": "{username} heeft de uitnodigingslink gewijzigd",
-  "@changedTheRoomInvitationLink": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "changedTheRoomAliases": "{username} heeft de kameraliassen gewijzigd",
-  "@changedTheRoomAliases": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "changedTheProfileAvatar": "{username}'s avatar is gewijzigd",
-  "@changedTheProfileAvatar": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "changedTheJoinRulesTo": "{username} heeft de deelnameregels gewijzigd in: {joinRules}",
-  "@changedTheJoinRulesTo": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "joinRules": {}
-    }
-  },
-  "changedTheJoinRules": "{username} heeft de deelnameregels gewijzigd",
-  "@changedTheJoinRules": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "changedTheHistoryVisibilityTo": "{username} heeft de zichtbaarheid van de geschiedenis gewijzigd in: {rules}",
-  "@changedTheHistoryVisibilityTo": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "rules": {}
-    }
-  },
-  "changedTheHistoryVisibility": "{username} heeft de zichtbaarheid van de geschiedenis gewijzigd",
-  "@changedTheHistoryVisibility": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "changedTheGuestAccessRulesTo": "{username} heeft de gastenregels gewijzigd in: {rules}",
-  "@changedTheGuestAccessRulesTo": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "rules": {}
-    }
-  },
-  "changedTheGuestAccessRules": "{username} heeft de toegangsregels voor gasten gewijzigd",
-  "@changedTheGuestAccessRules": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "changeTheHomeserver": "Homeserver wijzigen",
-  "@changeTheHomeserver": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "changedTheChatPermissions": "{username} heeft de chatrechten gewijzigd",
-  "@changedTheChatPermissions": {
+  "changedTheChatAvatar": "{username} heeft de chatavatar gewijzigd",
+  "@changedTheChatAvatar": {
     "type": "text",
     "placeholders": {
       "username": {}
@@ -1828,523 +259,124 @@
       "chatname": {}
     }
   },
-  "changedTheChatAvatar": "{username} heeft de chatavatar gewijzigd",
-  "@changedTheChatAvatar": {
+  "changedTheChatPermissions": "{username} heeft de chatrechten gewijzigd",
+  "@changedTheChatPermissions": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changeDeviceName": "Wijzig de apparaatnaam",
-  "@changeDeviceName": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "cancel": "Annuleer",
-  "@cancel": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "cachedKeys": "Sleutels in cache",
-  "@cachedKeys": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "youWillBeConnectedTo": "Je wordt verbonden met {homeserver}",
-  "@youWillBeConnectedTo": {
-    "type": "text",
-    "placeholders": {
-      "homeserver": {}
-    }
-  },
-  "blockDevice": "Blokkeer Apparaat",
-  "@blockDevice": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "bannedUser": "{username} verbant {targetName}",
-  "@bannedUser": {
+  "changedTheDisplaynameTo": "{username}'s naam is nu {displayname}",
+  "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
       "username": {},
-      "targetName": {}
+      "displayname": {}
     }
   },
-  "banned": "Verbannen",
-  "@banned": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "banFromChat": "Van chat verbannen",
-  "@banFromChat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "avatarHasBeenChanged": "Avatar is gewijzigd",
-  "@avatarHasBeenChanged": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "authentication": "Authenticatie",
-  "@authentication": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "askVerificationRequest": "Accepteer je dit verificatieverzoek van {username}?",
-  "@askVerificationRequest": {
+  "changedTheGuestAccessRules": "{username} heeft de toegangsregels voor gasten gewijzigd",
+  "@changedTheGuestAccessRules": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "askSSSSVerify": "Voer je beveiligde opslag wachtwoordzin of herstelsleutel in om je sessie te verifiëren.",
-  "@askSSSSVerify": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "askSSSSSign": "Voer je beveiligde opslag wachtwoordzin of herstelsleutel in om de andere persoon te kunnen ondertekenen.",
-  "@askSSSSSign": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "askSSSSCache": "Voer je chatback-up veiligheidswachtwoord of veiligheidssleutel in om de sleutels in de cache te bewaren.",
-  "@askSSSSCache": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "areYouSure": "Weet je het zeker?",
-  "@areYouSure": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "areGuestsAllowedToJoin": "Mogen gasten deelnemen",
-  "@areGuestsAllowedToJoin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "archivedRoom": "Gearchiveerde Kamer",
-  "@archivedRoom": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "archive": "Archief",
-  "@archive": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "anyoneCanJoin": "Iedereen kan deelnemen",
-  "@anyoneCanJoin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "answeredTheCall": "{senderName} heeft de oproep beantwoord",
-  "@answeredTheCall": {
+  "changedTheGuestAccessRulesTo": "{username} heeft de gastenregels gewijzigd in: {rules}",
+  "@changedTheGuestAccessRulesTo": {
     "type": "text",
     "placeholders": {
-      "senderName": {}
+      "username": {},
+      "rules": {}
     }
   },
-  "alreadyHaveAnAccount": "Heb je al een account?",
-  "@alreadyHaveAnAccount": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "alias": "alias",
-  "@alias": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "admin": "Beheerder",
-  "@admin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "addGroupDescription": "Voeg een groepsomschrijving toe",
-  "@addGroupDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "activatedEndToEndEncryption": "{username} heeft eind-tot-eindversleuteling geactiveerd",
-  "@activatedEndToEndEncryption": {
+  "changedTheHistoryVisibility": "{username} heeft de zichtbaarheid van de geschiedenis gewijzigd",
+  "@changedTheHistoryVisibility": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "account": "Account",
-  "@account": {
+  "changedTheHistoryVisibilityTo": "{username} heeft de zichtbaarheid van de geschiedenis gewijzigd in: {rules}",
+  "@changedTheHistoryVisibilityTo": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": {
+      "username": {},
+      "rules": {}
+    }
   },
-  "acceptedTheInvitation": "{username} heeft de uitnodiging geaccepteerd",
-  "@acceptedTheInvitation": {
+  "changedTheJoinRules": "{username} heeft de deelnameregels gewijzigd",
+  "@changedTheJoinRules": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "accept": "Accepteren",
-  "@accept": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "about": "Over",
-  "@about": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "reportMessage": "Bericht rapporteren",
-  "@reportMessage": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "redactMessage": "Verwijder",
-  "@redactMessage": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "contentHasBeenReported": "De inhoud is gerapporteerd aan de serverbeheerders",
-  "@contentHasBeenReported": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "reason": "Reden",
-  "@reason": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "whyDoYouWantToReportThis": "Waarom wil je dit rapporteren?",
-  "@whyDoYouWantToReportThis": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "inoffensive": "Niet beledigend",
-  "@inoffensive": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "offensive": "Beledigend",
-  "@offensive": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "extremeOffensive": "Extreem beledigend",
-  "@extremeOffensive": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "howOffensiveIsThisContent": "Hoe beledigend is deze inhoud?",
-  "@howOffensiveIsThisContent": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "search": "Zoeken",
-  "@search": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "discover": "Ontdekken",
-  "@discover": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "groups": "Groepen",
-  "@groups": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "messages": "Berichten",
-  "@messages": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "status": "Status",
-  "@status": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "ignore": "Negeer",
-  "@ignore": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "next": "Volgende",
-  "@next": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pleaseFollowInstructionsOnWeb": "Volg de instructies op de website en tik op volgende.",
-  "@pleaseFollowInstructionsOnWeb": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "all": "Alle",
-  "@all": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "contacts": "Contacten",
-  "@contacts": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "newChat": "Nieuwe chat",
-  "@newChat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noStatusesFound": "Geen statussen gevonden tot nu toe.",
-  "@noStatusesFound": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "addNewContact": "Nieuw contact toevoegen",
-  "@addNewContact": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "areYouSureYouWantToLogout": "Weet je zeker dat je wilt uitloggen?",
-  "@areYouSureYouWantToLogout": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noPublicRoomsFound": "Geen publieke kamers gevonden…",
-  "@noPublicRoomsFound": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pleaseEnterSecurityKey": "Voer je veiligheidsssleutel in:",
-  "@pleaseEnterSecurityKey": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "transferFromAnotherDevice": "Overzetten vanaf een ander apparaat",
-  "@transferFromAnotherDevice": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "everythingReady": "Alles klaar!",
-  "@everythingReady": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "securityKeyLost": "Veiligheidssleutel verloren?",
-  "@securityKeyLost": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "chatBackup": "Chatback-up",
-  "@chatBackup": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "copyToClipboard": "Kopieer naar klembord",
-  "@copyToClipboard": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "securityKey": "Veiligheidssleutel",
-  "@securityKey": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "badServerLoginTypesException": "De homeserver ondersteunt de login types:\n{serverVersions}\nMaar deze app ondersteunt alleen:\n{supportedVersions}",
-  "@badServerLoginTypesException": {
+  "changedTheJoinRulesTo": "{username} heeft de deelnameregels gewijzigd in: {joinRules}",
+  "@changedTheJoinRulesTo": {
     "type": "text",
     "placeholders": {
-      "serverVersions": {},
-      "supportedVersions": {}
+      "username": {},
+      "joinRules": {}
     }
   },
-  "badServerVersionsException": "De homeserver ondersteunt de Spec-versies:\n{serverVersions}\nMaar deze app ondersteunt alleen {supportedVersions}",
-  "@badServerVersionsException": {
+  "changedTheProfileAvatar": "{username}'s avatar is gewijzigd",
+  "@changedTheProfileAvatar": {
     "type": "text",
     "placeholders": {
-      "serverVersions": {},
-      "supportedVersions": {}
+      "username": {}
     }
   },
-  "clearText": "Tekst wissen",
-  "@clearText": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "userUnknownVerification": "Persoon heeft een onbekende verificatiestatus",
-  "@userUnknownVerification": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "wipeChatBackup": "Wil je de chatback-up wissen en een nieuwe veiligheidssleutel te maken?",
-  "@wipeChatBackup": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "fontSize": "Lettergrootte",
-  "@fontSize": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "userNotVerified": "Persoon is niet geverifieerd",
-  "@userNotVerified": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "userVerified": "Persoon is geverifieerd",
-  "@userVerified": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "audioPlayerPlay": "Afspelen",
-  "@audioPlayerPlay": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "audioPlayerPause": "Pause",
-  "@audioPlayerPause": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "chatBackupDescription": "Je chatback-up is beveiligd met een veiligheidssleutel. Zorg ervoor dat je deze niet verliest.",
-  "@chatBackupDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "showPassword": "Wachtwoord weergeven",
-  "@showPassword": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "addEmail": "Email toevoegen",
-  "@addEmail": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "zoomOut": "Uitzoomen",
-  "@zoomOut": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "zoomIn": "Inzoomen",
-  "@zoomIn": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "blocked": "Geblokkeerd",
-  "@blocked": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "verified": "Geverifieerd",
-  "@verified": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "moreEvents": "{count,plural, =1{Nog 1 gebeurtenis} other{Nog {count} gebeurtenissen}}",
-  "@moreEvents": {
+  "changedTheRoomAliases": "{username} heeft de kameraliassen gewijzigd",
+  "@changedTheRoomAliases": {
     "type": "text",
     "placeholders": {
-      "count": {}
+      "username": {}
     }
   },
-  "unlockChatBackup": "Chatback-up ontgrendelen",
-  "@unlockChatBackup": {
+  "changedTheRoomInvitationLink": "{username} heeft de uitnodigingslink gewijzigd",
+  "@changedTheRoomInvitationLink": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changelog": "Wijzigingslogboek",
+  "@changelog": {
     "type": "text",
     "placeholders": {}
   },
-  "friends": "Vrienden",
-  "@friends": {
+  "changePassword": "Wachtwoord wijzigen",
+  "@changePassword": {
     "type": "text",
     "placeholders": {}
   },
-  "addNewFriend": "Nieuwe vriend toevoegen",
-  "@addNewFriend": {
+  "changesHaveBeenSaved": "Wijzigingen zijn opgeslagen",
+  "@changesHaveBeenSaved": {
     "type": "text",
     "placeholders": {}
   },
-  "noEncryptionForPublicRooms": "Je kunt de versleuteling pas activeren zodra de kamer niet meer publiekelijk toegankelijk is.",
-  "@noEncryptionForPublicRooms": {
+  "changeTheHomeserver": "Homeserver wijzigen",
+  "@changeTheHomeserver": {
     "type": "text",
     "placeholders": {}
   },
-  "deviceVerifyDescription": "De versleutelinf is pas veilig als alle apparaten zijn geverifieerd.",
-  "@deviceVerifyDescription": {
+  "changeTheme": "Stijl veranderen",
+  "@changeTheme": {
     "type": "text",
     "placeholders": {}
   },
-  "tapOnDeviceToVerify": "Tik op een apparaat om te verifiëren",
-  "@tapOnDeviceToVerify": {
+  "changeTheNameOfTheGroup": "Groepsnaam wijzigen",
+  "@changeTheNameOfTheGroup": {
     "type": "text",
     "placeholders": {}
   },
-  "publicGroups": "Alle Groepen",
-  "@publicGroups": {
+  "changeTheServer": "Server wijzigen",
+  "@changeTheServer": {
     "type": "text",
     "placeholders": {}
   },
-  "people": "Personen",
-  "@people": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "chats": "Chats",
-  "@chats": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "roomVersion": "Kamerversie",
-  "@roomVersion": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "goToTheNewRoom": "Ga naar de nieuwe kamer",
-  "@goToTheNewRoom": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pleaseEnterYourPin": "Voer je pincode in",
-  "@pleaseEnterYourPin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "clearArchive": "Archief wissen",
-  "@clearArchive": {},
-  "setAsCanonicalAlias": "Instellen als hoofdalias",
-  "@setAsCanonicalAlias": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "editRoomAliases": "Kameraliassen wijzigen",
-  "@editRoomAliases": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "optionalAddEmail": "Je e-mailadres (optioneel)",
-  "@optionalAddEmail": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "invalidEmail": "Ongeldige e-mail",
-  "@invalidEmail": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "useSSO": "Gebruik eenmalig inloggen",
-  "@useSSO": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "or": "Of",
-  "@or": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "oopsPushError": "Oeps! Helaas is er een fout opgetreden bij het instellen van de pushmeldingen.",
-  "@oopsPushError": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "removeYourAvatar": "Je avatar verwijderen",
-  "@removeYourAvatar": {
+  "changeWallpaper": "Achtergrond wijzigen",
+  "@changeWallpaper": {
     "type": "text",
     "placeholders": {}
   },
@@ -2353,58 +385,99 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseChoose": "Kies",
-  "@pleaseChoose": {
+  "channelCorruptedDecryptError": "De encryptie is beschadigd",
+  "@channelCorruptedDecryptError": {
     "type": "text",
     "placeholders": {}
   },
-  "singlesignon": "Eenmalig Inloggen",
-  "@singlesignon": {
+  "chat": "Chat",
+  "@chat": {
     "type": "text",
     "placeholders": {}
   },
-  "loginWith": "Inloggen met {brand}",
-  "@loginWith": {
-    "type": "text",
-    "placeholders": {
-      "brand": {}
-    }
-  },
-  "register": "Registeren",
-  "@register": {
+  "chatBackup": "Chatback-up",
+  "@chatBackup": {
     "type": "text",
     "placeholders": {}
   },
-  "enableChatBackup": "Schakel de chatback-up in om nooit de toegang tot je chats te verliezen.",
-  "@enableChatBackup": {
+  "chatBackupDescription": "Je chatback-up is beveiligd met een veiligheidssleutel. Zorg ervoor dat je deze niet verliest.",
+  "@chatBackupDescription": {
     "type": "text",
     "placeholders": {}
   },
-  "yourChatsAreBeingSynced": "Je chats worden gesynchroniseerd…",
-  "@yourChatsAreBeingSynced": {
+  "chatDetails": "Chatdetails",
+  "@chatDetails": {
     "type": "text",
     "placeholders": {}
   },
-  "synchronizingPleaseWait": "Synchroniseren... Even geduld.",
-  "@synchronizingPleaseWait": {
+  "chatHasBeenAddedToThisSpace": "Chat is toegevoegd aan deze space",
+  "@chatHasBeenAddedToThisSpace": {},
+  "chatHasBeenRemovedFromThisSpace": "Chat is verwijderd van deze space",
+  "@chatHasBeenRemovedFromThisSpace": {
     "type": "text",
     "placeholders": {}
   },
-  "sendAsText": "Als tekst versturen",
-  "@sendAsText": {
-    "type": "text"
-  },
-  "commandMissing": "{command} is geen opdracht.",
-  "@commandMissing": {
+  "chats": "Chats",
+  "@chats": {
     "type": "text",
-    "placeholders": {
-      "command": {}
-    },
-    "description": "State that {command} is not a valid /command."
+    "placeholders": {}
   },
-  "commandInvalid": "Opdracht ongeldig",
-  "@commandInvalid": {
-    "type": "text"
+  "chooseAStrongPassword": "Kies een sterk wachtwoord",
+  "@chooseAStrongPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseAUsername": "Kies een gebruikersnaam",
+  "@chooseAUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clearArchive": "Archief wissen",
+  "@clearArchive": {},
+  "clearText": "Tekst wissen",
+  "@clearText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "close": "Sluiten",
+  "@close": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHintBan": "Persoon uit deze kamer verbannen",
+  "@commandHintBan": {
+    "type": "text",
+    "description": "Usage hint for the command /ban"
+  },
+  "commandHintHtml": "Tekst met HTML-opmaak versturen",
+  "@commandHintHtml": {
+    "type": "text",
+    "description": "Usage hint for the command /html"
+  },
+  "commandHintInvite": "Persoon in deze kamer uitnodigen",
+  "@commandHintInvite": {
+    "type": "text",
+    "description": "Usage hint for the command /invite"
+  },
+  "commandHintJoin": "Deelnemen aan de gegeven kamer",
+  "@commandHintJoin": {
+    "type": "text",
+    "description": "Usage hint for the command /join"
+  },
+  "commandHintKick": "Persoon uit deze kamer verwijderen",
+  "@commandHintKick": {
+    "type": "text",
+    "description": "Usage hint for the command /kick"
+  },
+  "commandHintLeave": "Deze kamer verlaten",
+  "@commandHintLeave": {
+    "type": "text",
+    "description": "Usage hint for the command /leave"
+  },
+  "commandHintMe": "Beschrijf jezelf",
+  "@commandHintMe": {
+    "type": "text",
+    "description": "Usage hint for the command /me"
   },
   "commandHintMyRoomAvatar": "Je avatar voor deze kamer instellen (met mxc-uri)",
   "@commandHintMyRoomAvatar": {
@@ -2416,112 +489,286 @@
     "type": "text",
     "description": "Usage hint for the command /myroomnick"
   },
-  "commandHintInvite": "Persoon in deze kamer uitnodigen",
-  "@commandHintInvite": {
-    "type": "text",
-    "description": "Usage hint for the command /invite"
-  },
-  "commandHintUnBan": "Persoon weer in deze kamer toestaan",
-  "@commandHintUnBan": {
-    "type": "text",
-    "description": "Usage hint for the command /unban"
-  },
-  "commandHintBan": "Persoon uit deze kamer verbannen",
-  "@commandHintBan": {
-    "type": "text",
-    "description": "Usage hint for the command /ban"
-  },
-  "commandHintKick": "Persoon uit deze kamer verwijderen",
-  "@commandHintKick": {
-    "type": "text",
-    "description": "Usage hint for the command /kick"
-  },
   "commandHintOp": "Machtsniveau van de persoon instellen (standaard: 50)",
   "@commandHintOp": {
     "type": "text",
     "description": "Usage hint for the command /op"
-  },
-  "commandHintLeave": "Deze kamer verlaten",
-  "@commandHintLeave": {
-    "type": "text",
-    "description": "Usage hint for the command /leave"
-  },
-  "commandHintJoin": "Deelnemen aan de gegeven kamer",
-  "@commandHintJoin": {
-    "type": "text",
-    "description": "Usage hint for the command /join"
-  },
-  "commandHintReact": "Antwoord als reactie versturen",
-  "@commandHintReact": {
-    "type": "text",
-    "description": "Usage hint for the command /react"
-  },
-  "commandHintHtml": "Tekst met HTML-opmaak versturen",
-  "@commandHintHtml": {
-    "type": "text",
-    "description": "Usage hint for the command /html"
   },
   "commandHintPlain": "Niet-opgemaakte tekst versturen",
   "@commandHintPlain": {
     "type": "text",
     "description": "Usage hint for the command /plain"
   },
-  "commandHintMe": "Beschrijf jezelf",
-  "@commandHintMe": {
+  "commandHintReact": "Antwoord als reactie versturen",
+  "@commandHintReact": {
     "type": "text",
-    "description": "Usage hint for the command /me"
+    "description": "Usage hint for the command /react"
   },
   "commandHintSend": "Tekst versturen",
   "@commandHintSend": {
     "type": "text",
     "description": "Usage hint for the command /send"
   },
-  "savedFileAs": "Bestand opgeslagen als {filename}",
-  "@savedFileAs": {
+  "commandHintUnBan": "Persoon weer in deze kamer toestaan",
+  "@commandHintUnBan": {
+    "type": "text",
+    "description": "Usage hint for the command /unban"
+  },
+  "commandInvalid": "Opdracht ongeldig",
+  "@commandInvalid": {
+    "type": "text"
+  },
+  "commandMissing": "{command} is geen opdracht.",
+  "@commandMissing": {
     "type": "text",
     "placeholders": {
-      "filename": {}
+      "command": {}
+    },
+    "description": "State that {command} is not a valid /command."
+  },
+  "compareEmojiMatch": "Vergelijk en zorg ervoor dat de volgende emoji overeenkomen met die van het andere apparaat:",
+  "@compareEmojiMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "compareNumbersMatch": "Vergelijk en zorg ervoor dat de volgende nummers overeenkomen met die van het andere apparaat:",
+  "@compareNumbersMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "configureChat": "Chat configureren",
+  "@configureChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirm": "Bevestigen",
+  "@confirm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "connect": "Verbinden",
+  "@connect": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "connectionAttemptFailed": "Verbindingspoging is mislukt",
+  "@connectionAttemptFailed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contactHasBeenInvitedToTheGroup": "Contact is voor de groep uitgenodigd",
+  "@contactHasBeenInvitedToTheGroup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsDisplayName": "Bevat naam",
+  "@containsDisplayName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsUserName": "Bevat gebruikersnaam",
+  "@containsUserName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contentHasBeenReported": "De inhoud is gerapporteerd aan de serverbeheerders",
+  "@contentHasBeenReported": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contentViewer": "Contentvoorvertoning",
+  "@contentViewer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copiedToClipboard": "Gekopieerd naar het klembord",
+  "@copiedToClipboard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copy": "Bericht kopiëren",
+  "@copy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copyToClipboard": "Kopieer naar klembord",
+  "@copyToClipboard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "couldNotDecryptMessage": "Kan het bericht niet decoderen: {error}",
+  "@couldNotDecryptMessage": {
+    "type": "text",
+    "placeholders": {
+      "error": {}
     }
   },
-  "saveFileToFolder": "Bestand opslaan in deze map",
-  "@saveFileToFolder": {
+  "couldNotSetAvatar": "Kan avatar niet instellen",
+  "@couldNotSetAvatar": {
     "type": "text",
     "placeholders": {}
   },
-  "saveFile": "Bestand opslaan",
-  "@saveFile": {
+  "couldNotSetDisplayname": "Kan naam niet instellen",
+  "@couldNotSetDisplayname": {
     "type": "text",
     "placeholders": {}
   },
-  "tapToShowImage": "Tik om afbeelding weer te geven",
-  "@tapToShowImage": {
+  "countParticipants": "{count} personen",
+  "@countParticipants": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "create": "Aanmaken",
+  "@create": {
     "type": "text",
     "placeholders": {}
   },
-  "sendSticker": "Sticker versturen",
-  "@sendSticker": {
+  "createAccountNow": "Maak nu een account aan",
+  "@createAccountNow": {
     "type": "text",
     "placeholders": {}
   },
-  "spaceName": "Spacenaam",
-  "@spaceName": {
+  "createdTheChat": "{username} heeft de chat gemaakt",
+  "@createdTheChat": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "createNewGroup": "Nieuwe groep",
+  "@createNewGroup": {
     "type": "text",
     "placeholders": {}
   },
-  "spaceIsPublic": "Space is publiek",
-  "@spaceIsPublic": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "enterASpacepName": "Vul een spacenaam in",
-  "@enterASpacepName": {},
   "createNewSpace": "Nieuwe space",
   "@createNewSpace": {
     "type": "text",
     "placeholders": {}
   },
-  "publicSpace": "Publieke space",
-  "@publicSpace": {
+  "crossSigningDisabled": "Kruislings ondertekenen uitgeschakeld",
+  "@crossSigningDisabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "crossSigningEnabled": "Kruislings ondertekenen ingeschakeld",
+  "@crossSigningEnabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "currentlyActive": "Momenteel actief",
+  "@currentlyActive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "darkTheme": "Donker",
+  "@darkTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dateAndTimeOfDay": "{date}, {timeOfDay}",
+  "@dateAndTimeOfDay": {
+    "type": "text",
+    "placeholders": {
+      "date": {},
+      "timeOfDay": {}
+    }
+  },
+  "dateWithoutYear": "{month}-{day}",
+  "@dateWithoutYear": {
+    "type": "text",
+    "placeholders": {
+      "month": {},
+      "day": {}
+    }
+  },
+  "dateWithYear": "{year}-{month}-{day}",
+  "@dateWithYear": {
+    "type": "text",
+    "placeholders": {
+      "year": {},
+      "month": {},
+      "day": {}
+    }
+  },
+  "deactivateAccountWarning": "Hierdoor wordt je account gedeactiveerd. Dit kan niet ongedaan gemaakt worden! Weet je het zeker?",
+  "@deactivateAccountWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "defaultPermissionLevel": "Standaardmachtigingsniveau",
+  "@defaultPermissionLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "delete": "Bericht verwijderen",
+  "@delete": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteAccount": "Account verwijderen",
+  "@deleteAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteMessage": "Bericht verwijderen",
+  "@deleteMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deny": "Weigeren",
+  "@deny": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "device": "Apparaat",
+  "@device": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceId": "Apparaat ID",
+  "@deviceId": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "devices": "Apparaten",
+  "@devices": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceVerifyDescription": "De versleutelinf is pas veilig als alle apparaten zijn geverifieerd.",
+  "@deviceVerifyDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "directChats": "Directe Chats",
+  "@directChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discardPicture": "Afbeelding verwijderen",
+  "@discardPicture": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discover": "Ontdekken",
+  "@discover": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discoverGroups": "Groepen ontdekken",
+  "@discoverGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "displaynameHasBeenChanged": "De naam is gewijzigd",
+  "@displaynameHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "donate": "Doneer",
+  "@donate": {
     "type": "text",
     "placeholders": {}
   },
@@ -2530,25 +777,152 @@
     "type": "text",
     "placeholders": {}
   },
-  "cantOpenUri": "Kan de URI {uri} niet openen",
-  "@cantOpenUri": {
+  "downloadFile": "Bestand downloaden",
+  "@downloadFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "edit": "Wijzig",
+  "@edit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editBlockedServers": "Geblokkeerde servers wijzigen",
+  "@editBlockedServers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editChatPermissions": "Chatrechten wijzigen",
+  "@editChatPermissions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editDisplayname": "Naam wijzigen",
+  "@editDisplayname": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editJitsiInstance": "Jitsi-server wijzigen",
+  "@editJitsiInstance": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAliases": "Kameraliassen wijzigen",
+  "@editRoomAliases": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAvatar": "Kameravatar wijzigen",
+  "@editRoomAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteExists": "Emoticon bestaat al!",
+  "@emoteExists": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteInvalid": "Ongeldige emoticon korte code!",
+  "@emoteInvalid": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emotePacks": "Emoticonpakketten voor de kamer",
+  "@emotePacks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteSettings": "Emoticon-instellingen",
+  "@emoteSettings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteShortcode": "Emoticon korte code",
+  "@emoteShortcode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteWarnNeedToPick": "Je moet een emoticon korte code en afbeelding kiezen!",
+  "@emoteWarnNeedToPick": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emptyChat": "Lege chat",
+  "@emptyChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableChatBackup": "Schakel de chatback-up in om nooit de toegang tot je chats te verliezen.",
+  "@enableChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEmotesGlobally": "Emoticonpakket overal inschakelen",
+  "@enableEmotesGlobally": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEncryption": "Versleuteling inschakelen",
+  "@enableEncryption": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEncryptionWarning": "Je kunt de versleuteling hierna niet meer uitschakelen. Weet je het zeker?",
+  "@enableEncryptionWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encrypted": "Versleuteld",
+  "@encrypted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encryption": "Versleuteling",
+  "@encryption": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encryptionAlgorithm": "Versleutelingsalgoritme",
+  "@encryptionAlgorithm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encryptionNotEnabled": "Versleuteling is niet ingeschakeld",
+  "@encryptionNotEnabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "end2endEncryptionSettings": "Eind-tot-eindversleutelingsinstellingen",
+  "@end2endEncryptionSettings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "endedTheCall": "{senderName} heeft het gesprek beëindigd",
+  "@endedTheCall": {
     "type": "text",
     "placeholders": {
-      "uri": {}
+      "senderName": {}
     }
   },
-  "locationPermissionDeniedNotice": "Locatievoorzieningen is geweigerd. Zet hem aan om locatie delen te gebruiken.",
-  "@locationPermissionDeniedNotice": {
+  "enterAGroupName": "Vul een groepsnaam in",
+  "@enterAGroupName": {
     "type": "text",
     "placeholders": {}
   },
-  "shareLocation": "Locatie delen",
-  "@shareLocation": {
+  "enterAnEmailAddress": "Voer een email in",
+  "@enterAnEmailAddress": {
     "type": "text",
     "placeholders": {}
   },
-  "obtainingLocation": "Locatie ophalen…",
-  "@obtainingLocation": {
+  "enterASpacepName": "Vul een spacenaam in",
+  "@enterASpacepName": {},
+  "enterAUsername": "Vul een gebruikersnaam in",
+  "@enterAUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterYourHomeserver": "Vul je homeserver in",
+  "@enterYourHomeserver": {
     "type": "text",
     "placeholders": {}
   },
@@ -2559,25 +933,491 @@
       "error": {}
     }
   },
+  "everythingReady": "Alles klaar!",
+  "@everythingReady": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "extremeOffensive": "Extreem beledigend",
+  "@extremeOffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fileName": "Bestandsnaam",
+  "@fileName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fileSize": "Bestandsgrootte",
+  "@fileSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fluffychat": "FluffyChat",
+  "@fluffychat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fontSize": "Lettergrootte",
+  "@fontSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "forward": "Stuur door",
+  "@forward": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "friday": "Vrijdag",
+  "@friday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "friends": "Vrienden",
+  "@friends": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromJoining": "Vanaf deelname",
+  "@fromJoining": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromTheInvitation": "Vanaf uitnodiging",
+  "@fromTheInvitation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "goToTheNewRoom": "Ga naar de nieuwe kamer",
+  "@goToTheNewRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "group": "Groep",
+  "@group": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groupDescription": "Groepsomschrijving",
+  "@groupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groupDescriptionHasBeenChanged": "Groepsomschrijving gewijzigd",
+  "@groupDescriptionHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groupIsPublic": "Groep is openbaar",
+  "@groupIsPublic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groups": "Groepen",
+  "@groups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groupWith": "Groep met {displayname}",
+  "@groupWith": {
+    "type": "text",
+    "placeholders": {
+      "displayname": {}
+    }
+  },
+  "guestsAreForbidden": "Gasten zijn verboden",
+  "@guestsAreForbidden": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "guestsCanJoin": "Gasten kunnen deelnemen",
+  "@guestsCanJoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hasWithdrawnTheInvitationFor": "{username} heeft de uitnodiging voor {targetName} ingetrokken",
+  "@hasWithdrawnTheInvitationFor": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "help": "Help",
+  "@help": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideRedactedEvents": "Bewerkte gebeurtenissen verbergen",
+  "@hideRedactedEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideUnknownEvents": "Onbekende gebeurtenissen verbergen",
+  "@hideUnknownEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "homeserverIsNotCompatible": "Homeserver is niet compatibel",
+  "@homeserverIsNotCompatible": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "howOffensiveIsThisContent": "Hoe beledigend is deze inhoud?",
+  "@howOffensiveIsThisContent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "id": "ID",
+  "@id": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "identity": "Identiteit",
+  "@identity": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignore": "Negeer",
+  "@ignore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignoredUsers": "Genegeerde personen",
+  "@ignoredUsers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignoreListDescription": "Je kunt personen die je storen negeren. Je kunt geen berichten of kameruitnodigingen ontvangen van de personen op je negeerlijst.",
+  "@ignoreListDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignoreUsername": "Negeer persoon",
+  "@ignoreUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iHaveClickedOnLink": "Ik heb op de link geklikt",
+  "@iHaveClickedOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "incorrectPassphraseOrKey": "Onjuiste wachtwoordzin of herstelsleutel",
+  "@incorrectPassphraseOrKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inoffensive": "Niet beledigend",
+  "@inoffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidEmail": "Ongeldige e-mail",
+  "@invalidEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteContact": "Contact uitnodigen",
+  "@inviteContact": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteContactToGroup": "Contact voor {groupName} uitnodigen",
+  "@inviteContactToGroup": {
+    "type": "text",
+    "placeholders": {
+      "groupName": {}
+    }
+  },
+  "invited": "Uitgenodigd",
+  "@invited": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invitedUser": "{username} heeft {targetName} uitgenodigd",
+  "@invitedUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "invitedUsersOnly": "Alleen uitgenodigde personen",
+  "@invitedUsersOnly": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteForMe": "Persoonlijke uitnodiging",
+  "@inviteForMe": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteText": "{username} heeft je uitgenodigd voor FluffyChat.\n1. Installeer FluffyChat: https://fluffychat.im\n2. Registreer of log in\n3. Open deze uitnodigingslink: {link}",
+  "@inviteText": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "link": {}
+    }
+  },
+  "isDeviceKeyCorrect": "Is de volgende apparaatsleutel correct?",
+  "@isDeviceKeyCorrect": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "isTyping": "is aan het typen…",
+  "@isTyping": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "joinedTheChat": "{username} is toegetreden tot de chat",
+  "@joinedTheChat": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "joinRoom": "Deelnemen",
+  "@joinRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "keysCached": "Er zitten sleutels in de cache",
+  "@keysCached": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "keysMissing": "Er zitten geen sleutels in de cache",
+  "@keysMissing": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "kicked": "{username} heeft {targetName} verwijderd",
+  "@kicked": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "kickedAndBanned": "{username} heeft {targetName} verwijderd en verbannen",
+  "@kickedAndBanned": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "kickFromChat": "Uit chat verwijderen",
+  "@kickFromChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastActiveAgo": "Laatst actief: {localizedTimeShort}",
+  "@lastActiveAgo": {
+    "type": "text",
+    "placeholders": {
+      "localizedTimeShort": {}
+    }
+  },
+  "lastSeenIp": "Laatst bekende IP",
+  "@lastSeenIp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastSeenLongTimeAgo": "Lang geleden gezien",
+  "@lastSeenLongTimeAgo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "leave": "Chat verlaten",
+  "@leave": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "leftTheChat": "Verliet de chat",
+  "@leftTheChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "license": "Licentie",
+  "@license": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lightTheme": "Licht",
+  "@lightTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loadCountMoreParticipants": "Laad nog {count} personen",
+  "@loadCountMoreParticipants": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "loadingPleaseWait": "Bezig met laden… Even geduld.",
+  "@loadingPleaseWait": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loadMore": "Meer laden…",
+  "@loadMore": {
+    "type": "text",
+    "placeholders": {}
+  },
   "locationDisabledNotice": "Locatievoorzieningen is uitgeschakeld. Zet dit eerst aan om je locatie te delen.",
   "@locationDisabledNotice": {
     "type": "text",
     "placeholders": {}
   },
-  "openInMaps": "In kaarten openen",
-  "@openInMaps": {
+  "locationPermissionDeniedNotice": "Locatievoorzieningen is geweigerd. Zet hem aan om locatie delen te gebruiken.",
+  "@locationPermissionDeniedNotice": {
     "type": "text",
     "placeholders": {}
   },
-  "allChats": "Alle chats",
-  "@allChats": {
+  "login": "Inloggen",
+  "@login": {
     "type": "text",
     "placeholders": {}
   },
-  "autoplayImages": "Automatisch geanimeerde stickers en emoticons afspelen",
-  "@autoplayImages": {
+  "logInTo": "Inloggen bij {homeserver}",
+  "@logInTo": {
     "type": "text",
-    "placeholder": {}
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "loginWith": "Inloggen met {brand}",
+  "@loginWith": {
+    "type": "text",
+    "placeholders": {
+      "brand": {}
+    }
+  },
+  "logout": "Uitloggen",
+  "@logout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "makeAModerator": "Maak moderator",
+  "@makeAModerator": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "makeAnAdmin": "Beheerder maken",
+  "@makeAnAdmin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "makeSureTheIdentifierIsValid": "Zorg ervoor dat de identificatie geldig is",
+  "@makeSureTheIdentifierIsValid": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "memberChanges": "Persoon wijzigingen",
+  "@memberChanges": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "mention": "Vermeld",
+  "@mention": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "messages": "Berichten",
+  "@messages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "messageWillBeRemovedWarning": "Bericht wordt verwijderd voor alle personen",
+  "@messageWillBeRemovedWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "moderator": "Moderator",
+  "@moderator": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "monday": "Maandag",
+  "@monday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "moreEvents": "{count,plural, =1{Nog 1 gebeurtenis} other{Nog {count} gebeurtenissen}}",
+  "@moreEvents": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "muteChat": "Meldingen uitschakelen",
+  "@muteChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "needPantalaimonWarning": "Houd er rekening mee dat je voorlopig Pantalaimon nodig hebt om eind-tot-eindversleuteling te gebruiken.",
+  "@needPantalaimonWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newChat": "Nieuwe chat",
+  "@newChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newMessageInFluffyChat": "Nieuw bericht in FluffyChat",
+  "@newMessageInFluffyChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newVerificationRequest": "Nieuw verificatieverzoek!",
+  "@newVerificationRequest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "next": "Volgende",
+  "@next": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "no": "Nee",
+  "@no": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noConnectionToTheServer": "Geen verbinding met de server",
+  "@noConnectionToTheServer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noCrossSignBootstrap": "FluffyChat biedt momenteel geen ondersteuning voor het inschakelen van kruislings ondertekenen. Schakel het in vanuit Element.",
+  "@noCrossSignBootstrap": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noDescription": "Geen omschrijving",
+  "@noDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noEmotesFound": "Geen emoticons gevonden. 😕",
+  "@noEmotesFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noEncryptionForPublicRooms": "Je kunt de versleuteling pas activeren zodra de kamer niet meer publiekelijk toegankelijk is.",
+  "@noEncryptionForPublicRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noGoogleServicesWarning": "Het lijkt erop dat je geen Google-services op je telefoon hebt. Dat is een goede beslissing voor je privacy! Om pushmeldingen in FluffyChat te ontvangen raden we je https://microg.org/ of https://unifiedpush.org aan.",
+  "@noGoogleServicesWarning": {
+    "type": "text",
+    "placeholders": {}
   },
   "noMatrixServer": "{server1} is geen Matrix-server, wil je {server2} gebruiken?",
   "@noMatrixServer": {
@@ -2587,13 +1427,1154 @@
       "server2": {}
     }
   },
-  "chatHasBeenRemovedFromThisSpace": "Chat is verwijderd van deze space",
-  "@chatHasBeenRemovedFromThisSpace": {
+  "noMegolmBootstrap": "Zet in plaats daarvan de online sleutelback-up aan vanuit Element.",
+  "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
   },
-  "chatHasBeenAddedToThisSpace": "Chat is toegevoegd aan deze space",
-  "@chatHasBeenAddedToThisSpace": {},
-  "addToSpace": "Aan space toevoegen",
-  "@addToSpace": {}
+  "none": "Geen",
+  "@none": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPasswordRecoveryDescription": "Je hebt nog geen manier toegevoegd om je wachtwoord te herstellen.",
+  "@noPasswordRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPermission": "Geen toestemming",
+  "@noPermission": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPublicRoomsFound": "Geen publieke kamers gevonden…",
+  "@noPublicRoomsFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noRoomsFound": "Geen kamers gevonden …",
+  "@noRoomsFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noStatusesFound": "Geen statussen gevonden tot nu toe.",
+  "@noStatusesFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notifications": "Meldingen",
+  "@notifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationsEnabledForThisAccount": "Meldingen ingeschakeld voor dit account",
+  "@notificationsEnabledForThisAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notSupportedInWeb": "Niet ondersteund in web",
+  "@notSupportedInWeb": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "numberSelected": "{number} geselecteerd",
+  "@numberSelected": {
+    "type": "text",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "numUsersTyping": "{count} personen typen…",
+  "@numUsersTyping": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "obtainingLocation": "Locatie ophalen…",
+  "@obtainingLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offensive": "Beledigend",
+  "@offensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offline": "Offline",
+  "@offline": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ok": "OK",
+  "@ok": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "online": "Online",
+  "@online": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "onlineKeyBackupDisabled": "Online sleutelback-up is uitgeschakeld",
+  "@onlineKeyBackupDisabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "onlineKeyBackupEnabled": "Online sleutelback-up is ingeschakeld",
+  "@onlineKeyBackupEnabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oopsPushError": "Oeps! Helaas is er een fout opgetreden bij het instellen van de pushmeldingen.",
+  "@oopsPushError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oopsSomethingWentWrong": "Oeps, er ging iets mis…",
+  "@oopsSomethingWentWrong": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openAppToReadMessages": "Open app om de berichten te lezen",
+  "@openAppToReadMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openCamera": "Camera openen",
+  "@openCamera": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openInMaps": "In kaarten openen",
+  "@openInMaps": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "optionalAddEmail": "Je e-mailadres (optioneel)",
+  "@optionalAddEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "optionalGroupName": "Groepsnaam (optioneel)",
+  "@optionalGroupName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "or": "Of",
+  "@or": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "participant": "Personen",
+  "@participant": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "participatingUserDevices": "Deelnemende apparaten",
+  "@participatingUserDevices": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passphraseOrKey": "wachtwoordzin of herstelsleutel",
+  "@passphraseOrKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "password": "Wachtwoord",
+  "@password": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordForgotten": "Wachtwoord vergeten",
+  "@passwordForgotten": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordHasBeenChanged": "Wachtwoord gewijzigd",
+  "@passwordHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordRecovery": "Wachtwoordherstel",
+  "@passwordRecovery": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "people": "Personen",
+  "@people": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pickImage": "Kies een afbeelding",
+  "@pickImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pin": "Pin",
+  "@pin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "play": "Speel {fileName}",
+  "@play": {
+    "type": "text",
+    "placeholders": {
+      "fileName": {}
+    }
+  },
+  "pleaseChoose": "Kies",
+  "@pleaseChoose": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChooseAPasscode": "Kies een toegangscode",
+  "@pleaseChooseAPasscode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChooseAUsername": "Kies een gebruikersnaam",
+  "@pleaseChooseAUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseClickOnLink": "Klik op de link in de email en ga dan verder.",
+  "@pleaseClickOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnter4Digits": "Voer 4 cijfers in of laat leeg om app-vergrendeling uit te schakelen.",
+  "@pleaseEnter4Digits": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterAMatrixIdentifier": "Voer een Matrix ID in.",
+  "@pleaseEnterAMatrixIdentifier": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterSecurityKey": "Voer je veiligheidsssleutel in:",
+  "@pleaseEnterSecurityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterYourPassword": "Voer je wachtwoord in",
+  "@pleaseEnterYourPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterYourPin": "Voer je pincode in",
+  "@pleaseEnterYourPin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterYourUsername": "Voer je gebruikersnaam in",
+  "@pleaseEnterYourUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseFollowInstructionsOnWeb": "Volg de instructies op de website en tik op volgende.",
+  "@pleaseFollowInstructionsOnWeb": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "privacy": "Privacy",
+  "@privacy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicGroups": "Alle Groepen",
+  "@publicGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicKey": "Publieke sleutel",
+  "@publicKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicRooms": "Openbare Kamers",
+  "@publicRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicSpace": "Publieke space",
+  "@publicSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pushRules": "Meldingsinstellingen",
+  "@pushRules": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reason": "Reden",
+  "@reason": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "recording": "Opnemen",
+  "@recording": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "redactedAnEvent": "{username} heeft een event verwijderd",
+  "@redactedAnEvent": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "redactMessage": "Verwijder",
+  "@redactMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "register": "Registeren",
+  "@register": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reject": "Weigeren",
+  "@reject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "rejectedTheInvitation": "{username} heeft de uitnodiging afgewezen",
+  "@rejectedTheInvitation": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "rejoin": "Opnieuw deelnemen",
+  "@rejoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "remove": "Verwijder",
+  "@remove": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeAllOtherDevices": "Verwijder alle andere apparaten",
+  "@removeAllOtherDevices": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removedBy": "Verwijderd door {username}",
+  "@removedBy": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "removeDevice": "Verwijder apparaat",
+  "@removeDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeExile": "Verwijder verbanning",
+  "@removeExile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeMessage": "Verwijder bericht",
+  "@removeMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeYourAvatar": "Je avatar verwijderen",
+  "@removeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "renderRichContent": "Uitgebreide berichtinhoud weergeven",
+  "@renderRichContent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "replaceRoomWithNewerVersion": "Kamerversie upgraden",
+  "@replaceRoomWithNewerVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reply": "Antwoord",
+  "@reply": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reportMessage": "Bericht rapporteren",
+  "@reportMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "requestPermission": "Vraag toestemming",
+  "@requestPermission": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "requestToReadOlderMessages": "Vraag om oudere berichten te lezen",
+  "@requestToReadOlderMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "revokeAllPermissions": "Alle machtigingen intrekken",
+  "@revokeAllPermissions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "roomHasBeenUpgraded": "Kamer is geüpgrade",
+  "@roomHasBeenUpgraded": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "roomVersion": "Kamerversie",
+  "@roomVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saturday": "Zaterdag",
+  "@saturday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "savedFileAs": "Bestand opgeslagen als {filename}",
+  "@savedFileAs": {
+    "type": "text",
+    "placeholders": {
+      "filename": {}
+    }
+  },
+  "saveFile": "Bestand opslaan",
+  "@saveFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveFileToFolder": "Bestand opslaan in deze map",
+  "@saveFileToFolder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "search": "Zoeken",
+  "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "searchForAChat": "Zoek een chat",
+  "@searchForAChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "security": "Beveiliging",
+  "@security": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKey": "Veiligheidssleutel",
+  "@securityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKeyLost": "Veiligheidssleutel verloren?",
+  "@securityKeyLost": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "seenByUser": "Gezien door {username}",
+  "@seenByUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "seenByUserAndCountOthers": "Gezien door {username} en {count} anderen",
+  "@seenByUserAndCountOthers": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "count": {}
+    }
+  },
+  "seenByUserAndUser": "Gezien door {username} en {username2}",
+  "@seenByUserAndUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "username2": {}
+    }
+  },
+  "send": "Verstuur",
+  "@send": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendAMessage": "Stuur een bericht",
+  "@sendAMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendAsText": "Als tekst versturen",
+  "@sendAsText": {
+    "type": "text"
+  },
+  "sendAudio": "Audio versturen",
+  "@sendAudio": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendBugReports": "Bugrapporten met sentry.io versturen",
+  "@sendBugReports": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendFile": "Bestand versturen",
+  "@sendFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendImage": "Afbeelding versturen",
+  "@sendImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendMessages": "Berichten versturen",
+  "@sendMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendOriginal": "Origineel versturen",
+  "@sendOriginal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendSticker": "Sticker versturen",
+  "@sendSticker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendVideo": "Video versturen",
+  "@sendVideo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sentAFile": "{username} heeft een bestand verzonden",
+  "@sentAFile": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "sentAnAudio": "{username} heeft een audio verzonden",
+  "@sentAnAudio": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "sentAPicture": "{username} heeft een afbeelding verzonden",
+  "@sentAPicture": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "sentASticker": "{username} heeft een sticker verzonden",
+  "@sentASticker": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "sentAVideo": "{username} heeft een video verzonden",
+  "@sentAVideo": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "sentCallInformations": "{senderName} heeft oproepgegevens verzonden",
+  "@sentCallInformations": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "sentryInfo": "Informatie over je privacy: https://sentry.io/security/",
+  "@sentryInfo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sessionVerified": "Sessie is geverifieerd",
+  "@sessionVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setAProfilePicture": "Profielfoto instellen",
+  "@setAProfilePicture": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setAsCanonicalAlias": "Instellen als hoofdalias",
+  "@setAsCanonicalAlias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setCustomEmotes": "Aangepaste emoticons inschakelen",
+  "@setCustomEmotes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setGroupDescription": "Stel een groepsomschrijving in",
+  "@setGroupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setInvitationLink": "Uitnodigingslink instellen",
+  "@setInvitationLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setPermissionsLevel": "Machtigingsniveau instellen",
+  "@setPermissionsLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setStatus": "Status instellen",
+  "@setStatus": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "settings": "Instellingen",
+  "@settings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "share": "Delen",
+  "@share": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sharedTheLocation": "{username} heeft de locatie gedeeld",
+  "@sharedTheLocation": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "shareLocation": "Locatie delen",
+  "@shareLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showPassword": "Wachtwoord weergeven",
+  "@showPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "signUp": "Registreren",
+  "@signUp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "singlesignon": "Eenmalig Inloggen",
+  "@singlesignon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "skip": "Overslaan",
+  "@skip": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "soundVibrationLedColor": "Geluid, vibratie LED-kleur",
+  "@soundVibrationLedColor": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sourceCode": "Broncode",
+  "@sourceCode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceIsPublic": "Space is publiek",
+  "@spaceIsPublic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceName": "Spacenaam",
+  "@spaceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "startedACall": "{senderName} heeft een gesprek gestart",
+  "@startedACall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "startYourFirstChat": "Start nu je eerste chat! 🙂\n- Tik op de chat-knop\n- Voer de gebruikersnaam van een vriend in\n- Veel plezier met chatten",
+  "@startYourFirstChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "status": "Status",
+  "@status": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "statusExampleMessage": "Hoe gaat het met je vandaag?",
+  "@statusExampleMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "submit": "Verstuur",
+  "@submit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sunday": "Zondag",
+  "@sunday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "synchronizingPleaseWait": "Synchroniseren... Even geduld.",
+  "@synchronizingPleaseWait": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "systemTheme": "Systeem",
+  "@systemTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapOnDeviceToVerify": "Tik op een apparaat om te verifiëren",
+  "@tapOnDeviceToVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapToShowImage": "Tik om afbeelding weer te geven",
+  "@tapToShowImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapToShowMenu": "Tik om menu weer te geven",
+  "@tapToShowMenu": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "theyDontMatch": "Ze komen niet overeen",
+  "@theyDontMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "theyMatch": "Ze komen overeen",
+  "@theyMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "thisRoomHasBeenArchived": "Deze kamer is gearchiveerd.",
+  "@thisRoomHasBeenArchived": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "thursday": "Donderdag",
+  "@thursday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeOfDay": "{hours12}.{minutes} {suffix}",
+  "@timeOfDay": {
+    "type": "text",
+    "placeholders": {
+      "hours12": {},
+      "hours24": {},
+      "minutes": {},
+      "suffix": {}
+    }
+  },
+  "title": "FluffyChat",
+  "@title": {
+    "description": "Title for the application",
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleFavorite": "Favoriet in- of uitschakelen",
+  "@toggleFavorite": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleMuted": "Meldingen in- of uitschakelen",
+  "@toggleMuted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleUnread": "Markeer gelezen/ongelezen",
+  "@toggleUnread": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tooManyRequestsWarning": "Te veel verzoeken. Probeer het later nog eens!",
+  "@tooManyRequestsWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transferFromAnotherDevice": "Overzetten vanaf een ander apparaat",
+  "@transferFromAnotherDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tryToSendAgain": "Probeer nogmaals te verzenden",
+  "@tryToSendAgain": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tuesday": "Dinsdag",
+  "@tuesday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unavailable": "Niet beschikbaar",
+  "@unavailable": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unbannedUser": "{username} heeft verbanning {targetName} ongedaan gemaakt",
+  "@unbannedUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "unblockDevice": "Deblokkeer apparaat",
+  "@unblockDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknownDevice": "Onbekend apparaat",
+  "@unknownDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknownEncryptionAlgorithm": "Onbekend versleutelingsalgoritme",
+  "@unknownEncryptionAlgorithm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknownEvent": "Onbekend evenement '{type}'",
+  "@unknownEvent": {
+    "type": "text",
+    "placeholders": {
+      "type": {}
+    }
+  },
+  "unknownSessionVerify": "Onbekende sessie, verifieer a.j.b.",
+  "@unknownSessionVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unlockChatBackup": "Chatback-up ontgrendelen",
+  "@unlockChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unmuteChat": "Meldingen inschakelen",
+  "@unmuteChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unpin": "Losmaken",
+  "@unpin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unreadChats": "{unreadCount} ongelezen chats",
+  "@unreadChats": {
+    "type": "text",
+    "placeholders": {
+      "unreadCount": {}
+    }
+  },
+  "unreadMessages": "{unreadEvents} ongelezen berichten",
+  "@unreadMessages": {
+    "type": "text",
+    "placeholders": {
+      "unreadEvents": {}
+    }
+  },
+  "unreadMessagesInChats": "{unreadEvents} ongelezen berichten in {unreadChats} chats",
+  "@unreadMessagesInChats": {
+    "type": "text",
+    "placeholders": {
+      "unreadEvents": {},
+      "unreadChats": {}
+    }
+  },
+  "useAmoledTheme": "AMOLED-compatibele kleuren gebruiken?",
+  "@useAmoledTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userAndOthersAreTyping": "{username} en {count} anderen zijn aan het typen …",
+  "@userAndOthersAreTyping": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "count": {}
+    }
+  },
+  "userAndUserAreTyping": "{username} en {username2} zijn aan het typen …",
+  "@userAndUserAreTyping": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "username2": {}
+    }
+  },
+  "userIsTyping": "{username} is aan het typen …",
+  "@userIsTyping": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "userLeftTheChat": "{username} is vertrokken uit de chat",
+  "@userLeftTheChat": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "username": "Gebruikersnaam",
+  "@username": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userNotVerified": "Persoon is niet geverifieerd",
+  "@userNotVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userSentUnknownEvent": "{username} heeft een {type} -gebeurtenis gestuurd",
+  "@userSentUnknownEvent": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "type": {}
+    }
+  },
+  "userUnknownVerification": "Persoon heeft een onbekende verificatiestatus",
+  "@userUnknownVerification": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userVerified": "Persoon is geverifieerd",
+  "@userVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verified": "Geverifieerd",
+  "@verified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifiedSession": "Succesvol geverifieerde sessie!",
+  "@verifiedSession": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verify": "Verifieer",
+  "@verify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyManual": "Handmatig verifiëren",
+  "@verifyManual": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyStart": "Start de verificatie",
+  "@verifyStart": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifySuccess": "Je bent succesvol geverifieerd!",
+  "@verifySuccess": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyTitle": "Ander account verifiëren",
+  "@verifyTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyUser": "Verifieer Persoon",
+  "@verifyUser": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "videoCall": "Videogesprek",
+  "@videoCall": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "visibilityOfTheChatHistory": "Chatgeschiedenis zichtbaarheid",
+  "@visibilityOfTheChatHistory": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "visibleForAllParticipants": "Zichtbaar voor alle personen",
+  "@visibleForAllParticipants": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "visibleForEveryone": "Zichtbaar voor iedereen",
+  "@visibleForEveryone": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "voiceMessage": "Spraakbericht versturen",
+  "@voiceMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "waitingPartnerAcceptRequest": "Wachten tot partner het verzoek accepteert …",
+  "@waitingPartnerAcceptRequest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "waitingPartnerEmoji": "Wachten tot partner de emoji accepteert …",
+  "@waitingPartnerEmoji": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "waitingPartnerNumbers": "Wachten tot partner de nummers accepteert …",
+  "@waitingPartnerNumbers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wallpaper": "Achtergrond",
+  "@wallpaper": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "warning": "Waarschuwing!",
+  "@warning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "warningEncryptionInBeta": "Eind-tot-eindversleuteling bevindt zich momenteel in beta! Gebruik op eigen risico!",
+  "@warningEncryptionInBeta": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wednesday": "Woensdag",
+  "@wednesday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "welcomeText": "Welkom bij de schattigste instant messenger in het Matrix-netwerk.",
+  "@welcomeText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "weSentYouAnEmail": "We hebben je een email gestuurd",
+  "@weSentYouAnEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whoCanPerformWhichAction": "Wie kan welke actie uitvoeren",
+  "@whoCanPerformWhichAction": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whoIsAllowedToJoinThisGroup": "Wie mag deelnemen aan deze groep",
+  "@whoIsAllowedToJoinThisGroup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whyDoYouWantToReportThis": "Waarom wil je dit rapporteren?",
+  "@whyDoYouWantToReportThis": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wipeChatBackup": "Wil je de chatback-up wissen en een nieuwe veiligheidssleutel te maken?",
+  "@wipeChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "withTheseAddressesRecoveryDescription": "Met deze adressen kan je je wachtwoord herstellen.",
+  "@withTheseAddressesRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "writeAMessage": "Schrijf een bericht…",
+  "@writeAMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yes": "Ja",
+  "@yes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "you": "Jij",
+  "@you": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youAreInvitedToThisChat": "Je bent uitgenodigd voor deze chat",
+  "@youAreInvitedToThisChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youAreNoLongerParticipatingInThisChat": "Je neemt niet langer deel aan deze chat",
+  "@youAreNoLongerParticipatingInThisChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youCannotInviteYourself": "Je kunt jezelf niet uitnodigen",
+  "@youCannotInviteYourself": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youHaveBeenBannedFromThisChat": "Je bent verbannen uit deze chat",
+  "@youHaveBeenBannedFromThisChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourChatsAreBeingSynced": "Je chats worden gesynchroniseerd…",
+  "@yourChatsAreBeingSynced": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourOwnUsername": "Je eigen gebruikersnaam",
+  "@yourOwnUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourPublicKey": "Je openbare sleutel",
+  "@yourPublicKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youWillBeConnectedTo": "Je wordt verbonden met {homeserver}",
+  "@youWillBeConnectedTo": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "zoomIn": "Inzoomen",
+  "@zoomIn": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zoomOut": "Uitzoomen",
+  "@zoomOut": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
