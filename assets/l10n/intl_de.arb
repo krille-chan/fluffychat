@@ -2547,5 +2547,13 @@
   "@zoomOut": {
     "type": "text",
     "placeholders": {}
+  },
+  "noMatrixServer": "{server1} ist kein Matrix-Server, stattdessen {server2} benutzen?",
+  "@noMatrixServer": {
+    "type": "text",
+    "placeholders": {
+      "server1": {},
+      "server2": {}
+    }
   }
 }
