@@ -51,6 +51,7 @@
     "placeholders": {}
   },
   "addToSpace": "Add to space",
+  "@addToSpace": {},
   "admin": "Admin",
   "@admin": {
     "type": "text",
@@ -411,6 +412,7 @@
     "placeholders": {}
   },
   "chatHasBeenAddedToThisSpace": "Chat has been added to this space",
+  "@chatHasBeenAddedToThisSpace": {},
   "chatHasBeenRemovedFromThisSpace": "Chat has been removed from this space",
   "@chatHasBeenRemovedFromThisSpace": {
     "type": "text",
@@ -2289,14 +2291,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount, plural, other{{unreadCount} unread chats}}",
+  "unreadChats": "{unreadCount, plural, =1{1 unread chat} other{{unreadCount} unread chats}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents} unread messages}}",
+  "unreadMessages": "{unreadEvents, plural, =1{1 unread message} other{{unreadEvents} unread messages}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
