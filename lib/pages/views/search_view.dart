@@ -239,7 +239,8 @@ class SearchView extends StatelessWidget {
                                 .startDirectChat(foundProfile.userId),
                           );
                           if (roomID.error == null) {
-                            VRouter.of(context).to('/rooms/${roomID.result}');
+                            VRouter.of(context)
+                                .toSegments(['rooms', roomID.result]);
                           }
                         },
                         leading: Avatar(

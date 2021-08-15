@@ -112,7 +112,7 @@ class ChatListItem extends StatelessWidget {
           }
           Matrix.of(context).shareContent = null;
         }
-        VRouter.of(context).to('/rooms/${room.id}');
+        VRouter.of(context).toSegments(['rooms', room.id]);
       }
     }
   }

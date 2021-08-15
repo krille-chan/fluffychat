@@ -18,7 +18,7 @@ class PublicRoomListItem extends StatelessWidget {
       future: () => _joinRoomAndWait(context),
     );
     if (success.error == null) {
-      VRouter.of(context).toNamed('/rooms/${success.result}');
+      VRouter.of(context).toSegments(['rooms', success.result]);
     }
   }
 

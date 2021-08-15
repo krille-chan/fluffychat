@@ -102,8 +102,12 @@ class _ContactListTile extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       )
                     : null),
-            onTap: () => VRouter.of(context).to(
-                '/rooms/${Matrix.of(context).client.getDirectChatFromUserId(contact.senderId)}'),
+            onTap: () => VRouter.of(context).toSegments([
+              'rooms',
+              Matrix.of(context)
+                  .client
+                  .getDirectChatFromUserId(contact.senderId)
+            ]),
           );
         });
   }

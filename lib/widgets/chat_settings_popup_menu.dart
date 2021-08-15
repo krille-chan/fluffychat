@@ -95,7 +95,8 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                     widget.room.setPushRuleState(PushRuleState.notify));
             break;
           case 'details':
-            VRouter.of(context).to('/rooms/${widget.room.id}/details');
+            VRouter.of(context)
+                .toSegments(['rooms', widget.room.id, 'details']);
             break;
         }
       },

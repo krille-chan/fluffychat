@@ -110,10 +110,10 @@ class UrlLauncher {
       if (room != null) {
         // we have the room, so....just open it
         if (event != null) {
-          VRouter.of(context)
-              .to('/rooms/${room.id}', queryParameters: {'event': event});
+          VRouter.of(context).toSegments(['rooms', room.id],
+              queryParameters: {'event': event});
         } else {
-          VRouter.of(context).to('/rooms/${room.id}');
+          VRouter.of(context).toSegments(['rooms', room.id]);
         }
         return;
       }
@@ -138,9 +138,10 @@ class UrlLauncher {
               context: context,
               future: () => Future.delayed(const Duration(seconds: 2)));
           if (event != null) {
-            VRouter.of(context).to('/rooms/${response.result}/$event');
+            VRouter.of(context).toSegments(['rooms', response.result],
+                queryParameters: {'event': event});
           } else {
-            VRouter.of(context).to('/rooms/${response.result}');
+            VRouter.of(context).toSegments(['rooms', response.result]);
           }
         }
       } else {
@@ -155,7 +156,7 @@ class UrlLauncher {
       );
       var roomId = matrix.client.getDirectChatFromUserId(user.id);
       if (roomId != null) {
-        VRouter.of(context).to('/rooms/$roomId');
+        VRouter.of(context).toSegments(['rooms', roomId]);
 
         return;
       }
@@ -173,7 +174,7 @@ class UrlLauncher {
             .result;
 
         if (roomId != null) {
-          VRouter.of(context).to('/rooms/$roomId');
+          VRouter.of(context).toSegments(['rooms', roomId]);
         }
       }
     }

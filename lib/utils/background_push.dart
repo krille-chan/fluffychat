@@ -283,7 +283,7 @@ class BackgroundPush {
       if (router == null) {
         return;
       }
-      router.currentState.to('/rooms/$roomId');
+      router.currentState.toSegments(['rooms', roomId]);
     } catch (e, s) {
       Logs().e('[Push] Failed to open room', e, s);
     }

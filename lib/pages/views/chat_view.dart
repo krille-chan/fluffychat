@@ -98,8 +98,8 @@ class ChatView extends StatelessWidget {
                                           '${controller.room.getUserByMXIDSync(controller.room.directChatMatrixID).mention} ',
                                     ),
                                   )
-                              : () => VRouter.of(context)
-                                  .to('/rooms/${controller.room.id}/details'),
+                              : () => VRouter.of(context).toSegments(
+                                  ['rooms', controller.room.id, 'details']),
                           title: Text(
                               controller.room.getLocalizedDisplayname(
                                   MatrixLocals(L10n.of(context))),
