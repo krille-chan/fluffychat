@@ -2290,14 +2290,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount, plural, other{{unreadCount} ongelezen chats}}",
+  "unreadChats": "{unreadCount, plural, =1{1 ongelezen chat} other{{unreadCount} ongelezen chats}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents} ongelezen berichten}}",
+  "unreadMessages": "{unreadEvents, plural, =1{1 ongelezen bericht} other{{unreadEvents} ongelezen berichten}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
