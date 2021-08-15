@@ -2560,5 +2560,14 @@
   "@zoomOut": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "chatHasBeenRemovedFromThisSpace": "Чат был удален из этого пространства",
+  "@chatHasBeenRemovedFromThisSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatHasBeenAddedToThisSpace": "Чат был добавлен в это пространство",
+  "@chatHasBeenAddedToThisSpace": {},
+  "addToSpace": "Добавить в пространство",
+  "@addToSpace": {}
 }
