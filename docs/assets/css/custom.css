@@ -12,7 +12,7 @@
 .header{
     height: var(--header-height);
     width: 80%;
-    max-width: 960px;
+    max-width: 1024px;
     white-space: nowrap;
     background: var(--header-background);
     top: 0px;
@@ -153,9 +153,13 @@ h4 {
 
 #banner {
     width: 80%;
-    max-width: 960px;
+    max-width: 1024px;
     margin: 0 auto;
     display: block;
+}
+
+.container {
+    max-width: 1024px;
 }
 
 .article_image{
