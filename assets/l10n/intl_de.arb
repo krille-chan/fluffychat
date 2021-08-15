@@ -2269,14 +2269,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount, plural, other{{unreadCount} ungelesene Unterhaltungen}}",
+  "unreadChats": "{unreadCount, plural, =1{1 ungelesene Unterhaltung} other{{unreadCount} ungelesene Unterhaltungen}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents} ungelesene Nachrichten}}",
+  "unreadMessages": "{unreadEvents, plural, =1{1 ungelesene Nachricht} other{{unreadEvents} ungelesene Nachrichten}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
