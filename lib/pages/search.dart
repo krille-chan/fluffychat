@@ -23,7 +23,6 @@ class SearchController extends State<Search> {
   String lastServer;
   Timer _coolDown;
   String genericSearchTerm;
-  String alias;
 
   void search(String query) async {
     setState(() => null);
