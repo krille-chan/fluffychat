@@ -389,7 +389,10 @@ class ChatController extends State<Chat> {
     final event = selectedEvents.single;
     final score = await showConfirmationDialog<int>(
         context: context,
-        title: L10n.of(context).howOffensiveIsThisContent,
+        title: L10n.of(context).reportMessage,
+        message: L10n.of(context).howOffensiveIsThisContent,
+        cancelLabel: L10n.of(context).cancel,
+        okLabel: L10n.of(context).ok,
         actions: [
           AlertDialogAction(
             key: -100,
