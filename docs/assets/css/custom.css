@@ -10,7 +10,6 @@
 
 /* =============HEADER============== */
 .header{
-    border-bottom: 1px solid var(--border-color);
     height: var(--header-height);
     width: 80%;
     max-width: 960px;
