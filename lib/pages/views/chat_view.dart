@@ -305,9 +305,12 @@ class ChatView extends StatelessWidget {
                                                         milliseconds: 300),
                                                 alignment: controller
                                                             .filteredEvents
-                                                            .first
-                                                            .senderId ==
-                                                        client.userID
+                                                            .isNotEmpty &&
+                                                        controller
+                                                                .filteredEvents
+                                                                .first
+                                                                .senderId ==
+                                                            client.userID
                                                     ? Alignment.topRight
                                                     : Alignment.topLeft,
                                                 padding: EdgeInsets.only(
