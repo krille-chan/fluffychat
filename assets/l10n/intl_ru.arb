@@ -2282,14 +2282,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount, plural, other{{unreadCount} непрочитанных чата(ов)}}",
+  "unreadChats": "{unreadCount, plural, =1{1 unread chat} непрочитанных чата(ов)}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents} непрочитанных сообщения(ий)}}",
+  "unreadMessages": "{unreadEvents, plural, =1{1 unread message} непрочитанных сообщения(ий)}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
