@@ -135,7 +135,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "cachedKeys": "Klúče sa úspešne uložili!",
+  "cachedKeys": "Klúče sa úspešne uložili",
   "@cachedKeys": {
     "type": "text",
     "placeholders": {}
@@ -428,7 +428,7 @@
       "timeOfDay": {}
     }
   },
-  "dateWithoutYear": "{day}.{month}.",
+  "dateWithoutYear": "{day}.{month}",
   "@dateWithoutYear": {
     "type": "text",
     "placeholders": {
@@ -500,12 +500,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteExists": "Emotikon už existuje",
+  "emoteExists": "Emotikon už existuje!",
   "@emoteExists": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteInvalid": "Nesprávné označenie emotikonu",
+  "emoteInvalid": "Nesprávné označenie emotikonu!",
   "@emoteInvalid": {
     "type": "text",
     "placeholders": {}
@@ -520,7 +520,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteWarnNeedToPick": "Musíte zvoliť kód emotikonu a obrázok",
+  "emoteWarnNeedToPick": "Musíte zvoliť kód emotikonu a obrázok!",
   "@emoteWarnNeedToPick": {
     "type": "text",
     "placeholders": {}
@@ -718,7 +718,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "isTyping": "píše...",
+  "isTyping": "píše…",
   "@isTyping": {
     "type": "text",
     "placeholders": {}
@@ -805,12 +805,12 @@
       "count": {}
     }
   },
-  "loadingPleaseWait": "Načítava sa... Čakajte prosím",
+  "loadingPleaseWait": "Načítava sa… Čakajte prosím.",
   "@loadingPleaseWait": {
     "type": "text",
     "placeholders": {}
   },
-  "loadMore": "Načítať viac...",
+  "loadMore": "Načítať viac…",
   "@loadMore": {
     "type": "text",
     "placeholders": {}
@@ -892,7 +892,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Zdá sa, že nemáte žiadne služby Googlu v telefóne. To je dobré rozhodnutie pre vaše súkromie! Ak chcete dostávať push notifikácie vo FluffyChat, odporúčame používať microG: https://microg.org/",
+  "noGoogleServicesWarning": "Zdá sa, že nemáte žiadne služby Googlu v telefóne. To je dobré rozhodnutie pre vaše súkromie! Ak chcete dostávať push notifikácie vo FluffyChat, odporúčame používať microG: https://microg.org/.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -912,7 +912,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noRoomsFound": "Nenašli sa žiadne miestnosti...",
+  "noRoomsFound": "Nenašli sa žiadne miestnosti…",
   "@noRoomsFound": {
     "type": "text",
     "placeholders": {}
@@ -944,7 +944,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "oopsSomethingWentWrong": "Och! Niečo sa pokazilo...",
+  "oopsSomethingWentWrong": "Och! Niečo sa pokazilo…",
   "@oopsSomethingWentWrong": {
     "type": "text",
     "placeholders": {}
@@ -996,7 +996,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterAMatrixIdentifier": "Vyberte si matrix identifkátor",
+  "pleaseEnterAMatrixIdentifier": "Vyberte si matrix identifkátor.",
   "@pleaseEnterAMatrixIdentifier": {
     "type": "text",
     "placeholders": {}
@@ -1490,17 +1490,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerAcceptRequest": "Čaká sa, kým partner prijme požiadavku...",
+  "waitingPartnerAcceptRequest": "Čaká sa, kým partner prijme požiadavku…",
   "@waitingPartnerAcceptRequest": {
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerEmoji": "Čaká sa, kým partner prijme emotikon...",
+  "waitingPartnerEmoji": "Čaká sa, kým partner prijme emotikon…",
   "@waitingPartnerEmoji": {
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerNumbers": "Čaká sa na to, kým partner prijme čísla...",
+  "waitingPartnerNumbers": "Čaká sa na to, kým partner prijme čísla…",
   "@waitingPartnerNumbers": {
     "type": "text",
     "placeholders": {}
@@ -1530,7 +1530,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "writeAMessage": "Napísať správu...",
+  "writeAMessage": "Napísať správu…",
   "@writeAMessage": {
     "type": "text",
     "placeholders": {}
@@ -1569,5 +1569,52 @@
   "@yourOwnUsername": {
     "type": "text",
     "placeholders": {}
+  },
+  "youWillBeConnectedTo": "Budete pripojený na {homeserver}",
+  "@youWillBeConnectedTo": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "publicGroups": "Verejné Skupiny",
+  "@publicGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "people": "Ľudia",
+  "@people": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chats": "Čety",
+  "@chats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changePassword": "Zmeniť heslo",
+  "@changePassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeDeviceName": "Zmeniť názov zariadenia",
+  "@changeDeviceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "badServerVersionsException": "Domovský server podporuje verzie špecifikácie:\n{serverVersions}\nAle táto aplikácie podporuje iba {supportedVersions}",
+  "@badServerVersionsException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "answeredTheCall": "{senderName} prevzal hovor",
+  "@answeredTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
   }
 }
