@@ -142,7 +142,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "cachedKeys": "Gakoak ongi gorde dira!",
+  "cachedKeys": "Gakoak ongi gorde dira",
   "@cachedKeys": {
     "type": "text",
     "placeholders": {}
@@ -1623,6 +1623,21 @@
   },
   "yourOwnUsername": "",
   "@yourOwnUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicGroups": "Talde publikoak",
+  "@publicGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAliases": "Editatu gelako goitizenak",
+  "@editRoomAliases": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chats": "Txatak",
+  "@chats": {
     "type": "text",
     "placeholders": {}
   }
