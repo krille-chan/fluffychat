@@ -2282,14 +2282,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount, plural, other{{unreadCount} lugemata vestlus(t)}}",
+  "unreadChats": "{unreadCount, plural, =1{1 lugemata vestlus} other{{unreadCount} lugemata vestlust}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents} lugemata sõnum(it)}}",
+  "unreadMessages": "{unreadEvents, plural, =1{1 lugemata sõnum} other{{unreadEvents} lugemata sõnumit}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
@@ -2560,5 +2560,14 @@
   "@zoomOut": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "chatHasBeenRemovedFromThisSpace": "Eemaldasime vestluse kogukonnast",
+  "@chatHasBeenRemovedFromThisSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatHasBeenAddedToThisSpace": "Lisasime vestluse kogukonda",
+  "@chatHasBeenAddedToThisSpace": {},
+  "addToSpace": "Lisa kogukonda",
+  "@addToSpace": {}
 }
