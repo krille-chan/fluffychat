@@ -1178,7 +1178,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noPublicRoomsFound": "Hittade inga publika rum...",
+  "noPublicRoomsFound": "Hittade inga publika rum…",
   "@noPublicRoomsFound": {
     "type": "text",
     "placeholders": {}
