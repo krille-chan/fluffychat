@@ -1248,7 +1248,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Sembra che tu non abbia servizi Google sul tuo telefono. Questa è una buona decisione per la tua riservatezza! Per ricevere notifiche push in FluffyChat consigliamo di utilizzare microG: https://microg.org/",
+  "noGoogleServicesWarning": "Sembra che tu non abbia servizi Google sul tuo telefono. Questa è una buona decisione per la tua riservatezza! Per ricevere notifiche push in FluffyChat consigliamo di utilizzare https://microg.org/ o https://unifiedpush.org/.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -2276,6 +2276,75 @@
   },
   "zoomOut": "Rimpicciolisci",
   "@zoomOut": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "singlesignon": "Accesso singolo",
+  "@singlesignon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setAsCanonicalAlias": "Imposta come alias principale",
+  "@setAsCanonicalAlias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeYourAvatar": "Rimuovi il tuo avatar",
+  "@removeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "register": "Registrati",
+  "@register": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterYourPin": "Per favore inserisci il tuo PIN",
+  "@pleaseEnterYourPin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChoose": "Si prega di scegliere",
+  "@pleaseChoose": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "or": "O",
+  "@or": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "optionalAddEmail": "(Facoltativo) Il tuo indirizzo e-mail",
+  "@optionalAddEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oopsPushError": "Ops! Purtroppo si è verificato un errore durante l'impostazione delle notifiche push.",
+  "@oopsPushError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginWith": "Accedi con {brand}",
+  "@loginWith": {
+    "type": "text",
+    "placeholders": {
+      "brand": {}
+    }
+  },
+  "invalidEmail": "E-mail non valida",
+  "@invalidEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAliases": "Modifica gli alias della stanza",
+  "@editRoomAliases": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clearArchive": "Cancella archivio",
+  "@clearArchive": {},
+  "changeYourAvatar": "Cambia il tuo avatar",
+  "@changeYourAvatar": {
     "type": "text",
     "placeholders": {}
   }
