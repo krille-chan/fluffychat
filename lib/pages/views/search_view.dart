@@ -32,21 +32,21 @@ class SearchView extends StatelessWidget {
           genericSearchTerm: controller.genericSearchTerm,
         )
         .catchError((error) {
-      if (controller.alias == null) {
+      if (!(controller.genericSearchTerm?.isValidMatrixId ?? false)) {
         throw error;
       }
       return PublicRoomsResponse.fromJson({
         'chunk': [],
       });
     }).then((PublicRoomsResponse res) {
-      if (controller.alias != null &&
+      if (controller.genericSearchTerm != null &&
           !res.chunk.any((room) =>
-              (room.aliases?.contains(controller.alias) ?? false) ||
-              room.canonicalAlias == controller.alias)) {
+              (room.aliases?.contains(controller.genericSearchTerm) ?? false) ||
+              room.canonicalAlias == controller.genericSearchTerm)) {
         // we have to tack on the original alias
         res.chunk.add(PublicRoom.fromJson(<String, dynamic>{
-          'aliases': [controller.alias],
-          'name': controller.alias,
+          'aliases': [controller.genericSearchTerm],
+          'name': controller.genericSearchTerm,
         }));
       }
       return res;
