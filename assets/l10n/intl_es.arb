@@ -173,7 +173,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "cachedKeys": "¡Las claves se han almacenado exitosamente!",
+  "cachedKeys": "Claves almacenadas en caché",
   "@cachedKeys": {
     "type": "text",
     "placeholders": {}
