@@ -102,12 +102,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSCache": "Wpisz swoje hasło przechowywania lub klucz odzyskiwania żeby załadować klucze",
+  "askSSSSCache": "Wpisz swoje hasło przechowywania lub klucz odzyskiwania żeby załadować klucze.",
   "@askSSSSCache": {
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSSign": "Aby zalogować inną osobę, \nproszę wpisać hasło przechowywania lub klucz odzyskiwania.",
+  "askSSSSSign": "Aby zalogować inną osobę, proszę wpisać hasło przechowywania lub klucz odzyskiwania.",
   "@askSSSSSign": {
     "type": "text",
     "placeholders": {}
@@ -117,7 +117,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "askVerificationRequest": "Zaakceptować tą prośbę weryfikacji od\n {username}?",
+  "askVerificationRequest": "Zaakceptować tą prośbę weryfikacji od {username}?",
   "@askVerificationRequest": {
     "type": "text",
     "placeholders": {
@@ -384,7 +384,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHintBan": "Zablokuj użytkownika  w tym pokoju",
+  "commandHintBan": "Zablokuj użytkownika w tym pokoju",
   "@commandHintBan": {
     "type": "text",
     "description": "Usage hint for the command /ban"
@@ -458,7 +458,7 @@
   "@commandInvalid": {
     "type": "text"
   },
-  "commandMissing": "{command} nie jest poleceniem",
+  "commandMissing": "{command} nie jest poleceniem.",
   "@commandMissing": {
     "type": "text",
     "placeholders": {
@@ -607,7 +607,7 @@
       "day": {}
     }
   },
-  "deactivateAccountWarning": "To dezaktywuje twoje konto.\nTo jest nieodwracalne ! Czy jesteś pewien?",
+  "deactivateAccountWarning": "To dezaktywuje twoje konto. To jest nieodwracalne ! Czy jesteś pewien?",
   "@deactivateAccountWarning": {
     "type": "text",
     "placeholders": {}
@@ -647,7 +647,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "deviceVerifyDescription": "Szyfrowanie jest bezpieczne tylko wtedy gdy, wszystkie urządzenia zostaną zweryfikowane",
+  "deviceVerifyDescription": "Szyfrowanie jest bezpieczne tylko wtedy gdy, wszystkie urządzenia zostaną zweryfikowane.",
   "@deviceVerifyDescription": {
     "type": "text",
     "placeholders": {}
@@ -889,7 +889,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "hideRedactedEvents": "Ukryj  informacje o zredagowaniu",
+  "hideRedactedEvents": "Ukryj informacje o zredagowaniu",
   "@hideRedactedEvents": {
     "type": "text",
     "placeholders": {}
@@ -919,7 +919,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "ignoreListDescription": "Możesz ignorować użytkowników  którzy cię irytują. Nie będziesz odbierać od jich wiadomośći ani zaproszeń od użytkowników na tej liście.",
+  "ignoreListDescription": "Możesz ignorować użytkowników którzy cię irytują. Nie będziesz odbierać od jich wiadomośći ani zaproszeń od użytkowników na tej liście.",
   "@ignoreListDescription": {
     "type": "text",
     "placeholders": {}
@@ -987,7 +987,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "isTyping": "pisze...",
+  "isTyping": "pisze…",
   "@isTyping": {
     "type": "text",
     "placeholders": {}
@@ -1079,7 +1079,7 @@
       "count": {}
     }
   },
-  "loadingPleaseWait": "Ładowanie… Proszę czekać",
+  "loadingPleaseWait": "Ładowanie… Proszę czekać.",
   "@loadingPleaseWait": {
     "type": "text",
     "placeholders": {}
@@ -1146,7 +1146,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "moreEvents": "{count,plural, =1{1 kolejne wydarzenie} other{{count}  więcej wydarzeń}}",
+  "moreEvents": "{count,plural, =1{1 kolejne wydarzenie} other{{count} więcej wydarzeń}}",
   "@moreEvents": {
     "type": "text",
     "placeholders": {
@@ -1188,12 +1188,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "noEncryptionForPublicRooms": "Możesz aktywować szyfrowanie dopiero kiedy pokój nie będzie publicznie dostępny",
+  "noEncryptionForPublicRooms": "Możesz aktywować szyfrowanie dopiero kiedy pokój nie będzie publicznie dostępny.",
   "@noEncryptionForPublicRooms": {
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Wygląda na to, że nie masz usług Google w swoim telefonie. To dobra decyzja dla twojej prywatności! Aby otrzymywać powiadomienia wysyłane w FluffyChat, zalecamy korzystanie z https://microg.org/ lub\nhttps://unifiedpush.org/.",
+  "noGoogleServicesWarning": "Wygląda na to, że nie masz usług Google w swoim telefonie. To dobra decyzja dla twojej prywatności! Aby otrzymywać powiadomienia wysyłane w FluffyChat, zalecamy korzystanie z https://microg.org/ lub https://unifiedpush.org/.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -1203,7 +1203,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noPasswordRecoveryDescription": "Nie dodałeś jeszcze sposobu aby odzyskać swoje hasło",
+  "noPasswordRecoveryDescription": "Nie dodałeś jeszcze sposobu aby odzyskać swoje hasło.",
   "@noPasswordRecoveryDescription": {
     "type": "text",
     "placeholders": {}
@@ -1213,12 +1213,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "noPublicRoomsFound": "Nie znaleziono publicznych pokoi...",
+  "noPublicRoomsFound": "Nie znaleziono publicznych pokoi…",
   "@noPublicRoomsFound": {
     "type": "text",
     "placeholders": {}
   },
-  "noRoomsFound": "Nie znaleziono pokoi...",
+  "noRoomsFound": "Nie znaleziono pokoi…",
   "@noRoomsFound": {
     "type": "text",
     "placeholders": {}
@@ -1250,7 +1250,7 @@
       "number": {}
     }
   },
-  "oopsSomethingWentWrong": "Ups! Coś poszło nie tak...",
+  "oopsSomethingWentWrong": "Ups! Coś poszło nie tak…",
   "@oopsSomethingWentWrong": {
     "type": "text",
     "placeholders": {}
@@ -1307,7 +1307,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterAMatrixIdentifier": "Wprowadź proszę identyfikator matrix",
+  "pleaseEnterAMatrixIdentifier": "Wprowadź proszę identyfikator matrix.",
   "@pleaseEnterAMatrixIdentifier": {
     "type": "text",
     "placeholders": {}
@@ -1342,7 +1342,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pushRules": "Zasady  push",
+  "pushRules": "Zasady push",
   "@pushRules": {
     "type": "text",
     "placeholders": {}
@@ -1725,7 +1725,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "userAndOthersAreTyping": "{username} oraz {count} innych pisze...",
+  "userAndOthersAreTyping": "{username} oraz {count} innych pisze…",
   "@userAndOthersAreTyping": {
     "type": "text",
     "placeholders": {
@@ -1733,7 +1733,7 @@
       "count": {}
     }
   },
-  "userAndUserAreTyping": "{username} oraz {username2} piszą...",
+  "userAndUserAreTyping": "{username} oraz {username2} piszą…",
   "@userAndUserAreTyping": {
     "type": "text",
     "placeholders": {
@@ -1741,7 +1741,7 @@
       "username2": {}
     }
   },
-  "userIsTyping": "{username} pisze...",
+  "userIsTyping": "{username} pisze…",
   "@userIsTyping": {
     "type": "text",
     "placeholders": {
