@@ -2253,5 +2253,20 @@
   "@zoomOut": {
     "type": "text",
     "placeholders": {}
+  },
+  "publicGroups": "公開的群組",
+  "@publicGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "people": "人",
+  "@people": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chats": "聊天室",
+  "@chats": {
+    "type": "text",
+    "placeholders": {}
   }
 }
