@@ -2289,7 +2289,7 @@
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents} nepřečtených zpráv}}",
+  "unreadMessages": "{unreadEvents, plural, =1{1 nepřečtená zpráva} other{{unreadEvents} nepřečtených zpráv}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
