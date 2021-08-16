@@ -2282,7 +2282,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount, plural, other{{unreadCount} nepřečtených chatů}}",
+  "unreadChats": "{unreadCount, plural, =1{1 nepřečtený chat} other{{unreadCount} nepřečtené chaty}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
@@ -2560,5 +2560,14 @@
   "@zoomOut": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "chatHasBeenRemovedFromThisSpace": "Chat byl z tohoto prostoru odstraněn",
+  "@chatHasBeenRemovedFromThisSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatHasBeenAddedToThisSpace": "Do tohoto prostoru byl přidán chat",
+  "@chatHasBeenAddedToThisSpace": {},
+  "addToSpace": "Přidat do prostoru",
+  "@addToSpace": {}
 }
