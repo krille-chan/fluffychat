@@ -15,6 +15,7 @@ class DefaultAppBarSearchField extends StatefulWidget {
   final bool readOnly;
   final Widget prefixIcon;
   final bool unfocusOnClear;
+  final bool autocorrect;
 
   DefaultAppBarSearchField({
     Key key,
@@ -29,6 +30,7 @@ class DefaultAppBarSearchField extends StatefulWidget {
     this.readOnly = false,
     this.prefixIcon,
     this.unfocusOnClear = true,
+    this.autocorrect = true,
   }) : super(key: key);
 
   @override
@@ -77,7 +79,9 @@ class DefaultAppBarSearchFieldState extends State<DefaultAppBarSearchField> {
       padding: widget.padding ?? EdgeInsets.only(right: 12),
       child: TextField(
         autofocus: widget.autofocus,
-        autocorrect: false,
+        autocorrect: widget.autocorrect,
+        enableSuggestions: widget.autocorrect,
+        keyboardType: widget.autocorrect ? null : TextInputType.visiblePassword,
         controller: _searchController,
         onChanged: widget.onChanged,
         focusNode: _focusNode,

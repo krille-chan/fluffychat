@@ -38,6 +38,7 @@ class HomeserverPickerView extends StatelessWidget {
             readOnly: !AppConfig.allowOtherHomeservers,
             onSubmit: (_) => controller.checkHomeserverAction(),
             unfocusOnClear: false,
+            autocorrect: false,
           ),
           elevation: 0,
         ),
