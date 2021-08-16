@@ -1355,7 +1355,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noPublicRoomsFound": "Нисам нашао јавне собе...",
+  "noPublicRoomsFound": "Нисам нашао јавне собе…",
   "@noPublicRoomsFound": {
     "type": "text",
     "placeholders": {}
