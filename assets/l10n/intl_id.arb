@@ -1,3 +1,122 @@
 {
-  "@@last_modified": "2021-08-14 12:41:10.002360"
+  "@@last_modified": "2021-08-14 12:41:10.002360",
+  "setAsCanonicalAlias": "Atur sebagai alias utama",
+  "@setAsCanonicalAlias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "roomVersion": "Versi ruangan",
+  "@roomVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicGroups": "Grup-grup Publik",
+  "@publicGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "people": "Orang-orang",
+  "@people": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "goToTheNewRoom": "Pergi ke ruangan yang baru",
+  "@goToTheNewRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chats": "Obrolan",
+  "@chats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "blockDevice": "Blokir Perangkat",
+  "@blockDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "avatarHasBeenChanged": "Avatar diubah",
+  "@avatarHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "authentication": "Otentikasi",
+  "@authentication": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSureYouWantToLogout": "Apakah Anda yakin ingin keluar?",
+  "@areYouSureYouWantToLogout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSure": "Apakah Anda yakin?",
+  "@areYouSure": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "archive": "Arsip",
+  "@archive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "anyoneCanJoin": "Siapapun dapat bergabung",
+  "@anyoneCanJoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "answeredTheCall": "{senderName} mengangkat teleponnya",
+  "@answeredTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "alreadyHaveAnAccount": "Sudah memiliki akun?",
+  "@alreadyHaveAnAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "alias": "alias",
+  "@alias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "admin": "Admin",
+  "@admin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addGroupDescription": "Tambahkan keterangan grup",
+  "@addGroupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "accountInformation": "Informasi akun",
+  "@accountInformation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "account": "Akun",
+  "@account": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "acceptedTheInvitation": "{username} menerima undangannya",
+  "@acceptedTheInvitation": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "accept": "Terima",
+  "@accept": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about": "Tentang",
+  "@about": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
