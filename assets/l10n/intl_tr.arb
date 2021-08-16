@@ -2291,14 +2291,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount, plural, other{{unreadCount} okunmamış sohbet}}",
+  "unreadChats": "{unreadCount, plural, =1{1 okunmamış sohbet} other{{unreadCount} okunmamış sohbet}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents} okunmamış mesaj}}",
+  "unreadMessages": "{unreadEvents, plural, =1{1 okunmamış mesaj} other{{unreadEvents} okunmamış mesaj}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
