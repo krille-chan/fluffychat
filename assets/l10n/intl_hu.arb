@@ -142,7 +142,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "cachedKeys": "Kulcsok gyorsítótárazása sikeres!",
+  "cachedKeys": "Kulcsok gyorsítótárazása sikeres",
   "@cachedKeys": {
     "type": "text",
     "placeholders": {}
@@ -981,7 +981,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Úgy tűnik, hogy nincsenek Google szolgáltatások a telefonodon. Ez adatvédelmi szempontból jó döntés! A leküldéses értesítések fogadásához a FluffyChatnél a microG használatát javasoljuk: https://microg.org/",
+  "noGoogleServicesWarning": "Úgy tűnik, hogy nincsenek Google szolgáltatások a telefonodon. Ez adatvédelmi szempontból jó döntés! A leküldéses értesítések fogadásához a FluffyChatnél a microG használatát javasoljuk: https://microg.org/.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -1105,7 +1105,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterAMatrixIdentifier": "Írj be egy Matrix-azonosítót",
+  "pleaseEnterAMatrixIdentifier": "Írj be egy Matrix-azonosítót.",
   "@pleaseEnterAMatrixIdentifier": {
     "type": "text",
     "placeholders": {}
@@ -1653,12 +1653,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerAcceptRequest": "Várakozás partnerre, amíg elfogadja a kérést...",
+  "waitingPartnerAcceptRequest": "Várakozás partnerre, amíg elfogadja a kérést…",
   "@waitingPartnerAcceptRequest": {
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerEmoji": "Várakozás partnere, amíg elfogadja a hangulatjeleket...",
+  "waitingPartnerEmoji": "Várakozás partnere, amíg elfogadja a hangulatjeleket…",
   "@waitingPartnerEmoji": {
     "type": "text",
     "placeholders": {}
@@ -1735,6 +1735,66 @@
   },
   "yourOwnUsername": "A saját felhasználóneved",
   "@yourOwnUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "withTheseAddressesRecoveryDescription": "Ezzekkel a címekkel vissza tudod állítani a jelszavad, ha szükséges",
+  "@withTheseAddressesRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "weSentYouAnEmail": "Küldtünk neked egy emailt",
+  "@weSentYouAnEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordRecovery": "Jelszó visszaállítás",
+  "@passwordRecovery": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPasswordRecoveryDescription": "Még nem adtál meg semmilyen módot a jelszavad visszaállítására",
+  "@noPasswordRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteForMe": "Meghívás nekem",
+  "@inviteForMe": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iHaveClickedOnLink": "Rákattintottam a linkre",
+  "@iHaveClickedOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterAnEmailAddress": "Adj meg egy email címet",
+  "@enterAnEmailAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encrypted": "Titkosított",
+  "@encrypted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "edit": "Szerkeszt",
+  "@edit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "directChats": "Közvetlen beszélgetés",
+  "@directChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceId": "Eszköz ID",
+  "@deviceId": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "botMessages": "Bot üzenetek",
+  "@botMessages": {
     "type": "text",
     "placeholders": {}
   }
