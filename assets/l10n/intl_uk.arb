@@ -507,12 +507,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteExists": "Емодзі вже існує",
+  "emoteExists": "Емодзі вже існує!",
   "@emoteExists": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteInvalid": "Неприпустимий короткий код емодзі",
+  "emoteInvalid": "Неприпустимий короткий код емодзі!",
   "@emoteInvalid": {
     "type": "text",
     "placeholders": {}
@@ -527,7 +527,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteWarnNeedToPick": "Виберіть короткий код емодзі і зображення",
+  "emoteWarnNeedToPick": "Виберіть короткий код емодзі і зображення!",
   "@emoteWarnNeedToPick": {
     "type": "text",
     "placeholders": {}
@@ -1559,6 +1559,101 @@
   },
   "yourOwnUsername": "",
   "@yourOwnUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pushRules": "Правила сповіщень",
+  "@pushRules": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationsEnabledForThisAccount": "Сповіщення ввімкнені для цього запису",
+  "@notificationsEnabledForThisAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notifications": "Сповіщення",
+  "@notifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "memberChanges": "Зміни учасників",
+  "@memberChanges": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteForMe": "Запрошення для мене",
+  "@inviteForMe": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterAnEmailAddress": "Введіть електронну адресу",
+  "@enterAnEmailAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encrypted": "Зашифровано",
+  "@encrypted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEmotesGlobally": "Ввімкнути набір емоцій глобально",
+  "@enableEmotesGlobally": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emotePacks": "Набори емоцій для кімнати",
+  "@emotePacks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "edit": "Редагувати",
+  "@edit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "directChats": "Прямі бесіди",
+  "@directChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceId": "Ідентифікатор пристрою",
+  "@deviceId": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteAccount": "Видалити запис",
+  "@deleteAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deactivateAccountWarning": "Це деактивує ваш обліковий запис. Це неможливо скасувати! Ви впевнені?",
+  "@deactivateAccountWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsUserName": "Містить ім’я користувача",
+  "@containsUserName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsDisplayName": "Містить видиме ім’я",
+  "@containsDisplayName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changePassword": "Змінити пароль",
+  "@changePassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeDeviceName": "Змінити назву пристрою",
+  "@changeDeviceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "botMessages": "Повідомлення ботів",
+  "@botMessages": {
     "type": "text",
     "placeholders": {}
   }
