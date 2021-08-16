@@ -646,12 +646,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteExists": "Smilefjeset finnes allerede.",
+  "emoteExists": "Smilefjeset finnes allerede!",
   "@emoteExists": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteInvalid": "Ugyldig smilefjes-kode.",
+  "emoteInvalid": "Ugyldig smilefjes-kode!",
   "@emoteInvalid": {
     "type": "text",
     "placeholders": {}
@@ -671,7 +671,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteWarnNeedToPick": "Du må velge en smilefjes-kode og et bilde.",
+  "emoteWarnNeedToPick": "Du må velge en smilefjes-kode og et bilde!",
   "@emoteWarnNeedToPick": {
     "type": "text",
     "placeholders": {}
@@ -748,7 +748,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "everythingReady": "Alt er klart.",
+  "everythingReady": "Alt er klart!",
   "@everythingReady": {
     "type": "text",
     "placeholders": {}
@@ -1150,7 +1150,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "newVerificationRequest": "Ny bekreftelsesforespørsel.",
+  "newVerificationRequest": "Ny bekreftelsesforespørsel!",
   "@newVerificationRequest": {
     "type": "text",
     "placeholders": {}
@@ -1361,7 +1361,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterSecurityKey": "Skriv inn din sikkerhetsnøkkel",
+  "pleaseEnterSecurityKey": "Skriv inn din sikkerhetsnøkkel:",
   "@pleaseEnterSecurityKey": {
     "type": "text",
     "placeholders": {}
@@ -1792,7 +1792,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "tooManyRequestsWarning": "For mange forespørsler. Prøv igjen senere.",
+  "tooManyRequestsWarning": "For mange forespørsler. Prøv igjen senere!",
   "@tooManyRequestsWarning": {
     "type": "text",
     "placeholders": {}
@@ -1840,14 +1840,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "unknownEvent": "Ukjent hendelse «{type}».",
+  "unknownEvent": "Ukjent hendelse «{type}»",
   "@unknownEvent": {
     "type": "text",
     "placeholders": {
       "type": {}
     }
   },
-  "unknownSessionVerify": "Ukjent økt. Bekreft den.",
+  "unknownSessionVerify": "Ukjent økt. Bekreft den",
   "@unknownSessionVerify": {
     "type": "text",
     "placeholders": {}
@@ -1939,7 +1939,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "verifiedSession": "Økt bekreftet.",
+  "verifiedSession": "Økt bekreftet!",
   "@verifiedSession": {
     "type": "text",
     "placeholders": {}
@@ -1959,7 +1959,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "verifySuccess": "Du har bekreftet.",
+  "verifySuccess": "Du har bekreftet!",
   "@verifySuccess": {
     "type": "text",
     "placeholders": {}
@@ -2014,7 +2014,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "warningEncryptionInBeta": "Ende-til-ende -kryptering er i beta. Bruk på egen risiko.",
+  "warningEncryptionInBeta": "Ende-til-ende -kryptering er i beta. Bruk på egen risiko!",
   "@warningEncryptionInBeta": {
     "type": "text",
     "placeholders": {}
@@ -2024,7 +2024,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "welcomeText": "Velkommen til det søteste lynmeldingsprogrammet i Matrix-nettverket",
+  "welcomeText": "Velkommen til det søteste lynmeldingsprogrammet i Matrix-nettverket.",
   "@welcomeText": {
     "type": "text",
     "placeholders": {}
@@ -2105,5 +2105,35 @@
     "placeholders": {
       "homeserver": {}
     }
+  },
+  "toggleUnread": "Marker som lest/ulest",
+  "@toggleUnread": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleMuted": "Veksle forstumming",
+  "@toggleMuted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleFavorite": "Veksle favorittmerking",
+  "@toggleFavorite": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeOfDay": "{hours24}:{minutes}",
+  "@timeOfDay": {
+    "type": "text",
+    "placeholders": {
+      "hours12": {},
+      "hours24": {},
+      "minutes": {},
+      "suffix": {}
+    }
+  },
+  "noConnectionToTheServer": "Ingen tilkobling til tjeneren",
+  "@noConnectionToTheServer": {
+    "type": "text",
+    "placeholders": {}
   }
 }
