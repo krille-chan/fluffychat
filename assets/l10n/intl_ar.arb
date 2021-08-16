@@ -762,7 +762,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "isTyping": "يكتب...",
+  "isTyping": "يكتب…",
   "@isTyping": {
     "type": "text",
     "placeholders": {}
@@ -854,12 +854,12 @@
       "count": {}
     }
   },
-  "loadingPleaseWait": "يحمّل... يرجى الانتظار",
+  "loadingPleaseWait": "يحمّل… يرجى الانتظار.",
   "@loadingPleaseWait": {
     "type": "text",
     "placeholders": {}
   },
-  "loadMore": "حمِّل المزيد...",
+  "loadMore": "حمِّل المزيد…",
   "@loadMore": {
     "type": "text",
     "placeholders": {}
@@ -966,7 +966,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noRoomsFound": "لم يُعثر على غرف...",
+  "noRoomsFound": "لم يُعثر على غرف…",
   "@noRoomsFound": {
     "type": "text",
     "placeholders": {}
@@ -998,7 +998,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "oopsSomethingWentWrong": "هناك خطأ ما...",
+  "oopsSomethingWentWrong": "هناك خطأ ما…",
   "@oopsSomethingWentWrong": {
     "type": "text",
     "placeholders": {}
@@ -1500,7 +1500,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "userAndOthersAreTyping": "{username} و {count} أخرون يكتبون...",
+  "userAndOthersAreTyping": "{username} و {count} أخرون يكتبون…",
   "@userAndOthersAreTyping": {
     "type": "text",
     "placeholders": {
@@ -1508,7 +1508,7 @@
       "count": {}
     }
   },
-  "userAndUserAreTyping": "{username} و {username2} يكتبان...",
+  "userAndUserAreTyping": "{username} و {username2} يكتبان…",
   "@userAndUserAreTyping": {
     "type": "text",
     "placeholders": {
@@ -1516,7 +1516,7 @@
       "username2": {}
     }
   },
-  "userIsTyping": "{username} يكتب...",
+  "userIsTyping": "{username} يكتب…",
   "@userIsTyping": {
     "type": "text",
     "placeholders": {
@@ -1603,17 +1603,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerAcceptRequest": "ينتظر قبول الشريك للطلب...",
+  "waitingPartnerAcceptRequest": "ينتظر قبول الشريك للطلب…",
   "@waitingPartnerAcceptRequest": {
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerEmoji": "ينتظر قبول الشريك لإيموجي...",
+  "waitingPartnerEmoji": "ينتظر قبول الشريك لإيموجي…",
   "@waitingPartnerEmoji": {
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerNumbers": "ينتظر قبول الشريك للأرقام...",
+  "waitingPartnerNumbers": "ينتظر قبول الشريك للأرقام…",
   "@waitingPartnerNumbers": {
     "type": "text",
     "placeholders": {}
@@ -1648,7 +1648,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "writeAMessage": "اكتب رسالة...",
+  "writeAMessage": "اكتب رسالة…",
   "@writeAMessage": {
     "type": "text",
     "placeholders": {}
@@ -1685,6 +1685,16 @@
   },
   "yourOwnUsername": "اسم المستخدم الخاص بك",
   "@yourOwnUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicGroups": "مجموعات عمومية",
+  "@publicGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "people": "أشخاص",
+  "@people": {
     "type": "text",
     "placeholders": {}
   }
