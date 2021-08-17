@@ -2244,14 +2244,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount, plural, other{{unreadCount} nelegitaj babiloj}}",
+  "unreadChats": "{unreadCount, plural, =1{1 nelegita babilo} other{{unreadCount} nelegitaj babiloj}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents} nelegitaj mesaĝoj}}",
+  "unreadMessages": "{unreadEvents, plural, =1{1 nelegita mesaĝo} other{{unreadEvents} nelegitaj mesaĝoj}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
@@ -2522,5 +2522,36 @@
   "@zoomOut": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "sendAsText": "Sendi kiel tekston",
+  "@sendAsText": {
+    "type": "text"
+  },
+  "noMatrixServer": "{server1} ne estas matriksa servilo, eble provu anstataŭe servilon {server2}?",
+  "@noMatrixServer": {
+    "type": "text",
+    "placeholders": {
+      "server1": {},
+      "server2": {}
+    }
+  },
+  "commandHintSend": "Sendi tekston",
+  "@commandHintSend": {
+    "type": "text",
+    "description": "Usage hint for the command /send"
+  },
+  "chatHasBeenRemovedFromThisSpace": "Babilo foriĝis de ĉi tiu aro",
+  "@chatHasBeenRemovedFromThisSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatHasBeenAddedToThisSpace": "Babilo aldoniĝis al ĉi tiu aro",
+  "@chatHasBeenAddedToThisSpace": {},
+  "autoplayImages": "Memage ludi movbildajn glumarkojn kaj mienetojn",
+  "@autoplayImages": {
+    "type": "text",
+    "placeholder": {}
+  },
+  "addToSpace": "Aldoni al aro",
+  "@addToSpace": {}
 }
