@@ -2282,14 +2282,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount, plural, other{{unreadCount} chats non lidos}}",
+  "unreadChats": "{unreadCount, plural, =1{1 chat non lido} other{{unreadCount} chats non lidos}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents} mensaxes non lidas}}",
+  "unreadMessages": "{unreadEvents, plural, =1{1 mensaxe non lida} other{{unreadEvents} mensaxes non lidas}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
@@ -2560,5 +2560,14 @@
   "@zoomOut": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "chatHasBeenRemovedFromThisSpace": "Eliminouse o chat deste espazo",
+  "@chatHasBeenRemovedFromThisSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatHasBeenAddedToThisSpace": "O chat foi engadido a este espazo",
+  "@chatHasBeenAddedToThisSpace": {},
+  "addToSpace": "Engadir ao espazo",
+  "@addToSpace": {}
 }
