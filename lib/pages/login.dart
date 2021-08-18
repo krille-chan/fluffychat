@@ -98,25 +98,20 @@ class LoginController extends State<Login> {
     setState(() => usernameError = null);
     if (!userId.isValidMatrixId) return;
     try {
-      final wellKnownInformations =
-          await Matrix.of(context).client.getWellknown();
-      final newDomain = wellKnownInformations.mHomeserver?.baseUrl;
-      if ((newDomain?.toString()?.isNotEmpty ?? false) &&
-          newDomain != Matrix.of(context).client.homeserver) {
-        var jitsi = wellKnownInformations?.additionalProperties
-            ?.tryGet<Map<String, dynamic>>('im.vector.riot.jitsi')
-            ?.tryGet<String>('preferredDomain');
-        if (jitsi != null) {
-          if (!jitsi.endsWith('/')) {
-            jitsi += '/';
-          }
-          Logs().v('Found custom jitsi instance $jitsi');
-          await Matrix.of(context)
-              .store
-              .setItem(SettingKeys.jitsiInstance, jitsi);
-          AppConfig.jitsiInstance = jitsi;
+      final oldHomeserver = Matrix.of(context).client.homeserver;
+      var newDomain = Uri.https(userId.domain, '');
+      Matrix.of(context).client.homeserver = newDomain;
+      DiscoveryInformation wellKnownInformation;
+      try {
+        wellKnownInformation = await Matrix.of(context).client.getWellknown();
+        if (wellKnownInformation.mHomeserver?.baseUrl?.toString()?.isNotEmpty ??
+            false) {
+          newDomain = wellKnownInformation.mHomeserver.baseUrl;
         }
-        final oldHomeserver = Matrix.of(context).client.homeserver;
+      } catch (_) {
+        // do nothing, newDomain is already set to a reasonable fallback
+      }
+      if (newDomain != oldHomeserver) {
         await showFutureLoadingDialog(
           context: context,
           // do nothing if we error, we'll handle it below
@@ -141,7 +136,21 @@ class LoginController extends State<Login> {
             setState(() => usernameError = null);
           } else {
             Navigator.of(context, rootNavigator: false).pop();
+            return;
           }
+        }
+        var jitsi = wellKnownInformation?.additionalProperties
+            ?.tryGet<Map<String, dynamic>>('im.vector.riot.jitsi')
+            ?.tryGet<String>('preferredDomain');
+        if (jitsi != null) {
+          if (!jitsi.endsWith('/')) {
+            jitsi += '/';
+          }
+          Logs().v('Found custom jitsi instance $jitsi');
+          await Matrix.of(context)
+              .store
+              .setItem(SettingKeys.jitsiInstance, jitsi);
+          AppConfig.jitsiInstance = jitsi;
         }
         setState(() => usernameError = null);
       }
