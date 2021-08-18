@@ -308,7 +308,7 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
         break;
     }
     body ??= Text('ERROR: Unknown state ' + widget.request.state.toString());
-    final otherName = profile?.displayname ?? widget.request.userId;
+    final otherName = profile?.displayName ?? widget.request.userId;
     var bottom;
     if (widget.request.deviceId != null) {
       final deviceName = widget

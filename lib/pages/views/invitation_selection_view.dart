@@ -45,11 +45,11 @@ class InvitationSelectionView extends StatelessWidget {
                 itemBuilder: (BuildContext context, int i) => ListTile(
                   leading: Avatar(
                     controller.foundProfiles[i].avatarUrl,
-                    controller.foundProfiles[i].displayname ??
+                    controller.foundProfiles[i].displayName ??
                         controller.foundProfiles[i].userId,
                   ),
                   title: Text(
-                    controller.foundProfiles[i].displayname ??
+                    controller.foundProfiles[i].displayName ??
                         controller.foundProfiles[i].userId.localpart,
                   ),
                   subtitle: Text(controller.foundProfiles[i].userId),

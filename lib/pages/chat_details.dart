@@ -143,10 +143,14 @@ class ChatDetailsController extends State<ChatDetails> {
       case AliasActions.setCanonical:
         await showFutureLoadingDialog(
           context: context,
-          future: () => room.client
-              .setRoomStateWithKey(room.id, EventTypes.RoomCanonicalAlias, {
-            'alias': select,
-          }),
+          future: () => room.client.setRoomStateWithKey(
+            room.id,
+            EventTypes.RoomCanonicalAlias,
+            '',
+            {
+              'alias': select,
+            },
+          ),
         );
         break;
     }

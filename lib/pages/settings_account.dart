@@ -34,7 +34,7 @@ class SettingsAccountController extends State<SettingsAccount> {
       cancelLabel: L10n.of(context).cancel,
       textFields: [
         DialogTextField(
-          initialText: profile?.displayname ??
+          initialText: profile?.displayName ??
               Matrix.of(context).client.userID.localpart,
         )
       ],
@@ -137,7 +137,6 @@ class SettingsAccountController extends State<SettingsAccount> {
       future: () => Matrix.of(context).client.deactivateAccount(
             auth: AuthenticationPassword(
               password: input.single,
-              user: Matrix.of(context).client.userID,
               identifier: AuthenticationUserIdentifier(
                   user: Matrix.of(context).client.userID),
             ),

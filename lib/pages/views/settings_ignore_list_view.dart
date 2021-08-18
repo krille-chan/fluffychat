@@ -68,10 +68,10 @@ class SettingsIgnoreListView extends StatelessWidget {
                         builder: (c, s) => ListTile(
                           leading: Avatar(
                             s.data?.avatarUrl ?? Uri.parse(''),
-                            s.data?.displayname ?? client.ignoredUsers[i],
+                            s.data?.displayName ?? client.ignoredUsers[i],
                           ),
                           title: Text(
-                              s.data?.displayname ?? client.ignoredUsers[i]),
+                              s.data?.displayName ?? client.ignoredUsers[i]),
                           trailing: IconButton(
                             tooltip: L10n.of(context).delete,
                             icon: Icon(Icons.delete_forever_outlined),

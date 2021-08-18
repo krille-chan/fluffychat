@@ -194,12 +194,12 @@ class BackgroundPush {
       try {
         await client.postPusher(
           Pusher(
-            token,
-            thisAppId,
-            clientName,
-            client.deviceName,
-            'en',
-            PusherData(
+            pushkey: token,
+            appId: thisAppId,
+            appDisplayName: clientName,
+            deviceDisplayName: client.deviceName,
+            lang: 'en',
+            data: PusherData(
               url: Uri.parse(gatewayUrl),
               format: AppConfig.pushNotificationsPusherFormat,
             ),
@@ -406,9 +406,10 @@ class BackgroundPush {
       return;
     }
     final unread = ((data['counts'] is String
-            ? json.decode(data.tryGet<String>('counts', '{}'))
-            : data.tryGet<Map<String, dynamic>>(
-                'counts', <String, dynamic>{})) as Map<String, dynamic>)
+            ? json
+                .decode(data.tryGet<String>('counts', TryGet.optional) ?? '{}')
+            : data.tryGet<Map<String, dynamic>>('counts', TryGet.optional) ??
+                <String, dynamic>{}) as Map<String, dynamic>)
         .tryGet<int>('unread');
     if ((roomId?.isEmpty ?? true) ||
         (eventId?.isEmpty ?? true) ||
@@ -655,10 +656,13 @@ class BackgroundPush {
       final String eventId = data['event_id'];
       final String roomId = data['room_id'];
       final unread = ((data['counts'] is String
-              ? json.decode(data.tryGet<String>('counts', '{}'))
-              : data.tryGet<Map<String, dynamic>>(
-                  'counts', <String, dynamic>{})) as Map<String, dynamic>)
-          .tryGet<int>('unread', 1);
+                  ? json.decode(
+                      data.tryGet<String>('counts', TryGet.optional) ?? '{}')
+                  : data.tryGet<Map<String, dynamic>>(
+                          'counts', TryGet.optional) ??
+                      <String, dynamic>{}) as Map<String, dynamic>)
+              .tryGet<int>('unread', TryGet.optional) ??
+          1;
       if (unread == 0 || roomId == null || eventId == null) {
         await _onClearingPush();
         return;

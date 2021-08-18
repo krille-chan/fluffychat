@@ -23,8 +23,8 @@ class NewSpaceController extends State<NewSpace> {
       context: context,
       future: () => matrix.client.createRoom(
         preset: publicGroup
-            ? sdk.CreateRoomPreset.public_chat
-            : sdk.CreateRoomPreset.private_chat,
+            ? sdk.CreateRoomPreset.publicChat
+            : sdk.CreateRoomPreset.privateChat,
         creationContent: {'type': RoomCreationTypes.mSpace},
         visibility: publicGroup ? sdk.Visibility.public : null,
         roomAliasName: publicGroup && controller.text.isNotEmpty

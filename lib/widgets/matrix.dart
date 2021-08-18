@@ -147,7 +147,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
           return uiaRequest.completeStage(
             AuthenticationPassword(
               session: uiaRequest.session,
-              user: client.userID,
               password: input,
               identifier: AuthenticationUserIdentifier(user: client.userID),
             ),
@@ -190,7 +189,10 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
                 cancelLabel: L10n.of(widget.context).cancel,
               )) {
             return uiaRequest.completeStage(
-              AuthenticationData(session: uiaRequest.session),
+              AuthenticationData(
+                session: uiaRequest.session,
+                type: AuthenticationTypes.token,
+              ),
             );
           } else {
             return uiaRequest.cancel();

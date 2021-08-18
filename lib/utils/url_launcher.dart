@@ -129,7 +129,7 @@ class UrlLauncher {
             context: context,
             future: () => matrix.client.joinRoom(
               roomIdOrAlias,
-              servers: servers.isNotEmpty ? servers.toList() : null,
+              serverName: servers.isNotEmpty ? servers.toList() : null,
             ),
           );
           if (response.error != null) return;

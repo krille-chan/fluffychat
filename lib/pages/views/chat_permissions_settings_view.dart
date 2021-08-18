@@ -100,7 +100,7 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                         ),
                     if (room.canSendEvent(EventTypes.RoomTombstone)) ...{
                       Divider(thickness: 1),
-                      FutureBuilder<ServerCapabilities>(
+                      FutureBuilder<Capabilities>(
                         future: room.client.getCapabilities(),
                         builder: (context, snapshot) {
                           if (!snapshot.hasData) {

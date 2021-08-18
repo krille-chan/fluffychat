@@ -30,6 +30,7 @@ Future<Client> prepareTestClient({
   }
   if (loggedIn) {
     await client.login(
+      LoginType.mLoginToken,
       identifier: AuthenticationUserIdentifier(user: '@alice:example.invalid'),
       password: '1234',
     );

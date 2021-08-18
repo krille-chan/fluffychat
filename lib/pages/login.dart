@@ -64,7 +64,7 @@ class LoginController extends State<Login> {
       } else {
         identifier = AuthenticationUserIdentifier(user: username);
       }
-      await matrix.client.login(
+      await matrix.client.login(LoginType.mLoginPassword,
           identifier: identifier,
           // To stay compatible with older server versions
           // ignore: deprecated_member_use
@@ -98,13 +98,12 @@ class LoginController extends State<Login> {
     setState(() => usernameError = null);
     if (!userId.isValidMatrixId) return;
     try {
-      final wellKnownInformations = await Matrix.of(context)
-          .client
-          .getWellKnownInformationsByUserId(userId);
+      final wellKnownInformations =
+          await Matrix.of(context).client.getWellknown();
       final newDomain = wellKnownInformations.mHomeserver?.baseUrl;
-      if ((newDomain?.isNotEmpty ?? false) &&
-          newDomain != Matrix.of(context).client.homeserver.toString()) {
-        var jitsi = wellKnownInformations?.content
+      if ((newDomain?.toString()?.isNotEmpty ?? false) &&
+          newDomain != Matrix.of(context).client.homeserver) {
+        var jitsi = wellKnownInformations?.additionalProperties
             ?.tryGet<Map<String, dynamic>>('im.vector.riot.jitsi')
             ?.tryGet<String>('preferredDomain');
         if (jitsi != null) {

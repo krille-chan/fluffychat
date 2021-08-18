@@ -47,8 +47,12 @@ class ChatPermissionsSettingsController extends State<ChatPermissionsSettings> {
     inspect(content);
     await showFutureLoadingDialog(
       context: context,
-      future: () => room.client
-          .setRoomStateWithKey(room.id, EventTypes.RoomPowerLevels, content),
+      future: () => room.client.setRoomStateWithKey(
+        room.id,
+        EventTypes.RoomPowerLevels,
+        '',
+        content,
+      ),
     );
   }
 
@@ -60,7 +64,7 @@ class ChatPermissionsSettingsController extends State<ChatPermissionsSettings> {
                 false),
       );
 
-  void updateRoomAction(ServerCapabilities capabilities) async {
+  void updateRoomAction(Capabilities capabilities) async {
     final room = Matrix.of(context).client.getRoomById(roomId);
     final String roomVersion =
         room.getState(EventTypes.RoomCreate).content['room_version'] ?? '1';
