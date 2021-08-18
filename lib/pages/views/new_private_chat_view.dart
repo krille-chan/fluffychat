@@ -58,7 +58,7 @@ class NewPrivateChatView extends StatelessWidget {
                                 padding: const EdgeInsets.all(8.0),
                                 child: Avatar(
                                   controller.foundProfile.avatarUrl,
-                                  controller.foundProfile.displayname ??
+                                  controller.foundProfile.displayName ??
                                       controller.foundProfile.userId,
                                   size: 12,
                                 ),
@@ -101,11 +101,11 @@ class NewPrivateChatView extends StatelessWidget {
                       onTap: () => controller.pickUser(foundProfile),
                       leading: Avatar(
                         foundProfile.avatarUrl,
-                        foundProfile.displayname ?? foundProfile.userId,
+                        foundProfile.displayName ?? foundProfile.userId,
                         //size: 24,
                       ),
                       title: Text(
-                        foundProfile.displayname ??
+                        foundProfile.displayName ??
                             foundProfile.userId.localpart,
                         style: TextStyle(),
                         maxLines: 1,

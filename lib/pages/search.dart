@@ -19,7 +19,7 @@ class Search extends StatefulWidget {
 
 class SearchController extends State<Search> {
   final TextEditingController controller = TextEditingController();
-  Future<PublicRoomsResponse> publicRoomsResponse;
+  Future<QueryPublicRoomsResponse> publicRoomsResponse;
   String lastServer;
   Timer _coolDown;
   String genericSearchTerm;
@@ -56,7 +56,7 @@ class SearchController extends State<Search> {
     return newRoomId;
   }
 
-  void joinGroupAction(PublicRoom room) async {
+  void joinGroupAction(PublicRoomsChunk room) async {
     if (await showOkCancelAlertDialog(
           useRootNavigator: false,
           context: context,
@@ -116,7 +116,7 @@ class SearchController extends State<Search> {
     currentSearchTerm = text;
     if (currentSearchTerm.isEmpty) return;
     final matrix = Matrix.of(context);
-    UserSearchResult response;
+    SearchUserDirectoryResponse response;
     try {
       response = await matrix.client.searchUserDirectory(text, limit: 10);
     } catch (_) {}

@@ -194,7 +194,7 @@ class ChatController extends State<Chat> {
       // ignore: unawaited_futures
       room.setReadMarker(
         timeline.events.first.eventId,
-        readReceiptLocationEventId: timeline.events.first.eventId,
+        mRead: timeline.events.first.eventId,
       );
       if (PlatformInfos.isIOS) {
         // Workaround for iOS not clearing notifications with fcm_shared_isolate
@@ -421,8 +421,8 @@ class ChatController extends State<Chat> {
       future: () => Matrix.of(context).client.reportContent(
             event.roomId,
             event.eventId,
-            reason.single,
-            score,
+            reason: reason.single,
+            score: score,
           ),
     );
     if (result.error != null) return;

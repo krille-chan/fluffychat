@@ -29,22 +29,24 @@ class SearchView extends StatelessWidget {
         .client
         .queryPublicRooms(
           server: server,
-          genericSearchTerm: controller.genericSearchTerm,
+          filter: PublicRoomQueryFilter(
+            genericSearchTerm: controller.genericSearchTerm,
+          ),
         )
         .catchError((error) {
       if (!(controller.genericSearchTerm?.isValidMatrixId ?? false)) {
         throw error;
       }
-      return PublicRoomsResponse.fromJson({
+      return QueryPublicRoomsResponse.fromJson({
         'chunk': [],
       });
-    }).then((PublicRoomsResponse res) {
+    }).then((QueryPublicRoomsResponse res) {
       if (controller.genericSearchTerm != null &&
           !res.chunk.any((room) =>
               (room.aliases?.contains(controller.genericSearchTerm) ?? false) ||
               room.canonicalAlias == controller.genericSearchTerm)) {
         // we have to tack on the original alias
-        res.chunk.add(PublicRoom.fromJson(<String, dynamic>{
+        res.chunk.add(PublicRoomsChunk.fromJson(<String, dynamic>{
           'aliases': [controller.genericSearchTerm],
           'name': controller.genericSearchTerm,
         }));
@@ -105,10 +107,10 @@ class SearchView extends StatelessWidget {
                   title: Text(L10n.of(context).changeTheServer),
                   onTap: controller.setServer,
                 ),
-                FutureBuilder<PublicRoomsResponse>(
+                FutureBuilder<QueryPublicRoomsResponse>(
                     future: controller.publicRoomsResponse,
                     builder: (BuildContext context,
-                        AsyncSnapshot<PublicRoomsResponse> snapshot) {
+                        AsyncSnapshot<QueryPublicRoomsResponse> snapshot) {
                       if (snapshot.hasError) {
                         return Column(
                           mainAxisSize: MainAxisSize.min,
@@ -183,10 +185,7 @@ class SearchView extends StatelessWidget {
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Avatar(
-                                      Uri.parse(publicRoomsResponse
-                                              .chunk[i].avatarUrl ??
-                                          ''),
+                                  Avatar(publicRoomsResponse.chunk[i].avatarUrl,
                                       publicRoomsResponse.chunk[i].name),
                                   Text(
                                     publicRoomsResponse.chunk[i].name,
@@ -244,11 +243,11 @@ class SearchView extends StatelessWidget {
                         },
                         leading: Avatar(
                           foundProfile.avatarUrl,
-                          foundProfile.displayname ?? foundProfile.userId,
+                          foundProfile.displayName ?? foundProfile.userId,
                           //size: 24,
                         ),
                         title: Text(
-                          foundProfile.displayname ??
+                          foundProfile.displayName ??
                               foundProfile.userId.localpart,
                           style: TextStyle(),
                           maxLines: 1,

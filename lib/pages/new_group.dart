@@ -22,8 +22,8 @@ class NewGroupController extends State<NewGroup> {
       context: context,
       future: () => matrix.client.createRoom(
         preset: publicGroup
-            ? sdk.CreateRoomPreset.public_chat
-            : sdk.CreateRoomPreset.private_chat,
+            ? sdk.CreateRoomPreset.publicChat
+            : sdk.CreateRoomPreset.privateChat,
         visibility: publicGroup ? sdk.Visibility.public : null,
         roomAliasName: publicGroup && controller.text.isNotEmpty
             ? controller.text.trim().toLowerCase().replaceAll(' ', '_')

@@ -107,7 +107,7 @@ class HtmlMessage extends StatelessWidget {
           final profile = await room.client.getProfileFromUserId(identifier);
           if (profile != null) {
             return {
-              'displayname': profile.displayname,
+              'displayname': profile.displayName,
               'avatar_url': profile.avatarUrl.toString(),
             };
           }

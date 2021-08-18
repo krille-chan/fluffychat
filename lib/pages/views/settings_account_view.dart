@@ -23,7 +23,7 @@ class SettingsAccountView extends StatelessWidget {
             ListTile(
               trailing: Icon(Icons.edit_outlined),
               title: Text(L10n.of(context).editDisplayname),
-              subtitle: Text(controller.profile?.displayname ??
+              subtitle: Text(controller.profile?.displayName ??
                   Matrix.of(context).client.userID.localpart),
               onTap: controller.setDisplaynameAction,
             ),

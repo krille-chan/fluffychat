@@ -17,7 +17,7 @@ class _ConnectionStatusHeaderState extends State<ConnectionStatusHeader> {
   bool get _connected =>
       DateTime.now().millisecondsSinceEpoch -
           _lastSyncReceived.millisecondsSinceEpoch <
-      (Matrix.of(context).client.syncTimeoutSec + 2) * 1000;
+      (Matrix.of(context).client.sendMessageTimeoutSeconds + 2) * 1000;
   static DateTime _lastSyncReceived = DateTime(0);
   SyncStatusUpdate _status = SyncStatusUpdate(SyncStatus.waitingForResponse);
 

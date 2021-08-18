@@ -74,7 +74,7 @@ class _ContactListTile extends StatelessWidget {
             Matrix.of(context).client.getProfileFromUserId(contact.senderId),
         builder: (context, snapshot) {
           final displayname =
-              snapshot.data?.displayname ?? contact.senderId.localpart;
+              snapshot.data?.displayName ?? contact.senderId.localpart;
           final avatarUrl = snapshot.data?.avatarUrl;
           return ListTile(
             leading: Container(

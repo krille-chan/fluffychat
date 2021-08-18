@@ -8,7 +8,7 @@ import '../avatar.dart';
 import '../matrix.dart';
 
 class PublicRoomListItem extends StatelessWidget {
-  final PublicRoom publicRoomEntry;
+  final PublicRoomsChunk publicRoomEntry;
 
   const PublicRoomListItem(this.publicRoomEntry, {Key key}) : super(key: key);
 
@@ -40,11 +40,7 @@ class PublicRoomListItem extends StatelessWidget {
     final hasTopic =
         publicRoomEntry.topic != null && publicRoomEntry.topic.isNotEmpty;
     return ListTile(
-      leading: Avatar(
-          publicRoomEntry.avatarUrl == null
-              ? null
-              : Uri.parse(publicRoomEntry.avatarUrl),
-          publicRoomEntry.name),
+      leading: Avatar(publicRoomEntry.avatarUrl, publicRoomEntry.name),
       title: Text(hasTopic
           ? '${publicRoomEntry.name} (${publicRoomEntry.numJoinedMembers})'
           : publicRoomEntry.name),
