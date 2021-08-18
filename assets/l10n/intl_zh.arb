@@ -2476,5 +2476,12 @@
   "@zoomOut": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "allChats": "所有会话",
+  "@allChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addToSpace": "加入空间",
+  "@addToSpace": {}
 }
