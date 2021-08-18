@@ -2268,5 +2268,10 @@
   "@chats": {
     "type": "text",
     "placeholders": {}
+  },
+  "allChats": "所有會話",
+  "@allChats": {
+    "type": "text",
+    "placeholders": {}
   }
 }
