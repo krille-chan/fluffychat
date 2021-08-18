@@ -2306,5 +2306,10 @@
   "@zoomOut": {
     "type": "text",
     "placeholders": {}
+  },
+  "allChats": "すべて会話",
+  "@allChats": {
+    "type": "text",
+    "placeholders": {}
   }
 }
