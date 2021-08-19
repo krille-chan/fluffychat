@@ -255,7 +255,7 @@
       "username": {}
     }
   },
-  "changedTheDisplaynameTo": "{username} je promijenio/la prikazano ime u: „{displayname}”",
+  "changedTheDisplaynameTo": "{username} je promijenio/la ime u: „{displayname}”",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -426,7 +426,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHintBan": "Blokiraj korisnika za ovu sobu",
+  "commandHintBan": "Isključi korisnika iz ove sobe",
   "@commandHintBan": {
     "type": "text",
     "description": "Usage hint for the command /ban"
@@ -446,7 +446,7 @@
     "type": "text",
     "description": "Usage hint for the command /join"
   },
-  "commandHintKick": "Ukloni zadanog korisnika iz ove sobe",
+  "commandHintKick": "Ukloni korisnika iz ove sobe",
   "@commandHintKick": {
     "type": "text",
     "description": "Usage hint for the command /kick"
@@ -491,7 +491,7 @@
     "type": "text",
     "description": "Usage hint for the command /send"
   },
-  "commandHintUnBan": "Deblokiraj korisnika za ovu sobu",
+  "commandHintUnBan": "Ponovo uključi korisnika u ovu sobu",
   "@commandHintUnBan": {
     "type": "text",
     "description": "Usage hint for the command /unban"
@@ -548,7 +548,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "containsUserName": "Sadržava korisničko ime",
+  "containsUserName": "Sadrži korisničko ime",
   "@containsUserName": {
     "type": "text",
     "placeholders": {}
@@ -1063,7 +1063,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "ignoreListDescription": "Možeš zanemariti korisnike koji te ometaju. Nećeš moći primiti nijednu poruku ili pozivnice u sobe od korisnika koji se nalaze u tvom osobnom popisu zanemarivanja.",
+  "ignoreListDescription": "Možeš zanemariti korisnike koji te smetaju. Nećeš moći primati poruke niti pozive u sobe od korisnika koji se nalaze u tvom osobnom popisu zanemarivanja.",
   "@ignoreListDescription": {
     "type": "text",
     "placeholders": {}
@@ -1339,7 +1339,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "newVerificationRequest": "Novi zahtjev za provjeru!",
+  "newVerificationRequest": "Novi zahtjev za potvrđivanje!",
   "@newVerificationRequest": {
     "type": "text",
     "placeholders": {}
@@ -1912,7 +1912,7 @@
       "username": {}
     }
   },
-  "sentAnAudio": "{username} ja poslao/la audio",
+  "sentAnAudio": "{username} ja poslao/la audio datoteku",
   "@sentAnAudio": {
     "type": "text",
     "placeholders": {
@@ -1952,7 +1952,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sessionVerified": "Sesija je provjerena",
+  "sessionVerified": "Sesija je potvrđena",
   "@sessionVerified": {
     "type": "text",
     "placeholders": {}
@@ -2212,7 +2212,7 @@
       "type": {}
     }
   },
-  "unknownSessionVerify": "Nepoznata sesija, provjeri",
+  "unknownSessionVerify": "Nepoznata sesija. Potvrdi je",
   "@unknownSessionVerify": {
     "type": "text",
     "placeholders": {}
@@ -2232,14 +2232,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount, plural, other{{unreadCount} nepročitana chata}}",
+  "unreadChats": "{unreadCount, plural, =1{1 nepročitan chat} other{{unreadCount} nepročitana chata}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents} nepročitane poruke}}",
+  "unreadMessages": "{unreadEvents, plural, =1{1 nepročitana poruka} other{{unreadEvents} nepročitane poruke}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
@@ -2299,7 +2299,7 @@
       "type": {}
     }
   },
-  "userUnknownVerification": "Korisnik ima nepoznato stanje provjere",
+  "userUnknownVerification": "Korisnik ima nepoznato stanje potvrđivanja",
   "@userUnknownVerification": {
     "type": "text",
     "placeholders": {}
@@ -2314,37 +2314,37 @@
     "type": "text",
     "placeholders": {}
   },
-  "verifiedSession": "Uspješno provjerena sesija!",
+  "verifiedSession": "Uspješno potvrđena sesija!",
   "@verifiedSession": {
     "type": "text",
     "placeholders": {}
   },
-  "verify": "Provjeri",
+  "verify": "Potvrdi",
   "@verify": {
     "type": "text",
     "placeholders": {}
   },
-  "verifyManual": "Provjeri ručno",
+  "verifyManual": "Potvrdi ručno",
   "@verifyManual": {
     "type": "text",
     "placeholders": {}
   },
-  "verifyStart": "Pokreni provjeru",
+  "verifyStart": "Pokreni potvrđivanje",
   "@verifyStart": {
     "type": "text",
     "placeholders": {}
   },
-  "verifySuccess": "Uspješno si provjerio/la!",
+  "verifySuccess": "Uspješno si potvrdio/la!",
   "@verifySuccess": {
     "type": "text",
     "placeholders": {}
   },
-  "verifyTitle": "Provjeravanje drugog računa",
+  "verifyTitle": "Potvrđivanje drugog računa",
   "@verifyTitle": {
     "type": "text",
     "placeholders": {}
   },
-  "verifyUser": "Provjeri korisnika",
+  "verifyUser": "Potvrdi korisnika",
   "@verifyUser": {
     "type": "text",
     "placeholders": {}
@@ -2510,5 +2510,64 @@
   "@zoomOut": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "shareLocation": "Dijeli lokaciju",
+  "@shareLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationPermissionDeniedNotice": "Lokacijske dozvole su odbijene. Za dijeljenje tvoje lokacije dozvoli ih.",
+  "@locationPermissionDeniedNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationDisabledNotice": "Lokacijske usluge su deaktivirane. Za dijeljenje tvoje lokacije aktiviraj ih.",
+  "@locationDisabledNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "obtainingLocation": "Dohvaćanje lokacije …",
+  "@obtainingLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorObtainingLocation": "Greška u dohvaćanju lokacije: {error}",
+  "@errorObtainingLocation": {
+    "type": "text",
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "openInMaps": "Otvori u kartama",
+  "@openInMaps": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noMatrixServer": "{server1} nije matrix poslužitelj. Da li umjesto njega koristiti {server2}?",
+  "@noMatrixServer": {
+    "type": "text",
+    "placeholders": {
+      "server1": {},
+      "server2": {}
+    }
+  },
+  "autoplayImages": "Automatski pokreni animirane naljepnice i emotikone",
+  "@autoplayImages": {
+    "type": "text",
+    "placeholder": {}
+  },
+  "allChats": "Svi chatovi",
+  "@allChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatHasBeenRemovedFromThisSpace": "Chat je uklonjen iz ovog prostora",
+  "@chatHasBeenRemovedFromThisSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatHasBeenAddedToThisSpace": "Chat je dodan u ovaj prostor",
+  "@chatHasBeenAddedToThisSpace": {},
+  "addToSpace": "Dodaj u prostor",
+  "@addToSpace": {}
 }
