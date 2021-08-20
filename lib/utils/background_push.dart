@@ -217,7 +217,7 @@ class BackgroundPush {
 
   Future<void> setupPush() async {
     await setupLocalNotificationsPlugin();
-    if (_loginState != LoginState.logged ||
+    if (_loginState != LoginState.loggedIn ||
         !PlatformInfos.isMobile ||
         context == null) {
       return;

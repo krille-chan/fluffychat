@@ -330,9 +330,9 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         final isInLoginRoutes = {'/home', '/login', '/signup'}
             .contains(widget.router.currentState.url);
         if (widget.router.currentState.url == '/' ||
-            (state == LoginState.logged) == isInLoginRoutes) {
+            (state == LoginState.loggedIn) == isInLoginRoutes) {
           widget.router.currentState.to(
-            loginState == LoginState.logged ? '/rooms' : '/home',
+            loginState == LoginState.loggedIn ? '/rooms' : '/home',
             queryParameters: widget.router.currentState.queryParameters,
           );
         }
