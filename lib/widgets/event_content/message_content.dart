@@ -95,10 +95,13 @@ class MessageContent extends StatelessWidget {
             }
             return MessageDownloadContent(event, textColor);
           case MessageTypes.Audio:
-            return AudioPlayerWidget(
-              event,
-              color: textColor,
-            );
+            if (PlatformInfos.isMobile) {
+              return AudioPlayerWidget(
+                event,
+                color: textColor,
+              );
+            }
+            return MessageDownloadContent(event, textColor);
           case MessageTypes.Video:
             if (event.showThumbnail &&
                 (PlatformInfos.isMobile || PlatformInfos.isWeb)) {
@@ -127,6 +130,7 @@ class MessageContent extends StatelessWidget {
             return MessageDownloadContent(event, textColor);
           case MessageTypes.File:
             return MessageDownloadContent(event, textColor);
+
           case MessageTypes.Text:
           case MessageTypes.Notice:
           case MessageTypes.Emote:
