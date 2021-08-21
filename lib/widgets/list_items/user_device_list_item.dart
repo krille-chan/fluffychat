@@ -105,8 +105,9 @@ class UserDeviceListItem extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
           Spacer(),
-          Text(DateTime.fromMillisecondsSinceEpoch(userDevice.lastSeenTs)
-              .localizedTimeShort(context)),
+          if (userDevice.lastSeenTs != null)
+            Text(DateTime.fromMillisecondsSinceEpoch(userDevice.lastSeenTs)
+                .localizedTimeShort(context)),
         ],
       ),
       subtitle: Row(
