@@ -131,9 +131,6 @@ class _AudioPlayerState extends State<AudioPlayerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (PlatformInfos.isLinux || PlatformInfos.isWindows) {
-      return MessageDownloadContent(widget.event, widget.color);
-    }
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
