@@ -3,9 +3,7 @@ import 'dart:io';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:matrix/matrix.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/sentry_controller.dart';
-import 'package:fluffychat/widgets/event_content/message_download_content.dart';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
