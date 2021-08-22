@@ -4,7 +4,7 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:file_picker_cross/file_picker_cross.dart';
 
 import 'views/settings_style_view.dart';
 import '../widgets/matrix.dart';
@@ -17,7 +17,7 @@ class SettingsStyle extends StatefulWidget {
 class SettingsStyleController extends State<SettingsStyle> {
   void setWallpaperAction() async {
     final wallpaper =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
+        await FilePickerCross.importFromStorage(type: FileTypeCross.image);
     if (wallpaper == null) return;
     Matrix.of(context).wallpaper = File(wallpaper.path);
     await Matrix.of(context)
