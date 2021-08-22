@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/new_private_chat.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
@@ -105,11 +106,13 @@ class NewPrivateChatView extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
-        label: Text(L10n.of(context).scanQrCode),
-        icon: Icon(Icons.camera_alt_outlined),
-      ),
+      floatingActionButton: PlatformInfos.isMobile
+          ? FloatingActionButton.extended(
+              onPressed: controller.openScannerAction,
+              label: Text(L10n.of(context).scanQrCode),
+              icon: Icon(Icons.camera_alt_outlined),
+            )
+          : null,
     );
   }
 }
