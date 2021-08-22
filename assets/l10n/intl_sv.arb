@@ -2190,7 +2190,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHintMyRoomAvatar": "Sätt din bild för detta rum  (by mxc-uri)",
+  "commandHintMyRoomAvatar": "Sätt din bild för detta rum (by mxc-uri)",
   "@commandHintMyRoomAvatar": {
     "type": "text",
     "description": "Usage hint for the command /myroomavatar"
