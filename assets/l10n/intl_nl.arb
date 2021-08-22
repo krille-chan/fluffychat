@@ -2568,5 +2568,13 @@
   "@zoomOut": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "scanQrCode": "QR-code scannen",
+  "@scanQrCode": {},
+  "typeInInviteLinkManually": "Type de uitnodigingslink in...",
+  "@typeInInviteLinkManually": {},
+  "shareYourInviteLink": "Deel je uitnodigingslink",
+  "@shareYourInviteLink": {},
+  "createNewChatExplaination": "Scan de QR-code of deel je uitnodigingslink als je niet naast elkaar zit.",
+  "@createNewChatExplaination": {}
 }
