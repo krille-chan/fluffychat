@@ -2541,5 +2541,15 @@
   "@tapOnDeviceToVerify": {
     "type": "text",
     "placeholders": {}
+  },
+  "zoomOut": "Zooma ut",
+  "@zoomOut": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zoomIn": "Zooma in",
+  "@zoomIn": {
+    "type": "text",
+    "placeholders": {}
   }
 }
