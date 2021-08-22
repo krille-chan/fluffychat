@@ -2537,5 +2537,30 @@
   "@autoplayImages": {
     "type": "text",
     "placeholder": {}
+  },
+  "spaceName": "空间名称",
+  "@spaceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceIsPublic": "空间是公共的",
+  "@spaceIsPublic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareLocation": "分享位置",
+  "@shareLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicSpace": "公共空间",
+  "@publicSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openInMaps": "在地图中打开",
+  "@openInMaps": {
+    "type": "text",
+    "placeholders": {}
   }
 }
