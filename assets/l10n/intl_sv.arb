@@ -2189,5 +2189,35 @@
   "@addEmail": {
     "type": "text",
     "placeholders": {}
+  },
+  "commandHintMyRoomAvatar": "Sätt din bild för detta rum  (by mxc-uri)",
+  "@commandHintMyRoomAvatar": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomavatar"
+  },
+  "commandHintMe": "Beskriv dig själv",
+  "@commandHintMe": {
+    "type": "text",
+    "description": "Usage hint for the command /me"
+  },
+  "commandHintLeave": "Lämna detta rum",
+  "@commandHintLeave": {
+    "type": "text",
+    "description": "Usage hint for the command /leave"
+  },
+  "commandHintKick": "Ta bort användare från detta rum",
+  "@commandHintKick": {
+    "type": "text",
+    "description": "Usage hint for the command /kick"
+  },
+  "commandHintJoin": "Gå med i rum",
+  "@commandHintJoin": {
+    "type": "text",
+    "description": "Usage hint for the command /join"
+  },
+  "commandHintInvite": "Bjud in användaren till detta rum",
+  "@commandHintInvite": {
+    "type": "text",
+    "description": "Usage hint for the command /invite"
   }
 }
