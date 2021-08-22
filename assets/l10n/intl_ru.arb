@@ -634,7 +634,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "createNewSpace": "Создать новое пространство",
+  "createNewSpace": "Новое пространство",
   "@createNewSpace": {
     "type": "text",
     "placeholders": {}
