@@ -30,11 +30,13 @@ class MessageDownloadContent extends StatelessWidget {
               children: [
                 Icon(Icons.download_outlined),
                 SizedBox(width: 8),
-                Text(
-                  filename,
-                  overflow: TextOverflow.fade,
-                  softWrap: false,
-                  maxLines: 1,
+                Expanded(
+                  child: Text(
+                    filename,
+                    overflow: TextOverflow.fade,
+                    softWrap: false,
+                    maxLines: 1,
+                  ),
                 ),
               ],
             ),
