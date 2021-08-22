@@ -2219,5 +2219,121 @@
   "@commandHintInvite": {
     "type": "text",
     "description": "Usage hint for the command /invite"
+  },
+  "locationPermissionDeniedNotice": "Plats åtkomst nekad. Var god godkän detta för att kunna dela din plats",
+  "@locationPermissionDeniedNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationDisabledNotice": "Platstjänster är inaktiverade. Var god aktivera dom för att kunna dela din plats.",
+  "@locationDisabledNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidEmail": "Felaktigt e-post",
+  "@invalidEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "goToTheNewRoom": "Gå till det nya rummet",
+  "@goToTheNewRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "friends": "Vänner",
+  "@friends": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fontSize": "Teckensnitt storlek",
+  "@fontSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "everythingReady": "Allt är klart!",
+  "@everythingReady": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorObtainingLocation": "Fel vid erhållande av plats: {error}",
+  "@errorObtainingLocation": {
+    "type": "text",
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "enterASpacepName": "Ange utrymmets namn",
+  "@enterASpacepName": {},
+  "enableChatBackup": "Aktivera chatt backup för att inte förlora åtkomst till dina chattar.",
+  "@enableChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAliases": "Redigera rum alias",
+  "@editRoomAliases": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dontAskAgain": "Avbryt och fråga inte igen",
+  "@dontAskAgain": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceVerifyDescription": "Kryptering är enbart säker när samtliga enheter har verifierats.",
+  "@deviceVerifyDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createNewSpace": "Skapa nytt utrymme",
+  "@createNewSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copyToClipboard": "Kopiera till urklipp",
+  "@copyToClipboard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandMissing": "{command} är inte ett kommando.",
+  "@commandMissing": {
+    "type": "text",
+    "placeholders": {
+      "command": {}
+    },
+    "description": "State that {command} is not a valid /command."
+  },
+  "commandInvalid": "Felaktigt kommando",
+  "@commandInvalid": {
+    "type": "text"
+  },
+  "commandHintUnBan": "Tillåt användare i rummet",
+  "@commandHintUnBan": {
+    "type": "text",
+    "description": "Usage hint for the command /unban"
+  },
+  "commandHintSend": "Skicka text",
+  "@commandHintSend": {
+    "type": "text",
+    "description": "Usage hint for the command /send"
+  },
+  "commandHintReact": "Skicka svar som reaktion",
+  "@commandHintReact": {
+    "type": "text",
+    "description": "Usage hint for the command /react"
+  },
+  "commandHintPlain": "Skicka oformaterad text",
+  "@commandHintPlain": {
+    "type": "text",
+    "description": "Usage hint for the command /plain"
+  },
+  "commandHintOp": "Sätt användarens kraft nivå ( standard: 50)",
+  "@commandHintOp": {
+    "type": "text",
+    "description": "Usage hint for the command /op"
+  },
+  "commandHintMyRoomNick": "Sätt ditt användarnamn för rummet",
+  "@commandHintMyRoomNick": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomnick"
   }
 }
