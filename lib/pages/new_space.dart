@@ -34,7 +34,7 @@ class NewSpaceController extends State<NewSpace> {
       ),
     );
     if (roomID.error == null) {
-      VRouter.of(context).to('/rooms/${roomID.result}/details');
+      VRouter.of(context).toSegments(['rooms', roomID.result, 'details']);
     }
   }
 

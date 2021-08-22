@@ -60,7 +60,7 @@ class ChatListController extends State<ChatList> {
   void editSpace(BuildContext context, String spaceId) async {
     Scaffold.of(context).openEndDrawer();
     await Matrix.of(context).client.getRoomById(spaceId).postLoad();
-    VRouter.of(context).to('/spaces/$spaceId');
+    VRouter.of(context).toSegments(['spaces', spaceId]);
   }
 
   List<Room> get spaces =>

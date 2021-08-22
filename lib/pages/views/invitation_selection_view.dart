@@ -25,8 +25,8 @@ class InvitationSelectionView extends StatelessWidget {
             ? null
             : IconButton(
                 icon: Icon(Icons.close_outlined),
-                onPressed: () =>
-                    VRouter.of(context).to('/rooms/${controller.roomId}'),
+                onPressed: () => VRouter.of(context)
+                    .toSegments(['rooms', controller.roomId]),
               ),
         titleSpacing: 0,
         title: DefaultAppBarSearchField(

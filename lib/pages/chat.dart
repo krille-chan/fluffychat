@@ -620,7 +620,7 @@ class ChatController extends State<Chat> {
       future: room.leave,
     );
     if (result.error == null) {
-      VRouter.of(context).to('/rooms/${result.result}');
+      VRouter.of(context).toSegments(['rooms', result.result]);
     }
   }
 

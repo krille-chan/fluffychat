@@ -47,7 +47,7 @@ class NewPrivateChatController extends State<NewPrivateChat> {
     );
 
     if (roomID.error == null) {
-      VRouter.of(context).to('/rooms/${roomID.result}');
+      VRouter.of(context).toSegments(['rooms', roomID.result]);
     }
   }
 

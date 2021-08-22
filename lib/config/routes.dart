@@ -139,7 +139,7 @@ class AppRoutes {
                   nestedRoutes: [
                     VWidget(
                       path: '',
-                      widget: EmptyPage(),
+                      widget: Chat(),
                       buildTransition: _fadeTransition,
                     ),
                     VWidget(
