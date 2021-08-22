@@ -2569,5 +2569,13 @@
   "@zoomOut": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "scanQrCode": "QR kodunu tarayın",
+  "@scanQrCode": {},
+  "typeInInviteLinkManually": "Davet bağlantısını el ile yazın...",
+  "@typeInInviteLinkManually": {},
+  "shareYourInviteLink": "Davet bağlantınızı paylaşın",
+  "@shareYourInviteLink": {},
+  "createNewChatExplaination": "Sadece QR kodunu tarayın veya yan yana değilseniz davet bağlantınızı paylaşın.",
+  "@createNewChatExplaination": {}
 }
