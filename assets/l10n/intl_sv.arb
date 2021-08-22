@@ -2348,7 +2348,7 @@
       "brand": {}
     }
   },
-  "noMatrixServer": "{server1} är inte en matrix server,  använd {server2}  istället?",
+  "noMatrixServer": "{server1} är inte en matrix server, använd {server2} istället?",
   "@noMatrixServer": {
     "type": "text",
     "placeholders": {
