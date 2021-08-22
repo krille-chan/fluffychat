@@ -2335,5 +2335,17 @@
   "@commandHintMyRoomNick": {
     "type": "text",
     "description": "Usage hint for the command /myroomnick"
+  },
+  "noEncryptionForPublicRooms": "Du kan endast aktivera kryptering när rummet inte längre är publikt tillgängligt",
+  "@noEncryptionForPublicRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginWith": "Logga in med {brand}",
+  "@loginWith": {
+    "type": "text",
+    "placeholders": {
+      "brand": {}
+    }
   }
 }
