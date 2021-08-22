@@ -56,6 +56,7 @@ dependencies:
   pin_code_text_field: ^1.8.0
   provider: ^5.0.0
   punycode: ^1.0.0
+  qr_flutter: ^4.0.0
   receive_sharing_intent: ^1.4.5
   record: ^3.0.0
   scroll_to_index: ^2.0.0

@@ -1428,6 +1428,10 @@
       "server2": {}
     }
   },
+  "createNewChatExplaination": "Just scan the QR code or share your invite link if you are not next to each other.",
+  "shareYourInviteLink": "Share your invite link",
+  "typeInInviteLinkManually": "Type in invite link manually...",
+  "scanQrCode": "Scan QR code",
   "noMegolmBootstrap": "Please turn on online key backup from within Element instead.",
   "@noMegolmBootstrap": {
     "type": "text",

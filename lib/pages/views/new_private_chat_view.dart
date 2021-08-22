@@ -1,11 +1,12 @@
+import 'dart:math';
+
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/new_private_chat.dart';
-import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/contacts_list.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:matrix/matrix.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 import 'package:vrouter/vrouter.dart';
 
 class NewPrivateChatView extends StatelessWidget {
@@ -13,8 +14,12 @@ class NewPrivateChatView extends StatelessWidget {
 
   const NewPrivateChatView(this.controller, {Key key}) : super(key: key);
 
+  static const double _qrCodePadding = 8;
+
   @override
   Widget build(BuildContext context) {
+    final qrCodeSize = min(AppConfig.columnWidth - _qrCodePadding * 6,
+        MediaQuery.of(context).size.width - _qrCodePadding * 6);
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(),
@@ -31,102 +36,79 @@ class NewPrivateChatView extends StatelessWidget {
         ],
       ),
       body: MaxWidthBody(
-        child: Column(
-          children: <Widget>[
+        child: ListView(
+          children: [
             Padding(
-              padding: const EdgeInsets.all(12.0),
+              padding: const EdgeInsets.symmetric(
+                horizontal: _qrCodePadding * 2,
+              ),
+              child: Text(
+                L10n.of(context).createNewChatExplaination,
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 16),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.all(_qrCodePadding),
+              alignment: Alignment.center,
+              padding: EdgeInsets.all(_qrCodePadding * 2),
+              child: Material(
+                borderRadius: BorderRadius.circular(12),
+                elevation: 4,
+                child: QrImage(
+                  data:
+                      'https://matrix.to/#/${Matrix.of(context).client.userID}',
+                  version: QrVersions.auto,
+                  size: qrCodeSize,
+                ),
+              ),
+            ),
+            Divider(),
+            ListTile(
+              title: Text(L10n.of(context).shareYourInviteLink),
+              trailing: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Icon(Icons.share_outlined),
+              ),
+              onTap: controller.inviteAction,
+            ),
+            Divider(),
+            Padding(
+              padding: EdgeInsets.all(12),
               child: Form(
                 key: controller.formKey,
                 child: TextFormField(
                   controller: controller.controller,
                   autocorrect: false,
-                  onChanged: controller.searchUserWithCoolDown,
                   textInputAction: TextInputAction.go,
                   onFieldSubmitted: controller.submitAction,
                   validator: controller.validateForm,
                   decoration: InputDecoration(
-                    labelText: L10n.of(context).enterAUsername,
-                    prefixIcon: controller.loading
-                        ? Container(
-                            padding: const EdgeInsets.all(8.0),
-                            width: 12,
-                            height: 12,
-                            child: CircularProgressIndicator(),
-                          )
-                        : controller.correctMxId
-                            ? Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Avatar(
-                                  controller.foundProfile.avatarUrl,
-                                  controller.foundProfile.displayName ??
-                                      controller.foundProfile.userId,
-                                  size: 12,
-                                ),
-                              )
-                            : Icon(Icons.account_circle_outlined),
-                    prefixText: '@',
+                    labelText: L10n.of(context).typeInInviteLinkManually,
+                    hintText: '@username',
+                    prefixText: 'https://matrix.to/#/',
                     suffixIcon: IconButton(
+                      icon: Icon(Icons.send_outlined),
                       onPressed: controller.submitAction,
-                      icon: Icon(Icons.arrow_forward_outlined),
                     ),
-                    hintText: '${L10n.of(context).username.toLowerCase()}',
                   ),
                 ),
               ),
             ),
-            Divider(height: 1),
-            ListTile(
-              leading: CircleAvatar(
-                radius: Avatar.defaultSize / 2,
-                foregroundColor: Theme.of(context).colorScheme.secondary,
-                backgroundColor: Theme.of(context).secondaryHeaderColor,
-                child: Icon(Icons.share_outlined),
-              ),
-              onTap: controller.inviteAction,
-              title: Text('${L10n.of(context).yourOwnUsername}:'),
-              subtitle: Text(
-                Matrix.of(context).client.userID,
-                style:
-                    TextStyle(color: Theme.of(context).colorScheme.secondary),
+            Center(
+              child: Image.asset(
+                'assets/private_chat_wallpaper.png',
+                width: qrCodeSize,
+                height: qrCodeSize,
               ),
             ),
-            Divider(height: 1),
-            if (controller.foundProfiles.isNotEmpty)
-              Expanded(
-                child: ListView.builder(
-                  itemCount: controller.foundProfiles.length,
-                  itemBuilder: (BuildContext context, int i) {
-                    final foundProfile = controller.foundProfiles[i];
-                    return ListTile(
-                      onTap: () => controller.pickUser(foundProfile),
-                      leading: Avatar(
-                        foundProfile.avatarUrl,
-                        foundProfile.displayName ?? foundProfile.userId,
-                        //size: 24,
-                      ),
-                      title: Text(
-                        foundProfile.displayName ??
-                            foundProfile.userId.localpart,
-                        style: TextStyle(),
-                        maxLines: 1,
-                      ),
-                      subtitle: Text(
-                        foundProfile.userId,
-                        maxLines: 1,
-                        style: TextStyle(
-                          fontSize: 12,
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
-            if (controller.foundProfiles.isEmpty)
-              Expanded(
-                child: ContactsList(searchController: controller.controller),
-              ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {},
+        label: Text(L10n.of(context).scanQrCode),
+        icon: Icon(Icons.camera_alt_outlined),
       ),
     );
   }

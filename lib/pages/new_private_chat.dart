@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:matrix/matrix.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/pages/views/new_private_chat_view.dart';
@@ -18,83 +16,55 @@ class NewPrivateChatController extends State<NewPrivateChat> {
   TextEditingController controller = TextEditingController();
   final formKey = GlobalKey<FormState>();
   bool loading = false;
-  String currentSearchTerm;
-  List<Profile> foundProfiles = [];
-  Timer coolDown;
-  Profile get foundProfile =>
-      foundProfiles.firstWhere((user) => user.userId == '@$currentSearchTerm',
-          orElse: () => null);
-  bool get correctMxId =>
-      foundProfiles
-          .indexWhere((user) => user.userId == '@$currentSearchTerm') !=
-      -1;
+
+  static const Set<String> supportedSigils = {'@', '!', '#'};
 
   void submitAction([_]) async {
-    controller.text = controller.text.replaceAll('@', '').trim();
-    if (controller.text.isEmpty) return;
+    controller.text = controller.text.trim();
     if (!formKey.currentState.validate()) return;
-    final matrix = Matrix.of(context);
+    final client = Matrix.of(context).client;
 
-    if ('@' + controller.text == matrix.client.userID) return;
+    LoadingDialogResult roomIdResult;
 
-    final user = User(
-      '@' + controller.text,
-      room: Room(id: '', client: matrix.client),
-    );
-    final roomID = await showFutureLoadingDialog(
-      context: context,
-      future: () => user.startDirectChat(),
-    );
-
-    if (roomID.error == null) {
-      VRouter.of(context).toSegments(['rooms', roomID.result]);
+    switch (controller.text.sigil) {
+      case '@':
+        roomIdResult = await showFutureLoadingDialog(
+          context: context,
+          future: () => client.startDirectChat(controller.text),
+        );
+        break;
+      case '#':
+      case '!':
+        roomIdResult = await showFutureLoadingDialog(
+          context: context,
+          future: () async {
+            final roomId = await client.joinRoom(controller.text);
+            if (client.getRoomById(roomId) == null) {
+              await client.onSync.stream
+                  .where((s) => s.rooms.join.containsKey(roomId))
+                  .first;
+            }
+            return roomId;
+          },
+        );
+        break;
     }
-  }
 
-  void searchUserWithCoolDown([_]) async {
-    coolDown?.cancel();
-    coolDown = Timer(
-      Duration(milliseconds: 500),
-      () => searchUser(controller.text),
-    );
-  }
-
-  void searchUser(String text) async {
-    if (text.isEmpty) {
-      setState(() {
-        foundProfiles = [];
-      });
+    if (roomIdResult.error == null) {
+      VRouter.of(context).toSegments(['rooms', roomIdResult.result]);
     }
-    currentSearchTerm = text;
-    if (currentSearchTerm.isEmpty) return;
-    if (loading) return;
-    setState(() => loading = true);
-    final matrix = Matrix.of(context);
-    SearchUserDirectoryResponse response;
-    try {
-      response = await matrix.client.searchUserDirectory(text, limit: 10);
-    } catch (_) {}
-    setState(() => loading = false);
-    if (response?.results?.isEmpty ?? true) return;
-    setState(() {
-      foundProfiles = List<Profile>.from(response.results);
-    });
   }
 
   String validateForm(String value) {
     if (value.isEmpty) {
       return L10n.of(context).pleaseEnterAMatrixIdentifier;
     }
-    final matrix = Matrix.of(context);
-    final mxid = '@' + controller.text.trim();
-    if (mxid == matrix.client.userID) {
+    if (!controller.text.isValidMatrixId ||
+        !supportedSigils.contains(controller.text.sigil)) {
+      return L10n.of(context).makeSureTheIdentifierIsValid;
+    }
+    if (controller.text == Matrix.of(context).client.userID) {
       return L10n.of(context).youCannotInviteYourself;
-    }
-    if (!mxid.contains('@')) {
-      return L10n.of(context).makeSureTheIdentifierIsValid;
-    }
-    if (!mxid.contains(':')) {
-      return L10n.of(context).makeSureTheIdentifierIsValid;
     }
     return null;
   }
@@ -103,11 +73,6 @@ class NewPrivateChatController extends State<NewPrivateChat> {
         L10n.of(context).inviteText(Matrix.of(context).client.userID,
             'https://matrix.to/#/${Matrix.of(context).client.userID}'),
         context,
-      );
-
-  void pickUser(Profile foundProfile) => setState(
-        () => controller.text =
-            currentSearchTerm = foundProfile.userId.substring(1),
       );
 
   @override
