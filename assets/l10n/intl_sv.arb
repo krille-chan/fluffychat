@@ -2220,7 +2220,7 @@
     "type": "text",
     "description": "Usage hint for the command /invite"
   },
-  "locationPermissionDeniedNotice": "Plats åtkomst nekad. Var god godkän detta för att kunna dela din plats",
+  "locationPermissionDeniedNotice": "Plats åtkomst nekad. Var god godkän detta för att kunna dela din plats.",
   "@locationPermissionDeniedNotice": {
     "type": "text",
     "placeholders": {}
