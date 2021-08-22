@@ -2098,5 +2098,96 @@
     "placeholders": {
       "homeserver": {}
     }
+  },
+  "commandHintHtml": "Skicka HTML-formatted text",
+  "@commandHintHtml": {
+    "type": "text",
+    "description": "Usage hint for the command /html"
+  },
+  "commandHintBan": "Bannlys användaren från detta rum",
+  "@commandHintBan": {
+    "type": "text",
+    "description": "Usage hint for the command /ban"
+  },
+  "clearText": "Rensa text",
+  "@clearText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clearArchive": "Rensa arkiv",
+  "@clearArchive": {},
+  "chats": "Chatter",
+  "@chats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatHasBeenRemovedFromThisSpace": "Chatt har tagits bort från detta utrymme",
+  "@chatHasBeenRemovedFromThisSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatHasBeenAddedToThisSpace": "Chatt har lagts till i detta utrymme",
+  "@chatHasBeenAddedToThisSpace": {},
+  "chatBackup": "Chatt backup",
+  "@chatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeYourAvatar": "Ändra din avatar",
+  "@changeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cantOpenUri": "Kan inte öppna URL {uri}",
+  "@cantOpenUri": {
+    "type": "text",
+    "placeholders": {
+      "uri": {}
+    }
+  },
+  "blocked": "Blockerad",
+  "@blocked": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "badServerLoginTypesException": "Hemma servern stödjer följande inloggnings typer :\n {serverVersions}\nMen denna applikation stödjer enbart:\n{supportedVersions}",
+  "@badServerLoginTypesException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "autoplayImages": "Automatisk spela upp animerade klistermärken och emoji",
+  "@autoplayImages": {
+    "type": "text",
+    "placeholder": {}
+  },
+  "audioPlayerPlay": "Spela",
+  "@audioPlayerPlay": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPause": "Paus",
+  "@audioPlayerPause": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "allChats": "Alla chattar",
+  "@allChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addToSpace": "Lägg till i utrymme",
+  "@addToSpace": {},
+  "addNewFriend": "Lägg till ny vän",
+  "@addNewFriend": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addEmail": "Lägg till e-post",
+  "@addEmail": {
+    "type": "text",
+    "placeholders": {}
   }
 }
