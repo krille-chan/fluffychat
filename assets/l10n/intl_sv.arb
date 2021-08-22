@@ -2491,5 +2491,55 @@
   "@pleaseEnterYourPin": {
     "type": "text",
     "placeholders": {}
+  },
+  "yourChatsAreBeingSynced": "Dina chatter synkroniseras…",
+  "@yourChatsAreBeingSynced": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wipeChatBackup": "Radera din chatt backup för att skapa en ny säkerhets nyckel?",
+  "@wipeChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verified": "Verifierad",
+  "@verified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userVerified": "Användar är verifierad",
+  "@userVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userUnknownVerification": "Användare har en okänd verifikations status",
+  "@userUnknownVerification": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userNotVerified": "Användare är inte verifierad",
+  "@userNotVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unlockChatBackup": "Lås upp chatt backup",
+  "@unlockChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transferFromAnotherDevice": "Överför till annan enhet",
+  "@transferFromAnotherDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapToShowImage": "Tryck för att visa bild",
+  "@tapToShowImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapOnDeviceToVerify": "Tryck på en enhet för att verifiera",
+  "@tapOnDeviceToVerify": {
+    "type": "text",
+    "placeholders": {}
   }
 }
