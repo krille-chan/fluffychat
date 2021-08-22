@@ -25,6 +25,7 @@ class NewPrivateChatView extends StatelessWidget {
       appBar: AppBar(
         leading: BackButton(),
         title: Text(L10n.of(context).newChat),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0,
         actions: [
           TextButton(
@@ -40,8 +41,10 @@ class NewPrivateChatView extends StatelessWidget {
         child: ListView(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: _qrCodePadding * 2,
+              padding: const EdgeInsets.only(
+                top: _qrCodePadding * 2,
+                left: _qrCodePadding * 2,
+                right: _qrCodePadding * 2,
               ),
               child: Text(
                 L10n.of(context).createNewChatExplaination,
@@ -53,6 +56,7 @@ class NewPrivateChatView extends StatelessWidget {
               margin: EdgeInsets.all(_qrCodePadding),
               alignment: Alignment.center,
               padding: EdgeInsets.all(_qrCodePadding * 2),
+              color: Colors.white,
               child: Material(
                 borderRadius: BorderRadius.circular(12),
                 elevation: 4,
