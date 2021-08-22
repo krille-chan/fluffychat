@@ -2361,7 +2361,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterSecurityKey": "Var god ange din säkerhets nyckel",
+  "pleaseEnterSecurityKey": "Var god ange din säkerhets nyckel:",
   "@pleaseEnterSecurityKey": {
     "type": "text",
     "placeholders": {}
