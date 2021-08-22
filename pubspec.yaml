@@ -31,7 +31,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_map: ^0.13.1
-  flutter_matrix_html: ^0.3.1
+  flutter_matrix_html: ^1.0.1
   flutter_olm: ^1.1.2
   flutter_openssl_crypto: ^0.0.1
   flutter_secure_storage: ^4.2.1
@@ -46,7 +46,7 @@ dependencies:
   localstorage: ^4.0.0+1
   lottie: ^1.1.0
   matrix: ^0.3.1
-  matrix_link_text: ^0.4.2
+  matrix_link_text: ^1.0.2
   native_imaging:
     git: https://gitlab.com/famedly/libraries/native_imaging.git
   open_noti_settings: ^0.2.0

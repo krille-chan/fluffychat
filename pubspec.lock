@@ -453,7 +453,7 @@ packages:
       name: flutter_matrix_html
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.1"
+    version: "1.0.1"
   flutter_olm:
     dependency: "direct main"
     description:
@@ -736,7 +736,7 @@ packages:
       name: matrix_link_text
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.2"
+    version: "1.0.2"
   meta:
     dependency: transitive
     description:
