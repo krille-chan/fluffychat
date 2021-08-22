@@ -1,3 +1,46 @@
+## v0.38.0 - 2021-08-22
+This release adds more functionality for spaces, enhances the html viewer, adds a brand new video player and brings some improvements for voice messages. Thanks to everyone involved!
+
+### All changes:
+
+- change: Nicer design for selecting items
+- change: Placeholder at username login field should be just username
+- chore: cleanup no longer used translation strings
+- chore: switch image_picker back to upstream
+- chore: update flutter_matrix_html
+- chore: Update matrix sdk to 0.3.1
+- feat: Add option to not autoplay stickers and emotes
+- feat: Add remove rooms to and from spaces
+- feat: Add video player
+- feat: Cupertino style record dialog
+- feat: Display amplitude
+- feat: Implement official emoji translations for emoji verification
+- feat: Nicer displaying of verification requests in the timeline
+- fix: Allow fallback to previous url if there is no homeserver on the mxid domain
+- fix: Correctly size the unread bubble in the room list
+- fix: Design of invite rooms
+- fix: Disable autocorrect for the homeserver url field
+- fix: Disable broken audioplayer for web
+- fix: Display loading dialog on start DM
+- fix: Dont add/remove DMs to space
+- fix: Empty timelines crashing the room view
+- fix: excessive CPU usage on Windows, as described in https://github.com/flutter/flutter/issues/78517#issuecomment-846436695
+- fix: Joining room aliases not published into the room directory
+- fix: Keep display alive while recording
+- fix: Load space members to display DM rooms
+- fix: Make translations use plural forms
+- fix: Re-add login fixes with the new SDK
+- fix: Reply with voice messages
+- fix: Report content localizations
+- fix: Requirements when to display report event button
+- fix: too long file names
+- fix: Try different directories on all kind of errors thrown for hive store
+- fix: Use plural string in translation
+- fix: use vrouter.toSegments
+- fix: Wait for sync before enter a room a user has got invited
+- fix: wallpaper on linux
+- fix: Wrap login form into `AutofillGroup`
+
 ## v0.37.0 - 2021-08-06
 - Implement location sharing
 - Updated translations
