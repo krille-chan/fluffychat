@@ -2355,5 +2355,10 @@
       "server1": {},
       "server2": {}
     }
+  },
+  "obtainingLocation": "Erhåller plats…",
+  "@obtainingLocation": {
+    "type": "text",
+    "placeholders": {}
   }
 }
