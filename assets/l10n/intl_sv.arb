@@ -1709,7 +1709,7 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "Starta din första chatt nu! 🙂\n- tryck på \"+\"\n- Ange din kompis användarnamn\n- Ha så kul med chattandet",
+  "startYourFirstChat": "Starta din första chatt nu! 🙂\n- tryck på \"meddelande knappen\"\n- Ange din kompis användarnamn\n- Ha så kul med chattandet",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -2393,6 +2393,102 @@
   },
   "oopsPushError": "Oj! Tyvärr uppstod ett fel vid upprättande av push notiser.",
   "@oopsPushError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "synchronizingPleaseWait": "Synkroniserar... Var god vänta.",
+  "@synchronizingPleaseWait": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceName": "Utrymmes namn",
+  "@spaceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceIsPublic": "Utrymme är publikt",
+  "@spaceIsPublic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showPassword": "Visa lösenord",
+  "@showPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareLocation": "Dela plats",
+  "@shareLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setAsCanonicalAlias": "Sätt som primärt alias",
+  "@setAsCanonicalAlias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendSticker": "Skicka klistermärke",
+  "@sendSticker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendAsText": "Skicka som text",
+  "@sendAsText": {
+    "type": "text"
+  },
+  "securityKeyLost": "Borttappad säkerhets nyckel?",
+  "@securityKeyLost": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKey": "Säkerhets nyckel",
+  "@securityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveFileToFolder": "Spara fil i denna mapp",
+  "@saveFileToFolder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveFile": "Spara fil",
+  "@saveFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "savedFileAs": "Sparad som {filename}",
+  "@savedFileAs": {
+    "type": "text",
+    "placeholders": {
+      "filename": {}
+    }
+  },
+  "roomVersion": "Rum version",
+  "@roomVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeYourAvatar": "Ta bort din avatar",
+  "@removeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "register": "Registrera",
+  "@register": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicSpace": "Publika utrymmen",
+  "@publicSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicGroups": "Publika grupper",
+  "@publicGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterYourPin": "Ange din pin-kod",
+  "@pleaseEnterYourPin": {
     "type": "text",
     "placeholders": {}
   }
