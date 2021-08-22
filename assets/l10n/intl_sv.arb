@@ -1153,7 +1153,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "De ser ut som att du inte har google-tjänster på din telefon. Det är ett bra beslut för din integritet! För att få push notifikationer i FluffyChat rekommenderar vi att använda microG: https://microg.org/",
+  "noGoogleServicesWarning": "De ser ut som att du inte har google-tjänster på din telefon. Det är ett bra beslut för din integritet! För att få push notifikationer i FluffyChat rekommenderar vi att använda https://microg.org/ eller https://unifiedpush.org/ .",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -2346,6 +2346,14 @@
     "type": "text",
     "placeholders": {
       "brand": {}
+    }
+  },
+  "noMatrixServer": "{server1} är inte en matrix server,  använd {server2}  istället?",
+  "@noMatrixServer": {
+    "type": "text",
+    "placeholders": {
+      "server1": {},
+      "server2": {}
     }
   }
 }
