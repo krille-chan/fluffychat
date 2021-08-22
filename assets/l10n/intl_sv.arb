@@ -2360,5 +2360,40 @@
   "@obtainingLocation": {
     "type": "text",
     "placeholders": {}
+  },
+  "pleaseEnterSecurityKey": "Var god ange din säkerhets nyckel",
+  "@pleaseEnterSecurityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChoose": "Var god välj",
+  "@pleaseChoose": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "people": "Människor",
+  "@people": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "or": "Eller",
+  "@or": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "optionalAddEmail": "( Frivilligt) Din e-postadress",
+  "@optionalAddEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openInMaps": "Öppna i karta",
+  "@openInMaps": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oopsPushError": "Oj! Tyvärr uppstod ett fel vid upprättande av push notiser.",
+  "@oopsPushError": {
+    "type": "text",
+    "placeholders": {}
   }
 }
