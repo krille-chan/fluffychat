@@ -2483,5 +2483,59 @@
     "placeholders": {}
   },
   "addToSpace": "加入空间",
-  "@addToSpace": {}
+  "@addToSpace": {},
+  "obtainingLocation": "获取位置中…",
+  "@obtainingLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noMatrixServer": "{server1} 不是一个Matrix服务器,试试{server2}?",
+  "@noMatrixServer": {
+    "type": "text",
+    "placeholders": {
+      "server1": {},
+      "server2": {}
+    }
+  },
+  "locationPermissionDeniedNotice": "位置权限被拒绝.请授予此权限以分享你的位置.",
+  "@locationPermissionDeniedNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationDisabledNotice": "位置服务已禁用.请启用此服务以分享你的位置.",
+  "@locationDisabledNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorObtainingLocation": "取得地址错误: {error}",
+  "@errorObtainingLocation": {
+    "type": "text",
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "enterASpacepName": "输入空间名称",
+  "@enterASpacepName": {},
+  "dontAskAgain": "取消并不再询问",
+  "@dontAskAgain": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createNewSpace": "创建新空间",
+  "@createNewSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cantOpenUri": "无法打开URI {uri}",
+  "@cantOpenUri": {
+    "type": "text",
+    "placeholders": {
+      "uri": {}
+    }
+  },
+  "autoplayImages": "自动播放动态贴纸和表情",
+  "@autoplayImages": {
+    "type": "text",
+    "placeholder": {}
+  }
 }
