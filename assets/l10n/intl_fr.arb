@@ -2291,14 +2291,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount, plural, other{{unreadCount} discussions non lues}}",
+  "unreadChats": "{unreadCount, plural, =1{1 discussion non lue} other{{unreadCount} discussions non lues}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents} messages non lus}}",
+  "unreadMessages": "{unreadEvents, plural, =1{1 message non lu} other{{unreadEvents} messages non lus}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
@@ -2569,5 +2569,13 @@
   "@zoomOut": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "scanQrCode": "Scanner un code QR",
+  "@scanQrCode": {},
+  "typeInInviteLinkManually": "Entrer le lien d'invitation manuellement...",
+  "@typeInInviteLinkManually": {},
+  "shareYourInviteLink": "Partager votre lien d'invitation",
+  "@shareYourInviteLink": {},
+  "createNewChatExplaination": "Scannez le code QR ou partagez votre lien d'invitation si vous n'êtes pas au même endroit.",
+  "@createNewChatExplaination": {}
 }
