@@ -19,8 +19,6 @@ class NewPrivateChatView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final qrCodeSize = min(AppConfig.columnWidth - _qrCodePadding * 6,
-        MediaQuery.of(context).size.width - _qrCodePadding * 6);
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(),
@@ -40,18 +38,6 @@ class NewPrivateChatView extends StatelessWidget {
       body: MaxWidthBody(
         child: ListView(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                top: _qrCodePadding * 2,
-                left: _qrCodePadding * 2,
-                right: _qrCodePadding * 2,
-              ),
-              child: Text(
-                L10n.of(context).createNewChatExplaination,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16),
-              ),
-            ),
             Container(
               margin: EdgeInsets.all(_qrCodePadding),
               alignment: Alignment.center,
@@ -64,20 +50,29 @@ class NewPrivateChatView extends StatelessWidget {
                   data:
                       'https://matrix.to/#/${Matrix.of(context).client.userID}',
                   version: QrVersions.auto,
-                  size: qrCodeSize,
+                  size: min(MediaQuery.of(context).size.width - 16, 200),
                 ),
               ),
             ),
             Divider(),
             ListTile(
-              title: Text(L10n.of(context).shareYourInviteLink),
+              subtitle: Text(L10n.of(context).createNewChatExplaination),
               trailing: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Icon(Icons.share_outlined),
+                child: Icon(Icons.info_outline_rounded),
               ),
-              onTap: controller.inviteAction,
             ),
             Divider(),
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: SizedBox(
+                height: 56,
+                child: OutlinedButton.icon(
+                    onPressed: controller.inviteAction,
+                    icon: Icon(Icons.share_outlined),
+                    label: Text(L10n.of(context).shareYourInviteLink)),
+              ),
+            ),
             Padding(
               padding: EdgeInsets.all(12),
               child: Form(
@@ -103,8 +98,8 @@ class NewPrivateChatView extends StatelessWidget {
             Center(
               child: Image.asset(
                 'assets/private_chat_wallpaper.png',
-                width: qrCodeSize,
-                height: qrCodeSize,
+                width: min(AppConfig.columnWidth - _qrCodePadding * 6,
+                    MediaQuery.of(context).size.width - _qrCodePadding * 6),
               ),
             ),
           ],
