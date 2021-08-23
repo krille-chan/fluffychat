@@ -132,7 +132,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "askVerificationRequest": "¿Aceptar a solicitude de verificación de {username}?",
+  "askVerificationRequest": "Aceptar a solicitude de verificación de {username}?",
   "@askVerificationRequest": {
     "type": "text",
     "placeholders": {
@@ -180,7 +180,7 @@
       "supportedVersions": {}
     }
   },
-  "banFromChat": "Expulsar da conversa",
+  "banFromChat": "Vetar na conversa",
   "@banFromChat": {
     "type": "text",
     "placeholders": {}
@@ -2569,5 +2569,13 @@
   "chatHasBeenAddedToThisSpace": "O chat foi engadido a este espazo",
   "@chatHasBeenAddedToThisSpace": {},
   "addToSpace": "Engadir ao espazo",
-  "@addToSpace": {}
+  "@addToSpace": {},
+  "scanQrCode": "Escanear código QR",
+  "@scanQrCode": {},
+  "typeInInviteLinkManually": "Escribe manualmente a ligazón do convite...",
+  "@typeInInviteLinkManually": {},
+  "shareYourInviteLink": "Comparte a túa ligazón de convite",
+  "@shareYourInviteLink": {},
+  "createNewChatExplaination": "Simplemente escanea o código QR ou comparte a ligazón do convite se non estades preto.",
+  "@createNewChatExplaination": {}
 }
