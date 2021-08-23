@@ -6,6 +6,7 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:vrouter/vrouter.dart';
 
 class NewPrivateChat extends StatefulWidget {
@@ -75,10 +76,15 @@ class NewPrivateChatController extends State<NewPrivateChat> {
         context,
       );
 
-  void openScannerAction() => showDialog(
-        context: context,
-        builder: (_) => QrScannerModal(),
-      );
+  void openScannerAction() async {
+    final status = await Permission.camera.request();
+    if (!status.isGranted) return;
+    await showDialog(
+      context: context,
+      useRootNavigator: false,
+      builder: (_) => QrScannerModal(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) => NewPrivateChatView(this);
