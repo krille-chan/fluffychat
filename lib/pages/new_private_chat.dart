@@ -71,8 +71,7 @@ class NewPrivateChatController extends State<NewPrivateChat> {
   }
 
   void inviteAction() => FluffyShare.share(
-        L10n.of(context).inviteText(Matrix.of(context).client.userID,
-            'https://matrix.to/#/${Matrix.of(context).client.userID}'),
+        'https://matrix.to/#/${Matrix.of(context).client.userID}',
         context,
       );
 

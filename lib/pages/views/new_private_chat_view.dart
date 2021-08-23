@@ -56,10 +56,10 @@ class NewPrivateChatView extends StatelessWidget {
               margin: EdgeInsets.all(_qrCodePadding),
               alignment: Alignment.center,
               padding: EdgeInsets.all(_qrCodePadding * 2),
-              color: Colors.white,
               child: Material(
                 borderRadius: BorderRadius.circular(12),
                 elevation: 4,
+                color: Colors.white,
                 child: QrImage(
                   data:
                       'https://matrix.to/#/${Matrix.of(context).client.userID}',
