@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:fluffychat/utils/url_launcher.dart';
@@ -33,19 +34,32 @@ class _QrScannerModalState extends State<QrScannerModal> {
         leading: IconButton(
           icon: Icon(Icons.close_outlined),
           onPressed: Navigator.of(context).pop,
+          tooltip: L10n.of(context).close,
         ),
         title: Text(L10n.of(context).scanQrCode),
       ),
-      body: QRView(
-        key: qrKey,
-        onQRViewCreated: _onQRViewCreated,
+      body: Stack(
+        children: [
+          QRView(
+            key: qrKey,
+            onQRViewCreated: _onQRViewCreated,
+            overlay: QrScannerOverlayShape(
+              borderColor: Theme.of(context).primaryColor,
+              borderRadius: 10,
+              borderLength: 30,
+              borderWidth: 8,
+            ),
+          ),
+        ],
       ),
     );
   }
 
   void _onQRViewCreated(QRViewController controller) {
     this.controller = controller;
-    controller.scannedDataStream.listen((scanData) {
+    StreamSubscription sub;
+    sub = controller.scannedDataStream.listen((scanData) {
+      sub.cancel();
       Navigator.of(context).pop();
       UrlLauncher(context, scanData.code).openMatrixToUrl();
     });

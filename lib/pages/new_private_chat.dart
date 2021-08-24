@@ -79,9 +79,10 @@ class NewPrivateChatController extends State<NewPrivateChat> {
   void openScannerAction() async {
     final status = await Permission.camera.request();
     if (!status.isGranted) return;
-    await showDialog(
+    await showModalBottomSheet(
       context: context,
       useRootNavigator: false,
+      //useSafeArea: false,
       builder: (_) => QrScannerModal(),
     );
   }
