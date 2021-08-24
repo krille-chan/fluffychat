@@ -2552,7 +2552,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "shareYourInviteLink": "Dela din inbjudan.",
+  "shareYourInviteLink": "Dela din inbjudan",
   "@shareYourInviteLink": {},
   "createNewChatExplaination": "Skana QR koden eller dela inbjudan länken om ni ej är i närheten av varandra.",
   "@createNewChatExplaination": {},
