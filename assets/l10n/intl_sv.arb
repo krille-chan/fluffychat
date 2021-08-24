@@ -2551,5 +2551,14 @@
   "@zoomIn": {
     "type": "text",
     "placeholders": {}
+  },
+  "shareYourInviteLink": "Dela din inbjudan.",
+  "@shareYourInviteLink": {},
+  "createNewChatExplaination": "Skana QR koden eller dela inbjudan länken om ni ej är i närheten av varandra.",
+  "@createNewChatExplaination": {},
+  "chatBackupDescription": "Din chatt backup är skyddad av en säkerhets nyckel. Se till att du inte förlorar den.",
+  "@chatBackupDescription": {
+    "type": "text",
+    "placeholders": {}
   }
 }
