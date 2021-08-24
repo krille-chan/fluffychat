@@ -2543,7 +2543,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "spaceIsPublic": "空间是公共的",
+  "spaceIsPublic": "空间是公开的",
   "@spaceIsPublic": {
     "type": "text",
     "placeholders": {}
