@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
+import 'package:fluffychat/config/app_config.dart';
 import 'package:matrix/matrix.dart';
 import 'package:fluffychat/pages/chat.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -697,7 +698,9 @@ class ChatView extends StatelessWidget {
                                         minLines: 1,
                                         maxLines: 8,
                                         autofocus: !PlatformInfos.isMobile,
-                                        keyboardType: TextInputType.multiline,
+                                        keyboardType: AppConfig.sendOnEnter
+                                            ? null
+                                            : TextInputType.multiline,
                                         onSubmitted:
                                             controller.onInputBarSubmitted,
                                         focusNode: controller.inputFocus,

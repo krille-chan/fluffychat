@@ -30,6 +30,7 @@ abstract class AppConfig {
   static bool hideRedactedEvents = false;
   static bool hideUnknownEvents = true;
   static bool autoplayImages = true;
+  static bool sendOnEnter = false;
   static const bool hideTypingUsernames = false;
   static const bool hideAllStateEvents = false;
   static const String inviteLinkPrefix = 'https://matrix.to/#/';

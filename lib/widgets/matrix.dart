@@ -419,6 +419,9 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       store
           .getItemBool(SettingKeys.autoplayImages, AppConfig.autoplayImages)
           .then((value) => AppConfig.autoplayImages = value);
+      store
+          .getItemBool(SettingKeys.sendOnEnter, AppConfig.sendOnEnter)
+          .then((value) => AppConfig.sendOnEnter = value);
     }
   }
 

@@ -1,5 +1,6 @@
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/settings_switch_list_tile.dart';
 import 'package:flutter/material.dart';
@@ -55,6 +56,13 @@ class SettingsChatView extends StatelessWidget {
               storeKey: SettingKeys.autoplayImages,
               defaultValue: AppConfig.autoplayImages,
             ),
+            if (PlatformInfos.isMobile)
+              SettingsSwitchListTile(
+                title: L10n.of(context).sendOnEnter,
+                onChanged: (b) => AppConfig.sendOnEnter = b,
+                storeKey: SettingKeys.sendOnEnter,
+                defaultValue: AppConfig.sendOnEnter,
+              ),
           ],
         ),
       ),

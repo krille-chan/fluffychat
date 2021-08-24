@@ -21,4 +21,5 @@ abstract class SettingKeys {
   static const String dontAskForBootstrapKey =
       'chat.fluffychat.dont_ask_bootstrap';
   static const String autoplayImages = 'chat.fluffy.autoplay_images';
+  static const String sendOnEnter = 'chat.fluffy.send_on_enter';
 }
