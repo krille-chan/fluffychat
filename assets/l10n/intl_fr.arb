@@ -2577,5 +2577,7 @@
   "shareYourInviteLink": "Partager votre lien d'invitation",
   "@shareYourInviteLink": {},
   "createNewChatExplaination": "Scannez le code QR ou partagez votre lien d'invitation si vous n'êtes pas au même endroit.",
-  "@createNewChatExplaination": {}
+  "@createNewChatExplaination": {},
+  "sendOnEnter": "Envoyer avec Entrée",
+  "@sendOnEnter": {}
 }
