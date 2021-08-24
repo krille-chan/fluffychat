@@ -2569,5 +2569,13 @@
   "chatHasBeenAddedToThisSpace": "Чат был добавлен в это пространство",
   "@chatHasBeenAddedToThisSpace": {},
   "addToSpace": "Добавить в пространство",
-  "@addToSpace": {}
+  "@addToSpace": {},
+  "scanQrCode": "Сканировать QR-код",
+  "@scanQrCode": {},
+  "typeInInviteLinkManually": "Введите ссылку приглашения...",
+  "@typeInInviteLinkManually": {},
+  "shareYourInviteLink": "Поделиться ссылкой приглашения",
+  "@shareYourInviteLink": {},
+  "createNewChatExplaination": "Просто отсканируйте QR-код или поделитесь ссылкой приглашения, если вы не рядом друг с другом.",
+  "@createNewChatExplaination": {}
 }
