@@ -150,32 +150,15 @@ class UrlLauncher {
         });
       }
     } else if (identityParts.primaryIdentifier.sigil == '@') {
-      final user = User(
-        identityParts.primaryIdentifier,
-        room: Room(id: '', client: matrix.client),
+      final result = await showFutureLoadingDialog<String>(
+        context: context,
+        future: () => matrix.client.startDirectChat(
+          identityParts.primaryIdentifier,
+        ),
       );
-      var roomId = matrix.client.getDirectChatFromUserId(user.id);
-      if (roomId != null) {
-        VRouter.of(context).toSegments(['rooms', roomId]);
-
+      if (result.error == null) {
+        VRouter.of(context).toSegments(['rooms', result.result]);
         return;
-      }
-
-      if (await showOkCancelAlertDialog(
-            useRootNavigator: false,
-            context: context,
-            title: 'Message user ${user.id}',
-          ) ==
-          OkCancelResult.ok) {
-        roomId = (await showFutureLoadingDialog(
-          context: context,
-          future: () => user.startDirectChat(),
-        ))
-            .result;
-
-        if (roomId != null) {
-          VRouter.of(context).toSegments(['rooms', roomId]);
-        }
       }
     }
   }

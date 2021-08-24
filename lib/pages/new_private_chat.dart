@@ -1,4 +1,5 @@
 import 'package:fluffychat/pages/qr_scanner_modal.dart';
+import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:matrix/matrix.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/pages/views/new_private_chat_view.dart';
@@ -21,40 +22,12 @@ class NewPrivateChatController extends State<NewPrivateChat> {
 
   static const Set<String> supportedSigils = {'@', '!', '#'};
 
+  static const String prefix = 'https://matrix.to/#/';
+
   void submitAction([_]) async {
     controller.text = controller.text.trim();
     if (!formKey.currentState.validate()) return;
-    final client = Matrix.of(context).client;
-
-    LoadingDialogResult roomIdResult;
-
-    switch (controller.text.sigil) {
-      case '@':
-        roomIdResult = await showFutureLoadingDialog(
-          context: context,
-          future: () => client.startDirectChat(controller.text),
-        );
-        break;
-      case '#':
-      case '!':
-        roomIdResult = await showFutureLoadingDialog(
-          context: context,
-          future: () async {
-            final roomId = await client.joinRoom(controller.text);
-            if (client.getRoomById(roomId) == null) {
-              await client.onSync.stream
-                  .where((s) => s.rooms.join.containsKey(roomId))
-                  .first;
-            }
-            return roomId;
-          },
-        );
-        break;
-    }
-
-    if (roomIdResult.error == null) {
-      VRouter.of(context).toSegments(['rooms', roomIdResult.result]);
-    }
+    UrlLauncher(context, '$prefix${controller.text}').openMatrixToUrl();
   }
 
   String validateForm(String value) {
