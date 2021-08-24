@@ -2555,5 +2555,27 @@
       "server1": {},
       "server2": {}
     }
-  }
+  },
+  "scanQrCode": "QR-Code scannen",
+  "@scanQrCode": {},
+  "typeInInviteLinkManually": "Einladungslink manuell eingeben ...",
+  "@typeInInviteLinkManually": {},
+  "shareYourInviteLink": "Teile deinen Einladungslink",
+  "@shareYourInviteLink": {},
+  "createNewChatExplaination": "Einfach den QR-Code scannen oder teile deinen Einladungslink, falls ihr nicht nebeneinander steht.",
+  "@createNewChatExplaination": {},
+  "chatHasBeenRemovedFromThisSpace": "Chat wurde aus dem Weltraum entfernt",
+  "@chatHasBeenRemovedFromThisSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatHasBeenAddedToThisSpace": "Chat wurde zum Space hinzugefügt",
+  "@chatHasBeenAddedToThisSpace": {},
+  "autoplayImages": "Animierte Sticker und Emotes automatisch abspielen",
+  "@autoplayImages": {
+    "type": "text",
+    "placeholder": {}
+  },
+  "addToSpace": "Zum Space hinzufügen",
+  "@addToSpace": {}
 }
