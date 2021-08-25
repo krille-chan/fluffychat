@@ -2282,7 +2282,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount, plural, =1{1 nepřečtený chat} other{{unreadCount} nepřečtené chaty}}",
+  "unreadChats": "{unreadCount, plural, =1{1 nepřečtený chat} ostatní{{unreadCount} nepřečtené chaty}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
@@ -2569,5 +2569,15 @@
   "chatHasBeenAddedToThisSpace": "Do tohoto prostoru byl přidán chat",
   "@chatHasBeenAddedToThisSpace": {},
   "addToSpace": "Přidat do prostoru",
-  "@addToSpace": {}
+  "@addToSpace": {},
+  "scanQrCode": "Naskenujte QR kód",
+  "@scanQrCode": {},
+  "typeInInviteLinkManually": "Ručně zadejte odkaz na pozvánku ...",
+  "@typeInInviteLinkManually": {},
+  "shareYourInviteLink": "Sdílejte váš odkaz na pozvání",
+  "@shareYourInviteLink": {},
+  "createNewChatExplaination": "Pokud nejste vedle sebe, stačí naskenovat QR kód nebo sdílet odkaz na pozvánku.",
+  "@createNewChatExplaination": {},
+  "sendOnEnter": "Odeslat při vstupu",
+  "@sendOnEnter": {}
 }
