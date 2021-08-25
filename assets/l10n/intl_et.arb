@@ -2569,5 +2569,15 @@
   "chatHasBeenAddedToThisSpace": "Lisasime vestluse kogukonda",
   "@chatHasBeenAddedToThisSpace": {},
   "addToSpace": "Lisa kogukonda",
-  "@addToSpace": {}
+  "@addToSpace": {},
+  "scanQrCode": "Skaneeri QR-koodi",
+  "@scanQrCode": {},
+  "typeInInviteLinkManually": "Sisesta kutse link käsitsi...",
+  "@typeInInviteLinkManually": {},
+  "shareYourInviteLink": "Jaga oma kutselinki",
+  "@shareYourInviteLink": {},
+  "createNewChatExplaination": "Lihtsalt skaneeri QR-koodi või kui te pole kõrvuti, siis jaga kutse linki.",
+  "@createNewChatExplaination": {},
+  "sendOnEnter": "Saada sõnum sisestusklahvi vajutusel",
+  "@sendOnEnter": {}
 }
