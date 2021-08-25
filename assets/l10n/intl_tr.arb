@@ -2577,5 +2577,7 @@
   "shareYourInviteLink": "Davet bağlantınızı paylaşın",
   "@shareYourInviteLink": {},
   "createNewChatExplaination": "Sadece QR kodunu tarayın veya yan yana değilseniz davet bağlantınızı paylaşın.",
-  "@createNewChatExplaination": {}
+  "@createNewChatExplaination": {},
+  "sendOnEnter": "Enter tuşu ile gönder",
+  "@sendOnEnter": {}
 }
