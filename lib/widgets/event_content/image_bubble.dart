@@ -265,7 +265,8 @@ class _ImageBubbleState extends State<ImageBubble> {
         : widget.event.thumbnailMxcUrl;
     final mimetype = getMimetype(!isOriginal);
     if (_contentRenderers.containsKey(mimetype)) {
-      return _contentRenderers[mimetype].memory(_displayFile.bytes, key);
+      return _contentRenderers[mimetype]
+          .memory(_displayFile.bytes, key.toString());
     } else {
       return Image.memory(
         _displayFile.bytes,

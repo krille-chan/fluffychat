@@ -21,7 +21,7 @@ import 'package:matrix/matrix.dart';
 import 'resize_image.dart';
 
 extension RoomSendFileExtension on Room {
-  Future<String> sendFileEventWithThumbnail(
+  Future<Uri> sendFileEventWithThumbnail(
     MatrixFile file, {
     String txid,
     Event inReplyTo,

@@ -118,20 +118,22 @@ class FlutterMatrixHiveStore extends FamedlySdkHiveDatabase {
   }
 
   @override
-  Future<Uint8List> getFile(String mxcUri) async {
+  Future<Uint8List> getFile(Uri mxcUri) async {
     if (!supportsFileStoring) return null;
     final tempDirectory = await _getFileStoreDirectory();
-    final file = File('$tempDirectory/${Uri.encodeComponent(mxcUri)}');
+    final file =
+        File('$tempDirectory/${Uri.encodeComponent(mxcUri.toString())}');
     if (await file.exists() == false) return null;
     final bytes = await file.readAsBytes();
     return bytes;
   }
 
   @override
-  Future storeFile(String mxcUri, Uint8List bytes, int time) async {
+  Future storeFile(Uri mxcUri, Uint8List bytes, int time) async {
     if (!supportsFileStoring) return null;
     final tempDirectory = await _getFileStoreDirectory();
-    final file = File('$tempDirectory/${Uri.encodeComponent(mxcUri)}');
+    final file =
+        File('$tempDirectory/${Uri.encodeComponent(mxcUri.toString())}');
     if (await file.exists()) return;
     await file.writeAsBytes(bytes);
     return;

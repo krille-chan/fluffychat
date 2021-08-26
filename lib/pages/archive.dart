@@ -16,7 +16,7 @@ class ArchiveController extends State<Archive> {
 
   Future<List<Room>> getArchive(BuildContext context) async {
     if (archive != null) return archive;
-    return await Matrix.of(context).client.archive;
+    return await Matrix.of(context).client.loadArchive();
   }
 
   void forgetAction(int i) => setState(() => archive.removeAt(i));

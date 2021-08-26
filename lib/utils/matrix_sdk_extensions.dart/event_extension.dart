@@ -80,7 +80,7 @@ extension LocalizedBody on Event {
       return true;
     }
     // check if the url is cached
-    final url = Uri.parse(mxcUrl).getDownloadLink(room.client);
+    final url = mxcUrl.getDownloadLink(room.client);
     final file = await DefaultCacheManager().getFileFromCache(url.toString());
     return file != null;
   }
@@ -88,7 +88,7 @@ extension LocalizedBody on Event {
   Future<MatrixFile> downloadAndDecryptAttachmentCached(
       {bool getThumbnail = false}) async {
     final mxcUrl = attachmentOrThumbnailMxcUrl(getThumbnail: getThumbnail);
-    _downloadAndDecryptFutures[mxcUrl] ??= downloadAndDecryptAttachment(
+    _downloadAndDecryptFutures[mxcUrl.toString()] ??= downloadAndDecryptAttachment(
       getThumbnail: getThumbnail,
       downloadCallback: (Uri url) async {
         final file = await DefaultCacheManager().getSingleFile(url.toString());
