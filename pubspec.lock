@@ -722,14 +722,14 @@ packages:
       name: matrix
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.1"
+    version: "0.3.3"
   matrix_api_lite:
     dependency: transitive
     description:
       name: matrix_api_lite
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.1"
+    version: "0.4.2"
   matrix_link_text:
     dependency: "direct main"
     description:
