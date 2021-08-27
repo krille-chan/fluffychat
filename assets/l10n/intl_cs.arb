@@ -2282,7 +2282,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount, plural, =1{1 nepřečtený chat} ostatní{{unreadCount} nepřečtené chaty}}",
+  "unreadChats": "{unreadCount, plural, =1{1 nepřečtený chat} other{{unreadCount} nepřečtené chaty}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
