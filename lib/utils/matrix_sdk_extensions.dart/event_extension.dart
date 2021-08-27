@@ -88,7 +88,8 @@ extension LocalizedBody on Event {
   Future<MatrixFile> downloadAndDecryptAttachmentCached(
       {bool getThumbnail = false}) async {
     final mxcUrl = attachmentOrThumbnailMxcUrl(getThumbnail: getThumbnail);
-    _downloadAndDecryptFutures[mxcUrl.toString()] ??= downloadAndDecryptAttachment(
+    _downloadAndDecryptFutures[mxcUrl.toString()] ??=
+        downloadAndDecryptAttachment(
       getThumbnail: getThumbnail,
       downloadCallback: (Uri url) async {
         final file = await DefaultCacheManager().getSingleFile(url.toString());
