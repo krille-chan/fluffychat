@@ -133,7 +133,7 @@ class DevicesSettingsController extends State<DevicesSettings> {
 
   List<Device> get notThisDevice => List<Device>.from(devices)
     ..removeWhere(_isOwnDevice)
-    ..sort((a, b) => b.lastSeenTs.compareTo(a.lastSeenTs));
+    ..sort((a, b) => (b.lastSeenTs ?? 0).compareTo(a.lastSeenTs ?? 0));
 
   @override
   Widget build(BuildContext context) => DevicesSettingsView(this);
