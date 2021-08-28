@@ -1,3 +1,20 @@
+## v0.39.0 - 2021-08-28
+This release fixes a bug which makes it impossible to send images in unencrypted rooms. It also implements a complete new designed new chat page which now uses a QR code based workflow to start a new chat.
+
+- feat: Dismiss keyboard on scroll in iOS
+- feat: Implement QR code scanner
+- feat: New design for new chat page
+- feat: Use the stripped body for notifications and room previews
+- feat: Send on enter configuration for mobile devices
+- fix: Prefix of notification text
+- fix: Display space as room if it contains unread events in timeline
+- fix: missing null check
+- fix: Open matrix.to urls
+- fix: Padding and colors
+- fix: Sharing invite link
+- fix: Unread bubbles on iOS 
+- fix: Sending images in unencrypted rooms
+
 ## v0.38.0 - 2021-08-22
 This release adds more functionality for spaces, enhances the html viewer, adds a brand new video player and brings some improvements for voice messages. Thanks to everyone involved!
 
