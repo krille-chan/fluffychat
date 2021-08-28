@@ -119,14 +119,10 @@ class ChatListController extends State<ChatList> {
   }
 
   void _processIncomingUris(String text) async {
-    if (text == null || !text.startsWith(AppConfig.appOpenUrlScheme)) return;
-    if (text.toLowerCase().startsWith(AppConfig.inviteLinkPrefix) ||
-        (text.toLowerCase().startsWith(AppConfig.schemePrefix) &&
-            !RegExp(r'\s').hasMatch(text))) {
-      VRouter.of(context).to('/rooms');
-      UrlLauncher(context, text).openMatrixToUrl();
-      return;
-    }
+    if (text == null) return;
+    VRouter.of(context).to('/rooms');
+    UrlLauncher(context, text).openMatrixToUrl();
+    return;
   }
 
   void _initReceiveSharingIntent() {
