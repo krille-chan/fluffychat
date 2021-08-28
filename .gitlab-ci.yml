@@ -123,7 +123,7 @@ upload-fdroid-nightly:
     - main
 
 pages:
-  needs: []
+  needs: ["build_web"]
   stage: deploy
   image: ruby:latest
   script:
