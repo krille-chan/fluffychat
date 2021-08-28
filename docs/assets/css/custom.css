@@ -226,3 +226,11 @@ code {
     line-height: 140%;
     background: #faf8f0;
 }
+
+/* The alert message box */
+.alert {
+  padding: 20px;
+  background-color: #ff9800; /* Warning */
+  color: white;
+  margin-bottom: 15px;
+}

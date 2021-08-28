@@ -5,6 +5,8 @@ lang: en
 ---
 # F-Droid Repository
 
+{% include fdroid_maintenance_alert.html %}
+
 ## Add Repository to F-Droid
 
 Easiest way to add the Repository is to either scan the QR-Code or if you are on your phone directly click it.
