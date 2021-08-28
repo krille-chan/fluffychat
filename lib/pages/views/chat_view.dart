@@ -698,9 +698,10 @@ class ChatView extends StatelessWidget {
                                         minLines: 1,
                                         maxLines: 8,
                                         autofocus: !PlatformInfos.isMobile,
-                                        keyboardType: AppConfig.sendOnEnter
-                                            ? null
-                                            : TextInputType.multiline,
+                                        keyboardType: TextInputType.multiline,
+                                        textInputAction: AppConfig.sendOnEnter
+                                            ? TextInputAction.send
+                                            : null,
                                         onSubmitted:
                                             controller.onInputBarSubmitted,
                                         focusNode: controller.inputFocus,

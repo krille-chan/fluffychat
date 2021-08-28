@@ -1,3 +1,4 @@
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
@@ -15,6 +16,7 @@ class InputBar extends StatelessWidget {
   final int minLines;
   final int maxLines;
   final TextInputType keyboardType;
+  final TextInputAction textInputAction;
   final ValueChanged<String> onSubmitted;
   final FocusNode focusNode;
   final TextEditingController controller;
@@ -33,6 +35,7 @@ class InputBar extends StatelessWidget {
     this.decoration,
     this.onChanged,
     this.autofocus,
+    this.textInputAction,
   });
 
   List<Map<String, String>> getSuggestions(String text) {
@@ -352,7 +355,9 @@ class InputBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final useShortCuts = (PlatformInfos.isWeb || PlatformInfos.isDesktop);
+    final useShortCuts = (PlatformInfos.isWeb ||
+        PlatformInfos.isDesktop ||
+        AppConfig.sendOnEnter);
     return Shortcuts(
       shortcuts: !useShortCuts
           ? {}
@@ -397,6 +402,7 @@ class InputBar extends StatelessWidget {
             minLines: minLines,
             maxLines: maxLines,
             keyboardType: keyboardType,
+            textInputAction: textInputAction,
             autofocus: autofocus,
             onSubmitted: (text) {
               // fix for library for now
