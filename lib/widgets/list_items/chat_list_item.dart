@@ -268,7 +268,12 @@ class ChatListItem extends StatelessWidget {
                 : Text(
                     room.membership == Membership.invite
                         ? L10n.of(context).youAreInvitedToThisChat
-                        : room.lastEvent?.plaintextBody,
+                        : room.lastEvent?.getLocalizedBody(
+                            MatrixLocals(L10n.of(context)),
+                            hideReply: true,
+                            hideEdit: true,
+                            plaintextBody: true,
+                          ),
                     softWrap: false,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,

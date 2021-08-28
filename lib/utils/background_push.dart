@@ -595,7 +595,13 @@ class BackgroundPush {
     final title = l10n.unreadMessages(room.notificationCount);
 
     // Calculate the body
-    final body = event?.plaintextBody ?? l10n.openAppToReadMessages;
+    final body = event.getLocalizedBody(
+      MatrixLocals(L10n.of(context)),
+      withSenderNamePrefix: !room.isDirectChat,
+      plaintextBody: true,
+      hideReply: true,
+      hideEdit: true,
+    );
 
     // The person object for the android message style notification
     final avatar = room.avatar == null

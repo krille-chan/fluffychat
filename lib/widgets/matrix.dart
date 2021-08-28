@@ -221,6 +221,9 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       MatrixLocals(L10n.of(widget.context)),
       withSenderNamePrefix:
           !room.isDirectChat || room.lastEvent.senderId == client.userID,
+      plaintextBody: true,
+      hideReply: true,
+      hideEdit: true,
     );
     final icon = event.sender.avatarUrl?.getThumbnail(client,
             width: 64, height: 64, method: ThumbnailMethod.crop) ??
