@@ -9,6 +9,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:vrouter/vrouter.dart';
 import '../../utils/localized_exception_extension.dart';
+import '../../utils/platform_infos.dart';
 import '../search.dart';
 
 class SearchView extends StatelessWidget {
@@ -96,6 +97,9 @@ class SearchView extends StatelessWidget {
         body: TabBarView(
           children: [
             ListView(
+              keyboardDismissBehavior: PlatformInfos.isIOS
+                  ? ScrollViewKeyboardDismissBehavior.onDrag
+                  : ScrollViewKeyboardDismissBehavior.manual,
               children: [
                 SizedBox(height: 12),
                 ListTile(
@@ -221,11 +225,17 @@ class SearchView extends StatelessWidget {
               ],
             ),
             ListView.builder(
+              keyboardDismissBehavior: PlatformInfos.isIOS
+                  ? ScrollViewKeyboardDismissBehavior.onDrag
+                  : ScrollViewKeyboardDismissBehavior.manual,
               itemCount: rooms.length,
               itemBuilder: (_, i) => ChatListItem(rooms[i]),
             ),
             controller.foundProfiles.isNotEmpty
                 ? ListView.builder(
+                    keyboardDismissBehavior: PlatformInfos.isIOS
+                        ? ScrollViewKeyboardDismissBehavior.onDrag
+                        : ScrollViewKeyboardDismissBehavior.manual,
                     itemCount: controller.foundProfiles.length,
                     itemBuilder: (BuildContext context, int i) {
                       final foundProfile = controller.foundProfiles[i];

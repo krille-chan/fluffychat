@@ -268,6 +268,9 @@ class ChatView extends StatelessWidget {
                             ),
                             reverse: true,
                             controller: controller.scrollController,
+                            keyboardDismissBehavior: PlatformInfos.isIOS
+                                ? ScrollViewKeyboardDismissBehavior.onDrag
+                                : ScrollViewKeyboardDismissBehavior.manual,
                             childrenDelegate: SliverChildBuilderDelegate(
                               (BuildContext context, int i) {
                                 return i == controller.filteredEvents.length + 1
