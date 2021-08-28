@@ -76,7 +76,12 @@ class UrlLauncher {
     // The identifier might be a matrix.to url and needs escaping. Or, it might have multiple
     // identifiers (room id & event id), or it might also have a query part.
     // All this needs parsing.
-    final identityParts = url.parseIdentifierIntoParts();
+    final identityParts = url.parseIdentifierIntoParts() ??
+        Uri.tryParse(url)?.host?.parseIdentifierIntoParts() ??
+        Uri.tryParse(url)
+            ?.pathSegments
+            ?.lastWhere((_) => true, orElse: () => null)
+            ?.parseIdentifierIntoParts();
     if (identityParts == null) {
       return; // no match, nothing to do
     }
