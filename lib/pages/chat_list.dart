@@ -185,7 +185,9 @@ class ChatListController extends State<ChatList> {
   }
 
   bool roomCheck(Room room) {
-    if (room.isSpace && room.membership == Membership.join) return false;
+    if (room.isSpace && room.membership == Membership.join && !room.isUnread) {
+      return false;
+    }
     if (activeSpaceId != null) {
       final space = Matrix.of(context).client.getRoomById(activeSpaceId);
       if (space.spaceChildren?.any((child) => child.roomId == room.id) ??
