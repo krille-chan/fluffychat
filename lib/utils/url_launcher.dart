@@ -33,9 +33,10 @@ class UrlLauncher {
     if (!{'https', 'http'}.contains(uri.scheme)) {
       // just launch non-https / non-http uris directly
 
-      // transmute geo URIs on desktop to openstreetmap links, as those usually can't hanlde
-      // geo URIs
-      if (!PlatformInfos.isMobile && uri.scheme == 'geo' && uri.path != null) {
+      // we need to transmute geo URIs on desktop and on iOS
+      if ((!PlatformInfos.isMobile || PlatformInfos.isIOS) &&
+          uri.scheme == 'geo' &&
+          uri.path != null) {
         final latlong = uri.path
             .split(';')
             .first
@@ -45,8 +46,18 @@ class UrlLauncher {
         if (latlong.length == 2 &&
             latlong.first != null &&
             latlong.last != null) {
-          launch(
-              'https://www.openstreetmap.org/?mlat=${latlong.first}&mlon=${latlong.last}#map=16/${latlong.first}/${latlong.last}');
+          if (PlatformInfos.isIOS) {
+            // iOS is great at not following standards, so we need to transmute the geo URI
+            // to an apple maps thingy
+            // https://developer.apple.com/library/archive/featuredarticles/iPhoneURLScheme_Reference/MapLinks/MapLinks.html
+            final ll = '${latlong.first},${latlong.last}';
+            launch('https://maps.apple.com/?q=$ll&sll=$ll');
+          } else {
+            // transmute geo URIs on desktop to openstreetmap links, as those usually can't handle
+            // geo URIs
+            launch(
+                'https://www.openstreetmap.org/?mlat=${latlong.first}&mlon=${latlong.last}#map=16/${latlong.first}/${latlong.last}');
+          }
           return;
         }
       }
