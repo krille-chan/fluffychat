@@ -261,12 +261,11 @@ class _ImageBubbleState extends State<ImageBubble> {
         widget.event.attachmentOrThumbnailMxcUrl(getThumbnail: true) ==
             widget.event.attachmentMxcUrl;
     final key = isOriginal
-        ? widget.event.attachmentMxcUrl
-        : widget.event.thumbnailMxcUrl;
+        ? widget.event.attachmentMxcUrl.toString()
+        : widget.event.thumbnailMxcUrl.toString();
     final mimetype = getMimetype(!isOriginal);
     if (_contentRenderers.containsKey(mimetype)) {
-      return _contentRenderers[mimetype]
-          .memory(_displayFile.bytes, key.toString());
+      return _contentRenderers[mimetype].memory(_displayFile.bytes, key);
     } else {
       return Image.memory(
         _displayFile.bytes,
