@@ -70,7 +70,7 @@ class Message extends StatelessWidget {
     final displayEvent = event.getDisplayEvent(timeline);
 
     if (event.showThumbnail) {
-      color = Theme.of(context).scaffoldBackgroundColor;
+      color = Colors.transparent;
       textColor = Theme.of(context).textTheme.bodyText2.color;
     } else if (ownMessage) {
       color = displayEvent.status == -1
