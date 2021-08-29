@@ -94,6 +94,12 @@ class Message extends StatelessWidget {
               onLongPress: !longPressSelect ? null : () => onSelect(event),
               borderRadius: BorderRadius.circular(AppConfig.borderRadius),
               child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Theme.of(context).secondaryHeaderColor,
+                  ),
+                  borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+                ),
                 padding:
                     const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
                 constraints:
