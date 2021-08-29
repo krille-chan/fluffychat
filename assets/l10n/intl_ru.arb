@@ -2089,7 +2089,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "spaceIsPublic": "Пространство публичное",
+  "spaceIsPublic": "Публичное пространство",
   "@spaceIsPublic": {
     "type": "text",
     "placeholders": {}
