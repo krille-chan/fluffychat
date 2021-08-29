@@ -214,9 +214,8 @@ class EmotesSettingsController extends State<EmotesSettings> {
     }
     final uploadResp = await showFutureLoadingDialog(
       context: context,
-      future: () => Matrix.of(context)
-          .client
-          .uploadContent(file.bytes, filename: file.name),
+      future: () => Matrix.of(context).client.uploadContent(file.bytes,
+          filename: file.name, contentType: file.mimeType),
     );
     if (uploadResp.error == null) {
       setState(() {
