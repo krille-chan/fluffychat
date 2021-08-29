@@ -281,6 +281,12 @@ class ChatView extends StatelessWidget {
                                         : controller.canLoadMore
                                             ? Center(
                                                 child: OutlinedButton(
+                                                  style:
+                                                      OutlinedButton.styleFrom(
+                                                    backgroundColor: Theme.of(
+                                                            context)
+                                                        .scaffoldBackgroundColor,
+                                                  ),
                                                   onPressed:
                                                       controller.requestHistory,
                                                   child: Text(L10n.of(context)

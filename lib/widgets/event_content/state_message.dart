@@ -30,7 +30,7 @@ class StateMessage extends StatelessWidget {
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
               border: Border.all(
-                color: Theme.of(context).dividerColor,
+                color: Theme.of(context).secondaryHeaderColor,
               ),
               color: Theme.of(context).scaffoldBackgroundColor,
               borderRadius: BorderRadius.circular(AppConfig.borderRadius),

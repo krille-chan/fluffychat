@@ -101,7 +101,7 @@ class _Reaction extends StatelessWidget {
     final textColor = Theme.of(context).brightness == Brightness.dark
         ? Colors.white
         : Colors.black;
-    final color = Theme.of(context).secondaryHeaderColor;
+    final color = Theme.of(context).scaffoldBackgroundColor;
     final fontSize = DefaultTextStyle.of(context).style.fontSize;
     final padding = fontSize / 5;
     Widget content;
