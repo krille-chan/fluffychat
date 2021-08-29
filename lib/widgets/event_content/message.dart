@@ -95,9 +95,6 @@ class Message extends StatelessWidget {
               borderRadius: BorderRadius.circular(AppConfig.borderRadius),
               child: Container(
                 decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Theme.of(context).secondaryHeaderColor,
-                  ),
                   borderRadius: BorderRadius.circular(AppConfig.borderRadius),
                 ),
                 padding:

@@ -17,6 +17,7 @@ class BackgroundGradientBox extends StatelessWidget {
           colors: [
             Theme.of(context).scaffoldBackgroundColor,
             Theme.of(context).secondaryHeaderColor,
+            Theme.of(context).secondaryHeaderColor,
           ],
         ),
       ),
