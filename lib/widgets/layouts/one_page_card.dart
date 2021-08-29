@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:fluffychat/config/themes.dart';
 import 'package:flutter/material.dart';
 
+import '../background_gradient_box.dart';
+
 class OnePageCard extends StatelessWidget {
   final Widget child;
 
@@ -16,32 +18,16 @@ class OnePageCard extends StatelessWidget {
         ? child
         : Material(
             color: Theme.of(context).backgroundColor,
-            child: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topRight,
-                  end: Alignment.bottomLeft,
-                  stops: [
-                    0.1,
-                    0.4,
-                    0.6,
-                    0.9,
-                  ],
-                  colors: [
-                    Theme.of(context).secondaryHeaderColor.withAlpha(alpha),
-                    Theme.of(context).primaryColor.withAlpha(alpha),
-                    Theme.of(context).colorScheme.secondary.withAlpha(alpha),
-                    Theme.of(context).backgroundColor.withAlpha(alpha),
-                  ],
+            child: BackgroundGradientBox(
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal:
+                      max((MediaQuery.of(context).size.width - 600) / 2, 12),
+                  vertical:
+                      max((MediaQuery.of(context).size.height - 800) / 2, 12),
                 ),
+                child: SafeArea(child: Card(elevation: 3, child: child)),
               ),
-              padding: EdgeInsets.symmetric(
-                horizontal:
-                    max((MediaQuery.of(context).size.width - 600) / 2, 12),
-                vertical:
-                    max((MediaQuery.of(context).size.height - 800) / 2, 12),
-              ),
-              child: SafeArea(child: Card(elevation: 7, child: child)),
             ),
           );
   }

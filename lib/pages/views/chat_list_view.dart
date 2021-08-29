@@ -31,6 +31,7 @@ class ChatListView extends StatelessWidget {
             },
             child: Scaffold(
               appBar: AppBar(
+                elevation: controller.scrolledToTop ? 0 : null,
                 actionsIconTheme: IconThemeData(
                   color: controller.selectedRoomIds.isEmpty
                       ? null
@@ -200,12 +201,20 @@ class ChatListView extends StatelessWidget {
                 Expanded(child: _ChatListViewBody(controller)),
               ]),
               floatingActionButton: selectMode == SelectMode.normal
-                  ? FloatingActionButton(
-                      heroTag: 'main_fab',
-                      onPressed: () =>
-                          VRouter.of(context).to('/newprivatechat'),
-                      child: Icon(CupertinoIcons.chat_bubble),
-                    )
+                  ? controller.scrolledToTop
+                      ? FloatingActionButton.extended(
+                          heroTag: 'main_fab',
+                          onPressed: () =>
+                              VRouter.of(context).to('/newprivatechat'),
+                          icon: Icon(CupertinoIcons.chat_bubble),
+                          label: Text(L10n.of(context).newChat),
+                        )
+                      : FloatingActionButton(
+                          heroTag: 'main_fab',
+                          onPressed: () =>
+                              VRouter.of(context).to('/newprivatechat'),
+                          child: Icon(CupertinoIcons.chat_bubble),
+                        )
                   : null,
               drawer: controller.spaces.isEmpty
                   ? null
@@ -307,6 +316,7 @@ class _ChatListViewBody extends StatelessWidget {
                 );
               }
               return ListView.builder(
+                controller: controller.scrollController,
                 itemCount: rooms.length,
                 itemBuilder: (BuildContext context, int i) {
                   return ChatListItem(

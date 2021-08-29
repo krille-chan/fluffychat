@@ -51,6 +51,17 @@ class ChatListController extends State<ChatList> {
 
   String _activeSpaceId;
   String get activeSpaceId => _activeSpaceId;
+  final ScrollController scrollController = ScrollController();
+  bool scrolledToTop = true;
+
+  void _onScroll() {
+    final newScrolledToTop = scrollController.position.pixels <= 0;
+    if (newScrolledToTop != scrolledToTop) {
+      setState(() {
+        scrolledToTop = newScrolledToTop;
+      });
+    }
+  }
 
   void setActiveSpaceId(BuildContext context, String spaceId) {
     Scaffold.of(context).openEndDrawer();
@@ -156,6 +167,7 @@ class ChatListController extends State<ChatList> {
     WidgetsBinding.instance.addPostFrameCallback(
       (_) => waitForFirstSync().then((_) => checkBootstrap()),
     );
+    scrollController.addListener(_onScroll);
     super.initState();
   }
 
@@ -181,6 +193,7 @@ class ChatListController extends State<ChatList> {
     _intentDataStreamSubscription?.cancel();
     _intentFileStreamSubscription?.cancel();
     _intentUriStreamSubscription?.cancel();
+    scrollController.removeListener(_onScroll);
     super.dispose();
   }
 

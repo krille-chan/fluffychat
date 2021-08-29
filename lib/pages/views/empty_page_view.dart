@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:fluffychat/widgets/background_gradient_box.dart';
 import 'package:flutter/material.dart';
 
 class EmptyPage extends StatelessWidget {
@@ -10,26 +11,31 @@ class EmptyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final _width = min(MediaQuery.of(context).size.width, EmptyPage._width);
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      body: Stack(
         children: [
-          Center(
-            child: Hero(
-              tag: 'info-logo',
-              child: Image.asset(
-                'assets/info-logo.png',
-                width: _width,
-                height: _width,
+          BackgroundGradientBox(),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(
+                child: Hero(
+                  tag: 'info-logo',
+                  child: Image.asset(
+                    'assets/info-logo.png',
+                    width: _width,
+                    height: _width,
+                  ),
+                ),
               ),
-            ),
+              if (loading)
+                Center(
+                  child: SizedBox(
+                    width: _width,
+                    child: LinearProgressIndicator(),
+                  ),
+                ),
+            ],
           ),
-          if (loading)
-            Center(
-              child: SizedBox(
-                width: _width,
-                child: LinearProgressIndicator(),
-              ),
-            ),
         ],
       ),
     );

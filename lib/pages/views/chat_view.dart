@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/widgets/background_gradient_box.dart';
 import 'package:matrix/matrix.dart';
 import 'package:fluffychat/pages/chat.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -204,6 +205,7 @@ class ChatView extends StatelessWidget {
               : null,
           body: Stack(
             children: <Widget>[
+              BackgroundGradientBox(),
               if (Matrix.of(context).wallpaper != null)
                 Image.file(
                   Matrix.of(context).wallpaper,

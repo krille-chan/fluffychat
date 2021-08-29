@@ -32,6 +32,7 @@ class StateMessage extends StatelessWidget {
               border: Border.all(
                 color: Theme.of(context).dividerColor,
               ),
+              color: Theme.of(context).scaffoldBackgroundColor,
               borderRadius: BorderRadius.circular(AppConfig.borderRadius),
             ),
             child: Column(
