@@ -327,8 +327,11 @@ class ChatListController extends State<ChatList> {
     final client = Matrix.of(context).client;
     while (selectedRoomIds.isNotEmpty) {
       final roomId = selectedRoomIds.first;
-      await client.getRoomById(roomId).leave();
-      toggleSelection(roomId);
+      try {
+        await client.getRoomById(roomId).leave();
+      } finally {
+        toggleSelection(roomId);
+      }
     }
   }
 
