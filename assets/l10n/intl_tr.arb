@@ -643,7 +643,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "createNewSpace": "Yeni alan oluştur",
+  "createNewSpace": "Yeni alan",
   "@createNewSpace": {
     "type": "text",
     "placeholders": {}
