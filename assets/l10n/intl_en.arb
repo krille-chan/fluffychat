@@ -644,7 +644,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "createNewSpace": "Create new space",
+  "createNewSpace": "New space",
   "@createNewSpace": {
     "type": "text",
     "placeholders": {}

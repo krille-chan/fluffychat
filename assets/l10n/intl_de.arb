@@ -629,7 +629,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "createNewSpace": "Neuen Space erstellen",
+  "createNewSpace": "Neuer Space",
   "@createNewSpace": {
     "type": "text",
     "placeholders": {}
