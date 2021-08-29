@@ -222,6 +222,7 @@ class ChatView extends StatelessWidget {
                         height: 72,
                         child: Material(
                           color: Theme.of(context).secondaryHeaderColor,
+                          elevation: 1,
                           child: ListTile(
                             leading: CircleAvatar(
                               foregroundColor:
