@@ -1866,7 +1866,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sendOriginal": "发送原创内容",
+  "sendOriginal": "发送原图",
   "@sendOriginal": {
     "type": "text",
     "placeholders": {}
