@@ -1,3 +1,7 @@
+## v0.39.0 - 2021-08-30
+- Hotfix a bug which produces problems in downloading files and playing audios
+- Hotfix a bug which breaks device management
+
 ## v0.39.0 - 2021-08-28
 This release fixes a bug which makes it impossible to send images in unencrypted rooms. It also implements a complete new designed new chat page which now uses a QR code based workflow to start a new chat.
 
