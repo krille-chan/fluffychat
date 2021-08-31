@@ -5,8 +5,6 @@ lang: tr
 ---
 # F-Droid Deposu
 
-{% include fdroid_maintenance_alert.html %}
-
 ## Depoyu F-Droid'e Ekleyin
 
 Depoyu eklemenin en kolay yolu, QR kodunu taramak veya telefonunuzdaysanız doğrudan ona tıklamaktır.
