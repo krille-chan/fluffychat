@@ -54,7 +54,7 @@ class Message extends StatelessWidget {
     final client = Matrix.of(context).client;
     final ownMessage = event.senderId == client.userID;
     final alignment = ownMessage ? Alignment.topRight : Alignment.topLeft;
-    var color = Theme.of(context).scaffoldBackgroundColor;
+    var color = Theme.of(context).secondaryHeaderColor;
     final sameSender = nextEvent != null &&
             [EventTypes.Message, EventTypes.Sticker].contains(nextEvent.type)
         ? nextEvent.sender.id == event.sender.id
