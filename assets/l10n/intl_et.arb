@@ -634,7 +634,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "createNewSpace": "Loo uus kogukond",
+  "createNewSpace": "Uus kogukond",
   "@createNewSpace": {
     "type": "text",
     "placeholders": {}
