@@ -115,7 +115,7 @@ upload-fdroid-nightly:
     - cd build/android/
     - export UPDATE_VERSION=$(pcregrep -o1 'version:\s([0-9]*\.[0-9]*\.[0-9]*)\+[0-9]*' ../../pubspec.yaml) && mv app-release.apk "${UPDATE_VERSION}_$(date +%s).apk"
     - rsync -rav -e ssh ./ fluffy@fdroid.nordgedanken.dev:/opt/fdroid/fluffychat-nightly/repo
-    - ssh fluffy@fdroid.nordgedanken.dev -t '/bin/bash -i -l -c "cd /opt/fdroid/fluffychat-nightlyt && source ../fdroidserver-env/bin/activate && fdroid update --verbose && deactivate"'
+    - ssh fluffy@fdroid.nordgedanken.dev -t '/bin/bash -i -l -c "cd /opt/fdroid/fluffychat-nightly && source ../fdroidserver-env/bin/activate && fdroid update --verbose && deactivate"'
   needs: ["build_android_apk"]
   resource_group: playstore_release
   allow_failure: true
