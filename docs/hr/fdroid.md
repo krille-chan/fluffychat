@@ -5,8 +5,6 @@ lang: hr
 ---
 # F-Droid repozitorij
 
-{% include fdroid_maintenance_alert.html %}
-
 ## Dodaj repozitorij u F-Droid
 
 Najjednostavniji način za dodavanje repozitorija: snimi QR kod ili dodirni repozitorij izravno na mobitelu.
