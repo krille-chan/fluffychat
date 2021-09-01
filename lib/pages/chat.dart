@@ -109,6 +109,7 @@ class ChatController extends State<Chat> {
             ),
           ),
         );
+        rethrow;
       }
     }
   }
