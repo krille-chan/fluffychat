@@ -276,7 +276,9 @@ class ChatView extends StatelessWidget {
                               (BuildContext context, int i) {
                                 return i == controller.filteredEvents.length + 1
                                     ? controller.timeline.isRequestingHistory
-                                        ? LinearProgressIndicator()
+                                        ? Center(
+                                            child: CircularProgressIndicator(),
+                                          )
                                         : controller.canLoadMore
                                             ? Center(
                                                 child: OutlinedButton(
