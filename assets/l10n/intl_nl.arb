@@ -49,7 +49,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "addToSpace": "Aan space toevoegen",
+  "addToSpace": "Aan ruimte toevoegen",
   "@addToSpace": {},
   "admin": "Beheerder",
   "@admin": {
@@ -410,9 +410,9 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatHasBeenAddedToThisSpace": "Chat is toegevoegd aan deze space",
+  "chatHasBeenAddedToThisSpace": "Chat is toegevoegd aan deze ruimte",
   "@chatHasBeenAddedToThisSpace": {},
-  "chatHasBeenRemovedFromThisSpace": "Chat is verwijderd van deze space",
+  "chatHasBeenRemovedFromThisSpace": "Chat is verwijderd uit deze ruimte",
   "@chatHasBeenRemovedFromThisSpace": {
     "type": "text",
     "placeholders": {}
@@ -642,7 +642,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "createNewSpace": "Nieuwe space",
+  "createNewSpace": "Nieuwe ruimte",
   "@createNewSpace": {
     "type": "text",
     "placeholders": {}
@@ -742,7 +742,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "directChats": "Directe Chats",
+  "directChats": "Directe chats",
   "@directChats": {
     "type": "text",
     "placeholders": {}
@@ -914,7 +914,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enterASpacepName": "Vul een spacenaam in",
+  "enterASpacepName": "Vul een ruimtenaam in",
   "@enterASpacepName": {},
   "enterAUsername": "Vul een gebruikersnaam in",
   "@enterAUsername": {
@@ -1409,7 +1409,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noEncryptionForPublicRooms": "Je kunt de versleuteling pas activeren zodra de kamer niet meer publiekelijk toegankelijk is.",
+  "noEncryptionForPublicRooms": "Je kunt de versleuteling pas activeren zodra de kamer niet meer openbaar toegankelijk is.",
   "@noEncryptionForPublicRooms": {
     "type": "text",
     "placeholders": {}
@@ -1447,7 +1447,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noPublicRoomsFound": "Geen publieke kamers gevonden…",
+  "noPublicRoomsFound": "Geen openbare kamers gevonden…",
   "@noPublicRoomsFound": {
     "type": "text",
     "placeholders": {}
@@ -1683,7 +1683,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "publicGroups": "Alle Groepen",
+  "publicGroups": "Openbare Groepen",
   "@publicGroups": {
     "type": "text",
     "placeholders": {}
@@ -1698,7 +1698,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "publicSpace": "Publieke space",
+  "publicSpace": "Openbare ruimte",
   "@publicSpace": {
     "type": "text",
     "placeholders": {}
@@ -2097,12 +2097,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "spaceIsPublic": "Space is publiek",
+  "spaceIsPublic": "Ruimte is openbaar",
   "@spaceIsPublic": {
     "type": "text",
     "placeholders": {}
   },
-  "spaceName": "Spacenaam",
+  "spaceName": "Ruimtenaam",
   "@spaceName": {
     "type": "text",
     "placeholders": {}
@@ -2547,7 +2547,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "yourPublicKey": "Je openbare sleutel",
+  "yourPublicKey": "Je publieke sleutel",
   "@yourPublicKey": {
     "type": "text",
     "placeholders": {}
