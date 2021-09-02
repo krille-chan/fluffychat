@@ -40,7 +40,7 @@ abstract class FluffyThemes {
           secondaryVariant: AppConfig.secondaryColor,
         ),
     backgroundColor: Colors.white,
-    secondaryHeaderColor: lighten(AppConfig.primaryColor, .51),
+    secondaryHeaderColor: Color(0xffeeeffe),
     scaffoldBackgroundColor: Colors.white,
     textTheme: Typography.material2018().black.merge(fallback_text_theme),
     snackBarTheme: SnackBarThemeData(behavior: SnackBarBehavior.floating),
@@ -132,7 +132,7 @@ abstract class FluffyThemes {
           secondary: AppConfig.primaryColorLight,
           secondaryVariant: AppConfig.secondaryColor,
         ),
-    secondaryHeaderColor: FluffyThemes.darken(AppConfig.primaryColorLight, .65),
+    secondaryHeaderColor: Color(0xff232543),
     textTheme: Typography.material2018().white.merge(fallback_text_theme),
     dialogTheme: DialogTheme(
       shape: RoundedRectangleBorder(
