@@ -2579,5 +2579,7 @@
   "createNewChatExplaination": "Sadece QR kodunu tarayın veya yan yana değilseniz davet bağlantınızı paylaşın.",
   "@createNewChatExplaination": {},
   "sendOnEnter": "Enter tuşu ile gönder",
-  "@sendOnEnter": {}
+  "@sendOnEnter": {},
+  "homeserver": "Ana sunucu",
+  "@homeserver": {}
 }
