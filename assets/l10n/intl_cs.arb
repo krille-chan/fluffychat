@@ -634,7 +634,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "createNewSpace": "Vytvořte nový prostor",
+  "createNewSpace": "Nový prostor",
   "@createNewSpace": {
     "type": "text",
     "placeholders": {}
@@ -2579,5 +2579,7 @@
   "createNewChatExplaination": "Pokud nejste vedle sebe, stačí naskenovat QR kód nebo sdílet odkaz na pozvánku.",
   "@createNewChatExplaination": {},
   "sendOnEnter": "Odeslat při vstupu",
-  "@sendOnEnter": {}
+  "@sendOnEnter": {},
+  "homeserver": "Domácí server",
+  "@homeserver": {}
 }
