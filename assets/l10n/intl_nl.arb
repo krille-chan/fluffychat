@@ -2578,5 +2578,7 @@
   "createNewChatExplaination": "Scan de QR-code of deel je uitnodigingslink als je niet naast elkaar zit.",
   "@createNewChatExplaination": {},
   "sendOnEnter": "Verstuur met enter",
-  "@sendOnEnter": {}
+  "@sendOnEnter": {},
+  "homeserver": "Server",
+  "@homeserver": {}
 }
