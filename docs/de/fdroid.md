@@ -5,8 +5,6 @@ lang: de
 ---
 # F-Droid Paketquelle
 
-{% include fdroid_maintenance_alert.html %}
-
 ## Paketquelle zu F-Droid hinzufügen
 
 Der einfachste Weg die Paketquelle in F-Droid hinzuzufügen ist den QR-Code zu scannen oder direkt auf dem Handy anzuklickken.
