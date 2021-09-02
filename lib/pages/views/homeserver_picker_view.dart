@@ -39,6 +39,7 @@ class HomeserverPickerView extends StatelessWidget {
             onSubmit: (_) => controller.checkHomeserverAction(),
             unfocusOnClear: false,
             autocorrect: false,
+            labelText: L10n.of(context).homeserver,
           ),
           elevation: 0,
         ),
@@ -78,7 +79,10 @@ class HomeserverPickerView extends StatelessWidget {
                           return Center(child: CircularProgressIndicator());
                         }
                         return Padding(
-                          padding: const EdgeInsets.all(12.0),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12.0,
+                            vertical: 4.0,
+                          ),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.stretch,

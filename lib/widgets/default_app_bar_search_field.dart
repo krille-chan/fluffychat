@@ -11,6 +11,7 @@ class DefaultAppBarSearchField extends StatefulWidget {
   final bool autofocus;
   final String prefixText;
   final String hintText;
+  final String labelText;
   final EdgeInsets padding;
   final bool readOnly;
   final Widget prefixIcon;
@@ -27,6 +28,7 @@ class DefaultAppBarSearchField extends StatefulWidget {
     this.prefixText,
     this.hintText,
     this.padding,
+    this.labelText,
     this.readOnly = false,
     this.prefixIcon,
     this.unfocusOnClear = true,
@@ -89,6 +91,7 @@ class DefaultAppBarSearchFieldState extends State<DefaultAppBarSearchField> {
         onSubmitted: widget.onSubmit,
         decoration: InputDecoration(
           prefixText: widget.prefixText,
+          labelText: widget.labelText,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(AppConfig.borderRadius),
             borderSide:

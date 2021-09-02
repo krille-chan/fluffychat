@@ -923,6 +923,7 @@
     "type": "text",
     "placeholders": {}
   },
+  "homeserver": "Homeserver",
   "enterYourHomeserver": "Enter your homeserver",
   "@enterYourHomeserver": {
     "type": "text",
