@@ -2579,5 +2579,7 @@
   "createNewChatExplaination": "Lihtsalt skaneeri QR-koodi või kui te pole kõrvuti, siis jaga kutse linki.",
   "@createNewChatExplaination": {},
   "sendOnEnter": "Saada sõnum sisestusklahvi vajutusel",
-  "@sendOnEnter": {}
+  "@sendOnEnter": {},
+  "homeserver": "Koduserver",
+  "@homeserver": {}
 }
