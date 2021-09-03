@@ -2347,5 +2347,12 @@
   "@changeYourAvatar": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "allChats": "Tutte le chat",
+  "@allChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addToSpace": "Aggiungi a uno spazio",
+  "@addToSpace": {}
 }
