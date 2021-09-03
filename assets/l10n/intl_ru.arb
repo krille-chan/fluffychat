@@ -2579,5 +2579,7 @@
   "createNewChatExplaination": "Просто отсканируйте QR-код или поделитесь ссылкой приглашения, если вы не рядом друг с другом.",
   "@createNewChatExplaination": {},
   "sendOnEnter": "Отправлять по Enter",
-  "@sendOnEnter": {}
+  "@sendOnEnter": {},
+  "homeserver": "Сервер Matrix",
+  "@homeserver": {}
 }
