@@ -1,6 +1,6 @@
 {
   "@@last_modified": "2021-08-14 12:41:09.955292",
-  "about": "Over",
+  "about": "Over ons",
   "@about": {
     "type": "text",
     "placeholders": {}
@@ -219,7 +219,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "cancel": "Annuleer",
+  "cancel": "Annuleren",
   "@cancel": {
     "type": "text",
     "placeholders": {}
@@ -581,7 +581,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "copiedToClipboard": "Gekopieerd naar het klembord",
+  "copiedToClipboard": "Gekopieerd naar klembord",
   "@copiedToClipboard": {
     "type": "text",
     "placeholders": {}
@@ -675,7 +675,7 @@
       "timeOfDay": {}
     }
   },
-  "dateWithoutYear": "{month}-{day}",
+  "dateWithoutYear": "{day}-{month}",
   "@dateWithoutYear": {
     "type": "text",
     "placeholders": {
@@ -683,7 +683,7 @@
       "day": {}
     }
   },
-  "dateWithYear": "{year}-{month}-{day}",
+  "dateWithYear": "{day}-{month}-{year}",
   "@dateWithYear": {
     "type": "text",
     "placeholders": {
@@ -702,7 +702,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "delete": "Bericht verwijderen",
+  "delete": "Verwijderen",
   "@delete": {
     "type": "text",
     "placeholders": {}
@@ -1462,7 +1462,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "notifications": "Meldingen",
+  "notifications": "Notificaties",
   "@notifications": {
     "type": "text",
     "placeholders": {}
