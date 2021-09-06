@@ -2622,5 +2622,10 @@
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
+  },
+  "extremeOffensive": "",
+  "@extremeOffensive": {
+    "type": "text",
+    "placeholders": {}
   }
 }
