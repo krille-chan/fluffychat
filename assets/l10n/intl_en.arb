@@ -175,6 +175,7 @@
     }
   },
   "sendOnEnter": "Send on enter",
+  "@sendOnEnter": {},
   "badServerVersionsException": "The homeserver supports the Spec versions:\n{serverVersions}\nBut this app supports only {supportedVersions}",
   "@badServerVersionsException": {
     "type": "text",
@@ -924,6 +925,7 @@
     "placeholders": {}
   },
   "homeserver": "Homeserver",
+  "@homeserver": {},
   "enterYourHomeserver": "Enter your homeserver",
   "@enterYourHomeserver": {
     "type": "text",
@@ -941,7 +943,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "extremeOffensive": "Extreme offensive",
+  "extremeOffensive": "Extremely offensive",
   "@extremeOffensive": {
     "type": "text",
     "placeholders": {}
@@ -1431,9 +1433,13 @@
     }
   },
   "createNewChatExplaination": "Just scan the QR code or share your invite link if you are not next to each other.",
+  "@createNewChatExplaination": {},
   "shareYourInviteLink": "Share your invite link",
+  "@shareYourInviteLink": {},
   "typeInInviteLinkManually": "Type in invite link manually...",
+  "@typeInInviteLinkManually": {},
   "scanQrCode": "Scan QR code",
+  "@scanQrCode": {},
   "noMegolmBootstrap": "Please turn on online key backup from within Element instead.",
   "@noMegolmBootstrap": {
     "type": "text",
