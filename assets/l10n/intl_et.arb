@@ -218,7 +218,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "cancel": "Tühista",
+  "cancel": "Katkesta",
   "@cancel": {
     "type": "text",
     "placeholders": {}
@@ -675,7 +675,7 @@
       "day": {}
     }
   },
-  "dateWithYear": "{day}.{month}.{year}",
+  "dateWithYear": "{year}.{month}.{day}",
   "@dateWithYear": {
     "type": "text",
     "placeholders": {
