@@ -57,13 +57,16 @@ class ChatView extends StatelessWidget {
     }
 
     return VWidgetGuard(
-        onSystemPop: (redirector) async {
-          if (controller.selectedEvents.isNotEmpty) {
-            controller.clearSelectedEvents();
-            redirector.stopRedirection();
-          }
-        },
-        child: Scaffold(
+      onSystemPop: (redirector) async {
+        if (controller.selectedEvents.isNotEmpty) {
+          controller.clearSelectedEvents();
+          redirector.stopRedirection();
+        }
+      },
+      child: StreamBuilder(
+        stream: controller.room.onUpdate.stream
+            .rateLimit(Duration(milliseconds: 250)),
+        builder: (context, snapshot) => Scaffold(
           appBar: AppBar(
             actionsIconTheme: IconThemeData(
               color: controller.selectedEvents.isEmpty
@@ -80,73 +83,67 @@ class ChatView extends StatelessWidget {
                 : UnreadBadgeBackButton(roomId: controller.roomId),
             titleSpacing: 0,
             title: controller.selectedEvents.isEmpty
-                ? StreamBuilder(
-                    stream: controller.room.onUpdate.stream
-                        .rateLimit(Duration(milliseconds: 250)),
-                    builder: (context, snapshot) => ListTile(
-                          leading: Avatar(controller.room.avatar,
-                              controller.room.displayname),
-                          contentPadding: EdgeInsets.zero,
-                          onTap: controller.room.isDirectChat
-                              ? () => showModalBottomSheet(
-                                    context: context,
-                                    builder: (c) => UserBottomSheet(
-                                      user: controller.room.getUserByMXIDSync(
-                                          controller.room.directChatMatrixID),
-                                      outerContext: context,
-                                      onMention: () => controller
-                                              .sendController.text +=
-                                          '${controller.room.getUserByMXIDSync(controller.room.directChatMatrixID).mention} ',
-                                    ),
-                                  )
-                              : () => VRouter.of(context).toSegments(
-                                  ['rooms', controller.room.id, 'details']),
-                          title: Text(
-                              controller.room.getLocalizedDisplayname(
-                                  MatrixLocals(L10n.of(context))),
-                              maxLines: 1),
-                          subtitle: controller.room
-                                  .getLocalizedTypingText(context)
-                                  .isEmpty
-                              ? StreamBuilder<Object>(
-                                  stream: Matrix.of(context)
-                                      .client
-                                      .onPresence
-                                      .stream
-                                      .where((p) =>
-                                          p.senderId ==
-                                          controller.room.directChatMatrixID)
-                                      .rateLimit(Duration(seconds: 1)),
-                                  builder: (context, snapshot) => Text(
-                                        controller.room
-                                            .getLocalizedStatus(context),
-                                        maxLines: 1,
-                                        //overflow: TextOverflow.ellipsis,
-                                      ))
-                              : Row(
-                                  children: <Widget>[
-                                    Icon(Icons.edit_outlined,
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .secondary,
-                                        size: 13),
-                                    SizedBox(width: 4),
-                                    Expanded(
-                                      child: Text(
-                                        controller.room
-                                            .getLocalizedTypingText(context),
-                                        maxLines: 1,
-                                        style: TextStyle(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .secondary,
-                                          fontStyle: FontStyle.italic,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
+                ? ListTile(
+                    leading: Avatar(
+                        controller.room.avatar, controller.room.displayname),
+                    contentPadding: EdgeInsets.zero,
+                    onTap: controller.room.isDirectChat
+                        ? () => showModalBottomSheet(
+                              context: context,
+                              builder: (c) => UserBottomSheet(
+                                user: controller.room.getUserByMXIDSync(
+                                    controller.room.directChatMatrixID),
+                                outerContext: context,
+                                onMention: () => controller
+                                        .sendController.text +=
+                                    '${controller.room.getUserByMXIDSync(controller.room.directChatMatrixID).mention} ',
+                              ),
+                            )
+                        : () => VRouter.of(context).toSegments(
+                            ['rooms', controller.room.id, 'details']),
+                    title: Text(
+                        controller.room.getLocalizedDisplayname(
+                            MatrixLocals(L10n.of(context))),
+                        maxLines: 1),
+                    subtitle: controller.room
+                            .getLocalizedTypingText(context)
+                            .isEmpty
+                        ? StreamBuilder<Object>(
+                            stream: Matrix.of(context)
+                                .client
+                                .onPresence
+                                .stream
+                                .where((p) =>
+                                    p.senderId ==
+                                    controller.room.directChatMatrixID)
+                                .rateLimit(Duration(seconds: 1)),
+                            builder: (context, snapshot) => Text(
+                                  controller.room.getLocalizedStatus(context),
+                                  maxLines: 1,
+                                  //overflow: TextOverflow.ellipsis,
+                                ))
+                        : Row(
+                            children: <Widget>[
+                              Icon(Icons.edit_outlined,
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
+                                  size: 13),
+                              SizedBox(width: 4),
+                              Expanded(
+                                child: Text(
+                                  controller.room
+                                      .getLocalizedTypingText(context),
+                                  maxLines: 1,
+                                  style: TextStyle(
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
+                                    fontStyle: FontStyle.italic,
+                                  ),
                                 ),
-                        ))
+                              ),
+                            ],
+                          ),
+                  )
                 : Text(controller.selectedEvents.length.toString()),
             actions: controller.selectMode
                 ? <Widget>[
@@ -261,6 +258,13 @@ class ChatView extends StatelessWidget {
                             thisEventsKeyMap[
                                 controller.filteredEvents[i].eventId] = i;
                           }
+                          final seenByText =
+                              controller.room.getLocalizedSeenByText(
+                            context,
+                            controller.timeline,
+                            controller.filteredEvents,
+                            controller.unfolded,
+                          );
 
                           return ListView.custom(
                             padding: EdgeInsets.only(
@@ -296,66 +300,44 @@ class ChatView extends StatelessWidget {
                                               )
                                             : Container()
                                     : i == 0
-                                        ? StreamBuilder(
-                                            stream: controller
-                                                .room.onUpdate.stream
-                                                .rateLimit(Duration(
-                                                    milliseconds: 250)),
-                                            builder: (_, __) {
-                                              final seenByText = controller.room
-                                                  .getLocalizedSeenByText(
-                                                context,
-                                                controller.timeline,
-                                                controller.filteredEvents,
-                                                controller.unfolded,
-                                              );
-                                              return AnimatedContainer(
-                                                height:
-                                                    seenByText.isEmpty ? 0 : 24,
-                                                duration: seenByText.isEmpty
-                                                    ? Duration(milliseconds: 0)
-                                                    : Duration(
-                                                        milliseconds: 300),
-                                                alignment: controller
-                                                            .filteredEvents
-                                                            .isNotEmpty &&
-                                                        controller
-                                                                .filteredEvents
-                                                                .first
-                                                                .senderId ==
-                                                            client.userID
-                                                    ? Alignment.topRight
-                                                    : Alignment.topLeft,
-                                                padding: EdgeInsets.only(
-                                                  left: 8,
-                                                  right: 8,
-                                                  bottom: 8,
+                                        ? AnimatedContainer(
+                                            height: seenByText.isEmpty ? 0 : 24,
+                                            duration: seenByText.isEmpty
+                                                ? Duration(milliseconds: 0)
+                                                : Duration(milliseconds: 300),
+                                            alignment: controller.filteredEvents
+                                                        .isNotEmpty &&
+                                                    controller.filteredEvents
+                                                            .first.senderId ==
+                                                        client.userID
+                                                ? Alignment.topRight
+                                                : Alignment.topLeft,
+                                            padding: EdgeInsets.only(
+                                              left: 8,
+                                              right: 8,
+                                              bottom: 8,
+                                            ),
+                                            child: Container(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 4),
+                                              decoration: BoxDecoration(
+                                                color: Theme.of(context)
+                                                    .scaffoldBackgroundColor
+                                                    .withOpacity(0.8),
+                                                borderRadius:
+                                                    BorderRadius.circular(4),
+                                              ),
+                                              child: Text(
+                                                seenByText,
+                                                maxLines: 1,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: TextStyle(
+                                                  color: Theme.of(context)
+                                                      .colorScheme
+                                                      .secondary,
                                                 ),
-                                                child: Container(
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal: 4),
-                                                  decoration: BoxDecoration(
-                                                    color: Theme.of(context)
-                                                        .scaffoldBackgroundColor
-                                                        .withOpacity(0.8),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            4),
-                                                  ),
-                                                  child: Text(
-                                                    seenByText,
-                                                    maxLines: 1,
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    style: TextStyle(
-                                                      color: Theme.of(context)
-                                                          .colorScheme
-                                                          .secondary,
-                                                    ),
-                                                  ),
-                                                ),
-                                              );
-                                            },
+                                              ),
+                                            ),
                                           )
                                         : AutoScrollTag(
                                             key: ValueKey(controller
@@ -773,7 +755,9 @@ class ChatView extends StatelessWidget {
               ),
             ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
 
