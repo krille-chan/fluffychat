@@ -79,7 +79,9 @@ class ChatController extends State<Chat> {
 
   String pendingText = '';
 
-  bool get canLoadMore => timeline.events.last.type != EventTypes.RoomCreate;
+  bool get canLoadMore =>
+      timeline.events.isEmpty ||
+      timeline.events.last.type != EventTypes.RoomCreate;
 
   bool showEmojiPicker = false;
 
