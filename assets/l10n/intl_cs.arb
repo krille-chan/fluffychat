@@ -1766,8 +1766,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "removeExile": "Odblokovat",
-  "@removeExile": {
+  "unbanFromChat": "Odblokovat",
+  "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
   },

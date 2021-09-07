@@ -1667,8 +1667,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "removeExile": "Уклони изгнанство",
-  "@removeExile": {
+  "unbanFromChat": "Уклони изгнанство",
+  "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
   },

@@ -1457,8 +1457,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "removeExile": "Opphev bannlysning",
-  "@removeExile": {
+  "unbanFromChat": "Opphev bannlysning",
+  "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
   },

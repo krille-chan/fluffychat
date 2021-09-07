@@ -1766,8 +1766,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "removeExile": "Разблокировать в чате",
-  "@removeExile": {
+  "unbanFromChat": "Разблокировать в чате",
+  "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
   },

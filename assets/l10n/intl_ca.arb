@@ -1353,8 +1353,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "removeExile": "Elimina l'expulsió",
-  "@removeExile": {
+  "unbanFromChat": "Elimina l'expulsió",
+  "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
   },

@@ -1578,8 +1578,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "removeExile": "追放を取り消し",
-  "@removeExile": {
+  "unbanFromChat": "追放を取り消し",
+  "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
   },

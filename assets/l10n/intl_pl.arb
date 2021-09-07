@@ -1398,8 +1398,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "removeExile": "Usuń blokadę",
-  "@removeExile": {
+  "unbanFromChat": "Usuń blokadę",
+  "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
   },

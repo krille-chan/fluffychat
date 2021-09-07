@@ -1067,8 +1067,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "removeExile": "Odblokovať",
-  "@removeExile": {
+  "unbanFromChat": "Odblokovať",
+  "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
   },

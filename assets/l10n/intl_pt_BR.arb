@@ -1765,8 +1765,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "removeExile": "Revogar banimento",
-  "@removeExile": {
+  "unbanFromChat": "Revogar banimento",
+  "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
   },

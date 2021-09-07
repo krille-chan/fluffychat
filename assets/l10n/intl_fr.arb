@@ -1775,8 +1775,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "removeExile": "Retirer le bannissement",
-  "@removeExile": {
+  "unbanFromChat": "Retirer le bannissement",
+  "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
   },
