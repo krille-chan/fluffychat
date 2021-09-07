@@ -502,10 +502,7 @@ class ChatView extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Divider(
-                      height: 1,
-                      thickness: 1,
-                    ),
+                    Divider(height: 1),
                     if (controller.room.canSendDefaultMessages &&
                         controller.room.membership == Membership.join &&
                         !controller.showEmojiPicker)
