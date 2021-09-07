@@ -274,7 +274,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "offensive": "Gránna",
+  "offensive": "Maslach",
   "@offensive": {
     "type": "text",
     "placeholders": {}
@@ -1023,7 +1023,7 @@
       "description": {}
     }
   },
-  "autoplayImages": "Seinn greamáin agus iomaite beoite go huathoibríoch",
+  "autoplayImages": "Seinn greamáin agus straoiseog beoite go huathoibríoch",
   "@autoplayImages": {
     "type": "text",
     "placeholder": {}
@@ -1521,6 +1521,392 @@
   },
   "chat": "Comhrá",
   "@chat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "scanQrCode": "Scan cód QR",
+  "@scanQrCode": {},
+  "typeInInviteLinkManually": "Clóscríobh an nasc cuiridh de láimh...",
+  "@typeInInviteLinkManually": {},
+  "createNewChatExplaination": "Ní gá duit ach an cód QR a scanadh nó do nasc cuiridh a roinnt mura bhfuil sibh in aice lena chéile.",
+  "@createNewChatExplaination": {},
+  "inviteText": "Thug {username} cuireadh duit chuig FluffyChat.\n1. Suiteáil FluffyChat: https://fluffychat.im\n2. Cláraigh nó sínigh isteach\n3. Oscail an nasc cuiridh: {link}",
+  "@inviteText": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "link": {}
+    }
+  },
+  "shareYourInviteLink": "Roinn do nasc cuiridh",
+  "@shareYourInviteLink": {},
+  "noMatrixServer": "Níl {server1} freastalaí Matrix. Úsáid {server2} ina áit sin?",
+  "@noMatrixServer": {
+    "type": "text",
+    "placeholders": {
+      "server1": {},
+      "server2": {}
+    }
+  },
+  "noGoogleServicesWarning": "Dealraíonn sé nach bhfuil aon seirbhísí google agat ar do ghuthán. Sin cinneadh maith le do phríobháideacht! Chun fógraí brú a fháil i FluffyChat molaimid https://microg.org/ nó https://unifiedpush.org/ a úsáid.",
+  "@noGoogleServicesWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noEncryptionForPublicRooms": "Ní féidir leat criptiú a ghníomhachtú ach a luaithe nach bhfuil an seomra inrochtana go poiblí a thuilleadh.",
+  "@noEncryptionForPublicRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noEmotesFound": "Níor aimsíodh aon straoiseoga. 😕",
+  "@noEmotesFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noCrossSignBootstrap": "Níl Tras-Síniú ar fáil i Fluffychat ag an am seo. Cumasaigh é in Element.",
+  "@noCrossSignBootstrap": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noConnectionToTheServer": "Gan aon nasc leis an bhfreastalaí",
+  "@noConnectionToTheServer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newVerificationRequest": "Iarratas fíoraithe nua!",
+  "@newVerificationRequest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newMessageInFluffyChat": "Teachtaireacht nua i FluffyChat",
+  "@newMessageInFluffyChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "needPantalaimonWarning": "Bí ar an eolas go dteastaíonn Pantalaimon uait chun criptiú ó cheann go ceann a úsáid anois.",
+  "@needPantalaimonWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "moreEvents": "{count,plural, =1{1 imeacht níos mó} other{{count} níos mó imeachtaí}}",
+  "@moreEvents": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "messageWillBeRemovedWarning": "Bainfear an teachtaireacht do na rannpháirtithe go léir",
+  "@messageWillBeRemovedWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "makeSureTheIdentifierIsValid": "Cinntigh go bhfuil an t-aitheantóir bailí",
+  "@makeSureTheIdentifierIsValid": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "makeAModerator": "Ceap modhnóir",
+  "@makeAModerator": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "makeAnAdmin": "Ceap riarachán",
+  "@makeAnAdmin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginWith": "Sínigh isteach le {brand}",
+  "@loginWith": {
+    "type": "text",
+    "placeholders": {
+      "brand": {}
+    }
+  },
+  "logInTo": "Logáil isteach chuig {homeserver}",
+  "@logInTo": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "locationPermissionDeniedNotice": "Diúltaíodh cead suímh. Deonaigh dóibh le do thoil go mbeidh tú in ann do shuíomh a roinnt.",
+  "@locationPermissionDeniedNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationDisabledNotice": "Tá seirbhísí suímh díchumasaithe. Cuir ar a gcumas le do thoil a bheith in ann do shuíomh a roinnt.",
+  "@locationDisabledNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loadingPleaseWait": "Ag lódáil… Fan, le do thoil.",
+  "@loadingPleaseWait": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loadCountMoreParticipants": "Lódáil {count} níos mó rannpháirtithe",
+  "@loadCountMoreParticipants": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "leftTheChat": "Fágadh an comhrá",
+  "@leftTheChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastSeenLongTimeAgo": "Le feiceáil i bhfad ó shin",
+  "@lastSeenLongTimeAgo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastSeenIp": "IP le feiceáil go deireanach",
+  "@lastSeenIp": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastActiveAgo": "Gníomhach deireanach: {localizedTimeShort}",
+  "@lastActiveAgo": {
+    "type": "text",
+    "placeholders": {
+      "localizedTimeShort": {}
+    }
+  },
+  "kickFromChat": "Caith é amach as an comhrá",
+  "@kickFromChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "kicked": "Chaith {username} {targetName} amach",
+  "@kicked": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "kickedAndBanned": "Chaith {username} amach agus chuir cosc ar {targetName} freisin",
+  "@kickedAndBanned": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "keysMissing": "Tá na heochracha ar iarraidh",
+  "@keysMissing": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "keysCached": "Cuirtear eochracha i dtaisce",
+  "@keysCached": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "joinedTheChat": "Tháinig {username} isteach sa chomhrá",
+  "@joinedTheChat": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "isDeviceKeyCorrect": "An bhfuil an eochair gléis seo a leanas ceart?",
+  "@isDeviceKeyCorrect": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invitedUsersOnly": "Úsáideoirí le cuireadh amháin",
+  "@invitedUsersOnly": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteContactToGroup": "Tabhair cuireadh do theagmháil chuig {groupName}",
+  "@inviteContactToGroup": {
+    "type": "text",
+    "placeholders": {
+      "groupName": {}
+    }
+  },
+  "incorrectPassphraseOrKey": "Pasfhrása nó eochair téarnaimh mícheart",
+  "@incorrectPassphraseOrKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iHaveClickedOnLink": "Chliceáil mé ar an nasc",
+  "@iHaveClickedOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "howOffensiveIsThisContent": "Cé chomh maslach atá an t-ábhar seo?",
+  "@howOffensiveIsThisContent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "extremeOffensive": "Fíor-maslach",
+  "@extremeOffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "homeserverIsNotCompatible": "Níl an freastalaí baile comhoiriúnach",
+  "@homeserverIsNotCompatible": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hasWithdrawnTheInvitationFor": "Tharraing {username} an cuireadh do {targetName} siar.",
+  "@hasWithdrawnTheInvitationFor": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "goToTheNewRoom": "Téigh go dtí an seomra nua",
+  "@goToTheNewRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorObtainingLocation": "Earráid maidir le suíomh a fháil: {error}",
+  "@errorObtainingLocation": {
+    "type": "text",
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "enterASpacepName": "Cuir isteach ainm spáis",
+  "@enterASpacepName": {},
+  "enterAnEmailAddress": "Cuir isteach seoladh ríomhphoist",
+  "@enterAnEmailAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterAGroupName": "Iontráil ainm grúpa",
+  "@enterAGroupName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "endedTheCall": "Chuir {senderName} deireadh leis an nglao",
+  "@endedTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "encryptionNotEnabled": "Ní chumasaítear criptiú",
+  "@encryptionNotEnabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEncryptionWarning": "Ní bheidh in ann an criptiú a dhíchumasú níos mó. An bhfuil tú cinnte?",
+  "@enableEncryptionWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEmotesGlobally": "Cumasaigh pacáiste straoiseoige go huilíoch",
+  "@enableEmotesGlobally": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableChatBackup": "Cumasaigh an cúltaca comhrá chun do chuid comhráite a chailleadh riamh.",
+  "@enableChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteWarnNeedToPick": "Caithfidh tú gearrchód straoiseoige agus íomhá a roghnú!",
+  "@emoteWarnNeedToPick": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emotePacks": "Pacáistí straoiseoige don seomra",
+  "@emotePacks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dontAskAgain": "Cealaigh agus ná fiafraigh arís",
+  "@dontAskAgain": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "displaynameHasBeenChanged": "Athraíodh an t-ainm taispeána",
+  "@displaynameHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceVerifyDescription": "Níl an criptiú slán ach amháin nuair a fhíoraítear gach gléas.",
+  "@deviceVerifyDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deactivateAccountWarning": "Díghníomhachtaeoidh sé seo do chuntas úsáideora. Ní féidir é seo a chealú! An bhfuil tú cinnte?",
+  "@deactivateAccountWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "couldNotSetDisplayname": "Níorbh fhéidir an t-ainm taispeána a shocrú",
+  "@couldNotSetDisplayname": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "couldNotSetAvatar": "Níorbh fhéidir abhatár a shocrú",
+  "@couldNotSetAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "couldNotDecryptMessage": "Níorbh fhéidir teachtaireacht a dhíchriptiú: {error}",
+  "@couldNotDecryptMessage": {
+    "type": "text",
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "contentHasBeenReported": "Tuairiscíodh an t-ábhar do lucht riaracháin an fhreastalaí",
+  "@contentHasBeenReported": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHintUnBan": "Cuir deireadh an cosc den úsáideoir áirithe ón seomra seo",
+  "@commandHintUnBan": {
+    "type": "text",
+    "description": "Usage hint for the command /unban"
+  },
+  "changedTheGuestAccessRulesTo": "D'athraigh {username} na rialacha maidir le rochtain aoi chuig: {rules}",
+  "@changedTheGuestAccessRulesTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "rules": {}
+    }
+  },
+  "changedTheGuestAccessRules": "D'athraigh {username} na rialacha rochtana aoi",
+  "@changedTheGuestAccessRules": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "badServerVersionsException": "Tá na leaganacha sonraíochta seo ar fáil faoin freastalaí baile:\n{serverVersions}\nAch níl ach na ceann seo ar fáil faoin aip seo {supportedVersions}",
+  "@badServerVersionsException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "badServerLoginTypesException": "Tá na cineálacha logála isteach seo ar fáil faoin freastalaí baile:\n{serverVersions}\nAch níl ach na ceann seo ar fáil faoin aip seo:\n{supportedVersions}",
+  "@badServerLoginTypesException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "askSSSSVerify": "Cuir isteach do phasfrása stóir sábháilte nó d'eochair téarnaimh chun do sheisiún a fhíorú le do thoil.",
+  "@askSSSSVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askSSSSSign": "Chun a bheith in ann an duine eile a shíniú, cuir isteach do phasfhrása stóir sábháilte nó d'eochair téarnaimh.",
+  "@askSSSSSign": {
     "type": "text",
     "placeholders": {}
   }
