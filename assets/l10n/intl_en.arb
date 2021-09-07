@@ -1787,7 +1787,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unbanFromChat": "Remove exile",
+  "unbanFromChat": "Unban from chat",
   "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
