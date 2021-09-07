@@ -2579,5 +2579,7 @@
   "createNewChatExplaination": "Simplemente escanea o código QR ou comparte a ligazón do convite se non estades preto.",
   "@createNewChatExplaination": {},
   "sendOnEnter": "Enter para enviar",
-  "@sendOnEnter": {}
+  "@sendOnEnter": {},
+  "homeserver": "Servidor de inicio",
+  "@homeserver": {}
 }
