@@ -10,6 +10,12 @@ class EmptyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final _width = min(MediaQuery.of(context).size.width, EmptyPage._width);
     return Scaffold(
+      // Add invisible appbar to make status bar on Android tablets bright.
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        elevation: 0,
+      ),
+      extendBodyBehindAppBar: true,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
