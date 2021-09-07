@@ -1766,8 +1766,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "removeExile": "Eemalda suhtluskeeld",
-  "@removeExile": {
+  "unbanFromChat": "Eemalda suhtluskeeld",
+  "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
   },

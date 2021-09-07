@@ -1787,8 +1787,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "removeExile": "Remove exile",
-  "@removeExile": {
+  "unbanFromChat": "Remove exile",
+  "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
   },

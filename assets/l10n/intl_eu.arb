@@ -1101,8 +1101,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "removeExile": "",
-  "@removeExile": {
+  "unbanFromChat": "",
+  "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
   },

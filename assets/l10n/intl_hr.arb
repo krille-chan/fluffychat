@@ -1721,8 +1721,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "removeExile": "Ukloni izbacivanje",
-  "@removeExile": {
+  "unbanFromChat": "Ukloni izbacivanje",
+  "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
   },

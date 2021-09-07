@@ -1445,8 +1445,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "removeExile": "Ta bort exil",
-  "@removeExile": {
+  "unbanFromChat": "Ta bort exil",
+  "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
   },

@@ -1181,8 +1181,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "removeExile": "Kitiltás feloldása",
-  "@removeExile": {
+  "unbanFromChat": "Kitiltás feloldása",
+  "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
   },

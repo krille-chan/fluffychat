@@ -1753,8 +1753,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "removeExile": "Verbannung aufheben",
-  "@removeExile": {
+  "unbanFromChat": "Verbannung aufheben",
+  "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
   },

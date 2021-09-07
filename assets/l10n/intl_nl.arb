@@ -1774,8 +1774,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "removeExile": "Verwijder verbanning",
-  "@removeExile": {
+  "unbanFromChat": "Verwijder verbanning",
+  "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
   },

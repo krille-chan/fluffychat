@@ -1775,8 +1775,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "removeExile": "Engeli kaldır",
-  "@removeExile": {
+  "unbanFromChat": "Engeli kaldır",
+  "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
   },

@@ -1555,8 +1555,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "removeExile": "Rimuovi il bando",
-  "@removeExile": {
+  "unbanFromChat": "Rimuovi il bando",
+  "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
   },

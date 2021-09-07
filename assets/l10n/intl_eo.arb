@@ -1732,8 +1732,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "removeExile": "Malforbari",
-  "@removeExile": {
+  "unbanFromChat": "Malforbari",
+  "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
   },

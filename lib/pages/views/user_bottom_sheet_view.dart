@@ -88,7 +88,7 @@ class UserBottomSheetView extends StatelessWidget {
                           PopupMenuItem(
                             value: 'unban',
                             child: _TextWithIcon(
-                              L10n.of(context).removeExile,
+                              L10n.of(context).unbanFromChat,
                               Icons.warning_outlined,
                             ),
                           ),

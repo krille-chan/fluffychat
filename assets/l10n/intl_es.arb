@@ -1301,8 +1301,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "removeExile": "Eliminar la expulsión",
-  "@removeExile": {
+  "unbanFromChat": "Eliminar la expulsión",
+  "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
   },

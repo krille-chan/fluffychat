@@ -1766,8 +1766,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "removeExile": "Quitar o veto",
-  "@removeExile": {
+  "unbanFromChat": "Quitar o veto",
+  "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
   },
