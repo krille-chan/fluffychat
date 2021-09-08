@@ -1775,7 +1775,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unbanFromChat": "Engeli kaldır",
+  "unbanFromChat": "Sohbet engelini kaldır",
   "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
