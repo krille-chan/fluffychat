@@ -158,7 +158,8 @@ build_linux_arm64:
   stage: coverage
   before_script:
     - flutter channel stable
-    - flutter upgrade --force
+#    - flutter upgrade --force
+    - $(cd $(which flutter | xargs dirname) && git checkout 2.2.3)
   script: [./scripts/build-linux.sh]
   tags: [docker_arm64]
   only:
