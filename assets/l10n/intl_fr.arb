@@ -1775,7 +1775,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unbanFromChat": "Retirer le bannissement",
+  "unbanFromChat": "Débannissement de la discussion",
   "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
@@ -2581,5 +2581,11 @@
   "sendOnEnter": "Envoyer avec Entrée",
   "@sendOnEnter": {},
   "homeserver": "Serveur d'accueil",
-  "@homeserver": {}
+  "@homeserver": {},
+  "serverRequiresEmail": "Ce serveur doit valider votre adresse électronique pour l'inscription.",
+  "@serverRequiresEmail": {},
+  "newUsernameDescription": "Votre identifiant utilisateur aura alors le format @username:servername",
+  "@newUsernameDescription": {},
+  "newPasswordDescription": "Afin de pouvoir récupérer votre mot de passe, vous devez ajouter ultérieurement une adresse électronique à votre compte.",
+  "@newPasswordDescription": {}
 }
