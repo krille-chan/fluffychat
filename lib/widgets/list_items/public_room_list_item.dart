@@ -28,9 +28,9 @@ class PublicRoomListItem extends StatelessWidget {
     if (Matrix.of(context).client.getRoomById(roomId) == null) {
       await Matrix.of(context)
           .client
-          .onRoomUpdate
+          .onSync
           .stream
-          .firstWhere((r) => r.id == roomId);
+          .firstWhere((u) => u.rooms?.join?.containsKey(roomId) ?? false);
     }
     return roomId;
   }

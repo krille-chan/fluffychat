@@ -48,11 +48,8 @@ class SearchController extends State<Search> {
     final newRoomId = await Matrix.of(context)
         .client
         .joinRoom(alias?.isNotEmpty ?? false ? alias : roomId);
-    await Matrix.of(context)
-        .client
-        .onRoomUpdate
-        .stream
-        .firstWhere((r) => r.id == newRoomId);
+    await Matrix.of(context).client.onSync.stream.firstWhere(
+        (update) => update.rooms?.join?.containsKey(newRoomId) ?? false);
     return newRoomId;
   }
 

@@ -719,9 +719,11 @@ packages:
   matrix:
     dependency: "direct main"
     description:
-      name: matrix
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: e13b00d127bc68c0659188b1e8aa25f510e9398a
+      url: "https://gitlab.com/famedly/company/frontend/famedlysdk.git"
+    source: git
     version: "0.4.3"
   matrix_api_lite:
     dependency: transitive
