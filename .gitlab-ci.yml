@@ -1,5 +1,5 @@
 image:
-  name: cirrusci/flutter
+  name: cirrusci/flutter:2.2.3
 
 variables:
   GIT_SUBMODULE_STRATEGY: recursive
