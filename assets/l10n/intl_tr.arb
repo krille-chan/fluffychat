@@ -2581,5 +2581,11 @@
   "sendOnEnter": "Enter tuşu ile gönder",
   "@sendOnEnter": {},
   "homeserver": "Ana sunucu",
-  "@homeserver": {}
+  "@homeserver": {},
+  "serverRequiresEmail": "Bu sunucunun kayıt için e-posta adresinizi doğrulaması gerekiyor.",
+  "@serverRequiresEmail": {},
+  "newUsernameDescription": "Kullanıcı kimliğiniz @kullanıcıadı:sunucuadı biçiminde olacaktır.",
+  "@newUsernameDescription": {},
+  "newPasswordDescription": "Parolanızı kurtarabilmek için daha sonra hesabınıza bir e-posta adresi eklemelisiniz.",
+  "@newPasswordDescription": {}
 }
