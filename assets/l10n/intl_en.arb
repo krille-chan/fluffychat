@@ -1450,6 +1450,8 @@
     "type": "text",
     "placeholders": {}
   },
+  "newPasswordDescription": "In order to be able to recover your password, you should later add an email address to your account.",
+  "newUsernameDescription": "Your user ID will then have the format @username:servername",
   "noPasswordRecoveryDescription": "You have not added a way to recover your password yet.",
   "@noPasswordRecoveryDescription": {
     "type": "text",
@@ -1564,11 +1566,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "optionalAddEmail": "(Optional) Your email address",
-  "@optionalAddEmail": {
-    "type": "text",
-    "placeholders": {}
-  },
+  "serverRequiresEmail": "This server needs to validate your email address for registration.",
   "optionalGroupName": "(Optional) Group name",
   "@optionalGroupName": {
     "type": "text",

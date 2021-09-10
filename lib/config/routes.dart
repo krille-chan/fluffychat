@@ -7,6 +7,7 @@ import 'package:fluffychat/pages/settings_chat.dart';
 import 'package:fluffychat/pages/settings_emotes.dart';
 import 'package:fluffychat/pages/settings_multiple_emotes.dart';
 import 'package:fluffychat/pages/settings_security.dart';
+import 'package:fluffychat/pages/signup.dart';
 import 'package:fluffychat/widgets/layouts/side_view_layout.dart';
 import 'package:fluffychat/widgets/layouts/two_column_layout.dart';
 import 'package:fluffychat/pages/chat.dart';
@@ -218,6 +219,11 @@ class AppRoutes {
             VWidget(
               path: '/login',
               widget: Login(),
+              buildTransition: _fadeTransition,
+            ),
+            VWidget(
+              path: '/signup',
+              widget: SignupPage(),
               buildTransition: _fadeTransition,
             ),
             VWidget(

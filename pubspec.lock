@@ -729,7 +729,7 @@ packages:
       name: matrix_api_lite
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.2"
+    version: "0.4.3"
   matrix_link_text:
     dependency: "direct main"
     description:

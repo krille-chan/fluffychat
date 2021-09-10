@@ -116,9 +116,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
   set cachedPassword(String p) => _cachedPassword = p;
 
-  String currentClientSecret;
-  RequestTokenResponse currentThreepidCreds;
-
   void _onUiaRequest(UiaRequest uiaRequest) async {
     try {
       if (uiaRequest.state != UiaRequestState.waitForUser ||
@@ -152,21 +149,40 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
             ),
           );
         case AuthenticationTypes.emailIdentity:
-          if (currentClientSecret == null || currentThreepidCreds == null) {
+          final emailInput = await showTextInputDialog(
+            context: context,
+            message: L10n.of(context).serverRequiresEmail,
+            okLabel: L10n.of(context).next,
+            cancelLabel: L10n.of(context).cancel,
+            textFields: [
+              DialogTextField(
+                hintText: L10n.of(context).addEmail,
+                keyboardType: TextInputType.emailAddress,
+              ),
+            ],
+          );
+          if (emailInput == null || emailInput.isEmpty) {
             return uiaRequest
-                .cancel(Exception('This server requires an email address'));
+                .cancel(Exception(L10n.of(context).serverRequiresEmail));
           }
+          final clientSecret =
+              Matrix.of(context).client.generateUniqueTransactionId();
+          final currentThreepidCreds =
+              await Matrix.of(context).client.requestTokenToRegisterEmail(
+                    clientSecret,
+                    emailInput.single,
+                    0,
+                  );
           final auth = AuthenticationThreePidCreds(
             session: uiaRequest.session,
             type: AuthenticationTypes.emailIdentity,
             threepidCreds: [
               ThreepidCreds(
                 sid: currentThreepidCreds.sid,
-                clientSecret: currentClientSecret,
+                clientSecret: clientSecret,
               ),
             ],
           );
-          currentThreepidCreds = currentClientSecret = null;
           return uiaRequest.completeStage(auth);
         case AuthenticationTypes.dummy:
           return uiaRequest.completeStage(
@@ -189,10 +205,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
                 cancelLabel: L10n.of(widget.context).cancel,
               )) {
             return uiaRequest.completeStage(
-              AuthenticationData(
-                session: uiaRequest.session,
-                type: AuthenticationTypes.token,
-              ),
+              AuthenticationData(session: uiaRequest.session),
             );
           } else {
             return uiaRequest.cancel();

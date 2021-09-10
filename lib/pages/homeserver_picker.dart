@@ -216,11 +216,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     }
   }
 
-  void signUpAction() => launch(
-        '${Matrix.of(context).client.homeserver?.toString()}/_matrix/static/client/register',
-        forceSafariVC: true,
-        forceWebView: true,
-      );
+  void signUpAction() => VRouter.of(context).to('/signup');
 
   bool _initialized = false;
 
