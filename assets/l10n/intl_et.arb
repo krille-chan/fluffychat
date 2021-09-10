@@ -2581,5 +2581,11 @@
   "sendOnEnter": "Saada sõnum sisestusklahvi vajutusel",
   "@sendOnEnter": {},
   "homeserver": "Koduserver",
-  "@homeserver": {}
+  "@homeserver": {},
+  "serverRequiresEmail": "See koduserver eeldab registreerimisel kasutatava e-postiaadressi kinnitamist.",
+  "@serverRequiresEmail": {},
+  "newUsernameDescription": "Sinu Matrix'i kasutajatunnus saab olema vormingus @kasutajanimi:koduserver",
+  "@newUsernameDescription": {},
+  "newPasswordDescription": "Selleks, et saaksid vajadusel oma salasõna taastada, peaksid hiljem lisama oma kasutajakontole e-posti aadressi.",
+  "@newPasswordDescription": {}
 }
