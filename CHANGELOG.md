@@ -1,3 +1,8 @@
+## v0.40.0 - 2021-09-10
+- New in-app registration
+- Design improvements
+- Minor fixes
+
 ## v0.39.0 - 2021-08-30
 - Hotfix a bug which produces problems in downloading files and playing audios
 - Hotfix a bug which breaks device management
