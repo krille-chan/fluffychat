@@ -46,7 +46,9 @@ dependencies:
   localstorage: ^4.0.0+1
   lottie: ^1.1.0
   matrix:
-    git: https://gitlab.com/famedly/company/frontend/famedlysdk.git
+    git: 
+      url: https://gitlab.com/famedly/company/frontend/famedlysdk.git
+      ref: e13b00d127bc68c0659188b1e8aa25f510e9398a
   matrix_link_text: ^1.0.2
   native_imaging:
     git: https://gitlab.com/famedly/libraries/native_imaging.git

@@ -720,7 +720,7 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: HEAD
+      ref: e13b00d127bc68c0659188b1e8aa25f510e9398a
       resolved-ref: e13b00d127bc68c0659188b1e8aa25f510e9398a
       url: "https://gitlab.com/famedly/company/frontend/famedlysdk.git"
     source: git
