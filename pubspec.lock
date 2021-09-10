@@ -726,12 +726,12 @@ packages:
     source: git
     version: "0.4.3"
   matrix_api_lite:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: matrix_api_lite
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.3"
+    version: "0.4.2"
   matrix_link_text:
     dependency: "direct main"
     description:

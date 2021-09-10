@@ -177,9 +177,9 @@ class LoginController extends State<Login> {
     final clientSecret = DateTime.now().millisecondsSinceEpoch.toString();
     final response = await showFutureLoadingDialog(
       context: context,
-      future: () => Matrix.of(context).client.requestTokenToResetPasswordEmail(
-            clientSecret,
+      future: () => Matrix.of(context).client.requestEmailToken(
             input.single,
+            clientSecret,
             sendAttempt++,
           ),
     );

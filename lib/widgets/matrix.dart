@@ -168,9 +168,9 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
           final clientSecret =
               Matrix.of(context).client.generateUniqueTransactionId();
           final currentThreepidCreds =
-              await Matrix.of(context).client.requestTokenToRegisterEmail(
-                    clientSecret,
+              await Matrix.of(context).client.requestEmailToken(
                     emailInput.single,
+                    clientSecret,
                     0,
                   );
           final auth = AuthenticationThreePidCreds(
@@ -205,7 +205,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
                 cancelLabel: L10n.of(widget.context).cancel,
               )) {
             return uiaRequest.completeStage(
-              AuthenticationData(session: uiaRequest.session),
+              AuthenticationData(session: uiaRequest.session, type: ''),
             );
           } else {
             return uiaRequest.cancel();
