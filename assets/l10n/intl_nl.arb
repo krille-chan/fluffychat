@@ -1774,7 +1774,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unbanFromChat": "Verwijder verbanning",
+  "unbanFromChat": "Verbanning opheffen",
   "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
@@ -2580,5 +2580,11 @@
   "sendOnEnter": "Verstuur met enter",
   "@sendOnEnter": {},
   "homeserver": "Server",
-  "@homeserver": {}
+  "@homeserver": {},
+  "serverRequiresEmail": "Deze server wil je email laten bevestigen bij de registratie.",
+  "@serverRequiresEmail": {},
+  "newUsernameDescription": "Je persoon-id heeft dan het formaat @naam:server",
+  "@newUsernameDescription": {},
+  "newPasswordDescription": "Om je wachtwoord te kunnen resetten moet je een email toevoegen aan je account.",
+  "@newPasswordDescription": {}
 }
