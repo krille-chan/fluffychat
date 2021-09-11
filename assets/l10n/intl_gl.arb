@@ -1766,7 +1766,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unbanFromChat": "Quitar o veto",
+  "unbanFromChat": "Retirar veto no chat",
   "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
@@ -2581,5 +2581,11 @@
   "sendOnEnter": "Enter para enviar",
   "@sendOnEnter": {},
   "homeserver": "Servidor de inicio",
-  "@homeserver": {}
+  "@homeserver": {},
+  "serverRequiresEmail": "O servidor precisa validar o teu enderezo de email para rexistrarte.",
+  "@serverRequiresEmail": {},
+  "newUsernameDescription": "O ID da túa conta vai ter o formato @usuaria:nomedoservidor",
+  "@newUsernameDescription": {},
+  "newPasswordDescription": "Para poder recuperar o teu contrasinal debes engadir máis tarde un enderezo de email á túa conta.",
+  "@newPasswordDescription": {}
 }
