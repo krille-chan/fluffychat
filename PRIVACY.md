@@ -26,7 +26,7 @@ More information is available at: [https://sentry.io](https://sentry.io)
 ## Database<a id="3"/>
 FluffyChat caches some data received from the server in a local database on the device of the user.
 
-More information is available at: [https://pub.dev/packages/moor](https://pub.dev/packages/moor)
+More information is available at: [https://pub.dev/packages/hive](https://pub.dev/packages/hive)
 
 ## Encryption<a id="4"/>
 All communication of substantive content between Fluffychat and any server is done in secure way, using transport encryption to protect it.
