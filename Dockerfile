@@ -6,9 +6,9 @@ RUN mkdir /fluffychat
 WORKDIR /fluffychat
 
 COPY ./ /fluffychat
-RUN ./scripts/prepare-web.sh
 
-RUN flutter build web --release
+RUN ./scripts/prepare-web.sh
+RUN ./scripts/build-web.sh
 
 FROM nginx:alpine
 
