@@ -1,6 +1,6 @@
 # Based upon https://github.com/Starbix/dockerimages/commit/b0c3e408263a90ee467d30aed0e855a610eb537a
 
-FROM cirrusci/flutter:stable AS builder
+FROM cirrusci/flutter:2.2.3 AS builder
 
 RUN mkdir /fluffychat
 WORKDIR /fluffychat
