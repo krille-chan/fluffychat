@@ -33,9 +33,9 @@ class Settings3PidController extends State<Settings3Pid> {
     final clientSecret = DateTime.now().millisecondsSinceEpoch.toString();
     final response = await showFutureLoadingDialog(
       context: context,
-      future: () => Matrix.of(context).client.requestEmailToken(
-            input.single,
+      future: () => Matrix.of(context).client.requestTokenToRegisterEmail(
             clientSecret,
+            input.single,
             Settings3Pid.sendAttempt++,
           ),
     );

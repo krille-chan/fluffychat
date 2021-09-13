@@ -168,9 +168,9 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
           final clientSecret =
               Matrix.of(context).client.generateUniqueTransactionId();
           final currentThreepidCreds =
-              await Matrix.of(context).client.requestEmailToken(
-                    emailInput.single,
+              await Matrix.of(context).client.requestTokenToRegisterEmail(
                     clientSecret,
+                    emailInput.single,
                     0,
                   );
           final auth = AuthenticationThreePidCreds(

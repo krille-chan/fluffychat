@@ -1,7 +1,7 @@
 name: fluffychat
 description: Chat with your friends.
 publish_to: none
-version: 0.40.0+1
+version: 0.40.1+1
 
 environment:
   sdk: ">=2.6.0 <3.0.0"
@@ -45,11 +45,7 @@ dependencies:
   intl: any
   localstorage: ^4.0.0+1
   lottie: ^1.1.0
-  matrix:
-    git: 
-      url: https://gitlab.com/famedly/company/frontend/famedlysdk.git
-      ref: e13b00d127bc68c0659188b1e8aa25f510e9398a
-  matrix_api_lite: 0.4.2
+  matrix: ^0.5.0
   matrix_link_text: ^1.0.2
   native_imaging:
     git: https://gitlab.com/famedly/libraries/native_imaging.git
@@ -105,4 +101,3 @@ flutter:
         - asset: fonts/NotoSans/NotoSans-BoldItalic.ttf
           weight: 700
           style: italic
-          

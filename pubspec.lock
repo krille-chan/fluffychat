@@ -56,7 +56,7 @@ packages:
       name: async
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.6.1"
+    version: "2.8.1"
   audioplayers:
     dependency: "direct main"
     description:
@@ -105,7 +105,7 @@ packages:
       name: canonical_json
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0"
+    version: "1.1.0"
   characters:
     dependency: transitive
     description:
@@ -119,7 +119,7 @@ packages:
       name: charcode
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.0"
+    version: "1.3.1"
   chewie:
     dependency: "direct main"
     description:
@@ -513,6 +513,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  frontend_server_client:
+    dependency: transitive
+    description:
+      name: frontend_server_client
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.2"
   future_loading_dialog:
     dependency: "direct main"
     description:
@@ -719,19 +726,17 @@ packages:
   matrix:
     dependency: "direct main"
     description:
-      path: "."
-      ref: e13b00d127bc68c0659188b1e8aa25f510e9398a
-      resolved-ref: e13b00d127bc68c0659188b1e8aa25f510e9398a
-      url: "https://gitlab.com/famedly/company/frontend/famedlysdk.git"
-    source: git
-    version: "0.4.3"
+      name: matrix
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.5.0"
   matrix_api_lite:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: matrix_api_lite
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.2"
+    version: "0.4.3"
   matrix_link_text:
     dependency: "direct main"
     description:
@@ -745,7 +750,7 @@ packages:
       name: meta
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.3.0"
+    version: "1.7.0"
   mgrs_dart:
     dependency: transitive
     description:
@@ -1048,7 +1053,7 @@ packages:
       name: random_string
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.0"
+    version: "2.3.1"
   receive_sharing_intent:
     dependency: "direct main"
     description:
@@ -1312,21 +1317,21 @@ packages:
       name: test
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.16.8"
+    version: "1.17.10"
   test_api:
     dependency: transitive
     description:
       name: test_api
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.0"
+    version: "0.4.2"
   test_core:
     dependency: transitive
     description:
       name: test_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.19"
+    version: "0.4.0"
   timezone:
     dependency: transitive
     description:
@@ -1410,7 +1415,7 @@ packages:
       name: unorm_dart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.2"
+    version: "0.2.0"
   url_launcher:
     dependency: "direct main"
     description:
