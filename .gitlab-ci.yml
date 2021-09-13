@@ -19,6 +19,12 @@ code_analyze:
   stage: coverage
   script: [./scripts/code_analyze.sh]
 
+code_analyze_beta:
+  extends: code_analyze
+  image:
+    name: cirrusci/flutter:beta
+  allow_failure: true
+
 test:
   stage: coverage
   script: [flutter test]
@@ -31,6 +37,12 @@ build_web:
   artifacts:
     paths:
       - build/web/
+
+build_web_beta:
+  extends: build_web
+  image:
+    name: cirrusci/flutter:beta
+  allow_failure: true
 
 build_windows:
   extends:
