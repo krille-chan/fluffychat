@@ -79,10 +79,10 @@ class ChatDetailsView extends StatelessWidget {
                       style: TextStyle(
                           color: Theme.of(context)
                               .appBarTheme
-                              .textTheme
-                              .headline6
+                              .titleTextStyle
                               .color)),
-                  backgroundColor: Theme.of(context).appBarTheme.color,
+                  backgroundColor:
+                      Theme.of(context).appBarTheme.backgroundColor,
                   flexibleSpace: FlexibleSpaceBar(
                     background: ContentBanner(room.avatar,
                         onEdit: room.canSendEvent('m.room.avatar')

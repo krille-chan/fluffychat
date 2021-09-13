@@ -168,10 +168,6 @@ build_linux_x86:
 
 build_linux_arm64:
   stage: coverage
-  before_script:
-    - flutter channel stable
-#    - flutter upgrade --force
-    - $(cd $(which flutter | xargs dirname) && git checkout 2.2.3)
   script: [./scripts/build-linux.sh]
   tags: [docker_arm64]
   only:
@@ -315,5 +311,3 @@ docker-branches:
   before_script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   allow_failure: true
-
-

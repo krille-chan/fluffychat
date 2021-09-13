@@ -107,13 +107,11 @@ abstract class FluffyThemes {
     ),
     appBarTheme: AppBarTheme(
       elevation: 2,
-      brightness: Brightness.light,
+      systemOverlayStyle: SystemUiOverlayStyle.dark,
       color: Colors.white,
-      textTheme: TextTheme(
-        headline6: TextStyle(
-          color: Colors.black,
-          fontSize: 20,
-        ),
+      titleTextStyle: TextStyle(
+        color: Colors.black,
+        fontSize: 20,
       ),
       iconTheme: IconThemeData(color: Colors.black),
     ),
@@ -197,13 +195,11 @@ abstract class FluffyThemes {
     snackBarTheme: SnackBarThemeData(behavior: SnackBarBehavior.floating),
     appBarTheme: AppBarTheme(
       elevation: 2,
-      brightness: Brightness.dark,
+      systemOverlayStyle: SystemUiOverlayStyle.light,
       color: Color(0xff1D1D1D),
-      textTheme: TextTheme(
-        headline6: TextStyle(
-          color: Colors.white,
-          fontSize: 20,
-        ),
+      titleTextStyle: TextStyle(
+        color: Colors.white,
+        fontSize: 20,
       ),
       iconTheme: IconThemeData(color: Colors.white),
     ),

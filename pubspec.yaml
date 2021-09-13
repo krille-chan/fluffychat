@@ -9,17 +9,17 @@ environment:
 dependencies:
   adaptive_dialog: ^1.1.0
   adaptive_theme: ^2.2.0
-  audioplayers: ^0.19.1
+  audioplayers: ^0.20.1
   cached_network_image: ^3.1.0
   chewie: ^1.2.2
   cupertino_icons: any
   desktop_notifications: ">=0.4.0 <0.5.0" # Version 0.5.0 breaks web builds: https://github.com/canonical/dbus.dart/issues/250
   email_validator: ^2.0.1
-  emoji_picker_flutter: ^1.0.6
+  emoji_picker_flutter: ^1.0.7
   fcm_shared_isolate:
     git: https://gitlab.com/famedly/libraries/fcm_shared_isolate.git
   file_picker_cross: ^4.4.2
-  filesystem_picker: ^1.0.4
+  filesystem_picker: 2.0.0-nullsafety.0 # Using pre release to be compatible with Flutter 2.5
   flutter:
     sdk: flutter
   flutter_app_badger: ^1.2.0
@@ -30,22 +30,22 @@ dependencies:
   flutter_local_notifications: ^6.0.0
   flutter_localizations:
     sdk: flutter
-  flutter_map: ^0.13.1
+  flutter_map: ^0.14.0
   flutter_matrix_html: ^1.0.2
   flutter_olm: ^1.1.2
   flutter_openssl_crypto: ^0.0.1
   flutter_secure_storage: ^4.2.1
   flutter_slidable: ^0.6.0
   flutter_svg: ^0.22.0
-  flutter_typeahead: ^3.2.0
+  flutter_typeahead: ^3.2.1
   future_loading_dialog: ^0.2.1
-  geolocator: ^7.4.0
+  geolocator: ^7.6.0
   hive_flutter: ^1.1.0
-  image_picker: ^0.8.3+2
+  image_picker: ^0.8.4
   intl: any
   localstorage: ^4.0.0+1
   lottie: ^1.1.0
-  matrix: ^0.5.0
+  matrix: ^0.5.1
   matrix_link_text: ^1.0.2
   native_imaging:
     git: https://gitlab.com/famedly/libraries/native_imaging.git
@@ -61,16 +61,16 @@ dependencies:
   receive_sharing_intent: ^1.4.5
   record: ^3.0.0
   scroll_to_index: ^2.0.0
-  sentry: ^5.1.0
+  sentry: ^6.0.0
   share: ^2.0.4
   slugify: ^2.0.0
   swipe_to_action: ^0.2.0
   uni_links: ^0.5.1
   unifiedpush: ^1.0.6
   universal_html: ^2.0.8
-  url_launcher: ^6.0.9
+  url_launcher: ^6.0.10
   vrouter: 1.2.0+11
-  wakelock: ^0.5.3+3
+  wakelock: ^0.5.4
 
 dev_dependencies:
   dapackages: ^1.6.0

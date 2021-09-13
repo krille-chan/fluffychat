@@ -150,7 +150,7 @@ class ChatListItem extends StatelessWidget {
         room.lastEvent?.senderId == Matrix.of(context).client.userID;
     final unread = room.isUnread || room.membership == Membership.invite;
     final unreadBubbleSize = unread
-        ? room.notificationCount > 0.0
+        ? room.notificationCount > 0
             ? 20.0
             : 14.0
         : 0.0;

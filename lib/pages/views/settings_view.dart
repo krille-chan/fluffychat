@@ -25,7 +25,7 @@ class SettingsView extends StatelessWidget {
             floating: true,
             pinned: true,
             title: Text(L10n.of(context).settings),
-            backgroundColor: Theme.of(context).appBarTheme.color,
+            backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
             flexibleSpace: FlexibleSpaceBar(
               background: ContentBanner(
                 controller.profile?.avatarUrl,
