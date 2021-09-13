@@ -624,7 +624,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "createNewSpace": "Stvori novi prostor",
+  "createNewSpace": "Novi prostor",
   "@createNewSpace": {
     "type": "text",
     "placeholders": {}
@@ -1721,7 +1721,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unbanFromChat": "Ukloni izbacivanje",
+  "unbanFromChat": "Ponovo uključi u chat",
   "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
@@ -2569,5 +2569,23 @@
   "chatHasBeenAddedToThisSpace": "Chat je dodan u ovaj prostor",
   "@chatHasBeenAddedToThisSpace": {},
   "addToSpace": "Dodaj u prostor",
-  "@addToSpace": {}
+  "@addToSpace": {},
+  "newUsernameDescription": "Tvoj će korisnički ID tada biti u obliku @korisničkoime:imeposlužitelja",
+  "@newUsernameDescription": {},
+  "newPasswordDescription": "Za omogućavanje obnavljanja lozinke, svom računu kasnije dodaj e-mail adresu.",
+  "@newPasswordDescription": {},
+  "createNewChatExplaination": "Jednostavno snimi QR kod ili dijeli poveznicu za pozivnicu ako niste jedan blizu drugog.",
+  "@createNewChatExplaination": {},
+  "serverRequiresEmail": "Za registraciju ovaj poslužitelj mora potvrditi tvoju e-mail adresu.",
+  "@serverRequiresEmail": {},
+  "scanQrCode": "Snimi QR kod",
+  "@scanQrCode": {},
+  "typeInInviteLinkManually": "Upiši poveznicu za pozivnicu …",
+  "@typeInInviteLinkManually": {},
+  "shareYourInviteLink": "Dijeli svoju poveznicu za pozivnicu",
+  "@shareYourInviteLink": {},
+  "homeserver": "Domaći poslužitelj",
+  "@homeserver": {},
+  "sendOnEnter": "Pošalji pritiskom tipke enter",
+  "@sendOnEnter": {}
 }
