@@ -22,7 +22,11 @@ dependencies:
   filesystem_picker: 2.0.0-nullsafety.0 # Using pre release to be compatible with Flutter 2.5
   flutter:
     sdk: flutter
-  flutter_app_badger: ^1.2.0
+  # From this fix: https://github.com/g123k/flutter_app_badger/pull/47
+  flutter_app_badger:
+    git:
+      url: https://github.com/SuaMusica/flutter_app_badger.git
+      ref: feature/androidV2
   flutter_app_lock: ^2.0.0
   flutter_blurhash: ^0.6.0
   flutter_cache_manager: ^3.1.2

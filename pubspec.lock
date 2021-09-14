@@ -354,9 +354,11 @@ packages:
   flutter_app_badger:
     dependency: "direct main"
     description:
-      name: flutter_app_badger
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "."
+      ref: "feature/androidV2"
+      resolved-ref: "97f6daaed1a2685f9821d7736966632df90c8c0d"
+      url: "https://github.com/SuaMusica/flutter_app_badger.git"
+    source: git
     version: "1.2.0"
   flutter_app_lock:
     dependency: "direct main"
