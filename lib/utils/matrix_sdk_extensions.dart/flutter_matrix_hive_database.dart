@@ -91,7 +91,7 @@ class FlutterMatrixHiveStore extends FamedlySdkHiveDatabase {
       await db.open();
     } catch (e, s) {
       Logs().e('Unable to open Hive. Delete and try again...', e, s);
-      await Hive.deleteFromDisk();
+      await db.clear(client.id);
       await db.open();
     }
     Logs().i('Hive database is ready!');
