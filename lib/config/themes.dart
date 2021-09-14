@@ -108,7 +108,7 @@ abstract class FluffyThemes {
     appBarTheme: AppBarTheme(
       elevation: 2,
       systemOverlayStyle: SystemUiOverlayStyle.dark,
-      color: Colors.white,
+      backgroundColor: Colors.white,
       titleTextStyle: TextStyle(
         color: Colors.black,
         fontSize: 20,
@@ -196,7 +196,7 @@ abstract class FluffyThemes {
     appBarTheme: AppBarTheme(
       elevation: 2,
       systemOverlayStyle: SystemUiOverlayStyle.light,
-      color: Color(0xff1D1D1D),
+      backgroundColor: Color(0xff1D1D1D),
       titleTextStyle: TextStyle(
         color: Colors.white,
         fontSize: 20,
