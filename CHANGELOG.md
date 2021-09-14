@@ -1,4 +1,9 @@
-## v0.40.0 - 2021-09-10
+## v0.40.1 - 2021-09-14
+Minor bug fixes.
+
+## v0.40.0 - 2021-09-13
+This release contains a security fix. Red more about it here: https://matrix.org/blog/2021/09/13/vulnerability-disclosure-key-sharing
+
 - New in-app registration
 - Design improvements
 - Minor fixes
