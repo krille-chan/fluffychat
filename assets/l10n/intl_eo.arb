@@ -623,7 +623,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "createNewSpace": "Krei novan aron",
+  "createNewSpace": "Nova aro",
   "@createNewSpace": {
     "type": "text",
     "placeholders": {}
@@ -2553,5 +2553,7 @@
     "placeholder": {}
   },
   "addToSpace": "Aldoni al aro",
-  "@addToSpace": {}
+  "@addToSpace": {},
+  "homeserver": "Hejmservilo",
+  "@homeserver": {}
 }
