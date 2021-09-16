@@ -234,7 +234,7 @@ class EmotesSettingsController extends State<EmotesSettings> {
           }
         }
         controller.value = ImagePackImageContent.fromJson(<String, dynamic>{
-          'url': uploadResp.result,
+          'url': uploadResp.result.toString(),
           'info': info,
         });
       });
