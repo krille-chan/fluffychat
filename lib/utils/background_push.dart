@@ -519,7 +519,8 @@ class BackgroundPush {
           });
           if (!syncErrored) {
             emptyRooms = client.rooms
-                .where((r) => r.notificationCount == 0)
+                .where((r) =>
+                    r.notificationCount == 0 || r.notificationCount == null)
                 .map((r) => r.id);
           }
         }
@@ -538,13 +539,15 @@ class BackgroundPush {
                 '[Push] failed to fetch pending notifications for clearing push, falling back...',
                 e);
             emptyRooms = client.rooms
-                .where((r) => r.notificationCount == 0)
+                .where((r) =>
+                    r.notificationCount == 0 || r.notificationCount == null)
                 .map((r) => r.id);
           }
         }
       } else {
         emptyRooms = client.rooms
-            .where((r) => r.notificationCount == 0)
+            .where(
+                (r) => r.notificationCount == 0 || r.notificationCount == null)
             .map((r) => r.id);
       }
       await _loadIdMap();
@@ -580,7 +583,8 @@ class BackgroundPush {
     if (((activeRoomId?.isNotEmpty ?? false) &&
             activeRoomId == room.id &&
             client.syncPresence == null) ||
-        (event != null && room.notificationCount == 0)) {
+        (event != null &&
+            (room.notificationCount == 0 || room.notificationCount == null))) {
       return;
     }
 
@@ -589,10 +593,11 @@ class BackgroundPush {
 
     // Count all unread events
     var unreadEvents = 0;
-    client.rooms.forEach((Room room) => unreadEvents += room.notificationCount);
+    client.rooms
+        .forEach((Room room) => unreadEvents += room.notificationCount ?? 0);
 
     // Calculate title
-    final title = l10n.unreadMessages(room.notificationCount);
+    final title = l10n.unreadMessages(room.notificationCount ?? 0);
 
     // Calculate the body
     final body = event.getLocalizedBody(
