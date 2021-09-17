@@ -2336,7 +2336,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "oopsSomethingWentWrong": "Hoips, chuaigh rud éigin mícheart …",
+  "oopsSomethingWentWrong": "Úps, chuaigh rud éigin mícheart …",
   "@oopsSomethingWentWrong": {
     "type": "text",
     "placeholders": {}
@@ -2393,7 +2393,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "newUsernameDescription": "Ansin beidh an fhormáid @username:servername ag d'aitheantas úsáideora",
+  "newUsernameDescription": "Ansin beidh an fhormáid @ainmúsáideora:ainmfreastalaí ag d'aitheantas úsáideora",
   "@newUsernameDescription": {},
   "newPasswordDescription": "D'fhonn a bheith in ann do phasfhocal a ghnóthú, ba cheart duit seoladh ríomhphoist a chur le do chuntas ina dhiaidh sin.",
   "@newPasswordDescription": {},
