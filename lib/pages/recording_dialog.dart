@@ -10,7 +10,7 @@ import 'package:record/record.dart';
 import 'package:wakelock/wakelock.dart';
 
 class RecordingDialog extends StatefulWidget {
-  static const String recordingFileType = 'aac';
+  static const String recordingFileType = 'm4a';
   const RecordingDialog({
     Key key,
   }) : super(key: key);
