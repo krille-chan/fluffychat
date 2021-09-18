@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -202,6 +203,9 @@ abstract class FluffyThemes {
         fontSize: 20,
       ),
       iconTheme: IconThemeData(color: Colors.white),
+    ),
+    cupertinoOverrideTheme: const CupertinoThemeData(
+      textTheme: CupertinoTextThemeData(),
     ),
   );
 
