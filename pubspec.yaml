@@ -78,9 +78,15 @@ dependencies:
 
 dev_dependencies:
   dapackages: ^1.6.0
+  flutter_native_splash: ^1.2.3
   flutter_test:
     sdk: flutter
   pedantic: ^1.11.1
+
+flutter_native_splash:
+  color: "#ffffff"
+  color_dark: "#000000"
+  image: "assets/info-logo.png"
 
 flutter:
   generate: true
