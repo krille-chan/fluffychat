@@ -419,15 +419,13 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         _cancelSubs(c.clientName);
         widget.clients.remove(c);
       }
-      if (loggedInWithMultipleClients) {
-        // TODO: display a nicer toast
-        showOkAlertDialog(
-          useRootNavigator: false,
-          context: navigatorContext,
-          title: 'Login state of client $name changed',
-          message: 'New login state: $state',
-          okLabel: L10n.of(widget.context).ok,
+      if (loggedInWithMultipleClients && state != LoginState.loggedIn) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(L10n.of(context).oneClientLoggedOut),
+          ),
         );
+
         if (state != LoginState.loggedIn) {
           widget.router.currentState.to(
             '/rooms',

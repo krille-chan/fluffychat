@@ -1557,6 +1557,7 @@
     "placeholders": {}
   },
   "openCamera": "Open camera",
+  "oneClientLoggedOut": "One of your clients has been logged out",
   "@openCamera": {
     "type": "text",
     "placeholders": {}
