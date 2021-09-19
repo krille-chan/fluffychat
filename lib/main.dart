@@ -2,7 +2,7 @@
 import 'dart:async';
 
 import 'package:adaptive_theme/adaptive_theme.dart';
-import 'package:matrix/encryption/utils/key_verification.dart';
+import 'package:fluffychat/utils/client_manager.dart';
 import 'package:matrix/matrix.dart';
 import 'package:fluffychat/config/routes.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -18,8 +18,6 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:vrouter/vrouter.dart';
 
-import 'utils/matrix_sdk_extensions.dart/flutter_matrix_hive_database.dart';
-import 'widgets/layouts/wait_for_login.dart';
 import 'widgets/lock_screen.dart';
 import 'widgets/matrix.dart';
 import 'config/themes.dart';
@@ -35,27 +33,10 @@ void main() async {
   FlutterError.onError = (FlutterErrorDetails details) =>
       Zone.current.handleUncaughtError(details.exception, details.stack);
 
-  final client = Client(
-    PlatformInfos.clientName,
-    enableE2eeRecovery: true,
-    verificationMethods: {
-      KeyVerificationMethod.numbers,
-      if (PlatformInfos.isMobile || PlatformInfos.isLinux)
-        KeyVerificationMethod.emoji,
-    },
-    importantStateEvents: <String>{
-      'im.ponies.room_emotes', // we want emotes to work properly
-    },
-    databaseBuilder: FlutterMatrixHiveStore.hiveDatabaseBuilder,
-    supportedLoginTypes: {
-      AuthenticationTypes.password,
-      if (PlatformInfos.isMobile || PlatformInfos.isWeb) AuthenticationTypes.sso
-    },
-    compute: compute,
-  );
+  final clients = await ClientManager.getClients();
 
   if (PlatformInfos.isMobile) {
-    BackgroundPush.clientOnly(client);
+    BackgroundPush.clientOnly(clients.first);
   }
 
   final queryParameters = <String, String>{};
@@ -68,24 +49,24 @@ void main() async {
     () => runApp(PlatformInfos.isMobile
         ? AppLock(
             builder: (args) => FluffyChatApp(
-              client: client,
+              clients: clients,
               queryParameters: queryParameters,
             ),
             lockScreen: LockScreen(),
             enabled: false,
           )
-        : FluffyChatApp(client: client, queryParameters: queryParameters)),
+        : FluffyChatApp(clients: clients, queryParameters: queryParameters)),
     SentryController.captureException,
   );
 }
 
 class FluffyChatApp extends StatefulWidget {
   final Widget testWidget;
-  final Client client;
+  final List<Client> clients;
   final Map<String, String> queryParameters;
 
   const FluffyChatApp(
-      {Key key, this.testWidget, @required this.client, this.queryParameters})
+      {Key key, this.testWidget, @required this.clients, this.queryParameters})
       : super(key: key);
 
   /// getInitialLink may rereturn the value multiple times if this view is
@@ -101,7 +82,15 @@ class _FluffyChatAppState extends State<FluffyChatApp> {
   final GlobalKey<MatrixState> _matrix = GlobalKey<MatrixState>();
   GlobalKey<VRouterState> _router;
   bool columnMode;
-  String _initialUrl = '/';
+  String _initialUrl;
+
+  @override
+  void initState() {
+    super.initState();
+    _initialUrl =
+        widget.clients.any((client) => client.isLogged()) ? '/rooms' : '/home';
+  }
+
   @override
   Widget build(BuildContext context) {
     return AdaptiveTheme(
@@ -159,8 +148,8 @@ class _FluffyChatAppState extends State<FluffyChatApp> {
                 key: _matrix,
                 context: context,
                 router: _router,
-                client: widget.client,
-                child: WaitForInitPage(child),
+                clients: widget.clients,
+                child: child,
               );
             },
           );

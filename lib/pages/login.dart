@@ -64,7 +64,7 @@ class LoginController extends State<Login> {
       } else {
         identifier = AuthenticationUserIdentifier(user: username);
       }
-      await matrix.client.login(LoginType.mLoginPassword,
+      await matrix.getLoginClient().login(LoginType.mLoginPassword,
           identifier: identifier,
           // To stay compatible with older server versions
           // ignore: deprecated_member_use
@@ -98,12 +98,13 @@ class LoginController extends State<Login> {
     setState(() => usernameError = null);
     if (!userId.isValidMatrixId) return;
     try {
-      final oldHomeserver = Matrix.of(context).client.homeserver;
+      final oldHomeserver = Matrix.of(context).getLoginClient().homeserver;
       var newDomain = Uri.https(userId.domain, '');
-      Matrix.of(context).client.homeserver = newDomain;
+      Matrix.of(context).getLoginClient().homeserver = newDomain;
       DiscoveryInformation wellKnownInformation;
       try {
-        wellKnownInformation = await Matrix.of(context).client.getWellknown();
+        wellKnownInformation =
+            await Matrix.of(context).getLoginClient().getWellknown();
         if (wellKnownInformation.mHomeserver?.baseUrl?.toString()?.isNotEmpty ??
             false) {
           newDomain = wellKnownInformation.mHomeserver.baseUrl;
@@ -120,8 +121,8 @@ class LoginController extends State<Login> {
               .checkHomeserver(newDomain)
               .catchError((e) => null),
         );
-        if (Matrix.of(context).client.homeserver == null) {
-          Matrix.of(context).client.homeserver = oldHomeserver;
+        if (Matrix.of(context).getLoginClient().homeserver == null) {
+          Matrix.of(context).getLoginClient().homeserver = oldHomeserver;
           // okay, the server we checked does not appear to be a matrix server
           Logs().v(
               '$newDomain is not running a homeserver, asking to use $oldHomeserver');
@@ -178,11 +179,12 @@ class LoginController extends State<Login> {
         Matrix.of(context).client.generateUniqueTransactionId();
     final response = await showFutureLoadingDialog(
       context: context,
-      future: () => Matrix.of(context).client.requestTokenToResetPasswordEmail(
-            clientSecret,
-            input.single,
-            sendAttempt++,
-          ),
+      future: () =>
+          Matrix.of(context).getLoginClient().requestTokenToResetPasswordEmail(
+                clientSecret,
+                input.single,
+                sendAttempt++,
+              ),
     );
     if (response.error != null) return;
     final ok = await showOkAlertDialog(
@@ -211,7 +213,7 @@ class LoginController extends State<Login> {
     if (password == null) return;
     final success = await showFutureLoadingDialog(
       context: context,
-      future: () => Matrix.of(context).client.changePassword(
+      future: () => Matrix.of(context).getLoginClient().changePassword(
             password.single,
             auth: AuthenticationThreePidCreds(
               type: AuthenticationTypes.emailIdentity,

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:convert';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:fluffychat/utils/client_manager.dart';
 import 'package:matrix/encryption.dart';
 import 'package:matrix/matrix.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
@@ -23,6 +24,7 @@ import '../pages/key_verification_dialog.dart';
 import '../utils/platform_infos.dart';
 import '../config/app_config.dart';
 import '../config/setting_keys.dart';
+import '../utils/account_bundles.dart';
 import '../utils/background_push.dart';
 import 'package:vrouter/vrouter.dart';
 
@@ -35,7 +37,7 @@ class Matrix extends StatefulWidget {
 
   final BuildContext context;
 
-  final Client client;
+  final List<Client> clients;
 
   final Map<String, String> queryParameters;
 
@@ -43,7 +45,7 @@ class Matrix extends StatefulWidget {
     this.child,
     @required this.router,
     @required this.context,
-    @required this.client,
+    @required this.clients,
     this.queryParameters,
     Key key,
   }) : super(key: key);
@@ -57,11 +59,97 @@ class Matrix extends StatefulWidget {
 }
 
 class MatrixState extends State<Matrix> with WidgetsBindingObserver {
-  Client get client => widget.client;
+  int activeClient = 0;
+  String activeBundle;
   Store store = Store();
   BuildContext navigatorContext;
 
   BackgroundPush _backgroundPush;
+
+  Client get client => widget.clients[_safeActiveClient];
+
+  bool get isMultiAccount => widget.clients.length > 1;
+
+  int getClientIndexByMatrixId(String matrixId) =>
+      widget.clients.indexWhere((client) => client.userID == matrixId);
+
+  int get _safeActiveClient {
+    if (activeClient < 0 || activeClient >= widget.clients.length) {
+      return 0;
+    }
+    return activeClient;
+  }
+
+  void setActiveClient(Client cl) {
+    final i = widget.clients.indexWhere((c) => c == cl);
+    if (i != null) {
+      activeClient = i;
+    } else {
+      Logs().w('Tried to set an unknown client ${cl.userID} as active');
+    }
+  }
+
+  List<Client> get currentBundle {
+    if (!hasComplexBundles) {
+      return List.from(widget.clients);
+    }
+    final bundles = accountBundles;
+    if (bundles.containsKey(activeBundle)) {
+      return bundles[activeBundle];
+    }
+    return bundles.values.first;
+  }
+
+  Map<String, List<Client>> get accountBundles {
+    final resBundles = <String, List<_AccountBundleWithClient>>{};
+    for (var i = 0; i < widget.clients.length; i++) {
+      final bundles = widget.clients[i].accountBundles;
+      for (final bundle in bundles) {
+        if (bundle.name == null) {
+          continue;
+        }
+        resBundles[bundle.name] ??= [];
+        resBundles[bundle.name].add(_AccountBundleWithClient(
+          client: widget.clients[i],
+          bundle: bundle,
+        ));
+      }
+    }
+    for (final b in resBundles.values) {
+      b.sort((a, b) => a.bundle.priority == null
+          ? 1
+          : b.bundle.priority == null
+              ? -1
+              : a.bundle.priority.compareTo(b.bundle.priority));
+    }
+    return resBundles
+        .map((k, v) => MapEntry(k, v.map((vv) => vv.client).toList()));
+  }
+
+  bool get hasComplexBundles => accountBundles.values.any((v) => v.length > 1);
+
+  Client _loginClientCandidate;
+
+  Client getLoginClient() {
+    final multiAccount = client.isLogged();
+    if (!multiAccount) return client;
+    _loginClientCandidate ??= ClientManager.createClient(
+        client.generateUniqueTransactionId())
+      ..onLoginStateChanged
+          .stream
+          .where((l) => l == LoginState.loggedIn)
+          .first
+          .then((_) {
+        widget.clients.add(_loginClientCandidate);
+        ClientManager.addClientNameToStore(_loginClientCandidate.clientName);
+        _registerSubs(_loginClientCandidate.clientName);
+        widget.router.currentState.to('/rooms');
+      });
+    return _loginClientCandidate;
+  }
+
+  Client getClientByName(String name) => widget.clients
+      .firstWhere((c) => c.clientName == name, orElse: () => null);
 
   Map<String, dynamic> get shareContent => _shareContent;
   set shareContent(Map<String, dynamic> content) {
@@ -78,8 +166,8 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
   void _initWithStore() async {
     try {
-      await client.init();
       if (client.isLogged()) {
+        // TODO: Figure out how this works in multi account
         final statusMsg = await store.getItem(SettingKeys.ownStatusMessage);
         if (statusMsg?.isNotEmpty ?? false) {
           Logs().v('Send cached status message: "$statusMsg"');
@@ -97,15 +185,15 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     }
   }
 
-  StreamSubscription onRoomKeyRequestSub;
-  StreamSubscription onKeyVerificationRequestSub;
-  StreamSubscription onJitsiCallSub;
-  StreamSubscription onNotification;
-  StreamSubscription<LoginState> onLoginStateChanged;
-  StreamSubscription<UiaRequest> onUiaRequest;
+  final onRoomKeyRequestSub = <String, StreamSubscription>{};
+  final onKeyVerificationRequestSub = <String, StreamSubscription>{};
+  final onJitsiCallSub = <String, StreamSubscription>{};
+  final onNotification = <String, StreamSubscription>{};
+  final onLoginStateChanged = <String, StreamSubscription<LoginState>>{};
+  final onUiaRequest = <String, StreamSubscription<UiaRequest>>{};
   StreamSubscription<html.Event> onFocusSub;
   StreamSubscription<html.Event> onBlurSub;
-  StreamSubscription<Presence> onOwnPresence;
+  final onOwnPresence = <String, StreamSubscription<Presence>>{};
 
   String _cachedPassword;
   String get cachedPassword {
@@ -165,14 +253,12 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
             return uiaRequest
                 .cancel(Exception(L10n.of(context).serverRequiresEmail));
           }
-          final clientSecret =
-              Matrix.of(context).client.generateUniqueTransactionId();
-          final currentThreepidCreds =
-              await Matrix.of(context).client.requestTokenToRegisterEmail(
-                    clientSecret,
-                    emailInput.single,
-                    0,
-                  );
+          final clientSecret = client.generateUniqueTransactionId();
+          final currentThreepidCreds = await client.requestTokenToRegisterEmail(
+            clientSecret,
+            emailInput.single,
+            0,
+          );
           final auth = AuthenticationThreePidCreds(
             session: uiaRequest.session,
             type: AuthenticationTypes.emailIdentity,
@@ -289,21 +375,14 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     }
   }
 
-  LoginState loginState;
-
-  void initMatrix() {
-    // Display the app lock
-    if (PlatformInfos.isMobile) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        FlutterSecureStorage().read(key: SettingKeys.appLockKey).then((lock) {
-          if (lock?.isNotEmpty ?? false) {
-            AppLock.of(widget.context).enable();
-            AppLock.of(widget.context).showLockScreen();
-          }
-        });
-      });
+  void _registerSubs(String name) {
+    final c = getClientByName(name);
+    if (c == null) {
+      Logs().w(
+          'Attempted to register subscriptions for non-existing client $name');
+      return;
     }
-    onKeyVerificationRequestSub ??= client.onKeyVerificationRequest.stream
+    onKeyVerificationRequestSub[name] ??= c.onKeyVerificationRequest.stream
         .listen((KeyVerification request) async {
       var hidPopup = false;
       request.onUpdate = () {
@@ -334,50 +413,94 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         await request.rejectVerification();
       }
     });
-    _initWithStore();
-
-    if (kIsWeb) {
-      onFocusSub = html.window.onFocus.listen((_) => webHasFocus = true);
-      onBlurSub = html.window.onBlur.listen((_) => webHasFocus = false);
-    }
-    onLoginStateChanged ??= client.onLoginStateChanged.stream.listen((state) {
-      if (loginState != state) {
-        loginState = state;
-        final isInLoginRoutes = {'/home', '/login', '/signup'}
-            .contains(widget.router.currentState.url);
-        if (widget.router.currentState.url == '/' ||
-            (state == LoginState.loggedIn) == isInLoginRoutes) {
+    onLoginStateChanged[name] ??= c.onLoginStateChanged.stream.listen((state) {
+      final loggedInWithMultipleClients = widget.clients.length > 1;
+      if (state != LoginState.loggedIn) {
+        _cancelSubs(c.clientName);
+        widget.clients.remove(c);
+      }
+      if (loggedInWithMultipleClients) {
+        // TODO: display a nicer toast
+        showOkAlertDialog(
+          useRootNavigator: false,
+          context: navigatorContext,
+          title: 'Login state of client $name changed',
+          message: 'New login state: $state',
+          okLabel: L10n.of(widget.context).ok,
+        );
+        if (state != LoginState.loggedIn) {
           widget.router.currentState.to(
-            loginState == LoginState.loggedIn ? '/rooms' : '/home',
+            '/rooms',
             queryParameters: widget.router.currentState.queryParameters,
           );
         }
+      } else {
+        widget.router.currentState.to(
+          state == LoginState.loggedIn ? '/rooms' : '/home',
+          queryParameters: widget.router.currentState.queryParameters,
+        );
       }
     });
-
     // Cache and resend status message
-    onOwnPresence ??= client.onPresence.stream.listen((presence) {
-      if (client.isLogged() &&
-          client.userID == presence.senderId &&
+    onOwnPresence[name] ??= c.onPresence.stream.listen((presence) {
+      if (c.isLogged() &&
+          c.userID == presence.senderId &&
           presence.presence?.statusMsg != null) {
         Logs().v('Update status message: "${presence.presence.statusMsg}"');
         store.setItem(
             SettingKeys.ownStatusMessage, presence.presence.statusMsg);
       }
     });
-
-    onUiaRequest ??= client.onUiaRequest.stream.listen(_onUiaRequest);
+    onUiaRequest[name] ??= c.onUiaRequest.stream.listen(_onUiaRequest);
     if (PlatformInfos.isWeb || PlatformInfos.isLinux) {
-      client.onSync.stream.first.then((s) {
+      c.onSync.stream.first.then((s) {
         html.Notification.requestPermission();
-        onNotification ??= client.onEvent.stream
+        onNotification[name] ??= c.onEvent.stream
             .where((e) =>
                 e.type == EventUpdateType.timeline &&
                 [EventTypes.Message, EventTypes.Sticker, EventTypes.Encrypted]
                     .contains(e.content['type']) &&
-                e.content['sender'] != client.userID)
+                e.content['sender'] != c.userID)
             .listen(_showLocalNotification);
       });
+    }
+  }
+
+  void _cancelSubs(String name) {
+    onRoomKeyRequestSub[name]?.cancel();
+    onRoomKeyRequestSub.remove(name);
+    onKeyVerificationRequestSub[name]?.cancel();
+    onKeyVerificationRequestSub.remove(name);
+    onLoginStateChanged[name]?.cancel();
+    onLoginStateChanged.remove(name);
+    onOwnPresence[name]?.cancel();
+    onOwnPresence.remove(name);
+    onNotification[name]?.cancel();
+    onNotification.remove(name);
+  }
+
+  void initMatrix() {
+    // Display the app lock
+    if (PlatformInfos.isMobile) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        FlutterSecureStorage().read(key: SettingKeys.appLockKey).then((lock) {
+          if (lock?.isNotEmpty ?? false) {
+            AppLock.of(widget.context).enable();
+            AppLock.of(widget.context).showLockScreen();
+          }
+        });
+      });
+    }
+
+    _initWithStore();
+
+    for (final c in widget.clients) {
+      _registerSubs(c.clientName);
+    }
+
+    if (kIsWeb) {
+      onFocusSub = html.window.onFocus.listen((_) => webHasFocus = true);
+      onBlurSub = html.window.onBlur.listen((_) => webHasFocus = false);
     }
 
     if (PlatformInfos.isMobile) {
@@ -445,11 +568,12 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
 
-    onRoomKeyRequestSub?.cancel();
-    onKeyVerificationRequestSub?.cancel();
-    onLoginStateChanged?.cancel();
-    onOwnPresence?.cancel();
-    onNotification?.cancel();
+    onRoomKeyRequestSub.values.map((s) => s.cancel());
+    onKeyVerificationRequestSub.values.map((s) => s.cancel());
+    onLoginStateChanged.values.map((s) => s.cancel());
+    onOwnPresence.values.map((s) => s.cancel());
+    onNotification.values.map((s) => s.cancel());
+
     onFocusSub?.cancel();
     onBlurSub?.cancel();
     _backgroundPush?.onLogin?.cancel();
@@ -490,4 +614,10 @@ class FixedThreepidCreds extends ThreepidCreds {
     if (idAccessToken != null) data['id_access_token'] = idAccessToken;
     return data;
   }
+}
+
+class _AccountBundleWithClient {
+  final Client client;
+  final AccountBundle bundle;
+  _AccountBundleWithClient({this.client, this.bundle});
 }

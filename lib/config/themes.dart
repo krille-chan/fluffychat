@@ -8,6 +8,8 @@ import 'app_config.dart';
 
 abstract class FluffyThemes {
   static const double columnWidth = 360.0;
+  static bool isColumnMode(BuildContext context) =>
+      MediaQuery.of(context).size.width > columnWidth * 2;
 
   static const fallbackTextStyle =
       TextStyle(fontFamily: 'NotoSans', fontFamilyFallback: ['NotoEmoji']);

@@ -19,7 +19,7 @@ class LoginView extends StatelessWidget {
           elevation: 0,
           title: Text(
             L10n.of(context).logInTo(Matrix.of(context)
-                .client
+                .getLoginClient()
                 .homeserver
                 .toString()
                 .replaceFirst('https://', '')),

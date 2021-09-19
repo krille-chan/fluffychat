@@ -37,7 +37,7 @@ class SignupPageController extends State<SignupPage> {
     setState(() => loading = true);
 
     try {
-      final client = Matrix.of(context).client;
+      final client = Matrix.of(context).getLoginClient();
       await client.uiaRequestBackground(
         (auth) => client.register(
           username: usernameController.text,
