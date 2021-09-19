@@ -49,11 +49,11 @@ class UserDeviceListItem extends StatelessWidget {
               key: UserDeviceListItemAction.rename,
               label: L10n.of(context).changeDeviceName,
             ),
-            SheetAction(
-              key: UserDeviceListItemAction.verify,
-              label: L10n.of(context).verifyStart,
-            ),
             if (keys != null) ...{
+              SheetAction(
+                key: UserDeviceListItemAction.verify,
+                label: L10n.of(context).verifyStart,
+              ),
               if (!keys.blocked)
                 SheetAction(
                   key: UserDeviceListItemAction.block,
@@ -66,12 +66,12 @@ class UserDeviceListItem extends StatelessWidget {
                   label: L10n.of(context).unblockDevice,
                   isDestructiveAction: true,
                 ),
-              SheetAction(
-                key: UserDeviceListItemAction.remove,
-                label: L10n.of(context).delete,
-                isDestructiveAction: true,
-              ),
             },
+            SheetAction(
+              key: UserDeviceListItemAction.remove,
+              label: L10n.of(context).delete,
+              isDestructiveAction: true,
+            ),
           ],
         );
         switch (action) {
