@@ -174,7 +174,8 @@ class LoginController extends State<Login> {
       ],
     );
     if (input == null) return;
-    final clientSecret = DateTime.now().millisecondsSinceEpoch.toString();
+    final clientSecret =
+        Matrix.of(context).client.generateUniqueTransactionId();
     final response = await showFutureLoadingDialog(
       context: context,
       future: () => Matrix.of(context).client.requestTokenToResetPasswordEmail(
@@ -216,7 +217,7 @@ class LoginController extends State<Login> {
               type: AuthenticationTypes.emailIdentity,
               threepidCreds: [
                 ThreepidCreds(
-                  sid: (response as RequestTokenResponse).sid,
+                  sid: response.result.sid,
                   clientSecret: clientSecret,
                 ),
               ],
