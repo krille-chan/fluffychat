@@ -140,10 +140,10 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
           .where((l) => l == LoginState.loggedIn)
           .first
           .then((_) {
-        _loginClientCandidate = null;
         widget.clients.add(_loginClientCandidate);
         ClientManager.addClientNameToStore(_loginClientCandidate.clientName);
         _registerSubs(_loginClientCandidate.clientName);
+        _loginClientCandidate = null;
         widget.router.currentState.to('/rooms');
       });
     return _loginClientCandidate;
