@@ -331,7 +331,7 @@ class ChatListView extends StatelessWidget {
                                     showSelectedLabels: true,
                                     type: BottomNavigationBarType.shifting,
                                     selectedItemColor:
-                                        Theme.of(context).primaryColor,
+                                        Theme.of(context).colorScheme.secondary,
                                     items: items,
                                   ),
                                 ),
@@ -374,8 +374,7 @@ class ChatListView extends StatelessWidget {
                                 selectedTileColor:
                                     Theme.of(context).secondaryHeaderColor,
                                 leading: CircleAvatar(
-                                  foregroundColor:
-                                      Theme.of(context).secondaryHeaderColor,
+                                  foregroundColor: Colors.white,
                                   backgroundColor:
                                       Theme.of(context).primaryColor,
                                   radius: Avatar.defaultSize / 2,
