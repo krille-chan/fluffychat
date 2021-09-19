@@ -1,3 +1,15 @@
+## v0.41.0 - 2021-09-14
+This release features a lot of bug fixes and the new multi account feature which also include account bundles.
+- feat: Multiple accounts
+- feat: New splash screen
+- fix: Password reset
+- fix: Dark text in cupertinodialogs
+- fix: Voice messages on iOS
+- fix: Emote settings
+- chore: update flutter_matrix_html, Matrix Dart SDK and other libraries
+- chore: Update to Flutter 2.5.1
+- chore: Updated translations
+
 ## v0.40.1 - 2021-09-14
 Minor bug fixes.
 
