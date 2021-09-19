@@ -14,6 +14,7 @@ class EmptyPage extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         elevation: 0,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
       extendBodyBehindAppBar: true,
       body: Column(
