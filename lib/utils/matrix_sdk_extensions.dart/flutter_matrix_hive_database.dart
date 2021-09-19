@@ -49,11 +49,6 @@ class FlutterMatrixHiveStore extends FamedlySdkHiveDatabase {
       Client client) async {
     if (!kIsWeb && !_hiveInitialized) {
       Logs().i('Init Hive database...');
-      if (PlatformInfos.isLinux) {
-        Hive.init((await getApplicationSupportDirectory()).path);
-      } else {
-        await Hive.initFlutter();
-      }
       _hiveInitialized = true;
     }
     HiveCipher hiverCipher;
