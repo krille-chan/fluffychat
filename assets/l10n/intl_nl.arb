@@ -199,7 +199,7 @@
       "targetName": {}
     }
   },
-  "blockDevice": "Blokkeer Apparaat",
+  "blockDevice": "Apparaat blokkeren",
   "@blockDevice": {
     "type": "text",
     "placeholders": {}
@@ -231,7 +231,7 @@
       "uri": {}
     }
   },
-  "changeDeviceName": "Wijzig de apparaatnaam",
+  "changeDeviceName": "Apparaatnaam wijzigen",
   "@changeDeviceName": {
     "type": "text",
     "placeholders": {}
@@ -526,12 +526,12 @@
     },
     "description": "State that {command} is not a valid /command."
   },
-  "compareEmojiMatch": "Vergelijk en zorg ervoor dat de volgende emoji overeenkomen met die van het andere apparaat:",
+  "compareEmojiMatch": "Vergelijk of de volgende emoji overeenkomen met die van het andere apparaat:",
   "@compareEmojiMatch": {
     "type": "text",
     "placeholders": {}
   },
-  "compareNumbersMatch": "Vergelijk en zorg ervoor dat de volgende nummers overeenkomen met die van het andere apparaat:",
+  "compareNumbersMatch": "Vergelijk of de volgende nummers overeenkomen met die van het andere apparaat:",
   "@compareNumbersMatch": {
     "type": "text",
     "placeholders": {}
@@ -727,7 +727,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "deviceId": "Apparaat ID",
+  "deviceId": "Apparaat-ID",
   "@deviceId": {
     "type": "text",
     "placeholders": {}
@@ -2114,7 +2114,7 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "Start nu je eerste chat! 🙂\n- Tik op de chat-knop\n- Voer de gebruikersnaam van een vriend in\n- Veel plezier met chatten",
+  "startYourFirstChat": "Start nu je eerste chat! 🙂\n- Tik op de chat-knop\n- Voer de persoon-id van een vriend in\n- Veel plezier met chatten",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -2387,7 +2387,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "verifyStart": "Start de verificatie",
+  "verifyStart": "Verificatie starten",
   "@verifyStart": {
     "type": "text",
     "placeholders": {}
@@ -2586,5 +2586,19 @@
   "newUsernameDescription": "Je persoon-id heeft dan het formaat @naam:server",
   "@newUsernameDescription": {},
   "newPasswordDescription": "Om je wachtwoord te kunnen resetten moet je een email toevoegen aan je account.",
-  "@newPasswordDescription": {}
+  "@newPasswordDescription": {},
+  "oneClientLoggedOut": "Één van jouw apparaten is uitgelogd",
+  "@oneClientLoggedOut": {},
+  "enableMultiAccounts": "Multi-accounts inschakelen op dit apparaat",
+  "@enableMultiAccounts": {},
+  "bundleName": "Bundelnaam",
+  "@bundleName": {},
+  "removeFromBundle": "Van bundel verwijderen",
+  "@removeFromBundle": {},
+  "addToBundle": "Aan bundel toevoegen",
+  "@addToBundle": {},
+  "editBundlesForAccount": "Bundels voor dit account wijzigen",
+  "@editBundlesForAccount": {},
+  "addAccount": "Account toevoegen",
+  "@addAccount": {}
 }
