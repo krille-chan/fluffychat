@@ -19,6 +19,7 @@ import 'package:uni_links/uni_links.dart';
 import 'package:vrouter/vrouter.dart';
 import '../main.dart';
 import '../widgets/matrix.dart';
+import '../../utils/account_bundles.dart';
 import '../utils/matrix_sdk_extensions.dart/matrix_file_extension.dart';
 import '../utils/url_launcher.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -409,6 +410,93 @@ class ChatListController extends State<ChatList> {
     }
   }
 
+  void setActiveClient(Client client) {
+    VRouter.of(context).to('/rooms');
+    setState(() {
+      _activeSpaceId = null;
+      selectedRoomIds.clear();
+      Matrix.of(context).setActiveClient(client);
+    });
+  }
+
+  void setActiveBundle(String bundle) => setState(() {
+        _activeSpaceId = null;
+        selectedRoomIds.clear();
+        Matrix.of(context).activeBundle = bundle;
+        if (!Matrix.of(context)
+            .currentBundle
+            .any((client) => client == Matrix.of(context).client)) {
+          Matrix.of(context)
+              .setActiveClient(Matrix.of(context).currentBundle.first);
+        }
+      });
+
+  void editBundlesForAccount(String userId) async {
+    final client = Matrix.of(context)
+        .widget
+        .clients[Matrix.of(context).getClientIndexByMatrixId(userId)];
+    final action = await showConfirmationDialog<EditBundleAction>(
+      context: context,
+      title: L10n.of(context).editBundlesForAccount,
+      actions: [
+        AlertDialogAction(
+          key: EditBundleAction.addToBundle,
+          label: L10n.of(context).addToBundle,
+        ),
+        if (Matrix.of(context).activeBundle != null)
+          AlertDialogAction(
+            key: EditBundleAction.removeFromBundle,
+            label: L10n.of(context).removeFromBundle,
+          ),
+      ],
+    );
+    if (action == null) return;
+    switch (action) {
+      case EditBundleAction.addToBundle:
+        final bundle = await showTextInputDialog(
+            context: context,
+            title: L10n.of(context).bundleName,
+            textFields: [
+              DialogTextField(hintText: L10n.of(context).bundleName)
+            ]);
+        if (bundle.isEmpty && bundle.single.isEmpty) return;
+        await showFutureLoadingDialog(
+          context: context,
+          future: () => client.setAccountBundle(bundle.single),
+        );
+        break;
+      case EditBundleAction.removeFromBundle:
+        await showFutureLoadingDialog(
+          context: context,
+          future: () =>
+              client.removeFromAccountBundle(Matrix.of(context).activeBundle),
+        );
+    }
+  }
+
+  bool get displayBundles =>
+      Matrix.of(context).hasComplexBundles &&
+      Matrix.of(context).accountBundles.keys.length > 1;
+
+  String get secureActiveBundle {
+    if (Matrix.of(context).activeBundle == null ||
+        !Matrix.of(context)
+            .accountBundles
+            .keys
+            .contains(Matrix.of(context).activeBundle)) {
+      return Matrix.of(context).accountBundles.keys.first;
+    }
+    return Matrix.of(context).activeBundle;
+  }
+
+  void resetActiveBundle() {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      setState(() {
+        Matrix.of(context).activeBundle = null;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     Matrix.of(context).navigatorContext = context;
@@ -424,3 +512,5 @@ class ChatListController extends State<ChatList> {
     return ChatListView(this);
   }
 }
+
+enum EditBundleAction { addToBundle, removeFromBundle }

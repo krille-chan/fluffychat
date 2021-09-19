@@ -38,7 +38,7 @@ class SignupPageView extends StatelessWidget {
                     labelText: L10n.of(context).username,
                     prefixText: '@',
                     suffixText:
-                        ':${Matrix.of(context).client.homeserver.host}'),
+                        ':${Matrix.of(context).getLoginClient().homeserver.host}'),
               ),
             ),
             Divider(),

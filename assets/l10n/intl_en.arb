@@ -1561,6 +1561,12 @@
     "type": "text",
     "placeholders": {}
   },
+  "addAccount": "Add account",
+  "editBundlesForAccount": "Edit bundles for this account",
+  "addToBundle": "Add to bundle",
+  "removeFromBundle": "Remove from this bundle",
+  "bundleName": "Bundle name",
+  "enableMultiAccounts": "Enable multi accounts on this device",
   "openInMaps": "Open in maps",
   "@openInMaps": {
     "type": "text",

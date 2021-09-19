@@ -37,9 +37,10 @@ class ChatView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    controller.matrix = Matrix.of(context);
+    controller.matrix ??= Matrix.of(context);
     final client = controller.matrix.client;
-    controller.room ??= client.getRoomById(controller.roomId);
+    controller.sendingClient ??= client;
+    controller.room = controller.sendingClient.getRoomById(controller.roomId);
     if (controller.room == null) {
       return Scaffold(
         appBar: AppBar(
@@ -147,10 +148,7 @@ class ChatView extends StatelessWidget {
                 : Text(controller.selectedEvents.length.toString()),
             actions: controller.selectMode
                 ? <Widget>[
-                    if (controller.selectedEvents.length == 1 &&
-                        controller.selectedEvents.first.status > 0 &&
-                        controller.selectedEvents.first.senderId ==
-                            client.userID)
+                    if (controller.canEditSelectedEvents)
                       IconButton(
                         icon: Icon(Icons.edit_outlined),
                         tooltip: L10n.of(context).edit,
@@ -680,6 +678,14 @@ class ChatView extends StatelessWidget {
                                     alignment: Alignment.center,
                                     child: EncryptionButton(controller.room),
                                   ),
+                                  if (controller.matrix.isMultiAccount &&
+                                      controller.matrix.currentBundle.length >
+                                          1)
+                                    Container(
+                                      height: 56,
+                                      alignment: Alignment.center,
+                                      child: _ChatAccountPicker(controller),
+                                    ),
                                   Expanded(
                                     child: Padding(
                                       padding: const EdgeInsets.symmetric(
@@ -789,6 +795,61 @@ class _EditContent extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class _ChatAccountPicker extends StatelessWidget {
+  final ChatController controller;
+
+  const _ChatAccountPicker(this.controller, {Key key}) : super(key: key);
+
+  void _popupMenuButtonSelected(String mxid) {
+    final client = controller.matrix.currentBundle
+        .firstWhere((cl) => cl.userID == mxid, orElse: () => null);
+    if (client == null) {
+      Logs().w('Attempted to switch to a non-existing client $mxid');
+      return;
+    }
+    controller.setSendingClient(client);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    controller.matrix ??= Matrix.of(context);
+    final clients = controller.currentRoomBundle;
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: FutureBuilder<Profile>(
+        future: controller.sendingClient.ownProfile,
+        builder: (context, snapshot) => PopupMenuButton<String>(
+          onSelected: _popupMenuButtonSelected,
+          itemBuilder: (BuildContext context) => clients
+              .map((client) => PopupMenuItem<String>(
+                    value: client.userID,
+                    child: FutureBuilder<Profile>(
+                      future: client.ownProfile,
+                      builder: (context, snapshot) => ListTile(
+                        leading: Avatar(
+                          snapshot.data?.avatarUrl,
+                          snapshot.data?.displayName ?? client.userID.localpart,
+                          size: 20,
+                        ),
+                        title:
+                            Text(snapshot.data?.displayName ?? client.userID),
+                        contentPadding: EdgeInsets.all(0),
+                      ),
+                    ),
+                  ))
+              .toList(),
+          child: Avatar(
+            snapshot.data?.avatarUrl,
+            snapshot.data?.displayName ??
+                controller.matrix.client.userID.localpart,
+            size: 20,
+          ),
+        ),
+      ),
     );
   }
 }

@@ -7,10 +7,16 @@ import 'package:flutter/material.dart';
 class LoadingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    if (Matrix.of(context).loginState != null) {
+    if (Matrix.of(context)
+        .widget
+        .clients
+        .every((client) => client.loginState != null)) {
       WidgetsBinding.instance.addPostFrameCallback(
         (_) => VRouter.of(context).to(
-          Matrix.of(context).loginState == LoginState.loggedIn
+          Matrix.of(context)
+                  .widget
+                  .clients
+                  .any((client) => client.loginState == LoginState.loggedIn)
               ? '/rooms'
               : '/home',
           queryParameters: VRouter.of(context).queryParameters,

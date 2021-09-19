@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 
 class OnePageCard extends StatelessWidget {
@@ -12,7 +13,8 @@ class OnePageCard extends StatelessWidget {
   static num breakpoint = FluffyThemes.columnWidth * 2;
   @override
   Widget build(BuildContext context) {
-    return MediaQuery.of(context).size.width <= breakpoint
+    return MediaQuery.of(context).size.width <= breakpoint ||
+            Matrix.of(context).client.isLogged()
         ? child
         : Container(
             decoration: BoxDecoration(

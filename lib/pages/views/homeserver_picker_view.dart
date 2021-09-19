@@ -100,7 +100,8 @@ class HomeserverPickerView extends StatelessWidget {
                                               imageUrl: Uri.parse(
                                                       identityProvider.icon)
                                                   .getDownloadLink(
-                                                      Matrix.of(context).client)
+                                                      Matrix.of(context)
+                                                          .getLoginClient())
                                                   .toString(),
                                               width: 24,
                                               height: 24,
@@ -128,7 +129,7 @@ class HomeserverPickerView extends StatelessWidget {
                                     Expanded(
                                       child: _LoginButton(
                                         onPressed: () =>
-                                            VRouter.of(context).to('/login'),
+                                            VRouter.of(context).to('login'),
                                         icon: Icon(Icons.login_outlined),
                                         labelText: L10n.of(context).login,
                                       ),

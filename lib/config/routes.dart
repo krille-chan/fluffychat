@@ -217,12 +217,12 @@ class AppRoutes {
           buildTransition: _fadeTransition,
           stackedRoutes: [
             VWidget(
-              path: '/login',
+              path: 'login',
               widget: Login(),
               buildTransition: _fadeTransition,
             ),
             VWidget(
-              path: '/signup',
+              path: 'signup',
               widget: SignupPage(),
               buildTransition: _fadeTransition,
             ),
@@ -295,6 +295,23 @@ class AppRoutes {
               path: 'devices',
               widget: DevicesSettings(),
               buildTransition: _dynamicTransition,
+            ),
+            VWidget(
+              path: 'add',
+              widget: HomeserverPicker(),
+              buildTransition: _fadeTransition,
+              stackedRoutes: [
+                VWidget(
+                  path: 'login',
+                  widget: Login(),
+                  buildTransition: _fadeTransition,
+                ),
+                VWidget(
+                  path: 'signup',
+                  widget: SignupPage(),
+                  buildTransition: _fadeTransition,
+                ),
+              ],
             ),
           ],
         ),

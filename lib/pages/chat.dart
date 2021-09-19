@@ -32,6 +32,7 @@ import 'send_location_dialog.dart';
 import 'sticker_picker_dialog.dart';
 import '../utils/matrix_sdk_extensions.dart/filtered_timeline_extension.dart';
 import '../utils/matrix_sdk_extensions.dart/matrix_file_extension.dart';
+import '../utils/account_bundles.dart';
 
 class Chat extends StatefulWidget {
   final Widget sideView;
@@ -44,6 +45,8 @@ class Chat extends StatefulWidget {
 
 class ChatController extends State<Chat> {
   Room room;
+
+  Client sendingClient;
 
   Timeline timeline;
 
@@ -221,6 +224,14 @@ class ChatController extends State<Chat> {
   }
 
   TextEditingController sendController = TextEditingController();
+
+  void setSendingClient(Client c) => setState(() {
+        sendingClient = c;
+      });
+
+  void setActiveClient(Client c) => setState(() {
+        Matrix.of(context).setActiveClient(c);
+      });
 
   Future<void> send() async {
     if (sendController.text.trim().isEmpty) return;
@@ -447,17 +458,49 @@ class ChatController extends State<Chat> {
     for (final event in selectedEvents) {
       await showFutureLoadingDialog(
           context: context,
-          future: () =>
-              event.status > 0 ? event.redactEvent() : event.remove());
+          future: () async {
+            if (event.status > 0) {
+              if (event.canRedact) {
+                await event.redactEvent();
+              } else {
+                final client = currentRoomBundle.firstWhere(
+                    (cl) => selectedEvents.first.senderId == cl.userID,
+                    orElse: () => null);
+                if (client == null) {
+                  return;
+                }
+                final room = client.getRoomById(roomId);
+                await Event.fromJson(event.toJson(), room).redactEvent();
+              }
+            } else {
+              await event.remove();
+            }
+          });
     }
     setState(() => selectedEvents.clear());
   }
 
+  List<Client> get currentRoomBundle {
+    final clients = matrix.currentBundle;
+    clients.removeWhere((c) => c.getRoomById(roomId) == null);
+    return clients;
+  }
+
   bool get canRedactSelectedEvents {
+    final clients = matrix.currentBundle;
     for (final event in selectedEvents) {
-      if (event.canRedact == false) return false;
+      if (event.canRedact == false &&
+          !(clients.any((cl) => event.senderId == cl.userID))) return false;
     }
     return true;
+  }
+
+  bool get canEditSelectedEvents {
+    if (selectedEvents.length != 1 || selectedEvents.first.status < 1) {
+      return false;
+    }
+    return currentRoomBundle
+        .any((cl) => selectedEvents.first.senderId == cl.userID);
   }
 
   void forwardEventsAction() async {
@@ -584,6 +627,13 @@ class ChatController extends State<Chat> {
       });
 
   void editSelectedEventAction() {
+    final client = currentRoomBundle.firstWhere(
+        (cl) => selectedEvents.first.senderId == cl.userID,
+        orElse: () => null);
+    if (client == null) {
+      return;
+    }
+    setSendingClient(client);
     setState(() {
       pendingText = sendController.text;
       editEvent = selectedEvents.first;
@@ -689,6 +739,19 @@ class ChatController extends State<Chat> {
   }
 
   void onInputBarChanged(String text) {
+    final clients = currentRoomBundle;
+    for (final client in clients) {
+      final prefix = client.sendPrefix;
+      if ((prefix?.isNotEmpty ?? false) &&
+          text.toLowerCase() == '${prefix.toLowerCase()} ') {
+        setSendingClient(client);
+        setState(() {
+          inputText = '';
+          sendController.text = '';
+        });
+        return;
+      }
+    }
     typingCoolDown?.cancel();
     typingCoolDown = Timer(Duration(seconds: 2), () {
       typingCoolDown = null;

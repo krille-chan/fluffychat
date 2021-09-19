@@ -47,13 +47,13 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     showFutureLoadingDialog(
       context: context,
       future: () async {
-        if (Matrix.of(context).client.homeserver == null) {
-          await Matrix.of(context).client.checkHomeserver(
+        if (Matrix.of(context).getLoginClient().homeserver == null) {
+          await Matrix.of(context).getLoginClient().checkHomeserver(
                 await Store()
                     .getItem(HomeserverPickerController.ssoHomeserverKey),
               );
         }
-        await Matrix.of(context).client.login(
+        await Matrix.of(context).getLoginClient().login(
               LoginType.mLoginToken,
               token: token,
               initialDeviceDisplayName: PlatformInfos.clientName,
@@ -117,7 +117,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
         isLoading = true;
       });
       final wellKnown =
-          await Matrix.of(context).client.checkHomeserver(homeserver);
+          await Matrix.of(context).getLoginClient().checkHomeserver(homeserver);
 
       var jitsi = wellKnown?.additionalProperties
           ?.tryGet<Map<String, dynamic>>('im.vector.riot.jitsi')
@@ -177,13 +177,13 @@ class HomeserverPickerController extends State<HomeserverPicker> {
           .any((flow) => flow['type'] == AuthenticationTypes.sso);
 
   Future<Map<String, dynamic>> getLoginTypes() async {
-    _rawLoginTypes ??= await Matrix.of(context).client.request(
+    _rawLoginTypes ??= await Matrix.of(context).getLoginClient().request(
           RequestType.GET,
           '/client/r0/login',
         );
     if (registrationSupported == null) {
       try {
-        await Matrix.of(context).client.register();
+        await Matrix.of(context).getLoginClient().register();
         registrationSupported = true;
       } on MatrixException catch (e) {
         registrationSupported = e.requireAdditionalAuthentication ?? false;
@@ -200,14 +200,14 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     if (kIsWeb) {
       // We store the homserver in the local storage instead of a redirect
       // parameter because of possible CSRF attacks.
-      Store().setItem(
-          ssoHomeserverKey, Matrix.of(context).client.homeserver.toString());
+      Store().setItem(ssoHomeserverKey,
+          Matrix.of(context).getLoginClient().homeserver.toString());
     }
     final redirectUrl = kIsWeb
         ? AppConfig.webBaseUrl + '/#/'
         : AppConfig.appOpenUrlScheme.toLowerCase() + '://login';
     final url =
-        '${Matrix.of(context).client.homeserver?.toString()}/_matrix/client/r0/login/sso/redirect/${Uri.encodeComponent(id)}?redirectUrl=${Uri.encodeQueryComponent(redirectUrl)}';
+        '${Matrix.of(context).getLoginClient().homeserver?.toString()}/_matrix/client/r0/login/sso/redirect/${Uri.encodeComponent(id)}?redirectUrl=${Uri.encodeQueryComponent(redirectUrl)}';
     if (PlatformInfos.isMobile) {
       browser ??= ChromeSafariBrowser();
       browser.open(url: Uri.parse(url));
@@ -216,7 +216,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     }
   }
 
-  void signUpAction() => VRouter.of(context).to('/signup');
+  void signUpAction() => VRouter.of(context).to('signup');
 
   bool _initialized = false;
 
