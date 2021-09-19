@@ -2587,5 +2587,17 @@
   "newUsernameDescription": "Kullanıcı kimliğiniz @kullanıcıadı:sunucuadı biçiminde olacaktır.",
   "@newUsernameDescription": {},
   "newPasswordDescription": "Parolanızı kurtarabilmek için daha sonra hesabınıza bir e-posta adresi eklemelisiniz.",
-  "@newPasswordDescription": {}
+  "@newPasswordDescription": {},
+  "enableMultiAccounts": "Bu aygıtta çoklu hesapları etkinleştir",
+  "@enableMultiAccounts": {},
+  "bundleName": "Paket adı",
+  "@bundleName": {},
+  "removeFromBundle": "Bu paketten kaldır",
+  "@removeFromBundle": {},
+  "addToBundle": "Pakete ekle",
+  "@addToBundle": {},
+  "editBundlesForAccount": "Bu hesap için paketleri düzenle",
+  "@editBundlesForAccount": {},
+  "addAccount": "Hesap ekle",
+  "@addAccount": {}
 }
