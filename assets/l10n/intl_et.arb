@@ -2587,5 +2587,19 @@
   "newUsernameDescription": "Sinu Matrix'i kasutajatunnus saab olema vormingus @kasutajanimi:koduserver",
   "@newUsernameDescription": {},
   "newPasswordDescription": "Selleks, et saaksid vajadusel oma salasõna taastada, peaksid hiljem lisama oma kasutajakontole e-posti aadressi.",
-  "@newPasswordDescription": {}
+  "@newPasswordDescription": {},
+  "enableMultiAccounts": "Pruugi selles seadmes mitut Matrix'i kasutajakontot",
+  "@enableMultiAccounts": {},
+  "bundleName": "Köite nimi",
+  "@bundleName": {},
+  "removeFromBundle": "Eemalda sellest köitest",
+  "@removeFromBundle": {},
+  "addToBundle": "Lisa köitesse",
+  "@addToBundle": {},
+  "editBundlesForAccount": "Muuda selle kasutajakonto köiteid",
+  "@editBundlesForAccount": {},
+  "addAccount": "Lisa kasutajakonto",
+  "@addAccount": {},
+  "oneClientLoggedOut": "Üks sinu klientrakendustest on Matrix'i võrgust välja loginud",
+  "@oneClientLoggedOut": {}
 }
