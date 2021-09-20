@@ -1,3 +1,12 @@
+## v0.41.1 - 2021-09-15
+Minor bugfix release.
+
+- fix: Start up time waits for first sync
+- fix: Registration -> matrix.org responses with 500
+- fix: Wellknown look up for multi accounts
+
+And some other minor bugs.
+
 ## v0.41.0 - 2021-09-14
 This release features a lot of bug fixes and the new multi account feature which also include account bundles.
 - feat: Multiple accounts
