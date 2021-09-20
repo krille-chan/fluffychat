@@ -185,6 +185,7 @@ deploy_linux_snap_edge:
   script: [./scripts/publish-snap-edge.sh]
   only:
     - main
+  needs: [build_linux_x86]
   artifacts:
     when: on_success
     paths:
