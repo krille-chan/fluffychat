@@ -742,11 +742,9 @@ packages:
   matrix:
     dependency: "direct main"
     description:
-      path: "."
-      ref: "krille/init-configurable"
-      resolved-ref: b3c6b5f637ed7f4547f005e5e64670c49366e73d
-      url: "https://gitlab.com/famedly/company/frontend/famedlysdk.git"
-    source: git
+      name: matrix
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.5.4"
   matrix_api_lite:
     dependency: transitive
