@@ -679,6 +679,7 @@ class ChatView extends StatelessWidget {
                                     child: EncryptionButton(controller.room),
                                   ),
                                   if (controller.matrix.isMultiAccount &&
+                                      controller.matrix.hasComplexBundles &&
                                       controller.matrix.currentBundle.length >
                                           1)
                                     Container(
