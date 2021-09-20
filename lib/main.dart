@@ -11,6 +11,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'utils/custom_scroll_behaviour.dart';
 import 'utils/localized_exception_extension.dart';
 import 'package:flutter_app_lock/flutter_app_lock.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -118,6 +119,7 @@ class _FluffyChatAppState extends State<FluffyChatApp> {
             key: _router,
             title: '${AppConfig.applicationName}',
             theme: theme,
+            scrollBehavior: CustomScrollBehavior(),
             logs: kReleaseMode ? VLogs.none : VLogs.info,
             darkTheme: darkTheme,
             localizationsDelegates: L10n.localizationsDelegates,
