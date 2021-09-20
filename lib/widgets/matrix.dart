@@ -239,7 +239,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
           );
         case AuthenticationTypes.emailIdentity:
           final emailInput = await showTextInputDialog(
-            context: context,
+            context: navigatorContext,
             message: L10n.of(context).serverRequiresEmail,
             okLabel: L10n.of(context).next,
             cancelLabel: L10n.of(context).cancel,
@@ -254,7 +254,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
             return uiaRequest
                 .cancel(Exception(L10n.of(context).serverRequiresEmail));
           }
-          final clientSecret = client.generateUniqueTransactionId();
+          final clientSecret = DateTime.now().millisecondsSinceEpoch.toString();
           final currentThreepidCreds = await client.requestTokenToRegisterEmail(
             clientSecret,
             emailInput.single,
@@ -270,7 +270,18 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
               ),
             ],
           );
-          return uiaRequest.completeStage(auth);
+          if (OkCancelResult.ok ==
+              await showOkCancelAlertDialog(
+                useRootNavigator: false,
+                context: navigatorContext,
+                title: L10n.of(context).weSentYouAnEmail,
+                message: L10n.of(context).pleaseClickOnLink,
+                okLabel: L10n.of(context).iHaveClickedOnLink,
+                cancelLabel: L10n.of(widget.context).cancel,
+              )) {
+            return uiaRequest.completeStage(auth);
+          }
+          return uiaRequest.cancel();
         case AuthenticationTypes.dummy:
           return uiaRequest.completeStage(
             AuthenticationData(
@@ -292,7 +303,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
                 cancelLabel: L10n.of(widget.context).cancel,
               )) {
             return uiaRequest.completeStage(
-              AuthenticationData(session: uiaRequest.session, type: ''),
+              AuthenticationData(session: uiaRequest.session),
             );
           } else {
             return uiaRequest.cancel();
