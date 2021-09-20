@@ -32,13 +32,9 @@ abstract class ClientManager {
     }
     if (clientNames.isEmpty) clientNames.add(PlatformInfos.clientName);
     final clients = clientNames.map(createClient).toList();
-    final start = DateTime.now();
     await Future.wait(clients.map((client) => client
         .init(waitForFirstSync: false)
         .catchError((e, s) => Logs().e('Unable to initialize client', e, s))));
-    final end = DateTime.now();
-    print(
-        'We needed: ${end.millisecondsSinceEpoch - start.millisecondsSinceEpoch} milliseconds');
     if (clients.length > 1 && clients.any((c) => !c.isLogged())) {
       final loggedOutClients = clients.where((c) => !c.isLogged()).toList();
       for (final client in loggedOutClients) {
