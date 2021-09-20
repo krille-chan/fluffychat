@@ -117,7 +117,7 @@ class LoginController extends State<Login> {
           context: context,
           // do nothing if we error, we'll handle it below
           future: () => Matrix.of(context)
-              .client
+              .getLoginClient()
               .checkHomeserver(newDomain)
               .catchError((e) => null),
         );
