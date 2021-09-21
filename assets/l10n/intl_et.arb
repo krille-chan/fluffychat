@@ -1110,12 +1110,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteContact": "Kutsu neid, keda sa tead",
+  "inviteContact": "Kutsu sõpru ja tuttavaid",
   "@inviteContact": {
     "type": "text",
     "placeholders": {}
   },
-  "inviteContactToGroup": "Kutsu neid, keda sa tead {groupName} liikmeks",
+  "inviteContactToGroup": "Kutsu sõpru ja tuttavaid {groupName} liikmeks",
   "@inviteContactToGroup": {
     "type": "text",
     "placeholders": {
@@ -1145,7 +1145,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "{username} kutsus sind kasutama Matrix'i-põhist suhtlusrakendust FluffyChat. \n1. Paigalda FluffyChat: https://fluffychat.im \n2. Liitu kasutajaks või logi sisse olemasoleva Matrix'i kasutajaga\n3. Ava kutse link: {link}",
+  "inviteText": "{username} kutsus sind kasutama Matrix'i-põhist suhtlusrakendust FluffyChat. \n1. Paigalda FluffyChat: https://fluffychat.im \n2. Liitu kasutajaks või logi sisse olemasoleva Matrix'i kasutajakontoga\n3. Ava kutse link: {link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {
