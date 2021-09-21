@@ -134,7 +134,8 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     final multiAccount = client.isLogged();
     if (!multiAccount) return client;
     _loginClientCandidate ??= ClientManager.createClient(
-        client.generateUniqueTransactionId())
+        // we use the first clients here, else we can easily end up with super long client names.
+        widget.clients.first.generateUniqueTransactionId())
       ..onLoginStateChanged
           .stream
           .where((l) => l == LoginState.loggedIn)
