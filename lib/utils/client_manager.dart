@@ -30,7 +30,10 @@ abstract class ClientManager {
       Logs().w('Client names in store are corrupted', e, s);
       await Store().deleteItem(clientNamespace);
     }
-    if (clientNames.isEmpty) clientNames.add(PlatformInfos.clientName);
+    if (clientNames.isEmpty) {
+      clientNames.add(PlatformInfos.clientName);
+      await Store().setItem(clientNamespace, jsonEncode(clientNames.toList()));
+    }
     final clients = clientNames.map(createClient).toList();
     await Future.wait(clients.map((client) => client
         .init(waitForFirstSync: false)
