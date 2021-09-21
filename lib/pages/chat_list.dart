@@ -419,17 +419,20 @@ class ChatListController extends State<ChatList> {
     });
   }
 
-  void setActiveBundle(String bundle) => setState(() {
-        _activeSpaceId = null;
-        selectedRoomIds.clear();
-        Matrix.of(context).activeBundle = bundle;
-        if (!Matrix.of(context)
-            .currentBundle
-            .any((client) => client == Matrix.of(context).client)) {
-          Matrix.of(context)
-              .setActiveClient(Matrix.of(context).currentBundle.first);
-        }
-      });
+  void setActiveBundle(String bundle) {
+    VRouter.of(context).to('/rooms');
+    setState(() {
+      _activeSpaceId = null;
+      selectedRoomIds.clear();
+      Matrix.of(context).activeBundle = bundle;
+      if (!Matrix.of(context)
+          .currentBundle
+          .any((client) => client == Matrix.of(context).client)) {
+        Matrix.of(context)
+            .setActiveClient(Matrix.of(context).currentBundle.first);
+      }
+    });
+  }
 
   void editBundlesForAccount(String userId) async {
     final client = Matrix.of(context)
