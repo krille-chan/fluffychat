@@ -737,7 +737,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "deviceVerifyDescription": "De versleutelinf is pas veilig als alle apparaten zijn geverifieerd.",
+  "deviceVerifyDescription": "De versleuteling is pas veilig als alle apparaten zijn geverifieerd.",
   "@deviceVerifyDescription": {
     "type": "text",
     "placeholders": {}
