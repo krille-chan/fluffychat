@@ -154,7 +154,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "autoplayImages": "Esita automaatselt liikuvad kleepse ja emotikone",
+  "autoplayImages": "Esita liikuvad kleepse ja emotikone automaatselt",
   "@autoplayImages": {
     "type": "text",
     "placeholder": {}
@@ -451,7 +451,7 @@
     "type": "text",
     "description": "Usage hint for the command /invite"
   },
-  "commandHintJoin": "Liitu antud jututoaga",
+  "commandHintJoin": "Liitu selle jututoaga",
   "@commandHintJoin": {
     "type": "text",
     "description": "Usage hint for the command /join"
@@ -491,7 +491,7 @@
     "type": "text",
     "description": "Usage hint for the command /plain"
   },
-  "commandHintReact": "Saada vastus rekatsioonina",
+  "commandHintReact": "Saada vastus reaktsioonina",
   "@commandHintReact": {
     "type": "text",
     "description": "Usage hint for the command /react"
@@ -955,7 +955,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "forward": "Edasi",
+  "forward": "Edasta",
   "@forward": {
     "type": "text",
     "placeholders": {}
@@ -1401,7 +1401,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noEncryptionForPublicRooms": "Sa võid krüptimise kasutusele võtta niipea, kui jututuba poel enam avalik.",
+  "noEncryptionForPublicRooms": "Sa võid krüptimise kasutusele võtta niipea, kui jututuba pole enam avalik.",
   "@noEncryptionForPublicRooms": {
     "type": "text",
     "placeholders": {}
@@ -1476,7 +1476,7 @@
       "number": {}
     }
   },
-  "numUsersTyping": "{count} kasutajat kitjutavad…",
+  "numUsersTyping": "{count} kasutajat kirjutavad…",
   "@numUsersTyping": {
     "type": "text",
     "placeholders": {
@@ -1786,7 +1786,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "replaceRoomWithNewerVersion": "Uuenda jututoa versioon",
+  "replaceRoomWithNewerVersion": "Asenda jututoa senine versioon uuega",
   "@replaceRoomWithNewerVersion": {
     "type": "text",
     "placeholders": {}
@@ -1816,7 +1816,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "roomHasBeenUpgraded": "Jututuba on uuendatud",
+  "roomHasBeenUpgraded": "Jututoa vesrioon on uuendatud",
   "@roomHasBeenUpgraded": {
     "type": "text",
     "placeholders": {}
@@ -1935,7 +1935,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sendOriginal": "Saada algupärane fail",
+  "sendOriginal": "Saada fail muutmata kujul",
   "@sendOriginal": {
     "type": "text",
     "placeholders": {}
@@ -2022,7 +2022,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "setInvitationLink": "Tee kutse link",
+  "setInvitationLink": "Tee kutselink",
   "@setInvitationLink": {
     "type": "text",
     "placeholders": {}
@@ -2262,7 +2262,7 @@
       "type": {}
     }
   },
-  "unknownSessionVerify": "Tundmatu sessioon, palun verifitseeri",
+  "unknownSessionVerify": "Tundmatu sessioon, palun tee talle verifitseerimine",
   "@unknownSessionVerify": {
     "type": "text",
     "placeholders": {}
@@ -2384,7 +2384,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "verifySuccess": "Verifitseerimine õnnestus sinul!",
+  "verifySuccess": "Sinu verifitseerimine õnnestus!",
   "@verifySuccess": {
     "type": "text",
     "placeholders": {}
