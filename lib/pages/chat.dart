@@ -225,9 +225,18 @@ class ChatController extends State<Chat> {
 
   TextEditingController sendController = TextEditingController();
 
-  void setSendingClient(Client c) => setState(() {
-        sendingClient = c;
-      });
+  void setSendingClient(Client c) {
+    // first cancle typing with the old sending client
+    if (currentlyTyping) {
+      // no need to have the setting typing to false be blocking
+      typingCoolDown?.cancel();
+      typingCoolDown = null;
+      room.setTyping(false);
+      currentlyTyping = false;
+    }
+    // then set the new sending client
+    setState(() => sendingClient = c);
+  }
 
   void setActiveClient(Client c) => setState(() {
         Matrix.of(context).setActiveClient(c);
