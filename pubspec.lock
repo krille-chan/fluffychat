@@ -455,7 +455,7 @@ packages:
       name: flutter_matrix_html
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.3"
+    version: "1.0.4"
   flutter_native_splash:
     dependency: "direct dev"
     description:
