@@ -739,17 +739,19 @@ class ChatController extends State<Chat> {
   }
 
   void onInputBarChanged(String text) {
-    final clients = currentRoomBundle;
-    for (final client in clients) {
-      final prefix = client.sendPrefix;
-      if ((prefix?.isNotEmpty ?? false) &&
-          text.toLowerCase() == '${prefix.toLowerCase()} ') {
-        setSendingClient(client);
-        setState(() {
-          inputText = '';
-          sendController.text = '';
-        });
-        return;
+    if (text.endsWith(' ') && matrix.hasComplexBundles) {
+      final clients = currentRoomBundle;
+      for (final client in clients) {
+        final prefix = client.sendPrefix;
+        if ((prefix?.isNotEmpty ?? false) &&
+            text.toLowerCase() == '${prefix.toLowerCase()} ') {
+          setSendingClient(client);
+          setState(() {
+            inputText = '';
+            sendController.text = '';
+          });
+          return;
+        }
       }
     }
     typingCoolDown?.cancel();
