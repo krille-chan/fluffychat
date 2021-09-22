@@ -745,7 +745,7 @@ packages:
       name: matrix
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.5.4"
+    version: "0.5.5"
   matrix_api_lite:
     dependency: transitive
     description:
