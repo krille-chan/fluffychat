@@ -962,5 +962,12 @@
   "@chatBackupDescription": {
     "type": "text",
     "placeholders": {}
+  },
+  "activatedEndToEndEncryption": "{username} mengaktifkan end to end encryption",
+  "@activatedEndToEndEncryption": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
   }
 }
