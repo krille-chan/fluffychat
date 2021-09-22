@@ -1051,5 +1051,10 @@
     "placeholders": {
       "username": {}
     }
+  },
+  "loadMore": "Muat lebih banyak…",
+  "@loadMore": {
+    "type": "text",
+    "placeholders": {}
   }
 }
