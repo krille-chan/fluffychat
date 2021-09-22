@@ -9,15 +9,18 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:vrouter/vrouter.dart';
 
 import 'views/user_bottom_sheet_view.dart';
+import '../widgets/matrix.dart';
 
 class UserBottomSheet extends StatefulWidget {
   final User user;
+  final Profile profile;
   final Function onMention;
   final BuildContext outerContext;
 
   const UserBottomSheet({
     Key key,
-    @required this.user,
+    this.user,
+    this.profile,
     @required this.outerContext,
     this.onMention,
   }) : super(key: key);
@@ -83,14 +86,28 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         }
         break;
       case 'message':
-        final roomIdResult = await showFutureLoadingDialog(
-          context: context,
-          future: () => widget.user.startDirectChat(),
-        );
-        if (roomIdResult.error != null) return;
-        VRouter.of(widget.outerContext)
-            .toSegments(['rooms', roomIdResult.result]);
-        Navigator.of(context, rootNavigator: false).pop();
+        if (widget.user != null) {
+          final roomIdResult = await showFutureLoadingDialog(
+            context: context,
+            future: () => widget.user.startDirectChat(),
+          );
+          if (roomIdResult.error != null) return;
+          VRouter.of(widget.outerContext)
+              .toSegments(['rooms', roomIdResult.result]);
+          Navigator.of(context, rootNavigator: false).pop();
+        } else {
+          final result = await showFutureLoadingDialog<String>(
+            context: context,
+            future: () => Matrix.of(context).client.startDirectChat(
+                  widget.profile.userId,
+                ),
+          );
+          if (result.error == null) {
+            VRouter.of(context).toSegments(['rooms', result.result]);
+            Navigator.of(context, rootNavigator: false).pop();
+            return;
+          }
+        }
         break;
     }
   }

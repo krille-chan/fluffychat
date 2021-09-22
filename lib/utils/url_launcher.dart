@@ -11,6 +11,7 @@ import 'package:punycode/punycode.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'platform_infos.dart';
+import '../pages/user_bottom_sheet.dart';
 
 class UrlLauncher {
   final String url;
@@ -166,16 +167,15 @@ class UrlLauncher {
         });
       }
     } else if (identityParts.primaryIdentifier.sigil == '@') {
-      final result = await showFutureLoadingDialog<String>(
+      final profile = await matrix.client
+          .getProfileFromUserId(identityParts.primaryIdentifier);
+      await showModalBottomSheet(
         context: context,
-        future: () => matrix.client.startDirectChat(
-          identityParts.primaryIdentifier,
+        builder: (c) => UserBottomSheet(
+          profile: profile,
+          outerContext: context,
         ),
       );
-      if (result.error == null) {
-        VRouter.of(context).toSegments(['rooms', result.result]);
-        return;
-      }
     }
   }
 }
