@@ -40,7 +40,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "addGroupDescription": "Lisa rühma kirjeldus",
+  "addGroupDescription": "Lisa vestlusrühma kirjeldus",
   "@addGroupDescription": {
     "type": "text",
     "placeholders": {}
@@ -364,7 +364,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changeTheNameOfTheGroup": "Muuda rühma nime",
+  "changeTheNameOfTheGroup": "Muuda vestlusrühma nime",
   "@changeTheNameOfTheGroup": {
     "type": "text",
     "placeholders": {}
@@ -548,7 +548,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "contactHasBeenInvitedToTheGroup": "Sinu kontakt on kutsutud liituma rühmaga",
+  "contactHasBeenInvitedToTheGroup": "Sinu kontakt on kutsutud liituma vestlusrühma",
   "@contactHasBeenInvitedToTheGroup": {
     "type": "text",
     "placeholders": {}
@@ -629,7 +629,7 @@
       "username": {}
     }
   },
-  "createNewGroup": "Loo uus rühm",
+  "createNewGroup": "Loo uus vestlusrühma",
   "@createNewGroup": {
     "type": "text",
     "placeholders": {}
@@ -749,7 +749,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "discoverGroups": "Otsi gruppe",
+  "discoverGroups": "Otsi vestlusrühmi",
   "@discoverGroups": {
     "type": "text",
     "placeholders": {}
@@ -896,7 +896,7 @@
       "senderName": {}
     }
   },
-  "enterAGroupName": "Sisesta rühma nimi",
+  "enterAGroupName": "Sisesta vestlusrühma nimi",
   "@enterAGroupName": {
     "type": "text",
     "placeholders": {}
@@ -985,32 +985,32 @@
     "type": "text",
     "placeholders": {}
   },
-  "group": "Rühm",
+  "group": "Vestlusrühm",
   "@group": {
     "type": "text",
     "placeholders": {}
   },
-  "groupDescription": "Rühma kirjeldus",
+  "groupDescription": "Vestlusrühma kirjeldus",
   "@groupDescription": {
     "type": "text",
     "placeholders": {}
   },
-  "groupDescriptionHasBeenChanged": "Rühma kirjeldus on muutunud",
+  "groupDescriptionHasBeenChanged": "Vestlusrühma kirjeldus on muutunud",
   "@groupDescriptionHasBeenChanged": {
     "type": "text",
     "placeholders": {}
   },
-  "groupIsPublic": "Rühm on avalik",
+  "groupIsPublic": "Vestlusrühm on avalik",
   "@groupIsPublic": {
     "type": "text",
     "placeholders": {}
   },
-  "groups": "Rühmad",
+  "groups": "Vestlusrühmad",
   "@groups": {
     "type": "text",
     "placeholders": {}
   },
-  "groupWith": "Rühm {displayname} kasutajanimega",
+  "groupWith": "Vestlusrühm {displayname} kasutajanimega",
   "@groupWith": {
     "type": "text",
     "placeholders": {
@@ -1548,7 +1548,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "optionalGroupName": "(Kui soovid) Rühma nimi",
+  "optionalGroupName": "(Kui soovid) Vestlusrühma nimi",
   "@optionalGroupName": {
     "type": "text",
     "placeholders": {}
@@ -1675,7 +1675,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "publicGroups": "Avalikud rühmad",
+  "publicGroups": "Avalikud vestlusrühmad",
   "@publicGroups": {
     "type": "text",
     "placeholders": {}
@@ -2017,7 +2017,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "setGroupDescription": "Seadista rühma kirjeldus",
+  "setGroupDescription": "Seadista vestlusrühma kirjeldus",
   "@setGroupDescription": {
     "type": "text",
     "placeholders": {}
@@ -2474,7 +2474,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "whoIsAllowedToJoinThisGroup": "Kes võivad selle rühmaga liituda",
+  "whoIsAllowedToJoinThisGroup": "Kes võivad selle vestlusrühmaga liituda",
   "@whoIsAllowedToJoinThisGroup": {
     "type": "text",
     "placeholders": {}
