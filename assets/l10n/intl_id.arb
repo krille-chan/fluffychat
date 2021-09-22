@@ -1188,5 +1188,151 @@
   "@noRoomsFound": {
     "type": "text",
     "placeholders": {}
+  },
+  "zoomOut": "Perkecil",
+  "@zoomOut": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zoomIn": "Perbesar",
+  "@zoomIn": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youWillBeConnectedTo": "Anda akan dihubungkan ke {homeserver}",
+  "@youWillBeConnectedTo": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "verified": "Terverifikasi",
+  "@verified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userLeftTheChat": "{username} keluar dari chat",
+  "@userLeftTheChat": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "unavailable": "Tidak tersedia",
+  "@unavailable": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transferFromAnotherDevice": "Transfer dari perangkat lain",
+  "@transferFromAnotherDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapOnDeviceToVerify": "Ketuk perangkat untuk memverifikasi",
+  "@tapOnDeviceToVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showPassword": "Tampilkan kata sandi",
+  "@showPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKeyLost": "Kunci keamanan hilang?",
+  "@securityKeyLost": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKey": "Kunci keamanan",
+  "@securityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeYourAvatar": "Hapus avatar Anda",
+  "@removeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "register": "Daftar",
+  "@register": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pushRules": "Aturan push",
+  "@pushRules": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseFollowInstructionsOnWeb": "Silakan ikuti petunjuk di situs web dan tekan lanjut.",
+  "@pleaseFollowInstructionsOnWeb": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterSecurityKey": "Silakan masukkan kunci keamanan Anda:",
+  "@pleaseEnterSecurityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChoose": "Harap pilih",
+  "@pleaseChoose": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oopsPushError": "Ups! Sayangnya, terjadi kesalahan saat mengatur pemberitahuan push.",
+  "@oopsPushError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "onlineKeyBackupEnabled": "Cadangan Kunci Online dinyalakan",
+  "@onlineKeyBackupEnabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "onlineKeyBackupDisabled": "Cadangan Kunci Online dimatikan",
+  "@onlineKeyBackupDisabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "online": "Online",
+  "@online": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ok": "ok",
+  "@ok": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offline": "Offline",
+  "@offline": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "numberSelected": "{number} terpilih",
+  "@numberSelected": {
+    "type": "text",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "notSupportedInWeb": "Tidak didukung di web",
+  "@notSupportedInWeb": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationsEnabledForThisAccount": "Notifikasi diaktifkan untuk akun ini",
+  "@notificationsEnabledForThisAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notifications": "Notifikasi",
+  "@notifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noStatusesFound": "Tidak ada status yang ditemukan sejauh ini.",
+  "@noStatusesFound": {
+    "type": "text",
+    "placeholders": {}
   }
 }
