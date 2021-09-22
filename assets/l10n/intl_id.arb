@@ -970,7 +970,7 @@
       "username": {}
     }
   },
-  "loadingPleaseWait": "Memuat... Mohon tunggu.",
+  "loadingPleaseWait": "Memuat… Mohon tunggu.",
   "@loadingPleaseWait": {
     "type": "text",
     "placeholders": {}
