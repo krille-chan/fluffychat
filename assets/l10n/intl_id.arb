@@ -1056,5 +1056,132 @@
   "@loadMore": {
     "type": "text",
     "placeholders": {}
+  },
+  "noPublicRoomsFound": "Tidak menemukan ruangan publik…",
+  "@noPublicRoomsFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPermission": "Tidak ada izin",
+  "@noPermission": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPasswordRecoveryDescription": "Anda belum menambahkan cara untuk memulihkan kata sandi Anda.",
+  "@noPasswordRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "none": "Tidak Ada",
+  "@none": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noMegolmBootstrap": "Mohon menyalakan cadangan kunci online di Element.",
+  "@noMegolmBootstrap": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noGoogleServicesWarning": "Tampaknya Anda tidak memiliki layanan Google di ponsel Anda. Keputusan yang baik untuk privasi Anda! Untuk menerima pemberitahuan push di FluffyChat, sebaiknya Anda menggunakan https://microg.org/ atau https://unifiedpush.org/.",
+  "@noGoogleServicesWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noEncryptionForPublicRooms": "Anda hanya dapat mengaktifkan enkripsi setelah ruangan tidak lagi dapat diakses secara publik.",
+  "@noEncryptionForPublicRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noEmotesFound": "Tidak ada emote yang ditemukan. 😕",
+  "@noEmotesFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "next": "Lanjut",
+  "@next": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newVerificationRequest": "Permintaan verifikasi baru!",
+  "@newVerificationRequest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newMessageInFluffyChat": "Pesan baru di FluffyChat",
+  "@newMessageInFluffyChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newChat": "Chat baru",
+  "@newChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "needPantalaimonWarning": "Perlu diketahui bahwa Anda memerlukan Pantalaimon untuk menggunakan enkripsi ujung-ke-ujung untuk saat ini.",
+  "@needPantalaimonWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "muteChat": "Bisukan chat",
+  "@muteChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "monday": "Senin",
+  "@monday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "moderator": "Moderator",
+  "@moderator": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "messageWillBeRemovedWarning": "Pesan akan dihilangkan untuk semua anggota",
+  "@messageWillBeRemovedWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "mention": "Sebutan",
+  "@mention": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "memberChanges": "Perubahan anggota",
+  "@memberChanges": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "makeSureTheIdentifierIsValid": "Pastikan pengenalnya valid",
+  "@makeSureTheIdentifierIsValid": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "makeAnAdmin": "Jadikan admin",
+  "@makeAnAdmin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "makeAModerator": "Jadikan moderator",
+  "@makeAModerator": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "logout": "Keluar",
+  "@logout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "logInTo": "Masuk ke {homeserver}",
+  "@logInTo": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "login": "Masuk",
+  "@login": {
+    "type": "text",
+    "placeholders": {}
   }
 }
