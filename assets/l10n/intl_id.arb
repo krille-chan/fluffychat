@@ -1183,5 +1183,10 @@
   "@login": {
     "type": "text",
     "placeholders": {}
+  },
+  "noRoomsFound": "Tidak ada ruangan yang ditemukan…",
+  "@noRoomsFound": {
+    "type": "text",
+    "placeholders": {}
   }
 }
