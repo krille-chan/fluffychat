@@ -2587,5 +2587,19 @@
   "newUsernameDescription": "Votre identifiant utilisateur aura alors le format @username:servername",
   "@newUsernameDescription": {},
   "newPasswordDescription": "Afin de pouvoir récupérer votre mot de passe, vous devez ajouter ultérieurement une adresse électronique à votre compte.",
-  "@newPasswordDescription": {}
+  "@newPasswordDescription": {},
+  "enableMultiAccounts": "Activer les comptes multiples sur cet appareil",
+  "@enableMultiAccounts": {},
+  "bundleName": "Nom du groupe",
+  "@bundleName": {},
+  "removeFromBundle": "Retirer de ce groupe",
+  "@removeFromBundle": {},
+  "addToBundle": "Ajouter au groupe",
+  "@addToBundle": {},
+  "editBundlesForAccount": "Modifier les groupes pour ce compte",
+  "@editBundlesForAccount": {},
+  "addAccount": "Ajouter un compte",
+  "@addAccount": {},
+  "oneClientLoggedOut": "Un de vos clients a été déconnecté",
+  "@oneClientLoggedOut": {}
 }
