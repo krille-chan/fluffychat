@@ -519,8 +519,22 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         client,
         context,
         widget.router,
-        onFcmError: (errorMsg) => ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text(errorMsg))),
+        onFcmError: (errorMsg, {Uri link}) => Timer(
+          Duration(seconds: 1),
+          () {
+            final banner = SnackBar(
+              content: Text(errorMsg),
+              duration: Duration(seconds: 30),
+              action: link == null
+                  ? null
+                  : SnackBarAction(
+                      label: L10n.of(context).link,
+                      onPressed: () => launch(link.toString()),
+                    ),
+            );
+            ScaffoldMessenger.of(navigatorContext).showSnackBar(banner);
+          },
+        ),
       );
     }
   }

@@ -51,8 +51,7 @@ class BackgroundPush {
   BuildContext context;
   GlobalKey<VRouterState> router;
   String _fcmToken;
-  LoginState _loginState;
-  void Function(String errorMsg) onFcmError;
+  void Function(String errorMsg, {Uri link}) onFcmError;
   L10n l10n;
   Store _store;
   Store get store => _store ??= Store();
@@ -95,7 +94,7 @@ class BackgroundPush {
 
   factory BackgroundPush(
       Client _client, BuildContext _context, GlobalKey<VRouterState> router,
-      {final void Function(String errorMsg) onFcmError}) {
+      {final void Function(String errorMsg, {Uri link}) onFcmError}) {
     final instance = BackgroundPush.clientOnly(_client);
     instance.context = _context;
     instance.router = router;
@@ -109,7 +108,6 @@ class BackgroundPush {
   }
 
   void handleLoginStateChanged(LoginState state) {
-    _loginState = state;
     setupPush();
   }
 
@@ -217,7 +215,7 @@ class BackgroundPush {
 
   Future<void> setupPush() async {
     await setupLocalNotificationsPlugin();
-    if (_loginState != LoginState.loggedIn ||
+    if (client.loginState != LoginState.loggedIn ||
         !PlatformInfos.isMobile ||
         context == null) {
       return;
@@ -250,9 +248,15 @@ class BackgroundPush {
     }
     if (await store.getItemBool(SettingKeys.showNoGoogle, true)) {
       await loadLocale();
-      onFcmError?.call(PlatformInfos.isAndroid
-          ? l10n.noGoogleServicesWarning
-          : l10n.oopsPushError);
+      if (PlatformInfos.isAndroid) {
+        onFcmError?.call(
+          l10n.noGoogleServicesWarning,
+          link: Uri.parse(
+            AppConfig.enablePushTutorial,
+          ),
+        );
+      }
+      onFcmError?.call(l10n.oopsPushError);
 
       if (null == await store.getItem(SettingKeys.showNoGoogle)) {
         await store.setItemBool(SettingKeys.showNoGoogle, false);

@@ -16,6 +16,7 @@ abstract class AppConfig {
   static const Color secondaryColor = Color(0xFF41a2bc);
   static String _privacyUrl = 'https://fluffychat.im/en/privacy.html';
   static String get privacyUrl => _privacyUrl;
+  static const String enablePushTutorial = 'https://fluffychat.im/en/push.html';
   static const String appId = 'im.fluffychat.FluffyChat';
   static const String appOpenUrlScheme = 'im.fluffychat';
   static String _webBaseUrl = 'https://fluffychat.im/web';

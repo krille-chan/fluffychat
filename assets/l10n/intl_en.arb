@@ -1573,6 +1573,7 @@
     "type": "text",
     "placeholders": {}
   },
+  "link": "Link",
   "serverRequiresEmail": "This server needs to validate your email address for registration.",
   "optionalGroupName": "(Optional) Group name",
   "@optionalGroupName": {
