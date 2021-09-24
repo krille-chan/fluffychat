@@ -43,7 +43,11 @@ dependencies:
   flutter_svg: ^0.22.0
   flutter_typeahead: ^3.2.1
   future_loading_dialog: ^0.2.1
-  geolocator: ^7.6.0
+  geolocator:
+    git:
+      url: https://gitlab.com/free2pass/flutter-geolocator-floss.git
+      ref: master
+      path: geolocator
   hive_flutter: ^1.1.0
   image_picker: ^0.8.4
   intl: any

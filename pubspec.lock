@@ -539,9 +539,11 @@ packages:
   geolocator:
     dependency: "direct main"
     description:
-      name: geolocator
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: geolocator
+      ref: master
+      resolved-ref: "8f3320da99d2fcab6699bc35c5edbc28ee56a3d0"
+      url: "https://gitlab.com/free2pass/flutter-geolocator-floss.git"
+    source: git
     version: "7.6.0"
   geolocator_android:
     dependency: transitive
