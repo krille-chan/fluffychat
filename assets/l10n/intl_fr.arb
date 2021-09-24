@@ -2588,7 +2588,7 @@
   "@newUsernameDescription": {},
   "newPasswordDescription": "Afin de pouvoir récupérer votre mot de passe, vous devez ajouter ultérieurement une adresse électronique à votre compte.",
   "@newPasswordDescription": {},
-  "enableMultiAccounts": "Activer les comptes multiples sur cet appareil",
+  "enableMultiAccounts": "(BETA) Activer les comptes multiples sur cet appareil",
   "@enableMultiAccounts": {},
   "bundleName": "Nom du groupe",
   "@bundleName": {},
