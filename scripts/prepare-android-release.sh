@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+git apply ./scripts/enable-android-google-services.patch
 cd android
 echo $FDROID_KEY | base64 --decode --ignore-garbage > key.jks
 echo "storePassword=${FDROID_KEY_PASS}" >> key.properties

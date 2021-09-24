@@ -88,6 +88,4 @@ dependencies {
     implementation 'com.github.UnifiedPush:android-connector:1.2.0' // needed for unifiedpush
 }
 
-if(file("google-services.json").exists()){
-    apply plugin: 'com.google.gms.google-services'
-}
+//apply plugin: 'com.google.gms.google-services'

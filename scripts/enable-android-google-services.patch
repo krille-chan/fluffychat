@@ -1,0 +1,23 @@
+diff --git a/android/app/build.gradle b/android/app/build.gradle
+index 06a9ab1a..780e0011 100644
+--- a/android/app/build.gradle
++++ b/android/app/build.gradle
+@@ -88,4 +88,4 @@ dependencies {
+     implementation 'com.github.UnifiedPush:android-connector:1.2.0' // needed for unifiedpush
+ }
+ 
+-//apply plugin: 'com.google.gms.google-services'
++apply plugin: 'com.google.gms.google-services'
+diff --git a/android/build.gradle b/android/build.gradle
+index 4ce5c41d..be58d662 100644
+--- a/android/build.gradle
++++ b/android/build.gradle
+@@ -8,7 +8,7 @@ buildscript {
+     dependencies {
+         classpath 'com.android.tools.build:gradle:4.2.1'
+         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+-        //classpath 'com.google.gms:google-services:4.3.8'
++        classpath 'com.google.gms:google-services:4.3.8'
+     }
+ }
+ 
