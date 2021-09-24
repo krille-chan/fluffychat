@@ -1,7 +1,16 @@
 diff --git a/android/app/build.gradle b/android/app/build.gradle
-index 06a9ab1a..780e0011 100644
+index 01687f53..780e0011 100644
 --- a/android/app/build.gradle
 +++ b/android/app/build.gradle
+@@ -80,7 +80,7 @@ flutter {
+ 
+ dependencies {
+     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+-    //implementation 'com.google.firebase:firebase-messaging:19.0.1' // Workaround for https://github.com/microg/android_packages_apps_GmsCore/issues/313#issuecomment-617651698
++    implementation 'com.google.firebase:firebase-messaging:19.0.1' // Workaround for https://github.com/microg/android_packages_apps_GmsCore/issues/313#issuecomment-617651698
+     testImplementation 'junit:junit:4.12'
+     androidTestImplementation 'androidx.test:runner:1.1.1'
+     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 @@ -88,4 +88,4 @@ dependencies {
      implementation 'com.github.UnifiedPush:android-connector:1.2.0' // needed for unifiedpush
  }
