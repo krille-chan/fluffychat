@@ -1,4 +1,5 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:fluffychat/widgets/profile_bottom_sheet.dart';
 
 import 'package:matrix/matrix.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
@@ -11,7 +12,6 @@ import 'package:punycode/punycode.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'platform_infos.dart';
-import '../pages/user_bottom_sheet.dart';
 
 class UrlLauncher {
   final String url;
@@ -83,7 +83,7 @@ class UrlLauncher {
     launch(uri.replace(host: newHost).toString());
   }
 
-  void openMatrixToUrl() async {
+  void openMatrixToUrl([bool startDirectChat = false]) async {
     final matrix = Matrix.of(context);
     // The identifier might be a matrix.to url and needs escaping. Or, it might have multiple
     // identifiers (room id & event id), or it might also have a query part.
@@ -167,12 +167,10 @@ class UrlLauncher {
         });
       }
     } else if (identityParts.primaryIdentifier.sigil == '@') {
-      final profile = await matrix.client
-          .getProfileFromUserId(identityParts.primaryIdentifier);
       await showModalBottomSheet(
         context: context,
-        builder: (c) => UserBottomSheet(
-          profile: profile,
+        builder: (c) => ProfileBottomSheet(
+          userId: identityParts.primaryIdentifier,
           outerContext: context,
         ),
       );

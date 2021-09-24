@@ -18,12 +18,8 @@ class UserBottomSheetView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = controller.widget.user;
-    final client = user?.room?.client ?? Matrix.of(context).client;
-    final mxid = user?.id ?? controller.widget.profile?.userId ?? '';
-    final presence = client.presences[mxid];
-    final displayname =
-        user?.calcDisplayname() ?? controller.widget.profile?.displayName ?? '';
-    final avatarUrl = user?.avatarUrl ?? controller.widget.profile?.avatarUrl;
+    final client = Matrix.of(context).client;
+    final presence = client.presences[user.id];
     return Center(
       child: Container(
         width: min(
@@ -42,12 +38,12 @@ class UserBottomSheetView extends StatelessWidget {
                   onPressed: Navigator.of(context, rootNavigator: false).pop,
                   tooltip: L10n.of(context).close,
                 ),
-                title: Text(displayname),
+                title: Text(user.calcDisplayname()),
                 actions: [
-                  if (mxid != client.userID)
+                  if (user.id != client.userID)
                     PopupMenuButton(
                       itemBuilder: (_) => [
-                        if (user != null && controller.widget.onMention != null)
+                        if (controller.widget.onMention != null)
                           PopupMenuItem(
                             value: 'mention',
                             child: _TextWithIcon(
@@ -55,8 +51,7 @@ class UserBottomSheetView extends StatelessWidget {
                               Icons.alternate_email_outlined,
                             ),
                           ),
-                        if (mxid != client.userID &&
-                            (user == null || !user.room.isDirectChat))
+                        if (user.id != client.userID && !user.room.isDirectChat)
                           PopupMenuItem(
                             value: 'message',
                             child: _TextWithIcon(
@@ -64,7 +59,7 @@ class UserBottomSheetView extends StatelessWidget {
                               Icons.send_outlined,
                             ),
                           ),
-                        if (user != null && user.canChangePowerLevel)
+                        if (user.canChangePowerLevel)
                           PopupMenuItem(
                             value: 'permission',
                             child: _TextWithIcon(
@@ -72,7 +67,7 @@ class UserBottomSheetView extends StatelessWidget {
                               Icons.edit_attributes_outlined,
                             ),
                           ),
-                        if (user != null && user.canKick)
+                        if (user.canKick)
                           PopupMenuItem(
                             value: 'kick',
                             child: _TextWithIcon(
@@ -80,9 +75,7 @@ class UserBottomSheetView extends StatelessWidget {
                               Icons.exit_to_app_outlined,
                             ),
                           ),
-                        if (user != null &&
-                            user.canBan &&
-                            user.membership != Membership.ban)
+                        if (user.canBan && user.membership != Membership.ban)
                           PopupMenuItem(
                             value: 'ban',
                             child: _TextWithIcon(
@@ -90,8 +83,7 @@ class UserBottomSheetView extends StatelessWidget {
                               Icons.warning_sharp,
                             ),
                           )
-                        else if (user != null &&
-                            user.canBan &&
+                        else if (user.canBan &&
                             user.membership == Membership.ban)
                           PopupMenuItem(
                             value: 'unban',
@@ -109,17 +101,17 @@ class UserBottomSheetView extends StatelessWidget {
                 children: [
                   Expanded(
                     child: ContentBanner(
-                      avatarUrl,
+                      user.avatarUrl,
                       defaultIcon: Icons.person_outline,
                       client: client,
                     ),
                   ),
                   ListTile(
                     title: Text(L10n.of(context).username),
-                    subtitle: Text(mxid),
+                    subtitle: Text(user.id),
                     trailing: Icon(Icons.share_outlined),
-                    onTap: () =>
-                        FluffyShare.share(mxid, controller.widget.outerContext),
+                    onTap: () => FluffyShare.share(
+                        user.id, controller.widget.outerContext),
                   ),
                   if (presence != null)
                     ListTile(
