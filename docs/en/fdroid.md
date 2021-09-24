@@ -1,37 +1,62 @@
 ---
 layout: default
-title: Push
+title: F-Droid Repository
 lang: en
 ---
-# Enable Push Notifications without Google Services
+# F-Droid Repository
 
-You have two options to receive push notifications on FluffyChat without Google Services.
+## Add Repository to F-Droid
 
-1. Unified Push
-2. MicroG
+Easiest way to add the Repository is to either scan the QR-Code or if you are on your phone directly click it.
 
-## 1. Unified Push
+{::nomarkdown}
+<a href="fdroidrepos://fdroid.fluffychat.im/?fingerprint=8E2637AEF6697CC6DD486AF044A6EE45B1A742AE3EF56566E748CDE8BC65C1FB" >
+    <img src="{{site.assets}}/images/qr-code.svg" width="300" height="300"/>
+</a>
+{:/}
 
-UnifiedPush is specifications and tools that let the user choose how push notifications are delivered. All in a free and open source way.
 
-### Use hosted (easy)
+### If the QR-Code doesn't work:
 
-1. Go to: https://gotify1.unifiedpush.org/
-2. Register an account with a username+password
-3. Download UP-Gotify from F-Droid: https://f-droid.org/de/packages/com.github.gotify.up/
-4. Login on https://gotify1.unifiedpush.org/ with your username+password
-5. Restart FluffyChat
+First check if you have f-droid installed. If not you can get it from: [https://f-droid.org/](https://f-droid.org/).
+After you made sure you installed it and you didn't have it installed before you can try again the QR-Code.
+If this still isn't working follow the next steps:
 
-From now on all push notifications will go through unified push.
+1. Open the f-droid App
+2. Go to the `Settings` Tab in the Bottom bar
+3. Click the `Repositories` Action
+4. Click on the plus sign at the top.
+5. Fill in `https://fdroid.fluffychat.im` into the top field and `8E2637AEF6697CC6DD486AF044A6EE45B1A742AE3EF56566E748CDE8BC65C1FB` in the bottom field.
 
-### Self-host (hard)
+## What is the fingerprint?
 
-For more privacy and protection of your meta data you can self host Gotify for unified push.
+The fingerprint of the Repository is: `8E2637AEF6697CC6DD486AF044A6EE45B1A742AE3EF56566E748CDE8BC65C1FB`
 
-Learn more about it here: https://unifiedpush.org/users/distributors/gotify/
+# Nightly Repository
 
-## 2. MicroG
+## Add Repository to F-Droid
 
-You can use Firebase Cloud Messaging without Google Services using MicroG.
+Easiest way to add the Repository is to either scan the QR-Code or if you are on your phone directly click it.
 
-Learn more about it here: https://microg.org/
+{::nomarkdown}
+<a href="fdroidrepos://nightly.fdroid.fluffychat.im/?fingerprint=21A469657300576478B623DF99D8EB889A80BCD939ACA60A4074741BEAEC397D" >
+    <img src="{{site.assets}}/images/qr-code-nightly.svg" width="300" height="300"/>
+</a>
+{:/}
+
+
+### If the QR-Code doesn't work:
+
+First check if you have f-droid installed. If not you can get it from: [https://f-droid.org/](https://f-droid.org/).
+After you made sure you installed it and you didn't have it installed before you can try again the QR-Code.
+If this still isn't working follow the next steps:
+
+1. Open the f-droid App
+2. Go to the `Settings` Tab in the Bottom bar
+3. Click the `Repositories` Action
+4. Click on the plus sign at the top.
+5. Fill in `https://nightly.fdroid.fluffychat.im` into the top field and `21A469657300576478B623DF99D8EB889A80BCD939ACA60A4074741BEAEC397D` in the bottom field.
+
+## What is the fingerprint?
+
+The fingerprint of the Repository is: `21A469657300576478B623DF99D8EB889A80BCD939ACA60A4074741BEAEC397D`
