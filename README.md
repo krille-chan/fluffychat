@@ -20,6 +20,10 @@ cd fluffychat
 
 3. Choose your target platform below and enable support for it.
 
+3.1 If you want, enable Googles Firebase Cloud Messaging:
+
+`git apply ./scripts/enable-android-google-services.patch`
+
 4. Debug with: `flutter run`
 
 ### Android

@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+git apply ./scripts/enable-android-google-services.patch
 FLUFFYCHAT_ORIG_GROUP="im.fluffychat"
 FLUFFYCHAT_ORIG_TEAM="4NXF6Z997G"
 #FLUFFYCHAT_NEW_GROUP="com.example.fluffychat"
