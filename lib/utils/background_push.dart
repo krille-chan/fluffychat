@@ -24,7 +24,7 @@ import 'dart:ui';
 
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:matrix/matrix.dart';
-import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
+//import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -72,7 +72,7 @@ class BackgroundPush {
     onRoomSync ??= client.onSync.stream
         .where((s) => s.hasRoomUpdate)
         .listen((s) => _onClearingPush(getFromServer: false));
-    _fcmSharedIsolate.setListeners(
+    _fcmSharedIsolate?.setListeners(
       onMessage: _onFcmMessage,
       onNewToken: _newFcmToken,
     );
@@ -116,7 +116,7 @@ class BackgroundPush {
     setupPush();
   }
 
-  final _fcmSharedIsolate = FcmSharedIsolate();
+  final _fcmSharedIsolate = null; //FcmSharedIsolate();
 
   StreamSubscription<LoginState> onLogin;
   StreamSubscription<SyncUpdate> onRoomSync;
@@ -128,7 +128,7 @@ class BackgroundPush {
     bool useDeviceSpecificAppId = false,
   }) async {
     if (PlatformInfos.isIOS) {
-      await _fcmSharedIsolate.requestPermission();
+      await _fcmSharedIsolate?.requestPermission();
     }
     final clientName = PlatformInfos.clientName;
     oldTokens ??= <String>{};
@@ -268,7 +268,8 @@ class BackgroundPush {
     Logs().v('Setup firebase');
     if (_fcmToken?.isEmpty ?? true) {
       try {
-        _fcmToken = await _fcmSharedIsolate.getToken();
+        _fcmToken = await _fcmSharedIsolate?.getToken();
+        if (_fcmToken == null) throw Exception('PushToken is null');
       } catch (e, s) {
         Logs().e('[Push] cannot get token', e, s);
         await _noFcmWarning();
@@ -362,7 +363,7 @@ class BackgroundPush {
     Logs().i('[Push] UnifiedPush using endpoint ' + endpoint);
     final oldTokens = <String>{};
     try {
-      final fcmToken = await _fcmSharedIsolate.getToken();
+      final fcmToken = await _fcmSharedIsolate?.getToken();
       oldTokens.add(fcmToken);
     } catch (_) {}
     await setupPusher(

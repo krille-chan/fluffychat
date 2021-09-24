@@ -17,6 +17,22 @@ index 01687f53..780e0011 100644
  
 -//apply plugin: 'com.google.gms.google-services'
 +apply plugin: 'com.google.gms.google-services'
+diff --git a/android/app/src/main/kotlin/chat/fluffy/fluffychat/FcmPushService.kt b/android/app/src/main/kotlin/chat/fluffy/fluffychat/FcmPushService.kt
+index d9930f55..510e9845 100644
+--- a/android/app/src/main/kotlin/chat/fluffy/fluffychat/FcmPushService.kt
++++ b/android/app/src/main/kotlin/chat/fluffy/fluffychat/FcmPushService.kt
+@@ -1,4 +1,4 @@
+-/*package chat.fluffy.fluffychat
++package chat.fluffy.fluffychat
+ 
+ import com.famedly.fcm_shared_isolate.FcmSharedIsolateService
+ 
+@@ -33,4 +33,3 @@ class FcmPushService : FcmSharedIsolateService() {
+         }
+     }
+ }
+-*/
+\ No newline at end of file
 diff --git a/android/build.gradle b/android/build.gradle
 index 4ce5c41d..be58d662 100644
 --- a/android/build.gradle
@@ -30,3 +46,40 @@ index 4ce5c41d..be58d662 100644
      }
  }
  
+diff --git a/lib/utils/background_push.dart b/lib/utils/background_push.dart
+index 0b771ef8..56af0cee 100644
+--- a/lib/utils/background_push.dart
++++ b/lib/utils/background_push.dart
+@@ -24,7 +24,7 @@ import 'dart:ui';
+ 
+ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+ import 'package:matrix/matrix.dart';
+-//import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
++import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
+ 
+ import 'package:flutter/material.dart';
+ import 'package:http/http.dart' as http;
+@@ -116,7 +116,7 @@ class BackgroundPush {
+     setupPush();
+   }
+ 
+-  final _fcmSharedIsolate = null; //FcmSharedIsolate();
++  final _fcmSharedIsolate = FcmSharedIsolate();
+ 
+   StreamSubscription<LoginState> onLogin;
+   StreamSubscription<SyncUpdate> onRoomSync;
+diff --git a/pubspec.yaml b/pubspec.yaml
+index 97fdbac7..7956eb5d 100644
+--- a/pubspec.yaml
++++ b/pubspec.yaml
+@@ -16,8 +16,8 @@ dependencies:
+   desktop_notifications: ">=0.4.0 <0.5.0" # Version 0.5.0 breaks web builds: https://github.com/canonical/dbus.dart/issues/250
+   email_validator: ^2.0.1
+   emoji_picker_flutter: ^1.0.7
+-  #fcm_shared_isolate:
+-  #  git: https://gitlab.com/famedly/libraries/fcm_shared_isolate.git
++  fcm_shared_isolate:
++    git: https://gitlab.com/famedly/libraries/fcm_shared_isolate.git
+   file_picker_cross: ^4.4.2
+   filesystem_picker: 2.0.0-nullsafety.0 # Using pre release to be compatible with Flutter 2.5
+   flutter:
