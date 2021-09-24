@@ -2580,7 +2580,7 @@
   "@addToSpace": {},
   "serverRequiresEmail": "Dieser Server muss deine E-Mail-Adresse für die Registrierung überprüfen.",
   "@serverRequiresEmail": {},
-  "enableMultiAccounts": "Aktiviere Multi-Accounts für dieses Gerät",
+  "enableMultiAccounts": "(BETA) Aktiviere Multi-Accounts für dieses Gerät",
   "@enableMultiAccounts": {},
   "bundleName": "Name des Bundles",
   "@bundleName": {},
