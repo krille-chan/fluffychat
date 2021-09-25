@@ -35,7 +35,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_map: ^0.14.0
-  flutter_matrix_html: ^1.0.4
+  flutter_matrix_html: # Use git version until flutter_math_fork is updated to 0.4.X
+    git: https://github.com/Sorunome/flutter_matrix_html.git
   flutter_olm: ^1.1.2
   flutter_openssl_crypto: ^0.0.1
   flutter_secure_storage: ^4.2.1
@@ -62,7 +63,7 @@ dependencies:
   path_provider: ^2.0.2
   permission_handler: ^8.1.4+2
   pin_code_text_field: ^1.8.0
-  provider: ^5.0.0
+  provider: ^6.0.0
   punycode: ^1.0.0
   qr_code_scanner: ^0.5.2
   qr_flutter: ^4.0.0
@@ -115,3 +116,6 @@ flutter:
         - asset: fonts/NotoSans/NotoSans-BoldItalic.ttf
           weight: 700
           style: italic
+
+dependency_overrides:
+  provider: 5.0.0

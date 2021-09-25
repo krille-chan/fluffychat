@@ -418,13 +418,15 @@ packages:
       name: flutter_math_fork
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.3+1"
+    version: "0.4.1"
   flutter_matrix_html:
     dependency: "direct main"
     description:
-      name: flutter_matrix_html
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: "0f5677e15d14072455dfe56a33df75010bc3bf87"
+      url: "https://github.com/Sorunome/flutter_matrix_html.git"
+    source: git
     version: "1.0.4"
   flutter_native_splash:
     dependency: "direct dev"
