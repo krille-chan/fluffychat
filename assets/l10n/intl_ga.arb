@@ -232,7 +232,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "crossSigningEnabled": "Cros-shíniú ar",
+  "crossSigningEnabled": "Tá cros-shíniú tosaithe",
   "@crossSigningEnabled": {
     "type": "text",
     "placeholders": {}
@@ -2580,5 +2580,7 @@
   "@roomHasBeenUpgraded": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "addAccount": "Breisigh cuntas",
+  "@addAccount": {}
 }
