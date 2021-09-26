@@ -1753,7 +1753,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "hasWithdrawnTheInvitationFor": "Tharraing {username} an cuireadh do {targetName} siar.",
+  "hasWithdrawnTheInvitationFor": "Tharraing {username} an cuireadh do {targetName} siar",
   "@hasWithdrawnTheInvitationFor": {
     "type": "text",
     "placeholders": {
@@ -2582,5 +2582,7 @@
     "placeholders": {}
   },
   "addAccount": "Breisigh cuntas",
-  "@addAccount": {}
+  "@addAccount": {},
+  "enableMultiAccounts": "(BÉITE) Cumasaigh cuntais iomadúla ar an gléas seo",
+  "@enableMultiAccounts": {}
 }
