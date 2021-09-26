@@ -87,7 +87,7 @@ index 0b771ef8..56af0cee 100644
    StreamSubscription<LoginState> onLogin;
    StreamSubscription<SyncUpdate> onRoomSync;
 diff --git a/pubspec.yaml b/pubspec.yaml
-index 9935103a..a1187c17 100644
+index 47cfe550..21685cc6 100644
 --- a/pubspec.yaml
 +++ b/pubspec.yaml
 @@ -16,8 +16,8 @@ dependencies:
@@ -101,3 +101,18 @@ index 9935103a..a1187c17 100644
    file_picker_cross: ^4.4.2
    filesystem_picker: 2.0.0-nullsafety.0 # Using pre release to be compatible with Flutter 2.5
    flutter:
+@@ -114,9 +114,9 @@ flutter:
+           style: italic
+ 
+ dependency_overrides:
+-  geolocator_android:
+-    git:
+-      url: https://gitlab.com/hanntech-gmbh/free2pass/flutter-geolocator-floss.git
+-      ref: 7.6.2
+-      path: geolocator_android
++  #geolocator_android:
++  #  git:
++  #    url: https://gitlab.com/hanntech-gmbh/free2pass/flutter-geolocator-floss.git
++  #    ref: 7.6.2
++  #    path: geolocator_android
+   provider: 5.0.0
