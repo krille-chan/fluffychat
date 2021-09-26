@@ -1,8 +1,8 @@
 diff --git a/android/app/build.gradle b/android/app/build.gradle
-index 8d58a3db..1d6d9600 100644
+index 63136570..3f33ea05 100644
 --- a/android/app/build.gradle
 +++ b/android/app/build.gradle
-@@ -80,10 +80,10 @@ flutter {
+@@ -80,11 +80,11 @@ flutter {
  
  dependencies {
      implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -11,6 +11,7 @@ index 8d58a3db..1d6d9600 100644
      testImplementation 'junit:junit:4.12'
      androidTestImplementation 'androidx.test:runner:1.1.1'
      androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+     implementation 'com.github.UnifiedPush:android-connector:1.2.0' // needed for unifiedpush
  }
  
 -//apply plugin: 'com.google.gms.google-services'
