@@ -1,8 +1,8 @@
 diff --git a/android/app/build.gradle b/android/app/build.gradle
-index 01687f53..780e0011 100644
+index 8d58a3db..1d6d9600 100644
 --- a/android/app/build.gradle
 +++ b/android/app/build.gradle
-@@ -80,7 +80,7 @@ flutter {
+@@ -80,10 +80,10 @@ flutter {
  
  dependencies {
      implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -11,8 +11,6 @@ index 01687f53..780e0011 100644
      testImplementation 'junit:junit:4.12'
      androidTestImplementation 'androidx.test:runner:1.1.1'
      androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
-@@ -88,4 +88,4 @@ dependencies {
-     implementation 'com.github.UnifiedPush:android-connector:1.2.0' // needed for unifiedpush
  }
  
 -//apply plugin: 'com.google.gms.google-services'
@@ -69,7 +67,7 @@ index 0b771ef8..56af0cee 100644
    StreamSubscription<LoginState> onLogin;
    StreamSubscription<SyncUpdate> onRoomSync;
 diff --git a/pubspec.yaml b/pubspec.yaml
-index 97fdbac7..7956eb5d 100644
+index 9935103a..a1187c17 100644
 --- a/pubspec.yaml
 +++ b/pubspec.yaml
 @@ -16,8 +16,8 @@ dependencies:
