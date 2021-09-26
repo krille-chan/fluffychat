@@ -2601,5 +2601,7 @@
   "addAccount": "Ajouter un compte",
   "@addAccount": {},
   "oneClientLoggedOut": "Un de vos clients a été déconnecté",
-  "@oneClientLoggedOut": {}
+  "@oneClientLoggedOut": {},
+  "link": "Lien",
+  "@link": {}
 }

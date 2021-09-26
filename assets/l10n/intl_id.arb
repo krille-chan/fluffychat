@@ -1571,7 +1571,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadMessages": "{unreadCount, plural, =1{1 pesan belum terbaca} other{{unreadCount} pesan belum terbaca}}",
+  "unreadMessages": "{unreadEvents, plural, =1{1 pesan belum terbaca} other{{unreadEvents} pesan belum terbaca}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
@@ -2103,7 +2103,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enableMultiAccounts": "Aktifkan multi-akun di perangkat ini",
+  "enableMultiAccounts": "(BETA) Aktifkan multi-akun di perangkat ini",
   "@enableMultiAccounts": {},
   "bundleName": "Nama bundel",
   "@bundleName": {},
@@ -2595,5 +2595,7 @@
   "@pickImage": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "link": "Tautan",
+  "@link": {}
 }

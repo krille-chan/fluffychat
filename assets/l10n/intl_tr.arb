@@ -2588,7 +2588,7 @@
   "@newUsernameDescription": {},
   "newPasswordDescription": "Parolanızı kurtarabilmek için daha sonra hesabınıza bir e-posta adresi eklemelisiniz.",
   "@newPasswordDescription": {},
-  "enableMultiAccounts": "Bu aygıtta çoklu hesapları etkinleştir",
+  "enableMultiAccounts": "(BETA) Bu aygıtta çoklu hesapları etkinleştir",
   "@enableMultiAccounts": {},
   "bundleName": "Paket adı",
   "@bundleName": {},
@@ -2601,5 +2601,7 @@
   "addAccount": "Hesap ekle",
   "@addAccount": {},
   "oneClientLoggedOut": "İstemcilerinizden birinin oturumu kapatıldı",
-  "@oneClientLoggedOut": {}
+  "@oneClientLoggedOut": {},
+  "link": "Bağlantı",
+  "@link": {}
 }

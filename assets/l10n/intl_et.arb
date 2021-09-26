@@ -2588,7 +2588,7 @@
   "@newUsernameDescription": {},
   "newPasswordDescription": "Selleks, et saaksid vajadusel oma salasõna taastada, peaksid hiljem lisama oma kasutajakontole e-posti aadressi.",
   "@newPasswordDescription": {},
-  "enableMultiAccounts": "Pruugi selles seadmes mitut Matrix'i kasutajakontot",
+  "enableMultiAccounts": "(KATSELINE) Pruugi selles seadmes mitut Matrix'i kasutajakontot",
   "@enableMultiAccounts": {},
   "bundleName": "Köite nimi",
   "@bundleName": {},
@@ -2601,5 +2601,7 @@
   "addAccount": "Lisa kasutajakonto",
   "@addAccount": {},
   "oneClientLoggedOut": "Üks sinu klientrakendustest on Matrix'i võrgust välja loginud",
-  "@oneClientLoggedOut": {}
+  "@oneClientLoggedOut": {},
+  "link": "Link",
+  "@link": {}
 }

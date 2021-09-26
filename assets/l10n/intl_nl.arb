@@ -2589,7 +2589,7 @@
   "@newPasswordDescription": {},
   "oneClientLoggedOut": "Één van jouw apparaten is uitgelogd",
   "@oneClientLoggedOut": {},
-  "enableMultiAccounts": "Multi-accounts inschakelen op dit apparaat",
+  "enableMultiAccounts": "(BETA) Multi-accounts inschakelen op dit apparaat",
   "@enableMultiAccounts": {},
   "bundleName": "Bundelnaam",
   "@bundleName": {},
@@ -2600,5 +2600,7 @@
   "editBundlesForAccount": "Bundels voor dit account wijzigen",
   "@editBundlesForAccount": {},
   "addAccount": "Account toevoegen",
-  "@addAccount": {}
+  "@addAccount": {},
+  "link": "Link",
+  "@link": {}
 }
