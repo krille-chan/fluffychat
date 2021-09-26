@@ -520,7 +520,7 @@ packages:
     description:
       path: geolocator_android
       ref: "7.6.2"
-      resolved-ref: "47075bb936a85bd94af1922604fce70c0ea66f48"
+      resolved-ref: "7f6f64b3244f761b19d8e73e3c770be6b9179da5"
       url: "https://gitlab.com/hanntech-gmbh/free2pass/flutter-geolocator-floss.git"
     source: git
     version: "1.0.1"
