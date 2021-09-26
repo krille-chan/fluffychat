@@ -514,7 +514,7 @@ packages:
       path: geolocator
       ref: "7.6.2"
       resolved-ref: "47075bb936a85bd94af1922604fce70c0ea66f48"
-      url: "https://gitlab.com/free2pass/flutter-geolocator-floss.git"
+      url: "https://gitlab.com/hanntech-gmbh/free2pass/flutter-geolocator-floss.git"
     source: git
     version: "7.6.2"
   geolocator_android:
@@ -539,7 +539,7 @@ packages:
       name: geolocator_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.3.4"
+    version: "2.3.5"
   geolocator_web:
     dependency: transitive
     description:
