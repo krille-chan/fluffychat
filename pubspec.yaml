@@ -118,4 +118,9 @@ flutter:
           style: italic
 
 dependency_overrides:
+  geolocator_android:
+    git:
+      url: https://gitlab.com/hanntech-gmbh/free2pass/flutter-geolocator-floss.git
+      ref: 7.6.2
+      path: geolocator_android
   provider: 5.0.0
