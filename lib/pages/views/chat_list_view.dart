@@ -366,7 +366,7 @@ class ChatListView extends StatelessWidget {
                   : Drawer(
                       child: SafeArea(
                         child: ListView.builder(
-                          itemCount: controller.spaces.length,
+                          itemCount: controller.spaces.length + 1,
                           itemBuilder: (context, i) {
                             if (i == 0) {
                               return ListTile(
