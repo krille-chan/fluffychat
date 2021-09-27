@@ -2587,5 +2587,21 @@
   "homeserver": "Domaći poslužitelj",
   "@homeserver": {},
   "sendOnEnter": "Pošalji pritiskom tipke enter",
-  "@sendOnEnter": {}
+  "@sendOnEnter": {},
+  "link": "Poveznica",
+  "@link": {},
+  "enableMultiAccounts": "(BETA) Omogući korištenje više računa na ovom uređaju",
+  "@enableMultiAccounts": {},
+  "bundleName": "Ime paketa",
+  "@bundleName": {},
+  "removeFromBundle": "Ukloni iz ovog paketa",
+  "@removeFromBundle": {},
+  "addToBundle": "Dodaj u paket",
+  "@addToBundle": {},
+  "editBundlesForAccount": "Uredi pakete za ovaj račun",
+  "@editBundlesForAccount": {},
+  "addAccount": "Dodaj račun",
+  "@addAccount": {},
+  "oneClientLoggedOut": "Jedan od tvojih klijenata je odjavljen",
+  "@oneClientLoggedOut": {}
 }
