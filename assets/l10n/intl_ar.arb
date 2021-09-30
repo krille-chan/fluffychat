@@ -946,7 +946,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "من الرائع أن نرى انك لا تستخدم خدمات غوغل للحفاظ على خصوصيتك!من أجل استلام الإشعارات نقترح استخدام\nhttps://microg.org أو https://unifiedpush.org.",
+  "noGoogleServicesWarning": "من الرائع أن نرى انك لا تستخدم خدمات غوغل للحفاظ على خصوصيتك!من أجل استلام الإشعارات نقترح استخدام\nhttps://microg.org أو\n https://unifiedpush.org.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -2081,5 +2081,19 @@
   "@addEmail": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "noPublicRoomsFound": "لم يّعثر على أي غرف عمومية…",
+  "@noPublicRoomsFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPasswordRecoveryDescription": "لم تضف أي طريقة لاستعادة كلمة المرور.",
+  "@noPasswordRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newUsernameDescription": "سيكون معرفك على شكل @username:servername",
+  "@newUsernameDescription": {},
+  "newPasswordDescription": "لتتمكن من استعادة كلمة المرور في حالة فقدانها أضف عنوان بريد إلكتروني لاحقًا.",
+  "@newPasswordDescription": {}
 }
