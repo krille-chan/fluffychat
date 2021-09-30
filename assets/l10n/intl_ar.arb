@@ -18,7 +18,7 @@
       "username": {}
     }
   },
-  "account": "حساب",
+  "account": "الحساب",
   "@account": {
     "type": "text",
     "placeholders": {}
@@ -82,7 +82,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "areYouSure": "متأكد؟",
+  "areYouSure": "أمتأكد؟",
   "@areYouSure": {
     "type": "text",
     "placeholders": {}
@@ -316,7 +316,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "close": "أغلق",
+  "close": "اغلق",
   "@close": {
     "type": "text",
     "placeholders": {}
@@ -356,7 +356,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "copiedToClipboard": "نُسخ في الحافظة",
+  "copiedToClipboard": "نُسخ للحافظة",
   "@copiedToClipboard": {
     "type": "text",
     "placeholders": {}
@@ -448,7 +448,7 @@
       "day": {}
     }
   },
-  "dateWithYear": "{year}-{month}-{day}",
+  "dateWithYear": "{day}/{month}/{year}",
   "@dateWithYear": {
     "type": "text",
     "placeholders": {
@@ -876,7 +876,7 @@
       "homeserver": {}
     }
   },
-  "logout": "خروج",
+  "logout": "اخرج",
   "@logout": {
     "type": "text",
     "placeholders": {}
@@ -906,7 +906,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "monday": "الإثنين",
+  "monday": "الثلاثاء",
   "@monday": {
     "type": "text",
     "placeholders": {}
@@ -1008,7 +1008,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "openCamera": "افتح الكاميرا",
+  "openCamera": "افتح الكميرا",
   "@openCamera": {
     "type": "text",
     "placeholders": {}
@@ -2095,5 +2095,57 @@
   "newUsernameDescription": "سيكون معرفك على شكل @username:servername",
   "@newUsernameDescription": {},
   "newPasswordDescription": "لتتمكن من استعادة كلمة المرور في حالة فقدانها أضف عنوان بريد إلكتروني لاحقًا.",
-  "@newPasswordDescription": {}
+  "@newPasswordDescription": {},
+  "notifications": "الإشعارات",
+  "@notifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reason": "السبب",
+  "@reason": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "search": "ابحث",
+  "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationDisabledNotice": "خدمات الموقع معطلة. مكنها لتتمكن من مشاركة موقعك.",
+  "@locationDisabledNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorObtainingLocation": "خطأ أثناء الحصول على الموقع: {error}",
+  "@errorObtainingLocation": {
+    "type": "text",
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "enableChatBackup": "فعّل النسخ الاحتياطي للمحادثة كي لا تخسر الوصول إليها.",
+  "@enableChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAliases": "عدّل اسم الغرفة",
+  "@editRoomAliases": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editChatPermissions": "عدّل تصاريح المحادثة",
+  "@editChatPermissions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "configureChat": "اضبط المحادثة",
+  "@configureChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackupDescription": "النسخ الاحتياطي لمحادثاتك مأمن بمفتاح، تأكد ألّا تفقده.",
+  "@chatBackupDescription": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
