@@ -971,7 +971,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "notSupportedInWeb": "",
+  "notSupportedInWeb": "غير مدعوم في الويب",
   "@notSupportedInWeb": {
     "type": "text",
     "placeholders": {}
@@ -1023,7 +1023,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "passphraseOrKey": "",
+  "passphraseOrKey": "عبارة المرور أو مفتاح الاستعادة",
   "@passphraseOrKey": {
     "type": "text",
     "placeholders": {}
@@ -2145,6 +2145,84 @@
   },
   "chatBackupDescription": "النسخ الاحتياطي لمحادثاتك مأمن بمفتاح، تأكد ألّا تفقده.",
   "@chatBackupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareLocation": "شارك الموقع",
+  "@shareLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChooseAPasscode": "اختر رمز المرور",
+  "@pleaseChooseAPasscode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChoose": "اختر رجاء",
+  "@pleaseChoose": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordRecovery": "استعادة كلمة السر",
+  "@passwordRecovery": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordForgotten": "نسيتَ كلمة المرور",
+  "@passwordForgotten": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "participant": "منتسب",
+  "@participant": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "or": "أو",
+  "@or": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "serverRequiresEmail": "يتطلب هذا الخادم التحقق من بريدك الإلكتروني.",
+  "@serverRequiresEmail": {},
+  "link": "رابط",
+  "@link": {},
+  "openInMaps": "افتح في الخريطة",
+  "@openInMaps": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableMultiAccounts": "(ميزة تجربية) فعّل تعدد الحسابات",
+  "@enableMultiAccounts": {},
+  "bundleName": "اسم الحزمة",
+  "@bundleName": {},
+  "removeFromBundle": "أزله من الحزمة",
+  "@removeFromBundle": {},
+  "addToBundle": "أضفه الى حزمة",
+  "@addToBundle": {},
+  "editBundlesForAccount": "عدّل حزم هذا الحساب",
+  "@editBundlesForAccount": {},
+  "addAccount": "أضف حسابًا",
+  "@addAccount": {},
+  "online": "متصل",
+  "@online": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offline": "غير متصل",
+  "@offline": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "numUsersTyping": "{count} يكتبون…",
+  "@numUsersTyping": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "notificationsEnabledForThisAccount": "الإشعارات مفعلة لهذا الحساب",
+  "@notificationsEnabledForThisAccount": {
     "type": "text",
     "placeholders": {}
   }
