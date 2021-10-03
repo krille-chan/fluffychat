@@ -1360,7 +1360,7 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "ابدأ محادثتك الأولى :-)",
+  "startYourFirstChat": "ابدأ محادثتك الأولى! 🙂\n- أنقر زر الرسالة\n- أدخل اسم المستخدم المستهدف\n- اكتب ما يحلو لك",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -1410,7 +1410,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "timeOfDay": "",
+  "timeOfDay": "{hours12}:{minutes} {suffix}",
   "@timeOfDay": {
     "type": "text",
     "placeholders": {
@@ -1420,7 +1420,7 @@
       "suffix": {}
     }
   },
-  "title": "",
+  "title": "فلافي-شات",
   "@title": {
     "description": "Title for the application",
     "type": "text",
@@ -1459,7 +1459,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unknownEvent": "",
+  "unknownEvent": "حدث مجهول '{type}'",
   "@unknownEvent": {
     "type": "text",
     "placeholders": {
@@ -1535,7 +1535,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "userSentUnknownEvent": "",
+  "userSentUnknownEvent": "أرسل {username} حدث {type}",
   "@userSentUnknownEvent": {
     "type": "text",
     "placeholders": {
@@ -2087,14 +2087,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "noPasswordRecoveryDescription": "لم تضف أي طريقة لاستعادة كلمة المرور.",
+  "noPasswordRecoveryDescription": "لم تضف أي طريقة لاستعادة كلمة السر.",
   "@noPasswordRecoveryDescription": {
     "type": "text",
     "placeholders": {}
   },
   "newUsernameDescription": "سيكون معرفك على شكل @username:servername",
   "@newUsernameDescription": {},
-  "newPasswordDescription": "لتتمكن من استعادة كلمة المرور في حالة فقدانها أضف عنوان بريد إلكتروني لاحقًا.",
+  "newPasswordDescription": "لتتمكن من استعادة كلمة السر في حالة فقدانها أضف عنوان بريد إلكتروني لاحقًا.",
   "@newPasswordDescription": {},
   "notifications": "الإشعارات",
   "@notifications": {
@@ -2168,7 +2168,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "passwordForgotten": "نسيتَ كلمة المرور",
+  "passwordForgotten": "نسيتَ كلمة السر",
   "@passwordForgotten": {
     "type": "text",
     "placeholders": {}
@@ -2223,6 +2223,153 @@
   },
   "notificationsEnabledForThisAccount": "الإشعارات مفعلة لهذا الحساب",
   "@notificationsEnabledForThisAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceIsPublic": "الفضاء عمومي",
+  "@spaceIsPublic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleFavorite": "بدّل حالة التفضيل",
+  "@toggleFavorite": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleUnread": "علّمه كمقروء/غير مقروء",
+  "@toggleUnread": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapOnDeviceToVerify": "انقر على الجهاز لتوثيقه",
+  "@tapOnDeviceToVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unavailable": "غير متوفر",
+  "@unavailable": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whyDoYouWantToReportThis": "لماذا تريد الإبلاغ عنه؟",
+  "@whyDoYouWantToReportThis": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "withTheseAddressesRecoveryDescription": "يمكنك استعادة كلمة السر بهذه العناوين.",
+  "@withTheseAddressesRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zoomOut": "صغّر",
+  "@zoomOut": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zoomIn": "كبّر",
+  "@zoomIn": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "singlesignon": "ولوج فريد",
+  "@singlesignon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleMuted": "بدّل حالة الكتم",
+  "@toggleMuted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showPassword": "أظهر كلمة السر",
+  "@showPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "soundVibrationLedColor": "الصوت والاهتزاز ولون ضوء الإشعار",
+  "@soundVibrationLedColor": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourChatsAreBeingSynced": "يُزامن محادثاتك…",
+  "@yourChatsAreBeingSynced": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userNotVerified": "المستخدم غير موثّق",
+  "@userNotVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verified": "موثّق",
+  "@verified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceName": "اسم الفضاء",
+  "@spaceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "synchronizingPleaseWait": "يُزامن… يرجى الانتظار.",
+  "@synchronizingPleaseWait": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapToShowImage": "انقر على صورة لإظهارها",
+  "@tapToShowImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tooManyRequestsWarning": "طابات كثيرة. حاول مجددًا لاحقًا!",
+  "@tooManyRequestsWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unlockChatBackup": "فك قفل النسخ الاحتياطي للمحادثة",
+  "@unlockChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userVerified": "المستخدم موثّق",
+  "@userVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "weSentYouAnEmail": "أرسلنا لك رسالة بالبريد الإلكتروني",
+  "@weSentYouAnEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourPublicKey": "مفتاحك العمومي",
+  "@yourPublicKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youWillBeConnectedTo": "سيتم وصلك بـ {homeserver}",
+  "@youWillBeConnectedTo": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "status": "الحالة",
+  "@status": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userUnknownVerification": "حالة توثيق المستخدم مجهولة",
+  "@userUnknownVerification": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transferFromAnotherDevice": "أنقله من جهاز آخر",
+  "@transferFromAnotherDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wipeChatBackup": "أتريد حذف النسخ الاحتياطي للمحادثة لإنشاء مفتاح أمان جديد؟",
+  "@wipeChatBackup": {
     "type": "text",
     "placeholders": {}
   }
