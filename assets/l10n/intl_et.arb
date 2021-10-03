@@ -2047,7 +2047,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sharedTheLocation": "{username} jagas asukohta",
+  "sharedTheLocation": "{username} jagas oma asukohta",
   "@sharedTheLocation": {
     "type": "text",
     "placeholders": {
