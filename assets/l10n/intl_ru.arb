@@ -2599,5 +2599,9 @@
   "newUsernameDescription": "Ваш идентификатор пользователя будет иметь формат @имяпользователя:названиесервера",
   "@newUsernameDescription": {},
   "newPasswordDescription": "Чтобы иметь возможность восстановить свой пароль, вы должны позже добавить адрес электронной почты в свою учетную запись.",
-  "@newPasswordDescription": {}
+  "@newPasswordDescription": {},
+  "link": "Ссылка",
+  "@link": {},
+  "oneClientLoggedOut": "Один из ваших клиентов вышел",
+  "@oneClientLoggedOut": {}
 }

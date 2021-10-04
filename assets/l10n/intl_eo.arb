@@ -2555,5 +2555,7 @@
   "addToSpace": "Aldoni al aro",
   "@addToSpace": {},
   "homeserver": "Hejmservilo",
-  "@homeserver": {}
+  "@homeserver": {},
+  "sendOnEnter": "Sendi per eniga klavo",
+  "@sendOnEnter": {}
 }
