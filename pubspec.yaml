@@ -42,40 +42,40 @@ dependencies:
   future_loading_dialog: ^0.2.1
   geolocator: ^7.6.2
   hive_flutter: ^1.1.0
-  image_picker: ^0.8.4
+  image_picker: ^0.8.4+2
   intl: any
   localstorage: ^4.0.0+1
-  lottie: ^1.1.0
+  lottie: ^1.2.1
   matrix: ^0.5.5
   matrix_link_text: ^1.0.2
   native_imaging:
     git: https://gitlab.com/famedly/libraries/native_imaging.git
   open_noti_settings: ^0.2.0
-  package_info_plus: ^1.0.4
-  path_provider: ^2.0.2
-  permission_handler: ^8.1.4+2
+  package_info_plus: ^1.2.1
+  path_provider: ^2.0.5
+  permission_handler: ^8.1.6
   pin_code_text_field: ^1.8.0
-  provider: ^6.0.0
+  provider: ^6.0.1
   punycode: ^1.0.0
   qr_code_scanner: ^0.5.2
   qr_flutter: ^4.0.0
   receive_sharing_intent: ^1.4.5
   record: ^3.0.0
-  scroll_to_index: ^2.0.0
-  sentry: ^6.0.0
+  scroll_to_index: ^2.1.0
+  sentry: ^6.0.1
   share: ^2.0.4
   slugify: ^2.0.0
   swipe_to_action: ^0.2.0
   uni_links: ^0.5.1
   unifiedpush: ^1.0.6
   universal_html: ^2.0.8
-  url_launcher: ^6.0.10
+  url_launcher: ^6.0.12
   vrouter: 1.2.0+11
   wakelock: ^0.5.6
 
 dev_dependencies:
   dapackages: ^1.6.0
-  flutter_native_splash: ^1.2.3
+  flutter_native_splash: ^1.2.4
   flutter_test:
     sdk: flutter
   pedantic: ^1.11.1
