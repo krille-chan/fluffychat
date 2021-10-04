@@ -18,15 +18,12 @@ dependencies:
   emoji_picker_flutter: ^1.0.7
   #fcm_shared_isolate:
   #  git: https://gitlab.com/famedly/libraries/fcm_shared_isolate.git
-  file_picker_cross: ^4.4.2
+  file_picker_cross: ^4.5.0
   filesystem_picker: 2.0.0-nullsafety.0 # Using pre release to be compatible with Flutter 2.5
   flutter:
     sdk: flutter
   # From this fix: https://github.com/g123k/flutter_app_badger/pull/47
-  flutter_app_badger:
-    git:
-      url: https://github.com/SuaMusica/flutter_app_badger.git
-      ref: feature/androidV2
+  flutter_app_badger: ^1.3.0
   flutter_app_lock: ^2.0.0
   flutter_blurhash: ^0.6.0
   flutter_cache_manager: ^3.1.2
@@ -35,8 +32,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_map: ^0.14.0
-  flutter_matrix_html: # Use git version until flutter_math_fork is updated to 0.4.X
-    git: https://github.com/Sorunome/flutter_matrix_html.git
+  flutter_matrix_html: ^1.0.4
   flutter_olm: ^1.1.2
   flutter_openssl_crypto: ^0.0.1
   flutter_secure_storage: ^4.2.1

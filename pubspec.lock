@@ -217,7 +217,7 @@ packages:
       name: disk_space
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.1"
+    version: "0.2.1"
   email_validator:
     dependency: "direct main"
     description:
@@ -245,7 +245,7 @@ packages:
       name: ffi
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0"
+    version: "1.1.2"
   file:
     dependency: transitive
     description:
@@ -259,14 +259,14 @@ packages:
       name: file_picker
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.3"
+    version: "4.1.3"
   file_picker_cross:
     dependency: "direct main"
     description:
       name: file_picker_cross
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.4.2"
+    version: "4.5.0"
   file_selector:
     dependency: transitive
     description:
@@ -324,12 +324,10 @@ packages:
   flutter_app_badger:
     dependency: "direct main"
     description:
-      path: "."
-      ref: "feature/androidV2"
-      resolved-ref: "97f6daaed1a2685f9821d7736966632df90c8c0d"
-      url: "https://github.com/SuaMusica/flutter_app_badger.git"
-    source: git
-    version: "1.2.0"
+      name: flutter_app_badger
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.3.0"
   flutter_app_lock:
     dependency: "direct main"
     description:
@@ -418,15 +416,13 @@ packages:
       name: flutter_math_fork
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.1"
+    version: "0.3.3+1"
   flutter_matrix_html:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "0f5677e15d14072455dfe56a33df75010bc3bf87"
-      url: "https://github.com/Sorunome/flutter_matrix_html.git"
-    source: git
+      name: flutter_matrix_html
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "1.0.4"
   flutter_native_splash:
     dependency: "direct dev"
@@ -455,7 +451,7 @@ packages:
       name: flutter_plugin_android_lifecycle
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.1"
+    version: "2.0.3"
   flutter_secure_storage:
     dependency: "direct main"
     description:
@@ -811,6 +807,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  package_info:
+    dependency: transitive
+    description:
+      name: package_info
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.2"
   package_info_plus:
     dependency: "direct main"
     description:
@@ -1098,48 +1101,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.4"
-  share_plus:
-    dependency: transitive
-    description:
-      name: share_plus
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.1.4"
-  share_plus_linux:
-    dependency: transitive
-    description:
-      name: share_plus_linux
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.3"
-  share_plus_macos:
-    dependency: transitive
-    description:
-      name: share_plus_macos
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.2"
-  share_plus_platform_interface:
-    dependency: transitive
-    description:
-      name: share_plus_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.1"
-  share_plus_web:
-    dependency: transitive
-    description:
-      name: share_plus_web
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.4"
-  share_plus_windows:
-    dependency: transitive
-    description:
-      name: share_plus_windows
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.3"
   shared_preferences:
     dependency: transitive
     description:
