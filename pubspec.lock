@@ -518,11 +518,9 @@ packages:
   geolocator_android:
     dependency: "direct overridden"
     description:
-      path: geolocator_android
-      ref: "7.6.2"
-      resolved-ref: "7f6f64b3244f761b19d8e73e3c770be6b9179da5"
-      url: "https://gitlab.com/hanntech-gmbh/free2pass/flutter-geolocator-floss.git"
-    source: git
+      name: geolocator_android
+      url: "https://hanntech-gmbh.gitlab.io/free2pass/flutter-geolocator-floss/"
+    source: hosted
     version: "1.0.1"
   geolocator_apple:
     dependency: transitive
