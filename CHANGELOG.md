@@ -1,3 +1,9 @@
+## v0.41.2 - 2021-10-05
+Minor bugfix release.
+
+- fix: Last space is not visible
+- chore: Google services disabled by default for F-Droid
+
 ## v0.41.1 - 2021-09-15
 Minor bugfix release.
 
