@@ -6,7 +6,7 @@
 <br>
 <br>
 
-FluffyChat is a multi-platform Matrix client written in Dart/Flutter. It compiles to native code von Android, iOS, macOS, Windows and Linux and renders with Skia on the web. FluffyChat is just a hobby project from the developers of [Famedly](https://famedly.com) and licensed under AGPLv3. It follows a [design philosophy](https://ko-fi.com/post/FluffyChats-Design-Philosophy-W7W63A6YS) to be minimalistic, inclusive and easy to use.
+FluffyChat is a multi-platform Matrix client written in Dart/Flutter. It compiles to native code on Android, iOS, macOS, Windows and Linux and renders with Skia on the web. FluffyChat is just a hobby project from the developers of [Famedly](https://famedly.com) and licensed under AGPLv3. It follows a [design philosophy](https://ko-fi.com/post/FluffyChats-Design-Philosophy-W7W63A6YS) to be minimalistic, inclusive and easy to use.
 
 # How to build
 
