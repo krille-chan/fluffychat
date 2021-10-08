@@ -1919,5 +1919,54 @@
   "@zoomOut": {
     "type": "text",
     "placeholders": {}
+  },
+  "autoplayImages": "Reproducir emoticonos y stickers animados automáticamente",
+  "@autoplayImages": {
+    "type": "text",
+    "placeholder": {}
+  },
+  "allChats": "Todos los chats",
+  "@allChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addToSpace": "Agregar al espacio",
+  "@addToSpace": {},
+  "cantOpenUri": "No puedo abrir el URI {uri}",
+  "@cantOpenUri": {
+    "type": "text",
+    "placeholders": {
+      "uri": {}
+    }
+  },
+  "addNewFriend": "Agregar nuevo amigo",
+  "@addNewFriend": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "all": "Todo",
+  "@all": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appLock": "Bloqueo de aplicación",
+  "@appLock": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPause": "Pausa",
+  "@audioPlayerPause": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPlay": "Encender",
+  "@audioPlayerPlay": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "botMessages": "Mensajes de bot",
+  "@botMessages": {
+    "type": "text",
+    "placeholders": {}
   }
 }

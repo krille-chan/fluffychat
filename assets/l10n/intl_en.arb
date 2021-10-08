@@ -1451,7 +1451,9 @@
     "placeholders": {}
   },
   "newPasswordDescription": "In order to be able to recover your password, you should later add an email address to your account.",
+  "@newPasswordDescription": {},
   "newUsernameDescription": "Your user ID will then have the format @username:servername",
+  "@newUsernameDescription": {},
   "noPasswordRecoveryDescription": "You have not added a way to recover your password yet.",
   "@noPasswordRecoveryDescription": {
     "type": "text",
@@ -1557,24 +1559,33 @@
     "placeholders": {}
   },
   "openCamera": "Open camera",
-  "oneClientLoggedOut": "One of your clients has been logged out",
   "@openCamera": {
     "type": "text",
     "placeholders": {}
   },
+  "oneClientLoggedOut": "One of your clients has been logged out",
+  "@oneClientLoggedOut": {},
   "addAccount": "Add account",
+  "@addAccount": {},
   "editBundlesForAccount": "Edit bundles for this account",
+  "@editBundlesForAccount": {},
   "addToBundle": "Add to bundle",
+  "@addToBundle": {},
   "removeFromBundle": "Remove from this bundle",
+  "@removeFromBundle": {},
   "bundleName": "Bundle name",
+  "@bundleName": {},
   "enableMultiAccounts": "(BETA) Enable multi accounts on this device",
+  "@enableMultiAccounts": {},
   "openInMaps": "Open in maps",
   "@openInMaps": {
     "type": "text",
     "placeholders": {}
   },
   "link": "Link",
+  "@link": {},
   "serverRequiresEmail": "This server needs to validate your email address for registration.",
+  "@serverRequiresEmail": {},
   "optionalGroupName": "(Optional) Group name",
   "@optionalGroupName": {
     "type": "text",
@@ -2074,7 +2085,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sharedTheLocation": "{username} shared the location",
+  "sharedTheLocation": "{username} shared their location",
   "@sharedTheLocation": {
     "type": "text",
     "placeholders": {

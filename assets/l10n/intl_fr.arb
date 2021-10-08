@@ -2056,7 +2056,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sharedTheLocation": "{username} a partagé une localisation",
+  "sharedTheLocation": "{username} a partagé sa position",
   "@sharedTheLocation": {
     "type": "text",
     "placeholders": {

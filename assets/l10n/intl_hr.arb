@@ -2002,7 +2002,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sharedTheLocation": "{username} je dijelio/la mjesto",
+  "sharedTheLocation": "{username} je dijelio/la svoje mjesto",
   "@sharedTheLocation": {
     "type": "text",
     "placeholders": {

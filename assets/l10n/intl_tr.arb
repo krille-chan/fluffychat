@@ -2056,7 +2056,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sharedTheLocation": "{username} konumu paylaştı",
+  "sharedTheLocation": "{username} konumunu paylaştı",
   "@sharedTheLocation": {
     "type": "text",
     "placeholders": {

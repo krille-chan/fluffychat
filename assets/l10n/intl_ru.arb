@@ -1,7 +1,7 @@
 {
   "@@locale": "ru",
   "@@last_modified": "2021-08-14 12:41:09.903021",
-  "about": "О приложении",
+  "about": "О проекте",
   "@about": {
     "type": "text",
     "placeholders": {}
@@ -659,7 +659,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "dateAndTimeOfDay": "{date}, {timeOfDay}",
+  "dateAndTimeOfDay": "{timeOfDay}, {date}",
   "@dateAndTimeOfDay": {
     "type": "text",
     "placeholders": {
@@ -667,7 +667,7 @@
       "timeOfDay": {}
     }
   },
-  "dateWithoutYear": "{day}.{month}",
+  "dateWithoutYear": "{day}-{month}",
   "@dateWithoutYear": {
     "type": "text",
     "placeholders": {
@@ -675,7 +675,7 @@
       "day": {}
     }
   },
-  "dateWithYear": "{day}.{month}.{year}",
+  "dateWithYear": "{day}-{month}-{year}",
   "@dateWithYear": {
     "type": "text",
     "placeholders": {
@@ -1270,7 +1270,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "login": "Вход",
+  "login": "Войти",
   "@login": {
     "type": "text",
     "placeholders": {}
