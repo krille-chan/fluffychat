@@ -1,4 +1,4 @@
-## v0.41.2 - 2021-10-05
+## v0.41.3 - 2021-10-08
 Minor bugfix release.
 
 - fix: Last space is not visible
