@@ -42,15 +42,23 @@ class NewPrivateChatView extends StatelessWidget {
               margin: EdgeInsets.all(_qrCodePadding),
               alignment: Alignment.center,
               padding: EdgeInsets.all(_qrCodePadding * 2),
-              child: Material(
+              child: InkWell(
+                onTap: controller.inviteAction,
                 borderRadius: BorderRadius.circular(12),
-                elevation: 4,
-                color: Colors.white,
-                child: QrImage(
-                  data:
-                      'https://matrix.to/#/${Matrix.of(context).client.userID}',
-                  version: QrVersions.auto,
-                  size: min(MediaQuery.of(context).size.width - 16, 200),
+                child: Material(
+                  borderRadius: BorderRadius.circular(12),
+                  elevation: 4,
+                  color: Colors.white,
+                  child: QrImage(
+                    data:
+                        'https://matrix.to/#/${Matrix.of(context).client.userID}',
+                    version: QrVersions.auto,
+                    size: min(MediaQuery.of(context).size.width - 16, 200),
+                    embeddedImage: AssetImage('assets/share.png'),
+                    embeddedImageStyle: QrEmbeddedImageStyle(
+                      size: Size(64, 64),
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -63,16 +71,6 @@ class NewPrivateChatView extends StatelessWidget {
               ),
             ),
             Divider(),
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: SizedBox(
-                height: 56,
-                child: OutlinedButton.icon(
-                    onPressed: controller.inviteAction,
-                    icon: Icon(Icons.share_outlined),
-                    label: Text(L10n.of(context).shareYourInviteLink)),
-              ),
-            ),
             Padding(
               padding: EdgeInsets.all(12),
               child: Form(
