@@ -87,7 +87,7 @@ index 0b771ef8..56af0cee 100644
    StreamSubscription<LoginState> onLogin;
    StreamSubscription<SyncUpdate> onRoomSync;
 diff --git a/pubspec.yaml b/pubspec.yaml
-index 47cfe550..21685cc6 100644
+index 9e7f148c..ea2d90f9 100644
 --- a/pubspec.yaml
 +++ b/pubspec.yaml
 @@ -16,8 +16,8 @@ dependencies:
@@ -98,6 +98,6 @@ index 47cfe550..21685cc6 100644
 -  #  git: https://gitlab.com/famedly/libraries/fcm_shared_isolate.git
 +  fcm_shared_isolate:
 +    git: https://gitlab.com/famedly/libraries/fcm_shared_isolate.git
-   file_picker_cross: ^4.4.2
+   file_picker_cross: ^4.5.0
    filesystem_picker: 2.0.0-nullsafety.0 # Using pre release to be compatible with Flutter 2.5
    flutter:
