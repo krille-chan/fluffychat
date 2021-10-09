@@ -1090,7 +1090,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "redactedAnEvent": "",
+  "redactedAnEvent": "حذف {username} حدثًا",
   "@redactedAnEvent": {
     "type": "text",
     "placeholders": {
@@ -1136,7 +1136,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unbanFromChat": "",
+  "unbanFromChat": "فك حجبه من المحادثة",
   "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
@@ -1331,7 +1331,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sharedTheLocation": "شارك {username} الموقع",
+  "sharedTheLocation": "شارك {username} موقعه",
   "@sharedTheLocation": {
     "type": "text",
     "placeholders": {
@@ -2370,6 +2370,134 @@
   },
   "wipeChatBackup": "أتريد حذف النسخ الاحتياطي للمحادثة لإنشاء مفتاح أمان جديد؟",
   "@wipeChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveFile": "احفظ الملف",
+  "@saveFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "security": "الأمان",
+  "@security": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeYourAvatar": "أزل الصورة الرمزية",
+  "@removeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKey": "مفتاح الأمان",
+  "@securityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "botMessages": "رسائل البوت",
+  "@botMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKeyLost": "فقدت مفتاح الأمان؟",
+  "@securityKeyLost": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendAsText": "أرسل نصًا",
+  "@sendAsText": {
+    "type": "text"
+  },
+  "sendMessages": "أرسل رسائل",
+  "@sendMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteForMe": "دعوات لي",
+  "@inviteForMe": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "replaceRoomWithNewerVersion": "استبدل الغرفة باصدار أحدث",
+  "@replaceRoomWithNewerVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "register": "سجّل",
+  "@register": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "obtainingLocation": "يحصل على الموقع…",
+  "@obtainingLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "savedFileAs": "حُفظ الملف كـ {filename}",
+  "@savedFileAs": {
+    "type": "text",
+    "placeholders": {
+      "filename": {}
+    }
+  },
+  "sendSticker": "أرسل ملصقًا",
+  "@sendSticker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "defaultPermissionLevel": "مستوى الصلاحيات الافتراضي",
+  "@defaultPermissionLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setPermissionsLevel": "عين مستوى الصلاحية",
+  "@setPermissionsLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setCustomEmotes": "عيّن وجوهًا تعبيرية مخصصة",
+  "@setCustomEmotes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oneClientLoggedOut": "أُ خرج أحد العملاء الذي تسختدمها",
+  "@oneClientLoggedOut": {},
+  "pleaseEnter4Digits": "أدخل 4 أرقام أو أتركه فارغ لتعطيل القفل.",
+  "@pleaseEnter4Digits": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicKey": "المفتاح العمومي",
+  "@publicKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterSecurityKey": "أدخل مفتاح الأمان:",
+  "@pleaseEnterSecurityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicSpace": "فضاء عام",
+  "@publicSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "redactMessage": "احذف رسالة",
+  "@redactMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reportMessage": "أبلغ عن الرسالة",
+  "@reportMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "roomVersion": "إصدار الغرفة",
+  "@roomVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveFileToFolder": "احفظ الملف في هذا المجلد",
+  "@saveFileToFolder": {
     "type": "text",
     "placeholders": {}
   }
