@@ -56,7 +56,7 @@ class NewPrivateChatView extends StatelessWidget {
                     size: min(MediaQuery.of(context).size.width - 16, 200),
                     embeddedImage: AssetImage('assets/share.png'),
                     embeddedImageStyle: QrEmbeddedImageStyle(
-                      size: Size(64, 64),
+                      size: Size(48, 48),
                     ),
                   ),
                 ),
