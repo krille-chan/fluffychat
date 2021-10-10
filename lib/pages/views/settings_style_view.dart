@@ -105,7 +105,7 @@ class SettingsStyleView extends StatelessWidget {
             Slider(
               min: 0.5,
               max: 2.5,
-              divisions: 4,
+              divisions: 8,
               value: AppConfig.fontSizeFactor,
               semanticFormatterCallback: (d) => d.toString(),
               onChanged: controller.changeFontSizeFactor,
