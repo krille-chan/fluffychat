@@ -407,7 +407,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "setupChatBackupDescription": "To protect your messages, we have generated a security key for you. Please keep this in a safe place, such as a password manager.",
+  "setupChatBackupDescription": "To protect your messages, we have generated a security key for you.\nPlease keep this in a safe place, such as a password manager.",
   "chatBackupDescription": "Your chat backup is secured with a security key. Please make sure you don't lose it.",
   "@chatBackupDescription": {
     "type": "text",
