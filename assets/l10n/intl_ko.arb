@@ -1099,7 +1099,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "yes": "네",
+  "yes": "확인",
   "@yes": {
     "type": "text",
     "placeholders": {}
@@ -1381,7 +1381,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "ok": "네",
+  "ok": "확인",
   "@ok": {
     "type": "text",
     "placeholders": {}
