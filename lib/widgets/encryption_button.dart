@@ -95,7 +95,7 @@ class _EncryptionButtonState extends State<EncryptionButton> {
                 : (allUsersValid ? Colors.green : Colors.orange);
           } else if (!widget.room.encrypted &&
               widget.room.joinRules != JoinRules.public) {
-            color = null;
+            color = Colors.red;
           }
           return IconButton(
             tooltip: widget.room.encrypted

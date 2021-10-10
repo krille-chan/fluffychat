@@ -1,6 +1,4 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:fluffychat/config/setting_keys.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions.dart/flutter_matrix_hive_database.dart';
 import 'package:matrix/encryption.dart';
 import 'package:matrix/encryption/utils/bootstrap.dart';
 import 'package:matrix/matrix.dart';
@@ -67,12 +65,6 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
     });
   }
 
-  void cancelAndDontAskAgain() async {
-    await (widget.client.database as FlutterMatrixHiveStore)
-        .put(SettingKeys.dontAskForBootstrapKey, true);
-    Navigator.of(context, rootNavigator: false).pop<bool>(false);
-  }
-
   @override
   Widget build(BuildContext context) {
     _wipe ??= widget.wipe;
@@ -83,43 +75,58 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
     titleText = L10n.of(context).loadingPleaseWait;
 
     if (bootstrap == null) {
-      titleText = L10n.of(context).chatBackup;
-      body = Text(L10n.of(context).chatBackupDescription);
+      titleText = L10n.of(context).setupChatBackup;
+      body = Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Image.asset('assets/backup.png', fit: BoxFit.contain),
+          Text(L10n.of(context).setupChatBackupDescription),
+        ],
+      );
       buttons.add(AdaptiveFlatButton(
         label: L10n.of(context).next,
         onPressed: () => _createBootstrap(false),
-      ));
-      buttons.add(AdaptiveFlatButton(
-        label: L10n.of(context).dontAskAgain,
-        onPressed: cancelAndDontAskAgain,
-        textColor: Colors.red,
       ));
     } else if (bootstrap.newSsssKey?.recoveryKey != null &&
         _recoveryKeyStored == false) {
       final key = bootstrap.newSsssKey.recoveryKey;
       titleText = L10n.of(context).securityKey;
-      body = Container(
-        alignment: Alignment.center,
-        width: 200,
-        height: 128,
-        child: Text(
-          key,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 18,
-            wordSpacing: 38,
-            fontFamily: 'monospace',
+      return Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.close),
+            onPressed: Navigator.of(context).pop,
           ),
+          title: Text(L10n.of(context).securityKey),
+        ),
+        body: ListView(
+          padding: const EdgeInsets.all(16.0),
+          children: [
+            TextField(
+              minLines: 4,
+              maxLines: 4,
+              readOnly: true,
+              controller: TextEditingController(text: key),
+            ),
+            const SizedBox(height: 16),
+            ElevatedButton.icon(
+              icon: Icon(Icons.copy_outlined),
+              label: Text(L10n.of(context).copyToClipboard),
+              onPressed: () => Clipboard.setData(ClipboardData(text: key)),
+            ),
+            const SizedBox(height: 16),
+            ElevatedButton.icon(
+              style: ElevatedButton.styleFrom(
+                primary: Theme.of(context).secondaryHeaderColor,
+                onPrimary: Theme.of(context).primaryColor,
+              ),
+              icon: Icon(Icons.check_outlined),
+              label: Text(L10n.of(context).iWroteDownTheKey),
+              onPressed: () => setState(() => _recoveryKeyStored = true),
+            ),
+          ],
         ),
       );
-      buttons.add(AdaptiveFlatButton(
-        label: L10n.of(context).copyToClipboard,
-        onPressed: () => Clipboard.setData(ClipboardData(text: key)),
-      ));
-      buttons.add(AdaptiveFlatButton(
-        label: L10n.of(context).next,
-        onPressed: () => setState(() => _recoveryKeyStored = true),
-      ));
     } else {
       switch (bootstrap.state) {
         case BootstrapState.loading:
@@ -151,22 +158,20 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
           break;
         case BootstrapState.openExistingSsss:
           _recoveryKeyStored = true;
-          titleText =
-              _recoveryKeyInputError ?? L10n.of(context).pleaseEnterSecurityKey;
-          body = PlatformInfos.isCupertinoStyle
-              ? CupertinoTextField(
-                  minLines: 1,
-                  maxLines: 1,
-                  autofocus: true,
-                  autocorrect: false,
-                  autofillHints: _recoveryKeyInputLoading
-                      ? null
-                      : [AutofillHints.password],
-                  controller: _recoveryKeyTextEditingController,
-                )
-              : TextField(
-                  minLines: 1,
-                  maxLines: 1,
+          return Scaffold(
+            appBar: AppBar(
+              leading: IconButton(
+                icon: Icon(Icons.close),
+                onPressed: Navigator.of(context).pop,
+              ),
+              title: Text(L10n.of(context).pleaseEnterSecurityKey),
+            ),
+            body: ListView(
+              padding: const EdgeInsets.all(16.0),
+              children: [
+                TextField(
+                  minLines: 4,
+                  maxLines: 4,
                   autofocus: true,
                   autocorrect: false,
                   autofillHints: _recoveryKeyInputLoading
@@ -174,63 +179,90 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
                       : [AutofillHints.password],
                   controller: _recoveryKeyTextEditingController,
                   decoration: InputDecoration(
-                    border: UnderlineInputBorder(),
-                    filled: false,
-                    hintText: L10n.of(context).securityKey,
+                    hintText: 'Abc123 Def456',
+                    labelText: L10n.of(context).securityKey,
+                    errorText: _recoveryKeyInputError,
                   ),
-                );
-          buttons.add(AdaptiveFlatButton(
-              label: L10n.of(context).unlockChatBackup,
-              onPressed: () async {
-                setState(() {
-                  _recoveryKeyInputError = null;
-                  _recoveryKeyInputLoading = true;
-                });
-                try {
-                  await bootstrap.newSsssKey.unlock(
-                    keyOrPassphrase: _recoveryKeyTextEditingController.text,
-                  );
-                  await bootstrap.openExistingSsss();
-                } catch (e, s) {
-                  Logs().w('Unable to unlock SSSS', e, s);
-                  setState(() => _recoveryKeyInputError =
-                      L10n.of(context).oopsSomethingWentWrong);
-                } finally {
-                  setState(() => _recoveryKeyInputLoading = false);
-                }
-              }));
-          buttons.add(AdaptiveFlatButton(
-            label: L10n.of(context).transferFromAnotherDevice,
-            onPressed: () async {
-              final req = await showFutureLoadingDialog(
-                context: context,
-                future: () => widget.client.userDeviceKeys[widget.client.userID]
-                    .startVerification(),
-              );
-              if (req.error != null) return;
-              await KeyVerificationDialog(request: req.result).show(context);
-              Navigator.of(context, rootNavigator: false).pop();
-            },
-          ));
-          buttons.add(AdaptiveFlatButton(
-            textColor: Colors.red,
-            label: L10n.of(context).securityKeyLost,
-            onPressed: () async {
-              if (OkCancelResult.ok ==
-                  await showOkCancelAlertDialog(
-                    useRootNavigator: false,
-                    context: context,
-                    title: L10n.of(context).securityKeyLost,
-                    message: L10n.of(context).wipeChatBackup,
-                    okLabel: L10n.of(context).ok,
-                    cancelLabel: L10n.of(context).cancel,
-                    isDestructiveAction: true,
-                  )) {
-                _createBootstrap(true);
-              }
-            },
-          ));
-          break;
+                ),
+                const SizedBox(height: 16),
+                ElevatedButton.icon(
+                    icon: Icon(Icons.lock_open_outlined),
+                    label: Text(L10n.of(context).unlockChatBackup),
+                    onPressed: () async {
+                      setState(() {
+                        _recoveryKeyInputError = null;
+                        _recoveryKeyInputLoading = true;
+                      });
+                      try {
+                        await bootstrap.newSsssKey.unlock(
+                          keyOrPassphrase:
+                              _recoveryKeyTextEditingController.text,
+                        );
+                        await bootstrap.openExistingSsss();
+                      } catch (e, s) {
+                        Logs().w('Unable to unlock SSSS', e, s);
+                        setState(() => _recoveryKeyInputError =
+                            L10n.of(context).oopsSomethingWentWrong);
+                      } finally {
+                        setState(() => _recoveryKeyInputLoading = false);
+                      }
+                    }),
+                const SizedBox(height: 16),
+                Row(children: [
+                  Expanded(child: Divider()),
+                  Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Text(L10n.of(context).or),
+                  ),
+                  Expanded(child: Divider()),
+                ]),
+                const SizedBox(height: 16),
+                ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                    primary: Theme.of(context).secondaryHeaderColor,
+                    onPrimary: Theme.of(context).primaryColor,
+                  ),
+                  icon: Icon(Icons.transfer_within_a_station_outlined),
+                  label: Text(L10n.of(context).transferFromAnotherDevice),
+                  onPressed: () async {
+                    final req = await showFutureLoadingDialog(
+                      context: context,
+                      future: () => widget
+                          .client.userDeviceKeys[widget.client.userID]
+                          .startVerification(),
+                    );
+                    if (req.error != null) return;
+                    await KeyVerificationDialog(request: req.result)
+                        .show(context);
+                    Navigator.of(context, rootNavigator: false).pop();
+                  },
+                ),
+                const SizedBox(height: 16),
+                ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                    primary: Theme.of(context).secondaryHeaderColor,
+                    onPrimary: Colors.red,
+                  ),
+                  icon: Icon(Icons.delete_outlined),
+                  label: Text(L10n.of(context).securityKeyLost),
+                  onPressed: () async {
+                    if (OkCancelResult.ok ==
+                        await showOkCancelAlertDialog(
+                          useRootNavigator: false,
+                          context: context,
+                          title: L10n.of(context).securityKeyLost,
+                          message: L10n.of(context).wipeChatBackup,
+                          okLabel: L10n.of(context).ok,
+                          cancelLabel: L10n.of(context).cancel,
+                          isDestructiveAction: true,
+                        )) {
+                      _createBootstrap(true);
+                    }
+                  },
+                )
+              ],
+            ),
+          );
         case BootstrapState.askWipeCrossSigning:
           WidgetsBinding.instance.addPostFrameCallback(
             (_) => bootstrap.wipeCrossSigning(_wipe),
@@ -270,8 +302,8 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
           body = Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(Icons.check_circle, color: Colors.green, size: 40),
-              Text(L10n.of(context).keysCached),
+              Image.asset('assets/backup.png', fit: BoxFit.contain),
+              Text(L10n.of(context).yourChatBackupHasBeenSetUp),
             ],
           );
           buttons.add(AdaptiveFlatButton(

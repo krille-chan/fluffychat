@@ -398,11 +398,15 @@
     "type": "text",
     "placeholders": {}
   },
+  "setupChatBackup": "Set up chat backup",
+  "iWroteDownTheKey": "I wrote down the key",
+  "yourChatBackupHasBeenSetUp": "Your chat backup has been set up.",
   "chatBackup": "Chat backup",
   "@chatBackup": {
     "type": "text",
     "placeholders": {}
   },
+  "setupChatBackupDescription": "To protect your messages, we have generated a security key for you. Please keep this in a safe place, such as a password manager.",
   "chatBackupDescription": "Your chat backup is secured with a security key. Please make sure you don't lose it.",
   "@chatBackupDescription": {
     "type": "text",
