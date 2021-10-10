@@ -12,7 +12,7 @@ abstract class FluffyThemes {
       MediaQuery.of(context).size.width > columnWidth * 2;
 
   static const fallbackTextStyle =
-      TextStyle(fontFamily: 'NotoSans', fontFamilyFallback: ['NotoEmoji']);
+      TextStyle(fontFamily: 'Roboto', fontFamilyFallback: ['NotoEmoji']);
 
   static var fallback_text_theme = PlatformInfos.isDesktop
       ? TextTheme(

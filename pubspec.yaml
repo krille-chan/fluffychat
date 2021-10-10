@@ -95,19 +95,16 @@ flutter:
     - assets/js/package/
 
   fonts:
+    - family: Roboto
+      fonts:
+        - asset: fonts/Roboto/Roboto-Regular.ttf
+        - asset: fonts/Roboto/Roboto-Italic.ttf
+          style: italic
+        - asset: fonts/Roboto/Roboto-Bold.ttf
+          weight: 700
     - family: NotoEmoji
       fonts:
         - asset: fonts/NotoEmoji/NotoColorEmoji.ttf
-    - family: NotoSans
-      fonts:
-        - asset: fonts/NotoSans/NotoSans-Regular.ttf
-        - asset: fonts/NotoSans/NotoSans-Italic.ttf
-          style: italic
-        - asset: fonts/NotoSans/NotoSans-Bold.ttf
-          weight: 700
-        - asset: fonts/NotoSans/NotoSans-BoldItalic.ttf
-          weight: 700
-          style: italic
 
 dependency_overrides:
   geolocator_android:
