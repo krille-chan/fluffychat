@@ -503,7 +503,7 @@
       "timeOfDay": {}
     }
   },
-  "dateWithoutYear": "{day}/{month}",
+  "dateWithoutYear": "{day}-{month}",
   "@dateWithoutYear": {
     "type": "text",
     "placeholders": {
@@ -511,7 +511,7 @@
       "day": {}
     }
   },
-  "dateWithYear": "{day}/{month}/{year}",
+  "dateWithYear": "{day}-{month}-{year}",
   "@dateWithYear": {
     "type": "text",
     "placeholders": {
@@ -1148,7 +1148,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "openCamera": "Abrir la cámara",
+  "openCamera": "Abrir cámara",
   "@openCamera": {
     "type": "text",
     "placeholders": {}
