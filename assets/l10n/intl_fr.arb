@@ -2603,5 +2603,17 @@
   "oneClientLoggedOut": "Un de vos clients a été déconnecté",
   "@oneClientLoggedOut": {},
   "link": "Lien",
-  "@link": {}
+  "@link": {},
+  "setupChatBackup": "Configurer la sauvegarde de la discussion",
+  "@setupChatBackup": {},
+  "iWroteDownTheKey": "J'ai écrit la clé",
+  "@iWroteDownTheKey": {},
+  "yourChatBackupHasBeenSetUp": "Votre sauvegarde de la discussion a été mise en place.",
+  "@yourChatBackupHasBeenSetUp": {},
+  "setupChatBackupDescription": "Pour protéger vos messages, nous avons généré une clé de sécurité pour vous. Veuillez la conserver en lieu sûr, par exemple dans un gestionnaire de mots de passe.",
+  "@setupChatBackupDescription": {},
+  "yourUserId": "Votre identifiant utilisateur :",
+  "@yourUserId": {},
+  "unverified": "Non vérifié",
+  "@unverified": {}
 }
