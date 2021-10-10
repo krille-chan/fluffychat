@@ -398,6 +398,7 @@
     "type": "text",
     "placeholders": {}
   },
+  "yourUserId": "Your user ID:",
   "setupChatBackup": "Set up chat backup",
   "iWroteDownTheKey": "I wrote down the key",
   "yourChatBackupHasBeenSetUp": "Your chat backup has been set up.",

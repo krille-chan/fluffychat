@@ -1,4 +1,5 @@
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,21 @@ class SettingsAccountView extends StatelessWidget {
         withScrolling: true,
         child: Column(
           children: [
+            ListTile(
+              leading: CircleAvatar(
+                foregroundColor: Theme.of(context).primaryColor,
+                backgroundColor: Theme.of(context).secondaryHeaderColor,
+                child: Icon(Icons.account_box_outlined),
+              ),
+              title: Text(L10n.of(context).yourUserId),
+              subtitle: Text(Matrix.of(context).client.userID),
+              trailing: Icon(Icons.copy_outlined),
+              onTap: () => FluffyShare.share(
+                Matrix.of(context).client.userID,
+                context,
+              ),
+            ),
+            Divider(height: 1),
             ListTile(
               trailing: Icon(Icons.add_box_outlined),
               title: Text(L10n.of(context).addAccount),
@@ -51,6 +67,7 @@ class SettingsAccountView extends StatelessWidget {
               title: Text(L10n.of(context).logout),
               onTap: controller.logoutAction,
             ),
+            Divider(height: 1),
             ListTile(
               trailing: Icon(Icons.delete_forever_outlined),
               title: Text(
