@@ -94,26 +94,14 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                                     .getUserByMXIDSync(deviceKeys[i].userId)
                                     .calcDisplayname(),
                               ),
-                              title: Row(
-                                children: [
-                                  Text(
-                                    room
-                                        .getUserByMXIDSync(deviceKeys[i].userId)
-                                        .calcDisplayname(),
-                                  ),
-                                  Spacer(),
-                                  Text(
-                                    deviceKeys[i].userId,
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1
-                                          .color
-                                          .withAlpha(150),
-                                    ),
-                                  ),
-                                ],
+                              title: Text(
+                                room
+                                    .getUserByMXIDSync(deviceKeys[i].userId)
+                                    .calcDisplayname(),
+                              ),
+                              subtitle: Text(
+                                deviceKeys[i].userId,
+                                style: TextStyle(fontWeight: FontWeight.w300),
                               ),
                             ),
                           ),
@@ -149,10 +137,8 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                           },
                           child: ListTile(
                             leading: CircleAvatar(
-                              foregroundColor:
-                                  Theme.of(context).textTheme.bodyText1.color,
-                              backgroundColor:
-                                  Theme.of(context).secondaryHeaderColor,
+                              foregroundColor: Colors.white,
+                              backgroundColor: deviceKeys[i].color,
                               child: Icon(deviceKeys[i].icon),
                             ),
                             title: Text(
@@ -164,14 +150,7 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                               children: [
                                 Text(
                                   deviceKeys[i].deviceId,
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: Theme.of(context)
-                                        .textTheme
-                                        .bodyText1
-                                        .color
-                                        .withAlpha(150),
-                                  ),
+                                  style: TextStyle(fontWeight: FontWeight.w300),
                                 ),
                                 Spacer(),
                                 Text(
@@ -179,14 +158,10 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                                       ? L10n.of(context).blocked
                                       : deviceKeys[i].verified
                                           ? L10n.of(context).verified
-                                          : L10n.of(context).unknownDevice,
+                                          : L10n.of(context).unverified,
                                   style: TextStyle(
                                     fontSize: 14,
-                                    color: deviceKeys[i].blocked
-                                        ? Colors.red
-                                        : deviceKeys[i].verified
-                                            ? Colors.green
-                                            : Colors.orange,
+                                    color: deviceKeys[i].color,
                                   ),
                                 ),
                               ],
@@ -202,4 +177,12 @@ class ChatEncryptionSettingsView extends StatelessWidget {
       ),
     );
   }
+}
+
+extension on DeviceKeys {
+  Color get color => blocked
+      ? Colors.red
+      : verified
+          ? Colors.green
+          : Colors.orange;
 }

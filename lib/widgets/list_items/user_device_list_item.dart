@@ -93,8 +93,14 @@ class UserDeviceListItem extends StatelessWidget {
         }
       },
       leading: CircleAvatar(
-        foregroundColor: Theme.of(context).textTheme.bodyText1.color,
-        backgroundColor: Theme.of(context).secondaryHeaderColor,
+        foregroundColor: Colors.white,
+        backgroundColor: keys == null
+            ? Colors.grey[700]
+            : keys.blocked
+                ? Colors.red
+                : keys.verified
+                    ? Colors.green
+                    : Colors.orange,
         child: Icon(userDevice.icon),
       ),
       title: Row(
@@ -112,7 +118,10 @@ class UserDeviceListItem extends StatelessWidget {
       ),
       subtitle: Row(
         children: <Widget>[
-          Text(userDevice.deviceId),
+          Text(
+            userDevice.deviceId,
+            style: TextStyle(fontWeight: FontWeight.w300),
+          ),
           Spacer(),
           if (keys != null)
             Text(
@@ -120,7 +129,7 @@ class UserDeviceListItem extends StatelessWidget {
                   ? L10n.of(context).blocked
                   : keys.verified
                       ? L10n.of(context).verified
-                      : L10n.of(context).unknownDevice,
+                      : L10n.of(context).unverified,
               style: TextStyle(
                 color: keys.blocked
                     ? Colors.red

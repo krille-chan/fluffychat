@@ -2397,6 +2397,7 @@
     "type": "text",
     "placeholders": {}
   },
+  "unverified": "Unverified",
   "verified": "Verified",
   "@verified": {
     "type": "text",
