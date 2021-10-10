@@ -33,7 +33,8 @@ class DevicesSettingsView extends StatelessWidget {
               );
             }
             if (!snapshot.hasData || controller.devices == null) {
-              return Center(child: CircularProgressIndicator());
+              return Center(
+                  child: CircularProgressIndicator.adaptive(strokeWidth: 2));
             }
             return Column(
               children: <Widget>[
@@ -55,7 +56,7 @@ class DevicesSettingsView extends StatelessWidget {
                       style: TextStyle(color: Colors.red),
                     ),
                     trailing: controller.loadingDeletingDevices
-                        ? CircularProgressIndicator()
+                        ? CircularProgressIndicator.adaptive(strokeWidth: 2)
                         : Icon(Icons.delete_outline),
                     onTap: controller.loadingDeletingDevices
                         ? null

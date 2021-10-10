@@ -99,7 +99,9 @@ class SettingsNotificationsView extends StatelessWidget {
                         );
                       }
                       if (snapshot.connectionState != ConnectionState.done) {
-                        Center(child: CircularProgressIndicator());
+                        Center(
+                            child: CircularProgressIndicator.adaptive(
+                                strokeWidth: 2));
                       }
                       final pushers = snapshot.data ?? [];
                       return ListView.builder(

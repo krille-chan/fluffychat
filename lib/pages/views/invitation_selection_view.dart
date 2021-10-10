@@ -62,7 +62,7 @@ class InvitationSelectionView extends StatelessWidget {
                 builder: (BuildContext context, snapshot) {
                   if (!snapshot.hasData) {
                     return Center(
-                      child: CircularProgressIndicator(),
+                      child: CircularProgressIndicator.adaptive(strokeWidth: 2),
                     );
                   }
                   final contacts = snapshot.data;

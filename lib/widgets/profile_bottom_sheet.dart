@@ -79,7 +79,8 @@ class ProfileBottomSheet extends StatelessWidget {
                                   child: snapshot.hasError
                                       ? Text(snapshot.error
                                           .toLocalizedString(context))
-                                      : CircularProgressIndicator(),
+                                      : CircularProgressIndicator.adaptive(
+                                          strokeWidth: 2),
                                 )
                               : ContentBanner(
                                   profile.avatarUrl,

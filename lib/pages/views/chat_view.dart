@@ -243,7 +243,8 @@ class ChatView extends StatelessWidget {
                         builder: (BuildContext context, snapshot) {
                           if (controller.timeline == null) {
                             return Center(
-                              child: CircularProgressIndicator(strokeWidth: 2),
+                              child: CircularProgressIndicator.adaptive(
+                                  strokeWidth: 2),
                             );
                           }
 
@@ -279,7 +280,8 @@ class ChatView extends StatelessWidget {
                                 return i == controller.filteredEvents.length + 1
                                     ? controller.timeline.isRequestingHistory
                                         ? Center(
-                                            child: CircularProgressIndicator(),
+                                            child: CircularProgressIndicator
+                                                .adaptive(),
                                           )
                                         : controller.canLoadMore
                                             ? Center(

@@ -139,7 +139,9 @@ class SearchView extends StatelessWidget {
                         );
                       }
                       if (snapshot.connectionState != ConnectionState.done) {
-                        return Center(child: CircularProgressIndicator());
+                        return Center(
+                            child: CircularProgressIndicator.adaptive(
+                                strokeWidth: 2));
                       }
                       final publicRoomsResponse = snapshot.data;
                       if (publicRoomsResponse.chunk.isEmpty) {

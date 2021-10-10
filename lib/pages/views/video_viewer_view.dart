@@ -41,7 +41,7 @@ class VideoViewerView extends StatelessWidget {
         child: controller.error != null
             ? Text(controller.error.toString())
             : (controller.chewieController == null
-                ? CircularProgressIndicator(strokeWidth: 2)
+                ? CircularProgressIndicator.adaptive(strokeWidth: 2)
                 : Chewie(
                     controller: controller.chewieController,
                   )),

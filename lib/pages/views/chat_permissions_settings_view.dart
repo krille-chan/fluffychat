@@ -104,7 +104,9 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                         future: room.client.getCapabilities(),
                         builder: (context, snapshot) {
                           if (!snapshot.hasData) {
-                            return Center(child: CircularProgressIndicator());
+                            return Center(
+                                child: CircularProgressIndicator.adaptive(
+                                    strokeWidth: 2));
                           }
                           final String roomVersion = room
                                   .getState(EventTypes.RoomCreate)

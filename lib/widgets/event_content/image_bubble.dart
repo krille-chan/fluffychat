@@ -249,7 +249,7 @@ class _ImageBubbleState extends State<ImageBubble> {
       children: <Widget>[
         if (blurhash != null) blurhash,
         Center(
-          child: child ?? CircularProgressIndicator(strokeWidth: 2),
+          child: child ?? CircularProgressIndicator.adaptive(strokeWidth: 2),
         ),
       ],
     );

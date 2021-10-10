@@ -37,7 +37,8 @@ class ArchiveView extends StatelessWidget {
               ));
             }
             if (!snapshot.hasData) {
-              return Center(child: CircularProgressIndicator());
+              return Center(
+                  child: CircularProgressIndicator.adaptive(strokeWidth: 2));
             } else {
               controller.archive = snapshot.data;
               if (controller.archive.isEmpty) {

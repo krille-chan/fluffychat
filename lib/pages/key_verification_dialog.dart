@@ -222,9 +222,7 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
           children: <Widget>[
             Image.asset('assets/verification.png', fit: BoxFit.contain),
             const SizedBox(height: 16),
-            PlatformInfos.isCupertinoStyle
-                ? CupertinoActivityIndicator()
-                : CircularProgressIndicator(),
+            CircularProgressIndicator.adaptive(strokeWidth: 2),
             const SizedBox(height: 16),
             Text(
               L10n.of(context).waitingPartnerAcceptRequest,
@@ -307,9 +305,7 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
         body = Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            PlatformInfos.isCupertinoStyle
-                ? CupertinoActivityIndicator()
-                : CircularProgressIndicator(),
+            CircularProgressIndicator.adaptive(strokeWidth: 2),
             SizedBox(height: 10),
             Text(
               acceptText,

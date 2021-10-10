@@ -39,7 +39,8 @@ class Settings3PidView extends StatelessWidget {
               );
             }
             if (!snapshot.hasData) {
-              return Center(child: CircularProgressIndicator());
+              return Center(
+                  child: CircularProgressIndicator.adaptive(strokeWidth: 2));
             }
             final identifier = snapshot.data;
             return Column(

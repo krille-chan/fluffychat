@@ -56,7 +56,7 @@ class _ConnectionStatusHeaderState extends State<ConnectionStatusHeader> {
           SizedBox(
             width: 24,
             height: 24,
-            child: CircularProgressIndicator(
+            child: CircularProgressIndicator.adaptive(
               strokeWidth: 2,
               value: _connected ? 1.0 : _status.progress,
             ),

@@ -135,7 +135,7 @@ class _AudioPlayerState extends State<AudioPlayerWidget> {
         Container(
           width: 30,
           child: status == AudioPlayerStatus.downloading
-              ? CircularProgressIndicator(strokeWidth: 2)
+              ? CircularProgressIndicator.adaptive(strokeWidth: 2)
               : IconButton(
                   icon: Icon(
                     audioPlayer.state == PlayerState.PLAYING

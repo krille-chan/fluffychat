@@ -54,7 +54,9 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                     );
                   }
                   if (!snapshot.hasData) {
-                    return Center(child: CircularProgressIndicator());
+                    return Center(
+                        child:
+                            CircularProgressIndicator.adaptive(strokeWidth: 2));
                   }
                   final deviceKeys = snapshot.data;
                   return ListView.builder(

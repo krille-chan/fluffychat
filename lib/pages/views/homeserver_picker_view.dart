@@ -49,7 +49,8 @@ class HomeserverPickerView extends StatelessWidget {
             child: FluffyBanner(),
           ),
           controller.isLoading
-              ? Center(child: CircularProgressIndicator())
+              ? Center(
+                  child: CircularProgressIndicator.adaptive(strokeWidth: 2))
               : controller.error != null
                   ? Center(
                       child: Padding(
@@ -76,7 +77,9 @@ class HomeserverPickerView extends StatelessWidget {
                           );
                         }
                         if (!snapshot.hasData) {
-                          return Center(child: CircularProgressIndicator());
+                          return Center(
+                              child: CircularProgressIndicator.adaptive(
+                                  strokeWidth: 2));
                         }
                         return Padding(
                           padding: const EdgeInsets.symmetric(
