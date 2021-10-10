@@ -48,7 +48,6 @@ class FlutterMatrixHiveStore extends FamedlySdkHiveDatabase {
   static Future<FamedlySdkHiveDatabase> hiveDatabaseBuilder(
       Client client) async {
     if (!kIsWeb && !_hiveInitialized) {
-      Logs().i('Init Hive database...');
       _hiveInitialized = true;
     }
     HiveCipher hiverCipher;
@@ -81,7 +80,6 @@ class FlutterMatrixHiveStore extends FamedlySdkHiveDatabase {
       client.clientName,
       encryptionCipher: hiverCipher,
     );
-    Logs().i('Open Hive database...');
     try {
       await db.open();
     } catch (e, s) {
@@ -89,7 +87,6 @@ class FlutterMatrixHiveStore extends FamedlySdkHiveDatabase {
       await db.clear(client.id);
       await db.open();
     }
-    Logs().i('Hive database is ready!');
     return db;
   }
 

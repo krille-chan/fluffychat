@@ -20,9 +20,20 @@ class ProfileBottomSheet extends StatelessWidget {
   }) : super(key: key);
 
   void _startDirectChat(BuildContext context) async {
+    final client = Matrix.of(context).client;
     final result = await showFutureLoadingDialog<String>(
       context: context,
-      future: () => Matrix.of(context).client.startDirectChat(userId),
+      future: () async {
+        final roomId = await client.startDirectChat(userId);
+        if (client.getRoomById(roomId) == null) {
+          await client.onSync.stream.firstWhere(
+              (sync) => sync.rooms?.join?.containsKey(roomId) ?? false);
+        }
+        if (client.encryptionEnabled) {
+          await client.getRoomById(roomId).enableEncryption();
+        }
+        return roomId;
+      },
     );
     if (result.error == null) {
       VRouter.of(context).toSegments(['rooms', result.result]);
@@ -81,8 +92,10 @@ class ProfileBottomSheet extends StatelessWidget {
                           subtitle: Text(userId),
                           trailing: Icon(Icons.account_box_outlined),
                         ),
-                        Center(
-                          child: FloatingActionButton.extended(
+                        Container(
+                          width: double.infinity,
+                          padding: EdgeInsets.all(12),
+                          child: ElevatedButton.icon(
                             onPressed: () => _startDirectChat(context),
                             label: Text(L10n.of(context).newChat),
                             icon: Icon(Icons.send_outlined),

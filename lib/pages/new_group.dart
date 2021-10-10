@@ -17,19 +17,29 @@ class NewGroupController extends State<NewGroup> {
   void setPublicGroup(bool b) => setState(() => publicGroup = b);
 
   void submitAction([_]) async {
-    final matrix = Matrix.of(context);
+    final client = Matrix.of(context).client;
     final roomID = await showFutureLoadingDialog(
       context: context,
-      future: () => matrix.client.createRoom(
-        preset: publicGroup
-            ? sdk.CreateRoomPreset.publicChat
-            : sdk.CreateRoomPreset.privateChat,
-        visibility: publicGroup ? sdk.Visibility.public : null,
-        roomAliasName: publicGroup && controller.text.isNotEmpty
-            ? controller.text.trim().toLowerCase().replaceAll(' ', '_')
-            : null,
-        name: controller.text.isNotEmpty ? controller.text : null,
-      ),
+      future: () async {
+        final roomId = await client.createRoom(
+          preset: publicGroup
+              ? sdk.CreateRoomPreset.publicChat
+              : sdk.CreateRoomPreset.privateChat,
+          visibility: publicGroup ? sdk.Visibility.public : null,
+          roomAliasName: publicGroup && controller.text.isNotEmpty
+              ? controller.text.trim().toLowerCase().replaceAll(' ', '_')
+              : null,
+          name: controller.text.isNotEmpty ? controller.text : null,
+        );
+        if (client.getRoomById(roomId) == null) {
+          await client.onSync.stream.firstWhere(
+              (sync) => sync.rooms?.join?.containsKey(roomId) ?? false);
+        }
+        if (!publicGroup && client.encryptionEnabled) {
+          await client.getRoomById(roomId).enableEncryption();
+        }
+        return roomId;
+      },
     );
     if (roomID.error == null) {
       VRouter.of(context).toSegments(['rooms', roomID.result, 'invite']);
