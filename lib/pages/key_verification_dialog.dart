@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'dart:convert';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:fluffychat/widgets/avatar.dart';
 import 'package:matrix/encryption.dart';
 import 'package:matrix/matrix.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -11,7 +12,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import '../widgets/adaptive_flat_button.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
-import '../utils/string_color.dart';
 import '../utils/beautify_string_extension.dart';
 
 class KeyVerificationDialog extends StatefulWidget {
@@ -78,6 +78,17 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
 
   @override
   Widget build(BuildContext context) {
+    User user;
+    final directChatId =
+        widget.request.client.getDirectChatFromUserId(widget.request.userId);
+    if (directChatId != null) {
+      user = widget.request.client
+          .getRoomById(directChatId)
+          ?.getUserByMXIDSync(widget.request.userId);
+    }
+    final displayName =
+        user?.calcDisplayname() ?? widget.request.userId.localpart;
+    var title = Text(L10n.of(context).verifyTitle);
     Widget body;
     final buttons = <Widget>[];
     switch (widget.request.state) {
@@ -153,33 +164,68 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
         ));
         break;
       case KeyVerificationState.askAccept:
-        body = Container(
-          margin: EdgeInsets.only(left: 8.0, right: 8.0),
-          child: Text(
-              L10n.of(context).askVerificationRequest(widget.request.userId),
-              style: TextStyle(fontSize: 20)),
+        title = Text(L10n.of(context).newVerificationRequest);
+        body = Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(children: [
+              if (!PlatformInfos.isCupertinoStyle)
+                Avatar(user?.avatarUrl, displayName),
+              SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: PlatformInfos.isCupertinoStyle
+                      ? CrossAxisAlignment.center
+                      : CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      displayName,
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    Text(
+                      '${widget.request.userId} - ${widget.request.deviceId}',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w300,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ]),
+            const SizedBox(height: 16),
+            Image.asset('assets/verification.png', fit: BoxFit.contain),
+            const SizedBox(height: 16),
+            Text(
+              L10n.of(context).askVerificationRequest(displayName),
+            )
+          ],
         );
         buttons.add(AdaptiveFlatButton(
-          label: L10n.of(context).accept,
-          onPressed: () => widget.request.acceptVerification(),
-        ));
-        buttons.add(AdaptiveFlatButton(
           label: L10n.of(context).reject,
+          textColor: Colors.red,
           onPressed: () {
             widget.request.rejectVerification().then((_) {
               Navigator.of(context, rootNavigator: false).pop();
             });
           },
         ));
+        buttons.add(AdaptiveFlatButton(
+          label: L10n.of(context).accept,
+          onPressed: () => widget.request.acceptVerification(),
+        ));
         break;
       case KeyVerificationState.waitingAccept:
         body = Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
+            Image.asset('assets/verification.png', fit: BoxFit.contain),
+            const SizedBox(height: 16),
             PlatformInfos.isCupertinoStyle
                 ? CupertinoActivityIndicator()
                 : CircularProgressIndicator(),
-            SizedBox(height: 10),
+            const SizedBox(height: 16),
             Text(
               L10n.of(context).waitingPartnerAcceptRequest,
               textAlign: TextAlign.center,
@@ -308,58 +354,13 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
         break;
     }
     body ??= Text('ERROR: Unknown state ' + widget.request.state.toString());
-    final otherName = profile?.displayName ?? widget.request.userId;
-    var bottom;
-    if (widget.request.deviceId != null) {
-      final deviceName = widget
-              .request
-              .client
-              .userDeviceKeys[widget.request.userId]
-              ?.deviceKeys[widget.request.deviceId]
-              ?.deviceDisplayName ??
-          '';
-      bottom = Container(
-        alignment: Alignment.center,
-        padding: EdgeInsets.all(16.0),
-        child: Text('$deviceName (${widget.request.deviceId})',
-            style: TextStyle(color: Theme.of(context).textTheme.caption.color)),
-      );
-    }
-    final userNameTitle = Row(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(
-          otherName,
-          maxLines: 1,
-          style: TextStyle(
-            color: otherName.color,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        if (otherName != widget.request.userId)
-          Text(
-            ' - ' + widget.request.userId,
-            maxLines: 1,
-            style: TextStyle(
-              fontStyle: FontStyle.italic,
-            ),
-          ),
-      ],
-    );
-    final title = Text(L10n.of(context).verifyTitle);
     final content = SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          if (PlatformInfos.isCupertinoStyle) ...[
-            SizedBox(height: 8),
-            Center(child: userNameTitle),
-            SizedBox(height: 12),
-          ],
+          SizedBox(height: 16),
           body,
-          if (bottom != null) bottom,
         ],
       ),
     );

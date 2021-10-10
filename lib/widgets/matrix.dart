@@ -406,25 +406,9 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         }
         hidPopup = true;
       };
-      if (await showOkCancelAlertDialog(
-            useRootNavigator: false,
-            context: navigatorContext,
-            title: L10n.of(widget.context).newVerificationRequest,
-            message:
-                L10n.of(widget.context).askVerificationRequest(request.userId),
-            okLabel: L10n.of(widget.context).ok,
-            cancelLabel: L10n.of(widget.context).cancel,
-          ) ==
-          OkCancelResult.ok) {
-        request.onUpdate = null;
-        hidPopup = true;
-        await request.acceptVerification();
-        await KeyVerificationDialog(request: request).show(navigatorContext);
-      } else {
-        request.onUpdate = null;
-        hidPopup = true;
-        await request.rejectVerification();
-      }
+      request.onUpdate = null;
+      hidPopup = true;
+      await KeyVerificationDialog(request: request).show(navigatorContext);
     });
     onLoginStateChanged[name] ??= c.onLoginStateChanged.stream.listen((state) {
       final loggedInWithMultipleClients = widget.clients.length > 1;
