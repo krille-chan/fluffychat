@@ -2562,5 +2562,7 @@
   "@openInMaps": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "sendOnEnter": "按 enter 键发送",
+  "@sendOnEnter": {}
 }
