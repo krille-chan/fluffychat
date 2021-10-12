@@ -2611,5 +2611,7 @@
   "setupChatBackup": "Настройте резервное копирование чата",
   "@setupChatBackup": {},
   "yourUserId": "Ваш ID пользователя:",
-  "@yourUserId": {}
+  "@yourUserId": {},
+  "unverified": "Не проверено",
+  "@unverified": {}
 }
