@@ -2613,5 +2613,7 @@
   "yourUserId": "Ваш ID пользователя:",
   "@yourUserId": {},
   "unverified": "Не проверено",
-  "@unverified": {}
+  "@unverified": {},
+  "iWroteDownTheKey": "Ключ записан",
+  "@iWroteDownTheKey": {}
 }
