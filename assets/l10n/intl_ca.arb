@@ -1,6 +1,6 @@
 {
   "@@last_modified": "2021-08-14 12:41:10.145728",
-  "about": "Sobre",
+  "about": "Quant a",
   "@about": {
     "type": "text",
     "placeholders": {}
@@ -54,7 +54,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "alreadyHaveAnAccount": "Ja tens un compte?",
+  "alreadyHaveAnAccount": "Ja teniu un compte?",
   "@alreadyHaveAnAccount": {
     "type": "text",
     "placeholders": {}
@@ -1961,6 +1961,33 @@
   },
   "yourPublicKey": "La teva clau pública",
   "@yourPublicKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "all": "Tot",
+  "@all": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewFriend": "Afegeix una amistat",
+  "@addNewFriend": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPause": "Posa en pausa",
+  "@audioPlayerPause": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addToSpace": "Afegeix a un espai",
+  "@addToSpace": {},
+  "audioPlayerPlay": "Reprodueix",
+  "@audioPlayerPlay": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSureYouWantToLogout": "Segur que voleu finalitzar la sessió?",
+  "@areYouSureYouWantToLogout": {
     "type": "text",
     "placeholders": {}
   }
