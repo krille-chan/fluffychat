@@ -634,7 +634,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "createNewSpace": "ovo espazo",
+  "createNewSpace": "Novo espazo",
   "@createNewSpace": {
     "type": "text",
     "placeholders": {}
@@ -2595,5 +2595,17 @@
   "oneClientLoggedOut": "Un dos teus clientes foi desconectado",
   "@oneClientLoggedOut": {},
   "link": "Ligazón",
-  "@link": {}
+  "@link": {},
+  "setupChatBackup": "Configurar copia de apoio",
+  "@setupChatBackup": {},
+  "iWroteDownTheKey": "Escribo eu a chave",
+  "@iWroteDownTheKey": {},
+  "yourChatBackupHasBeenSetUp": "Configurouse a copia de apoio do chat.",
+  "@yourChatBackupHasBeenSetUp": {},
+  "setupChatBackupDescription": "Para protexer as túas mensaxes creamos unha chave de seguridade para ti.\nGárdaa nun lugar seguro, como nun xestor de contrasinais.",
+  "@setupChatBackupDescription": {},
+  "unverified": "Sen verificar",
+  "@unverified": {},
+  "yourUserId": "O teu ID:",
+  "@yourUserId": {}
 }

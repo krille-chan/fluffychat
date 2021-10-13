@@ -2602,5 +2602,13 @@
   "addAccount": "Account toevoegen",
   "@addAccount": {},
   "link": "Link",
-  "@link": {}
+  "@link": {},
+  "setupChatBackup": "Chat back-up instellen",
+  "@setupChatBackup": {},
+  "iWroteDownTheKey": "Ik heb de sleutel opgeschreven",
+  "@iWroteDownTheKey": {},
+  "yourChatBackupHasBeenSetUp": "Uw chat back-up is ingesteld.",
+  "@yourChatBackupHasBeenSetUp": {},
+  "yourUserId": "Uw persoon-ID:",
+  "@yourUserId": {}
 }

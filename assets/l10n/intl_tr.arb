@@ -2603,5 +2603,17 @@
   "oneClientLoggedOut": "İstemcilerinizden birinin oturumu kapatıldı",
   "@oneClientLoggedOut": {},
   "link": "Bağlantı",
-  "@link": {}
+  "@link": {},
+  "setupChatBackup": "Sohbet yedeklemeyi ayarla",
+  "@setupChatBackup": {},
+  "iWroteDownTheKey": "Anahtarı yazdım",
+  "@iWroteDownTheKey": {},
+  "yourChatBackupHasBeenSetUp": "Sohbet yedeklemeniz ayarlandı.",
+  "@yourChatBackupHasBeenSetUp": {},
+  "setupChatBackupDescription": "Mesajlarınızı korumak için sizin için bir güvenlik anahtarı oluşturduk.\nLütfen bunu parola yöneticisi gibi güvenli bir yerde saklayın.",
+  "@setupChatBackupDescription": {},
+  "unverified": "Doğrulanmadı",
+  "@unverified": {},
+  "yourUserId": "Kullanıcı kimliğiniz:",
+  "@yourUserId": {}
 }

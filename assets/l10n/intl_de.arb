@@ -2601,5 +2601,19 @@
   "homeserver": "Homeserver",
   "@homeserver": {},
   "sendOnEnter": "Senden mit Enter",
-  "@sendOnEnter": {}
+  "@sendOnEnter": {},
+  "link": "Link",
+  "@link": {},
+  "setupChatBackup": "Chat-Backup einrichten",
+  "@setupChatBackup": {},
+  "iWroteDownTheKey": "Ich habe den Schlüssel aufgeschrieben",
+  "@iWroteDownTheKey": {},
+  "yourChatBackupHasBeenSetUp": "Dein Chat-Backup wurde eingerichtet.",
+  "@yourChatBackupHasBeenSetUp": {},
+  "setupChatBackupDescription": "Um deine Nachrichten zu schützen, haben wir einen Sicherheitsschlüssel für dich generiert.\nBewahre ihn bitte an einem sicheren Ort auf, wie zum Beispiel einem Passwort-Manager.",
+  "@setupChatBackupDescription": {},
+  "unverified": "Unverifiziert",
+  "@unverified": {},
+  "yourUserId": "Deine Benutzer-ID:",
+  "@yourUserId": {}
 }

@@ -2047,7 +2047,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sharedTheLocation": "{username} sdílel polohu",
+  "sharedTheLocation": "{username} sdílel jejich polohu",
   "@sharedTheLocation": {
     "type": "text",
     "placeholders": {
@@ -2587,5 +2587,33 @@
   "newUsernameDescription": "Vaše ID uživatele pak bude mít formát @uživatelské jméno: název serveru",
   "@newUsernameDescription": {},
   "newPasswordDescription": "Abyste mohli obnovit své heslo, měli byste ke svému účtu později přidat e -mailovou adresu.",
-  "@newPasswordDescription": {}
+  "@newPasswordDescription": {},
+  "addToBundle": "Přidat do balíčku",
+  "@addToBundle": {},
+  "setupChatBackup": "Nastavit zálohu chatu",
+  "@setupChatBackup": {},
+  "iWroteDownTheKey": "Níže jsem napsal klíč",
+  "@iWroteDownTheKey": {},
+  "addAccount": "Přidat účet",
+  "@addAccount": {},
+  "bundleName": "Název balíčku",
+  "@bundleName": {},
+  "link": "Odkaz",
+  "@link": {},
+  "yourChatBackupHasBeenSetUp": "Vaše záloha chatu byla nastavena.",
+  "@yourChatBackupHasBeenSetUp": {},
+  "setupChatBackupDescription": "Abychom chránili vaše zprávy, vygenerovali jsme pro vás bezpečnostní klíč. Uchovejte ho na bezpečném místě, například ve správci hesel.",
+  "@setupChatBackupDescription": {},
+  "yourUserId": "Vaše uživatelské ID:",
+  "@yourUserId": {},
+  "editBundlesForAccount": "Upravit balíčky pro tento účet",
+  "@editBundlesForAccount": {},
+  "enableMultiAccounts": "(BETA) Na tomto zařízení povolte více účtů",
+  "@enableMultiAccounts": {},
+  "oneClientLoggedOut": "Jeden z vašich klientů byl odhlášen",
+  "@oneClientLoggedOut": {},
+  "removeFromBundle": "Odstranit z tohoto balíčku",
+  "@removeFromBundle": {},
+  "unverified": "Neověřeno",
+  "@unverified": {}
 }

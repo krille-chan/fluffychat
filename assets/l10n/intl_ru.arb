@@ -2603,5 +2603,15 @@
   "link": "Ссылка",
   "@link": {},
   "oneClientLoggedOut": "Один из ваших клиентов вышел",
-  "@oneClientLoggedOut": {}
+  "@oneClientLoggedOut": {},
+  "yourChatBackupHasBeenSetUp": "Резервное копирование чата настроено.",
+  "@yourChatBackupHasBeenSetUp": {},
+  "setupChatBackupDescription": "Для защиты ваших сообщений мы сгенерировали для вас ключ безопасности.\nПожалуйста, храните его в надежном месте, например, в менеджере паролей.",
+  "@setupChatBackupDescription": {},
+  "setupChatBackup": "Настройте резервное копирование чата",
+  "@setupChatBackup": {},
+  "yourUserId": "Ваш ID пользователя:",
+  "@yourUserId": {},
+  "unverified": "Не проверено",
+  "@unverified": {}
 }

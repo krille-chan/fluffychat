@@ -2603,5 +2603,17 @@
   "oneClientLoggedOut": "Üks sinu klientrakendustest on Matrix'i võrgust välja loginud",
   "@oneClientLoggedOut": {},
   "link": "Link",
-  "@link": {}
+  "@link": {},
+  "setupChatBackup": "Võta kasutusele vestluste varundus",
+  "@setupChatBackup": {},
+  "iWroteDownTheKey": "Panin krüptovõtme kirja",
+  "@iWroteDownTheKey": {},
+  "yourChatBackupHasBeenSetUp": "Sinu vestluste varundus on seadistatud.",
+  "@yourChatBackupHasBeenSetUp": {},
+  "setupChatBackupDescription": "Et sinu sõnumid ei oleks võõrastele loetavad, me genereerisime krüptovõtme.\nPalun hoia seda turvalises kohas, näiteks salasõnade halduris.",
+  "@setupChatBackupDescription": {},
+  "yourUserId": "Sinu kasutajatunnus:",
+  "@yourUserId": {},
+  "unverified": "Verifitseerimata",
+  "@unverified": {}
 }
