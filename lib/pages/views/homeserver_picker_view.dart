@@ -140,7 +140,13 @@ class HomeserverPickerView extends StatelessWidget {
                                   if (controller.registrationSupported &&
                                       controller.passwordLoginSupported)
                                     SizedBox(width: 12),
-                                  if (controller.registrationSupported)
+                                  if (controller.registrationSupported &&
+                                      // Registration is broken on matrix.org
+                                      Matrix.of(context)
+                                              .client
+                                              .homeserver
+                                              .host !=
+                                          'matrix-client.matrix.org')
                                     Expanded(
                                       child: _LoginButton(
                                         onPressed: controller.signUpAction,
