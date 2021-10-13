@@ -2610,5 +2610,9 @@
   "yourChatBackupHasBeenSetUp": "Uw chat back-up is ingesteld.",
   "@yourChatBackupHasBeenSetUp": {},
   "yourUserId": "Uw persoon-ID:",
-  "@yourUserId": {}
+  "@yourUserId": {},
+  "setupChatBackupDescription": "Om je berichten te beschermen genereren we een veiligheidssleutel voor jouw.\nBewaar deze op een veilig plek, bijvoorbeeld in een wachtwoordmanager.",
+  "@setupChatBackupDescription": {},
+  "unverified": "Niet geverifieerd",
+  "@unverified": {}
 }
