@@ -2500,5 +2500,16 @@
   "@saveFileToFolder": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "yourUserId": "معرّف المستخدم:",
+  "@yourUserId": {},
+  "deviceVerifyDescription": "لن يكون التشفير آمنا إلا بعد التحقق من جميع الأجهزة.",
+  "@deviceVerifyDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iWroteDownTheKey": "كتبتُ المفتاح",
+  "@iWroteDownTheKey": {},
+  "setupChatBackupDescription": "لحماية رسائلك، أنشأنا مفتاح أمان لك.\nيرجى الاحتفاظ به في مكان آمن، كمدير لكلمات السر.",
+  "@setupChatBackupDescription": {}
 }
