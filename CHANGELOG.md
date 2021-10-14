@@ -1,3 +1,18 @@
+## v0.42.0 - 2021-10-14
+This release fixes several bugs and makes E2EE enabled by default.
+
+- feat: Enable E2EE by default for new rooms
+- feat: Display all private rooms without encryption as red
+- feat: New design for bootstrap
+- feat: New design for emoji verification
+- feat: Display own MXID in the settings
+- feat: More finetuning for font sizes
+- chore: Updated translations (Thanks to all translators!)
+- fix: App crash on logout
+- fix: Temporary disable sign-up for matrix.org (Currently gives "500: Internal Server Error" while FluffyChat **should** send the same requests like Element)
+- fix: Implement Roboto font to fix font issues on Linux Desktop and mobile
+- fix: QR Code scanning
+
 ## v0.41.3 - 2021-10-08
 Minor bugfix release.
 
