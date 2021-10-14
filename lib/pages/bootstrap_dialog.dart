@@ -1,5 +1,5 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:fluffychat/widgets/layouts/one_page_card.dart';
+import 'package:fluffychat/config/themes.dart';
 import 'package:matrix/encryption.dart';
 import 'package:matrix/encryption/utils/bootstrap.dart';
 import 'package:matrix/matrix.dart';
@@ -92,41 +92,46 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
         _recoveryKeyStored == false) {
       final key = bootstrap.newSsssKey.recoveryKey;
       titleText = L10n.of(context).securityKey;
-      return OnePageCard(
-        child: Scaffold(
-          appBar: AppBar(
-            leading: IconButton(
-              icon: Icon(Icons.close),
-              onPressed: Navigator.of(context).pop,
-            ),
-            title: Text(L10n.of(context).securityKey),
+      return AlertDialog(
+        title: AppBar(
+          centerTitle: true,
+          leading: IconButton(
+            icon: Icon(Icons.close),
+            onPressed: Navigator.of(context).pop,
           ),
-          body: ListView(
-            padding: const EdgeInsets.all(16.0),
-            children: [
-              TextField(
-                minLines: 4,
-                maxLines: 4,
-                readOnly: true,
-                controller: TextEditingController(text: key),
-              ),
-              const SizedBox(height: 16),
-              ElevatedButton.icon(
-                icon: Icon(Icons.copy_outlined),
-                label: Text(L10n.of(context).copyToClipboard),
-                onPressed: () => Clipboard.setData(ClipboardData(text: key)),
-              ),
-              const SizedBox(height: 16),
-              ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(
-                  primary: Theme.of(context).secondaryHeaderColor,
-                  onPrimary: Theme.of(context).primaryColor,
+          title: Text(L10n.of(context).securityKey),
+        ),
+        content: Center(
+          child: ConstrainedBox(
+            constraints:
+                BoxConstraints(maxWidth: FluffyThemes.columnWidth * 1.5),
+            child: ListView(
+              padding: const EdgeInsets.all(16.0),
+              children: [
+                TextField(
+                  minLines: 4,
+                  maxLines: 4,
+                  readOnly: true,
+                  controller: TextEditingController(text: key),
                 ),
-                icon: Icon(Icons.check_outlined),
-                label: Text(L10n.of(context).iWroteDownTheKey),
-                onPressed: () => setState(() => _recoveryKeyStored = true),
-              ),
-            ],
+                const SizedBox(height: 16),
+                ElevatedButton.icon(
+                  icon: Icon(Icons.copy_outlined),
+                  label: Text(L10n.of(context).copyToClipboard),
+                  onPressed: () => Clipboard.setData(ClipboardData(text: key)),
+                ),
+                const SizedBox(height: 16),
+                ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                    primary: Theme.of(context).secondaryHeaderColor,
+                    onPrimary: Theme.of(context).primaryColor,
+                  ),
+                  icon: Icon(Icons.check_outlined),
+                  label: Text(L10n.of(context).iWroteDownTheKey),
+                  onPressed: () => setState(() => _recoveryKeyStored = true),
+                ),
+              ],
+            ),
           ),
         ),
       );
@@ -161,110 +166,115 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
           break;
         case BootstrapState.openExistingSsss:
           _recoveryKeyStored = true;
-          return OnePageCard(
-            child: Scaffold(
-              appBar: AppBar(
-                leading: IconButton(
-                  icon: Icon(Icons.close),
-                  onPressed: Navigator.of(context).pop,
-                ),
-                title: Text(L10n.of(context).pleaseEnterSecurityKey),
+          return Scaffold(
+            appBar: AppBar(
+              centerTitle: true,
+              leading: IconButton(
+                icon: Icon(Icons.close),
+                onPressed: Navigator.of(context).pop,
               ),
-              body: ListView(
-                padding: const EdgeInsets.all(16.0),
-                children: [
-                  TextField(
-                    minLines: 4,
-                    maxLines: 4,
-                    autofocus: true,
-                    autocorrect: false,
-                    autofillHints: _recoveryKeyInputLoading
-                        ? null
-                        : [AutofillHints.password],
-                    controller: _recoveryKeyTextEditingController,
-                    decoration: InputDecoration(
-                      hintText: 'Abc123 Def456',
-                      labelText: L10n.of(context).securityKey,
-                      errorText: _recoveryKeyInputError,
+              title: Text(L10n.of(context).pleaseEnterSecurityKey),
+            ),
+            body: Center(
+              child: ConstrainedBox(
+                constraints:
+                    BoxConstraints(maxWidth: FluffyThemes.columnWidth * 1.5),
+                child: ListView(
+                  padding: const EdgeInsets.all(16.0),
+                  children: [
+                    TextField(
+                      minLines: 4,
+                      maxLines: 4,
+                      autofocus: true,
+                      autocorrect: false,
+                      autofillHints: _recoveryKeyInputLoading
+                          ? null
+                          : [AutofillHints.password],
+                      controller: _recoveryKeyTextEditingController,
+                      decoration: InputDecoration(
+                        hintText: 'Abc123 Def456',
+                        labelText: L10n.of(context).securityKey,
+                        errorText: _recoveryKeyInputError,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 16),
-                  ElevatedButton.icon(
-                      icon: Icon(Icons.lock_open_outlined),
-                      label: Text(L10n.of(context).unlockChatBackup),
+                    const SizedBox(height: 16),
+                    ElevatedButton.icon(
+                        icon: Icon(Icons.lock_open_outlined),
+                        label: Text(L10n.of(context).unlockChatBackup),
+                        onPressed: () async {
+                          setState(() {
+                            _recoveryKeyInputError = null;
+                            _recoveryKeyInputLoading = true;
+                          });
+                          try {
+                            await bootstrap.newSsssKey.unlock(
+                              keyOrPassphrase:
+                                  _recoveryKeyTextEditingController.text,
+                            );
+                            await bootstrap.openExistingSsss();
+                          } catch (e, s) {
+                            Logs().w('Unable to unlock SSSS', e, s);
+                            setState(() => _recoveryKeyInputError =
+                                L10n.of(context).oopsSomethingWentWrong);
+                          } finally {
+                            setState(() => _recoveryKeyInputLoading = false);
+                          }
+                        }),
+                    const SizedBox(height: 16),
+                    Row(children: [
+                      Expanded(child: Divider()),
+                      Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Text(L10n.of(context).or),
+                      ),
+                      Expanded(child: Divider()),
+                    ]),
+                    const SizedBox(height: 16),
+                    ElevatedButton.icon(
+                      style: ElevatedButton.styleFrom(
+                        primary: Theme.of(context).secondaryHeaderColor,
+                        onPrimary: Theme.of(context).primaryColor,
+                      ),
+                      icon: Icon(Icons.transfer_within_a_station_outlined),
+                      label: Text(L10n.of(context).transferFromAnotherDevice),
                       onPressed: () async {
-                        setState(() {
-                          _recoveryKeyInputError = null;
-                          _recoveryKeyInputLoading = true;
-                        });
-                        try {
-                          await bootstrap.newSsssKey.unlock(
-                            keyOrPassphrase:
-                                _recoveryKeyTextEditingController.text,
-                          );
-                          await bootstrap.openExistingSsss();
-                        } catch (e, s) {
-                          Logs().w('Unable to unlock SSSS', e, s);
-                          setState(() => _recoveryKeyInputError =
-                              L10n.of(context).oopsSomethingWentWrong);
-                        } finally {
-                          setState(() => _recoveryKeyInputLoading = false);
+                        final req = await showFutureLoadingDialog(
+                          context: context,
+                          future: () => widget
+                              .client.userDeviceKeys[widget.client.userID]
+                              .startVerification(),
+                        );
+                        if (req.error != null) return;
+                        await KeyVerificationDialog(request: req.result)
+                            .show(context);
+                        Navigator.of(context, rootNavigator: false).pop();
+                      },
+                    ),
+                    const SizedBox(height: 16),
+                    ElevatedButton.icon(
+                      style: ElevatedButton.styleFrom(
+                        primary: Theme.of(context).secondaryHeaderColor,
+                        onPrimary: Colors.red,
+                      ),
+                      icon: Icon(Icons.delete_outlined),
+                      label: Text(L10n.of(context).securityKeyLost),
+                      onPressed: () async {
+                        if (OkCancelResult.ok ==
+                            await showOkCancelAlertDialog(
+                              useRootNavigator: false,
+                              context: context,
+                              title: L10n.of(context).securityKeyLost,
+                              message: L10n.of(context).wipeChatBackup,
+                              okLabel: L10n.of(context).ok,
+                              cancelLabel: L10n.of(context).cancel,
+                              isDestructiveAction: true,
+                            )) {
+                          _createBootstrap(true);
                         }
-                      }),
-                  const SizedBox(height: 16),
-                  Row(children: [
-                    Expanded(child: Divider()),
-                    Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Text(L10n.of(context).or),
-                    ),
-                    Expanded(child: Divider()),
-                  ]),
-                  const SizedBox(height: 16),
-                  ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      primary: Theme.of(context).secondaryHeaderColor,
-                      onPrimary: Theme.of(context).primaryColor,
-                    ),
-                    icon: Icon(Icons.transfer_within_a_station_outlined),
-                    label: Text(L10n.of(context).transferFromAnotherDevice),
-                    onPressed: () async {
-                      final req = await showFutureLoadingDialog(
-                        context: context,
-                        future: () => widget
-                            .client.userDeviceKeys[widget.client.userID]
-                            .startVerification(),
-                      );
-                      if (req.error != null) return;
-                      await KeyVerificationDialog(request: req.result)
-                          .show(context);
-                      Navigator.of(context, rootNavigator: false).pop();
-                    },
-                  ),
-                  const SizedBox(height: 16),
-                  ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      primary: Theme.of(context).secondaryHeaderColor,
-                      onPrimary: Colors.red,
-                    ),
-                    icon: Icon(Icons.delete_outlined),
-                    label: Text(L10n.of(context).securityKeyLost),
-                    onPressed: () async {
-                      if (OkCancelResult.ok ==
-                          await showOkCancelAlertDialog(
-                            useRootNavigator: false,
-                            context: context,
-                            title: L10n.of(context).securityKeyLost,
-                            message: L10n.of(context).wipeChatBackup,
-                            okLabel: L10n.of(context).ok,
-                            cancelLabel: L10n.of(context).cancel,
-                            isDestructiveAction: true,
-                          )) {
-                        _createBootstrap(true);
-                      }
-                    },
-                  )
-                ],
+                      },
+                    )
+                  ],
+                ),
               ),
             ),
           );
