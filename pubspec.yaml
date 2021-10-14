@@ -19,7 +19,6 @@ dependencies:
   #fcm_shared_isolate:
   #  git: https://gitlab.com/famedly/libraries/fcm_shared_isolate.git
   file_picker_cross: ^4.5.0
-  filesystem_picker: 2.0.0-nullsafety.0 # Using pre release to be compatible with Flutter 2.5
   flutter:
     sdk: flutter
   # From this fix: https://github.com/g123k/flutter_app_badger/pull/47
