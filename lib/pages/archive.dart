@@ -7,6 +7,8 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class Archive extends StatefulWidget {
+  const Archive({Key key}) : super(key: key);
+
   @override
   ArchiveController createState() => ArchiveController();
 }

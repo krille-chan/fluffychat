@@ -19,7 +19,7 @@ class TwoColumnLayout extends StatelessWidget {
           children: [
             Container(
               clipBehavior: Clip.antiAlias,
-              decoration: BoxDecoration(),
+              decoration: const BoxDecoration(),
               width: 360.0,
               child: mainView,
             ),

@@ -8,14 +8,14 @@ import 'package:vrouter/vrouter.dart';
 class MultipleEmotesSettingsView extends StatelessWidget {
   final MultipleEmotesSettingsController controller;
 
-  MultipleEmotesSettingsView(this.controller, {Key key}) : super(key: key);
+  const MultipleEmotesSettingsView(this.controller, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final room = Matrix.of(context).client.getRoomById(controller.roomId);
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(),
+        leading: const BackButton(),
         title: Text(L10n.of(context).emotePacks),
       ),
       body: StreamBuilder(

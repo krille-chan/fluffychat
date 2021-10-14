@@ -14,7 +14,7 @@ class DevicesSettingsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(),
+        leading: const BackButton(),
         title: Text(L10n.of(context).devices),
       ),
       body: MaxWidthBody(
@@ -26,14 +26,14 @@ class DevicesSettingsView extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    Icon(Icons.error_outlined),
+                    const Icon(Icons.error_outlined),
                     Text(snapshot.error.toString()),
                   ],
                 ),
               );
             }
             if (!snapshot.hasData || controller.devices == null) {
-              return Center(
+              return const Center(
                   child: CircularProgressIndicator.adaptive(strokeWidth: 2));
             }
             return Column(
@@ -47,23 +47,23 @@ class DevicesSettingsView extends StatelessWidget {
                     block: controller.blockDeviceAction,
                     unblock: controller.unblockDeviceAction,
                   ),
-                Divider(height: 1),
+                const Divider(height: 1),
                 if (controller.notThisDevice.isNotEmpty)
                   ListTile(
                     title: Text(
                       controller.errorDeletingDevices ??
                           L10n.of(context).removeAllOtherDevices,
-                      style: TextStyle(color: Colors.red),
+                      style: const TextStyle(color: Colors.red),
                     ),
                     trailing: controller.loadingDeletingDevices
-                        ? CircularProgressIndicator.adaptive(strokeWidth: 2)
-                        : Icon(Icons.delete_outline),
+                        ? const CircularProgressIndicator.adaptive(strokeWidth: 2)
+                        : const Icon(Icons.delete_outline),
                     onTap: controller.loadingDeletingDevices
                         ? null
                         : () => controller
                             .removeDevicesAction(controller.notThisDevice),
                   ),
-                Divider(height: 1),
+                const Divider(height: 1),
                 Expanded(
                   child: controller.notThisDevice.isEmpty
                       ? Center(
@@ -75,7 +75,7 @@ class DevicesSettingsView extends StatelessWidget {
                         )
                       : ListView.separated(
                           separatorBuilder: (BuildContext context, int i) =>
-                              Divider(height: 1),
+                              const Divider(height: 1),
                           itemCount: controller.notThisDevice.length,
                           itemBuilder: (BuildContext context, int i) =>
                               UserDeviceListItem(

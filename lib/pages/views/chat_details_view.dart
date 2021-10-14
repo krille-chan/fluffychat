@@ -51,7 +51,7 @@ class ChatDetailsView extends StatelessWidget {
                   (BuildContext context, bool innerBoxIsScrolled) => <Widget>[
                 SliverAppBar(
                   leading: IconButton(
-                    icon: Icon(Icons.close_outlined),
+                    icon: const Icon(Icons.close_outlined),
                     onPressed: () =>
                         VRouter.of(context).path.startsWith('/spaces/')
                             ? VRouter.of(context).pop()
@@ -66,7 +66,7 @@ class ChatDetailsView extends StatelessWidget {
                     if (room.canonicalAlias?.isNotEmpty ?? false)
                       IconButton(
                         tooltip: L10n.of(context).share,
-                        icon: Icon(Icons.share_outlined),
+                        icon: const Icon(Icons.share_outlined),
                         onPressed: () => FluffyShare.share(
                             AppConfig.inviteLinkPrefix + room.canonicalAlias,
                             context),
@@ -107,7 +107,7 @@ class ChatDetailsView extends StatelessWidget {
                                           .scaffoldBackgroundColor,
                                       foregroundColor: Colors.grey,
                                       radius: Avatar.defaultSize / 2,
-                                      child: Icon(Icons.edit_outlined),
+                                      child: const Icon(Icons.edit_outlined),
                                     )
                                   : null,
                               title: Text(
@@ -121,7 +121,7 @@ class ChatDetailsView extends StatelessWidget {
                                 text: room.topic?.isEmpty ?? true
                                     ? L10n.of(context).addGroupDescription
                                     : room.topic,
-                                linkStyle: TextStyle(color: Colors.blueAccent),
+                                linkStyle: const TextStyle(color: Colors.blueAccent),
                                 textStyle: TextStyle(
                                   fontSize: 14,
                                   color: Theme.of(context)
@@ -136,7 +136,7 @@ class ChatDetailsView extends StatelessWidget {
                                   ? controller.setTopicAction
                                   : null,
                             ),
-                            Divider(thickness: 1),
+                            const Divider(thickness: 1),
                             ListTile(
                               title: Text(
                                 L10n.of(context).settings,
@@ -153,7 +153,7 @@ class ChatDetailsView extends StatelessWidget {
                                   backgroundColor:
                                       Theme.of(context).scaffoldBackgroundColor,
                                   foregroundColor: Colors.grey,
-                                  child: Icon(Icons.people_outlined),
+                                  child: const Icon(Icons.people_outlined),
                                 ),
                                 title: Text(
                                     L10n.of(context).changeTheNameOfTheGroup),
@@ -167,7 +167,7 @@ class ChatDetailsView extends StatelessWidget {
                                   backgroundColor:
                                       Theme.of(context).scaffoldBackgroundColor,
                                   foregroundColor: Colors.grey,
-                                  child: Icon(Icons.link_outlined),
+                                  child: const Icon(Icons.link_outlined),
                                 ),
                                 onTap: controller.editAliases,
                                 title: Text(L10n.of(context).editRoomAliases),
@@ -181,7 +181,7 @@ class ChatDetailsView extends StatelessWidget {
                                 backgroundColor:
                                     Theme.of(context).scaffoldBackgroundColor,
                                 foregroundColor: Colors.grey,
-                                child: Icon(Icons.insert_emoticon_outlined),
+                                child: const Icon(Icons.insert_emoticon_outlined),
                               ),
                               title: Text(L10n.of(context).emoteSettings),
                               subtitle: Text(L10n.of(context).setCustomEmotes),
@@ -211,7 +211,7 @@ class ChatDetailsView extends StatelessWidget {
                                     backgroundColor: Theme.of(context)
                                         .scaffoldBackgroundColor,
                                     foregroundColor: Colors.grey,
-                                    child: Icon(Icons.public_outlined)),
+                                    child: const Icon(Icons.public_outlined)),
                                 title: Text(L10n.of(context)
                                     .whoIsAllowedToJoinThisGroup),
                                 subtitle: Text(
@@ -258,7 +258,7 @@ class ChatDetailsView extends StatelessWidget {
                                   backgroundColor:
                                       Theme.of(context).scaffoldBackgroundColor,
                                   foregroundColor: Colors.grey,
-                                  child: Icon(Icons.visibility_outlined),
+                                  child: const Icon(Icons.visibility_outlined),
                                 ),
                                 title: Text(L10n.of(context)
                                     .visibilityOfTheChatHistory),
@@ -297,7 +297,7 @@ class ChatDetailsView extends StatelessWidget {
                                     backgroundColor: Theme.of(context)
                                         .scaffoldBackgroundColor,
                                     foregroundColor: Colors.grey,
-                                    child: Icon(Icons.info_outline),
+                                    child: const Icon(Icons.info_outline),
                                   ),
                                   title: Text(
                                       L10n.of(context).areGuestsAllowedToJoin),
@@ -315,12 +315,12 @@ class ChatDetailsView extends StatelessWidget {
                                 backgroundColor:
                                     Theme.of(context).scaffoldBackgroundColor,
                                 foregroundColor: Colors.grey,
-                                child: Icon(Icons.edit_attributes_outlined),
+                                child: const Icon(Icons.edit_attributes_outlined),
                               ),
                               onTap: () =>
                                   VRouter.of(context).to('permissions'),
                             ),
-                            Divider(thickness: 1),
+                            const Divider(thickness: 1),
                             ListTile(
                               title: Text(
                                 actualMembersCount > 1
@@ -342,7 +342,7 @@ class ChatDetailsView extends StatelessWidget {
                                           Theme.of(context).primaryColor,
                                       foregroundColor: Colors.white,
                                       radius: Avatar.defaultSize / 2,
-                                      child: Icon(Icons.add_outlined),
+                                      child: const Icon(Icons.add_outlined),
                                     ),
                                     onTap: () =>
                                         VRouter.of(context).to('invite'),
@@ -361,7 +361,7 @@ class ChatDetailsView extends StatelessWidget {
                               leading: CircleAvatar(
                                 backgroundColor:
                                     Theme.of(context).scaffoldBackgroundColor,
-                                child: Icon(
+                                child: const Icon(
                                   Icons.refresh,
                                   color: Colors.grey,
                                 ),

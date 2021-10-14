@@ -28,7 +28,7 @@ class SearchController extends State<Search> {
     setState(() => null);
     _coolDown?.cancel();
     _coolDown = Timer(
-      Duration(milliseconds: 500),
+      const Duration(milliseconds: 500),
       () => setState(() {
         genericSearchTerm = query;
         publicRoomsResponse = null;

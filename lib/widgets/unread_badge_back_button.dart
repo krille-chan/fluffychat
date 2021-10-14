@@ -16,7 +16,7 @@ class UnreadBadgeBackButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Center(child: BackButton()),
+        const Center(child: BackButton()),
         StreamBuilder(
             stream: Matrix.of(context).client.onSync.stream,
             builder: (context, _) {
@@ -31,8 +31,8 @@ class UnreadBadgeBackButton extends StatelessWidget {
                   ? Align(
                       alignment: Alignment.bottomRight,
                       child: Container(
-                        padding: EdgeInsets.all(4),
-                        margin: EdgeInsets.only(bottom: 4, right: 8),
+                        padding: const EdgeInsets.all(4),
+                        margin: const EdgeInsets.only(bottom: 4, right: 8),
                         decoration: BoxDecoration(
                           color: Theme.of(context).primaryColor,
                           borderRadius:
@@ -40,7 +40,7 @@ class UnreadBadgeBackButton extends StatelessWidget {
                         ),
                         child: Text(
                           '$unreadCount',
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 12,
                             color: Colors.white,
                           ),

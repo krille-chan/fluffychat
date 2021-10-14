@@ -22,51 +22,51 @@ class SettingsAccountView extends StatelessWidget {
         child: Column(
           children: [
             ListTile(
-              trailing: Icon(Icons.add_box_outlined),
+              trailing: const Icon(Icons.add_box_outlined),
               title: Text(L10n.of(context).addAccount),
               subtitle: Text(L10n.of(context).enableMultiAccounts),
               onTap: controller.addAccountAction,
             ),
-            Divider(height: 1),
+            const Divider(height: 1),
             ListTile(
               title: Text(L10n.of(context).yourUserId),
               subtitle: Text(Matrix.of(context).client.userID),
-              trailing: Icon(Icons.copy_outlined),
+              trailing: const Icon(Icons.copy_outlined),
               onTap: () => FluffyShare.share(
                 Matrix.of(context).client.userID,
                 context,
               ),
             ),
             ListTile(
-              trailing: Icon(Icons.edit_outlined),
+              trailing: const Icon(Icons.edit_outlined),
               title: Text(L10n.of(context).editDisplayname),
               subtitle: Text(controller.profile?.displayName ??
                   Matrix.of(context).client.userID.localpart),
               onTap: controller.setDisplaynameAction,
             ),
             ListTile(
-              trailing: Icon(Icons.phone_outlined),
+              trailing: const Icon(Icons.phone_outlined),
               title: Text(L10n.of(context).editJitsiInstance),
               subtitle: Text(AppConfig.jitsiInstance),
               onTap: controller.setJitsiInstanceAction,
             ),
             ListTile(
-              trailing: Icon(Icons.devices_other_outlined),
+              trailing: const Icon(Icons.devices_other_outlined),
               title: Text(L10n.of(context).devices),
               onTap: () => VRouter.of(context).to('devices'),
             ),
-            Divider(height: 1),
+            const Divider(height: 1),
             ListTile(
-              trailing: Icon(Icons.exit_to_app_outlined),
+              trailing: const Icon(Icons.exit_to_app_outlined),
               title: Text(L10n.of(context).logout),
               onTap: controller.logoutAction,
             ),
-            Divider(height: 1),
+            const Divider(height: 1),
             ListTile(
-              trailing: Icon(Icons.delete_forever_outlined),
+              trailing: const Icon(Icons.delete_forever_outlined),
               title: Text(
                 L10n.of(context).deleteAccount,
-                style: TextStyle(color: Colors.red),
+                style: const TextStyle(color: Colors.red),
               ),
               onTap: controller.deleteAccountAction,
             ),

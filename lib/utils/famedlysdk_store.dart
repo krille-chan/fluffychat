@@ -31,7 +31,7 @@ class Store {
   static final _mutex = AsyncMutex();
 
   Store()
-      : secureStorage = PlatformInfos.isMobile ? FlutterSecureStorage() : null;
+      : secureStorage = PlatformInfos.isMobile ? const FlutterSecureStorage() : null;
 
   Future<void> _setupLocalStorage() async {
     if (storage == null) {

@@ -8,7 +8,7 @@ import '../../pages/user_bottom_sheet.dart';
 class ParticipantListItem extends StatelessWidget {
   final User user;
 
-  const ParticipantListItem(this.user);
+  const ParticipantListItem(this.user, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +38,8 @@ class ParticipantListItem extends StatelessWidget {
           permissionBatch.isEmpty
               ? Container()
               : Container(
-                  padding: EdgeInsets.all(4),
-                  margin: EdgeInsets.symmetric(horizontal: 8),
+                  padding: const EdgeInsets.all(4),
+                  margin: const EdgeInsets.symmetric(horizontal: 8),
                   decoration: BoxDecoration(
                     color: Theme.of(context).secondaryHeaderColor,
                     borderRadius: BorderRadius.circular(8),
@@ -49,8 +49,8 @@ class ParticipantListItem extends StatelessWidget {
           membershipBatch[user.membership].isEmpty
               ? Container()
               : Container(
-                  padding: EdgeInsets.all(4),
-                  margin: EdgeInsets.symmetric(horizontal: 8),
+                  padding: const EdgeInsets.all(4),
+                  margin: const EdgeInsets.symmetric(horizontal: 8),
                   decoration: BoxDecoration(
                     color: Theme.of(context).secondaryHeaderColor,
                     borderRadius: BorderRadius.circular(8),

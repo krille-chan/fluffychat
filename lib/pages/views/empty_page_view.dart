@@ -34,7 +34,7 @@ class EmptyPage extends StatelessWidget {
             Center(
               child: SizedBox(
                 width: _width,
-                child: LinearProgressIndicator(),
+                child: const LinearProgressIndicator(),
               ),
             ),
         ],

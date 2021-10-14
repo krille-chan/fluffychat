@@ -41,7 +41,7 @@ class Matrix extends StatefulWidget {
 
   final Map<String, String> queryParameters;
 
-  Matrix({
+  const Matrix({
     this.child,
     @required this.router,
     @required this.context,
@@ -209,7 +209,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
   set cachedPassword(String p) => _cachedPassword = p;
 
-  void _onUiaRequest(UiaRequest uiaRequest) async {
+  Future _onUiaRequest(UiaRequest uiaRequest) async {
     try {
       if (uiaRequest.state != UiaRequestState.waitForUser ||
           uiaRequest.nextStages.isEmpty) return;
@@ -224,7 +224,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
                 okLabel: L10n.of(widget.context).ok,
                 cancelLabel: L10n.of(widget.context).cancel,
                 textFields: [
-                  DialogTextField(
+                  const DialogTextField(
                     minLines: 1,
                     maxLines: 1,
                     obscureText: true,
@@ -481,7 +481,9 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     // Display the app lock
     if (PlatformInfos.isMobile) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        FlutterSecureStorage().read(key: SettingKeys.appLockKey).then((lock) {
+        const FlutterSecureStorage()
+            .read(key: SettingKeys.appLockKey)
+            .then((lock) {
           if (lock?.isNotEmpty ?? false) {
             AppLock.of(widget.context).enable();
             AppLock.of(widget.context).showLockScreen();
@@ -507,11 +509,11 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         context,
         widget.router,
         onFcmError: (errorMsg, {Uri link}) => Timer(
-          Duration(seconds: 1),
+          const Duration(seconds: 1),
           () {
             final banner = SnackBar(
               content: Text(errorMsg),
-              duration: Duration(seconds: 30),
+              duration: const Duration(seconds: 30),
               action: link == null
                   ? null
                   : SnackBarAction(

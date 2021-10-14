@@ -17,7 +17,7 @@ class OnePageCard extends StatelessWidget {
             Matrix.of(context).client.isLogged()
         ? child
         : Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('assets/login_wallpaper.jpg'),
                 fit: BoxFit.cover,

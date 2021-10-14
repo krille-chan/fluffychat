@@ -110,7 +110,7 @@ class UserDeviceListItem extends StatelessWidget {
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
-          Spacer(),
+          const Spacer(),
           if (userDevice.lastSeenTs != null)
             Text(DateTime.fromMillisecondsSinceEpoch(userDevice.lastSeenTs)
                 .localizedTimeShort(context)),
@@ -120,9 +120,9 @@ class UserDeviceListItem extends StatelessWidget {
         children: <Widget>[
           Text(
             userDevice.deviceId,
-            style: TextStyle(fontWeight: FontWeight.w300),
+            style: const TextStyle(fontWeight: FontWeight.w300),
           ),
-          Spacer(),
+          const Spacer(),
           if (keys != null)
             Text(
               keys.blocked

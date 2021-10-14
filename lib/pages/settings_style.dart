@@ -10,6 +10,8 @@ import 'views/settings_style_view.dart';
 import '../widgets/matrix.dart';
 
 class SettingsStyle extends StatefulWidget {
+  const SettingsStyle({Key key}) : super(key: key);
+
   @override
   SettingsStyleController createState() => SettingsStyleController();
 }

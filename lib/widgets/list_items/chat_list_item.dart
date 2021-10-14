@@ -27,14 +27,17 @@ class ChatListItem extends StatelessWidget {
   final Function onTap;
   final Function onLongPress;
 
-  const ChatListItem(this.room,
-      {this.activeChat = false,
-      this.selected = false,
-      this.onTap,
-      this.onLongPress,
-      this.onForget});
+  const ChatListItem(
+    this.room, {
+    this.activeChat = false,
+    this.selected = false,
+    this.onTap,
+    this.onLongPress,
+    this.onForget,
+    Key key,
+  }) : super(key: key);
 
-  void clickAction(BuildContext context) async {
+  dynamic clickAction(BuildContext context) async {
     if (onTap != null) return onTap();
     if (!activeChat) {
       if (room.membership == Membership.invite &&
@@ -161,13 +164,13 @@ class ChatListItem extends StatelessWidget {
           : Theme.of(context).secondaryHeaderColor,
       onLongPress: onLongPress,
       leading: selected
-          ? Container(
+          ? SizedBox(
               width: Avatar.defaultSize,
               height: Avatar.defaultSize,
               child: Material(
                 color: Theme.of(context).primaryColor,
                 borderRadius: BorderRadius.circular(Avatar.defaultSize),
-                child: Icon(Icons.check, color: Colors.white),
+                child: const Icon(Icons.check, color: Colors.white),
               ),
             )
           : Avatar(room.avatar, room.displayname, onTap: onLongPress),
@@ -188,8 +191,8 @@ class ChatListItem extends StatelessWidget {
             ),
           ),
           if (isMuted)
-            Padding(
-              padding: const EdgeInsets.only(left: 4.0),
+            const Padding(
+              padding: EdgeInsets.only(left: 4.0),
               child: Icon(
                 Icons.notifications_off_outlined,
                 size: 16,
@@ -227,15 +230,15 @@ class ChatListItem extends StatelessWidget {
               room.lastEvent.statusIcon,
               size: 14,
             ),
-            SizedBox(width: 4),
+            const SizedBox(width: 4),
           },
           AnimatedContainer(
             width: typingText.isEmpty ? 0 : 18,
             clipBehavior: Clip.hardEdge,
-            decoration: BoxDecoration(),
-            duration: Duration(milliseconds: 300),
+            decoration: const BoxDecoration(),
+            duration: const Duration(milliseconds: 300),
             curve: Curves.bounceInOut,
-            padding: EdgeInsets.only(right: 4),
+            padding: const EdgeInsets.only(right: 4),
             child: Icon(
               Icons.edit_outlined,
               color: Theme.of(context).colorScheme.secondary,
@@ -286,11 +289,11 @@ class ChatListItem extends StatelessWidget {
                     ),
                   ),
           ),
-          SizedBox(width: 8),
+          const SizedBox(width: 8),
           AnimatedContainer(
-            duration: Duration(milliseconds: 300),
+            duration: const Duration(milliseconds: 300),
             curve: Curves.bounceInOut,
-            padding: EdgeInsets.symmetric(horizontal: 7),
+            padding: const EdgeInsets.symmetric(horizontal: 7),
             height: unreadBubbleSize,
             width: room.notificationCount == 0 && !unread
                 ? 0
@@ -307,7 +310,7 @@ class ChatListItem extends StatelessWidget {
               child: room.notificationCount > 0
                   ? Text(
                       room.notificationCount.toString(),
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 13,
                       ),

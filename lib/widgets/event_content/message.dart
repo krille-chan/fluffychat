@@ -33,7 +33,9 @@ class Message extends StatelessWidget {
       this.scrollToEventId,
       @required this.unfold,
       this.selected,
-      this.timeline});
+      this.timeline,
+      Key key})
+      : super(key: key);
 
   /// Indicates wheither the user may use a mouse instead
   /// of touchscreen.
@@ -99,8 +101,8 @@ class Message extends StatelessWidget {
                 ),
                 padding:
                     const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
-                constraints:
-                    BoxConstraints(maxWidth: FluffyThemes.columnWidth * 1.5),
+                constraints: const BoxConstraints(
+                    maxWidth: FluffyThemes.columnWidth * 1.5),
                 child: Stack(
                   children: <Widget>[
                     Column(
@@ -134,7 +136,8 @@ class Message extends StatelessWidget {
                                 },
                                 child: AbsorbPointer(
                                   child: Container(
-                                    margin: EdgeInsets.symmetric(vertical: 4.0),
+                                    margin: const EdgeInsets.symmetric(
+                                        vertical: 4.0),
                                     child: ReplyContent(replyEvent,
                                         lightText: ownMessage,
                                         timeline: timeline),
@@ -147,7 +150,7 @@ class Message extends StatelessWidget {
                           displayEvent,
                           textColor: textColor,
                         ),
-                        SizedBox(height: 3),
+                        const SizedBox(height: 3),
                         Opacity(
                           opacity: 0,
                           child: _MetaRow(
@@ -181,7 +184,7 @@ class Message extends StatelessWidget {
       ),
     ];
     final avatarOrSizedBox = sameSender
-        ? SizedBox(width: Avatar.defaultSize)
+        ? const SizedBox(width: Avatar.defaultSize)
         : Avatar(
             event.sender.avatarUrl,
             event.sender.calcDisplayname(),
@@ -224,10 +227,11 @@ class Message extends StatelessWidget {
         color: selected
             ? Theme.of(context).primaryColor.withAlpha(100)
             : Theme.of(context).primaryColor.withAlpha(0),
-        constraints: BoxConstraints(maxWidth: FluffyThemes.columnWidth * 2.5),
+        constraints:
+            const BoxConstraints(maxWidth: FluffyThemes.columnWidth * 2.5),
         child: Padding(
-          padding:
-              EdgeInsets.only(left: 8.0, right: 8.0, bottom: 4.0, top: 4.0),
+          padding: const EdgeInsets.only(
+              left: 8.0, right: 8.0, bottom: 4.0, top: 4.0),
           child: container,
         ),
       ),
@@ -267,7 +271,7 @@ class _MetaRow extends StatelessWidget {
                   .withAlpha(200),
             ),
           ),
-        if (showDisplayname) SizedBox(width: 4),
+        if (showDisplayname) const SizedBox(width: 4),
         Text(
           event.originServerTs.localizedTime(context),
           style: TextStyle(
@@ -284,7 +288,7 @@ class _MetaRow extends StatelessWidget {
               color: color,
             ),
           ),
-        if (ownMessage) SizedBox(width: 2),
+        if (ownMessage) const SizedBox(width: 2),
         if (ownMessage)
           Icon(
             displayEvent.statusIcon,

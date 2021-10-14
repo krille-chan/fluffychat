@@ -22,27 +22,27 @@ class SettingsSecurityView extends StatelessWidget {
         child: Column(
           children: [
             ListTile(
-              trailing: Icon(Icons.block_outlined),
+              trailing: const Icon(Icons.block_outlined),
               title: Text(L10n.of(context).ignoredUsers),
               onTap: () => VRouter.of(context).to('ignorelist'),
             ),
             ListTile(
-              trailing: Icon(Icons.security_outlined),
+              trailing: const Icon(Icons.security_outlined),
               title: Text(
                 L10n.of(context).changePassword,
               ),
               onTap: controller.changePasswordAccountAction,
             ),
             ListTile(
-              trailing: Icon(Icons.email_outlined),
+              trailing: const Icon(Icons.email_outlined),
               title: Text(L10n.of(context).passwordRecovery),
               onTap: () => VRouter.of(context).to('3pid'),
             ),
             if (Matrix.of(context).client.encryption != null) ...{
-              Divider(thickness: 1),
+              const Divider(thickness: 1),
               if (PlatformInfos.isMobile)
                 ListTile(
-                  trailing: Icon(Icons.lock_outlined),
+                  trailing: const Icon(Icons.lock_outlined),
                   title: Text(L10n.of(context).appLock),
                   onTap: controller.setAppLockAction,
                 ),
@@ -55,11 +55,11 @@ class SettingsSecurityView extends StatelessWidget {
                   message: Matrix.of(context).client.fingerprintKey.beautified,
                   okLabel: L10n.of(context).ok,
                 ),
-                trailing: Icon(Icons.vpn_key_outlined),
+                trailing: const Icon(Icons.vpn_key_outlined),
               ),
               ListTile(
                 title: Text(L10n.of(context).cachedKeys),
-                trailing: Icon(Icons.wb_cloudy_outlined),
+                trailing: const Icon(Icons.wb_cloudy_outlined),
                 subtitle: Text(
                     '${Matrix.of(context).client.encryption.keyManager.enabled ? L10n.of(context).onlineKeyBackupEnabled : L10n.of(context).onlineKeyBackupDisabled}\n${Matrix.of(context).client.encryption.crossSigning.enabled ? L10n.of(context).crossSigningEnabled : L10n.of(context).crossSigningDisabled}'),
                 onTap: controller.bootstrapSettingsAction,

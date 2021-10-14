@@ -31,9 +31,10 @@ class KeyVerificationDialog extends StatefulWidget {
 
   final KeyVerification request;
 
-  KeyVerificationDialog({
+  const KeyVerificationDialog({
+    Key key,
     this.request,
-  });
+  }) : super(key: key);
 
   @override
   _KeyVerificationPageState createState() => _KeyVerificationPageState();
@@ -76,6 +77,33 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
 
   Profile profile;
 
+  Future<void> checkInput(String input) async {
+    if (input == null || input.isEmpty) {
+      return;
+    }
+    final valid = await showFutureLoadingDialog(
+        context: context,
+        future: () async {
+          // make sure the loading spinner shows before we test the keys
+          await Future.delayed(const Duration(milliseconds: 100));
+          var valid = false;
+          try {
+            await widget.request.openSSSS(keyOrPassphrase: input);
+            valid = true;
+          } catch (_) {
+            valid = false;
+          }
+          return valid;
+        });
+    if (valid.error != null) {
+      await showOkAlertDialog(
+        useRootNavigator: false,
+        context: context,
+        message: L10n.of(context).incorrectPassphraseOrKey,
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     User user;
@@ -96,39 +124,13 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
         // prompt the user for their ssss passphrase / key
         final textEditingController = TextEditingController();
         String input;
-        final checkInput = () async {
-          if (input == null || input.isEmpty) {
-            return;
-          }
-          final valid = await showFutureLoadingDialog(
-              context: context,
-              future: () async {
-                // make sure the loading spinner shows before we test the keys
-                await Future.delayed(Duration(milliseconds: 100));
-                var valid = false;
-                try {
-                  await widget.request.openSSSS(keyOrPassphrase: input);
-                  valid = true;
-                } catch (_) {
-                  valid = false;
-                }
-                return valid;
-              });
-          if (valid.error != null) {
-            await showOkAlertDialog(
-              useRootNavigator: false,
-              context: context,
-              message: L10n.of(context).incorrectPassphraseOrKey,
-            );
-          }
-        };
         body = Container(
-          margin: EdgeInsets.only(left: 8.0, right: 8.0),
+          margin: const EdgeInsets.only(left: 8.0, right: 8.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Text(L10n.of(context).askSSSSSign,
-                  style: TextStyle(fontSize: 20)),
+                  style: const TextStyle(fontSize: 20)),
               Container(height: 10),
               TextField(
                 controller: textEditingController,
@@ -136,7 +138,7 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
                 autocorrect: false,
                 onSubmitted: (s) {
                   input = s;
-                  checkInput();
+                  checkInput(input);
                 },
                 minLines: 1,
                 maxLines: 1,
@@ -145,7 +147,7 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
                   hintText: L10n.of(context).passphraseOrKey,
                   prefixStyle: TextStyle(color: Theme.of(context).primaryColor),
                   suffixStyle: TextStyle(color: Theme.of(context).primaryColor),
-                  border: OutlineInputBorder(),
+                  border: const OutlineInputBorder(),
                 ),
               ),
             ],
@@ -155,7 +157,7 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
           label: L10n.of(context).submit,
           onPressed: () {
             input = textEditingController.text;
-            checkInput();
+            checkInput(input);
           },
         ));
         buttons.add(AdaptiveFlatButton(
@@ -171,7 +173,7 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
             Row(children: [
               if (!PlatformInfos.isCupertinoStyle)
                 Avatar(user?.avatarUrl, displayName),
-              SizedBox(width: 12),
+              const SizedBox(width: 12),
               Expanded(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -181,11 +183,11 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
                   children: [
                     Text(
                       displayName,
-                      style: TextStyle(fontSize: 16),
+                      style: const TextStyle(fontSize: 16),
                     ),
                     Text(
                       '${widget.request.userId} - ${widget.request.deviceId}',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.w300,
                         fontSize: 14,
                       ),
@@ -222,7 +224,7 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
           children: <Widget>[
             Image.asset('assets/verification.png', fit: BoxFit.contain),
             const SizedBox(height: 16),
-            CircularProgressIndicator.adaptive(strokeWidth: 2),
+            const CircularProgressIndicator.adaptive(strokeWidth: 2),
             const SizedBox(height: 16),
             Text(
               L10n.of(context).waitingPartnerAcceptRequest,
@@ -269,7 +271,7 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
           final numbers = widget.request.sasNumbers;
           final numbstr = '${numbers[0]}-${numbers[1]}-${numbers[2]}';
           compareWidget =
-              TextSpan(text: numbstr, style: TextStyle(fontSize: 40));
+              TextSpan(text: numbstr, style: const TextStyle(fontSize: 40));
         }
         body = Column(
           mainAxisSize: MainAxisSize.min,
@@ -277,11 +279,11 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
             Center(
               child: Text(
                 compareText,
-                style: TextStyle(fontSize: 16),
+                style: const TextStyle(fontSize: 16),
                 textAlign: TextAlign.center,
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text.rich(
               compareWidget,
               textAlign: TextAlign.center,
@@ -305,8 +307,8 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
         body = Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            CircularProgressIndicator.adaptive(strokeWidth: 2),
-            SizedBox(height: 10),
+            const CircularProgressIndicator.adaptive(strokeWidth: 2),
+            const SizedBox(height: 10),
             Text(
               acceptText,
               textAlign: TextAlign.center,
@@ -318,8 +320,9 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
         body = Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Icon(Icons.check_circle_outlined, color: Colors.green, size: 200.0),
-            SizedBox(height: 10),
+            const Icon(Icons.check_circle_outlined,
+                color: Colors.green, size: 200.0),
+            const SizedBox(height: 10),
             Text(
               L10n.of(context).verifySuccess,
               textAlign: TextAlign.center,
@@ -335,8 +338,8 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
         body = Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Icon(Icons.cancel, color: Colors.red, size: 200.0),
-            SizedBox(height: 10),
+            const Icon(Icons.cancel, color: Colors.red, size: 200.0),
+            const SizedBox(height: 10),
             Text(
               'Error ${widget.request.canceledCode}: ${widget.request.canceledReason}',
               textAlign: TextAlign.center,
@@ -355,7 +358,7 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           body,
         ],
       ),
@@ -379,7 +382,7 @@ class _Emoji extends StatelessWidget {
   final KeyVerificationEmoji emoji;
   final List<dynamic> sasEmoji;
 
-  _Emoji(this.emoji, this.sasEmoji);
+  const _Emoji(this.emoji, this.sasEmoji);
 
   String getLocalizedName() {
     if (sasEmoji == null) {
@@ -410,9 +413,9 @@ class _Emoji extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Text(emoji.emoji, style: TextStyle(fontSize: 50)),
+        Text(emoji.emoji, style: const TextStyle(fontSize: 50)),
         Text(getLocalizedName()),
-        Container(height: 10, width: 5),
+        const SizedBox(height: 10, width: 5),
       ],
     );
   }

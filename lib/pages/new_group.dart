@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:vrouter/vrouter.dart';
 
 class NewGroup extends StatefulWidget {
+  const NewGroup({Key key}) : super(key: key);
+
   @override
   NewGroupController createState() => NewGroupController();
 }

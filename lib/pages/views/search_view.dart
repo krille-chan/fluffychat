@@ -69,21 +69,21 @@ class SearchView extends StatelessWidget {
           controller.controller.text?.startsWith('#') ?? false ? 0 : 1,
       child: Scaffold(
         appBar: AppBar(
-          leading: BackButton(),
+          leading: const BackButton(),
           titleSpacing: 0,
           title: DefaultAppBarSearchField(
             autofocus: true,
             hintText: L10n.of(context).search,
             searchController: controller.controller,
-            suffix: Icon(Icons.search_outlined),
+            suffix: const Icon(Icons.search_outlined),
             onChanged: controller.search,
           ),
           bottom: TabBar(
             indicatorColor: Theme.of(context).colorScheme.secondary,
             labelColor: Theme.of(context).colorScheme.secondary,
             unselectedLabelColor: Theme.of(context).textTheme.bodyText1.color,
-            labelStyle: TextStyle(fontSize: 16),
-            labelPadding: EdgeInsets.symmetric(
+            labelStyle: const TextStyle(fontSize: 16),
+            labelPadding: const EdgeInsets.symmetric(
               horizontal: 8,
               vertical: 0,
             ),
@@ -101,12 +101,12 @@ class SearchView extends StatelessWidget {
                   ? ScrollViewKeyboardDismissBehavior.onDrag
                   : ScrollViewKeyboardDismissBehavior.manual,
               children: [
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 ListTile(
                   leading: CircleAvatar(
                     foregroundColor: Theme.of(context).colorScheme.secondary,
                     backgroundColor: Theme.of(context).secondaryHeaderColor,
-                    child: Icon(Icons.edit_outlined),
+                    child: const Icon(Icons.edit_outlined),
                   ),
                   title: Text(L10n.of(context).changeTheServer),
                   onTap: controller.setServer,
@@ -119,8 +119,8 @@ class SearchView extends StatelessWidget {
                         return Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            SizedBox(height: 32),
-                            Icon(
+                            const SizedBox(height: 32),
+                            const Icon(
                               Icons.error_outlined,
                               size: 80,
                               color: Colors.grey,
@@ -129,7 +129,7 @@ class SearchView extends StatelessWidget {
                               child: Text(
                                 snapshot.error.toLocalizedString(context),
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: Colors.grey,
                                   fontSize: 16,
                                 ),
@@ -139,7 +139,7 @@ class SearchView extends StatelessWidget {
                         );
                       }
                       if (snapshot.connectionState != ConnectionState.done) {
-                        return Center(
+                        return const Center(
                             child: CircularProgressIndicator.adaptive(
                                 strokeWidth: 2));
                       }
@@ -148,8 +148,8 @@ class SearchView extends StatelessWidget {
                         return Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            SizedBox(height: 32),
-                            Icon(
+                            const SizedBox(height: 32),
+                            const Icon(
                               Icons.search_outlined,
                               size: 80,
                               color: Colors.grey,
@@ -158,7 +158,7 @@ class SearchView extends StatelessWidget {
                               child: Text(
                                 L10n.of(context).noPublicRoomsFound,
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: Colors.grey,
                                   fontSize: 16,
                                 ),
@@ -169,9 +169,9 @@ class SearchView extends StatelessWidget {
                       }
                       return GridView.builder(
                         shrinkWrap: true,
-                        padding: EdgeInsets.all(12),
-                        physics: NeverScrollableScrollPhysics(),
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        padding: const EdgeInsets.all(12),
+                        physics: const NeverScrollableScrollPhysics(),
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           childAspectRatio: 1,
                           crossAxisSpacing: 16,
@@ -195,7 +195,7 @@ class SearchView extends StatelessWidget {
                                       publicRoomsResponse.chunk[i].name),
                                   Text(
                                     publicRoomsResponse.chunk[i].name,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -207,7 +207,7 @@ class SearchView extends StatelessWidget {
                                         publicRoomsResponse
                                                 .chunk[i].numJoinedMembers ??
                                             0),
-                                    style: TextStyle(fontSize: 10.5),
+                                    style: const TextStyle(fontSize: 10.5),
                                     maxLines: 1,
                                     textAlign: TextAlign.center,
                                   ),
@@ -262,13 +262,13 @@ class SearchView extends StatelessWidget {
                         title: Text(
                           foundProfile.displayName ??
                               foundProfile.userId.localpart,
-                          style: TextStyle(),
+                          style: const TextStyle(),
                           maxLines: 1,
                         ),
                         subtitle: Text(
                           foundProfile.userId,
                           maxLines: 1,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 12,
                           ),
                         ),

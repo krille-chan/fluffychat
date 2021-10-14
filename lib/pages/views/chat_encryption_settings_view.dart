@@ -21,19 +21,19 @@ class ChatEncryptionSettingsView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.close_outlined),
+          icon: const Icon(Icons.close_outlined),
           onPressed: () =>
               VRouter.of(context).toSegments(['rooms', controller.roomId]),
         ),
         title: Text(L10n.of(context).tapOnDeviceToVerify),
         bottom: PreferredSize(
-          preferredSize: Size.fromHeight(56),
+          preferredSize: const Size.fromHeight(56),
           child: ListTile(
             title: Text(L10n.of(context).deviceVerifyDescription),
             leading: CircleAvatar(
               backgroundColor: Theme.of(context).secondaryHeaderColor,
               foregroundColor: Theme.of(context).colorScheme.secondary,
-              child: Icon(Icons.lock),
+              child: const Icon(Icons.lock),
             ),
           ),
         ),
@@ -54,14 +54,14 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                     );
                   }
                   if (!snapshot.hasData) {
-                    return Center(
+                    return const Center(
                         child:
                             CircularProgressIndicator.adaptive(strokeWidth: 2));
                   }
                   final deviceKeys = snapshot.data;
                   return ListView.builder(
                     shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     itemCount: deviceKeys.length,
                     itemBuilder: (BuildContext context, int i) => Column(
                       mainAxisSize: MainAxisSize.min,
@@ -69,7 +69,7 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                         if (i == 0 ||
                             deviceKeys[i].userId !=
                                 deviceKeys[i - 1].userId) ...{
-                          Divider(height: 1, thickness: 1),
+                          const Divider(height: 1, thickness: 1),
                           PopupMenuButton(
                             onSelected: (action) => controller.onSelected(
                                 context, action, deviceKeys[i]),
@@ -103,7 +103,7 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                               ),
                               subtitle: Text(
                                 deviceKeys[i].userId,
-                                style: TextStyle(fontWeight: FontWeight.w300),
+                                style: const TextStyle(fontWeight: FontWeight.w300),
                               ),
                             ),
                           ),
@@ -152,9 +152,9 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                               children: [
                                 Text(
                                   deviceKeys[i].deviceId,
-                                  style: TextStyle(fontWeight: FontWeight.w300),
+                                  style: const TextStyle(fontWeight: FontWeight.w300),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 Text(
                                   deviceKeys[i].blocked
                                       ? L10n.of(context).blocked

@@ -124,7 +124,7 @@ class SettingsAccountController extends State<SettingsAccount> {
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
       textFields: [
-        DialogTextField(
+        const DialogTextField(
           obscureText: true,
           hintText: '******',
           minLines: 1,

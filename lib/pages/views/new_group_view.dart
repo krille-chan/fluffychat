@@ -12,7 +12,7 @@ class NewGroupView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(),
+        leading: const BackButton(),
         title: Text(L10n.of(context).createNewGroup),
         elevation: 0,
       ),
@@ -30,7 +30,7 @@ class NewGroupView extends StatelessWidget {
                 onSubmitted: controller.submitAction,
                 decoration: InputDecoration(
                     labelText: L10n.of(context).optionalGroupName,
-                    prefixIcon: Icon(Icons.people_outlined),
+                    prefixIcon: const Icon(Icons.people_outlined),
                     hintText: L10n.of(context).enterAGroupName),
               ),
             ),
@@ -47,7 +47,7 @@ class NewGroupView extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: controller.submitAction,
-        child: Icon(Icons.arrow_forward_outlined),
+        child: const Icon(Icons.arrow_forward_outlined),
       ),
     );
   }

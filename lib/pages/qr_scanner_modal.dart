@@ -32,7 +32,7 @@ class _QrScannerModalState extends State<QrScannerModal> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.close_outlined),
+          icon: const Icon(Icons.close_outlined),
           onPressed: Navigator.of(context).pop,
           tooltip: L10n.of(context).close,
         ),

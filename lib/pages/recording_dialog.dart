@@ -45,10 +45,10 @@ class _RecordingDialogState extends State<RecordingDialog> {
       setState(() => _duration = Duration.zero);
       _recorderSubscription?.cancel();
       _recorderSubscription =
-          Timer.periodic(Duration(milliseconds: 100), (_) async {
+          Timer.periodic(const Duration(milliseconds: 100), (_) async {
         _amplitude = await _audioRecorder.getAmplitude();
         setState(() {
-          _duration += Duration(milliseconds: 100);
+          _duration += const Duration(milliseconds: 100);
         });
       });
     } catch (e, s) {
@@ -92,7 +92,7 @@ class _RecordingDialogState extends State<RecordingDialog> {
                 height: maxDecibalWidth,
                 alignment: Alignment.center,
                 child: AnimatedContainer(
-                  duration: Duration(milliseconds: 100),
+                  duration: const Duration(milliseconds: 100),
                   width: decibalWidth,
                   height: decibalWidth,
                   decoration: BoxDecoration(
@@ -101,11 +101,11 @@ class _RecordingDialogState extends State<RecordingDialog> {
                   ),
                 ),
               ),
-              SizedBox(width: 8),
+              const SizedBox(width: 8),
               Expanded(
                 child: Text(
                   '${L10n.of(context).recording}: $time',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18,
                   ),
                 ),
@@ -163,8 +163,8 @@ class _RecordingDialogState extends State<RecordingDialog> {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Text(L10n.of(context).send.toUpperCase()),
-                SizedBox(width: 4),
-                Icon(Icons.send_outlined, size: 15),
+                const SizedBox(width: 4),
+                const Icon(Icons.send_outlined, size: 15),
               ],
             ),
           ),

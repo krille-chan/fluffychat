@@ -69,13 +69,13 @@ class PermissionsListTile extends StatelessWidget {
       leading: CircleAvatar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         foregroundColor: Colors.grey,
-        child: Icon(Icons.edit_attributes_outlined),
+        child: const Icon(Icons.edit_attributes_outlined),
       ),
       title: Text(getLocalizedPowerLevelString(context)),
       subtitle: Row(
         children: [
           Container(
-            padding: EdgeInsets.all(4),
+            padding: const EdgeInsets.all(4),
             decoration: BoxDecoration(
               color: Theme.of(context).secondaryHeaderColor,
               borderRadius: BorderRadius.circular(8),
@@ -84,7 +84,7 @@ class PermissionsListTile extends StatelessWidget {
               child: Text(permission.toString()),
             ),
           ),
-          SizedBox(width: 8),
+          const SizedBox(width: 8),
           Text(permission.toLocalizedPowerLevelString(context)),
         ],
       ),

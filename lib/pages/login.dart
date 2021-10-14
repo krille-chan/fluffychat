@@ -16,6 +16,8 @@ import '../config/setting_keys.dart';
 import 'views/login_view.dart';
 
 class Login extends StatefulWidget {
+  const Login({Key key}) : super(key: key);
+
   @override
   LoginController createState() => LoginController();
 }
@@ -89,7 +91,7 @@ class LoginController extends State<Login> {
   void checkWellKnownWithCoolDown(String userId) async {
     _coolDown?.cancel();
     _coolDown = Timer(
-      Duration(seconds: 1),
+      const Duration(seconds: 1),
       () => _checkWellKnown(userId),
     );
   }
@@ -202,7 +204,7 @@ class LoginController extends State<Login> {
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
       textFields: [
-        DialogTextField(
+        const DialogTextField(
           hintText: '******',
           obscureText: true,
           minLines: 1,

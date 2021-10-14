@@ -42,7 +42,7 @@ class MapBubble extends StatelessWidget {
                 markers: [
                   Marker(
                     point: LatLng(latitude, longitude),
-                    builder: (context) => Icon(
+                    builder: (context) => const Icon(
                       Icons.location_pin,
                       color: Colors.red,
                     ),

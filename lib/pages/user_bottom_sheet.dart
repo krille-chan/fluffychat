@@ -28,6 +28,7 @@ class UserBottomSheet extends StatefulWidget {
 
 class UserBottomSheetController extends State<UserBottomSheet> {
   void participantAction(String action) async {
+    // ignore: prefer_function_declarations_over_variables
     final Function _askConfirmation =
         () async => (await showOkCancelAlertDialog(
               useRootNavigator: false,

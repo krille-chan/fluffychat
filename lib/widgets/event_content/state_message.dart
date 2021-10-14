@@ -8,7 +8,8 @@ import '../../config/app_config.dart';
 class StateMessage extends StatelessWidget {
   final Event event;
   final void Function(String) unfold;
-  const StateMessage(this.event, {@required this.unfold});
+  const StateMessage(this.event, {@required this.unfold, Key key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +53,7 @@ class StateMessage extends StatelessWidget {
                 if (counter != 0)
                   Text(
                     L10n.of(context).moreEvents(counter),
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),

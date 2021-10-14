@@ -15,7 +15,7 @@ class ArchiveView extends StatelessWidget {
       future: controller.getArchive(context),
       builder: (BuildContext context, snapshot) => Scaffold(
         appBar: AppBar(
-          leading: BackButton(),
+          leading: const BackButton(),
           title: Text(L10n.of(context).archive),
           actions: [
             if (snapshot.hasData &&
@@ -37,12 +37,12 @@ class ArchiveView extends StatelessWidget {
               ));
             }
             if (!snapshot.hasData) {
-              return Center(
+              return const Center(
                   child: CircularProgressIndicator.adaptive(strokeWidth: 2));
             } else {
               controller.archive = snapshot.data;
               if (controller.archive.isEmpty) {
-                return Center(child: Icon(Icons.archive_outlined, size: 80));
+                return const Center(child: Icon(Icons.archive_outlined, size: 80));
               }
               return ListView.builder(
                 itemCount: controller.archive.length,

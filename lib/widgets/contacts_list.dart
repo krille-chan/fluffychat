@@ -44,7 +44,7 @@ class _ContactsState extends State<ContactsList> {
               _lastSetState.millisecondsSinceEpoch <
           1000) {
         _coolDown?.cancel();
-        _coolDown = Timer(Duration(seconds: 1), _updateView);
+        _coolDown = Timer(const Duration(seconds: 1), _updateView);
       } else {
         _updateView();
       }
@@ -77,7 +77,7 @@ class _ContactListTile extends StatelessWidget {
               snapshot.data?.displayName ?? contact.senderId.localpart;
           final avatarUrl = snapshot.data?.avatarUrl;
           return ListTile(
-            leading: Container(
+            leading: SizedBox(
               width: Avatar.defaultSize,
               height: Avatar.defaultSize,
               child: Stack(

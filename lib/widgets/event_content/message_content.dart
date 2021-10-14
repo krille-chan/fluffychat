@@ -26,7 +26,7 @@ class MessageContent extends StatelessWidget {
   final Event event;
   final Color textColor;
 
-  const MessageContent(this.event, {this.textColor});
+  const MessageContent(this.event, {Key key,this.textColor}) : super(key: key);
 
   void _verifyOrRequestKey(BuildContext context) async {
     if (event.content['can_request_session'] != true) {
@@ -50,7 +50,7 @@ class MessageContent extends StatelessWidget {
             if (await client.encryption.keyManager.isCached()) {
               break;
             }
-            await Future.delayed(Duration(seconds: 1));
+            await Future.delayed(const Duration(seconds: 1));
           }
           final timeline = await event.room.getTimeline();
           timeline.requestKeys();
@@ -121,7 +121,7 @@ class MessageContent extends StatelessWidget {
                       fit: BoxFit.cover,
                       tapToView: false,
                     ),
-                    Icon(Icons.play_circle_outline,
+                    const Icon(Icons.play_circle_outline,
                         size: 200, color: Colors.grey),
                   ],
                 ),
@@ -169,7 +169,7 @@ class MessageContent extends StatelessWidget {
                 onPrimary: Theme.of(context).textTheme.bodyText1.color,
               ),
               onPressed: () => _verifyOrRequestKey(context),
-              icon: Icon(Icons.lock_outline),
+              icon: const Icon(Icons.lock_outline),
               label: Text(L10n.of(context).encrypted),
             );
           case MessageTypes.Location:
@@ -194,7 +194,7 @@ class MessageContent extends StatelessWidget {
                       latitude: latlong.first,
                       longitude: latlong.last,
                     ),
-                    SizedBox(height: 6),
+                    const SizedBox(height: 6),
                     OutlinedButton.icon(
                       icon: Icon(Icons.location_on_outlined, color: textColor),
                       onPressed:
@@ -219,7 +219,7 @@ class MessageContent extends StatelessWidget {
                   onPrimary: Theme.of(context).textTheme.bodyText1.color,
                 ),
                 onPressed: () => launch(event.body),
-                icon: Icon(Icons.phone_outlined, color: Colors.green),
+                icon: const Icon(Icons.phone_outlined, color: Colors.green),
                 label: Text(L10n.of(context).videoCall),
               );
             }
@@ -228,7 +228,7 @@ class MessageContent extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Icon(Icons.delete_forever_outlined, color: textColor),
-                  SizedBox(width: 4),
+                  const SizedBox(width: 4),
                   Text(
                     event.getLocalizedBody(MatrixLocals(L10n.of(context)),
                         hideReply: true),

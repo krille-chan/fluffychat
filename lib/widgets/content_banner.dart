@@ -63,14 +63,14 @@ class ContentBanner extends StatelessWidget {
           ),
           if (onEdit != null)
             Container(
-              margin: EdgeInsets.all(8),
+              margin: const EdgeInsets.all(8),
               alignment: Alignment.bottomRight,
               child: FloatingActionButton(
                 mini: true,
                 onPressed: onEdit,
                 backgroundColor: Theme.of(context).backgroundColor,
                 foregroundColor: Theme.of(context).textTheme.bodyText1.color,
-                child: Icon(Icons.camera_alt_outlined),
+                child: const Icon(Icons.camera_alt_outlined),
               ),
             ),
         ],

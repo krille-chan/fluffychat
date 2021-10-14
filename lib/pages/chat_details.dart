@@ -17,7 +17,7 @@ import 'package:vrouter/vrouter.dart';
 enum AliasActions { copy, delete, setCanonical }
 
 class ChatDetails extends StatefulWidget {
-  const ChatDetails();
+  const ChatDetails({Key key}) : super(key: key);
 
   @override
   ChatDetailsController createState() => ChatDetailsController();
@@ -297,7 +297,7 @@ class ChatDetailsController extends State<ChatDetails> {
   @override
   Widget build(BuildContext context) {
     members ??= Matrix.of(context).client.getRoomById(roomId).getParticipants();
-    return Container(
+    return SizedBox(
       width: 360.0,
       child: ChatDetailsView(this),
     );

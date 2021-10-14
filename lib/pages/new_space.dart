@@ -7,6 +7,8 @@ import 'package:matrix/matrix.dart';
 import 'package:vrouter/vrouter.dart';
 
 class NewSpace extends StatefulWidget {
+  const NewSpace({Key key}) : super(key: key);
+
   @override
   NewSpaceController createState() => NewSpaceController();
 }

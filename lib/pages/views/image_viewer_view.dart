@@ -16,21 +16,21 @@ class ImageViewerView extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.close),
+          icon: const Icon(Icons.close),
           onPressed: Navigator.of(context).pop,
           color: Colors.white,
           tooltip: L10n.of(context).close,
         ),
-        backgroundColor: Color(0x44000000),
+        backgroundColor: const Color(0x44000000),
         actions: [
           IconButton(
-            icon: Icon(Icons.reply_outlined),
+            icon: const Icon(Icons.reply_outlined),
             onPressed: controller.forwardAction,
             color: Colors.white,
             tooltip: L10n.of(context).share,
           ),
           IconButton(
-            icon: Icon(Icons.download_outlined),
+            icon: const Icon(Icons.download_outlined),
             onPressed: controller.saveFileAction,
             color: Colors.white,
             tooltip: L10n.of(context).downloadFile,

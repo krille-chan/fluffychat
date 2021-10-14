@@ -45,7 +45,7 @@ class ProfileBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
+      child: SizedBox(
         width: min(
             MediaQuery.of(context).size.width, FluffyThemes.columnWidth * 1.5),
         child: Material(
@@ -58,7 +58,7 @@ class ProfileBottomSheet extends StatelessWidget {
                 backgroundColor:
                     Theme.of(context).scaffoldBackgroundColor.withOpacity(0.5),
                 leading: IconButton(
-                  icon: Icon(Icons.arrow_downward_outlined),
+                  icon: const Icon(Icons.arrow_downward_outlined),
                   onPressed: Navigator.of(context, rootNavigator: false).pop,
                   tooltip: L10n.of(context).close,
                 ),
@@ -79,7 +79,7 @@ class ProfileBottomSheet extends StatelessWidget {
                                   child: snapshot.hasError
                                       ? Text(snapshot.error
                                           .toLocalizedString(context))
-                                      : CircularProgressIndicator.adaptive(
+                                      : const CircularProgressIndicator.adaptive(
                                           strokeWidth: 2),
                                 )
                               : ContentBanner(
@@ -91,18 +91,18 @@ class ProfileBottomSheet extends StatelessWidget {
                         ListTile(
                           title: Text(profile?.displayName ?? userId.localpart),
                           subtitle: Text(userId),
-                          trailing: Icon(Icons.account_box_outlined),
+                          trailing: const Icon(Icons.account_box_outlined),
                         ),
                         Container(
                           width: double.infinity,
-                          padding: EdgeInsets.all(12),
+                          padding: const EdgeInsets.all(12),
                           child: ElevatedButton.icon(
                             onPressed: () => _startDirectChat(context),
                             label: Text(L10n.of(context).newChat),
-                            icon: Icon(Icons.send_outlined),
+                            icon: const Icon(Icons.send_outlined),
                           ),
                         ),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                       ],
                     );
                   }),

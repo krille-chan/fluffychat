@@ -15,11 +15,11 @@ class Settings3PidView extends StatelessWidget {
     controller.request ??= Matrix.of(context).client.getAccount3PIDs();
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(),
+        leading: const BackButton(),
         title: Text(L10n.of(context).passwordRecovery),
         actions: [
           IconButton(
-            icon: Icon(Icons.add_outlined),
+            icon: const Icon(Icons.add_outlined),
             onPressed: controller.add3PidAction,
             tooltip: L10n.of(context).addEmail,
           )
@@ -39,7 +39,7 @@ class Settings3PidView extends StatelessWidget {
               );
             }
             if (!snapshot.hasData) {
-              return Center(
+              return const Center(
                   child: CircularProgressIndicator.adaptive(strokeWidth: 2));
             }
             final identifier = snapshot.data;
@@ -63,7 +63,7 @@ class Settings3PidView extends StatelessWidget {
                             .withTheseAddressesRecoveryDescription,
                   ),
                 ),
-                Divider(height: 1),
+                const Divider(height: 1),
                 Expanded(
                   child: ListView.builder(
                     itemCount: identifier.length,
@@ -76,7 +76,7 @@ class Settings3PidView extends StatelessWidget {
                       title: Text(identifier[i].address),
                       trailing: IconButton(
                         tooltip: L10n.of(context).delete,
-                        icon: Icon(Icons.delete_forever_outlined),
+                        icon: const Icon(Icons.delete_forever_outlined),
                         color: Colors.red,
                         onPressed: () => controller.delete3Pid(identifier[i]),
                       ),

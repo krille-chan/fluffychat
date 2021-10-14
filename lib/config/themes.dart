@@ -14,8 +14,8 @@ abstract class FluffyThemes {
   static const fallbackTextStyle =
       TextStyle(fontFamily: 'Roboto', fontFamilyFallback: ['NotoEmoji']);
 
-  static var fallback_text_theme = PlatformInfos.isDesktop
-      ? TextTheme(
+  static var fallbackTextTheme = PlatformInfos.isDesktop
+      ? const TextTheme(
           bodyText1: fallbackTextStyle,
           bodyText2: fallbackTextStyle,
           button: fallbackTextStyle,
@@ -29,12 +29,12 @@ abstract class FluffyThemes {
           headline6: fallbackTextStyle,
           subtitle1: fallbackTextStyle,
           subtitle2: fallbackTextStyle)
-      : TextTheme();
+      : const TextTheme();
 
   static ThemeData light = ThemeData(
     visualDensity: VisualDensity.standard,
     primaryColorDark: Colors.white,
-    primaryColorLight: Color(0xff121212),
+    primaryColorLight: const Color(0xff121212),
     brightness: Brightness.light,
     primaryColor: AppConfig.primaryColor,
     colorScheme: ThemeData.light().colorScheme.copyWith(
@@ -43,11 +43,11 @@ abstract class FluffyThemes {
           secondaryVariant: AppConfig.secondaryColor,
         ),
     backgroundColor: Colors.white,
-    secondaryHeaderColor: Color(0xffeeeffe),
+    secondaryHeaderColor: const Color(0xffeeeffe),
     scaffoldBackgroundColor: Colors.white,
-    textTheme: Typography.material2018().black.merge(fallback_text_theme),
-    snackBarTheme: SnackBarThemeData(behavior: SnackBarBehavior.floating),
-    pageTransitionsTheme: PageTransitionsTheme(
+    textTheme: Typography.material2018().black.merge(fallbackTextTheme),
+    snackBarTheme: const SnackBarThemeData(behavior: SnackBarBehavior.floating),
+    pageTransitionsTheme: const PageTransitionsTheme(
       builders: {
         TargetPlatform.fuchsia: ZoomPageTransitionsBuilder(),
         TargetPlatform.android: ZoomPageTransitionsBuilder(),
@@ -75,7 +75,7 @@ abstract class FluffyThemes {
         borderRadius: BorderRadius.circular(AppConfig.borderRadius),
       ),
     ),
-    floatingActionButtonTheme: FloatingActionButtonThemeData(
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: AppConfig.primaryColor,
       foregroundColor: Colors.white,
     ),
@@ -86,7 +86,7 @@ abstract class FluffyThemes {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         ),
-        padding: EdgeInsets.all(12),
+        padding: const EdgeInsets.all(12),
       ),
     ),
     cardTheme: CardTheme(
@@ -108,7 +108,7 @@ abstract class FluffyThemes {
       filled: true,
       fillColor: lighten(AppConfig.primaryColor, .51),
     ),
-    appBarTheme: AppBarTheme(
+    appBarTheme: const AppBarTheme(
       elevation: 2,
       systemOverlayStyle: SystemUiOverlayStyle.dark,
       backgroundColor: Colors.white,
@@ -122,10 +122,10 @@ abstract class FluffyThemes {
 
   static ThemeData dark = ThemeData.dark().copyWith(
     visualDensity: VisualDensity.standard,
-    primaryColorDark: Color(0xff121212),
+    primaryColorDark: const Color(0xff121212),
     primaryColorLight: Colors.white,
     primaryColor: AppConfig.primaryColor,
-    errorColor: Color(0xFFCF6679),
+    errorColor: const Color(0xFFCF6679),
     backgroundColor: Colors.black,
     scaffoldBackgroundColor: Colors.black,
     colorScheme: ThemeData.dark().colorScheme.copyWith(
@@ -133,8 +133,8 @@ abstract class FluffyThemes {
           secondary: AppConfig.primaryColorLight,
           secondaryVariant: AppConfig.secondaryColor,
         ),
-    secondaryHeaderColor: Color(0xff232543),
-    textTheme: Typography.material2018().white.merge(fallback_text_theme),
+    secondaryHeaderColor: const Color(0xff232543),
+    textTheme: Typography.material2018().white.merge(fallbackTextTheme),
     dialogTheme: DialogTheme(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(AppConfig.borderRadius),
@@ -152,7 +152,7 @@ abstract class FluffyThemes {
       ),
       clipBehavior: Clip.hardEdge,
     ),
-    pageTransitionsTheme: PageTransitionsTheme(
+    pageTransitionsTheme: const PageTransitionsTheme(
       builders: {
         TargetPlatform.fuchsia: ZoomPageTransitionsBuilder(),
         TargetPlatform.android: ZoomPageTransitionsBuilder(),
@@ -162,7 +162,7 @@ abstract class FluffyThemes {
         TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
       },
     ),
-    floatingActionButtonTheme: FloatingActionButtonThemeData(
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: AppConfig.primaryColor,
       foregroundColor: Colors.white,
     ),
@@ -192,11 +192,11 @@ abstract class FluffyThemes {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         ),
-        padding: EdgeInsets.all(12),
+        padding: const EdgeInsets.all(12),
       ),
     ),
-    snackBarTheme: SnackBarThemeData(behavior: SnackBarBehavior.floating),
-    appBarTheme: AppBarTheme(
+    snackBarTheme: const SnackBarThemeData(behavior: SnackBarBehavior.floating),
+    appBarTheme: const AppBarTheme(
       elevation: 2,
       systemOverlayStyle: SystemUiOverlayStyle.light,
       backgroundColor: Color(0xff1D1D1D),
