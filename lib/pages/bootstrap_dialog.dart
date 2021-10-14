@@ -92,8 +92,8 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
         _recoveryKeyStored == false) {
       final key = bootstrap.newSsssKey.recoveryKey;
       titleText = L10n.of(context).securityKey;
-      return AlertDialog(
-        title: AppBar(
+      return Scaffold(
+        appBar: AppBar(
           centerTitle: true,
           leading: IconButton(
             icon: Icon(Icons.close),
@@ -101,7 +101,7 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
           ),
           title: Text(L10n.of(context).securityKey),
         ),
-        content: Center(
+        body: Center(
           child: ConstrainedBox(
             constraints:
                 BoxConstraints(maxWidth: FluffyThemes.columnWidth * 1.5),

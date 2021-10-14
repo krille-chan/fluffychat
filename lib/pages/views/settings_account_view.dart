@@ -22,11 +22,13 @@ class SettingsAccountView extends StatelessWidget {
         child: Column(
           children: [
             ListTile(
-              leading: CircleAvatar(
-                foregroundColor: Theme.of(context).primaryColor,
-                backgroundColor: Theme.of(context).secondaryHeaderColor,
-                child: Icon(Icons.account_box_outlined),
-              ),
+              trailing: Icon(Icons.add_box_outlined),
+              title: Text(L10n.of(context).addAccount),
+              subtitle: Text(L10n.of(context).enableMultiAccounts),
+              onTap: controller.addAccountAction,
+            ),
+            Divider(height: 1),
+            ListTile(
               title: Text(L10n.of(context).yourUserId),
               subtitle: Text(Matrix.of(context).client.userID),
               trailing: Icon(Icons.copy_outlined),
@@ -35,14 +37,6 @@ class SettingsAccountView extends StatelessWidget {
                 context,
               ),
             ),
-            Divider(height: 1),
-            ListTile(
-              trailing: Icon(Icons.add_box_outlined),
-              title: Text(L10n.of(context).addAccount),
-              subtitle: Text(L10n.of(context).enableMultiAccounts),
-              onTap: controller.addAccountAction,
-            ),
-            Divider(height: 1),
             ListTile(
               trailing: Icon(Icons.edit_outlined),
               title: Text(L10n.of(context).editDisplayname),

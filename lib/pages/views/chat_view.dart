@@ -281,7 +281,7 @@ class ChatView extends StatelessWidget {
                                     ? controller.timeline.isRequestingHistory
                                         ? Center(
                                             child: CircularProgressIndicator
-                                                .adaptive(),
+                                                .adaptive(strokeWidth: 2),
                                           )
                                         : controller.canLoadMore
                                             ? Center(
