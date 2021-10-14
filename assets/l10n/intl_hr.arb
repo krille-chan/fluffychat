@@ -2603,5 +2603,17 @@
   "addAccount": "Dodaj račun",
   "@addAccount": {},
   "oneClientLoggedOut": "Jedan od tvojih klijenata je odjavljen",
-  "@oneClientLoggedOut": {}
+  "@oneClientLoggedOut": {},
+  "yourUserId": "Tvoj korisnički ID:",
+  "@yourUserId": {},
+  "unverified": "Nepotvrđeno",
+  "@unverified": {},
+  "setupChatBackup": "Postavi sigurnosnu kopiju chata",
+  "@setupChatBackup": {},
+  "iWroteDownTheKey": "Zapisao sam ključ",
+  "@iWroteDownTheKey": {},
+  "yourChatBackupHasBeenSetUp": "Sigurnosna kopija tvog chata je postavljena.",
+  "@yourChatBackupHasBeenSetUp": {},
+  "setupChatBackupDescription": "Kako bismo zaštitili tvoje poruke, generirali smo sigurnosni ključ.\nČuvaj ga na sigurnom mjestu, poput upravljača lozinki.",
+  "@setupChatBackupDescription": {}
 }
