@@ -2584,7 +2584,7 @@
   "@homeserver": {},
   "serverRequiresEmail": "Этот сервер должен подтвердить ваш адрес электронной почты для регистрации.",
   "@serverRequiresEmail": {},
-  "enableMultiAccounts": "Включить несколько учетных записей на этом устройстве",
+  "enableMultiAccounts": "(БЕТА) Включить несколько учетных записей на этом устройстве",
   "@enableMultiAccounts": {},
   "bundleName": "Название пакета",
   "@bundleName": {},
