@@ -4,54 +4,24 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
-import 'package:filesystem_picker/filesystem_picker.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:share/share.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 extension MatrixFileExtension on MatrixFile {
   void save(BuildContext context) async {
     final fileName = name.split('/').last;
-    if (PlatformInfos.isIOS) {
-      final tmpDirectory = await getTemporaryDirectory();
+    if (PlatformInfos.isMobile) {
+      final tmpDirectory = PlatformInfos.isAndroid
+          ? Directory('/storage/emulated/0/Download')
+          : await getTemporaryDirectory();
       final path = '${tmpDirectory.path}$fileName';
       await File(path).writeAsBytes(bytes);
       await Share.shareFiles([path]);
-      return;
-    }
-    if (PlatformInfos.isAndroid) {
-      if (!(await Permission.storage.request()).isGranted) return;
-      final path = await FilesystemPicker.open(
-        title: L10n.of(context).saveFile,
-        context: context,
-        rootDirectory: Directory('/sdcard/'),
-        fsType: FilesystemType.folder,
-        pickText: L10n.of(context).saveFileToFolder,
-        folderIconColor: Theme.of(context).primaryColor,
-        requestPermission: () async =>
-            await Permission.storage.request().isGranted,
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(L10n.of(context).savedFileAs(path))),
       );
-      if (path != null) {
-        // determine a unique filename
-        // somefile-number.extension, e.g. helloworld-1.txt
-        var file = File('$path/$fileName');
-        var i = 0;
-        var extension = '';
-        if (fileName.contains('.')) {
-          extension = fileName.substring(fileName.lastIndexOf('.'));
-        }
-        final fileNameWithoutExtension =
-            fileName.substring(0, fileName.lastIndexOf('.'));
-        while (await file.exists()) {
-          i++;
-          file = File('$path/$fileNameWithoutExtension-$i$extension');
-        }
-        await file.writeAsBytes(bytes);
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content:
-                Text(L10n.of(context).savedFileAs(file.path.split('/').last))));
-      }
+      return;
     } else {
       final file = FilePickerCross(bytes);
       await file.exportToStorage(fileName: fileName);

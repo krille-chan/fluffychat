@@ -309,13 +309,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.0.2"
-  filesystem_picker:
-    dependency: "direct main"
-    description:
-      name: filesystem_picker
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0-nullsafety.0"
   flutter:
     dependency: "direct main"
     description: flutter
