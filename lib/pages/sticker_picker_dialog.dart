@@ -24,6 +24,7 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
     final stickerPacks = widget.room.getImagePacks(ImagePackUsage.sticker);
     final packSlugs = stickerPacks.keys.toList();
 
+    // ignore: prefer_function_declarations_over_variables
     final _packBuilder = (BuildContext context, int packIndex) {
       final pack = stickerPacks[packSlugs[packIndex]];
       final filteredImagePackImageEntried = pack.images.entries.toList();
@@ -43,7 +44,7 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
       final packName = pack.pack.displayName ?? packSlugs[packIndex];
       return Column(
         children: <Widget>[
-          if (packIndex != 0) SizedBox(height: 20),
+          if (packIndex != 0) const SizedBox(height: 20),
           if (packName != 'user')
             ListTile(
               leading: Avatar(
@@ -53,13 +54,13 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
               ),
               title: Text(packName),
             ),
-          SizedBox(height: 6),
+          const SizedBox(height: 6),
           GridView.builder(
             itemCount: imageKeys.length,
-            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                 maxCrossAxisExtent: 100),
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (BuildContext context, int imageIndex) {
               final image = pack.images[imageKeys[imageIndex]];
               final fakeEvent = Event.fromJson(<String, dynamic>{
@@ -99,7 +100,7 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
     };
 
     return Scaffold(
-      body: Container(
+      body: SizedBox(
         width: double.maxFinite,
         child: CustomScrollView(
           slivers: <Widget>[
@@ -110,13 +111,13 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
               titleSpacing: 0,
               backgroundColor: Theme.of(context).dialogBackgroundColor,
               leading: IconButton(
-                icon: Icon(Icons.close),
+                icon: const Icon(Icons.close),
                 onPressed: Navigator.of(context, rootNavigator: false).pop,
               ),
               title: DefaultAppBarSearchField(
                 autofocus: false,
                 hintText: L10n.of(context).search,
-                suffix: Icon(Icons.search_outlined),
+                suffix: const Icon(Icons.search_outlined),
                 onChanged: (s) => setState(() => searchFilter = s),
               ),
             ),

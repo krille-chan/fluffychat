@@ -53,7 +53,7 @@ void main() async {
               clients: clients,
               queryParameters: queryParameters,
             ),
-            lockScreen: LockScreen(),
+            lockScreen: const LockScreen(),
             enabled: false,
           )
         : FluffyChatApp(clients: clients, queryParameters: queryParameters)),
@@ -117,7 +117,7 @@ class _FluffyChatAppState extends State<FluffyChatApp> {
           }
           return VRouter(
             key: _router,
-            title: '${AppConfig.applicationName}',
+            title: AppConfig.applicationName,
             theme: theme,
             scrollBehavior: CustomScrollBehavior(),
             logs: kReleaseMode ? VLogs.none : VLogs.info,

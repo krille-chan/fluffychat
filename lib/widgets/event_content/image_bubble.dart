@@ -205,8 +205,8 @@ class _ImageBubbleState extends State<ImageBubble> {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(Icons.download_outlined),
-                SizedBox(width: 8),
+                const Icon(Icons.download_outlined),
+                const SizedBox(width: 8),
                 Text(
                   filename,
                   overflow: TextOverflow.fade,
@@ -217,7 +217,7 @@ class _ImageBubbleState extends State<ImageBubble> {
             ),
           ),
           if (widget.event.sizeString != null) Text(widget.event.sizeString),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Text((error ?? _error).toString()),
         ],
       ),
@@ -249,7 +249,7 @@ class _ImageBubbleState extends State<ImageBubble> {
       children: <Widget>[
         if (blurhash != null) blurhash,
         Center(
-          child: child ?? CircularProgressIndicator.adaptive(strokeWidth: 2),
+          child: child ?? const CircularProgressIndicator.adaptive(strokeWidth: 2),
         ),
       ],
     );
@@ -412,7 +412,7 @@ class _ImageBubbleState extends State<ImageBubble> {
         child: Hero(
           tag: widget.event.eventId,
           child: AnimatedSwitcher(
-            duration: Duration(milliseconds: 1000),
+            duration: const Duration(milliseconds: 1000),
             child: Container(
               key: ValueKey(key),
               constraints: widget.maxSize

@@ -45,52 +45,52 @@ class AppRoutes {
   List<VRouteElement> get _mobileRoutes => [
         VWidget(
           path: '/rooms',
-          widget: ChatList(),
+          widget: const ChatList(),
           stackedRoutes: [
             VWidget(
               path: '/spaces/:roomid',
-              widget: ChatDetails(),
+              widget: const ChatDetails(),
               stackedRoutes: _chatDetailsRoutes,
             ),
-            VWidget(path: ':roomid', widget: Chat(), stackedRoutes: [
+            VWidget(path: ':roomid', widget: const Chat(), stackedRoutes: [
               VWidget(
                 path: 'encryption',
-                widget: ChatEncryptionSettings(),
+                widget: const ChatEncryptionSettings(),
               ),
               VWidget(
                 path: 'invite',
-                widget: InvitationSelection(),
+                widget: const InvitationSelection(),
               ),
               VWidget(
                 path: 'details',
-                widget: ChatDetails(),
+                widget: const ChatDetails(),
                 stackedRoutes: _chatDetailsRoutes,
               ),
             ]),
             VWidget(
               path: '/settings',
-              widget: Settings(),
+              widget: const Settings(),
               stackedRoutes: _settingsRoutes,
             ),
             VWidget(
               path: '/search',
-              widget: Search(),
+              widget: const Search(),
             ),
             VWidget(
               path: '/archive',
-              widget: Archive(),
+              widget: const Archive(),
             ),
             VWidget(
               path: '/newprivatechat',
-              widget: NewPrivateChat(),
+              widget: const NewPrivateChat(),
             ),
             VWidget(
               path: '/newgroup',
-              widget: NewGroup(),
+              widget: const NewGroup(),
             ),
             VWidget(
               path: '/newspace',
-              widget: NewSpace(),
+              widget: const NewSpace(),
             ),
           ],
         ),
@@ -99,64 +99,64 @@ class AppRoutes {
         VNester(
           path: '/rooms',
           widgetBuilder: (child) => TwoColumnLayout(
-            mainView: ChatList(),
+            mainView: const ChatList(),
             sideView: child,
           ),
           buildTransition: _fadeTransition,
           nestedRoutes: [
             VWidget(
               path: '',
-              widget: EmptyPage(),
+              widget: const EmptyPage(),
               buildTransition: _fadeTransition,
               stackedRoutes: [
                 VWidget(
                   path: '/spaces/:roomid',
-                  widget: ChatDetails(),
+                  widget: const ChatDetails(),
                   buildTransition: _fadeTransition,
                   stackedRoutes: _chatDetailsRoutes,
                 ),
                 VWidget(
                   path: '/newprivatechat',
-                  widget: NewPrivateChat(),
+                  widget: const NewPrivateChat(),
                   buildTransition: _fadeTransition,
                 ),
                 VWidget(
                   path: '/newgroup',
-                  widget: NewGroup(),
+                  widget: const NewGroup(),
                   buildTransition: _fadeTransition,
                 ),
                 VWidget(
                   path: '/newspace',
-                  widget: NewSpace(),
+                  widget: const NewSpace(),
                   buildTransition: _fadeTransition,
                 ),
                 VNester(
                   path: ':roomid',
                   widgetBuilder: (child) => SideViewLayout(
-                    mainView: Chat(),
+                    mainView: const Chat(),
                     sideView: child,
                   ),
                   buildTransition: _fadeTransition,
                   nestedRoutes: [
                     VWidget(
                       path: '',
-                      widget: Chat(),
+                      widget: const Chat(),
                       buildTransition: _fadeTransition,
                     ),
                     VWidget(
                       path: 'encryption',
-                      widget: ChatEncryptionSettings(),
+                      widget: const ChatEncryptionSettings(),
                       buildTransition: _fadeTransition,
                     ),
                     VWidget(
                       path: 'details',
-                      widget: ChatDetails(),
+                      widget: const ChatDetails(),
                       buildTransition: _fadeTransition,
                       stackedRoutes: _chatDetailsRoutes,
                     ),
                     VWidget(
                       path: 'invite',
-                      widget: InvitationSelection(),
+                      widget: const InvitationSelection(),
                       buildTransition: _fadeTransition,
                     ),
                   ],
@@ -167,7 +167,7 @@ class AppRoutes {
         ),
         VWidget(
           path: '/rooms',
-          widget: TwoColumnLayout(
+          widget: const TwoColumnLayout(
             mainView: ChatList(),
             sideView: EmptyPage(),
           ),
@@ -176,14 +176,14 @@ class AppRoutes {
             VNester(
               path: '/settings',
               widgetBuilder: (child) => TwoColumnLayout(
-                mainView: Settings(),
+                mainView: const Settings(),
                 sideView: child,
               ),
               buildTransition: _dynamicTransition,
               nestedRoutes: [
                 VWidget(
                   path: '',
-                  widget: EmptyPage(),
+                  widget: const EmptyPage(),
                   buildTransition: _dynamicTransition,
                   stackedRoutes: _settingsRoutes,
                 ),
@@ -191,7 +191,7 @@ class AppRoutes {
             ),
             VWidget(
               path: '/search',
-              widget: TwoColumnLayout(
+              widget: const TwoColumnLayout(
                 mainView: Search(),
                 sideView: EmptyPage(),
               ),
@@ -199,7 +199,7 @@ class AppRoutes {
             ),
             VWidget(
               path: '/archive',
-              widget: TwoColumnLayout(
+              widget: const TwoColumnLayout(
                 mainView: Archive(),
                 sideView: EmptyPage(),
               ),
@@ -210,25 +210,25 @@ class AppRoutes {
       ];
 
   List<VRouteElement> get _homeRoutes => [
-        VWidget(path: '/', widget: LoadingView()),
+        VWidget(path: '/', widget: const LoadingView()),
         VWidget(
           path: '/home',
-          widget: HomeserverPicker(),
+          widget: const HomeserverPicker(),
           buildTransition: _fadeTransition,
           stackedRoutes: [
             VWidget(
               path: 'login',
-              widget: Login(),
+              widget: const Login(),
               buildTransition: _fadeTransition,
             ),
             VWidget(
               path: 'signup',
-              widget: SignupPage(),
+              widget: const SignupPage(),
               buildTransition: _fadeTransition,
             ),
             VWidget(
               path: 'logs',
-              widget: LogViewer(),
+              widget: const LogViewer(),
               buildTransition: _dynamicTransition,
             ),
           ],
@@ -238,27 +238,27 @@ class AppRoutes {
   List<VRouteElement> get _chatDetailsRoutes => [
         VWidget(
           path: 'permissions',
-          widget: ChatPermissionsSettings(),
+          widget: const ChatPermissionsSettings(),
           buildTransition: _dynamicTransition,
         ),
         VWidget(
           path: 'invite',
-          widget: InvitationSelection(),
+          widget: const InvitationSelection(),
           buildTransition: _dynamicTransition,
         ),
         VWidget(
           path: 'multiple_emotes',
-          widget: MultipleEmotesSettings(),
+          widget: const MultipleEmotesSettings(),
           buildTransition: _dynamicTransition,
         ),
         VWidget(
           path: 'emotes',
-          widget: EmotesSettings(),
+          widget: const EmotesSettings(),
           buildTransition: _dynamicTransition,
         ),
         VWidget(
           path: 'emotes/:state_key',
-          widget: EmotesSettings(),
+          widget: const EmotesSettings(),
           buildTransition: _dynamicTransition,
         ),
       ];
@@ -266,49 +266,49 @@ class AppRoutes {
   List<VRouteElement> get _settingsRoutes => [
         VWidget(
           path: 'notifications',
-          widget: SettingsNotifications(),
+          widget: const SettingsNotifications(),
           buildTransition: _dynamicTransition,
         ),
         VWidget(
           path: 'chat',
-          widget: SettingsChat(),
+          widget: const SettingsChat(),
           buildTransition: _dynamicTransition,
           stackedRoutes: [
             VWidget(
               path: 'emotes',
-              widget: EmotesSettings(),
+              widget: const EmotesSettings(),
               buildTransition: _dynamicTransition,
             ),
             VWidget(
               path: 'style',
-              widget: SettingsStyle(),
+              widget: const SettingsStyle(),
               buildTransition: _dynamicTransition,
             ),
           ],
         ),
         VWidget(
           path: 'account',
-          widget: SettingsAccount(),
+          widget: const SettingsAccount(),
           buildTransition: _dynamicTransition,
           stackedRoutes: [
             VWidget(
               path: 'devices',
-              widget: DevicesSettings(),
+              widget: const DevicesSettings(),
               buildTransition: _dynamicTransition,
             ),
             VWidget(
               path: 'add',
-              widget: HomeserverPicker(),
+              widget: const HomeserverPicker(),
               buildTransition: _fadeTransition,
               stackedRoutes: [
                 VWidget(
                   path: 'login',
-                  widget: Login(),
+                  widget: const Login(),
                   buildTransition: _fadeTransition,
                 ),
                 VWidget(
                   path: 'signup',
-                  widget: SignupPage(),
+                  widget: const SignupPage(),
                   buildTransition: _fadeTransition,
                 ),
               ],
@@ -317,31 +317,31 @@ class AppRoutes {
         ),
         VWidget(
           path: 'security',
-          widget: SettingsSecurity(),
+          widget: const SettingsSecurity(),
           buildTransition: _dynamicTransition,
           stackedRoutes: [
             VWidget(
               path: 'ignorelist',
-              widget: SettingsIgnoreList(),
+              widget: const SettingsIgnoreList(),
               buildTransition: _dynamicTransition,
             ),
             VWidget(
               path: '3pid',
-              widget: Settings3Pid(),
+              widget: const Settings3Pid(),
               buildTransition: _dynamicTransition,
             ),
           ],
         ),
         VWidget(
           path: 'logs',
-          widget: LogViewer(),
+          widget: const LogViewer(),
           buildTransition: _dynamicTransition,
         ),
       ];
 
-  final _fadeTransition = (animation1, _, child) =>
-      FadeTransition(opacity: animation1, child: child);
-
   FadeTransition Function(dynamic, dynamic, dynamic) get _dynamicTransition =>
       columnMode ? _fadeTransition : null;
+
+  FadeTransition _fadeTransition(animation1, _, child) =>
+      FadeTransition(opacity: animation1, child: child);
 }

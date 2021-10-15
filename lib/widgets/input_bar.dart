@@ -24,7 +24,7 @@ class InputBar extends StatelessWidget {
   final ValueChanged<String> onChanged;
   final bool autofocus;
 
-  InputBar({
+  const InputBar({
     this.room,
     this.minLines,
     this.maxLines,
@@ -36,7 +36,8 @@ class InputBar extends StatelessWidget {
     this.onChanged,
     this.autofocus,
     this.textInputAction,
-  });
+    Key key,
+  }) : super(key: key);
 
   List<Map<String, String>> getSuggestions(String text) {
     if (controller.selection.baseOffset != controller.selection.extentOffset ||
@@ -220,7 +221,7 @@ class InputBar extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('/' + command, style: TextStyle(fontFamily: 'monospace')),
+            Text('/' + command, style: const TextStyle(fontFamily: 'monospace')),
             Text(_commandHint(L10n.of(context), command),
                 style: Theme.of(context).textTheme.caption),
           ],
@@ -246,7 +247,7 @@ class InputBar extends StatelessWidget {
               width: size,
               height: size,
             ),
-            SizedBox(width: 6),
+            const SizedBox(width: 6),
             Text(suggestion['name']),
             Expanded(
               child: Align(
@@ -281,7 +282,7 @@ class InputBar extends StatelessWidget {
               size: size,
               client: client,
             ),
-            SizedBox(width: 6),
+            const SizedBox(width: 6),
             Text(suggestion['displayname'] ?? suggestion['mxid']),
           ],
         ),
@@ -395,7 +396,7 @@ class InputBar extends StatelessWidget {
           hideOnEmpty: true,
           hideOnLoading: true,
           keepSuggestionsOnSuggestionSelected: true,
-          debounceDuration: Duration(
+          debounceDuration: const Duration(
               milliseconds:
                   50), // show suggestions after 50ms idle time (default is 300)
           textFieldConfiguration: TextFieldConfiguration(

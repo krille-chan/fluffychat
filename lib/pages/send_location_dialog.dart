@@ -57,12 +57,12 @@ class _SendLocationDialogState extends State<SendLocationDialog> {
       try {
         _position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.best,
-          timeLimit: Duration(seconds: 30),
+          timeLimit: const Duration(seconds: 30),
         );
       } on TimeoutException {
         _position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.medium,
-          timeLimit: Duration(seconds: 30),
+          timeLimit: const Duration(seconds: 30),
         );
       }
       setState(() => position = _position);
@@ -104,8 +104,8 @@ class _SendLocationDialogState extends State<SendLocationDialog> {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          CupertinoActivityIndicator(),
-          SizedBox(width: 12),
+          const CupertinoActivityIndicator(),
+          const SizedBox(width: 12),
           Text(L10n.of(context).obtainingLocation),
         ],
       );

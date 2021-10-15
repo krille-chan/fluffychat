@@ -10,6 +10,8 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'layouts/one_page_card.dart';
 
 class LockScreen extends StatefulWidget {
+  const LockScreen({Key key}) : super(key: key);
+
   @override
   _LockScreenState createState() => _LockScreenState();
 }
@@ -42,7 +44,7 @@ class _LockScreenState extends State<LockScreen> {
                 gradient: LinearGradient(
                   begin: Alignment.topRight,
                   end: Alignment.bottomLeft,
-                  stops: [
+                  stops: const [
                     0.1,
                     0.4,
                     0.6,
@@ -62,12 +64,12 @@ class _LockScreenState extends State<LockScreen> {
                 controller: _textEditingController,
                 focusNode: _focusNode,
                 pinBoxRadius: AppConfig.borderRadius,
-                pinTextStyle: TextStyle(fontSize: 32),
+                pinTextStyle: const TextStyle(fontSize: 32),
                 hideCharacter: true,
                 hasError: _wrongInput,
                 onDone: (String input) async {
                   if (input ==
-                      await FlutterSecureStorage()
+                      await const FlutterSecureStorage()
                           .read(key: SettingKeys.appLockKey)) {
                     AppLock.of(context).didUnlock();
                   } else {

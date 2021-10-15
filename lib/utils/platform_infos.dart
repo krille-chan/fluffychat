@@ -53,11 +53,11 @@ abstract class PlatformInfos {
         ),
         OutlinedButton(
           onPressed: () => launch(AppConfig.emojiFontUrl),
-          child: Text(AppConfig.emojiFontName),
+          child: const Text(AppConfig.emojiFontName),
         ),
         OutlinedButton(
           onPressed: () => VRouter.of(context).to('logs'),
-          child: Text('Logs'),
+          child: const Text('Logs'),
         ),
         SentrySwitchListTile(label: L10n.of(context).sendBugReports),
       ],

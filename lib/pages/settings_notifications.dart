@@ -49,6 +49,8 @@ class NotificationSettingsItem {
 }
 
 class SettingsNotifications extends StatefulWidget {
+  const SettingsNotifications({Key key}) : super(key: key);
+
   @override
   SettingsNotificationsController createState() =>
       SettingsNotificationsController();
@@ -57,7 +59,7 @@ class SettingsNotifications extends StatefulWidget {
 class SettingsNotificationsController extends State<SettingsNotifications> {
   void openAndroidNotificationSettingsAction() async {
     await NotificationSetting.configureChannel(
-      NotificationDetails(
+      const NotificationDetails(
         android: AndroidNotificationDetails(
           AppConfig.pushNotificationsChannelId,
           AppConfig.pushNotificationsChannelName,

@@ -38,38 +38,38 @@ class SettingsView extends StatelessWidget {
         body: ListView(
           children: <Widget>[
             ListTile(
-              leading: Icon(Icons.notifications_outlined),
+              leading: const Icon(Icons.notifications_outlined),
               title: Text(L10n.of(context).notifications),
               onTap: () => VRouter.of(context).to('/settings/notifications'),
             ),
             ListTile(
-              leading: Icon(Icons.chat_bubble_outline),
+              leading: const Icon(Icons.chat_bubble_outline),
               title: Text(L10n.of(context).chat),
               onTap: () => VRouter.of(context).to('/settings/chat'),
             ),
             ListTile(
-              leading: Icon(Icons.account_box_outlined),
+              leading: const Icon(Icons.account_box_outlined),
               title: Text(L10n.of(context).account),
               onTap: () => VRouter.of(context).to('/settings/account'),
             ),
             ListTile(
-              leading: Icon(Icons.security_outlined),
+              leading: const Icon(Icons.security_outlined),
               title: Text(L10n.of(context).security),
               onTap: () => VRouter.of(context).to('/settings/security'),
             ),
-            Divider(thickness: 1),
+            const Divider(thickness: 1),
             ListTile(
-              leading: Icon(Icons.help_outlined),
+              leading: const Icon(Icons.help_outlined),
               title: Text(L10n.of(context).help),
               onTap: () => launch(AppConfig.supportUrl),
             ),
             ListTile(
-              leading: Icon(Icons.privacy_tip_outlined),
+              leading: const Icon(Icons.privacy_tip_outlined),
               title: Text(L10n.of(context).privacy),
               onTap: () => launch(AppConfig.privacyUrl),
             ),
             ListTile(
-              leading: Icon(Icons.link_outlined),
+              leading: const Icon(Icons.link_outlined),
               title: Text(L10n.of(context).about),
               onTap: () => PlatformInfos.showDialog(context),
             ),

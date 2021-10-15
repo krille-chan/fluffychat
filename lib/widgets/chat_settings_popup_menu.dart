@@ -45,8 +45,8 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
               value: 'mute',
               child: Row(
                 children: [
-                  Icon(Icons.notifications_off_outlined),
-                  SizedBox(width: 12),
+                  const Icon(Icons.notifications_off_outlined),
+                  const SizedBox(width: 12),
                   Text(L10n.of(context).muteChat),
                 ],
               ),
@@ -55,8 +55,8 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
               value: 'unmute',
               child: Row(
                 children: [
-                  Icon(Icons.notifications_on_outlined),
-                  SizedBox(width: 12),
+                  const Icon(Icons.notifications_on_outlined),
+                  const SizedBox(width: 12),
                   Text(L10n.of(context).unmuteChat),
                 ],
               ),
@@ -65,8 +65,8 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
         value: 'leave',
         child: Row(
           children: [
-            Icon(Icons.delete_outlined),
-            SizedBox(width: 12),
+            const Icon(Icons.delete_outlined),
+            const SizedBox(width: 12),
             Text(L10n.of(context).leave),
           ],
         ),
@@ -79,8 +79,8 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
           value: 'details',
           child: Row(
             children: [
-              Icon(Icons.info_outline_rounded),
-              SizedBox(width: 12),
+              const Icon(Icons.info_outline_rounded),
+              const SizedBox(width: 12),
               Text(L10n.of(context).chatDetails),
             ],
           ),

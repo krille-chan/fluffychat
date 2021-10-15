@@ -18,13 +18,15 @@ class HtmlMessage extends StatelessWidget {
   final TextStyle linkStyle;
   final double emoteSize;
 
-  const HtmlMessage(
-      {this.html,
-      this.maxLines,
-      this.room,
-      this.defaultTextStyle,
-      this.linkStyle,
-      this.emoteSize});
+  const HtmlMessage({
+    Key key,
+    this.html,
+    this.maxLines,
+    this.room,
+    this.defaultTextStyle,
+    this.linkStyle,
+    this.emoteSize,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +37,7 @@ class HtmlMessage extends StatelessWidget {
     // miss-matching tags, and this way we actually correctly identify what we want to strip and, well,
     // strip it.
     final renderHtml = html.replaceAll(
-        RegExp('<mx-reply>.*<\/mx-reply>',
+        RegExp('<mx-reply>.*</mx-reply>',
             caseSensitive: false, multiLine: false, dotAll: true),
         '');
 

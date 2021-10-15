@@ -15,7 +15,7 @@ class LoginView extends StatelessWidget {
     return OnePageCard(
       child: Scaffold(
         appBar: AppBar(
-          leading: controller.loading ? Container() : BackButton(),
+          leading: controller.loading ? Container() : const BackButton(),
           elevation: 0,
           title: Text(
             L10n.of(context).logInTo(Matrix.of(context)
@@ -40,7 +40,7 @@ class LoginView extends StatelessWidget {
                     autofillHints:
                         controller.loading ? null : [AutofillHints.username],
                     decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.account_box_outlined),
+                        prefixIcon: const Icon(Icons.account_box_outlined),
                         hintText: L10n.of(context).username,
                         errorText: controller.usernameError,
                         labelText: L10n.of(context).username),
@@ -57,7 +57,7 @@ class LoginView extends StatelessWidget {
                     obscureText: !controller.showPassword,
                     onSubmitted: controller.login,
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.lock_outlined),
+                      prefixIcon: const Icon(Icons.lock_outlined),
                       hintText: '****',
                       errorText: controller.passwordError,
                       suffixIcon: IconButton(
@@ -71,17 +71,17 @@ class LoginView extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 Hero(
                   tag: 'loginButton',
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 12),
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
                     child: ElevatedButton(
                       onPressed: controller.loading
                           ? null
                           : () => controller.login(context),
                       child: controller.loading
-                          ? LinearProgressIndicator()
+                          ? const LinearProgressIndicator()
                           : Text(L10n.of(context).login),
                     ),
                   ),
@@ -91,7 +91,7 @@ class LoginView extends StatelessWidget {
                     onPressed: controller.passwordForgotten,
                     child: Text(
                       L10n.of(context).passwordForgotten,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.blue,
                         decoration: TextDecoration.underline,
                       ),

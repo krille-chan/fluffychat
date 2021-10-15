@@ -18,7 +18,7 @@ class DefaultAppBarSearchField extends StatefulWidget {
   final bool unfocusOnClear;
   final bool autocorrect;
 
-  DefaultAppBarSearchField({
+  const DefaultAppBarSearchField({
     Key key,
     this.searchController,
     this.onChanged,
@@ -78,7 +78,7 @@ class DefaultAppBarSearchFieldState extends State<DefaultAppBarSearchField> {
   Widget build(BuildContext context) {
     return Container(
       height: 40,
-      padding: widget.padding ?? EdgeInsets.only(right: 12),
+      padding: widget.padding ?? const EdgeInsets.only(right: 12),
       child: TextField(
         autofocus: widget.autofocus,
         autocorrect: widget.autocorrect,
@@ -97,7 +97,7 @@ class DefaultAppBarSearchFieldState extends State<DefaultAppBarSearchField> {
             borderSide:
                 BorderSide(color: Theme.of(context).secondaryHeaderColor),
           ),
-          contentPadding: EdgeInsets.only(
+          contentPadding: const EdgeInsets.only(
             top: 8,
             bottom: 8,
             left: 16,
@@ -110,7 +110,7 @@ class DefaultAppBarSearchFieldState extends State<DefaultAppBarSearchField> {
                           (_searchController.text?.isNotEmpty ?? false)))
               ? IconButton(
                   tooltip: L10n.of(context).clearText,
-                  icon: Icon(Icons.backspace_outlined),
+                  icon: const Icon(Icons.backspace_outlined),
                   onPressed: () {
                     _searchController.clear();
                     widget.onChanged?.call('');

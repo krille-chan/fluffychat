@@ -74,7 +74,7 @@ class ReplyContent extends StatelessWidget {
           height: fontSize * 2 + 6,
           color: lightText ? Colors.white : Theme.of(context).primaryColor,
         ),
-        SizedBox(width: 6),
+        const SizedBox(width: 6),
         Flexible(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

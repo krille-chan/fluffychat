@@ -18,7 +18,7 @@ class SettingsIgnoreListView extends StatelessWidget {
     final client = Matrix.of(context).client;
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(),
+        leading: const BackButton(),
         title: Text(L10n.of(context).ignoredUsers),
       ),
       body: MaxWidthBody(
@@ -35,26 +35,26 @@ class SettingsIgnoreListView extends StatelessWidget {
                     textInputAction: TextInputAction.done,
                     onSubmitted: (_) => controller.ignoreUser(context),
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(),
+                      border: const OutlineInputBorder(),
                       hintText: 'bad_guy:domain.abc',
                       prefixText: '@',
                       labelText: L10n.of(context).ignoreUsername,
                       suffixIcon: IconButton(
                         tooltip: L10n.of(context).ignore,
-                        icon: Icon(Icons.done_outlined),
+                        icon: const Icon(Icons.done_outlined),
                         onPressed: () => controller.ignoreUser(context),
                       ),
                     ),
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   Text(
                     L10n.of(context).ignoreListDescription,
-                    style: TextStyle(color: Colors.orange),
+                    style: const TextStyle(color: Colors.orange),
                   ),
                 ],
               ),
             ),
-            Divider(height: 1),
+            const Divider(height: 1),
             Expanded(
               child: StreamBuilder<Object>(
                   stream: client.onAccountData.stream
@@ -74,7 +74,7 @@ class SettingsIgnoreListView extends StatelessWidget {
                               s.data?.displayName ?? client.ignoredUsers[i]),
                           trailing: IconButton(
                             tooltip: L10n.of(context).delete,
-                            icon: Icon(Icons.delete_forever_outlined),
+                            icon: const Icon(Icons.delete_forever_outlined),
                             onPressed: () => showFutureLoadingDialog(
                               context: context,
                               future: () =>

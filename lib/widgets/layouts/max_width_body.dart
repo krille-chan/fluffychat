@@ -22,7 +22,7 @@ class MaxWidthBody extends StatelessWidget {
         );
         return withScrolling
             ? SingleChildScrollView(
-                physics: ScrollPhysics(),
+                physics: const ScrollPhysics(),
                 child: Padding(
                   padding: padding,
                   child: child,

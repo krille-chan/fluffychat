@@ -21,7 +21,7 @@ class UserBottomSheetView extends StatelessWidget {
     final client = Matrix.of(context).client;
     final presence = client.presences[user.id];
     return Center(
-      child: Container(
+      child: SizedBox(
         width: min(
             MediaQuery.of(context).size.width, FluffyThemes.columnWidth * 1.5),
         child: Material(
@@ -34,7 +34,7 @@ class UserBottomSheetView extends StatelessWidget {
                 backgroundColor:
                     Theme.of(context).scaffoldBackgroundColor.withOpacity(0.5),
                 leading: IconButton(
-                  icon: Icon(Icons.arrow_downward_outlined),
+                  icon: const Icon(Icons.arrow_downward_outlined),
                   onPressed: Navigator.of(context, rootNavigator: false).pop,
                   tooltip: L10n.of(context).close,
                 ),
@@ -109,7 +109,7 @@ class UserBottomSheetView extends StatelessWidget {
                   ListTile(
                     title: Text(L10n.of(context).username),
                     subtitle: Text(user.id),
-                    trailing: Icon(Icons.share_outlined),
+                    trailing: const Icon(Icons.share_outlined),
                     onTap: () => FluffyShare.share(
                         user.id, controller.widget.outerContext),
                   ),
@@ -149,7 +149,7 @@ class _TextWithIcon extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Icon(iconData),
-        SizedBox(width: 16),
+        const SizedBox(width: 16),
         Text(text),
       ],
     );

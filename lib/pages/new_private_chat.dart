@@ -9,6 +9,8 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class NewPrivateChat extends StatefulWidget {
+  const NewPrivateChat({Key key}) : super(key: key);
+
   @override
   NewPrivateChatController createState() => NewPrivateChatController();
 }
@@ -54,7 +56,7 @@ class NewPrivateChatController extends State<NewPrivateChat> {
       context: context,
       useRootNavigator: false,
       //useSafeArea: false,
-      builder: (_) => QrScannerModal(),
+      builder: (_) => const QrScannerModal(),
     );
   }
 

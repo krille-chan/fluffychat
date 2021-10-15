@@ -8,7 +8,8 @@ class VerificationRequestContent extends StatelessWidget {
   final Event event;
   final Timeline timeline;
 
-  const VerificationRequestContent({this.event, this.timeline});
+  const VerificationRequestContent({this.event, this.timeline, Key key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +23,13 @@ class VerificationRequestContent extends StatelessWidget {
     final started = start.isNotEmpty;
     final canceled = cancel.isNotEmpty;
     return Padding(
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         horizontal: 8.0,
         vertical: 4.0,
       ),
       child: Center(
         child: Container(
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
             border: Border.all(
               color: Theme.of(context).dividerColor,
@@ -44,7 +45,7 @@ class VerificationRequestContent extends StatelessWidget {
                   color: canceled
                       ? Colors.red
                       : (fullyDone ? Colors.green : Colors.grey)),
-              SizedBox(width: 8),
+              const SizedBox(width: 8),
               Text(canceled
                   ? 'Error ${cancel.first.content.tryGet<String>('code')}: ${cancel.first.content.tryGet<String>('reason')}'
                   : (fullyDone

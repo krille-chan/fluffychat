@@ -13,7 +13,7 @@ class NewSpaceView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(),
+        leading: const BackButton(),
         title: Text(L10n.of(context).createNewSpace),
         elevation: 0,
       ),
@@ -31,7 +31,7 @@ class NewSpaceView extends StatelessWidget {
                 onSubmitted: controller.submitAction,
                 decoration: InputDecoration(
                     labelText: L10n.of(context).spaceName,
-                    prefixIcon: Icon(Icons.people_outlined),
+                    prefixIcon: const Icon(Icons.people_outlined),
                     hintText: L10n.of(context).enterASpacepName),
               ),
             ),
@@ -48,7 +48,7 @@ class NewSpaceView extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: controller.submitAction,
-        child: Icon(Icons.arrow_forward_outlined),
+        child: const Icon(Icons.arrow_forward_outlined),
       ),
     );
   }

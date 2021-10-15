@@ -20,6 +20,8 @@ import 'package:uni_links/uni_links.dart';
 import '../main.dart';
 
 class HomeserverPicker extends StatefulWidget {
+  const HomeserverPicker({Key key}) : super(key: key);
+
   @override
   HomeserverPickerController createState() => HomeserverPickerController();
 }
@@ -37,7 +39,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     this.domain = domain;
     _coolDown?.cancel();
     if (domain.isNotEmpty) {
-      _coolDown = Timer(Duration(seconds: 1), checkHomeserverAction);
+      _coolDown = Timer(const Duration(seconds: 1), checkHomeserverAction);
     }
   }
 
@@ -133,7 +135,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
         AppConfig.jitsiInstance = jitsi;
       }
     } catch (e) {
-      setState(() => error = '${(e as Object).toLocalizedString(context)}');
+      setState(() => error = (e as Object).toLocalizedString(context));
     } finally {
       if (mounted) {
         setState(() => isLoading = false);

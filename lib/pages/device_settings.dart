@@ -10,6 +10,8 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import '../widgets/matrix.dart';
 
 class DevicesSettings extends StatefulWidget {
+  const DevicesSettings({Key key}) : super(key: key);
+
   @override
   DevicesSettingsController createState() => DevicesSettingsController();
 }

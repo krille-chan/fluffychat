@@ -28,9 +28,9 @@ class SideViewLayout extends StatelessWidget {
                     color: Theme.of(context).dividerColor,
                   ),
                   AnimatedContainer(
-                    duration: Duration(milliseconds: 300),
+                    duration: const Duration(milliseconds: 300),
                     clipBehavior: Clip.antiAlias,
-                    decoration: BoxDecoration(),
+                    decoration: const BoxDecoration(),
                     width: hideSideView ? 0 : 360.0,
                     child: hideSideView ? null : sideView,
                   ),

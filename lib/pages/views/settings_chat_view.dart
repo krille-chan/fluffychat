@@ -24,14 +24,14 @@ class SettingsChatView extends StatelessWidget {
             ListTile(
               title: Text(L10n.of(context).changeTheme),
               onTap: () => VRouter.of(context).to('style'),
-              trailing: Icon(Icons.style_outlined),
+              trailing: const Icon(Icons.style_outlined),
             ),
             ListTile(
               title: Text(L10n.of(context).emoteSettings),
               onTap: () => VRouter.of(context).to('emotes'),
-              trailing: Icon(Icons.insert_emoticon_outlined),
+              trailing: const Icon(Icons.insert_emoticon_outlined),
             ),
-            Divider(height: 1),
+            const Divider(height: 1),
             SettingsSwitchListTile(
               title: L10n.of(context).renderRichContent,
               onChanged: (b) => AppConfig.renderHtml = b,

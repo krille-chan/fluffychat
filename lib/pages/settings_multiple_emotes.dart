@@ -4,7 +4,7 @@ import 'package:vrouter/vrouter.dart';
 import 'views/settings_multiple_emotes_view.dart';
 
 class MultipleEmotesSettings extends StatefulWidget {
-  MultipleEmotesSettings({Key key}) : super(key: key);
+  const MultipleEmotesSettings({Key key}) : super(key: key);
 
   @override
   MultipleEmotesSettingsController createState() =>

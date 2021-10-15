@@ -55,7 +55,7 @@ class SettingsSecurityController extends State<SettingsSecurity> {
 
   void setAppLockAction() async {
     final currentLock =
-        await FlutterSecureStorage().read(key: SettingKeys.appLockKey);
+        await const FlutterSecureStorage().read(key: SettingKeys.appLockKey);
     if (currentLock?.isNotEmpty ?? false) {
       await AppLock.of(context).showLockScreen();
     }
@@ -81,7 +81,7 @@ class SettingsSecurityController extends State<SettingsSecurity> {
       ],
     );
     if (newLock != null) {
-      await FlutterSecureStorage()
+      await const FlutterSecureStorage()
           .write(key: SettingKeys.appLockKey, value: newLock.single);
       if (newLock.single.isEmpty) {
         AppLock.of(context).disable();

@@ -16,17 +16,19 @@ class ChatEncryptionSettings extends StatefulWidget {
 
 class ChatEncryptionSettingsController extends State<ChatEncryptionSettings> {
   String get roomId => VRouter.of(context).pathParameters['roomid'];
+
+  Future<void> unblock(DeviceKeys key) async {
+    if (key.blocked) {
+      await key.setBlocked(false);
+    }
+  }
+
   Future<void> onSelected(
       BuildContext context, String action, DeviceKeys key) async {
     final room = Matrix.of(context).client.getRoomById(roomId);
-    final unblock = () async {
-      if (key.blocked) {
-        await key.setBlocked(false);
-      }
-    };
     switch (action) {
       case 'verify':
-        await unblock();
+        await unblock(key);
         final req = key.startVerification();
         req.onUpdate = () {
           if (req.state == KeyVerificationState.done) {
@@ -36,7 +38,7 @@ class ChatEncryptionSettingsController extends State<ChatEncryptionSettings> {
         await KeyVerificationDialog(request: req).show(context);
         break;
       case 'verify_user':
-        await unblock();
+        await unblock(key);
         final req =
             await room.client.userDeviceKeys[key.userId].startVerification();
         req.onUpdate = () {
@@ -54,7 +56,7 @@ class ChatEncryptionSettingsController extends State<ChatEncryptionSettings> {
         setState(() => null);
         break;
       case 'unblock':
-        await unblock();
+        await unblock(key);
         setState(() => null);
         break;
     }

@@ -20,7 +20,7 @@ class SettingsNotificationsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(),
+        leading: const BackButton(),
         title: Text(L10n.of(context).notifications),
       ),
       body: MaxWidthBody(
@@ -56,11 +56,11 @@ class SettingsNotificationsView extends StatelessWidget {
                           backgroundColor:
                               Theme.of(context).scaffoldBackgroundColor,
                           foregroundColor: Colors.grey,
-                          child: Icon(Icons.edit_outlined),
+                          child: const Icon(Icons.edit_outlined),
                         ),
                         onTap: controller.openAndroidNotificationSettingsAction,
                       ),
-                    Divider(thickness: 1),
+                    const Divider(thickness: 1),
                     ListTile(
                       title: Text(
                         L10n.of(context).pushRules,
@@ -78,7 +78,7 @@ class SettingsNotificationsView extends StatelessWidget {
                             controller.setNotificationSetting(item, enabled),
                       ),
                   },
-                  Divider(thickness: 1),
+                  const Divider(thickness: 1),
                   ListTile(
                     title: Text(
                       L10n.of(context).devices,
@@ -99,13 +99,13 @@ class SettingsNotificationsView extends StatelessWidget {
                         );
                       }
                       if (snapshot.connectionState != ConnectionState.done) {
-                        Center(
+                        const Center(
                             child: CircularProgressIndicator.adaptive(
                                 strokeWidth: 2));
                       }
                       final pushers = snapshot.data ?? [];
                       return ListView.builder(
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemCount: pushers.length,
                         itemBuilder: (_, i) => ListTile(

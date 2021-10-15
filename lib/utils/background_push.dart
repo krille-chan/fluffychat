@@ -97,7 +97,9 @@ class BackgroundPush {
       {final void Function(String errorMsg, {Uri link}) onFcmError}) {
     final instance = BackgroundPush.clientOnly(_client);
     instance.context = _context;
+    // ignore: prefer_initializing_formals
     instance.router = router;
+    // ignore: prefer_initializing_formals
     instance.onFcmError = onFcmError;
     instance.fullInit();
     return instance;
@@ -301,7 +303,7 @@ class BackgroundPush {
     }
 
     // initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
-    final initializationSettingsAndroid =
+    const initializationSettingsAndroid =
         AndroidInitializationSettings('notifications_icon');
     final initializationSettingsIOS =
         IOSInitializationSettings(onDidReceiveLocalNotification: (i, a, b, c) {
@@ -596,11 +598,6 @@ class BackgroundPush {
     // load the locale
     await loadLocale();
 
-    // Count all unread events
-    var unreadEvents = 0;
-    client.rooms
-        .forEach((Room room) => unreadEvents += room.notificationCount ?? 0);
-
     // Calculate title
     final title = l10n.unreadMessages(room.notificationCount ?? 0);
 
@@ -645,7 +642,7 @@ class BackgroundPush {
       ),
       ticker: l10n.newMessageInFluffyChat,
     );
-    final iOSPlatformChannelSpecifics = IOSNotificationDetails();
+    const iOSPlatformChannelSpecifics = IOSNotificationDetails();
     final platformChannelSpecifics = NotificationDetails(
       android: androidPlatformChannelSpecifics,
       iOS: iOSPlatformChannelSpecifics,
@@ -681,7 +678,7 @@ class BackgroundPush {
 
       // Display notification
       final androidPlatformChannelSpecifics = _getAndroidNotificationDetails();
-      final iOSPlatformChannelSpecifics = IOSNotificationDetails();
+      const iOSPlatformChannelSpecifics = IOSNotificationDetails();
       final platformChannelSpecifics = NotificationDetails(
         android: androidPlatformChannelSpecifics,
         iOS: iOSPlatformChannelSpecifics,
@@ -702,7 +699,7 @@ class BackgroundPush {
   AndroidNotificationDetails _getAndroidNotificationDetails(
       {MessagingStyleInformation styleInformation, String ticker}) {
     final color = (context != null ? Theme.of(context).primaryColor : null) ??
-        Color(0xFF5625BA);
+        const Color(0xFF5625BA);
 
     return AndroidNotificationDetails(
       AppConfig.pushNotificationsChannelId,

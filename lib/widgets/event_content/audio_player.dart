@@ -132,10 +132,10 @@ class _AudioPlayerState extends State<AudioPlayerWidget> {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Container(
+        SizedBox(
           width: 30,
           child: status == AudioPlayerStatus.downloading
-              ? CircularProgressIndicator.adaptive(strokeWidth: 2)
+              ? const CircularProgressIndicator.adaptive(strokeWidth: 2)
               : IconButton(
                   icon: Icon(
                     audioPlayer.state == PlayerState.PLAYING
@@ -172,7 +172,7 @@ class _AudioPlayerState extends State<AudioPlayerWidget> {
             color: widget.color,
           ),
         ),
-        SizedBox(width: 8),
+        const SizedBox(width: 8),
         IconButton(
           icon: Icon(
             Icons.download_outlined,

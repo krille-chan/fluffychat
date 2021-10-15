@@ -2,6 +2,8 @@ import 'package:matrix/matrix.dart';
 import 'package:flutter/material.dart';
 
 class LogViewer extends StatefulWidget {
+  const LogViewer({Key key}) : super(key: key);
+
   @override
   _LogViewerState createState() => _LogViewerState();
 }
@@ -19,14 +21,14 @@ class _LogViewerState extends State<LogViewer> {
       backgroundColor: Colors.black,
       appBar: AppBar(
         title: Text(logLevel.toString()),
-        leading: BackButton(),
+        leading: const BackButton(),
         actions: [
           IconButton(
-            icon: Icon(Icons.zoom_in_outlined),
+            icon: const Icon(Icons.zoom_in_outlined),
             onPressed: () => setState(() => fontSize++),
           ),
           IconButton(
-            icon: Icon(Icons.zoom_out_outlined),
+            icon: const Icon(Icons.zoom_out_outlined),
             onPressed: () => setState(() => fontSize--),
           ),
           PopupMenuButton<Level>(

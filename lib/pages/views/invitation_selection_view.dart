@@ -24,7 +24,7 @@ class InvitationSelectionView extends StatelessWidget {
         leading: VRouter.of(context).path.startsWith('/spaces/')
             ? null
             : IconButton(
-                icon: Icon(Icons.close_outlined),
+                icon: const Icon(Icons.close_outlined),
                 onPressed: () => VRouter.of(context)
                     .toSegments(['rooms', controller.roomId]),
               ),
@@ -39,7 +39,7 @@ class InvitationSelectionView extends StatelessWidget {
         withScrolling: true,
         child: controller.foundProfiles.isNotEmpty
             ? ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemCount: controller.foundProfiles.length,
                 itemBuilder: (BuildContext context, int i) => ListTile(
@@ -61,13 +61,13 @@ class InvitationSelectionView extends StatelessWidget {
                 future: controller.getContacts(context),
                 builder: (BuildContext context, snapshot) {
                   if (!snapshot.hasData) {
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator.adaptive(strokeWidth: 2),
                     );
                   }
                   final contacts = snapshot.data;
                   return ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: contacts.length,
                     itemBuilder: (BuildContext context, int i) => ListTile(

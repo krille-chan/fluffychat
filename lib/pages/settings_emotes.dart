@@ -13,7 +13,7 @@ import '../widgets/matrix.dart';
 import '../utils/resize_image.dart';
 
 class EmotesSettings extends StatefulWidget {
-  EmotesSettings({Key key}) : super(key: key);
+  const EmotesSettings({Key key}) : super(key: key);
 
   @override
   EmotesSettingsController createState() => EmotesSettingsController();
@@ -80,13 +80,13 @@ class EmotesSettingsController extends State<EmotesSettings> {
     final content = client.accountData['im.ponies.emote_rooms']?.content ??
         <String, dynamic>{};
     if (active) {
-      if (!(content['rooms'] is Map)) {
+      if (content['rooms'] is! Map) {
         content['rooms'] = <String, dynamic>{};
       }
-      if (!(content['rooms'][room.id] is Map)) {
+      if (content['rooms'][room.id] is! Map) {
         content['rooms'][room.id] = <String, dynamic>{};
       }
-      if (!(content['rooms'][room.id][stateKey ?? ''] is Map)) {
+      if (content['rooms'][room.id][stateKey ?? ''] is! Map) {
         content['rooms'][room.id][stateKey ?? ''] = <String, dynamic>{};
       }
     } else if (content['rooms'] is Map && content['rooms'][room.id] is Map) {

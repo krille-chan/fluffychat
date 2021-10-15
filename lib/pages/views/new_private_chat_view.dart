@@ -21,7 +21,7 @@ class NewPrivateChatView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(),
+        leading: const BackButton(),
         title: Text(L10n.of(context).newChat),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0,
@@ -39,9 +39,9 @@ class NewPrivateChatView extends StatelessWidget {
         child: ListView(
           children: [
             Container(
-              margin: EdgeInsets.all(_qrCodePadding),
+              margin: const EdgeInsets.all(_qrCodePadding),
               alignment: Alignment.center,
-              padding: EdgeInsets.all(_qrCodePadding * 2),
+              padding: const EdgeInsets.all(_qrCodePadding * 2),
               child: InkWell(
                 onTap: controller.inviteAction,
                 borderRadius: BorderRadius.circular(12),
@@ -54,25 +54,25 @@ class NewPrivateChatView extends StatelessWidget {
                         'https://matrix.to/#/${Matrix.of(context).client.userID}',
                     version: QrVersions.auto,
                     size: min(MediaQuery.of(context).size.width - 16, 200),
-                    embeddedImage: AssetImage('assets/share.png'),
+                    embeddedImage: const AssetImage('assets/share.png'),
                     embeddedImageStyle: QrEmbeddedImageStyle(
-                      size: Size(48, 48),
+                      size: const Size(48, 48),
                     ),
                   ),
                 ),
               ),
             ),
-            Divider(),
+            const Divider(),
             ListTile(
               subtitle: Text(L10n.of(context).createNewChatExplaination),
-              trailing: Padding(
-                padding: const EdgeInsets.all(8.0),
+              trailing: const Padding(
+                padding: EdgeInsets.all(8.0),
                 child: Icon(Icons.info_outline_rounded),
               ),
             ),
-            Divider(),
+            const Divider(),
             Padding(
-              padding: EdgeInsets.all(12),
+              padding: const EdgeInsets.all(12),
               child: Form(
                 key: controller.formKey,
                 child: TextFormField(
@@ -86,7 +86,7 @@ class NewPrivateChatView extends StatelessWidget {
                     hintText: '@username',
                     prefixText: 'https://matrix.to/#/',
                     suffixIcon: IconButton(
-                      icon: Icon(Icons.send_outlined),
+                      icon: const Icon(Icons.send_outlined),
                       onPressed: controller.submitAction,
                     ),
                   ),
@@ -107,7 +107,7 @@ class NewPrivateChatView extends StatelessWidget {
           ? FloatingActionButton.extended(
               onPressed: controller.openScannerAction,
               label: Text(L10n.of(context).scanQrCode),
-              icon: Icon(Icons.camera_alt_outlined),
+              icon: const Icon(Icons.camera_alt_outlined),
             )
           : null,
     );

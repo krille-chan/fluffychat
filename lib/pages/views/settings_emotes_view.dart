@@ -20,13 +20,13 @@ class EmotesSettingsView extends StatelessWidget {
     final imageKeys = controller.pack.images.keys.toList();
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(),
+        leading: const BackButton(),
         title: Text(L10n.of(context).emoteSettings),
       ),
       floatingActionButton: controller.showSave
           ? FloatingActionButton(
               onPressed: controller.saveAction,
-              child: Icon(Icons.save_outlined, color: Colors.white),
+              child: const Icon(Icons.save_outlined, color: Colors.white),
             )
           : null,
       body: MaxWidthBody(
@@ -34,16 +34,16 @@ class EmotesSettingsView extends StatelessWidget {
           children: <Widget>[
             if (!controller.readonly)
               Container(
-                padding: EdgeInsets.symmetric(
+                padding: const EdgeInsets.symmetric(
                   vertical: 8.0,
                 ),
                 child: ListTile(
                   leading: Container(
                     width: 180.0,
                     height: 38,
-                    padding: EdgeInsets.symmetric(horizontal: 8),
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      borderRadius: const BorderRadius.all(Radius.circular(10)),
                       color: Theme.of(context).secondaryHeaderColor,
                     ),
                     child: TextField(
@@ -73,7 +73,7 @@ class EmotesSettingsView extends StatelessWidget {
                   ),
                   trailing: InkWell(
                     onTap: controller.addImageAction,
-                    child: Icon(
+                    child: const Icon(
                       Icons.add_outlined,
                       color: Colors.green,
                       size: 32.0,
@@ -99,10 +99,10 @@ class EmotesSettingsView extends StatelessWidget {
               child: imageKeys.isEmpty
                   ? Center(
                       child: Padding(
-                        padding: EdgeInsets.all(16),
+                        padding: const EdgeInsets.all(16),
                         child: Text(
                           L10n.of(context).noEmotesFound,
-                          style: TextStyle(fontSize: 20),
+                          style: const TextStyle(fontSize: 20),
                         ),
                       ),
                     )
@@ -124,10 +124,10 @@ class EmotesSettingsView extends StatelessWidget {
                           leading: Container(
                             width: 180.0,
                             height: 38,
-                            padding: EdgeInsets.symmetric(horizontal: 8),
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
                             decoration: BoxDecoration(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
+                                  const BorderRadius.all(Radius.circular(10)),
                               color: Theme.of(context).secondaryHeaderColor,
                             ),
                             child: Shortcuts(
@@ -193,7 +193,7 @@ class EmotesSettingsView extends StatelessWidget {
                               : InkWell(
                                   onTap: () =>
                                       controller.removeImageAction(imageCode),
-                                  child: Icon(
+                                  child: const Icon(
                                     Icons.delete_forever_outlined,
                                     color: Colors.red,
                                     size: 32.0,
@@ -212,11 +212,11 @@ class EmotesSettingsView extends StatelessWidget {
 
 class _EmoteImage extends StatelessWidget {
   final Uri mxc;
-  _EmoteImage(this.mxc);
+  const _EmoteImage(this.mxc);
 
   @override
   Widget build(BuildContext context) {
-    final size = 38.0;
+    const size = 38.0;
     final devicePixelRatio = MediaQuery.of(context).devicePixelRatio;
     final url = mxc?.getThumbnail(
       Matrix.of(context).client,
@@ -238,7 +238,7 @@ class _ImagePicker extends StatefulWidget {
 
   final void Function(ValueNotifier<ImagePackImageContent>) onPressed;
 
-  _ImagePicker({@required this.controller, @required this.onPressed});
+  const _ImagePicker({@required this.controller, @required this.onPressed});
 
   @override
   _ImagePickerState createState() => _ImagePickerState();

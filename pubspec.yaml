@@ -4,7 +4,7 @@ publish_to: none
 version: 0.42.0+1486
 
 environment:
-  sdk: ">=2.6.0 <3.0.0"
+  sdk: ">=2.11.0 <3.0.0"
 
 dependencies:
   adaptive_dialog: ^1.1.0
@@ -75,10 +75,10 @@ dependencies:
 
 dev_dependencies:
   dapackages: ^1.6.0
+  flutter_lints: ^1.0.4
   flutter_native_splash: ^1.2.4
   flutter_test:
     sdk: flutter
-  pedantic: ^1.11.1
 
 flutter_native_splash:
   color: "#ffffff"

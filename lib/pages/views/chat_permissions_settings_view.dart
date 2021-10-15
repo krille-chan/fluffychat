@@ -21,7 +21,7 @@ class ChatPermissionsSettingsView extends StatelessWidget {
         leading: VRouter.of(context).path.startsWith('/spaces/')
             ? null
             : IconButton(
-                icon: Icon(Icons.close_outlined),
+                icon: const Icon(Icons.close_outlined),
                 onPressed: () => VRouter.of(context)
                     .toSegments(['rooms', controller.roomId]),
               ),
@@ -37,10 +37,10 @@ class ChatPermissionsSettingsView extends StatelessWidget {
             final powerLevelsContent = Map<String, dynamic>.from(
                 room.getState(EventTypes.RoomPowerLevels).content);
             final powerLevels = Map<String, dynamic>.from(powerLevelsContent)
-              ..removeWhere((k, v) => !(v is int));
+              ..removeWhere((k, v) => v is! int);
             final eventsPowerLevels =
                 Map<String, dynamic>.from(powerLevelsContent['events'] ?? {})
-                  ..removeWhere((k, v) => !(v is int));
+                  ..removeWhere((k, v) => v is! int);
             return Column(
               children: [
                 Column(
@@ -53,7 +53,7 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                         onTap: () => controller.editPowerLevel(
                             context, entry.key, entry.value),
                       ),
-                    Divider(thickness: 1),
+                    const Divider(thickness: 1),
                     ListTile(
                       title: Text(
                         L10n.of(context).notifications,
@@ -64,7 +64,7 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                       ),
                     ),
                     Builder(builder: (context) {
-                      final key = 'rooms';
+                      const key = 'rooms';
                       final int value = powerLevelsContent
                               .containsKey('notifications')
                           ? powerLevelsContent['notifications']['rooms'] ?? 0
@@ -78,7 +78,7 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                             category: 'notifications'),
                       );
                     }),
-                    Divider(thickness: 1),
+                    const Divider(thickness: 1),
                     ListTile(
                       title: Text(
                         L10n.of(context).configureChat,
@@ -99,12 +99,12 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                               category: 'events'),
                         ),
                     if (room.canSendEvent(EventTypes.RoomTombstone)) ...{
-                      Divider(thickness: 1),
+                      const Divider(thickness: 1),
                       FutureBuilder<Capabilities>(
                         future: room.client.getCapabilities(),
                         builder: (context, snapshot) {
                           if (!snapshot.hasData) {
-                            return Center(
+                            return const Center(
                                 child: CircularProgressIndicator.adaptive(
                                     strokeWidth: 2));
                           }

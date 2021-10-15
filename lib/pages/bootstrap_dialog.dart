@@ -71,8 +71,8 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
     _wipe ??= widget.wipe;
     final buttons = <AdaptiveFlatButton>[];
     Widget body = PlatformInfos.isCupertinoStyle
-        ? CupertinoActivityIndicator()
-        : LinearProgressIndicator();
+        ? const CupertinoActivityIndicator()
+        : const LinearProgressIndicator();
     titleText = L10n.of(context).loadingPleaseWait;
 
     if (bootstrap == null) {
@@ -96,7 +96,7 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
         appBar: AppBar(
           centerTitle: true,
           leading: IconButton(
-            icon: Icon(Icons.close),
+            icon: const Icon(Icons.close),
             onPressed: Navigator.of(context).pop,
           ),
           title: Text(L10n.of(context).securityKey),
@@ -104,7 +104,7 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
         body: Center(
           child: ConstrainedBox(
             constraints:
-                BoxConstraints(maxWidth: FluffyThemes.columnWidth * 1.5),
+                const BoxConstraints(maxWidth: FluffyThemes.columnWidth * 1.5),
             child: ListView(
               padding: const EdgeInsets.all(16.0),
               children: [
@@ -116,7 +116,7 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
                 ),
                 const SizedBox(height: 16),
                 ElevatedButton.icon(
-                  icon: Icon(Icons.copy_outlined),
+                  icon: const Icon(Icons.copy_outlined),
                   label: Text(L10n.of(context).copyToClipboard),
                   onPressed: () => Clipboard.setData(ClipboardData(text: key)),
                 ),
@@ -126,7 +126,7 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
                     primary: Theme.of(context).secondaryHeaderColor,
                     onPrimary: Theme.of(context).primaryColor,
                   ),
-                  icon: Icon(Icons.check_outlined),
+                  icon: const Icon(Icons.check_outlined),
                   label: Text(L10n.of(context).iWroteDownTheKey),
                   onPressed: () => setState(() => _recoveryKeyStored = true),
                 ),
@@ -170,7 +170,7 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
             appBar: AppBar(
               centerTitle: true,
               leading: IconButton(
-                icon: Icon(Icons.close),
+                icon: const Icon(Icons.close),
                 onPressed: Navigator.of(context).pop,
               ),
               title: Text(L10n.of(context).pleaseEnterSecurityKey),
@@ -178,7 +178,7 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
             body: Center(
               child: ConstrainedBox(
                 constraints:
-                    BoxConstraints(maxWidth: FluffyThemes.columnWidth * 1.5),
+                    const BoxConstraints(maxWidth: FluffyThemes.columnWidth * 1.5),
                 child: ListView(
                   padding: const EdgeInsets.all(16.0),
                   children: [
@@ -199,7 +199,7 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
                     ),
                     const SizedBox(height: 16),
                     ElevatedButton.icon(
-                        icon: Icon(Icons.lock_open_outlined),
+                        icon: const Icon(Icons.lock_open_outlined),
                         label: Text(L10n.of(context).unlockChatBackup),
                         onPressed: () async {
                           setState(() {
@@ -222,12 +222,12 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
                         }),
                     const SizedBox(height: 16),
                     Row(children: [
-                      Expanded(child: Divider()),
+                      const Expanded(child: Divider()),
                       Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: Text(L10n.of(context).or),
                       ),
-                      Expanded(child: Divider()),
+                      const Expanded(child: Divider()),
                     ]),
                     const SizedBox(height: 16),
                     ElevatedButton.icon(
@@ -235,7 +235,7 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
                         primary: Theme.of(context).secondaryHeaderColor,
                         onPrimary: Theme.of(context).primaryColor,
                       ),
-                      icon: Icon(Icons.transfer_within_a_station_outlined),
+                      icon: const Icon(Icons.transfer_within_a_station_outlined),
                       label: Text(L10n.of(context).transferFromAnotherDevice),
                       onPressed: () async {
                         final req = await showFutureLoadingDialog(
@@ -256,7 +256,7 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
                         primary: Theme.of(context).secondaryHeaderColor,
                         onPrimary: Colors.red,
                       ),
-                      icon: Icon(Icons.delete_outlined),
+                      icon: const Icon(Icons.delete_outlined),
                       label: Text(L10n.of(context).securityKeyLost),
                       onPressed: () async {
                         if (OkCancelResult.ok ==
@@ -305,7 +305,7 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
           break;
         case BootstrapState.error:
           titleText = L10n.of(context).oopsSomethingWentWrong;
-          body = Icon(Icons.error_outline, color: Colors.red, size: 40);
+          body = const Icon(Icons.error_outline, color: Colors.red, size: 40);
           buttons.add(AdaptiveFlatButton(
             label: L10n.of(context).close,
             onPressed: () =>

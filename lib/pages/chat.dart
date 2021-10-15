@@ -37,7 +37,7 @@ import '../utils/account_bundles.dart';
 class Chat extends StatefulWidget {
   final Widget sideView;
 
-  Chat({Key key, this.sideView}) : super(key: key);
+  const Chat({Key key, this.sideView}) : super(key: key);
 
   @override
   ChatController createState() => ChatController();
@@ -269,7 +269,7 @@ class ChatController extends State<Chat> {
         parseCommands: parseCommands);
     sendController.value = TextEditingValue(
       text: pendingText,
-      selection: TextSelection.collapsed(offset: 0),
+      selection: const TextSelection.collapsed(offset: 0),
     );
 
     setState(() {
@@ -360,7 +360,7 @@ class ChatController extends State<Chat> {
     final result = await showDialog<String>(
       context: context,
       useRootNavigator: false,
-      builder: (c) => RecordingDialog(),
+      builder: (c) => const RecordingDialog(),
     );
     if (result == null) return;
     final audioFile = File(result);
@@ -705,11 +705,11 @@ class ChatController extends State<Chat> {
 
   int findChildIndexCallback(Key key, Map<String, int> thisEventsKeyMap) {
     // this method is called very often. As such, it has to be optimized for speed.
-    if (!(key is ValueKey)) {
+    if (key is! ValueKey) {
       return null;
     }
     final eventId = (key as ValueKey).value;
-    if (!(eventId is String)) {
+    if (eventId is! String) {
       return null;
     }
     // first fetch the last index the event was at
@@ -764,18 +764,18 @@ class ChatController extends State<Chat> {
       }
     }
     typingCoolDown?.cancel();
-    typingCoolDown = Timer(Duration(seconds: 2), () {
+    typingCoolDown = Timer(const Duration(seconds: 2), () {
       typingCoolDown = null;
       currentlyTyping = false;
       room.setTyping(false);
     });
-    typingTimeout ??= Timer(Duration(seconds: 30), () {
+    typingTimeout ??= Timer(const Duration(seconds: 30), () {
       typingTimeout = null;
       currentlyTyping = false;
     });
     if (!currentlyTyping) {
       currentlyTyping = true;
-      room.setTyping(true, timeout: Duration(seconds: 30).inMilliseconds);
+      room.setTyping(true, timeout: const Duration(seconds: 30).inMilliseconds);
     }
     setState(() => inputText = text);
   }

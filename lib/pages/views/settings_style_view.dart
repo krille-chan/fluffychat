@@ -17,7 +17,7 @@ class SettingsStyleView extends StatelessWidget {
     controller.currentTheme ??= AdaptiveTheme.of(context).mode;
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(),
+        leading: const BackButton(),
         title: Text(L10n.of(context).changeTheme),
       ),
       body: MaxWidthBody(
@@ -42,7 +42,7 @@ class SettingsStyleView extends StatelessWidget {
               title: Text(L10n.of(context).darkTheme),
               onChanged: controller.switchTheme,
             ),
-            Divider(height: 1),
+            const Divider(height: 1),
             ListTile(
               title: Text(
                 L10n.of(context).wallpaper,
@@ -59,7 +59,7 @@ class SettingsStyleView extends StatelessWidget {
                   height: 38,
                   fit: BoxFit.cover,
                 ),
-                trailing: Icon(
+                trailing: const Icon(
                   Icons.delete_forever_outlined,
                   color: Colors.red,
                 ),
@@ -68,11 +68,11 @@ class SettingsStyleView extends StatelessWidget {
             Builder(builder: (context) {
               return ListTile(
                 title: Text(L10n.of(context).changeWallpaper),
-                trailing: Icon(Icons.wallpaper_outlined),
+                trailing: const Icon(Icons.wallpaper_outlined),
                 onTap: controller.setWallpaperAction,
               );
             }),
-            Divider(height: 1),
+            const Divider(height: 1),
             ListTile(
               title: Text(
                 L10n.of(context).fontSize,

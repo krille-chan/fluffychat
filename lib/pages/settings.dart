@@ -16,6 +16,8 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import '../widgets/matrix.dart';
 
 class Settings extends StatefulWidget {
+  const Settings({Key key}) : super(key: key);
+
   @override
   SettingsController createState() => SettingsController();
 }
@@ -117,7 +119,7 @@ class SettingsController extends State<Settings> {
           context: context,
           future: () async {
             // make sure the loading spinner shows before we test the keys
-            await Future.delayed(Duration(milliseconds: 100));
+            await Future.delayed(const Duration(milliseconds: 100));
             var valid = false;
             try {
               await handle.unlock(recoveryKey: input.single);

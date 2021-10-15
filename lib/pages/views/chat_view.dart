@@ -66,7 +66,7 @@ class ChatView extends StatelessWidget {
       },
       child: StreamBuilder(
         stream: controller.room.onUpdate.stream
-            .rateLimit(Duration(milliseconds: 250)),
+            .rateLimit(const Duration(milliseconds: 250)),
         builder: (context, snapshot) => Scaffold(
           appBar: AppBar(
             actionsIconTheme: IconThemeData(
@@ -76,7 +76,7 @@ class ChatView extends StatelessWidget {
             ),
             leading: controller.selectMode
                 ? IconButton(
-                    icon: Icon(Icons.close),
+                    icon: const Icon(Icons.close),
                     onPressed: controller.clearSelectedEvents,
                     tooltip: L10n.of(context).close,
                     color: Theme.of(context).colorScheme.primary,
@@ -117,7 +117,7 @@ class ChatView extends StatelessWidget {
                                 .where((p) =>
                                     p.senderId ==
                                     controller.room.directChatMatrixID)
-                                .rateLimit(Duration(seconds: 1)),
+                                .rateLimit(const Duration(seconds: 1)),
                             builder: (context, snapshot) => Text(
                                   controller.room.getLocalizedStatus(context),
                                   maxLines: 1,
@@ -129,7 +129,7 @@ class ChatView extends StatelessWidget {
                                   color:
                                       Theme.of(context).colorScheme.secondary,
                                   size: 13),
-                              SizedBox(width: 4),
+                              const SizedBox(width: 4),
                               Expanded(
                                 child: Text(
                                   controller.room
@@ -150,24 +150,24 @@ class ChatView extends StatelessWidget {
                 ? <Widget>[
                     if (controller.canEditSelectedEvents)
                       IconButton(
-                        icon: Icon(Icons.edit_outlined),
+                        icon: const Icon(Icons.edit_outlined),
                         tooltip: L10n.of(context).edit,
                         onPressed: controller.editSelectedEventAction,
                       ),
                     IconButton(
-                      icon: Icon(Icons.copy_outlined),
+                      icon: const Icon(Icons.copy_outlined),
                       tooltip: L10n.of(context).copy,
                       onPressed: controller.copyEventsAction,
                     ),
                     if (controller.selectedEvents.length == 1)
                       IconButton(
-                        icon: Icon(Icons.report_outlined),
+                        icon: const Icon(Icons.report_outlined),
                         tooltip: L10n.of(context).reportMessage,
                         onPressed: controller.reportEventAction,
                       ),
                     if (controller.canRedactSelectedEvents)
                       IconButton(
-                        icon: Icon(Icons.delete_outlined),
+                        icon: const Icon(Icons.delete_outlined),
                         tooltip: L10n.of(context).redactMessage,
                         onPressed: controller.redactEventsAction,
                       ),
@@ -176,7 +176,7 @@ class ChatView extends StatelessWidget {
                     if (controller.room.canSendDefaultStates)
                       IconButton(
                         tooltip: L10n.of(context).videoCall,
-                        icon: Icon(Icons.video_call_outlined),
+                        icon: const Icon(Icons.video_call_outlined),
                         onPressed: controller.startCallAction,
                       ),
                     ChatSettingsPopupMenu(
@@ -211,7 +211,7 @@ class ChatView extends StatelessWidget {
                   children: <Widget>[
                     if (controller.room.getState(EventTypes.RoomTombstone) !=
                         null)
-                      Container(
+                      SizedBox(
                         height: 72,
                         child: Material(
                           color: Theme.of(context).secondaryHeaderColor,
@@ -222,7 +222,7 @@ class ChatView extends StatelessWidget {
                                   Theme.of(context).colorScheme.secondary,
                               backgroundColor:
                                   Theme.of(context).backgroundColor,
-                              child: Icon(Icons.upgrade_outlined),
+                              child: const Icon(Icons.upgrade_outlined),
                             ),
                             title: Text(
                               controller.room
@@ -242,7 +242,7 @@ class ChatView extends StatelessWidget {
                         future: controller.getTimeline(),
                         builder: (BuildContext context, snapshot) {
                           if (controller.timeline == null) {
-                            return Center(
+                            return const Center(
                               child: CircularProgressIndicator.adaptive(
                                   strokeWidth: 2),
                             );
@@ -266,7 +266,7 @@ class ChatView extends StatelessWidget {
                           );
 
                           return ListView.custom(
-                            padding: EdgeInsets.only(
+                            padding: const EdgeInsets.only(
                               top: 16,
                               bottom: 4,
                             ),
@@ -279,7 +279,7 @@ class ChatView extends StatelessWidget {
                               (BuildContext context, int i) {
                                 return i == controller.filteredEvents.length + 1
                                     ? controller.timeline.isRequestingHistory
-                                        ? Center(
+                                        ? const Center(
                                             child: CircularProgressIndicator
                                                 .adaptive(strokeWidth: 2),
                                           )
@@ -303,8 +303,8 @@ class ChatView extends StatelessWidget {
                                         ? AnimatedContainer(
                                             height: seenByText.isEmpty ? 0 : 24,
                                             duration: seenByText.isEmpty
-                                                ? Duration(milliseconds: 0)
-                                                : Duration(milliseconds: 300),
+                                                ? const Duration(milliseconds: 0)
+                                                : const Duration(milliseconds: 300),
                                             alignment: controller.filteredEvents
                                                         .isNotEmpty &&
                                                     controller.filteredEvents
@@ -312,13 +312,13 @@ class ChatView extends StatelessWidget {
                                                         client.userID
                                                 ? Alignment.topRight
                                                 : Alignment.topLeft,
-                                            padding: EdgeInsets.only(
+                                            padding: const EdgeInsets.only(
                                               left: 8,
                                               right: 8,
                                               bottom: 8,
                                             ),
                                             child: Container(
-                                              padding: EdgeInsets.symmetric(
+                                              padding: const EdgeInsets.symmetric(
                                                   horizontal: 4),
                                               decoration: BoxDecoration(
                                                 color: Theme.of(context)
@@ -349,7 +349,7 @@ class ChatView extends StatelessWidget {
                                               key: ValueKey(controller
                                                   .filteredEvents[i - 1]
                                                   .eventId),
-                                              background: Padding(
+                                              background: const Padding(
                                                 padding: EdgeInsets.symmetric(
                                                     horizontal: 12.0),
                                                 child: Center(
@@ -409,10 +409,10 @@ class ChatView extends StatelessWidget {
                         },
                       ),
                     ),
-                    ConnectionStatusHeader(),
+                    const ConnectionStatusHeader(),
                     if (!controller.showEmojiPicker)
                       AnimatedContainer(
-                        duration: Duration(milliseconds: 300),
+                        duration: const Duration(milliseconds: 300),
                         height: (controller.editEvent == null &&
                                 controller.replyEvent == null &&
                                 controller.room.canSendDefaultMessages &&
@@ -437,12 +437,12 @@ class ChatView extends StatelessWidget {
                                         event.room.client.userID &&
                                     event.type == 'm.reaction');
 
-                            allReactionEvents.forEach((event) {
+                            for (final event in allReactionEvents) {
                               try {
                                 emojis.remove(
                                     event.content['m.relates_to']['key']);
                               } catch (_) {}
-                            });
+                            }
                             return ListView.builder(
                               scrollDirection: Axis.horizontal,
                               itemCount: emojis.length + 1,
@@ -455,7 +455,7 @@ class ChatView extends StatelessWidget {
                                         width: 56,
                                         height: 56,
                                         alignment: Alignment.center,
-                                        child: Icon(Icons.add_outlined),
+                                        child: const Icon(Icons.add_outlined),
                                       ),
                                     )
                                   : InkWell(
@@ -468,7 +468,7 @@ class ChatView extends StatelessWidget {
                                         alignment: Alignment.center,
                                         child: Text(
                                           emojis[i],
-                                          style: TextStyle(fontSize: 30),
+                                          style: const TextStyle(fontSize: 30),
                                         ),
                                       ),
                                     ),
@@ -477,7 +477,7 @@ class ChatView extends StatelessWidget {
                         ),
                       ),
                     AnimatedContainer(
-                      duration: Duration(milliseconds: 300),
+                      duration: const Duration(milliseconds: 300),
                       height: controller.editEvent != null ||
                               controller.replyEvent != null
                           ? 56
@@ -488,7 +488,7 @@ class ChatView extends StatelessWidget {
                           children: <Widget>[
                             IconButton(
                               tooltip: L10n.of(context).close,
-                              icon: Icon(Icons.close),
+                              icon: const Icon(Icons.close),
                               onPressed: controller.cancelReplyEventAction,
                             ),
                             Expanded(
@@ -502,7 +502,7 @@ class ChatView extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Divider(height: 1),
+                    const Divider(height: 1),
                     if (controller.room.canSendDefaultMessages &&
                         controller.room.membership == Membership.join &&
                         !controller.showEmojiPicker)
@@ -515,13 +515,13 @@ class ChatView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: controller.selectMode
                               ? <Widget>[
-                                  Container(
+                                  SizedBox(
                                     height: 56,
                                     child: TextButton(
                                       onPressed: controller.forwardEventsAction,
                                       child: Row(
                                         children: <Widget>[
-                                          Icon(Icons
+                                          const Icon(Icons
                                               .keyboard_arrow_left_outlined),
                                           Text(L10n.of(context).forward),
                                         ],
@@ -534,7 +534,7 @@ class ChatView extends StatelessWidget {
                                                       controller.timeline)
                                                   .status >
                                               0
-                                          ? Container(
+                                          ? SizedBox(
                                               height: 56,
                                               child: TextButton(
                                                 onPressed:
@@ -543,13 +543,13 @@ class ChatView extends StatelessWidget {
                                                   children: <Widget>[
                                                     Text(
                                                         L10n.of(context).reply),
-                                                    Icon(Icons
+                                                    const Icon(Icons
                                                         .keyboard_arrow_right),
                                                   ],
                                                 ),
                                               ),
                                             )
-                                          : Container(
+                                          : SizedBox(
                                               height: 56,
                                               child: TextButton(
                                                 onPressed:
@@ -558,8 +558,8 @@ class ChatView extends StatelessWidget {
                                                   children: <Widget>[
                                                     Text(L10n.of(context)
                                                         .tryToSendAgain),
-                                                    SizedBox(width: 4),
-                                                    Icon(Icons.send_outlined,
+                                                    const SizedBox(width: 4),
+                                                    const Icon(Icons.send_outlined,
                                                         size: 16),
                                                   ],
                                                 ),
@@ -569,15 +569,15 @@ class ChatView extends StatelessWidget {
                                 ]
                               : <Widget>[
                                   AnimatedContainer(
-                                    duration: Duration(milliseconds: 200),
+                                    duration: const Duration(milliseconds: 200),
                                     height: 56,
                                     width:
                                         controller.inputText.isEmpty ? 56 : 0,
                                     alignment: Alignment.center,
                                     clipBehavior: Clip.hardEdge,
-                                    decoration: BoxDecoration(),
+                                    decoration: const BoxDecoration(),
                                     child: PopupMenuButton<String>(
-                                      icon: Icon(Icons.add_outlined),
+                                      icon: const Icon(Icons.add_outlined),
                                       onSelected: controller
                                           .onAddPopupMenuButtonSelected,
                                       itemBuilder: (BuildContext context) =>
@@ -585,7 +585,7 @@ class ChatView extends StatelessWidget {
                                         PopupMenuItem<String>(
                                           value: 'file',
                                           child: ListTile(
-                                            leading: CircleAvatar(
+                                            leading: const CircleAvatar(
                                               backgroundColor: Colors.green,
                                               foregroundColor: Colors.white,
                                               child: Icon(
@@ -593,27 +593,27 @@ class ChatView extends StatelessWidget {
                                             ),
                                             title:
                                                 Text(L10n.of(context).sendFile),
-                                            contentPadding: EdgeInsets.all(0),
+                                            contentPadding: const EdgeInsets.all(0),
                                           ),
                                         ),
                                         PopupMenuItem<String>(
                                           value: 'image',
                                           child: ListTile(
-                                            leading: CircleAvatar(
+                                            leading: const CircleAvatar(
                                               backgroundColor: Colors.blue,
                                               foregroundColor: Colors.white,
                                               child: Icon(Icons.image_outlined),
                                             ),
                                             title: Text(
                                                 L10n.of(context).sendImage),
-                                            contentPadding: EdgeInsets.all(0),
+                                            contentPadding: const EdgeInsets.all(0),
                                           ),
                                         ),
                                         if (PlatformInfos.isMobile)
                                           PopupMenuItem<String>(
                                             value: 'camera',
                                             child: ListTile(
-                                              leading: CircleAvatar(
+                                              leading: const CircleAvatar(
                                                 backgroundColor: Colors.purple,
                                                 foregroundColor: Colors.white,
                                                 child: Icon(
@@ -621,7 +621,7 @@ class ChatView extends StatelessWidget {
                                               ),
                                               title: Text(
                                                   L10n.of(context).openCamera),
-                                              contentPadding: EdgeInsets.all(0),
+                                              contentPadding: const EdgeInsets.all(0),
                                             ),
                                           ),
                                         if (controller.room
@@ -631,7 +631,7 @@ class ChatView extends StatelessWidget {
                                           PopupMenuItem<String>(
                                             value: 'sticker',
                                             child: ListTile(
-                                              leading: CircleAvatar(
+                                              leading: const CircleAvatar(
                                                 backgroundColor: Colors.orange,
                                                 foregroundColor: Colors.white,
                                                 child: Icon(Icons
@@ -639,14 +639,14 @@ class ChatView extends StatelessWidget {
                                               ),
                                               title: Text(
                                                   L10n.of(context).sendSticker),
-                                              contentPadding: EdgeInsets.all(0),
+                                              contentPadding: const EdgeInsets.all(0),
                                             ),
                                           ),
                                         if (PlatformInfos.isMobile)
                                           PopupMenuItem<String>(
                                             value: 'voice',
                                             child: ListTile(
-                                              leading: CircleAvatar(
+                                              leading: const CircleAvatar(
                                                 backgroundColor: Colors.red,
                                                 foregroundColor: Colors.white,
                                                 child: Icon(
@@ -654,14 +654,14 @@ class ChatView extends StatelessWidget {
                                               ),
                                               title: Text(L10n.of(context)
                                                   .voiceMessage),
-                                              contentPadding: EdgeInsets.all(0),
+                                              contentPadding: const EdgeInsets.all(0),
                                             ),
                                           ),
                                         if (PlatformInfos.isMobile)
                                           PopupMenuItem<String>(
                                             value: 'location',
                                             child: ListTile(
-                                              leading: CircleAvatar(
+                                              leading: const CircleAvatar(
                                                 backgroundColor: Colors.brown,
                                                 foregroundColor: Colors.white,
                                                 child: Icon(
@@ -669,7 +669,7 @@ class ChatView extends StatelessWidget {
                                               ),
                                               title: Text(L10n.of(context)
                                                   .shareLocation),
-                                              contentPadding: EdgeInsets.all(0),
+                                              contentPadding: const EdgeInsets.all(0),
                                             ),
                                           ),
                                       ],
@@ -725,7 +725,7 @@ class ChatView extends StatelessWidget {
                                       alignment: Alignment.center,
                                       child: IconButton(
                                         tooltip: L10n.of(context).voiceMessage,
-                                        icon: Icon(Icons.mic_none_outlined),
+                                        icon: const Icon(Icons.mic_none_outlined),
                                         onPressed:
                                             controller.voiceMessageAction,
                                       ),
@@ -736,7 +736,7 @@ class ChatView extends StatelessWidget {
                                       height: 56,
                                       alignment: Alignment.center,
                                       child: IconButton(
-                                        icon: Icon(Icons.send_outlined),
+                                        icon: const Icon(Icons.send_outlined),
                                         onPressed: controller.send,
                                         tooltip: L10n.of(context).send,
                                       ),
@@ -745,7 +745,7 @@ class ChatView extends StatelessWidget {
                         ),
                       ),
                     AnimatedContainer(
-                      duration: Duration(milliseconds: 300),
+                      duration: const Duration(milliseconds: 300),
                       height: controller.showEmojiPicker
                           ? MediaQuery.of(context).size.height / 2
                           : 0,
@@ -770,7 +770,7 @@ class ChatView extends StatelessWidget {
 class _EditContent extends StatelessWidget {
   final Event event;
 
-  _EditContent(this.event);
+  const _EditContent(this.event);
 
   @override
   Widget build(BuildContext context) {
@@ -840,7 +840,7 @@ class _ChatAccountPicker extends StatelessWidget {
                         ),
                         title:
                             Text(snapshot.data?.displayName ?? client.userID),
-                        contentPadding: EdgeInsets.all(0),
+                        contentPadding: const EdgeInsets.all(0),
                       ),
                     ),
                   ))

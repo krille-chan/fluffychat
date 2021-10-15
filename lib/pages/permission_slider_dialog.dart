@@ -63,7 +63,7 @@ class _PermissionSliderDialogState extends State<PermissionSliderDialog> {
                 : _permission >= 50
                     ? '$_permission (${L10n.of(context).moderator})'
                     : _permission.toString())),
-        Container(
+        SizedBox(
           height: 56,
           child: slider,
         ),
