@@ -28,7 +28,7 @@ class _RecordingDialogState extends State<RecordingDialog> {
   final _audioRecorder = Record();
   Amplitude _amplitude;
 
-  void startRecording() async {
+  Future<void> startRecording() async {
     try {
       final tempDir = await getTemporaryDirectory();
       _recordedPath =

@@ -92,6 +92,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
         if (token != null) _loginWithToken(token);
       });
     }
+    checkHomeserverAction();
   }
 
   @override
@@ -104,7 +105,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   /// makes sure that it is prefixed with https. Then it searches for the
   /// well-known information and forwards to the login page depending on the
   /// login type.
-  void checkHomeserverAction() async {
+  Future<void> checkHomeserverAction() async {
     _coolDown?.cancel();
     try {
       if (domain.isEmpty) throw L10n.of(context).changeTheHomeserver;
@@ -220,15 +221,9 @@ class HomeserverPickerController extends State<HomeserverPicker> {
 
   void signUpAction() => VRouter.of(context).to('signup');
 
-  bool _initialized = false;
-
   @override
   Widget build(BuildContext context) {
     Matrix.of(context).navigatorContext = context;
-    if (!_initialized) {
-      _initialized = true;
-      checkHomeserverAction();
-    }
     return HomeserverPickerView(this);
   }
 }

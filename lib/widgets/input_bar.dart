@@ -221,7 +221,8 @@ class InputBar extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('/' + command, style: const TextStyle(fontFamily: 'monospace')),
+            Text('/' + command,
+                style: const TextStyle(fontFamily: 'monospace')),
             Text(_commandHint(L10n.of(context), command),
                 style: Theme.of(context).textTheme.caption),
           ],
@@ -291,7 +292,7 @@ class InputBar extends StatelessWidget {
     return Container();
   }
 
-  void insertSuggestion(BuildContext context, Map<String, String> suggestion) {
+  void insertSuggestion(_, Map<String, String> suggestion) {
     final replaceText =
         controller.text.substring(0, controller.selection.baseOffset);
     var startText = '';

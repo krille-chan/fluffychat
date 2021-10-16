@@ -74,6 +74,7 @@ dependencies:
 
 dev_dependencies:
   dapackages: ^1.6.0
+  dart_code_metrics: ^4.2.0-dev.3
   flutter_lints: ^1.0.4
   flutter_native_splash: ^1.2.4
   flutter_test:

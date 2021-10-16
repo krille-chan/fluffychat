@@ -6,8 +6,10 @@ import 'package:native_imaging/native_imaging.dart' as native;
 
 import 'run_in_background.dart';
 
+const int defaultMax = 800;
+
 Future<MatrixImageFile> resizeImage(MatrixImageFile file,
-    {int max = 800}) async {
+    {int max = defaultMax}) async {
   // we want to resize the image in a separate isolate, because otherwise that can
   // freeze up the UI a bit
 

@@ -601,7 +601,7 @@ class ChatController extends State<Chat> {
 
   void scrollDown() => scrollController.jumpTo(0);
 
-  void onEmojiSelected(category, emoji) {
+  void onEmojiSelected(_, emoji) {
     setState(() => showEmojiPicker = false);
     if (emoji == null) return;
     // make sure we don't send the same emoji twice
@@ -721,7 +721,7 @@ class ChatController extends State<Chat> {
     return index + 1;
   }
 
-  void onInputBarSubmitted(String text) {
+  void onInputBarSubmitted(_) {
     send();
     FocusScope.of(context).requestFocus(inputFocus);
   }

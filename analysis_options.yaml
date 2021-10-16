@@ -15,3 +15,37 @@ analyzer:
   exclude:
     - lib/generated_plugin_registrant.dart
     - lib/l10n/*.dart
+
+dart_code_metrics:
+  metrics:
+    cyclomatic-complexity: 20
+    number-of-arguments: 4
+    maximum-nesting-level: 5
+    source-lines-of-code: 50
+    maintainability-index: 40
+  rules:
+    - no-boolean-literal-compare
+    - no-empty-block
+    - prefer-conditional-expressions
+    - no-equal-then-else
+    - no-magic-number:
+        severity: style
+    - avoid-late-keyword:
+        severity: style
+    - avoid-non-null-assertion:
+        severity: style
+    - avoid-unused-parameters
+    - binary-expression-operand-order
+    - avoid-unnecessary-setstate
+    - avoid-wrapping-in-padding
+    - prefer-const-border-radius
+    - prefer-single-widget-per-file:
+        ignore-private-widgets: true
+    - prefer-extracting-callbacks
+  metrics-exclude:
+    - test/**
+  rules-exclude:
+    - test/**
+  anti-patterns:
+    - long-method
+    - long-parameter-list

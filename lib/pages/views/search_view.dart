@@ -63,8 +63,9 @@ class SearchView extends StatelessWidget {
               .toLowerCase()
               .contains(controller.controller.text.toLowerCase()),
     );
+    const tabCount = 3;
     return DefaultTabController(
-      length: 3,
+      length: tabCount,
       initialIndex:
           controller.controller.text?.startsWith('#') ?? false ? 0 : 1,
       child: Scaffold(
@@ -171,7 +172,8 @@ class SearchView extends StatelessWidget {
                         shrinkWrap: true,
                         padding: const EdgeInsets.all(12),
                         physics: const NeverScrollableScrollPhysics(),
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           childAspectRatio: 1,
                           crossAxisSpacing: 16,

@@ -18,6 +18,9 @@ stages:
 code_analyze:
   stage: coverage
   script: [./scripts/code_analyze.sh]
+  artifacts:
+    reports:
+      codequality: code-quality-report.json
 
 code_analyze_beta:
   extends: code_analyze

@@ -113,8 +113,7 @@ class _ImageBubbleState extends State<ImageBubble> {
     }
   }
 
-  Widget frameBuilder(
-      BuildContext context, Widget child, int frame, bool sync) {
+  Widget frameBuilder(_, Widget child, int frame, __) {
     // as servers might return animated gifs as thumbnails and we want them to *not* play
     // animated, we'll have to store the first frame in a variable and display that instead
     if (widget.animated) {
@@ -249,7 +248,8 @@ class _ImageBubbleState extends State<ImageBubble> {
       children: <Widget>[
         if (blurhash != null) blurhash,
         Center(
-          child: child ?? const CircularProgressIndicator.adaptive(strokeWidth: 2),
+          child:
+              child ?? const CircularProgressIndicator.adaptive(strokeWidth: 2),
         ),
       ],
     );

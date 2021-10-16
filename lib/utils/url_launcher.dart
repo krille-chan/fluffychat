@@ -83,7 +83,7 @@ class UrlLauncher {
     launch(uri.replace(host: newHost).toString());
   }
 
-  void openMatrixToUrl([bool startDirectChat = false]) async {
+  void openMatrixToUrl() async {
     final matrix = Matrix.of(context);
     // The identifier might be a matrix.to url and needs escaping. Or, it might have multiple
     // identifiers (room id & event id), or it might also have a query part.

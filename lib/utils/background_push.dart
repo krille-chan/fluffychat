@@ -105,13 +105,9 @@ class BackgroundPush {
     return instance;
   }
 
-  Future<void> fullInit() async {
-    await setupPush();
-  }
+  Future<void> fullInit() => setupPush();
 
-  void handleLoginStateChanged(LoginState state) {
-    setupPush();
-  }
+  void handleLoginStateChanged(_) => setupPush();
 
   void _newFcmToken(String token) {
     _fcmToken = token;

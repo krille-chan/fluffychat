@@ -124,7 +124,7 @@ class SearchController extends State<Search> {
         'user_id': text,
       }));
     }
-    setState(() {});
+    setState(() => null);
   }
 
   bool _init = false;
