@@ -9,6 +9,7 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:vrouter/vrouter.dart';
 
 import 'views/user_bottom_sheet_view.dart';
+import '../widgets/matrix.dart';
 
 class UserBottomSheet extends StatefulWidget {
   final User user;
@@ -93,6 +94,13 @@ class UserBottomSheetController extends State<UserBottomSheet> {
             .toSegments(['rooms', roomIdResult.result]);
         Navigator.of(context, rootNavigator: false).pop();
         break;
+      case 'ignore':
+        if (await _askConfirmation()) {
+          await showFutureLoadingDialog(
+              context: context,
+              future: () =>
+                  Matrix.of(context).client.ignoreUser(widget.user.id));
+        }
     }
   }
 

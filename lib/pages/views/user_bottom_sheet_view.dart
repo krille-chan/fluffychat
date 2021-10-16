@@ -92,6 +92,14 @@ class UserBottomSheetView extends StatelessWidget {
                               Icons.warning_outlined,
                             ),
                           ),
+                        if (!client.ignoredUsers.contains(user.id))
+                          PopupMenuItem(
+                            value: 'ignore',
+                            child: _TextWithIcon(
+                              L10n.of(context).ignore,
+                              Icons.block,
+                            ),
+                          ),
                       ],
                       onSelected: controller.participantAction,
                     ),
