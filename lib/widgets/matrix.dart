@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:convert';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:fluffychat/utils/client_manager.dart';
+import 'package:fluffychat/utils/uia_request_manager.dart';
 import 'package:matrix/encryption.dart';
 import 'package:matrix/matrix.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
@@ -201,122 +201,17 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   final onOwnPresence = <String, StreamSubscription<Presence>>{};
 
   String _cachedPassword;
-  String get cachedPassword {
-    final tmp = _cachedPassword;
-    _cachedPassword = null;
-    return tmp;
-  }
+  Timer _cachedPasswordClearTimer;
+  String get cachedPassword => _cachedPassword;
 
-  set cachedPassword(String p) => _cachedPassword = p;
-
-  Future _onUiaRequest(UiaRequest uiaRequest) async {
-    try {
-      if (uiaRequest.state != UiaRequestState.waitForUser ||
-          uiaRequest.nextStages.isEmpty) return;
-      final stage = uiaRequest.nextStages.first;
-      switch (stage) {
-        case AuthenticationTypes.password:
-          final input = cachedPassword ??
-              (await showTextInputDialog(
-                useRootNavigator: false,
-                context: navigatorContext,
-                title: L10n.of(widget.context).pleaseEnterYourPassword,
-                okLabel: L10n.of(widget.context).ok,
-                cancelLabel: L10n.of(widget.context).cancel,
-                textFields: [
-                  const DialogTextField(
-                    minLines: 1,
-                    maxLines: 1,
-                    obscureText: true,
-                    hintText: '******',
-                  )
-                ],
-              ))
-                  ?.single;
-          if (input?.isEmpty ?? true) return;
-          return uiaRequest.completeStage(
-            AuthenticationPassword(
-              session: uiaRequest.session,
-              password: input,
-              identifier: AuthenticationUserIdentifier(user: client.userID),
-            ),
-          );
-        case AuthenticationTypes.emailIdentity:
-          final emailInput = await showTextInputDialog(
-            context: navigatorContext,
-            message: L10n.of(context).serverRequiresEmail,
-            okLabel: L10n.of(context).next,
-            cancelLabel: L10n.of(context).cancel,
-            textFields: [
-              DialogTextField(
-                hintText: L10n.of(context).addEmail,
-                keyboardType: TextInputType.emailAddress,
-              ),
-            ],
-          );
-          if (emailInput == null || emailInput.isEmpty) {
-            return uiaRequest
-                .cancel(Exception(L10n.of(context).serverRequiresEmail));
-          }
-          final clientSecret = DateTime.now().millisecondsSinceEpoch.toString();
-          final currentThreepidCreds = await client.requestTokenToRegisterEmail(
-            clientSecret,
-            emailInput.single,
-            0,
-          );
-          final auth = AuthenticationThreePidCreds(
-            session: uiaRequest.session,
-            type: AuthenticationTypes.emailIdentity,
-            threepidCreds: [
-              ThreepidCreds(
-                sid: currentThreepidCreds.sid,
-                clientSecret: clientSecret,
-              ),
-            ],
-          );
-          if (OkCancelResult.ok ==
-              await showOkCancelAlertDialog(
-                useRootNavigator: false,
-                context: navigatorContext,
-                title: L10n.of(context).weSentYouAnEmail,
-                message: L10n.of(context).pleaseClickOnLink,
-                okLabel: L10n.of(context).iHaveClickedOnLink,
-                cancelLabel: L10n.of(widget.context).cancel,
-              )) {
-            return uiaRequest.completeStage(auth);
-          }
-          return uiaRequest.cancel();
-        case AuthenticationTypes.dummy:
-          return uiaRequest.completeStage(
-            AuthenticationData(
-              type: AuthenticationTypes.dummy,
-              session: uiaRequest.session,
-            ),
-          );
-        default:
-          await launch(
-            client.homeserver.toString() +
-                '/_matrix/client/r0/auth/$stage/fallback/web?session=${uiaRequest.session}',
-          );
-          if (OkCancelResult.ok ==
-              await showOkCancelAlertDialog(
-                useRootNavigator: false,
-                message: L10n.of(widget.context).pleaseFollowInstructionsOnWeb,
-                context: navigatorContext,
-                okLabel: L10n.of(widget.context).next,
-                cancelLabel: L10n.of(widget.context).cancel,
-              )) {
-            return uiaRequest.completeStage(
-              AuthenticationData(session: uiaRequest.session),
-            );
-          } else {
-            return uiaRequest.cancel();
-          }
-      }
-    } catch (e, s) {
-      Logs().e('Error while background UIA', e, s);
-      return uiaRequest.cancel(e);
-    }
+  set cachedPassword(String p) {
+    Logs().v('Password cached');
+    _cachedPasswordClearTimer?.cancel();
+    _cachedPassword = p;
+    _cachedPasswordClearTimer = Timer(const Duration(minutes: 10), () {
+      _cachedPassword = null;
+      Logs().v('Cached Password cleared');
+    });
   }
 
   bool webHasFocus = true;
@@ -449,7 +344,10 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
             SettingKeys.ownStatusMessage, presence.presence.statusMsg);
       }
     });
-    onUiaRequest[name] ??= c.onUiaRequest.stream.listen(_onUiaRequest);
+    onUiaRequest[name] ??= c.onUiaRequest.stream.listen(
+      UiaRequestManager(client, L10n.of(context), navigatorContext)
+          .onUiaRequest,
+    );
     if (PlatformInfos.isWeb || PlatformInfos.isLinux) {
       c.onSync.stream.first.then((s) {
         html.Notification.requestPermission();
