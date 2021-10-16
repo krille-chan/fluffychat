@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:vrouter/vrouter.dart';
 
 import '../homeserver_picker.dart';
@@ -126,37 +127,35 @@ class HomeserverPickerView extends StatelessWidget {
                                     const Expanded(child: Divider()),
                                   ]),
                               },
-                              Row(
-                                children: [
-                                  if (controller.passwordLoginSupported)
-                                    Expanded(
-                                      child: _LoginButton(
-                                        onPressed: () =>
-                                            VRouter.of(context).to('login'),
-                                        icon: const Icon(Icons.login_outlined),
-                                        labelText: L10n.of(context).login,
-                                      ),
+                              if (controller.passwordLoginSupported)
+                                Center(
+                                  child: _LoginButton(
+                                    onPressed: () =>
+                                        VRouter.of(context).to('login'),
+                                    icon: Icon(
+                                      CupertinoIcons.lock_open_fill,
+                                      color: Theme.of(context)
+                                          .textTheme
+                                          .bodyText1
+                                          .color,
                                     ),
-                                  if (controller.registrationSupported &&
-                                      controller.passwordLoginSupported)
-                                    const SizedBox(width: 12),
-                                  if (controller.registrationSupported &&
-                                      // Registration is broken on matrix.org
-                                      Matrix.of(context)
-                                              .client
-                                              .homeserver
-                                              .host !=
-                                          'matrix-client.matrix.org')
-                                    Expanded(
-                                      child: _LoginButton(
-                                        onPressed: controller.signUpAction,
-                                        icon:
-                                            const Icon(Icons.add_box_outlined),
-                                        labelText: L10n.of(context).register,
-                                      ),
+                                    labelText: L10n.of(context).login,
+                                  ),
+                                ),
+                              if (controller.registrationSupported)
+                                Center(
+                                  child: _LoginButton(
+                                    onPressed: controller.signUpAction,
+                                    icon: Icon(
+                                      CupertinoIcons.person_add,
+                                      color: Theme.of(context)
+                                          .textTheme
+                                          .bodyText1
+                                          .color,
                                     ),
-                                ],
-                              ),
+                                    labelText: L10n.of(context).register,
+                                  ),
+                                ),
                             ]
                                 .map(
                                   (widget) => Container(
@@ -215,12 +214,11 @@ class _LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return OutlinedButton.icon(
       style: OutlinedButton.styleFrom(
-          minimumSize: const Size(256, 56),
-          side: BorderSide(
-            color: Theme.of(context).textTheme.bodyText1.color,
-          ),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(90))),
+        minimumSize: const Size(256, 56),
+        textStyle: const TextStyle(fontWeight: FontWeight.bold),
+        backgroundColor: Theme.of(context).backgroundColor,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)),
+      ),
       onPressed: onPressed,
       icon: icon,
       label: Text(
