@@ -142,7 +142,10 @@ class HomeserverPickerView extends StatelessWidget {
                                     labelText: L10n.of(context).login,
                                   ),
                                 ),
-                              if (controller.registrationSupported)
+                              if (controller.registrationSupported &&
+                                  // Registration is broken on matrix.org
+                                  Matrix.of(context).client.homeserver.host !=
+                                      'matrix-client.matrix.org')
                                 Center(
                                   child: _LoginButton(
                                     onPressed: controller.signUpAction,
