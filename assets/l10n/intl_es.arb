@@ -342,12 +342,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatBackup": "Backup del chat",
+  "chatBackup": "Copia de respaldo del chat",
   "@chatBackup": {
     "type": "text",
     "placeholders": {}
   },
-  "chatBackupDescription": "Tu copia de seguridad del chat está protegida con una clave de seguridad. Por favor, asegúrate de no perderla.",
+  "chatBackupDescription": "La copia de respaldo del chat está protegida por una clave de seguridad. Procure no perderla.",
   "@chatBackupDescription": {
     "type": "text",
     "placeholders": {}
@@ -777,12 +777,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "hideRedactedEvents": "Ocultar eventos redactados",
+  "hideRedactedEvents": "Ocultar sucesos censurados",
   "@hideRedactedEvents": {
     "type": "text",
     "placeholders": {}
   },
-  "hideUnknownEvents": "Ocultar eventos desconocidos",
+  "hideUnknownEvents": "Ocultar sucesos desconocidos",
   "@hideUnknownEvents": {
     "type": "text",
     "placeholders": {}
@@ -802,7 +802,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "ignoredUsers": "Usuarios Ignorados",
+  "ignoredUsers": "Usuarios ignorados",
   "@ignoredUsers": {
     "type": "text",
     "placeholders": {}
@@ -1240,7 +1240,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "publicGroups": "Grupos Publicos",
+  "publicGroups": "Grupos públicos",
   "@publicGroups": {
     "type": "text",
     "placeholders": {}
@@ -1255,7 +1255,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "redactedAnEvent": "{username} redactó un evento",
+  "redactedAnEvent": "{username} censuró un suceso",
   "@redactedAnEvent": {
     "type": "text",
     "placeholders": {
@@ -1686,14 +1686,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount, plural, other{{unreadCount} chats no leídos}}",
+  "unreadChats": "{unreadCount, plural, =1{1 chat no leído} other{{unreadCount} chats no leídos}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents} mensajes no leídos}}",
+  "unreadMessages": "{unreadEvents, plural, =1{1 mensaje no leído} other{{unreadEvents} mensajes no leídos}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
@@ -2046,7 +2046,7 @@
       "error": {}
     }
   },
-  "howOffensiveIsThisContent": "¿Qué tan ofensivo es este contenido?",
+  "howOffensiveIsThisContent": "¿Cuán ofensivo es este contenido?",
   "@howOffensiveIsThisContent": {
     "type": "text",
     "placeholders": {}
@@ -2111,7 +2111,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "publicKey": "Llave pública",
+  "publicKey": "Clave pública",
   "@publicKey": {
     "type": "text",
     "placeholders": {}
@@ -2341,7 +2341,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "messages": "Mensaje",
+  "messages": "Mensajes",
   "@messages": {
     "type": "text",
     "placeholders": {}
@@ -2549,7 +2549,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "redactMessage": "Redactar mensaje",
+  "redactMessage": "Censurar mensaje",
   "@redactMessage": {
     "type": "text",
     "placeholders": {}
@@ -2598,5 +2598,17 @@
   "@wipeChatBackup": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "iWroteDownTheKey": "He escrito la clave",
+  "@iWroteDownTheKey": {},
+  "yourChatBackupHasBeenSetUp": "Se ha configurado la copia de respaldo del chat.",
+  "@yourChatBackupHasBeenSetUp": {},
+  "unverified": "No verificado",
+  "@unverified": {},
+  "setupChatBackupDescription": "Para proteger sus mensajes, hemos generado una clave de seguridad.\nConsérvela en un sitio seguro, como un gestor de contraseñas.",
+  "@setupChatBackupDescription": {},
+  "yourUserId": "Su id. de usuario:",
+  "@yourUserId": {},
+  "setupChatBackup": "Configurar copia de respaldo de chat",
+  "@setupChatBackup": {}
 }
