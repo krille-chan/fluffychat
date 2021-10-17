@@ -119,7 +119,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "banFromChat": "إحظره من المحادثة",
+  "banFromChat": "حظر من المحادثة",
   "@banFromChat": {
     "type": "text",
     "placeholders": {}
@@ -472,7 +472,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "deleteMessage": "احذف الرسالة",
+  "deleteMessage": "حذف الرسالة",
   "@deleteMessage": {
     "type": "text",
     "placeholders": {}
@@ -719,7 +719,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteContact": "أدعو مراسلًا",
+  "inviteContact": "دعوة مراسل",
   "@inviteContact": {
     "type": "text",
     "placeholders": {}
@@ -805,7 +805,7 @@
       "targetName": {}
     }
   },
-  "kickFromChat": "أطرد من المحادثة",
+  "kickFromChat": "طرد من المحادثة",
   "@kickFromChat": {
     "type": "text",
     "placeholders": {}
@@ -2138,7 +2138,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "configureChat": "اضبط المحادثة",
+  "configureChat": "ضبط المحادثة",
   "@configureChat": {
     "type": "text",
     "placeholders": {}
@@ -2407,7 +2407,7 @@
   "@sendAsText": {
     "type": "text"
   },
-  "sendMessages": "أرسل رسائل",
+  "sendMessages": "إرسال رسائل",
   "@sendMessages": {
     "type": "text",
     "placeholders": {}
