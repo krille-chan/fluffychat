@@ -27,7 +27,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "activatedEndToEndEncryption": "{username} ha activat el xifrat d'extrem a extrem",
+  "activatedEndToEndEncryption": "{username} ha activat el xifratge d’extrem a extrem",
   "@activatedEndToEndEncryption": {
     "type": "text",
     "placeholders": {
@@ -39,7 +39,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "admin": "Administrador",
+  "admin": "Administració",
   "@admin": {
     "type": "text",
     "placeholders": {}
@@ -71,7 +71,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "appLock": "Bloqueig d'aplicació",
+  "appLock": "Blocatge de l’aplicació",
   "@appLock": {
     "type": "text",
     "placeholders": {}
@@ -91,27 +91,27 @@
     "type": "text",
     "placeholders": {}
   },
-  "areYouSure": "N'estàs segur?",
+  "areYouSure": "N’esteu segur?",
   "@areYouSure": {
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSCache": "Introdueix la teva frase de seguretat o la clau de recuperació per desar les claus en memòria cau.",
+  "askSSSSCache": "Introduïu la frase de seguretat o la clau de recuperació per a desar les claus en memòria cau.",
   "@askSSSSCache": {
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSSign": "Per poder firmar a l'altra persona, introdueix la teva frase de seguretat o clau de recuperació.",
+  "askSSSSSign": "Per a poder donar accés a l’altra persona, introduïu la frase de seguretat o clau de recuperació.",
   "@askSSSSSign": {
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSVerify": "Introdueix la teva frase de seguretat o clau de recuperació per verificar la teva sessió.",
+  "askSSSSVerify": "Introduïu la frase de seguretat o clau de recuperació per a verificar la vostra sessió.",
   "@askSSSSVerify": {
     "type": "text",
     "placeholders": {}
   },
-  "askVerificationRequest": "Vols acceptar aquesta sol·licitud de verificació de {username}?",
+  "askVerificationRequest": "Voleu acceptar aquesta sol·licitud de verificació de: {username}?",
   "@askVerificationRequest": {
     "type": "text",
     "placeholders": {
@@ -123,7 +123,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "avatarHasBeenChanged": "Imatge de perfil canviada",
+  "avatarHasBeenChanged": "L’avatar ha canviat",
   "@avatarHasBeenChanged": {
     "type": "text",
     "placeholders": {}
@@ -146,7 +146,7 @@
       "targetName": {}
     }
   },
-  "blockDevice": "Bloqueja dispositiu",
+  "blockDevice": "Bloca el dispositiu",
   "@blockDevice": {
     "type": "text",
     "placeholders": {}
@@ -166,7 +166,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "cantOpenUri": "No es pot obrir l'URI {uri}",
+  "cantOpenUri": "No es pot obrir l’URI {uri}",
   "@cantOpenUri": {
     "type": "text",
     "placeholders": {
@@ -185,7 +185,7 @@
       "username": {}
     }
   },
-  "changedTheChatDescriptionTo": "{username} ha canviat la descripció del xat a: '{description}'",
+  "changedTheChatDescriptionTo": "{username} ha canviat la descripció del xat a: «{description}»",
   "@changedTheChatDescriptionTo": {
     "type": "text",
     "placeholders": {
@@ -193,7 +193,7 @@
       "description": {}
     }
   },
-  "changedTheChatNameTo": "{username} ha canviat la imatge del xat a: '{chatname}'",
+  "changedTheChatNameTo": "{username} ha canviat el nom del xat a: «{chatname}»",
   "@changedTheChatNameTo": {
     "type": "text",
     "placeholders": {
@@ -208,14 +208,14 @@
       "username": {}
     }
   },
-  "changedTheGuestAccessRules": "{username} ha canviat les normes d'accés dels convidats",
+  "changedTheGuestAccessRules": "{username} ha canviat les normes d’accés dels convidats",
   "@changedTheGuestAccessRules": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheGuestAccessRulesTo": "{username} ha canviat les normes d'accés dels convidats a: {rules}",
+  "changedTheGuestAccessRulesTo": "{username} ha canviat les normes d’accés dels convidats a: {rules}",
   "@changedTheGuestAccessRulesTo": {
     "type": "text",
     "placeholders": {
@@ -223,14 +223,14 @@
       "rules": {}
     }
   },
-  "changedTheHistoryVisibility": "{username} ha canviat la visibilitat de l'historial",
+  "changedTheHistoryVisibility": "{username} ha canviat la visibilitat de l’historial",
   "@changedTheHistoryVisibility": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheHistoryVisibilityTo": "{username} ha canviat la visibilitat de l'historial a: {rules}",
+  "changedTheHistoryVisibilityTo": "{username} ha canviat la visibilitat de l’historial a: {rules}",
   "@changedTheHistoryVisibilityTo": {
     "type": "text",
     "placeholders": {
@@ -238,14 +238,14 @@
       "rules": {}
     }
   },
-  "changedTheJoinRules": "{username} ha canviat les normes d'unió",
+  "changedTheJoinRules": "{username} ha canviat les normes d’unió",
   "@changedTheJoinRules": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheJoinRulesTo": "{username} ha canviat les normes d'unió a: {joinRules}",
+  "changedTheJoinRulesTo": "{username} ha canviat les normes d’unió a: {joinRules}",
   "@changedTheJoinRulesTo": {
     "type": "text",
     "placeholders": {
@@ -260,14 +260,14 @@
       "username": {}
     }
   },
-  "changedTheRoomAliases": "{username} ha canviat l'àlies de la sala",
+  "changedTheRoomAliases": "{username} ha canviat l’àlies de la sala",
   "@changedTheRoomAliases": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheRoomInvitationLink": "{username} ha canviat l'enllaç d'invitació",
+  "changedTheRoomInvitationLink": "{username} ha canviat l’enllaç per a convidar",
   "@changedTheRoomInvitationLink": {
     "type": "text",
     "placeholders": {
@@ -284,7 +284,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changesHaveBeenSaved": "Canvis desats",
+  "changesHaveBeenSaved": "S’han desat els canvis",
   "@changesHaveBeenSaved": {
     "type": "text",
     "placeholders": {}
@@ -294,7 +294,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changeTheme": "Canvia l'estil",
+  "changeTheme": "Canvia l’estil",
   "@changeTheme": {
     "type": "text",
     "placeholders": {}
@@ -309,12 +309,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "changeWallpaper": "Canvia el fons dels xats",
+  "changeWallpaper": "Canvia el fons",
   "@changeWallpaper": {
     "type": "text",
     "placeholders": {}
   },
-  "channelCorruptedDecryptError": "El xifrat s'ha corromput",
+  "channelCorruptedDecryptError": "El xifratge s’ha corromput",
   "@channelCorruptedDecryptError": {
     "type": "text",
     "placeholders": {}
@@ -334,12 +334,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "chooseAStrongPassword": "Tria una contrasenya forta",
+  "chooseAStrongPassword": "Trieu una contrasenya forta",
   "@chooseAStrongPassword": {
     "type": "text",
     "placeholders": {}
   },
-  "chooseAUsername": "Tria un nom d'usuari",
+  "chooseAUsername": "Trieu un nom d’usuari",
   "@chooseAUsername": {
     "type": "text",
     "placeholders": {}
@@ -374,12 +374,12 @@
     "type": "text",
     "description": "Usage hint for the command /send"
   },
-  "compareEmojiMatch": "Compara i assegura't que els següents emoticones coincideixen amb els de l'altre dispositiu:",
+  "compareEmojiMatch": "Compareu i assegureu-vos que els emojis següents coincideixen amb els de l’altre dispositiu:",
   "@compareEmojiMatch": {
     "type": "text",
     "placeholders": {}
   },
-  "compareNumbersMatch": "Compara i assegura't que els següents números coincideixen amb els de l'altre dispositiu:",
+  "compareNumbersMatch": "Compareu i assegureu-vos que els nombres següents coincideixen amb els de l’altre dispositiu:",
   "@compareNumbersMatch": {
     "type": "text",
     "placeholders": {}
@@ -394,7 +394,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "connectionAttemptFailed": "Ha fallat l'intent de connexió",
+  "connectionAttemptFailed": "Ha fallat l’intent de connexió",
   "@connectionAttemptFailed": {
     "type": "text",
     "placeholders": {}
@@ -404,12 +404,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "containsDisplayName": "Conté nom de visualització",
+  "containsDisplayName": "Conté el nom visible",
   "@containsDisplayName": {
     "type": "text",
     "placeholders": {}
   },
-  "containsUserName": "Conté nom d'usuari",
+  "containsUserName": "Conté el nom d’usuari",
   "@containsUserName": {
     "type": "text",
     "placeholders": {}
@@ -419,7 +419,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "copiedToClipboard": "Copiat al porta-retalls",
+  "copiedToClipboard": "S’ha copiat al porta-retalls",
   "@copiedToClipboard": {
     "type": "text",
     "placeholders": {}
@@ -441,7 +441,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "couldNotSetDisplayname": "No s'ha pogut establir el nom de visualització",
+  "couldNotSetDisplayname": "No s’ha pogut definir el nom visible",
   "@couldNotSetDisplayname": {
     "type": "text",
     "placeholders": {}
@@ -520,22 +520,22 @@
       "day": {}
     }
   },
-  "deactivateAccountWarning": "Això desactivarà el teu compte d'usuari. Aquest canvi no es pot desfer! Estàs segur?",
+  "deactivateAccountWarning": "Es desactivarà el vostre compte d’usuari. Això no es pot desfer! Esteu segur de fer-ho?",
   "@deactivateAccountWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "delete": "Elimina",
+  "delete": "Suprimeix",
   "@delete": {
     "type": "text",
     "placeholders": {}
   },
-  "deleteAccount": "Elimina compte",
+  "deleteAccount": "Suprimeix el compte",
   "@deleteAccount": {
     "type": "text",
     "placeholders": {}
   },
-  "deleteMessage": "Elimina missatge",
+  "deleteMessage": "Suprimeix el missatge",
   "@deleteMessage": {
     "type": "text",
     "placeholders": {}
@@ -550,7 +550,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "deviceId": "ID de dispositiu",
+  "deviceId": "Id. de dispositiu",
   "@deviceId": {
     "type": "text",
     "placeholders": {}
@@ -570,7 +570,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "displaynameHasBeenChanged": "El nom de visualització ha canviat",
+  "displaynameHasBeenChanged": "S’ha canviat el nom visible",
   "@displaynameHasBeenChanged": {
     "type": "text",
     "placeholders": {}
@@ -590,7 +590,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "editDisplayname": "Canvia el nom de visualització",
+  "editDisplayname": "Edita el nom visible",
   "@editDisplayname": {
     "type": "text",
     "placeholders": {}
@@ -615,7 +615,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteSettings": "Configuració dels emoticones",
+  "emoteSettings": "Paràmetres de les emoticones",
   "@emoteSettings": {
     "type": "text",
     "placeholders": {}
@@ -640,7 +640,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enableEncryptionWarning": "No podràs desactivar el xifrat mai més. N'estàs segur?",
+  "enableEncryptionWarning": "No podreu desactivar el xifratge mai més. N’esteu segur?",
   "@enableEncryptionWarning": {
     "type": "text",
     "placeholders": {}
@@ -650,22 +650,22 @@
     "type": "text",
     "placeholders": {}
   },
-  "encryption": "Xifrat",
+  "encryption": "Xifratge",
   "@encryption": {
     "type": "text",
     "placeholders": {}
   },
-  "encryptionAlgorithm": "Algorisme de xifrat",
+  "encryptionAlgorithm": "Algorisme de xifratge",
   "@encryptionAlgorithm": {
     "type": "text",
     "placeholders": {}
   },
-  "encryptionNotEnabled": "El xifrat no està activat",
+  "encryptionNotEnabled": "El xifratge no s’ha activat",
   "@encryptionNotEnabled": {
     "type": "text",
     "placeholders": {}
   },
-  "end2endEncryptionSettings": "Configuració del xifrat d'extrem a extrem",
+  "end2endEncryptionSettings": "Paràmetres del xifratge d’extrem a extrem",
   "@end2endEncryptionSettings": {
     "type": "text",
     "placeholders": {}
@@ -677,17 +677,17 @@
       "senderName": {}
     }
   },
-  "enterAGroupName": "Introdueix un nom de grup",
+  "enterAGroupName": "Introduïu un nom de grup",
   "@enterAGroupName": {
     "type": "text",
     "placeholders": {}
   },
-  "enterAnEmailAddress": "Introdueix una adreça de correu electrònic",
+  "enterAnEmailAddress": "Introduïu una adreça electrònica",
   "@enterAnEmailAddress": {
     "type": "text",
     "placeholders": {}
   },
-  "enterAUsername": "Introdueix un nom d'usuari",
+  "enterAUsername": "Introduïu un nom d’usuari",
   "@enterAUsername": {
     "type": "text",
     "placeholders": {}
@@ -717,7 +717,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "friday": "Divendres",
+  "friday": "divendres",
   "@friday": {
     "type": "text",
     "placeholders": {}
@@ -782,12 +782,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "hideRedactedEvents": "Amaga esdeveniments editats",
+  "hideRedactedEvents": "Amaga els esdeveniments velats",
   "@hideRedactedEvents": {
     "type": "text",
     "placeholders": {}
   },
-  "hideUnknownEvents": "Amaga esdeveniments desconeguts",
+  "hideUnknownEvents": "Amaga els esdeveniments desconeguts",
   "@hideUnknownEvents": {
     "type": "text",
     "placeholders": {}
@@ -797,7 +797,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "id": "ID",
+  "id": "Id.",
   "@id": {
     "type": "text",
     "placeholders": {}
@@ -972,27 +972,27 @@
       "count": {}
     }
   },
-  "loadingPleaseWait": "Carregant... Espera, si us plau.",
+  "loadingPleaseWait": "S’està carregant… Espereu.",
   "@loadingPleaseWait": {
     "type": "text",
     "placeholders": {}
   },
-  "loadMore": "Carrega'n més…",
+  "loadMore": "Carrega’n més…",
   "@loadMore": {
     "type": "text",
     "placeholders": {}
   },
-  "locationDisabledNotice": "La ubicació està desactivada. Activa-la per poder compartir la teva ubicació.",
+  "locationDisabledNotice": "S’han desactivat els serveis d’ubicació. Activeu-los per a compartir la vostra ubicació.",
   "@locationDisabledNotice": {
     "type": "text",
     "placeholders": {}
   },
-  "locationPermissionDeniedNotice": "Permís d'ubicació denegat. Has de donar permisos per poder compartir la teva ubicació.",
+  "locationPermissionDeniedNotice": "S’ha rebutjat el permís d’ubicació. Atorgueu-lo per a poder compartir la vostra ubicació.",
   "@locationPermissionDeniedNotice": {
     "type": "text",
     "placeholders": {}
   },
-  "login": "Inicia sessió",
+  "login": "Inicia la sessió",
   "@login": {
     "type": "text",
     "placeholders": {}
@@ -1004,14 +1004,14 @@
       "homeserver": {}
     }
   },
-  "loginWith": "Inicia sessió amb {brand}",
+  "loginWith": "Inicia la sessió amb {brand}",
   "@loginWith": {
     "type": "text",
     "placeholders": {
       "brand": {}
     }
   },
-  "logout": "Tanca sessió",
+  "logout": "Finalitza la sessió",
   "@logout": {
     "type": "text",
     "placeholders": {}
@@ -1051,22 +1051,22 @@
     "type": "text",
     "placeholders": {}
   },
-  "monday": "Dilluns",
+  "monday": "dilluns",
   "@monday": {
     "type": "text",
     "placeholders": {}
   },
-  "muteChat": "Silencia xat",
+  "muteChat": "Silencia el xat",
   "@muteChat": {
     "type": "text",
     "placeholders": {}
   },
-  "needPantalaimonWarning": "Tingues en compte que, ara per ara, necessites Pantalaimon per poder utilitzar el xifrat d'extrem a extrem.",
+  "needPantalaimonWarning": "Tingueu en compte que, ara per ara, us cal el Pantalaimon per a poder utilitzar el xifratge d’extrem a extrem.",
   "@needPantalaimonWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "newMessageInFluffyChat": "Nou missatge a FluffyChat",
+  "newMessageInFluffyChat": "Missatge nou al FluffyChat",
   "@newMessageInFluffyChat": {
     "type": "text",
     "placeholders": {}
@@ -1091,12 +1091,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "noEmotesFound": "No s'han trobat emoticones. 😕",
+  "noEmotesFound": "No s’ha trobat cap emoticona. 😕",
   "@noEmotesFound": {
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Sembla que no tens els Serveis de Google al telèfon. Això és una bona decisió respecte a la teva privadesa! Per a rebre notificacions push de FluffyChat, et recomanem utilitzar https://microg.org/ o https://unifiedpush.org/.",
+  "noGoogleServicesWarning": "Sembla que no teniu els Serveis de Google al telèfon. Això és una bona decisió respecte a la vostra privadesa! Per a rebre notificacions automàtiques del FluffyChat, us recomanem utilitzar https://microg.org/ o https://unifiedpush.org/.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -1111,7 +1111,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noPasswordRecoveryDescription": "Encara no has afegit cap mètode per poder recuperar la teva contrasenya.",
+  "noPasswordRecoveryDescription": "Encara no heu afegit cap mètode per a poder recuperar la contrasenya.",
   "@noPasswordRecoveryDescription": {
     "type": "text",
     "placeholders": {}
@@ -1121,7 +1121,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noRoomsFound": "No s'han trobat sales…",
+  "noRoomsFound": "No s’ha trobat cap sala…",
   "@noRoomsFound": {
     "type": "text",
     "placeholders": {}
@@ -1131,7 +1131,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "notificationsEnabledForThisAccount": "Notificacions activades per aquest compte",
+  "notificationsEnabledForThisAccount": "Notificacions activades per a aquest compte",
   "@notificationsEnabledForThisAccount": {
     "type": "text",
     "placeholders": {}
@@ -1307,7 +1307,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "redactedAnEvent": "{username} ha redactat un esdeveniment",
+  "redactedAnEvent": "{username} ha velat un esdeveniment",
   "@redactedAnEvent": {
     "type": "text",
     "placeholders": {
@@ -1393,7 +1393,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "saturday": "Dissabte",
+  "saturday": "dissabte",
   "@saturday": {
     "type": "text",
     "placeholders": {}
@@ -1465,7 +1465,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sendOriginal": "Envia l'original",
+  "sendOriginal": "Envia l’original",
   "@sendOriginal": {
     "type": "text",
     "placeholders": {}
@@ -1522,42 +1522,42 @@
       "senderName": {}
     }
   },
-  "sentryInfo": "Informació sobre la teva privadesa: https://sentry.io/security/",
+  "sentryInfo": "Informació sobre la vostra privadesa: https://sentry.io/security/",
   "@sentryInfo": {
     "type": "text",
     "placeholders": {}
   },
-  "sessionVerified": "Sessió verificada",
+  "sessionVerified": "S’ha verificat la sessió",
   "@sessionVerified": {
     "type": "text",
     "placeholders": {}
   },
-  "setAProfilePicture": "Estableix foto de perfil",
+  "setAProfilePicture": "Defineix una foto de perfil",
   "@setAProfilePicture": {
     "type": "text",
     "placeholders": {}
   },
-  "setGroupDescription": "Estableix descripció de grup",
+  "setGroupDescription": "Defineix la descripció del grup",
   "@setGroupDescription": {
     "type": "text",
     "placeholders": {}
   },
-  "setInvitationLink": "Estableix enllaç d'invitació",
+  "setInvitationLink": "Defineix l’enllaç per a convidar",
   "@setInvitationLink": {
     "type": "text",
     "placeholders": {}
   },
-  "setPermissionsLevel": "Estableix el nivell de permisos",
+  "setPermissionsLevel": "Defineix el nivell de permisos",
   "@setPermissionsLevel": {
     "type": "text",
     "placeholders": {}
   },
-  "setStatus": "Estableix estat",
+  "setStatus": "Defineix l’estat",
   "@setStatus": {
     "type": "text",
     "placeholders": {}
   },
-  "settings": "Configuració",
+  "settings": "Paràmetres",
   "@settings": {
     "type": "text",
     "placeholders": {}
@@ -1567,14 +1567,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "sharedTheLocation": "{username} ha compartit la ubicació",
+  "sharedTheLocation": "{username} n’ha compartit la ubicació",
   "@sharedTheLocation": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "signUp": "Registra't",
+  "signUp": "Registre",
   "@signUp": {
     "type": "text",
     "placeholders": {}
@@ -1589,7 +1589,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "soundVibrationLedColor": "So, vibració color LED",
+  "soundVibrationLedColor": "So, vibració i color de LED",
   "@soundVibrationLedColor": {
     "type": "text",
     "placeholders": {}
@@ -1606,12 +1606,12 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "Crea el teu primer xat ara mateix! 🙂\n- Clica al botó de missatge\n- Introdueix el nom d'usuari d'un conegut\n- Diverteix-te xatejant",
+  "startYourFirstChat": "Creeu el vostre primer xat ara mateix! 🙂\n- Feu clic al botó Missatge\n- Introduïu el nom d’usuari d’un conegut\n- Gaudiu del xat",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
   },
-  "statusExampleMessage": "Com et sents avui?",
+  "statusExampleMessage": "Com us sentiu avui?",
   "@statusExampleMessage": {
     "type": "text",
     "placeholders": {}
@@ -1621,7 +1621,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sunday": "Diumenge",
+  "sunday": "diumenge",
   "@sunday": {
     "type": "text",
     "placeholders": {}
@@ -1631,12 +1631,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "tapToShowImage": "Clica per mostrar la imatge",
+  "tapToShowImage": "Toqueu per a mostrar la imatge",
   "@tapToShowImage": {
     "type": "text",
     "placeholders": {}
   },
-  "tapToShowMenu": "Toca per veure el menú",
+  "tapToShowMenu": "Toqueu per a mostrar el menú",
   "@tapToShowMenu": {
     "type": "text",
     "placeholders": {}
@@ -1656,7 +1656,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "thursday": "Dijous",
+  "thursday": "dijous",
   "@thursday": {
     "type": "text",
     "placeholders": {}
@@ -1692,7 +1692,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "tuesday": "Dimarts",
+  "tuesday": "dimarts",
   "@tuesday": {
     "type": "text",
     "placeholders": {}
@@ -1720,19 +1720,19 @@
     "type": "text",
     "placeholders": {}
   },
-  "unknownEncryptionAlgorithm": "Algorisme de xifrat desconegut",
+  "unknownEncryptionAlgorithm": "L’algorisme de xifratge és desconegut",
   "@unknownEncryptionAlgorithm": {
     "type": "text",
     "placeholders": {}
   },
-  "unknownEvent": "Esdeveniment desconegut '{type}'",
+  "unknownEvent": "L’esdeveniment «{type}» és desconegut",
   "@unknownEvent": {
     "type": "text",
     "placeholders": {
       "type": {}
     }
   },
-  "unknownSessionVerify": "Sessió desconeguda, verifica-la",
+  "unknownSessionVerify": "La sessió és desconeguda; verifiqueu-la",
   "@unknownSessionVerify": {
     "type": "text",
     "placeholders": {}
@@ -1747,21 +1747,21 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount, plural, other{{unreadCount} xats no llegits}}",
+  "unreadChats": "{unreadCount, plural, =1{1 xat no llegit} other{{unreadCount} xats no llegits}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents} missatges no llegits}}",
+  "unreadMessages": "{unreadEvents, plural, =1{1 missatge no llegit} other{{unreadEvents} missatges no llegits}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
       "unreadEvents": {}
     }
   },
-  "useAmoledTheme": "Utilitzar colors compatibles amb AMOLED?",
+  "useAmoledTheme": "Voleu utilitzar colors adients per a AMOLED?",
   "@useAmoledTheme": {
     "type": "text",
     "placeholders": {}
@@ -1796,7 +1796,7 @@
       "username": {}
     }
   },
-  "username": "Nom d'usuari",
+  "username": "Nom d’usuari",
   "@username": {
     "type": "text",
     "placeholders": {}
@@ -1829,7 +1829,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "verifySuccess": "T'has verificat amb èxit!",
+  "verifySuccess": "Us heu verificat correctament.",
   "@verifySuccess": {
     "type": "text",
     "placeholders": {}
@@ -1849,7 +1849,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "visibilityOfTheChatHistory": "Visibilitat de l'historial del xat",
+  "visibilityOfTheChatHistory": "Visibilitat de l’historial del xat",
   "@visibilityOfTheChatHistory": {
     "type": "text",
     "placeholders": {}
@@ -1869,17 +1869,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerEmoji": "Esperant que l'altre accepti l'emoticona…",
+  "waitingPartnerEmoji": "S’està esperant que l’altre accepti l’emoji…",
   "@waitingPartnerEmoji": {
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerNumbers": "Esperant que l'altre accepti el números…",
+  "waitingPartnerNumbers": "S’està esperant que l’altre accepti els nombres…",
   "@waitingPartnerNumbers": {
     "type": "text",
     "placeholders": {}
   },
-  "wallpaper": "Fons dels xats",
+  "wallpaper": "Fons",
   "@wallpaper": {
     "type": "text",
     "placeholders": {}
@@ -1889,22 +1889,22 @@
     "type": "text",
     "placeholders": {}
   },
-  "warningEncryptionInBeta": "El xifrat d'extrem a extrem es troba actualment en proves! Utilitza'l sota la teva responsabilitat!",
+  "warningEncryptionInBeta": "El xifratge d’extrem a extrem es troba actualment en proves. Utilitzeu-lo sota la vostra responsabilitat.",
   "@warningEncryptionInBeta": {
     "type": "text",
     "placeholders": {}
   },
-  "wednesday": "Dimecres",
+  "wednesday": "dimecres",
   "@wednesday": {
     "type": "text",
     "placeholders": {}
   },
-  "welcomeText": "Benvingut/da a l'aplicació de missatgeria instantània més maca de la xarxa Matrix.",
+  "welcomeText": "Us donem la benvinguda a l’aplicació de missatgeria instantània més maca de la xarxa Matrix.",
   "@welcomeText": {
     "type": "text",
     "placeholders": {}
   },
-  "weSentYouAnEmail": "T'hem enviat un correu electrònic",
+  "weSentYouAnEmail": "Us hem enviat un missatge de correu electrònic",
   "@weSentYouAnEmail": {
     "type": "text",
     "placeholders": {}
@@ -1914,12 +1914,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "withTheseAddressesRecoveryDescription": "Amb aquestes adreçes, si ho necessites, pots recuperar la teva contrasenya.",
+  "withTheseAddressesRecoveryDescription": "Amb aquestes adreces, si ho necessiteu, podeu recuperar la vostra contrasenya.",
   "@withTheseAddressesRecoveryDescription": {
     "type": "text",
     "placeholders": {}
   },
-  "writeAMessage": "Escriu un missatge.…",
+  "writeAMessage": "Escriviu un missatge…",
   "@writeAMessage": {
     "type": "text",
     "placeholders": {}
@@ -1929,22 +1929,22 @@
     "type": "text",
     "placeholders": {}
   },
-  "you": "Tu",
+  "you": "Vós",
   "@you": {
     "type": "text",
     "placeholders": {}
   },
-  "youAreInvitedToThisChat": "No estàs convida a aquest xat",
+  "youAreInvitedToThisChat": "Us han convidat a aquest xat",
   "@youAreInvitedToThisChat": {
     "type": "text",
     "placeholders": {}
   },
-  "youAreNoLongerParticipatingInThisChat": "Ja no participes en aquest xat",
+  "youAreNoLongerParticipatingInThisChat": "Ja no participeu en aquest xat",
   "@youAreNoLongerParticipatingInThisChat": {
     "type": "text",
     "placeholders": {}
   },
-  "youCannotInviteYourself": "No et pots convidar a tu mateix",
+  "youCannotInviteYourself": "No us podeu convidar a vós mateix",
   "@youCannotInviteYourself": {
     "type": "text",
     "placeholders": {}
@@ -1954,12 +1954,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "yourOwnUsername": "El teu nom d'usuari",
+  "yourOwnUsername": "El vostre nom d’usuari",
   "@yourOwnUsername": {
     "type": "text",
     "placeholders": {}
   },
-  "yourPublicKey": "La teva clau pública",
+  "yourPublicKey": "La vostra clau pública",
   "@yourPublicKey": {
     "type": "text",
     "placeholders": {}
@@ -1988,6 +1988,445 @@
   },
   "areYouSureYouWantToLogout": "Segur que voleu finalitzar la sessió?",
   "@areYouSureYouWantToLogout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addEmail": "Afegeix una adreça electrònica",
+  "@addEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatHasBeenRemovedFromThisSpace": "El xat s’ha tret d’aquest espai",
+  "@chatHasBeenRemovedFromThisSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clearText": "Neteja el text",
+  "@clearText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandInvalid": "L’ordre no és vàlida",
+  "@commandInvalid": {
+    "type": "text"
+  },
+  "fontSize": "Mida de la lletra",
+  "@fontSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "goToTheNewRoom": "Ves a la sala nova",
+  "@goToTheNewRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "next": "Següent",
+  "@next": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPublicRoomsFound": "No s’ha trobat cap sala pública…",
+  "@noPublicRoomsFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicGroups": "Grups públics",
+  "@publicGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "link": "Enllaç",
+  "@link": {},
+  "people": "Gent",
+  "@people": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicSpace": "Espai públic",
+  "@publicSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "redactMessage": "Vela el missatge",
+  "@redactMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendOnEnter": "Envia en prémer Retorn",
+  "@sendOnEnter": {},
+  "clearArchive": "Neteja l’arxiu",
+  "@clearArchive": {},
+  "chatBackupDescription": "La còpia de seguretat dels xats és protegida amb una clau. Assegureu-vos de no perdre-la.",
+  "@chatBackupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicKey": "Clau pública",
+  "@publicKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourChatsAreBeingSynced": "S’estan sincronitzant els vostres xats…",
+  "@yourChatsAreBeingSynced": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatHasBeenAddedToThisSpace": "El xat s’ha afegit a aquest espai",
+  "@chatHasBeenAddedToThisSpace": {},
+  "autoplayImages": "Reprodueix automàticament enganxines i emoticones animades",
+  "@autoplayImages": {
+    "type": "text",
+    "placeholder": {}
+  },
+  "chatBackup": "Còpia de seguretat del xat",
+  "@chatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "blocked": "Blocat",
+  "@blocked": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "everythingReady": "Tot és a punt!",
+  "@everythingReady": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceName": "Nom de l’espai",
+  "@spaceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "search": "Cerca",
+  "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verified": "Verificat",
+  "@verified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noDescription": "Cap descripció",
+  "@noDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableChatBackup": "Activeu la còpia de seguretat del xat per a mai perdre accés a les converses.",
+  "@enableChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newChat": "Xat nou",
+  "@newChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeYourAvatar": "Canvia l’avatar",
+  "@changeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zoomIn": "Apropa",
+  "@zoomIn": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "zoomOut": "Allunya",
+  "@zoomOut": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignore": "Ignora",
+  "@ignore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveFileToFolder": "Desa el fitxer en aquesta carpeta",
+  "@saveFileToFolder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youWillBeConnectedTo": "Us connectareu a {homeserver}",
+  "@youWillBeConnectedTo": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "commandHintReact": "Envia una resposta com a reacció",
+  "@commandHintReact": {
+    "type": "text",
+    "description": "Usage hint for the command /react"
+  },
+  "defaultPermissionLevel": "Nivell de permisos per defecte",
+  "@defaultPermissionLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "extremeOffensive": "Extremadament ofensiu",
+  "@extremeOffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iWroteDownTheKey": "He escrit la clau",
+  "@iWroteDownTheKey": {},
+  "yourChatBackupHasBeenSetUp": "S’ha configurat la còpia de seguretat del xat.",
+  "@yourChatBackupHasBeenSetUp": {},
+  "setupChatBackupDescription": "Hem generat una clau de seguretat per a protegir els vostres missatges.\nConserveu-la en un lloc segur, com ara un gestor de contrasenyes.",
+  "@setupChatBackupDescription": {},
+  "setupChatBackup": "Configura la còpia de seguretat dels xats",
+  "@setupChatBackup": {},
+  "contentHasBeenReported": "El contingut s’ha denunciat als administradors del servidor",
+  "@contentHasBeenReported": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourUserId": "El vostre id. d’usuari:",
+  "@yourUserId": {},
+  "deviceVerifyDescription": "El xifratge només és segur quan tots els dispositius s’han verificat.",
+  "@deviceVerifyDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEncryption": "Activa el xifratge",
+  "@enableEncryption": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterASpacepName": "Introduïu un nom d’espai",
+  "@enterASpacepName": {},
+  "noStatusesFound": "Encara no s’ha trobat cap estat.",
+  "@noStatusesFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addAccount": "Afegeix un compte",
+  "@addAccount": {},
+  "noEncryptionForPublicRooms": "Només podreu activar el xifratge quan la sala ja no sigui accessible públicament.",
+  "@noEncryptionForPublicRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newUsernameDescription": "El vostre identificador d’usuari tindrà el format @nom-d’usuari:nom-del-servidor",
+  "@newUsernameDescription": {},
+  "roomVersion": "Versió de la sala",
+  "@roomVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKey": "Clau de seguretat",
+  "@securityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKeyLost": "Heu perduda la clau de seguretat?",
+  "@securityKeyLost": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendMessages": "Envia missatges",
+  "@sendMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveFile": "Desa el fitxer",
+  "@saveFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "savedFileAs": "S’ha desat el fitxer com a {filename}",
+  "@savedFileAs": {
+    "type": "text",
+    "placeholders": {
+      "filename": {}
+    }
+  },
+  "pleaseFollowInstructionsOnWeb": "Seguiu les instruccions al lloc web i toqueu «Següent».",
+  "@pleaseFollowInstructionsOnWeb": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reportMessage": "Denuncia el missatge",
+  "@reportMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setAsCanonicalAlias": "Defineix com a àlies principal",
+  "@setAsCanonicalAlias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "status": "Estat",
+  "@status": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapOnDeviceToVerify": "Toqueu un dispositiu per a verificar-lo",
+  "@tapOnDeviceToVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleFavorite": "Commuta l’estat «preferit»",
+  "@toggleFavorite": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleMuted": "Commuta l’estat «silenci»",
+  "@toggleMuted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transferFromAnotherDevice": "Transfereix des d’un altre dispositiu",
+  "@transferFromAnotherDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unlockChatBackup": "Desbloca la còpia de seguretat del xat",
+  "@unlockChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userNotVerified": "L’usuari no s’ha verificat",
+  "@userNotVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setCustomEmotes": "Defineix emoticones personalitzades",
+  "@setCustomEmotes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whoCanPerformWhichAction": "Qui pot efectuar quina acció",
+  "@whoCanPerformWhichAction": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whyDoYouWantToReportThis": "Per què voleu denunciar això?",
+  "@whyDoYouWantToReportThis": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wipeChatBackup": "Voleu suprimir la còpia de seguretat dels xats per a crear una clau de seguretat nova?",
+  "@wipeChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "waitingPartnerAcceptRequest": "S’està esperant que l’altre accepti la sol·licitud…",
+  "@waitingPartnerAcceptRequest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userUnknownVerification": "L’estat de verificació de l’usuari és desconegut",
+  "@userUnknownVerification": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userVerified": "L’usuari s’ha verificat",
+  "@userVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unverified": "No verificat",
+  "@unverified": {},
+  "commandHintMe": "Descriviu-vos",
+  "@commandHintMe": {
+    "type": "text",
+    "description": "Usage hint for the command /me"
+  },
+  "commandMissing": "{command} no és una ordre.",
+  "@commandMissing": {
+    "type": "text",
+    "placeholders": {
+      "command": {}
+    },
+    "description": "State that {command} is not a valid /command."
+  },
+  "configureChat": "Configura el xat",
+  "@configureChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copyToClipboard": "Copia al porta-retalls",
+  "@copyToClipboard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createNewSpace": "Espai nou",
+  "@createNewSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dontAskAgain": "Cancel·la i no m’ho tornis a preguntar",
+  "@dontAskAgain": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorObtainingLocation": "S’ha produït un error en obtenir la ubicació: {error}",
+  "@errorObtainingLocation": {
+    "type": "text",
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "friends": "Amistats",
+  "@friends": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groups": "Grups",
+  "@groups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "messages": "Missatges",
+  "@messages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showPassword": "Mostra la contrasenya",
+  "@showPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceIsPublic": "L’espai és públic",
+  "@spaceIsPublic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "scanQrCode": "Escaneja un codi QR",
+  "@scanQrCode": {},
+  "obtainingLocation": "S’està obtenint la ubicació…",
+  "@obtainingLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareLocation": "Comparteix la ubicació",
+  "@shareLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "synchronizingPleaseWait": "S’està sincronitzant… Espereu.",
+  "@synchronizingPleaseWait": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reason": "Raó",
+  "@reason": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changedTheDisplaynameTo": "{username} ha canviat el propi nom visible a: «{displayname}»",
+  "@changedTheDisplaynameTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "displayname": {}
+    }
+  },
+  "howOffensiveIsThisContent": "Com d’ofensiu és aquest contingut?",
+  "@howOffensiveIsThisContent": {
     "type": "text",
     "placeholders": {}
   }
