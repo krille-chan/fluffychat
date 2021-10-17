@@ -177,8 +177,8 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
             ),
             body: Center(
               child: ConstrainedBox(
-                constraints:
-                    const BoxConstraints(maxWidth: FluffyThemes.columnWidth * 1.5),
+                constraints: const BoxConstraints(
+                    maxWidth: FluffyThemes.columnWidth * 1.5),
                 child: ListView(
                   padding: const EdgeInsets.all(16.0),
                   children: [
@@ -235,7 +235,8 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
                         primary: Theme.of(context).secondaryHeaderColor,
                         onPrimary: Theme.of(context).primaryColor,
                       ),
-                      icon: const Icon(Icons.transfer_within_a_station_outlined),
+                      icon:
+                          const Icon(Icons.transfer_within_a_station_outlined),
                       label: Text(L10n.of(context).transferFromAnotherDevice),
                       onPressed: () async {
                         final req = await showFutureLoadingDialog(

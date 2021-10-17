@@ -303,8 +303,10 @@ class ChatView extends StatelessWidget {
                                         ? AnimatedContainer(
                                             height: seenByText.isEmpty ? 0 : 24,
                                             duration: seenByText.isEmpty
-                                                ? const Duration(milliseconds: 0)
-                                                : const Duration(milliseconds: 300),
+                                                ? const Duration(
+                                                    milliseconds: 0)
+                                                : const Duration(
+                                                    milliseconds: 300),
                                             alignment: controller.filteredEvents
                                                         .isNotEmpty &&
                                                     controller.filteredEvents
@@ -318,8 +320,9 @@ class ChatView extends StatelessWidget {
                                               bottom: 8,
                                             ),
                                             child: Container(
-                                              padding: const EdgeInsets.symmetric(
-                                                  horizontal: 4),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 4),
                                               decoration: BoxDecoration(
                                                 color: Theme.of(context)
                                                     .scaffoldBackgroundColor
@@ -559,7 +562,8 @@ class ChatView extends StatelessWidget {
                                                     Text(L10n.of(context)
                                                         .tryToSendAgain),
                                                     const SizedBox(width: 4),
-                                                    const Icon(Icons.send_outlined,
+                                                    const Icon(
+                                                        Icons.send_outlined,
                                                         size: 16),
                                                   ],
                                                 ),
@@ -593,7 +597,8 @@ class ChatView extends StatelessWidget {
                                             ),
                                             title:
                                                 Text(L10n.of(context).sendFile),
-                                            contentPadding: const EdgeInsets.all(0),
+                                            contentPadding:
+                                                const EdgeInsets.all(0),
                                           ),
                                         ),
                                         PopupMenuItem<String>(
@@ -606,7 +611,8 @@ class ChatView extends StatelessWidget {
                                             ),
                                             title: Text(
                                                 L10n.of(context).sendImage),
-                                            contentPadding: const EdgeInsets.all(0),
+                                            contentPadding:
+                                                const EdgeInsets.all(0),
                                           ),
                                         ),
                                         if (PlatformInfos.isMobile)
@@ -621,7 +627,8 @@ class ChatView extends StatelessWidget {
                                               ),
                                               title: Text(
                                                   L10n.of(context).openCamera),
-                                              contentPadding: const EdgeInsets.all(0),
+                                              contentPadding:
+                                                  const EdgeInsets.all(0),
                                             ),
                                           ),
                                         if (controller.room
@@ -639,7 +646,8 @@ class ChatView extends StatelessWidget {
                                               ),
                                               title: Text(
                                                   L10n.of(context).sendSticker),
-                                              contentPadding: const EdgeInsets.all(0),
+                                              contentPadding:
+                                                  const EdgeInsets.all(0),
                                             ),
                                           ),
                                         if (PlatformInfos.isMobile)
@@ -654,7 +662,8 @@ class ChatView extends StatelessWidget {
                                               ),
                                               title: Text(L10n.of(context)
                                                   .voiceMessage),
-                                              contentPadding: const EdgeInsets.all(0),
+                                              contentPadding:
+                                                  const EdgeInsets.all(0),
                                             ),
                                           ),
                                         if (PlatformInfos.isMobile)
@@ -669,7 +678,8 @@ class ChatView extends StatelessWidget {
                                               ),
                                               title: Text(L10n.of(context)
                                                   .shareLocation),
-                                              contentPadding: const EdgeInsets.all(0),
+                                              contentPadding:
+                                                  const EdgeInsets.all(0),
                                             ),
                                           ),
                                       ],
@@ -725,7 +735,8 @@ class ChatView extends StatelessWidget {
                                       alignment: Alignment.center,
                                       child: IconButton(
                                         tooltip: L10n.of(context).voiceMessage,
-                                        icon: const Icon(Icons.mic_none_outlined),
+                                        icon:
+                                            const Icon(Icons.mic_none_outlined),
                                         onPressed:
                                             controller.voiceMessageAction,
                                       ),

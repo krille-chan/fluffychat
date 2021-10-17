@@ -26,7 +26,7 @@ class MessageContent extends StatelessWidget {
   final Event event;
   final Color textColor;
 
-  const MessageContent(this.event, {Key key,this.textColor}) : super(key: key);
+  const MessageContent(this.event, {Key key, this.textColor}) : super(key: key);
 
   void _verifyOrRequestKey(BuildContext context) async {
     if (event.content['can_request_session'] != true) {

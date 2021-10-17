@@ -42,7 +42,8 @@ class ArchiveView extends StatelessWidget {
             } else {
               controller.archive = snapshot.data;
               if (controller.archive.isEmpty) {
-                return const Center(child: Icon(Icons.archive_outlined, size: 80));
+                return const Center(
+                    child: Icon(Icons.archive_outlined, size: 80));
               }
               return ListView.builder(
                 itemCount: controller.archive.length,

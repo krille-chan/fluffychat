@@ -56,7 +56,8 @@ class DevicesSettingsView extends StatelessWidget {
                       style: const TextStyle(color: Colors.red),
                     ),
                     trailing: controller.loadingDeletingDevices
-                        ? const CircularProgressIndicator.adaptive(strokeWidth: 2)
+                        ? const CircularProgressIndicator.adaptive(
+                            strokeWidth: 2)
                         : const Icon(Icons.delete_outline),
                     onTap: controller.loadingDeletingDevices
                         ? null

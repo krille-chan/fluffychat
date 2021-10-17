@@ -103,7 +103,8 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                               ),
                               subtitle: Text(
                                 deviceKeys[i].userId,
-                                style: const TextStyle(fontWeight: FontWeight.w300),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w300),
                               ),
                             ),
                           ),
@@ -152,7 +153,8 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                               children: [
                                 Text(
                                   deviceKeys[i].deviceId,
-                                  style: const TextStyle(fontWeight: FontWeight.w300),
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.w300),
                                 ),
                                 const Spacer(),
                                 Text(

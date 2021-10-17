@@ -121,7 +121,8 @@ class ChatDetailsView extends StatelessWidget {
                                 text: room.topic?.isEmpty ?? true
                                     ? L10n.of(context).addGroupDescription
                                     : room.topic,
-                                linkStyle: const TextStyle(color: Colors.blueAccent),
+                                linkStyle:
+                                    const TextStyle(color: Colors.blueAccent),
                                 textStyle: TextStyle(
                                   fontSize: 14,
                                   color: Theme.of(context)
@@ -181,7 +182,8 @@ class ChatDetailsView extends StatelessWidget {
                                 backgroundColor:
                                     Theme.of(context).scaffoldBackgroundColor,
                                 foregroundColor: Colors.grey,
-                                child: const Icon(Icons.insert_emoticon_outlined),
+                                child:
+                                    const Icon(Icons.insert_emoticon_outlined),
                               ),
                               title: Text(L10n.of(context).emoteSettings),
                               subtitle: Text(L10n.of(context).setCustomEmotes),
@@ -315,7 +317,8 @@ class ChatDetailsView extends StatelessWidget {
                                 backgroundColor:
                                     Theme.of(context).scaffoldBackgroundColor,
                                 foregroundColor: Colors.grey,
-                                child: const Icon(Icons.edit_attributes_outlined),
+                                child:
+                                    const Icon(Icons.edit_attributes_outlined),
                               ),
                               onTap: () =>
                                   VRouter.of(context).to('permissions'),
