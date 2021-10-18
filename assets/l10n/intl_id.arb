@@ -1435,7 +1435,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wallpaper": "Wallpaper",
+  "wallpaper": "Latar belakang",
   "@wallpaper": {
     "type": "text",
     "placeholders": {}
@@ -1585,7 +1585,7 @@
       "unreadCount": {}
     }
   },
-  "unpin": "Unpin",
+  "unpin": "Lepaskan pin",
   "@unpin": {
     "type": "text",
     "placeholders": {}
@@ -1671,7 +1671,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "timeOfDay": "{hours12}:{minutes} {suffix}",
+  "timeOfDay": "{hours12}.{minutes} {suffix}",
   "@timeOfDay": {
     "type": "text",
     "placeholders": {
@@ -1793,7 +1793,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sharedTheLocation": "{username} membagikan lokasi",
+  "sharedTheLocation": "{username} membagikan lokasinya",
   "@sharedTheLocation": {
     "type": "text",
     "placeholders": {
@@ -2597,5 +2597,17 @@
     "placeholders": {}
   },
   "link": "Tautan",
-  "@link": {}
+  "@link": {},
+  "setupChatBackup": "Siapkan cadangan pesan",
+  "@setupChatBackup": {},
+  "iWroteDownTheKey": "Saya telah menuliskan kuncinya",
+  "@iWroteDownTheKey": {},
+  "yourChatBackupHasBeenSetUp": "Cadangan pesan Anda telah disiapkan.",
+  "@yourChatBackupHasBeenSetUp": {},
+  "yourUserId": "ID pengguna Anda:",
+  "@yourUserId": {},
+  "setupChatBackupDescription": "Untuk melindungi pesan Anda, kami telah membuat kunci keamanan untuk Anda.\nSilakan simpan kuncinya di tempat yang aman, seperti manajer kata sandi.",
+  "@setupChatBackupDescription": {},
+  "unverified": "Tidak terverifikasi",
+  "@unverified": {}
 }
