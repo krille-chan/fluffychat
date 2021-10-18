@@ -2610,7 +2610,7 @@
   "@iWroteDownTheKey": {},
   "yourChatBackupHasBeenSetUp": "Votre sauvegarde de la discussion a été mise en place.",
   "@yourChatBackupHasBeenSetUp": {},
-  "setupChatBackupDescription": "Pour protéger vos messages, nous avons généré une clé de sécurité pour vous. Veuillez la conserver en lieu sûr, par exemple dans un gestionnaire de mots de passe.",
+  "setupChatBackupDescription": "Pour protéger vos messages, nous avons généré une clé de sécurité pour vous.\nVeuillez la garder dans un endroit sûr, par exemple un gestionnaire de mots de passe.",
   "@setupChatBackupDescription": {},
   "yourUserId": "Votre identifiant utilisateur :",
   "@yourUserId": {},
