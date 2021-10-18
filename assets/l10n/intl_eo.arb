@@ -1029,7 +1029,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "hideRedactedEvents": "Kaŝi redaktitajn eventojn",
+  "hideRedactedEvents": "Kaŝi obskurigitajn eventojn",
   "@hideRedactedEvents": {
     "type": "text",
     "placeholders": {}
@@ -1676,14 +1676,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "redactedAnEvent": "{username} redaktis eventon",
+  "redactedAnEvent": "{username} obskurigis eventon",
   "@redactedAnEvent": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "redactMessage": "Forigi mesaĝon",
+  "redactMessage": "Obskurigi mesaĝon",
   "@redactMessage": {
     "type": "text",
     "placeholders": {}
