@@ -2578,5 +2578,10 @@
   "@zoomOut": {
     "type": "text",
     "placeholders": {}
+  },
+  "locationDisabledNotice": "Служби визначення місцеположення вимкнені. Увімкніть їх, щоб могти надавати доступ до вашого місцеположення.",
+  "@locationDisabledNotice": {
+    "type": "text",
+    "placeholders": {}
   }
 }
