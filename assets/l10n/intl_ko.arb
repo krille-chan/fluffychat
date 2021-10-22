@@ -2597,5 +2597,17 @@
     }
   },
   "link": "링크",
-  "@link": {}
+  "@link": {},
+  "yourUserId": "당신의 유저 ID:",
+  "@yourUserId": {},
+  "unverified": "확인되지 않음",
+  "@unverified": {},
+  "setupChatBackup": "채팅 백업 설정",
+  "@setupChatBackup": {},
+  "yourChatBackupHasBeenSetUp": "당신의 채팅 백업이 설정되었습니다.",
+  "@yourChatBackupHasBeenSetUp": {},
+  "iWroteDownTheKey": "키를 적었습니다",
+  "@iWroteDownTheKey": {},
+  "setupChatBackupDescription": "당신의 메시지를 보호하기 위해서, 보안 키를 생성했습니다.\n비밀번호 관리자와 같이 안전한 곳에 저장해주세요.",
+  "@setupChatBackupDescription": {}
 }
