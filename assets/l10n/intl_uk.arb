@@ -906,12 +906,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "",
+  "noGoogleServicesWarning": "Схоже, на вашому телефоні немає служб Google. Це гарне рішення для вашої приватності! Щоб отримувати push-сповіщення у FluffyChat, ми радимо використовувати https://microg.org/ або https://unifiedpush.org/.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "",
+  "noMegolmBootstrap": "Замість цього увімкніть резервне копіювання онлайн-ключів з Element.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -948,12 +948,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "onlineKeyBackupDisabled": "",
+  "onlineKeyBackupDisabled": "Резервне онлайн-копіювання ключів вимкнено",
   "@onlineKeyBackupDisabled": {
     "type": "text",
     "placeholders": {}
   },
-  "onlineKeyBackupEnabled": "",
+  "onlineKeyBackupEnabled": "Резервне онлайн-копіювання ключів увімкнено",
   "@onlineKeyBackupEnabled": {
     "type": "text",
     "placeholders": {}
@@ -2583,5 +2583,14 @@
   "@locationDisabledNotice": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "locationPermissionDeniedNotice": "Дозвіл на розташування відхилено. Надайте можливість ділитися своїм місцеперебуванням.",
+  "@locationPermissionDeniedNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newPasswordDescription": "Щоб мати можливість відновити пароль потрібно буде додати адресу е-пошти до свого облікового запису.",
+  "@newPasswordDescription": {},
+  "oneClientLoggedOut": "На одному з ваших клієнтів виконано вихід із системи",
+  "@oneClientLoggedOut": {}
 }
