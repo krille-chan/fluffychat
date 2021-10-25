@@ -86,7 +86,19 @@ class UserBottomSheetController extends State<UserBottomSheet> {
       case 'message':
         final roomIdResult = await showFutureLoadingDialog(
           context: context,
-          future: () => widget.user.startDirectChat(),
+          future: () async {
+            final roomId = await widget.user.startDirectChat();
+            final client = widget.user.room.client;
+            if (client.getRoomById(roomId) == null) {
+              await client.onSync.stream.firstWhere(
+                  (sync) => sync.rooms?.join?.containsKey(roomId) ?? false);
+            }
+            final room = client.getRoomById(roomId);
+            if (client.encryptionEnabled && !room.encrypted) {
+              await client.getRoomById(roomId).enableEncryption();
+            }
+            return roomId;
+          },
         );
         if (roomIdResult.error != null) return;
         VRouter.of(widget.outerContext)

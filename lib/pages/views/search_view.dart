@@ -247,9 +247,23 @@ class SearchView extends StatelessWidget {
                         onTap: () async {
                           final roomID = await showFutureLoadingDialog(
                             context: context,
-                            future: () => Matrix.of(context)
-                                .client
-                                .startDirectChat(foundProfile.userId),
+                            future: () async {
+                              final client = Matrix.of(context).client;
+                              final roomId = await client
+                                  .startDirectChat(foundProfile.userId);
+                              if (client.getRoomById(roomId) == null) {
+                                await client.onSync.stream.firstWhere((sync) =>
+                                    sync.rooms?.join?.containsKey(roomId) ??
+                                    false);
+                              }
+                              final room = client.getRoomById(roomId);
+                              if (client.encryptionEnabled && !room.encrypted) {
+                                await client
+                                    .getRoomById(roomId)
+                                    .enableEncryption();
+                              }
+                              return roomId;
+                            },
                           );
                           if (roomID.error == null) {
                             VRouter.of(context)
