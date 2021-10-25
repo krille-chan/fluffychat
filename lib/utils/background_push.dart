@@ -461,8 +461,7 @@ class BackgroundPush {
   Future<bool> eventExists(String roomId, String eventId) async {
     final room = client.getRoomById(roomId);
     if (room == null) return false;
-    return (await client.database.getEventById(client.id, eventId, room)) !=
-        null;
+    return (await client.database.getEventById(eventId, room)) != null;
   }
 
   /// Workaround for the problem that local notification IDs must be int but we
@@ -579,7 +578,7 @@ class BackgroundPush {
       throw 'Room not found';
     }
     await room.postLoad();
-    final event = await client.database.getEventById(client.id, eventId, room);
+    final event = await client.database.getEventById(eventId, room);
 
     final activeRoomId = router.currentState.pathParameters['roomid'];
 

@@ -36,8 +36,8 @@ class FlutterMatrixHiveStore extends FamedlySdkHiveDatabase {
   }
 
   @override
-  Future<void> clear(int clientId) async {
-    await super.clear(clientId);
+  Future<void> clear() async {
+    await super.clear();
     await _customBox.deleteAll(_customBox.keys);
     await _customBox.close();
   }
@@ -84,7 +84,7 @@ class FlutterMatrixHiveStore extends FamedlySdkHiveDatabase {
       await db.open();
     } catch (e, s) {
       Logs().e('Unable to open Hive. Delete and try again...', e, s);
-      await db.clear(client.id);
+      await db.clear();
       await db.open();
     }
     return db;

@@ -468,7 +468,7 @@ class ChatController extends State<Chat> {
       await showFutureLoadingDialog(
           context: context,
           future: () async {
-            if (event.status > 0) {
+            if (event.status.isSent) {
               if (event.canRedact) {
                 await event.redactEvent();
               } else {
@@ -505,7 +505,7 @@ class ChatController extends State<Chat> {
   }
 
   bool get canEditSelectedEvents {
-    if (selectedEvents.length != 1 || selectedEvents.first.status < 1) {
+    if (selectedEvents.length != 1 || !selectedEvents.first.status.isSent) {
       return false;
     }
     return currentRoomBundle
@@ -527,12 +527,12 @@ class ChatController extends State<Chat> {
 
   void sendAgainAction() {
     final event = selectedEvents.first;
-    if (event.status == -1) {
+    if (event.status.isError) {
       event.sendAgain();
     }
     final allEditEvents = event
         .aggregatedEvents(timeline, RelationshipTypes.edit)
-        .where((e) => e.status == -1);
+        .where((e) => e.status.isError);
     for (final e in allEditEvents) {
       e.sendAgain();
     }

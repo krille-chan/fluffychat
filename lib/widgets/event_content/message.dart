@@ -75,7 +75,7 @@ class Message extends StatelessWidget {
       color = Colors.transparent;
       textColor = Theme.of(context).textTheme.bodyText2.color;
     } else if (ownMessage) {
-      color = displayEvent.status == -1
+      color = displayEvent.status.isError
           ? Colors.redAccent
           : Theme.of(context).primaryColor;
     }
@@ -125,7 +125,7 @@ class Message extends StatelessWidget {
                                       type: 'm.room.message',
                                       room: event.room,
                                       roomId: event.roomId,
-                                      status: 1,
+                                      status: EventStatus.sent,
                                       originServerTs: DateTime.now(),
                                     );
                               return InkWell(

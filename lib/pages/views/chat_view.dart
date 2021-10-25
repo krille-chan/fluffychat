@@ -535,8 +535,7 @@ class ChatView extends StatelessWidget {
                                       ? controller.selectedEvents.first
                                                   .getDisplayEvent(
                                                       controller.timeline)
-                                                  .status >
-                                              0
+                                                  .status.isSent
                                           ? SizedBox(
                                               height: 56,
                                               child: TextButton(

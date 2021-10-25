@@ -16,7 +16,7 @@ extension LocalizedBody on Event {
   }
 
   IconData get statusIcon {
-    switch (status) {
+    switch (status.intValue) {
       case -1:
         return Icons.error_outline;
       case 0:
