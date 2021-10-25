@@ -345,7 +345,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       }
     });
     onUiaRequest[name] ??= c.onUiaRequest.stream.listen(
-      UiaRequestManager(client, L10n.of(context), navigatorContext)
+      UiaRequestManager(client, L10n.of(widget.context), navigatorContext)
           .onUiaRequest,
     );
     if (PlatformInfos.isWeb || PlatformInfos.isLinux) {

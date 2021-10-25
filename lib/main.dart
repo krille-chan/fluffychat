@@ -80,7 +80,6 @@ class FluffyChatApp extends StatefulWidget {
 }
 
 class _FluffyChatAppState extends State<FluffyChatApp> {
-  final GlobalKey<MatrixState> _matrix = GlobalKey<MatrixState>();
   GlobalKey<VRouterState> _router;
   bool columnMode;
   String _initialUrl;
@@ -147,7 +146,6 @@ class _FluffyChatAppState extends State<FluffyChatApp> {
                 );
               });
               return Matrix(
-                key: _matrix,
                 context: context,
                 router: _router,
                 clients: widget.clients,
