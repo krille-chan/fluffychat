@@ -1,3 +1,13 @@
+## v0.42.1 - 2021-10-26
+Minor bugfix release.
+
+- feat: Ignore users directly from bottom sheet
+- fix: Open an existing direct chat via invite link/QR scanning
+- fix: Small fix for uia request
+- fix: Enable E2EE by default in all start chat cases
+- update: Translations - Thanks to all translators <3
+- design: Make homepicker page nicer
+
 ## v0.42.0 - 2021-10-14
 This release fixes several bugs and makes E2EE enabled by default.
 
