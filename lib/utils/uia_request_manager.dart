@@ -118,7 +118,7 @@ class UiaRequestManager {
       }
     } catch (e, s) {
       Logs().e('Error while background UIA', e, s);
-      return uiaRequest.cancel(e);
+      return uiaRequest.cancel(e is Exception ? e : Exception(e));
     }
   }
 }
