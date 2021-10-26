@@ -294,11 +294,13 @@ class ChatDetailsController extends State<ChatDetails> {
     }
   }
 
+  static const fixedWidth = 360.0;
+
   @override
   Widget build(BuildContext context) {
     members ??= Matrix.of(context).client.getRoomById(roomId).getParticipants();
     return SizedBox(
-      width: 360.0,
+      width: fixedWidth,
       child: ChatDetailsView(this),
     );
   }

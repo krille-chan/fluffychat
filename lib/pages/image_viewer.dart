@@ -27,11 +27,13 @@ class ImageViewerController extends State<ImageViewer> {
   /// Save this file with a system call.
   void saveFileAction() => widget.event.saveFile(context);
 
+  static const maxScaleFactor = 1.5;
+
   /// Go back if user swiped it away
   void onInteractionEnds(ScaleEndDetails endDetails) {
     if (PlatformInfos.usesTouchscreen == false) {
       if (endDetails.velocity.pixelsPerSecond.dy >
-          MediaQuery.of(context).size.height * 1.50) {
+          MediaQuery.of(context).size.height * maxScaleFactor) {
         Navigator.of(context, rootNavigator: false).pop();
       }
     }

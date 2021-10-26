@@ -552,50 +552,50 @@ class ChatController extends State<Chat> {
     if (eventIndex == -1) {
       // event id not found...maybe we can fetch it?
       // the try...finally is here to start and close the loading dialog reliably
-      final task = Future.microtask(() async {
-        // okay, we first have to fetch if the event is in the room
-        try {
-          final event = await timeline.getEventById(eventId);
-          if (event == null) {
-            // event is null...meaning something is off
-            return;
-          }
-        } catch (err) {
-          if (err is MatrixException && err.errcode == 'M_NOT_FOUND') {
-            // event wasn't found, as the server gave a 404 or something
-            return;
-          }
-          rethrow;
-        }
-        // okay, we know that the event *is* in the room
-        while (eventIndex == -1) {
-          if (!canLoadMore) {
-            // we can't load any more events but still haven't found ours yet...better stop here
-            return;
-          }
-          try {
-            await timeline.requestHistory(historyCount: _loadHistoryCount);
-          } catch (err) {
-            if (err is TimeoutException) {
-              // loading the history timed out...so let's do nothing
-              return;
+      await showFutureLoadingDialog(
+          context: context,
+          future: () async {
+            // okay, we first have to fetch if the event is in the room
+            try {
+              final event = await timeline.getEventById(eventId);
+              if (event == null) {
+                // event is null...meaning something is off
+                return;
+              }
+            } catch (err) {
+              if (err is MatrixException && err.errcode == 'M_NOT_FOUND') {
+                // event wasn't found, as the server gave a 404 or something
+                return;
+              }
+              rethrow;
             }
-            rethrow;
-          }
-          eventIndex = filteredEvents.indexWhere((e) => e.eventId == eventId);
-        }
-      });
-      if (context != null) {
-        await showFutureLoadingDialog(context: context, future: () => task);
-      } else {
-        await task;
-      }
+            // okay, we know that the event *is* in the room
+            while (eventIndex == -1) {
+              if (!canLoadMore) {
+                // we can't load any more events but still haven't found ours yet...better stop here
+                return;
+              }
+              try {
+                await timeline.requestHistory(historyCount: _loadHistoryCount);
+              } catch (err) {
+                if (err is TimeoutException) {
+                  // loading the history timed out...so let's do nothing
+                  return;
+                }
+                rethrow;
+              }
+              eventIndex =
+                  filteredEvents.indexWhere((e) => e.eventId == eventId);
+            }
+          });
     }
     if (!mounted) {
       return;
     }
-    await scrollController.scrollToIndex(eventIndex,
-        preferPosition: AutoScrollPosition.middle);
+    await scrollController.scrollToIndex(
+      eventIndex,
+      preferPosition: AutoScrollPosition.middle,
+    );
     _updateScrollController();
   }
 

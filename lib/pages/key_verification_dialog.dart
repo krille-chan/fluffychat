@@ -155,10 +155,7 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
         );
         buttons.add(AdaptiveFlatButton(
           label: L10n.of(context).submit,
-          onPressed: () {
-            input = textEditingController.text;
-            checkInput(input);
-          },
+          onPressed: () => checkInput(textEditingController.text),
         ));
         buttons.add(AdaptiveFlatButton(
           label: L10n.of(context).skip,
@@ -207,11 +204,9 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
         buttons.add(AdaptiveFlatButton(
           label: L10n.of(context).reject,
           textColor: Colors.red,
-          onPressed: () {
-            widget.request.rejectVerification().then((_) {
-              Navigator.of(context, rootNavigator: false).pop();
-            });
-          },
+          onPressed: () => widget.request
+              .rejectVerification()
+              .then((_) => Navigator.of(context, rootNavigator: false).pop()),
         ));
         buttons.add(AdaptiveFlatButton(
           label: L10n.of(context).accept,

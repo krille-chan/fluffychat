@@ -99,9 +99,10 @@ class _FluffyChatAppState extends State<FluffyChatApp> {
       initial: AdaptiveThemeMode.system,
       builder: (theme, darkTheme) => LayoutBuilder(
         builder: (context, constraints) {
+          const maxColumns = 3;
           var newColumns =
               (constraints.maxWidth / FluffyThemes.columnWidth).floor();
-          if (newColumns > 3) newColumns = 3;
+          if (newColumns > maxColumns) newColumns = maxColumns;
           columnMode ??= newColumns > 1;
           _router ??= GlobalKey<VRouterState>();
           if (columnMode != newColumns > 1) {

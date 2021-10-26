@@ -104,6 +104,8 @@ class SearchController extends State<Search> {
   String currentSearchTerm;
   List<Profile> foundProfiles = [];
 
+  static const searchUserDirectoryLimit = 10;
+
   void searchUser(BuildContext context, String text) async {
     if (text.isEmpty) {
       setState(() {
@@ -115,7 +117,10 @@ class SearchController extends State<Search> {
     final matrix = Matrix.of(context);
     SearchUserDirectoryResponse response;
     try {
-      response = await matrix.client.searchUserDirectory(text, limit: 10);
+      response = await matrix.client.searchUserDirectory(
+        text,
+        limit: searchUserDirectoryLimit,
+      );
     } catch (_) {}
     foundProfiles = List<Profile>.from(response?.results ?? []);
     if (foundProfiles.isEmpty && text.isValidMatrixId && text.sigil == '@') {
