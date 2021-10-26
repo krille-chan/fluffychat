@@ -346,10 +346,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
             SettingKeys.ownStatusMessage, presence.presence.statusMsg);
       }
     });
-    onUiaRequest[name] ??= c.onUiaRequest.stream.listen(
-      UiaRequestManager(client, L10n.of(widget.context), navigatorContext)
-          .onUiaRequest,
-    );
+    onUiaRequest[name] ??= c.onUiaRequest.stream.listen(uiaRequestHandler);
     if (PlatformInfos.isWeb || PlatformInfos.isLinux) {
       c.onSync.stream.first.then((s) {
         html.Notification.requestPermission();
