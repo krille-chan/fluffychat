@@ -1,22 +1,24 @@
 import 'dart:math';
-import 'package:async/async.dart';
-import 'package:fluffychat/config/themes.dart';
 
-import 'package:fluffychat/widgets/avatar.dart';
-import 'package:flutter/widgets.dart';
-import 'package:matrix/matrix.dart';
-import 'package:fluffychat/pages/chat_list.dart';
-import 'package:fluffychat/widgets/connection_status_header.dart';
-import 'package:fluffychat/widgets/list_items/chat_list_item.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:fluffychat/config/app_config.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:vrouter/vrouter.dart';
-import '../../widgets/matrix.dart';
-import '../../utils/account_bundles.dart';
+import 'package:flutter/widgets.dart';
+
+import 'package:async/async.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/matrix.dart';
+import 'package:vrouter/vrouter.dart';
+
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/pages/chat_list.dart';
+import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/connection_status_header.dart';
+import 'package:fluffychat/widgets/list_items/chat_list_item.dart';
+import '../../utils/account_bundles.dart';
 import '../../utils/stream_extension.dart';
+import '../../widgets/matrix.dart';
 
 class ChatListView extends StatelessWidget {
   final ChatListController controller;

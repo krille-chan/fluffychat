@@ -1,15 +1,16 @@
 import 'dart:typed_data';
 
-import 'package:matrix/matrix.dart';
-import 'package:fluffychat/pages/image_viewer.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_blurhash/flutter_blurhash.dart';
+import 'package:flutter/material.dart';
+
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_blurhash/flutter_blurhash.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lottie/lottie.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/pages/image_viewer.dart';
 import '../../utils/matrix_sdk_extensions.dart/event_extension.dart';
 import '../matrix.dart';
 

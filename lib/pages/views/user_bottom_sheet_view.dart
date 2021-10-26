@@ -1,14 +1,16 @@
 import 'dart:math';
 
+import 'package:flutter/material.dart';
+
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
+
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
-import 'package:flutter/material.dart';
+import '../../utils/matrix_sdk_extensions.dart/presence_extension.dart';
 import '../../widgets/content_banner.dart';
 import '../../widgets/matrix.dart';
 import '../user_bottom_sheet.dart';
-import '../../utils/matrix_sdk_extensions.dart/presence_extension.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class UserBottomSheetView extends StatelessWidget {
   final UserBottomSheetController controller;

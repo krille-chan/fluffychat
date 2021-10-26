@@ -1,11 +1,12 @@
-import 'package:matrix/matrix.dart';
-import 'package:fluffychat/config/app_config.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+import 'package:matrix/matrix.dart';
 import 'package:sentry/sentry.dart';
 
-import 'famedlysdk_store.dart';
+import 'package:fluffychat/config/app_config.dart';
 import '../config/setting_keys.dart';
+import 'famedlysdk_store.dart';
 
 abstract class SentryController {
   static Future<void> toggleSentryAction(

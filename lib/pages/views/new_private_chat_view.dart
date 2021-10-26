@@ -1,14 +1,16 @@
 import 'dart:math';
 
+import 'package:flutter/material.dart';
+
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:qr_flutter/qr_flutter.dart';
+import 'package:vrouter/vrouter.dart';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/new_private_chat.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:qr_flutter/qr_flutter.dart';
-import 'package:vrouter/vrouter.dart';
 
 class NewPrivateChatView extends StatelessWidget {
   final NewPrivateChatController controller;

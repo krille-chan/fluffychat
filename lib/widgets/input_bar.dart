@@ -1,13 +1,15 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:matrix/matrix.dart';
+import 'package:slugify/slugify.dart';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
-import 'package:matrix/matrix.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:slugify/slugify.dart';
 import 'avatar.dart';
 import 'matrix.dart';
 

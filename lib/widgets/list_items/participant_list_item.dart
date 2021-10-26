@@ -1,9 +1,10 @@
-import 'package:matrix/matrix.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import '../avatar.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/matrix.dart';
+
 import '../../pages/user_bottom_sheet.dart';
+import '../avatar.dart';
 
 class ParticipantListItem extends StatelessWidget {
   final User user;

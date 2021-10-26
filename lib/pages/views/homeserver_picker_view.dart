@@ -1,22 +1,21 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/matrix.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:vrouter/vrouter.dart';
 
-import '../homeserver_picker.dart';
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/default_app_bar_search_field.dart';
 import 'package:fluffychat/widgets/fluffy_banner.dart';
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/widgets/layouts/one_page_card.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
-
-import 'package:flutter/foundation.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/localized_exception_extension.dart';
-
-import 'package:matrix/matrix.dart';
+import '../homeserver_picker.dart';
 
 class HomeserverPickerView extends StatelessWidget {
   final HomeserverPickerController controller;

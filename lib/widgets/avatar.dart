@@ -1,9 +1,10 @@
-import 'package:matrix/matrix.dart';
-import 'package:fluffychat/utils/string_color.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:matrix/matrix.dart';
+
+import 'package:fluffychat/utils/string_color.dart';
 import 'matrix.dart';
 
 class Avatar extends StatelessWidget {

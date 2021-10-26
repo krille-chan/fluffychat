@@ -1,25 +1,25 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/encryption/utils/key_verification.dart';
 import 'package:matrix/matrix.dart';
-import 'package:fluffychat/widgets/event_content/audio_player.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
-import 'package:fluffychat/widgets/event_content/image_bubble.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions.dart/event_extension.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
-import 'package:fluffychat/pages/key_verification_dialog.dart';
-
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix_link_text/link_text.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../utils/url_launcher.dart';
-import '../../utils/platform_infos.dart';
+import 'package:fluffychat/pages/key_verification_dialog.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions.dart/event_extension.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
+import 'package:fluffychat/widgets/event_content/audio_player.dart';
+import 'package:fluffychat/widgets/event_content/image_bubble.dart';
 import '../../config/app_config.dart';
 import '../../pages/video_viewer.dart';
-import 'html_message.dart';
+import '../../utils/platform_infos.dart';
+import '../../utils/url_launcher.dart';
 import '../matrix.dart';
-import 'message_download_content.dart';
+import 'html_message.dart';
 import 'map_bubble.dart';
+import 'message_download_content.dart';
 import 'sticker.dart';
 
 class MessageContent extends StatelessWidget {

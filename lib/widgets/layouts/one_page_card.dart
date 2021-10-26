@@ -1,8 +1,9 @@
 import 'dart:math';
 
+import 'package:flutter/material.dart';
+
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/material.dart';
 
 class OnePageCard extends StatelessWidget {
   final Widget child;

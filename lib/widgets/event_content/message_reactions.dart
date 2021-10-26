@@ -1,11 +1,13 @@
-import 'package:matrix/matrix.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/widgets/avatar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:characters/characters.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:matrix/matrix.dart';
+
+import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/widgets/avatar.dart';
 import '../matrix.dart';
 
 class MessageReactions extends StatelessWidget {

@@ -1,8 +1,10 @@
-import 'package:fluffychat/pages/views/empty_page_view.dart';
+import 'package:flutter/material.dart';
+
 import 'package:matrix/matrix.dart';
 import 'package:vrouter/vrouter.dart';
+
+import 'package:fluffychat/pages/views/empty_page_view.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/material.dart';
 
 class LoadingView extends StatelessWidget {
   const LoadingView({Key key}) : super(key: key);

@@ -1,13 +1,14 @@
 import 'dart:io';
 
-import 'package:adaptive_theme/adaptive_theme.dart';
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/config/setting_keys.dart';
 import 'package:flutter/material.dart';
+
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
 
-import 'views/settings_style_view.dart';
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/setting_keys.dart';
 import '../widgets/matrix.dart';
+import 'views/settings_style_view.dart';
 
 class SettingsStyle extends StatefulWidget {
   const SettingsStyle({Key key}) : super(key: key);

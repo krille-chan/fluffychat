@@ -22,22 +22,25 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:ui';
 
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
-import 'package:matrix/matrix.dart';
-//import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:unifiedpush/unifiedpush.dart';
+
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_gen/gen_l10n/l10n_en.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:http/http.dart' as http;
+import 'package:matrix/matrix.dart';
+import 'package:unifiedpush/unifiedpush.dart';
 import 'package:vrouter/vrouter.dart';
-import 'platform_infos.dart';
+
 import '../config/app_config.dart';
 import '../config/setting_keys.dart';
 import 'famedlysdk_store.dart';
 import 'matrix_sdk_extensions.dart/matrix_locals.dart';
+import 'platform_infos.dart';
+
+//import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
+
 
 class NoTokenException implements Exception {
   String get cause => 'Cannot get firebase token';

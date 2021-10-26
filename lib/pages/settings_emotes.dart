@@ -1,16 +1,16 @@
-import 'package:adaptive_dialog/adaptive_dialog.dart';
-
-import 'package:matrix/matrix.dart';
-import 'package:file_picker_cross/file_picker_cross.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:file_picker_cross/file_picker_cross.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:matrix/matrix.dart';
 import 'package:vrouter/vrouter.dart';
 
-import 'package:future_loading_dialog/future_loading_dialog.dart';
-import 'views/settings_emotes_view.dart';
-import '../widgets/matrix.dart';
 import '../utils/resize_image.dart';
+import '../widgets/matrix.dart';
+import 'views/settings_emotes_view.dart';
 
 class EmotesSettings extends StatefulWidget {
   const EmotesSettings({Key key}) : super(key: key);

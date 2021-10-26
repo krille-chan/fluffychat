@@ -1,5 +1,6 @@
-import 'package:isolate/isolate.dart';
 import 'dart:async';
+
+import 'package:isolate/isolate.dart';
 
 Future<T> runInBackground<T, U>(
     FutureOr<T> Function(U arg) function, U arg) async {

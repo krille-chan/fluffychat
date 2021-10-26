@@ -1,13 +1,14 @@
-import 'package:matrix/matrix.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
-import 'package:fluffychat/config/app_config.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:matrix/matrix.dart';
 import 'package:open_noti_settings/open_noti_settings.dart';
 
-import 'views/settings_notifications_view.dart';
+import 'package:fluffychat/config/app_config.dart';
 import '../widgets/matrix.dart';
+import 'views/settings_notifications_view.dart';
 
 class NotificationSettingsItem {
   final PushRuleKind type;

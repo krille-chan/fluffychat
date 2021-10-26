@@ -1,12 +1,13 @@
 import 'dart:convert';
 
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
+
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:matrix/encryption/utils/key_verification.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
 
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'famedlysdk_store.dart';
 import 'matrix_sdk_extensions.dart/flutter_matrix_hive_database.dart';
 

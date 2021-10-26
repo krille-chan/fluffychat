@@ -1,10 +1,12 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
+
 import 'package:matrix/matrix.dart';
+import 'package:vrouter/vrouter.dart';
+
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/material.dart';
-import 'package:vrouter/vrouter.dart';
 import '../utils/matrix_sdk_extensions.dart/client_presence_extension.dart';
 import '../utils/matrix_sdk_extensions.dart/presence_extension.dart';
 

@@ -1,7 +1,8 @@
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:matrix/matrix.dart';
+
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/matrix.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class UiaRequestManager {

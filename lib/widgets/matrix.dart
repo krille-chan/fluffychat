@@ -1,32 +1,34 @@
 import 'dart:async';
-import 'dart:io';
 import 'dart:convert';
+import 'dart:io';
 
-import 'package:fluffychat/utils/client_manager.dart';
-import 'package:fluffychat/utils/uia_request_manager.dart';
-import 'package:matrix/encryption.dart';
-import 'package:matrix/matrix.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import 'package:desktop_notifications/desktop_notifications.dart';
 import 'package:flutter_app_lock/flutter_app_lock.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:http/http.dart' as http;
+import 'package:matrix/encryption.dart';
+import 'package:matrix/matrix.dart';
 import 'package:provider/provider.dart';
 import 'package:universal_html/html.dart' as html;
-import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
-import 'package:desktop_notifications/desktop_notifications.dart';
-import '../utils/famedlysdk_store.dart';
-import '../pages/key_verification_dialog.dart';
-import '../utils/platform_infos.dart';
+import 'package:vrouter/vrouter.dart';
+
+import 'package:fluffychat/utils/client_manager.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/sentry_controller.dart';
+import 'package:fluffychat/utils/uia_request_manager.dart';
 import '../config/app_config.dart';
 import '../config/setting_keys.dart';
+import '../pages/key_verification_dialog.dart';
 import '../utils/account_bundles.dart';
 import '../utils/background_push.dart';
-import 'package:vrouter/vrouter.dart';
+import '../utils/famedlysdk_store.dart';
+import '../utils/platform_infos.dart';
 
 class Matrix extends StatefulWidget {
   static const String callNamespace = 'chat.fluffy.jitsi_call';

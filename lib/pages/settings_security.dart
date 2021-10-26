@@ -1,12 +1,13 @@
-import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:fluffychat/config/setting_keys.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
+
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_app_lock/flutter_app_lock.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 
+import 'package:fluffychat/config/setting_keys.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'bootstrap_dialog.dart';
 import 'views/settings_security_view.dart';
 

@@ -1,33 +1,33 @@
 import 'dart:ui';
 
-import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
-import 'package:fluffychat/config/app_config.dart';
-import 'package:matrix/matrix.dart';
-import 'package:fluffychat/pages/chat.dart';
-import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
-import 'package:fluffychat/widgets/connection_status_header.dart';
-import 'package:fluffychat/widgets/input_bar.dart';
-import 'package:fluffychat/widgets/unread_badge_back_button.dart';
-
-import 'package:future_loading_dialog/future_loading_dialog.dart';
-import 'package:fluffychat/widgets/encryption_button.dart';
-import 'package:fluffychat/widgets/event_content/message.dart';
-import 'package:fluffychat/widgets/matrix.dart';
-import 'package:fluffychat/widgets/event_content/reply_content.dart';
-import 'package:fluffychat/pages/user_bottom_sheet.dart';
-import 'package:fluffychat/config/app_emojis.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/utils/room_status_extension.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:matrix/matrix.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:swipe_to_action/swipe_to_action.dart';
 import 'package:vrouter/vrouter.dart';
 
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/app_emojis.dart';
+import 'package:fluffychat/pages/chat.dart';
+import 'package:fluffychat/pages/user_bottom_sheet.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/room_status_extension.dart';
+import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
+import 'package:fluffychat/widgets/connection_status_header.dart';
+import 'package:fluffychat/widgets/encryption_button.dart';
+import 'package:fluffychat/widgets/event_content/message.dart';
+import 'package:fluffychat/widgets/event_content/reply_content.dart';
+import 'package:fluffychat/widgets/input_bar.dart';
+import 'package:fluffychat/widgets/matrix.dart';
+import 'package:fluffychat/widgets/unread_badge_back_button.dart';
 import '../../utils/stream_extension.dart';
 
 class ChatView extends StatelessWidget {
@@ -533,9 +533,10 @@ class ChatView extends StatelessWidget {
                                   ),
                                   controller.selectedEvents.length == 1
                                       ? controller.selectedEvents.first
-                                                  .getDisplayEvent(
-                                                      controller.timeline)
-                                                  .status.isSent
+                                              .getDisplayEvent(
+                                                  controller.timeline)
+                                              .status
+                                              .isSent
                                           ? SizedBox(
                                               height: 56,
                                               child: TextButton(

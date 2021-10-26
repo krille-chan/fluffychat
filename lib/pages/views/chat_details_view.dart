@@ -1,21 +1,20 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/matrix.dart';
+import 'package:matrix_link_text/link_text.dart';
+import 'package:vrouter/vrouter.dart';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat_details.dart';
-import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
-
-import 'package:matrix/matrix.dart';
-
+import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
+import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
 import 'package:fluffychat/widgets/content_banner.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/list_items/participant_list_item.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:matrix_link_text/link_text.dart';
-import 'package:vrouter/vrouter.dart';
-
+import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/url_launcher.dart';
 
 class ChatDetailsView extends StatelessWidget {

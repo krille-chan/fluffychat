@@ -1,30 +1,32 @@
 // @dart=2.9
+
 import 'dart:async';
 
-import 'package:adaptive_theme/adaptive_theme.dart';
-import 'package:fluffychat/utils/client_manager.dart';
-import 'package:matrix/matrix.dart';
-import 'package:fluffychat/config/routes.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'utils/custom_scroll_behaviour.dart';
-import 'utils/localized_exception_extension.dart';
+
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter_app_lock/flutter_app_lock.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:matrix/matrix.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:vrouter/vrouter.dart';
 
+import 'package:fluffychat/config/routes.dart';
+import 'package:fluffychat/utils/client_manager.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/sentry_controller.dart';
+import 'config/app_config.dart';
+import 'config/themes.dart';
+import 'utils/background_push.dart';
+import 'utils/custom_scroll_behaviour.dart';
+import 'utils/localized_exception_extension.dart';
+import 'utils/platform_infos.dart';
 import 'widgets/lock_screen.dart';
 import 'widgets/matrix.dart';
-import 'config/themes.dart';
-import 'config/app_config.dart';
-import 'utils/platform_infos.dart';
-import 'utils/background_push.dart';
 
 void main() async {
   // Our background push shared isolate accesses flutter-internal things very early in the startup proccess

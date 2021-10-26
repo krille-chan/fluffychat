@@ -1,23 +1,24 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
-import 'package:fluffychat/pages/views/homeserver_picker_view.dart';
-import 'package:fluffychat/utils/famedlysdk_store.dart';
-import 'package:fluffychat/widgets/matrix.dart';
+import 'package:uni_links/uni_links.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:vrouter/vrouter.dart';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
-import '../utils/localized_exception_extension.dart';
-import 'package:vrouter/vrouter.dart';
+import 'package:fluffychat/pages/views/homeserver_picker_view.dart';
+import 'package:fluffychat/utils/famedlysdk_store.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
-import 'package:uni_links/uni_links.dart';
-
+import 'package:fluffychat/widgets/matrix.dart';
 import '../main.dart';
+import '../utils/localized_exception_extension.dart';
 
 class HomeserverPicker extends StatefulWidget {
   const HomeserverPicker({Key key}) : super(key: key);

@@ -1,29 +1,29 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:fluffychat/config/setting_keys.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions.dart/flutter_matrix_hive_database.dart';
-
-import 'package:matrix/matrix.dart';
-import 'package:fluffychat/utils/fluffy_share.dart';
-import 'package:fluffychat/pages/views/chat_list_view.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:matrix/matrix.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 import 'package:uni_links/uni_links.dart';
 import 'package:vrouter/vrouter.dart';
-import '../main.dart';
-import '../widgets/matrix.dart';
+
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/setting_keys.dart';
+import 'package:fluffychat/pages/views/chat_list_view.dart';
+import 'package:fluffychat/utils/fluffy_share.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions.dart/flutter_matrix_hive_database.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import '../../utils/account_bundles.dart';
+import '../main.dart';
 import '../utils/matrix_sdk_extensions.dart/matrix_file_extension.dart';
 import '../utils/url_launcher.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
+import '../widgets/matrix.dart';
 import 'bootstrap_dialog.dart';
 
 enum SelectMode { normal, share, select }

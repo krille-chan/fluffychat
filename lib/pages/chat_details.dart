@@ -1,18 +1,18 @@
-import 'package:adaptive_dialog/adaptive_dialog.dart';
-
-import 'package:matrix/matrix.dart';
-
-import 'package:file_picker_cross/file_picker_cross.dart';
-import 'package:fluffychat/pages/views/chat_details_view.dart';
-import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:file_picker_cross/file_picker_cross.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:matrix/matrix.dart';
+import 'package:vrouter/vrouter.dart';
+
+import 'package:fluffychat/pages/views/chat_details_view.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:vrouter/vrouter.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 
 enum AliasActions { copy, delete, setCanonical }
 

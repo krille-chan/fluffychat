@@ -1,12 +1,13 @@
+import 'package:flutter/material.dart';
+
 import 'package:matrix/matrix.dart';
-import 'package:fluffychat/widgets/event_content/message_content.dart';
-import 'package:fluffychat/widgets/event_content/reply_content.dart';
+
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/event_extension.dart';
 import 'package:fluffychat/utils/string_color.dart';
-import 'package:flutter/material.dart';
-
+import 'package:fluffychat/widgets/event_content/message_content.dart';
+import 'package:fluffychat/widgets/event_content/reply_content.dart';
 import '../../config/app_config.dart';
 import '../avatar.dart';
 import '../matrix.dart';

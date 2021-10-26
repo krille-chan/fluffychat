@@ -1,8 +1,10 @@
-import 'package:fluffychat/widgets/adaptive_flat_button.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+
+import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/widgets/adaptive_flat_button.dart';
 
 class PermissionSliderDialog extends StatefulWidget {
   const PermissionSliderDialog({

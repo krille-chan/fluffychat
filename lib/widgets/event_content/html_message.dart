@@ -1,13 +1,14 @@
-import 'package:matrix/matrix.dart';
-import 'package:flutter_matrix_html/flutter_html.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import '../../utils/url_launcher.dart';
+import 'package:flutter_matrix_html/flutter_html.dart';
+import 'package:matrix/matrix.dart';
+
 import '../../config/app_config.dart';
 import '../../config/setting_keys.dart';
-import '../../utils/matrix_sdk_extensions.dart/matrix_locals.dart';
 import '../../pages/image_viewer.dart';
-
+import '../../utils/matrix_sdk_extensions.dart/matrix_locals.dart';
+import '../../utils/url_launcher.dart';
 import '../matrix.dart';
 
 class HtmlMessage extends StatelessWidget {

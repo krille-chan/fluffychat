@@ -1,8 +1,9 @@
-import 'package:fluffychat/pages/device_settings.dart';
-import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
+import 'package:fluffychat/pages/device_settings.dart';
+import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import '../../widgets/list_items/user_device_list_item.dart';
 
 class DevicesSettingsView extends StatelessWidget {

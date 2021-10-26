@@ -1,9 +1,11 @@
 import 'dart:async';
-import 'package:flutter/material.dart';
-import 'package:matrix/matrix.dart';
-import '../utils/localized_exception_extension.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 
+import 'package:flutter/material.dart';
+
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/matrix.dart';
+
+import '../utils/localized_exception_extension.dart';
 import 'matrix.dart';
 
 class ConnectionStatusHeader extends StatefulWidget {

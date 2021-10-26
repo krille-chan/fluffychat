@@ -1,20 +1,19 @@
-import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:fluffychat/config/app_config.dart';
-
-import 'package:matrix/matrix.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions.dart/event_extension.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
-import 'package:fluffychat/utils/room_status_extension.dart';
-
 import 'package:flutter/material.dart';
+
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:matrix/matrix.dart';
 import 'package:pedantic/pedantic.dart';
 import 'package:vrouter/vrouter.dart';
 
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions.dart/event_extension.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
+import 'package:fluffychat/utils/room_status_extension.dart';
+import '../../pages/send_file_dialog.dart';
 import '../../utils/date_time_extension.dart';
 import '../avatar.dart';
-import '../../pages/send_file_dialog.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
 import '../matrix.dart';
 
 enum ArchivedRoomAction { delete, rejoin }

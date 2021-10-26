@@ -1,38 +1,37 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:flutter_app_badger/flutter_app_badger.dart';
-
-import 'package:matrix/matrix.dart';
-import 'package:file_picker_cross/file_picker_cross.dart';
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pages/views/chat_view.dart';
-import 'package:fluffychat/pages/recording_dialog.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-
-import 'package:future_loading_dialog/future_loading_dialog.dart';
-import 'package:fluffychat/widgets/matrix.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+
+import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:file_picker_cross/file_picker_cross.dart';
+import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:matrix/matrix.dart';
 import 'package:record/record.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vrouter/vrouter.dart';
-import '../utils/localized_exception_extension.dart';
 
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pages/recording_dialog.dart';
+import 'package:fluffychat/pages/views/chat_view.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/widgets/matrix.dart';
+import '../utils/account_bundles.dart';
+import '../utils/localized_exception_extension.dart';
+import '../utils/matrix_sdk_extensions.dart/filtered_timeline_extension.dart';
+import '../utils/matrix_sdk_extensions.dart/matrix_file_extension.dart';
 import 'send_file_dialog.dart';
 import 'send_location_dialog.dart';
 import 'sticker_picker_dialog.dart';
-import '../utils/matrix_sdk_extensions.dart/filtered_timeline_extension.dart';
-import '../utils/matrix_sdk_extensions.dart/matrix_file_extension.dart';
-import '../utils/account_bundles.dart';
 
 class Chat extends StatefulWidget {
   final Widget sideView;

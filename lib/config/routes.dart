@@ -1,35 +1,37 @@
+import 'package:flutter/material.dart';
+
+import 'package:vrouter/vrouter.dart';
+
 import 'package:fluffychat/pages/archive.dart';
-import 'package:fluffychat/pages/homeserver_picker.dart';
-import 'package:fluffychat/pages/invitation_selection.dart';
-import 'package:fluffychat/pages/new_space.dart';
-import 'package:fluffychat/pages/settings_account.dart';
-import 'package:fluffychat/pages/settings_chat.dart';
-import 'package:fluffychat/pages/settings_emotes.dart';
-import 'package:fluffychat/pages/settings_multiple_emotes.dart';
-import 'package:fluffychat/pages/settings_security.dart';
-import 'package:fluffychat/pages/signup.dart';
-import 'package:fluffychat/widgets/layouts/side_view_layout.dart';
-import 'package:fluffychat/widgets/layouts/two_column_layout.dart';
 import 'package:fluffychat/pages/chat.dart';
 import 'package:fluffychat/pages/chat_details.dart';
 import 'package:fluffychat/pages/chat_encryption_settings.dart';
 import 'package:fluffychat/pages/chat_list.dart';
 import 'package:fluffychat/pages/chat_permissions_settings.dart';
-import 'package:fluffychat/pages/views/empty_page_view.dart';
-import 'package:fluffychat/widgets/layouts/loading_view.dart';
-import 'package:fluffychat/widgets/log_view.dart';
+import 'package:fluffychat/pages/device_settings.dart';
+import 'package:fluffychat/pages/homeserver_picker.dart';
+import 'package:fluffychat/pages/invitation_selection.dart';
 import 'package:fluffychat/pages/login.dart';
 import 'package:fluffychat/pages/new_group.dart';
 import 'package:fluffychat/pages/new_private_chat.dart';
+import 'package:fluffychat/pages/new_space.dart';
 import 'package:fluffychat/pages/search.dart';
 import 'package:fluffychat/pages/settings.dart';
 import 'package:fluffychat/pages/settings_3pid.dart';
-import 'package:fluffychat/pages/device_settings.dart';
+import 'package:fluffychat/pages/settings_account.dart';
+import 'package:fluffychat/pages/settings_chat.dart';
+import 'package:fluffychat/pages/settings_emotes.dart';
 import 'package:fluffychat/pages/settings_ignore_list.dart';
+import 'package:fluffychat/pages/settings_multiple_emotes.dart';
 import 'package:fluffychat/pages/settings_notifications.dart';
+import 'package:fluffychat/pages/settings_security.dart';
 import 'package:fluffychat/pages/settings_style.dart';
-import 'package:flutter/material.dart';
-import 'package:vrouter/vrouter.dart';
+import 'package:fluffychat/pages/signup.dart';
+import 'package:fluffychat/pages/views/empty_page_view.dart';
+import 'package:fluffychat/widgets/layouts/loading_view.dart';
+import 'package:fluffychat/widgets/layouts/side_view_layout.dart';
+import 'package:fluffychat/widgets/layouts/two_column_layout.dart';
+import 'package:fluffychat/widgets/log_view.dart';
 
 class AppRoutes {
   final bool columnMode;

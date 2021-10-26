@@ -79,6 +79,7 @@ dev_dependencies:
   flutter_native_splash: ^1.2.4
   flutter_test:
     sdk: flutter
+  import_sorter: ^4.6.0
 
 flutter_native_splash:
   color: "#ffffff"

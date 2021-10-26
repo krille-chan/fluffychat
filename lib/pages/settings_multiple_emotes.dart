@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:vrouter/vrouter.dart';
 
 import 'views/settings_multiple_emotes_view.dart';

@@ -1,9 +1,11 @@
-import 'package:fluffychat/utils/platform_infos.dart';
+import 'dart:async';
+import 'dart:core';
+
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:path_provider/path_provider.dart';
-import 'dart:async';
-import 'dart:core';
+
+import 'package:fluffychat/utils/platform_infos.dart';
 
 // see https://github.com/mogol/flutter_secure_storage/issues/161#issuecomment-704578453
 class AsyncMutex {

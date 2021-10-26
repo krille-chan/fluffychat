@@ -1,5 +1,6 @@
-import 'package:matrix/matrix.dart';
 import 'package:flutter/material.dart';
+
+import 'package:matrix/matrix.dart';
 
 IconData _getIconFromName(String displayname) {
   final name = displayname.toLowerCase();
