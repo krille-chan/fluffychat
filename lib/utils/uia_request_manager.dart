@@ -1,18 +1,14 @@
-import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-class UiaRequestManager {
-  final MatrixState matrix;
-  final String cachedPassword;
+import 'package:fluffychat/widgets/matrix.dart';
 
-  UiaRequestManager(this.matrix, [this.cachedPassword]);
-
-  Future onUiaRequest(UiaRequest uiaRequest) async {
+extension UiaRequestManager on MatrixState {
+  Future uiaRequestHandler(UiaRequest uiaRequest) async {
     try {
       if (uiaRequest.state != UiaRequestState.waitForUser ||
           uiaRequest.nextStages.isEmpty) return;
@@ -21,10 +17,10 @@ class UiaRequestManager {
         case AuthenticationTypes.password:
           final input = cachedPassword ??
               (await showTextInputDialog(
-                context: matrix.navigatorContext,
-                title: L10n.of(matrix.context).pleaseEnterYourPassword,
-                okLabel: L10n.of(matrix.context).ok,
-                cancelLabel: L10n.of(matrix.context).cancel,
+                context: navigatorContext,
+                title: L10n.of(context).pleaseEnterYourPassword,
+                okLabel: L10n.of(context).ok,
+                cancelLabel: L10n.of(context).cancel,
                 textFields: [
                   const DialogTextField(
                     minLines: 1,
@@ -40,30 +36,28 @@ class UiaRequestManager {
             AuthenticationPassword(
               session: uiaRequest.session,
               password: input,
-              identifier:
-                  AuthenticationUserIdentifier(user: matrix.client.userID),
+              identifier: AuthenticationUserIdentifier(user: client.userID),
             ),
           );
         case AuthenticationTypes.emailIdentity:
           final emailInput = await showTextInputDialog(
-            context: matrix.navigatorContext,
-            message: L10n.of(matrix.context).serverRequiresEmail,
-            okLabel: L10n.of(matrix.context).next,
-            cancelLabel: L10n.of(matrix.context).cancel,
+            context: navigatorContext,
+            message: L10n.of(context).serverRequiresEmail,
+            okLabel: L10n.of(context).next,
+            cancelLabel: L10n.of(context).cancel,
             textFields: [
               DialogTextField(
-                hintText: L10n.of(matrix.context).addEmail,
+                hintText: L10n.of(context).addEmail,
                 keyboardType: TextInputType.emailAddress,
               ),
             ],
           );
           if (emailInput == null || emailInput.isEmpty) {
             return uiaRequest
-                .cancel(Exception(L10n.of(matrix.context).serverRequiresEmail));
+                .cancel(Exception(L10n.of(context).serverRequiresEmail));
           }
           final clientSecret = DateTime.now().millisecondsSinceEpoch.toString();
-          final currentThreepidCreds =
-              await matrix.client.requestTokenToRegisterEmail(
+          final currentThreepidCreds = await client.requestTokenToRegisterEmail(
             clientSecret,
             emailInput.single,
             0,
@@ -81,11 +75,11 @@ class UiaRequestManager {
           if (OkCancelResult.ok ==
               await showOkCancelAlertDialog(
                 useRootNavigator: false,
-                context: matrix.navigatorContext,
-                title: L10n.of(matrix.context).weSentYouAnEmail,
-                message: L10n.of(matrix.context).pleaseClickOnLink,
-                okLabel: L10n.of(matrix.context).iHaveClickedOnLink,
-                cancelLabel: L10n.of(matrix.context).cancel,
+                context: navigatorContext,
+                title: L10n.of(context).weSentYouAnEmail,
+                message: L10n.of(context).pleaseClickOnLink,
+                okLabel: L10n.of(context).iHaveClickedOnLink,
+                cancelLabel: L10n.of(context).cancel,
               )) {
             return uiaRequest.completeStage(auth);
           }
@@ -99,16 +93,16 @@ class UiaRequestManager {
           );
         default:
           await launch(
-            matrix.client.homeserver.toString() +
+            client.homeserver.toString() +
                 '/_matrix/client/r0/auth/$stage/fallback/web?session=${uiaRequest.session}',
           );
           if (OkCancelResult.ok ==
               await showOkCancelAlertDialog(
                 useRootNavigator: false,
-                message: L10n.of(matrix.context).pleaseFollowInstructionsOnWeb,
-                context: matrix.navigatorContext,
-                okLabel: L10n.of(matrix.context).next,
-                cancelLabel: L10n.of(matrix.context).cancel,
+                message: L10n.of(context).pleaseFollowInstructionsOnWeb,
+                context: navigatorContext,
+                okLabel: L10n.of(context).next,
+                cancelLabel: L10n.of(context).cancel,
               )) {
             return uiaRequest.completeStage(
               AuthenticationData(session: uiaRequest.session),
