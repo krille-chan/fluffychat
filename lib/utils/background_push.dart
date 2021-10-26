@@ -41,7 +41,6 @@ import 'platform_infos.dart';
 
 //import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
 
-
 class NoTokenException implements Exception {
   String get cause => 'Cannot get firebase token';
 }
