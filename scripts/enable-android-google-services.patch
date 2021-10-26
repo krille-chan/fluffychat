@@ -65,20 +65,19 @@ index 4ce5c41d..be58d662 100644
  }
  
 diff --git a/lib/utils/background_push.dart b/lib/utils/background_push.dart
-index baf2b444..306da934 100644
+index ca660845..306da934 100644
 --- a/lib/utils/background_push.dart
 +++ b/lib/utils/background_push.dart
-@@ -39,8 +39,7 @@ import 'famedlysdk_store.dart';
+@@ -39,7 +39,7 @@ import 'famedlysdk_store.dart';
  import 'matrix_sdk_extensions.dart/matrix_locals.dart';
  import 'platform_infos.dart';
  
 -//import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
--
 +import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
  
  class NoTokenException implements Exception {
    String get cause => 'Cannot get firebase token';
-@@ -117,7 +116,7 @@ class BackgroundPush {
+@@ -116,7 +116,7 @@ class BackgroundPush {
      setupPush();
    }
  
