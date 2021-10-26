@@ -65,19 +65,20 @@ index 4ce5c41d..be58d662 100644
  }
  
 diff --git a/lib/utils/background_push.dart b/lib/utils/background_push.dart
-index 0b771ef8..56af0cee 100644
+index baf2b444..306da934 100644
 --- a/lib/utils/background_push.dart
 +++ b/lib/utils/background_push.dart
-@@ -24,7 +24,7 @@ import 'dart:ui';
+@@ -39,8 +39,7 @@ import 'famedlysdk_store.dart';
+ import 'matrix_sdk_extensions.dart/matrix_locals.dart';
+ import 'platform_infos.dart';
  
- import 'package:flutter_cache_manager/flutter_cache_manager.dart';
- import 'package:matrix/matrix.dart';
 -//import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
+-
 +import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
  
- import 'package:flutter/material.dart';
- import 'package:http/http.dart' as http;
-@@ -116,7 +116,7 @@ class BackgroundPush {
+ class NoTokenException implements Exception {
+   String get cause => 'Cannot get firebase token';
+@@ -117,7 +116,7 @@ class BackgroundPush {
      setupPush();
    }
  
@@ -87,7 +88,7 @@ index 0b771ef8..56af0cee 100644
    StreamSubscription<LoginState> onLogin;
    StreamSubscription<SyncUpdate> onRoomSync;
 diff --git a/pubspec.yaml b/pubspec.yaml
-index 9e7f148c..ea2d90f9 100644
+index e1670a32..7e3238b0 100644
 --- a/pubspec.yaml
 +++ b/pubspec.yaml
 @@ -16,8 +16,8 @@ dependencies:
