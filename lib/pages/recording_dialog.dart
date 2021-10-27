@@ -79,9 +79,9 @@ class _RecordingDialogState extends State<RecordingDialog> {
     final decibalWidth =
         ((_amplitude == null || _amplitude.current == double.negativeInfinity
                         ? 0
-                        : _amplitude.current / _amplitude.max)
+                        : 1 / _amplitude.current / _amplitude.max)
                     .abs() +
-                1) *
+                2) *
             (maxDecibalWidth / 4).toDouble();
     final time =
         '${_duration.inMinutes.toString().padLeft(2, '0')}:${(_duration.inSeconds % 60).toString().padLeft(2, '0')}';
