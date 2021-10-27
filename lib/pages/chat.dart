@@ -356,22 +356,26 @@ class ChatController extends State<Chat> {
 
   void voiceMessageAction() async {
     if (await Record().hasPermission() == false) return;
-    final result = await showDialog<String>(
+    final result = await showDialog<Map>(
       context: context,
       useRootNavigator: false,
       builder: (c) => const RecordingDialog(),
     );
     if (result == null) return;
-    final audioFile = File(result);
-    // as we already explicitly say send in the recording dialog,
-    // we do not need the send file dialog anymore. We can just send this straight away.
+    final audioFile = File(result['path']);
+    final file = MatrixAudioFile(
+      bytes: audioFile.readAsBytesSync(),
+      name: audioFile.path,
+    );
     await showFutureLoadingDialog(
       context: context,
-      future: () => room.sendFileEvent(
-        MatrixAudioFile(
-            bytes: audioFile.readAsBytesSync(), name: audioFile.path),
-        inReplyTo: replyEvent,
-      ),
+      future: () =>
+          room.sendFileEvent(file, inReplyTo: replyEvent, extraContent: {
+        'info': {
+          ...file.info,
+          'duration': result['duration'],
+        }
+      }),
     );
     setState(() {
       replyEvent = null;

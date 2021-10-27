@@ -133,8 +133,10 @@ class _RecordingDialogState extends State<RecordingDialog> {
               onPressed: () async {
                 _recorderSubscription?.cancel();
                 await _audioRecorder.stop();
-                Navigator.of(context, rootNavigator: false)
-                    .pop<String>(_recordedPath);
+                Navigator.of(context, rootNavigator: false).pop<Map>({
+                  'path': _recordedPath,
+                  'duration': _duration.inMilliseconds,
+                });
               },
               child: Text(L10n.of(context).send.toUpperCase()),
             ),

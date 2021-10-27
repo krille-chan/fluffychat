@@ -36,7 +36,7 @@ class _AudioPlayerState extends State<AudioPlayerWidget> {
   StreamSubscription onPlayerStateChanged;
   StreamSubscription onPlayerError;
 
-  String statusText = '00:00';
+  String statusText;
   double currentPosition = 0;
   double maxPosition = 0;
 
@@ -128,60 +128,71 @@ class _AudioPlayerState extends State<AudioPlayerWidget> {
     }
   }
 
+  static const double buttonSize = 36;
+
+  String get _durationString {
+    final durationInt = widget.event.content
+        .tryGetMap<String, dynamic>('info')
+        ?.tryGet<int>('duration');
+    if (durationInt == null) return null;
+    final duration = Duration(milliseconds: durationInt);
+    return '${duration.inMinutes.toString().padLeft(2, '0')}:${(duration.inSeconds % 60).toString().padLeft(2, '0')}';
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        SizedBox(
-          width: 30,
-          child: status == AudioPlayerStatus.downloading
-              ? const CircularProgressIndicator.adaptive(strokeWidth: 2)
-              : IconButton(
-                  icon: Icon(
-                    audioPlayer.state == PlayerState.PLAYING
-                        ? Icons.pause_outlined
-                        : Icons.play_arrow_outlined,
-                    color: widget.color,
+    statusText ??= _durationString ?? '00:00';
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 6.0),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          SizedBox(
+            width: buttonSize,
+            height: buttonSize,
+            child: status == AudioPlayerStatus.downloading
+                ? CircularProgressIndicator(strokeWidth: 2, color: widget.color)
+                : InkWell(
+                    borderRadius: BorderRadius.circular(64),
+                    child: Material(
+                      color: widget.color.withAlpha(64),
+                      borderRadius: BorderRadius.circular(64),
+                      child: Icon(
+                        audioPlayer.state == PlayerState.PLAYING
+                            ? Icons.pause_outlined
+                            : Icons.play_arrow_outlined,
+                        color: widget.color,
+                      ),
+                    ),
+                    onLongPress: () => widget.event.saveFile(context),
+                    onTap: () {
+                      if (status == AudioPlayerStatus.downloaded) {
+                        _playAction();
+                      } else {
+                        _downloadAction();
+                      }
+                    },
                   ),
-                  tooltip: audioPlayer.state == PlayerState.PLAYING
-                      ? L10n.of(context).audioPlayerPause
-                      : L10n.of(context).audioPlayerPlay,
-                  onPressed: () {
-                    if (status == AudioPlayerStatus.downloaded) {
-                      _playAction();
-                    } else {
-                      _downloadAction();
-                    }
-                  },
-                ),
-        ),
-        Expanded(
-          child: Slider(
-            activeColor: Theme.of(context).colorScheme.secondaryVariant,
-            inactiveColor: widget.color.withAlpha(64),
-            value: currentPosition,
-            onChanged: (double position) =>
-                audioPlayer.seek(Duration(milliseconds: position.toInt())),
-            max: status == AudioPlayerStatus.downloaded ? maxPosition : 0,
-            min: 0,
           ),
-        ),
-        Text(
-          statusText,
-          style: TextStyle(
-            color: widget.color,
+          Expanded(
+            child: Slider(
+              activeColor: Theme.of(context).colorScheme.secondaryVariant,
+              inactiveColor: widget.color.withAlpha(64),
+              value: currentPosition,
+              onChanged: (double position) =>
+                  audioPlayer.seek(Duration(milliseconds: position.toInt())),
+              max: status == AudioPlayerStatus.downloaded ? maxPosition : 0,
+              min: 0,
+            ),
           ),
-        ),
-        const SizedBox(width: 8),
-        IconButton(
-          icon: Icon(
-            Icons.download_outlined,
-            color: widget.color,
+          Text(
+            statusText,
+            style: TextStyle(
+              color: widget.color,
+            ),
           ),
-          onPressed: () => widget.event.saveFile(context),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
