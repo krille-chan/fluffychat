@@ -136,17 +136,19 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   Client _loginClientCandidate;
 
   Client getLoginClient() {
-    final multiAccount = client.isLogged();
-    if (!multiAccount) return client;
+    if (widget.clients.isNotEmpty && !client.isLogged()) {
+      return client;
+    }
     _loginClientCandidate ??= ClientManager.createClient(
-        // we use the first clients here, else we can easily end up with super long client names.
-        widget.clients.first.generateUniqueTransactionId())
+        '${AppConfig.applicationName}-${DateTime.now().millisecondsSinceEpoch}')
       ..onLoginStateChanged
           .stream
           .where((l) => l == LoginState.loggedIn)
           .first
           .then((_) {
-        widget.clients.add(_loginClientCandidate);
+        if (!widget.clients.contains(_loginClientCandidate)) {
+          widget.clients.add(_loginClientCandidate);
+        }
         ClientManager.addClientNameToStore(_loginClientCandidate.clientName);
         _registerSubs(_loginClientCandidate.clientName);
         _loginClientCandidate = null;
@@ -207,12 +209,12 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   String get cachedPassword => _cachedPassword;
 
   set cachedPassword(String p) {
-    Logs().v('Password cached');
+    Logs().d('Password cached');
     _cachedPasswordClearTimer?.cancel();
     _cachedPassword = p;
     _cachedPasswordClearTimer = Timer(const Duration(minutes: 10), () {
       _cachedPassword = null;
-      Logs().v('Cached Password cleared');
+      Logs().d('Cached Password cleared');
     });
   }
 

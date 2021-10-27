@@ -37,6 +37,7 @@ void main() async {
       Zone.current.handleUncaughtError(details.exception, details.stack);
 
   final clients = await ClientManager.getClients();
+  Logs().level = kDebugMode ? Level.debug : Level.warning;
 
   if (PlatformInfos.isMobile) {
     BackgroundPush.clientOnly(clients.first);
