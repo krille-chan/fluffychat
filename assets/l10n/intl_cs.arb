@@ -1282,7 +1282,7 @@
       "homeserver": {}
     }
   },
-  "loginWith": "Přihlásit se pomocí {značky}",
+  "loginWith": "Přihlásit se pomocí {brand}",
   "@loginWith": {
     "type": "text",
     "placeholders": {
