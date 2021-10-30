@@ -1081,7 +1081,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unbanFromChat": "",
+  "unbanFromChat": "Розблокувати у чаті",
   "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
@@ -1091,7 +1091,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "renderRichContent": "",
+  "renderRichContent": "Показувати форматований вміст повідомлення",
   "@renderRichContent": {
     "type": "text",
     "placeholders": {}
@@ -1369,7 +1369,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unmuteChat": "",
+  "unmuteChat": "Увімкнути звук чату",
   "@unmuteChat": {
     "type": "text",
     "placeholders": {}
@@ -2592,5 +2592,23 @@
   "newPasswordDescription": "Щоб мати можливість відновити пароль потрібно буде додати адресу е-пошти до свого облікового запису.",
   "@newPasswordDescription": {},
   "oneClientLoggedOut": "На одному з ваших клієнтів виконано вихід із системи",
-  "@oneClientLoggedOut": {}
+  "@oneClientLoggedOut": {},
+  "bundleName": "Назва вузла",
+  "@bundleName": {},
+  "toggleFavorite": "Перемикнути вибране",
+  "@toggleFavorite": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeFromBundle": "Вилучити з цього вузла",
+  "@removeFromBundle": {},
+  "toggleMuted": "Увімкнути/вимкнути звук",
+  "@toggleMuted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editBundlesForAccount": "Змінити вузол для цього облікового запису",
+  "@editBundlesForAccount": {},
+  "addToBundle": "Додати до вузлів",
+  "@addToBundle": {}
 }
