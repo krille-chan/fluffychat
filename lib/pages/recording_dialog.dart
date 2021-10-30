@@ -73,6 +73,16 @@ class _RecordingDialogState extends State<RecordingDialog> {
     super.dispose();
   }
 
+  void _stopAndSend() async {
+    _recorderSubscription?.cancel();
+    await _audioRecorder.stop();
+    Navigator.of(context, rootNavigator: false)
+        .pop<RecordingResult>(RecordingResult(
+      path: _recordedPath,
+      duration: _duration.inMilliseconds,
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     const maxDecibalWidth = 64.0;
@@ -130,14 +140,7 @@ class _RecordingDialogState extends State<RecordingDialog> {
           ),
           if (error != true)
             CupertinoDialogAction(
-              onPressed: () async {
-                _recorderSubscription?.cancel();
-                await _audioRecorder.stop();
-                Navigator.of(context, rootNavigator: false).pop<Map>({
-                  'path': _recordedPath,
-                  'duration': _duration.inMilliseconds,
-                });
-              },
+              onPressed: _stopAndSend,
               child: Text(L10n.of(context).send.toUpperCase()),
             ),
         ],
@@ -157,12 +160,7 @@ class _RecordingDialogState extends State<RecordingDialog> {
         ),
         if (error != true)
           TextButton(
-            onPressed: () async {
-              _recorderSubscription?.cancel();
-              await _audioRecorder.stop();
-              Navigator.of(context, rootNavigator: false)
-                  .pop<String>(_recordedPath);
-            },
+            onPressed: _stopAndSend,
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
@@ -175,4 +173,25 @@ class _RecordingDialogState extends State<RecordingDialog> {
       ],
     );
   }
+}
+
+class RecordingResult {
+  final String path;
+  final int duration;
+
+  const RecordingResult({
+    @required this.path,
+    @required this.duration,
+  });
+
+  factory RecordingResult.fromJson(Map<String, dynamic> json) =>
+      RecordingResult(
+        path: json['path'],
+        duration: json['duration'],
+      );
+
+  Map<String, dynamic> toJson() => {
+        'path': path,
+        'duration': duration,
+      };
 }

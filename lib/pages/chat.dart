@@ -356,13 +356,13 @@ class ChatController extends State<Chat> {
 
   void voiceMessageAction() async {
     if (await Record().hasPermission() == false) return;
-    final result = await showDialog<Map>(
+    final result = await showDialog<RecordingResult>(
       context: context,
       useRootNavigator: false,
       builder: (c) => const RecordingDialog(),
     );
     if (result == null) return;
-    final audioFile = File(result['path']);
+    final audioFile = File(result.path);
     final file = MatrixAudioFile(
       bytes: audioFile.readAsBytesSync(),
       name: audioFile.path,
@@ -373,7 +373,7 @@ class ChatController extends State<Chat> {
           room.sendFileEvent(file, inReplyTo: replyEvent, extraContent: {
         'info': {
           ...file.info,
-          'duration': result['duration'],
+          'duration': result.duration,
         }
       }),
     );
