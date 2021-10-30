@@ -374,7 +374,8 @@ class ChatController extends State<Chat> {
         'info': {
           ...file.info,
           'duration': result.duration,
-        }
+        },
+        'org.matrix.msc3245.voice': {},
       }),
     );
     setState(() {
