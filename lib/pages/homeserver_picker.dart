@@ -220,7 +220,10 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     }
   }
 
-  void signUpAction() => VRouter.of(context).to('signup');
+  void signUpAction() => VRouter.of(context).to(
+        'signup',
+        queryParameters: {'domain': domain},
+      );
 
   @override
   Widget build(BuildContext context) {

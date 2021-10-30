@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/pages/views/signup_view.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -17,29 +18,78 @@ class SignupPage extends StatefulWidget {
 class SignupPageController extends State<SignupPage> {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  String usernameError;
-  String passwordError;
+  final TextEditingController passwordController2 = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  String error;
   bool loading = false;
-  bool showPassword = true;
+  bool showPassword = false;
 
   void toggleShowPassword() => setState(() => showPassword = !showPassword);
 
+  String get domain => VRouter.of(context).queryParameters['domain'];
+
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  String usernameTextFieldValidator(String value) {
+    usernameController.text =
+        usernameController.text.trim().toLowerCase().replaceAll(' ', '_');
+    if (value.isEmpty) {
+      return L10n.of(context).pleaseChooseAUsername;
+    }
+    return null;
+  }
+
+  String password1TextFieldValidator(String value) {
+    const minLength = 8;
+    if (value.isEmpty) {
+      return L10n.of(context).chooseAStrongPassword;
+    }
+    if (value.length < minLength) {
+      return 'Please choose at least $minLength characters.';
+    }
+    return null;
+  }
+
+  String password2TextFieldValidator(String value) {
+    if (value.isEmpty) {
+      return L10n.of(context).chooseAStrongPassword;
+    }
+    if (value != passwordController.text) {
+      return 'Passwords do not match!';
+    }
+    return null;
+  }
+
+  String emailTextFieldValidator(String value) {
+    if (value.isNotEmpty && !value.contains('@')) {
+      return 'Please enter a valid email address.';
+    }
+    return null;
+  }
+
   void signup([_]) async {
-    usernameError = passwordError = null;
+    setState(() {
+      error = null;
+    });
+    if (!formKey.currentState.validate()) return;
 
-    if (usernameController.text.isEmpty) {
-      return setState(
-          () => usernameError = L10n.of(context).pleaseChooseAUsername);
-    }
-    if (passwordController.text.isEmpty) {
-      return setState(
-          () => passwordError = L10n.of(context).chooseAStrongPassword);
-    }
-
-    setState(() => loading = true);
+    setState(() {
+      loading = true;
+    });
 
     try {
       final client = Matrix.of(context).getLoginClient();
+      final email = emailController.text;
+      if (email.isNotEmpty) {
+        Matrix.of(context).currentClientSecret =
+            DateTime.now().millisecondsSinceEpoch.toString();
+        Matrix.of(context).currentThreepidCreds =
+            await client.requestTokenToRegisterEmail(
+          Matrix.of(context).currentClientSecret,
+          email,
+          0,
+        );
+      }
       await client.uiaRequestBackground(
         (auth) => client.register(
           username: usernameController.text,
@@ -49,7 +99,7 @@ class SignupPageController extends State<SignupPage> {
         ),
       );
     } catch (e) {
-      passwordError = (e as Object).toLocalizedString(context);
+      error = (e as Object).toLocalizedString(context);
     } finally {
       setState(() => loading = false);
     }

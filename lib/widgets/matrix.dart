@@ -75,6 +75,9 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   int getClientIndexByMatrixId(String matrixId) =>
       widget.clients.indexWhere((client) => client.userID == matrixId);
 
+  String currentClientSecret;
+  RequestTokenResponse currentThreepidCreds;
+
   int get _safeActiveClient {
     if (widget.clients.isEmpty) {
       widget.clients.add(getLoginClient());
