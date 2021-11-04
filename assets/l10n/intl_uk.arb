@@ -2610,5 +2610,18 @@
   "editBundlesForAccount": "Змінити вузол для цього облікового запису",
   "@editBundlesForAccount": {},
   "addToBundle": "Додати до вузлів",
-  "@addToBundle": {}
+  "@addToBundle": {},
+  "pleaseEnterValidEmail": "Введіть дійсну адресу е-пошти.",
+  "@pleaseEnterValidEmail": {},
+  "passwordsDoNotMatch": "Паролі не збігаються!",
+  "@passwordsDoNotMatch": {},
+  "repeatPassword": "Повторити пароль",
+  "@repeatPassword": {},
+  "pleaseChooseAtLeastChars": "Виберіть принаймні {min} символів.",
+  "@pleaseChooseAtLeastChars": {
+    "type": "text",
+    "placeholders": {
+      "min": {}
+    }
+  }
 }
