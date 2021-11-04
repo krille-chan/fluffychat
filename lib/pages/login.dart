@@ -218,12 +218,10 @@ class LoginController extends State<Login> {
             password.single,
             auth: AuthenticationThreePidCreds(
               type: AuthenticationTypes.emailIdentity,
-              threepidCreds: [
-                ThreepidCreds(
-                  sid: response.result.sid,
-                  clientSecret: clientSecret,
-                ),
-              ],
+              threepidCreds: ThreepidCreds(
+                sid: response.result.sid,
+                clientSecret: clientSecret,
+              ),
             ),
           ),
     );

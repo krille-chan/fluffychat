@@ -56,12 +56,10 @@ extension UiaRequestManager on MatrixState {
           final auth = AuthenticationThreePidCreds(
             session: uiaRequest.session,
             type: AuthenticationTypes.emailIdentity,
-            threepidCreds: [
-              ThreepidCreds(
-                sid: currentThreepidCreds.sid,
-                clientSecret: currentClientSecret,
-              ),
-            ],
+            threepidCreds: ThreepidCreds(
+              sid: currentThreepidCreds.sid,
+              clientSecret: currentClientSecret,
+            ),
           );
           if (OkCancelResult.ok ==
               await showOkCancelAlertDialog(
