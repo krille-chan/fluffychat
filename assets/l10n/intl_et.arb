@@ -2615,5 +2615,18 @@
   "yourUserId": "Sinu kasutajatunnus:",
   "@yourUserId": {},
   "unverified": "Verifitseerimata",
-  "@unverified": {}
+  "@unverified": {},
+  "repeatPassword": "Korda salasõna",
+  "@repeatPassword": {},
+  "pleaseEnterValidEmail": "Palun sisesta kehtiv e-posti aadress.",
+  "@pleaseEnterValidEmail": {},
+  "passwordsDoNotMatch": "Salasõnad ei klapi omavahel!",
+  "@passwordsDoNotMatch": {},
+  "pleaseChooseAtLeastChars": "Palun vali pikkuseks vähemalt {min} tähemärki.",
+  "@pleaseChooseAtLeastChars": {
+    "type": "text",
+    "placeholders": {
+      "min": {}
+    }
+  }
 }
