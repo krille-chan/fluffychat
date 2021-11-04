@@ -1,3 +1,13 @@
+## v0.42.2 - 2021-11-04
+Minor bugfix release which fixes signing up on matrix.org and make FluffyChats voice messages playable in Element.
+
+- feat: Nicer registration form
+- feat: Nicer audio message design and send duration
+- fix: Signup on matrix.org
+- fix: Mark voice messages with msc3245
+- fix: Play response voice messages
+- fix: Crash on logout
+
 ## v0.42.1 - 2021-10-26
 Minor bugfix release.
 

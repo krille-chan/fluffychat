@@ -16,14 +16,14 @@ or alternatively using `brew install fastlane`
 
 # Available Actions
 ## Android
-### android set_build_code_beta
+### android set_build_code_internal
 ```
-fastlane android set_build_code_beta
+fastlane android set_build_code_internal
 ```
 
-### android deploy_beta_test
+### android deploy_internal_test
 ```
-fastlane android deploy_beta_test
+fastlane android deploy_internal_test
 ```
 
 ### android deploy_release
@@ -34,6 +34,6 @@ fastlane android deploy_release
 
 ----
 
-This README.md is auto-generated and will be re-generated every time [fastlane](https://fastlane.tools) is run.
+This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.
 More information about fastlane can be found on [fastlane.tools](https://fastlane.tools).
 The documentation of fastlane can be found on [docs.fastlane.tools](https://docs.fastlane.tools).
