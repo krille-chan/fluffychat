@@ -137,36 +137,13 @@ here the gotify setup will be outlined. Adapt re-write proxies accordingly, if y
 For self-hosted push with gotify you have to install and configure [gotify-server](https://github.com/gotify/server)
 with [UnifiedPush](https://github.com/UnifiedPush/contrib/blob/main/providers/gotify.md) support.
 
-Next, you add the `repo.unifiedpush.org` repository to fdroid and install the gotify client via it. Log into your gotify account and push notifications should work!
+Install the `Gotify-UP` app from fdroid. Next log into your gotify account and push notifications should work!
 
 ## Matrix-specific re-write proxy
 Until [MSC2970](https://github.com/matrix-org/matrix-doc/pull/2970) is figured out we unfortunately
 need another simple re-write proxy. By default the one at https://matrix.gateway.unifiedpush.org
-is used, however you can easily self-host it. For that, add to your nginx config on the same domain you serve gotify the following (change *relay.example.tld*):
-```
-resolver 9.9.9.9;
-
-location /_matrix/push/v1/notify {
-    set $target '';
-    if ($request_method = GET ) {
-        return 200 '{"gateway":"matrix","unifiedpush":{"gateway":"matrix"}}';
-    }
-    access_by_lua_block {
-        local cjson = require("cjson")
-        ngx.req.read_body()
-        local body = ngx.req.get_body_data()
-        local parsedBody = cjson.decode(body)
-        local accepted = "https://relay.example.tld/"
-        ngx.var.target = parsedBody["notification"]["devices"][1]["pushkey"]
-        ngx.req.set_body_data(body)
-        if(string.sub(ngx.var.target,1,string.len(accepted))~=accepted) then ngx.var.target="http://0.0.0.0/"
-        end
-    }
-    proxy_set_header Content-Type application/json;
-    proxy_set_header Host $host;
-    proxy_pass $target;
-}
-```
+is used, however you can easily self-host it. For that, please look at the [UnifiedPush Common-Proxies](https://github.com/UnifiedPush/common-proxies)
+repository.
 
 # Special thanks to
 
