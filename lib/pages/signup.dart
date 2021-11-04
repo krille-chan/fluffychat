@@ -101,7 +101,9 @@ class SignupPageController extends State<SignupPage> {
     } catch (e) {
       error = (e as Object).toLocalizedString(context);
     } finally {
-      setState(() => loading = false);
+      if (mounted) {
+        setState(() => loading = false);
+      }
     }
   }
 
