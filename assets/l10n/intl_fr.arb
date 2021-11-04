@@ -2615,5 +2615,18 @@
   "yourUserId": "Votre identifiant utilisateur :",
   "@yourUserId": {},
   "unverified": "Non vérifié",
-  "@unverified": {}
+  "@unverified": {},
+  "passwordsDoNotMatch": "Les mots de passe ne correspondent pas !",
+  "@passwordsDoNotMatch": {},
+  "pleaseEnterValidEmail": "Veuillez saisir une adresse électronique valide.",
+  "@pleaseEnterValidEmail": {},
+  "repeatPassword": "Répétez le mot de passe",
+  "@repeatPassword": {},
+  "pleaseChooseAtLeastChars": "Veuillez choisir au moins {min} caractères.",
+  "@pleaseChooseAtLeastChars": {
+    "type": "text",
+    "placeholders": {
+      "min": {}
+    }
+  }
 }
