@@ -73,10 +73,10 @@ class SignupPageView extends StatelessWidget {
                   controller: controller.passwordController2,
                   obscureText: true,
                   validator: controller.password2TextFieldValidator,
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.repeat_outlined),
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.repeat_outlined),
                     hintText: '****',
-                    labelText: 'Repeat password',
+                    labelText: L10n.of(context).repeatPassword,
                   ),
                 ),
               ),

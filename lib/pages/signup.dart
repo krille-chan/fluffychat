@@ -45,7 +45,7 @@ class SignupPageController extends State<SignupPage> {
       return L10n.of(context).chooseAStrongPassword;
     }
     if (value.length < minLength) {
-      return 'Please choose at least $minLength characters.';
+      return L10n.of(context).pleaseChooseAtLeastChars(minLength.toString());
     }
     return null;
   }
@@ -55,14 +55,14 @@ class SignupPageController extends State<SignupPage> {
       return L10n.of(context).chooseAStrongPassword;
     }
     if (value != passwordController.text) {
-      return 'Passwords do not match!';
+      return L10n.of(context).passwordsDoNotMatch;
     }
     return null;
   }
 
   String emailTextFieldValidator(String value) {
     if (value.isNotEmpty && !value.contains('@')) {
-      return 'Please enter a valid email address.';
+      return L10n.of(context).pleaseEnterValidEmail;
     }
     return null;
   }

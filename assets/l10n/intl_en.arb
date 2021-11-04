@@ -1,6 +1,15 @@
 {
   "@@locale": "en",
   "@@last_modified": "2021-08-14 12:38:37.885451",
+  "passwordsDoNotMatch": "Passwords do not match!",
+  "pleaseEnterValidEmail": "Please enter a valid email address.",
+  "repeatPassword": "Repeat password",
+  "pleaseChooseAtLeastChars": "Please choose at least {min} characters.",
+  "@pleaseChooseAtLeastChars": {
+    "type": "text",
+    "placeholders": {
+      "min": {}}
+  },
   "about": "About",
   "@about": {
     "type": "text",
