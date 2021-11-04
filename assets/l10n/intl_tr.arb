@@ -2615,5 +2615,18 @@
   "unverified": "Doğrulanmadı",
   "@unverified": {},
   "yourUserId": "Kullanıcı kimliğiniz:",
-  "@yourUserId": {}
+  "@yourUserId": {},
+  "repeatPassword": "Parolayı tekrarlayın",
+  "@repeatPassword": {},
+  "passwordsDoNotMatch": "Parolalar eşleşmiyor!",
+  "@passwordsDoNotMatch": {},
+  "pleaseEnterValidEmail": "Lütfen geçerli bir e-posta adresi girin.",
+  "@pleaseEnterValidEmail": {},
+  "pleaseChooseAtLeastChars": "Lütfen en az {min} karakter seçin.",
+  "@pleaseChooseAtLeastChars": {
+    "type": "text",
+    "placeholders": {
+      "min": {}
+    }
+  }
 }
