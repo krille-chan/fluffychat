@@ -1697,7 +1697,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unbanFromChat": "移除流放",
+  "unbanFromChat": "解禁聊天",
   "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
@@ -2198,14 +2198,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount, plural, other{{unreadCount} 个未读聊天}}",
+  "unreadChats": "{unreadCount, plural, =1{1 unread chat} 其他{{unreadCount} 个未读聊天}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents} 条未读消息}}",
+  "unreadMessages": "{unreadEvents, plural, =1{1 unread message} 其他{{unreadEvents}条未读消息}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
