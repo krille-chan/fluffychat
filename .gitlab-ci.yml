@@ -140,16 +140,12 @@ upload-fdroid-nightly:
 pages:
   needs: ["build_web"]
   stage: deploy
-  image: ruby:latest
+  image: node
   script:
-    - cp PRIVACY.md docs/_includes/privacy.md
-    - cp CHANGELOG.md docs/_includes/changelog.md
     - cd docs
-    - gem install bundler
-    - bundle install
-    - bundle exec jekyll build -d public
+    - npx tailwindcss -o ./tailwind.css --minify
     - cd ..
-    - mv docs/public/ ./
+    - mv docs public
     - mv build/web/ public/web/
   artifacts:
     paths:
