@@ -2205,7 +2205,7 @@
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents, plural, =1{1 unread message} 其他{{unreadEvents}条未读消息}}",
+  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents}条未读消息}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
