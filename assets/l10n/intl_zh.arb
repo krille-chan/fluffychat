@@ -2198,7 +2198,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount, plural, =1{1 unread chat} 其他{{unreadCount} 个未读聊天}}",
+  "unreadChats": "{unreadCount, plural, other{{unreadCount} 个未读聊天}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
