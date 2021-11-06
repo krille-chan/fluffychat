@@ -6,7 +6,36 @@
 <br>
 <br>
 
-FluffyChat is a multi-platform Matrix client written in Dart/Flutter. It compiles to native code on Android, iOS, macOS, Windows and Linux and renders with Skia on the web. FluffyChat is just a hobby project from the developers of [Famedly](https://famedly.com) and licensed under AGPLv3. It follows a [design philosophy](https://ko-fi.com/post/FluffyChats-Design-Philosophy-W7W63A6YS) to be minimalistic, inclusive and easy to use.
+FluffyChat is an open source, nonprofit and cute matrix messenger app. The app is easy to use but secure and decentralized.
+
+## Features
+
+- Send all kinds of messages, images and files
+- Voice messages
+- Location sharing
+- Push notifications
+- Unlimited private and public group chats
+- Public channels with thousands of participants
+- Feature rich group moderation including all matrix features
+- Discover and join public groups
+- Dark mode
+- Hides complexity of Matrix IDs behind simple QR codes
+- Custom emotes and stickers
+- Video calls via sharing links to Jitsi
+- Spaces
+- Compatible with Element, Nheko, NeoChat and all other Matrix apps
+- End to end encryption
+- Emoji verification & cross signing
+- And much more...
+
+
+## FluffyChat comes with a dream
+
+Imagine a world where everyone can choose the messenger they like and is still able to chat with all of their friends.
+
+A world where there are no companies spying on you when you send selfies to friends and lovers.
+
+And a world where apps are made for fluffyness and not for profit. ♥
 
 # How to build
 

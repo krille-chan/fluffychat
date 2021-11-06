@@ -3,18 +3,37 @@ base: core18
 version: git
 summary: The cutest messenger in the Matrix network
 description: |
-  FluffyChat - Chat with your friends
+  FluffyChat is an open source, nonprofit and cute matrix messenger app. The app is easy to use but secure and decentralized.
 
-  The greatest FluffyChat features:
-  1. Opensource and open development where everyone can join.
-  2. Nonprofit - FluffyChat is donation funded.
-  3. Cute design and many theme settings including a dark mode.
-  4. Unlimited groups and direct chats.
-  5. FluffyChat is made as simple to use as possible.
-  6. Free to use for everyone without ads.
-  7. There is no "FluffyChat server" you are forced to use. Use the server
-  you find trustworthy or host your own.
-  8. Compatible with Element, Fractal, Nheko and all matrix messengers.
+
+  ## Features
+
+  - Send all kinds of messages, images and files
+  - Voice messages
+  - Location sharing
+  - Push notifications
+  - Unlimited private and public group chats
+  - Public channels with thousands of participants
+  - Feature rich group moderation including all matrix features
+  - Discover and join public groups
+  - Dark mode
+  - Hides complexity of Matrix IDs behind simple QR codes
+  - Custom emotes and stickers
+  - Video calls via sharing links to Jitsi
+  - Spaces
+  - Compatible with Element, Nheko, NeoChat and all other Matrix apps
+  - End to end encryption
+  - Emoji verification & cross signing
+  - And much more...
+
+
+  ## FluffyChat comes with a dream
+
+  Imagine a world where everyone can choose the messenger they like and is still able to chat with all of their friends.
+
+  A world where there are no companies spying on you when you send selfies to friends and lovers.
+
+  And a world where apps are made for fluffyness and not for profit. ♥
 
   Join the community: https://matrix.to/#/#fluffychat:matrix.org
   Website: http://fluffychat.im
