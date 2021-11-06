@@ -125,7 +125,6 @@ class Message extends StatelessWidget {
                                       senderId: event.senderId,
                                       type: 'm.room.message',
                                       room: event.room,
-                                      roomId: event.roomId,
                                       status: EventStatus.sent,
                                       originServerTs: DateTime.now(),
                                     );
