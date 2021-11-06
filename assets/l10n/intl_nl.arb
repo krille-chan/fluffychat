@@ -2614,5 +2614,18 @@
   "setupChatBackupDescription": "Om je berichten te beschermen genereren we een veiligheidssleutel voor jouw.\nBewaar deze op een veilig plek, bijvoorbeeld in een wachtwoordmanager.",
   "@setupChatBackupDescription": {},
   "unverified": "Niet geverifieerd",
-  "@unverified": {}
+  "@unverified": {},
+  "passwordsDoNotMatch": "Wachtwoorden komen niet overeen!",
+  "@passwordsDoNotMatch": {},
+  "pleaseEnterValidEmail": "Voor een geldig e-mailadres in.",
+  "@pleaseEnterValidEmail": {},
+  "repeatPassword": "Wachtwoord herhalen",
+  "@repeatPassword": {},
+  "pleaseChooseAtLeastChars": "Kies een wachtwoord met minimaal {min} tekens.",
+  "@pleaseChooseAtLeastChars": {
+    "type": "text",
+    "placeholders": {
+      "min": {}
+    }
+  }
 }
