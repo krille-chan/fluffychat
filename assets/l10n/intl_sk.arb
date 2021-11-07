@@ -1252,7 +1252,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "startYourFirstChat": "Začnite svoj prvý chat :-)",
+  "startYourFirstChat": "Začnite svoj prvý chat hneď teraz! 🙂\n - Kliknite na tlačítko správy\n- Zabávajte sa chatovaním",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -1616,5 +1616,177 @@
     "placeholders": {
       "senderName": {}
     }
+  },
+  "sendAudio": "Poslať zvuk",
+  "@sendAudio": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterValidEmail": "Prosím zadajte správnu emailovú adresu.",
+  "@pleaseEnterValidEmail": {},
+  "passwordsDoNotMatch": "Heslá niesú zhodné!",
+  "@passwordsDoNotMatch": {},
+  "pleaseChooseAtLeastChars": "Prosím zvoľte si aspoň {min} znakov.",
+  "@pleaseChooseAtLeastChars": {
+    "type": "text",
+    "placeholders": {
+      "min": {}
+    }
+  },
+  "addEmail": "Pridať email",
+  "@addEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewFriend": "Pridať nového priateľa",
+  "@addNewFriend": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appLock": "Uzamknutie aplikácie",
+  "@appLock": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "security": "Bezpečnosť",
+  "@security": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reportMessage": "Nahlásiť správu",
+  "@reportMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendSticker": "Poslať nálepku",
+  "@sendSticker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPause": "Zastaviť",
+  "@audioPlayerPause": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "securityKey": "Bezpečnostný kľúč",
+  "@securityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "roomVersion": "Verzia miestnosti",
+  "@roomVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendMessages": "Poslať správy",
+  "@sendMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "joinRoom": "Pripojiť sa k miestnosti",
+  "@joinRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidEmail": "Neplatný email",
+  "@invalidEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setPermissionsLevel": "Nastaviť úroveň oprávnení",
+  "@setPermissionsLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setupChatBackup": "Nastaviť zálohy chatov",
+  "@setupChatBackup": {},
+  "badServerLoginTypesException": "Server podporuje tieto typy prihlásenia:\n{serverVersions}\nAle táto aplikácia podporuje iba:\n{supportedVersions}",
+  "@badServerLoginTypesException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "changesHaveBeenSaved": "Zmeny boli uložené",
+  "@changesHaveBeenSaved": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackup": "Záloha chatov",
+  "@chatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addToSpace": "Pridať do priestoru",
+  "@addToSpace": {},
+  "cantOpenUri": "Nemožno otvoriť identifikátor prostriedku {uri}",
+  "@cantOpenUri": {
+    "type": "text",
+    "placeholders": {
+      "uri": {}
+    }
+  },
+  "yourChatBackupHasBeenSetUp": "Záloha vašich chatov bola nastavená.",
+  "@yourChatBackupHasBeenSetUp": {},
+  "clearText": "Vymazať text",
+  "@clearText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "repeatPassword": "Zopakujte heslo",
+  "@repeatPassword": {},
+  "all": "Všetky",
+  "@all": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "allChats": "Všetky chaty",
+  "@allChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSureYouWantToLogout": "Ste si istí, že sa chcete odhlásiť?",
+  "@areYouSureYouWantToLogout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPlay": "Spustiť",
+  "@audioPlayerPlay": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendOnEnter": "Odoslať pri vstupe",
+  "@sendOnEnter": {},
+  "yourUserId": "Vaše užívateľské ID:",
+  "@yourUserId": {},
+  "ignoredUsers": "Ignorovaní užívatelia",
+  "@ignoredUsers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignore": "Ignorovať",
+  "@ignore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "search": "Hľadať",
+  "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendAsText": "Poslať ako text",
+  "@sendAsText": {
+    "type": "text"
+  },
+  "sendOriginal": "Poslať originál",
+  "@sendOriginal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendVideo": "Poslať video",
+  "@sendVideo": {
+    "type": "text",
+    "placeholders": {}
   }
 }
