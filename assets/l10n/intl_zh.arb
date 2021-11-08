@@ -248,7 +248,7 @@
       "username": {}
     }
   },
-  "changedTheDisplaynameTo": "{username} 更改了展示名称为：“{displayname}”",
+  "changedTheDisplaynameTo": "{username} 将展示名称更改为：“{displayname}”",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
