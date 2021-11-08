@@ -70,14 +70,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "answeredTheCall": "{senderName} 已开始通话",
+  "answeredTheCall": "已开始与 {senderName} 通话",
   "@answeredTheCall": {
     "type": "text",
     "placeholders": {
       "senderName": {}
     }
   },
-  "anyoneCanJoin": "任何人可以加入",
+  "anyoneCanJoin": "任何人都可以加入",
   "@anyoneCanJoin": {
     "type": "text",
     "placeholders": {}
@@ -162,7 +162,7 @@
       "supportedVersions": {}
     }
   },
-  "badServerVersionsException": "主服务器支持的 Spec 版本：\n{serverVersions}\n但本应用仅支持 {supportedVersions}",
+  "badServerVersionsException": "主服务器支持的 Spec 版本：\n{serverVersions}\n但本应用仅支持 {supportedVersions} 版本",
   "@badServerVersionsException": {
     "type": "text",
     "placeholders": {
@@ -301,7 +301,7 @@
       "joinRules": {}
     }
   },
-  "changedTheProfileAvatar": "{username} 更改了他们的头像",
+  "changedTheProfileAvatar": "{username} 更改了头像",
   "@changedTheProfileAvatar": {
     "type": "text",
     "placeholders": {
@@ -382,7 +382,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatBackupDescription": "您的聊天记录备份已被安全密钥加密。请确保您不会丢失它。",
+  "chatBackupDescription": "您的聊天记录备份已由安全密钥加密。请确保您不会丢失它。",
   "@chatBackupDescription": {
     "type": "text",
     "placeholders": {}
@@ -588,7 +588,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "countParticipants": "{count} 参与者",
+  "countParticipants": "{count} 名参与者",
   "@countParticipants": {
     "type": "text",
     "placeholders": {
@@ -662,7 +662,7 @@
       "day": {}
     }
   },
-  "deactivateAccountWarning": "这将停用您的用户账号。这不能被撤销，您确定吗？",
+  "deactivateAccountWarning": "这将停用您的用户账户。这不能被撤销，您确定吗？",
   "@deactivateAccountWarning": {
     "type": "text",
     "placeholders": {}
@@ -677,7 +677,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "deleteAccount": "删除账号",
+  "deleteAccount": "删除账户",
   "@deleteAccount": {
     "type": "text",
     "placeholders": {}
@@ -832,7 +832,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enableEncryptionWarning": "您将不能再停用加密，确定吗？",
+  "enableEncryptionWarning": "您将无法停用加密，确定吗？",
   "@enableEncryptionWarning": {
     "type": "text",
     "placeholders": {}
@@ -2092,7 +2092,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "timeOfDay": "{hours12}:{minutes} {suffix}",
+  "timeOfDay": "{suffix} {hours12}时{minutes}分",
   "@timeOfDay": {
     "type": "text",
     "placeholders": {
@@ -2305,7 +2305,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "verifyTitle": "验证其他账号",
+  "verifyTitle": "验证其他账户",
   "@verifyTitle": {
     "type": "text",
     "placeholders": {}
@@ -2564,5 +2564,69 @@
     "placeholders": {}
   },
   "sendOnEnter": "按 enter 键发送",
-  "@sendOnEnter": {}
+  "@sendOnEnter": {},
+  "passwordsDoNotMatch": "密码不匹配！",
+  "@passwordsDoNotMatch": {},
+  "pleaseChooseAtLeastChars": "请至少输入 {min} 个字符。",
+  "@pleaseChooseAtLeastChars": {
+    "type": "text",
+    "placeholders": {
+      "min": {}
+    }
+  },
+  "createNewChatExplaination": "请他人扫描上方二维码以开始新的聊天，若他人无法扫码，您可以直接点击二维码分享您的邀请链接。",
+  "@createNewChatExplaination": {},
+  "yourChatBackupHasBeenSetUp": "您的聊天记录备份已设置。",
+  "@yourChatBackupHasBeenSetUp": {},
+  "setupChatBackupDescription": "为了保护您的信息，我们为您生成了一个安全密钥。\n请将其保存在安全的地方，如密码管理器中。",
+  "@setupChatBackupDescription": {},
+  "scanQrCode": "扫描二维码",
+  "@scanQrCode": {},
+  "chatHasBeenAddedToThisSpace": "会话已添加到此空间",
+  "@chatHasBeenAddedToThisSpace": {},
+  "chatHasBeenRemovedFromThisSpace": "会话已从此空间移除",
+  "@chatHasBeenRemovedFromThisSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "homeserver": "服务器",
+  "@homeserver": {},
+  "newPasswordDescription": "若您要使用密码重置功能，您在注册之后需要给账户添加一个电子邮件地址。",
+  "@newPasswordDescription": {},
+  "oneClientLoggedOut": "您的一个客户端已登出",
+  "@oneClientLoggedOut": {},
+  "removeFromBundle": "从此集合中移除",
+  "@removeFromBundle": {},
+  "unverified": "未认证",
+  "@unverified": {},
+  "pleaseEnterValidEmail": "请输入一个有效的电子邮件地址。",
+  "@pleaseEnterValidEmail": {},
+  "repeatPassword": "再次输入密码",
+  "@repeatPassword": {},
+  "yourUserId": "您的 ID：",
+  "@yourUserId": {},
+  "setupChatBackup": "设置聊天记录备份",
+  "@setupChatBackup": {},
+  "iWroteDownTheKey": "我已经记下了密钥",
+  "@iWroteDownTheKey": {},
+  "shareYourInviteLink": "分享您的邀请链接",
+  "@shareYourInviteLink": {},
+  "typeInInviteLinkManually": "手动输入邀请链接…",
+  "@typeInInviteLinkManually": {},
+  "newUsernameDescription": "您的 ID 格式为 @username:servername",
+  "@newUsernameDescription": {},
+  "addAccount": "添加账户",
+  "@addAccount": {},
+  "editBundlesForAccount": "编辑该账户的集合",
+  "@editBundlesForAccount": {},
+  "enableMultiAccounts": "（测试功能）在本设备上添加多个账户",
+  "@enableMultiAccounts": {},
+  "addToBundle": "添加到集合中",
+  "@addToBundle": {},
+  "bundleName": "集合名称",
+  "@bundleName": {},
+  "link": "链接",
+  "@link": {},
+  "serverRequiresEmail": "此服务器需要验证您的电子邮件地址以进行注册。",
+  "@serverRequiresEmail": {}
 }
