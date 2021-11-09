@@ -31,7 +31,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_map: ^0.14.0
-  flutter_matrix_html: ^1.0.4
+  flutter_matrix_html: ^1.1.0
   flutter_olm: ^1.1.2
   flutter_openssl_crypto: ^0.0.1
   flutter_secure_storage: ^4.2.1
