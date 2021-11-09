@@ -832,7 +832,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enableEncryptionWarning": "您将无法停用加密，确定吗？",
+  "enableEncryptionWarning": "您之后将无法停用加密，确定吗？",
   "@enableEncryptionWarning": {
     "type": "text",
     "placeholders": {}
