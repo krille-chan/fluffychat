@@ -2615,5 +2615,18 @@
   "yourChatBackupHasBeenSetUp": "Sigurnosna kopija tvog chata je postavljena.",
   "@yourChatBackupHasBeenSetUp": {},
   "setupChatBackupDescription": "Kako bismo zaštitili tvoje poruke, generirali smo sigurnosni ključ.\nČuvaj ga na sigurnom mjestu, poput upravljača lozinki.",
-  "@setupChatBackupDescription": {}
+  "@setupChatBackupDescription": {},
+  "repeatPassword": "Ponovi lozinku",
+  "@repeatPassword": {},
+  "pleaseChooseAtLeastChars": "Odaberi barem {min} znakova.",
+  "@pleaseChooseAtLeastChars": {
+    "type": "text",
+    "placeholders": {
+      "min": {}
+    }
+  },
+  "pleaseEnterValidEmail": "Upiši valjanu e-mail adresu.",
+  "@pleaseEnterValidEmail": {},
+  "passwordsDoNotMatch": "Lozinke se ne poklapaju!",
+  "@passwordsDoNotMatch": {}
 }
