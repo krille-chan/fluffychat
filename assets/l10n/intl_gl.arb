@@ -2607,5 +2607,18 @@
   "unverified": "Sen verificar",
   "@unverified": {},
   "yourUserId": "O teu ID:",
-  "@yourUserId": {}
+  "@yourUserId": {},
+  "pleaseEnterValidEmail": "Escribe un enderezo de email válido.",
+  "@pleaseEnterValidEmail": {},
+  "passwordsDoNotMatch": "Os contrasinais non concordan!",
+  "@passwordsDoNotMatch": {},
+  "repeatPassword": "Repite o contrasinal",
+  "@repeatPassword": {},
+  "pleaseChooseAtLeastChars": "Escribe polo menos {min} caracteres.",
+  "@pleaseChooseAtLeastChars": {
+    "type": "text",
+    "placeholders": {
+      "min": {}
+    }
+  }
 }
