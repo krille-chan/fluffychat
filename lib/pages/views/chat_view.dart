@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:fluffychat/config/themes.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,6 +14,7 @@ import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/app_emojis.dart';
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat.dart';
 import 'package:fluffychat/pages/user_bottom_sheet.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
