@@ -752,9 +752,11 @@ packages:
   matrix:
     dependency: "direct main"
     description:
-      name: matrix
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "."
+      ref: "krille/improve-start-up-time"
+      resolved-ref: "6585cf195f414175c72693f720569d9ce68319d2"
+      url: "https://gitlab.com/famedly/company/frontend/famedlysdk.git"
+    source: git
     version: "0.7.0-nullsafety.3"
   matrix_api_lite:
     dependency: "direct overridden"

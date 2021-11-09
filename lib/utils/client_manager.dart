@@ -37,7 +37,10 @@ abstract class ClientManager {
     }
     final clients = clientNames.map(createClient).toList();
     await Future.wait(clients.map((client) => client
-        .init(waitForFirstSync: false)
+        .init(
+          waitForFirstSync: false,
+          waitUntilFullLoaded: false,
+        )
         .catchError((e, s) => Logs().e('Unable to initialize client', e, s))));
     if (clients.length > 1 && clients.any((c) => !c.isLogged())) {
       final loggedOutClients = clients.where((c) => !c.isLogged()).toList();

@@ -386,6 +386,8 @@ class ChatListController extends State<ChatList> {
 
   Future<void> waitForFirstSync() async {
     final client = Matrix.of(context).client;
+    await client.roomsLoading;
+    await client.accountDataLoading;
     if (client.prevBatch?.isEmpty ?? true) {
       await client.onFirstSync.stream.first;
     }
