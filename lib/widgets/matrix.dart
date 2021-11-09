@@ -24,7 +24,7 @@ import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:fluffychat/utils/uia_request_manager.dart';
 import '../config/app_config.dart';
 import '../config/setting_keys.dart';
-import '../pages/key_verification_dialog.dart';
+import '../pages/key_verification/key_verification_dialog.dart';
 import '../utils/account_bundles.dart';
 import '../utils/background_push.dart';
 import '../utils/famedlysdk_store.dart';

@@ -13,17 +13,15 @@ FluffyChat tries to be as minimal as possible even in the code style. We try to 
     - handy_function.dart
     - ...Helper functions and extensions
   - /pages
-    - /ui
-      - home_view.dart
-      - details_view.dart
-      - settings_view.dart
-    - home.dart
-    - details.dart
-    - settings.dart
+    - /chat
+      - chat.dart
+      - chat_view.dart
+    - /chat_list
+      - chat_list.dart
+      - chat_list_view.dart
     - ...The pages of the app separated in Controllers and Views
   - /widgets
-    - /dialogs
-    - /list_items
+    - /layouts
     - ...Custom widgets created for this project
   - main.dart
 
