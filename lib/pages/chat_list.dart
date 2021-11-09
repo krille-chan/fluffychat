@@ -166,9 +166,10 @@ class ChatListController extends State<ChatList> {
   void initState() {
     _initReceiveSharingIntent();
     WidgetsBinding.instance.addPostFrameCallback(
-      (_) => waitForFirstSync().then((_) => checkBootstrap()),
+      (_) => waitForFirstSync.then((_) => checkBootstrap()),
     );
     scrollController.addListener(_onScroll);
+    waitForFirstSync = _waitForFirstSync();
     super.initState();
   }
 
@@ -384,7 +385,9 @@ class ChatListController extends State<ChatList> {
     setState(() => selectedRoomIds.clear());
   }
 
-  Future<void> waitForFirstSync() async {
+  Future<void> waitForFirstSync;
+
+  Future<void> _waitForFirstSync() async {
     final client = Matrix.of(context).client;
     await client.roomsLoading;
     await client.accountDataLoading;
