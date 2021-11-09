@@ -39,7 +39,7 @@ abstract class ClientManager {
     await Future.wait(clients.map((client) => client
         .init(
           waitForFirstSync: false,
-          waitUntilFullLoaded: false,
+          waitUntilLoadCompletedLoaded: false,
         )
         .catchError((e, s) => Logs().e('Unable to initialize client', e, s))));
     if (clients.length > 1 && clients.any((c) => !c.isLogged())) {

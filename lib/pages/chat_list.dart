@@ -235,7 +235,7 @@ class ChatListController extends State<ChatList> {
     final room = Matrix.of(context).client.getRoomById(selectedRoomIds.single);
     return showFutureLoadingDialog(
       context: context,
-      future: () => room.setUnread(!room.isUnread),
+      future: () => room.markUnread(!room.isUnread),
     );
   }
 

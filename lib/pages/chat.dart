@@ -168,7 +168,7 @@ class ChatController extends State<Chat> {
       timeline = await room.getTimeline(onUpdate: updateView);
       if (timeline.events.isNotEmpty) {
         // ignore: unawaited_futures
-        room.setUnread(false).catchError((err) {
+        room.markUnread(false).catchError((err) {
           if (err is MatrixException && err.errcode == 'M_FORBIDDEN') {
             // ignore if the user is not in the room (still joining)
             return;
@@ -197,10 +197,7 @@ class ChatController extends State<Chat> {
         timeline.events.isNotEmpty &&
         Matrix.of(context).webHasFocus) {
       // ignore: unawaited_futures
-      room.setReadMarker(
-        timeline.events.first.eventId,
-        mRead: timeline.events.first.eventId,
-      );
+      timeline.setReadMarker();
       if (PlatformInfos.isIOS) {
         // Workaround for iOS not clearing notifications with fcm_shared_isolate
         if (!room.client.rooms.any((r) =>
