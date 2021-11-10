@@ -755,14 +755,14 @@ packages:
       name: matrix
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.7.0-nullsafety.4"
+    version: "0.7.0-nullsafety.5"
   matrix_api_lite:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
       name: matrix_api_lite
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.5.0"
+    version: "0.5.1"
   matrix_link_text:
     dependency: "direct main"
     description:
