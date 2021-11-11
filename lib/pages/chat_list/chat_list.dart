@@ -14,10 +14,8 @@ import 'package:uni_links/uni_links.dart';
 import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions.dart/flutter_matrix_hive_database.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import '../../../utils/account_bundles.dart';
 import '../../main.dart';
@@ -175,11 +173,6 @@ class ChatListController extends State<ChatList> {
 
   void checkBootstrap() async {
     if (!Matrix.of(context).client.encryptionEnabled) return;
-    if ((Matrix.of(context).client.database as FlutterMatrixHiveStore)
-            .get(SettingKeys.dontAskForBootstrapKey) ==
-        true) {
-      return;
-    }
     final crossSigning = await crossSigningCachedFuture;
     final needsBootstrap =
         Matrix.of(context).client.encryption?.crossSigning?.enabled == false ||

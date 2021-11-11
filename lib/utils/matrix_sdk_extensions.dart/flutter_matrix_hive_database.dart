@@ -20,31 +20,8 @@ class FlutterMatrixHiveStore extends FamedlySdkHiveDatabase {
           encryptionCipher: encryptionCipher,
         );
 
-  Box _customBox;
-  String get _customBoxName => '$name.box.custom';
-
   static bool _hiveInitialized = false;
   static const String _hiveCipherStorageKey = 'hive_encryption_key';
-
-  @override
-  Future<void> open() async {
-    await super.open();
-    _customBox = await Hive.openBox(
-      _customBoxName,
-      encryptionCipher: encryptionCipher,
-    );
-    return;
-  }
-
-  @override
-  Future<void> clear() async {
-    await super.clear();
-    await _customBox.deleteAll(_customBox.keys);
-    await _customBox.close();
-  }
-
-  dynamic get(dynamic key) => _customBox.get(key);
-  Future<void> put(dynamic key, dynamic value) => _customBox.put(key, value);
 
   static Future<FamedlySdkHiveDatabase> hiveDatabaseBuilder(
       Client client) async {

@@ -64,6 +64,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.3.0"
+  asn1lib:
+    dependency: transitive
+    description:
+      name: asn1lib
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
   async:
     dependency: transitive
     description:
@@ -260,6 +267,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.7"
+  encrypt:
+    dependency: "direct main"
+    description:
+      name: encrypt
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.0.1"
   fake_async:
     dependency: transitive
     description:
@@ -630,6 +644,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0"
+  idb_shim:
+    dependency: transitive
+    description:
+      name: idb_shim
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.1"
   image:
     dependency: transitive
     description:
@@ -752,9 +773,11 @@ packages:
   matrix:
     dependency: "direct main"
     description:
-      name: matrix
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "."
+      ref: "krille/sembast"
+      resolved-ref: d3398eb9d5ea77e00c59a4a75092779e2640c358
+      url: "git@gitlab.com:famedly/company/frontend/famedlysdk.git"
+    source: git
     version: "0.7.0-nullsafety.5"
   matrix_api_lite:
     dependency: transitive
@@ -1003,6 +1026,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  pointycastle:
+    dependency: transitive
+    description:
+      name: pointycastle
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.4.0"
   pool:
     dependency: transitive
     description:
@@ -1129,6 +1159,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  sembast:
+    dependency: transitive
+    description:
+      name: sembast
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.1.1"
+  sembast_web:
+    dependency: "direct main"
+    description:
+      name: sembast_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.1+1"
   sentry:
     dependency: "direct main"
     description:

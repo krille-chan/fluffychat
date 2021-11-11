@@ -10,6 +10,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'famedlysdk_store.dart';
 import 'matrix_sdk_extensions.dart/flutter_matrix_hive_database.dart';
+import 'matrix_sdk_extensions.dart/flutter_matrix_sembast_database.dart';
 
 abstract class ClientManager {
   static const String clientNamespace = 'im.fluffychat.store.clients';
@@ -74,10 +75,9 @@ abstract class ClientManager {
           if (PlatformInfos.isMobile || PlatformInfos.isLinux)
             KeyVerificationMethod.emoji,
         },
-        importantStateEvents: <String>{
-          'im.ponies.room_emotes', // we want emotes to work properly
-        },
-        databaseBuilder: FlutterMatrixHiveStore.hiveDatabaseBuilder,
+        importantStateEvents: <String>{'im.ponies.room_emotes'},
+        databaseBuilder: FlutterMatrixSembastDatabase.databaseBuilder,
+        legacyDatabaseBuilder: FlutterMatrixHiveStore.hiveDatabaseBuilder,
         supportedLoginTypes: {
           AuthenticationTypes.password,
           if (PlatformInfos.isMobile || PlatformInfos.isWeb)

@@ -18,6 +18,7 @@ dependencies:
   emoji_picker_flutter: ^1.0.7
   #fcm_shared_isolate:
   #  git: https://gitlab.com/famedly/libraries/fcm_shared_isolate.git
+  encrypt: ^5.0.1
   file_picker_cross: ^4.5.0
   flutter:
     sdk: flutter
@@ -61,6 +62,7 @@ dependencies:
   receive_sharing_intent: ^1.4.5
   record: ^3.0.0
   scroll_to_index: ^2.1.0
+  sembast_web: ^2.0.1+1
   sentry: ^6.0.1
   share: ^2.0.4
   slugify: ^2.0.0
@@ -112,4 +114,8 @@ dependency_overrides:
     hosted:
       name: geolocator_android
       url: https://hanntech-gmbh.gitlab.io/free2pass/flutter-geolocator-floss
+  matrix:
+    git:
+      url: git@gitlab.com:famedly/company/frontend/famedlysdk.git
+      ref: krille/sembast
   provider: 5.0.0
