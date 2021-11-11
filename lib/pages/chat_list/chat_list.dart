@@ -172,6 +172,8 @@ class ChatListController extends State<ChatList> {
 
   void checkBootstrap() async {
     if (!Matrix.of(context).client.encryptionEnabled) return;
+    await Matrix.of(context).client.accountDataLoading;
+    await Matrix.of(context).client.userDeviceKeysLoading;
     final crossSigning =
         await Matrix.of(context).client.encryption?.crossSigning?.isCached() ??
             false;
