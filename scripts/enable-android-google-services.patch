@@ -98,6 +98,6 @@ index e1670a32..7e3238b0 100644
 -  #  git: https://gitlab.com/famedly/libraries/fcm_shared_isolate.git
 +  fcm_shared_isolate:
 +    git: https://gitlab.com/famedly/libraries/fcm_shared_isolate.git
+   encrypt: ^5.0.1
    file_picker_cross: ^4.5.0
    flutter:
-     sdk: flutter
