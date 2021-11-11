@@ -776,7 +776,7 @@ packages:
       path: "."
       ref: "krille/sembast"
       resolved-ref: "5f1f6a32e53ac815fe63fc1dc2ab57f857330c79"
-      url: "git@gitlab.com:famedly/company/frontend/famedlysdk.git"
+      url: "https://gitlab.com/famedly/company/frontend/famedlysdk.git"
     source: git
     version: "0.7.0-nullsafety.5"
   matrix_api_lite:

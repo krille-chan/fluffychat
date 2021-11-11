@@ -116,6 +116,6 @@ dependency_overrides:
       url: https://hanntech-gmbh.gitlab.io/free2pass/flutter-geolocator-floss
   matrix:
     git:
-      url: git@gitlab.com:famedly/company/frontend/famedlysdk.git
+      url: https://gitlab.com/famedly/company/frontend/famedlysdk.git
       ref: krille/sembast
   provider: 5.0.0
