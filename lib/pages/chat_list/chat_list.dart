@@ -77,7 +77,6 @@ class ChatListController extends State<ChatList> {
       Matrix.of(context).client.rooms.where((r) => r.isSpace).toList();
 
   final selectedRoomIds = <String>{};
-  Future<bool> crossSigningCachedFuture;
   bool crossSigningCached;
   bool hideChatBackupBanner = false;
 
@@ -173,7 +172,9 @@ class ChatListController extends State<ChatList> {
 
   void checkBootstrap() async {
     if (!Matrix.of(context).client.encryptionEnabled) return;
-    final crossSigning = await crossSigningCachedFuture;
+    final crossSigning =
+        await Matrix.of(context).client.encryption?.crossSigning?.isCached() ??
+            false;
     final needsBootstrap =
         Matrix.of(context).client.encryption?.crossSigning?.enabled == false ||
             crossSigning == false;
@@ -501,15 +502,6 @@ class ChatListController extends State<ChatList> {
   @override
   Widget build(BuildContext context) {
     Matrix.of(context).navigatorContext = context;
-    crossSigningCachedFuture ??= Matrix.of(context)
-        .client
-        .encryption
-        ?.crossSigning
-        ?.isCached()
-        ?.then((c) {
-      if (mounted) setState(() => crossSigningCached = c);
-      return c;
-    });
     return ChatListView(this);
   }
 }

@@ -59,11 +59,34 @@ class SettingsSecurityView extends StatelessWidget {
                 trailing: const Icon(Icons.vpn_key_outlined),
               ),
               ListTile(
-                title: Text(L10n.of(context).cachedKeys),
-                trailing: const Icon(Icons.wb_cloudy_outlined),
-                subtitle: Text(
-                    '${Matrix.of(context).client.encryption.keyManager.enabled ? L10n.of(context).onlineKeyBackupEnabled : L10n.of(context).onlineKeyBackupDisabled}\n${Matrix.of(context).client.encryption.crossSigning.enabled ? L10n.of(context).crossSigningEnabled : L10n.of(context).crossSigningDisabled}'),
-                onTap: controller.bootstrapSettingsAction,
+                title: Text(L10n.of(context).crossSigningEnabled),
+                trailing:
+                    Matrix.of(context).client.encryption.crossSigning.enabled
+                        ? const Icon(Icons.check, color: Colors.green)
+                        : const Icon(Icons.error, color: Colors.red),
+              ),
+              ListTile(
+                title: Text(L10n.of(context).onlineKeyBackupEnabled),
+                trailing:
+                    Matrix.of(context).client.encryption.keyManager.enabled
+                        ? const Icon(Icons.check, color: Colors.green)
+                        : const Icon(Icons.error, color: Colors.red),
+              ),
+              ListTile(
+                title: const Text('Session verified'),
+                trailing: !Matrix.of(context).client.isUnknownSession
+                    ? const Icon(Icons.check, color: Colors.green)
+                    : const Icon(Icons.error, color: Colors.red),
+              ),
+              FutureBuilder(
+                future:
+                    Matrix.of(context).client.encryption.keyManager.isCached(),
+                builder: (context, snapshot) => ListTile(
+                  title: Text(L10n.of(context).keysCached),
+                  trailing: snapshot.data == true
+                      ? const Icon(Icons.check, color: Colors.green)
+                      : const Icon(Icons.error, color: Colors.red),
+                ),
               ),
             },
           ],
