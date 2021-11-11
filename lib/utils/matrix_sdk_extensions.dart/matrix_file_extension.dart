@@ -15,7 +15,7 @@ extension MatrixFileExtension on MatrixFile {
     final fileName = name.split('/').last;
     if (PlatformInfos.isMobile) {
       final tmpDirectory = PlatformInfos.isAndroid
-          ? Directory('/storage/emulated/0/Download')
+          ? Directory('/storage/emulated/0/Download/')
           : await getTemporaryDirectory();
       final path = '${tmpDirectory.path}$fileName';
       await File(path).writeAsBytes(bytes);
