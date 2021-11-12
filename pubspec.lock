@@ -775,7 +775,7 @@ packages:
     description:
       path: "."
       ref: "krille/sembast"
-      resolved-ref: "5f1f6a32e53ac815fe63fc1dc2ab57f857330c79"
+      resolved-ref: "3594223e8a8184f10220bc9910961f2790cddffd"
       url: "https://gitlab.com/famedly/company/frontend/famedlysdk.git"
     source: git
     version: "0.7.0-nullsafety.5"
