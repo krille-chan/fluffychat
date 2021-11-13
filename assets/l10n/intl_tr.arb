@@ -2628,5 +2628,13 @@
     "placeholders": {
       "min": {}
     }
-  }
+  },
+  "messageInfo": "Mesaj bilgileri",
+  "@messageInfo": {},
+  "time": "Zaman",
+  "@time": {},
+  "messageType": "Mesaj Türü",
+  "@messageType": {},
+  "sender": "Gönderen",
+  "@sender": {}
 }
