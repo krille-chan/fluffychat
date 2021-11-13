@@ -41,7 +41,7 @@ class StateMessage extends StatelessWidget {
                   event.getLocalizedBody(MatrixLocals(L10n.of(context))),
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: Theme.of(context).textTheme.bodyText1.fontSize,
+                    fontSize: 14 * AppConfig.fontSizeFactor,
                     color: Theme.of(context).textTheme.bodyText2.color,
                     decoration:
                         event.redacted ? TextDecoration.lineThrough : null,
@@ -50,8 +50,9 @@ class StateMessage extends StatelessWidget {
                 if (counter != 0)
                   Text(
                     L10n.of(context).moreEvents(counter),
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.bold,
+                      fontSize: 14 * AppConfig.fontSizeFactor,
                     ),
                   ),
               ],

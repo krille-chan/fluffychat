@@ -251,7 +251,7 @@ class Message extends StatelessWidget {
                   padding: const EdgeInsets.all(6.0),
                   child: Text(
                     event.originServerTs.localizedTime(context),
-                    style: const TextStyle(fontSize: 12),
+                    style: TextStyle(fontSize: 14 * AppConfig.fontSizeFactor),
                   ),
                 ),
               )),

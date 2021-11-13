@@ -99,9 +99,6 @@ class _Reaction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final borderColor = reacted
-        ? Theme.of(context).primaryColor
-        : Theme.of(context).dividerColor;
     final textColor = Theme.of(context).brightness == Brightness.dark
         ? Colors.white
         : Colors.black;
@@ -148,10 +145,12 @@ class _Reaction extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: color,
-          border: Border.all(
-            width: 1,
-            color: borderColor,
-          ),
+          border: reacted
+              ? Border.all(
+                  width: 1,
+                  color: Theme.of(context).primaryColor,
+                )
+              : null,
           borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         ),
         padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
