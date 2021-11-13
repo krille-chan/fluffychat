@@ -233,8 +233,9 @@ class ChatView extends StatelessWidget {
                   ),
                 )
               : null,
-          backgroundColor: Theme.of(context).primaryColor.withAlpha(
-              Theme.of(context).brightness == Brightness.light ? 15 : 70),
+          backgroundColor: Theme.of(context).brightness == Brightness.light
+              ? FluffyThemes.lighten(Theme.of(context).primaryColor, 0.51)
+              : FluffyThemes.darken(Theme.of(context).primaryColor, 0.325),
           body: Stack(
             children: <Widget>[
               if (Matrix.of(context).wallpaper != null)
