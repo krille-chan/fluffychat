@@ -43,6 +43,7 @@ class SeenByRow extends StatelessWidget {
                   user.avatarUrl,
                   user.calcDisplayname(),
                   size: 16,
+                  fontSize: 9,
                 ),
               )
               .toList(),
@@ -56,7 +57,7 @@ class SeenByRow extends StatelessWidget {
                 child: Center(
                   child: Text(
                     '+${seenByUsers.length - maxAvatars}',
-                    style: const TextStyle(fontSize: 10),
+                    style: const TextStyle(fontSize: 9),
                   ),
                 ),
               ),

@@ -14,6 +14,7 @@ class Avatar extends StatelessWidget {
   final Function onTap;
   static const double defaultSize = 44;
   final Client client;
+  final double fontSize;
 
   const Avatar(
     this.mxContent,
@@ -21,6 +22,7 @@ class Avatar extends StatelessWidget {
     this.size = defaultSize,
     this.onTap,
     this.client,
+    this.fontSize = 18,
     Key key,
   }) : super(key: key);
 
@@ -45,7 +47,7 @@ class Avatar extends StatelessWidget {
         fallbackLetters,
         style: TextStyle(
           color: noPic ? name?.darkColor : null,
-          fontSize: 18,
+          fontSize: fontSize,
         ),
       ),
     );
