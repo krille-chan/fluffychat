@@ -2628,5 +2628,15 @@
   "link": "链接",
   "@link": {},
   "serverRequiresEmail": "此服务器需要验证您的电子邮件地址以进行注册。",
-  "@serverRequiresEmail": {}
+  "@serverRequiresEmail": {},
+  "messageType": "消息类型",
+  "@messageType": {},
+  "sender": "发送者",
+  "@sender": {},
+  "openGallery": "打开图库",
+  "@openGallery": {},
+  "messageInfo": "消息信息",
+  "@messageInfo": {},
+  "time": "时间",
+  "@time": {}
 }
