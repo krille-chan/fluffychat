@@ -23,11 +23,6 @@ class SettingsChatView extends StatelessWidget {
         child: Column(
           children: [
             ListTile(
-              title: Text(L10n.of(context).changeTheme),
-              onTap: () => VRouter.of(context).to('style'),
-              trailing: const Icon(Icons.style_outlined),
-            ),
-            ListTile(
               title: Text(L10n.of(context).emoteSettings),
               onTap: () => VRouter.of(context).to('emotes'),
               trailing: const Icon(Icons.insert_emoticon_outlined),

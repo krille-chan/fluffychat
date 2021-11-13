@@ -39,6 +39,11 @@ class SettingsView extends StatelessWidget {
         body: ListView(
           children: <Widget>[
             ListTile(
+              title: Text(L10n.of(context).changeTheme),
+              onTap: () => VRouter.of(context).to('/settings/style'),
+              leading: const Icon(Icons.format_paint_outlined),
+            ),
+            ListTile(
               leading: const Icon(Icons.notifications_outlined),
               title: Text(L10n.of(context).notifications),
               onTap: () => VRouter.of(context).to('/settings/notifications'),

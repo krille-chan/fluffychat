@@ -272,6 +272,11 @@ class AppRoutes {
           buildTransition: _dynamicTransition,
         ),
         VWidget(
+          path: 'style',
+          widget: const SettingsStyle(),
+          buildTransition: _dynamicTransition,
+        ),
+        VWidget(
           path: 'chat',
           widget: const SettingsChat(),
           buildTransition: _dynamicTransition,
@@ -279,11 +284,6 @@ class AppRoutes {
             VWidget(
               path: 'emotes',
               widget: const EmotesSettings(),
-              buildTransition: _dynamicTransition,
-            ),
-            VWidget(
-              path: 'style',
-              widget: const SettingsStyle(),
               buildTransition: _dynamicTransition,
             ),
           ],
