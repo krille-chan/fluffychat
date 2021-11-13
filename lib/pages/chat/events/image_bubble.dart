@@ -20,7 +20,6 @@ class ImageBubble extends StatefulWidget {
   final BoxFit fit;
   final bool maxSize;
   final Color backgroundColor;
-  final double radius;
   final bool thumbnailOnly;
   final bool animated;
   final double width;
@@ -34,7 +33,6 @@ class ImageBubble extends StatefulWidget {
     this.maxSize = true,
     this.backgroundColor,
     this.fit = BoxFit.cover,
-    this.radius = 10.0,
     this.thumbnailOnly = true,
     this.onLoaded,
     this.width = 400,
@@ -406,24 +404,21 @@ class _ImageBubbleState extends State<ImageBubble> {
         child: content,
       );
     }
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(widget.radius),
-      child: InkWell(
-        onTap: () => onTap(context),
-        child: Hero(
-          tag: widget.event.eventId,
-          child: AnimatedSwitcher(
-            duration: const Duration(milliseconds: 1000),
-            child: Container(
-              key: ValueKey(key),
-              constraints: widget.maxSize
-                  ? BoxConstraints.loose(Size(
-                      widget.width,
-                      widget.height,
-                    ))
-                  : null,
-              child: content,
-            ),
+    return InkWell(
+      onTap: () => onTap(context),
+      child: Hero(
+        tag: widget.event.eventId,
+        child: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 1000),
+          child: Container(
+            key: ValueKey(key),
+            constraints: widget.maxSize
+                ? BoxConstraints.loose(Size(
+                    widget.width,
+                    widget.height,
+                  ))
+                : null,
+            child: content,
           ),
         ),
       ),

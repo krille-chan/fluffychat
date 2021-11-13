@@ -51,7 +51,6 @@ class ImageViewerView extends StatelessWidget {
             fit: BoxFit.contain,
             backgroundColor: Colors.black,
             maxSize: false,
-            radius: 0.0,
             thumbnailOnly: false,
             animated: true,
           ),

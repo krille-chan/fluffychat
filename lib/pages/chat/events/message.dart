@@ -247,6 +247,7 @@ class Message extends StatelessWidget {
                   child: Material(
                 color: Theme.of(context).backgroundColor,
                 borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
+                clipBehavior: Clip.antiAlias,
                 child: Padding(
                   padding: const EdgeInsets.all(6.0),
                   child: Text(
