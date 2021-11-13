@@ -89,6 +89,11 @@ class Message extends StatelessWidget {
       bottomLeft: const Radius.circular(AppConfig.borderRadius),
       bottomRight: const Radius.circular(AppConfig.borderRadius),
     );
+    final noBubble = {
+      MessageTypes.Video,
+      MessageTypes.Image,
+      MessageTypes.Sticker,
+    }.contains(event.messageType);
 
     if (ownMessage) {
       color = displayEvent.status.isError
@@ -140,11 +145,12 @@ class Message extends StatelessWidget {
               alignment: alignment,
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Material(
-                color: color,
-                elevation: 6,
+                color: noBubble ? null : color,
+                elevation: noBubble ? 0 : 6,
                 shadowColor:
                     Theme.of(context).secondaryHeaderColor.withAlpha(100),
                 borderRadius: borderRadius,
+                clipBehavior: Clip.antiAlias,
                 child: InkWell(
                   onHover: (b) => useMouse = true,
                   onTap: !useMouse && longPressSelect
@@ -157,7 +163,8 @@ class Message extends StatelessWidget {
                       borderRadius:
                           BorderRadius.circular(AppConfig.borderRadius),
                     ),
-                    padding: const EdgeInsets.all(16),
+                    padding:
+                        noBubble ? EdgeInsets.zero : const EdgeInsets.all(16),
                     constraints: const BoxConstraints(
                         maxWidth: FluffyThemes.columnWidth * 1.5),
                     child: Stack(
