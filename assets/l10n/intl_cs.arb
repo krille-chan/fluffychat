@@ -2636,5 +2636,7 @@
   "repeatPassword": "Zopakujte heslo",
   "@repeatPassword": {},
   "pleaseEnterValidEmail": "Prosím zadejte platnou emailovou adresu.",
-  "@pleaseEnterValidEmail": {}
+  "@pleaseEnterValidEmail": {},
+  "openGallery": "Otevřít galerii",
+  "@openGallery": {}
 }
