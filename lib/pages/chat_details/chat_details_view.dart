@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -106,7 +107,7 @@ class ChatDetailsView extends StatelessWidget {
                                           .scaffoldBackgroundColor,
                                       foregroundColor: Colors.grey,
                                       radius: Avatar.defaultSize / 2,
-                                      child: const Icon(Icons.edit_outlined),
+                                      child: const Icon(CupertinoIcons.pen),
                                     )
                                   : null,
                               title: Text(
@@ -136,7 +137,8 @@ class ChatDetailsView extends StatelessWidget {
                                   ? controller.setTopicAction
                                   : null,
                             ),
-                            const Divider(thickness: 1),
+                            const SizedBox(height: 8),
+                            const Divider(height: 1),
                             ListTile(
                               title: Text(
                                 L10n.of(context).settings,
@@ -146,151 +148,121 @@ class ChatDetailsView extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
+                              trailing: Icon(controller.displaySettings
+                                  ? CupertinoIcons.chevron_down
+                                  : CupertinoIcons.right_chevron),
+                              onTap: controller.toggleDisplaySettings,
                             ),
-                            if (room.canSendEvent('m.room.name'))
-                              ListTile(
-                                leading: CircleAvatar(
-                                  backgroundColor:
-                                      Theme.of(context).scaffoldBackgroundColor,
-                                  foregroundColor: Colors.grey,
-                                  child: const Icon(Icons.people_outlined),
-                                ),
-                                title: Text(
-                                    L10n.of(context).changeTheNameOfTheGroup),
-                                subtitle: Text(room.getLocalizedDisplayname(
-                                    MatrixLocals(L10n.of(context)))),
-                                onTap: controller.setDisplaynameAction,
-                              ),
-                            if (room.joinRules == JoinRules.public)
-                              ListTile(
-                                leading: CircleAvatar(
-                                  backgroundColor:
-                                      Theme.of(context).scaffoldBackgroundColor,
-                                  foregroundColor: Colors.grey,
-                                  child: const Icon(Icons.link_outlined),
-                                ),
-                                onTap: controller.editAliases,
-                                title: Text(L10n.of(context).editRoomAliases),
-                                subtitle: Text(
-                                    (room.canonicalAlias?.isNotEmpty ?? false)
-                                        ? room.canonicalAlias
-                                        : L10n.of(context).none),
-                              ),
-                            ListTile(
-                              leading: CircleAvatar(
-                                backgroundColor:
-                                    Theme.of(context).scaffoldBackgroundColor,
-                                foregroundColor: Colors.grey,
-                                child:
-                                    const Icon(Icons.insert_emoticon_outlined),
-                              ),
-                              title: Text(L10n.of(context).emoteSettings),
-                              subtitle: Text(L10n.of(context).setCustomEmotes),
-                              onTap: controller.goToEmoteSettings,
-                            ),
-                            PopupMenuButton(
-                              onSelected: controller.setJoinRulesAction,
-                              itemBuilder: (BuildContext context) =>
-                                  <PopupMenuEntry<JoinRules>>[
-                                if (room.canChangeJoinRules)
-                                  PopupMenuItem<JoinRules>(
-                                    value: JoinRules.public,
-                                    child: Text(JoinRules.public
-                                        .getLocalizedString(
-                                            MatrixLocals(L10n.of(context)))),
-                                  ),
-                                if (room.canChangeJoinRules)
-                                  PopupMenuItem<JoinRules>(
-                                    value: JoinRules.invite,
-                                    child: Text(JoinRules.invite
-                                        .getLocalizedString(
-                                            MatrixLocals(L10n.of(context)))),
-                                  ),
-                              ],
-                              child: ListTile(
-                                leading: CircleAvatar(
+                            if (controller.displaySettings) ...[
+                              if (room.canSendEvent('m.room.name'))
+                                ListTile(
+                                  leading: CircleAvatar(
                                     backgroundColor: Theme.of(context)
                                         .scaffoldBackgroundColor,
                                     foregroundColor: Colors.grey,
-                                    child: const Icon(Icons.public_outlined)),
-                                title: Text(L10n.of(context)
-                                    .whoIsAllowedToJoinThisGroup),
-                                subtitle: Text(
-                                  room.joinRules.getLocalizedString(
-                                      MatrixLocals(L10n.of(context))),
+                                    child: const Icon(CupertinoIcons.group),
+                                  ),
+                                  title: Text(
+                                      L10n.of(context).changeTheNameOfTheGroup),
+                                  subtitle: Text(room.getLocalizedDisplayname(
+                                      MatrixLocals(L10n.of(context)))),
+                                  onTap: controller.setDisplaynameAction,
                                 ),
-                              ),
-                            ),
-                            PopupMenuButton(
-                              onSelected: controller.setHistoryVisibilityAction,
-                              itemBuilder: (BuildContext context) =>
-                                  <PopupMenuEntry<HistoryVisibility>>[
-                                if (room.canChangeHistoryVisibility)
-                                  PopupMenuItem<HistoryVisibility>(
-                                    value: HistoryVisibility.invited,
-                                    child: Text(HistoryVisibility.invited
-                                        .getLocalizedString(
-                                            MatrixLocals(L10n.of(context)))),
+                              if (room.joinRules == JoinRules.public)
+                                ListTile(
+                                  leading: CircleAvatar(
+                                    backgroundColor: Theme.of(context)
+                                        .scaffoldBackgroundColor,
+                                    foregroundColor: Colors.grey,
+                                    child: const Icon(CupertinoIcons.link),
                                   ),
-                                if (room.canChangeHistoryVisibility)
-                                  PopupMenuItem<HistoryVisibility>(
-                                    value: HistoryVisibility.joined,
-                                    child: Text(HistoryVisibility.joined
-                                        .getLocalizedString(
-                                            MatrixLocals(L10n.of(context)))),
-                                  ),
-                                if (room.canChangeHistoryVisibility)
-                                  PopupMenuItem<HistoryVisibility>(
-                                    value: HistoryVisibility.shared,
-                                    child: Text(HistoryVisibility.shared
-                                        .getLocalizedString(
-                                            MatrixLocals(L10n.of(context)))),
-                                  ),
-                                if (room.canChangeHistoryVisibility)
-                                  PopupMenuItem<HistoryVisibility>(
-                                    value: HistoryVisibility.worldReadable,
-                                    child: Text(HistoryVisibility.worldReadable
-                                        .getLocalizedString(
-                                            MatrixLocals(L10n.of(context)))),
-                                  ),
-                              ],
-                              child: ListTile(
+                                  onTap: controller.editAliases,
+                                  title: Text(L10n.of(context).editRoomAliases),
+                                  subtitle: Text(
+                                      (room.canonicalAlias?.isNotEmpty ?? false)
+                                          ? room.canonicalAlias
+                                          : L10n.of(context).none),
+                                ),
+                              ListTile(
                                 leading: CircleAvatar(
                                   backgroundColor:
                                       Theme.of(context).scaffoldBackgroundColor,
                                   foregroundColor: Colors.grey,
-                                  child: const Icon(Icons.visibility_outlined),
+                                  child: const Icon(
+                                      Icons.insert_emoticon_outlined),
                                 ),
-                                title: Text(L10n.of(context)
-                                    .visibilityOfTheChatHistory),
-                                subtitle: Text(
-                                  room.historyVisibility.getLocalizedString(
-                                          MatrixLocals(L10n.of(context))) ??
-                                      '',
+                                title: Text(L10n.of(context).emoteSettings),
+                                subtitle:
+                                    Text(L10n.of(context).setCustomEmotes),
+                                onTap: controller.goToEmoteSettings,
+                              ),
+                              PopupMenuButton(
+                                onSelected: controller.setJoinRulesAction,
+                                itemBuilder: (BuildContext context) =>
+                                    <PopupMenuEntry<JoinRules>>[
+                                  if (room.canChangeJoinRules)
+                                    PopupMenuItem<JoinRules>(
+                                      value: JoinRules.public,
+                                      child: Text(JoinRules.public
+                                          .getLocalizedString(
+                                              MatrixLocals(L10n.of(context)))),
+                                    ),
+                                  if (room.canChangeJoinRules)
+                                    PopupMenuItem<JoinRules>(
+                                      value: JoinRules.invite,
+                                      child: Text(JoinRules.invite
+                                          .getLocalizedString(
+                                              MatrixLocals(L10n.of(context)))),
+                                    ),
+                                ],
+                                child: ListTile(
+                                  leading: CircleAvatar(
+                                      backgroundColor: Theme.of(context)
+                                          .scaffoldBackgroundColor,
+                                      foregroundColor: Colors.grey,
+                                      child: const Icon(
+                                          CupertinoIcons.checkmark_shield)),
+                                  title: Text(L10n.of(context)
+                                      .whoIsAllowedToJoinThisGroup),
+                                  subtitle: Text(
+                                    room.joinRules.getLocalizedString(
+                                        MatrixLocals(L10n.of(context))),
+                                  ),
                                 ),
                               ),
-                            ),
-                            if (room.joinRules == JoinRules.public)
                               PopupMenuButton(
-                                onSelected: controller.setGuestAccessAction,
+                                onSelected:
+                                    controller.setHistoryVisibilityAction,
                                 itemBuilder: (BuildContext context) =>
-                                    <PopupMenuEntry<GuestAccess>>[
-                                  if (room.canChangeGuestAccess)
-                                    PopupMenuItem<GuestAccess>(
-                                      value: GuestAccess.canJoin,
-                                      child: Text(
-                                        GuestAccess.canJoin.getLocalizedString(
-                                            MatrixLocals(L10n.of(context))),
-                                      ),
+                                    <PopupMenuEntry<HistoryVisibility>>[
+                                  if (room.canChangeHistoryVisibility)
+                                    PopupMenuItem<HistoryVisibility>(
+                                      value: HistoryVisibility.invited,
+                                      child: Text(HistoryVisibility.invited
+                                          .getLocalizedString(
+                                              MatrixLocals(L10n.of(context)))),
                                     ),
-                                  if (room.canChangeGuestAccess)
-                                    PopupMenuItem<GuestAccess>(
-                                      value: GuestAccess.forbidden,
-                                      child: Text(
-                                        GuestAccess.forbidden
-                                            .getLocalizedString(
-                                                MatrixLocals(L10n.of(context))),
-                                      ),
+                                  if (room.canChangeHistoryVisibility)
+                                    PopupMenuItem<HistoryVisibility>(
+                                      value: HistoryVisibility.joined,
+                                      child: Text(HistoryVisibility.joined
+                                          .getLocalizedString(
+                                              MatrixLocals(L10n.of(context)))),
+                                    ),
+                                  if (room.canChangeHistoryVisibility)
+                                    PopupMenuItem<HistoryVisibility>(
+                                      value: HistoryVisibility.shared,
+                                      child: Text(HistoryVisibility.shared
+                                          .getLocalizedString(
+                                              MatrixLocals(L10n.of(context)))),
+                                    ),
+                                  if (room.canChangeHistoryVisibility)
+                                    PopupMenuItem<HistoryVisibility>(
+                                      value: HistoryVisibility.worldReadable,
+                                      child: Text(HistoryVisibility
+                                          .worldReadable
+                                          .getLocalizedString(
+                                              MatrixLocals(L10n.of(context)))),
                                     ),
                                 ],
                                 child: ListTile(
@@ -298,31 +270,74 @@ class ChatDetailsView extends StatelessWidget {
                                     backgroundColor: Theme.of(context)
                                         .scaffoldBackgroundColor,
                                     foregroundColor: Colors.grey,
-                                    child: const Icon(Icons.info_outline),
+                                    child: const Icon(CupertinoIcons.eye),
                                   ),
-                                  title: Text(
-                                      L10n.of(context).areGuestsAllowedToJoin),
+                                  title: Text(L10n.of(context)
+                                      .visibilityOfTheChatHistory),
                                   subtitle: Text(
-                                    room.guestAccess.getLocalizedString(
-                                        MatrixLocals(L10n.of(context))),
+                                    room.historyVisibility.getLocalizedString(
+                                            MatrixLocals(L10n.of(context))) ??
+                                        '',
                                   ),
                                 ),
                               ),
-                            ListTile(
-                              title: Text(L10n.of(context).editChatPermissions),
-                              subtitle: Text(
-                                  L10n.of(context).whoCanPerformWhichAction),
-                              leading: CircleAvatar(
-                                backgroundColor:
-                                    Theme.of(context).scaffoldBackgroundColor,
-                                foregroundColor: Colors.grey,
-                                child:
-                                    const Icon(Icons.edit_attributes_outlined),
+                              if (room.joinRules == JoinRules.public)
+                                PopupMenuButton(
+                                  onSelected: controller.setGuestAccessAction,
+                                  itemBuilder: (BuildContext context) =>
+                                      <PopupMenuEntry<GuestAccess>>[
+                                    if (room.canChangeGuestAccess)
+                                      PopupMenuItem<GuestAccess>(
+                                        value: GuestAccess.canJoin,
+                                        child: Text(
+                                          GuestAccess.canJoin
+                                              .getLocalizedString(MatrixLocals(
+                                                  L10n.of(context))),
+                                        ),
+                                      ),
+                                    if (room.canChangeGuestAccess)
+                                      PopupMenuItem<GuestAccess>(
+                                        value: GuestAccess.forbidden,
+                                        child: Text(
+                                          GuestAccess.forbidden
+                                              .getLocalizedString(MatrixLocals(
+                                                  L10n.of(context))),
+                                        ),
+                                      ),
+                                  ],
+                                  child: ListTile(
+                                    leading: CircleAvatar(
+                                      backgroundColor: Theme.of(context)
+                                          .scaffoldBackgroundColor,
+                                      foregroundColor: Colors.grey,
+                                      child:
+                                          const Icon(CupertinoIcons.person_alt),
+                                    ),
+                                    title: Text(L10n.of(context)
+                                        .areGuestsAllowedToJoin),
+                                    subtitle: Text(
+                                      room.guestAccess.getLocalizedString(
+                                          MatrixLocals(L10n.of(context))),
+                                    ),
+                                  ),
+                                ),
+                              ListTile(
+                                title:
+                                    Text(L10n.of(context).editChatPermissions),
+                                subtitle: Text(
+                                    L10n.of(context).whoCanPerformWhichAction),
+                                leading: CircleAvatar(
+                                  backgroundColor:
+                                      Theme.of(context).scaffoldBackgroundColor,
+                                  foregroundColor: Colors.grey,
+                                  child: const Icon(
+                                      CupertinoIcons.slider_horizontal_3),
+                                ),
+                                onTap: () =>
+                                    VRouter.of(context).to('permissions'),
                               ),
-                              onTap: () =>
-                                  VRouter.of(context).to('permissions'),
-                            ),
-                            const Divider(thickness: 1),
+                            ],
+                            const Divider(height: 1),
                             ListTile(
                               title: Text(
                                 actualMembersCount > 1

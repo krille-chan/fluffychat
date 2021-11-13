@@ -25,6 +25,10 @@ class ChatDetails extends StatefulWidget {
 
 class ChatDetailsController extends State<ChatDetails> {
   List<User> members;
+  bool displaySettings = false;
+
+  void toggleDisplaySettings() =>
+      setState(() => displaySettings = !displaySettings);
 
   String get roomId => VRouter.of(context).pathParameters['roomid'];
 

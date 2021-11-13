@@ -35,19 +35,12 @@ class InvitationSelectionController extends State<InvitationSelection> {
     participants.removeWhere(
       (u) => ![Membership.join, Membership.invite].contains(u.membership),
     );
-    final contacts = <User>[];
-    final userMap = <String, bool>{};
-    for (var i = 0; i < client.rooms.length; i++) {
-      final roomUsers = client.rooms[i].getParticipants();
-
-      for (var j = 0; j < roomUsers.length; j++) {
-        if (userMap[roomUsers[j].id] != true &&
-            participants.indexWhere((u) => u.id == roomUsers[j].id) == -1) {
-          contacts.add(roomUsers[j]);
-        }
-        userMap[roomUsers[j].id] = true;
-      }
-    }
+    final participantsIds = participants.map((p) => p.stateKey).toList();
+    final contacts = client.rooms
+        .where((r) => r.isDirectChat)
+        .map((r) => r.getUserByMXIDSync(r.directChatMatrixID))
+        .toList()
+      ..removeWhere((u) => participantsIds.contains(u.stateKey));
     contacts.sort(
       (a, b) => a.calcDisplayname().toLowerCase().compareTo(
             b.calcDisplayname().toLowerCase(),
