@@ -62,13 +62,6 @@ abstract class FluffyThemes {
         borderRadius: BorderRadius.circular(AppConfig.borderRadius),
       ),
     ),
-    outlinedButtonTheme: OutlinedButtonThemeData(
-      style: OutlinedButton.styleFrom(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-        ),
-      ),
-    ),
     popupMenuTheme: PopupMenuThemeData(
       elevation: 4,
       shape: RoundedRectangleBorder(
@@ -83,6 +76,9 @@ abstract class FluffyThemes {
       style: ElevatedButton.styleFrom(
         primary: AppConfig.primaryColor,
         onPrimary: Colors.white,
+        elevation: 6,
+        shadowColor: const Color(0x44000000),
+        minimumSize: const Size.fromHeight(48),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         ),
@@ -90,7 +86,8 @@ abstract class FluffyThemes {
       ),
     ),
     cardTheme: CardTheme(
-      elevation: 4,
+      elevation: 6,
+      shadowColor: const Color(0x44000000),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(AppConfig.borderRadius),
       ),
@@ -109,7 +106,8 @@ abstract class FluffyThemes {
       fillColor: lighten(AppConfig.primaryColor, .51),
     ),
     appBarTheme: const AppBarTheme(
-      elevation: 2,
+      elevation: 6,
+      shadowColor: Color(0x44000000),
       systemOverlayStyle: SystemUiOverlayStyle.dark,
       backgroundColor: Colors.white,
       titleTextStyle: TextStyle(
@@ -178,17 +176,11 @@ abstract class FluffyThemes {
         ),
       ),
     ),
-    outlinedButtonTheme: OutlinedButtonThemeData(
-      style: OutlinedButton.styleFrom(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-        ),
-      ),
-    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         primary: AppConfig.primaryColor,
         onPrimary: Colors.white,
+        minimumSize: const Size.fromHeight(48),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         ),
@@ -197,7 +189,7 @@ abstract class FluffyThemes {
     ),
     snackBarTheme: const SnackBarThemeData(behavior: SnackBarBehavior.floating),
     appBarTheme: const AppBarTheme(
-      elevation: 2,
+      elevation: 6,
       systemOverlayStyle: SystemUiOverlayStyle.light,
       backgroundColor: Color(0xff1D1D1D),
       titleTextStyle: TextStyle(

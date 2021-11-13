@@ -1,0 +1,68 @@
+import 'package:flutter/material.dart';
+
+import 'package:fluffychat/pages/chat/chat.dart';
+import 'package:fluffychat/utils/room_status_extension.dart';
+import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/matrix.dart';
+
+class SeenByRow extends StatelessWidget {
+  final ChatController controller;
+  const SeenByRow(this.controller, {Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final seenByUsers = controller.room.getSeenByUsers(
+      controller.timeline,
+      controller.filteredEvents,
+      controller.unfolded,
+    );
+    const maxAvatars = 7;
+    return AnimatedContainer(
+      height: seenByUsers.isEmpty ? 0 : 24,
+      duration: seenByUsers.isEmpty
+          ? const Duration(milliseconds: 0)
+          : const Duration(milliseconds: 300),
+      alignment: controller.filteredEvents.isNotEmpty &&
+              controller.filteredEvents.first.senderId ==
+                  Matrix.of(context).client.userID
+          ? Alignment.topRight
+          : Alignment.topLeft,
+      padding: const EdgeInsets.only(
+        left: 16,
+        right: 16,
+        bottom: 4,
+      ),
+      child: Wrap(
+        spacing: 4,
+        children: [
+          ...(seenByUsers.length > maxAvatars
+                  ? seenByUsers.sublist(0, maxAvatars)
+                  : seenByUsers)
+              .map(
+                (user) => Avatar(
+                  user.avatarUrl,
+                  user.calcDisplayname(),
+                  size: 16,
+                ),
+              )
+              .toList(),
+          if (seenByUsers.length > maxAvatars)
+            SizedBox(
+              width: 16,
+              height: 16,
+              child: Material(
+                color: Theme.of(context).backgroundColor,
+                borderRadius: BorderRadius.circular(32),
+                child: Center(
+                  child: Text(
+                    '+${seenByUsers.length - maxAvatars}',
+                    style: const TextStyle(fontSize: 10),
+                  ),
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}

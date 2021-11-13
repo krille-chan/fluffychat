@@ -8,7 +8,6 @@ import 'package:pedantic/pedantic.dart';
 import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions.dart/event_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
 import 'package:fluffychat/utils/room_status_extension.dart';
 import '../../utils/date_time_extension.dart';
@@ -182,7 +181,7 @@ class ChatListItem extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               softWrap: false,
               style: TextStyle(
-                fontWeight: unread ? FontWeight.bold : null,
+                fontWeight: FontWeight.bold,
                 color: unread
                     ? Theme.of(context).colorScheme.secondary
                     : Theme.of(context).textTheme.bodyText1.color,
@@ -224,13 +223,16 @@ class ChatListItem extends StatelessWidget {
       subtitle: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          if (typingText.isEmpty && ownMessage) ...{
-            Icon(
-              room.lastEvent.statusIcon,
-              size: 14,
+          if (typingText.isEmpty &&
+              ownMessage &&
+              room.lastEvent.status.isSending) ...[
+            const SizedBox(
+              width: 16,
+              height: 16,
+              child: CircularProgressIndicator.adaptive(strokeWidth: 2),
             ),
             const SizedBox(width: 4),
-          },
+          ],
           AnimatedContainer(
             width: typingText.isEmpty ? 0 : 18,
             clipBehavior: Clip.hardEdge,
@@ -244,19 +246,6 @@ class ChatListItem extends StatelessWidget {
               size: 14,
             ),
           ),
-          if (typingText.isEmpty &&
-              !ownMessage &&
-              !room.isDirectChat &&
-              room.lastEvent != null &&
-              room.lastEvent.type == EventTypes.Message &&
-              {MessageTypes.Text, MessageTypes.Notice}
-                  .contains(room.lastEvent.messageType))
-            Text(
-              '${room.lastEvent.sender.calcDisplayname()}: ',
-              style: TextStyle(
-                color: Theme.of(context).textTheme.bodyText1.color,
-              ),
-            ),
           Expanded(
             child: typingText.isNotEmpty
                 ? Text(
@@ -274,6 +263,7 @@ class ChatListItem extends StatelessWidget {
                               hideReply: true,
                               hideEdit: true,
                               plaintextBody: true,
+                              withSenderNamePrefix: true,
                             ) ??
                             L10n.of(context).emptyChat,
                     softWrap: false,

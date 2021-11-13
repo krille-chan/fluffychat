@@ -21,6 +21,7 @@ import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/chat_view.dart';
+import 'package:fluffychat/pages/chat/event_info_dialog.dart';
 import 'package:fluffychat/pages/chat/recording_dialog.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -789,6 +790,9 @@ class ChatController extends State<Chat> {
     }
     setState(() => inputText = text);
   }
+
+  void showEventInfo([Event event]) =>
+      (event ?? selectedEvents.single).showInfoDialog(context);
 
   void cancelReplyEventAction() => setState(() {
         if (editEvent != null) {

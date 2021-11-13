@@ -65,38 +65,26 @@ extension RoomStatusExtension on Room {
     return typingText;
   }
 
-  String getLocalizedSeenByText(
-    BuildContext context,
+  List<User> getSeenByUsers(
     Timeline timeline,
     List<Event> filteredEvents,
     Set<String> unfolded,
   ) {
-    var seenByText = '';
-    if (timeline.events.isNotEmpty) {
-      final filteredEvents = timeline.getFilteredEvents(unfolded: unfolded);
-      if (filteredEvents.isEmpty) return '';
-      final lastReceipts = <User>{};
-      // now we iterate the timeline events until we hit the first rendered event
-      for (final event in timeline.events) {
-        lastReceipts.addAll(event.receipts.map((r) => r.user));
-        if (event.eventId == filteredEvents.first.eventId) {
-          break;
-        }
-      }
-      lastReceipts.removeWhere((user) =>
-          user.id == client.userID || user.id == filteredEvents.first.senderId);
-      if (lastReceipts.length == 1) {
-        seenByText =
-            L10n.of(context).seenByUser(lastReceipts.first.calcDisplayname());
-      } else if (lastReceipts.length == 2) {
-        seenByText = seenByText = L10n.of(context).seenByUserAndUser(
-            lastReceipts.first.calcDisplayname(),
-            lastReceipts.last.calcDisplayname());
-      } else if (lastReceipts.length > 2) {
-        seenByText = L10n.of(context).seenByUserAndCountOthers(
-            lastReceipts.first.calcDisplayname(), lastReceipts.length - 1);
+    if (timeline.events.isEmpty) return [];
+
+    final filteredEvents = timeline.getFilteredEvents(unfolded: unfolded);
+    if (filteredEvents.isEmpty) return [];
+
+    final lastReceipts = <User>{};
+    // now we iterate the timeline events until we hit the first rendered event
+    for (final event in timeline.events) {
+      lastReceipts.addAll(event.receipts.map((r) => r.user));
+      if (event.eventId == filteredEvents.first.eventId) {
+        break;
       }
     }
-    return seenByText;
+    lastReceipts.removeWhere((user) =>
+        user.id == client.userID || user.id == filteredEvents.first.senderId);
+    return lastReceipts.toList();
   }
 }

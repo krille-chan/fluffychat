@@ -17,21 +17,6 @@ extension LocalizedBody on Event {
     matrixFile.result?.save(context);
   }
 
-  IconData get statusIcon {
-    switch (status.intValue) {
-      case -1:
-        return Icons.error_outline;
-      case 0:
-        return Icons.timer_outlined;
-      case 1:
-        return Icons.done_outlined;
-      case 2:
-        return Icons.done_all_outlined;
-      default:
-        return Icons.done_outlined;
-    }
-  }
-
   bool get isAttachmentSmallEnough =>
       infoMap['size'] is int &&
       infoMap['size'] < room.client.database.maxFileSize;

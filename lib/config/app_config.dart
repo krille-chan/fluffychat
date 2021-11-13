@@ -8,7 +8,8 @@ abstract class AppConfig {
   static String _defaultHomeserver = 'matrix.org';
   static String get defaultHomeserver => _defaultHomeserver;
   static String jitsiInstance = 'https://meet.jit.si/';
-  static double fontSizeFactor = 1.0;
+  static double fontSizeFactor = 1;
+  static const double messageFontSize = 15.75;
   static const bool allowOtherHomeservers = true;
   static const bool enableRegistration = true;
   static const Color primaryColor = Color(0xFF5625BA);
@@ -49,7 +50,7 @@ abstract class AppConfig {
   static const String emojiFontName = 'Noto Emoji';
   static const String emojiFontUrl =
       'https://github.com/googlefonts/noto-emoji/';
-  static const double borderRadius = 12.0;
+  static const double borderRadius = 16.0;
   static const double columnWidth = 360.0;
 
   static void loadFromJson(Map<String, dynamic> json) {
