@@ -88,15 +88,6 @@ class UserBottomSheetController extends State<UserBottomSheet> {
           context: context,
           future: () async {
             final roomId = await widget.user.startDirectChat();
-            final client = widget.user.room.client;
-            if (client.getRoomById(roomId) == null) {
-              await client.onSync.stream.firstWhere(
-                  (sync) => sync.rooms?.join?.containsKey(roomId) ?? false);
-            }
-            final room = client.getRoomById(roomId);
-            if (client.encryptionEnabled && !room.encrypted) {
-              await client.getRoomById(roomId).enableEncryption();
-            }
             return roomId;
           },
         );

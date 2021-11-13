@@ -25,23 +25,12 @@ class NewGroupController extends State<NewGroup> {
     final roomID = await showFutureLoadingDialog(
       context: context,
       future: () async {
-        final roomId = await client.createRoom(
+        final roomId = await client.createGroupChat(
           preset: publicGroup
               ? sdk.CreateRoomPreset.publicChat
               : sdk.CreateRoomPreset.privateChat,
-          visibility: publicGroup ? sdk.Visibility.public : null,
-          roomAliasName: publicGroup && controller.text.isNotEmpty
-              ? controller.text.trim().toLowerCase().replaceAll(' ', '_')
-              : null,
-          name: controller.text.isNotEmpty ? controller.text : null,
+          groupName: controller.text.isNotEmpty ? controller.text : null,
         );
-        if (client.getRoomById(roomId) == null) {
-          await client.onSync.stream.firstWhere(
-              (sync) => sync.rooms?.join?.containsKey(roomId) ?? false);
-        }
-        if (!publicGroup && client.encryptionEnabled) {
-          await client.getRoomById(roomId).enableEncryption();
-        }
         return roomId;
       },
     );
