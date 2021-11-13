@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/utils/room_status_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -27,42 +28,43 @@ class SeenByRow extends StatelessWidget {
                   Matrix.of(context).client.userID
           ? Alignment.topRight
           : Alignment.topLeft,
-      padding: const EdgeInsets.only(
-        left: 16,
-        right: 16,
-        bottom: 4,
-      ),
-      child: Wrap(
-        spacing: 4,
-        children: [
-          ...(seenByUsers.length > maxAvatars
-                  ? seenByUsers.sublist(0, maxAvatars)
-                  : seenByUsers)
-              .map(
-                (user) => Avatar(
-                  user.avatarUrl,
-                  user.calcDisplayname(),
-                  size: 16,
-                  fontSize: 9,
-                ),
-              )
-              .toList(),
-          if (seenByUsers.length > maxAvatars)
-            SizedBox(
-              width: 16,
-              height: 16,
-              child: Material(
-                color: Theme.of(context).backgroundColor,
-                borderRadius: BorderRadius.circular(32),
-                child: Center(
-                  child: Text(
-                    '+${seenByUsers.length - maxAvatars}',
-                    style: const TextStyle(fontSize: 9),
+      padding: const EdgeInsets.only(bottom: 4),
+      child: Container(
+        constraints:
+            const BoxConstraints(maxWidth: FluffyThemes.columnWidth * 2.5),
+        alignment: Alignment.center,
+        child: Wrap(
+          spacing: 4,
+          children: [
+            ...(seenByUsers.length > maxAvatars
+                    ? seenByUsers.sublist(0, maxAvatars)
+                    : seenByUsers)
+                .map(
+                  (user) => Avatar(
+                    user.avatarUrl,
+                    user.calcDisplayname(),
+                    size: 16,
+                    fontSize: 9,
+                  ),
+                )
+                .toList(),
+            if (seenByUsers.length > maxAvatars)
+              SizedBox(
+                width: 16,
+                height: 16,
+                child: Material(
+                  color: Theme.of(context).backgroundColor,
+                  borderRadius: BorderRadius.circular(32),
+                  child: Center(
+                    child: Text(
+                      '+${seenByUsers.length - maxAvatars}',
+                      style: const TextStyle(fontSize: 9),
+                    ),
                   ),
                 ),
               ),
-            ),
-        ],
+          ],
+        ),
       ),
     );
   }

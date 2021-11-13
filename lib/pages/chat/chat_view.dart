@@ -376,12 +376,15 @@ class ChatView extends StatelessWidget {
                   ),
                   if (controller.room.canSendDefaultMessages &&
                       controller.room.membership == Membership.join)
-                    Padding(
+                    Container(
                       padding: EdgeInsets.only(
                         bottom: bottomSheetPadding,
                         left: bottomSheetPadding,
                         right: bottomSheetPadding,
                       ),
+                      constraints: const BoxConstraints(
+                          maxWidth: FluffyThemes.columnWidth * 2.5),
+                      alignment: Alignment.center,
                       child: Material(
                         borderRadius: const BorderRadius.only(
                           bottomLeft: Radius.circular(AppConfig.borderRadius),
