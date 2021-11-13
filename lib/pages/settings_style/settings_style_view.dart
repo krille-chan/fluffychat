@@ -16,6 +16,7 @@ class SettingsStyleView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     controller.currentTheme ??= AdaptiveTheme.of(context).mode;
+    const colorPickerSize = 32.0;
     return Scaffold(
       appBar: AppBar(
         leading: const BackButton(),
@@ -25,6 +26,36 @@ class SettingsStyleView extends StatelessWidget {
         withScrolling: true,
         child: Column(
           children: [
+            Row(
+              children: SettingsStyleController.customColors
+                  .map(
+                    (color) => Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(colorPickerSize),
+                        onTap: () => controller.setChatColor(color),
+                        child: Material(
+                          color: color,
+                          elevation: 6,
+                          borderRadius: BorderRadius.circular(colorPickerSize),
+                          child: SizedBox(
+                              width: colorPickerSize,
+                              height: colorPickerSize,
+                              child: AppConfig.chatColor.value == color.value
+                                  ? const Center(
+                                      child: Icon(
+                                      Icons.check,
+                                      size: 16,
+                                      color: Colors.white,
+                                    ))
+                                  : null),
+                        ),
+                      ),
+                    ),
+                  )
+                  .toList(),
+            ),
+            const Divider(height: 1),
             RadioListTile<AdaptiveThemeMode>(
               groupValue: controller.currentTheme,
               value: AdaptiveThemeMode.system,
@@ -86,8 +117,9 @@ class SettingsStyleView extends StatelessWidget {
             ),
             Container(
               alignment: Alignment.centerLeft,
+              padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Material(
-                color: Theme.of(context).backgroundColor,
+                color: Theme.of(context).primaryColor,
                 elevation: 6,
                 shadowColor:
                     Theme.of(context).secondaryHeaderColor.withAlpha(100),
@@ -97,6 +129,7 @@ class SettingsStyleView extends StatelessWidget {
                   child: Text(
                     'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor',
                     style: TextStyle(
+                      color: Colors.white,
                       fontSize:
                           AppConfig.messageFontSize * AppConfig.fontSizeFactor,
                     ),

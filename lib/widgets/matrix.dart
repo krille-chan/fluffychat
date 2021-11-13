@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:desktop_notifications/desktop_notifications.dart';
 import 'package:flutter_app_lock/flutter_app_lock.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -17,6 +18,7 @@ import 'package:universal_html/html.dart' as html;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vrouter/vrouter.dart';
 
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -477,6 +479,16 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       store
           .getItemBool(SettingKeys.sendOnEnter, AppConfig.sendOnEnter)
           .then((value) => AppConfig.sendOnEnter = value);
+      store.getItem(SettingKeys.chatColor).then((value) {
+        if (value != null && int.tryParse(value) != null) {
+          AppConfig.chatColor = Color(int.parse(value));
+          AdaptiveTheme.of(context).setTheme(
+            light: FluffyThemes.light,
+            dark: FluffyThemes.dark,
+            isDefault: true,
+          );
+        }
+      });
     }
   }
 

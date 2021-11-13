@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:matrix/matrix.dart';
+
 abstract class AppConfig {
   static String _applicationName = 'FluffyChat';
   static String get applicationName => _applicationName;
@@ -9,6 +11,7 @@ abstract class AppConfig {
   static String get defaultHomeserver => _defaultHomeserver;
   static String jitsiInstance = 'https://meet.jit.si/';
   static double fontSizeFactor = 1;
+  static Color chatColor = primaryColor;
   static const double messageFontSize = 15.75;
   static const bool allowOtherHomeservers = true;
   static const bool enableRegistration = true;
@@ -54,6 +57,15 @@ abstract class AppConfig {
   static const double columnWidth = 360.0;
 
   static void loadFromJson(Map<String, dynamic> json) {
+    if (json['chat_color'] != null) {
+      try {
+        chatColor = Color(json['application_name']);
+      } catch (e) {
+        Logs().w(
+            'Invalid color in config.json! Please make sure to define the color in this format: "0xffdd0000"',
+            e);
+      }
+    }
     if (json['application_name'] is String) {
       _applicationName = json['application_name'];
     }

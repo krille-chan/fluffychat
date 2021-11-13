@@ -7,6 +7,7 @@ import 'package:file_picker_cross/file_picker_cross.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
+import 'package:fluffychat/config/themes.dart';
 import '../../widgets/matrix.dart';
 import 'settings_style_view.dart';
 
@@ -35,7 +36,28 @@ class SettingsStyleController extends State<SettingsStyle> {
     setState(() => null);
   }
 
+  void setChatColor(Color color) async {
+    await Matrix.of(context).store.setItem(
+          SettingKeys.chatColor,
+          color.value.toString(),
+        );
+    AppConfig.chatColor = color;
+    AdaptiveTheme.of(context).setTheme(
+      light: FluffyThemes.light,
+      dark: FluffyThemes.dark,
+      isDefault: true,
+    );
+  }
+
   AdaptiveThemeMode currentTheme;
+
+  static List<Color> customColors = [
+    AppConfig.primaryColor,
+    Colors.blue.shade700,
+    Colors.green.shade700,
+    Colors.pink.shade700,
+    Colors.orange.shade700,
+  ];
 
   void switchTheme(AdaptiveThemeMode newTheme) {
     switch (newTheme) {
