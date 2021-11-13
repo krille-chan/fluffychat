@@ -91,9 +91,8 @@ class _EncryptionButtonState extends State<EncryptionButton> {
                 oneUserInvalid = true;
               }
             }
-            color = oneUserInvalid
-                ? Colors.red
-                : (allUsersValid ? Colors.green : Colors.orange);
+            if (oneUserInvalid) color = Colors.red;
+            if (!allUsersValid) color = Colors.orange;
           } else if (!widget.room.encrypted &&
               widget.room.joinRules != JoinRules.public) {
             color = Colors.red;
