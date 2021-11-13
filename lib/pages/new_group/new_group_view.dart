@@ -14,9 +14,7 @@ class NewGroupView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const BackButton(),
         title: Text(L10n.of(context).createNewGroup),
-        elevation: 0,
       ),
       body: MaxWidthBody(
         child: Column(

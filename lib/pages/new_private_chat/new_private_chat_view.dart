@@ -26,7 +26,6 @@ class NewPrivateChatView extends StatelessWidget {
         leading: const BackButton(),
         title: Text(L10n.of(context).newChat),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        elevation: 0,
         actions: [
           TextButton(
             onPressed: () => VRouter.of(context).to('/newgroup'),
@@ -38,7 +37,8 @@ class NewPrivateChatView extends StatelessWidget {
         ],
       ),
       body: MaxWidthBody(
-        child: ListView(
+        withScrolling: true,
+        child: Column(
           children: [
             Container(
               margin: const EdgeInsets.all(_qrCodePadding),
@@ -64,15 +64,9 @@ class NewPrivateChatView extends StatelessWidget {
                 ),
               ),
             ),
-            const Divider(),
             ListTile(
               subtitle: Text(L10n.of(context).createNewChatExplaination),
-              trailing: const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Icon(Icons.info_outline_rounded),
-              ),
             ),
-            const Divider(),
             Padding(
               padding: const EdgeInsets.all(12),
               child: Form(
