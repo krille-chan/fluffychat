@@ -406,7 +406,10 @@ class ChatController extends State<Chat> {
 
   void copyEventsAction() {
     Clipboard.setData(ClipboardData(text: _getSelectedEventString()));
-    setState(() => selectedEvents.clear());
+    setState(() {
+      showEmojiPicker = false;
+      selectedEvents.clear();
+    });
   }
 
   void reportEventAction() async {
@@ -450,7 +453,10 @@ class ChatController extends State<Chat> {
           ),
     );
     if (result.error != null) return;
-    setState(() => selectedEvents.clear());
+    setState(() {
+      showEmojiPicker = false;
+      selectedEvents.clear();
+    });
     ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(L10n.of(context).contentHasBeenReported)));
   }
@@ -487,7 +493,10 @@ class ChatController extends State<Chat> {
             }
           });
     }
-    setState(() => selectedEvents.clear());
+    setState(() {
+      showEmojiPicker = false;
+      selectedEvents.clear();
+    });
   }
 
   List<Client> get currentRoomBundle {

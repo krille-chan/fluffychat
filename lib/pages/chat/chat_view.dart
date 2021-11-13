@@ -2,9 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
-import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
@@ -13,11 +11,11 @@ import 'package:swipe_to_action/swipe_to_action.dart';
 import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/config/app_emojis.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
-import 'package:fluffychat/pages/chat/encryption_button.dart';
-import 'package:fluffychat/pages/chat/input_bar.dart';
+import 'package:fluffychat/pages/chat/reactions_picker.dart';
+import 'package:fluffychat/pages/chat/reply_display.dart';
+import 'package:fluffychat/pages/chat/tombstone_display.dart';
 import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -28,8 +26,9 @@ import 'package:fluffychat/widgets/connection_status_header.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/unread_badge_back_button.dart';
 import '../../utils/stream_extension.dart';
+import 'chat_emoji_picker.dart';
+import 'chat_input_row.dart';
 import 'events/message.dart';
-import 'events/reply_content.dart';
 
 class ChatView extends StatelessWidget {
   final ChatController controller;
@@ -210,34 +209,7 @@ class ChatView extends StatelessWidget {
               SafeArea(
                 child: Column(
                   children: <Widget>[
-                    if (controller.room.getState(EventTypes.RoomTombstone) !=
-                        null)
-                      SizedBox(
-                        height: 72,
-                        child: Material(
-                          color: Theme.of(context).secondaryHeaderColor,
-                          elevation: 1,
-                          child: ListTile(
-                            leading: CircleAvatar(
-                              foregroundColor:
-                                  Theme.of(context).colorScheme.secondary,
-                              backgroundColor:
-                                  Theme.of(context).backgroundColor,
-                              child: const Icon(Icons.upgrade_outlined),
-                            ),
-                            title: Text(
-                              controller.room
-                                  .getState(EventTypes.RoomTombstone)
-                                  .parsedTombstoneContent
-                                  .body,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            subtitle: Text(L10n.of(context).goToTheNewRoom),
-                            onTap: controller.goToNewRoomAction,
-                          ),
-                        ),
-                      ),
+                    TombstoneDisplay(controller),
                     Expanded(
                       child: FutureBuilder<bool>(
                         future: controller.getTimeline(),
@@ -265,7 +237,6 @@ class ChatView extends StatelessWidget {
                             controller.filteredEvents,
                             controller.unfolded,
                           );
-
                           return ListView.custom(
                             padding: const EdgeInsets.only(
                               top: 16,
@@ -413,470 +384,37 @@ class ChatView extends StatelessWidget {
                         },
                       ),
                     ),
-                    const ConnectionStatusHeader(),
-                    if (!controller.showEmojiPicker)
-                      AnimatedContainer(
-                        duration: const Duration(milliseconds: 300),
-                        height: (controller.editEvent == null &&
-                                controller.replyEvent == null &&
-                                controller.room.canSendDefaultMessages &&
-                                controller.selectedEvents.length == 1)
-                            ? 56
-                            : 0,
-                        child: Material(
-                          color: Theme.of(context).secondaryHeaderColor,
-                          child: Builder(builder: (context) {
-                            if (!(controller.editEvent == null &&
-                                controller.replyEvent == null &&
-                                controller.selectedEvents.length == 1)) {
-                              return Container();
-                            }
-                            final emojis = List<String>.from(AppEmojis.emojis);
-                            final allReactionEvents = controller
-                                .selectedEvents.first
-                                .aggregatedEvents(controller.timeline,
-                                    RelationshipTypes.reaction)
-                                ?.where((event) =>
-                                    event.senderId ==
-                                        event.room.client.userID &&
-                                    event.type == 'm.reaction');
-
-                            for (final event in allReactionEvents) {
-                              try {
-                                emojis.remove(
-                                    event.content['m.relates_to']['key']);
-                              } catch (_) {}
-                            }
-                            return ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: emojis.length + 1,
-                              itemBuilder: (c, i) => i == emojis.length
-                                  ? InkWell(
-                                      borderRadius: BorderRadius.circular(8),
-                                      onTap: () => controller
-                                          .pickEmojiAction(allReactionEvents),
-                                      child: Container(
-                                        width: 56,
-                                        height: 56,
-                                        alignment: Alignment.center,
-                                        child: const Icon(Icons.add_outlined),
-                                      ),
-                                    )
-                                  : InkWell(
-                                      borderRadius: BorderRadius.circular(8),
-                                      onTap: () =>
-                                          controller.sendEmojiAction(emojis[i]),
-                                      child: Container(
-                                        width: 56,
-                                        height: 56,
-                                        alignment: Alignment.center,
-                                        child: Text(
-                                          emojis[i],
-                                          style: const TextStyle(fontSize: 30),
-                                        ),
-                                      ),
-                                    ),
-                            );
-                          }),
-                        ),
-                      ),
-                    AnimatedContainer(
-                      duration: const Duration(milliseconds: 300),
-                      height: controller.editEvent != null ||
-                              controller.replyEvent != null
-                          ? 56
-                          : 0,
-                      child: Material(
-                        color: Theme.of(context).secondaryHeaderColor,
-                        child: Row(
-                          children: <Widget>[
-                            IconButton(
-                              tooltip: L10n.of(context).close,
-                              icon: const Icon(Icons.close),
-                              onPressed: controller.cancelReplyEventAction,
-                            ),
-                            Expanded(
-                              child: controller.replyEvent != null
-                                  ? ReplyContent(controller.replyEvent,
-                                      timeline: controller.timeline)
-                                  : _EditContent(controller.editEvent
-                                      ?.getDisplayEvent(controller.timeline)),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
                     if (controller.showScrollDownButton)
                       const Divider(
                         height: 1,
                       ),
                     if (controller.room.canSendDefaultMessages &&
-                        controller.room.membership == Membership.join &&
-                        !controller.showEmojiPicker)
+                        controller.room.membership == Membership.join)
                       Padding(
                         padding: EdgeInsets.all(
                             FluffyThemes.isColumnMode(context) ? 16.0 : 8.0),
                         child: Material(
                           borderRadius:
                               BorderRadius.circular(AppConfig.borderRadius),
-                          elevation: 4,
-                          color: Theme.of(context).scaffoldBackgroundColor,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: controller.selectMode
-                                ? <Widget>[
-                                    SizedBox(
-                                      height: 56,
-                                      child: TextButton(
-                                        onPressed:
-                                            controller.forwardEventsAction,
-                                        child: Row(
-                                          children: <Widget>[
-                                            const Icon(Icons
-                                                .keyboard_arrow_left_outlined),
-                                            Text(L10n.of(context).forward),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    controller.selectedEvents.length == 1
-                                        ? controller.selectedEvents.first
-                                                .getDisplayEvent(
-                                                    controller.timeline)
-                                                .status
-                                                .isSent
-                                            ? SizedBox(
-                                                height: 56,
-                                                child: TextButton(
-                                                  onPressed:
-                                                      controller.replyAction,
-                                                  child: Row(
-                                                    children: <Widget>[
-                                                      Text(L10n.of(context)
-                                                          .reply),
-                                                      const Icon(Icons
-                                                          .keyboard_arrow_right),
-                                                    ],
-                                                  ),
-                                                ),
-                                              )
-                                            : SizedBox(
-                                                height: 56,
-                                                child: TextButton(
-                                                  onPressed: controller
-                                                      .sendAgainAction,
-                                                  child: Row(
-                                                    children: <Widget>[
-                                                      Text(L10n.of(context)
-                                                          .tryToSendAgain),
-                                                      const SizedBox(width: 4),
-                                                      const Icon(
-                                                          Icons.send_outlined,
-                                                          size: 16),
-                                                    ],
-                                                  ),
-                                                ),
-                                              )
-                                        : Container(),
-                                  ]
-                                : <Widget>[
-                                    AnimatedContainer(
-                                      duration:
-                                          const Duration(milliseconds: 200),
-                                      height: 56,
-                                      width:
-                                          controller.inputText.isEmpty ? 56 : 0,
-                                      alignment: Alignment.center,
-                                      clipBehavior: Clip.hardEdge,
-                                      decoration: const BoxDecoration(),
-                                      child: PopupMenuButton<String>(
-                                        icon: const Icon(Icons.add_outlined),
-                                        onSelected: controller
-                                            .onAddPopupMenuButtonSelected,
-                                        itemBuilder: (BuildContext context) =>
-                                            <PopupMenuEntry<String>>[
-                                          PopupMenuItem<String>(
-                                            value: 'file',
-                                            child: ListTile(
-                                              leading: const CircleAvatar(
-                                                backgroundColor: Colors.green,
-                                                foregroundColor: Colors.white,
-                                                child: Icon(
-                                                    Icons.attachment_outlined),
-                                              ),
-                                              title: Text(
-                                                  L10n.of(context).sendFile),
-                                              contentPadding:
-                                                  const EdgeInsets.all(0),
-                                            ),
-                                          ),
-                                          PopupMenuItem<String>(
-                                            value: 'image',
-                                            child: ListTile(
-                                              leading: const CircleAvatar(
-                                                backgroundColor: Colors.blue,
-                                                foregroundColor: Colors.white,
-                                                child:
-                                                    Icon(Icons.image_outlined),
-                                              ),
-                                              title: Text(
-                                                  L10n.of(context).sendImage),
-                                              contentPadding:
-                                                  const EdgeInsets.all(0),
-                                            ),
-                                          ),
-                                          if (PlatformInfos.isMobile)
-                                            PopupMenuItem<String>(
-                                              value: 'camera',
-                                              child: ListTile(
-                                                leading: const CircleAvatar(
-                                                  backgroundColor:
-                                                      Colors.purple,
-                                                  foregroundColor: Colors.white,
-                                                  child: Icon(Icons
-                                                      .camera_alt_outlined),
-                                                ),
-                                                title: Text(L10n.of(context)
-                                                    .openCamera),
-                                                contentPadding:
-                                                    const EdgeInsets.all(0),
-                                              ),
-                                            ),
-                                          if (controller.room
-                                              .getImagePacks(
-                                                  ImagePackUsage.sticker)
-                                              .isNotEmpty)
-                                            PopupMenuItem<String>(
-                                              value: 'sticker',
-                                              child: ListTile(
-                                                leading: const CircleAvatar(
-                                                  backgroundColor:
-                                                      Colors.orange,
-                                                  foregroundColor: Colors.white,
-                                                  child: Icon(Icons
-                                                      .emoji_emotions_outlined),
-                                                ),
-                                                title: Text(L10n.of(context)
-                                                    .sendSticker),
-                                                contentPadding:
-                                                    const EdgeInsets.all(0),
-                                              ),
-                                            ),
-                                          if (PlatformInfos.isMobile)
-                                            PopupMenuItem<String>(
-                                              value: 'voice',
-                                              child: ListTile(
-                                                leading: const CircleAvatar(
-                                                  backgroundColor: Colors.red,
-                                                  foregroundColor: Colors.white,
-                                                  child: Icon(
-                                                      Icons.mic_none_outlined),
-                                                ),
-                                                title: Text(L10n.of(context)
-                                                    .voiceMessage),
-                                                contentPadding:
-                                                    const EdgeInsets.all(0),
-                                              ),
-                                            ),
-                                          if (PlatformInfos.isMobile)
-                                            PopupMenuItem<String>(
-                                              value: 'location',
-                                              child: ListTile(
-                                                leading: const CircleAvatar(
-                                                  backgroundColor: Colors.brown,
-                                                  foregroundColor: Colors.white,
-                                                  child: Icon(
-                                                      Icons.gps_fixed_outlined),
-                                                ),
-                                                title: Text(L10n.of(context)
-                                                    .shareLocation),
-                                                contentPadding:
-                                                    const EdgeInsets.all(0),
-                                              ),
-                                            ),
-                                        ],
-                                      ),
-                                    ),
-                                    Container(
-                                      height: 56,
-                                      alignment: Alignment.center,
-                                      child: EncryptionButton(controller.room),
-                                    ),
-                                    if (controller.matrix.isMultiAccount &&
-                                        controller.matrix.hasComplexBundles &&
-                                        controller.matrix.currentBundle.length >
-                                            1)
-                                      Container(
-                                        height: 56,
-                                        alignment: Alignment.center,
-                                        child: _ChatAccountPicker(controller),
-                                      ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 4.0),
-                                        child: InputBar(
-                                          room: controller.room,
-                                          minLines: 1,
-                                          maxLines: 8,
-                                          autofocus: !PlatformInfos.isMobile,
-                                          keyboardType: TextInputType.multiline,
-                                          textInputAction: AppConfig.sendOnEnter
-                                              ? TextInputAction.send
-                                              : null,
-                                          onSubmitted:
-                                              controller.onInputBarSubmitted,
-                                          focusNode: controller.inputFocus,
-                                          controller: controller.sendController,
-                                          decoration: InputDecoration(
-                                            hintText:
-                                                L10n.of(context).writeAMessage,
-                                            hintMaxLines: 1,
-                                            border: InputBorder.none,
-                                            enabledBorder: InputBorder.none,
-                                            filled: false,
-                                          ),
-                                          onChanged:
-                                              controller.onInputBarChanged,
-                                        ),
-                                      ),
-                                    ),
-                                    if (PlatformInfos.isMobile &&
-                                        controller.inputText.isEmpty)
-                                      Container(
-                                        height: 56,
-                                        alignment: Alignment.center,
-                                        child: IconButton(
-                                          tooltip:
-                                              L10n.of(context).voiceMessage,
-                                          icon: const Icon(
-                                              Icons.mic_none_outlined),
-                                          onPressed:
-                                              controller.voiceMessageAction,
-                                        ),
-                                      ),
-                                    if (!PlatformInfos.isMobile ||
-                                        controller.inputText.isNotEmpty)
-                                      Container(
-                                        height: 56,
-                                        alignment: Alignment.center,
-                                        child: IconButton(
-                                          icon: const Icon(Icons.send_outlined),
-                                          onPressed: controller.send,
-                                          tooltip: L10n.of(context).send,
-                                        ),
-                                      ),
-                                  ],
+                          elevation: 7,
+                          clipBehavior: Clip.hardEdge,
+                          color: Theme.of(context).appBarTheme.backgroundColor,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const ConnectionStatusHeader(),
+                              ReactionsPicker(controller),
+                              ReplyDisplay(controller),
+                              ChatInputRow(controller),
+                              ChatEmojiPicker(controller),
+                            ],
                           ),
                         ),
                       ),
-                    AnimatedContainer(
-                      duration: const Duration(milliseconds: 300),
-                      height: controller.showEmojiPicker
-                          ? MediaQuery.of(context).size.height / 2
-                          : 0,
-                      child: controller.showEmojiPicker
-                          ? EmojiPicker(
-                              onEmojiSelected: controller.onEmojiSelected,
-                              onBackspacePressed: controller.cancelEmojiPicker,
-                            )
-                          : null,
-                    ),
                   ],
                 ),
               ),
             ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _EditContent extends StatelessWidget {
-  final Event event;
-
-  const _EditContent(this.event);
-
-  @override
-  Widget build(BuildContext context) {
-    if (event == null) {
-      return Container();
-    }
-    return Row(
-      children: <Widget>[
-        Icon(
-          Icons.edit,
-          color: Theme.of(context).primaryColor,
-        ),
-        Container(width: 15.0),
-        Text(
-          event?.getLocalizedBody(
-                MatrixLocals(L10n.of(context)),
-                withSenderNamePrefix: false,
-                hideReply: true,
-              ) ??
-              '',
-          overflow: TextOverflow.ellipsis,
-          maxLines: 1,
-          style: TextStyle(
-            color: Theme.of(context).textTheme.bodyText2.color,
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class _ChatAccountPicker extends StatelessWidget {
-  final ChatController controller;
-
-  const _ChatAccountPicker(this.controller, {Key key}) : super(key: key);
-
-  void _popupMenuButtonSelected(String mxid) {
-    final client = controller.matrix.currentBundle
-        .firstWhere((cl) => cl.userID == mxid, orElse: () => null);
-    if (client == null) {
-      Logs().w('Attempted to switch to a non-existing client $mxid');
-      return;
-    }
-    controller.setSendingClient(client);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    controller.matrix ??= Matrix.of(context);
-    final clients = controller.currentRoomBundle;
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: FutureBuilder<Profile>(
-        future: controller.sendingClient.ownProfile,
-        builder: (context, snapshot) => PopupMenuButton<String>(
-          onSelected: _popupMenuButtonSelected,
-          itemBuilder: (BuildContext context) => clients
-              .map((client) => PopupMenuItem<String>(
-                    value: client.userID,
-                    child: FutureBuilder<Profile>(
-                      future: client.ownProfile,
-                      builder: (context, snapshot) => ListTile(
-                        leading: Avatar(
-                          snapshot.data?.avatarUrl,
-                          snapshot.data?.displayName ?? client.userID.localpart,
-                          size: 20,
-                        ),
-                        title:
-                            Text(snapshot.data?.displayName ?? client.userID),
-                        contentPadding: const EdgeInsets.all(0),
-                      ),
-                    ),
-                  ))
-              .toList(),
-          child: Avatar(
-            snapshot.data?.avatarUrl,
-            snapshot.data?.displayName ??
-                controller.matrix.client.userID.localpart,
-            size: 20,
           ),
         ),
       ),
