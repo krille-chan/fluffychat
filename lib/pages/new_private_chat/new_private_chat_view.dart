@@ -81,6 +81,7 @@ class NewPrivateChatView extends StatelessWidget {
                   controller: controller.controller,
                   autocorrect: false,
                   textInputAction: TextInputAction.go,
+                  focusNode: controller.textFieldFocus,
                   onFieldSubmitted: controller.submitAction,
                   validator: controller.validateForm,
                   decoration: InputDecoration(
@@ -105,7 +106,7 @@ class NewPrivateChatView extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: PlatformInfos.isMobile
+      floatingActionButton: PlatformInfos.isMobile && !controller.hideFab
           ? FloatingActionButton.extended(
               onPressed: controller.openScannerAction,
               label: Text(L10n.of(context).scanQrCode),

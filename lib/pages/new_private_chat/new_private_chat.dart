@@ -18,13 +18,33 @@ class NewPrivateChat extends StatefulWidget {
 }
 
 class NewPrivateChatController extends State<NewPrivateChat> {
-  TextEditingController controller = TextEditingController();
+  final TextEditingController controller = TextEditingController();
+  final FocusNode textFieldFocus = FocusNode();
   final formKey = GlobalKey<FormState>();
   bool loading = false;
+  bool hideFab = false;
 
   static const Set<String> supportedSigils = {'@', '!', '#'};
 
   static const String prefix = 'https://matrix.to/#/';
+
+  void setHideFab() {
+    if (textFieldFocus.hasFocus != hideFab) {
+      setState(() => hideFab = textFieldFocus.hasFocus);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    textFieldFocus.addListener(setHideFab);
+  }
+
+  @override
+  void dispose() {
+    textFieldFocus.removeListener(setHideFab);
+    super.dispose();
+  }
 
   void submitAction([_]) async {
     controller.text = controller.text.trim();
