@@ -129,8 +129,8 @@ abstract class FluffyThemes {
         backgroundColor: Colors.black,
         scaffoldBackgroundColor: Colors.black,
         colorScheme: ThemeData.dark().colorScheme.copyWith(
-              primary: AppConfig.primaryColorLight,
-              secondary: AppConfig.primaryColorLight,
+              primary: AppConfig.chatColor,
+              secondary: AppConfig.chatColor,
               secondaryVariant: AppConfig.secondaryColor,
               surface: FluffyThemes.darken(AppConfig.chatColor, 0.4),
             ),
@@ -171,7 +171,7 @@ abstract class FluffyThemes {
           border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(AppConfig.borderRadius)),
           filled: true,
-          fillColor: FluffyThemes.darken(AppConfig.primaryColorLight, .71),
+          fillColor: FluffyThemes.darken(AppConfig.chatColor, 0.4),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(AppConfig.borderRadius),
             borderSide: BorderSide(

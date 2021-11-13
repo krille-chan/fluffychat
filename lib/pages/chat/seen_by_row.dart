@@ -18,21 +18,22 @@ class SeenByRow extends StatelessWidget {
       controller.unfolded,
     );
     const maxAvatars = 7;
-    return AnimatedContainer(
-      height: seenByUsers.isEmpty ? 0 : 24,
-      duration: seenByUsers.isEmpty
-          ? const Duration(milliseconds: 0)
-          : const Duration(milliseconds: 300),
-      alignment: controller.filteredEvents.isNotEmpty &&
-              controller.filteredEvents.first.senderId ==
-                  Matrix.of(context).client.userID
-          ? Alignment.topRight
-          : Alignment.topLeft,
-      padding: const EdgeInsets.only(bottom: 4),
-      child: Container(
+    return Container(
+      width: double.infinity,
+      alignment: Alignment.center,
+      child: AnimatedContainer(
         constraints:
             const BoxConstraints(maxWidth: FluffyThemes.columnWidth * 2.5),
-        alignment: Alignment.center,
+        height: seenByUsers.isEmpty ? 0 : 24,
+        duration: seenByUsers.isEmpty
+            ? const Duration(milliseconds: 0)
+            : const Duration(milliseconds: 300),
+        alignment: controller.filteredEvents.isNotEmpty &&
+                controller.filteredEvents.first.senderId ==
+                    Matrix.of(context).client.userID
+            ? Alignment.topRight
+            : Alignment.topLeft,
+        padding: const EdgeInsets.only(left: 24, right: 24, bottom: 4),
         child: Wrap(
           spacing: 4,
           children: [
