@@ -2602,7 +2602,7 @@
   "@link": {},
   "yourChatBackupHasBeenSetUp": "Vaše záloha chatu byla nastavena.",
   "@yourChatBackupHasBeenSetUp": {},
-  "setupChatBackupDescription": "Abychom chránili vaše zprávy, vygenerovali jsme pro vás bezpečnostní klíč. Uchovejte ho na bezpečném místě, například ve správci hesel.",
+  "setupChatBackupDescription": "Abychom chránili vaše zprávy, vygenerovali jsme pro vás bezpečnostní klíč.\n Uchovejte ho na bezpečném místě, například ve správci hesel.",
   "@setupChatBackupDescription": {},
   "yourUserId": "Vaše uživatelské ID:",
   "@yourUserId": {},
@@ -2615,5 +2615,26 @@
   "removeFromBundle": "Odstranit z tohoto balíčku",
   "@removeFromBundle": {},
   "unverified": "Neověřeno",
-  "@unverified": {}
+  "@unverified": {},
+  "messageInfo": "Informace o zprávě",
+  "@messageInfo": {},
+  "time": "Čas",
+  "@time": {},
+  "messageType": "Typ zprávy",
+  "@messageType": {},
+  "sender": "Odesílatel",
+  "@sender": {},
+  "pleaseChooseAtLeastChars": "Vyberte prosím alespoň {min} znaků.",
+  "@pleaseChooseAtLeastChars": {
+    "type": "text",
+    "placeholders": {
+      "min": {}
+    }
+  },
+  "passwordsDoNotMatch": "Hesla se neshodují!",
+  "@passwordsDoNotMatch": {},
+  "repeatPassword": "Zopakujte heslo",
+  "@repeatPassword": {},
+  "pleaseEnterValidEmail": "Prosím zadejte platnou emailovou adresu.",
+  "@pleaseEnterValidEmail": {}
 }
