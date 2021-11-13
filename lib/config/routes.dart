@@ -277,6 +277,11 @@ class AppRoutes {
           buildTransition: _dynamicTransition,
         ),
         VWidget(
+          path: 'devices',
+          widget: const DevicesSettings(),
+          buildTransition: _dynamicTransition,
+        ),
+        VWidget(
           path: 'chat',
           widget: const SettingsChat(),
           buildTransition: _dynamicTransition,
@@ -293,11 +298,6 @@ class AppRoutes {
           widget: const SettingsAccount(),
           buildTransition: _dynamicTransition,
           stackedRoutes: [
-            VWidget(
-              path: 'devices',
-              widget: const DevicesSettings(),
-              buildTransition: _dynamicTransition,
-            ),
             VWidget(
               path: 'add',
               widget: const HomeserverPicker(),

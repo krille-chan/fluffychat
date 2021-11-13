@@ -2617,5 +2617,6 @@
   "messageInfo": "Message info",
   "time": "Time",
   "messageType": "Message Type",
-  "sender": "Sender"
+  "sender": "Sender",
+  "openGallery": "Open gallery"
 }

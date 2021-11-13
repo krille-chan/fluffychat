@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -31,7 +32,7 @@ class SettingsView extends StatelessWidget {
               background: ContentBanner(
                 controller.profile?.avatarUrl,
                 onEdit: controller.setAvatarAction,
-                defaultIcon: Icons.account_circle_outlined,
+                defaultIcon: CupertinoIcons.person_circle,
               ),
             ),
           ),
@@ -41,41 +42,46 @@ class SettingsView extends StatelessWidget {
             ListTile(
               title: Text(L10n.of(context).changeTheme),
               onTap: () => VRouter.of(context).to('/settings/style'),
-              leading: const Icon(Icons.format_paint_outlined),
+              leading: const Icon(CupertinoIcons.paintbrush),
             ),
             ListTile(
-              leading: const Icon(Icons.notifications_outlined),
+              leading: const Icon(CupertinoIcons.bell),
               title: Text(L10n.of(context).notifications),
               onTap: () => VRouter.of(context).to('/settings/notifications'),
             ),
             ListTile(
-              leading: const Icon(Icons.chat_bubble_outline),
+              leading: const Icon(CupertinoIcons.device_phone_portrait),
+              title: Text(L10n.of(context).devices),
+              onTap: () => VRouter.of(context).to('/settings/devices'),
+            ),
+            ListTile(
+              leading: const Icon(CupertinoIcons.chat_bubble_2),
               title: Text(L10n.of(context).chat),
               onTap: () => VRouter.of(context).to('/settings/chat'),
             ),
             ListTile(
-              leading: const Icon(Icons.account_box_outlined),
+              leading: const Icon(CupertinoIcons.person),
               title: Text(L10n.of(context).account),
               onTap: () => VRouter.of(context).to('/settings/account'),
             ),
             ListTile(
-              leading: const Icon(Icons.security_outlined),
+              leading: const Icon(CupertinoIcons.shield),
               title: Text(L10n.of(context).security),
               onTap: () => VRouter.of(context).to('/settings/security'),
             ),
             const Divider(thickness: 1),
             ListTile(
-              leading: const Icon(Icons.help_outlined),
+              leading: const Icon(CupertinoIcons.question_circle),
               title: Text(L10n.of(context).help),
               onTap: () => launch(AppConfig.supportUrl),
             ),
             ListTile(
-              leading: const Icon(Icons.privacy_tip_outlined),
+              leading: const Icon(CupertinoIcons.checkmark_shield),
               title: Text(L10n.of(context).privacy),
               onTap: () => launch(AppConfig.privacyUrl),
             ),
             ListTile(
-              leading: const Icon(Icons.link_outlined),
+              leading: const Icon(CupertinoIcons.info_circle),
               title: Text(L10n.of(context).about),
               onTap: () => PlatformInfos.showDialog(context),
             ),

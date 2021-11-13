@@ -6,8 +6,6 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 import 'package:vrouter/vrouter.dart';
 
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/pages/settings_account/settings_account_view.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -52,31 +50,6 @@ class SettingsAccountController extends State<SettingsAccount> {
     if (success.error == null) {
       updateProfile();
     }
-  }
-
-  void setJitsiInstanceAction() async {
-    const prefix = 'https://';
-    final input = await showTextInputDialog(
-      useRootNavigator: false,
-      context: context,
-      title: L10n.of(context).editJitsiInstance,
-      okLabel: L10n.of(context).ok,
-      cancelLabel: L10n.of(context).cancel,
-      textFields: [
-        DialogTextField(
-          initialText: AppConfig.jitsiInstance.replaceFirst(prefix, ''),
-          prefixText: prefix,
-        ),
-      ],
-    );
-    if (input == null) return;
-    var jitsi = prefix + input.single;
-    if (!jitsi.endsWith('/')) {
-      jitsi += '/';
-    }
-    final matrix = Matrix.of(context);
-    await matrix.store.setItem(SettingKeys.jitsiInstance, jitsi);
-    AppConfig.jitsiInstance = jitsi;
   }
 
   void logoutAction() async {

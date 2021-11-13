@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,7 @@ class ContentBanner extends StatelessWidget {
 
   const ContentBanner(this.mxContent,
       {this.height = 400,
-      this.defaultIcon = Icons.people_outline,
+      this.defaultIcon = CupertinoIcons.group,
       this.loading = false,
       this.onEdit,
       this.client,
@@ -71,7 +72,7 @@ class ContentBanner extends StatelessWidget {
                 onPressed: onEdit,
                 backgroundColor: Theme.of(context).backgroundColor,
                 foregroundColor: Theme.of(context).textTheme.bodyText1.color,
-                child: const Icon(Icons.camera_alt_outlined),
+                child: const Icon(CupertinoIcons.camera),
               ),
             ),
         ],

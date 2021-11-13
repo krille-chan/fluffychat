@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -22,12 +23,6 @@ class SettingsChatView extends StatelessWidget {
         withScrolling: true,
         child: Column(
           children: [
-            ListTile(
-              title: Text(L10n.of(context).emoteSettings),
-              onTap: () => VRouter.of(context).to('emotes'),
-              trailing: const Icon(Icons.insert_emoticon_outlined),
-            ),
-            const Divider(height: 1),
             SettingsSwitchListTile(
               title: L10n.of(context).renderRichContent,
               onChanged: (b) => AppConfig.renderHtml = b,
@@ -59,6 +54,24 @@ class SettingsChatView extends StatelessWidget {
                 storeKey: SettingKeys.sendOnEnter,
                 defaultValue: AppConfig.sendOnEnter,
               ),
+            const Divider(height: 1),
+            ListTile(
+              title: Text(L10n.of(context).emoteSettings),
+              onTap: () => VRouter.of(context).to('emotes'),
+              trailing: const Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Icon(Icons.insert_emoticon_outlined),
+              ),
+            ),
+            ListTile(
+              trailing: const Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Icon(CupertinoIcons.phone),
+              ),
+              title: Text(L10n.of(context).editJitsiInstance),
+              subtitle: Text(AppConfig.jitsiInstance),
+              onTap: controller.setJitsiInstanceAction,
+            ),
           ],
         ),
       ),

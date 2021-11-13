@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
@@ -36,24 +37,30 @@ class SettingsController extends State<Settings> {
       });
 
   void setAvatarAction() async {
-    final action = profile?.avatarUrl == null
-        ? AvatarAction.change
-        : await showConfirmationDialog<AvatarAction>(
-            context: context,
-            title: L10n.of(context).pleaseChoose,
-            actions: [
-              AlertDialogAction(
-                key: AvatarAction.change,
-                label: L10n.of(context).changeYourAvatar,
-                isDefaultAction: true,
-              ),
-              AlertDialogAction(
-                key: AvatarAction.remove,
-                label: L10n.of(context).removeYourAvatar,
-                isDestructiveAction: true,
-              ),
-            ],
-          );
+    final action = await showModalActionSheet<AvatarAction>(
+      context: context,
+      title: L10n.of(context).changeYourAvatar,
+      actions: [
+        SheetAction(
+          key: AvatarAction.camera,
+          label: L10n.of(context).openCamera,
+          isDefaultAction: true,
+          icon: CupertinoIcons.camera,
+        ),
+        SheetAction(
+          key: AvatarAction.file,
+          label: L10n.of(context).openGallery,
+          icon: CupertinoIcons.photo,
+        ),
+        if (profile?.avatarUrl != null)
+          SheetAction(
+            key: AvatarAction.remove,
+            label: L10n.of(context).removeYourAvatar,
+            isDestructiveAction: true,
+            icon: CupertinoIcons.delete,
+          ),
+      ],
+    );
     if (action == null) return;
     final matrix = Matrix.of(context);
     if (action == AvatarAction.remove) {
@@ -69,7 +76,9 @@ class SettingsController extends State<Settings> {
     MatrixFile file;
     if (PlatformInfos.isMobile) {
       final result = await ImagePicker().pickImage(
-          source: ImageSource.gallery,
+          source: action == AvatarAction.camera
+              ? ImageSource.camera
+              : ImageSource.gallery,
           imageQuality: 50,
           maxWidth: 1600,
           maxHeight: 1600);
@@ -183,4 +192,4 @@ class SettingsController extends State<Settings> {
   }
 }
 
-enum AvatarAction { change, remove }
+enum AvatarAction { camera, file, remove }

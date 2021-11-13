@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -28,7 +29,8 @@ class EmotesSettingsView extends StatelessWidget {
       floatingActionButton: controller.showSave
           ? FloatingActionButton(
               onPressed: controller.saveAction,
-              child: const Icon(Icons.save_outlined, color: Colors.white),
+              child:
+                  const Icon(CupertinoIcons.floppy_disk, color: Colors.white),
             )
           : null,
       body: MaxWidthBody(
@@ -76,7 +78,7 @@ class EmotesSettingsView extends StatelessWidget {
                   trailing: InkWell(
                     onTap: controller.addImageAction,
                     child: const Icon(
-                      Icons.add_outlined,
+                      CupertinoIcons.add,
                       color: Colors.green,
                       size: 32.0,
                     ),
@@ -196,7 +198,7 @@ class EmotesSettingsView extends StatelessWidget {
                                   onTap: () =>
                                       controller.removeImageAction(imageCode),
                                   child: const Icon(
-                                    Icons.delete_forever_outlined,
+                                    CupertinoIcons.delete,
                                     color: Colors.red,
                                     size: 32.0,
                                   ),

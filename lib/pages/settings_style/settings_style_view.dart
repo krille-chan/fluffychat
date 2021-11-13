@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_theme/adaptive_theme.dart';
@@ -92,7 +93,7 @@ class SettingsStyleView extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
                 trailing: const Icon(
-                  Icons.delete_forever_outlined,
+                  CupertinoIcons.delete,
                   color: Colors.red,
                 ),
                 onTap: controller.deleteWallpaperAction,
@@ -100,7 +101,7 @@ class SettingsStyleView extends StatelessWidget {
             Builder(builder: (context) {
               return ListTile(
                 title: Text(L10n.of(context).changeWallpaper),
-                trailing: const Icon(Icons.wallpaper_outlined),
+                trailing: const Icon(CupertinoIcons.photo),
                 onTap: controller.setWallpaperAction,
               );
             }),

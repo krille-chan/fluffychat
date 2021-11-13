@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
@@ -23,19 +24,19 @@ class SettingsSecurityView extends StatelessWidget {
         child: Column(
           children: [
             ListTile(
-              trailing: const Icon(Icons.block_outlined),
+              trailing: const Icon(CupertinoIcons.xmark_shield),
               title: Text(L10n.of(context).ignoredUsers),
               onTap: () => VRouter.of(context).to('ignorelist'),
             ),
             ListTile(
-              trailing: const Icon(Icons.security_outlined),
+              trailing: const Icon(CupertinoIcons.padlock),
               title: Text(
                 L10n.of(context).changePassword,
               ),
               onTap: controller.changePasswordAccountAction,
             ),
             ListTile(
-              trailing: const Icon(Icons.email_outlined),
+              trailing: const Icon(CupertinoIcons.mail),
               title: Text(L10n.of(context).passwordRecovery),
               onTap: () => VRouter.of(context).to('3pid'),
             ),
