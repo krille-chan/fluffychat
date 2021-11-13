@@ -56,7 +56,7 @@ class SettingsStyleController extends State<SettingsStyle> {
     Colors.blue.shade700,
     Colors.green.shade700,
     Colors.pink.shade700,
-    Colors.orange.shade700,
+    Colors.orange.shade800,
   ];
 
   void switchTheme(AdaptiveThemeMode newTheme) {
