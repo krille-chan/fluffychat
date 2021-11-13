@@ -27,7 +27,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "activatedEndToEndEncryption": "{username} ha abilitato la crittografia dall'inizio alla fine",
+  "activatedEndToEndEncryption": "{username} ha abilitato la crittografia end to end",
   "@activatedEndToEndEncryption": {
     "type": "text",
     "placeholders": {
@@ -1273,7 +1273,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noPublicRoomsFound": "Nessuna stanza pubblica trovata…",
+  "noPublicRoomsFound": "Nessuna stanza pubblica trovata……",
   "@noPublicRoomsFound": {
     "type": "text",
     "placeholders": {}
@@ -1555,7 +1555,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unbanFromChat": "Rimuovi il bando",
+  "unbanFromChat": "Rimuovi il ban dalla chat",
   "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
@@ -1800,7 +1800,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sharedTheLocation": "{username} ha condiviso la posizione",
+  "sharedTheLocation": "{username} ha condiviso la sua  posizione",
   "@sharedTheLocation": {
     "type": "text",
     "placeholders": {
@@ -2354,5 +2354,118 @@
     "placeholders": {}
   },
   "addToSpace": "Aggiungi a uno spazio",
-  "@addToSpace": {}
+  "@addToSpace": {},
+  "passwordsDoNotMatch": "Le password non corrispondono!",
+  "@passwordsDoNotMatch": {},
+  "pleaseEnterValidEmail": "Inserire un indirizzo email valido.",
+  "@pleaseEnterValidEmail": {},
+  "yourUserId": "Il tuo ID utente:",
+  "@yourUserId": {},
+  "commandHintLeave": "Lascia questa stanza",
+  "@commandHintLeave": {
+    "type": "text",
+    "description": "Usage hint for the command /leave"
+  },
+  "commandHintBan": "Banna l'utente specificato da questa stanza.",
+  "@commandHintBan": {
+    "type": "text",
+    "description": "Usage hint for the command /ban"
+  },
+  "sendSticker": "Invia sticker",
+  "@sendSticker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHintHtml": "Invia testo formattato in HTML",
+  "@commandHintHtml": {
+    "type": "text",
+    "description": "Usage hint for the command /html"
+  },
+  "commandHintPlain": "Invia testo non formattato",
+  "@commandHintPlain": {
+    "type": "text",
+    "description": "Usage hint for the command /plain"
+  },
+  "commandHintSend": "Invia testo",
+  "@commandHintSend": {
+    "type": "text",
+    "description": "Usage hint for the command /send"
+  },
+  "locationDisabledNotice": "I servizi di localizzazione sono disabilitati. Per favore abilitali per poter condividere la tua posizione.",
+  "@locationDisabledNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveFile": "Salva file",
+  "@saveFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableChatBackup": "Abilita il backup delle chat per non perdere mai l'accesso alle tue chat.",
+  "@enableChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "serverRequiresEmail": "Questo server ha bisogno di validare la tua email per la registrazione.",
+  "@serverRequiresEmail": {},
+  "saveFileToFolder": "Salva file in questa cartella",
+  "@saveFileToFolder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openInMaps": "Apri in maps",
+  "@openInMaps": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "scanQrCode": "Scansiona codice QR",
+  "@scanQrCode": {},
+  "addAccount": "Aggiungi account",
+  "@addAccount": {},
+  "unverified": "Non verificato",
+  "@unverified": {},
+  "pleaseChooseAtLeastChars": "Per favore scegli almeno {min} caratteri.",
+  "@pleaseChooseAtLeastChars": {
+    "type": "text",
+    "placeholders": {
+      "min": {}
+    }
+  },
+  "sendAsText": "Invia come testo",
+  "@sendAsText": {
+    "type": "text"
+  },
+  "repeatPassword": "Ripeti password",
+  "@repeatPassword": {},
+  "autoplayImages": "Riproduci automaticamente sticker animati ed emoticon",
+  "@autoplayImages": {
+    "type": "text",
+    "placeholder": {}
+  },
+  "cantOpenUri": "Impossibile aprire l'URI",
+  "@cantOpenUri": {
+    "type": "text",
+    "placeholders": {
+      "uri": {}
+    }
+  },
+  "commandInvalid": "Comando non valido",
+  "@commandInvalid": {
+    "type": "text"
+  },
+  "link": "Link",
+  "@link": {},
+  "shareLocation": "Condividi posizione",
+  "@shareLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setupChatBackup": "Imposta backup delle chat",
+  "@setupChatBackup": {},
+  "yourChatBackupHasBeenSetUp": "Il tuo backup delle chat è stato configurato.",
+  "@yourChatBackupHasBeenSetUp": {},
+  "setupChatBackupDescription": "Per proteggere i tuoi messaggi, abbiamo generato una chiave di sicurezza. \nConservala in un luogo sicuro, come ad esempio un software di gestione password.",
+  "@setupChatBackupDescription": {},
+  "iWroteDownTheKey": "Ho trascritto la chiave",
+  "@iWroteDownTheKey": {}
 }
