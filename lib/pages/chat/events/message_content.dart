@@ -25,8 +25,10 @@ import 'sticker.dart';
 class MessageContent extends StatelessWidget {
   final Event event;
   final Color textColor;
+  final void Function(Event) onInfoTab;
 
-  const MessageContent(this.event, {Key key, this.textColor}) : super(key: key);
+  const MessageContent(this.event, {this.onInfoTab, Key key, this.textColor})
+      : super(key: key);
 
   void _verifyOrRequestKey(BuildContext context) async {
     if (event.content['can_request_session'] != true) {
@@ -72,8 +74,7 @@ class MessageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final fontSize =
-        DefaultTextStyle.of(context).style.fontSize * AppConfig.fontSizeFactor;
+    final fontSize = AppConfig.messageFontSize * AppConfig.fontSizeFactor;
     switch (event.type) {
       case EventTypes.Message:
       case EventTypes.Encrypted:
@@ -163,14 +164,11 @@ class MessageContent extends StatelessWidget {
             continue textmessage;
           case MessageTypes.BadEncrypted:
           case EventTypes.Encrypted:
-            return ElevatedButton.icon(
-              style: ElevatedButton.styleFrom(
-                primary: Theme.of(context).scaffoldBackgroundColor,
-                onPrimary: Theme.of(context).textTheme.bodyText1.color,
-              ),
+            return _ButtonContent(
+              textColor: textColor,
               onPressed: () => _verifyOrRequestKey(context),
               icon: const Icon(Icons.lock_outline),
-              label: Text(L10n.of(context).encrypted),
+              label: L10n.of(context).encrypted,
             );
           case MessageTypes.Location:
             final geoUri =
@@ -213,34 +211,20 @@ class MessageContent extends StatelessWidget {
           textmessage:
           default:
             if (event.content['msgtype'] == Matrix.callNamespace) {
-              return ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(
-                  primary: Theme.of(context).scaffoldBackgroundColor,
-                  onPrimary: Theme.of(context).textTheme.bodyText1.color,
-                ),
+              return _ButtonContent(
                 onPressed: () => launch(event.body),
                 icon: const Icon(Icons.phone_outlined, color: Colors.green),
-                label: Text(L10n.of(context).videoCall),
+                label: L10n.of(context).videoCall,
+                textColor: textColor,
               );
             }
             if (event.redacted) {
-              return Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(Icons.delete_forever_outlined, color: textColor),
-                  const SizedBox(width: 4),
-                  Text(
-                    event.getLocalizedBody(MatrixLocals(L10n.of(context)),
-                        hideReply: true),
-                    style: TextStyle(
-                      color: textColor,
-                      fontSize: fontSize,
-                      fontWeight: FontWeight.bold,
-                      decoration: TextDecoration.lineThrough,
-                      decorationThickness: 0.5,
-                    ),
-                  ),
-                ],
+              return _ButtonContent(
+                label: L10n.of(context)
+                    .redactedAnEvent(event.sender.calcDisplayname()),
+                icon: const Icon(Icons.delete_outlined),
+                textColor: textColor,
+                onPressed: () => onInfoTab(event),
               );
             }
             final bigEmotes = event.onlyEmotes &&
@@ -264,15 +248,42 @@ class MessageContent extends StatelessWidget {
         }
         break;
       default:
-        return Text(
-          L10n.of(context)
+        return _ButtonContent(
+          label: L10n.of(context)
               .userSentUnknownEvent(event.sender.calcDisplayname(), event.type),
-          style: TextStyle(
-            color: textColor,
-            decoration: event.redacted ? TextDecoration.lineThrough : null,
-          ),
+          icon: const Icon(Icons.info_outlined),
+          textColor: textColor,
+          onPressed: () => onInfoTab(event),
         );
     }
     return Container(); // else flutter analyze complains
+  }
+}
+
+class _ButtonContent extends StatelessWidget {
+  final void Function() onPressed;
+  final String label;
+  final Icon icon;
+  final Color textColor;
+
+  const _ButtonContent({
+    @required this.label,
+    @required this.icon,
+    @required this.textColor,
+    @required this.onPressed,
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return OutlinedButton.icon(
+      style: OutlinedButton.styleFrom(
+        primary: textColor,
+        textStyle: TextStyle(color: textColor),
+      ),
+      onPressed: onPressed,
+      icon: icon,
+      label: Text(label),
+    );
   }
 }

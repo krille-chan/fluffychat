@@ -6,6 +6,7 @@ import 'package:characters/characters.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -100,13 +101,12 @@ class _Reaction extends StatelessWidget {
   Widget build(BuildContext context) {
     final borderColor = reacted
         ? Theme.of(context).primaryColor
-        : Theme.of(context).secondaryHeaderColor;
+        : Theme.of(context).dividerColor;
     final textColor = Theme.of(context).brightness == Brightness.dark
         ? Colors.white
         : Colors.black;
     final color = Theme.of(context).scaffoldBackgroundColor;
     final fontSize = DefaultTextStyle.of(context).style.fontSize;
-    final padding = fontSize / 5;
     Widget content;
     if (reactionKey.startsWith('mxc://')) {
       final src = Uri.parse(reactionKey)?.getThumbnail(
@@ -122,7 +122,7 @@ class _Reaction extends StatelessWidget {
             imageUrl: src.toString(),
             height: fontSize,
           ),
-          Container(width: 4),
+          const SizedBox(width: 4),
           Text(count.toString(),
               style: TextStyle(
                 color: textColor,
@@ -144,6 +144,7 @@ class _Reaction extends StatelessWidget {
     return InkWell(
       onTap: () => onTap != null ? onTap() : null,
       onLongPress: () => onLongPress != null ? onLongPress() : null,
+      borderRadius: BorderRadius.circular(AppConfig.borderRadius),
       child: Container(
         decoration: BoxDecoration(
           color: color,
@@ -151,9 +152,9 @@ class _Reaction extends StatelessWidget {
             width: 1,
             color: borderColor,
           ),
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         ),
-        padding: EdgeInsets.all(padding),
+        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
         child: content,
       ),
     );

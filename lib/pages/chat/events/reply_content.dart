@@ -22,8 +22,7 @@ class ReplyContent extends StatelessWidget {
     final displayEvent = replyEvent != null && timeline != null
         ? replyEvent.getDisplayEvent(timeline)
         : replyEvent;
-    final fontSize =
-        DefaultTextStyle.of(context).style.fontSize * AppConfig.fontSizeFactor;
+    final fontSize = AppConfig.messageFontSize * AppConfig.fontSizeFactor;
     if (displayEvent != null &&
         AppConfig.renderHtml &&
         [EventTypes.Message, EventTypes.Encrypted]

@@ -2613,5 +2613,9 @@
   "@zoomOut": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "messageInfo": "Message info",
+  "time": "Time",
+  "messageType": "Message Type",
+  "sender": "Sender"
 }

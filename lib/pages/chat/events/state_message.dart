@@ -31,11 +31,8 @@ class StateMessage extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              border: Border.all(
-                color: Theme.of(context).dividerColor,
-              ),
               color: Theme.of(context).scaffoldBackgroundColor,
-              borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+              borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
             ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -44,8 +41,7 @@ class StateMessage extends StatelessWidget {
                   event.getLocalizedBody(MatrixLocals(L10n.of(context))),
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: Theme.of(context).textTheme.bodyText1.fontSize *
-                        AppConfig.fontSizeFactor,
+                    fontSize: Theme.of(context).textTheme.bodyText1.fontSize,
                     color: Theme.of(context).textTheme.bodyText2.color,
                     decoration:
                         event.redacted ? TextDecoration.lineThrough : null,

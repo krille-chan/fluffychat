@@ -15,6 +15,7 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/reactions_picker.dart';
 import 'package:fluffychat/pages/chat/reply_display.dart';
+import 'package:fluffychat/pages/chat/seen_by_row.dart';
 import 'package:fluffychat/pages/chat/tombstone_display.dart';
 import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
@@ -29,6 +30,8 @@ import '../../utils/stream_extension.dart';
 import 'chat_emoji_picker.dart';
 import 'chat_input_row.dart';
 import 'events/message.dart';
+
+enum _EventContextAction { info, report }
 
 class ChatView extends StatelessWidget {
   final ChatController controller;
@@ -56,6 +59,7 @@ class ChatView extends StatelessWidget {
       showFutureLoadingDialog(
           context: context, future: () => controller.room.join());
     }
+    final bottomSheetPadding = FluffyThemes.isColumnMode(context) ? 16.0 : 8.0;
 
     return VWidgetGuard(
       onSystemPop: (redirector) async {
@@ -159,17 +163,49 @@ class ChatView extends StatelessWidget {
                       tooltip: L10n.of(context).copy,
                       onPressed: controller.copyEventsAction,
                     ),
-                    if (controller.selectedEvents.length == 1)
-                      IconButton(
-                        icon: const Icon(Icons.report_outlined),
-                        tooltip: L10n.of(context).reportMessage,
-                        onPressed: controller.reportEventAction,
-                      ),
                     if (controller.canRedactSelectedEvents)
                       IconButton(
                         icon: const Icon(Icons.delete_outlined),
                         tooltip: L10n.of(context).redactMessage,
                         onPressed: controller.redactEventsAction,
+                      ),
+                    if (controller.selectedEvents.length == 1)
+                      PopupMenuButton<_EventContextAction>(
+                        onSelected: (action) {
+                          switch (action) {
+                            case _EventContextAction.info:
+                              controller.showEventInfo();
+                              controller.clearSelectedEvents();
+                              break;
+                            case _EventContextAction.report:
+                              controller.reportEventAction();
+                              break;
+                          }
+                        },
+                        itemBuilder: (context) => [
+                          PopupMenuItem(
+                            value: _EventContextAction.info,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Icon(Icons.info_outlined),
+                                const SizedBox(width: 12),
+                                Text(L10n.of(context).messageInfo),
+                              ],
+                            ),
+                          ),
+                          PopupMenuItem(
+                            value: _EventContextAction.report,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Icon(Icons.report_outlined),
+                                const SizedBox(width: 12),
+                                Text(L10n.of(context).reportMessage),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                   ]
                 : <Widget>[
@@ -197,6 +233,8 @@ class ChatView extends StatelessWidget {
                   ),
                 )
               : null,
+          backgroundColor: Theme.of(context).primaryColor.withAlpha(
+              Theme.of(context).brightness == Brightness.light ? 15 : 70),
           body: Stack(
             children: <Widget>[
               if (Matrix.of(context).wallpaper != null)
@@ -206,199 +244,155 @@ class ChatView extends StatelessWidget {
                   height: double.infinity,
                   fit: BoxFit.cover,
                 ),
-              SafeArea(
-                child: Column(
-                  children: <Widget>[
-                    TombstoneDisplay(controller),
-                    Expanded(
-                      child: FutureBuilder<bool>(
-                        future: controller.getTimeline(),
-                        builder: (BuildContext context, snapshot) {
-                          if (controller.timeline == null) {
-                            return const Center(
-                              child: CircularProgressIndicator.adaptive(
-                                  strokeWidth: 2),
-                            );
-                          }
-
-                          // create a map of eventId --> index to greatly improve performance of
-                          // ListView's findChildIndexCallback
-                          final thisEventsKeyMap = <String, int>{};
-                          for (var i = 0;
-                              i < controller.filteredEvents.length;
-                              i++) {
-                            thisEventsKeyMap[
-                                controller.filteredEvents[i].eventId] = i;
-                          }
-                          final seenByText =
-                              controller.room.getLocalizedSeenByText(
-                            context,
-                            controller.timeline,
-                            controller.filteredEvents,
-                            controller.unfolded,
+              Column(
+                children: <Widget>[
+                  TombstoneDisplay(controller),
+                  Expanded(
+                    child: FutureBuilder<bool>(
+                      future: controller.getTimeline(),
+                      builder: (BuildContext context, snapshot) {
+                        if (controller.timeline == null) {
+                          return const Center(
+                            child: CircularProgressIndicator.adaptive(
+                                strokeWidth: 2),
                           );
-                          return ListView.custom(
-                            padding: const EdgeInsets.only(
-                              top: 16,
-                              bottom: 4,
-                            ),
-                            reverse: true,
-                            controller: controller.scrollController,
-                            keyboardDismissBehavior: PlatformInfos.isIOS
-                                ? ScrollViewKeyboardDismissBehavior.onDrag
-                                : ScrollViewKeyboardDismissBehavior.manual,
-                            childrenDelegate: SliverChildBuilderDelegate(
-                              (BuildContext context, int i) {
-                                return i == controller.filteredEvents.length + 1
-                                    ? controller.timeline.isRequestingHistory
-                                        ? const Center(
-                                            child: CircularProgressIndicator
-                                                .adaptive(strokeWidth: 2),
-                                          )
-                                        : controller.canLoadMore
-                                            ? Center(
-                                                child: OutlinedButton(
-                                                  style:
-                                                      OutlinedButton.styleFrom(
-                                                    backgroundColor: Theme.of(
-                                                            context)
-                                                        .scaffoldBackgroundColor,
-                                                  ),
-                                                  onPressed:
-                                                      controller.requestHistory,
-                                                  child: Text(L10n.of(context)
-                                                      .loadMore),
+                        }
+
+                        // create a map of eventId --> index to greatly improve performance of
+                        // ListView's findChildIndexCallback
+                        final thisEventsKeyMap = <String, int>{};
+                        for (var i = 0;
+                            i < controller.filteredEvents.length;
+                            i++) {
+                          thisEventsKeyMap[
+                              controller.filteredEvents[i].eventId] = i;
+                        }
+                        return ListView.custom(
+                          padding: const EdgeInsets.only(
+                            top: 16,
+                            bottom: 4,
+                          ),
+                          reverse: true,
+                          controller: controller.scrollController,
+                          keyboardDismissBehavior: PlatformInfos.isIOS
+                              ? ScrollViewKeyboardDismissBehavior.onDrag
+                              : ScrollViewKeyboardDismissBehavior.manual,
+                          childrenDelegate: SliverChildBuilderDelegate(
+                            (BuildContext context, int i) {
+                              return i == controller.filteredEvents.length + 1
+                                  ? controller.timeline.isRequestingHistory
+                                      ? const Center(
+                                          child: CircularProgressIndicator
+                                              .adaptive(strokeWidth: 2),
+                                        )
+                                      : controller.canLoadMore
+                                          ? Center(
+                                              child: OutlinedButton(
+                                                style: OutlinedButton.styleFrom(
+                                                  backgroundColor: Theme.of(
+                                                          context)
+                                                      .scaffoldBackgroundColor,
                                                 ),
-                                              )
-                                            : Container()
-                                    : i == 0
-                                        ? AnimatedContainer(
-                                            height: seenByText.isEmpty ? 0 : 24,
-                                            duration: seenByText.isEmpty
-                                                ? const Duration(
-                                                    milliseconds: 0)
-                                                : const Duration(
-                                                    milliseconds: 300),
-                                            alignment: controller.filteredEvents
-                                                        .isNotEmpty &&
-                                                    controller.filteredEvents
-                                                            .first.senderId ==
-                                                        client.userID
-                                                ? Alignment.topRight
-                                                : Alignment.topLeft,
-                                            padding: const EdgeInsets.only(
-                                              left: 8,
-                                              right: 8,
-                                              bottom: 8,
-                                            ),
-                                            child: Container(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 4),
-                                              decoration: BoxDecoration(
-                                                color: Theme.of(context)
-                                                    .scaffoldBackgroundColor
-                                                    .withOpacity(0.8),
-                                                borderRadius:
-                                                    BorderRadius.circular(4),
+                                                onPressed:
+                                                    controller.requestHistory,
+                                                child: Text(
+                                                    L10n.of(context).loadMore),
                                               ),
-                                              child: Text(
-                                                seenByText,
-                                                maxLines: 1,
-                                                overflow: TextOverflow.ellipsis,
-                                                style: TextStyle(
-                                                  color: Theme.of(context)
-                                                      .colorScheme
-                                                      .secondary,
-                                                ),
-                                              ),
-                                            ),
-                                          )
-                                        : AutoScrollTag(
+                                            )
+                                          : Container()
+                                  : i == 0
+                                      ? SeenByRow(controller)
+                                      : AutoScrollTag(
+                                          key: ValueKey(controller
+                                              .filteredEvents[i - 1].eventId),
+                                          index: i - 1,
+                                          controller:
+                                              controller.scrollController,
+                                          child: Swipeable(
                                             key: ValueKey(controller
                                                 .filteredEvents[i - 1].eventId),
-                                            index: i - 1,
-                                            controller:
-                                                controller.scrollController,
-                                            child: Swipeable(
-                                              key: ValueKey(controller
-                                                  .filteredEvents[i - 1]
-                                                  .eventId),
-                                              background: const Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: 12.0),
-                                                child: Center(
-                                                  child: Icon(
-                                                      Icons.reply_outlined),
-                                                ),
+                                            background: const Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 12.0),
+                                              child: Center(
+                                                child:
+                                                    Icon(Icons.reply_outlined),
                                               ),
-                                              direction:
-                                                  SwipeDirection.endToStart,
-                                              onSwipe: (direction) =>
-                                                  controller.replyAction(
-                                                      replyTo: controller
-                                                              .filteredEvents[
-                                                          i - 1]),
-                                              child: Message(
-                                                  controller
-                                                      .filteredEvents[i - 1],
-                                                  onAvatarTab: (Event event) =>
-                                                      showModalBottomSheet(
-                                                        context: context,
-                                                        builder: (c) =>
-                                                            UserBottomSheet(
-                                                          user: event.sender,
-                                                          outerContext: context,
-                                                          onMention: () => controller
-                                                                  .sendController
-                                                                  .text +=
-                                                              '${event.sender.mention} ',
-                                                        ),
-                                                      ),
-                                                  unfold: controller.unfold,
-                                                  onSelect: controller
-                                                      .onSelectMessage,
-                                                  scrollToEventId: (String eventId) =>
-                                                      controller.scrollToEventId(
-                                                          eventId),
-                                                  longPressSelect: controller
-                                                      .selectedEvents.isEmpty,
-                                                  selected: controller
-                                                      .selectedEvents
-                                                      .contains(
-                                                          controller.filteredEvents[
-                                                              i - 1]),
-                                                  timeline: controller.timeline,
-                                                  nextEvent: i >= 2
-                                                      ? controller.filteredEvents[i - 2]
-                                                      : null),
                                             ),
-                                          );
-                              },
-                              childCount: controller.filteredEvents.length + 2,
-                              findChildIndexCallback: (key) =>
-                                  controller.findChildIndexCallback(
-                                      key, thisEventsKeyMap),
-                            ),
-                          );
-                        },
-                      ),
+                                            direction:
+                                                SwipeDirection.endToStart,
+                                            onSwipe: (direction) =>
+                                                controller.replyAction(
+                                                    replyTo: controller
+                                                        .filteredEvents[i - 1]),
+                                            child: Message(
+                                                controller
+                                                    .filteredEvents[i - 1],
+                                                onInfoTab:
+                                                    controller.showEventInfo,
+                                                onAvatarTab: (Event event) =>
+                                                    showModalBottomSheet(
+                                                      context: context,
+                                                      builder: (c) =>
+                                                          UserBottomSheet(
+                                                        user: event.sender,
+                                                        outerContext: context,
+                                                        onMention: () => controller
+                                                                .sendController
+                                                                .text +=
+                                                            '${event.sender.mention} ',
+                                                      ),
+                                                    ),
+                                                unfold: controller.unfold,
+                                                onSelect:
+                                                    controller.onSelectMessage,
+                                                scrollToEventId: (String eventId) =>
+                                                    controller.scrollToEventId(
+                                                        eventId),
+                                                longPressSelect: controller
+                                                    .selectedEvents.isEmpty,
+                                                selected: controller
+                                                    .selectedEvents
+                                                    .contains(controller
+                                                        .filteredEvents[i - 1]),
+                                                timeline: controller.timeline,
+                                                nextEvent: i <
+                                                        controller
+                                                            .filteredEvents
+                                                            .length
+                                                    ? controller.filteredEvents[i]
+                                                    : null),
+                                          ),
+                                        );
+                            },
+                            childCount: controller.filteredEvents.length + 2,
+                            findChildIndexCallback: (key) => controller
+                                .findChildIndexCallback(key, thisEventsKeyMap),
+                          ),
+                        );
+                      },
                     ),
-                    if (controller.showScrollDownButton)
-                      const Divider(
-                        height: 1,
+                  ),
+                  if (controller.room.canSendDefaultMessages &&
+                      controller.room.membership == Membership.join)
+                    Padding(
+                      padding: EdgeInsets.only(
+                        bottom: bottomSheetPadding,
+                        left: bottomSheetPadding,
+                        right: bottomSheetPadding,
                       ),
-                    if (controller.room.canSendDefaultMessages &&
-                        controller.room.membership == Membership.join)
-                      Padding(
-                        padding: EdgeInsets.all(
-                            FluffyThemes.isColumnMode(context) ? 16.0 : 8.0),
-                        child: Material(
-                          borderRadius:
-                              BorderRadius.circular(AppConfig.borderRadius),
-                          elevation: 7,
-                          clipBehavior: Clip.hardEdge,
-                          color: Theme.of(context).appBarTheme.backgroundColor,
+                      child: Material(
+                        borderRadius: const BorderRadius.only(
+                          bottomLeft: Radius.circular(AppConfig.borderRadius),
+                          bottomRight: Radius.circular(AppConfig.borderRadius),
+                        ),
+                        elevation: 6,
+                        shadowColor: Theme.of(context)
+                            .secondaryHeaderColor
+                            .withAlpha(100),
+                        clipBehavior: Clip.hardEdge,
+                        color: Theme.of(context).backgroundColor,
+                        child: SafeArea(
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -411,8 +405,8 @@ class ChatView extends StatelessWidget {
                           ),
                         ),
                       ),
-                  ],
-                ),
+                    ),
+                ],
               ),
             ],
           ),
