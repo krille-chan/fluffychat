@@ -1,10 +1,10 @@
 import 'dart:async';
 
+import 'package:fluffychat/widgets/public_room_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 import 'package:vrouter/vrouter.dart';
 
@@ -38,45 +38,15 @@ class SearchController extends State<Search> {
     );
   }
 
-  Future<String> _joinRoomAndWait(
-    BuildContext context,
-    String roomId,
-    String alias,
-  ) async {
-    if (Matrix.of(context).client.getRoomById(roomId) != null) {
-      return roomId;
-    }
-    final newRoomId = await Matrix.of(context)
-        .client
-        .joinRoom(alias?.isNotEmpty ?? false ? alias : roomId);
-    await Matrix.of(context).client.onSync.stream.firstWhere(
-        (update) => update.rooms?.join?.containsKey(newRoomId) ?? false);
-    return newRoomId;
-  }
-
-  void joinGroupAction(PublicRoomsChunk room) async {
-    if (await showOkCancelAlertDialog(
-          useRootNavigator: false,
-          context: context,
-          okLabel: L10n.of(context).joinRoom,
-          title: '${room.name} (${room.numJoinedMembers ?? 0})',
-          message: room.topic ?? L10n.of(context).noDescription,
-          cancelLabel: L10n.of(context).cancel,
-        ) ==
-        OkCancelResult.cancel) {
-      return;
-    }
-    final success = await showFutureLoadingDialog(
+  void joinGroupAction(PublicRoomsChunk room) {
+    showModalBottomSheet(
       context: context,
-      future: () => _joinRoomAndWait(
-        context,
-        room.roomId,
-        room.canonicalAlias ?? room.aliases?.first,
+      builder: (c) => PublicRoomBottomSheet(
+        roomAlias: room.canonicalAlias,
+        outerContext: context,
+        chunk: room,
       ),
     );
-    if (success.error == null) {
-      VRouter.of(context).toSegments(['rooms', success.result]);
-    }
   }
 
   String server;

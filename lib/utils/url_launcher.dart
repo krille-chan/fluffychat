@@ -1,3 +1,4 @@
+import 'package:fluffychat/widgets/public_room_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
@@ -162,9 +163,13 @@ class UrlLauncher {
           }
         }
       } else {
-        VRouter.of(context).to('/search', queryParameters: {
-          if (roomIdOrAlias != null) 'query': roomIdOrAlias
-        });
+        await showModalBottomSheet(
+          context: context,
+          builder: (c) => PublicRoomBottomSheet(
+            roomAlias: identityParts.primaryIdentifier,
+            outerContext: context,
+          ),
+        );
       }
     } else if (identityParts.primaryIdentifier.sigil == '@') {
       await showModalBottomSheet(

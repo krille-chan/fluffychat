@@ -50,6 +50,7 @@ extension LocalizedExceptionExtension on Object {
     if (this is MatrixConnectionException || this is SocketException) {
       return L10n.of(context).noConnectionToTheServer;
     }
+    if (this is String) return toString();
     if (this is UiaException) return toString();
     Logs().w('Something went wrong: ', this);
     return L10n.of(context).oopsSomethingWentWrong;
