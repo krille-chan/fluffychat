@@ -264,14 +264,12 @@ class ChatListView extends StatelessWidget {
               floatingActionButton: selectMode == SelectMode.normal
                   ? controller.scrolledToTop
                       ? FloatingActionButton.extended(
-                          heroTag: 'main_fab',
                           onPressed: () =>
                               VRouter.of(context).to('/newprivatechat'),
                           icon: const Icon(CupertinoIcons.chat_bubble),
                           label: Text(L10n.of(context).newChat),
                         )
                       : FloatingActionButton(
-                          heroTag: 'main_fab',
                           onPressed: () =>
                               VRouter.of(context).to('/newprivatechat'),
                           child: const Icon(CupertinoIcons.chat_bubble),

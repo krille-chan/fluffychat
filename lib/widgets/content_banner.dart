@@ -18,7 +18,7 @@ class ContentBanner extends StatelessWidget {
 
   const ContentBanner(this.mxContent,
       {this.height = 400,
-      this.defaultIcon = CupertinoIcons.group,
+      this.defaultIcon = Icons.people_outlined,
       this.loading = false,
       this.onEdit,
       this.client,
@@ -72,7 +72,7 @@ class ContentBanner extends StatelessWidget {
                 onPressed: onEdit,
                 backgroundColor: Theme.of(context).backgroundColor,
                 foregroundColor: Theme.of(context).textTheme.bodyText1.color,
-                child: const Icon(CupertinoIcons.camera),
+                child: const Icon(Icons.camera_alt_outlined),
               ),
             ),
         ],

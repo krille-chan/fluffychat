@@ -17,48 +17,51 @@ class SettingsAccountView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(L10n.of(context).account)),
-      body: MaxWidthBody(
-        withScrolling: true,
-        child: Column(
-          children: [
-            ListTile(
-              title: Text(L10n.of(context).yourUserId),
-              subtitle: Text(Matrix.of(context).client.userID),
-              trailing: const Icon(Icons.copy_outlined),
-              onTap: () => FluffyShare.share(
-                Matrix.of(context).client.userID,
-                context,
+      body: ListTileTheme(
+        iconColor: Theme.of(context).textTheme.bodyText1.color,
+        child: MaxWidthBody(
+          withScrolling: true,
+          child: Column(
+            children: [
+              ListTile(
+                title: Text(L10n.of(context).yourUserId),
+                subtitle: Text(Matrix.of(context).client.userID),
+                trailing: const Icon(Icons.copy_outlined),
+                onTap: () => FluffyShare.share(
+                  Matrix.of(context).client.userID,
+                  context,
+                ),
               ),
-            ),
-            ListTile(
-              trailing: const Icon(CupertinoIcons.pen),
-              title: Text(L10n.of(context).editDisplayname),
-              subtitle: Text(controller.profile?.displayName ??
-                  Matrix.of(context).client.userID.localpart),
-              onTap: controller.setDisplaynameAction,
-            ),
-            const Divider(height: 1),
-            ListTile(
-              trailing: const Icon(CupertinoIcons.add_circled),
-              title: Text(L10n.of(context).addAccount),
-              subtitle: Text(L10n.of(context).enableMultiAccounts),
-              onTap: controller.addAccountAction,
-            ),
-            ListTile(
-              trailing: const Icon(CupertinoIcons.arrow_right_square),
-              title: Text(L10n.of(context).logout),
-              onTap: controller.logoutAction,
-            ),
-            const Divider(height: 1),
-            ListTile(
-              trailing: const Icon(CupertinoIcons.delete_solid),
-              title: Text(
-                L10n.of(context).deleteAccount,
-                style: const TextStyle(color: Colors.red),
+              ListTile(
+                trailing: const Icon(Icons.edit_outlined),
+                title: Text(L10n.of(context).editDisplayname),
+                subtitle: Text(controller.profile?.displayName ??
+                    Matrix.of(context).client.userID.localpart),
+                onTap: controller.setDisplaynameAction,
               ),
-              onTap: controller.deleteAccountAction,
-            ),
-          ],
+              const Divider(height: 1),
+              ListTile(
+                trailing: const Icon(Icons.person_add_outlined),
+                title: Text(L10n.of(context).addAccount),
+                subtitle: Text(L10n.of(context).enableMultiAccounts),
+                onTap: controller.addAccountAction,
+              ),
+              ListTile(
+                trailing: const Icon(Icons.exit_to_app_outlined),
+                title: Text(L10n.of(context).logout),
+                onTap: controller.logoutAction,
+              ),
+              const Divider(height: 1),
+              ListTile(
+                trailing: const Icon(Icons.delete_outlined),
+                title: Text(
+                  L10n.of(context).deleteAccount,
+                  style: const TextStyle(color: Colors.red),
+                ),
+                onTap: controller.deleteAccountAction,
+              ),
+            ],
+          ),
         ),
       ),
     );

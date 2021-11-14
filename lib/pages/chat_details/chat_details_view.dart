@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -42,6 +41,7 @@ class ChatDetailsView extends StatelessWidget {
         (room.summary?.mJoinedMemberCount ?? 0);
     final canRequestMoreMembers =
         controller.members.length < actualMembersCount;
+    final iconColor = Theme.of(context).textTheme.bodyText1.color;
     return StreamBuilder(
         stream: room.onUpdate.stream,
         builder: (context, snapshot) {
@@ -105,9 +105,9 @@ class ChatDetailsView extends StatelessWidget {
                                   ? CircleAvatar(
                                       backgroundColor: Theme.of(context)
                                           .scaffoldBackgroundColor,
-                                      foregroundColor: Colors.grey,
+                                      foregroundColor: iconColor,
                                       radius: Avatar.defaultSize / 2,
-                                      child: const Icon(CupertinoIcons.pen),
+                                      child: const Icon(Icons.edit_outlined),
                                     )
                                   : null,
                               title: Text(
@@ -149,8 +149,8 @@ class ChatDetailsView extends StatelessWidget {
                                 ),
                               ),
                               trailing: Icon(controller.displaySettings
-                                  ? CupertinoIcons.chevron_down
-                                  : CupertinoIcons.right_chevron),
+                                  ? Icons.keyboard_arrow_down_outlined
+                                  : Icons.keyboard_arrow_right_outlined),
                               onTap: controller.toggleDisplaySettings,
                             ),
                             if (controller.displaySettings) ...[
@@ -159,8 +159,9 @@ class ChatDetailsView extends StatelessWidget {
                                   leading: CircleAvatar(
                                     backgroundColor: Theme.of(context)
                                         .scaffoldBackgroundColor,
-                                    foregroundColor: Colors.grey,
-                                    child: const Icon(CupertinoIcons.group),
+                                    foregroundColor: iconColor,
+                                    child: const Icon(
+                                        Icons.people_outline_outlined),
                                   ),
                                   title: Text(
                                       L10n.of(context).changeTheNameOfTheGroup),
@@ -173,8 +174,8 @@ class ChatDetailsView extends StatelessWidget {
                                   leading: CircleAvatar(
                                     backgroundColor: Theme.of(context)
                                         .scaffoldBackgroundColor,
-                                    foregroundColor: Colors.grey,
-                                    child: const Icon(CupertinoIcons.link),
+                                    foregroundColor: iconColor,
+                                    child: const Icon(Icons.link_outlined),
                                   ),
                                   onTap: controller.editAliases,
                                   title: Text(L10n.of(context).editRoomAliases),
@@ -187,7 +188,7 @@ class ChatDetailsView extends StatelessWidget {
                                 leading: CircleAvatar(
                                   backgroundColor:
                                       Theme.of(context).scaffoldBackgroundColor,
-                                  foregroundColor: Colors.grey,
+                                  foregroundColor: iconColor,
                                   child: const Icon(
                                       Icons.insert_emoticon_outlined),
                                 ),
@@ -219,9 +220,8 @@ class ChatDetailsView extends StatelessWidget {
                                   leading: CircleAvatar(
                                       backgroundColor: Theme.of(context)
                                           .scaffoldBackgroundColor,
-                                      foregroundColor: Colors.grey,
-                                      child: const Icon(
-                                          CupertinoIcons.checkmark_shield)),
+                                      foregroundColor: iconColor,
+                                      child: const Icon(Icons.shield_outlined)),
                                   title: Text(L10n.of(context)
                                       .whoIsAllowedToJoinThisGroup),
                                   subtitle: Text(
@@ -269,8 +269,9 @@ class ChatDetailsView extends StatelessWidget {
                                   leading: CircleAvatar(
                                     backgroundColor: Theme.of(context)
                                         .scaffoldBackgroundColor,
-                                    foregroundColor: Colors.grey,
-                                    child: const Icon(CupertinoIcons.eye),
+                                    foregroundColor: iconColor,
+                                    child:
+                                        const Icon(Icons.visibility_outlined),
                                   ),
                                   title: Text(L10n.of(context)
                                       .visibilityOfTheChatHistory),
@@ -309,9 +310,9 @@ class ChatDetailsView extends StatelessWidget {
                                     leading: CircleAvatar(
                                       backgroundColor: Theme.of(context)
                                           .scaffoldBackgroundColor,
-                                      foregroundColor: Colors.grey,
-                                      child:
-                                          const Icon(CupertinoIcons.person_alt),
+                                      foregroundColor: iconColor,
+                                      child: const Icon(
+                                          Icons.person_add_alt_1_outlined),
                                     ),
                                     title: Text(L10n.of(context)
                                         .areGuestsAllowedToJoin),
@@ -329,9 +330,9 @@ class ChatDetailsView extends StatelessWidget {
                                 leading: CircleAvatar(
                                   backgroundColor:
                                       Theme.of(context).scaffoldBackgroundColor,
-                                  foregroundColor: Colors.grey,
+                                  foregroundColor: iconColor,
                                   child: const Icon(
-                                      CupertinoIcons.slider_horizontal_3),
+                                      Icons.edit_attributes_outlined),
                                 ),
                                 onTap: () =>
                                     VRouter.of(context).to('permissions'),

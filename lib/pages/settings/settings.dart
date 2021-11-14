@@ -45,19 +45,19 @@ class SettingsController extends State<Settings> {
           key: AvatarAction.camera,
           label: L10n.of(context).openCamera,
           isDefaultAction: true,
-          icon: CupertinoIcons.camera,
+          icon: Icons.camera_alt_outlined,
         ),
         SheetAction(
           key: AvatarAction.file,
           label: L10n.of(context).openGallery,
-          icon: CupertinoIcons.photo,
+          icon: Icons.photo_outlined,
         ),
         if (profile?.avatarUrl != null)
           SheetAction(
             key: AvatarAction.remove,
             label: L10n.of(context).removeYourAvatar,
             isDestructiveAction: true,
-            icon: CupertinoIcons.delete,
+            icon: Icons.delete_outlined,
           ),
       ],
     );
