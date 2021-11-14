@@ -109,15 +109,12 @@ class MessageContent extends StatelessWidget {
               return Stack(
                 alignment: Alignment.center,
                 children: <Widget>[
-                  Opacity(
-                    opacity: 0.4,
-                    child: ImageBubble(
-                      event,
-                      width: 400,
-                      height: 300,
-                      fit: BoxFit.cover,
-                      tapToView: false,
-                    ),
+                  ImageBubble(
+                    event,
+                    width: 400,
+                    height: 300,
+                    fit: BoxFit.cover,
+                    tapToView: false,
                   ),
                   FloatingActionButton.extended(
                     onPressed: () => showDialog(
