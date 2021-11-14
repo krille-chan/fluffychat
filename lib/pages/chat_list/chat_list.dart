@@ -228,31 +228,54 @@ class ChatListController extends State<ChatList> {
         : selectedRoomIds.add(roomId));
   }
 
-  Future<void> toggleUnread() {
-    final room = Matrix.of(context).client.getRoomById(selectedRoomIds.single);
-    return showFutureLoadingDialog(
+  Future<void> toggleUnread() async {
+    await showFutureLoadingDialog(
       context: context,
-      future: () => room.markUnread(!room.isUnread),
+      future: () async {
+        final markUnread = anySelectedRoomNotMarkedUnread;
+        final client = Matrix.of(context).client;
+        for (final roomId in selectedRoomIds) {
+          final room = client.getRoomById(roomId);
+          if (room.markedUnread == markUnread) continue;
+          await client.getRoomById(roomId).markUnread(markUnread);
+        }
+      },
     );
+    cancelAction();
   }
 
-  Future<void> toggleFavouriteRoom() {
-    final room = Matrix.of(context).client.getRoomById(selectedRoomIds.single);
-    return showFutureLoadingDialog(
+  Future<void> toggleFavouriteRoom() async {
+    await showFutureLoadingDialog(
       context: context,
-      future: () => room.setFavourite(!room.isFavourite),
+      future: () async {
+        final makeFavorite = anySelectedRoomNotFavorite;
+        final client = Matrix.of(context).client;
+        for (final roomId in selectedRoomIds) {
+          final room = client.getRoomById(roomId);
+          if (room.isFavourite == makeFavorite) continue;
+          await client.getRoomById(roomId).setFavourite(makeFavorite);
+        }
+      },
     );
+    cancelAction();
   }
 
-  Future<void> toggleMuted() {
-    final room = Matrix.of(context).client.getRoomById(selectedRoomIds.single);
-    return showFutureLoadingDialog(
+  Future<void> toggleMuted() async {
+    await showFutureLoadingDialog(
       context: context,
-      future: () => room.setPushRuleState(
-          room.pushRuleState == PushRuleState.notify
-              ? PushRuleState.mentionsOnly
-              : PushRuleState.notify),
+      future: () async {
+        final newState = anySelectedRoomNotMuted
+            ? PushRuleState.mentionsOnly
+            : PushRuleState.notify;
+        final client = Matrix.of(context).client;
+        for (final roomId in selectedRoomIds) {
+          final room = client.getRoomById(roomId);
+          if (room.pushRuleState == newState) continue;
+          await client.getRoomById(roomId).setPushRuleState(newState);
+        }
+      },
     );
+    cancelAction();
   }
 
   Future<void> archiveAction() async {
@@ -338,7 +361,11 @@ class ChatListController extends State<ChatList> {
       final space = Matrix.of(context).client.getRoomById(activeSpaceId);
       final result = await showFutureLoadingDialog(
         context: context,
-        future: () => space.removeSpaceChild(selectedRoomIds.single),
+        future: () async {
+          for (final roomId in selectedRoomIds) {
+            await space.removeSpaceChild(roomId);
+          }
+        },
       );
       if (result.error == null) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -365,10 +392,14 @@ class ChatListController extends State<ChatList> {
       if (selectedSpace == null) return;
       final result = await showFutureLoadingDialog(
         context: context,
-        future: () => Matrix.of(context)
-            .client
-            .getRoomById(selectedSpace)
-            .setSpaceChild(selectedRoomIds.single),
+        future: () async {
+          for (final roomId in selectedRoomIds) {
+            await Matrix.of(context)
+                .client
+                .getRoomById(selectedSpace)
+                .setSpaceChild(roomId);
+          }
+        },
       );
       if (result.error == null) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -380,6 +411,16 @@ class ChatListController extends State<ChatList> {
     }
     setState(() => selectedRoomIds.clear());
   }
+
+  bool get anySelectedRoomNotMarkedUnread => selectedRoomIds.any(
+      (roomId) => !Matrix.of(context).client.getRoomById(roomId).markedUnread);
+
+  bool get anySelectedRoomNotFavorite => selectedRoomIds.any(
+      (roomId) => !Matrix.of(context).client.getRoomById(roomId).isFavourite);
+
+  bool get anySelectedRoomNotMuted => selectedRoomIds.any((roomId) =>
+      Matrix.of(context).client.getRoomById(roomId).pushRuleState ==
+      PushRuleState.notify);
 
   Future<void> waitForFirstSync;
 

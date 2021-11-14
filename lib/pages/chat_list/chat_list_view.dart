@@ -118,8 +118,7 @@ class ChatListView extends StatelessWidget {
                     ? null
                     : selectMode == SelectMode.select
                         ? [
-                            if (controller.selectedRoomIds.length == 1 &&
-                                controller.spaces.isNotEmpty &&
+                            if (controller.spaces.isNotEmpty &&
                                 !Matrix.of(context)
                                     .client
                                     .getRoomById(
@@ -130,37 +129,28 @@ class ChatListView extends StatelessWidget {
                                 icon: const Icon(Icons.group_work_outlined),
                                 onPressed: controller.addOrRemoveToSpace,
                               ),
-                            if (controller.selectedRoomIds.length == 1)
-                              IconButton(
-                                tooltip: L10n.of(context).toggleUnread,
-                                icon: Icon(Matrix.of(context)
-                                        .client
-                                        .getRoomById(
-                                            controller.selectedRoomIds.single)
-                                        .isUnread
-                                    ? Icons.mark_chat_read_outlined
-                                    : Icons.mark_chat_unread_outlined),
-                                onPressed: controller.toggleUnread,
-                              ),
-                            if (controller.selectedRoomIds.length == 1)
-                              IconButton(
-                                tooltip: L10n.of(context).toggleFavorite,
-                                icon: const Icon(Icons.push_pin_outlined),
-                                onPressed: controller.toggleFavouriteRoom,
-                              ),
-                            if (controller.selectedRoomIds.length == 1)
-                              IconButton(
-                                icon: Icon(Matrix.of(context)
-                                            .client
-                                            .getRoomById(controller
-                                                .selectedRoomIds.single)
-                                            .pushRuleState ==
-                                        PushRuleState.notify
-                                    ? Icons.notifications_off_outlined
-                                    : Icons.notifications_outlined),
-                                tooltip: L10n.of(context).toggleMuted,
-                                onPressed: controller.toggleMuted,
-                              ),
+                            IconButton(
+                              tooltip: L10n.of(context).toggleUnread,
+                              icon: Icon(
+                                  controller.anySelectedRoomNotMarkedUnread
+                                      ? Icons.mark_chat_read_outlined
+                                      : Icons.mark_chat_unread_outlined),
+                              onPressed: controller.toggleUnread,
+                            ),
+                            IconButton(
+                              tooltip: L10n.of(context).toggleFavorite,
+                              icon: Icon(controller.anySelectedRoomNotFavorite
+                                  ? Icons.push_pin_outlined
+                                  : Icons.push_pin),
+                              onPressed: controller.toggleFavouriteRoom,
+                            ),
+                            IconButton(
+                              icon: Icon(controller.anySelectedRoomNotMuted
+                                  ? Icons.notifications_off_outlined
+                                  : Icons.notifications_outlined),
+                              tooltip: L10n.of(context).toggleMuted,
+                              onPressed: controller.toggleMuted,
+                            ),
                             IconButton(
                               icon: const Icon(Icons.delete_outlined),
                               tooltip: L10n.of(context).archive,
