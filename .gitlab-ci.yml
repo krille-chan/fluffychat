@@ -180,6 +180,7 @@ build_linux_arm64:
 
 snap_edge:
   stage: deploy
+  image: snapcraft
   script: [./scripts/publish-snap-edge.sh]
   only:
     - main
