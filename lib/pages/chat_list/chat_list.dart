@@ -63,12 +63,10 @@ class ChatListController extends State<ChatList> {
   }
 
   void setActiveSpaceId(BuildContext context, String spaceId) {
-    Scaffold.of(context).openEndDrawer();
     setState(() => _activeSpaceId = spaceId);
   }
 
   void editSpace(BuildContext context, String spaceId) async {
-    Scaffold.of(context).openEndDrawer();
     await Matrix.of(context).client.getRoomById(spaceId).postLoad();
     VRouter.of(context).toSegments(['spaces', spaceId]);
   }
@@ -412,6 +410,7 @@ class ChatListController extends State<ChatList> {
   }
 
   void setActiveClient(Client client) {
+    if (client == null) return;
     VRouter.of(context).to('/rooms');
     setState(() {
       _activeSpaceId = null;
@@ -435,7 +434,7 @@ class ChatListController extends State<ChatList> {
     });
   }
 
-  void editBundlesForAccount(String userId) async {
+  void editBundlesForAccount(String userId, String activeBundle) async {
     final client = Matrix.of(context)
         .widget
         .clients[Matrix.of(context).getClientIndexByMatrixId(userId)];
@@ -447,7 +446,7 @@ class ChatListController extends State<ChatList> {
           key: EditBundleAction.addToBundle,
           label: L10n.of(context).addToBundle,
         ),
-        if (Matrix.of(context).activeBundle != null)
+        if (activeBundle != client.userID)
           AlertDialogAction(
             key: EditBundleAction.removeFromBundle,
             label: L10n.of(context).removeFromBundle,
@@ -463,7 +462,7 @@ class ChatListController extends State<ChatList> {
             textFields: [
               DialogTextField(hintText: L10n.of(context).bundleName)
             ]);
-        if (bundle.isEmpty && bundle.single.isEmpty) return;
+        if (bundle == null || bundle.isEmpty || bundle.single.isEmpty) return;
         await showFutureLoadingDialog(
           context: context,
           future: () => client.setAccountBundle(bundle.single),
@@ -472,8 +471,7 @@ class ChatListController extends State<ChatList> {
       case EditBundleAction.removeFromBundle:
         await showFutureLoadingDialog(
           context: context,
-          future: () =>
-              client.removeFromAccountBundle(Matrix.of(context).activeBundle),
+          future: () => client.removeFromAccountBundle(activeBundle),
         );
     }
   }

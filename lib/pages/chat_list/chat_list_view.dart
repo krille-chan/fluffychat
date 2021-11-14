@@ -1,22 +1,18 @@
-import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import 'package:async/async.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
-import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/pages/chat_list/client_chooser_button.dart';
+import 'package:fluffychat/pages/chat_list/spaces_bottom_bar.dart';
 import 'package:fluffychat/widgets/connection_status_header.dart';
-import '../../utils/account_bundles.dart';
 import '../../utils/stream_extension.dart';
 import '../../widgets/matrix.dart';
 
@@ -24,59 +20,6 @@ class ChatListView extends StatelessWidget {
   final ChatListController controller;
 
   const ChatListView(this.controller, {Key key}) : super(key: key);
-
-  List<BottomNavigationBarItem> getBottomBarItems(BuildContext context) {
-    final displayClients = Matrix.of(context).currentBundle;
-    if (displayClients.isEmpty) {
-      displayClients.addAll(Matrix.of(context).widget.clients);
-      controller.resetActiveBundle();
-    }
-    final items = displayClients.map((client) {
-      return BottomNavigationBarItem(
-        label: client.userID,
-        icon: FutureBuilder<Profile>(
-            future: client.ownProfile,
-            builder: (context, snapshot) {
-              return InkWell(
-                borderRadius: BorderRadius.circular(32),
-                onTap: () => controller.setActiveClient(client),
-                onLongPress: () =>
-                    controller.editBundlesForAccount(client.userID),
-                child: Avatar(
-                  snapshot.data?.avatarUrl,
-                  snapshot.data?.displayName ?? client.userID.localpart,
-                  size: 32,
-                ),
-              );
-            }),
-      );
-    }).toList();
-
-    if (controller.displayBundles && false) {
-      items.insert(
-          0,
-          BottomNavigationBarItem(
-              label: 'Bundles',
-              icon: PopupMenuButton(
-                icon: Icon(
-                  Icons.menu,
-                  color: Theme.of(context).textTheme.bodyText1.color,
-                ),
-                onSelected: controller.setActiveBundle,
-                itemBuilder: (context) => Matrix.of(context)
-                    .accountBundles
-                    .keys
-                    .map(
-                      (bundle) => PopupMenuItem(
-                        value: bundle,
-                        child: Text(bundle),
-                      ),
-                    )
-                    .toList(),
-              )));
-    }
-    return items;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -99,13 +42,9 @@ class ChatListView extends StatelessWidget {
                       : Theme.of(context).colorScheme.primary,
                 ),
                 leading: selectMode == SelectMode.normal
-                    ? controller.spaces.isEmpty
-                        ? null
-                        : Builder(
-                            builder: (context) => IconButton(
-                                  icon: const Icon(Icons.group_work_outlined),
-                                  onPressed: Scaffold.of(context).openDrawer,
-                                ))
+                    ? Matrix.of(context).isMultiAccount
+                        ? ClientChooserButton(controller)
+                        : null
                     : IconButton(
                         tooltip: L10n.of(context).cancel,
                         icon: const Icon(Icons.close_outlined),
@@ -113,7 +52,6 @@ class ChatListView extends StatelessWidget {
                         color: Theme.of(context).colorScheme.primary,
                       ),
                 centerTitle: false,
-                titleSpacing: controller.spaces.isEmpty ? null : 0,
                 actions: selectMode == SelectMode.share
                     ? null
                     : selectMode == SelectMode.select
@@ -275,139 +213,9 @@ class ChatListView extends StatelessWidget {
                           child: const Icon(CupertinoIcons.chat_bubble),
                         )
                   : null,
-              bottomNavigationBar: Matrix.of(context).isMultiAccount
-                  ? StreamBuilder(
-                      stream: StreamGroup.merge(Matrix.of(context)
-                          .widget
-                          .clients
-                          .map((client) => client.onSync.stream.where((s) =>
-                              s.accountData != null &&
-                              s.accountData
-                                  .any((e) => e.type == accountBundlesType)))),
-                      builder: (context, _) => Material(
-                        color: Theme.of(context)
-                            .bottomNavigationBarTheme
-                            .backgroundColor,
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Divider(height: 1),
-                            Builder(builder: (context) {
-                              final items = getBottomBarItems(context);
-                              if (items.length == 1) {
-                                return Padding(
-                                  padding: const EdgeInsets.all(7.0),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      items.single.icon,
-                                      Text(items.single.label),
-                                    ],
-                                  ),
-                                );
-                              }
-                              return SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: SizedBox(
-                                  width: max(
-                                    FluffyThemes.isColumnMode(context)
-                                        ? FluffyThemes.columnWidth
-                                        : MediaQuery.of(context).size.width,
-                                    Matrix.of(context).widget.clients.length *
-                                        84.0,
-                                  ),
-                                  child: BottomNavigationBar(
-                                    elevation: 0,
-                                    onTap: (i) => controller.setActiveClient(
-                                        Matrix.of(context).currentBundle[i]),
-                                    currentIndex: Matrix.of(context)
-                                        .currentBundle
-                                        .indexWhere(
-                                          (client) =>
-                                              client ==
-                                              Matrix.of(context).client,
-                                        ),
-                                    showUnselectedLabels: false,
-                                    showSelectedLabels: true,
-                                    type: BottomNavigationBarType.shifting,
-                                    selectedItemColor:
-                                        Theme.of(context).colorScheme.secondary,
-                                    items: items,
-                                  ),
-                                ),
-                              );
-                            }),
-                            if (controller.displayBundles)
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  vertical: 4.0,
-                                  horizontal: 12,
-                                ),
-                                child: SizedBox(
-                                  width: double.infinity,
-                                  child: CupertinoSlidingSegmentedControl(
-                                    groupValue: controller.secureActiveBundle,
-                                    onValueChanged: controller.setActiveBundle,
-                                    children: Map.fromEntries(Matrix.of(context)
-                                        .accountBundles
-                                        .keys
-                                        .map((bundle) =>
-                                            MapEntry(bundle, Text(bundle)))),
-                                  ),
-                                ),
-                              ),
-                          ],
-                        ),
-                      ),
-                    )
-                  : null,
-              drawer: controller.spaces.isEmpty
+              bottomNavigationBar: controller.spaces.isEmpty
                   ? null
-                  : Drawer(
-                      child: SafeArea(
-                        child: ListView.builder(
-                          itemCount: controller.spaces.length + 1,
-                          itemBuilder: (context, i) {
-                            if (i == 0) {
-                              return ListTile(
-                                selected: controller.activeSpaceId == null,
-                                selectedTileColor:
-                                    Theme.of(context).secondaryHeaderColor,
-                                leading: CircleAvatar(
-                                  foregroundColor: Colors.white,
-                                  backgroundColor:
-                                      Theme.of(context).primaryColor,
-                                  radius: Avatar.defaultSize / 2,
-                                  child: const Icon(Icons.home_outlined),
-                                ),
-                                title: Text(L10n.of(context).allChats),
-                                onTap: () =>
-                                    controller.setActiveSpaceId(context, null),
-                              );
-                            }
-                            final space = controller.spaces[i - 1];
-                            return ListTile(
-                              selected: controller.activeSpaceId == space.id,
-                              selectedTileColor:
-                                  Theme.of(context).secondaryHeaderColor,
-                              leading: Avatar(space.avatar, space.displayname),
-                              title: Text(space.displayname, maxLines: 1),
-                              subtitle: Text(L10n.of(context).countParticipants(
-                                  (space.summary.mJoinedMemberCount +
-                                          space.summary.mInvitedMemberCount)
-                                      .toString())),
-                              onTap: () => controller.setActiveSpaceId(
-                                  context, space.id),
-                              trailing: IconButton(
-                                icon: const Icon(Icons.edit_outlined),
-                                onPressed: () =>
-                                    controller.editSpace(context, space.id),
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                    ),
+                  : SpacesBottomBar(controller),
             ),
           );
         });
