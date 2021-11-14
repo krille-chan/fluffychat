@@ -283,7 +283,7 @@ class _ButtonContent extends StatelessWidget {
       ),
       onPressed: onPressed,
       icon: icon,
-      label: Text(label),
+      label: Text(label, overflow: TextOverflow.ellipsis),
     );
   }
 }

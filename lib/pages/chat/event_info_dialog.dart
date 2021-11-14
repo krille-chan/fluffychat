@@ -67,13 +67,7 @@ class EventInfoDialog extends StatelessWidget {
             padding: const EdgeInsets.all(12.0),
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
-              child: Text(
-                prettyJson,
-                style: const TextStyle(
-                  fontFamily: 'Roboto-Mono',
-                  fontSize: 16,
-                ),
-              ),
+              child: Text(prettyJson),
             ),
           ),
         ],
