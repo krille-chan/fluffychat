@@ -127,6 +127,7 @@ class ChatView extends StatelessWidget {
           context: context, future: () => controller.room.join());
     }
     final bottomSheetPadding = FluffyThemes.isColumnMode(context) ? 16.0 : 8.0;
+    final horizontalPadding = FluffyThemes.isColumnMode(context) ? 8.0 : 0.0;
 
     return VWidgetGuard(
       onSystemPop: (redirector) async {
@@ -205,9 +206,11 @@ class ChatView extends StatelessWidget {
                               controller.filteredEvents[i].eventId] = i;
                         }
                         return ListView.custom(
-                          padding: const EdgeInsets.only(
+                          padding: EdgeInsets.only(
                             top: 16,
                             bottom: 4,
+                            left: horizontalPadding,
+                            right: horizontalPadding,
                           ),
                           reverse: true,
                           controller: controller.scrollController,

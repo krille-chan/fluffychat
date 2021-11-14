@@ -143,7 +143,7 @@ class Message extends StatelessWidget {
               ),
             Container(
               alignment: alignment,
-              padding: const EdgeInsets.symmetric(horizontal: 8),
+              padding: const EdgeInsets.only(left: 8),
               child: Material(
                 color: noBubble ? null : color,
                 elevation: noBubble ? 0 : 6,
@@ -280,8 +280,10 @@ class Message extends StatelessWidget {
         constraints:
             const BoxConstraints(maxWidth: FluffyThemes.columnWidth * 2.5),
         child: Padding(
-          padding: const EdgeInsets.only(
-              left: 8.0, right: 8.0, bottom: 4.0, top: 4.0),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 8.0,
+            vertical: 4.0,
+          ),
           child: container,
         ),
       ),

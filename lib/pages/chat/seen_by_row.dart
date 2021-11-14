@@ -33,7 +33,7 @@ class SeenByRow extends StatelessWidget {
                     Matrix.of(context).client.userID
             ? Alignment.topRight
             : Alignment.topLeft,
-        padding: const EdgeInsets.only(left: 24, right: 24, bottom: 4),
+        padding: const EdgeInsets.only(left: 8, right: 8, bottom: 4),
         child: Wrap(
           spacing: 4,
           children: [
