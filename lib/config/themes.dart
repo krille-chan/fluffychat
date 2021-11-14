@@ -132,7 +132,7 @@ abstract class FluffyThemes {
               primary: FluffyThemes.lighten(AppConfig.chatColor, 0.33),
               secondary: FluffyThemes.lighten(AppConfig.chatColor, 0.33),
               secondaryVariant: AppConfig.secondaryColor,
-              surface: FluffyThemes.darken(AppConfig.chatColor, 0.25, 0.2),
+              surface: FluffyThemes.darken(AppConfig.chatColor, 0.4),
             ),
         secondaryHeaderColor: Colors.blueGrey.shade900,
         textTheme: Typography.material2018().white.merge(fallbackTextTheme),
@@ -212,28 +212,21 @@ abstract class FluffyThemes {
           ? Colors.white
           : Colors.black;
 
-  static Color darken(Color color, [double amount = .1, double saturation]) {
+  static Color darken(Color color, [double amount = .1]) {
     assert(amount >= 0 && amount <= 1);
 
     final hsl = HSLColor.fromColor(color);
-    var hslDark = hsl.withLightness((hsl.lightness - amount).clamp(0.0, 1.0));
-    if (saturation != null) {
-      hslDark =
-          hslDark.withSaturation((hsl.saturation - saturation).clamp(0.0, 1.0));
-    }
+    final hslDark = hsl.withLightness((hsl.lightness - amount).clamp(0.0, 1.0));
 
     return hslDark.toColor();
   }
 
-  static Color lighten(Color color, [double amount = .1, double saturation]) {
+  static Color lighten(Color color, [double amount = .1]) {
     assert(amount >= 0 && amount <= 1);
 
     final hsl = HSLColor.fromColor(color);
-    var hslLight = hsl.withLightness((hsl.lightness + amount).clamp(0.0, 1.0));
-    if (saturation != null) {
-      hslLight = hslLight
-          .withSaturation((hsl.saturation - saturation).clamp(0.0, 1.0));
-    }
+    final hslLight =
+        hsl.withLightness((hsl.lightness + amount).clamp(0.0, 1.0));
 
     return hslLight.toColor();
   }

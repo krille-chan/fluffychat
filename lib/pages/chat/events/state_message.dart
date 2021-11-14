@@ -31,7 +31,9 @@ class StateMessage extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: Theme.of(context).scaffoldBackgroundColor,
+              color: Theme.of(context).brightness == Brightness.light
+                  ? Colors.white
+                  : Colors.grey.shade900,
               borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
             ),
             child: Column(
