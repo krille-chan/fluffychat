@@ -13,15 +13,14 @@ import 'package:vrouter/vrouter.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
+import 'package:fluffychat/pages/chat/chat_app_bar_title.dart';
 import 'package:fluffychat/pages/chat/reactions_picker.dart';
 import 'package:fluffychat/pages/chat/reply_display.dart';
 import 'package:fluffychat/pages/chat/seen_by_row.dart';
 import 'package:fluffychat/pages/chat/tombstone_display.dart';
+import 'package:fluffychat/pages/chat/typing_indicators.dart';
 import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/utils/room_status_extension.dart';
-import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
 import 'package:fluffychat/widgets/connection_status_header.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -37,6 +36,74 @@ class ChatView extends StatelessWidget {
   final ChatController controller;
 
   const ChatView(this.controller, {Key key}) : super(key: key);
+
+  List<Widget> _appBarActions(BuildContext context) => controller.selectMode
+      ? [
+          if (controller.canEditSelectedEvents)
+            IconButton(
+              icon: const Icon(Icons.edit_outlined),
+              tooltip: L10n.of(context).edit,
+              onPressed: controller.editSelectedEventAction,
+            ),
+          IconButton(
+            icon: const Icon(Icons.copy_outlined),
+            tooltip: L10n.of(context).copy,
+            onPressed: controller.copyEventsAction,
+          ),
+          if (controller.canRedactSelectedEvents)
+            IconButton(
+              icon: const Icon(Icons.delete_outlined),
+              tooltip: L10n.of(context).redactMessage,
+              onPressed: controller.redactEventsAction,
+            ),
+          if (controller.selectedEvents.length == 1)
+            PopupMenuButton<_EventContextAction>(
+              onSelected: (action) {
+                switch (action) {
+                  case _EventContextAction.info:
+                    controller.showEventInfo();
+                    controller.clearSelectedEvents();
+                    break;
+                  case _EventContextAction.report:
+                    controller.reportEventAction();
+                    break;
+                }
+              },
+              itemBuilder: (context) => [
+                PopupMenuItem(
+                  value: _EventContextAction.info,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(Icons.info_outlined),
+                      const SizedBox(width: 12),
+                      Text(L10n.of(context).messageInfo),
+                    ],
+                  ),
+                ),
+                PopupMenuItem(
+                  value: _EventContextAction.report,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(Icons.report_outlined),
+                      const SizedBox(width: 12),
+                      Text(L10n.of(context).reportMessage),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+        ]
+      : [
+          if (controller.room.canSendDefaultStates)
+            IconButton(
+              tooltip: L10n.of(context).videoCall,
+              icon: const Icon(Icons.video_call_outlined),
+              onPressed: controller.startCallAction,
+            ),
+          ChatSettingsPopupMenu(controller.room, !controller.room.isDirectChat),
+        ];
 
   @override
   Widget build(BuildContext context) {
@@ -87,137 +154,8 @@ class ChatView extends StatelessWidget {
                   )
                 : UnreadBadgeBackButton(roomId: controller.roomId),
             titleSpacing: 0,
-            title: controller.selectedEvents.isEmpty
-                ? ListTile(
-                    leading: Avatar(
-                        controller.room.avatar, controller.room.displayname),
-                    contentPadding: EdgeInsets.zero,
-                    onTap: controller.room.isDirectChat
-                        ? () => showModalBottomSheet(
-                              context: context,
-                              builder: (c) => UserBottomSheet(
-                                user: controller.room.getUserByMXIDSync(
-                                    controller.room.directChatMatrixID),
-                                outerContext: context,
-                                onMention: () => controller
-                                        .sendController.text +=
-                                    '${controller.room.getUserByMXIDSync(controller.room.directChatMatrixID).mention} ',
-                              ),
-                            )
-                        : () => VRouter.of(context).toSegments(
-                            ['rooms', controller.room.id, 'details']),
-                    title: Text(
-                        controller.room.getLocalizedDisplayname(
-                            MatrixLocals(L10n.of(context))),
-                        maxLines: 1),
-                    subtitle: controller.room
-                            .getLocalizedTypingText(context)
-                            .isEmpty
-                        ? StreamBuilder<Object>(
-                            stream: Matrix.of(context)
-                                .client
-                                .onPresence
-                                .stream
-                                .where((p) =>
-                                    p.senderId ==
-                                    controller.room.directChatMatrixID)
-                                .rateLimit(const Duration(seconds: 1)),
-                            builder: (context, snapshot) => Text(
-                                  controller.room.getLocalizedStatus(context),
-                                  maxLines: 1,
-                                  //overflow: TextOverflow.ellipsis,
-                                ))
-                        : Row(
-                            children: <Widget>[
-                              Icon(Icons.edit_outlined,
-                                  color:
-                                      Theme.of(context).colorScheme.secondary,
-                                  size: 13),
-                              const SizedBox(width: 4),
-                              Expanded(
-                                child: Text(
-                                  controller.room
-                                      .getLocalizedTypingText(context),
-                                  maxLines: 1,
-                                  style: TextStyle(
-                                    color:
-                                        Theme.of(context).colorScheme.secondary,
-                                    fontStyle: FontStyle.italic,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                  )
-                : Text(controller.selectedEvents.length.toString()),
-            actions: controller.selectMode
-                ? <Widget>[
-                    if (controller.canEditSelectedEvents)
-                      IconButton(
-                        icon: const Icon(Icons.edit_outlined),
-                        tooltip: L10n.of(context).edit,
-                        onPressed: controller.editSelectedEventAction,
-                      ),
-                    IconButton(
-                      icon: const Icon(Icons.copy_outlined),
-                      tooltip: L10n.of(context).copy,
-                      onPressed: controller.copyEventsAction,
-                    ),
-                    if (controller.canRedactSelectedEvents)
-                      IconButton(
-                        icon: const Icon(Icons.delete_outlined),
-                        tooltip: L10n.of(context).redactMessage,
-                        onPressed: controller.redactEventsAction,
-                      ),
-                    if (controller.selectedEvents.length == 1)
-                      PopupMenuButton<_EventContextAction>(
-                        onSelected: (action) {
-                          switch (action) {
-                            case _EventContextAction.info:
-                              controller.showEventInfo();
-                              controller.clearSelectedEvents();
-                              break;
-                            case _EventContextAction.report:
-                              controller.reportEventAction();
-                              break;
-                          }
-                        },
-                        itemBuilder: (context) => [
-                          PopupMenuItem(
-                            value: _EventContextAction.info,
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                const Icon(Icons.info_outlined),
-                                const SizedBox(width: 12),
-                                Text(L10n.of(context).messageInfo),
-                              ],
-                            ),
-                          ),
-                          PopupMenuItem(
-                            value: _EventContextAction.report,
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                const Icon(Icons.report_outlined),
-                                const SizedBox(width: 12),
-                                Text(L10n.of(context).reportMessage),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                  ]
-                : <Widget>[
-                    if (controller.room.canSendDefaultStates)
-                      IconButton(
-                        tooltip: L10n.of(context).videoCall,
-                        icon: const Icon(Icons.video_call_outlined),
-                        onPressed: controller.startCallAction,
-                      ),
-                    ChatSettingsPopupMenu(
-                        controller.room, !controller.room.isDirectChat),
-                  ],
+            title: ChatAppBarTitle(controller),
+            actions: _appBarActions(context),
           ),
           floatingActionButton: controller.showScrollDownButton
               ? Padding(
@@ -300,7 +238,13 @@ class ChatView extends StatelessWidget {
                                             )
                                           : Container()
                                   : i == 0
-                                      ? SeenByRow(controller)
+                                      ? Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            SeenByRow(controller),
+                                            TypingIndicators(controller),
+                                          ],
+                                        )
                                       : AutoScrollTag(
                                           key: ValueKey(controller
                                               .filteredEvents[i - 1].eventId),
