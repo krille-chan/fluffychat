@@ -1,4 +1,3 @@
-import 'package:fluffychat/widgets/public_room_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
@@ -12,6 +11,7 @@ import 'package:vrouter/vrouter.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/profile_bottom_sheet.dart';
+import 'package:fluffychat/widgets/public_room_bottom_sheet.dart';
 import 'platform_infos.dart';
 
 class UrlLauncher {

@@ -20,27 +20,10 @@ class MessageDownloadContent extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            primary: Theme.of(context).scaffoldBackgroundColor,
-            onPrimary: Theme.of(context).textTheme.bodyText1.color,
-          ),
+        TextButton.icon(
           onPressed: () => event.saveFile(context),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Icon(Icons.download_outlined),
-              const SizedBox(width: 8),
-              Expanded(
-                child: Text(
-                  filename,
-                  overflow: TextOverflow.fade,
-                  softWrap: false,
-                  maxLines: 1,
-                ),
-              ),
-            ],
-          ),
+          icon: const Icon(Icons.download_outlined),
+          label: Text(filename),
         ),
         if (event.sizeString != null)
           Text(

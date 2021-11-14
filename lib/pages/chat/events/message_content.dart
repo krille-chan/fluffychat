@@ -106,26 +106,29 @@ class MessageContent extends StatelessWidget {
           case MessageTypes.Video:
             if (event.showThumbnail &&
                 (PlatformInfos.isMobile || PlatformInfos.isWeb)) {
-              return InkWell(
-                onTap: () => showDialog(
-                  context: Matrix.of(context).navigatorContext,
-                  useRootNavigator: false,
-                  builder: (_) => VideoViewer(event),
-                ),
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: <Widget>[
-                    ImageBubble(
+              return Stack(
+                alignment: Alignment.center,
+                children: <Widget>[
+                  Opacity(
+                    opacity: 0.4,
+                    child: ImageBubble(
                       event,
                       width: 400,
                       height: 300,
                       fit: BoxFit.cover,
                       tapToView: false,
                     ),
-                    const Icon(Icons.play_circle_outline,
-                        size: 200, color: Colors.grey),
-                  ],
-                ),
+                  ),
+                  FloatingActionButton.extended(
+                    onPressed: () => showDialog(
+                      context: Matrix.of(context).navigatorContext,
+                      useRootNavigator: false,
+                      builder: (_) => VideoViewer(event),
+                    ),
+                    label: Text(L10n.of(context).play('Video')),
+                    icon: const Icon(Icons.video_camera_front_outlined),
+                  ),
+                ],
               );
             }
             return MessageDownloadContent(event, textColor);
@@ -276,11 +279,7 @@ class _ButtonContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OutlinedButton.icon(
-      style: OutlinedButton.styleFrom(
-        primary: textColor,
-        textStyle: TextStyle(color: textColor),
-      ),
+    return TextButton.icon(
       onPressed: onPressed,
       icon: icon,
       label: Text(label, overflow: TextOverflow.ellipsis),
