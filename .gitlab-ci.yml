@@ -178,6 +178,17 @@ build_linux_arm64:
     paths:
       - build/linux/arm64/release/bundle/
 
+snap_edge:
+  stage: deploy
+  script: [./scripts/publish-snap-edge.sh]
+  only:
+    - main
+  needs: [build_linux_x86]
+  artifacts:
+    when: on_success
+    paths:
+      - *.snap
+
 update-dependencies:
   stage: coverage
   needs: []

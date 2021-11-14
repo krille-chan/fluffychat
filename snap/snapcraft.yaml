@@ -62,11 +62,20 @@ parts:
     plugin: dump
     source: ./build/linux/x64/release/bundle/
     build-packages:
-     - libsecret-1-dev
-     - libjsoncpp-dev
+      - libsecret-1-dev
+      - libjsoncpp-dev
     stage-packages:
-     - libsecret-1-dev
-     - libjsoncpp-dev
+      - libsecret-1-dev
+      - libjsoncpp-dev
+  gnome-3-28-extension:
+    build-packages:
+      - gcc
+      - libgtk-3-dev
+    make-parameters:
+      - PLATFORM_PLUG=gnome-3-28-1804
+    plugin: make
+    source: $SNAPCRAFT_EXTENSIONS_DIR/desktop
+    source-subdir: gnome
 
 slots:
   dbus-svc:
@@ -76,10 +85,41 @@ slots:
 
 apps:
   fluffychat:
-    extensions: [flutter-stable]
     command: fluffychat
     plugs:
+      - desktop
+      - desktop-legacy
+      - gsettings
+      - opengl
+      - wayland
+      - x11
       - network
       - home
     slots:
       - dbus-svc
+    command-chain:
+      - snap/command-chain/desktop-launch
+assumes:
+  - snapd2.43
+plugs:
+  gnome-3-28-1804:
+    default-provider: gnome-3-28-1804
+    interface: content
+    target: $SNAP/gnome-platform
+  gtk-3-themes:
+    default-provider: gtk-common-themes
+    interface: content
+    target: $SNAP/data-dir/themes
+  icon-themes:
+    default-provider: gtk-common-themes
+    interface: content
+    target: $SNAP/data-dir/icons
+  sound-themes:
+    default-provider: gtk-common-themes
+    interface: content
+    target: $SNAP/data-dir/sounds
+environment:
+  SNAP_DESKTOP_RUNTIME: $SNAP/gnome-platform
+layout:
+  /usr/share/xml/iso-codes:
+    bind: $SNAP/gnome-platform/usr/share/xml/iso-codes
