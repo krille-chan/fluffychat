@@ -2623,5 +2623,15 @@
     "placeholders": {
       "min": {}
     }
-  }
+  },
+  "messageInfo": "Відомості про повідомлення",
+  "@messageInfo": {},
+  "time": "Час",
+  "@time": {},
+  "messageType": "Тип повідомлення",
+  "@messageType": {},
+  "openGallery": "Відкрити галерею",
+  "@openGallery": {},
+  "sender": "Відправник",
+  "@sender": {}
 }
