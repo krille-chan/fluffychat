@@ -1,6 +1,6 @@
 name: fluffychat
 base: core18
-version: git
+adopt-info: version
 summary: The cutest messenger in the Matrix network
 description: |
   FluffyChat is an open source, nonprofit and cute matrix messenger app. The app is easy to use but secure and decentralized.
@@ -53,6 +53,11 @@ parts:
     source-tag: 3.2.3
     build-packages:
       - g++
+  version:
+    plugin: dump
+    source: .
+    override-build: |
+      snapcraftctl set-version $(git describe --tag)
   fluffychat:
     plugin: dump
     source: ./build/linux/x64/release/bundle/
