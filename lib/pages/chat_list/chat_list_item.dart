@@ -263,7 +263,9 @@ class ChatListItem extends StatelessWidget {
                               hideReply: true,
                               hideEdit: true,
                               plaintextBody: true,
-                              withSenderNamePrefix: true,
+                              withSenderNamePrefix: !room.isDirectChat ||
+                                  room.directChatMatrixID !=
+                                      room.lastEvent?.senderId,
                             ) ??
                             L10n.of(context).emptyChat,
                     softWrap: false,
