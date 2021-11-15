@@ -80,8 +80,8 @@ abstract class ClientManager {
         legacyDatabaseBuilder: FlutterMatrixHiveStore.hiveDatabaseBuilder,
         supportedLoginTypes: {
           AuthenticationTypes.password,
-          //if (PlatformInfos.isMobile || PlatformInfos.isWeb)
-          AuthenticationTypes.sso
+          if (PlatformInfos.isMobile || PlatformInfos.isWeb)
+            AuthenticationTypes.sso
         },
         compute: compute,
       );

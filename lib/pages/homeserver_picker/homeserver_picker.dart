@@ -137,6 +137,17 @@ class HomeserverPickerController extends State<HomeserverPicker> {
             .setItem(SettingKeys.jitsiInstance, jitsi);
         AppConfig.jitsiInstance = jitsi;
       }
+
+      _rawLoginTypes = await Matrix.of(context).getLoginClient().request(
+            RequestType.GET,
+            '/client/r0/login',
+          );
+      try {
+        await Matrix.of(context).getLoginClient().register();
+        registrationSupported = true;
+      } on MatrixException catch (e) {
+        registrationSupported = e.requireAdditionalAuthentication ?? false;
+      }
     } catch (e) {
       setState(() => error = (e as Object).toLocalizedString(context));
     } finally {
@@ -180,22 +191,6 @@ class HomeserverPickerController extends State<HomeserverPicker> {
       _rawLoginTypes
           .tryGetList('flows')
           .any((flow) => flow['type'] == AuthenticationTypes.sso);
-
-  Future<Map<String, dynamic>> getLoginTypes() async {
-    _rawLoginTypes ??= await Matrix.of(context).getLoginClient().request(
-          RequestType.GET,
-          '/client/r0/login',
-        );
-    if (registrationSupported == null) {
-      try {
-        await Matrix.of(context).getLoginClient().register();
-        registrationSupported = true;
-      } on MatrixException catch (e) {
-        registrationSupported = e.requireAdditionalAuthentication ?? false;
-      }
-    }
-    return _rawLoginTypes;
-  }
 
   ChromeSafariBrowser browser;
 

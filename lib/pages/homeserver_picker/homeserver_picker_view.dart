@@ -13,7 +13,6 @@ import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/default_app_bar_search_field.dart';
 import 'package:fluffychat/widgets/layouts/one_page_card.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import '../../utils/localized_exception_extension.dart';
 import 'homeserver_picker.dart';
 
 class HomeserverPickerView extends StatelessWidget {
@@ -48,117 +47,92 @@ class HomeserverPickerView extends StatelessWidget {
                 ? 'assets/banner_dark.png'
                 : 'assets/banner.png',
           ),
-          controller.isLoading
-              ? const Center(
-                  child: CircularProgressIndicator.adaptive(strokeWidth: 2))
-              : controller.error != null
-                  ? Center(
-                      child: Padding(
+          if (controller.isLoading)
+            const Center(
+                child: CircularProgressIndicator.adaptive(strokeWidth: 2))
+          else if (controller.error != null)
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Text(
+                  controller.error,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.red[900],
+                  ),
+                ),
+              ),
+            )
+          else
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12.0,
+                vertical: 4.0,
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (controller.ssoLoginSupported)
+                    Row(children: [
+                      const Expanded(child: Divider()),
+                      Padding(
                         padding: const EdgeInsets.all(12.0),
-                        child: Text(
-                          controller.error,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.red[900],
-                          ),
-                        ),
+                        child: Text(L10n.of(context).loginWithOneClick),
                       ),
-                    )
-                  : FutureBuilder(
-                      future: controller.getLoginTypes(),
-                      builder: (context, snapshot) {
-                        if (snapshot.hasError) {
-                          return Center(
-                            child: Text(
-                              snapshot.error.toLocalizedString(context),
-                              textAlign: TextAlign.center,
-                            ),
-                          );
-                        }
-                        if (!snapshot.hasData) {
-                          return const Center(
-                              child: CircularProgressIndicator.adaptive(
-                                  strokeWidth: 2));
-                        }
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 12.0,
-                            vertical: 4.0,
+                      const Expanded(child: Divider()),
+                    ]),
+                  Wrap(
+                    children: [
+                      if (controller.ssoLoginSupported) ...{
+                        for (final identityProvider
+                            in controller.identityProviders)
+                          _SsoButton(
+                            onPressed: () =>
+                                controller.ssoLoginAction(identityProvider.id),
+                            identityProvider: identityProvider,
                           ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              if (controller.ssoLoginSupported)
-                                Row(children: [
-                                  const Expanded(child: Divider()),
-                                  Padding(
-                                    padding: const EdgeInsets.all(12.0),
-                                    child: Text(
-                                        L10n.of(context).loginWithOneClick),
-                                  ),
-                                  const Expanded(child: Divider()),
-                                ]),
-                              Wrap(
-                                children: [
-                                  if (controller.ssoLoginSupported) ...{
-                                    for (final identityProvider
-                                        in controller.identityProviders)
-                                      _SsoButton(
-                                        onPressed: () =>
-                                            controller.ssoLoginAction(
-                                                identityProvider.id),
-                                        identityProvider: identityProvider,
-                                      ),
-                                  },
-                                ].toList(),
-                              ),
-                              if (controller.ssoLoginSupported &&
-                                  (controller.registrationSupported ||
-                                      controller.passwordLoginSupported))
-                                Row(children: [
-                                  const Expanded(child: Divider()),
-                                  Padding(
-                                    padding: const EdgeInsets.all(12.0),
-                                    child: Text(L10n.of(context).or),
-                                  ),
-                                  const Expanded(child: Divider()),
-                                ]),
-                              if (controller.passwordLoginSupported) ...[
-                                Center(
-                                  child: _LoginButton(
-                                    onPressed: () =>
-                                        VRouter.of(context).to('login'),
-                                    icon: Icon(
-                                      CupertinoIcons.lock_open_fill,
-                                      color: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1
-                                          .color,
-                                    ),
-                                    labelText: L10n.of(context).login,
-                                  ),
-                                ),
-                                const SizedBox(height: 12),
-                              ],
-                              if (controller.registrationSupported)
-                                Center(
-                                  child: _LoginButton(
-                                    onPressed: controller.signUpAction,
-                                    icon: Icon(
-                                      CupertinoIcons.person_add,
-                                      color: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1
-                                          .color,
-                                    ),
-                                    labelText: L10n.of(context).register,
-                                  ),
-                                ),
-                            ],
-                          ),
-                        );
-                      }),
+                      },
+                    ].toList(),
+                  ),
+                  if (controller.ssoLoginSupported &&
+                      (controller.registrationSupported ||
+                          controller.passwordLoginSupported))
+                    Row(children: [
+                      const Expanded(child: Divider()),
+                      Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Text(L10n.of(context).or),
+                      ),
+                      const Expanded(child: Divider()),
+                    ]),
+                  if (controller.passwordLoginSupported) ...[
+                    Center(
+                      child: _LoginButton(
+                        onPressed: () => VRouter.of(context).to('login'),
+                        icon: Icon(
+                          CupertinoIcons.lock_open_fill,
+                          color: Theme.of(context).textTheme.bodyText1.color,
+                        ),
+                        labelText: L10n.of(context).login,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                  ],
+                  if (controller.registrationSupported)
+                    Center(
+                      child: _LoginButton(
+                        onPressed: controller.signUpAction,
+                        icon: Icon(
+                          CupertinoIcons.person_add,
+                          color: Theme.of(context).textTheme.bodyText1.color,
+                        ),
+                        labelText: L10n.of(context).register,
+                      ),
+                    ),
+                ],
+              ),
+            ),
         ]),
         bottomNavigationBar: Material(
           elevation: 6,
