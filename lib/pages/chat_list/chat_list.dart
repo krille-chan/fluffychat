@@ -49,7 +49,10 @@ class ChatListController extends State<ChatList> {
   StreamSubscription _intentUriStreamSubscription;
 
   String _activeSpaceId;
-  String get activeSpaceId => _activeSpaceId;
+  String get activeSpaceId =>
+      Matrix.of(context).client.getRoomById(_activeSpaceId) == null
+          ? null
+          : _activeSpaceId;
   final ScrollController scrollController = ScrollController();
   bool scrolledToTop = true;
 
@@ -160,11 +163,9 @@ class ChatListController extends State<ChatList> {
   @override
   void initState() {
     _initReceiveSharingIntent();
-    WidgetsBinding.instance.addPostFrameCallback(
-      (_) => waitForFirstSync.then((_) => checkBootstrap()),
-    );
+
     scrollController.addListener(_onScroll);
-    waitForFirstSync = _waitForFirstSync();
+    _waitForFirstSync();
     super.initState();
   }
 
@@ -433,7 +434,7 @@ class ChatListController extends State<ChatList> {
       Matrix.of(context).client.getRoomById(roomId).pushRuleState ==
       PushRuleState.notify);
 
-  Future<void> waitForFirstSync;
+  bool waitForFirstSync = false;
 
   Future<void> _waitForFirstSync() async {
     final client = Matrix.of(context).client;
@@ -452,7 +453,11 @@ class ChatListController extends State<ChatList> {
         await space.requestParticipants();
       }
     }
-    return true;
+    setState(() {
+      waitForFirstSync = true;
+    });
+    WidgetsBinding.instance.addPostFrameCallback((_) => checkBootstrap());
+    return;
   }
 
   void cancelAction() {
