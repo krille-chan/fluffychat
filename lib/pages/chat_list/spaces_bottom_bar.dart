@@ -29,41 +29,48 @@ class SpacesBottomBar extends StatelessWidget {
                   false) ||
               (sync.rooms?.leave?.isNotEmpty ?? false)),
           builder: (context, snapshot) {
-            return SalomonBottomBar(
-              itemPadding: const EdgeInsets.all(8),
-              currentIndex: currentIndex,
-              onTap: (i) => controller.setActiveSpaceId(
-                context,
-                i == 0 ? null : controller.spaces[i - 1].id,
-              ),
-              selectedItemColor: Theme.of(context).colorScheme.primary,
-              items: [
-                SalomonBottomBarItem(
-                  icon: const Icon(CupertinoIcons.chat_bubble_2),
-                  activeIcon: const Icon(CupertinoIcons.chat_bubble_2_fill),
-                  title: Text(L10n.of(context).allChats),
+            return Container(
+              height: 56,
+              alignment: Alignment.center,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: SalomonBottomBar(
+                  itemPadding: const EdgeInsets.all(8),
+                  currentIndex: currentIndex,
+                  onTap: (i) => controller.setActiveSpaceId(
+                    context,
+                    i == 0 ? null : controller.spaces[i - 1].id,
+                  ),
+                  selectedItemColor: Theme.of(context).colorScheme.primary,
+                  items: [
+                    SalomonBottomBarItem(
+                      icon: const Icon(CupertinoIcons.chat_bubble_2),
+                      activeIcon: const Icon(CupertinoIcons.chat_bubble_2_fill),
+                      title: Text(L10n.of(context).allChats),
+                    ),
+                    ...controller.spaces
+                        .map((space) => SalomonBottomBarItem(
+                              icon: InkWell(
+                                borderRadius: BorderRadius.circular(28),
+                                onTap: () => controller.setActiveSpaceId(
+                                  context,
+                                  space.id,
+                                ),
+                                onLongPress: () =>
+                                    controller.editSpace(context, space.id),
+                                child: Avatar(
+                                  space.avatar,
+                                  space.displayname,
+                                  size: 24,
+                                  fontSize: 12,
+                                ),
+                              ),
+                              title: Text(space.displayname),
+                            ))
+                        .toList(),
+                  ],
                 ),
-                ...controller.spaces
-                    .map((space) => SalomonBottomBarItem(
-                          icon: InkWell(
-                            borderRadius: BorderRadius.circular(28),
-                            onTap: () => controller.setActiveSpaceId(
-                              context,
-                              space.id,
-                            ),
-                            onLongPress: () =>
-                                controller.editSpace(context, space.id),
-                            child: Avatar(
-                              space.avatar,
-                              space.displayname,
-                              size: 24,
-                              fontSize: 12,
-                            ),
-                          ),
-                          title: Text(space.displayname),
-                        ))
-                    .toList(),
-              ],
+              ),
             );
           }),
     );
