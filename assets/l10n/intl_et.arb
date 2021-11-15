@@ -2628,5 +2628,15 @@
     "placeholders": {
       "min": {}
     }
-  }
+  },
+  "messageInfo": "Sõnumi teave",
+  "@messageInfo": {},
+  "time": "Kellaaeg",
+  "@time": {},
+  "messageType": "Sõnumi tüüp",
+  "@messageType": {},
+  "sender": "Saatja",
+  "@sender": {},
+  "openGallery": "Ava galerii",
+  "@openGallery": {}
 }

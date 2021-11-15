@@ -2628,5 +2628,15 @@
     "placeholders": {
       "min": {}
     }
-  }
+  },
+  "messageType": "Type de message",
+  "@messageType": {},
+  "openGallery": "Ouvrir dans la Galerie",
+  "@openGallery": {},
+  "time": "Heure",
+  "@time": {},
+  "sender": "Expéditeur/trice",
+  "@sender": {},
+  "messageInfo": "Informations sur le message",
+  "@messageInfo": {}
 }

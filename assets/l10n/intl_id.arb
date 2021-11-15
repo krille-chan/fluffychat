@@ -2622,5 +2622,15 @@
   "repeatPassword": "Ulangi kata sandi",
   "@repeatPassword": {},
   "passwordsDoNotMatch": "Kata sandi tidak cocok!",
-  "@passwordsDoNotMatch": {}
+  "@passwordsDoNotMatch": {},
+  "messageInfo": "Informasi pesan",
+  "@messageInfo": {},
+  "time": "Waktu",
+  "@time": {},
+  "messageType": "Tipe Pesan",
+  "@messageType": {},
+  "sender": "Pengirim",
+  "@sender": {},
+  "openGallery": "Buka galeri",
+  "@openGallery": {}
 }
