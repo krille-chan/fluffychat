@@ -132,7 +132,7 @@ abstract class FluffyThemes {
               primary: FluffyThemes.lighten(AppConfig.chatColor, 0.33),
               secondary: FluffyThemes.lighten(AppConfig.chatColor, 0.33),
               secondaryVariant: AppConfig.secondaryColor,
-              surface: FluffyThemes.darken(AppConfig.chatColor, 0.35),
+              surface: FluffyThemes.darken(AppConfig.chatColor, 0.4),
             ),
         secondaryHeaderColor: Colors.blueGrey.shade900,
         textTheme: Typography.material2018().white.merge(fallbackTextTheme),
