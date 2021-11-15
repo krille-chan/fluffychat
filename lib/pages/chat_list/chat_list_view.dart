@@ -198,7 +198,8 @@ class ChatListView extends StatelessWidget {
                           child: const Icon(CupertinoIcons.chat_bubble),
                         )
                   : null,
-              bottomNavigationBar: controller.spaces.isEmpty
+              bottomNavigationBar: controller.spaces.isEmpty ||
+                      controller.selectedRoomIds.isNotEmpty
                   ? null
                   : SpacesBottomBar(controller),
             ),
