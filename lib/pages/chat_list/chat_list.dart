@@ -356,6 +356,17 @@ class ChatListController extends State<ChatList> {
 
   Future<void> addOrRemoveToSpace() async {
     if (activeSpaceId != null) {
+      final consent = await showOkCancelAlertDialog(
+        context: context,
+        title: L10n.of(context).removeFromSpace,
+        message: L10n.of(context).removeFromSpaceDescription,
+        okLabel: L10n.of(context).remove,
+        cancelLabel: L10n.of(context).cancel,
+        isDestructiveAction: true,
+        fullyCapitalizedForMaterial: false,
+      );
+      if (consent != OkCancelResult.ok) return;
+
       final space = Matrix.of(context).client.getRoomById(activeSpaceId);
       final result = await showFutureLoadingDialog(
         context: context,
@@ -376,6 +387,8 @@ class ChatListController extends State<ChatList> {
       final selectedSpace = await showConfirmationDialog<String>(
           context: context,
           title: L10n.of(context).addToSpace,
+          message: L10n.of(context).addToSpaceDescription,
+          fullyCapitalizedForMaterial: false,
           actions: Matrix.of(context)
               .client
               .rooms
@@ -391,11 +404,11 @@ class ChatListController extends State<ChatList> {
       final result = await showFutureLoadingDialog(
         context: context,
         future: () async {
-          for (final roomId in selectedRoomIds) {
-            await Matrix.of(context)
-                .client
-                .getRoomById(selectedSpace)
-                .setSpaceChild(roomId);
+          final space = Matrix.of(context).client.getRoomById(selectedSpace);
+          if (space.canSendDefaultStates) {
+            for (final roomId in selectedRoomIds) {
+              await space.setSpaceChild(roomId);
+            }
           }
         },
       );

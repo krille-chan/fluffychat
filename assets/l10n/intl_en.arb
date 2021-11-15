@@ -2618,5 +2618,8 @@
   "time": "Time",
   "messageType": "Message Type",
   "sender": "Sender",
-  "openGallery": "Open gallery"
+  "openGallery": "Open gallery",
+  "removeFromSpace": "Remove from space",
+  "removeFromSpaceDescription": "This removes this chat from the current space. It will then still be visible under \"All chats\".",
+  "addToSpaceDescription": "Select a space to add this chat to it."
 }
