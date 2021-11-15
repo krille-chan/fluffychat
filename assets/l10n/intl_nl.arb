@@ -2627,5 +2627,23 @@
     "placeholders": {
       "min": {}
     }
-  }
+  },
+  "messageInfo": "Berichtinfo",
+  "@messageInfo": {},
+  "time": "Tijd",
+  "@time": {},
+  "messageType": "Berichttype",
+  "@messageType": {},
+  "sender": "Afzender",
+  "@sender": {},
+  "openGallery": "Galerij openen",
+  "@openGallery": {},
+  "addToSpaceDescription": "Selecteer een ruimte om deze chat aan toe te voegen.",
+  "@addToSpaceDescription": {},
+  "loginWithOneClick": "Inloggen met één klik",
+  "@loginWithOneClick": {},
+  "removeFromSpace": "Uit de ruimte verwijderen",
+  "@removeFromSpace": {},
+  "removeFromSpaceDescription": "Dit verwijdert deze chat uit de huidige ruimte. Het zal dan nog steeds zichtbaar zijn onder \"Alle chats\".",
+  "@removeFromSpaceDescription": {}
 }
