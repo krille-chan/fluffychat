@@ -2638,5 +2638,13 @@
   "sender": "Gönderen",
   "@sender": {},
   "openGallery": "Galeriyi aç",
-  "@openGallery": {}
+  "@openGallery": {},
+  "removeFromSpace": "Alandan kaldır",
+  "@removeFromSpace": {},
+  "addToSpaceDescription": "Bu sohbeti eklemek için bir alan seçin.",
+  "@addToSpaceDescription": {},
+  "removeFromSpaceDescription": "Bu, sohbeti geçerli alandan kaldırır. Daha sonra \"Tüm sohbetler\" altında görünmeye devam edecektir.",
+  "@removeFromSpaceDescription": {},
+  "loginWithOneClick": "Tek tıklamayla oturum aç",
+  "@loginWithOneClick": {}
 }
