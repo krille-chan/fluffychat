@@ -2638,5 +2638,13 @@
   "sender": "Expéditeur/trice",
   "@sender": {},
   "messageInfo": "Informations sur le message",
-  "@messageInfo": {}
+  "@messageInfo": {},
+  "removeFromSpace": "Supprimer de l’espace",
+  "@removeFromSpace": {},
+  "addToSpaceDescription": "Sélectionnez un espace pour y ajouter cette discussion.",
+  "@addToSpaceDescription": {},
+  "loginWithOneClick": "Se connecter en un clic",
+  "@loginWithOneClick": {},
+  "removeFromSpaceDescription": "Cela supprime cette discussion de l’espace actuel. Elle sera alors toujours visible sous « Toutes les discussions ».",
+  "@removeFromSpaceDescription": {}
 }
