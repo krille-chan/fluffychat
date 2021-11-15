@@ -10,6 +10,7 @@ import 'package:matrix/matrix.dart';
 import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/pages/chat_details/chat_details_view.dart';
+import 'package:fluffychat/pages/settings/settings.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -255,10 +256,50 @@ class ChatDetailsController extends State<ChatDetails> {
   }
 
   void setAvatarAction() async {
+    final room = Matrix.of(context).client.getRoomById(roomId);
+    final actions = [
+      if (PlatformInfos.isMobile)
+        SheetAction(
+          key: AvatarAction.camera,
+          label: L10n.of(context).openCamera,
+          isDefaultAction: true,
+          icon: Icons.camera_alt_outlined,
+        ),
+      SheetAction(
+        key: AvatarAction.file,
+        label: L10n.of(context).openGallery,
+        icon: Icons.photo_outlined,
+      ),
+      if (room?.avatar != null)
+        SheetAction(
+          key: AvatarAction.remove,
+          label: L10n.of(context).delete,
+          isDestructiveAction: true,
+          icon: Icons.delete_outlined,
+        ),
+    ];
+    final action = actions.length == 1
+        ? actions.single
+        : await showModalActionSheet<AvatarAction>(
+            context: context,
+            title: L10n.of(context).editRoomAvatar,
+            actions: actions,
+          );
+    if (action == null) return;
+    final matrix = Matrix.of(context);
+    if (action == AvatarAction.remove) {
+      await showFutureLoadingDialog(
+        context: context,
+        future: () => matrix.client.setAvatarUrl(matrix.client.userID, null),
+      );
+      return;
+    }
     MatrixFile file;
     if (PlatformInfos.isMobile) {
       final result = await ImagePicker().pickImage(
-          source: ImageSource.gallery,
+          source: action == AvatarAction.camera
+              ? ImageSource.camera
+              : ImageSource.gallery,
           imageQuality: 50,
           maxWidth: 1600,
           maxHeight: 1600);
@@ -268,25 +309,18 @@ class ChatDetailsController extends State<ChatDetails> {
         name: result.path,
       );
     } else {
-      final result = await FilePickerCross.importFromStorage(
-        type: FileTypeCross.image,
-      );
+      final result =
+          await FilePickerCross.importFromStorage(type: FileTypeCross.image);
       if (result == null) return;
       file = MatrixFile(
         bytes: result.toUint8List(),
         name: result.fileName,
       );
     }
-    final room = Matrix.of(context).client.getRoomById(roomId);
-
-    final success = await showFutureLoadingDialog(
+    await showFutureLoadingDialog(
       context: context,
-      future: () => room.setAvatar(file),
+      future: () => matrix.client.setAvatar(file),
     );
-    if (success.error == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(L10n.of(context).avatarHasBeenChanged)));
-    }
   }
 
   void requestMoreMembersAction() async {

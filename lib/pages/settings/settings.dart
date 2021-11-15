@@ -37,30 +37,34 @@ class SettingsController extends State<Settings> {
       });
 
   void setAvatarAction() async {
-    final action = await showModalActionSheet<AvatarAction>(
-      context: context,
-      title: L10n.of(context).changeYourAvatar,
-      actions: [
+    final actions = [
+      if (PlatformInfos.isMobile)
         SheetAction(
           key: AvatarAction.camera,
           label: L10n.of(context).openCamera,
           isDefaultAction: true,
           icon: Icons.camera_alt_outlined,
         ),
+      SheetAction(
+        key: AvatarAction.file,
+        label: L10n.of(context).openGallery,
+        icon: Icons.photo_outlined,
+      ),
+      if (profile?.avatarUrl != null)
         SheetAction(
-          key: AvatarAction.file,
-          label: L10n.of(context).openGallery,
-          icon: Icons.photo_outlined,
+          key: AvatarAction.remove,
+          label: L10n.of(context).removeYourAvatar,
+          isDestructiveAction: true,
+          icon: Icons.delete_outlined,
         ),
-        if (profile?.avatarUrl != null)
-          SheetAction(
-            key: AvatarAction.remove,
-            label: L10n.of(context).removeYourAvatar,
-            isDestructiveAction: true,
-            icon: Icons.delete_outlined,
-          ),
-      ],
-    );
+    ];
+    final action = actions.length == 1
+        ? actions.single
+        : await showModalActionSheet<AvatarAction>(
+            context: context,
+            title: L10n.of(context).changeYourAvatar,
+            actions: actions,
+          );
     if (action == null) return;
     final matrix = Matrix.of(context);
     if (action == AvatarAction.remove) {
