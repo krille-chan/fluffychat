@@ -28,6 +28,7 @@ class SpacesBottomBar extends StatelessWidget {
           context,
           i == 0 ? null : controller.spaces[i - 1].id,
         ),
+        selectedItemColor: Theme.of(context).colorScheme.primary,
         items: [
           SalomonBottomBarItem(
             icon: const Icon(CupertinoIcons.chat_bubble_2),
