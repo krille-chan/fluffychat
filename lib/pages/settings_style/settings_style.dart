@@ -51,13 +51,13 @@ class SettingsStyleController extends State<SettingsStyle> {
 
   AdaptiveThemeMode currentTheme;
 
-  static List<Color> customColors = [
-    AppConfig.primaryColor,
-    Colors.blue.shade700,
-    Colors.green.shade700,
-    Colors.pink.shade700,
-    Colors.orange.shade800,
-  ];
+  static List<Color> get customColors => [
+        AppConfig.primaryColor,
+        HSLColor.fromColor(AppConfig.primaryColor).withHue(200).toColor(),
+        HSLColor.fromColor(AppConfig.primaryColor).withHue(130).toColor(),
+        HSLColor.fromColor(AppConfig.primaryColor).withHue(65).toColor(),
+        HSLColor.fromColor(AppConfig.primaryColor).withHue(8).toColor(),
+      ];
 
   void switchTheme(AdaptiveThemeMode newTheme) {
     switch (newTheme) {
