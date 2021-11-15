@@ -14,9 +14,8 @@ class EmptyPage extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         elevation: 0,
-        backgroundColor: Theme.of(context).colorScheme.surface,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
-      backgroundColor: Theme.of(context).colorScheme.surface,
       extendBodyBehindAppBar: true,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,

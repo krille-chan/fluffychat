@@ -75,6 +75,8 @@ class MessageContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final fontSize = AppConfig.messageFontSize * AppConfig.fontSizeFactor;
+    final buttonTextColor =
+        event.senderId == Matrix.of(context).client.userID ? textColor : null;
     switch (event.type) {
       case EventTypes.Message:
       case EventTypes.Encrypted:
@@ -165,7 +167,7 @@ class MessageContent extends StatelessWidget {
           case MessageTypes.BadEncrypted:
           case EventTypes.Encrypted:
             return _ButtonContent(
-              textColor: textColor,
+              textColor: buttonTextColor,
               onPressed: () => _verifyOrRequestKey(context),
               icon: const Icon(Icons.lock_outline),
               label: L10n.of(context).encrypted,
@@ -215,7 +217,7 @@ class MessageContent extends StatelessWidget {
                 onPressed: () => launch(event.body),
                 icon: const Icon(Icons.phone_outlined, color: Colors.green),
                 label: L10n.of(context).videoCall,
-                textColor: textColor,
+                textColor: buttonTextColor,
               );
             }
             if (event.redacted) {
@@ -223,7 +225,7 @@ class MessageContent extends StatelessWidget {
                 label: L10n.of(context)
                     .redactedAnEvent(event.sender.calcDisplayname()),
                 icon: const Icon(Icons.delete_outlined),
-                textColor: textColor,
+                textColor: buttonTextColor,
                 onPressed: () => onInfoTab(event),
               );
             }
@@ -252,7 +254,7 @@ class MessageContent extends StatelessWidget {
           label: L10n.of(context)
               .userSentUnknownEvent(event.sender.calcDisplayname(), event.type),
           icon: const Icon(Icons.info_outlined),
-          textColor: textColor,
+          textColor: buttonTextColor,
           onPressed: () => onInfoTab(event),
         );
     }
@@ -280,6 +282,7 @@ class _ButtonContent extends StatelessWidget {
       onPressed: onPressed,
       icon: icon,
       label: Text(label, overflow: TextOverflow.ellipsis),
+      style: TextButton.styleFrom(primary: textColor),
     );
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/event_extension.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 
 class MessageDownloadContent extends StatelessWidget {
   final Event event;
@@ -24,6 +25,9 @@ class MessageDownloadContent extends StatelessWidget {
           onPressed: () => event.saveFile(context),
           icon: const Icon(Icons.download_outlined),
           label: Text(filename),
+          style: event.senderId == Matrix.of(context).client.userID
+              ? TextButton.styleFrom(primary: textColor)
+              : null,
         ),
         if (event.sizeString != null)
           Text(
