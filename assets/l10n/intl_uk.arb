@@ -2633,5 +2633,13 @@
   "openGallery": "Відкрити галерею",
   "@openGallery": {},
   "sender": "Відправник",
-  "@sender": {}
+  "@sender": {},
+  "addToSpaceDescription": "Виберіть простір, щоб додати до нього цей чат.",
+  "@addToSpaceDescription": {},
+  "loginWithOneClick": "Вхід одним натисканням",
+  "@loginWithOneClick": {},
+  "removeFromSpaceDescription": "Це вилучає цей чат з поточного простору. Він усе одно буде видимий у розділі «Усі чати».",
+  "@removeFromSpaceDescription": {},
+  "removeFromSpace": "Вилучити з простору",
+  "@removeFromSpace": {}
 }
