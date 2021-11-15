@@ -40,7 +40,8 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     this.domain = domain;
     _coolDown?.cancel();
     if (domain.isNotEmpty) {
-      _coolDown = Timer(const Duration(seconds: 1), checkHomeserverAction);
+      _coolDown =
+          Timer(const Duration(milliseconds: 500), checkHomeserverAction);
     }
   }
 

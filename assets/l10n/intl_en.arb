@@ -1309,13 +1309,7 @@
       "homeserver": {}
     }
   },
-  "loginWith": "Sign in with {brand}",
-  "@loginWith": {
-    "type": "text",
-    "placeholders": {
-      "brand": {}
-    }
-  },
+  "loginWithOneClick": "Sign in with one click",
   "logout": "Logout",
   "@logout": {
     "type": "text",

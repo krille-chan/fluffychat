@@ -97,15 +97,17 @@ abstract class FluffyThemes {
         ),
         inputDecorationTheme: InputDecorationTheme(
           border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(AppConfig.borderRadius)),
+            borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+          ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(AppConfig.borderRadius),
             borderSide: BorderSide(
               color: lighten(AppConfig.chatColor, .51),
+              width: 1,
             ),
           ),
           filled: true,
-          fillColor: lighten(AppConfig.chatColor, .51),
+          fillColor: Colors.blueGrey.shade50,
         ),
         appBarTheme: const AppBarTheme(
           elevation: 6,
@@ -171,7 +173,7 @@ abstract class FluffyThemes {
           border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(AppConfig.borderRadius)),
           filled: true,
-          fillColor: FluffyThemes.darken(AppConfig.chatColor, 0.4),
+          fillColor: Colors.blueGrey.shade900,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(AppConfig.borderRadius),
             borderSide: BorderSide(

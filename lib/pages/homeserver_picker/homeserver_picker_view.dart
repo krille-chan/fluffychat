@@ -11,7 +11,6 @@ import 'package:vrouter/vrouter.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/default_app_bar_search_field.dart';
-import 'package:fluffychat/widgets/fluffy_banner.dart';
 import 'package:fluffychat/widgets/layouts/one_page_card.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/localized_exception_extension.dart';
@@ -44,9 +43,10 @@ class HomeserverPickerView extends StatelessWidget {
           elevation: 0,
         ),
         body: ListView(children: [
-          const Hero(
-            tag: 'loginBanner',
-            child: FluffyBanner(),
+          Image.asset(
+            Theme.of(context).brightness == Brightness.dark
+                ? 'assets/banner_dark.png'
+                : 'assets/banner.png',
           ),
           controller.isLoading
               ? const Center(
@@ -88,45 +88,43 @@ class HomeserverPickerView extends StatelessWidget {
                           ),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
-                              if (controller.ssoLoginSupported) ...{
-                                for (final identityProvider
-                                    in controller.identityProviders)
-                                  Center(
-                                    child: _LoginButton(
-                                      onPressed: () => controller
-                                          .ssoLoginAction(identityProvider.id),
-                                      icon: identityProvider.icon == null
-                                          ? const Icon(Icons.web_outlined)
-                                          : CachedNetworkImage(
-                                              imageUrl: Uri.parse(
-                                                      identityProvider.icon)
-                                                  .getDownloadLink(
-                                                      Matrix.of(context)
-                                                          .getLoginClient())
-                                                  .toString(),
-                                              width: 24,
-                                              height: 24,
-                                            ),
-                                      labelText: L10n.of(context).loginWith(
-                                          identityProvider.name ??
-                                              identityProvider.brand ??
-                                              L10n.of(context).singlesignon),
-                                    ),
+                              if (controller.ssoLoginSupported)
+                                Row(children: [
+                                  const Expanded(child: Divider()),
+                                  Padding(
+                                    padding: const EdgeInsets.all(12.0),
+                                    child: Text(
+                                        L10n.of(context).loginWithOneClick),
                                   ),
-                                if (controller.registrationSupported ||
-                                    controller.passwordLoginSupported)
-                                  Row(children: [
-                                    const Expanded(child: Divider()),
-                                    Padding(
-                                      padding: const EdgeInsets.all(12.0),
-                                      child: Text(L10n.of(context).or),
-                                    ),
-                                    const Expanded(child: Divider()),
-                                  ]),
-                              },
-                              if (controller.passwordLoginSupported)
+                                  const Expanded(child: Divider()),
+                                ]),
+                              Wrap(
+                                children: [
+                                  if (controller.ssoLoginSupported) ...{
+                                    for (final identityProvider
+                                        in controller.identityProviders)
+                                      _SsoButton(
+                                        onPressed: () =>
+                                            controller.ssoLoginAction(
+                                                identityProvider.id),
+                                        identityProvider: identityProvider,
+                                      ),
+                                  },
+                                ].toList(),
+                              ),
+                              if (controller.ssoLoginSupported &&
+                                  (controller.registrationSupported ||
+                                      controller.passwordLoginSupported))
+                                Row(children: [
+                                  const Expanded(child: Divider()),
+                                  Padding(
+                                    padding: const EdgeInsets.all(12.0),
+                                    child: Text(L10n.of(context).or),
+                                  ),
+                                  const Expanded(child: Divider()),
+                                ]),
+                              if (controller.passwordLoginSupported) ...[
                                 Center(
                                   child: _LoginButton(
                                     onPressed: () =>
@@ -141,6 +139,8 @@ class HomeserverPickerView extends StatelessWidget {
                                     labelText: L10n.of(context).login,
                                   ),
                                 ),
+                                const SizedBox(height: 12),
+                              ],
                               if (controller.registrationSupported)
                                 Center(
                                   child: _LoginButton(
@@ -155,19 +155,15 @@ class HomeserverPickerView extends StatelessWidget {
                                     labelText: L10n.of(context).register,
                                   ),
                                 ),
-                            ]
-                                .map(
-                                  (widget) => Container(
-                                      height: 64,
-                                      padding:
-                                          const EdgeInsets.only(bottom: 12),
-                                      child: widget),
-                                )
-                                .toList(),
+                            ],
                           ),
                         );
                       }),
-          Wrap(
+        ]),
+        bottomNavigationBar: Material(
+          elevation: 6,
+          color: Theme.of(context).scaffoldBackgroundColor,
+          child: Wrap(
             alignment: WrapAlignment.center,
             children: [
               TextButton(
@@ -192,7 +188,54 @@ class HomeserverPickerView extends StatelessWidget {
               ),
             ],
           ),
-        ]),
+        ),
+      ),
+    );
+  }
+}
+
+class _SsoButton extends StatelessWidget {
+  final IdentityProvider identityProvider;
+  final void Function() onPressed;
+  const _SsoButton({
+    Key key,
+    @required this.identityProvider,
+    this.onPressed,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onPressed,
+      borderRadius: BorderRadius.circular(7),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            identityProvider.icon == null
+                ? const Icon(Icons.web_outlined)
+                : CachedNetworkImage(
+                    imageUrl: Uri.parse(identityProvider.icon)
+                        .getDownloadLink(Matrix.of(context).getLoginClient())
+                        .toString(),
+                    width: 32,
+                    height: 32,
+                  ),
+            const SizedBox(height: 8),
+            Text(
+              identityProvider.name ??
+                  identityProvider.brand ??
+                  L10n.of(context).singlesignon,
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).textTheme.subtitle2.color,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -216,7 +259,9 @@ class _LoginButton extends StatelessWidget {
         minimumSize: const Size(256, 56),
         textStyle: const TextStyle(fontWeight: FontWeight.bold),
         backgroundColor: Theme.of(context).backgroundColor,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+        ),
       ),
       onPressed: onPressed,
       icon: icon,

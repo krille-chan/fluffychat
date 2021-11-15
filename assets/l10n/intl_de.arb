@@ -1277,7 +1277,7 @@
       "homeserver": {}
     }
   },
-  "loginWith": "Anmelden mit {brand}",
+  "loginWith": "Anmelden mit",
   "@loginWith": {
     "type": "text",
     "placeholders": {

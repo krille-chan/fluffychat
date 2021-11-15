@@ -14,6 +14,8 @@ class OnePageCard extends StatelessWidget {
   static num breakpoint = FluffyThemes.columnWidth * 2;
   @override
   Widget build(BuildContext context) {
+    final horizontalPadding =
+        max((MediaQuery.of(context).size.width - 600) / 2, 24);
     return MediaQuery.of(context).size.width <= breakpoint ||
             Matrix.of(context).client.isLogged()
         ? child
@@ -25,13 +27,13 @@ class OnePageCard extends StatelessWidget {
               ),
             ),
             child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal:
-                    max((MediaQuery.of(context).size.width - 600) / 2, 24),
-                vertical:
-                    max((MediaQuery.of(context).size.height - 800) / 2, 24),
+              padding: EdgeInsets.only(
+                top: 16,
+                left: horizontalPadding,
+                right: horizontalPadding,
+                bottom: max((MediaQuery.of(context).size.height - 600) / 2, 24),
               ),
-              child: SafeArea(child: Card(elevation: 5, child: child)),
+              child: SafeArea(child: Card(elevation: 16, child: child)),
             ),
           );
   }
