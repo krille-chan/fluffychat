@@ -70,7 +70,7 @@ class TypingIndicators extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: topPadding),
               child: Material(
-                color: Theme.of(context).backgroundColor,
+                color: Theme.of(context).appBarTheme.backgroundColor,
                 elevation: 6,
                 shadowColor:
                     Theme.of(context).secondaryHeaderColor.withAlpha(100),
