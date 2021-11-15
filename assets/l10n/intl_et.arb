@@ -2638,5 +2638,13 @@
   "sender": "Saatja",
   "@sender": {},
   "openGallery": "Ava galerii",
-  "@openGallery": {}
+  "@openGallery": {},
+  "addToSpaceDescription": "Vali kogukond, kuhu soovid seda vestlust lisada.",
+  "@addToSpaceDescription": {},
+  "loginWithOneClick": "Logi sisse ühe klõpsuga",
+  "@loginWithOneClick": {},
+  "removeFromSpace": "Eemalda kogukonnast",
+  "@removeFromSpace": {},
+  "removeFromSpaceDescription": "Järgnevaga eemaldad antud vestluse sellest kogukonnast. Vestlus on jätkuvalt leitav vaatest „Kõik vestlused“.",
+  "@removeFromSpaceDescription": {}
 }
