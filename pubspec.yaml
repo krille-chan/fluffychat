@@ -63,12 +63,10 @@ dependencies:
   record: ^3.0.0
   salomon_bottom_bar: ^3.1.0
   scroll_to_index: ^2.1.0
-  sembast_sqflite: ^2.0.0+1
   sembast_web: ^2.0.1+1
   sentry: ^6.0.1
   share: ^2.0.4
   slugify: ^2.0.0
-  sqflite_common_ffi: ^2.1.0
   swipe_to_action: ^0.2.0
   uni_links: ^0.5.1
   unifiedpush: ^1.0.6

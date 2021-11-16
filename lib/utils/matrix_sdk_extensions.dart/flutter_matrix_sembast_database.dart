@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
@@ -10,13 +11,9 @@ import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sembast/sembast.dart';
 import 'package:sembast/sembast_io.dart';
-import 'package:sembast_sqflite/sembast_sqflite.dart';
 import 'package:sembast_web/sembast_web.dart';
-import 'package:sqflite/sqflite.dart' as sqflite;
-import 'package:sqflite_common_ffi/sqflite_ffi.dart' as sqflite_ffi;
 
 import '../platform_infos.dart';
-import 'codec.dart';
 
 class FlutterMatrixSembastDatabase extends MatrixSembastDatabase {
   FlutterMatrixSembastDatabase(
@@ -32,7 +29,7 @@ class FlutterMatrixSembastDatabase extends MatrixSembastDatabase {
         );
 
   static const String _cipherStorageKey = 'sembast_encryption_key';
-  static const int _cipherStorageKeyLength = 1024;
+  static const int _cipherStorageKeyLength = 512;
 
   static Future<FlutterMatrixSembastDatabase> databaseBuilder(
       Client client) async {
@@ -56,6 +53,7 @@ class FlutterMatrixSembastDatabase extends MatrixSembastDatabase {
       // workaround for if we just wrote to the key and it still doesn't exist
       final rawEncryptionKey = await secureStorage.read(key: _cipherStorageKey);
       if (rawEncryptionKey == null) throw MissingPluginException();
+
       codec = getEncryptSembastCodec(password: rawEncryptionKey);
     } on MissingPluginException catch (_) {
       Logs().i('Sembast encryption is not supported on this platform');
@@ -65,24 +63,11 @@ class FlutterMatrixSembastDatabase extends MatrixSembastDatabase {
       client.clientName,
       codec: codec,
       path: await _findDatabasePath(client),
-      dbFactory: kIsWeb
-          ? databaseFactoryWeb
-          : getDatabaseFactorySqflite(sqflite.databaseFactory),
+      dbFactory: kIsWeb ? databaseFactoryWeb : databaseFactoryIo,
     );
     await db.open();
     Logs().d('Sembast is ready');
     return db;
-  }
-
-  static DatabaseFactory get factory {
-    if (kIsWeb) return databaseFactoryWeb;
-    if (Platform.isAndroid || Platform.isIOS) {
-      return getDatabaseFactorySqflite(sqflite.databaseFactory);
-    }
-    if (Platform.isLinux || Platform.isWindows || Platform.isMacOS) {
-      return getDatabaseFactorySqflite(sqflite_ffi.databaseFactoryFfi);
-    }
-    return databaseFactoryIo;
   }
 
   static Future<String> _findDatabasePath(Client client) async {
@@ -98,7 +83,7 @@ class FlutterMatrixSembastDatabase extends MatrixSembastDatabase {
           directory = Directory.current;
         }
       }
-      path = '${directory.path}${client.clientName}.sqflite';
+      path = '${directory.path}${client.clientName}.db';
     }
     return path;
   }
@@ -144,3 +129,79 @@ class FlutterMatrixSembastDatabase extends MatrixSembastDatabase {
     return;
   }
 }
+
+class _EncryptEncoder extends Converter<Map<String, dynamic>, String> {
+  final String key;
+  final String signature;
+  _EncryptEncoder(this.key, this.signature);
+
+  @override
+  String convert(Map<String, dynamic> input) {
+    String encoded;
+    switch (signature) {
+      case "Salsa20":
+        encoded = Encrypter(Salsa20(Key.fromUtf8(key)))
+            .encrypt(json.encode(input), iv: IV.fromLength(8))
+            .base64;
+        break;
+      case "AES":
+        encoded = Encrypter(AES(Key.fromUtf8(key)))
+            .encrypt(json.encode(input), iv: IV.fromLength(16))
+            .base64;
+        break;
+      default:
+        throw FormatException('invalid $signature');
+        break;
+    }
+    return encoded;
+  }
+}
+
+class _EncryptDecoder extends Converter<String, Map<String, dynamic>> {
+  final String key;
+  final String signature;
+  _EncryptDecoder(this.key, this.signature);
+
+  @override
+  Map<String, dynamic> convert(String input) {
+    dynamic decoded;
+    switch (signature) {
+      case "Salsa20":
+        decoded = json.decode(Encrypter(Salsa20(Key.fromUtf8(key)))
+            .decrypt64(input, iv: IV.fromLength(8)));
+        break;
+      case "AES":
+        decoded = json.decode(Encrypter(AES(Key.fromUtf8(key)))
+            .decrypt64(input, iv: IV.fromLength(16)));
+        break;
+      default:
+        break;
+    }
+    if (decoded is Map) {
+      return decoded.cast<String, dynamic>();
+    }
+    throw FormatException('invalid input $input');
+  }
+}
+
+class _EncryptCodec extends Codec<Map<String, dynamic>, String> {
+  final String signature;
+  _EncryptEncoder _encoder;
+  _EncryptDecoder _decoder;
+  _EncryptCodec(String password, this.signature) {
+    _encoder = _EncryptEncoder(password, signature);
+    _decoder = _EncryptDecoder(password, signature);
+  }
+
+  @override
+  Converter<String, Map<String, dynamic>> get decoder => _decoder;
+
+  @override
+  Converter<Map<String, dynamic>, String> get encoder => _encoder;
+}
+
+// Salsa20 (16 length key required) or AES (32 length key required)
+SembastCodec getEncryptSembastCodec(
+        {@required String password, String signature = "Salsa20"}) =>
+    SembastCodec(
+        signature: signature, codec: _EncryptCodec(password, signature));
