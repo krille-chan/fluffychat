@@ -319,7 +319,7 @@ class ChatDetailsController extends State<ChatDetails> {
     }
     await showFutureLoadingDialog(
       context: context,
-      future: () => matrix.client.setAvatar(file),
+      future: () => room.setAvatar(file),
     );
   }
 
