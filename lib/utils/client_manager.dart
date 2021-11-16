@@ -5,13 +5,13 @@ import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:matrix/encryption/utils/key_verification.dart';
 import 'package:matrix/matrix.dart';
-import 'package:sembast/sembast.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:sembast/sembast.dart';
 
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'famedlysdk_store.dart';
-import 'matrix_sdk_extensions.dart/flutter_matrix_hive_database.dart';
 import 'matrix_sdk_extensions.dart/flutter_matrix_sembast_database.dart';
+import 'matrix_sdk_extensions.dart/flutter_matrix_sembast_database_old.dart';
 
 abstract class ClientManager {
   static const String clientNamespace = 'im.fluffychat.store.clients';
@@ -81,7 +81,8 @@ abstract class ClientManager {
         },
         importantStateEvents: <String>{'im.ponies.room_emotes'},
         databaseBuilder: FlutterMatrixSembastDatabase.databaseBuilder,
-        legacyDatabaseBuilder: FlutterMatrixHiveStore.hiveDatabaseBuilder,
+        legacyDatabaseBuilder: FlutterMatrixSembastDatabaseOld.databaseBuilder,
+        //legacyDatabaseBuilder: FlutterMatrixHiveStore.hiveDatabaseBuilder,
         supportedLoginTypes: {
           AuthenticationTypes.password,
           if (PlatformInfos.isMobile || PlatformInfos.isWeb)

@@ -10,16 +10,13 @@ import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sembast/sembast.dart';
 import 'package:sembast/sembast_io.dart';
-import 'package:sembast_sqflite/sembast_sqflite.dart';
 import 'package:sembast_web/sembast_web.dart';
-import 'package:sqflite/sqflite.dart' as sqflite;
-import 'package:sqflite_common_ffi/sqflite_ffi.dart' as sqflite_ffi;
 
 import '../platform_infos.dart';
 import 'codec.dart';
 
-class FlutterMatrixSembastDatabase extends MatrixSembastDatabase {
-  FlutterMatrixSembastDatabase(
+class FlutterMatrixSembastDatabaseOld extends MatrixSembastDatabase {
+  FlutterMatrixSembastDatabaseOld(
     String name, {
     SembastCodec codec,
     String path,
@@ -32,9 +29,9 @@ class FlutterMatrixSembastDatabase extends MatrixSembastDatabase {
         );
 
   static const String _cipherStorageKey = 'sembast_encryption_key';
-  static const int _cipherStorageKeyLength = 1024;
+  static const int _cipherStorageKeyLength = 512;
 
-  static Future<FlutterMatrixSembastDatabase> databaseBuilder(
+  static Future<FlutterMatrixSembastDatabaseOld> databaseBuilder(
       Client client) async {
     Logs().d('Open Sembast...');
     SembastCodec codec;
@@ -56,33 +53,21 @@ class FlutterMatrixSembastDatabase extends MatrixSembastDatabase {
       // workaround for if we just wrote to the key and it still doesn't exist
       final rawEncryptionKey = await secureStorage.read(key: _cipherStorageKey);
       if (rawEncryptionKey == null) throw MissingPluginException();
+
       codec = getEncryptSembastCodec(password: rawEncryptionKey);
     } on MissingPluginException catch (_) {
       Logs().i('Sembast encryption is not supported on this platform');
     }
 
-    final db = FlutterMatrixSembastDatabase(
+    final db = FlutterMatrixSembastDatabaseOld(
       client.clientName,
       codec: codec,
       path: await _findDatabasePath(client),
-      dbFactory: kIsWeb
-          ? databaseFactoryWeb
-          : getDatabaseFactorySqflite(sqflite.databaseFactory),
+      dbFactory: kIsWeb ? databaseFactoryWeb : databaseFactoryIo,
     );
     await db.open();
     Logs().d('Sembast is ready');
     return db;
-  }
-
-  static DatabaseFactory get factory {
-    if (kIsWeb) return databaseFactoryWeb;
-    if (Platform.isAndroid || Platform.isIOS) {
-      return getDatabaseFactorySqflite(sqflite.databaseFactory);
-    }
-    if (Platform.isLinux || Platform.isWindows || Platform.isMacOS) {
-      return getDatabaseFactorySqflite(sqflite_ffi.databaseFactoryFfi);
-    }
-    return databaseFactoryIo;
   }
 
   static Future<String> _findDatabasePath(Client client) async {
@@ -98,7 +83,7 @@ class FlutterMatrixSembastDatabase extends MatrixSembastDatabase {
           directory = Directory.current;
         }
       }
-      path = '${directory.path}${client.clientName}.sqflite';
+      path = '${directory.path}${client.clientName}.db';
     }
     return path;
   }
