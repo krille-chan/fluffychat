@@ -11,6 +11,7 @@ linter:
 
 analyzer:
   errors:
+    implementation_imports: ignore
     todo: ignore
   exclude:
     - lib/generated_plugin_registrant.dart

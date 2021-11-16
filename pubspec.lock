@@ -773,12 +773,10 @@ packages:
   matrix:
     dependency: "direct main"
     description:
-      path: "."
-      ref: "krille/sembast"
-      resolved-ref: "28af05289a6d48cbe6067031bdf08ab72fb21225"
-      url: "https://gitlab.com/famedly/company/frontend/famedlysdk.git"
-    source: git
-    version: "0.7.0-nullsafety.5"
+      name: matrix
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.7.0-nullsafety.6"
   matrix_api_lite:
     dependency: transitive
     description:

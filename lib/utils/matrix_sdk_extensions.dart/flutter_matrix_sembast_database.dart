@@ -65,14 +65,8 @@ class FlutterMatrixSembastDatabase extends MatrixSembastDatabase {
       path: await _findDatabasePath(client),
       dbFactory: kIsWeb ? databaseFactoryWeb : databaseFactoryIo,
     );
-    try {
-      await db.open();
-      Logs().d('Sembast is ready');
-    } catch (e, s) {
-      Logs().e('Unable to open Sembast. Delete and try again...', e, s);
-      await db.clear();
-      await db.open();
-    }
+    await db.open();
+    Logs().d('Sembast is ready');
     return db;
   }
 
@@ -91,7 +85,6 @@ class FlutterMatrixSembastDatabase extends MatrixSembastDatabase {
       }
       path = '${directory.path}${client.clientName}.db';
     }
-    Logs().i('Use database path: "$path"');
     return path;
   }
 
