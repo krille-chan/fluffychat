@@ -16,6 +16,7 @@ import 'matrix_sdk_extensions.dart/flutter_matrix_sembast_database.dart';
 abstract class ClientManager {
   static const String clientNamespace = 'im.fluffychat.store.clients';
   static Future<List<Client>> getClients() async {
+    Logs().level = Level.verbose;
     if (PlatformInfos.isLinux) {
       Hive.init((await getApplicationSupportDirectory()).path);
     } else {
