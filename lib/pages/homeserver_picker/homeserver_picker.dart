@@ -103,24 +103,28 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     _intentDataStreamSubscription?.cancel();
   }
 
+  String _lastCheckedHomeserver;
+
   /// Starts an analysis of the given homeserver. It uses the current domain and
   /// makes sure that it is prefixed with https. Then it searches for the
   /// well-known information and forwards to the login page depending on the
   /// login type.
   Future<void> checkHomeserverAction() async {
     _coolDown?.cancel();
+    if (_lastCheckedHomeserver == domain) return;
+    if (domain.isEmpty) throw L10n.of(context).changeTheHomeserver;
+    var homeserver = domain;
+
+    if (!homeserver.startsWith('https://')) {
+      homeserver = 'https://$homeserver';
+    }
+
+    setState(() {
+      error = _rawLoginTypes = registrationSupported = null;
+      isLoading = true;
+    });
+
     try {
-      if (domain.isEmpty) throw L10n.of(context).changeTheHomeserver;
-      var homeserver = domain;
-
-      if (!homeserver.startsWith('https://')) {
-        homeserver = 'https://$homeserver';
-      }
-
-      setState(() {
-        error = _rawLoginTypes = registrationSupported = null;
-        isLoading = true;
-      });
       final wellKnown =
           await Matrix.of(context).getLoginClient().checkHomeserver(homeserver);
 
@@ -151,6 +155,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     } catch (e) {
       setState(() => error = (e as Object).toLocalizedString(context));
     } finally {
+      _lastCheckedHomeserver = domain;
       if (mounted) {
         setState(() => isLoading = false);
       }
