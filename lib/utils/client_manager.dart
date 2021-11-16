@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:matrix/encryption/utils/key_verification.dart';
 import 'package:matrix/matrix.dart';
-import 'package:matrix/src/utils/run_benchmarked.dart';
+import 'package:sembast/sembast.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -24,10 +24,7 @@ abstract class ClientManager {
     }
     final clientNames = <String>{};
     try {
-      final rawClientNames = await runBenchmarked(
-        'Get client names',
-        () => Store().getItem(clientNamespace),
-      );
+      final rawClientNames = await Store().getItem(clientNamespace);
       if (rawClientNames != null) {
         final clientNamesList =
             (jsonDecode(rawClientNames) as List).cast<String>();
@@ -42,13 +39,14 @@ abstract class ClientManager {
       await Store().setItem(clientNamespace, jsonEncode(clientNames.toList()));
     }
     final clients = clientNames.map(createClient).toList();
-    await Future.wait(clients.map((client) => runBenchmarked(
-            'Init client ${client.clientName}',
-            () => client.init(
-                  waitForFirstSync: false,
-                  waitUntilLoadCompletedLoaded: false,
-                ))
+    disableSembastCooperator();
+    await Future.wait(clients.map((client) => client
+        .init(
+          waitForFirstSync: false,
+          waitUntilLoadCompletedLoaded: false,
+        )
         .catchError((e, s) => Logs().e('Unable to initialize client', e, s))));
+    enableSembastCooperator();
     if (clients.length > 1 && clients.any((c) => !c.isLogged())) {
       final loggedOutClients = clients.where((c) => !c.isLogged()).toList();
       for (final client in loggedOutClients) {
@@ -57,11 +55,7 @@ abstract class ClientManager {
         clientNames.remove(client.clientName);
         clients.remove(client);
       }
-      await runBenchmarked(
-        'Update clientNamespaces',
-        () =>
-            Store().setItem(clientNamespace, jsonEncode(clientNames.toList())),
-      );
+      await Store().setItem(clientNamespace, jsonEncode(clientNames.toList()));
     }
     return clients;
   }
