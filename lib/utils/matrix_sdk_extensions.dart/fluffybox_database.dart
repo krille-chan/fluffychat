@@ -3,27 +3,23 @@ import 'dart:typed_data';
 
 import 'package:flutter/foundation.dart' hide Key;
 import 'package:flutter/services.dart';
-import 'package:idb_shim/idb_browser.dart';
-import 'package:idb_shim/idb.dart' hide Event;
-import 'package:sqflite/sqflite.dart' as sqflite;
 
 import 'package:encrypt/encrypt.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:idb_sqflite/idb_sqflite.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:sqflite/sqflite.dart' as sqflite;
 
 import '../platform_infos.dart';
 
-class FluffyBoxDatabase extends MatrixIndexedDatabase {
-  FluffyBoxDatabase(
+class FlutterFluffyBoxDatabase extends FluffyBoxDatabase {
+  FlutterFluffyBoxDatabase(
     String name, {
     String path,
-    IdbFactory dbFactory,
+    Future<sqflite.Database> Function() openSqlDatabase,
   }) : super(
           name,
-          path,
-          factory: dbFactory,
+          openSqlDatabase: openSqlDatabase,
         );
 
   static const String _cipherStorageKey = 'database_encryption_key';
@@ -54,21 +50,17 @@ class FluffyBoxDatabase extends MatrixIndexedDatabase {
     }
 
     final db = FluffyBoxDatabase(
-      'FluffyBox-${client.clientName}',
-      path: await _findDatabasePath(client),
-      dbFactory: factory,
+      'fluffybox_${client.clientName.replaceAll(' ', '_').toLowerCase()}',
+      openSqlDatabase: () => _openSqlDatabase(client),
     );
     await db.open();
     Logs().d('FluffyBox is ready');
     return db;
   }
 
-  static IdbFactory get factory {
-    if (kIsWeb) return idbFactoryBrowser;
-    if (Platform.isAndroid || Platform.isIOS) {
-      return getIdbFactorySqflite(sqflite.databaseFactory);
-    }
-    return idbFactoryNative;
+  static Future<sqflite.Database> _openSqlDatabase(Client client) async {
+    final path = await _findDatabasePath(client);
+    return await sqflite.openDatabase(path);
   }
 
   static Future<String> _findDatabasePath(Client client) async {
@@ -84,7 +76,8 @@ class FluffyBoxDatabase extends MatrixIndexedDatabase {
           directory = Directory.current;
         }
       }
-      path = '${directory.path}${client.clientName}.db';
+      path =
+          '${directory.path}${client.clientName.replaceAll(' ', '-')}.sqflite';
     }
     return path;
   }

@@ -351,6 +351,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.0.2"
+  fluffybox:
+    dependency: transitive
+    description:
+      name: fluffybox
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.0"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -782,7 +789,7 @@ packages:
     description:
       path: "."
       ref: "krille/idb"
-      resolved-ref: "5996f6bb01ba1110c1f8fb84c39dd6bcf0d2900a"
+      resolved-ref: aee9bbf8afd1114a25ad547822d2e3eda6c73c83
       url: "https://gitlab.com/famedly/company/frontend/famedlysdk.git"
     source: git
     version: "0.7.0-nullsafety.6"
@@ -1317,7 +1324,14 @@ packages:
       name: sqflite_common
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0+2"
+    version: "2.0.1+1"
+  sqflite_common_ffi:
+    dependency: transitive
+    description:
+      name: sqflite_common_ffi
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.0"
   sqflite_sqlcipher:
     dependency: "direct main"
     description:
@@ -1325,6 +1339,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  sqlite3:
+    dependency: transitive
+    description:
+      name: sqlite3
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.3.1"
   stack_trace:
     dependency: transitive
     description:
@@ -1669,5 +1690,5 @@ packages:
     source: hosted
     version: "3.1.0"
 sdks:
-  dart: ">=2.14.0 <3.0.0"
+  dart: ">=2.14.4 <3.0.0"
   flutter: ">=2.5.0"

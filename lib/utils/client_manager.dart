@@ -5,8 +5,8 @@ import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:matrix/encryption/utils/key_verification.dart';
 import 'package:matrix/matrix.dart';
-import 'package:sembast/sembast.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:sembast/sembast.dart';
 
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'famedlysdk_store.dart';
@@ -80,7 +80,7 @@ abstract class ClientManager {
             KeyVerificationMethod.emoji,
         },
         importantStateEvents: <String>{'im.ponies.room_emotes'},
-        databaseBuilder: FluffyBoxDatabase.databaseBuilder,
+        databaseBuilder: FlutterFluffyBoxDatabase.databaseBuilder,
         legacyDatabaseBuilder: FlutterMatrixSembastDatabase.databaseBuilder,
         supportedLoginTypes: {
           AuthenticationTypes.password,
