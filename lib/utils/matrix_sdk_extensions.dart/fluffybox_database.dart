@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'dart:io';
 import 'dart:typed_data';
 
@@ -8,15 +10,12 @@ import 'package:encrypt/encrypt.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:sqflite/sqflite.dart' as sqflite;
-
-import '../platform_infos.dart';
+import 'package:sqflite_sqlcipher/sqflite.dart' as sqflite;
 
 class FlutterFluffyBoxDatabase extends FluffyBoxDatabase {
   FlutterFluffyBoxDatabase(
     String name, {
-    String path,
-    Future<sqflite.Database> Function() openSqlDatabase,
+    Future<sqflite.Database> Function()? openSqlDatabase,
   }) : super(
           name,
           openSqlDatabase: openSqlDatabase,
@@ -27,6 +26,7 @@ class FlutterFluffyBoxDatabase extends FluffyBoxDatabase {
 
   static Future<FluffyBoxDatabase> databaseBuilder(Client client) async {
     Logs().d('Open FluffyBox...');
+    String? password;
     try {
       // Workaround for secure storage is calling Platform.operatingSystem on web
       if (kIsWeb) throw MissingPluginException();
@@ -43,24 +43,27 @@ class FlutterFluffyBoxDatabase extends FluffyBoxDatabase {
       }
 
       // workaround for if we just wrote to the key and it still doesn't exist
-      final rawEncryptionKey = await secureStorage.read(key: _cipherStorageKey);
-      if (rawEncryptionKey == null) throw MissingPluginException();
+      password = await secureStorage.read(key: _cipherStorageKey);
+      if (password == null) throw MissingPluginException();
     } on MissingPluginException catch (_) {
       Logs().i('FluffyBox encryption is not supported on this platform');
     }
 
     final db = FluffyBoxDatabase(
       'fluffybox_${client.clientName.replaceAll(' ', '_').toLowerCase()}',
-      openSqlDatabase: () => _openSqlDatabase(client),
+      openSqlDatabase: () => _openSqlDatabase(client, password),
     );
     await db.open();
     Logs().d('FluffyBox is ready');
     return db;
   }
 
-  static Future<sqflite.Database> _openSqlDatabase(Client client) async {
+  static Future<sqflite.Database> _openSqlDatabase(
+    Client client,
+    String? password,
+  ) async {
     final path = await _findDatabasePath(client);
-    return await sqflite.openDatabase(path);
+    return await sqflite.openDatabase(path, password: password);
   }
 
   static Future<String> _findDatabasePath(Client client) async {
@@ -85,9 +88,7 @@ class FlutterFluffyBoxDatabase extends FluffyBoxDatabase {
   @override
   int get maxFileSize => supportsFileStoring ? 100 * 1024 * 1024 : 0;
   @override
-  bool get supportsFileStoring => (PlatformInfos.isIOS ||
-      PlatformInfos.isAndroid ||
-      PlatformInfos.isDesktop);
+  bool get supportsFileStoring => !kIsWeb;
 
   Future<String> _getFileStoreDirectory() async {
     try {
@@ -97,12 +98,12 @@ class FlutterFluffyBoxDatabase extends FluffyBoxDatabase {
         return (await getApplicationDocumentsDirectory()).path;
       }
     } catch (_) {
-      return (await getDownloadsDirectory()).path;
+      return (await getDownloadsDirectory())!.path;
     }
   }
 
   @override
-  Future<Uint8List> getFile(Uri mxcUri) async {
+  Future<Uint8List?> getFile(Uri mxcUri) async {
     if (!supportsFileStoring) return null;
     final tempDirectory = await _getFileStoreDirectory();
     final file =

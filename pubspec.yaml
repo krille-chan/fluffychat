@@ -42,7 +42,6 @@ dependencies:
   future_loading_dialog: ^0.2.1
   geolocator: ^7.6.2
   hive_flutter: ^1.1.0
-  idb_sqflite: ^1.0.1
   image_picker: ^0.8.4+2
   intl: any
   localstorage: ^4.0.0+1
