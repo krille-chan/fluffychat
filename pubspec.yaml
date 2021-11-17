@@ -42,6 +42,7 @@ dependencies:
   future_loading_dialog: ^0.2.1
   geolocator: ^7.6.2
   hive_flutter: ^1.1.0
+  idb_sqflite: ^1.0.1
   image_picker: ^0.8.4+2
   intl: any
   localstorage: ^4.0.0+1
@@ -67,6 +68,7 @@ dependencies:
   sentry: ^6.0.1
   share: ^2.0.4
   slugify: ^2.0.0
+  sqflite_sqlcipher: ^2.1.0
   swipe_to_action: ^0.2.0
   uni_links: ^0.5.1
   unifiedpush: ^1.0.6
@@ -115,4 +117,8 @@ dependency_overrides:
     hosted:
       name: geolocator_android
       url: https://hanntech-gmbh.gitlab.io/free2pass/flutter-geolocator-floss
+  matrix:
+    git:
+      url: https://gitlab.com/famedly/company/frontend/famedlysdk.git
+      ref: krille/idb
   provider: 5.0.0

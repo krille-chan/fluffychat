@@ -10,7 +10,7 @@ import 'package:path_provider/path_provider.dart';
 
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'famedlysdk_store.dart';
-import 'matrix_sdk_extensions.dart/flutter_matrix_hive_database.dart';
+import 'matrix_sdk_extensions.dart/fluffybox_database.dart';
 import 'matrix_sdk_extensions.dart/flutter_matrix_sembast_database.dart';
 
 abstract class ClientManager {
@@ -80,8 +80,8 @@ abstract class ClientManager {
             KeyVerificationMethod.emoji,
         },
         importantStateEvents: <String>{'im.ponies.room_emotes'},
-        databaseBuilder: FlutterMatrixSembastDatabase.databaseBuilder,
-        legacyDatabaseBuilder: FlutterMatrixHiveStore.hiveDatabaseBuilder,
+        databaseBuilder: FluffyBoxDatabase.databaseBuilder,
+        legacyDatabaseBuilder: FlutterMatrixSembastDatabase.databaseBuilder,
         supportedLoginTypes: {
           AuthenticationTypes.password,
           if (PlatformInfos.isMobile || PlatformInfos.isWeb)
