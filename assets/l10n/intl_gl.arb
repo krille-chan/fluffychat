@@ -2620,5 +2620,23 @@
     "placeholders": {
       "min": {}
     }
-  }
+  },
+  "messageInfo": "Info da mensaxe",
+  "@messageInfo": {},
+  "time": "Hora",
+  "@time": {},
+  "sender": "Remitente",
+  "@sender": {},
+  "openGallery": "Galería pública",
+  "@openGallery": {},
+  "removeFromSpaceDescription": "Vas retirar este chat do espazo actual, mais será visible baixo \"Tódolos chats\".",
+  "@removeFromSpaceDescription": {},
+  "addToSpaceDescription": "Elixe un espazo ao que engadir este chat.",
+  "@addToSpaceDescription": {},
+  "loginWithOneClick": "Conéctate cun click",
+  "@loginWithOneClick": {},
+  "messageType": "Tipo de mensaxe",
+  "@messageType": {},
+  "removeFromSpace": "Retirar do espazo",
+  "@removeFromSpace": {}
 }
