@@ -782,7 +782,7 @@ packages:
     description:
       path: "."
       ref: "krille/idb"
-      resolved-ref: aee9bbf8afd1114a25ad547822d2e3eda6c73c83
+      resolved-ref: b8f8456c848f8a2c374e4c05fc787865f7564af6
       url: "https://gitlab.com/famedly/company/frontend/famedlysdk.git"
     source: git
     version: "0.7.0-nullsafety.6"
