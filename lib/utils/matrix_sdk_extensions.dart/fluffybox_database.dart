@@ -30,7 +30,7 @@ class FluffyBoxDatabase extends MatrixIndexedDatabase {
   static const int _cipherStorageKeyLength = 512;
 
   static Future<FluffyBoxDatabase> databaseBuilder(Client client) async {
-    Logs().d('Open Sembast...');
+    Logs().d('Open FluffyBox...');
     try {
       // Workaround for secure storage is calling Platform.operatingSystem on web
       if (kIsWeb) throw MissingPluginException();
@@ -49,19 +49,17 @@ class FluffyBoxDatabase extends MatrixIndexedDatabase {
       // workaround for if we just wrote to the key and it still doesn't exist
       final rawEncryptionKey = await secureStorage.read(key: _cipherStorageKey);
       if (rawEncryptionKey == null) throw MissingPluginException();
-
-      //codec = getEncryptSembastCodec(password: rawEncryptionKey);
     } on MissingPluginException catch (_) {
-      Logs().i('Sembast encryption is not supported on this platform');
+      Logs().i('FluffyBox encryption is not supported on this platform');
     }
 
     final db = FluffyBoxDatabase(
-      client.clientName,
+      'FluffyBox-${client.clientName}',
       path: await _findDatabasePath(client),
       dbFactory: factory,
     );
     await db.open();
-    Logs().d('Sembast is ready');
+    Logs().d('FluffyBox is ready');
     return db;
   }
 
