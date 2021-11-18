@@ -51,7 +51,7 @@ class FlutterFluffyBoxDatabase extends FluffyBoxDatabase {
 
     final db = FluffyBoxDatabase(
       'fluffybox_${client.clientName.replaceAll(' ', '_').toLowerCase()}',
-      openSqlDatabase: () => _openSqlDatabase(client, password),
+      openSqlDatabase: kIsWeb ? null : () => _openSqlDatabase(client, password),
     );
     await db.open();
     Logs().d('FluffyBox is ready');
