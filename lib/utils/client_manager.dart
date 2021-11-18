@@ -11,12 +11,12 @@ import 'package:sembast/sembast.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'famedlysdk_store.dart';
 import 'matrix_sdk_extensions.dart/fluffybox_database.dart';
-import 'matrix_sdk_extensions.dart/flutter_matrix_sembast_database.dart';
+import 'matrix_sdk_extensions.dart/flutter_matrix_hive_database.dart';
 
 abstract class ClientManager {
   static const String clientNamespace = 'im.fluffychat.store.clients';
   static Future<List<Client>> getClients() async {
-    Logs().level = Level.verbose;
+    Logs().level = Level.warning;
     if (PlatformInfos.isLinux) {
       Hive.init((await getApplicationSupportDirectory()).path);
     } else {
@@ -81,7 +81,7 @@ abstract class ClientManager {
         },
         importantStateEvents: <String>{'im.ponies.room_emotes'},
         databaseBuilder: FlutterFluffyBoxDatabase.databaseBuilder,
-        legacyDatabaseBuilder: FlutterMatrixSembastDatabase.databaseBuilder,
+        legacyDatabaseBuilder: FlutterMatrixHiveStore.hiveDatabaseBuilder,
         supportedLoginTypes: {
           AuthenticationTypes.password,
           if (PlatformInfos.isMobile || PlatformInfos.isWeb)
