@@ -67,6 +67,8 @@ parts:
     stage-packages:
       - libsecret-1-dev
       - libjsoncpp-dev
+      - libsqlite3-0
+      - libsqlite3-dev
   gnome-3-28-extension:
     build-packages:
       - gcc

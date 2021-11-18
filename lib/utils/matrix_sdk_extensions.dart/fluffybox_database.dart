@@ -10,6 +10,7 @@ import 'package:encrypt/encrypt.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart' as ffi;
 import 'package:sqflite_sqlcipher/sqflite.dart' as sqflite;
 
 class FlutterFluffyBoxDatabase extends FluffyBoxDatabase {
@@ -27,26 +28,25 @@ class FlutterFluffyBoxDatabase extends FluffyBoxDatabase {
   static Future<FluffyBoxDatabase> databaseBuilder(Client client) async {
     Logs().d('Open FluffyBox...');
     String? password;
-    try {
-      // Workaround for secure storage is calling Platform.operatingSystem on web
-      if (kIsWeb) throw MissingPluginException();
+    if (!kIsWeb && (Platform.isAndroid || Platform.isIOS)) {
+      try {
+        const secureStorage = FlutterSecureStorage();
+        final containsEncryptionKey =
+            await secureStorage.containsKey(key: _cipherStorageKey);
+        if (!containsEncryptionKey) {
+          final key = SecureRandom(_cipherStorageKeyLength).base64;
+          await secureStorage.write(
+            key: _cipherStorageKey,
+            value: key,
+          );
+        }
 
-      const secureStorage = FlutterSecureStorage();
-      final containsEncryptionKey =
-          await secureStorage.containsKey(key: _cipherStorageKey);
-      if (!containsEncryptionKey) {
-        final key = SecureRandom(_cipherStorageKeyLength).base64;
-        await secureStorage.write(
-          key: _cipherStorageKey,
-          value: key,
-        );
+        // workaround for if we just wrote to the key and it still doesn't exist
+        password = await secureStorage.read(key: _cipherStorageKey);
+        if (password == null) throw MissingPluginException();
+      } on MissingPluginException catch (_) {
+        Logs().i('FluffyBox encryption is not supported on this platform');
       }
-
-      // workaround for if we just wrote to the key and it still doesn't exist
-      password = await secureStorage.read(key: _cipherStorageKey);
-      if (password == null) throw MissingPluginException();
-    } on MissingPluginException catch (_) {
-      Logs().i('FluffyBox encryption is not supported on this platform');
     }
 
     final db = FluffyBoxDatabase(
@@ -63,7 +63,18 @@ class FlutterFluffyBoxDatabase extends FluffyBoxDatabase {
     String? password,
   ) async {
     final path = await _findDatabasePath(client);
-    return await sqflite.openDatabase(path, password: password);
+    try {
+      if (Platform.isAndroid || Platform.isIOS) {
+        //opensqflite.open.overrideFor(sqlite3.OperatingSystem.android, openCipherOnAndroid);
+        final db = await sqflite.openDatabase(path, password: password);
+        return db;
+      }
+      final db = await ffi.databaseFactoryFfi.openDatabase(path);
+      return db;
+    } catch (_) {
+      File(path).delete();
+      rethrow;
+    }
   }
 
   static Future<String> _findDatabasePath(Client client) async {

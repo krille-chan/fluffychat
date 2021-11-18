@@ -67,7 +67,9 @@ dependencies:
   sentry: ^6.0.1
   share: ^2.0.4
   slugify: ^2.0.0
+  sqflite_common_ffi: ^2.1.0
   sqflite_sqlcipher: ^2.1.0
+  sqlcipher_flutter_libs: ^0.5.1
   swipe_to_action: ^0.2.0
   uni_links: ^0.5.1
   unifiedpush: ^1.0.6
