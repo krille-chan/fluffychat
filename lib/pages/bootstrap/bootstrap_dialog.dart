@@ -208,9 +208,13 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
                             _recoveryKeyInputLoading = true;
                           });
                           try {
+                            final key = _recoveryKeyTextEditingController.text;
                             await bootstrap.newSsssKey.unlock(
-                              keyOrPassphrase:
-                                  _recoveryKeyTextEditingController.text,
+                              keyOrPassphrase: key,
+                            );
+                            await bootstrap.client.encryption.crossSigning
+                                .selfSign(
+                              keyOrPassphrase: key,
                             );
                             await bootstrap.openExistingSsss();
                           } catch (e, s) {
