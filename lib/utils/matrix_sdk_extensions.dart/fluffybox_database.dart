@@ -28,25 +28,23 @@ class FlutterFluffyBoxDatabase extends FluffyBoxDatabase {
   static Future<FluffyBoxDatabase> databaseBuilder(Client client) async {
     Logs().d('Open FluffyBox...');
     String? password;
-    if (!kIsWeb && (Platform.isAndroid || Platform.isIOS)) {
-      try {
-        const secureStorage = FlutterSecureStorage();
-        final containsEncryptionKey =
-            await secureStorage.containsKey(key: _cipherStorageKey);
-        if (!containsEncryptionKey) {
-          final key = SecureRandom(_cipherStorageKeyLength).base64;
-          await secureStorage.write(
-            key: _cipherStorageKey,
-            value: key,
-          );
-        }
-
-        // workaround for if we just wrote to the key and it still doesn't exist
-        password = await secureStorage.read(key: _cipherStorageKey);
-        if (password == null) throw MissingPluginException();
-      } on MissingPluginException catch (_) {
-        Logs().i('FluffyBox encryption is not supported on this platform');
+    try {
+      const secureStorage = FlutterSecureStorage();
+      final containsEncryptionKey =
+          await secureStorage.containsKey(key: _cipherStorageKey);
+      if (!containsEncryptionKey) {
+        final key = SecureRandom(_cipherStorageKeyLength).base64;
+        await secureStorage.write(
+          key: _cipherStorageKey,
+          value: key,
+        );
       }
+
+      // workaround for if we just wrote to the key and it still doesn't exist
+      password = await secureStorage.read(key: _cipherStorageKey);
+      if (password == null) throw MissingPluginException();
+    } on MissingPluginException catch (_) {
+      Logs().i('FluffyBox encryption is not supported on this platform');
     }
 
     final db = FluffyBoxDatabase(
@@ -56,6 +54,13 @@ class FlutterFluffyBoxDatabase extends FluffyBoxDatabase {
     await db.open();
     Logs().d('FluffyBox is ready');
     return db;
+  }
+
+  static Future<void> _onConfigure(sqflite.Database db) async {
+    await db.execute('PRAGMA page_size = 8192');
+    await db.execute('PRAGMA cache_size = 16384');
+    await db.execute('PRAGMA temp_store = MEMORY');
+    await db.execute('PRAGMA journal_mode = WAL');
   }
 
   static Future<sqflite.Database> _openSqlDatabase(
@@ -68,16 +73,17 @@ class FlutterFluffyBoxDatabase extends FluffyBoxDatabase {
         final db = await sqflite.openDatabase(
           path,
           password: password,
-          onConfigure: (db) async {
-            await db.execute('PRAGMA page_size = 8192');
-            await db.execute('PRAGMA cache_size = 16384');
-            await db.execute('PRAGMA temp_store = MEMORY');
-            await db.rawQuery('PRAGMA journal_mode = WAL');
-          },
+          onConfigure: _onConfigure,
         );
         return db;
       }
-      final db = await ffi.databaseFactoryFfi.openDatabase(path);
+      final db = await ffi.databaseFactoryFfi.openDatabase(
+        path,
+        options: sqflite.SqlCipherOpenDatabaseOptions(
+          password: password,
+          onConfigure: _onConfigure,
+        ),
+      );
       return db;
     } catch (_) {
       File(path).delete();
