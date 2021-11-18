@@ -60,7 +60,6 @@ class FlutterFluffyBoxDatabase extends FluffyBoxDatabase {
     await db.execute('PRAGMA page_size = 8192');
     await db.execute('PRAGMA cache_size = 16384');
     await db.execute('PRAGMA temp_store = MEMORY');
-    await db.execute('PRAGMA journal_mode = WAL');
   }
 
   static Future<sqflite.Database> _openSqlDatabase(
@@ -69,24 +68,28 @@ class FlutterFluffyBoxDatabase extends FluffyBoxDatabase {
   ) async {
     final path = await _findDatabasePath(client);
     try {
+      late final sqflite.Database db;
       if (Platform.isAndroid || Platform.isIOS) {
-        final db = await sqflite.openDatabase(
+        db = await sqflite.openDatabase(
           path,
           password: password,
           onConfigure: _onConfigure,
         );
         return db;
+      } else {
+        db = await ffi.databaseFactoryFfi.openDatabase(
+          path,
+          options: sqflite.SqlCipherOpenDatabaseOptions(
+            password: password,
+            onConfigure: _onConfigure,
+          ),
+        );
       }
-      final db = await ffi.databaseFactoryFfi.openDatabase(
-        path,
-        options: sqflite.SqlCipherOpenDatabaseOptions(
-          password: password,
-          onConfigure: _onConfigure,
-        ),
-      );
+      await db.execute('PRAGMA journal_mode = WAL');
       return db;
     } catch (_) {
       File(path).delete();
+      Logs().w('Failed to open database. Delete file now...');
       rethrow;
     }
   }
