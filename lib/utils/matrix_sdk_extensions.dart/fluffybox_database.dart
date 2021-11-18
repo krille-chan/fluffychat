@@ -65,8 +65,16 @@ class FlutterFluffyBoxDatabase extends FluffyBoxDatabase {
     final path = await _findDatabasePath(client);
     try {
       if (Platform.isAndroid || Platform.isIOS) {
-        //opensqflite.open.overrideFor(sqlite3.OperatingSystem.android, openCipherOnAndroid);
-        final db = await sqflite.openDatabase(path, password: password);
+        final db = await sqflite.openDatabase(
+          path,
+          password: password,
+          onConfigure: (db) async {
+            await db.execute('PRAGMA page_size = 8192');
+            await db.execute('PRAGMA cache_size = 16384');
+            await db.execute('PRAGMA temp_store = MEMORY');
+            await db.rawQuery('PRAGMA journal_mode = WAL');
+          },
+        );
         return db;
       }
       final db = await ffi.databaseFactoryFfi.openDatabase(path);
