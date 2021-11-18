@@ -2511,5 +2511,11 @@
   "iWroteDownTheKey": "كتبتُ المفتاح",
   "@iWroteDownTheKey": {},
   "setupChatBackupDescription": "لحماية رسائلك، أنشأنا مفتاح أمان لك.\nيرجى الاحتفاظ به في مكان آمن، كمدير لكلمات السر.",
-  "@setupChatBackupDescription": {}
+  "@setupChatBackupDescription": {},
+  "passwordsDoNotMatch": "كلمتا السر لا تتطبقان!",
+  "@passwordsDoNotMatch": {},
+  "pleaseEnterValidEmail": "رجاءً أدخل بيردًا إلكترونيًا صالحًا.",
+  "@pleaseEnterValidEmail": {},
+  "repeatPassword": "كرّر كلمة السر",
+  "@repeatPassword": {}
 }
