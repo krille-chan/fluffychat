@@ -357,7 +357,7 @@ packages:
       name: fluffybox
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.2"
+    version: "0.2.3"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -775,7 +775,7 @@ packages:
     description:
       path: "."
       ref: "krille/idb"
-      resolved-ref: "3fc13a10a8cd1615d5ce0a6d9cc72b3bb7dc0799"
+      resolved-ref: d65bd5b950d1e9a67ac2b8ab4f3172b2135ac48e
       url: "https://gitlab.com/famedly/company/frontend/famedlysdk.git"
     source: git
     version: "0.7.0-nullsafety.6"
