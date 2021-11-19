@@ -2638,5 +2638,9 @@
   "messageType": "Tipo de mensaxe",
   "@messageType": {},
   "removeFromSpace": "Retirar do espazo",
-  "@removeFromSpace": {}
+  "@removeFromSpace": {},
+  "start": "Comezar",
+  "@start": {},
+  "setupChatBackupNow": "Configura a copia de apoio do chat",
+  "@setupChatBackupNow": {}
 }
