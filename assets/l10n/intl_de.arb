@@ -122,7 +122,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSSign": "Bitte gib, um die andere Person signieren zu können, dein Secure-Store-Passwort oder Wiederherstellungsschlüssel ein.",
+  "askSSSSSign": "Bitte gib, um die andere Person signieren zu können, dein Sicherheitsschlüssel oder Wiederherstellungsschlüssel ein.",
   "@askSSSSSign": {
     "type": "text",
     "placeholders": {}
@@ -2615,5 +2615,40 @@
   "unverified": "Unverifiziert",
   "@unverified": {},
   "yourUserId": "Deine Benutzer-ID:",
-  "@yourUserId": {}
+  "@yourUserId": {},
+  "messageInfo": "Nachrichten-Info",
+  "@messageInfo": {},
+  "time": "Zeit",
+  "@time": {},
+  "messageType": "Nachrichtentyp",
+  "@messageType": {},
+  "sender": "Absender:in",
+  "@sender": {},
+  "openGallery": "Galerie öffnen",
+  "@openGallery": {},
+  "removeFromSpace": "Aus dem Space entfernen",
+  "@removeFromSpace": {},
+  "removeFromSpaceDescription": "Dadurch wird dieser Chat aus dem aktuellen Space entfernt. Er ist dann weiterhin unter \"Alle Chats\" sichtbar.",
+  "@removeFromSpaceDescription": {},
+  "addToSpaceDescription": "Wähle einen Space aus, um diesen Chat hinzuzufügen.",
+  "@addToSpaceDescription": {},
+  "loginWithOneClick": "Anmelden mit einem Klick",
+  "@loginWithOneClick": {},
+  "start": "Start",
+  "@start": {},
+  "setupChatBackupNow": "Richte jetzt ein Chat-Backup ein",
+  "@setupChatBackupNow": {},
+  "passwordsDoNotMatch": "Passwörter stimmen nicht überein!",
+  "@passwordsDoNotMatch": {},
+  "pleaseEnterValidEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+  "@pleaseEnterValidEmail": {},
+  "repeatPassword": "Passwort wiederholen",
+  "@repeatPassword": {},
+  "pleaseChooseAtLeastChars": "Bitte wähle mindestens {min} Zeichen.",
+  "@pleaseChooseAtLeastChars": {
+    "type": "text",
+    "placeholders": {
+      "min": {}
+    }
+  }
 }
