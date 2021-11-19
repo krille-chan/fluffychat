@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -13,7 +15,7 @@ import 'matrix.dart';
 class ChatSettingsPopupMenu extends StatefulWidget {
   final Room room;
   final bool displayChatDetails;
-  const ChatSettingsPopupMenu(this.room, this.displayChatDetails, {Key key})
+  const ChatSettingsPopupMenu(this.room, this.displayChatDetails, {Key? key})
       : super(key: key);
 
   @override
@@ -21,7 +23,7 @@ class ChatSettingsPopupMenu extends StatefulWidget {
 }
 
 class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
-  StreamSubscription notificationChangeSub;
+  StreamSubscription? notificationChangeSub;
 
   @override
   void dispose() {
@@ -37,7 +39,7 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
         .stream
         .where((u) => u.type == 'm.push_rules')
         .listen(
-          (u) => setState(() => null),
+          (u) => setState(() {}),
         );
     final items = <PopupMenuEntry<String>>[
       widget.room.pushRuleState == PushRuleState.notify
@@ -47,7 +49,7 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                 children: [
                   const Icon(Icons.notifications_off_outlined),
                   const SizedBox(width: 12),
-                  Text(L10n.of(context).muteChat),
+                  Text(L10n.of(context)!.muteChat),
                 ],
               ),
             )
@@ -57,7 +59,7 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                 children: [
                   const Icon(Icons.notifications_on_outlined),
                   const SizedBox(width: 12),
-                  Text(L10n.of(context).unmuteChat),
+                  Text(L10n.of(context)!.unmuteChat),
                 ],
               ),
             ),
@@ -67,7 +69,7 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
           children: [
             const Icon(Icons.delete_outlined),
             const SizedBox(width: 12),
-            Text(L10n.of(context).leave),
+            Text(L10n.of(context)!.leave),
           ],
         ),
       ),
@@ -81,7 +83,7 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
             children: [
               const Icon(Icons.info_outline_rounded),
               const SizedBox(width: 12),
-              Text(L10n.of(context).chatDetails),
+              Text(L10n.of(context)!.chatDetails),
             ],
           ),
         ),
@@ -94,9 +96,9 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
             final confirmed = await showOkCancelAlertDialog(
               useRootNavigator: false,
               context: context,
-              title: L10n.of(context).areYouSure,
-              okLabel: L10n.of(context).ok,
-              cancelLabel: L10n.of(context).cancel,
+              title: L10n.of(context)!.areYouSure,
+              okLabel: L10n.of(context)!.ok,
+              cancelLabel: L10n.of(context)!.cancel,
             );
             if (confirmed == OkCancelResult.ok) {
               final success = await showFutureLoadingDialog(

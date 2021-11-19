@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -9,15 +11,15 @@ import '../utils/localized_exception_extension.dart';
 import 'matrix.dart';
 
 class ConnectionStatusHeader extends StatefulWidget {
-  const ConnectionStatusHeader({Key key}) : super(key: key);
+  const ConnectionStatusHeader({Key? key}) : super(key: key);
 
   @override
   _ConnectionStatusHeaderState createState() => _ConnectionStatusHeaderState();
 }
 
 class _ConnectionStatusHeaderState extends State<ConnectionStatusHeader> {
-  StreamSubscription _onSyncSub;
-  StreamSubscription _onSyncErrorSub;
+  StreamSubscription? _onSyncSub;
+  StreamSubscription? _onSyncErrorSub;
   bool get _connected =>
       DateTime.now().millisecondsSinceEpoch -
           _lastSyncReceived.millisecondsSinceEpoch <
@@ -82,14 +84,15 @@ extension on SyncStatusUpdate {
   String toLocalizedString(BuildContext context) {
     switch (status) {
       case SyncStatus.waitingForResponse:
-        return L10n.of(context).loadingPleaseWait;
+        return L10n.of(context)!.loadingPleaseWait;
       case SyncStatus.error:
-        return (error.exception as Object).toLocalizedString(context);
+        return ((error?.exception ?? Object()) as Object)
+            .toLocalizedString(context);
       case SyncStatus.processing:
       case SyncStatus.cleaningUp:
       case SyncStatus.finished:
       default:
-        return L10n.of(context).synchronizingPleaseWait;
+        return L10n.of(context)!.synchronizingPleaseWait;
     }
   }
 }
