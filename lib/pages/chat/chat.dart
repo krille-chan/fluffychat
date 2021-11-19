@@ -169,13 +169,7 @@ class ChatController extends State<Chat> {
       timeline = await room.getTimeline(onUpdate: updateView);
       if (timeline.events.isNotEmpty) {
         // ignore: unawaited_futures
-        room.markUnread(false).catchError((err) {
-          if (err is MatrixException && err.errcode == 'M_FORBIDDEN') {
-            // ignore if the user is not in the room (still joining)
-            return;
-          }
-          throw err;
-        });
+        if (room.markedUnread) room.markUnread(false);
       }
 
       // when the scroll controller is attached we want to scroll to an event id, if specified
