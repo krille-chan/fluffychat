@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 
 import 'dart:async';
 
@@ -33,8 +33,11 @@ void main() async {
   // To make sure that the parts of flutter needed are started up already, we need to ensure that the
   // widget bindings are initialized already.
   WidgetsFlutterBinding.ensureInitialized();
-  FlutterError.onError = (FlutterErrorDetails details) =>
-      Zone.current.handleUncaughtError(details.exception, details.stack);
+  FlutterError.onError =
+      (FlutterErrorDetails details) => Zone.current.handleUncaughtError(
+            details.exception,
+            details.stack ?? StackTrace.current,
+          );
 
   final clients = await ClientManager.getClients();
   Logs().level = kReleaseMode ? Level.warning : Level.verbose;
@@ -65,13 +68,16 @@ void main() async {
 }
 
 class FluffyChatApp extends StatefulWidget {
-  final Widget testWidget;
+  final Widget? testWidget;
   final List<Client> clients;
-  final Map<String, String> queryParameters;
+  final Map<String, String>? queryParameters;
 
-  const FluffyChatApp(
-      {Key key, this.testWidget, @required this.clients, this.queryParameters})
-      : super(key: key);
+  const FluffyChatApp({
+    Key? key,
+    this.testWidget,
+    required this.clients,
+    this.queryParameters,
+  }) : super(key: key);
 
   /// getInitialLink may rereturn the value multiple times if this view is
   /// opened multiple times for example if the user logs out after they logged
@@ -83,9 +89,9 @@ class FluffyChatApp extends StatefulWidget {
 }
 
 class _FluffyChatAppState extends State<FluffyChatApp> {
-  GlobalKey<VRouterState> _router;
-  bool columnMode;
-  String _initialUrl;
+  GlobalKey<VRouterState>? _router;
+  bool? columnMode;
+  String? _initialUrl;
 
   @override
   void initState() {
@@ -110,9 +116,9 @@ class _FluffyChatAppState extends State<FluffyChatApp> {
           _router ??= GlobalKey<VRouterState>();
           if (columnMode != newColumns > 1) {
             Logs().v('Set Column Mode = $columnMode');
-            WidgetsBinding.instance.addPostFrameCallback((_) {
+            WidgetsBinding.instance?.addPostFrameCallback((_) {
               setState(() {
-                _initialUrl = _router.currentState.url;
+                _initialUrl = _router?.currentState?.url;
                 columnMode = newColumns > 1;
                 _router = GlobalKey<VRouterState>();
               });
@@ -127,17 +133,17 @@ class _FluffyChatAppState extends State<FluffyChatApp> {
             darkTheme: darkTheme,
             localizationsDelegates: L10n.localizationsDelegates,
             supportedLocales: L10n.supportedLocales,
-            initialUrl: _initialUrl,
+            initialUrl: _initialUrl ?? '/',
             locale: kIsWeb
                 ? Locale(html.window.navigator.language.split('-').first)
                 : null,
-            routes: AppRoutes(columnMode).routes,
+            routes: AppRoutes(columnMode ?? false).routes,
             builder: (context, child) {
-              LoadingDialog.defaultTitle = L10n.of(context).loadingPleaseWait;
-              LoadingDialog.defaultBackLabel = L10n.of(context).close;
+              LoadingDialog.defaultTitle = L10n.of(context)!.loadingPleaseWait;
+              LoadingDialog.defaultBackLabel = L10n.of(context)!.close;
               LoadingDialog.defaultOnError =
-                  (Object e) => e.toLocalizedString(context);
-              WidgetsBinding.instance.addPostFrameCallback((_) {
+                  (e) => (e as Object).toLocalizedString(context);
+              WidgetsBinding.instance?.addPostFrameCallback((_) {
                 SystemChrome.setSystemUIOverlayStyle(
                   SystemUiOverlayStyle(
                     statusBarColor: Colors.transparent,

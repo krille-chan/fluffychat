@@ -12,6 +12,7 @@ linter:
 analyzer:
   errors:
     todo: ignore
+    import_of_legacy_library_into_null_safe: ignore
   exclude:
     - lib/generated_plugin_registrant.dart
     - lib/l10n/*.dart

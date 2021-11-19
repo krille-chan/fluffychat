@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'dart:ui';
 
 import 'package:matrix/matrix.dart';
@@ -5,8 +7,8 @@ import 'package:matrix/matrix.dart';
 abstract class AppConfig {
   static String _applicationName = 'FluffyChat';
   static String get applicationName => _applicationName;
-  static String _applicationWelcomeMessage;
-  static String get applicationWelcomeMessage => _applicationWelcomeMessage;
+  static String? _applicationWelcomeMessage;
+  static String? get applicationWelcomeMessage => _applicationWelcomeMessage;
   static String _defaultHomeserver = 'matrix.org';
   static String get defaultHomeserver => _defaultHomeserver;
   static String jitsiInstance = 'https://meet.jit.si/';

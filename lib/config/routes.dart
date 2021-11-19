@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'package:flutter/material.dart';
 
 import 'package:vrouter/vrouter.dart';
@@ -341,7 +343,7 @@ class AppRoutes {
         ),
       ];
 
-  FadeTransition Function(dynamic, dynamic, dynamic) get _dynamicTransition =>
+  FadeTransition Function(dynamic, dynamic, dynamic)? get _dynamicTransition =>
       columnMode ? _fadeTransition : null;
 
   FadeTransition _fadeTransition(animation1, _, child) =>
