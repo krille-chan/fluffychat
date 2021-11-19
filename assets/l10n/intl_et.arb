@@ -2646,5 +2646,9 @@
   "removeFromSpace": "Eemalda kogukonnast",
   "@removeFromSpace": {},
   "removeFromSpaceDescription": "Järgnevaga eemaldad antud vestluse sellest kogukonnast. Vestlus on jätkuvalt leitav vaatest „Kõik vestlused“.",
-  "@removeFromSpaceDescription": {}
+  "@removeFromSpaceDescription": {},
+  "start": "Alusta",
+  "@start": {},
+  "setupChatBackupNow": "Seadista oma vestluste varundus",
+  "@setupChatBackupNow": {}
 }
