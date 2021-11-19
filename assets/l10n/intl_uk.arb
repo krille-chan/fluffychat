@@ -2641,5 +2641,9 @@
   "removeFromSpaceDescription": "Це вилучає цей чат з поточного простору. Він усе одно буде видимий у розділі «Усі чати».",
   "@removeFromSpaceDescription": {},
   "removeFromSpace": "Вилучити з простору",
-  "@removeFromSpace": {}
+  "@removeFromSpace": {},
+  "start": "Почати",
+  "@start": {},
+  "setupChatBackupNow": "Налаштуйте резервне копіювання чату зараз",
+  "@setupChatBackupNow": {}
 }
