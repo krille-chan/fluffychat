@@ -16,7 +16,7 @@ class FlutterFluffyBoxDatabase extends FluffyBoxDatabase {
   FlutterFluffyBoxDatabase(
     String name,
     String path, {
-    List<int>? key,
+    HiveCipher? key,
   }) : super(
           name,
           path,
@@ -27,7 +27,7 @@ class FlutterFluffyBoxDatabase extends FluffyBoxDatabase {
 
   static Future<FluffyBoxDatabase> databaseBuilder(Client client) async {
     Logs().d('Open FluffyBox...');
-    List<int>? hiverCipher;
+    HiveAesCipher? hiverCipher;
     try {
       // Workaround for secure storage is calling Platform.operatingSystem on web
       if (kIsWeb) throw MissingPluginException();
@@ -47,7 +47,7 @@ class FlutterFluffyBoxDatabase extends FluffyBoxDatabase {
       final rawEncryptionKey = await secureStorage.read(key: _cipherStorageKey);
       if (rawEncryptionKey == null) throw MissingPluginException();
 
-      hiverCipher = base64Url.decode(rawEncryptionKey);
+      hiverCipher = HiveAesCipher(base64Url.decode(rawEncryptionKey));
     } on MissingPluginException catch (_) {
       Logs().i('FluffyBox encryption is not supported on this platform');
     }
