@@ -316,7 +316,7 @@ class ChatView extends StatelessWidget {
                   if (controller.room.canSendDefaultMessages &&
                       controller.room.membership == Membership.join)
                     Container(
-                      padding: EdgeInsets.only(
+                      margin: EdgeInsets.only(
                         bottom: bottomSheetPadding,
                         left: bottomSheetPadding,
                         right: bottomSheetPadding,
