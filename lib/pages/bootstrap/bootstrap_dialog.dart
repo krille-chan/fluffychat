@@ -57,14 +57,18 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
 
   bool _wipe;
 
+  @override
+  void initState() {
+    _createBootstrap(widget.wipe);
+    super.initState();
+  }
+
   void _createBootstrap(bool wipe) {
-    setState(() {
-      _wipe = wipe;
-      titleText = null;
-      _recoveryKeyStored = false;
-      bootstrap = widget.client.encryption
-          .bootstrap(onUpdate: () => setState(() => null));
-    });
+    _wipe = wipe;
+    titleText = null;
+    _recoveryKeyStored = false;
+    bootstrap = widget.client.encryption
+        .bootstrap(onUpdate: () => setState(() => null));
   }
 
   @override
@@ -76,20 +80,7 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
         : const LinearProgressIndicator();
     titleText = L10n.of(context).loadingPleaseWait;
 
-    if (bootstrap == null) {
-      titleText = L10n.of(context).setupChatBackup;
-      body = Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Image.asset('assets/backup.png', fit: BoxFit.contain),
-          Text(L10n.of(context).setupChatBackupDescription),
-        ],
-      );
-      buttons.add(AdaptiveFlatButton(
-        label: L10n.of(context).next,
-        onPressed: () => _createBootstrap(false),
-      ));
-    } else if (bootstrap.newSsssKey?.recoveryKey != null &&
+    if (bootstrap.newSsssKey?.recoveryKey != null &&
         _recoveryKeyStored == false) {
       final key = bootstrap.newSsssKey.recoveryKey;
       titleText = L10n.of(context).securityKey;
@@ -183,6 +174,11 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
                 child: ListView(
                   padding: const EdgeInsets.all(16.0),
                   children: [
+                    Text(
+                      L10n.of(context).setupChatBackupDescription,
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 16),
                     TextField(
                       minLines: 4,
                       maxLines: 4,
@@ -275,7 +271,7 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
                               cancelLabel: L10n.of(context).cancel,
                               isDestructiveAction: true,
                             )) {
-                          _createBootstrap(true);
+                          setState(() => _createBootstrap(true));
                         }
                       },
                     )

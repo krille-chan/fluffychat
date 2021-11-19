@@ -79,13 +79,13 @@ class ChatListController extends State<ChatList> {
 
   final selectedRoomIds = <String>{};
   bool crossSigningCached;
-  bool hideChatBackupBanner = false;
-
-  void hideChatBackupBannerAction() =>
-      setState(() => hideChatBackupBanner = true);
+  bool showChatBackupBanner = false;
 
   void firstRunBootstrapAction() async {
-    hideChatBackupBannerAction();
+    setState(() {
+      showChatBackupBanner = false;
+    });
+
     await BootstrapDialog(
       client: Matrix.of(context).client,
     ).show(context);
@@ -181,7 +181,9 @@ class ChatListController extends State<ChatList> {
             crossSigning == false;
     final isUnknownSession = Matrix.of(context).client.isUnknownSession;
     if (needsBootstrap || isUnknownSession) {
-      firstRunBootstrapAction();
+      setState(() {
+        showChatBackupBanner = true;
+      });
     }
   }
 

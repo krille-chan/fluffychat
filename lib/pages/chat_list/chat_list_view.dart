@@ -182,6 +182,27 @@ class ChatListView extends StatelessWidget {
               ),
               body: Column(children: [
                 const ConnectionStatusHeader(),
+                AnimatedContainer(
+                  height: controller.showChatBackupBanner ? 54 : 0,
+                  duration: const Duration(milliseconds: 300),
+                  clipBehavior: Clip.hardEdge,
+                  curve: Curves.bounceInOut,
+                  decoration: const BoxDecoration(),
+                  child: MaterialBanner(
+                    leading: Image.asset(
+                      'assets/backup.png',
+                      fit: BoxFit.contain,
+                      width: 44,
+                    ),
+                    content: Text(L10n.of(context).setupChatBackupNow),
+                    actions: [
+                      TextButton(
+                        onPressed: controller.firstRunBootstrapAction,
+                        child: Text(L10n.of(context).start),
+                      ),
+                    ],
+                  ),
+                ),
                 Expanded(child: _ChatListViewBody(controller)),
               ]),
               floatingActionButton: selectMode == SelectMode.normal

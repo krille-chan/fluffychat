@@ -2615,5 +2615,7 @@
   "openGallery": "Open gallery",
   "removeFromSpace": "Remove from space",
   "removeFromSpaceDescription": "This removes this chat from the current space. It will then still be visible under \"All chats\".",
-  "addToSpaceDescription": "Select a space to add this chat to it."
+  "addToSpaceDescription": "Select a space to add this chat to it.",
+  "start": "Start",
+  "setupChatBackupNow": "Set up your chat backup now"
 }
