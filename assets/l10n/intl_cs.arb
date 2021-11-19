@@ -50,7 +50,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "admin": "Administrátor",
+  "admin": "Správce",
   "@admin": {
     "type": "text",
     "placeholders": {}
@@ -1270,7 +1270,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "login": "Přihlásit",
+  "login": "Přihlásit se",
   "@login": {
     "type": "text",
     "placeholders": {}
@@ -2638,5 +2638,17 @@
   "pleaseEnterValidEmail": "Prosím zadejte platnou emailovou adresu.",
   "@pleaseEnterValidEmail": {},
   "openGallery": "Otevřít galerii",
-  "@openGallery": {}
+  "@openGallery": {},
+  "addToSpaceDescription": "Vyberte umístění, do kterého chcete tento chat přidat.",
+  "@addToSpaceDescription": {},
+  "loginWithOneClick": "Přihlaste se jedním kliknutím",
+  "@loginWithOneClick": {},
+  "start": "Start",
+  "@start": {},
+  "removeFromSpaceDescription": "Tímto se chat odstraní z aktuálního místa. Poté bude stále viditelný v sekci \"Všechny chaty\".",
+  "@removeFromSpaceDescription": {},
+  "removeFromSpace": "Odstranit z tohoto místa",
+  "@removeFromSpace": {},
+  "setupChatBackupNow": "Nastavte si zálohu chatu hned teď",
+  "@setupChatBackupNow": {}
 }
