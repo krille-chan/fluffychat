@@ -92,25 +92,7 @@ class SettingsSecurityController extends State<SettingsSecurity> {
     }
   }
 
-  void bootstrapSettingsAction() async {
-    if (await Matrix.of(context).client.encryption.keyManager.isCached()) {
-      if (OkCancelResult.ok ==
-          await showOkCancelAlertDialog(
-            useRootNavigator: false,
-            context: context,
-            title: L10n.of(context).keysCached,
-            message: L10n.of(context).wipeChatBackup,
-            isDestructiveAction: true,
-            okLabel: L10n.of(context).ok,
-            cancelLabel: L10n.of(context).cancel,
-          )) {
-        await BootstrapDialog(
-          client: Matrix.of(context).client,
-          wipe: true,
-        ).show(context);
-      }
-      return;
-    }
+  void showBootstrapDialog(BuildContext context) async {
     await BootstrapDialog(
       client: Matrix.of(context).client,
     ).show(context);

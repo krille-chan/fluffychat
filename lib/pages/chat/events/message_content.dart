@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
-import 'package:matrix/encryption/utils/key_verification.dart';
 import 'package:matrix/matrix.dart';
 import 'package:matrix_link_text/link_text.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'package:fluffychat/pages/key_verification/key_verification_dialog.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/event_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -15,6 +13,7 @@ import '../../../config/app_config.dart';
 import '../../../pages/video_viewer/video_viewer.dart';
 import '../../../utils/platform_infos.dart';
 import '../../../utils/url_launcher.dart';
+import '../../bootstrap/bootstrap_dialog.dart';
 import 'audio_player.dart';
 import 'html_message.dart';
 import 'image_bubble.dart';
@@ -44,22 +43,12 @@ class MessageContent extends StatelessWidget {
     }
     final client = Matrix.of(context).client;
     if (client.isUnknownSession && client.encryption.crossSigning.enabled) {
-      final req =
-          await client.userDeviceKeys[client.userID].startVerification();
-      req.onUpdate = () async {
-        if (req.state == KeyVerificationState.done) {
-          for (var i = 0; i < 12; i++) {
-            if (await client.encryption.keyManager.isCached()) {
-              break;
-            }
-            await Future.delayed(const Duration(seconds: 1));
-          }
-          final timeline = await event.room.getTimeline();
-          timeline.requestKeys();
-          timeline.cancelSubscriptions();
-        }
-      };
-      await KeyVerificationDialog(request: req).show(context);
+      await BootstrapDialog(
+        client: Matrix.of(context).client,
+      ).show(context);
+      final timeline = await event.room.getTimeline();
+      timeline.requestKeys();
+      timeline.cancelSubscriptions();
     } else {
       final success = await showFutureLoadingDialog(
         context: context,

@@ -67,6 +67,10 @@ class SettingsSecurityView extends StatelessWidget {
                       Matrix.of(context).client.encryption.crossSigning.enabled
                           ? const Icon(Icons.check, color: Colors.green)
                           : const Icon(Icons.error, color: Colors.red),
+                  onTap:
+                      Matrix.of(context).client.encryption.crossSigning.enabled
+                          ? null
+                          : () => controller.showBootstrapDialog(context),
                 ),
                 ListTile(
                   title: Text(L10n.of(context).onlineKeyBackupEnabled),
@@ -74,24 +78,40 @@ class SettingsSecurityView extends StatelessWidget {
                       Matrix.of(context).client.encryption.keyManager.enabled
                           ? const Icon(Icons.check, color: Colors.green)
                           : const Icon(Icons.error, color: Colors.red),
+                  onTap: Matrix.of(context).client.encryption.keyManager.enabled
+                      ? null
+                      : () => controller.showBootstrapDialog(context),
                 ),
                 ListTile(
                   title: const Text('Session verified'),
                   trailing: !Matrix.of(context).client.isUnknownSession
                       ? const Icon(Icons.check, color: Colors.green)
                       : const Icon(Icons.error, color: Colors.red),
+                  onTap: !Matrix.of(context).client.isUnknownSession
+                      ? null
+                      : () => controller.showBootstrapDialog(context),
                 ),
                 FutureBuilder(
-                  future: Matrix.of(context)
-                      .client
-                      .encryption
-                      .keyManager
-                      .isCached(),
+                  future: () async {
+                    return (await Matrix.of(context)
+                            .client
+                            .encryption
+                            .keyManager
+                            .isCached()) &&
+                        (await Matrix.of(context)
+                            .client
+                            .encryption
+                            .crossSigning
+                            .isCached());
+                  }(),
                   builder: (context, snapshot) => ListTile(
                     title: Text(L10n.of(context).keysCached),
                     trailing: snapshot.data == true
                         ? const Icon(Icons.check, color: Colors.green)
                         : const Icon(Icons.error, color: Colors.red),
+                    onTap: snapshot.data == true
+                        ? null
+                        : () => controller.showBootstrapDialog(context),
                   ),
                 ),
               },
