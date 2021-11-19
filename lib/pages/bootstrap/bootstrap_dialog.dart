@@ -182,8 +182,8 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
                     TextField(
                       minLines: 4,
                       maxLines: 4,
-                      autofocus: true,
                       autocorrect: false,
+                      readOnly: _recoveryKeyInputLoading,
                       autofillHints: _recoveryKeyInputLoading
                           ? null
                           : [AutofillHints.password],
@@ -196,31 +196,39 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
                     ),
                     const SizedBox(height: 16),
                     ElevatedButton.icon(
-                        icon: const Icon(Icons.lock_open_outlined),
+                        icon: _recoveryKeyInputLoading
+                            ? const CircularProgressIndicator.adaptive()
+                            : const Icon(Icons.lock_open_outlined),
                         label: Text(L10n.of(context).unlockChatBackup),
-                        onPressed: () async {
-                          setState(() {
-                            _recoveryKeyInputError = null;
-                            _recoveryKeyInputLoading = true;
-                          });
-                          try {
-                            final key = _recoveryKeyTextEditingController.text;
-                            await bootstrap.newSsssKey.unlock(
-                              keyOrPassphrase: key,
-                            );
-                            await bootstrap.client.encryption.crossSigning
-                                .selfSign(
-                              keyOrPassphrase: key,
-                            );
-                            await bootstrap.openExistingSsss();
-                          } catch (e, s) {
-                            Logs().w('Unable to unlock SSSS', e, s);
-                            setState(() => _recoveryKeyInputError =
-                                L10n.of(context).oopsSomethingWentWrong);
-                          } finally {
-                            setState(() => _recoveryKeyInputLoading = false);
-                          }
-                        }),
+                        onPressed: _recoveryKeyInputLoading
+                            ? null
+                            : () async {
+                                setState(() {
+                                  _recoveryKeyInputError = null;
+                                  _recoveryKeyInputLoading = true;
+                                });
+                                try {
+                                  final key =
+                                      _recoveryKeyTextEditingController.text;
+                                  await bootstrap.newSsssKey.unlock(
+                                    keyOrPassphrase: key,
+                                  );
+                                  Logs().d('SSSS unlocked');
+                                  await bootstrap.client.encryption.crossSigning
+                                      .selfSign(
+                                    keyOrPassphrase: key,
+                                  );
+                                  Logs().d('Successful elfsigned');
+                                  await bootstrap.openExistingSsss();
+                                } catch (e, s) {
+                                  Logs().w('Unable to unlock SSSS', e, s);
+                                  setState(() => _recoveryKeyInputError =
+                                      L10n.of(context).oopsSomethingWentWrong);
+                                } finally {
+                                  setState(
+                                      () => _recoveryKeyInputLoading = false);
+                                }
+                              }),
                     const SizedBox(height: 16),
                     Row(children: [
                       const Expanded(child: Divider()),
@@ -239,18 +247,20 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
                       icon:
                           const Icon(Icons.transfer_within_a_station_outlined),
                       label: Text(L10n.of(context).transferFromAnotherDevice),
-                      onPressed: () async {
-                        final req = await showFutureLoadingDialog(
-                          context: context,
-                          future: () => widget
-                              .client.userDeviceKeys[widget.client.userID]
-                              .startVerification(),
-                        );
-                        if (req.error != null) return;
-                        await KeyVerificationDialog(request: req.result)
-                            .show(context);
-                        Navigator.of(context, rootNavigator: false).pop();
-                      },
+                      onPressed: _recoveryKeyInputLoading
+                          ? null
+                          : () async {
+                              final req = await showFutureLoadingDialog(
+                                context: context,
+                                future: () => widget
+                                    .client.userDeviceKeys[widget.client.userID]
+                                    .startVerification(),
+                              );
+                              if (req.error != null) return;
+                              await KeyVerificationDialog(request: req.result)
+                                  .show(context);
+                              Navigator.of(context, rootNavigator: false).pop();
+                            },
                     ),
                     const SizedBox(height: 16),
                     ElevatedButton.icon(
@@ -260,20 +270,22 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
                       ),
                       icon: const Icon(Icons.delete_outlined),
                       label: Text(L10n.of(context).securityKeyLost),
-                      onPressed: () async {
-                        if (OkCancelResult.ok ==
-                            await showOkCancelAlertDialog(
-                              useRootNavigator: false,
-                              context: context,
-                              title: L10n.of(context).securityKeyLost,
-                              message: L10n.of(context).wipeChatBackup,
-                              okLabel: L10n.of(context).ok,
-                              cancelLabel: L10n.of(context).cancel,
-                              isDestructiveAction: true,
-                            )) {
-                          setState(() => _createBootstrap(true));
-                        }
-                      },
+                      onPressed: _recoveryKeyInputLoading
+                          ? null
+                          : () async {
+                              if (OkCancelResult.ok ==
+                                  await showOkCancelAlertDialog(
+                                    useRootNavigator: false,
+                                    context: context,
+                                    title: L10n.of(context).securityKeyLost,
+                                    message: L10n.of(context).wipeChatBackup,
+                                    okLabel: L10n.of(context).ok,
+                                    cancelLabel: L10n.of(context).cancel,
+                                    isDestructiveAction: true,
+                                  )) {
+                                setState(() => _createBootstrap(true));
+                              }
+                            },
                     )
                   ],
                 ),
