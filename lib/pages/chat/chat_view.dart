@@ -297,17 +297,17 @@ class ChatView extends StatelessWidget {
                                                         eventId),
                                                 longPressSelect: controller
                                                     .selectedEvents.isEmpty,
-                                                selected: controller
-                                                    .selectedEvents
-                                                    .contains(controller
-                                                        .filteredEvents[i - 1]),
+                                                selected: controller.selectedEvents.any((e) =>
+                                                    e.eventId ==
+                                                    controller
+                                                        .filteredEvents[i - 1]
+                                                        .eventId),
                                                 timeline: controller.timeline,
-                                                nextEvent: i <
-                                                        controller
-                                                            .filteredEvents
-                                                            .length
-                                                    ? controller.filteredEvents[i]
-                                                    : null),
+                                                nextEvent:
+                                                    i < controller.filteredEvents.length
+                                                        ? controller
+                                                            .filteredEvents[i]
+                                                        : null),
                                           ),
                                         );
                             },
