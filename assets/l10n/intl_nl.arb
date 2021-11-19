@@ -2645,5 +2645,9 @@
   "removeFromSpace": "Uit de ruimte verwijderen",
   "@removeFromSpace": {},
   "removeFromSpaceDescription": "Dit verwijdert deze chat uit de huidige ruimte. Het zal dan nog steeds zichtbaar zijn onder \"Alle chats\".",
-  "@removeFromSpaceDescription": {}
+  "@removeFromSpaceDescription": {},
+  "start": "Start",
+  "@start": {},
+  "setupChatBackupNow": "Stel je chat back-up nu in",
+  "@setupChatBackupNow": {}
 }
