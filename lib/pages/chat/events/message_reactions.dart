@@ -41,44 +41,53 @@ class MessageReactions extends StatelessWidget {
         reactionMap[key].reacted |= e.senderId == e.room.client.userID;
       }
     }
+
     final reactionList = reactionMap.values.toList();
     reactionList.sort((a, b) => b.count - a.count > 0 ? 1 : -1);
-    return Wrap(
-        spacing: 4.0,
-        runSpacing: 4.0,
-        children: reactionList
-            .map(
-              (r) => _Reaction(
-                reactionKey: r.key,
-                count: r.count,
-                reacted: r.reacted,
-                onTap: () {
-                  if (r.reacted) {
-                    final evt = allReactionEvents.firstWhere(
-                        (e) =>
-                            e.senderId == e.room.client.userID &&
-                            e.content['m.relates_to']['key'] == r.key,
-                        orElse: () => null);
-                    if (evt != null) {
-                      showFutureLoadingDialog(
-                        context: context,
-                        future: () => evt.redactEvent(),
-                      );
-                    }
-                  } else {
+    return Wrap(spacing: 4.0, runSpacing: 4.0, children: [
+      if (allReactionEvents.any((e) => e.status.isSending))
+        const SizedBox(
+          width: 28,
+          height: 28,
+          child: Padding(
+            padding: EdgeInsets.all(4.0),
+            child: CircularProgressIndicator.adaptive(strokeWidth: 1),
+          ),
+        ),
+      ...reactionList
+          .map(
+            (r) => _Reaction(
+              reactionKey: r.key,
+              count: r.count,
+              reacted: r.reacted,
+              onTap: () {
+                if (r.reacted) {
+                  final evt = allReactionEvents.firstWhere(
+                      (e) =>
+                          e.senderId == e.room.client.userID &&
+                          e.content['m.relates_to']['key'] == r.key,
+                      orElse: () => null);
+                  if (evt != null) {
                     showFutureLoadingDialog(
-                        context: context,
-                        future: () =>
-                            event.room.sendReaction(event.eventId, r.key));
+                      context: context,
+                      future: () => evt.redactEvent(),
+                    );
                   }
-                },
-                onLongPress: () async => await _AdaptableReactorsDialog(
-                  client: client,
-                  reactionEntry: r,
-                ).show(context),
-              ),
-            )
-            .toList());
+                } else {
+                  showFutureLoadingDialog(
+                      context: context,
+                      future: () =>
+                          event.room.sendReaction(event.eventId, r.key));
+                }
+              },
+              onLongPress: () async => await _AdaptableReactorsDialog(
+                client: client,
+                reactionEntry: r,
+              ).show(context),
+            ),
+          )
+          .toList(),
+    ]);
   }
 }
 

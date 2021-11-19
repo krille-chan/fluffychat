@@ -12,20 +12,17 @@ class ReactionsPicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (controller.showEmojiPicker) return Container();
+    final display = controller.editEvent == null &&
+        controller.replyEvent == null &&
+        controller.room.canSendDefaultMessages &&
+        controller.selectedEvents.isNotEmpty;
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
-      height: (controller.editEvent == null &&
-              controller.replyEvent == null &&
-              controller.room.canSendDefaultMessages &&
-              controller.selectedEvents.length == 1)
-          ? 56
-          : 0,
+      height: (display) ? 56 : 0,
       child: Material(
         color: Theme.of(context).secondaryHeaderColor,
         child: Builder(builder: (context) {
-          if (!(controller.editEvent == null &&
-              controller.replyEvent == null &&
-              controller.selectedEvents.length == 1)) {
+          if (!display) {
             return Container();
           }
           final emojis = List<String>.from(AppEmojis.emojis);

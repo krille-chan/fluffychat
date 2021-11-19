@@ -631,14 +631,14 @@ class ChatController extends State<Chat> {
   }
 
   void sendEmojiAction(String emoji) async {
-    await showFutureLoadingDialog(
-      context: context,
-      future: () => room.sendReaction(
-        selectedEvents.single.eventId,
-        emoji,
-      ),
-    );
+    final events = List<Event>.from(selectedEvents);
     setState(() => selectedEvents.clear());
+    for (final event in events) {
+      await room.sendReaction(
+        event.eventId,
+        emoji,
+      );
+    }
   }
 
   void clearSelectedEvents() => setState(() {
