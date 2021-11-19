@@ -83,20 +83,14 @@ class MessageContent extends StatelessWidget {
       case EventTypes.Sticker:
         switch (event.messageType) {
           case MessageTypes.Image:
-            if (event.showThumbnail) {
-              return ImageBubble(
-                event,
-                width: 400,
-                height: 300,
-                fit: BoxFit.cover,
-              );
-            }
-            return MessageDownloadContent(event, textColor);
+            return ImageBubble(
+              event,
+              width: 400,
+              height: 300,
+              fit: BoxFit.cover,
+            );
           case MessageTypes.Sticker:
-            if (event.showThumbnail) {
-              return Sticker(event);
-            }
-            return MessageDownloadContent(event, textColor);
+            return Sticker(event);
           case MessageTypes.Audio:
             if (PlatformInfos.isMobile) {
               return AudioPlayerWidget(

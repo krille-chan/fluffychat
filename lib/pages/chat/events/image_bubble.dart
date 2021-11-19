@@ -190,30 +190,26 @@ class _ImageBubbleState extends State<ImageBubble> {
     final String filename = widget.event.content.containsKey('filename')
         ? widget.event.content['filename']
         : widget.event.body;
-    return Center(
+    return getPlaceholderWidget(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              primary: Theme.of(context).scaffoldBackgroundColor,
-              onPrimary: Theme.of(context).textTheme.bodyText1.color,
+          OutlinedButton.icon(
+            style: OutlinedButton.styleFrom(
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+              primary: Theme.of(context).textTheme.bodyText1.color,
             ),
+            icon: const Icon(Icons.download_outlined),
             onPressed: () => widget.event.saveFile(context),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Icon(Icons.download_outlined),
-                const SizedBox(width: 8),
-                Text(
-                  filename,
-                  overflow: TextOverflow.fade,
-                  softWrap: false,
-                  maxLines: 1,
-                ),
-              ],
+            label: Text(
+              filename,
+              overflow: TextOverflow.fade,
+              softWrap: false,
+              maxLines: 1,
             ),
           ),
+          const SizedBox(height: 8),
           if (widget.event.sizeString != null) Text(widget.event.sizeString),
           const SizedBox(height: 8),
           Text((error ?? _error).toString()),
@@ -357,10 +353,10 @@ class _ImageBubbleState extends State<ImageBubble> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Theme.of(context).scaffoldBackgroundColor,
-                    onPrimary: Theme.of(context).textTheme.bodyText1.color,
+                OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                    primary: Theme.of(context).textTheme.bodyText1.color,
                   ),
                   onPressed: () => onTap(context),
                   child: Text(
@@ -370,8 +366,10 @@ class _ImageBubbleState extends State<ImageBubble> {
                     maxLines: 1,
                   ),
                 ),
-                if (widget.event.sizeString != null)
+                if (widget.event.sizeString != null) ...[
+                  const SizedBox(height: 8),
                   Text(widget.event.sizeString),
+                ]
               ],
             ));
           }
