@@ -81,6 +81,18 @@ class ChatInputRow extends StatelessWidget {
                   itemBuilder: (BuildContext context) =>
                       <PopupMenuEntry<String>>[
                     PopupMenuItem<String>(
+                      value: 'videocall',
+                      child: ListTile(
+                        leading: const CircleAvatar(
+                          backgroundColor: Colors.blueGrey,
+                          foregroundColor: Colors.white,
+                          child: Icon(Icons.video_call_outlined),
+                        ),
+                        title: Text(L10n.of(context).videoCall),
+                        contentPadding: const EdgeInsets.all(0),
+                      ),
+                    ),
+                    PopupMenuItem<String>(
                       value: 'file',
                       child: ListTile(
                         leading: const CircleAvatar(

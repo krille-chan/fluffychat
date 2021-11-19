@@ -96,12 +96,6 @@ class ChatView extends StatelessWidget {
             ),
         ]
       : [
-          if (controller.room.canSendDefaultStates)
-            IconButton(
-              tooltip: L10n.of(context).videoCall,
-              icon: const Icon(Icons.video_call_outlined),
-              onPressed: controller.startCallAction,
-            ),
           ChatSettingsPopupMenu(controller.room, !controller.room.isDirectChat),
         ];
 

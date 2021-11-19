@@ -756,6 +756,9 @@ class ChatController extends State<Chat> {
     if (choice == 'location') {
       sendLocationAction();
     }
+    if (choice == 'videocall') {
+      startCallAction();
+    }
   }
 
   void onInputBarChanged(String text) {
