@@ -45,6 +45,7 @@ class UserDeviceListItem extends StatelessWidget {
       onTap: () async {
         final action = await showModalActionSheet<UserDeviceListItemAction>(
           context: context,
+          title: '${userDevice.displayName} (${userDevice.deviceId})',
           actions: [
             SheetAction(
               key: UserDeviceListItemAction.rename,
@@ -112,18 +113,6 @@ class UserDeviceListItem extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
           const Spacer(),
-          if (userDevice.lastSeenTs != null)
-            Text(DateTime.fromMillisecondsSinceEpoch(userDevice.lastSeenTs)
-                .localizedTimeShort(context)),
-        ],
-      ),
-      subtitle: Row(
-        children: <Widget>[
-          Text(
-            userDevice.deviceId,
-            style: const TextStyle(fontWeight: FontWeight.w300),
-          ),
-          const Spacer(),
           if (keys != null)
             Text(
               keys.blocked
@@ -140,6 +129,12 @@ class UserDeviceListItem extends StatelessWidget {
               ),
             ),
         ],
+      ),
+      subtitle: Text(
+        L10n.of(context).lastActiveAgo(
+            DateTime.fromMillisecondsSinceEpoch(userDevice.lastSeenTs)
+                .localizedTimeShort(context)),
+        style: const TextStyle(fontWeight: FontWeight.w300),
       ),
     );
   }
