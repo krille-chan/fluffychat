@@ -74,38 +74,50 @@ class PublicRoomBottomSheet extends StatelessWidget {
               extendBodyBehindAppBar: true,
               appBar: AppBar(
                 elevation: 0,
+                titleSpacing: 0,
                 backgroundColor:
                     Theme.of(context).scaffoldBackgroundColor.withOpacity(0.5),
-                title: Text(roomAlias),
+                title: Text(
+                  roomAlias,
+                  overflow: TextOverflow.fade,
+                ),
                 leading: IconButton(
                   icon: const Icon(Icons.arrow_downward_outlined),
                   onPressed: Navigator.of(context, rootNavigator: false).pop,
                   tooltip: L10n.of(context).close,
                 ),
+                actions: [
+                  TextButton.icon(
+                    onPressed: () => _joinRoom(context),
+                    label: Text(L10n.of(context).joinRoom),
+                    icon: const Icon(Icons.login_outlined),
+                  ),
+                ],
               ),
               body: FutureBuilder<PublicRoomsChunk>(
                   future: _search(context),
                   builder: (context, snapshot) {
                     final profile = snapshot.data;
-                    return Column(
+                    return ListView(
+                      padding: EdgeInsets.zero,
                       children: [
-                        Expanded(
-                          child: profile == null
-                              ? Container(
-                                  alignment: Alignment.center,
-                                  color: Theme.of(context).secondaryHeaderColor,
-                                  child: snapshot.hasError
-                                      ? Text(snapshot.error
-                                          .toLocalizedString(context))
-                                      : const CircularProgressIndicator
-                                          .adaptive(strokeWidth: 2),
-                                )
-                              : ContentBanner(
-                                  profile.avatarUrl,
-                                  defaultIcon: Icons.person_outline,
-                                  client: Matrix.of(context).client,
-                                ),
-                        ),
+                        if (profile == null)
+                          Container(
+                            alignment: Alignment.center,
+                            color: Theme.of(context).secondaryHeaderColor,
+                            child: snapshot.hasError
+                                ? Text(
+                                    snapshot.error.toLocalizedString(context))
+                                : const CircularProgressIndicator.adaptive(
+                                    strokeWidth: 2),
+                          )
+                        else
+                          ContentBanner(
+                            profile.avatarUrl,
+                            height: 156,
+                            defaultIcon: Icons.person_outline,
+                            client: Matrix.of(context).client,
+                          ),
                         ListTile(
                           title: Text(profile?.name ?? roomAlias.localpart),
                           subtitle: Text(
@@ -116,16 +128,6 @@ class PublicRoomBottomSheet extends StatelessWidget {
                           ListTile(
                             subtitle: Html(data: profile.topic),
                           ),
-                        Container(
-                          width: double.infinity,
-                          padding: const EdgeInsets.all(12),
-                          child: ElevatedButton.icon(
-                            onPressed: () => _joinRoom(context),
-                            label: Text(L10n.of(context).joinRoom),
-                            icon: const Icon(Icons.login_outlined),
-                          ),
-                        ),
-                        const SizedBox(height: 8),
                       ],
                     );
                   }),
