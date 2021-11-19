@@ -128,11 +128,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSCache": "Please enter your secure store passphrase or recovery key to cache the keys.",
-  "@askSSSSCache": {
-    "type": "text",
-    "placeholders": {}
-  },
   "askSSSSSign": "To be able to sign the other person, please enter your secure store passphrase or recovery key.",
   "@askSSSSSign": {
     "type": "text",

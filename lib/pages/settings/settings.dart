@@ -11,7 +11,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/utils/sentry_controller.dart';
 import '../../widgets/matrix.dart';
 import 'settings_view.dart';
 
@@ -106,64 +105,6 @@ class SettingsController extends State<Settings> {
     );
     if (success.error == null) {
       updateProfile();
-    }
-  }
-
-  Future<void> requestSSSSCache() async {
-    final handle = Matrix.of(context).client.encryption.ssss.open();
-    final input = await showTextInputDialog(
-      useRootNavigator: false,
-      context: context,
-      title: L10n.of(context).askSSSSCache,
-      okLabel: L10n.of(context).ok,
-      cancelLabel: L10n.of(context).cancel,
-      textFields: [
-        DialogTextField(
-          hintText: L10n.of(context).passphraseOrKey,
-          obscureText: true,
-          minLines: 1,
-          maxLines: 1,
-        )
-      ],
-    );
-    if (input != null) {
-      final valid = await showFutureLoadingDialog(
-          context: context,
-          future: () async {
-            // make sure the loading spinner shows before we test the keys
-            await Future.delayed(const Duration(milliseconds: 100));
-            var valid = false;
-            try {
-              await handle.unlock(recoveryKey: input.single);
-              valid = true;
-            } catch (e, s) {
-              SentryController.captureException(e, s);
-            }
-            return valid;
-          });
-
-      if (valid.result == true) {
-        await handle.maybeCacheAll();
-        await showOkAlertDialog(
-          useRootNavigator: false,
-          context: context,
-          message: L10n.of(context).cachedKeys,
-          okLabel: L10n.of(context).ok,
-        );
-        setState(() {
-          crossSigningCachedFuture = null;
-          crossSigningCached = null;
-          megolmBackupCachedFuture = null;
-          megolmBackupCached = null;
-        });
-      } else {
-        await showOkAlertDialog(
-          useRootNavigator: false,
-          context: context,
-          message: L10n.of(context).incorrectPassphraseOrKey,
-          okLabel: L10n.of(context).ok,
-        );
-      }
     }
   }
 
