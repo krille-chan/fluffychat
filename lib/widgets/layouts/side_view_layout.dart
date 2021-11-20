@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'package:flutter/material.dart';
 
 import 'package:vrouter/vrouter.dart';
@@ -6,15 +8,16 @@ import 'package:fluffychat/config/themes.dart';
 
 class SideViewLayout extends StatelessWidget {
   final Widget mainView;
-  final Widget sideView;
+  final Widget? sideView;
 
-  const SideViewLayout({Key key, @required this.mainView, this.sideView})
+  const SideViewLayout({Key? key, required this.mainView, this.sideView})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
     var currentUrl = Uri.decodeFull(VRouter.of(context).url);
     if (!currentUrl.endsWith('/')) currentUrl += '/';
     final hideSideView = currentUrl.split('/').length == 4;
+    final sideView = this.sideView;
     return sideView == null
         ? mainView
         : MediaQuery.of(context).size.width < FluffyThemes.columnWidth * 3.5 &&

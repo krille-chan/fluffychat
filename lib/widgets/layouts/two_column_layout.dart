@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'package:flutter/material.dart';
 
 import 'package:fluffychat/config/themes.dart';
@@ -6,9 +8,11 @@ class TwoColumnLayout extends StatelessWidget {
   final Widget mainView;
   final Widget sideView;
 
-  const TwoColumnLayout(
-      {Key key, @required this.mainView, @required this.sideView})
-      : super(key: key);
+  const TwoColumnLayout({
+    Key? key,
+    required this.mainView,
+    required this.sideView,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     if (MediaQuery.of(context).size.width <= FluffyThemes.columnWidth * 2) {

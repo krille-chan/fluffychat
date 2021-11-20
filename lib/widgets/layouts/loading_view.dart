@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
@@ -7,26 +9,21 @@ import 'package:fluffychat/widgets/layouts/empty_page.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class LoadingView extends StatelessWidget {
-  const LoadingView({Key key}) : super(key: key);
+  const LoadingView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    if (Matrix.of(context)
-        .widget
-        .clients
-        .every((client) => client.loginState != null)) {
-      WidgetsBinding.instance.addPostFrameCallback(
-        (_) => VRouter.of(context).to(
-          Matrix.of(context)
-                  .widget
-                  .clients
-                  .any((client) => client.loginState == LoginState.loggedIn)
-              ? '/rooms'
-              : '/home',
-          queryParameters: VRouter.of(context).queryParameters,
-        ),
-      );
-    }
+    WidgetsBinding.instance?.addPostFrameCallback(
+      (_) => VRouter.of(context).to(
+        Matrix.of(context)
+                .widget
+                .clients
+                .any((client) => client.loginState == LoginState.loggedIn)
+            ? '/rooms'
+            : '/home',
+        queryParameters: VRouter.of(context).queryParameters,
+      ),
+    );
     return const EmptyPage(loading: true);
   }
 }

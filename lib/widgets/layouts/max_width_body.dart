@@ -1,9 +1,11 @@
+//@dart=2.12
+
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 
 class MaxWidthBody extends StatelessWidget {
-  final Widget child;
+  final Widget? child;
   final double maxWidth;
   final bool withScrolling;
 
@@ -11,7 +13,7 @@ class MaxWidthBody extends StatelessWidget {
     this.child,
     this.maxWidth = 600,
     this.withScrolling = false,
-    Key key,
+    Key? key,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {

@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -8,12 +10,12 @@ import 'package:fluffychat/utils/string_color.dart';
 import 'matrix.dart';
 
 class Avatar extends StatelessWidget {
-  final Uri mxContent;
-  final String name;
+  final Uri? mxContent;
+  final String? name;
   final double size;
-  final Function onTap;
+  final void Function()? onTap;
   static const double defaultSize = 44;
-  final Client client;
+  final Client? client;
   final double fontSize;
 
   const Avatar(
@@ -23,7 +25,7 @@ class Avatar extends StatelessWidget {
     this.onTap,
     this.client,
     this.fontSize = 18,
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -34,10 +36,13 @@ class Avatar extends StatelessWidget {
       height: size * MediaQuery.of(context).devicePixelRatio,
     );
     var fallbackLetters = '@';
-    if ((name?.runes?.length ?? 0) >= 2) {
-      fallbackLetters = String.fromCharCodes(name.runes, 0, 2);
-    } else if ((name?.runes?.length ?? 0) == 1) {
-      fallbackLetters = name;
+    final name = this.name;
+    if (name != null) {
+      if (name.runes.length >= 2) {
+        fallbackLetters = String.fromCharCodes(name.runes, 0, 2);
+      } else if (name.runes.length == 1) {
+        fallbackLetters = name;
+      }
     }
     final noPic = mxContent == null ||
         mxContent.toString().isEmpty ||

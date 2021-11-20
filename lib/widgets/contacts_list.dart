@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -14,15 +16,15 @@ class ContactsList extends StatefulWidget {
   final TextEditingController searchController;
 
   const ContactsList({
-    Key key,
-    @required this.searchController,
+    Key? key,
+    required this.searchController,
   }) : super(key: key);
   @override
   _ContactsState createState() => _ContactsState();
 }
 
 class _ContactsState extends State<ContactsList> {
-  StreamSubscription _onSync;
+  StreamSubscription? _onSync;
 
   @override
   void dispose() {
@@ -31,11 +33,11 @@ class _ContactsState extends State<ContactsList> {
   }
 
   DateTime _lastSetState = DateTime.now();
-  Timer _coolDown;
+  Timer? _coolDown;
 
   void _updateView() {
     _lastSetState = DateTime.now();
-    setState(() => null);
+    setState(() {});
   }
 
   @override
@@ -68,15 +70,16 @@ class _ContactsState extends State<ContactsList> {
 class _ContactListTile extends StatelessWidget {
   final Presence contact;
 
-  const _ContactListTile({Key key, @required this.contact}) : super(key: key);
+  const _ContactListTile({Key? key, required this.contact}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<Profile>(
         future:
             Matrix.of(context).client.getProfileFromUserId(contact.senderId),
         builder: (context, snapshot) {
-          final displayname =
-              snapshot.data?.displayName ?? contact.senderId.localpart;
+          final displayname = snapshot.data?.displayName ??
+              contact.senderId.localpart ??
+              'No valid MXID';
           final avatarUrl = snapshot.data?.avatarUrl;
           return ListTile(
             leading: SizedBox(
@@ -108,7 +111,7 @@ class _ContactListTile extends StatelessWidget {
               'rooms',
               Matrix.of(context)
                   .client
-                  .getDirectChatFromUserId(contact.senderId)
+                  .getDirectChatFromUserId(contact.senderId)!
             ]),
           );
         });
