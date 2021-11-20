@@ -1,1 +1,138 @@
-{}
+{
+  "passwordsDoNotMatch": "Salasanat eivät täsmää!",
+  "@passwordsDoNotMatch": {},
+  "pleaseEnterValidEmail": "Syötä kelvollinen sähköpostiosoite.",
+  "@pleaseEnterValidEmail": {},
+  "repeatPassword": "Salasana uudelleen",
+  "@repeatPassword": {},
+  "pleaseChooseAtLeastChars": "Käytä vähintään {min} merkkiä.",
+  "@pleaseChooseAtLeastChars": {
+    "type": "text",
+    "placeholders": {
+      "min": {}
+    }
+  },
+  "about": "Tietoa FluffyChatista",
+  "@about": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "accept": "Hyväksy",
+  "@accept": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "account": "Tili",
+  "@account": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "accountInformation": "Tilitiedot",
+  "@accountInformation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "acceptedTheInvitation": "{username} hyväksyi kutsun",
+  "@acceptedTheInvitation": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "activatedEndToEndEncryption": "{username} otti käyttöön päästä-päähän salauksen",
+  "@activatedEndToEndEncryption": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "archive": "Arkisto",
+  "@archive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askSSSSSign": "Voidaksesi allekirjoittaa toisen henkilön, syötä turvavaraston salalause tai palautusavain.",
+  "@askSSSSSign": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addEmail": "Lisää sähköpostiosoite",
+  "@addEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addGroupDescription": "Lisää ryhmän kuvaus",
+  "@addGroupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewFriend": "Lisää uusi ystävä",
+  "@addNewFriend": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addToSpace": "Lisää avaruuteen",
+  "@addToSpace": {},
+  "admin": "Ylläpitäjä",
+  "@admin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "alias": "alias",
+  "@alias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "all": "Kaikki",
+  "@all": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "allChats": "Kaikki keskustelut",
+  "@allChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "alreadyHaveAnAccount": "Onko sinulla jo tunnus?",
+  "@alreadyHaveAnAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "answeredTheCall": "{senderName} vastasi puheluun",
+  "@answeredTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "anyoneCanJoin": "Kuka tahansa voi liittyä",
+  "@anyoneCanJoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appLock": "Sovelluksen lukitus",
+  "@appLock": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "archivedRoom": "Arkistoitu huone",
+  "@archivedRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areGuestsAllowedToJoin": "Sallitaanko vieraiden liittyminen",
+  "@areGuestsAllowedToJoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSureYouWantToLogout": "Haluatko varmasti kirjautua ulos?",
+  "@areYouSureYouWantToLogout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSure": "Oletko varma?",
+  "@areYouSure": {
+    "type": "text",
+    "placeholders": {}
+  }
+}
