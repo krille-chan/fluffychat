@@ -2561,7 +2561,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "moreEvents": "{count,plural, =1{1 more event} andra{{count} mer events}}",
+  "moreEvents": "{count,plural, =1{1 more event} other{{count} mer events}}",
   "@moreEvents": {
     "type": "text",
     "placeholders": {
