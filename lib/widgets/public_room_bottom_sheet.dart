@@ -103,6 +103,7 @@ class PublicRoomBottomSheet extends StatelessWidget {
                       children: [
                         if (profile == null)
                           Container(
+                            height: 156,
                             alignment: Alignment.center,
                             color: Theme.of(context).secondaryHeaderColor,
                             child: snapshot.hasError
