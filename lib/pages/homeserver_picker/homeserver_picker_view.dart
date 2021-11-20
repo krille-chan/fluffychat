@@ -188,15 +188,24 @@ class _SsoButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
-            identityProvider.icon == null
-                ? const Icon(Icons.web_outlined)
-                : CachedNetworkImage(
-                    imageUrl: Uri.parse(identityProvider.icon)
-                        .getDownloadLink(Matrix.of(context).getLoginClient())
-                        .toString(),
-                    width: 32,
-                    height: 32,
-                  ),
+            Material(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(7),
+              clipBehavior: Clip.hardEdge,
+              child: Padding(
+                padding: const EdgeInsets.all(2.0),
+                child: identityProvider.icon == null
+                    ? const Icon(Icons.web_outlined)
+                    : CachedNetworkImage(
+                        imageUrl: Uri.parse(identityProvider.icon)
+                            .getDownloadLink(
+                                Matrix.of(context).getLoginClient())
+                            .toString(),
+                        width: 32,
+                        height: 32,
+                      ),
+              ),
+            ),
             const SizedBox(height: 8),
             Text(
               identityProvider.name ??
