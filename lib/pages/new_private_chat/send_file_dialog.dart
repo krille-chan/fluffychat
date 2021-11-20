@@ -26,12 +26,11 @@ class _SendFileDialogState extends State<SendFileDialog> {
   bool origImage = false;
   bool _isSending = false;
 
-  static const maxWidth = 1600;
   Future<void> _send() async {
     var file = widget.file;
     if (file is MatrixImageFile && !origImage) {
       try {
-        file = await resizeImage(file, max: maxWidth);
+        file = await file.resizeImage();
       } catch (e) {
         // couldn't resize
       }

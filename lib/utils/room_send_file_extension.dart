@@ -31,7 +31,7 @@ extension RoomSendFileExtension on Room {
     MatrixFile thumbnail;
     try {
       if (file is MatrixImageFile) {
-        thumbnail = await resizeImage(file);
+        thumbnail = await file.resizeImage();
 
         if (thumbnail.size > file.size ~/ 2) {
           thumbnail = null;

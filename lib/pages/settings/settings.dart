@@ -79,12 +79,11 @@ class SettingsController extends State<Settings> {
     MatrixFile file;
     if (PlatformInfos.isMobile) {
       final result = await ImagePicker().pickImage(
-          source: action == AvatarAction.camera
-              ? ImageSource.camera
-              : ImageSource.gallery,
-          imageQuality: 50,
-          maxWidth: 1600,
-          maxHeight: 1600);
+        source: action == AvatarAction.camera
+            ? ImageSource.camera
+            : ImageSource.gallery,
+        imageQuality: 50,
+      );
       if (result == null) return;
       file = MatrixFile(
         bytes: await result.readAsBytes(),
