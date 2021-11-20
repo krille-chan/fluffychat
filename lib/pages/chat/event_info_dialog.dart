@@ -46,8 +46,10 @@ class EventInfoDialog extends StatelessWidget {
       body: ListView(
         children: [
           ListTile(
-            leading:
-                Avatar(event.sender.avatarUrl, event.sender.calcDisplayname()),
+            leading: Avatar(
+              mxContent: event.sender.avatarUrl,
+              name: event.sender.calcDisplayname(),
+            ),
             title: Text(L10n.of(context).sender),
             subtitle:
                 Text('${event.sender.calcDisplayname()} <${event.senderId}>'),

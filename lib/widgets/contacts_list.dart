@@ -87,7 +87,12 @@ class _ContactListTile extends StatelessWidget {
               height: Avatar.defaultSize,
               child: Stack(
                 children: [
-                  Center(child: Avatar(avatarUrl, displayname)),
+                  Center(
+                    child: Avatar(
+                      mxContent: avatarUrl,
+                      name: displayname,
+                    ),
+                  ),
                   Align(
                     alignment: Alignment.bottomRight,
                     child: Icon(

@@ -91,10 +91,10 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                             },
                             child: ListTile(
                               leading: Avatar(
-                                room
+                                mxContent: room
                                     .getUserByMXIDSync(deviceKeys[i].userId)
                                     .avatarUrl,
-                                room
+                                name: room
                                     .getUserByMXIDSync(deviceKeys[i].userId)
                                     .calcDisplayname(),
                               ),

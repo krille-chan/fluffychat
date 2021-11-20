@@ -48,8 +48,9 @@ class ClientChooserButton extends StatelessWidget {
                   builder: (context, snapshot) => Row(
                     children: [
                       Avatar(
-                        snapshot.data?.avatarUrl,
-                        snapshot.data?.displayName ?? client.userID.localpart,
+                        mxContent: snapshot.data?.avatarUrl,
+                        name: snapshot.data?.displayName ??
+                            client.userID.localpart,
                         size: 28,
                         fontSize: 12,
                       ),
@@ -84,8 +85,8 @@ class ClientChooserButton extends StatelessWidget {
         future: matrix.client.ownProfile,
         builder: (context, snapshot) => PopupMenuButton<Object>(
           child: Avatar(
-            snapshot.data?.avatarUrl,
-            snapshot.data?.displayName ?? matrix.client.userID.localpart,
+            mxContent: snapshot.data?.avatarUrl,
+            name: snapshot.data?.displayName ?? matrix.client.userID.localpart,
             size: 28,
             fontSize: 12,
           ),

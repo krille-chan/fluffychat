@@ -268,8 +268,9 @@ class _ChatAccountPicker extends StatelessWidget {
                       future: client.ownProfile,
                       builder: (context, snapshot) => ListTile(
                         leading: Avatar(
-                          snapshot.data?.avatarUrl,
-                          snapshot.data?.displayName ?? client.userID.localpart,
+                          mxContent: snapshot.data?.avatarUrl,
+                          name: snapshot.data?.displayName ??
+                              client.userID.localpart,
                           size: 20,
                         ),
                         title:
@@ -280,8 +281,8 @@ class _ChatAccountPicker extends StatelessWidget {
                   ))
               .toList(),
           child: Avatar(
-            snapshot.data?.avatarUrl,
-            snapshot.data?.displayName ??
+            mxContent: snapshot.data?.avatarUrl,
+            name: snapshot.data?.displayName ??
                 controller.matrix.client.userID.localpart,
             size: 20,
           ),
