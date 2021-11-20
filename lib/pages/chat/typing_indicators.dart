@@ -48,17 +48,17 @@ class TypingIndicators extends StatelessWidget {
                 children: [
                   if (typingUsers.isNotEmpty)
                     Avatar(
-                      typingUsers.first.avatarUrl,
-                      typingUsers.first.calcDisplayname(),
+                      mxContent: typingUsers.first.avatarUrl,
+                      name: typingUsers.first.calcDisplayname(),
                     ),
                   if (typingUsers.length == 2)
                     Padding(
                       padding: const EdgeInsets.only(left: 8),
                       child: Avatar(
-                        typingUsers.length == 2
+                        mxContent: typingUsers.length == 2
                             ? typingUsers.last.avatarUrl
                             : null,
-                        typingUsers.length == 2
+                        name: typingUsers.length == 2
                             ? typingUsers.last.calcDisplayname()
                             : '+${typingUsers.length - 1}',
                       ),

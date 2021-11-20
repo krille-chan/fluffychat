@@ -195,8 +195,11 @@ class SearchView extends StatelessWidget {
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Avatar(publicRoomsResponse.chunk[i].avatarUrl,
-                                      publicRoomsResponse.chunk[i].name),
+                                  Avatar(
+                                    mxContent:
+                                        publicRoomsResponse.chunk[i].avatarUrl,
+                                    name: publicRoomsResponse.chunk[i].name,
+                                  ),
                                   Text(
                                     publicRoomsResponse.chunk[i].name,
                                     style: const TextStyle(
@@ -262,8 +265,8 @@ class SearchView extends StatelessWidget {
                           }
                         },
                         leading: Avatar(
-                          foundProfile.avatarUrl,
-                          foundProfile.displayName ?? foundProfile.userId,
+                          mxContent: foundProfile.avatarUrl,
+                          name: foundProfile.displayName ?? foundProfile.userId,
                           //size: 24,
                         ),
                         title: Text(

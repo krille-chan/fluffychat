@@ -68,8 +68,8 @@ class SettingsIgnoreListView extends StatelessWidget {
                             client.getProfileFromUserId(client.ignoredUsers[i]),
                         builder: (c, s) => ListTile(
                           leading: Avatar(
-                            s.data?.avatarUrl ?? Uri.parse(''),
-                            s.data?.displayName ?? client.ignoredUsers[i],
+                            mxContent: s.data?.avatarUrl ?? Uri.parse(''),
+                            name: s.data?.displayName ?? client.ignoredUsers[i],
                           ),
                           title: Text(
                               s.data?.displayName ?? client.ignoredUsers[i]),

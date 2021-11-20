@@ -21,7 +21,10 @@ class ChatAppBarTitle extends StatelessWidget {
       return Text(controller.selectedEvents.length.toString());
     }
     return ListTile(
-      leading: Avatar(controller.room.avatar, controller.room.displayname),
+      leading: Avatar(
+        mxContent: controller.room.avatar,
+        name: controller.room.displayname,
+      ),
       contentPadding: EdgeInsets.zero,
       onTap: controller.room.isDirectChat
           ? () => showModalBottomSheet(

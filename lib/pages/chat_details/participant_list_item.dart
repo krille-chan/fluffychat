@@ -61,7 +61,7 @@ class ParticipantListItem extends StatelessWidget {
         ],
       ),
       subtitle: Text(user.id),
-      leading: Avatar(user.avatarUrl, user.calcDisplayname()),
+      leading: Avatar(mxContent: user.avatarUrl, name: user.calcDisplayname()),
     );
   }
 }

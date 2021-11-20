@@ -18,9 +18,9 @@ class Avatar extends StatelessWidget {
   final Client? client;
   final double fontSize;
 
-  const Avatar(
+  const Avatar({
     this.mxContent,
-    this.name, {
+    this.name,
     this.size = defaultSize,
     this.onTap,
     this.client,

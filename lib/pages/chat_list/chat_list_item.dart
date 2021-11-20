@@ -171,7 +171,11 @@ class ChatListItem extends StatelessWidget {
                 child: const Icon(Icons.check, color: Colors.white),
               ),
             )
-          : Avatar(room.avatar, room.displayname, onTap: onLongPress),
+          : Avatar(
+              mxContent: room.avatar,
+              name: room.displayname,
+              onTap: onLongPress,
+            ),
       title: Row(
         children: <Widget>[
           Expanded(

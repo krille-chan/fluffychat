@@ -45,8 +45,8 @@ class InvitationSelectionView extends StatelessWidget {
                 itemCount: controller.foundProfiles.length,
                 itemBuilder: (BuildContext context, int i) => ListTile(
                   leading: Avatar(
-                    controller.foundProfiles[i].avatarUrl,
-                    controller.foundProfiles[i].displayName ??
+                    mxContent: controller.foundProfiles[i].avatarUrl,
+                    name: controller.foundProfiles[i].displayName ??
                         controller.foundProfiles[i].userId,
                   ),
                   title: Text(
@@ -73,8 +73,8 @@ class InvitationSelectionView extends StatelessWidget {
                     itemCount: contacts.length,
                     itemBuilder: (BuildContext context, int i) => ListTile(
                       leading: Avatar(
-                        contacts[i].avatarUrl,
-                        contacts[i].calcDisplayname(),
+                        mxContent: contacts[i].avatarUrl,
+                        name: contacts[i].calcDisplayname(),
                       ),
                       title: Text(contacts[i].calcDisplayname()),
                       subtitle: Text(contacts[i].id),

@@ -171,7 +171,7 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
           children: [
             Row(children: [
               if (!PlatformInfos.isCupertinoStyle)
-                Avatar(user?.avatarUrl, displayName),
+                Avatar(mxContent: user?.avatarUrl, name: displayName),
               const SizedBox(width: 12),
               Expanded(
                 child: Column(

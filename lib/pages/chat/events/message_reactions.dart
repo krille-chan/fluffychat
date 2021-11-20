@@ -213,8 +213,8 @@ class _AdaptableReactorsDialog extends StatelessWidget {
           for (var reactor in reactionEntry.reactors)
             Chip(
               avatar: Avatar(
-                reactor.avatarUrl,
-                reactor.displayName,
+                mxContent: reactor.avatarUrl,
+                name: reactor.displayName,
                 client: client,
               ),
               label: Text(reactor.displayName),

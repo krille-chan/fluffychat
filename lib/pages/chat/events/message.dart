@@ -121,8 +121,8 @@ class Message extends StatelessWidget {
                   : null,
             )
           : Avatar(
-              event.sender.avatarUrl,
-              event.sender.calcDisplayname(),
+              mxContent: event.sender.avatarUrl,
+              name: event.sender.calcDisplayname(),
               onTap: () => onAvatarTab(event),
             ),
       Expanded(

@@ -59,8 +59,8 @@ class SpacesBottomBar extends StatelessWidget {
                                 onLongPress: () =>
                                     controller.editSpace(context, space.id),
                                 child: Avatar(
-                                  space.avatar,
-                                  space.displayname,
+                                  mxContent: space.avatar,
+                                  name: space.displayname,
                                   size: 24,
                                   fontSize: 12,
                                 ),
