@@ -2638,5 +2638,21 @@
   "messageInfo": "消息信息",
   "@messageInfo": {},
   "time": "时间",
-  "@time": {}
+  "@time": {},
+  "loginWithOneClick": "一键登录",
+  "@loginWithOneClick": {},
+  "addToSpaceDescription": "选择一个空间以添加此聊天。",
+  "@addToSpaceDescription": {},
+  "setupChatBackupNow": "立即设置您的聊天备份",
+  "@setupChatBackupNow": {},
+  "removeFromSpaceDescription": "这将从当前空间中删除此聊天。 但它仍在“所有聊天”下可见。",
+  "@removeFromSpaceDescription": {},
+  "pleaseEnterSecurityKeyDescription": "要解锁您的聊天备份，请输入您在之前会话中生成的安全密钥。 您的安全密钥不是您的密码。",
+  "@pleaseEnterSecurityKeyDescription": {},
+  "saveTheSecurityKeyNow": "立即保存安全密钥",
+  "@saveTheSecurityKeyNow": {},
+  "removeFromSpace": "从空间删除",
+  "@removeFromSpace": {},
+  "start": "开始",
+  "@start": {}
 }
