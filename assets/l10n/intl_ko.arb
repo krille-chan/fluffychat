@@ -2632,5 +2632,17 @@
   "pleaseEnterValidEmail": "유효한 이메일 주소를 입력해주세요.",
   "@pleaseEnterValidEmail": {},
   "repeatPassword": "비밀번호 다시 입력",
-  "@repeatPassword": {}
+  "@repeatPassword": {},
+  "loginWithOneClick": "클릭 한 번으로 로그인",
+  "@loginWithOneClick": {},
+  "start": "시작",
+  "@start": {},
+  "setupChatBackupNow": "당신의 채팅 백업을 지금 설정하세요",
+  "@setupChatBackupNow": {},
+  "removeFromSpace": "스페이스에서 삭제",
+  "@removeFromSpace": {},
+  "removeFromSpaceDescription": "이것은 현재 채팅을 현재 스페이스로부터 지웁니다. 여전히 '모든 채팅'에서 접근할 수 있습니다.",
+  "@removeFromSpaceDescription": {},
+  "addToSpaceDescription": "이 채팅을 추가할 스페이스를 선택하세요.",
+  "@addToSpaceDescription": {}
 }
