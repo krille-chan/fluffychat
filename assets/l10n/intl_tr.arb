@@ -2650,5 +2650,9 @@
   "start": "Başla",
   "@start": {},
   "setupChatBackupNow": "Sohbet yedeklemenizi şimdi ayarlayın",
-  "@setupChatBackupNow": {}
+  "@setupChatBackupNow": {},
+  "pleaseEnterSecurityKeyDescription": "Sohbet yedeklemenizin kilidini açmak için lütfen önceki bir oturumda oluşturulan güvenlik anahtarınızı girin. Güvenlik anahtarınız parolanız DEĞİLDİR.",
+  "@pleaseEnterSecurityKeyDescription": {},
+  "saveTheSecurityKeyNow": "Güvenlik anahtarını şimdi kaydet",
+  "@saveTheSecurityKeyNow": {}
 }
