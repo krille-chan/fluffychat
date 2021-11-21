@@ -269,9 +269,9 @@ class BackgroundPush {
     if (_fcmToken?.isEmpty ?? true) {
       try {
         _fcmToken = await _fcmSharedIsolate?.getToken();
-        if (_fcmToken == null) throw Exception('PushToken is null');
+        if (_fcmToken == null) throw ('PushToken is null');
       } catch (e, s) {
-        Logs().e('[Push] cannot get token', e, s);
+        Logs().w('[Push] cannot get token', e, e is String ? null : s);
         await _noFcmWarning();
         return;
       }
