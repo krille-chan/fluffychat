@@ -2650,5 +2650,9 @@
   "start": "Alusta",
   "@start": {},
   "setupChatBackupNow": "Seadista oma vestluste varundus",
-  "@setupChatBackupNow": {}
+  "@setupChatBackupNow": {},
+  "saveTheSecurityKeyNow": "Salvesta turvavõti nüüd",
+  "@saveTheSecurityKeyNow": {},
+  "pleaseEnterSecurityKeyDescription": "Kui soovid vestluste varundust kasutada, siis palun sisesta oma turvavõti, mille me varasemas sessioonis tegime. Turvavõti EI OLE sama kui salasõna.",
+  "@pleaseEnterSecurityKeyDescription": {}
 }
