@@ -2645,5 +2645,9 @@
   "start": "Почати",
   "@start": {},
   "setupChatBackupNow": "Налаштуйте резервне копіювання чату зараз",
-  "@setupChatBackupNow": {}
+  "@setupChatBackupNow": {},
+  "pleaseEnterSecurityKeyDescription": "Щоб розблокувати резервну копію чату, введіть ключ безпеки, який був створений під час попереднього сеансу. Ключ безпеки — це не ваш пароль.",
+  "@pleaseEnterSecurityKeyDescription": {},
+  "saveTheSecurityKeyNow": "Зберегти ключ безпеки зараз",
+  "@saveTheSecurityKeyNow": {}
 }
