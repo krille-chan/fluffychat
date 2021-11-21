@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -8,6 +7,7 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/encryption.dart';
 import 'package:matrix/encryption/utils/bootstrap.dart';
 import 'package:matrix/matrix.dart';
+import 'package:share/share.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -54,6 +54,7 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
   String titleText;
 
   bool _recoveryKeyStored = false;
+  bool _recoveryKeyCopied = false;
 
   bool _wipe;
 
@@ -100,6 +101,15 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
             child: ListView(
               padding: const EdgeInsets.all(16.0),
               children: [
+                Text(
+                  L10n.of(context).chatBackupDescription,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+                const Divider(height: 64),
                 TextField(
                   minLines: 4,
                   maxLines: 4,
@@ -108,9 +118,12 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
                 ),
                 const SizedBox(height: 16),
                 ElevatedButton.icon(
-                  icon: const Icon(Icons.copy_outlined),
-                  label: Text(L10n.of(context).copyToClipboard),
-                  onPressed: () => Clipboard.setData(ClipboardData(text: key)),
+                  icon: const Icon(Icons.save_alt_outlined),
+                  label: Text(L10n.of(context).saveTheSecurityKeyNow),
+                  onPressed: () {
+                    Share.share(key);
+                    setState(() => _recoveryKeyCopied = true);
+                  },
                 ),
                 const SizedBox(height: 16),
                 ElevatedButton.icon(
@@ -119,8 +132,10 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
                     onPrimary: Theme.of(context).primaryColor,
                   ),
                   icon: const Icon(Icons.check_outlined),
-                  label: Text(L10n.of(context).iWroteDownTheKey),
-                  onPressed: () => setState(() => _recoveryKeyStored = true),
+                  label: Text(L10n.of(context).next),
+                  onPressed: _recoveryKeyCopied
+                      ? () => setState(() => _recoveryKeyStored = true)
+                      : null,
                 ),
               ],
             ),
@@ -175,13 +190,17 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
                   padding: const EdgeInsets.all(16.0),
                   children: [
                     Text(
-                      L10n.of(context).setupChatBackupDescription,
+                      L10n.of(context).pleaseEnterSecurityKeyDescription,
                       textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontStyle: FontStyle.italic,
+                      ),
                     ),
-                    const SizedBox(height: 16),
+                    const Divider(height: 64),
                     TextField(
-                      minLines: 4,
-                      maxLines: 4,
+                      minLines: 1,
+                      maxLines: 1,
                       autocorrect: false,
                       readOnly: _recoveryKeyInputLoading,
                       autofillHints: _recoveryKeyInputLoading
@@ -229,7 +248,7 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
                                       () => _recoveryKeyInputLoading = false);
                                 }
                               }),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 32),
                     Row(children: [
                       const Expanded(child: Divider()),
                       Padding(
@@ -238,14 +257,13 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
                       ),
                       const Expanded(child: Divider()),
                     ]),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 32),
                     ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
                         primary: Theme.of(context).secondaryHeaderColor,
                         onPrimary: Theme.of(context).primaryColor,
                       ),
-                      icon:
-                          const Icon(Icons.transfer_within_a_station_outlined),
+                      icon: const Icon(Icons.cast_connected_outlined),
                       label: Text(L10n.of(context).transferFromAnotherDevice),
                       onPressed: _recoveryKeyInputLoading
                           ? null

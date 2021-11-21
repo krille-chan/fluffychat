@@ -2612,5 +2612,7 @@
   "removeFromSpaceDescription": "This removes this chat from the current space. It will then still be visible under \"All chats\".",
   "addToSpaceDescription": "Select a space to add this chat to it.",
   "start": "Start",
-  "setupChatBackupNow": "Set up your chat backup now"
+  "setupChatBackupNow": "Set up your chat backup now",
+  "pleaseEnterSecurityKeyDescription": "To unlock your chat backup, please enter your security key that has been generated in a previous session. Your security key is NOT your password.",
+  "saveTheSecurityKeyNow": "Save the security key now"
 }
