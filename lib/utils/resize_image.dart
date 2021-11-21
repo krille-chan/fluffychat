@@ -1,126 +1,49 @@
+//@dart=2.12
+
+import 'dart:math' as math;
 import 'dart:typed_data';
-import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
+
+import 'package:blurhash_dart/blurhash_dart.dart';
+import 'package:image/image.dart';
 import 'package:matrix/matrix.dart';
-import 'package:native_imaging/native_imaging.dart' as native;
 
-import 'run_in_background.dart';
+extension ResizeImage on MatrixFile {
+  static const int max = 1200;
+  static const int quality = 20;
 
-const int defaultMax = 800;
-
-Future<MatrixImageFile> resizeImage(MatrixImageFile file,
-    {int max = defaultMax}) async {
-  // we want to resize the image in a separate isolate, because otherwise that can
-  // freeze up the UI a bit
-
-  // we can't do width / height fetching in a separate isolate, as that may use the UI stuff
-
-  // somehow doing native.init twice fixes it for linux desktop?
-  // TODO: once native imaging is on sound null safety the errors are consistent and
-  // then we can properly handle this instead
-  // https://gitlab.com/famedly/company/frontend/libraries/native_imaging/-/issues/5
-  try {
-    await native.init();
-  } catch (_) {
-    await native.init();
+  Future<MatrixImageFile> resizeImage({bool calcBlurhash = true}) async {
+    final bytes = await compute<Uint8List, Uint8List>(resizeBytes, this.bytes);
+    final blurhash = calcBlurhash
+        ? await compute<Uint8List, BlurHash>(createBlurHash, bytes)
+        : null;
+    return MatrixImageFile(
+      bytes: bytes,
+      name: '${name.split('.').first}_thumbnail_$max.jpg',
+      blurhash: blurhash?.hash,
+    );
   }
-
-  _IsolateArgs args;
-  try {
-    final nativeImg = native.Image();
-    await nativeImg.loadEncoded(file.bytes);
-    file.width = nativeImg.width;
-    file.height = nativeImg.height;
-    args = _IsolateArgs(
-        width: file.width, height: file.height, bytes: file.bytes, max: max);
-    nativeImg.free();
-  } on UnsupportedError {
-    final dartCodec = await instantiateImageCodec(file.bytes);
-    final dartFrame = await dartCodec.getNextFrame();
-    file.width = dartFrame.image.width;
-    file.height = dartFrame.image.height;
-    final rgbaData = await dartFrame.image.toByteData();
-    final rgba = Uint8List.view(
-        rgbaData.buffer, rgbaData.offsetInBytes, rgbaData.lengthInBytes);
-    dartFrame.image.dispose();
-    dartCodec.dispose();
-    args = _IsolateArgs(
-        width: file.width, height: file.height, bytes: rgba, max: max);
-  }
-
-  final res = await runInBackground(_isolateFunction, args);
-  file.blurhash = res.blurhash;
-  final thumbnail = MatrixImageFile(
-    bytes: res.jpegBytes,
-    name: file.name != null
-        ? 'scaled_' + file.name.split('.').first + '.jpg'
-        : 'thumbnail.jpg',
-    mimeType: 'image/jpeg',
-    width: res.width,
-    height: res.height,
-    blurhash: res.blurhash,
-  );
-  // only return the thumbnail if the size actually decreased
-  return thumbnail.size >= file.size ||
-          thumbnail.width >= file.width ||
-          thumbnail.height >= file.height
-      ? file
-      : thumbnail;
 }
 
-class _IsolateArgs {
-  final int width;
-  final int height;
-  final Uint8List bytes;
-  final int max;
-  final String name;
-  _IsolateArgs({this.width, this.height, this.bytes, this.max, this.name});
+Future<BlurHash> createBlurHash(Uint8List file) async {
+  final image = decodeImage(file)!;
+  return BlurHash.encode(image, numCompX: 4, numCompY: 3);
 }
 
-class _IsolateResponse {
-  final String blurhash;
-  final Uint8List jpegBytes;
-  final int width;
-  final int height;
-  _IsolateResponse({this.blurhash, this.jpegBytes, this.width, this.height});
-}
+Future<Uint8List> resizeBytes(Uint8List file) async {
+  final image = decodeImage(file)!;
 
-Future<_IsolateResponse> _isolateFunction(_IsolateArgs args) async {
-  // Hack for desktop, see above why
-  try {
-    await native.init();
-  } catch (_) {
-    await native.init();
+  // Is file already smaller than max? Then just return.
+  if (math.max(image.width, image.height) <= ResizeImage.max) {
+    return file;
   }
-  var nativeImg = native.Image();
 
-  try {
-    await nativeImg.loadEncoded(args.bytes);
-  } on UnsupportedError {
-    nativeImg.loadRGBA(args.width, args.height, args.bytes);
-  }
-  if (args.width > args.max || args.height > args.max) {
-    var w = args.max, h = args.max;
-    if (args.width > args.height) {
-      h = args.max * args.height ~/ args.width;
-    } else {
-      w = args.max * args.width ~/ args.height;
-    }
+  // Use the larger side to resize.
+  final useWidth = image.width >= image.height;
+  final thumbnail = useWidth
+      ? copyResize(image, width: ResizeImage.max)
+      : copyResize(image, height: ResizeImage.max);
 
-    final scaledImg = nativeImg.resample(w, h, native.Transform.lanczos);
-    nativeImg.free();
-    nativeImg = scaledImg;
-  }
-  final jpegBytes = await nativeImg.toJpeg(75);
-  final blurhash = nativeImg.toBlurhash(3, 3);
-
-  final ret = _IsolateResponse(
-      blurhash: blurhash,
-      jpegBytes: jpegBytes,
-      width: nativeImg.width,
-      height: nativeImg.height);
-
-  nativeImg.free();
-
-  return ret;
+  return Uint8List.fromList(encodeJpg(thumbnail, quality: ResizeImage.quality));
 }

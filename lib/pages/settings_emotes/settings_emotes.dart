@@ -198,8 +198,6 @@ class EmotesSettingsController extends State<EmotesSettings> {
     });
   }
 
-  static const maxImageWidth = 1600;
-
   void imagePickerAction(
       ValueNotifier<ImagePackImageContent> controller) async {
     final result =
@@ -210,7 +208,7 @@ class EmotesSettingsController extends State<EmotesSettings> {
       name: result.fileName,
     );
     try {
-      file = await resizeImage(file, max: maxImageWidth);
+      file = await file.resizeImage(calcBlurhash: false);
     } catch (_) {
       // do nothing
     }
