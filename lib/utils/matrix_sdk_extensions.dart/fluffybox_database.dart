@@ -12,6 +12,9 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
 
+import '../client_manager.dart';
+import '../famedlysdk_store.dart';
+
 class FlutterFluffyBoxDatabase extends FluffyBoxDatabase {
   FlutterFluffyBoxDatabase(
     String name,
@@ -60,7 +63,15 @@ class FlutterFluffyBoxDatabase extends FluffyBoxDatabase {
       await _findDatabasePath(client),
       key: hiverCipher,
     );
-    await db.open();
+    try {
+      await db.open();
+    } catch (_) {
+      Logs().w('Unable to open FluffyBox. Delete database and storage key...');
+      await Store().deleteItem(ClientManager.clientNamespace);
+      const FlutterSecureStorage().delete(key: _cipherStorageKey);
+      await db.clear();
+      rethrow;
+    }
     Logs().d('FluffyBox is ready');
     return db;
   }
