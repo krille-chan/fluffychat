@@ -2649,5 +2649,9 @@
   "start": "Start",
   "@start": {},
   "setupChatBackupNow": "Stel je chat back-up nu in",
-  "@setupChatBackupNow": {}
+  "@setupChatBackupNow": {},
+  "saveTheSecurityKeyNow": "Sla je veiligheidssleutel nu op",
+  "@saveTheSecurityKeyNow": {},
+  "pleaseEnterSecurityKeyDescription": "Om je chat back-up te ontgrendelen, voer je veiligheidssleutel in die je gemaakt hebt in de vorige sessie. Je veiligheidssleutel is NIET je wachtwoord.",
+  "@pleaseEnterSecurityKeyDescription": {}
 }
