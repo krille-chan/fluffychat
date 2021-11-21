@@ -185,6 +185,7 @@ class ChatController extends State<Chat> {
       });
     }
     filteredEvents = timeline.getFilteredEvents(unfolded: unfolded);
+    timeline.requestKeys();
     if (room.notificationCount != null &&
         room.notificationCount > 0 &&
         timeline != null &&
