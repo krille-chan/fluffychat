@@ -218,6 +218,25 @@ class Message extends StatelessWidget {
                               textColor: textColor,
                               onInfoTab: onInfoTab,
                             ),
+                            if (event.hasAggregatedEvents(
+                                timeline, RelationshipTypes.edit))
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(
+                                    Icons.edit_outlined,
+                                    color: textColor.withAlpha(164),
+                                    size: 14,
+                                  ),
+                                  Text(
+                                    ' - ${displayEvent.originServerTs.localizedTimeShort(context)}',
+                                    style: TextStyle(
+                                      color: textColor.withAlpha(164),
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ],
+                              ),
                           ],
                         ),
                       ],
