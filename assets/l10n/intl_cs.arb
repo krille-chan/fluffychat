@@ -2650,5 +2650,9 @@
   "removeFromSpace": "Odstranit z tohoto místa",
   "@removeFromSpace": {},
   "setupChatBackupNow": "Nastavte si zálohu chatu hned teď",
-  "@setupChatBackupNow": {}
+  "@setupChatBackupNow": {},
+  "saveTheSecurityKeyNow": "Uložte bezpečnostní klíč nyní",
+  "@saveTheSecurityKeyNow": {},
+  "pleaseEnterSecurityKeyDescription": "Chcete-li odemknout zálohu chatu, zadejte svůj bezpečnostní klíč, který byl vygenerován v předchozí relaci. Váš bezpečnostní klíč NENÍ vaše heslo.",
+  "@pleaseEnterSecurityKeyDescription": {}
 }
