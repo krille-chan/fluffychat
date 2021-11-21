@@ -50,6 +50,9 @@ class FlutterFluffyBoxDatabase extends FluffyBoxDatabase {
       hiverCipher = HiveAesCipher(base64Url.decode(rawEncryptionKey));
     } on MissingPluginException catch (_) {
       Logs().i('FluffyBox encryption is not supported on this platform');
+    } catch (_) {
+      const FlutterSecureStorage().delete(key: _cipherStorageKey);
+      rethrow;
     }
 
     final db = FluffyBoxDatabase(

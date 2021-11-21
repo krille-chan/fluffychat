@@ -188,19 +188,18 @@ class ChatListView extends StatelessWidget {
                   clipBehavior: Clip.hardEdge,
                   curve: Curves.bounceInOut,
                   decoration: const BoxDecoration(),
-                  child: MaterialBanner(
-                    leading: Image.asset(
-                      'assets/backup.png',
-                      fit: BoxFit.contain,
-                      width: 44,
-                    ),
-                    content: Text(L10n.of(context).setupChatBackupNow),
-                    actions: [
-                      TextButton(
-                        onPressed: controller.firstRunBootstrapAction,
-                        child: Text(L10n.of(context).start),
+                  child: Material(
+                    color: Theme.of(context).colorScheme.surface,
+                    child: ListTile(
+                      leading: Image.asset(
+                        'assets/backup.png',
+                        fit: BoxFit.contain,
+                        width: 44,
                       ),
-                    ],
+                      title: Text(L10n.of(context).setupChatBackupNow),
+                      trailing: const Icon(Icons.chevron_right_outlined),
+                      onTap: controller.firstRunBootstrapAction,
+                    ),
                   ),
                 ),
                 Expanded(child: _ChatListViewBody(controller)),
