@@ -2650,5 +2650,9 @@
   "start": "Commencer",
   "@start": {},
   "setupChatBackupNow": "Configurez votre sauvegarde de discussion maintenant",
-  "@setupChatBackupNow": {}
+  "@setupChatBackupNow": {},
+  "saveTheSecurityKeyNow": "Enregistrer la clé de sécurité maintenant",
+  "@saveTheSecurityKeyNow": {},
+  "pleaseEnterSecurityKeyDescription": "Pour déverrouiller votre sauvegarde de discussion, veuillez entrer votre clé de sécurité qui a été générée lors d'une session précédente. Votre clé de sécurité n'est PAS votre mot de passe.",
+  "@pleaseEnterSecurityKeyDescription": {}
 }
