@@ -32,18 +32,16 @@ Future<BlurHash> createBlurHash(Uint8List file) async {
 }
 
 Future<Uint8List> resizeBytes(Uint8List file) async {
-  final image = decodeImage(file)!;
+  var image = decodeImage(file)!;
 
   // Is file already smaller than max? Then just return.
-  if (math.max(image.width, image.height) <= ResizeImage.max) {
-    return file;
+  if (math.max(image.width, image.height) > ResizeImage.max) {
+    // Use the larger side to resize.
+    final useWidth = image.width >= image.height;
+    image = useWidth
+        ? copyResize(image, width: ResizeImage.max)
+        : copyResize(image, height: ResizeImage.max);
   }
 
-  // Use the larger side to resize.
-  final useWidth = image.width >= image.height;
-  final thumbnail = useWidth
-      ? copyResize(image, width: ResizeImage.max)
-      : copyResize(image, height: ResizeImage.max);
-
-  return Uint8List.fromList(encodeJpg(thumbnail, quality: ResizeImage.quality));
+  return Uint8List.fromList(encodeJpg(image, quality: ResizeImage.quality));
 }
