@@ -331,7 +331,7 @@ class ChatView extends StatelessWidget {
                             .secondaryHeaderColor
                             .withAlpha(100),
                         clipBehavior: Clip.hardEdge,
-                        color: Theme.of(context).backgroundColor,
+                        color: Theme.of(context).appBarTheme.backgroundColor,
                         child: SafeArea(
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
