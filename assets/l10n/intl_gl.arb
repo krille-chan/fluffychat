@@ -2642,5 +2642,9 @@
   "start": "Comezar",
   "@start": {},
   "setupChatBackupNow": "Configura a copia de apoio do chat",
-  "@setupChatBackupNow": {}
+  "@setupChatBackupNow": {},
+  "pleaseEnterSecurityKeyDescription": "Para desbloquear a copia do chat, escribe a túa chave de seguridade creada nunha sesión anterior. A chave de seguridade NON é o teu contrasinal.",
+  "@pleaseEnterSecurityKeyDescription": {},
+  "saveTheSecurityKeyNow": "Garda agora a chave de seguridade",
+  "@saveTheSecurityKeyNow": {}
 }
