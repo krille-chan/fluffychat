@@ -51,15 +51,17 @@ class NewPrivateChatView extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                   elevation: 4,
                   color: Colors.white,
-                  child: QrImage(
-                    data:
-                        'https://matrix.to/#/${Matrix.of(context).client.userID}',
-                    version: QrVersions.auto,
-                    size: min(MediaQuery.of(context).size.width - 16, 200),
-                    embeddedImage: const AssetImage('assets/share.png'),
-                    embeddedImageStyle: QrEmbeddedImageStyle(
-                      size: const Size(48, 48),
-                    ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      QrImage(
+                        data:
+                            'https://matrix.to/#/${Matrix.of(context).client.userID}',
+                        version: QrVersions.auto,
+                        size: min(MediaQuery.of(context).size.width - 16, 200),
+                      ),
+                      Image.asset('assets/share.png', width: 48, height: 48),
+                    ],
                   ),
                 ),
               ),
