@@ -33,8 +33,8 @@ class TypingIndicators extends StatelessWidget {
             : Alignment.topLeft,
         clipBehavior: Clip.hardEdge,
         decoration: const BoxDecoration(),
-        padding: EdgeInsets.only(
-          left: typingUsers.length < 2 ? 8 : 0,
+        padding: const EdgeInsets.only(
+          left: 8.0,
           bottom: bottomPadding,
         ),
         child: Row(
@@ -43,7 +43,7 @@ class TypingIndicators extends StatelessWidget {
               height: Avatar.defaultSize,
               width: typingUsers.length < 2
                   ? Avatar.defaultSize
-                  : Avatar.defaultSize + 8,
+                  : Avatar.defaultSize + 16,
               child: Stack(
                 children: [
                   if (typingUsers.isNotEmpty)
@@ -53,7 +53,7 @@ class TypingIndicators extends StatelessWidget {
                     ),
                   if (typingUsers.length == 2)
                     Padding(
-                      padding: const EdgeInsets.only(left: 8),
+                      padding: const EdgeInsets.only(left: 16),
                       child: Avatar(
                         mxContent: typingUsers.length == 2
                             ? typingUsers.last.avatarUrl
