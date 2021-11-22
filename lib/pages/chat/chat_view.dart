@@ -83,7 +83,10 @@ class ChatView extends StatelessWidget {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Icon(Icons.report_outlined),
+                      const Icon(
+                        Icons.shield_outlined,
+                        color: Colors.red,
+                      ),
                       const SizedBox(width: 12),
                       Text(L10n.of(context).reportMessage),
                     ],
