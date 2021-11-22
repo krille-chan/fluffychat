@@ -20,7 +20,8 @@ class UrlLauncher {
   const UrlLauncher(this.context, this.url);
 
   void launchUrl() {
-    if (url.toLowerCase().startsWith(AppConfig.inviteLinkPrefix) ||
+    if (url.toLowerCase().startsWith(AppConfig.deepLinkPrefix) ||
+        url.toLowerCase().startsWith(AppConfig.inviteLinkPrefix) ||
         {'#', '@', '!', '+', '\$'}.contains(url[0]) ||
         url.toLowerCase().startsWith(AppConfig.schemePrefix)) {
       return openMatrixToUrl();
