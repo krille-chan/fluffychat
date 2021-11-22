@@ -220,22 +220,25 @@ class Message extends StatelessWidget {
                             ),
                             if (event.hasAggregatedEvents(
                                 timeline, RelationshipTypes.edit))
-                              Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Icon(
-                                    Icons.edit_outlined,
-                                    color: textColor.withAlpha(164),
-                                    size: 14,
-                                  ),
-                                  Text(
-                                    ' - ${displayEvent.originServerTs.localizedTimeShort(context)}',
-                                    style: TextStyle(
+                              Padding(
+                                padding: const EdgeInsets.only(top: 4.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(
+                                      Icons.edit_outlined,
                                       color: textColor.withAlpha(164),
-                                      fontSize: 12,
+                                      size: 14,
                                     ),
-                                  ),
-                                ],
+                                    Text(
+                                      ' - ${displayEvent.originServerTs.localizedTimeShort(context)}',
+                                      style: TextStyle(
+                                        color: textColor.withAlpha(164),
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                           ],
                         ),
