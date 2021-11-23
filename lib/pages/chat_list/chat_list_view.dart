@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -241,7 +244,8 @@ class _ChatListViewBody extends StatelessWidget {
       builder: (context, snapshot) {
         return Builder(
           builder: (context) {
-            if (controller.waitForFirstSync) {
+            if (controller.waitForFirstSync &&
+                Matrix.of(context).client.prevBatch != null) {
               final rooms = Matrix.of(context)
                   .client
                   .rooms
@@ -286,25 +290,110 @@ class _ChatListViewBody extends StatelessWidget {
                 },
               );
             } else {
-              return Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Image.asset(
-                      'assets/private_chat_wallpaper.png',
-                      width: 100,
-                    ),
-                    Text(
-                      L10n.of(context).yourChatsAreBeingSynced,
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
+              return ListView(
+                children: List.filled(
+                  8,
+                  const _DummyChat(),
                 ),
               );
             }
           },
         );
       });
+}
+
+class _DummyChat extends StatefulWidget {
+  const _DummyChat({Key key}) : super(key: key);
+
+  @override
+  State<_DummyChat> createState() => _DummyChatState();
+}
+
+class _DummyChatState extends State<_DummyChat> {
+  double opacity = Random().nextDouble();
+
+  Timer _timer;
+
+  static const duration = Duration(seconds: 1);
+
+  void _setRandomOpacity(_) {
+    if (mounted) {
+      setState(() => opacity = Random().nextDouble());
+    }
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback(_setRandomOpacity);
+    _timer ??= Timer.periodic(duration, _setRandomOpacity);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final titleColor =
+        Theme.of(context).textTheme.bodyText1.color.withAlpha(100);
+    final subtitleColor =
+        Theme.of(context).textTheme.bodyText1.color.withAlpha(50);
+    return AnimatedOpacity(
+      opacity: opacity,
+      duration: duration,
+      child: ListTile(
+        leading: CircleAvatar(
+          backgroundColor: titleColor,
+          child: CircularProgressIndicator(
+            strokeWidth: 1,
+            color: Theme.of(context).textTheme.bodyText1.color,
+          ),
+        ),
+        title: Row(
+          children: [
+            Expanded(
+              child: Container(
+                height: 14,
+                decoration: BoxDecoration(
+                  color: titleColor,
+                  borderRadius: BorderRadius.circular(3),
+                ),
+              ),
+            ),
+            const SizedBox(width: 36),
+            Container(
+              height: 14,
+              width: 14,
+              decoration: BoxDecoration(
+                color: subtitleColor,
+                borderRadius: BorderRadius.circular(14),
+              ),
+            ),
+            const SizedBox(width: 12),
+            Container(
+              height: 14,
+              width: 14,
+              decoration: BoxDecoration(
+                color: subtitleColor,
+                borderRadius: BorderRadius.circular(14),
+              ),
+            ),
+          ],
+        ),
+        subtitle: Container(
+          decoration: BoxDecoration(
+            color: subtitleColor,
+            borderRadius: BorderRadius.circular(3),
+          ),
+          height: 12,
+          margin: const EdgeInsets.only(right: 22),
+        ),
+      ),
+    );
+  }
 }
 
 enum ChatListPopupMenuItemActions {
