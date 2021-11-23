@@ -72,7 +72,7 @@ abstract class ClientManager {
         enableE2eeRecovery: true,
         verificationMethods: {
           KeyVerificationMethod.numbers,
-          if (PlatformInfos.isMobile || PlatformInfos.isLinux)
+          if (kIsWeb || PlatformInfos.isMobile || PlatformInfos.isLinux)
             KeyVerificationMethod.emoji,
         },
         importantStateEvents: <String>{'im.ponies.room_emotes'},
