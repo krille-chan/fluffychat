@@ -182,7 +182,6 @@ class ChatListView extends StatelessWidget {
                                 .displayname),
               ),
               body: Column(children: [
-                const ConnectionStatusHeader(),
                 AnimatedContainer(
                   height: controller.showChatBackupBanner ? 54 : 0,
                   duration: const Duration(milliseconds: 300),
@@ -219,10 +218,15 @@ class ChatListView extends StatelessWidget {
                           child: const Icon(CupertinoIcons.chat_bubble),
                         )
                   : null,
-              bottomNavigationBar: controller.spaces.isEmpty ||
-                      controller.selectedRoomIds.isNotEmpty
-                  ? null
-                  : SpacesBottomBar(controller),
+              bottomNavigationBar: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const ConnectionStatusHeader(),
+                  if (controller.spaces.isNotEmpty &&
+                      controller.selectedRoomIds.isEmpty)
+                    SpacesBottomBar(controller),
+                ],
+              ),
             ),
           );
         });
