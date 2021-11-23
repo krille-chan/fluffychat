@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 
@@ -27,7 +28,7 @@ class EventInfoDialog extends StatelessWidget {
 
   String get prettyJson {
     const JsonDecoder decoder = JsonDecoder();
-    const JsonEncoder encoder = JsonEncoder.withIndent('  ');
+    const JsonEncoder encoder = JsonEncoder.withIndent('    ');
     final object = decoder.convert(jsonEncode(event.toJson()));
     return encoder.convert(object);
   }
@@ -52,7 +53,7 @@ class EventInfoDialog extends StatelessWidget {
             ),
             title: Text(L10n.of(context).sender),
             subtitle:
-                Text('${event.sender.calcDisplayname()} <${event.senderId}>'),
+                Text('${event.sender.calcDisplayname()} [${event.senderId}]'),
           ),
           ListTile(
             title: Text(L10n.of(context).time),
@@ -62,14 +63,17 @@ class EventInfoDialog extends StatelessWidget {
             title: Text(L10n.of(context).messageType),
             subtitle: Text(event.humanreadableType),
           ),
-          ListTile(
-            title: Text(L10n.of(context).sourceCode),
-          ),
+          ListTile(title: Text('${L10n.of(context).sourceCode}:')),
           Padding(
             padding: const EdgeInsets.all(12.0),
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Text(prettyJson),
+            child: Material(
+              borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+              color: Theme.of(context).colorScheme.surface,
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(8),
+                scrollDirection: Axis.horizontal,
+                child: SelectableText(prettyJson),
+              ),
             ),
           ),
         ],
