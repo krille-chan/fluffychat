@@ -780,12 +780,10 @@ packages:
   matrix:
     dependency: "direct main"
     description:
-      path: "."
-      ref: "krille/idb"
-      resolved-ref: "44f55826c95e4d0c8d5a0485661a58e7d42d3560"
-      url: "https://gitlab.com/famedly/company/frontend/famedlysdk.git"
-    source: git
-    version: "0.7.0-nullsafety.6"
+      name: matrix
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.7.0-nullsafety.7"
   matrix_api_lite:
     dependency: transitive
     description:
