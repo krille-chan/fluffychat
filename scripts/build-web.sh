@@ -2,4 +2,4 @@
 flutter config --enable-web
 flutter clean
 flutter pub get
-flutter build web --release --verbose
+flutter build web --release --verbose --source-maps

@@ -22,57 +22,60 @@ class SpacesBottomBar extends StatelessWidget {
     return Material(
       color: Theme.of(context).appBarTheme.backgroundColor,
       elevation: 6,
-      child: StreamBuilder<Object>(
-          stream: Matrix.of(context).client.onSync.stream.where((sync) =>
-              (sync.rooms?.join?.values?.any((r) =>
-                      r.state?.any((s) => s.type.startsWith('m.space'))) ??
-                  false) ||
-              (sync.rooms?.leave?.isNotEmpty ?? false)),
-          builder: (context, snapshot) {
-            return Container(
-              height: 56,
-              alignment: Alignment.center,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: SalomonBottomBar(
-                  itemPadding: const EdgeInsets.all(8),
-                  currentIndex: currentIndex,
-                  onTap: (i) => controller.setActiveSpaceId(
-                    context,
-                    i == 0 ? null : controller.spaces[i - 1].id,
-                  ),
-                  selectedItemColor: Theme.of(context).colorScheme.primary,
-                  items: [
-                    SalomonBottomBarItem(
-                      icon: const Icon(CupertinoIcons.chat_bubble_2),
-                      activeIcon: const Icon(CupertinoIcons.chat_bubble_2_fill),
-                      title: Text(L10n.of(context).allChats),
+      child: SafeArea(
+        child: StreamBuilder<Object>(
+            stream: Matrix.of(context).client.onSync.stream.where((sync) =>
+                (sync.rooms?.join?.values?.any((r) =>
+                        r.state?.any((s) => s.type.startsWith('m.space'))) ??
+                    false) ||
+                (sync.rooms?.leave?.isNotEmpty ?? false)),
+            builder: (context, snapshot) {
+              return Container(
+                height: 56,
+                alignment: Alignment.center,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: SalomonBottomBar(
+                    itemPadding: const EdgeInsets.all(8),
+                    currentIndex: currentIndex,
+                    onTap: (i) => controller.setActiveSpaceId(
+                      context,
+                      i == 0 ? null : controller.spaces[i - 1].id,
                     ),
-                    ...controller.spaces
-                        .map((space) => SalomonBottomBarItem(
-                              icon: InkWell(
-                                borderRadius: BorderRadius.circular(28),
-                                onTap: () => controller.setActiveSpaceId(
-                                  context,
-                                  space.id,
+                    selectedItemColor: Theme.of(context).colorScheme.primary,
+                    items: [
+                      SalomonBottomBarItem(
+                        icon: const Icon(CupertinoIcons.chat_bubble_2),
+                        activeIcon:
+                            const Icon(CupertinoIcons.chat_bubble_2_fill),
+                        title: Text(L10n.of(context).allChats),
+                      ),
+                      ...controller.spaces
+                          .map((space) => SalomonBottomBarItem(
+                                icon: InkWell(
+                                  borderRadius: BorderRadius.circular(28),
+                                  onTap: () => controller.setActiveSpaceId(
+                                    context,
+                                    space.id,
+                                  ),
+                                  onLongPress: () =>
+                                      controller.editSpace(context, space.id),
+                                  child: Avatar(
+                                    mxContent: space.avatar,
+                                    name: space.displayname,
+                                    size: 24,
+                                    fontSize: 12,
+                                  ),
                                 ),
-                                onLongPress: () =>
-                                    controller.editSpace(context, space.id),
-                                child: Avatar(
-                                  mxContent: space.avatar,
-                                  name: space.displayname,
-                                  size: 24,
-                                  fontSize: 12,
-                                ),
-                              ),
-                              title: Text(space.displayname),
-                            ))
-                        .toList(),
-                  ],
+                                title: Text(space.displayname),
+                              ))
+                          .toList(),
+                    ],
+                  ),
                 ),
-              ),
-            );
-          }),
+              );
+            }),
+      ),
     );
   }
 }
