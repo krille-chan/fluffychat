@@ -18,6 +18,7 @@ import 'package:fluffychat/pages/chat/tombstone_display.dart';
 import 'package:fluffychat/pages/chat/typing_indicators.dart';
 import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
 import 'package:fluffychat/widgets/connection_status_header.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -183,6 +184,12 @@ class ChatView extends StatelessWidget {
                     child: FutureBuilder<bool>(
                       future: controller.getTimeline(),
                       builder: (BuildContext context, snapshot) {
+                        if (snapshot.hasError) {
+                          SentryController.captureException(
+                            snapshot.error,
+                            StackTrace.current,
+                          );
+                        }
                         if (controller.timeline == null) {
                           return const Center(
                             child: CircularProgressIndicator.adaptive(
