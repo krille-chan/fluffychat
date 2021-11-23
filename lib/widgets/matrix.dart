@@ -290,10 +290,18 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
           utf8.decode((await http.get(Uri.parse('config.json'))).bodyBytes);
       final configJson = json.decode(configJsonString);
       AppConfig.loadFromJson(configJson);
-    } catch (e, _) {
+    } on FormatException catch (_) {
+      Logs().v('[ConfigLoader] config.json not found');
+    } catch (e) {
       Logs().v('[ConfigLoader] config.json not found', e);
     }
   }
+
+  void _reportSyncError(SyncStatusUpdate update) =>
+      SentryController.captureException(
+        update.error.exception,
+        update.error.stackTrace,
+      );
 
   void _registerSubs(String name) {
     final c = getClientByName(name);
@@ -302,6 +310,9 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
           'Attempted to register subscriptions for non-existing client $name');
       return;
     }
+    c.onSyncStatus.stream
+        .where((s) => s.status == SyncStatus.error)
+        .listen(_reportSyncError);
     onKeyVerificationRequestSub[name] ??= c.onKeyVerificationRequest.stream
         .listen((KeyVerification request) async {
       var hidPopup = false;
