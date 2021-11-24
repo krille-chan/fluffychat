@@ -364,7 +364,7 @@ packages:
       name: fluffybox
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.3"
+    version: "0.3.4"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -783,7 +783,7 @@ packages:
       name: matrix
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.7.0-nullsafety.7"
+    version: "0.7.0-nullsafety.8"
   matrix_api_lite:
     dependency: transitive
     description:
