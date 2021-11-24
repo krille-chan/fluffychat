@@ -63,14 +63,22 @@ class Matrix extends StatefulWidget {
 }
 
 class MatrixState extends State<Matrix> with WidgetsBindingObserver {
-  int activeClient = 0;
+  int _activeClient = -1;
   String activeBundle;
   Store store = Store();
   BuildContext navigatorContext;
 
   BackgroundPush _backgroundPush;
 
-  Client get client => widget.clients[_safeActiveClient];
+  Client get client {
+    if (widget.clients.isEmpty) {
+      widget.clients.add(getLoginClient());
+    }
+    if (_activeClient < 0 || _activeClient >= widget.clients.length) {
+      return currentBundle.first;
+    }
+    return widget.clients[_activeClient];
+  }
 
   bool get isMultiAccount => widget.clients.length > 1;
 
@@ -80,20 +88,10 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   String currentClientSecret;
   RequestTokenResponse currentThreepidCreds;
 
-  int get _safeActiveClient {
-    if (widget.clients.isEmpty) {
-      widget.clients.add(getLoginClient());
-    }
-    if (activeClient < 0 || activeClient >= widget.clients.length) {
-      return 0;
-    }
-    return activeClient;
-  }
-
   void setActiveClient(Client cl) {
     final i = widget.clients.indexWhere((c) => c == cl);
     if (i != null) {
-      activeClient = i;
+      _activeClient = i;
     } else {
       Logs().w('Tried to set an unknown client ${cl.userID} as active');
     }
@@ -313,6 +311,16 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     c.onSyncStatus.stream
         .where((s) => s.status == SyncStatus.error)
         .listen(_reportSyncError);
+    onRoomKeyRequestSub[name] ??=
+        c.onRoomKeyRequest.stream.listen((RoomKeyRequest request) async {
+      if (widget.clients.any((cl) =>
+          cl.userID == request.requestingDevice.userId &&
+          cl.identityKey == request.requestingDevice.curve25519Key)) {
+        Logs().i(
+            '[Key Request] Request is from one of our own clients, forwarding the key...');
+        await request.forwardKey();
+      }
+    });
     onKeyVerificationRequestSub[name] ??= c.onKeyVerificationRequest.stream
         .listen((KeyVerification request) async {
       var hidPopup = false;
@@ -333,6 +341,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       if (state != LoginState.loggedIn) {
         _cancelSubs(c.clientName);
         widget.clients.remove(c);
+        ClientManager.removeClientNameFromStore(c.clientName);
       }
       if (loggedInWithMultipleClients && state != LoginState.loggedIn) {
         ScaffoldMessenger.of(context).showSnackBar(

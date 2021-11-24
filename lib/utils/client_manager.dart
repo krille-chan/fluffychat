@@ -67,6 +67,17 @@ abstract class ClientManager {
     await Store().setItem(clientNamespace, jsonEncode(clientNamesList));
   }
 
+  static Future<void> removeClientNameFromStore(String clientName) async {
+    final clientNamesList = <String>[];
+    final rawClientNames = await Store().getItem(clientNamespace);
+    if (rawClientNames != null) {
+      final stored = (jsonDecode(rawClientNames) as List).cast<String>();
+      clientNamesList.addAll(stored);
+    }
+    clientNamesList.remove(clientName);
+    await Store().setItem(clientNamespace, jsonEncode(clientNamesList));
+  }
+
   static Client createClient(String clientName) => Client(
         clientName,
         enableE2eeRecovery: true,
