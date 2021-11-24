@@ -286,11 +286,10 @@ class ChatDetailsController extends State<ChatDetails> {
             actions: actions,
           );
     if (action == null) return;
-    final matrix = Matrix.of(context);
     if (action == AvatarAction.remove) {
       await showFutureLoadingDialog(
         context: context,
-        future: () => matrix.client.setAvatarUrl(matrix.client.userID, null),
+        future: () => room.setAvatar(null),
       );
       return;
     }
