@@ -68,7 +68,7 @@ class SettingsController extends State<Settings> {
     if (action == AvatarAction.remove) {
       final success = await showFutureLoadingDialog(
         context: context,
-        future: () => matrix.client.setAvatarUrl(matrix.client.userID, null),
+        future: () => matrix.client.setAvatar(null),
       );
       if (success.error == null) {
         updateProfile();
