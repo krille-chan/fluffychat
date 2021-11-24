@@ -2632,5 +2632,21 @@
   "sender": "Pengirim",
   "@sender": {},
   "openGallery": "Buka galeri",
-  "@openGallery": {}
+  "@openGallery": {},
+  "addToSpaceDescription": "Pilih sebuah space untuk menambahkan chat ke spacenya.",
+  "@addToSpaceDescription": {},
+  "start": "Mulai",
+  "@start": {},
+  "setupChatBackupNow": "Mulai menyiapkan cadangan chat Anda",
+  "@setupChatBackupNow": {},
+  "saveTheSecurityKeyNow": "Simpan kunci keamanannya",
+  "@saveTheSecurityKeyNow": {},
+  "loginWithOneClick": "Masuk dengan satu klik",
+  "@loginWithOneClick": {},
+  "removeFromSpaceDescription": "Ini akan menghilangkan chat ini dari space saat ini. Ini juga masih ada di \"Semua chat\".",
+  "@removeFromSpaceDescription": {},
+  "removeFromSpace": "Hilangkan dari space",
+  "@removeFromSpace": {},
+  "pleaseEnterSecurityKeyDescription": "Untuk mengakses cadangan chat Anda, mohon masukkan kunci keamanan Anda yang telah dibuat di sesi sebelumnya. Kunci keamanan Anda BUKAN kata sandi Anda.",
+  "@pleaseEnterSecurityKeyDescription": {}
 }
