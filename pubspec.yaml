@@ -48,7 +48,7 @@ dependencies:
   intl: any
   localstorage: ^4.0.0+1
   lottie: ^1.2.1
-  matrix: ^0.7.0-nullsafety.8
+  matrix: ^0.7.0-nullsafety.9
   matrix_link_text: ^1.0.2
   open_noti_settings: ^0.2.0
   package_info_plus: ^1.2.1
