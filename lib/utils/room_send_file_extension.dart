@@ -29,16 +29,12 @@ extension RoomSendFileExtension on Room {
     bool waitUntilSent,
   }) async {
     MatrixFile thumbnail;
-    try {
-      if (file is MatrixImageFile) {
-        thumbnail = await file.resizeImage();
+    if (file is MatrixImageFile) {
+      thumbnail = await file.resizeImage();
 
-        if (thumbnail.size > file.size ~/ 2) {
-          thumbnail = null;
-        }
+      if (thumbnail.size > file.size ~/ 2) {
+        thumbnail = null;
       }
-    } catch (e) {
-      // send no thumbnail
     }
 
     return sendFileEvent(

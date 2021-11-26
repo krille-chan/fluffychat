@@ -29,11 +29,7 @@ class _SendFileDialogState extends State<SendFileDialog> {
   Future<void> _send() async {
     var file = widget.file;
     if (file is MatrixImageFile && !origImage) {
-      try {
-        file = await file.resizeImage();
-      } catch (e) {
-        // couldn't resize
-      }
+      file = await file.resizeImage(quality: 40, max: 1200);
     }
     await widget.room.sendFileEventWithThumbnail(file);
   }

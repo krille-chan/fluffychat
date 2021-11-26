@@ -10,11 +10,23 @@ import 'package:image/image.dart';
 import 'package:matrix/matrix.dart';
 
 extension ResizeImage on MatrixFile {
-  static const int max = 1200;
+  static const int max = 800;
   static const int quality = 20;
 
-  Future<MatrixImageFile> resizeImage({bool calcBlurhash = true}) async {
-    final bytes = await compute<Uint8List, Uint8List>(resizeBytes, this.bytes);
+  Future<MatrixImageFile> resizeImage({
+    bool calcBlurhash = true,
+    int max = ResizeImage.max,
+    int quality = ResizeImage.quality,
+  }) async {
+    final bytes = mimeType == 'image/gif'
+        ? this.bytes
+        : await compute<_ResizeBytesConfig, Uint8List>(
+            resizeBytes,
+            _ResizeBytesConfig(
+              this.bytes,
+              max: max,
+              quality: quality,
+            ));
     final blurhash = calcBlurhash
         ? await compute<Uint8List, BlurHash>(createBlurHash, bytes)
         : null;
@@ -31,17 +43,29 @@ Future<BlurHash> createBlurHash(Uint8List file) async {
   return BlurHash.encode(image, numCompX: 4, numCompY: 3);
 }
 
-Future<Uint8List> resizeBytes(Uint8List file) async {
-  var image = decodeImage(file)!;
+Future<Uint8List> resizeBytes(_ResizeBytesConfig config) async {
+  var image = decodeImage(config.bytes)!;
 
   // Is file already smaller than max? Then just return.
-  if (math.max(image.width, image.height) > ResizeImage.max) {
+  if (math.max(image.width, image.height) > config.max) {
     // Use the larger side to resize.
     final useWidth = image.width >= image.height;
     image = useWidth
-        ? copyResize(image, width: ResizeImage.max)
-        : copyResize(image, height: ResizeImage.max);
+        ? copyResize(image, width: config.max)
+        : copyResize(image, height: config.max);
   }
 
-  return Uint8List.fromList(encodeJpg(image, quality: ResizeImage.quality));
+  return Uint8List.fromList(encodeJpg(image, quality: config.quality));
+}
+
+class _ResizeBytesConfig {
+  final Uint8List bytes;
+  final int max;
+  final int quality;
+
+  const _ResizeBytesConfig(
+    this.bytes, {
+    this.max = ResizeImage.max,
+    this.quality = ResizeImage.quality,
+  });
 }
