@@ -12,7 +12,6 @@ Future<Client> prepareTestClient({
   final client = Client(
     'FluffyChat Widget Tests',
     httpClient: FakeMatrixApi(),
-    enableE2eeRecovery: true,
     verificationMethods: {
       KeyVerificationMethod.numbers,
       KeyVerificationMethod.emoji,

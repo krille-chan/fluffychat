@@ -69,7 +69,6 @@ abstract class ClientManager {
 
   static Client createClient(String clientName) => Client(
         clientName,
-        enableE2eeRecovery: true,
         verificationMethods: {
           KeyVerificationMethod.numbers,
           if (PlatformInfos.isMobile || PlatformInfos.isLinux)

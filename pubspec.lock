@@ -783,7 +783,7 @@ packages:
       name: matrix
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.7.0-nullsafety.9"
+    version: "0.7.0-nullsafety.10"
   matrix_api_lite:
     dependency: transitive
     description:
