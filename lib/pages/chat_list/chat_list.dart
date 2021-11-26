@@ -115,10 +115,11 @@ class ChatListController extends State<ChatList> {
   void _processIncomingSharedText(String text) {
     if (text == null) return;
     VRouter.of(context).to('/rooms');
-    if (text.toLowerCase().startsWith(AppConfig.inviteLinkPrefix) ||
+    if (text.toLowerCase().startsWith(AppConfig.deepLinkPrefix) ||
+        text.toLowerCase().startsWith(AppConfig.inviteLinkPrefix) ||
         (text.toLowerCase().startsWith(AppConfig.schemePrefix) &&
             !RegExp(r'\s').hasMatch(text))) {
-      return;
+      return _processIncomingUris(text);
     }
     Matrix.of(context).shareContent = {
       'msgtype': 'm.text',
