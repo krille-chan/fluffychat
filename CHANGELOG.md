@@ -1,3 +1,59 @@
+## v1.0.0 - 2021-11-29
+- design: Chat backup dialog as a banner
+- design: Encrypted by design, all users valid is normal not green
+- design: Move video call button to menu
+- design: Display edit marker in new bubbles
+- design: Floating input bar
+- design: Minor color changes
+- design: Move device ID to menu
+- design: Place share button under qr code
+- design: Redesign and simplify bootstrap
+- design: Remove cupertino icons
+- feat: Display typing indicators with gif
+- feat: Fancy chat list loading animation
+- feat: New database backend with FluffyBox
+- feat: Make the main color editable for users
+- feat: Move styles one settings level up
+- feat: Multiple mute, pin and mark unread
+- feat: New chat design
+- feat: New chat details design
+- feat: New Public room bottom sheet
+- feat: New settings design
+- feat: Nicer images, stickers and videos
+- feat: nicer loading bar
+- feat: Open im.fluffychat uris
+- feat: Redesign multiaccounts and spaces
+- feat: Redesign start page
+- feat: Send reactions to multiple events
+- feat: Speed up app start
+- feat: Use SalomonBottomBar
+- fix: Adjust color
+- fix: Automatic key requests
+- fix: Bootstrap loop
+- fix: Chat background
+- fix: Chat list flickering
+- fix: Contrast in dark mode
+- fix: Crash when there is no prev message
+- fix: Do display error image widget
+- fix: Do not display bottombar in selectmode
+- fix: Dont enable encryption with bots
+- fix: Dont loose selected events
+- fix: Dont rerun server checks
+- fix: download path for saving files
+- fix: Hide FAB in new chat page if textfield has focus
+- fix: Let bottom space bar scroll
+- fix: Load spaces on app start
+- fix: Only mark unread if actually marked
+- fix: Public room design
+- fix: Remove avatar from room
+- fix: Remove broken docker job
+- fix: Report sync status error
+- fix: Self sign while bootstrap
+- fix: Sender name prefix in DM rooms
+- fix: Set room avatar
+- fix: Various multiaccount fixes
+- fix: Wrong version in snap packages
+
 ## v0.42.2 - 2021-11-04
 Minor bugfix release which fixes signing up on matrix.org and make FluffyChats voice messages playable in Element.
 
