@@ -8,7 +8,7 @@ class SettingsSwitchListTile extends StatefulWidget {
   final String title;
   final Function(bool) onChanged;
 
-  const SettingsSwitchListTile({
+  const SettingsSwitchListTile.adaptive({
     Key key,
     this.defaultValue = false,
     @required this.storeKey,
@@ -27,7 +27,7 @@ class _SettingsSwitchListTileState extends State<SettingsSwitchListTile> {
       future: Matrix.of(context)
           .store
           .getItemBool(widget.storeKey, widget.defaultValue),
-      builder: (context, snapshot) => SwitchListTile(
+      builder: (context, snapshot) => SwitchListTile.adaptive(
         value: snapshot.data ?? widget.defaultValue,
         title: Text(widget.title),
         onChanged: (bool newValue) async {

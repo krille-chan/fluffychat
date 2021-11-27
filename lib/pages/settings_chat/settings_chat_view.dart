@@ -24,32 +24,32 @@ class SettingsChatView extends StatelessWidget {
           withScrolling: true,
           child: Column(
             children: [
-              SettingsSwitchListTile(
+              SettingsSwitchListTile.adaptive(
                 title: L10n.of(context).renderRichContent,
                 onChanged: (b) => AppConfig.renderHtml = b,
                 storeKey: SettingKeys.renderHtml,
                 defaultValue: AppConfig.renderHtml,
               ),
-              SettingsSwitchListTile(
+              SettingsSwitchListTile.adaptive(
                 title: L10n.of(context).hideRedactedEvents,
                 onChanged: (b) => AppConfig.hideRedactedEvents = b,
                 storeKey: SettingKeys.hideRedactedEvents,
                 defaultValue: AppConfig.hideRedactedEvents,
               ),
-              SettingsSwitchListTile(
+              SettingsSwitchListTile.adaptive(
                 title: L10n.of(context).hideUnknownEvents,
                 onChanged: (b) => AppConfig.hideUnknownEvents = b,
                 storeKey: SettingKeys.hideUnknownEvents,
                 defaultValue: AppConfig.hideUnknownEvents,
               ),
-              SettingsSwitchListTile(
+              SettingsSwitchListTile.adaptive(
                 title: L10n.of(context).autoplayImages,
                 onChanged: (b) => AppConfig.autoplayImages = b,
                 storeKey: SettingKeys.autoplayImages,
                 defaultValue: AppConfig.autoplayImages,
               ),
               if (PlatformInfos.isMobile)
-                SettingsSwitchListTile(
+                SettingsSwitchListTile.adaptive(
                   title: L10n.of(context).sendOnEnter,
                   onChanged: (b) => AppConfig.sendOnEnter = b,
                   storeKey: SettingKeys.sendOnEnter,

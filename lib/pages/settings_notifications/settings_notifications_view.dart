@@ -35,7 +35,7 @@ class SettingsNotificationsView extends StatelessWidget {
             builder: (BuildContext context, _) {
               return Column(
                 children: [
-                  SwitchListTile(
+                  SwitchListTile.adaptive(
                     value: !Matrix.of(context).client.allPushNotificationsMuted,
                     title: Text(
                         L10n.of(context).notificationsEnabledForThisAccount),
@@ -72,7 +72,7 @@ class SettingsNotificationsView extends StatelessWidget {
                       ),
                     ),
                     for (var item in NotificationSettingsItem.items)
-                      SwitchListTile(
+                      SwitchListTile.adaptive(
                         value: controller.getNotificationSetting(item) ?? true,
                         title: Text(item.title(context)),
                         onChanged: (bool enabled) =>

@@ -60,7 +60,7 @@ abstract class PlatformInfos {
           onPressed: () => VRouter.of(context).to('logs'),
           child: const Text('Logs'),
         ),
-        SentrySwitchListTile(label: L10n.of(context).sendBugReports),
+        SentrySwitchListTile.adaptive(label: L10n.of(context).sendBugReports),
       ],
       applicationIcon: Image.asset('assets/logo.png', width: 64, height: 64),
       applicationName: AppConfig.applicationName,
