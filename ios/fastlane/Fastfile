@@ -26,8 +26,8 @@ platform :ios do
     config = File.read("../../pubspec.yaml")
     version_name = config.match(re).captures[0]
     increment_version_number(version_number: version_name)
-    #build_app(workspace: "Runner.xcworkspace", scheme: "Runner")
-    #upload_to_testflight
+    build_app(workspace: "Runner.xcworkspace", scheme: "Runner")
+    upload_to_testflight
   end
 end
 
