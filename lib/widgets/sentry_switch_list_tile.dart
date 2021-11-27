@@ -7,7 +7,7 @@ import 'package:fluffychat/utils/sentry_controller.dart';
 class SentrySwitchListTile extends StatefulWidget {
   final String label;
 
-  const SentrySwitchListTile({Key key, this.label}) : super(key: key);
+  const SentrySwitchListTile.adaptive({Key key, this.label}) : super(key: key);
 
   @override
   _SentrySwitchListTileState createState() => _SentrySwitchListTileState();
@@ -22,7 +22,7 @@ class _SentrySwitchListTileState extends State<SentrySwitchListTile> {
         future: SentryController.getSentryStatus(),
         builder: (context, snapshot) {
           _enabled = snapshot.data ?? false;
-          return SwitchListTile(
+          return SwitchListTile.adaptive(
             title: Text(widget.label ?? L10n.of(context).sendBugReports),
             value: _enabled,
             onChanged: (b) =>

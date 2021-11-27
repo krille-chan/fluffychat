@@ -34,7 +34,7 @@ class NewSpaceView extends StatelessWidget {
                     hintText: L10n.of(context).enterASpacepName),
               ),
             ),
-            SwitchListTile(
+            SwitchListTile.adaptive(
               title: Text(L10n.of(context).spaceIsPublic),
               value: controller.publicGroup,
               onChanged: controller.setPublicGroup,

@@ -83,12 +83,10 @@ class EmotesSettingsView extends StatelessWidget {
                 ),
               ),
             if (controller.room != null)
-              ListTile(
+              SwitchListTile.adaptive(
                 title: Text(L10n.of(context).enableEmotesGlobally),
-                trailing: Switch(
-                  value: controller.isGloballyActive(client),
-                  onChanged: controller.setIsGloballyActive,
-                ),
+                value: controller.isGloballyActive(client),
+                onChanged: controller.setIsGloballyActive,
               ),
             if (!controller.readonly || controller.room != null)
               Divider(

@@ -34,7 +34,7 @@ class NewGroupView extends StatelessWidget {
                     hintText: L10n.of(context).enterAGroupName),
               ),
             ),
-            SwitchListTile(
+            SwitchListTile.adaptive(
               title: Text(L10n.of(context).groupIsPublic),
               value: controller.publicGroup,
               onChanged: controller.setPublicGroup,
