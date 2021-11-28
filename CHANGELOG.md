@@ -27,6 +27,7 @@
 - feat: Send reactions to multiple events
 - feat: Speed up app start
 - feat: Use SalomonBottomBar
+- feat: Drag&Drop to send multiple files on desktop and web
 - fix: Adjust color
 - fix: Automatic key requests
 - fix: Bootstrap loop
