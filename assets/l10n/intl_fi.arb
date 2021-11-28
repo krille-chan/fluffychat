@@ -1062,7 +1062,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "moreEvents": "{count,plural, =1{1 more event} toinen{{count} tapahtumaa lisää}}",
+  "moreEvents": "{count,plural, other{{count} tapahtumaa lisää}}",
   "@moreEvents": {
     "type": "text",
     "placeholders": {
