@@ -2517,5 +2517,12 @@
   "pleaseEnterValidEmail": "رجاءً أدخل بيردًا إلكترونيًا صالحًا.",
   "@pleaseEnterValidEmail": {},
   "repeatPassword": "كرّر كلمة السر",
-  "@repeatPassword": {}
+  "@repeatPassword": {},
+  "pleaseChooseAtLeastChars": "رجاءً اختر ما لا يقل عن {min} محرف.",
+  "@pleaseChooseAtLeastChars": {
+    "type": "text",
+    "placeholders": {
+      "min": {}
+    }
+  }
 }
