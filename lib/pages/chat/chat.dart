@@ -6,6 +6,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:desktop_drop/desktop_drop.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
 import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -29,8 +30,8 @@ import '../../utils/account_bundles.dart';
 import '../../utils/localized_exception_extension.dart';
 import '../../utils/matrix_sdk_extensions.dart/filtered_timeline_extension.dart';
 import '../../utils/matrix_sdk_extensions.dart/matrix_file_extension.dart';
-import '../new_private_chat/send_file_dialog.dart';
-import '../new_private_chat/send_location_dialog.dart';
+import 'send_file_dialog.dart';
+import 'send_location_dialog.dart';
 import 'sticker_picker_dialog.dart';
 
 class Chat extends StatefulWidget {
@@ -60,6 +61,28 @@ class ChatController extends State<Chat> {
   Timer typingCoolDown;
   Timer typingTimeout;
   bool currentlyTyping = false;
+  bool dragging = false;
+
+  void onDragEntered(_) => setState(() => dragging = true);
+  void onDragExited(_) => setState(() => dragging = false);
+  void onDragDone(DropDoneDetails details) async {
+    setState(() => dragging = false);
+    for (final url in details.urls) {
+      final file = File.fromUri(url);
+      final bytes = await file.readAsBytes();
+      await showDialog(
+        context: context,
+        useRootNavigator: false,
+        builder: (c) => SendFileDialog(
+          file: MatrixFile(
+            bytes: bytes,
+            name: file.path.split('/').last,
+          ).detectFileType,
+          room: room,
+        ),
+      );
+    }
+  }
 
   List<Event> selectedEvents = [];
 

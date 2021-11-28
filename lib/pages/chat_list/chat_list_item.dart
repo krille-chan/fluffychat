@@ -13,7 +13,7 @@ import 'package:fluffychat/utils/room_status_extension.dart';
 import '../../utils/date_time_extension.dart';
 import '../../widgets/avatar.dart';
 import '../../widgets/matrix.dart';
-import '../new_private_chat/send_file_dialog.dart';
+import '../chat/send_file_dialog.dart';
 
 enum ArchivedRoomAction { delete, rejoin }
 
