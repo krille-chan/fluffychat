@@ -72,7 +72,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "loadCountMoreParticipants": "{count} 명의 참가자 더 표시",
+  "loadCountMoreParticipants": "{count}명의 참가자 더 표시",
   "@loadCountMoreParticipants": {
     "type": "text",
     "placeholders": {
