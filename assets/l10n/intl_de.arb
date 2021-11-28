@@ -624,7 +624,7 @@
       "username": {}
     }
   },
-  "createNewGroup": "Neue Gruppe",
+  "createNewGroup": "Neue Gruppe erstellen",
   "@createNewGroup": {
     "type": "text",
     "placeholders": {}
@@ -2056,7 +2056,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "singlesignon": "Single Sign on",
+  "singlesignon": "Einmalige Anmeldung",
   "@singlesignon": {
     "type": "text",
     "placeholders": {}
@@ -2640,7 +2640,7 @@
   "@setupChatBackupNow": {},
   "passwordsDoNotMatch": "Passwörter stimmen nicht überein!",
   "@passwordsDoNotMatch": {},
-  "pleaseEnterValidEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+  "pleaseEnterValidEmail": "Bitte gib eine gültige E-Mail-Adresse ein.",
   "@pleaseEnterValidEmail": {},
   "repeatPassword": "Passwort wiederholen",
   "@repeatPassword": {},
@@ -2650,5 +2650,9 @@
     "placeholders": {
       "min": {}
     }
-  }
+  },
+  "pleaseEnterSecurityKeyDescription": "Um deinen Chat-Backup zu entsperren, gib bitte deinen Sicherheitsschlüssel ein, der in einer früheren Sitzung generiert wurde. Der Sicherheitsschlüssel ist NICHT dein Passwort.",
+  "@pleaseEnterSecurityKeyDescription": {},
+  "saveTheSecurityKeyNow": "Jetzt Sicherheitsschlüssel speichern",
+  "@saveTheSecurityKeyNow": {}
 }
