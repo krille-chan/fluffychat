@@ -87,6 +87,11 @@ class UrlLauncher {
 
   void openMatrixToUrl() async {
     final matrix = Matrix.of(context);
+    final url = this.url.replaceFirst(
+          AppConfig.deepLinkPrefix,
+          AppConfig.inviteLinkPrefix,
+        );
+
     // The identifier might be a matrix.to url and needs escaping. Or, it might have multiple
     // identifiers (room id & event id), or it might also have a query part.
     // All this needs parsing.
@@ -135,6 +140,14 @@ class UrlLauncher {
           VRouter.of(context).toSegments(['rooms', room.id]);
         }
         return;
+      } else {
+        await showModalBottomSheet(
+          context: context,
+          builder: (c) => PublicRoomBottomSheet(
+            roomAlias: identityParts.primaryIdentifier,
+            outerContext: context,
+          ),
+        );
       }
       if (roomIdOrAlias.sigil == '!') {
         if (await showOkCancelAlertDialog(
@@ -163,14 +176,6 @@ class UrlLauncher {
             VRouter.of(context).toSegments(['rooms', response.result]);
           }
         }
-      } else {
-        await showModalBottomSheet(
-          context: context,
-          builder: (c) => PublicRoomBottomSheet(
-            roomAlias: identityParts.primaryIdentifier,
-            outerContext: context,
-          ),
-        );
       }
     } else if (identityParts.primaryIdentifier.sigil == '@') {
       await showModalBottomSheet(

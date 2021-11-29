@@ -83,7 +83,7 @@ class NewPrivateChatView extends StatelessWidget {
                   decoration: InputDecoration(
                     labelText: L10n.of(context).typeInInviteLinkManually,
                     hintText: '@username',
-                    prefixText: 'https://matrix.to/#/',
+                    prefixText: 'matrix.to/#/',
                     suffixIcon: IconButton(
                       icon: const Icon(Icons.send_outlined),
                       onPressed: controller.submitAction,

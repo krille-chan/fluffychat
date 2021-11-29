@@ -130,9 +130,9 @@ class ChatListController extends State<ChatList> {
   void _processIncomingUris(String text) async {
     if (text == null) return;
     VRouter.of(context).to('/rooms');
-    text = text.replaceFirst('im.fluffychat://', 'matrix:');
-    UrlLauncher(context, text).openMatrixToUrl();
-    return;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      UrlLauncher(context, text).openMatrixToUrl();
+    });
   }
 
   void _initReceiveSharingIntent() {
