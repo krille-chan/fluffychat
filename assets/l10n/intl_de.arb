@@ -624,7 +624,7 @@
       "username": {}
     }
   },
-  "createNewGroup": "Neue Gruppe erstellen",
+  "createNewGroup": "Neue Gruppe",
   "@createNewGroup": {
     "type": "text",
     "placeholders": {}
