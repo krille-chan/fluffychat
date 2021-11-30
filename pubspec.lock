@@ -993,14 +993,14 @@ packages:
       name: permission_handler
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "8.1.6"
+    version: "8.3.0"
   permission_handler_platform_interface:
     dependency: transitive
     description:
       name: permission_handler_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.6.1"
+    version: "3.7.0"
   petitparser:
     dependency: transitive
     description:
@@ -1098,7 +1098,7 @@ packages:
       name: qr_code_scanner
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.5.2"
+    version: "0.6.1"
   qr_flutter:
     dependency: "direct main"
     description:
