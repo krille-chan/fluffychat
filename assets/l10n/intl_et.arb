@@ -629,7 +629,7 @@
       "username": {}
     }
   },
-  "createNewGroup": "Loo uus vestlusrühma",
+  "createNewGroup": "Loo uus vestlusrühm",
   "@createNewGroup": {
     "type": "text",
     "placeholders": {}
