@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_blurhash/flutter_blurhash.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lottie/lottie.dart';
@@ -48,6 +49,8 @@ class ImageBubble extends StatefulWidget {
 class _ImageBubbleState extends State<ImageBubble> {
   // for plaintext: holds the http URL for the thumbnail
   String thumbnailUrl;
+  // for plaintext. holds the http URL for the thumbnial, without the animated flag
+  String thumbnailUrlNoAnimated;
   // for plaintext: holds the http URL of the original
   String attachmentUrl;
   MatrixFile _file;
@@ -165,6 +168,9 @@ class _ImageBubbleState extends State<ImageBubble> {
 
     thumbnailUrl = widget.event
         .getAttachmentUrl(getThumbnail: true, animated: widget.animated)
+        ?.toString();
+    thumbnailUrlNoAnimated = widget.event
+        .getAttachmentUrl(getThumbnail: true, animated: false)
         ?.toString();
     attachmentUrl =
         widget.event.getAttachmentUrl(animated: widget.animated)?.toString();
@@ -304,15 +310,30 @@ class _ImageBubbleState extends State<ImageBubble> {
               displayUrl != thumbnailUrl &&
               displayUrl == attachmentUrl) {
             // we have to display the thumbnail while loading
-            return CachedNetworkImage(
-              key: ValueKey(thumbnailUrl),
-              imageUrl: thumbnailUrl,
-              placeholder: (c, u) => getPlaceholderWidget(),
-              imageBuilder: (context, imageProvider) => Image(
-                image: imageProvider,
-                frameBuilder: frameBuilder,
-                fit: widget.fit,
-              ),
+            return FutureBuilder<bool>(
+              future: (() async {
+                return await DefaultCacheManager()
+                        .getFileFromCache(thumbnailUrl) !=
+                    null;
+              })(),
+              builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+                if (!snapshot.hasData) {
+                  return getPlaceholderWidget();
+                }
+                final effectiveUrl = snapshot.data == true
+                    ? thumbnailUrl
+                    : thumbnailUrlNoAnimated;
+                return CachedNetworkImage(
+                  key: ValueKey(effectiveUrl),
+                  imageUrl: effectiveUrl,
+                  placeholder: (c, u) => getPlaceholderWidget(),
+                  imageBuilder: (context, imageProvider) => Image(
+                    image: imageProvider,
+                    frameBuilder: frameBuilder,
+                    fit: widget.fit,
+                  ),
+                );
+              },
             );
           }
           return getPlaceholderWidget();
@@ -334,6 +355,12 @@ class _ImageBubbleState extends State<ImageBubble> {
                         getThumbnail: true,
                         useThumbnailMxcUrl: true,
                         animated: widget.animated)
+                    ?.toString();
+                thumbnailUrlNoAnimated = widget.event
+                    .getAttachmentUrl(
+                        getThumbnail: true,
+                        useThumbnailMxcUrl: true,
+                        animated: false)
                     ?.toString();
                 attachmentUrl = widget.event
                     .getAttachmentUrl(
