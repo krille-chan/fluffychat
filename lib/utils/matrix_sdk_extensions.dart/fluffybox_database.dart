@@ -81,7 +81,11 @@ class FlutterFluffyBoxDatabase extends FluffyBoxDatabase {
     if (!kIsWeb) {
       Directory directory;
       try {
-        directory = await getApplicationSupportDirectory();
+        if (Platform.isLinux) {
+          directory = await getApplicationSupportDirectory();
+        } else {
+          directory = await getApplicationDocumentsDirectory();
+        }
       } catch (_) {
         try {
           directory = await getLibraryDirectory();
