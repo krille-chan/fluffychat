@@ -53,11 +53,11 @@ dependencies:
   open_noti_settings: ^0.2.0
   package_info_plus: ^1.2.1
   path_provider: ^2.0.5
-  permission_handler: ^8.1.6
+  permission_handler: ^8.3.0
   pin_code_text_field: ^1.8.0
   provider: ^6.0.1
   punycode: ^1.0.0
-  qr_code_scanner: ^0.5.2
+  qr_code_scanner: ^0.6.1
   qr_flutter: ^4.0.0
   receive_sharing_intent: ^1.4.5
   record: ^3.0.0

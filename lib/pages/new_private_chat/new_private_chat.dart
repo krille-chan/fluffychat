@@ -72,8 +72,7 @@ class NewPrivateChatController extends State<NewPrivateChat> {
       );
 
   void openScannerAction() async {
-    final status = await Permission.camera.request();
-    if (!status.isGranted) return;
+    await Permission.camera.request();
     await showModalBottomSheet(
       context: context,
       useRootNavigator: false,
