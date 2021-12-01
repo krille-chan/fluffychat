@@ -25,43 +25,48 @@ class ParticipantListItem extends StatelessWidget {
             ? L10n.of(context).moderator
             : '';
 
-    return ListTile(
-      onTap: () => showModalBottomSheet(
-        context: context,
-        builder: (c) => UserBottomSheet(
-          user: user,
-          outerContext: context,
+    return Opacity(
+      opacity: user.membership == Membership.join ? 1 : 0.5,
+      child: ListTile(
+        onTap: () => showModalBottomSheet(
+          context: context,
+          builder: (c) => UserBottomSheet(
+            user: user,
+            outerContext: context,
+          ),
         ),
-      ),
-      title: Row(
-        children: <Widget>[
-          Text(user.calcDisplayname()),
-          permissionBatch.isEmpty
-              ? Container()
-              : Container(
-                  padding: const EdgeInsets.all(4),
-                  margin: const EdgeInsets.symmetric(horizontal: 8),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).secondaryHeaderColor,
-                    borderRadius: BorderRadius.circular(8),
+        title: Row(
+          children: <Widget>[
+            Text(user.calcDisplayname()),
+            permissionBatch.isEmpty
+                ? Container()
+                : Container(
+                    padding: const EdgeInsets.all(4),
+                    margin: const EdgeInsets.symmetric(horizontal: 8),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).secondaryHeaderColor,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Center(child: Text(permissionBatch)),
                   ),
-                  child: Center(child: Text(permissionBatch)),
-                ),
-          membershipBatch[user.membership].isEmpty
-              ? Container()
-              : Container(
-                  padding: const EdgeInsets.all(4),
-                  margin: const EdgeInsets.symmetric(horizontal: 8),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).secondaryHeaderColor,
-                    borderRadius: BorderRadius.circular(8),
+            membershipBatch[user.membership].isEmpty
+                ? Container()
+                : Container(
+                    padding: const EdgeInsets.all(4),
+                    margin: const EdgeInsets.symmetric(horizontal: 8),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).secondaryHeaderColor,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child:
+                        Center(child: Text(membershipBatch[user.membership])),
                   ),
-                  child: Center(child: Text(membershipBatch[user.membership])),
-                ),
-        ],
+          ],
+        ),
+        subtitle: Text(user.id),
+        leading:
+            Avatar(mxContent: user.avatarUrl, name: user.calcDisplayname()),
       ),
-      subtitle: Text(user.id),
-      leading: Avatar(mxContent: user.avatarUrl, name: user.calcDisplayname()),
     );
   }
 }
