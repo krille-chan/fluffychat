@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
@@ -26,12 +28,12 @@ class UserDeviceListItem extends StatelessWidget {
 
   const UserDeviceListItem(
     this.userDevice, {
-    @required this.remove,
-    @required this.rename,
-    @required this.verify,
-    @required this.block,
-    @required this.unblock,
-    Key key,
+    required this.remove,
+    required this.rename,
+    required this.verify,
+    required this.block,
+    required this.unblock,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -49,33 +51,34 @@ class UserDeviceListItem extends StatelessWidget {
           actions: [
             SheetAction(
               key: UserDeviceListItemAction.rename,
-              label: L10n.of(context).changeDeviceName,
+              label: L10n.of(context)!.changeDeviceName,
             ),
             if (keys != null) ...{
               SheetAction(
                 key: UserDeviceListItemAction.verify,
-                label: L10n.of(context).verifyStart,
+                label: L10n.of(context)!.verifyStart,
               ),
               if (!keys.blocked)
                 SheetAction(
                   key: UserDeviceListItemAction.block,
-                  label: L10n.of(context).blockDevice,
+                  label: L10n.of(context)!.blockDevice,
                   isDestructiveAction: true,
                 ),
               if (keys.blocked)
                 SheetAction(
                   key: UserDeviceListItemAction.unblock,
-                  label: L10n.of(context).unblockDevice,
+                  label: L10n.of(context)!.unblockDevice,
                   isDestructiveAction: true,
                 ),
             },
             SheetAction(
               key: UserDeviceListItemAction.remove,
-              label: L10n.of(context).delete,
+              label: L10n.of(context)!.delete,
               isDestructiveAction: true,
             ),
           ],
         );
+        if (action == null) return;
         switch (action) {
           case UserDeviceListItemAction.rename:
             rename(userDevice);
@@ -116,10 +119,10 @@ class UserDeviceListItem extends StatelessWidget {
           if (keys != null)
             Text(
               keys.blocked
-                  ? L10n.of(context).blocked
+                  ? L10n.of(context)!.blocked
                   : keys.verified
-                      ? L10n.of(context).verified
-                      : L10n.of(context).unverified,
+                      ? L10n.of(context)!.verified
+                      : L10n.of(context)!.unverified,
               style: TextStyle(
                 color: keys.blocked
                     ? Colors.red
@@ -131,8 +134,8 @@ class UserDeviceListItem extends StatelessWidget {
         ],
       ),
       subtitle: Text(
-        L10n.of(context).lastActiveAgo(
-            DateTime.fromMillisecondsSinceEpoch(userDevice.lastSeenTs)
+        L10n.of(context)!.lastActiveAgo(
+            DateTime.fromMillisecondsSinceEpoch(userDevice.lastSeenTs ?? 0)
                 .localizedTimeShort(context)),
         style: const TextStyle(fontWeight: FontWeight.w300),
       ),
