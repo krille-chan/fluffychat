@@ -1,5 +1,6 @@
 #!/bin/sh -ve
-flutter pub get
-flutter pub pub run dapackages:dapackages.dart ./pubspec.yaml
+flutter pub upgrade --major-versions
 flutter pub get
 dart fix --apply
+flutter format lib test
+flutter pub run import_sorter:main --no-comments

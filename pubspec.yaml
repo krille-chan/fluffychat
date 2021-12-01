@@ -15,7 +15,7 @@ dependencies:
   chewie: ^1.2.2
   cupertino_icons: any
   desktop_drop: ^0.2.0
-  desktop_notifications: ">=0.4.0 <0.5.0" # Version 0.5.0 breaks web builds: https://github.com/canonical/dbus.dart/issues/250
+  desktop_notifications: ^0.6.1
   email_validator: ^2.0.1
   emoji_picker_flutter: ^1.0.7
   encrypt: ^5.0.1
@@ -36,8 +36,8 @@ dependencies:
   flutter_matrix_html: ^1.1.0
   flutter_olm: ^1.1.2
   flutter_openssl_crypto: ^0.0.1
-  flutter_secure_storage: ^4.2.1
-  flutter_slidable: ^0.6.0
+  flutter_secure_storage: ^5.0.2
+  flutter_slidable: ^1.1.0
   flutter_svg: ^0.22.0
   flutter_typeahead: ^3.2.1
   future_loading_dialog: ^0.2.1
@@ -68,14 +68,13 @@ dependencies:
   slugify: ^2.0.0
   swipe_to_action: ^0.2.0
   uni_links: ^0.5.1
-  unifiedpush: ^1.0.6
+  unifiedpush: ^3.0.0
   universal_html: ^2.0.8
   url_launcher: ^6.0.12
-  vrouter: 1.2.0+11
+  vrouter: ^1.2.0+15
   wakelock: ^0.5.6
 
 dev_dependencies:
-  dapackages: ^1.6.0
   dart_code_metrics: ^4.2.0-dev.3
   flutter_lints: ^1.0.4
   flutter_native_splash: ^1.2.4

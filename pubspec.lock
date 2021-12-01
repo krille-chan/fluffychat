@@ -218,13 +218,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
-  dapackages:
-    dependency: "direct dev"
-    description:
-      name: dapackages
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.6.0"
   dart_code_metrics:
     dependency: "direct dev"
     description:
@@ -245,7 +238,7 @@ packages:
       name: dbus
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.3"
+    version: "0.6.6"
   desktop_drop:
     dependency: "direct main"
     description:
@@ -259,7 +252,7 @@ packages:
       name: desktop_notifications
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.0"
+    version: "0.6.1"
   disk_space:
     dependency: transitive
     description:
@@ -521,14 +514,49 @@ packages:
       name: flutter_secure_storage
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.2.1"
+    version: "5.0.2"
+  flutter_secure_storage_linux:
+    dependency: transitive
+    description:
+      name: flutter_secure_storage_linux
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
+  flutter_secure_storage_macos:
+    dependency: transitive
+    description:
+      name: flutter_secure_storage_macos
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
+  flutter_secure_storage_platform_interface:
+    dependency: transitive
+    description:
+      name: flutter_secure_storage_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
+  flutter_secure_storage_web:
+    dependency: transitive
+    description:
+      name: flutter_secure_storage_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
+  flutter_secure_storage_windows:
+    dependency: transitive
+    description:
+      name: flutter_secure_storage_windows
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.2"
   flutter_slidable:
     dependency: "direct main"
     description:
       name: flutter_slidable
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.0"
+    version: "1.1.0"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -1028,7 +1056,7 @@ packages:
       name: plugin_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.2"
   pointycastle:
     dependency: transitive
     description:
@@ -1432,7 +1460,7 @@ packages:
       name: unifiedpush
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.0"
+    version: "3.0.0"
   universal_html:
     dependency: "direct main"
     description:
@@ -1551,7 +1579,7 @@ packages:
       name: vrouter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.0+11"
+    version: "1.2.0+15"
   wakelock:
     dependency: "direct main"
     description:
