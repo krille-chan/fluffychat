@@ -26,9 +26,14 @@ class _SendFileDialogState extends State<SendFileDialog> {
   bool origImage = false;
   bool _isSending = false;
 
+  /// Images smaller than 20kb don't need compression.
+  static const int minSizeToCompress = 20 * 1024;
+
   Future<void> _send() async {
     var file = widget.file;
-    if (file is MatrixImageFile && !origImage) {
+    if (file is MatrixImageFile &&
+        !origImage &&
+        file.bytes.length > minSizeToCompress) {
       file = await file.resizeImage(quality: 40, max: 1200);
     }
     await widget.room.sendFileEventWithThumbnail(file);
@@ -53,7 +58,6 @@ class _SendFileDialogState extends State<SendFileDialog> {
             fit: BoxFit.contain,
           ),
         ),
-        Text(widget.file.name),
         Row(
           children: <Widget>[
             Checkbox(
