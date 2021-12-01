@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -13,9 +15,9 @@ class SendFileDialog extends StatefulWidget {
   final MatrixFile file;
 
   const SendFileDialog({
-    this.room,
-    this.file,
-    Key key,
+    required this.room,
+    required this.file,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -41,13 +43,13 @@ class _SendFileDialogState extends State<SendFileDialog> {
 
   @override
   Widget build(BuildContext context) {
-    var sendStr = L10n.of(context).sendFile;
+    var sendStr = L10n.of(context)!.sendFile;
     if (widget.file is MatrixImageFile) {
-      sendStr = L10n.of(context).sendImage;
+      sendStr = L10n.of(context)!.sendImage;
     } else if (widget.file is MatrixAudioFile) {
-      sendStr = L10n.of(context).sendAudio;
+      sendStr = L10n.of(context)!.sendAudio;
     } else if (widget.file is MatrixVideoFile) {
-      sendStr = L10n.of(context).sendVideo;
+      sendStr = L10n.of(context)!.sendVideo;
     }
     Widget contentWidget;
     if (widget.file is MatrixImageFile) {
@@ -62,11 +64,11 @@ class _SendFileDialogState extends State<SendFileDialog> {
           children: <Widget>[
             Checkbox(
               value: origImage,
-              onChanged: (v) => setState(() => origImage = v),
+              onChanged: (v) => setState(() => origImage = v ?? false),
             ),
             InkWell(
               onTap: () => setState(() => origImage = !origImage),
-              child: Text(L10n.of(context).sendOriginal +
+              child: Text(L10n.of(context)!.sendOriginal +
                   ' (${widget.file.sizeString})'),
             ),
           ],
@@ -84,7 +86,7 @@ class _SendFileDialogState extends State<SendFileDialog> {
             // just close the dialog
             Navigator.of(context, rootNavigator: false).pop();
           },
-          child: Text(L10n.of(context).cancel),
+          child: Text(L10n.of(context)!.cancel),
         ),
         TextButton(
           onPressed: _isSending
@@ -97,7 +99,7 @@ class _SendFileDialogState extends State<SendFileDialog> {
                       context: context, future: () => _send());
                   Navigator.of(context, rootNavigator: false).pop();
                 },
-          child: Text(L10n.of(context).send),
+          child: Text(L10n.of(context)!.send),
         ),
       ],
     );
