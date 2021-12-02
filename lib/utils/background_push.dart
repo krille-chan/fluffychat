@@ -30,7 +30,7 @@ import 'package:flutter_gen/gen_l10n/l10n_en.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:http/http.dart' as http;
 import 'package:matrix/matrix.dart';
-import 'package:unifiedpush/unifiedpush.dart';
+import 'package:unifiedpush/unifiedpush.dart' hide Message;
 import 'package:vrouter/vrouter.dart';
 
 import '../config/app_config.dart';
