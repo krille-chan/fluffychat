@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -16,14 +18,14 @@ extension MatrixFileExtension on MatrixFile {
     if (PlatformInfos.isMobile) {
       final tmpDirectory = PlatformInfos.isAndroid
           ? (await getExternalStorageDirectories(
-                  type: StorageDirectory.downloads))
+                  type: StorageDirectory.downloads))!
               .first
           : await getTemporaryDirectory();
       final path = '${tmpDirectory.path}$fileName';
       await File(path).writeAsBytes(bytes);
       await Share.shareFiles([path]);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(L10n.of(context).savedFileAs(path))),
+        SnackBar(content: Text(L10n.of(context)!.savedFileAs(path))),
       );
       return;
     } else {

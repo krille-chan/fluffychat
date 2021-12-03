@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
@@ -31,14 +33,14 @@ IconData _getIconFromName(String displayname) {
 
 extension DeviceExtension on Device {
   String get displayname =>
-      (displayName?.isNotEmpty ?? false) ? displayName : 'Unknown device';
+      (displayName?.isNotEmpty ?? false) ? displayName! : 'Unknown device';
 
   IconData get icon => _getIconFromName(displayname);
 }
 
 extension DeviceKeysExtension on DeviceKeys {
   String get displayname => (deviceDisplayName?.isNotEmpty ?? false)
-      ? deviceDisplayName
+      ? deviceDisplayName!
       : 'Unknown device';
 
   IconData get icon => _getIconFromName(displayname);

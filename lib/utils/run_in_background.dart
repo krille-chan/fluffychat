@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'dart:async';
 
 import 'package:isolate/isolate.dart';

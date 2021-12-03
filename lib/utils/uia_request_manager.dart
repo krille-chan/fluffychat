@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'dart:async';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
@@ -24,9 +26,9 @@ extension UiaRequestManager on MatrixState {
           final input = cachedPassword ??
               (await showTextInputDialog(
                 context: navigatorContext,
-                title: L10n.of(context).pleaseEnterYourPassword,
-                okLabel: L10n.of(context).ok,
-                cancelLabel: L10n.of(context).cancel,
+                title: L10n.of(context)!.pleaseEnterYourPassword,
+                okLabel: L10n.of(context)!.ok,
+                cancelLabel: L10n.of(context)!.cancel,
                 textFields: [
                   const DialogTextField(
                     minLines: 1,
@@ -37,20 +39,20 @@ extension UiaRequestManager on MatrixState {
                 ],
               ))
                   ?.single;
-          if (input?.isEmpty ?? true) {
+          if (input == null || input.isEmpty) {
             return uiaRequest.cancel();
           }
           return uiaRequest.completeStage(
             AuthenticationPassword(
               session: uiaRequest.session,
               password: input,
-              identifier: AuthenticationUserIdentifier(user: client.userID),
+              identifier: AuthenticationUserIdentifier(user: client.userID!),
             ),
           );
         case AuthenticationTypes.emailIdentity:
           if (currentThreepidCreds == null || currentClientSecret == null) {
             return uiaRequest.cancel(
-              UiaException(L10n.of(widget.context).serverRequiresEmail),
+              UiaException(L10n.of(widget.context)!.serverRequiresEmail),
             );
           }
           final auth = AuthenticationThreePidCreds(
@@ -65,10 +67,10 @@ extension UiaRequestManager on MatrixState {
               await showOkCancelAlertDialog(
                 useRootNavigator: false,
                 context: navigatorContext,
-                title: L10n.of(context).weSentYouAnEmail,
-                message: L10n.of(context).pleaseClickOnLink,
-                okLabel: L10n.of(context).iHaveClickedOnLink,
-                cancelLabel: L10n.of(context).cancel,
+                title: L10n.of(context)!.weSentYouAnEmail,
+                message: L10n.of(context)!.pleaseClickOnLink,
+                okLabel: L10n.of(context)!.iHaveClickedOnLink,
+                cancelLabel: L10n.of(context)!.cancel,
               )) {
             return uiaRequest.completeStage(auth);
           }
@@ -90,7 +92,7 @@ extension UiaRequestManager on MatrixState {
                 action: (_, __) {
                   uiaRequest.cancel();
                 },
-                label: L10n.of(context).cancel,
+                label: L10n.of(context)!.cancel,
                 id: 0,
               ),
             );
@@ -101,10 +103,10 @@ extension UiaRequestManager on MatrixState {
             if (OkCancelResult.ok ==
                 await showOkCancelAlertDialog(
                   useRootNavigator: false,
-                  message: L10n.of(context).pleaseFollowInstructionsOnWeb,
+                  message: L10n.of(context)!.pleaseFollowInstructionsOnWeb,
                   context: navigatorContext,
-                  okLabel: L10n.of(context).next,
-                  cancelLabel: L10n.of(context).cancel,
+                  okLabel: L10n.of(context)!.next,
+                  cancelLabel: L10n.of(context)!.cancel,
                 )) {
               return uiaRequest.completeStage(
                 AuthenticationData(session: uiaRequest.session),

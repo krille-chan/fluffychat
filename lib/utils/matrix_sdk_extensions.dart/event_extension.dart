@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -19,10 +21,10 @@ extension LocalizedBody on Event {
 
   bool get isAttachmentSmallEnough =>
       infoMap['size'] is int &&
-      infoMap['size'] < room.client.database.maxFileSize;
+      infoMap['size'] < room.client.database!.maxFileSize;
   bool get isThumbnailSmallEnough =>
       thumbnailInfoMap['size'] is int &&
-      thumbnailInfoMap['size'] < room.client.database.maxFileSize;
+      thumbnailInfoMap['size'] < room.client.database!.maxFileSize;
 
   bool get showThumbnail =>
       [MessageTypes.Image, MessageTypes.Sticker, MessageTypes.Video]
@@ -32,7 +34,7 @@ extension LocalizedBody on Event {
           isThumbnailSmallEnough ||
           (content['url'] is String));
 
-  String get sizeString {
+  String? get sizeString {
     if (content['info'] is Map<String, dynamic> &&
         content['info'].containsKey('size')) {
       num size = content['info']['size'];
@@ -58,6 +60,7 @@ extension LocalizedBody on Event {
 
   Future<bool> isAttachmentCached({bool getThumbnail = false}) async {
     final mxcUrl = attachmentOrThumbnailMxcUrl(getThumbnail: getThumbnail);
+    if (mxcUrl == null) return false;
     // check if we have it in-memory
     if (_downloadAndDecryptFutures.containsKey(mxcUrl)) {
       return true;
@@ -72,7 +75,7 @@ extension LocalizedBody on Event {
     return file != null;
   }
 
-  Future<MatrixFile> downloadAndDecryptAttachmentCached(
+  Future<MatrixFile?> downloadAndDecryptAttachmentCached(
       {bool getThumbnail = false}) async {
     final mxcUrl =
         attachmentOrThumbnailMxcUrl(getThumbnail: getThumbnail).toString();

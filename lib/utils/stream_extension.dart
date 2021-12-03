@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'dart:async';
 
 extension StreamExtension on Stream {
@@ -5,11 +7,11 @@ extension StreamExtension on Stream {
   /// stream, ratelimited by the Duration t
   Stream<bool> rateLimit(Duration t) {
     final controller = StreamController<bool>();
-    Timer timer;
+    Timer? timer;
     var gotMessage = false;
     // as we call our inline-defined function recursively we need to make sure that the
     // variable exists prior of creating the function. Silly dart.
-    Function _onMessage;
+    Function? _onMessage;
     // callback to determine if we should send out an update
     _onMessage = () {
       // do nothing if it is already closed
@@ -25,7 +27,7 @@ extension StreamExtension on Stream {
           // method to send out an update!
           timer = null;
           if (gotMessage) {
-            _onMessage();
+            _onMessage?.call();
           }
         });
       } else {
@@ -33,7 +35,7 @@ extension StreamExtension on Stream {
         gotMessage = true;
       }
     };
-    final subscription = listen((_) => _onMessage(),
+    final subscription = listen((_) => _onMessage?.call(),
         onDone: () => controller.close(),
         onError: (e, s) => controller.addError(e, s));
     // add proper cleanup to the subscription and the controller, to not memory leak
