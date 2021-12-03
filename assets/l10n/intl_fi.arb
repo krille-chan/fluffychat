@@ -218,7 +218,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "botMessages": "Bottien viestit",
+  "botMessages": "Bottien lähettämät viestit",
   "@botMessages": {
     "type": "text",
     "placeholders": {}
@@ -419,12 +419,12 @@
     "type": "text",
     "description": "Usage hint for the command /html"
   },
-  "commandHintBan": "Anna annetulle käyttäjälle porttikielto tähän huoneeseen",
+  "commandHintBan": "Anna syötetylle käyttäjälle porttikielto tähän huoneeseen",
   "@commandHintBan": {
     "type": "text",
     "description": "Usage hint for the command /ban"
   },
-  "commandHintInvite": "Kutsu annettu käyttäjä tähän huoneeseen",
+  "commandHintInvite": "Kutsu syötetty käyttäjä tähän huoneeseen",
   "@commandHintInvite": {
     "type": "text",
     "description": "Usage hint for the command /invite"
@@ -434,7 +434,7 @@
     "type": "text",
     "description": "Usage hint for the command /leave"
   },
-  "commandHintMyRoomAvatar": "Aseta profiilikuvasi tähän huoneeseen (antamalla mxc-uri)",
+  "commandHintMyRoomAvatar": "Aseta profiilikuvasi tähän huoneeseen (syöttämällä mxc-uri)",
   "@commandHintMyRoomAvatar": {
     "type": "text",
     "description": "Usage hint for the command /myroomavatar"
@@ -449,7 +449,7 @@
     "type": "text",
     "description": "Usage hint for the command /op"
   },
-  "commandHintPlain": "Lähetä tekstiä ilman muotoilua",
+  "commandHintPlain": "Lähetä muotoilematonta tekstiä",
   "@commandHintPlain": {
     "type": "text",
     "description": "Usage hint for the command /plain"
@@ -809,7 +809,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "hasWithdrawnTheInvitationFor": "{username} on perunnut {targetName}:n kutsun",
+  "hasWithdrawnTheInvitationFor": "{username} on perunnut käyttäjän {targetName} kutsun",
   "@hasWithdrawnTheInvitationFor": {
     "type": "text",
     "placeholders": {
@@ -1057,7 +1057,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "monday": "Maanantai",
+  "monday": "maanantaina",
   "@monday": {
     "type": "text",
     "placeholders": {}
@@ -1109,7 +1109,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noEncryptionForPublicRooms": "Voit ottaa salauksen käyttöön vasta kun huone ei ole julkisesti saavutettavissa.",
+  "noEncryptionForPublicRooms": "Voit ottaa salauksen käyttöön vasta kun huone ei ole julkisesti liityttävissä.",
   "@noEncryptionForPublicRooms": {
     "type": "text",
     "placeholders": {}
@@ -1171,7 +1171,7 @@
       "number": {}
     }
   },
-  "numUsersTyping": "{count} käyttäjää kirjoittaa…",
+  "numUsersTyping": "{count} käyttäjää kirjoittavat…",
   "@numUsersTyping": {
     "type": "text",
     "placeholders": {
@@ -1198,7 +1198,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "online": "Verkossa",
+  "online": "Linjoilla",
   "@online": {
     "type": "text",
     "placeholders": {}
@@ -1250,7 +1250,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHintJoin": "Liity annettuun huoneeseen",
+  "commandHintJoin": "Liity syötettyyn huoneeseen",
   "@commandHintJoin": {
     "type": "text",
     "description": "Usage hint for the command /join"
@@ -1260,7 +1260,7 @@
     "type": "text",
     "description": "Usage hint for the command /me"
   },
-  "compareEmojiMatch": "Vertaile ja varmista emojien olevan täsmäävän toisella laitteella:",
+  "compareEmojiMatch": "Vertaile ja varmista emojien olevan samat molemmilla laitteilla:",
   "@compareEmojiMatch": {
     "type": "text",
     "placeholders": {}
@@ -1324,12 +1324,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHintKick": "Poista annettu käyttäjä huoneesta",
+  "commandHintKick": "Poista syötetty käyttäjä huoneesta",
   "@commandHintKick": {
     "type": "text",
     "description": "Usage hint for the command /kick"
   },
-  "commandHintUnBan": "Poista annetun käyttäjän porttikielto tästä huoneesta",
+  "commandHintUnBan": "Poista syötetyn käyttäjän porttikielto tästä huoneesta",
   "@commandHintUnBan": {
     "type": "text",
     "description": "Usage hint for the command /unban"
@@ -1376,7 +1376,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "contentHasBeenReported": "Sisältö ion ilmoitettu palvelimen ylläpitäjille",
+  "contentHasBeenReported": "Sisältö on ilmoitettu palvelimen ylläpitäjille",
   "@contentHasBeenReported": {
     "type": "text",
     "placeholders": {}
@@ -1467,7 +1467,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "friday": "Perjantai",
+  "friday": "perjantaina",
   "@friday": {
     "type": "text",
     "placeholders": {}
@@ -1576,7 +1576,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "oneClientLoggedOut": "Yksi asiakasohjelmistasi on kirjattu ulos",
+  "oneClientLoggedOut": "Yksi tunnuksistasi on kirjattu ulos",
   "@oneClientLoggedOut": {},
   "addAccount": "Lisää tili",
   "@addAccount": {},
@@ -1749,7 +1749,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "removedBy": "{username} poisti tämän",
+  "removedBy": "Poistanut {username}",
   "@removedBy": {
     "type": "text",
     "placeholders": {
@@ -1915,7 +1915,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "soundVibrationLedColor": "Ääni, värinä LED-väri",
+  "soundVibrationLedColor": "Ääni, värinä, LEDin väri",
   "@soundVibrationLedColor": {
     "type": "text",
     "placeholders": {}
@@ -1940,7 +1940,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "synchronizingPleaseWait": "Synkronoidaan... Odota hetki.",
+  "synchronizingPleaseWait": "Synkronoidaan... Hetkinen.",
   "@synchronizingPleaseWait": {
     "type": "text",
     "placeholders": {}
@@ -1975,7 +1975,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "thursday": "torstai",
+  "thursday": "torstaina",
   "@thursday": {
     "type": "text",
     "placeholders": {}
@@ -2083,7 +2083,7 @@
       "username": {}
     }
   },
-  "timeOfDay": "{hours24}:{minutes} {suffix}",
+  "timeOfDay": "{hours24}.{minutes} {suffix}",
   "@timeOfDay": {
     "type": "text",
     "placeholders": {
@@ -2178,7 +2178,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wednesday": "keskiviikko",
+  "wednesday": "keskiviikkona",
   "@wednesday": {
     "type": "text",
     "placeholders": {}
@@ -2331,7 +2331,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "saturday": "lauantai",
+  "saturday": "lauantaina",
   "@saturday": {
     "type": "text",
     "placeholders": {}
@@ -2500,7 +2500,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "startYourFirstChat": "Aloita ensimmäinen keskustelusi juuri nyt! 🙂\n- Paina viesti-näppiä\n- Anna ystävän käyttäjätunnus\n- Pidä hauskaa keskustellen",
+  "startYourFirstChat": "Aloita ensimmäinen keskustelusi juuri nyt! 🙂\n- Paina viesti-näppiä\n- Anna ystävän käyttäjätunnus\n- Pidä hauskaa jutustellen",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -2510,7 +2510,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sunday": "sunnuntai",
+  "sunday": "sunnuntaina",
   "@sunday": {
     "type": "text",
     "placeholders": {}
@@ -2551,7 +2551,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "tuesday": "torstai",
+  "tuesday": "tiistaina",
   "@tuesday": {
     "type": "text",
     "placeholders": {}
