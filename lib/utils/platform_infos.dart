@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
@@ -50,7 +52,7 @@ abstract class PlatformInfos {
         Text('Version: $version'),
         OutlinedButton(
           onPressed: () => launch(AppConfig.sourceCodeUrl),
-          child: Text(L10n.of(context).sourceCode),
+          child: Text(L10n.of(context)!.sourceCode),
         ),
         OutlinedButton(
           onPressed: () => launch(AppConfig.emojiFontUrl),
@@ -60,7 +62,7 @@ abstract class PlatformInfos {
           onPressed: () => VRouter.of(context).to('logs'),
           child: const Text('Logs'),
         ),
-        SentrySwitchListTile.adaptive(label: L10n.of(context).sendBugReports),
+        SentrySwitchListTile.adaptive(label: L10n.of(context)!.sendBugReports),
       ],
       applicationIcon: Image.asset('assets/logo.png', width: 64, height: 64),
       applicationName: AppConfig.applicationName,

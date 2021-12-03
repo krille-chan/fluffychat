@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'package:flutter/widgets.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -8,31 +10,32 @@ import 'date_time_extension.dart';
 import 'matrix_sdk_extensions.dart/filtered_timeline_extension.dart';
 
 extension RoomStatusExtension on Room {
-  Presence get directChatPresence => client.presences[directChatMatrixID];
+  Presence? get directChatPresence => client.presences[directChatMatrixID];
 
   String getLocalizedStatus(BuildContext context) {
     if (isDirectChat) {
+      final directChatPresence = this.directChatPresence;
       if (directChatPresence != null &&
-          directChatPresence.presence != null &&
           (directChatPresence.presence.lastActiveAgo != null ||
               directChatPresence.presence.currentlyActive != null)) {
         if (directChatPresence.presence.statusMsg?.isNotEmpty ?? false) {
-          return directChatPresence.presence.statusMsg;
+          return directChatPresence.presence.statusMsg!;
         }
         if (directChatPresence.presence.currentlyActive == true) {
-          return L10n.of(context).currentlyActive;
+          return L10n.of(context)!.currentlyActive;
         }
         if (directChatPresence.presence.lastActiveAgo == null) {
-          return L10n.of(context).lastSeenLongTimeAgo;
+          return L10n.of(context)!.lastSeenLongTimeAgo;
         }
         final time = DateTime.fromMillisecondsSinceEpoch(
             DateTime.now().millisecondsSinceEpoch -
-                directChatPresence.presence.lastActiveAgo);
-        return L10n.of(context).lastActiveAgo(time.localizedTimeShort(context));
+                directChatPresence.presence.lastActiveAgo!);
+        return L10n.of(context)!
+            .lastActiveAgo(time.localizedTimeShort(context));
       }
-      return L10n.of(context).lastSeenLongTimeAgo;
+      return L10n.of(context)!.lastSeenLongTimeAgo;
     }
-    return L10n.of(context)
+    return L10n.of(context)!
         .countParticipants(summary.mJoinedMemberCount.toString());
   }
 
@@ -42,23 +45,23 @@ extension RoomStatusExtension on Room {
     typingUsers.removeWhere((User u) => u.id == client.userID);
 
     if (AppConfig.hideTypingUsernames) {
-      typingText = L10n.of(context).isTyping;
+      typingText = L10n.of(context)!.isTyping;
       if (typingUsers.first.id != directChatMatrixID) {
         typingText =
-            L10n.of(context).numUsersTyping(typingUsers.length.toString());
+            L10n.of(context)!.numUsersTyping(typingUsers.length.toString());
       }
     } else if (typingUsers.length == 1) {
-      typingText = L10n.of(context).isTyping;
+      typingText = L10n.of(context)!.isTyping;
       if (typingUsers.first.id != directChatMatrixID) {
         typingText =
-            L10n.of(context).userIsTyping(typingUsers.first.calcDisplayname());
+            L10n.of(context)!.userIsTyping(typingUsers.first.calcDisplayname());
       }
     } else if (typingUsers.length == 2) {
-      typingText = L10n.of(context).userAndUserAreTyping(
+      typingText = L10n.of(context)!.userAndUserAreTyping(
           typingUsers.first.calcDisplayname(),
           typingUsers[1].calcDisplayname());
     } else if (typingUsers.length > 2) {
-      typingText = L10n.of(context).userAndOthersAreTyping(
+      typingText = L10n.of(context)!.userAndOthersAreTyping(
           typingUsers.first.calcDisplayname(),
           (typingUsers.length - 1).toString());
     }

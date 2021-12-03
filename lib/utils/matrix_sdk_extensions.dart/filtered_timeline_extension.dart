@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'package:matrix/matrix.dart';
 
 import '../../config/app_config.dart';
@@ -30,13 +32,14 @@ extension FilteredTimelineExtension on Timeline {
           filteredEvents[i - 1].isState &&
           !unfolded.contains(filteredEvents[i - 1].eventId)) {
         counter++;
-        filteredEvents[i].unsigned['im.fluffychat.collapsed_state_event'] =
+        filteredEvents[i].unsigned ??= {};
+        filteredEvents[i].unsigned!['im.fluffychat.collapsed_state_event'] =
             true;
       } else {
-        filteredEvents[i].unsigned['im.fluffychat.collapsed_state_event'] =
+        filteredEvents[i].unsigned!['im.fluffychat.collapsed_state_event'] =
             false;
         filteredEvents[i]
-            .unsigned['im.fluffychat.collapsed_state_event_count'] = counter;
+            .unsigned!['im.fluffychat.collapsed_state_event_count'] = counter;
         counter = 0;
       }
     }

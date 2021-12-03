@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -12,9 +14,9 @@ extension LocalizedExceptionExtension on Object {
     if (this is MatrixException) {
       switch ((this as MatrixException).error) {
         case MatrixError.M_FORBIDDEN:
-          return L10n.of(context).noPermission;
+          return L10n.of(context)!.noPermission;
         case MatrixError.M_LIMIT_EXCEEDED:
-          return L10n.of(context).tooManyRequestsWarning;
+          return L10n.of(context)!.tooManyRequestsWarning;
         default:
           return (this as MatrixException).errorMessage;
       }
@@ -30,7 +32,7 @@ extension LocalizedExceptionExtension on Object {
           .toString()
           .replaceAll('{', '"')
           .replaceAll('}', '"');
-      return L10n.of(context)
+      return L10n.of(context)!
           .badServerVersionsException(serverVersions, supportedVersions);
     }
     if (this is BadServerLoginTypesException) {
@@ -44,15 +46,15 @@ extension LocalizedExceptionExtension on Object {
           .toString()
           .replaceAll('{', '"')
           .replaceAll('}', '"');
-      return L10n.of(context)
+      return L10n.of(context)!
           .badServerLoginTypesException(serverVersions, supportedVersions);
     }
     if (this is MatrixConnectionException || this is SocketException) {
-      return L10n.of(context).noConnectionToTheServer;
+      return L10n.of(context)!.noConnectionToTheServer;
     }
     if (this is String) return toString();
     if (this is UiaException) return toString();
     Logs().w('Something went wrong: ', this);
-    return L10n.of(context).oopsSomethingWentWrong;
+    return L10n.of(context)!.oopsSomethingWentWrong;
   }
 }

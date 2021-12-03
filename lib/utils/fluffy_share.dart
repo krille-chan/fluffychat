@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -15,7 +17,7 @@ abstract class FluffyShare {
       ClipboardData(text: text),
     );
     ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(L10n.of(context).copiedToClipboard)));
+        SnackBar(content: Text(L10n.of(context)!.copiedToClipboard)));
     return;
   }
 }

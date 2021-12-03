@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -61,25 +63,25 @@ extension DateTimeExtension on DateTime {
     } else if (sameWeek) {
       switch (weekday) {
         case 1:
-          return L10n.of(context).monday;
+          return L10n.of(context)!.monday;
         case 2:
-          return L10n.of(context).tuesday;
+          return L10n.of(context)!.tuesday;
         case 3:
-          return L10n.of(context).wednesday;
+          return L10n.of(context)!.wednesday;
         case 4:
-          return L10n.of(context).thursday;
+          return L10n.of(context)!.thursday;
         case 5:
-          return L10n.of(context).friday;
+          return L10n.of(context)!.friday;
         case 6:
-          return L10n.of(context).saturday;
+          return L10n.of(context)!.saturday;
         case 7:
-          return L10n.of(context).sunday;
+          return L10n.of(context)!.sunday;
       }
     } else if (sameYear) {
-      return L10n.of(context).dateWithoutYear(
+      return L10n.of(context)!.dateWithoutYear(
           month.toString().padLeft(2, '0'), day.toString().padLeft(2, '0'));
     }
-    return L10n.of(context).dateWithYear(year.toString(),
+    return L10n.of(context)!.dateWithYear(year.toString(),
         month.toString().padLeft(2, '0'), day.toString().padLeft(2, '0'));
   }
 
@@ -94,7 +96,7 @@ extension DateTimeExtension on DateTime {
     final sameDay = sameYear && now.month == month && now.day == day;
 
     if (sameDay) return localizedTimeOfDay(context);
-    return L10n.of(context).dateAndTimeOfDay(
+    return L10n.of(context)!.dateAndTimeOfDay(
         localizedTimeShort(context), localizedTimeOfDay(context));
   }
 

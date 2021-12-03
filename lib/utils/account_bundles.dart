@@ -1,8 +1,10 @@
+//@dart=2.12
+
 import 'package:matrix/matrix.dart';
 
 class AccountBundles {
-  String prefix;
-  List<AccountBundle> bundles;
+  String? prefix;
+  List<AccountBundle>? bundles;
 
   AccountBundles({this.prefix, this.bundles});
 
@@ -23,13 +25,14 @@ class AccountBundles {
 
   Map<String, dynamic> toJson() => {
         if (prefix != null) 'prefix': prefix,
-        if (bundles != null) 'bundles': bundles.map((v) => v.toJson()).toList(),
+        if (bundles != null)
+          'bundles': bundles!.map((v) => v.toJson()).toList(),
       };
 }
 
 class AccountBundle {
-  String name;
-  int priority;
+  String? name;
+  int? priority;
 
   AccountBundle({this.name, this.priority});
 
@@ -47,9 +50,9 @@ const accountBundlesType = 'im.fluffychat.account_bundles';
 
 extension AccountBundlesExtension on Client {
   List<AccountBundle> get accountBundles {
-    List<AccountBundle> ret;
+    List<AccountBundle>? ret;
     if (accountData.containsKey(accountBundlesType)) {
-      ret = AccountBundles.fromJson(accountData[accountBundlesType].content)
+      ret = AccountBundles.fromJson(accountData[accountBundlesType]!.content)
           .bundles;
     }
     ret ??= [];
@@ -62,12 +65,12 @@ extension AccountBundlesExtension on Client {
     return ret;
   }
 
-  Future<void> setAccountBundle(String name, [int priority]) async {
+  Future<void> setAccountBundle(String name, [int? priority]) async {
     final data =
         AccountBundles.fromJson(accountData[accountBundlesType]?.content ?? {});
     var foundBundle = false;
-    data.bundles ??= [];
-    for (final bundle in data.bundles) {
+    final bundles = data.bundles ??= [];
+    for (final bundle in bundles) {
       if (bundle.name == name) {
         bundle.priority = priority;
         foundBundle = true;
@@ -75,9 +78,9 @@ extension AccountBundlesExtension on Client {
       }
     }
     if (!foundBundle) {
-      data.bundles.add(AccountBundle(name: name, priority: priority));
+      bundles.add(AccountBundle(name: name, priority: priority));
     }
-    await setAccountData(userID, accountBundlesType, data.toJson());
+    await setAccountData(userID!, accountBundlesType, data.toJson());
   }
 
   Future<void> removeFromAccountBundle(String name) async {
@@ -85,15 +88,15 @@ extension AccountBundlesExtension on Client {
       return; // nothing to do
     }
     final data =
-        AccountBundles.fromJson(accountData[accountBundlesType].content);
+        AccountBundles.fromJson(accountData[accountBundlesType]!.content);
     if (data.bundles == null) return;
-    data.bundles.removeWhere((b) => b.name == name);
-    await setAccountData(userID, accountBundlesType, data.toJson());
+    data.bundles!.removeWhere((b) => b.name == name);
+    await setAccountData(userID!, accountBundlesType, data.toJson());
   }
 
   String get sendPrefix {
     final data =
         AccountBundles.fromJson(accountData[accountBundlesType]?.content ?? {});
-    return data.prefix;
+    return data.prefix!;
   }
 }
