@@ -818,7 +818,7 @@ packages:
       name: matrix
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.7.0-nullsafety.10"
+    version: "0.7.0"
   matrix_api_lite:
     dependency: transitive
     description:
@@ -1197,6 +1197,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  sdp_transform:
+    dependency: transitive
+    description:
+      name: sdp_transform
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.2"
   sentry:
     dependency: "direct main"
     description:
@@ -1636,6 +1643,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  webrtc_interface:
+    dependency: transitive
+    description:
+      name: webrtc_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   win32:
     dependency: transitive
     description:
