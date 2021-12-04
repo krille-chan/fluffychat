@@ -155,6 +155,9 @@ class LoginController extends State<Login> {
           AppConfig.jitsiInstance = jitsi;
         }
         setState(() => usernameError = null);
+      } else {
+        setState(() =>
+            Matrix.of(context).getLoginClient().homeserver = oldHomeserver);
       }
     } catch (e) {
       setState(() => usernameError = e.toString());
