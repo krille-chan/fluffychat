@@ -49,7 +49,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "addToSpace": "Aan ruimte toevoegen",
+  "addToSpace": "Aan space toevoegen",
   "@addToSpace": {},
   "admin": "Beheerder",
   "@admin": {
@@ -410,9 +410,9 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatHasBeenAddedToThisSpace": "Chat is toegevoegd aan deze ruimte",
+  "chatHasBeenAddedToThisSpace": "Chat is toegevoegd aan deze space",
   "@chatHasBeenAddedToThisSpace": {},
-  "chatHasBeenRemovedFromThisSpace": "Chat is verwijderd uit deze ruimte",
+  "chatHasBeenRemovedFromThisSpace": "Chat is verwijderd uit deze space",
   "@chatHasBeenRemovedFromThisSpace": {
     "type": "text",
     "placeholders": {}
@@ -642,7 +642,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "createNewSpace": "Nieuwe ruimte",
+  "createNewSpace": "Nieuwe space",
   "@createNewSpace": {
     "type": "text",
     "placeholders": {}
@@ -914,7 +914,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enterASpacepName": "Vul een ruimtenaam in",
+  "enterASpacepName": "Vul een spacenaam in",
   "@enterASpacepName": {},
   "enterAUsername": "Vul een gebruikersnaam in",
   "@enterAUsername": {
@@ -1683,7 +1683,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "publicGroups": "Openbare Groepen",
+  "publicGroups": "Publieke Groepen",
   "@publicGroups": {
     "type": "text",
     "placeholders": {}
@@ -1693,12 +1693,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "publicRooms": "Openbare Kamers",
+  "publicRooms": "Publieke Kamers",
   "@publicRooms": {
     "type": "text",
     "placeholders": {}
   },
-  "publicSpace": "Openbare ruimte",
+  "publicSpace": "Publieke space",
   "@publicSpace": {
     "type": "text",
     "placeholders": {}
@@ -2097,12 +2097,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "spaceIsPublic": "Ruimte is openbaar",
+  "spaceIsPublic": "Space is openbaar",
   "@spaceIsPublic": {
     "type": "text",
     "placeholders": {}
   },
-  "spaceName": "Ruimtenaam",
+  "spaceName": "Spacenaam",
   "@spaceName": {
     "type": "text",
     "placeholders": {}
@@ -2638,13 +2638,13 @@
   "@sender": {},
   "openGallery": "Galerij openen",
   "@openGallery": {},
-  "addToSpaceDescription": "Selecteer een ruimte om deze chat aan toe te voegen.",
+  "addToSpaceDescription": "Selecteer een space om deze chat aan toe te voegen.",
   "@addToSpaceDescription": {},
   "loginWithOneClick": "Inloggen met één klik",
   "@loginWithOneClick": {},
-  "removeFromSpace": "Uit de ruimte verwijderen",
+  "removeFromSpace": "Uit de space verwijderen",
   "@removeFromSpace": {},
-  "removeFromSpaceDescription": "Dit verwijdert deze chat uit de huidige ruimte. Het zal dan nog steeds zichtbaar zijn onder \"Alle chats\".",
+  "removeFromSpaceDescription": "Dit verwijdert deze chat uit de huidige space. Het zal dan nog steeds zichtbaar zijn onder \"Alle chats\".",
   "@removeFromSpaceDescription": {},
   "start": "Start",
   "@start": {},
