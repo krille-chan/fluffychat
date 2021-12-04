@@ -278,7 +278,7 @@
       "username": {}
     }
   },
-  "changedTheHistoryVisibilityTo": "{username} asetti historian näkymissäännö(i)ksi: {rules}",
+  "changedTheHistoryVisibilityTo": "{username} asetti historian näkymissäännöksi: {rules}",
   "@changedTheHistoryVisibilityTo": {
     "type": "text",
     "placeholders": {
