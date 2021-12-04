@@ -2135,5 +2135,70 @@
   "@noConnectionToTheServer": {
     "type": "text",
     "placeholders": {}
+  },
+  "pleaseEnterValidEmail": "Skriv inn en gyldig e-postadresse.",
+  "@pleaseEnterValidEmail": {},
+  "addEmail": "Legg til e-post",
+  "@addEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChooseAtLeastChars": "Vennligst velg minst {min} tegn.",
+  "@pleaseChooseAtLeastChars": {
+    "type": "text",
+    "placeholders": {
+      "min": {}
+    }
+  },
+  "repeatPassword": "Gjenta passord",
+  "@repeatPassword": {},
+  "passwordsDoNotMatch": "Passordet samsvarer ikke!",
+  "@passwordsDoNotMatch": {},
+  "addNewFriend": "Legg til en ny venn",
+  "@addNewFriend": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addToSpace": "Legg til space",
+  "@addToSpace": {},
+  "allChats": "Alle samtaler",
+  "@allChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "autoplayImages": "Automatisk spill av animerte stickers og emojis",
+  "@autoplayImages": {
+    "type": "text",
+    "placeholder": {}
+  },
+  "badServerLoginTypesException": "Denne hjemme serveren støtter følgende innloggings-typer:\n{serverVersions}\nMen denne applikasjonen støtter kun:\n{supportedVersions}",
+  "@badServerLoginTypesException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "sendOnEnter": "Trykk på enter for å sende",
+  "@sendOnEnter": {},
+  "badServerVersionsException": "Denne hjemme serveren støtter følgene Spec-versjoner:\n{serverVersions}\nMen denne applikasjonen støtter kun {supportedVersions}",
+  "@badServerVersionsException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "blocked": "Blokkert",
+  "@blocked": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cantOpenUri": "Kan ikke åpne URI {uri}",
+  "@cantOpenUri": {
+    "type": "text",
+    "placeholders": {
+      "uri": {}
+    }
   }
 }
