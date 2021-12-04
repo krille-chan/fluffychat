@@ -686,7 +686,7 @@
       "username": {}
     }
   },
-  "changedTheProfileAvatar": "{username}이 그의 아바타를 바꿈",
+  "changedTheProfileAvatar": "{username}이 자신의 아바타를 바꿈",
   "@changedTheProfileAvatar": {
     "type": "text",
     "placeholders": {
