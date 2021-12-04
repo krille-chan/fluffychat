@@ -1142,7 +1142,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "mention": "Sebutan",
+  "mention": "Sebutkan",
   "@mention": {
     "type": "text",
     "placeholders": {}
