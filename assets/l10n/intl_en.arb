@@ -2,13 +2,17 @@
   "@@locale": "en",
   "@@last_modified": "2021-08-14 12:38:37.885451",
   "passwordsDoNotMatch": "Passwords do not match!",
+  "@passwordsDoNotMatch": {},
   "pleaseEnterValidEmail": "Please enter a valid email address.",
+  "@pleaseEnterValidEmail": {},
   "repeatPassword": "Repeat password",
+  "@repeatPassword": {},
   "pleaseChooseAtLeastChars": "Please choose at least {min} characters.",
   "@pleaseChooseAtLeastChars": {
     "type": "text",
     "placeholders": {
-      "min": {}}
+      "min": {}
+    }
   },
   "about": "About",
   "@about": {
@@ -403,15 +407,20 @@
     "placeholders": {}
   },
   "yourUserId": "Your user ID:",
+  "@yourUserId": {},
   "setupChatBackup": "Set up chat backup",
+  "@setupChatBackup": {},
   "iWroteDownTheKey": "I wrote down the key",
+  "@iWroteDownTheKey": {},
   "yourChatBackupHasBeenSetUp": "Your chat backup has been set up.",
+  "@yourChatBackupHasBeenSetUp": {},
   "chatBackup": "Chat backup",
   "@chatBackup": {
     "type": "text",
     "placeholders": {}
   },
   "setupChatBackupDescription": "To protect your messages, we have generated a security key for you.\nPlease keep this in a safe place, such as a password manager.",
+  "@setupChatBackupDescription": {},
   "chatBackupDescription": "Your chat backup is secured with a security key. Please make sure you don't lose it.",
   "@chatBackupDescription": {
     "type": "text",
@@ -1305,6 +1314,7 @@
     }
   },
   "loginWithOneClick": "Sign in with one click",
+  "@loginWithOneClick": {},
   "logout": "Logout",
   "@logout": {
     "type": "text",
@@ -1526,7 +1536,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "ok": "ok",
+  "ok": "Ok",
   "@ok": {
     "type": "text",
     "placeholders": {}
@@ -2401,6 +2411,7 @@
     "placeholders": {}
   },
   "unverified": "Unverified",
+  "@unverified": {},
   "verified": "Verified",
   "@verified": {
     "type": "text",
@@ -2604,15 +2615,27 @@
     "placeholders": {}
   },
   "messageInfo": "Message info",
+  "@messageInfo": {},
   "time": "Time",
+  "@time": {},
   "messageType": "Message Type",
+  "@messageType": {},
   "sender": "Sender",
+  "@sender": {},
   "openGallery": "Open gallery",
+  "@openGallery": {},
   "removeFromSpace": "Remove from space",
+  "@removeFromSpace": {},
   "removeFromSpaceDescription": "This removes this chat from the current space. It will then still be visible under \"All chats\".",
+  "@removeFromSpaceDescription": {},
   "addToSpaceDescription": "Select a space to add this chat to it.",
+  "@addToSpaceDescription": {},
   "start": "Start",
+  "@start": {},
   "setupChatBackupNow": "Set up your chat backup now",
+  "@setupChatBackupNow": {},
   "pleaseEnterSecurityKeyDescription": "To unlock your chat backup, please enter your security key that has been generated in a previous session. Your security key is NOT your password.",
-  "saveTheSecurityKeyNow": "Save the security key now"
+  "@pleaseEnterSecurityKeyDescription": {},
+  "saveTheSecurityKeyNow": "Save the security key now",
+  "@saveTheSecurityKeyNow": {}
 }
