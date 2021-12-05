@@ -943,7 +943,7 @@
       "number": {}
     }
   },
-  "ok": "гаразд",
+  "ok": "Гаразд",
   "@ok": {
     "type": "text",
     "placeholders": {}
