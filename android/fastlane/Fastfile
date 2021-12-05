@@ -44,7 +44,11 @@ platform :android do
     upload_to_play_store(track: 'internal', aab: '../build/app/outputs/bundle/release/app-release.aab', version_code: "#{last_version+1}")
   end
 
+  lane :deploy_candidate do
+    upload_to_play_store(track: 'internal', track_promote_to: "beta", deactivate_on_promote: false, skip_upload_changelogs: true)
+  end
+
   lane :deploy_release do
-    upload_to_play_store(track: 'internal', track_promote_to: "production", deactivate_on_promote: false, skip_upload_changelogs: true)
+    upload_to_play_store(track: 'beta', track_promote_to: "production", deactivate_on_promote: false, skip_upload_changelogs: true)
   end
 end
