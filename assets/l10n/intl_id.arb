@@ -1298,7 +1298,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "ok": "ok",
+  "ok": "Ok",
   "@ok": {
     "type": "text",
     "placeholders": {}
