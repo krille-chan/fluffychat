@@ -27,7 +27,7 @@ platform :ios do
     version_name = config.match(re).captures[0]
     increment_version_number(version_number: version_name)
     build_app(workspace: "Runner.xcworkspace", scheme: "Runner")
-    upload_to_testflight
+    upload_to_testflight(distribute_external: true, groups: "FluffyChat Betatest")
   end
 end
 
