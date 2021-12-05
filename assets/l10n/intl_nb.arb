@@ -2200,5 +2200,12 @@
     "placeholders": {
       "uri": {}
     }
-  }
+  },
+  "changeYourAvatar": "Bytt profilbilde",
+  "@changeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourUserId": "Din bruker ID:",
+  "@yourUserId": {}
 }
