@@ -1,3 +1,23 @@
+## v1.1.0 - Unreleased
+- CI: Add candidate release pipeline (Krille Fear)
+- Translated using Weblate (Dutch) (Jelv)
+- Translated using Weblate (Estonian) (Priit Jõerüüt)
+- Translated using Weblate (Finnish) (Mikaela Suomalainen)
+- Translated using Weblate (Finnish) (Mikaela Suomalainen)
+- Translated using Weblate (Indonesian) (Linerly)
+- Translated using Weblate (Korean) (Kim Tae Kyeong)
+- Translated using Weblate (Norwegian Bokmål) (Gigaa)
+- Translated using Weblate (Norwegian Bokmål) (Raatty)
+- change: Do not compress very small images (Krille Fear)
+- chore: Update Matrix SDK (Krille Fear)
+- design: Make not joined participants transparent in list (Krille Fear)
+- docs: Fix screenshots on website (Krille Fear)
+- fix: Update dependencies with flutter pub upgrade (Krille Fear)
+- fix: Well known lookup at login (Krille Fear)
+- refactor: Make most of the utils null safe (Krille Fear)
+- refactor: Make send file dialog null safe (Krille Fear)
+- refactor: Make user device list item null safe (Krille Fear)
+
 ## v1.0.0 - 2021-11-29
 - design: Chat backup dialog as a banner
 - design: Encrypted by design, all users valid is normal not green
