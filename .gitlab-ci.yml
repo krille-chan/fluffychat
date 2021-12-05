@@ -221,7 +221,7 @@ update-dependencies:
   image: curlimages/curl:latest
   rules:
     - if: '$CI_COMMIT_TAG =~ /^v\d+\.\d+\.\d+$/'
-    - if: '$CI_COMMIT_TAG =~ /^rc\d+\.\d+\.\d+$/'
+    - if: '$CI_COMMIT_TAG =~ /^rc\d+\.\d+\.\d+-\d+$/'
   before_script:
     - export RELEASE_TYPE=$(echo $CI_COMMIT_TAG | grep -oE "[a-z]+")
     - export RELEASE_VERSION=$(echo $CI_COMMIT_TAG | grep -oE "\d+\.\d+\.\d+")
