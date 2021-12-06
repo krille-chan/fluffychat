@@ -30,6 +30,7 @@ class _LockScreenState extends State<LockScreen> {
       supportedLocales: L10n.supportedLocales,
       home: Builder(
         builder: (context) => OnePageCard(
+          forceBackgroundless: true,
           child: Scaffold(
             appBar: AppBar(
               automaticallyImplyLeading: false,
