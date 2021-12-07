@@ -491,7 +491,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "dateWithoutYear": "{day}-{month}",
+  "dateWithoutYear": "{day}.{month}",
   "@dateWithoutYear": {
     "type": "text",
     "placeholders": {
@@ -499,7 +499,7 @@
       "day": {}
     }
   },
-  "dateAndTimeOfDay": "{timeOfDay}, {date}",
+  "dateAndTimeOfDay": "{date}, {timeOfDay}",
   "@dateAndTimeOfDay": {
     "type": "text",
     "placeholders": {
@@ -507,7 +507,7 @@
       "timeOfDay": {}
     }
   },
-  "dateWithYear": "{day}-{month}-{year}",
+  "dateWithYear": "{day}.{month}.{year}",
   "@dateWithYear": {
     "type": "text",
     "placeholders": {
@@ -976,7 +976,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "loadingPleaseWait": "Ladataan... Odota hetki.",
+  "loadingPleaseWait": "Ladataan... Hetkinen.",
   "@loadingPleaseWait": {
     "type": "text",
     "placeholders": {}
@@ -2083,7 +2083,7 @@
       "username": {}
     }
   },
-  "timeOfDay": "{hours24}.{minutes} {suffix}",
+  "timeOfDay": "{hours24}.{minutes}",
   "@timeOfDay": {
     "type": "text",
     "placeholders": {
