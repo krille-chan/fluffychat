@@ -10,7 +10,14 @@ import 'package:fluffychat/widgets/matrix.dart';
 class OnePageCard extends StatelessWidget {
   final Widget child;
 
-  const OnePageCard({Key? key, required this.child}) : super(key: key);
+  /// This will cause the "isLogged()" check to be skipped and force a
+  /// OnePageCard without login wallpaper. This can be used in situations where
+  /// "Matrix.of(context) is not yet available, e.g. in the LockScreen widget.
+  final bool forceBackgroundless;
+
+  const OnePageCard(
+      {Key? key, required this.child, this.forceBackgroundless = false})
+      : super(key: key);
 
   static const int alpha = 12;
   static num breakpoint = FluffyThemes.columnWidth * 2;
@@ -19,6 +26,7 @@ class OnePageCard extends StatelessWidget {
     final horizontalPadding =
         max<double>((MediaQuery.of(context).size.width - 600) / 2, 24);
     return MediaQuery.of(context).size.width <= breakpoint ||
+            forceBackgroundless ||
             Matrix.of(context).client.isLogged()
         ? child
         : Container(
