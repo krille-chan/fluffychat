@@ -330,7 +330,7 @@ class ChatListController extends State<ChatList> {
       case PopupMenuAction.invite:
         FluffyShare.share(
             L10n.of(context).inviteText(Matrix.of(context).client.userID,
-                'https://matrix.to/#/${Matrix.of(context).client.userID}'),
+                'https://matrix.to/#/${Matrix.of(context).client.userID}?client=im.fluffychat'),
             context);
         break;
       case PopupMenuAction.newGroup:
