@@ -971,7 +971,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "joinedTheChat": "{username} tok del i sludringen",
+  "joinedTheChat": "{username}ble med i samtalen",
   "@joinedTheChat": {
     "type": "text",
     "placeholders": {
