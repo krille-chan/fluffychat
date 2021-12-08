@@ -2615,5 +2615,7 @@
   "unverified": "Не проверено",
   "@unverified": {},
   "iWroteDownTheKey": "Ключ записан",
-  "@iWroteDownTheKey": {}
+  "@iWroteDownTheKey": {},
+  "passwordsDoNotMatch": "Пароли не совпадают!",
+  "@passwordsDoNotMatch": {}
 }
