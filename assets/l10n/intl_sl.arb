@@ -599,5 +599,126 @@
   "@commandHintPlain": {
     "type": "text",
     "description": "Usage hint for the command /plain"
+  },
+  "copiedToClipboard": "Kopirano v odložišče",
+  "@copiedToClipboard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copy": "Kopiraj",
+  "@copy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copyToClipboard": "Kopiraj v odložišče",
+  "@copyToClipboard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "couldNotDecryptMessage": "Sporočila ni bilo mogoče dešifrirati: {error}",
+  "@couldNotDecryptMessage": {
+    "type": "text",
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "couldNotSetAvatar": "Avatarja ni bilo mogoče nastaviti",
+  "@couldNotSetAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "couldNotSetDisplayname": "Prikaznega imena ni bilo mogoče nastaviti",
+  "@couldNotSetDisplayname": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "countParticipants": "{count} udeležencev",
+  "@countParticipants": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "create": "Ustvari",
+  "@create": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createAccountNow": "Ustvarite račun zdaj",
+  "@createAccountNow": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createNewGroup": "Ustvari novo skupino",
+  "@createNewGroup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createNewSpace": "Nov prostor",
+  "@createNewSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "crossSigningEnabled": "Navzkrižno podpisovanje DA",
+  "@crossSigningEnabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "crossSigningDisabled": "Navzkrižno podpisovanje NE",
+  "@crossSigningDisabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "currentlyActive": "Trenutno aktiven",
+  "@currentlyActive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "darkTheme": "Temno",
+  "@darkTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "defaultPermissionLevel": "Privzeta raven dovoljenja",
+  "@defaultPermissionLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dateWithYear": "{day}-{month}-{year}",
+  "@dateWithYear": {
+    "type": "text",
+    "placeholders": {
+      "year": {},
+      "month": {},
+      "day": {}
+    }
+  },
+  "dateWithoutYear": "{month}-{day}",
+  "@dateWithoutYear": {
+    "type": "text",
+    "placeholders": {
+      "month": {},
+      "day": {}
+    }
+  },
+  "createdTheChat": "{username} je ustvaril klepet",
+  "@createdTheChat": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "dateAndTimeOfDay": "{date}, {timeOfDay}",
+  "@dateAndTimeOfDay": {
+    "type": "text",
+    "placeholders": {
+      "date": {},
+      "timeOfDay": {}
+    }
+  },
+  "deactivateAccountWarning": "S tem boste deaktivirali vaš uporabniški račun. Tega ni mogoče razveljaviti! Ali si prepričan?",
+  "@deactivateAccountWarning": {
+    "type": "text",
+    "placeholders": {}
   }
 }
