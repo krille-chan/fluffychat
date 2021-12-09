@@ -146,7 +146,8 @@ class _FluffyChatAppState extends State<FluffyChatApp> {
                 SystemChrome.setSystemUIOverlayStyle(
                   SystemUiOverlayStyle(
                     statusBarColor: Colors.transparent,
-                    systemNavigationBarColor: Theme.of(context).backgroundColor,
+                    systemNavigationBarColor:
+                        Theme.of(context).appBarTheme.backgroundColor,
                     systemNavigationBarIconBrightness:
                         Theme.of(context).brightness == Brightness.light
                             ? Brightness.dark
