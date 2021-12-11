@@ -1458,7 +1458,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "ok": "u redu",
+  "ok": "U redu",
   "@ok": {
     "type": "text",
     "placeholders": {}
@@ -2628,5 +2628,31 @@
   "pleaseEnterValidEmail": "Upiši valjanu e-mail adresu.",
   "@pleaseEnterValidEmail": {},
   "passwordsDoNotMatch": "Lozinke se ne poklapaju!",
-  "@passwordsDoNotMatch": {}
+  "@passwordsDoNotMatch": {},
+  "messageInfo": "Informacija poruke",
+  "@messageInfo": {},
+  "messageType": "Vrsta poruke",
+  "@messageType": {},
+  "sender": "Pošiljatelj",
+  "@sender": {},
+  "openGallery": "Otvori galeriju",
+  "@openGallery": {},
+  "loginWithOneClick": "Prijavi se samo s jednim pritiskom",
+  "@loginWithOneClick": {},
+  "time": "Vrijeme",
+  "@time": {},
+  "removeFromSpace": "Ukloni iz prostora",
+  "@removeFromSpace": {},
+  "removeFromSpaceDescription": "Ovime se ovaj chat uklanja iz trenutačnog prostora. I dalje će biti vidljiv pod \"Svi chatovi\".",
+  "@removeFromSpaceDescription": {},
+  "addToSpaceDescription": "Odaberi prostor za dodavanje ovog chata.",
+  "@addToSpaceDescription": {},
+  "start": "Početak",
+  "@start": {},
+  "setupChatBackupNow": "Sada postavit sigurnosnu kopiju chata",
+  "@setupChatBackupNow": {},
+  "pleaseEnterSecurityKeyDescription": "Za otključavanje sigurnosne kopije chata, upši svoj sigurnosni ključ koji je generiran u prethodnoj sesiji. Tvoj sigurnosni ključ NIJE tvoja lozinka.",
+  "@pleaseEnterSecurityKeyDescription": {},
+  "saveTheSecurityKeyNow": "Sada spremi sigurnosni ključ",
+  "@saveTheSecurityKeyNow": {}
 }
