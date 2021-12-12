@@ -349,28 +349,28 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHintHtml": "Envia text en format HTML",
-  "@commandHintHtml": {
+  "commandHint_html": "Envia text en format HTML",
+  "@commandHint_html": {
     "type": "text",
     "description": "Usage hint for the command /html"
   },
-  "commandHintLeave": "Abandona aquesta sala",
-  "@commandHintLeave": {
+  "commandHint_leave": "Abandona aquesta sala",
+  "@commandHint_leave": {
     "type": "text",
     "description": "Usage hint for the command /leave"
   },
-  "commandHintOp": "Estableix el nivell d'autoritat de l'usuari (per defecte: 50)",
-  "@commandHintOp": {
+  "commandHint_op": "Estableix el nivell d'autoritat de l'usuari (per defecte: 50)",
+  "@commandHint_op": {
     "type": "text",
     "description": "Usage hint for the command /op"
   },
-  "commandHintPlain": "Envia text sense format",
-  "@commandHintPlain": {
+  "commandHint_plain": "Envia text sense format",
+  "@commandHint_plain": {
     "type": "text",
     "description": "Usage hint for the command /plain"
   },
-  "commandHintSend": "Envia text",
-  "@commandHintSend": {
+  "commandHint_send": "Envia text",
+  "@commandHint_send": {
     "type": "text",
     "description": "Usage hint for the command /send"
   },
@@ -2155,8 +2155,8 @@
       "homeserver": {}
     }
   },
-  "commandHintReact": "Envia una resposta com a reacció",
-  "@commandHintReact": {
+  "commandHint_react": "Envia una resposta com a reacció",
+  "@commandHint_react": {
     "type": "text",
     "description": "Usage hint for the command /react"
   },
@@ -2330,8 +2330,8 @@
   },
   "unverified": "No verificat",
   "@unverified": {},
-  "commandHintMe": "Descriviu-vos",
-  "@commandHintMe": {
+  "commandHint_me": "Descriviu-vos",
+  "@commandHint_me": {
     "type": "text",
     "description": "Usage hint for the command /me"
   },

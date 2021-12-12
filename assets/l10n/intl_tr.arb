@@ -445,73 +445,73 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHintBan": "Verilen kullanıcıyı bu odadan yasaklayın",
-  "@commandHintBan": {
+  "commandHint_ban": "Verilen kullanıcıyı bu odadan yasaklayın",
+  "@commandHint_ban": {
     "type": "text",
     "description": "Usage hint for the command /ban"
   },
-  "commandHintHtml": "HTML biçimli metin gönderin",
-  "@commandHintHtml": {
+  "commandHint_html": "HTML biçimli metin gönderin",
+  "@commandHint_html": {
     "type": "text",
     "description": "Usage hint for the command /html"
   },
-  "commandHintInvite": "Verilen kullanıcıyı bu odaya davet edin",
-  "@commandHintInvite": {
+  "commandHint_invite": "Verilen kullanıcıyı bu odaya davet edin",
+  "@commandHint_invite": {
     "type": "text",
     "description": "Usage hint for the command /invite"
   },
-  "commandHintJoin": "Verilen odaya katılın",
-  "@commandHintJoin": {
+  "commandHint_join": "Verilen odaya katılın",
+  "@commandHint_join": {
     "type": "text",
     "description": "Usage hint for the command /join"
   },
-  "commandHintKick": "Verilen kullanıcıyı bu odadan kaldırın",
-  "@commandHintKick": {
+  "commandHint_kick": "Verilen kullanıcıyı bu odadan kaldırın",
+  "@commandHint_kick": {
     "type": "text",
     "description": "Usage hint for the command /kick"
   },
-  "commandHintLeave": "Bu odadan ayrılın",
-  "@commandHintLeave": {
+  "commandHint_leave": "Bu odadan ayrılın",
+  "@commandHint_leave": {
     "type": "text",
     "description": "Usage hint for the command /leave"
   },
-  "commandHintMe": "Kendinizi tanımlayın",
-  "@commandHintMe": {
+  "commandHint_me": "Kendinizi tanımlayın",
+  "@commandHint_me": {
     "type": "text",
     "description": "Usage hint for the command /me"
   },
-  "commandHintMyRoomAvatar": "Bu oda için resminizi ayarlayın (mxc-uri ile)",
-  "@commandHintMyRoomAvatar": {
+  "commandHint_myroomavatar": "Bu oda için resminizi ayarlayın (mxc-uri ile)",
+  "@commandHint_myroomavatar": {
     "type": "text",
     "description": "Usage hint for the command /myroomavatar"
   },
-  "commandHintMyRoomNick": "Bu oda için görünen adınızı ayarlayın",
-  "@commandHintMyRoomNick": {
+  "commandHint_myroomnick": "Bu oda için görünen adınızı ayarlayın",
+  "@commandHint_myroomnick": {
     "type": "text",
     "description": "Usage hint for the command /myroomnick"
   },
-  "commandHintOp": "Verilen kullanıcının güç seviyesini ayarlayın (öntanımlı: 50)",
-  "@commandHintOp": {
+  "commandHint_op": "Verilen kullanıcının güç seviyesini ayarlayın (öntanımlı: 50)",
+  "@commandHint_op": {
     "type": "text",
     "description": "Usage hint for the command /op"
   },
-  "commandHintPlain": "Biçimlendirilmemiş metin gönderin",
-  "@commandHintPlain": {
+  "commandHint_plain": "Biçimlendirilmemiş metin gönderin",
+  "@commandHint_plain": {
     "type": "text",
     "description": "Usage hint for the command /plain"
   },
-  "commandHintReact": "Tepki olarak yanıt gönderin",
-  "@commandHintReact": {
+  "commandHint_react": "Tepki olarak yanıt gönderin",
+  "@commandHint_react": {
     "type": "text",
     "description": "Usage hint for the command /react"
   },
-  "commandHintSend": "Metin gönderin",
-  "@commandHintSend": {
+  "commandHint_send": "Metin gönderin",
+  "@commandHint_send": {
     "type": "text",
     "description": "Usage hint for the command /send"
   },
-  "commandHintUnBan": "Verilen kullanıcının bu odadaki yasağını kaldırın",
-  "@commandHintUnBan": {
+  "commandHint_unban": "Verilen kullanıcının bu odadaki yasağını kaldırın",
+  "@commandHint_unban": {
     "type": "text",
     "description": "Usage hint for the command /unban"
   },

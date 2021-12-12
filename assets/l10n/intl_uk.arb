@@ -1684,23 +1684,23 @@
   },
   "sendOnEnter": "Надсилати натисканням Enter",
   "@sendOnEnter": {},
-  "commandHintBan": "Заблокувати цього користувача кімнати",
-  "@commandHintBan": {
+  "commandHint_ban": "Заблокувати цього користувача кімнати",
+  "@commandHint_ban": {
     "type": "text",
     "description": "Usage hint for the command /ban"
   },
-  "commandHintKick": "Вилучити цього користувача з цієї кімнати",
-  "@commandHintKick": {
+  "commandHint_kick": "Вилучити цього користувача з цієї кімнати",
+  "@commandHint_kick": {
     "type": "text",
     "description": "Usage hint for the command /kick"
   },
-  "commandHintMyRoomAvatar": "Встановіть зображення для цієї кімнати (від mxc-uri)",
-  "@commandHintMyRoomAvatar": {
+  "commandHint_myroomavatar": "Встановіть зображення для цієї кімнати (від mxc-uri)",
+  "@commandHint_myroomavatar": {
     "type": "text",
     "description": "Usage hint for the command /myroomavatar"
   },
-  "commandHintMyRoomNick": "Укажіть показуване ім'я для цієї кімнати",
-  "@commandHintMyRoomNick": {
+  "commandHint_myroomnick": "Укажіть показуване ім'я для цієї кімнати",
+  "@commandHint_myroomnick": {
     "type": "text",
     "description": "Usage hint for the command /myroomnick"
   },
@@ -1988,8 +1988,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHintJoin": "Приєднатися до цієї кімнати",
-  "@commandHintJoin": {
+  "commandHint_join": "Приєднатися до цієї кімнати",
+  "@commandHint_join": {
     "type": "text",
     "description": "Usage hint for the command /join"
   },
@@ -2213,25 +2213,25 @@
   "@setupChatBackupDescription": {},
   "clearArchive": "Очистити архів",
   "@clearArchive": {},
-  "commandHintHtml": "Надіслати текст у форматі HTML",
-  "@commandHintHtml": {
+  "commandHint_html": "Надіслати текст у форматі HTML",
+  "@commandHint_html": {
     "type": "text",
     "description": "Usage hint for the command /html"
   },
   "yourUserId": "Ваш ID користувача:",
   "@yourUserId": {},
-  "commandHintInvite": "Запросіть цього користувача до цієї кімнати",
-  "@commandHintInvite": {
+  "commandHint_invite": "Запросіть цього користувача до цієї кімнати",
+  "@commandHint_invite": {
     "type": "text",
     "description": "Usage hint for the command /invite"
   },
-  "commandHintLeave": "Вийти з цієї кімнати",
-  "@commandHintLeave": {
+  "commandHint_leave": "Вийти з цієї кімнати",
+  "@commandHint_leave": {
     "type": "text",
     "description": "Usage hint for the command /leave"
   },
-  "commandHintMe": "Опишіть себе",
-  "@commandHintMe": {
+  "commandHint_me": "Опишіть себе",
+  "@commandHint_me": {
     "type": "text",
     "description": "Usage hint for the command /me"
   },
@@ -2420,28 +2420,28 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHintOp": "Укажіть рівень повноважень цього користувача (типово: 50)",
-  "@commandHintOp": {
+  "commandHint_op": "Укажіть рівень повноважень цього користувача (типово: 50)",
+  "@commandHint_op": {
     "type": "text",
     "description": "Usage hint for the command /op"
   },
-  "commandHintPlain": "Надіслати неформатований текст",
-  "@commandHintPlain": {
+  "commandHint_plain": "Надіслати неформатований текст",
+  "@commandHint_plain": {
     "type": "text",
     "description": "Usage hint for the command /plain"
   },
-  "commandHintReact": "Надіслати відповідь як реакцію",
-  "@commandHintReact": {
+  "commandHint_react": "Надіслати відповідь як реакцію",
+  "@commandHint_react": {
     "type": "text",
     "description": "Usage hint for the command /react"
   },
-  "commandHintSend": "Надіслати текст",
-  "@commandHintSend": {
+  "commandHint_send": "Надіслати текст",
+  "@commandHint_send": {
     "type": "text",
     "description": "Usage hint for the command /send"
   },
-  "commandHintUnBan": "Розблокувати цього користувача у цій кімнаті",
-  "@commandHintUnBan": {
+  "commandHint_unban": "Розблокувати цього користувача у цій кімнаті",
+  "@commandHint_unban": {
     "type": "text",
     "description": "Usage hint for the command /unban"
   },

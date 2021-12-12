@@ -426,73 +426,73 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHintBan": "Isključi korisnika iz ove sobe",
-  "@commandHintBan": {
+  "commandHint_ban": "Isključi korisnika iz ove sobe",
+  "@commandHint_ban": {
     "type": "text",
     "description": "Usage hint for the command /ban"
   },
-  "commandHintHtml": "Pošalji HTML formatirani tekst",
-  "@commandHintHtml": {
+  "commandHint_html": "Pošalji HTML formatirani tekst",
+  "@commandHint_html": {
     "type": "text",
     "description": "Usage hint for the command /html"
   },
-  "commandHintInvite": "Pozovi korisnika u ovu sobu",
-  "@commandHintInvite": {
+  "commandHint_invite": "Pozovi korisnika u ovu sobu",
+  "@commandHint_invite": {
     "type": "text",
     "description": "Usage hint for the command /invite"
   },
-  "commandHintJoin": "Pridruži se zadanoj sobi",
-  "@commandHintJoin": {
+  "commandHint_join": "Pridruži se zadanoj sobi",
+  "@commandHint_join": {
     "type": "text",
     "description": "Usage hint for the command /join"
   },
-  "commandHintKick": "Ukloni korisnika iz ove sobe",
-  "@commandHintKick": {
+  "commandHint_kick": "Ukloni korisnika iz ove sobe",
+  "@commandHint_kick": {
     "type": "text",
     "description": "Usage hint for the command /kick"
   },
-  "commandHintLeave": "Napusti ovu sobu",
-  "@commandHintLeave": {
+  "commandHint_leave": "Napusti ovu sobu",
+  "@commandHint_leave": {
     "type": "text",
     "description": "Usage hint for the command /leave"
   },
-  "commandHintMe": "Opiši se",
-  "@commandHintMe": {
+  "commandHint_me": "Opiši se",
+  "@commandHint_me": {
     "type": "text",
     "description": "Usage hint for the command /me"
   },
-  "commandHintMyRoomAvatar": "Postavi svoju sliku za ovu sobu",
-  "@commandHintMyRoomAvatar": {
+  "commandHint_myroomavatar": "Postavi svoju sliku za ovu sobu",
+  "@commandHint_myroomavatar": {
     "type": "text",
     "description": "Usage hint for the command /myroomavatar"
   },
-  "commandHintMyRoomNick": "Postavi svoje ime za ovu sobu",
-  "@commandHintMyRoomNick": {
+  "commandHint_myroomnick": "Postavi svoje ime za ovu sobu",
+  "@commandHint_myroomnick": {
     "type": "text",
     "description": "Usage hint for the command /myroomnick"
   },
-  "commandHintOp": "Postavi razinu prava zadanog korisnika (standardno: 50)",
-  "@commandHintOp": {
+  "commandHint_op": "Postavi razinu prava zadanog korisnika (standardno: 50)",
+  "@commandHint_op": {
     "type": "text",
     "description": "Usage hint for the command /op"
   },
-  "commandHintPlain": "Pošalji neformatirani tekst",
-  "@commandHintPlain": {
+  "commandHint_plain": "Pošalji neformatirani tekst",
+  "@commandHint_plain": {
     "type": "text",
     "description": "Usage hint for the command /plain"
   },
-  "commandHintReact": "Pošalji odgovor kao reakciju",
-  "@commandHintReact": {
+  "commandHint_react": "Pošalji odgovor kao reakciju",
+  "@commandHint_react": {
     "type": "text",
     "description": "Usage hint for the command /react"
   },
-  "commandHintSend": "Pošalji tekst",
-  "@commandHintSend": {
+  "commandHint_send": "Pošalji tekst",
+  "@commandHint_send": {
     "type": "text",
     "description": "Usage hint for the command /send"
   },
-  "commandHintUnBan": "Ponovo uključi korisnika u ovu sobu",
-  "@commandHintUnBan": {
+  "commandHint_unban": "Ponovo uključi korisnika u ovu sobu",
+  "@commandHint_unban": {
     "type": "text",
     "description": "Usage hint for the command /unban"
   },

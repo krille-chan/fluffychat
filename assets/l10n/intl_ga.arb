@@ -495,13 +495,13 @@
   "@commandInvalid": {
     "type": "text"
   },
-  "commandHintSend": "Seol téacs",
-  "@commandHintSend": {
+  "commandHint_send": "Seol téacs",
+  "@commandHint_send": {
     "type": "text",
     "description": "Usage hint for the command /send"
   },
-  "commandHintMe": "Déan cur síos ort féin",
-  "@commandHintMe": {
+  "commandHint_me": "Déan cur síos ort féin",
+  "@commandHint_me": {
     "type": "text",
     "description": "Usage hint for the command /me"
   },
@@ -869,43 +869,43 @@
     },
     "description": "State that {command} is not a valid /command."
   },
-  "commandHintReact": "Seol freagra mar fhreagairt",
-  "@commandHintReact": {
+  "commandHint_react": "Seol freagra mar fhreagairt",
+  "@commandHint_react": {
     "type": "text",
     "description": "Usage hint for the command /react"
   },
-  "commandHintOp": "Socraigh leibhéal cumhachta an úsáideora áirithe (réamhshocrú: 50)",
-  "@commandHintOp": {
+  "commandHint_op": "Socraigh leibhéal cumhachta an úsáideora áirithe (réamhshocrú: 50)",
+  "@commandHint_op": {
     "type": "text",
     "description": "Usage hint for the command /op"
   },
-  "commandHintMyRoomNick": "Socraigh d'ainm taispeána don seomra seo",
-  "@commandHintMyRoomNick": {
+  "commandHint_myroomnick": "Socraigh d'ainm taispeána don seomra seo",
+  "@commandHint_myroomnick": {
     "type": "text",
     "description": "Usage hint for the command /myroomnick"
   },
-  "commandHintMyRoomAvatar": "Cuir do phictiúr don seomra seo (le mxc-uri)",
-  "@commandHintMyRoomAvatar": {
+  "commandHint_myroomavatar": "Cuir do phictiúr don seomra seo (le mxc-uri)",
+  "@commandHint_myroomavatar": {
     "type": "text",
     "description": "Usage hint for the command /myroomavatar"
   },
-  "commandHintKick": "Bain an t-úsáideoir áirithe den seomra seo",
-  "@commandHintKick": {
+  "commandHint_kick": "Bain an t-úsáideoir áirithe den seomra seo",
+  "@commandHint_kick": {
     "type": "text",
     "description": "Usage hint for the command /kick"
   },
-  "commandHintJoin": "Téigh isteach sa seomra áirithe",
-  "@commandHintJoin": {
+  "commandHint_join": "Téigh isteach sa seomra áirithe",
+  "@commandHint_join": {
     "type": "text",
     "description": "Usage hint for the command /join"
   },
-  "commandHintBan": "Cuir cosc ar an úsáideoir áirithe ón seomra seo",
-  "@commandHintBan": {
+  "commandHint_ban": "Cuir cosc ar an úsáideoir áirithe ón seomra seo",
+  "@commandHint_ban": {
     "type": "text",
     "description": "Usage hint for the command /ban"
   },
-  "commandHintInvite": "Cuir cosc ar an úsáideoir áirithe ón seomra seo",
-  "@commandHintInvite": {
+  "commandHint_invite": "Cuir cosc ar an úsáideoir áirithe ón seomra seo",
+  "@commandHint_invite": {
     "type": "text",
     "description": "Usage hint for the command /invite"
   },
@@ -1065,18 +1065,18 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHintPlain": "Seol téacs neamhfhoirmithe",
-  "@commandHintPlain": {
+  "commandHint_plain": "Seol téacs neamhfhoirmithe",
+  "@commandHint_plain": {
     "type": "text",
     "description": "Usage hint for the command /plain"
   },
-  "commandHintLeave": "Fág an seomra seo",
-  "@commandHintLeave": {
+  "commandHint_leave": "Fág an seomra seo",
+  "@commandHint_leave": {
     "type": "text",
     "description": "Usage hint for the command /leave"
   },
-  "commandHintHtml": "Seol téacs HTML-formáidithe",
-  "@commandHintHtml": {
+  "commandHint_html": "Seol téacs HTML-formáidithe",
+  "@commandHint_html": {
     "type": "text",
     "description": "Usage hint for the command /html"
   },
@@ -1864,8 +1864,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHintUnBan": "Cuir deireadh an cosc den úsáideoir áirithe ón seomra seo",
-  "@commandHintUnBan": {
+  "commandHint_unban": "Cuir deireadh an cosc den úsáideoir áirithe ón seomra seo",
+  "@commandHint_unban": {
     "type": "text",
     "description": "Usage hint for the command /unban"
   },

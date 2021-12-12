@@ -2356,73 +2356,73 @@
   "@commandInvalid": {
     "type": "text"
   },
-  "commandHintUnBan": "Hilangkan cekalan untuk pengguna yang dicantumkan dari ruangan ini",
-  "@commandHintUnBan": {
+  "commandHint_unban": "Hilangkan cekalan untuk pengguna yang dicantumkan dari ruangan ini",
+  "@commandHint_unban": {
     "type": "text",
     "description": "Usage hint for the command /unban"
   },
-  "commandHintSend": "Kirim teks",
-  "@commandHintSend": {
+  "commandHint_send": "Kirim teks",
+  "@commandHint_send": {
     "type": "text",
     "description": "Usage hint for the command /send"
   },
-  "commandHintReact": "Kirim balasan sebagai reaksi",
-  "@commandHintReact": {
+  "commandHint_react": "Kirim balasan sebagai reaksi",
+  "@commandHint_react": {
     "type": "text",
     "description": "Usage hint for the command /react"
   },
-  "commandHintPlain": "Kirim teks yang tidak diformat",
-  "@commandHintPlain": {
+  "commandHint_plain": "Kirim teks yang tidak diformat",
+  "@commandHint_plain": {
     "type": "text",
     "description": "Usage hint for the command /plain"
   },
-  "commandHintOp": "Tetapkan tingkat kekuatan pengguna yang dicantum (default: 50)",
-  "@commandHintOp": {
+  "commandHint_op": "Tetapkan tingkat kekuatan pengguna yang dicantum (default: 50)",
+  "@commandHint_op": {
     "type": "text",
     "description": "Usage hint for the command /op"
   },
-  "commandHintMyRoomNick": "Tetapkan nama tampilan Anda untuk ruangan ini",
-  "@commandHintMyRoomNick": {
+  "commandHint_myroomnick": "Tetapkan nama tampilan Anda untuk ruangan ini",
+  "@commandHint_myroomnick": {
     "type": "text",
     "description": "Usage hint for the command /myroomnick"
   },
-  "commandHintMyRoomAvatar": "Tetapkan gambar Anda untuk ruangan ini (oleh uri-mxc)",
-  "@commandHintMyRoomAvatar": {
+  "commandHint_myroomavatar": "Tetapkan gambar Anda untuk ruangan ini (oleh uri-mxc)",
+  "@commandHint_myroomavatar": {
     "type": "text",
     "description": "Usage hint for the command /myroomavatar"
   },
-  "commandHintMe": "Jelaskan dirimu",
-  "@commandHintMe": {
+  "commandHint_me": "Jelaskan dirimu",
+  "@commandHint_me": {
     "type": "text",
     "description": "Usage hint for the command /me"
   },
-  "commandHintLeave": "Tinggalkan ruangan ini",
-  "@commandHintLeave": {
+  "commandHint_leave": "Tinggalkan ruangan ini",
+  "@commandHint_leave": {
     "type": "text",
     "description": "Usage hint for the command /leave"
   },
-  "commandHintKick": "Keluarkan pengguna yang dicantum dari ruangan ini",
-  "@commandHintKick": {
+  "commandHint_kick": "Keluarkan pengguna yang dicantum dari ruangan ini",
+  "@commandHint_kick": {
     "type": "text",
     "description": "Usage hint for the command /kick"
   },
-  "commandHintJoin": "Gabung ke ruangan yang dicantum",
-  "@commandHintJoin": {
+  "commandHint_join": "Gabung ke ruangan yang dicantum",
+  "@commandHint_join": {
     "type": "text",
     "description": "Usage hint for the command /join"
   },
-  "commandHintInvite": "Undang pengguna yang dicantum ke ruangan ini",
-  "@commandHintInvite": {
+  "commandHint_invite": "Undang pengguna yang dicantum ke ruangan ini",
+  "@commandHint_invite": {
     "type": "text",
     "description": "Usage hint for the command /invite"
   },
-  "commandHintHtml": "Kirim teks yang diformat dengan HTML",
-  "@commandHintHtml": {
+  "commandHint_html": "Kirim teks yang diformat dengan HTML",
+  "@commandHint_html": {
     "type": "text",
     "description": "Usage hint for the command /html"
   },
-  "commandHintBan": "Cekal pengguna yang dicantumkan dari ruangan ini",
-  "@commandHintBan": {
+  "commandHint_ban": "Cekal pengguna yang dicantumkan dari ruangan ini",
+  "@commandHint_ban": {
     "type": "text",
     "description": "Usage hint for the command /ban"
   },

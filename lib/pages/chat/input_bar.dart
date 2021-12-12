@@ -11,6 +11,7 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import '../../widgets/avatar.dart';
 import '../../widgets/matrix.dart';
+import 'command_hints.dart';
 
 class InputBar extends StatelessWidget {
   final Room room;
@@ -172,41 +173,6 @@ class InputBar extends StatelessWidget {
     return ret;
   }
 
-  String _commandHint(L10n l10n, String command) {
-    switch (command) {
-      case 'send':
-        return l10n.commandHintSend;
-      case 'me':
-        return l10n.commandHintMe;
-      case 'plain':
-        return l10n.commandHintPlain;
-      case 'html':
-        return l10n.commandHintHtml;
-      case 'react':
-        return l10n.commandHintReact;
-      case 'join':
-        return l10n.commandHintJoin;
-      case 'leave':
-        return l10n.commandHintLeave;
-      case 'op':
-        return l10n.commandHintOp;
-      case 'kick':
-        return l10n.commandHintKick;
-      case 'ban':
-        return l10n.commandHintBan;
-      case 'unban':
-        return l10n.commandHintUnBan;
-      case 'invite':
-        return l10n.commandHintInvite;
-      case 'myroomnick':
-        return l10n.commandHintMyRoomNick;
-      case 'myroomavatar':
-        return l10n.commandHintMyRoomAvatar;
-      default:
-        return '';
-    }
-  }
-
   Widget buildSuggestion(
     BuildContext context,
     Map<String, String> suggestion,
@@ -216,17 +182,25 @@ class InputBar extends StatelessWidget {
     const padding = EdgeInsets.all(4.0);
     if (suggestion['type'] == 'command') {
       final command = suggestion['name'];
-      return Container(
-        padding: padding,
-        height: size + padding.bottom + padding.top,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('/' + command,
-                style: const TextStyle(fontFamily: 'monospace')),
-            Text(_commandHint(L10n.of(context), command),
-                style: Theme.of(context).textTheme.caption),
-          ],
+      final hint = commandHint(L10n.of(context), command);
+      return Tooltip(
+        message: hint,
+        waitDuration: const Duration(days: 1), // don't show on hover
+        child: Container(
+          padding: padding,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('/' + command,
+                  style: const TextStyle(fontFamily: 'monospace')),
+              Text(
+                hint,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.caption,
+              ),
+            ],
+          ),
         ),
       );
     }

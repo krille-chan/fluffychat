@@ -435,73 +435,73 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHintBan": "Banir um(a) usuário(a) desta sala",
-  "@commandHintBan": {
+  "commandHint_ban": "Banir um(a) usuário(a) desta sala",
+  "@commandHint_ban": {
     "type": "text",
     "description": "Usage hint for the command /ban"
   },
-  "commandHintHtml": "Enviar mensagem formatada em HTML",
-  "@commandHintHtml": {
+  "commandHint_html": "Enviar mensagem formatada em HTML",
+  "@commandHint_html": {
     "type": "text",
     "description": "Usage hint for the command /html"
   },
-  "commandHintInvite": "Convidar um(a) usuário(a) para esta sala",
-  "@commandHintInvite": {
+  "commandHint_invite": "Convidar um(a) usuário(a) para esta sala",
+  "@commandHint_invite": {
     "type": "text",
     "description": "Usage hint for the command /invite"
   },
-  "commandHintJoin": "Entrar numa sala",
-  "@commandHintJoin": {
+  "commandHint_join": "Entrar numa sala",
+  "@commandHint_join": {
     "type": "text",
     "description": "Usage hint for the command /join"
   },
-  "commandHintKick": "Remover um(a) usuário(a) desta sala",
-  "@commandHintKick": {
+  "commandHint_kick": "Remover um(a) usuário(a) desta sala",
+  "@commandHint_kick": {
     "type": "text",
     "description": "Usage hint for the command /kick"
   },
-  "commandHintLeave": "Sair desta sala",
-  "@commandHintLeave": {
+  "commandHint_leave": "Sair desta sala",
+  "@commandHint_leave": {
     "type": "text",
     "description": "Usage hint for the command /leave"
   },
-  "commandHintMe": "Descrever você mesmo",
-  "@commandHintMe": {
+  "commandHint_me": "Descrever você mesmo",
+  "@commandHint_me": {
     "type": "text",
     "description": "Usage hint for the command /me"
   },
-  "commandHintMyRoomAvatar": "Determinar sua imagem para esta sala (via mxc-uri)",
-  "@commandHintMyRoomAvatar": {
+  "commandHint_myroomavatar": "Determinar sua imagem para esta sala (via mxc-uri)",
+  "@commandHint_myroomavatar": {
     "type": "text",
     "description": "Usage hint for the command /myroomavatar"
   },
-  "commandHintMyRoomNick": "Determinar seu nome de exibição para esta sala",
-  "@commandHintMyRoomNick": {
+  "commandHint_myroomnick": "Determinar seu nome de exibição para esta sala",
+  "@commandHint_myroomnick": {
     "type": "text",
     "description": "Usage hint for the command /myroomnick"
   },
-  "commandHintOp": "Determinar o grau de poderes de um(a) usuário(a) (padrão: 50)",
-  "@commandHintOp": {
+  "commandHint_op": "Determinar o grau de poderes de um(a) usuário(a) (padrão: 50)",
+  "@commandHint_op": {
     "type": "text",
     "description": "Usage hint for the command /op"
   },
-  "commandHintPlain": "Enviar mensagem sem formatação",
-  "@commandHintPlain": {
+  "commandHint_plain": "Enviar mensagem sem formatação",
+  "@commandHint_plain": {
     "type": "text",
     "description": "Usage hint for the command /plain"
   },
-  "commandHintReact": "Enviar uma resposta como reação",
-  "@commandHintReact": {
+  "commandHint_react": "Enviar uma resposta como reação",
+  "@commandHint_react": {
     "type": "text",
     "description": "Usage hint for the command /react"
   },
-  "commandHintSend": "Enviar mensagem",
-  "@commandHintSend": {
+  "commandHint_send": "Enviar mensagem",
+  "@commandHint_send": {
     "type": "text",
     "description": "Usage hint for the command /send"
   },
-  "commandHintUnBan": "Revogar o banimento de um(a) usuário(a) desta sala",
-  "@commandHintUnBan": {
+  "commandHint_unban": "Revogar o banimento de um(a) usuário(a) desta sala",
+  "@commandHint_unban": {
     "type": "text",
     "description": "Usage hint for the command /unban"
   },

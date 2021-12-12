@@ -2099,13 +2099,13 @@
       "homeserver": {}
     }
   },
-  "commandHintHtml": "Skicka HTML-formatted text",
-  "@commandHintHtml": {
+  "commandHint_html": "Skicka HTML-formatted text",
+  "@commandHint_html": {
     "type": "text",
     "description": "Usage hint for the command /html"
   },
-  "commandHintBan": "Bannlys användaren från detta rum",
-  "@commandHintBan": {
+  "commandHint_ban": "Bannlys användaren från detta rum",
+  "@commandHint_ban": {
     "type": "text",
     "description": "Usage hint for the command /ban"
   },
@@ -2190,33 +2190,33 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHintMyRoomAvatar": "Sätt din bild för detta rum (by mxc-uri)",
-  "@commandHintMyRoomAvatar": {
+  "commandHint_myroomavatar": "Sätt din bild för detta rum (by mxc-uri)",
+  "@commandHint_myroomavatar": {
     "type": "text",
     "description": "Usage hint for the command /myroomavatar"
   },
-  "commandHintMe": "Beskriv dig själv",
-  "@commandHintMe": {
+  "commandHint_me": "Beskriv dig själv",
+  "@commandHint_me": {
     "type": "text",
     "description": "Usage hint for the command /me"
   },
-  "commandHintLeave": "Lämna detta rum",
-  "@commandHintLeave": {
+  "commandHint_leave": "Lämna detta rum",
+  "@commandHint_leave": {
     "type": "text",
     "description": "Usage hint for the command /leave"
   },
-  "commandHintKick": "Ta bort användare från detta rum",
-  "@commandHintKick": {
+  "commandHint_kick": "Ta bort användare från detta rum",
+  "@commandHint_kick": {
     "type": "text",
     "description": "Usage hint for the command /kick"
   },
-  "commandHintJoin": "Gå med i rum",
-  "@commandHintJoin": {
+  "commandHint_join": "Gå med i rum",
+  "@commandHint_join": {
     "type": "text",
     "description": "Usage hint for the command /join"
   },
-  "commandHintInvite": "Bjud in användaren till detta rum",
-  "@commandHintInvite": {
+  "commandHint_invite": "Bjud in användaren till detta rum",
+  "@commandHint_invite": {
     "type": "text",
     "description": "Usage hint for the command /invite"
   },
@@ -2306,33 +2306,33 @@
   "@commandInvalid": {
     "type": "text"
   },
-  "commandHintUnBan": "Tillåt användare i rummet",
-  "@commandHintUnBan": {
+  "commandHint_unban": "Tillåt användare i rummet",
+  "@commandHint_unban": {
     "type": "text",
     "description": "Usage hint for the command /unban"
   },
-  "commandHintSend": "Skicka text",
-  "@commandHintSend": {
+  "commandHint_send": "Skicka text",
+  "@commandHint_send": {
     "type": "text",
     "description": "Usage hint for the command /send"
   },
-  "commandHintReact": "Skicka svar som reaktion",
-  "@commandHintReact": {
+  "commandHint_react": "Skicka svar som reaktion",
+  "@commandHint_react": {
     "type": "text",
     "description": "Usage hint for the command /react"
   },
-  "commandHintPlain": "Skicka oformaterad text",
-  "@commandHintPlain": {
+  "commandHint_plain": "Skicka oformaterad text",
+  "@commandHint_plain": {
     "type": "text",
     "description": "Usage hint for the command /plain"
   },
-  "commandHintOp": "Sätt användarens kraft nivå ( standard: 50)",
-  "@commandHintOp": {
+  "commandHint_op": "Sätt användarens kraft nivå ( standard: 50)",
+  "@commandHint_op": {
     "type": "text",
     "description": "Usage hint for the command /op"
   },
-  "commandHintMyRoomNick": "Sätt ditt användarnamn för rummet",
-  "@commandHintMyRoomNick": {
+  "commandHint_myroomnick": "Sätt ditt användarnamn för rummet",
+  "@commandHint_myroomnick": {
     "type": "text",
     "description": "Usage hint for the command /myroomnick"
   },

@@ -1917,68 +1917,68 @@
   "@commandInvalid": {
     "type": "text"
   },
-  "commandHintUnBan": "فك الحظر عن المستخدم المذكور في هذه الغرفة",
-  "@commandHintUnBan": {
+  "commandHint_unban": "فك الحظر عن المستخدم المذكور في هذه الغرفة",
+  "@commandHint_unban": {
     "type": "text",
     "description": "Usage hint for the command /unban"
   },
-  "commandHintSend": "أرسل نصًا",
-  "@commandHintSend": {
+  "commandHint_send": "أرسل نصًا",
+  "@commandHint_send": {
     "type": "text",
     "description": "Usage hint for the command /send"
   },
-  "commandHintReact": "أرسل ردًا كتفاعل",
-  "@commandHintReact": {
+  "commandHint_react": "أرسل ردًا كتفاعل",
+  "@commandHint_react": {
     "type": "text",
     "description": "Usage hint for the command /react"
   },
-  "commandHintPlain": "أرسل نصًا غير منسق",
-  "@commandHintPlain": {
+  "commandHint_plain": "أرسل نصًا غير منسق",
+  "@commandHint_plain": {
     "type": "text",
     "description": "Usage hint for the command /plain"
   },
-  "commandHintOp": "عين مستوى نفوذ المستخدم في هذه الغرفة (الافتراضي: 50)",
-  "@commandHintOp": {
+  "commandHint_op": "عين مستوى نفوذ المستخدم في هذه الغرفة (الافتراضي: 50)",
+  "@commandHint_op": {
     "type": "text",
     "description": "Usage hint for the command /op"
   },
-  "commandHintMyRoomNick": "عين اسمًا لك مخصص لهذه الغرفة",
-  "@commandHintMyRoomNick": {
+  "commandHint_myroomnick": "عين اسمًا لك مخصص لهذه الغرفة",
+  "@commandHint_myroomnick": {
     "type": "text",
     "description": "Usage hint for the command /myroomnick"
   },
-  "commandHintMe": "صف نفسك",
-  "@commandHintMe": {
+  "commandHint_me": "صف نفسك",
+  "@commandHint_me": {
     "type": "text",
     "description": "Usage hint for the command /me"
   },
-  "commandHintLeave": "تغادر هذه الغرفة",
-  "@commandHintLeave": {
+  "commandHint_leave": "تغادر هذه الغرفة",
+  "@commandHint_leave": {
     "type": "text",
     "description": "Usage hint for the command /leave"
   },
-  "commandHintKick": "يزيل المستخدم المذكور من الغرفة",
-  "@commandHintKick": {
+  "commandHint_kick": "يزيل المستخدم المذكور من الغرفة",
+  "@commandHint_kick": {
     "type": "text",
     "description": "Usage hint for the command /kick"
   },
-  "commandHintJoin": "تنضم الى الغرفة المذكورة",
-  "@commandHintJoin": {
+  "commandHint_join": "تنضم الى الغرفة المذكورة",
+  "@commandHint_join": {
     "type": "text",
     "description": "Usage hint for the command /join"
   },
-  "commandHintInvite": "يدعو المستخدم المذكور الى الغرفة",
-  "@commandHintInvite": {
+  "commandHint_invite": "يدعو المستخدم المذكور الى الغرفة",
+  "@commandHint_invite": {
     "type": "text",
     "description": "Usage hint for the command /invite"
   },
-  "commandHintHtml": "أرسل نصًا بتنسيق HTML",
-  "@commandHintHtml": {
+  "commandHint_html": "أرسل نصًا بتنسيق HTML",
+  "@commandHint_html": {
     "type": "text",
     "description": "Usage hint for the command /html"
   },
-  "commandHintBan": "يحظر المستخدم المذكور من هذه الغرفة",
-  "@commandHintBan": {
+  "commandHint_ban": "يحظر المستخدم المذكور من هذه الغرفة",
+  "@commandHint_ban": {
     "type": "text",
     "description": "Usage hint for the command /ban"
   },

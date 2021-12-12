@@ -444,73 +444,73 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHintBan": "Persoon uit deze kamer verbannen",
-  "@commandHintBan": {
+  "commandHint_ban": "Persoon uit deze kamer verbannen",
+  "@commandHint_ban": {
     "type": "text",
     "description": "Usage hint for the command /ban"
   },
-  "commandHintHtml": "Tekst met HTML-opmaak versturen",
-  "@commandHintHtml": {
+  "commandHint_html": "Tekst met HTML-opmaak versturen",
+  "@commandHint_html": {
     "type": "text",
     "description": "Usage hint for the command /html"
   },
-  "commandHintInvite": "Persoon in deze kamer uitnodigen",
-  "@commandHintInvite": {
+  "commandHint_invite": "Persoon in deze kamer uitnodigen",
+  "@commandHint_invite": {
     "type": "text",
     "description": "Usage hint for the command /invite"
   },
-  "commandHintJoin": "Deelnemen aan de gegeven kamer",
-  "@commandHintJoin": {
+  "commandHint_join": "Deelnemen aan de gegeven kamer",
+  "@commandHint_join": {
     "type": "text",
     "description": "Usage hint for the command /join"
   },
-  "commandHintKick": "Persoon uit deze kamer verwijderen",
-  "@commandHintKick": {
+  "commandHint_kick": "Persoon uit deze kamer verwijderen",
+  "@commandHint_kick": {
     "type": "text",
     "description": "Usage hint for the command /kick"
   },
-  "commandHintLeave": "Deze kamer verlaten",
-  "@commandHintLeave": {
+  "commandHint_leave": "Deze kamer verlaten",
+  "@commandHint_leave": {
     "type": "text",
     "description": "Usage hint for the command /leave"
   },
-  "commandHintMe": "Beschrijf jezelf",
-  "@commandHintMe": {
+  "commandHint_me": "Beschrijf jezelf",
+  "@commandHint_me": {
     "type": "text",
     "description": "Usage hint for the command /me"
   },
-  "commandHintMyRoomAvatar": "Je avatar voor deze kamer instellen (met mxc-uri)",
-  "@commandHintMyRoomAvatar": {
+  "commandHint_myroomavatar": "Je avatar voor deze kamer instellen (met mxc-uri)",
+  "@commandHint_myroomavatar": {
     "type": "text",
     "description": "Usage hint for the command /myroomavatar"
   },
-  "commandHintMyRoomNick": "Je naam voor deze kamer instellen",
-  "@commandHintMyRoomNick": {
+  "commandHint_myroomnick": "Je naam voor deze kamer instellen",
+  "@commandHint_myroomnick": {
     "type": "text",
     "description": "Usage hint for the command /myroomnick"
   },
-  "commandHintOp": "Machtsniveau van de persoon instellen (standaard: 50)",
-  "@commandHintOp": {
+  "commandHint_op": "Machtsniveau van de persoon instellen (standaard: 50)",
+  "@commandHint_op": {
     "type": "text",
     "description": "Usage hint for the command /op"
   },
-  "commandHintPlain": "Niet-opgemaakte tekst versturen",
-  "@commandHintPlain": {
+  "commandHint_plain": "Niet-opgemaakte tekst versturen",
+  "@commandHint_plain": {
     "type": "text",
     "description": "Usage hint for the command /plain"
   },
-  "commandHintReact": "Antwoord als reactie versturen",
-  "@commandHintReact": {
+  "commandHint_react": "Antwoord als reactie versturen",
+  "@commandHint_react": {
     "type": "text",
     "description": "Usage hint for the command /react"
   },
-  "commandHintSend": "Tekst versturen",
-  "@commandHintSend": {
+  "commandHint_send": "Tekst versturen",
+  "@commandHint_send": {
     "type": "text",
     "description": "Usage hint for the command /send"
   },
-  "commandHintUnBan": "Persoon weer in deze kamer toestaan",
-  "@commandHintUnBan": {
+  "commandHint_unban": "Persoon weer in deze kamer toestaan",
+  "@commandHint_unban": {
     "type": "text",
     "description": "Usage hint for the command /unban"
   },

@@ -414,48 +414,48 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHintHtml": "Lähetä HTML-muotoiltua tekstiä",
-  "@commandHintHtml": {
+  "commandHint_html": "Lähetä HTML-muotoiltua tekstiä",
+  "@commandHint_html": {
     "type": "text",
     "description": "Usage hint for the command /html"
   },
-  "commandHintBan": "Anna syötetylle käyttäjälle porttikielto tähän huoneeseen",
-  "@commandHintBan": {
+  "commandHint_ban": "Anna syötetylle käyttäjälle porttikielto tähän huoneeseen",
+  "@commandHint_ban": {
     "type": "text",
     "description": "Usage hint for the command /ban"
   },
-  "commandHintInvite": "Kutsu syötetty käyttäjä tähän huoneeseen",
-  "@commandHintInvite": {
+  "commandHint_invite": "Kutsu syötetty käyttäjä tähän huoneeseen",
+  "@commandHint_invite": {
     "type": "text",
     "description": "Usage hint for the command /invite"
   },
-  "commandHintLeave": "Poistu tästä huoneesta",
-  "@commandHintLeave": {
+  "commandHint_leave": "Poistu tästä huoneesta",
+  "@commandHint_leave": {
     "type": "text",
     "description": "Usage hint for the command /leave"
   },
-  "commandHintMyRoomAvatar": "Aseta profiilikuvasi tähän huoneeseen (syöttämällä mxc-uri)",
-  "@commandHintMyRoomAvatar": {
+  "commandHint_myroomavatar": "Aseta profiilikuvasi tähän huoneeseen (syöttämällä mxc-uri)",
+  "@commandHint_myroomavatar": {
     "type": "text",
     "description": "Usage hint for the command /myroomavatar"
   },
-  "commandHintMyRoomNick": "Aseta näyttönimesi vain tässä huoneessa",
-  "@commandHintMyRoomNick": {
+  "commandHint_myroomnick": "Aseta näyttönimesi vain tässä huoneessa",
+  "@commandHint_myroomnick": {
     "type": "text",
     "description": "Usage hint for the command /myroomnick"
   },
-  "commandHintOp": "Aseta käyttäjän voimataso (oletus: 50)",
-  "@commandHintOp": {
+  "commandHint_op": "Aseta käyttäjän voimataso (oletus: 50)",
+  "@commandHint_op": {
     "type": "text",
     "description": "Usage hint for the command /op"
   },
-  "commandHintPlain": "Lähetä muotoilematonta tekstiä",
-  "@commandHintPlain": {
+  "commandHint_plain": "Lähetä muotoilematonta tekstiä",
+  "@commandHint_plain": {
     "type": "text",
     "description": "Usage hint for the command /plain"
   },
-  "commandHintReact": "Lähetä vastaus reaktiona",
-  "@commandHintReact": {
+  "commandHint_react": "Lähetä vastaus reaktiona",
+  "@commandHint_react": {
     "type": "text",
     "description": "Usage hint for the command /react"
   },
@@ -1250,13 +1250,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHintJoin": "Liity syötettyyn huoneeseen",
-  "@commandHintJoin": {
+  "commandHint_join": "Liity syötettyyn huoneeseen",
+  "@commandHint_join": {
     "type": "text",
     "description": "Usage hint for the command /join"
   },
-  "commandHintMe": "Kuvaile itseäsi",
-  "@commandHintMe": {
+  "commandHint_me": "Kuvaile itseäsi",
+  "@commandHint_me": {
     "type": "text",
     "description": "Usage hint for the command /me"
   },
@@ -1324,13 +1324,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHintKick": "Poista syötetty käyttäjä huoneesta",
-  "@commandHintKick": {
+  "commandHint_kick": "Poista syötetty käyttäjä huoneesta",
+  "@commandHint_kick": {
     "type": "text",
     "description": "Usage hint for the command /kick"
   },
-  "commandHintUnBan": "Poista syötetyn käyttäjän porttikielto tästä huoneesta",
-  "@commandHintUnBan": {
+  "commandHint_unban": "Poista syötetyn käyttäjän porttikielto tästä huoneesta",
+  "@commandHint_unban": {
     "type": "text",
     "description": "Usage hint for the command /unban"
   },
@@ -1342,8 +1342,8 @@
     },
     "description": "State that {command} is not a valid /command."
   },
-  "commandHintSend": "Lähetä tekstiä",
-  "@commandHintSend": {
+  "commandHint_send": "Lähetä tekstiä",
+  "@commandHint_send": {
     "type": "text",
     "description": "Usage hint for the command /send"
   },

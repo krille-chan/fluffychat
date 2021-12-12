@@ -431,73 +431,73 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHintBan": "Verbanne den übergebenen Benutzer aus diesen Raum",
-  "@commandHintBan": {
+  "commandHint_ban": "Verbanne den übergebenen Benutzer aus diesen Raum",
+  "@commandHint_ban": {
     "type": "text",
     "description": "Usage hint for the command /ban"
   },
-  "commandHintHtml": "Sende HTML-formatierten Text",
-  "@commandHintHtml": {
+  "commandHint_html": "Sende HTML-formatierten Text",
+  "@commandHint_html": {
     "type": "text",
     "description": "Usage hint for the command /html"
   },
-  "commandHintInvite": "Lade den Benutzer in diesen Raum ein",
-  "@commandHintInvite": {
+  "commandHint_invite": "Lade den Benutzer in diesen Raum ein",
+  "@commandHint_invite": {
     "type": "text",
     "description": "Usage hint for the command /invite"
   },
-  "commandHintJoin": "Betrete den übergebenen Raum",
-  "@commandHintJoin": {
+  "commandHint_join": "Betrete den übergebenen Raum",
+  "@commandHint_join": {
     "type": "text",
     "description": "Usage hint for the command /join"
   },
-  "commandHintKick": "Entferne den übergebenen Benutzer aus diesem Raum",
-  "@commandHintKick": {
+  "commandHint_kick": "Entferne den übergebenen Benutzer aus diesem Raum",
+  "@commandHint_kick": {
     "type": "text",
     "description": "Usage hint for the command /kick"
   },
-  "commandHintLeave": "Diesen Raum verlassen",
-  "@commandHintLeave": {
+  "commandHint_leave": "Diesen Raum verlassen",
+  "@commandHint_leave": {
     "type": "text",
     "description": "Usage hint for the command /leave"
   },
-  "commandHintMe": "Beschreibe dich selbst",
-  "@commandHintMe": {
+  "commandHint_me": "Beschreibe dich selbst",
+  "@commandHint_me": {
     "type": "text",
     "description": "Usage hint for the command /me"
   },
-  "commandHintMyRoomAvatar": "Setze dein Profilbild nur für diesen Raum (MXC-Uri)",
-  "@commandHintMyRoomAvatar": {
+  "commandHint_myroomavatar": "Setze dein Profilbild nur für diesen Raum (MXC-Uri)",
+  "@commandHint_myroomavatar": {
     "type": "text",
     "description": "Usage hint for the command /myroomavatar"
   },
-  "commandHintMyRoomNick": "Setze deinen Anzeigenamen nur für diesen Raum",
-  "@commandHintMyRoomNick": {
+  "commandHint_myroomnick": "Setze deinen Anzeigenamen nur für diesen Raum",
+  "@commandHint_myroomnick": {
     "type": "text",
     "description": "Usage hint for the command /myroomnick"
   },
-  "commandHintOp": "Setze den übergeben Powerlevel des Benutzers (Standard: 50)",
-  "@commandHintOp": {
+  "commandHint_op": "Setze den übergeben Powerlevel des Benutzers (Standard: 50)",
+  "@commandHint_op": {
     "type": "text",
     "description": "Usage hint for the command /op"
   },
-  "commandHintPlain": "Sende unformatierten Text",
-  "@commandHintPlain": {
+  "commandHint_plain": "Sende unformatierten Text",
+  "@commandHint_plain": {
     "type": "text",
     "description": "Usage hint for the command /plain"
   },
-  "commandHintReact": "Sende die Antwort als Reaction",
-  "@commandHintReact": {
+  "commandHint_react": "Sende die Antwort als Reaction",
+  "@commandHint_react": {
     "type": "text",
     "description": "Usage hint for the command /react"
   },
-  "commandHintSend": "Text senden",
-  "@commandHintSend": {
+  "commandHint_send": "Text senden",
+  "@commandHint_send": {
     "type": "text",
     "description": "Usage hint for the command /send"
   },
-  "commandHintUnBan": "Hebe die Verbannung dieses Benutzers in diesem Raum auf",
-  "@commandHintUnBan": {
+  "commandHint_unban": "Hebe die Verbannung dieses Benutzers in diesem Raum auf",
+  "@commandHint_unban": {
     "type": "text",
     "description": "Usage hint for the command /unban"
   },
