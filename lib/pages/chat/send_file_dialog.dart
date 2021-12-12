@@ -36,7 +36,7 @@ class _SendFileDialogState extends State<SendFileDialog> {
     if (file is MatrixImageFile &&
         !origImage &&
         file.bytes.length > minSizeToCompress) {
-      file = await file.resizeImage(quality: 40, max: 1200);
+      file = await file.resizeImage();
     }
     await widget.room.sendFileEventWithThumbnail(file);
   }
