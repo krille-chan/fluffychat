@@ -10,8 +10,8 @@ import 'package:image/image.dart';
 import 'package:matrix/matrix.dart';
 
 extension ResizeImage on MatrixFile {
-  static const int max = 800;
-  static const int quality = 20;
+  static const int max = 1200;
+  static const int quality = 40;
 
   Future<MatrixImageFile> resizeImage({
     bool calcBlurhash = true,
@@ -23,7 +23,8 @@ extension ResizeImage on MatrixFile {
         : await compute<_ResizeBytesConfig, Uint8List>(
             resizeBytes,
             _ResizeBytesConfig(
-              this.bytes,
+              bytes: this.bytes,
+              mimeType: mimeType,
               max: max,
               quality: quality,
             ));
@@ -55,17 +56,24 @@ Future<Uint8List> resizeBytes(_ResizeBytesConfig config) async {
         : copyResize(image, height: config.max);
   }
 
-  return Uint8List.fromList(encodeJpg(image, quality: config.quality));
+  const pngMimeType = 'image/png';
+  final encoded = config.mimeType.toLowerCase() == pngMimeType
+      ? encodePng(image)
+      : encodeJpg(image, quality: config.quality);
+
+  return Uint8List.fromList(encoded);
 }
 
 class _ResizeBytesConfig {
   final Uint8List bytes;
   final int max;
   final int quality;
+  final String mimeType;
 
-  const _ResizeBytesConfig(
-    this.bytes, {
+  const _ResizeBytesConfig({
+    required this.bytes,
     this.max = ResizeImage.max,
     this.quality = ResizeImage.quality,
+    required this.mimeType,
   });
 }
