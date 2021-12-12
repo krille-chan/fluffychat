@@ -490,7 +490,7 @@
     "type": "text",
     "description": "Usage hint for the command /myroomnick"
   },
-  "commandHint_op": "Définit le niveau de puissance de l'utilisateur/trice donné(e) (par défaut : 50)",
+  "commandHint_op": "Définir le niveau de puissance de l'utilisateur/trice donné(e) (par défaut : 50)",
   "@commandHint_op": {
     "type": "text",
     "description": "Usage hint for the command /op"
@@ -2654,5 +2654,25 @@
   "saveTheSecurityKeyNow": "Enregistrer la clé de sécurité maintenant",
   "@saveTheSecurityKeyNow": {},
   "pleaseEnterSecurityKeyDescription": "Pour déverrouiller votre sauvegarde de discussion, veuillez entrer votre clé de sécurité qui a été générée lors d'une session précédente. Votre clé de sécurité n'est PAS votre mot de passe.",
-  "@pleaseEnterSecurityKeyDescription": {}
+  "@pleaseEnterSecurityKeyDescription": {},
+  "commandHint_create": "Créer un groupe de discussion vide\nUtilisez --no-encryption pour désactiver le chiffrement",
+  "@commandHint_create": {
+    "type": "text",
+    "description": "Usage hint for the command /create"
+  },
+  "commandHint_discardsession": "Abandonner la session",
+  "@commandHint_discardsession": {
+    "type": "text",
+    "description": "Usage hint for the command /discardsession"
+  },
+  "commandHint_clearcache": "Vider le cache",
+  "@commandHint_clearcache": {
+    "type": "text",
+    "description": "Usage hint for the command /clearcache"
+  },
+  "commandHint_dm": "Commencer une discussion directe\nUtilisez --no-encryption pour désactiver le chiffrement",
+  "@commandHint_dm": {
+    "type": "text",
+    "description": "Usage hint for the command /dm"
+  }
 }
