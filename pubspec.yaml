@@ -68,7 +68,7 @@ dependencies:
   slugify: ^2.0.0
   swipe_to_action: ^0.2.0
   uni_links: ^0.5.1
-  unifiedpush: ^3.0.0
+  unifiedpush: ^3.0.1
   universal_html: ^2.0.8
   url_launcher: ^6.0.12
   vrouter: ^1.2.0+15

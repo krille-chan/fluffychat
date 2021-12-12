@@ -84,7 +84,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
-    implementation 'com.github.UnifiedPush:android-connector:1.2.0' // needed for unifiedpush
+    implementation 'com.github.UnifiedPush:android-connector:1.2.3' // needed for unifiedpush
 }
 
 //apply plugin: 'com.google.gms.google-services'
