@@ -2654,5 +2654,25 @@
   "removeFromSpace": "从空间删除",
   "@removeFromSpace": {},
   "start": "开始",
-  "@start": {}
+  "@start": {},
+  "commandHint_discardsession": "丢弃会话",
+  "@commandHint_discardsession": {
+    "type": "text",
+    "description": "Usage hint for the command /discardsession"
+  },
+  "commandHint_dm": "启动一对一交谈\n使用 --no-encryption 禁用加密",
+  "@commandHint_dm": {
+    "type": "text",
+    "description": "Usage hint for the command /dm"
+  },
+  "commandHint_clearcache": "清除缓存",
+  "@commandHint_clearcache": {
+    "type": "text",
+    "description": "Usage hint for the command /clearcache"
+  },
+  "commandHint_create": "创建空的群聊\n使用 --no-encryption 禁用加密",
+  "@commandHint_create": {
+    "type": "text",
+    "description": "Usage hint for the command /create"
+  }
 }
