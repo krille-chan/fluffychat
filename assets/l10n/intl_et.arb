@@ -2654,5 +2654,25 @@
   "saveTheSecurityKeyNow": "Salvesta turvavõti nüüd",
   "@saveTheSecurityKeyNow": {},
   "pleaseEnterSecurityKeyDescription": "Kui soovid vestluste varundust kasutada, siis palun sisesta oma turvavõti, mille me varasemas sessioonis tegime. Turvavõti EI OLE sama kui salasõna.",
-  "@pleaseEnterSecurityKeyDescription": {}
+  "@pleaseEnterSecurityKeyDescription": {},
+  "commandHint_discardsession": "Loobu sessioonist",
+  "@commandHint_discardsession": {
+    "type": "text",
+    "description": "Usage hint for the command /discardsession"
+  },
+  "commandHint_clearcache": "Tühjenda vahemälu",
+  "@commandHint_clearcache": {
+    "type": "text",
+    "description": "Usage hint for the command /clearcache"
+  },
+  "commandHint_dm": "Alusta otsevestlust\nKrüptimise keelamiseks kasuta --no-encryption võtit",
+  "@commandHint_dm": {
+    "type": "text",
+    "description": "Usage hint for the command /dm"
+  },
+  "commandHint_create": "Loo tühi vestlusrühm\nKrüptimise keelamiseks kasuta --no-encryption võtit",
+  "@commandHint_create": {
+    "type": "text",
+    "description": "Usage hint for the command /create"
+  }
 }
