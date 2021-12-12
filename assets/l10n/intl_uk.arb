@@ -2649,5 +2649,25 @@
   "pleaseEnterSecurityKeyDescription": "Щоб розблокувати резервну копію чату, введіть ключ безпеки, який був створений під час попереднього сеансу. Ключ безпеки — це не ваш пароль.",
   "@pleaseEnterSecurityKeyDescription": {},
   "saveTheSecurityKeyNow": "Зберегти ключ безпеки зараз",
-  "@saveTheSecurityKeyNow": {}
+  "@saveTheSecurityKeyNow": {},
+  "commandHint_discardsession": "Відкинути сеанс",
+  "@commandHint_discardsession": {
+    "type": "text",
+    "description": "Usage hint for the command /discardsession"
+  },
+  "commandHint_clearcache": "Очистити кеш",
+  "@commandHint_clearcache": {
+    "type": "text",
+    "description": "Usage hint for the command /clearcache"
+  },
+  "commandHint_create": "Створіть порожній груповий чат\nВикористовуйте --no-encryption, щоб вимкнути шифрування",
+  "@commandHint_create": {
+    "type": "text",
+    "description": "Usage hint for the command /create"
+  },
+  "commandHint_dm": "Початок особистого чату\nВикористовуйте --no-encryption, що вимкнути шифрування",
+  "@commandHint_dm": {
+    "type": "text",
+    "description": "Usage hint for the command /dm"
+  }
 }
