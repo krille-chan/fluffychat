@@ -1498,7 +1498,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "ok": "ok",
+  "ok": "Ok",
   "@ok": {
     "type": "text",
     "placeholders": {}
@@ -2654,5 +2654,25 @@
   "saveTheSecurityKeyNow": "Uložte bezpečnostní klíč nyní",
   "@saveTheSecurityKeyNow": {},
   "pleaseEnterSecurityKeyDescription": "Chcete-li odemknout zálohu chatu, zadejte svůj bezpečnostní klíč, který byl vygenerován v předchozí relaci. Váš bezpečnostní klíč NENÍ vaše heslo.",
-  "@pleaseEnterSecurityKeyDescription": {}
+  "@pleaseEnterSecurityKeyDescription": {},
+  "commandHint_clearcache": "Vymazat mezipamět",
+  "@commandHint_clearcache": {
+    "type": "text",
+    "description": "Usage hint for the command /clearcache"
+  },
+  "commandHint_discardsession": "Zahodit relaci",
+  "@commandHint_discardsession": {
+    "type": "text",
+    "description": "Usage hint for the command /discardsession"
+  },
+  "commandHint_dm": "Zahajte přímý chat\nK deaktivaci šifrování použijte --no-encryption",
+  "@commandHint_dm": {
+    "type": "text",
+    "description": "Usage hint for the command /dm"
+  },
+  "commandHint_create": "Vytvořte prázdný skupinový chat\n K deaktivaci šifrování použijte --no-encryption",
+  "@commandHint_create": {
+    "type": "text",
+    "description": "Usage hint for the command /create"
+  }
 }
