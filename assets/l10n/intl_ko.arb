@@ -27,43 +27,43 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHintBan": "이 룸에서 주어진 유저 밴하기",
-  "@commandHintBan": {
+  "commandHint_ban": "이 룸에서 주어진 유저 밴하기",
+  "@commandHint_ban": {
     "type": "text",
     "description": "Usage hint for the command /ban"
   },
-  "commandHintHtml": "HTML 형식의 문자 보내기",
-  "@commandHintHtml": {
+  "commandHint_html": "HTML 형식의 문자 보내기",
+  "@commandHint_html": {
     "type": "text",
     "description": "Usage hint for the command /html"
   },
-  "commandHintInvite": "주어진 유저 이 룸에 초대하기",
-  "@commandHintInvite": {
+  "commandHint_invite": "주어진 유저 이 룸에 초대하기",
+  "@commandHint_invite": {
     "type": "text",
     "description": "Usage hint for the command /invite"
   },
-  "commandHintLeave": "이 룸 나가기",
-  "@commandHintLeave": {
+  "commandHint_leave": "이 룸 나가기",
+  "@commandHint_leave": {
     "type": "text",
     "description": "Usage hint for the command /leave"
   },
-  "commandHintMe": "자신을 소개하세요",
-  "@commandHintMe": {
+  "commandHint_me": "자신을 소개하세요",
+  "@commandHint_me": {
     "type": "text",
     "description": "Usage hint for the command /me"
   },
-  "commandHintPlain": "형식이 지정되지 않은 문자 보내기",
-  "@commandHintPlain": {
+  "commandHint_plain": "형식이 지정되지 않은 문자 보내기",
+  "@commandHint_plain": {
     "type": "text",
     "description": "Usage hint for the command /plain"
   },
-  "commandHintSend": "문자 보내기",
-  "@commandHintSend": {
+  "commandHint_send": "문자 보내기",
+  "@commandHint_send": {
     "type": "text",
     "description": "Usage hint for the command /send"
   },
-  "commandHintUnBan": "주어진 유저 이 룸에서 밴 해제하기",
-  "@commandHintUnBan": {
+  "commandHint_unban": "주어진 유저 이 룸에서 밴 해제하기",
+  "@commandHint_unban": {
     "type": "text",
     "description": "Usage hint for the command /unban"
   },
@@ -543,33 +543,33 @@
   "@commandInvalid": {
     "type": "text"
   },
-  "commandHintReact": "답장 반응으로 보내기",
-  "@commandHintReact": {
+  "commandHint_react": "답장 반응으로 보내기",
+  "@commandHint_react": {
     "type": "text",
     "description": "Usage hint for the command /react"
   },
-  "commandHintOp": "주어진 유저의 권한 레벨 설정 (기본:50)",
-  "@commandHintOp": {
+  "commandHint_op": "주어진 유저의 권한 레벨 설정 (기본:50)",
+  "@commandHint_op": {
     "type": "text",
     "description": "Usage hint for the command /op"
   },
-  "commandHintMyRoomNick": "이 방의 표시 이름 설정하기",
-  "@commandHintMyRoomNick": {
+  "commandHint_myroomnick": "이 방의 표시 이름 설정하기",
+  "@commandHint_myroomnick": {
     "type": "text",
     "description": "Usage hint for the command /myroomnick"
   },
-  "commandHintMyRoomAvatar": "이 방의 사진 설정하기 (by mxc-uri)",
-  "@commandHintMyRoomAvatar": {
+  "commandHint_myroomavatar": "이 방의 사진 설정하기 (by mxc-uri)",
+  "@commandHint_myroomavatar": {
     "type": "text",
     "description": "Usage hint for the command /myroomavatar"
   },
-  "commandHintKick": "주어진 유저 방에서 삭제하기",
-  "@commandHintKick": {
+  "commandHint_kick": "주어진 유저 방에서 삭제하기",
+  "@commandHint_kick": {
     "type": "text",
     "description": "Usage hint for the command /kick"
   },
-  "commandHintJoin": "주어진 방 들어가기",
-  "@commandHintJoin": {
+  "commandHint_join": "주어진 방 들어가기",
+  "@commandHint_join": {
     "type": "text",
     "description": "Usage hint for the command /join"
   },

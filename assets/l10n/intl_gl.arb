@@ -436,73 +436,73 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHintBan": "Vetar a usuaria indicada desta sala",
-  "@commandHintBan": {
+  "commandHint_ban": "Vetar a usuaria indicada desta sala",
+  "@commandHint_ban": {
     "type": "text",
     "description": "Usage hint for the command /ban"
   },
-  "commandHintHtml": "Enviar texto con formato HTML",
-  "@commandHintHtml": {
+  "commandHint_html": "Enviar texto con formato HTML",
+  "@commandHint_html": {
     "type": "text",
     "description": "Usage hint for the command /html"
   },
-  "commandHintInvite": "Convidar á usuaria a esta sala",
-  "@commandHintInvite": {
+  "commandHint_invite": "Convidar á usuaria a esta sala",
+  "@commandHint_invite": {
     "type": "text",
     "description": "Usage hint for the command /invite"
   },
-  "commandHintJoin": "Unirte á sala indicada",
-  "@commandHintJoin": {
+  "commandHint_join": "Unirte á sala indicada",
+  "@commandHint_join": {
     "type": "text",
     "description": "Usage hint for the command /join"
   },
-  "commandHintKick": "Eliminar a usuaria indicada desta sala",
-  "@commandHintKick": {
+  "commandHint_kick": "Eliminar a usuaria indicada desta sala",
+  "@commandHint_kick": {
     "type": "text",
     "description": "Usage hint for the command /kick"
   },
-  "commandHintLeave": "Saír desta sala",
-  "@commandHintLeave": {
+  "commandHint_leave": "Saír desta sala",
+  "@commandHint_leave": {
     "type": "text",
     "description": "Usage hint for the command /leave"
   },
-  "commandHintMe": "Conta algo sobre ti",
-  "@commandHintMe": {
+  "commandHint_me": "Conta algo sobre ti",
+  "@commandHint_me": {
     "type": "text",
     "description": "Usage hint for the command /me"
   },
-  "commandHintMyRoomAvatar": "Establece a túa imaxe para esta sala (por mxc-uri)",
-  "@commandHintMyRoomAvatar": {
+  "commandHint_myroomavatar": "Establece a túa imaxe para esta sala (por mxc-uri)",
+  "@commandHint_myroomavatar": {
     "type": "text",
     "description": "Usage hint for the command /myroomavatar"
   },
-  "commandHintMyRoomNick": "Establece o teu nome público para esta sala",
-  "@commandHintMyRoomNick": {
+  "commandHint_myroomnick": "Establece o teu nome público para esta sala",
+  "@commandHint_myroomnick": {
     "type": "text",
     "description": "Usage hint for the command /myroomnick"
   },
-  "commandHintOp": "Establecer o nivel de responsabilidade da usuaria (por defecto: 50)",
-  "@commandHintOp": {
+  "commandHint_op": "Establecer o nivel de responsabilidade da usuaria (por defecto: 50)",
+  "@commandHint_op": {
     "type": "text",
     "description": "Usage hint for the command /op"
   },
-  "commandHintPlain": "Enviar texto sen formato",
-  "@commandHintPlain": {
+  "commandHint_plain": "Enviar texto sen formato",
+  "@commandHint_plain": {
     "type": "text",
     "description": "Usage hint for the command /plain"
   },
-  "commandHintReact": "Enviar resposta como reacción",
-  "@commandHintReact": {
+  "commandHint_react": "Enviar resposta como reacción",
+  "@commandHint_react": {
     "type": "text",
     "description": "Usage hint for the command /react"
   },
-  "commandHintSend": "Enviar texto",
-  "@commandHintSend": {
+  "commandHint_send": "Enviar texto",
+  "@commandHint_send": {
     "type": "text",
     "description": "Usage hint for the command /send"
   },
-  "commandHintUnBan": "Retirar veto á usuaria para esta sala",
-  "@commandHintUnBan": {
+  "commandHint_unban": "Retirar veto á usuaria para esta sala",
+  "@commandHint_unban": {
     "type": "text",
     "description": "Usage hint for the command /unban"
   },

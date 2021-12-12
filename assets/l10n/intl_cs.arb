@@ -436,73 +436,73 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHintBan": "Zakáže danému uživateli z této místnosti",
-  "@commandHintBan": {
+  "commandHint_ban": "Zakáže danému uživateli z této místnosti",
+  "@commandHint_ban": {
     "type": "text",
     "description": "Usage hint for the command /ban"
   },
-  "commandHintHtml": "Odesílejte text ve formátu HTML",
-  "@commandHintHtml": {
+  "commandHint_html": "Odesílejte text ve formátu HTML",
+  "@commandHint_html": {
     "type": "text",
     "description": "Usage hint for the command /html"
   },
-  "commandHintInvite": "Pozvěte daného uživatele do této místnosti",
-  "@commandHintInvite": {
+  "commandHint_invite": "Pozvěte daného uživatele do této místnosti",
+  "@commandHint_invite": {
     "type": "text",
     "description": "Usage hint for the command /invite"
   },
-  "commandHintJoin": "Připojte se k dané místnosti",
-  "@commandHintJoin": {
+  "commandHint_join": "Připojte se k dané místnosti",
+  "@commandHint_join": {
     "type": "text",
     "description": "Usage hint for the command /join"
   },
-  "commandHintKick": "Odeberte daného uživatele z této místnosti",
-  "@commandHintKick": {
+  "commandHint_kick": "Odeberte daného uživatele z této místnosti",
+  "@commandHint_kick": {
     "type": "text",
     "description": "Usage hint for the command /kick"
   },
-  "commandHintLeave": "Opusťte tuto místnost",
-  "@commandHintLeave": {
+  "commandHint_leave": "Opusťte tuto místnost",
+  "@commandHint_leave": {
     "type": "text",
     "description": "Usage hint for the command /leave"
   },
-  "commandHintMe": "Popiš se",
-  "@commandHintMe": {
+  "commandHint_me": "Popiš se",
+  "@commandHint_me": {
     "type": "text",
     "description": "Usage hint for the command /me"
   },
-  "commandHintMyRoomAvatar": "Nastavte obrázek pro tuto místnost (autor mxc-uri)",
-  "@commandHintMyRoomAvatar": {
+  "commandHint_myroomavatar": "Nastavte obrázek pro tuto místnost (autor mxc-uri)",
+  "@commandHint_myroomavatar": {
     "type": "text",
     "description": "Usage hint for the command /myroomavatar"
   },
-  "commandHintMyRoomNick": "Nastavte své zobrazované jméno pro tuto místnost",
-  "@commandHintMyRoomNick": {
+  "commandHint_myroomnick": "Nastavte své zobrazované jméno pro tuto místnost",
+  "@commandHint_myroomnick": {
     "type": "text",
     "description": "Usage hint for the command /myroomnick"
   },
-  "commandHintOp": "Nastavit úroveň práv daného uživatele (výchozí: 50)",
-  "@commandHintOp": {
+  "commandHint_op": "Nastavit úroveň práv daného uživatele (výchozí: 50)",
+  "@commandHint_op": {
     "type": "text",
     "description": "Usage hint for the command /op"
   },
-  "commandHintPlain": "Odeslat neformátovaný text",
-  "@commandHintPlain": {
+  "commandHint_plain": "Odeslat neformátovaný text",
+  "@commandHint_plain": {
     "type": "text",
     "description": "Usage hint for the command /plain"
   },
-  "commandHintReact": "Odeslat odpověď jako reakci",
-  "@commandHintReact": {
+  "commandHint_react": "Odeslat odpověď jako reakci",
+  "@commandHint_react": {
     "type": "text",
     "description": "Usage hint for the command /react"
   },
-  "commandHintSend": "Poslat zprávu",
-  "@commandHintSend": {
+  "commandHint_send": "Poslat zprávu",
+  "@commandHint_send": {
     "type": "text",
     "description": "Usage hint for the command /send"
   },
-  "commandHintUnBan": "Zrušit zákaz daného uživatele z této místnosti",
-  "@commandHintUnBan": {
+  "commandHint_unban": "Zrušit zákaz daného uživatele z této místnosti",
+  "@commandHint_unban": {
     "type": "text",
     "description": "Usage hint for the command /unban"
   },

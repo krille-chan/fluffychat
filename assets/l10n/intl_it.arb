@@ -2361,13 +2361,13 @@
   "@pleaseEnterValidEmail": {},
   "yourUserId": "Il tuo ID utente:",
   "@yourUserId": {},
-  "commandHintLeave": "Lascia questa stanza",
-  "@commandHintLeave": {
+  "commandHint_leave": "Lascia questa stanza",
+  "@commandHint_leave": {
     "type": "text",
     "description": "Usage hint for the command /leave"
   },
-  "commandHintBan": "Banna l'utente specificato da questa stanza.",
-  "@commandHintBan": {
+  "commandHint_ban": "Banna l'utente specificato da questa stanza.",
+  "@commandHint_ban": {
     "type": "text",
     "description": "Usage hint for the command /ban"
   },
@@ -2376,18 +2376,18 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHintHtml": "Invia testo formattato in HTML",
-  "@commandHintHtml": {
+  "commandHint_html": "Invia testo formattato in HTML",
+  "@commandHint_html": {
     "type": "text",
     "description": "Usage hint for the command /html"
   },
-  "commandHintPlain": "Invia testo non formattato",
-  "@commandHintPlain": {
+  "commandHint_plain": "Invia testo non formattato",
+  "@commandHint_plain": {
     "type": "text",
     "description": "Usage hint for the command /plain"
   },
-  "commandHintSend": "Invia testo",
-  "@commandHintSend": {
+  "commandHint_send": "Invia testo",
+  "@commandHint_send": {
     "type": "text",
     "description": "Usage hint for the command /send"
   },

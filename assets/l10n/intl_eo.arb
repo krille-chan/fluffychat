@@ -430,68 +430,68 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHintBan": "Forbari la donitan uzanton de ĉi tiu ĉambro",
-  "@commandHintBan": {
+  "commandHint_ban": "Forbari la donitan uzanton de ĉi tiu ĉambro",
+  "@commandHint_ban": {
     "type": "text",
     "description": "Usage hint for the command /ban"
   },
-  "commandHintHtml": "Sendi tekston formatan je HTML",
-  "@commandHintHtml": {
+  "commandHint_html": "Sendi tekston formatan je HTML",
+  "@commandHint_html": {
     "type": "text",
     "description": "Usage hint for the command /html"
   },
-  "commandHintInvite": "Inviti la donitan uzanton al ĉi tiu ĉambro",
-  "@commandHintInvite": {
+  "commandHint_invite": "Inviti la donitan uzanton al ĉi tiu ĉambro",
+  "@commandHint_invite": {
     "type": "text",
     "description": "Usage hint for the command /invite"
   },
-  "commandHintJoin": "Aliĝi al la donita ĉambro",
-  "@commandHintJoin": {
+  "commandHint_join": "Aliĝi al la donita ĉambro",
+  "@commandHint_join": {
     "type": "text",
     "description": "Usage hint for the command /join"
   },
-  "commandHintKick": "Forigi la donitan uzanton de ĉi tiu ĉambro",
-  "@commandHintKick": {
+  "commandHint_kick": "Forigi la donitan uzanton de ĉi tiu ĉambro",
+  "@commandHint_kick": {
     "type": "text",
     "description": "Usage hint for the command /kick"
   },
-  "commandHintLeave": "Foriri de ĉi tiu ĉambro",
-  "@commandHintLeave": {
+  "commandHint_leave": "Foriri de ĉi tiu ĉambro",
+  "@commandHint_leave": {
     "type": "text",
     "description": "Usage hint for the command /leave"
   },
-  "commandHintMe": "Priskribu vian agon",
-  "@commandHintMe": {
+  "commandHint_me": "Priskribu vian agon",
+  "@commandHint_me": {
     "type": "text",
     "description": "Usage hint for the command /me"
   },
-  "commandHintMyRoomAvatar": "Agordi vian profilbildon por ĉi tiu ĉambro (laŭ mxc-uri)",
-  "@commandHintMyRoomAvatar": {
+  "commandHint_myroomavatar": "Agordi vian profilbildon por ĉi tiu ĉambro (laŭ mxc-uri)",
+  "@commandHint_myroomavatar": {
     "type": "text",
     "description": "Usage hint for the command /myroomavatar"
   },
-  "commandHintMyRoomNick": "Agordi vian prezentan nomon en ĉi tiu ĉambro",
-  "@commandHintMyRoomNick": {
+  "commandHint_myroomnick": "Agordi vian prezentan nomon en ĉi tiu ĉambro",
+  "@commandHint_myroomnick": {
     "type": "text",
     "description": "Usage hint for the command /myroomnick"
   },
-  "commandHintOp": "Agordi povnivelon de la donita uzanto (implicite: 50)",
-  "@commandHintOp": {
+  "commandHint_op": "Agordi povnivelon de la donita uzanto (implicite: 50)",
+  "@commandHint_op": {
     "type": "text",
     "description": "Usage hint for the command /op"
   },
-  "commandHintPlain": "Sendi senformatan tekston",
-  "@commandHintPlain": {
+  "commandHint_plain": "Sendi senformatan tekston",
+  "@commandHint_plain": {
     "type": "text",
     "description": "Usage hint for the command /plain"
   },
-  "commandHintReact": "Sendi respondon kiel reagon",
-  "@commandHintReact": {
+  "commandHint_react": "Sendi respondon kiel reagon",
+  "@commandHint_react": {
     "type": "text",
     "description": "Usage hint for the command /react"
   },
-  "commandHintUnBan": "Malforbari la donitan uzanton de ĉi tiu ĉambro",
-  "@commandHintUnBan": {
+  "commandHint_unban": "Malforbari la donitan uzanton de ĉi tiu ĉambro",
+  "@commandHint_unban": {
     "type": "text",
     "description": "Usage hint for the command /unban"
   },
@@ -2535,8 +2535,8 @@
       "server2": {}
     }
   },
-  "commandHintSend": "Sendi tekston",
-  "@commandHintSend": {
+  "commandHint_send": "Sendi tekston",
+  "@commandHint_send": {
     "type": "text",
     "description": "Usage hint for the command /send"
   },

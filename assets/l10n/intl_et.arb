@@ -436,73 +436,73 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHintBan": "Sea sellele kasutajale antud jututoas suhtluskeeld",
-  "@commandHintBan": {
+  "commandHint_ban": "Sea sellele kasutajale antud jututoas suhtluskeeld",
+  "@commandHint_ban": {
     "type": "text",
     "description": "Usage hint for the command /ban"
   },
-  "commandHintHtml": "Saada HTML-vormingus tekst",
-  "@commandHintHtml": {
+  "commandHint_html": "Saada HTML-vormingus tekst",
+  "@commandHint_html": {
     "type": "text",
     "description": "Usage hint for the command /html"
   },
-  "commandHintInvite": "Kutsu see kasutaja antud jututuppa",
-  "@commandHintInvite": {
+  "commandHint_invite": "Kutsu see kasutaja antud jututuppa",
+  "@commandHint_invite": {
     "type": "text",
     "description": "Usage hint for the command /invite"
   },
-  "commandHintJoin": "Liitu selle jututoaga",
-  "@commandHintJoin": {
+  "commandHint_join": "Liitu selle jututoaga",
+  "@commandHint_join": {
     "type": "text",
     "description": "Usage hint for the command /join"
   },
-  "commandHintKick": "Eemalda antud kasutaja sellest jututoast",
-  "@commandHintKick": {
+  "commandHint_kick": "Eemalda antud kasutaja sellest jututoast",
+  "@commandHint_kick": {
     "type": "text",
     "description": "Usage hint for the command /kick"
   },
-  "commandHintLeave": "Lahku sellest jututoast",
-  "@commandHintLeave": {
+  "commandHint_leave": "Lahku sellest jututoast",
+  "@commandHint_leave": {
     "type": "text",
     "description": "Usage hint for the command /leave"
   },
-  "commandHintMe": "Kirjelda ennast",
-  "@commandHintMe": {
+  "commandHint_me": "Kirjelda ennast",
+  "@commandHint_me": {
     "type": "text",
     "description": "Usage hint for the command /me"
   },
-  "commandHintMyRoomAvatar": "Määra selles jututoas oma tunnuspilt (mxc-uri vahendusel)",
-  "@commandHintMyRoomAvatar": {
+  "commandHint_myroomavatar": "Määra selles jututoas oma tunnuspilt (mxc-uri vahendusel)",
+  "@commandHint_myroomavatar": {
     "type": "text",
     "description": "Usage hint for the command /myroomavatar"
   },
-  "commandHintMyRoomNick": "Määra selles jututoas oma kuvatav nimi",
-  "@commandHintMyRoomNick": {
+  "commandHint_myroomnick": "Määra selles jututoas oma kuvatav nimi",
+  "@commandHint_myroomnick": {
     "type": "text",
     "description": "Usage hint for the command /myroomnick"
   },
-  "commandHintOp": "Seadista selle kasutaja õigusi (vaikimisi: 50)",
-  "@commandHintOp": {
+  "commandHint_op": "Seadista selle kasutaja õigusi (vaikimisi: 50)",
+  "@commandHint_op": {
     "type": "text",
     "description": "Usage hint for the command /op"
   },
-  "commandHintPlain": "Saada vormindamata tekst",
-  "@commandHintPlain": {
+  "commandHint_plain": "Saada vormindamata tekst",
+  "@commandHint_plain": {
     "type": "text",
     "description": "Usage hint for the command /plain"
   },
-  "commandHintReact": "Saada vastus reaktsioonina",
-  "@commandHintReact": {
+  "commandHint_react": "Saada vastus reaktsioonina",
+  "@commandHint_react": {
     "type": "text",
     "description": "Usage hint for the command /react"
   },
-  "commandHintSend": "Saada sõnum",
-  "@commandHintSend": {
+  "commandHint_send": "Saada sõnum",
+  "@commandHint_send": {
     "type": "text",
     "description": "Usage hint for the command /send"
   },
-  "commandHintUnBan": "Eemalda sellelt kasutajalt antud jututoas suhtluskeeld",
-  "@commandHintUnBan": {
+  "commandHint_unban": "Eemalda sellelt kasutajalt antud jututoas suhtluskeeld",
+  "@commandHint_unban": {
     "type": "text",
     "description": "Usage hint for the command /unban"
   },

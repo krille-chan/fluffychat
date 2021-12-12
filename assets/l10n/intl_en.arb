@@ -465,73 +465,93 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHintBan": "Ban the given user from this room",
-  "@commandHintBan": {
+  "commandHint_ban": "Ban the given user from this room",
+  "@commandHint_ban": {
     "type": "text",
     "description": "Usage hint for the command /ban"
   },
-  "commandHintHtml": "Send HTML-formatted text",
-  "@commandHintHtml": {
+  "commandHint_clearcache": "Clear cache",
+  "@commandHint_clearcache": {
+    "type": "text",
+    "description": "Usage hint for the command /clearcache"
+  },
+  "commandHint_create": "Create an empty group chat\nUse --no-encryption to disable encryption",
+  "@commandHint_create": {
+    "type": "text",
+    "description": "Usage hint for the command /create"
+  },
+  "commandHint_discardsession": "Discard session",
+  "@commandHint_discardsession": {
+    "type": "text",
+    "description": "Usage hint for the command /discardsession"
+  },
+  "commandHint_dm": "Start a direct chat\nUse --no-encryption to disable encryption",
+  "@commandHint_dm": {
+    "type": "text",
+    "description": "Usage hint for the command /dm"
+  },
+  "commandHint_html": "Send HTML-formatted text",
+  "@commandHint_html": {
     "type": "text",
     "description": "Usage hint for the command /html"
   },
-  "commandHintInvite": "Invite the given user to this room",
-  "@commandHintInvite": {
+  "commandHint_invite": "Invite the given user to this room",
+  "@commandHint_invite": {
     "type": "text",
     "description": "Usage hint for the command /invite"
   },
-  "commandHintJoin": "Join the given room",
-  "@commandHintJoin": {
+  "commandHint_join": "Join the given room",
+  "@commandHint_join": {
     "type": "text",
     "description": "Usage hint for the command /join"
   },
-  "commandHintKick": "Remove the given user from this room",
-  "@commandHintKick": {
+  "commandHint_kick": "Remove the given user from this room",
+  "@commandHint_kick": {
     "type": "text",
     "description": "Usage hint for the command /kick"
   },
-  "commandHintLeave": "Leave this room",
-  "@commandHintLeave": {
+  "commandHint_leave": "Leave this room",
+  "@commandHint_leave": {
     "type": "text",
     "description": "Usage hint for the command /leave"
   },
-  "commandHintMe": "Describe yourself",
-  "@commandHintMe": {
+  "commandHint_me": "Describe yourself",
+  "@commandHint_me": {
     "type": "text",
     "description": "Usage hint for the command /me"
   },
-  "commandHintMyRoomAvatar": "Set your picture for this room (by mxc-uri)",
-  "@commandHintMyRoomAvatar": {
+  "commandHint_myroomavatar": "Set your picture for this room (by mxc-uri)",
+  "@commandHint_myroomavatar": {
     "type": "text",
     "description": "Usage hint for the command /myroomavatar"
   },
-  "commandHintMyRoomNick": "Set your display name for this room",
-  "@commandHintMyRoomNick": {
+  "commandHint_myroomnick": "Set your display name for this room",
+  "@commandHint_myroomnick": {
     "type": "text",
     "description": "Usage hint for the command /myroomnick"
   },
-  "commandHintOp": "Set the given user's power level (default: 50)",
-  "@commandHintOp": {
+  "commandHint_op": "Set the given user's power level (default: 50)",
+  "@commandHint_op": {
     "type": "text",
     "description": "Usage hint for the command /op"
   },
-  "commandHintPlain": "Send unformatted text",
-  "@commandHintPlain": {
+  "commandHint_plain": "Send unformatted text",
+  "@commandHint_plain": {
     "type": "text",
     "description": "Usage hint for the command /plain"
   },
-  "commandHintReact": "Send reply as a reaction",
-  "@commandHintReact": {
+  "commandHint_react": "Send reply as a reaction",
+  "@commandHint_react": {
     "type": "text",
     "description": "Usage hint for the command /react"
   },
-  "commandHintSend": "Send text",
-  "@commandHintSend": {
+  "commandHint_send": "Send text",
+  "@commandHint_send": {
     "type": "text",
     "description": "Usage hint for the command /send"
   },
-  "commandHintUnBan": "Unban the given user from this room",
-  "@commandHintUnBan": {
+  "commandHint_unban": "Unban the given user from this room",
+  "@commandHint_unban": {
     "type": "text",
     "description": "Usage hint for the command /unban"
   },

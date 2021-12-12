@@ -137,13 +137,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHintJoin": "දී ඇති කාමරයට එක්වන්න",
-  "@commandHintJoin": {
+  "commandHint_join": "දී ඇති කාමරයට එක්වන්න",
+  "@commandHint_join": {
     "type": "text",
     "description": "Usage hint for the command /join"
   },
-  "commandHintLeave": "මෙම කාමරය හැරයන්න",
-  "@commandHintLeave": {
+  "commandHint_leave": "මෙම කාමරය හැරයන්න",
+  "@commandHint_leave": {
     "type": "text",
     "description": "Usage hint for the command /leave"
   },

@@ -384,73 +384,73 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHintBan": "Zablokuj użytkownika w tym pokoju",
-  "@commandHintBan": {
+  "commandHint_ban": "Zablokuj użytkownika w tym pokoju",
+  "@commandHint_ban": {
     "type": "text",
     "description": "Usage hint for the command /ban"
   },
-  "commandHintHtml": "Wyślij tekst sformatowany w HTML",
-  "@commandHintHtml": {
+  "commandHint_html": "Wyślij tekst sformatowany w HTML",
+  "@commandHint_html": {
     "type": "text",
     "description": "Usage hint for the command /html"
   },
-  "commandHintInvite": "Zaproś użytkownika do pokoju",
-  "@commandHintInvite": {
+  "commandHint_invite": "Zaproś użytkownika do pokoju",
+  "@commandHint_invite": {
     "type": "text",
     "description": "Usage hint for the command /invite"
   },
-  "commandHintJoin": "Dołącz do podanego pokoju",
-  "@commandHintJoin": {
+  "commandHint_join": "Dołącz do podanego pokoju",
+  "@commandHint_join": {
     "type": "text",
     "description": "Usage hint for the command /join"
   },
-  "commandHintKick": "Usuń tego użytkownika z tego pokoju",
-  "@commandHintKick": {
+  "commandHint_kick": "Usuń tego użytkownika z tego pokoju",
+  "@commandHint_kick": {
     "type": "text",
     "description": "Usage hint for the command /kick"
   },
-  "commandHintLeave": "Wyjdź z tego pokoju",
-  "@commandHintLeave": {
+  "commandHint_leave": "Wyjdź z tego pokoju",
+  "@commandHint_leave": {
     "type": "text",
     "description": "Usage hint for the command /leave"
   },
-  "commandHintMe": "Opisz siebie",
-  "@commandHintMe": {
+  "commandHint_me": "Opisz siebie",
+  "@commandHint_me": {
     "type": "text",
     "description": "Usage hint for the command /me"
   },
-  "commandHintMyRoomAvatar": "Ustaw awatar dla tego pokoju (przez mxc-uri)",
-  "@commandHintMyRoomAvatar": {
+  "commandHint_myroomavatar": "Ustaw awatar dla tego pokoju (przez mxc-uri)",
+  "@commandHint_myroomavatar": {
     "type": "text",
     "description": "Usage hint for the command /myroomavatar"
   },
-  "commandHintMyRoomNick": "Ustaw nazwę wyświetlaną dla tego pokoju",
-  "@commandHintMyRoomNick": {
+  "commandHint_myroomnick": "Ustaw nazwę wyświetlaną dla tego pokoju",
+  "@commandHint_myroomnick": {
     "type": "text",
     "description": "Usage hint for the command /myroomnick"
   },
-  "commandHintOp": "Ustaw moc uprawnień użytkownika (domyślnie: 50)",
-  "@commandHintOp": {
+  "commandHint_op": "Ustaw moc uprawnień użytkownika (domyślnie: 50)",
+  "@commandHint_op": {
     "type": "text",
     "description": "Usage hint for the command /op"
   },
-  "commandHintPlain": "Wyślij niesformatowany tekst",
-  "@commandHintPlain": {
+  "commandHint_plain": "Wyślij niesformatowany tekst",
+  "@commandHint_plain": {
     "type": "text",
     "description": "Usage hint for the command /plain"
   },
-  "commandHintReact": "Wyślij odpowiedź jako reakcję",
-  "@commandHintReact": {
+  "commandHint_react": "Wyślij odpowiedź jako reakcję",
+  "@commandHint_react": {
     "type": "text",
     "description": "Usage hint for the command /react"
   },
-  "commandHintSend": "Wyślij wiadomość",
-  "@commandHintSend": {
+  "commandHint_send": "Wyślij wiadomość",
+  "@commandHint_send": {
     "type": "text",
     "description": "Usage hint for the command /send"
   },
-  "commandHintUnBan": "Odblokuj użytkownika w tym pokoju",
-  "@commandHintUnBan": {
+  "commandHint_unban": "Odblokuj użytkownika w tym pokoju",
+  "@commandHint_unban": {
     "type": "text",
     "description": "Usage hint for the command /unban"
   },

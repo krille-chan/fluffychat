@@ -419,73 +419,73 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHintBan": "在此聊天室封禁该用户",
-  "@commandHintBan": {
+  "commandHint_ban": "在此聊天室封禁该用户",
+  "@commandHint_ban": {
     "type": "text",
     "description": "Usage hint for the command /ban"
   },
-  "commandHintHtml": "发送 HTML 格式化文本",
-  "@commandHintHtml": {
+  "commandHint_html": "发送 HTML 格式化文本",
+  "@commandHint_html": {
     "type": "text",
     "description": "Usage hint for the command /html"
   },
-  "commandHintInvite": "邀请该用户加入此聊天室",
-  "@commandHintInvite": {
+  "commandHint_invite": "邀请该用户加入此聊天室",
+  "@commandHint_invite": {
     "type": "text",
     "description": "Usage hint for the command /invite"
   },
-  "commandHintJoin": "加入该聊天室",
-  "@commandHintJoin": {
+  "commandHint_join": "加入该聊天室",
+  "@commandHint_join": {
     "type": "text",
     "description": "Usage hint for the command /join"
   },
-  "commandHintKick": "将该用户移出此聊天室",
-  "@commandHintKick": {
+  "commandHint_kick": "将该用户移出此聊天室",
+  "@commandHint_kick": {
     "type": "text",
     "description": "Usage hint for the command /kick"
   },
-  "commandHintLeave": "退出该聊天室",
-  "@commandHintLeave": {
+  "commandHint_leave": "退出该聊天室",
+  "@commandHint_leave": {
     "type": "text",
     "description": "Usage hint for the command /leave"
   },
-  "commandHintMe": "介绍自己",
-  "@commandHintMe": {
+  "commandHint_me": "介绍自己",
+  "@commandHint_me": {
     "type": "text",
     "description": "Usage hint for the command /me"
   },
-  "commandHintMyRoomAvatar": "设置您的聊天室头像（通过mxc-uri）",
-  "@commandHintMyRoomAvatar": {
+  "commandHint_myroomavatar": "设置您的聊天室头像（通过mxc-uri）",
+  "@commandHint_myroomavatar": {
     "type": "text",
     "description": "Usage hint for the command /myroomavatar"
   },
-  "commandHintMyRoomNick": "设置您的聊天室昵称",
-  "@commandHintMyRoomNick": {
+  "commandHint_myroomnick": "设置您的聊天室昵称",
+  "@commandHint_myroomnick": {
     "type": "text",
     "description": "Usage hint for the command /myroomnick"
   },
-  "commandHintOp": "设置该用户的权限等级（默认：50）",
-  "@commandHintOp": {
+  "commandHint_op": "设置该用户的权限等级（默认：50）",
+  "@commandHint_op": {
     "type": "text",
     "description": "Usage hint for the command /op"
   },
-  "commandHintPlain": "发送纯文本",
-  "@commandHintPlain": {
+  "commandHint_plain": "发送纯文本",
+  "@commandHint_plain": {
     "type": "text",
     "description": "Usage hint for the command /plain"
   },
-  "commandHintReact": "将回复作为响应发送",
-  "@commandHintReact": {
+  "commandHint_react": "将回复作为响应发送",
+  "@commandHint_react": {
     "type": "text",
     "description": "Usage hint for the command /react"
   },
-  "commandHintSend": "发送文本",
-  "@commandHintSend": {
+  "commandHint_send": "发送文本",
+  "@commandHint_send": {
     "type": "text",
     "description": "Usage hint for the command /send"
   },
-  "commandHintUnBan": "在此聊天室解封该用户",
-  "@commandHintUnBan": {
+  "commandHint_unban": "在此聊天室解封该用户",
+  "@commandHint_unban": {
     "type": "text",
     "description": "Usage hint for the command /unban"
   },

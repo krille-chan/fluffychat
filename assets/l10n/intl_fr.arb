@@ -445,73 +445,73 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHintBan": "Bannir l'utilisateur/trice donné(e) de ce salon",
-  "@commandHintBan": {
+  "commandHint_ban": "Bannir l'utilisateur/trice donné(e) de ce salon",
+  "@commandHint_ban": {
     "type": "text",
     "description": "Usage hint for the command /ban"
   },
-  "commandHintHtml": "Envoyer du texte au format HTML",
-  "@commandHintHtml": {
+  "commandHint_html": "Envoyer du texte au format HTML",
+  "@commandHint_html": {
     "type": "text",
     "description": "Usage hint for the command /html"
   },
-  "commandHintInvite": "Inviter l'utilisateur/trice donné(e) dans ce salon",
-  "@commandHintInvite": {
+  "commandHint_invite": "Inviter l'utilisateur/trice donné(e) dans ce salon",
+  "@commandHint_invite": {
     "type": "text",
     "description": "Usage hint for the command /invite"
   },
-  "commandHintJoin": "Rejoindre le salon donné",
-  "@commandHintJoin": {
+  "commandHint_join": "Rejoindre le salon donné",
+  "@commandHint_join": {
     "type": "text",
     "description": "Usage hint for the command /join"
   },
-  "commandHintKick": "Supprime l'utilisateur/trice donné(e) de ce salon",
-  "@commandHintKick": {
+  "commandHint_kick": "Supprime l'utilisateur/trice donné(e) de ce salon",
+  "@commandHint_kick": {
     "type": "text",
     "description": "Usage hint for the command /kick"
   },
-  "commandHintLeave": "Quitter ce salon",
-  "@commandHintLeave": {
+  "commandHint_leave": "Quitter ce salon",
+  "@commandHint_leave": {
     "type": "text",
     "description": "Usage hint for the command /leave"
   },
-  "commandHintMe": "Décrivez-vous",
-  "@commandHintMe": {
+  "commandHint_me": "Décrivez-vous",
+  "@commandHint_me": {
     "type": "text",
     "description": "Usage hint for the command /me"
   },
-  "commandHintMyRoomAvatar": "Définir votre image pour ce salon (par mxc-uri)",
-  "@commandHintMyRoomAvatar": {
+  "commandHint_myroomavatar": "Définir votre image pour ce salon (par mxc-uri)",
+  "@commandHint_myroomavatar": {
     "type": "text",
     "description": "Usage hint for the command /myroomavatar"
   },
-  "commandHintMyRoomNick": "Définir votre nom d'affichage pour ce salon",
-  "@commandHintMyRoomNick": {
+  "commandHint_myroomnick": "Définir votre nom d'affichage pour ce salon",
+  "@commandHint_myroomnick": {
     "type": "text",
     "description": "Usage hint for the command /myroomnick"
   },
-  "commandHintOp": "Définit le niveau de puissance de l'utilisateur/trice donné(e) (par défaut : 50)",
-  "@commandHintOp": {
+  "commandHint_op": "Définit le niveau de puissance de l'utilisateur/trice donné(e) (par défaut : 50)",
+  "@commandHint_op": {
     "type": "text",
     "description": "Usage hint for the command /op"
   },
-  "commandHintPlain": "Envoyer du texte non formaté",
-  "@commandHintPlain": {
+  "commandHint_plain": "Envoyer du texte non formaté",
+  "@commandHint_plain": {
     "type": "text",
     "description": "Usage hint for the command /plain"
   },
-  "commandHintReact": "Envoyer une réponse en tant que réaction",
-  "@commandHintReact": {
+  "commandHint_react": "Envoyer une réponse en tant que réaction",
+  "@commandHint_react": {
     "type": "text",
     "description": "Usage hint for the command /react"
   },
-  "commandHintSend": "Envoyer du texte",
-  "@commandHintSend": {
+  "commandHint_send": "Envoyer du texte",
+  "@commandHint_send": {
     "type": "text",
     "description": "Usage hint for the command /send"
   },
-  "commandHintUnBan": "Débannir l'utilisateur/trice donné(e) de ce salon",
-  "@commandHintUnBan": {
+  "commandHint_unban": "Débannir l'utilisateur/trice donné(e) de ce salon",
+  "@commandHint_unban": {
     "type": "text",
     "description": "Usage hint for the command /unban"
   },

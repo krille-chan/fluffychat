@@ -418,68 +418,68 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHintBan": "Блокирај задатог корисника за ову собу",
-  "@commandHintBan": {
+  "commandHint_ban": "Блокирај задатог корисника за ову собу",
+  "@commandHint_ban": {
     "type": "text",
     "description": "Usage hint for the command /ban"
   },
-  "commandHintHtml": "Шаљи ХТМЛ обликован текст",
-  "@commandHintHtml": {
+  "commandHint_html": "Шаљи ХТМЛ обликован текст",
+  "@commandHint_html": {
     "type": "text",
     "description": "Usage hint for the command /html"
   },
-  "commandHintInvite": "Позови задатог корисника у собу",
-  "@commandHintInvite": {
+  "commandHint_invite": "Позови задатог корисника у собу",
+  "@commandHint_invite": {
     "type": "text",
     "description": "Usage hint for the command /invite"
   },
-  "commandHintJoin": "Придружи се наведеној соби",
-  "@commandHintJoin": {
+  "commandHint_join": "Придружи се наведеној соби",
+  "@commandHint_join": {
     "type": "text",
     "description": "Usage hint for the command /join"
   },
-  "commandHintKick": "Уклони задатог корисника из собе",
-  "@commandHintKick": {
+  "commandHint_kick": "Уклони задатог корисника из собе",
+  "@commandHint_kick": {
     "type": "text",
     "description": "Usage hint for the command /kick"
   },
-  "commandHintLeave": "Напусти ову собу",
-  "@commandHintLeave": {
+  "commandHint_leave": "Напусти ову собу",
+  "@commandHint_leave": {
     "type": "text",
     "description": "Usage hint for the command /leave"
   },
-  "commandHintMe": "Опишите себе",
-  "@commandHintMe": {
+  "commandHint_me": "Опишите себе",
+  "@commandHint_me": {
     "type": "text",
     "description": "Usage hint for the command /me"
   },
-  "commandHintMyRoomNick": "Поставља ваш надимак за ову собу",
-  "@commandHintMyRoomNick": {
+  "commandHint_myroomnick": "Поставља ваш надимак за ову собу",
+  "@commandHint_myroomnick": {
     "type": "text",
     "description": "Usage hint for the command /myroomnick"
   },
-  "commandHintOp": "Подеси ниво задатог корисника (подразумевано: 50)",
-  "@commandHintOp": {
+  "commandHint_op": "Подеси ниво задатог корисника (подразумевано: 50)",
+  "@commandHint_op": {
     "type": "text",
     "description": "Usage hint for the command /op"
   },
-  "commandHintPlain": "Шаљи неформатиран текст",
-  "@commandHintPlain": {
+  "commandHint_plain": "Шаљи неформатиран текст",
+  "@commandHint_plain": {
     "type": "text",
     "description": "Usage hint for the command /plain"
   },
-  "commandHintReact": "Шаљи одговор као реакцију",
-  "@commandHintReact": {
+  "commandHint_react": "Шаљи одговор као реакцију",
+  "@commandHint_react": {
     "type": "text",
     "description": "Usage hint for the command /react"
   },
-  "commandHintSend": "Пошаљи текст",
-  "@commandHintSend": {
+  "commandHint_send": "Пошаљи текст",
+  "@commandHint_send": {
     "type": "text",
     "description": "Usage hint for the command /send"
   },
-  "commandHintUnBan": "Скини забрану задатом кориснику за ову собу",
-  "@commandHintUnBan": {
+  "commandHint_unban": "Скини забрану задатом кориснику за ову собу",
+  "@commandHint_unban": {
     "type": "text",
     "description": "Usage hint for the command /unban"
   },
