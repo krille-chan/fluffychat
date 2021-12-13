@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'package:flutter/material.dart';
 
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
@@ -6,7 +8,7 @@ import 'chat.dart';
 
 class ChatEmojiPicker extends StatelessWidget {
   final ChatController controller;
-  const ChatEmojiPicker(this.controller, {Key key}) : super(key: key);
+  const ChatEmojiPicker(this.controller, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

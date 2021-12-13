@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -9,23 +11,22 @@ import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 class ArchiveView extends StatelessWidget {
   final ArchiveController controller;
 
-  const ArchiveView(this.controller, {Key key}) : super(key: key);
+  const ArchiveView(this.controller, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var archive = controller.archive;
     return FutureBuilder<List<Room>>(
       future: controller.getArchive(context),
       builder: (BuildContext context, snapshot) => Scaffold(
         appBar: AppBar(
           leading: const BackButton(),
-          title: Text(L10n.of(context).archive),
+          title: Text(L10n.of(context)!.archive),
           actions: [
-            if (snapshot.hasData &&
-                controller.archive != null &&
-                controller.archive.isNotEmpty)
+            if (snapshot.hasData && archive != null && archive!.isNotEmpty)
               TextButton(
                 onPressed: controller.forgetAllAction,
-                child: Text(L10n.of(context).clearArchive),
+                child: Text(L10n.of(context)!.clearArchive),
               )
           ],
         ),
@@ -34,7 +35,7 @@ class ArchiveView extends StatelessWidget {
             if (snapshot.hasError) {
               return Center(
                   child: Text(
-                L10n.of(context).oopsSomethingWentWrong,
+                L10n.of(context)!.oopsSomethingWentWrong,
                 textAlign: TextAlign.center,
               ));
             }
@@ -42,15 +43,15 @@ class ArchiveView extends StatelessWidget {
               return const Center(
                   child: CircularProgressIndicator.adaptive(strokeWidth: 2));
             } else {
-              controller.archive = snapshot.data;
-              if (controller.archive.isEmpty) {
+              archive = snapshot.data;
+              if (archive == null || archive!.isEmpty) {
                 return const Center(
                     child: Icon(Icons.archive_outlined, size: 80));
               }
               return ListView.builder(
-                itemCount: controller.archive.length,
+                itemCount: archive!.length,
                 itemBuilder: (BuildContext context, int i) => ChatListItem(
-                  controller.archive[i],
+                  archive![i],
                   onForget: controller.forgetAction,
                 ),
               );
