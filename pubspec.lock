@@ -1467,7 +1467,7 @@ packages:
       name: unifiedpush
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.0"
+    version: "3.0.1"
   universal_html:
     dependency: "direct main"
     description:
