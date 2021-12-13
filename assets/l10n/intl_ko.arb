@@ -1525,7 +1525,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "mention": "언급",
+  "mention": "멘션",
   "@mention": {
     "type": "text",
     "placeholders": {}
@@ -2648,5 +2648,25 @@
   "pleaseEnterSecurityKeyDescription": "채팅 백업을 잠금 해제하려면, 이전 세션에서 생성된 보안 키를 입력해주세요. 보안 키는 비밀번호가 아닙니다.",
   "@pleaseEnterSecurityKeyDescription": {},
   "saveTheSecurityKeyNow": "보안 키를 지금 저장",
-  "@saveTheSecurityKeyNow": {}
+  "@saveTheSecurityKeyNow": {},
+  "commandHint_discardsession": "세션 삭제",
+  "@commandHint_discardsession": {
+    "type": "text",
+    "description": "Usage hint for the command /discardsession"
+  },
+  "commandHint_dm": "다이렉트 채팅 시작\t\n--no-encryption을 사용해 암호화 비활성화",
+  "@commandHint_dm": {
+    "type": "text",
+    "description": "Usage hint for the command /dm"
+  },
+  "commandHint_clearcache": "캐시 지우기",
+  "@commandHint_clearcache": {
+    "type": "text",
+    "description": "Usage hint for the command /clearcache"
+  },
+  "commandHint_create": "빈 그룹 채팅을 생성\t\n--no-encryption을 사용해 암호화를 비활성화",
+  "@commandHint_create": {
+    "type": "text",
+    "description": "Usage hint for the command /create"
+  }
 }
