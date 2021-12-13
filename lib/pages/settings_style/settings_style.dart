@@ -45,7 +45,6 @@ class SettingsStyleController extends State<SettingsStyle> {
     AdaptiveTheme.of(context).setTheme(
       light: FluffyThemes.light,
       dark: FluffyThemes.dark,
-      isDefault: true,
     );
   }
 

@@ -29,7 +29,7 @@ dependencies:
   flutter_blurhash: ^0.6.0
   flutter_cache_manager: ^3.1.2
   flutter_inappwebview: ^5.3.2
-  flutter_local_notifications: ^6.0.0
+  flutter_local_notifications: ^8.2.0
   flutter_localizations:
     sdk: flutter
   flutter_map: ^0.14.0
@@ -50,7 +50,7 @@ dependencies:
   lottie: ^1.2.1
   matrix: ^0.7.0
   matrix_link_text: ^1.0.2
-  open_noti_settings: ^0.2.0
+  open_noti_settings: ^0.3.0
   package_info_plus: ^1.2.1
   path_provider: ^2.0.5
   permission_handler: ^8.3.0
