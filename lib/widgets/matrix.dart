@@ -505,7 +505,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
           AdaptiveTheme.of(context).setTheme(
             light: FluffyThemes.light,
             dark: FluffyThemes.dark,
-            isDefault: true,
           );
         }
       });
