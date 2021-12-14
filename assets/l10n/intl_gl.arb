@@ -2646,5 +2646,25 @@
   "pleaseEnterSecurityKeyDescription": "Para desbloquear a copia do chat, escribe a túa chave de seguridade creada nunha sesión anterior. A chave de seguridade NON é o teu contrasinal.",
   "@pleaseEnterSecurityKeyDescription": {},
   "saveTheSecurityKeyNow": "Garda agora a chave de seguridade",
-  "@saveTheSecurityKeyNow": {}
+  "@saveTheSecurityKeyNow": {},
+  "commandHint_discardsession": "Descartar sesión",
+  "@commandHint_discardsession": {
+    "type": "text",
+    "description": "Usage hint for the command /discardsession"
+  },
+  "commandHint_create": "Crear un grupo de conversa baleiro\nUsa --no-encryption para desactivar o cifrado",
+  "@commandHint_create": {
+    "type": "text",
+    "description": "Usage hint for the command /create"
+  },
+  "commandHint_clearcache": "Baleirar caché",
+  "@commandHint_clearcache": {
+    "type": "text",
+    "description": "Usage hint for the command /clearcache"
+  },
+  "commandHint_dm": "Iniciar un chat directo\nUsa --no-encryption para desactivar o cifrado",
+  "@commandHint_dm": {
+    "type": "text",
+    "description": "Usage hint for the command /dm"
+  }
 }
