@@ -1485,7 +1485,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "ok": "OK",
+  "ok": "Ok",
   "@ok": {
     "type": "text",
     "placeholders": {}
@@ -2654,5 +2654,25 @@
   "pleaseEnterSecurityKeyDescription": "Um deinen Chat-Backup zu entsperren, gib bitte deinen Sicherheitsschlüssel ein, der in einer früheren Sitzung generiert wurde. Der Sicherheitsschlüssel ist NICHT dein Passwort.",
   "@pleaseEnterSecurityKeyDescription": {},
   "saveTheSecurityKeyNow": "Jetzt Sicherheitsschlüssel speichern",
-  "@saveTheSecurityKeyNow": {}
+  "@saveTheSecurityKeyNow": {},
+  "commandHint_dm": "Starte einen direkten Chat\nBenutze --no-encryption um die Verschlüsselung auszuschalten",
+  "@commandHint_dm": {
+    "type": "text",
+    "description": "Usage hint for the command /dm"
+  },
+  "commandHint_discardsession": "Sitzung verwerfen",
+  "@commandHint_discardsession": {
+    "type": "text",
+    "description": "Usage hint for the command /discardsession"
+  },
+  "commandHint_clearcache": "Zwischenspeicher löschen",
+  "@commandHint_clearcache": {
+    "type": "text",
+    "description": "Usage hint for the command /clearcache"
+  },
+  "commandHint_create": "Erstelle ein leeren Gruppenchat\nBenutze --no-encryption um die Verschlüsselung auszuschalten",
+  "@commandHint_create": {
+    "type": "text",
+    "description": "Usage hint for the command /create"
+  }
 }
