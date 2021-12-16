@@ -2617,5 +2617,60 @@
   "iWroteDownTheKey": "Ключ записан",
   "@iWroteDownTheKey": {},
   "passwordsDoNotMatch": "Пароли не совпадают!",
-  "@passwordsDoNotMatch": {}
+  "@passwordsDoNotMatch": {},
+  "commandHint_clearcache": "Очистить кэш",
+  "@commandHint_clearcache": {
+    "type": "text",
+    "description": "Usage hint for the command /clearcache"
+  },
+  "commandHint_discardsession": "Удалить сеанс",
+  "@commandHint_discardsession": {
+    "type": "text",
+    "description": "Usage hint for the command /discardsession"
+  },
+  "commandHint_dm": "Начните прямой чат\nИспользуйте --no-encryption, чтобы отключить шифрование",
+  "@commandHint_dm": {
+    "type": "text",
+    "description": "Usage hint for the command /dm"
+  },
+  "messageInfo": "Информация о сообщении",
+  "@messageInfo": {},
+  "openGallery": "Открыть галерею",
+  "@openGallery": {},
+  "removeFromSpace": "Удалить из пространства",
+  "@removeFromSpace": {},
+  "removeFromSpaceDescription": "Это удалит данный чат из текущего пространства. Он все еще будет виден в разделе \"Все чаты\".",
+  "@removeFromSpaceDescription": {},
+  "loginWithOneClick": "Вход одним нажатием",
+  "@loginWithOneClick": {},
+  "pleaseEnterValidEmail": "Пожалуйста, введите действительный адрес электронной почты.",
+  "@pleaseEnterValidEmail": {},
+  "pleaseChooseAtLeastChars": "Пожалуйста, выберите не менее {min} символов.",
+  "@pleaseChooseAtLeastChars": {
+    "type": "text",
+    "placeholders": {
+      "min": {}
+    }
+  },
+  "commandHint_create": "Создайте пустой групповой чат\nИспользуйте --no-encryption, чтобы отключить шифрование",
+  "@commandHint_create": {
+    "type": "text",
+    "description": "Usage hint for the command /create"
+  },
+  "sender": "Отправитель",
+  "@sender": {},
+  "addToSpaceDescription": "Выберите пространство, чтобы добавить к нему этот чат.",
+  "@addToSpaceDescription": {},
+  "start": "Начать",
+  "@start": {},
+  "setupChatBackupNow": "Настройте резервную копию чата прямо сейчас",
+  "@setupChatBackupNow": {},
+  "time": "Время",
+  "@time": {},
+  "messageType": "Тип сообщения",
+  "@messageType": {},
+  "pleaseEnterSecurityKeyDescription": "Чтобы разблокировать резервную копию чата, введите ключ безопасности, сгенерированный в предыдущей сессии. Ваш ключ безопасности НЕ является вашим паролем.",
+  "@pleaseEnterSecurityKeyDescription": {},
+  "saveTheSecurityKeyNow": "Сохранить ключ безопасности сейчас",
+  "@saveTheSecurityKeyNow": {}
 }
