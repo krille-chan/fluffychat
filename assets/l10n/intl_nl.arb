@@ -2653,5 +2653,25 @@
   "saveTheSecurityKeyNow": "Sla je veiligheidssleutel nu op",
   "@saveTheSecurityKeyNow": {},
   "pleaseEnterSecurityKeyDescription": "Om je chat back-up te ontgrendelen, voer je veiligheidssleutel in die je gemaakt hebt in de vorige sessie. Je veiligheidssleutel is NIET je wachtwoord.",
-  "@pleaseEnterSecurityKeyDescription": {}
+  "@pleaseEnterSecurityKeyDescription": {},
+  "commandHint_clearcache": "Cache wissen",
+  "@commandHint_clearcache": {
+    "type": "text",
+    "description": "Usage hint for the command /clearcache"
+  },
+  "commandHint_create": "Maak een lege groepschat\nGebruik --no-encryption om de versleuteling uit te schakelen",
+  "@commandHint_create": {
+    "type": "text",
+    "description": "Usage hint for the command /create"
+  },
+  "commandHint_dm": "Start een directe chat\nGebruik --no-encryption om de versleuteling uit te schakelen",
+  "@commandHint_dm": {
+    "type": "text",
+    "description": "Usage hint for the command /dm"
+  },
+  "commandHint_discardsession": "Sessie weggooien",
+  "@commandHint_discardsession": {
+    "type": "text",
+    "description": "Usage hint for the command /discardsession"
+  }
 }
