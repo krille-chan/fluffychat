@@ -2648,5 +2648,25 @@
   "removeFromSpace": "Hilangkan dari space",
   "@removeFromSpace": {},
   "pleaseEnterSecurityKeyDescription": "Untuk mengakses cadangan chat Anda, mohon masukkan kunci keamanan Anda yang telah dibuat di sesi sebelumnya. Kunci keamanan Anda BUKAN kata sandi Anda.",
-  "@pleaseEnterSecurityKeyDescription": {}
+  "@pleaseEnterSecurityKeyDescription": {},
+  "commandHint_clearcache": "Bersihkan cache",
+  "@commandHint_clearcache": {
+    "type": "text",
+    "description": "Usage hint for the command /clearcache"
+  },
+  "commandHint_discardsession": "Buang sesi",
+  "@commandHint_discardsession": {
+    "type": "text",
+    "description": "Usage hint for the command /discardsession"
+  },
+  "commandHint_dm": "Memulai sebuah chat langsung\nGunakan --no-encryption untuk menonaktifkan enkripsi",
+  "@commandHint_dm": {
+    "type": "text",
+    "description": "Usage hint for the command /dm"
+  },
+  "commandHint_create": "Buat sebuah chat grup kosong\nGunakan --no-encryption untuk menonaktifkan enkripsi",
+  "@commandHint_create": {
+    "type": "text",
+    "description": "Usage hint for the command /create"
+  }
 }
