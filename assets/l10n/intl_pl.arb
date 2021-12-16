@@ -1884,5 +1884,7 @@
   "@zoomOut": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "passwordsDoNotMatch": "Hasła nie pasują!",
+  "@passwordsDoNotMatch": {}
 }
