@@ -50,7 +50,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "alreadyHaveAnAccount": "Вже маєте обліковий запис?",
+  "alreadyHaveAnAccount": "Уже маєте обліковий запис?",
   "@alreadyHaveAnAccount": {
     "type": "text",
     "placeholders": {}
@@ -114,7 +114,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "avatarHasBeenChanged": "Аватар був змінений",
+  "avatarHasBeenChanged": "Аватар змінено",
   "@avatarHasBeenChanged": {
     "type": "text",
     "placeholders": {}
@@ -2636,7 +2636,7 @@
   "@sender": {},
   "addToSpaceDescription": "Виберіть простір, щоб додати до нього цей чат.",
   "@addToSpaceDescription": {},
-  "loginWithOneClick": "Вхід одним натисканням",
+  "loginWithOneClick": "Увійти одним натисканням",
   "@loginWithOneClick": {},
   "removeFromSpaceDescription": "Це вилучає цей чат з поточного простору. Він усе одно буде видимий у розділі «Усі чати».",
   "@removeFromSpaceDescription": {},
