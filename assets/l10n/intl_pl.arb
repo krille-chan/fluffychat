@@ -1886,5 +1886,10 @@
     "placeholders": {}
   },
   "passwordsDoNotMatch": "Hasła nie pasują!",
-  "@passwordsDoNotMatch": {}
+  "@passwordsDoNotMatch": {},
+  "allChats": "Wszystkich przestrzeń",
+  "@allChats": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
