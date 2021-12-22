@@ -89,28 +89,38 @@ class MessageContent extends StatelessWidget {
             }
             return MessageDownloadContent(event, textColor);
           case MessageTypes.Video:
-            if (event.showThumbnail &&
-                (PlatformInfos.isMobile || PlatformInfos.isWeb)) {
-              return Stack(
-                alignment: Alignment.center,
-                children: <Widget>[
-                  ImageBubble(
-                    event,
-                    width: 400,
-                    height: 300,
-                    fit: BoxFit.cover,
-                    tapToView: false,
-                  ),
-                  FloatingActionButton.extended(
-                    onPressed: () => showDialog(
-                      context: Matrix.of(context).navigatorContext,
-                      useRootNavigator: false,
-                      builder: (_) => VideoViewer(event),
+            if (PlatformInfos.isMobile || PlatformInfos.isWeb) {
+              if (event.showThumbnail) {
+                return Stack(
+                  alignment: Alignment.center,
+                  children: <Widget>[
+                    ImageBubble(
+                      event,
+                      width: 400,
+                      height: 300,
+                      fit: BoxFit.cover,
+                      tapToView: false,
                     ),
-                    label: Text(L10n.of(context).play('Video')),
-                    icon: const Icon(Icons.video_camera_front_outlined),
-                  ),
-                ],
+                    FloatingActionButton.extended(
+                      onPressed: () => showDialog(
+                        context: Matrix.of(context).navigatorContext,
+                        useRootNavigator: false,
+                        builder: (_) => VideoViewer(event),
+                      ),
+                      label: Text(L10n.of(context).play('Video')),
+                      icon: const Icon(Icons.video_camera_front_outlined),
+                    ),
+                  ],
+                );
+              }
+              return FloatingActionButton.extended(
+                onPressed: () => showDialog(
+                  context: Matrix.of(context).navigatorContext,
+                  useRootNavigator: false,
+                  builder: (_) => VideoViewer(event),
+                ),
+                label: Text(L10n.of(context).play('Video')),
+                icon: const Icon(Icons.video_camera_front_outlined),
               );
             }
             return MessageDownloadContent(event, textColor);
