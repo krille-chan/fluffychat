@@ -2674,5 +2674,10 @@
   "@commandHint_create": {
     "type": "text",
     "description": "Usage hint for the command /create"
+  },
+  "openVideoCamera": "Video salvestamiseks ava kaamera",
+  "@openVideoCamera": {
+    "type": "text",
+    "placeholders": {}
   }
 }
