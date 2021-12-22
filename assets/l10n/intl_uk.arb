@@ -2669,5 +2669,10 @@
   "@commandHint_dm": {
     "type": "text",
     "description": "Usage hint for the command /dm"
+  },
+  "openVideoCamera": "Відкрити камеру для відео",
+  "@openVideoCamera": {
+    "type": "text",
+    "placeholders": {}
   }
 }
