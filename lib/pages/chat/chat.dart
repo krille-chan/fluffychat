@@ -767,9 +767,6 @@ class ChatController extends State<Chat> {
     if (choice == 'sticker') {
       sendStickerAction();
     }
-    if (choice == 'voice') {
-      voiceMessageAction();
-    }
     if (choice == 'location') {
       sendLocationAction();
     }
