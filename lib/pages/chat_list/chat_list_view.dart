@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'package:animations/animations.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:vrouter/vrouter.dart';
@@ -233,77 +234,147 @@ class ChatListView extends StatelessWidget {
   }
 }
 
-class _ChatListViewBody extends StatelessWidget {
+class _ChatListViewBody extends StatefulWidget {
   final ChatListController controller;
+
   const _ChatListViewBody(this.controller, {Key key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => StreamBuilder(
-      stream: Matrix.of(context)
+  State<_ChatListViewBody> createState() => _ChatListViewBodyState();
+}
+
+class _ChatListViewBodyState extends State<_ChatListViewBody> {
+  // the matrix sync stream
+  StreamSubscription _subscription;
+  StreamSubscription _clientSubscription;
+
+  // used to check the animation direction
+  String _lastUserId;
+  String _lastSpaceId;
+
+  @override
+  void initState() {
+    _subscription = Matrix.of(context)
+        .client
+        .onSync
+        .stream
+        .where((s) => s.hasRoomUpdate)
+        .rateLimit(const Duration(seconds: 1))
+        .listen((d) => setState(() {}));
+    _clientSubscription =
+        widget.controller.clientStream.listen((d) => setState(() {}));
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final reversed = _animationReversed();
+    Widget child;
+    if (widget.controller.waitForFirstSync &&
+        Matrix.of(context).client.prevBatch != null) {
+      final rooms = Matrix.of(context)
           .client
-          .onSync
-          .stream
-          .where((s) => s.hasRoomUpdate)
-          .rateLimit(const Duration(seconds: 1)),
-      builder: (context, snapshot) {
-        return Builder(
-          builder: (context) {
-            if (controller.waitForFirstSync &&
-                Matrix.of(context).client.prevBatch != null) {
-              final rooms = Matrix.of(context)
-                  .client
-                  .rooms
-                  .where(controller.roomCheck)
-                  .toList();
-              if (rooms.isEmpty) {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    const Icon(
-                      Icons.maps_ugc_outlined,
-                      size: 80,
-                      color: Colors.grey,
-                    ),
-                    Center(
-                      child: Text(
-                        L10n.of(context).startYourFirstChat,
-                        textAlign: TextAlign.start,
-                        style: const TextStyle(
-                          color: Colors.grey,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ),
-                  ],
-                );
-              }
-              return ListView.builder(
-                controller: controller.scrollController,
-                itemCount: rooms.length,
-                itemBuilder: (BuildContext context, int i) {
-                  return ChatListItem(
-                    rooms[i],
-                    selected: controller.selectedRoomIds.contains(rooms[i].id),
-                    onTap: controller.selectMode == SelectMode.select
-                        ? () => controller.toggleSelection(rooms[i].id)
-                        : null,
-                    onLongPress: () => controller.toggleSelection(rooms[i].id),
-                    activeChat: controller.activeChat == rooms[i].id,
-                  );
-                },
-              );
-            } else {
-              return ListView(
-                children: List.filled(
-                  8,
-                  const _DummyChat(),
+          .rooms
+          .where(widget.controller.roomCheck)
+          .toList();
+      if (rooms.isEmpty) {
+        child = Column(
+          key: const ValueKey(null),
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            const Icon(
+              Icons.maps_ugc_outlined,
+              size: 80,
+              color: Colors.grey,
+            ),
+            Center(
+              child: Text(
+                L10n.of(context).startYourFirstChat,
+                textAlign: TextAlign.start,
+                style: const TextStyle(
+                  color: Colors.grey,
+                  fontSize: 16,
                 ),
-              );
-            }
-          },
+              ),
+            ),
+          ],
         );
-      });
+      }
+      child = ListView.builder(
+        key: ValueKey(Matrix.of(context).client.userID.toString() +
+            widget.controller.activeSpaceId.toString()),
+        controller: widget.controller.scrollController,
+        itemCount: rooms.length,
+        itemBuilder: (BuildContext context, int i) {
+          return ChatListItem(
+            rooms[i],
+            selected: widget.controller.selectedRoomIds.contains(rooms[i].id),
+            onTap: widget.controller.selectMode == SelectMode.select
+                ? () => widget.controller.toggleSelection(rooms[i].id)
+                : null,
+            onLongPress: () => widget.controller.toggleSelection(rooms[i].id),
+            activeChat: widget.controller.activeChat == rooms[i].id,
+          );
+        },
+      );
+    } else {
+      child = ListView(
+        key: const ValueKey(false),
+        children: List.filled(
+          8,
+          const _DummyChat(),
+        ),
+      );
+    }
+    return PageTransitionSwitcher(
+      reverse: reversed,
+      transitionBuilder: (
+        Widget child,
+        Animation<double> primaryAnimation,
+        Animation<double> secondaryAnimation,
+      ) {
+        return SharedAxisTransition(
+          animation: primaryAnimation,
+          secondaryAnimation: secondaryAnimation,
+          transitionType: SharedAxisTransitionType.horizontal,
+          child: child,
+        );
+      },
+      child: child,
+    );
+  }
+
+  @override
+  void dispose() {
+    _subscription.cancel();
+    _clientSubscription.cancel();
+    super.dispose();
+  }
+
+  bool _animationReversed() {
+    bool reversed;
+    // in case the matrix id changes, check the indexOf the matrix id
+    final newClient = Matrix.of(context).client;
+    if (_lastUserId != newClient.userID) {
+      reversed = Matrix.of(context)
+              .currentBundle
+              .indexWhere((element) => element.userID == _lastUserId) <
+          Matrix.of(context)
+              .currentBundle
+              .indexWhere((element) => element.userID == newClient.userID);
+    }
+    // otherwise, the space changed...
+    else {
+      reversed = widget.controller.spaces
+              .indexWhere((element) => element.id == _lastSpaceId) <
+          widget.controller.spaces.indexWhere(
+              (element) => element.id == widget.controller.activeSpaceId);
+    }
+    _lastUserId = newClient.userID;
+    _lastSpaceId = widget.controller.activeSpaceId;
+    return reversed;
+  }
 }
 
 class _DummyChat extends StatefulWidget {

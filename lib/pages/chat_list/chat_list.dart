@@ -47,12 +47,17 @@ class ChatListController extends State<ChatList> {
   StreamSubscription _intentUriStreamSubscription;
 
   String _activeSpaceId;
+
   String get activeSpaceId =>
       Matrix.of(context).client.getRoomById(_activeSpaceId) == null
           ? null
           : _activeSpaceId;
   final ScrollController scrollController = ScrollController();
   bool scrolledToTop = true;
+
+  final StreamController<Client> _clientStream = StreamController.broadcast();
+
+  Stream<Client> get clientStream => _clientStream.stream;
 
   void _onScroll() {
     final newScrolledToTop = scrollController.position.pixels <= 0;
@@ -478,6 +483,7 @@ class ChatListController extends State<ChatList> {
       selectedRoomIds.clear();
       Matrix.of(context).setActiveClient(client);
     });
+    _clientStream.add(client);
   }
 
   void setActiveBundle(String bundle) {
