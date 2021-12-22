@@ -146,19 +146,6 @@ class ChatInputRow extends StatelessWidget {
                       ),
                     if (PlatformInfos.isMobile)
                       PopupMenuItem<String>(
-                        value: 'voice',
-                        child: ListTile(
-                          leading: const CircleAvatar(
-                            backgroundColor: Colors.red,
-                            foregroundColor: Colors.white,
-                            child: Icon(Icons.mic_none_outlined),
-                          ),
-                          title: Text(L10n.of(context).voiceMessage),
-                          contentPadding: const EdgeInsets.all(0),
-                        ),
-                      ),
-                    if (PlatformInfos.isMobile)
-                      PopupMenuItem<String>(
                         value: 'location',
                         child: ListTile(
                           leading: const CircleAvatar(
