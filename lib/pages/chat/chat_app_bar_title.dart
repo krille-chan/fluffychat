@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -13,35 +15,35 @@ import 'package:fluffychat/widgets/matrix.dart';
 
 class ChatAppBarTitle extends StatelessWidget {
   final ChatController controller;
-  const ChatAppBarTitle(this.controller, {Key key}) : super(key: key);
+  const ChatAppBarTitle(this.controller, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     if (controller.selectedEvents.isNotEmpty) {
       return Text(controller.selectedEvents.length.toString());
     }
+    final directChatMatrixID = controller.room.directChatMatrixID;
     return ListTile(
       leading: Avatar(
         mxContent: controller.room.avatar,
         name: controller.room.displayname,
       ),
       contentPadding: EdgeInsets.zero,
-      onTap: controller.room.isDirectChat
+      onTap: directChatMatrixID != null
           ? () => showModalBottomSheet(
                 context: context,
                 builder: (c) => UserBottomSheet(
-                  user: controller.room
-                      .getUserByMXIDSync(controller.room.directChatMatrixID),
+                  user: controller.room.getUserByMXIDSync(directChatMatrixID),
                   outerContext: context,
                   onMention: () => controller.sendController.text +=
-                      '${controller.room.getUserByMXIDSync(controller.room.directChatMatrixID).mention} ',
+                      '${controller.room.getUserByMXIDSync(directChatMatrixID).mention} ',
                 ),
               )
           : () => VRouter.of(context)
               .toSegments(['rooms', controller.room.id, 'details']),
       title: Text(
           controller.room
-              .getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
+              .getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
           maxLines: 1),
       subtitle: StreamBuilder<Object>(
         stream: Matrix.of(context)

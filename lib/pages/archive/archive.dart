@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
@@ -9,30 +11,33 @@ import 'package:fluffychat/pages/archive/archive_view.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class Archive extends StatefulWidget {
-  const Archive({Key key}) : super(key: key);
+  const Archive({Key? key}) : super(key: key);
 
   @override
   ArchiveController createState() => ArchiveController();
 }
 
 class ArchiveController extends State<Archive> {
-  List<Room> archive;
+  List<Room>? archive;
 
   Future<List<Room>> getArchive(BuildContext context) async {
+    final archive = this.archive;
     if (archive != null) return archive;
     return await Matrix.of(context).client.loadArchive();
   }
 
-  void forgetAction(int i) => setState(() => archive.removeAt(i));
+  void forgetAction(int i) => setState(() => archive?.removeAt(i));
 
   void forgetAllAction() async {
+    final archive = this.archive;
+    if (archive == null) return;
     if (await showOkCancelAlertDialog(
           useRootNavigator: false,
           context: context,
-          title: L10n.of(context).areYouSure,
-          okLabel: L10n.of(context).yes,
-          cancelLabel: L10n.of(context).cancel,
-          message: L10n.of(context).clearArchive,
+          title: L10n.of(context)!.areYouSure,
+          okLabel: L10n.of(context)!.yes,
+          cancelLabel: L10n.of(context)!.cancel,
+          message: L10n.of(context)!.clearArchive,
         ) !=
         OkCancelResult.ok) {
       return;
@@ -47,7 +52,7 @@ class ArchiveController extends State<Archive> {
         }
       },
     );
-    setState(() => null);
+    setState(() {});
   }
 
   @override
