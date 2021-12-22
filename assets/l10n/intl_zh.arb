@@ -2674,5 +2674,10 @@
   "@commandHint_create": {
     "type": "text",
     "description": "Usage hint for the command /create"
+  },
+  "openVideoCamera": "打开相机拍摄视频",
+  "@openVideoCamera": {
+    "type": "text",
+    "placeholders": {}
   }
 }
