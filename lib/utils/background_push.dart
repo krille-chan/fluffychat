@@ -68,6 +68,8 @@ class BackgroundPush {
 
   DateTime lastReceivedPush;
 
+  bool upAction = false;
+
   BackgroundPush._(this.client, {this.onFcmError}) {
     onLogin ??=
         client.onLoginStateChanged.stream.listen(handleLoginStateChanged);
@@ -214,10 +216,16 @@ class BackgroundPush {
   bool _wentToRoomOnStartup = false;
 
   Future<void> setupPush() async {
+    Logs().d("SetupPush");
     await setupLocalNotificationsPlugin();
     if (client.loginState != LoginState.loggedIn ||
         !PlatformInfos.isMobile ||
         context == null) {
+      return;
+    }
+    // Do not setup unifiedpush if this has been initialized by
+    // an unifiedpush action
+    if (upAction) {
       return;
     }
     if (!PlatformInfos.isIOS &&
@@ -334,6 +342,7 @@ class BackgroundPush {
   }
 
   Future<void> _newUpEndpoint(String newEndpoint) async {
+    upAction = true;
     if (newEndpoint?.isEmpty ?? true) {
       await _upUnregistered();
       return;
@@ -377,6 +386,7 @@ class BackgroundPush {
   }
 
   Future<void> _upUnregistered() async {
+    upAction = true;
     Logs().i('[Push] Removing UnifiedPush endpoint...');
     final oldEndpoint = await store.getItem(SettingKeys.unifiedPushEndpoint);
     await store.setItemBool(SettingKeys.unifiedPushRegistered, false);
@@ -390,6 +400,7 @@ class BackgroundPush {
   }
 
   Future<void> _onUpMessage(String message) async {
+    upAction = true;
     Map<String, dynamic> data;
     try {
       data = Map<String, dynamic>.from(json.decode(message)['notification']);
