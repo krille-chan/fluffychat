@@ -2674,5 +2674,10 @@
   "@commandHint_dm": {
     "type": "text",
     "description": "Usage hint for the command /dm"
+  },
+  "openVideoCamera": "Ouvrir la caméra pour une vidéo",
+  "@openVideoCamera": {
+    "type": "text",
+    "placeholders": {}
   }
 }
