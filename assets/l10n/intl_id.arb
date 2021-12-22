@@ -1571,14 +1571,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadMessages": "{unreadEvents, plural, =1{1 pesan belum terbaca} other{{unreadEvents} pesan belum terbaca}}",
+  "unreadMessages": "{unreadEvents, plural, =1{1 pesan belum dibaca} other{{unreadEvents} pesan belum dibaca}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
       "unreadEvents": {}
     }
   },
-  "unreadChats": "{unreadCount, plural, =1{1 chat belum terbaca} other{{unreadCount} chat belum terbaca}}",
+  "unreadChats": "{unreadCount, plural, =1{1 chat belum dibaca} other{{unreadCount} chat belum dibaca}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
