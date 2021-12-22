@@ -129,6 +129,19 @@ class ChatInputRow extends StatelessWidget {
                           contentPadding: const EdgeInsets.all(0),
                         ),
                       ),
+                    if (PlatformInfos.isMobile)
+                      PopupMenuItem<String>(
+                        value: 'camera-video',
+                        child: ListTile(
+                          leading: const CircleAvatar(
+                            backgroundColor: Colors.red,
+                            foregroundColor: Colors.white,
+                            child: Icon(Icons.videocam_outlined),
+                          ),
+                          title: Text(L10n.of(context).openVideoCamera),
+                          contentPadding: const EdgeInsets.all(0),
+                        ),
+                      ),
                     if (controller.room
                         .getImagePacks(ImagePackUsage.sticker)
                         .isNotEmpty)

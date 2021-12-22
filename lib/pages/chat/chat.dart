@@ -347,6 +347,25 @@ class ChatController extends State<Chat> {
     );
   }
 
+  void openVideoCameraAction() async {
+    // Make sure the textfield is unfocused before opening the camera
+    FocusScope.of(context).requestFocus(FocusNode());
+    final file = await ImagePicker().pickVideo(source: ImageSource.camera);
+    if (file == null) return;
+    final bytes = await file.readAsBytes();
+    await showDialog(
+      context: context,
+      useRootNavigator: false,
+      builder: (c) => SendFileDialog(
+        file: MatrixVideoFile(
+          bytes: bytes,
+          name: file.path,
+        ),
+        room: room,
+      ),
+    );
+  }
+
   void sendStickerAction() async {
     final sticker = await showModalBottomSheet<ImagePackImageContent>(
       context: context,
@@ -763,6 +782,9 @@ class ChatController extends State<Chat> {
     }
     if (choice == 'camera') {
       openCameraAction();
+    }
+    if (choice == 'camera-video') {
+      openVideoCameraAction();
     }
     if (choice == 'sticker') {
       sendStickerAction();
