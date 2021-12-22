@@ -2673,5 +2673,10 @@
   "@commandHint_discardsession": {
     "type": "text",
     "description": "Usage hint for the command /discardsession"
+  },
+  "openVideoCamera": "Videocamera openen",
+  "@openVideoCamera": {
+    "type": "text",
+    "placeholders": {}
   }
 }
