@@ -1797,5 +1797,94 @@
   "@botMessages": {
     "type": "text",
     "placeholders": {}
+  },
+  "repeatPassword": "Jelszó megismétlése",
+  "@repeatPassword": {},
+  "addEmail": "E-mail-cím hozzáadása",
+  "@addEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewFriend": "Új barát hozzáadása",
+  "@addNewFriend": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "all": "Összes",
+  "@all": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "allChats": "Összes csevegés",
+  "@allChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "autoplayImages": "Animált matricák és hangulatjelek automatikus lejátszása",
+  "@autoplayImages": {
+    "type": "text",
+    "placeholder": {}
+  },
+  "sendOnEnter": "Küldés Enterrel",
+  "@sendOnEnter": {},
+  "cantOpenUri": "A(z) {uri} URI nem nyitható meg",
+  "@cantOpenUri": {
+    "type": "text",
+    "placeholders": {
+      "uri": {}
+    }
+  },
+  "changeYourAvatar": "Profilkép módosítása",
+  "@changeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourUserId": "Saját felhasználóazonosító:",
+  "@yourUserId": {},
+  "addToSpace": "Hozzáadás térhez",
+  "@addToSpace": {},
+  "areYouSureYouWantToLogout": "Biztos, hogy kijelentkezik?",
+  "@areYouSureYouWantToLogout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPlay": "Lejátszás",
+  "@audioPlayerPlay": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "badServerLoginTypesException": "A Matrix-kiszolgáló a következő bejelentkezéseket támogatja:\n{serverVersions}\nDe az alkalmazást csak ezeket támogatja:\n{supportedVersions}",
+  "@badServerLoginTypesException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "blocked": "Blokkolva",
+  "@blocked": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordsDoNotMatch": "A jelszavak nem egyeznek.",
+  "@passwordsDoNotMatch": {},
+  "pleaseChooseAtLeastChars": "Válasszon legalább {min} karaktert.",
+  "@pleaseChooseAtLeastChars": {
+    "type": "text",
+    "placeholders": {
+      "min": {}
+    }
+  },
+  "pleaseEnterValidEmail": "Adjon meg egy érvényes e-mail-címet.",
+  "@pleaseEnterValidEmail": {},
+  "appLock": "Alkalmazászár",
+  "@appLock": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPause": "Szüneteltetés",
+  "@audioPlayerPause": {
+    "type": "text",
+    "placeholders": {}
   }
 }
