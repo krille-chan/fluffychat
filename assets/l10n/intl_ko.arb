@@ -2668,5 +2668,10 @@
   "@commandHint_create": {
     "type": "text",
     "description": "Usage hint for the command /create"
+  },
+  "openVideoCamera": "비디오용 카메라 열기",
+  "@openVideoCamera": {
+    "type": "text",
+    "placeholders": {}
   }
 }
