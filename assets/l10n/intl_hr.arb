@@ -2654,5 +2654,30 @@
   "pleaseEnterSecurityKeyDescription": "Za otključavanje sigurnosne kopije chata, upši svoj sigurnosni ključ koji je generiran u prethodnoj sesiji. Tvoj sigurnosni ključ NIJE tvoja lozinka.",
   "@pleaseEnterSecurityKeyDescription": {},
   "saveTheSecurityKeyNow": "Sada spremi sigurnosni ključ",
-  "@saveTheSecurityKeyNow": {}
+  "@saveTheSecurityKeyNow": {},
+  "commandHint_clearcache": "Isprazni predmemoriju",
+  "@commandHint_clearcache": {
+    "type": "text",
+    "description": "Usage hint for the command /clearcache"
+  },
+  "commandHint_create": "Stvori prazan grupni chat\nKoristi --no-encryption za deaktiviranje šifriranja",
+  "@commandHint_create": {
+    "type": "text",
+    "description": "Usage hint for the command /create"
+  },
+  "commandHint_discardsession": "Odbaci sesiju",
+  "@commandHint_discardsession": {
+    "type": "text",
+    "description": "Usage hint for the command /discardsession"
+  },
+  "commandHint_dm": "Započni izravni chat\nKoristi --no-encryption za deaktiviranje šifriranja",
+  "@commandHint_dm": {
+    "type": "text",
+    "description": "Usage hint for the command /dm"
+  },
+  "openVideoCamera": "Otvori kameru za video",
+  "@openVideoCamera": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
