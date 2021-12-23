@@ -1498,7 +1498,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "ok": "ok",
+  "ok": "Ок",
   "@ok": {
     "type": "text",
     "placeholders": {}
@@ -2672,5 +2672,12 @@
   "pleaseEnterSecurityKeyDescription": "Чтобы разблокировать резервную копию чата, введите ключ безопасности, сгенерированный в предыдущей сессии. Ваш ключ безопасности НЕ является вашим паролем.",
   "@pleaseEnterSecurityKeyDescription": {},
   "saveTheSecurityKeyNow": "Сохранить ключ безопасности сейчас",
-  "@saveTheSecurityKeyNow": {}
+  "@saveTheSecurityKeyNow": {},
+  "repeatPassword": "Повторите пароль",
+  "@repeatPassword": {},
+  "openVideoCamera": "Открыть камеру для видео",
+  "@openVideoCamera": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
