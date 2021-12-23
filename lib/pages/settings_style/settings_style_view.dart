@@ -140,7 +140,7 @@ class SettingsStyleView extends StatelessWidget {
                 ),
               ),
             ),
-            Slider(
+            Slider.adaptive(
               min: 0.5,
               max: 2.5,
               divisions: 20,

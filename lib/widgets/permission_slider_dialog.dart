@@ -39,19 +39,6 @@ class _PermissionSliderDialogState extends State<PermissionSliderDialog> {
 
   @override
   Widget build(BuildContext context) {
-    final slider = PlatformInfos.isCupertinoStyle
-        ? CupertinoSlider(
-            value: _permission.toDouble(),
-            onChanged: (d) => setState(() => _permission = d.round()),
-            max: 100.0,
-            min: 0.0,
-          )
-        : Slider(
-            value: _permission.toDouble(),
-            onChanged: (d) => setState(() => _permission = d.round()),
-            max: 100.0,
-            min: 0.0,
-          );
     final title = Text(
       L10n.of(context).setPermissionsLevel,
       textAlign: TextAlign.center,
@@ -67,7 +54,12 @@ class _PermissionSliderDialogState extends State<PermissionSliderDialog> {
                     : _permission.toString())),
         SizedBox(
           height: 56,
-          child: slider,
+          child: Slider.adaptive(
+            value: _permission.toDouble(),
+            onChanged: (d) => setState(() => _permission = d.round()),
+            max: 100.0,
+            min: 0.0,
+          ),
         ),
       ],
     );
