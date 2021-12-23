@@ -66,7 +66,7 @@ class ChatDetailsView extends StatelessWidget {
                     if (room.canonicalAlias?.isNotEmpty ?? false)
                       IconButton(
                         tooltip: L10n.of(context).share,
-                        icon: const Icon(Icons.share_outlined),
+                        icon: Icon(Icons.adaptive.share_outlined),
                         onPressed: () => FluffyShare.share(
                             AppConfig.inviteLinkPrefix + room.canonicalAlias,
                             context),
