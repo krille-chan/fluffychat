@@ -257,12 +257,14 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         icon: icon.toString(),
       );
     } else if (Platform.isLinux) {
-      await linuxNotifications.notify(
+      final notification = await linuxNotifications.notify(
         title,
         body: body,
-        replacesId: _linuxNotificationIds[roomId] ?? -1,
+        replacesId: _linuxNotificationIds[roomId] ?? 0,
         appName: AppConfig.applicationName,
+        appIcon: "im.fluffychat.Fluffychat",
       );
+      _linuxNotificationIds[roomId] = notification.id;
     }
   }
 
