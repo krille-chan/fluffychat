@@ -2668,5 +2668,20 @@
   "@commandHint_create": {
     "type": "text",
     "description": "Usage hint for the command /create"
-  }
+  },
+  "thisUserHasNotPostedAnythingYet": "Pengguna ini belum memposting apa pun di cerita mereka",
+  "@thisUserHasNotPostedAnythingYet": {},
+  "openVideoCamera": "Buka kamera untuk merekam video",
+  "@openVideoCamera": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addToStory": "Tambahkan ke cerita",
+  "@addToStory": {},
+  "publish": "Publikasi",
+  "@publish": {},
+  "whoCanSeeMyStories": "Siapa saja yang dapat melihat cerita saya?",
+  "@whoCanSeeMyStories": {},
+  "unsubscribeStories": "Batalkan langganan cerita",
+  "@unsubscribeStories": {}
 }
