@@ -14,6 +14,7 @@ import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/client_chooser_button.dart';
 import 'package:fluffychat/pages/chat_list/spaces_bottom_bar.dart';
+import 'package:fluffychat/pages/chat_list/stories_header.dart';
 import 'package:fluffychat/widgets/connection_status_header.dart';
 import '../../utils/stream_extension.dart';
 import '../../widgets/matrix.dart';
@@ -203,6 +204,7 @@ class ChatListView extends StatelessWidget {
                     ),
                   ),
                 ),
+                if (controller.waitForFirstSync) const StoriesHeader(),
                 Expanded(child: _ChatListViewBody(controller)),
               ]),
               floatingActionButton: selectMode == SelectMode.normal

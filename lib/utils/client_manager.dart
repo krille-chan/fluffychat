@@ -85,7 +85,12 @@ abstract class ClientManager {
           if (kIsWeb || PlatformInfos.isMobile || PlatformInfos.isLinux)
             KeyVerificationMethod.emoji,
         },
-        importantStateEvents: <String>{'im.ponies.room_emotes'},
+        importantStateEvents: <String>{
+          // To make room emotes work
+          'im.ponies.room_emotes',
+          // To check which story room we can post in
+          EventTypes.RoomPowerLevels,
+        },
         databaseBuilder: FlutterFluffyBoxDatabase.databaseBuilder,
         legacyDatabaseBuilder: FlutterMatrixHiveStore.hiveDatabaseBuilder,
         supportedLoginTypes: {

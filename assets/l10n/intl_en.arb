@@ -2662,5 +2662,10 @@
   "pleaseEnterSecurityKeyDescription": "To unlock your chat backup, please enter your security key that has been generated in a previous session. Your security key is NOT your password.",
   "@pleaseEnterSecurityKeyDescription": {},
   "saveTheSecurityKeyNow": "Save the security key now",
-  "@saveTheSecurityKeyNow": {}
+  "@saveTheSecurityKeyNow": {},
+  "addToStory": "Add to story",
+  "publish": "Publish",
+  "whoCanSeeMyStories": "Who can see my stories?",
+  "unsubscribeStories": "Unsubscribe stories",
+  "thisUserHasNotPostedAnythingYet": "This user has not posted anything in their story yet"
 }

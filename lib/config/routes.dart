@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:vrouter/vrouter.dart';
 
+import 'package:fluffychat/pages/add_story/add_story.dart';
 import 'package:fluffychat/pages/archive/archive.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
@@ -29,6 +30,7 @@ import 'package:fluffychat/pages/settings_notifications/settings_notifications.d
 import 'package:fluffychat/pages/settings_security/settings_security.dart';
 import 'package:fluffychat/pages/settings_style/settings_style.dart';
 import 'package:fluffychat/pages/sign_up/signup.dart';
+import 'package:fluffychat/pages/story/story_page.dart';
 import 'package:fluffychat/widgets/layouts/empty_page.dart';
 import 'package:fluffychat/widgets/layouts/loading_view.dart';
 import 'package:fluffychat/widgets/layouts/side_view_layout.dart';
@@ -51,6 +53,14 @@ class AppRoutes {
           path: '/rooms',
           widget: const ChatList(),
           stackedRoutes: [
+            VWidget(
+              path: '/stories/create',
+              widget: const AddStoryPage(),
+            ),
+            VWidget(
+              path: '/stories/:roomid',
+              widget: const StoryPage(),
+            ),
             VWidget(
               path: '/spaces/:roomid',
               widget: const ChatDetails(),
