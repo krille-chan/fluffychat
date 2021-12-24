@@ -2679,5 +2679,15 @@
   "@openVideoCamera": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "addToStory": "Hikayeye ekle",
+  "@addToStory": {},
+  "publish": "Yayınla",
+  "@publish": {},
+  "whoCanSeeMyStories": "Hikayelerimi kimler görebilir?",
+  "@whoCanSeeMyStories": {},
+  "unsubscribeStories": "Hikayelerin aboneliğini iptal et",
+  "@unsubscribeStories": {},
+  "thisUserHasNotPostedAnythingYet": "Bu kullanıcı henüz hikayesinde hiçbir şey yayınlamadı",
+  "@thisUserHasNotPostedAnythingYet": {}
 }
