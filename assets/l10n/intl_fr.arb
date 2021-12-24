@@ -2679,5 +2679,15 @@
   "@openVideoCamera": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "addToStory": "Ajouter à la story",
+  "@addToStory": {},
+  "whoCanSeeMyStories": "Qui peut voir mes stories ?",
+  "@whoCanSeeMyStories": {},
+  "publish": "Publier",
+  "@publish": {},
+  "unsubscribeStories": "Se désinscrire des stories",
+  "@unsubscribeStories": {},
+  "thisUserHasNotPostedAnythingYet": "Cet(te) utilisateur(trice) n'a encore rien posté dans sa story",
+  "@thisUserHasNotPostedAnythingYet": {}
 }
