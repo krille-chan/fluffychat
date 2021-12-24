@@ -2679,5 +2679,15 @@
   "@openVideoCamera": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "addToStory": "添加到 story",
+  "@addToStory": {},
+  "publish": "发布",
+  "@publish": {},
+  "whoCanSeeMyStories": "谁能看到我的 stories？",
+  "@whoCanSeeMyStories": {},
+  "unsubscribeStories": "取消 stories 订阅",
+  "@unsubscribeStories": {},
+  "thisUserHasNotPostedAnythingYet": "该用户尚未在 story 发布任何内容",
+  "@thisUserHasNotPostedAnythingYet": {}
 }
