@@ -2674,5 +2674,15 @@
   "@openVideoCamera": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "addToStory": "Додати до історії",
+  "@addToStory": {},
+  "publish": "Опублікувати",
+  "@publish": {},
+  "whoCanSeeMyStories": "Хто може бачити мої історії?",
+  "@whoCanSeeMyStories": {},
+  "unsubscribeStories": "Скасувати підписку на історії",
+  "@unsubscribeStories": {},
+  "thisUserHasNotPostedAnythingYet": "Цей користувач ще нічого не опублікував у своїй історії",
+  "@thisUserHasNotPostedAnythingYet": {}
 }
