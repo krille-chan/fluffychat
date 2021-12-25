@@ -308,7 +308,7 @@ class _ChatListViewBodyState extends State<_ChatListViewBody> {
         controller: widget.controller.scrollController,
         itemCount: rooms.length + 1,
         itemBuilder: (BuildContext context, int i) {
-          if (i == 0) {
+          if (i == 0 && widget.controller.activeSpaceId == null) {
             return const StoriesHeader();
           }
           i--;
@@ -332,6 +332,10 @@ class _ChatListViewBodyState extends State<_ChatListViewBody> {
         ),
       );
     }
+    child = Material(
+      color: Theme.of(context).scaffoldBackgroundColor,
+      child: child,
+    );
     return PageTransitionSwitcher(
       reverse: reversed,
       transitionBuilder: (

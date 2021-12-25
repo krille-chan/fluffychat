@@ -13,7 +13,11 @@ import 'package:fluffychat/utils/matrix_sdk_extensions.dart/client_stories_exten
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
-enum ContextualRoomAction { mute, unmute, leave }
+enum ContextualRoomAction {
+  mute,
+  unmute,
+  leave,
+}
 
 class StoriesHeader extends StatelessWidget {
   const StoriesHeader({Key? key}) : super(key: key);
@@ -82,7 +86,8 @@ class StoriesHeader extends StatelessWidget {
           if (client.storiesRooms.isEmpty && client.contacts.isEmpty) {
             return Container();
           }
-          if (client.storiesRooms.isEmpty) {
+          if (client.storiesRooms.isEmpty ||
+              Matrix.of(context).shareContent != null) {
             return ListTile(
               leading: CircleAvatar(
                 radius: Avatar.defaultSize / 2,
@@ -95,13 +100,13 @@ class StoriesHeader extends StatelessWidget {
             );
           }
           return SizedBox(
-            height: 82,
+            height: 98,
             child: ListView(
               padding: const EdgeInsets.symmetric(horizontal: 2),
               scrollDirection: Axis.horizontal,
               children: [
                 _StoryButton(
-                  label: 'Add to story',
+                  label: L10n.of(context)!.yourStory,
                   onPressed: () => _addToStoryAction(context),
                   child: const Icon(Icons.add),
                 ),
@@ -116,6 +121,7 @@ class StoriesHeader extends StatelessWidget {
                             .sender
                             .avatarUrl,
                         name: room.creatorDisplayname,
+                        size: 100,
                       ),
                       unread: room.notificationCount > 0 ||
                           room.membership == Membership.invite,
@@ -168,13 +174,13 @@ class _StoryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 74,
+      width: 78,
       child: InkWell(
         borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         onTap: onPressed,
         onLongPress: onLongPressed,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 2),
+          padding: const EdgeInsets.symmetric(horizontal: 4),
           child: Column(
             children: [
               const SizedBox(height: 8),
@@ -192,14 +198,22 @@ class _StoryButton extends StatelessWidget {
                           end: Alignment.bottomRight,
                         )
                       : null,
-                  color: unread ? null : Theme.of(context).colorScheme.surface,
+                  color: unread ? null : Theme.of(context).dividerColor,
                   borderRadius: BorderRadius.circular(Avatar.defaultSize),
                 ),
-                child: CircleAvatar(
-                  radius: Avatar.defaultSize / 2,
-                  backgroundColor: Theme.of(context).colorScheme.surface,
-                  foregroundColor: Theme.of(context).textTheme.bodyText1?.color,
-                  child: child,
+                child: Material(
+                  color: Theme.of(context).colorScheme.surface,
+                  borderRadius: BorderRadius.circular(Avatar.defaultSize),
+                  child: Padding(
+                    padding: const EdgeInsets.all(2.0),
+                    child: CircleAvatar(
+                      radius: 30,
+                      backgroundColor: Theme.of(context).colorScheme.surface,
+                      foregroundColor:
+                          Theme.of(context).textTheme.bodyText1?.color,
+                      child: child,
+                    ),
+                  ),
                 ),
               ),
               const SizedBox(height: 8),
@@ -207,9 +221,9 @@ class _StoryButton extends StatelessWidget {
                 label,
                 maxLines: 1,
                 textAlign: TextAlign.center,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 12,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: unread ? FontWeight.bold : null,
                 ),
               ),
             ],

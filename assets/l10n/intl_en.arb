@@ -2667,5 +2667,6 @@
   "publish": "Publish",
   "whoCanSeeMyStories": "Who can see my stories?",
   "unsubscribeStories": "Unsubscribe stories",
-  "thisUserHasNotPostedAnythingYet": "This user has not posted anything in their story yet"
+  "thisUserHasNotPostedAnythingYet": "This user has not posted anything in their story yet",
+  "yourStory": "Your story"
 }
