@@ -15,22 +15,21 @@ abstract class FluffyThemes {
   static const fallbackTextStyle =
       TextStyle(fontFamily: 'Roboto', fontFamilyFallback: ['NotoEmoji']);
 
-  static var fallbackTextTheme = PlatformInfos.isDesktop
-      ? const TextTheme(
-          bodyText1: fallbackTextStyle,
-          bodyText2: fallbackTextStyle,
-          button: fallbackTextStyle,
-          caption: fallbackTextStyle,
-          overline: fallbackTextStyle,
-          headline1: fallbackTextStyle,
-          headline2: fallbackTextStyle,
-          headline3: fallbackTextStyle,
-          headline4: fallbackTextStyle,
-          headline5: fallbackTextStyle,
-          headline6: fallbackTextStyle,
-          subtitle1: fallbackTextStyle,
-          subtitle2: fallbackTextStyle)
-      : const TextTheme();
+  static var fallbackTextTheme = const TextTheme(
+    bodyText1: fallbackTextStyle,
+    bodyText2: fallbackTextStyle,
+    button: fallbackTextStyle,
+    caption: fallbackTextStyle,
+    overline: fallbackTextStyle,
+    headline1: fallbackTextStyle,
+    headline2: fallbackTextStyle,
+    headline3: fallbackTextStyle,
+    headline4: fallbackTextStyle,
+    headline5: fallbackTextStyle,
+    headline6: fallbackTextStyle,
+    subtitle1: fallbackTextStyle,
+    subtitle2: fallbackTextStyle,
+  );
 
   static ThemeData get light => ThemeData(
         visualDensity: VisualDensity.standard,
@@ -47,7 +46,9 @@ abstract class FluffyThemes {
         backgroundColor: Colors.white,
         secondaryHeaderColor: Colors.blueGrey.shade50,
         scaffoldBackgroundColor: Colors.white,
-        textTheme: Typography.material2018().black.merge(fallbackTextTheme),
+        textTheme: PlatformInfos.isDesktop
+            ? Typography.material2018().black.merge(fallbackTextTheme)
+            : null,
         snackBarTheme:
             const SnackBarThemeData(behavior: SnackBarBehavior.floating),
         pageTransitionsTheme: const PageTransitionsTheme(
@@ -138,7 +139,9 @@ abstract class FluffyThemes {
               surface: FluffyThemes.darken(AppConfig.chatColor, 0.35),
             ),
         secondaryHeaderColor: Colors.blueGrey.shade900,
-        textTheme: Typography.material2018().white.merge(fallbackTextTheme),
+        textTheme: PlatformInfos.isDesktop
+            ? Typography.material2018().white.merge(fallbackTextTheme)
+            : null,
         dialogTheme: DialogTheme(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppConfig.borderRadius),
