@@ -89,6 +89,7 @@ class AddStoryView extends StatelessWidget {
                 controller: controller.controller,
                 minLines: 1,
                 maxLines: 20,
+                autofocus: true,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 24,

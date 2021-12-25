@@ -9,6 +9,7 @@ import 'package:matrix/matrix.dart';
 import 'package:video_player/video_player.dart';
 
 import 'package:fluffychat/pages/story/story_page.dart';
+import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/string_color.dart';
@@ -20,6 +21,7 @@ class StoryView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentEvent = controller.currentEvent;
     return Scaffold(
       appBar: AppBar(
         titleSpacing: 0,
@@ -29,7 +31,6 @@ class StoryView extends StatelessWidget {
             controller.title,
             style: const TextStyle(
               color: Colors.white,
-              fontSize: 20,
               shadows: [
                 Shadow(
                   color: Colors.black,
@@ -39,6 +40,21 @@ class StoryView extends StatelessWidget {
               ],
             ),
           ),
+          subtitle: currentEvent != null
+              ? Text(
+                  currentEvent.originServerTs.localizedTime(context),
+                  style: const TextStyle(
+                    color: Colors.white70,
+                    shadows: [
+                      Shadow(
+                        color: Colors.black,
+                        offset: Offset(0, 0),
+                        blurRadius: 5,
+                      ),
+                    ],
+                  ),
+                )
+              : null,
           leading: Avatar(
             mxContent: controller.avatar,
             name: controller.title,
@@ -50,15 +66,15 @@ class StoryView extends StatelessWidget {
         backgroundColor: Colors.transparent,
       ),
       extendBodyBehindAppBar: true,
-      body: FutureBuilder<List<Event>>(
+      body: FutureBuilder(
         future: controller.loadStory,
         builder: (context, snapshot) {
           final error = snapshot.error;
           if (error != null) {
             return Center(child: Text(error.toLocalizedString(context)));
           }
-          final events = snapshot.data;
-          if (events == null) {
+          final events = controller.events;
+          if (snapshot.connectionState != ConnectionState.done) {
             return const Center(
                 child: CircularProgressIndicator.adaptive(
               strokeWidth: 2,

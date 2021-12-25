@@ -26,6 +26,7 @@ class StoriesHeader extends StatelessWidget {
 
   void _contextualActions(BuildContext context, Room room) async {
     final action = await showModalActionSheet<ContextualRoomAction>(
+      cancelLabel: L10n.of(context)!.cancel,
       context: context,
       actions: [
         if (room.pushRuleState != PushRuleState.notify)
@@ -105,19 +106,24 @@ class StoriesHeader extends StatelessWidget {
                   child: const Icon(Icons.add),
                 ),
                 ...client.storiesRooms.map(
-                  (room) => _StoryButton(
-                    label: room.creatorDisplayname,
-                    child: Avatar(
-                      mxContent: room
-                          .getState(EventTypes.RoomCreate)!
-                          .sender
-                          .avatarUrl,
-                      name: room.creatorDisplayname,
+                  (room) => Opacity(
+                    opacity: room.hasPosts ? 1 : 0.5,
+                    child: _StoryButton(
+                      label: room.creatorDisplayname,
+                      child: Avatar(
+                        mxContent: room
+                            .getState(EventTypes.RoomCreate)!
+                            .sender
+                            .avatarUrl,
+                        name: room.creatorDisplayname,
+                      ),
+                      unread: room.notificationCount > 0 ||
+                          room.membership == Membership.invite,
+                      onPressed: () => room.hasPosts
+                          ? _goToStoryAction(context, room.id)
+                          : _contextualActions(context, room),
+                      onLongPressed: () => _contextualActions(context, room),
                     ),
-                    unread: room.notificationCount > 0 ||
-                        room.membership == Membership.invite,
-                    onPressed: () => _goToStoryAction(context, room.id),
-                    onLongPressed: () => _contextualActions(context, room),
                   ),
                 ),
               ],
@@ -130,6 +136,17 @@ class StoriesHeader extends StatelessWidget {
 extension on Room {
   String get creatorDisplayname =>
       getState(EventTypes.RoomCreate)!.sender.calcDisplayname();
+
+  bool get hasPosts {
+    final lastEvent = this.lastEvent;
+    if (lastEvent == null) return false;
+    if (lastEvent.type != EventTypes.Message) return false;
+    if (DateTime.now().difference(lastEvent.originServerTs).inHours >
+        ClientStoriesExtension.lifeTimeInHours) {
+      return false;
+    }
+    return true;
+  }
 }
 
 class _StoryButton extends StatelessWidget {
