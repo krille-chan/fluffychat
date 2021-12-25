@@ -29,6 +29,12 @@ class StoryPageController extends State<StoryPage> {
   Timer? _progressTimer;
   bool loadingMode = false;
 
+  final List<Event> events = [];
+
+  Event? get currentEvent => index < events.length ? events[index] : null;
+
+  final TextEditingController replyController = TextEditingController();
+
   static const Duration _step = Duration(milliseconds: 50);
   static const Duration maxProgress = Duration(seconds: 5);
 
@@ -127,11 +133,11 @@ class StoryPageController extends State<StoryPage> {
           .calcDisplayname() ??
       'Story not found';
 
-  Future<List<Event>>? loadStory;
+  Future<void>? loadStory;
 
-  Future<List<Event>> _loadStory() async {
+  Future<void> _loadStory() async {
     final room = Matrix.of(context).client.getRoomById(roomId);
-    if (room == null) return [];
+    if (room == null) return;
     if (room.membership != Membership.join) {
       final joinedFuture = room.client.onSync.stream
           .where((u) => u.rooms?.join?.containsKey(room.id) ?? false)
@@ -140,6 +146,7 @@ class StoryPageController extends State<StoryPage> {
       await joinedFuture;
     }
     final timeline = await room.getTimeline();
+    timeline.requestKeys();
     var events =
         timeline.events.where((e) => e.type == EventTypes.Message).toList();
 
@@ -171,7 +178,24 @@ class StoryPageController extends State<StoryPage> {
         .forEach((event) => downloadAndDecryptAttachment(event,
             event.messageType == MessageTypes.Video && PlatformInfos.isMobile));
 
-    return events.reversed.toList();
+    if (!events.last.receipts
+        .any((receipt) => receipt.user.id == room.client.userID)) {
+      for (var j = 0; j < events.length; j++) {
+        if (events[j]
+            .receipts
+            .any((receipt) => receipt.user.id == room.client.userID)) {
+          index = j;
+          room.setReadMarker(
+            events[index].eventId,
+            mRead: events[index].eventId,
+          );
+          break;
+        }
+      }
+    }
+    this.events.clear();
+    this.events.addAll(events.reversed.toList());
+    return;
   }
 
   @override
