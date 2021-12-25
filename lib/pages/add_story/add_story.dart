@@ -152,6 +152,41 @@ class AddStoryController extends State<AddStoryPage> {
     final text = Matrix.of(context).client.userID!;
     backgroundColor = text.color;
     backgroundColorDark = text.darkColor;
+
+    final shareContent = Matrix.of(context).shareContent;
+    // ignore: unnecessary_null_comparison
+    if (shareContent != null) {
+      image = shareContent.tryGet<MatrixFile>('file');
+      controller.text = shareContent.tryGet<String>('body') ?? '';
+      if (shareContent.tryGet<String>('msgtype') == MessageTypes.Image) {
+        Event(
+          content: shareContent,
+          type: EventTypes.Message,
+          room: Room(id: '!tmproom', client: Matrix.of(context).client),
+          eventId: 'tmpevent',
+          senderId: '@tmpsender:example',
+          originServerTs: DateTime.now(),
+        ).downloadAndDecryptAttachment().then((file) {
+          setState(() {
+            image = file;
+          });
+        });
+      } else if (shareContent.tryGet<String>('msgtype') == MessageTypes.Video) {
+        Event(
+          content: shareContent,
+          type: EventTypes.Message,
+          room: Room(id: '!tmproom', client: Matrix.of(context).client),
+          eventId: 'tmpevent',
+          senderId: '@tmpsender:example',
+          originServerTs: DateTime.now(),
+        ).downloadAndDecryptAttachment().then((file) {
+          setState(() {
+            video = file;
+          });
+        });
+      }
+      Matrix.of(context).shareContent = null;
+    }
   }
 
   @override
