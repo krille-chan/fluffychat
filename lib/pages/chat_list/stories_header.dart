@@ -114,7 +114,8 @@ class StoriesHeader extends StatelessWidget {
                           .avatarUrl,
                       name: room.creatorDisplayname,
                     ),
-                    unread: room.notificationCount > 0,
+                    unread: room.notificationCount > 0 ||
+                        room.membership == Membership.invite,
                     onPressed: () => _goToStoryAction(context, room.id),
                     onLongPressed: () => _contextualActions(context, room),
                   ),

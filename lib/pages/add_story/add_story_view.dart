@@ -1,6 +1,7 @@
 //@dart=2.12
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:video_player/video_player.dart';
@@ -17,9 +18,23 @@ class AddStoryView extends StatelessWidget {
     final video = controller.videoPlayerController;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor:
-            Theme.of(context).appBarTheme.backgroundColor?.withOpacity(0.5),
-        title: Text(L10n.of(context)!.addToStory),
+        systemOverlayStyle: SystemUiOverlayStyle.light,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        iconTheme: const IconThemeData(color: Colors.white),
+        title: Text(
+          L10n.of(context)!.addToStory,
+          style: const TextStyle(
+            color: Colors.white,
+            shadows: [
+              Shadow(
+                color: Colors.black,
+                offset: Offset(0, 0),
+                blurRadius: 5,
+              ),
+            ],
+          ),
+        ),
         actions: controller.hasMedia
             ? null
             : [
@@ -62,12 +77,11 @@ class AddStoryView extends StatelessWidget {
                   ? null
                   : LinearGradient(
                       colors: [
-                        controller.backgroundColor,
                         controller.backgroundColorDark,
                         controller.backgroundColor,
                       ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
                     ),
             ),
             child: Center(
