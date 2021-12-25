@@ -2674,5 +2674,20 @@
   "@commandHint_create": {
     "type": "text",
     "description": "Usage hint for the command /create"
-  }
+  },
+  "openVideoCamera": "Otevřete fotoaparát pro video",
+  "@openVideoCamera": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addToStory": "Přidat do příběhu",
+  "@addToStory": {},
+  "publish": "Uveřejnit",
+  "@publish": {},
+  "whoCanSeeMyStories": "Kdo může vidět moje příběhy?",
+  "@whoCanSeeMyStories": {},
+  "unsubscribeStories": "Odhlásit příběhy",
+  "@unsubscribeStories": {},
+  "thisUserHasNotPostedAnythingYet": "Tento uživatel zatím nic ve svém příběhu nezveřejnil",
+  "@thisUserHasNotPostedAnythingYet": {}
 }
