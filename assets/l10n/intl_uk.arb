@@ -378,7 +378,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "countParticipants": "{count} учасників",
+  "countParticipants": "Учасників: {count}",
   "@countParticipants": {
     "type": "text",
     "placeholders": {
@@ -754,7 +754,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "kicked": "{username} викидає {targetName}",
+  "kicked": "{username} вилучає {targetName}",
   "@kicked": {
     "type": "text",
     "placeholders": {
@@ -762,7 +762,7 @@
       "targetName": {}
     }
   },
-  "kickedAndBanned": "{username} викидає та блокує {targetName}",
+  "kickedAndBanned": "{username} вилучає та блокує {targetName}",
   "@kickedAndBanned": {
     "type": "text",
     "placeholders": {
@@ -770,7 +770,7 @@
       "targetName": {}
     }
   },
-  "kickFromChat": "Викинути з чату",
+  "kickFromChat": "Вилучити з чату",
   "@kickFromChat": {
     "type": "text",
     "placeholders": {}
@@ -1517,7 +1517,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "whoIsAllowedToJoinThisGroup": "Кому дозволено приєднатися до цієї групи",
+  "whoIsAllowedToJoinThisGroup": "Кому дозволено приєднуватися до цієї групи",
   "@whoIsAllowedToJoinThisGroup": {
     "type": "text",
     "placeholders": {}
@@ -2684,5 +2684,7 @@
   "unsubscribeStories": "Скасувати підписку на історії",
   "@unsubscribeStories": {},
   "thisUserHasNotPostedAnythingYet": "Цей користувач ще нічого не опублікував у своїй історії",
-  "@thisUserHasNotPostedAnythingYet": {}
+  "@thisUserHasNotPostedAnythingYet": {},
+  "yourStory": "Ваша історія",
+  "@yourStory": {}
 }
