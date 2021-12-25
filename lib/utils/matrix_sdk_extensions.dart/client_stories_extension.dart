@@ -6,8 +6,8 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:matrix/matrix.dart';
 
 extension ClientStoriesExtension on Client {
-  static const String _storiesRoomType = 'msc3588.stories.stories-room';
-  static const String _storiesBlockListType = 'msc3588.stories.block-list';
+  static const String storiesRoomType = 'msc3588.stories.stories-room';
+  static const String storiesBlockListType = 'msc3588.stories.block-list';
 
   static const int lifeTimeInHours = 24;
   static const int maxPostsPerStory = 20;
@@ -23,7 +23,7 @@ extension ClientStoriesExtension on Client {
               .getState(EventTypes.RoomCreate)
               ?.content
               .tryGet<String>('type') ==
-          _storiesRoomType)
+          storiesRoomType)
       .toList();
 
   Future<List<User>> getUndecidedContactsForStories(Room? storiesRoom) async {
@@ -37,12 +37,12 @@ extension ClientStoriesExtension on Client {
   }
 
   List<String> get storiesBlockList =>
-      accountData[_storiesBlockListType]?.content.tryGetList<String>('users') ??
+      accountData[storiesBlockListType]?.content.tryGetList<String>('users') ??
       [];
 
   Future<void> setStoriesBlockList(List<String> users) => setAccountData(
         userID!,
-        _storiesBlockListType,
+        storiesBlockListType,
         {'users': users},
       );
 
@@ -73,7 +73,7 @@ extension ClientStoriesExtension on Client {
   Future<Room?> getStoriesRoom(BuildContext context) async {
     final candidates = rooms.where((room) =>
         room.getState(EventTypes.RoomCreate)?.content.tryGet<String>('type') ==
-            _storiesRoomType &&
+            storiesRoomType &&
         room.ownPowerLevel >= 100);
     if (candidates.isEmpty) return null;
     if (candidates.length == 1) return candidates.single;

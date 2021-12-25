@@ -65,7 +65,7 @@ class StoryPageController extends State<StoryPage> {
 
   void skip() {
     if (index + 1 >= max) {
-      VRouter.of(context).pop();
+      VRouter.of(context).to('/rooms');
       return;
     }
     setState(() {
@@ -111,6 +111,13 @@ class StoryPageController extends State<StoryPage> {
         })
       : null;
 
+  Uri? get avatar => Matrix.of(context)
+      .client
+      .getRoomById(roomId)
+      ?.getState(EventTypes.RoomCreate)
+      ?.sender
+      .avatarUrl;
+
   String get title =>
       Matrix.of(context)
           .client
@@ -125,6 +132,13 @@ class StoryPageController extends State<StoryPage> {
   Future<List<Event>> _loadStory() async {
     final room = Matrix.of(context).client.getRoomById(roomId);
     if (room == null) return [];
+    if (room.membership != Membership.join) {
+      final joinedFuture = room.client.onSync.stream
+          .where((u) => u.rooms?.join?.containsKey(room.id) ?? false)
+          .first;
+      await room.join();
+      await joinedFuture;
+    }
     final timeline = await room.getTimeline();
     var events =
         timeline.events.where((e) => e.type == EventTypes.Message).toList();
@@ -149,12 +163,15 @@ class StoryPageController extends State<StoryPage> {
     if (events.isNotEmpty) {
       _restartTimer();
     }
+
+    // Preload images and videos
     events
         .where((event) => {MessageTypes.Image, MessageTypes.Video}
             .contains(event.messageType))
         .forEach((event) => downloadAndDecryptAttachment(event,
             event.messageType == MessageTypes.Video && PlatformInfos.isMobile));
-    return events;
+
+    return events.reversed.toList();
   }
 
   @override

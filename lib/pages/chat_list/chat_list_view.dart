@@ -204,7 +204,6 @@ class ChatListView extends StatelessWidget {
                     ),
                   ),
                 ),
-                if (controller.waitForFirstSync) const StoriesHeader(),
                 Expanded(child: _ChatListViewBody(controller)),
               ]),
               floatingActionButton: selectMode == SelectMode.normal
@@ -307,8 +306,12 @@ class _ChatListViewBodyState extends State<_ChatListViewBody> {
         key: ValueKey(Matrix.of(context).client.userID.toString() +
             widget.controller.activeSpaceId.toString()),
         controller: widget.controller.scrollController,
-        itemCount: rooms.length,
+        itemCount: rooms.length + 1,
         itemBuilder: (BuildContext context, int i) {
+          if (i == 0) {
+            return const StoriesHeader();
+          }
+          i--;
           return ChatListItem(
             rooms[i],
             selected: widget.controller.selectedRoomIds.contains(rooms[i].id),

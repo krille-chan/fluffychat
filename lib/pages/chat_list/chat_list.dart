@@ -14,6 +14,7 @@ import 'package:vrouter/vrouter.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions.dart/client_stories_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import '../../../utils/account_bundles.dart';
 import '../../main.dart';
@@ -203,6 +204,10 @@ class ChatListController extends State<ChatList> {
 
   bool roomCheck(Room room) {
     if (room.isSpace && room.membership == Membership.join && !room.isUnread) {
+      return false;
+    }
+    if (room.getState(EventTypes.RoomCreate)?.content?.tryGet<String>('type') ==
+        ClientStoriesExtension.storiesRoomType) {
       return false;
     }
     if (activeSpaceId != null) {

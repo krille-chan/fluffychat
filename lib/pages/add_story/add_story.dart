@@ -97,7 +97,7 @@ class AddStoryController extends State<AddStoryPage> {
 
   void postStory() async {
     final client = Matrix.of(context).client;
-    final storiesRoom = await client.getStoriesRoom(context);
+    var storiesRoom = await client.getStoriesRoom(context);
 
     // Invite contacts if necessary
     final undecided = await showFutureLoadingDialog(
@@ -113,6 +113,7 @@ class AddStoryController extends State<AddStoryPage> {
         builder: (context) => InviteStoryPage(storiesRoom: storiesRoom),
       );
       if (created != true) return;
+      storiesRoom ??= await client.getStoriesRoom(context);
     }
 
     // Post story

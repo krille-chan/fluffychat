@@ -1,6 +1,7 @@
 //@dart=2.12
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:flutter_blurhash/flutter_blurhash.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -11,6 +12,7 @@ import 'package:fluffychat/pages/story/story_page.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/string_color.dart';
+import 'package:fluffychat/widgets/avatar.dart';
 
 class StoryView extends StatelessWidget {
   final StoryPageController controller;
@@ -20,9 +22,32 @@ class StoryView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(controller.title),
-        backgroundColor:
-            Theme.of(context).appBarTheme.backgroundColor?.withOpacity(0.5),
+        titleSpacing: 0,
+        title: ListTile(
+          contentPadding: EdgeInsets.zero,
+          title: Text(
+            controller.title,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              shadows: [
+                Shadow(
+                  color: Colors.black,
+                  offset: Offset(0, 0),
+                  blurRadius: 5,
+                ),
+              ],
+            ),
+          ),
+          leading: Avatar(
+            mxContent: controller.avatar,
+            name: controller.title,
+          ),
+        ),
+        systemOverlayStyle: SystemUiOverlayStyle.light,
+        iconTheme: const IconThemeData(color: Colors.white),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
       ),
       extendBodyBehindAppBar: true,
       body: FutureBuilder<List<Event>>(
@@ -40,13 +65,25 @@ class StoryView extends StatelessWidget {
             ));
           }
           if (events.isEmpty) {
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Center(
-                  child: Text(
-                L10n.of(context)!.thisUserHasNotPostedAnythingYet,
-                textAlign: TextAlign.center,
-              )),
+            return Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Avatar(
+                    mxContent: controller.avatar,
+                    name: controller.title,
+                    size: 128,
+                    fontSize: 64,
+                  ),
+                  const SizedBox(height: 32),
+                  Text(
+                    L10n.of(context)!.thisUserHasNotPostedAnythingYet,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                ],
+              ),
             );
           }
           final event = events[controller.index];
@@ -115,12 +152,11 @@ class StoryView extends StatelessWidget {
                     gradient: event.messageType == MessageTypes.Text
                         ? LinearGradient(
                             colors: [
-                              backgroundColor,
                               backgroundColorDark,
                               backgroundColor,
                             ],
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
                           )
                         : null,
                   ),
@@ -140,40 +176,35 @@ class StoryView extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  bottom: 8,
-                  left: 8,
-                  right: 8,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      for (var i = 0; i < events.length; i++)
-                        Container(
-                          margin: const EdgeInsets.all(4),
-                          width: 8,
-                          height: 8,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black, width: 1),
-                            color: i == controller.index
-                                ? Colors.white
-                                : Colors.grey.shade400,
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                        ),
-                    ],
-                  ),
-                ),
-                Positioned(
-                  top: 0,
-                  left: 0,
-                  right: 0,
+                  top: 4,
+                  left: 4,
+                  right: 4,
                   child: SafeArea(
-                    child: LinearProgressIndicator(
-                      color: Theme.of(context).primaryColor,
-                      backgroundColor: Theme.of(context).colorScheme.surface,
-                      value: controller.loadingMode
-                          ? null
-                          : controller.progress.inMilliseconds /
-                              StoryPageController.maxProgress.inMilliseconds,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        for (var i = 0; i < events.length; i++)
+                          Expanded(
+                            child: i == controller.index
+                                ? LinearProgressIndicator(
+                                    color: Colors.white,
+                                    minHeight: 2,
+                                    backgroundColor: Colors.grey.shade600,
+                                    value: controller.loadingMode
+                                        ? null
+                                        : controller.progress.inMilliseconds /
+                                            StoryPageController
+                                                .maxProgress.inMilliseconds,
+                                  )
+                                : Container(
+                                    margin: const EdgeInsets.all(4),
+                                    height: 2,
+                                    color: i < controller.index
+                                        ? Colors.white
+                                        : Colors.grey.shade600,
+                                  ),
+                          ),
+                      ],
                     ),
                   ),
                 ),
