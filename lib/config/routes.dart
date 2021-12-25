@@ -125,6 +125,16 @@ class AppRoutes {
               buildTransition: _fadeTransition,
               stackedRoutes: [
                 VWidget(
+                  path: '/stories/create',
+                  buildTransition: _fadeTransition,
+                  widget: const AddStoryPage(),
+                ),
+                VWidget(
+                  path: '/stories/:roomid',
+                  buildTransition: _fadeTransition,
+                  widget: const StoryPage(),
+                ),
+                VWidget(
                   path: '/spaces/:roomid',
                   widget: const ChatDetails(),
                   buildTransition: _fadeTransition,
