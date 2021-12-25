@@ -41,7 +41,7 @@ dependencies:
   flutter_slidable: ^1.1.0
   flutter_svg: ^0.22.0
   flutter_typeahead: ^3.2.1
-  future_loading_dialog: ^0.2.1
+  future_loading_dialog: ^0.2.2
   geolocator: ^7.6.2
   hive_flutter: ^1.1.0
   image: ^3.0.8
