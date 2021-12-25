@@ -33,6 +33,7 @@ import 'package:matrix/matrix.dart';
 import 'package:unifiedpush/unifiedpush.dart' hide Message;
 import 'package:vrouter/vrouter.dart';
 
+import 'package:fluffychat/utils/matrix_sdk_extensions.dart/client_stories_extension.dart';
 import '../config/app_config.dart';
 import '../config/setting_keys.dart';
 import 'famedlysdk_store.dart';
@@ -296,7 +297,13 @@ class BackgroundPush {
       if (router == null) {
         return;
       }
-      router.currentState.toSegments(['rooms', roomId]);
+      final isStory = client
+              ?.getRoomById(roomId)
+              ?.getState(EventTypes.RoomCreate)
+              ?.content
+              ?.tryGet<String>('type') ==
+          ClientStoriesExtension.storiesRoomType;
+      router.currentState.toSegments([isStory ? 'stories' : 'rooms', roomId]);
     } catch (e, s) {
       Logs().e('[Push] Failed to open room', e, s);
     }

@@ -136,7 +136,10 @@ class StoryPageController extends State<StoryPage> {
   Future<void>? loadStory;
 
   Future<void> _loadStory() async {
-    final room = Matrix.of(context).client.getRoomById(roomId);
+    final client = Matrix.of(context).client;
+    await client.roomsLoading;
+    await client.accountDataLoading;
+    final room = client.getRoomById(roomId);
     if (room == null) return;
     if (room.membership != Membership.join) {
       final joinedFuture = room.client.onSync.stream

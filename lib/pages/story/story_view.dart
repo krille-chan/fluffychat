@@ -23,6 +23,7 @@ class StoryView extends StatelessWidget {
   Widget build(BuildContext context) {
     final currentEvent = controller.currentEvent;
     return Scaffold(
+      backgroundColor: Colors.blueGrey,
       appBar: AppBar(
         titleSpacing: 0,
         title: ListTile(
