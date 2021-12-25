@@ -180,7 +180,7 @@ build_linux_arm64:
 
 snap_edge:
   stage: deploy
-  image: cibuilds/snapcraft:core18
+  image: diddledan/snapcraft:core18
   script: [./scripts/publish-snap-edge.sh]
   only:
     - main
@@ -229,7 +229,7 @@ update-dependencies:
 
 snap_stable:
   extends: .release
-  image: cibuilds/snapcraft:core18
+  image: diddledan/snapcraft:core18
   script: [./scripts/publish-snap-stable.sh]
   needs: [build_linux_x86]
 
