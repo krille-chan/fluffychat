@@ -302,13 +302,14 @@ class _ChatListViewBodyState extends State<_ChatListViewBody> {
           ],
         );
       }
+      final displayStoriesHeader = widget.controller.activeSpaceId == null;
       child = ListView.builder(
         key: ValueKey(Matrix.of(context).client.userID.toString() +
             widget.controller.activeSpaceId.toString()),
         controller: widget.controller.scrollController,
-        itemCount: rooms.length + 1,
+        itemCount: rooms.length + (displayStoriesHeader ? 1 : 0),
         itemBuilder: (BuildContext context, int i) {
-          if (i == 0 && widget.controller.activeSpaceId == null) {
+          if (i == 0 && displayStoriesHeader) {
             return const StoriesHeader();
           }
           i--;
