@@ -28,6 +28,7 @@ import 'package:fluffychat/pages/settings_ignore_list/settings_ignore_list.dart'
 import 'package:fluffychat/pages/settings_multiple_emotes/settings_multiple_emotes.dart';
 import 'package:fluffychat/pages/settings_notifications/settings_notifications.dart';
 import 'package:fluffychat/pages/settings_security/settings_security.dart';
+import 'package:fluffychat/pages/settings_stories/settings_stories.dart';
 import 'package:fluffychat/pages/settings_style/settings_style.dart';
 import 'package:fluffychat/pages/sign_up/signup.dart';
 import 'package:fluffychat/pages/story/story_page.dart';
@@ -334,6 +335,11 @@ class AppRoutes {
           widget: const SettingsSecurity(),
           buildTransition: _dynamicTransition,
           stackedRoutes: [
+            VWidget(
+              path: 'stories',
+              widget: const SettingsStories(),
+              buildTransition: _dynamicTransition,
+            ),
             VWidget(
               path: 'ignorelist',
               widget: const SettingsIgnoreList(),

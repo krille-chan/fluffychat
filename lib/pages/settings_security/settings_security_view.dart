@@ -25,6 +25,11 @@ class SettingsSecurityView extends StatelessWidget {
           child: Column(
             children: [
               ListTile(
+                trailing: const Icon(Icons.panorama_fish_eye),
+                title: Text(L10n.of(context).whoCanSeeMyStories),
+                onTap: () => VRouter.of(context).to('stories'),
+              ),
+              ListTile(
                 trailing: const Icon(Icons.close),
                 title: Text(L10n.of(context).ignoredUsers),
                 onTap: () => VRouter.of(context).to('ignorelist'),
@@ -61,36 +66,24 @@ class SettingsSecurityView extends StatelessWidget {
                   ),
                   trailing: const Icon(Icons.vpn_key_outlined),
                 ),
-                ListTile(
-                  title: Text(L10n.of(context).crossSigningEnabled),
-                  trailing:
-                      Matrix.of(context).client.encryption.crossSigning.enabled
-                          ? const Icon(Icons.check, color: Colors.green)
-                          : const Icon(Icons.error, color: Colors.red),
-                  onTap:
-                      Matrix.of(context).client.encryption.crossSigning.enabled
-                          ? null
-                          : () => controller.showBootstrapDialog(context),
-                ),
-                ListTile(
-                  title: Text(L10n.of(context).onlineKeyBackupEnabled),
-                  trailing:
-                      Matrix.of(context).client.encryption.keyManager.enabled
-                          ? const Icon(Icons.check, color: Colors.green)
-                          : const Icon(Icons.error, color: Colors.red),
-                  onTap: Matrix.of(context).client.encryption.keyManager.enabled
-                      ? null
-                      : () => controller.showBootstrapDialog(context),
-                ),
-                ListTile(
-                  title: const Text('Session verified'),
-                  trailing: !Matrix.of(context).client.isUnknownSession
-                      ? const Icon(Icons.check, color: Colors.green)
-                      : const Icon(Icons.error, color: Colors.red),
-                  onTap: !Matrix.of(context).client.isUnknownSession
-                      ? null
-                      : () => controller.showBootstrapDialog(context),
-                ),
+                if (!Matrix.of(context).client.encryption.crossSigning.enabled)
+                  ListTile(
+                    title: Text(L10n.of(context).crossSigningEnabled),
+                    trailing: const Icon(Icons.error, color: Colors.red),
+                    onTap: () => controller.showBootstrapDialog(context),
+                  ),
+                if (!Matrix.of(context).client.encryption.keyManager.enabled)
+                  ListTile(
+                    title: Text(L10n.of(context).onlineKeyBackupEnabled),
+                    trailing: const Icon(Icons.error, color: Colors.red),
+                    onTap: () => controller.showBootstrapDialog(context),
+                  ),
+                if (Matrix.of(context).client.isUnknownSession)
+                  ListTile(
+                    title: const Text('Session verified'),
+                    trailing: const Icon(Icons.error, color: Colors.red),
+                    onTap: () => controller.showBootstrapDialog(context),
+                  ),
                 FutureBuilder(
                   future: () async {
                     return (await Matrix.of(context)
@@ -104,15 +97,13 @@ class SettingsSecurityView extends StatelessWidget {
                             .crossSigning
                             .isCached());
                   }(),
-                  builder: (context, snapshot) => ListTile(
-                    title: Text(L10n.of(context).keysCached),
-                    trailing: snapshot.data == true
-                        ? const Icon(Icons.check, color: Colors.green)
-                        : const Icon(Icons.error, color: Colors.red),
-                    onTap: snapshot.data == true
-                        ? null
-                        : () => controller.showBootstrapDialog(context),
-                  ),
+                  builder: (context, snapshot) => snapshot.data == true
+                      ? Container()
+                      : ListTile(
+                          title: Text(L10n.of(context).keysCached),
+                          trailing: const Icon(Icons.error, color: Colors.red),
+                          onTap: () => controller.showBootstrapDialog(context),
+                        ),
                 ),
               },
             ],
