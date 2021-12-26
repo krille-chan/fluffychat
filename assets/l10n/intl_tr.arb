@@ -2689,5 +2689,9 @@
   "unsubscribeStories": "Hikayelerin aboneliğini iptal et",
   "@unsubscribeStories": {},
   "thisUserHasNotPostedAnythingYet": "Bu kullanıcı henüz hikayesinde hiçbir şey yayınlamadı",
-  "@thisUserHasNotPostedAnythingYet": {}
+  "@thisUserHasNotPostedAnythingYet": {},
+  "yourStory": "Senin hikayen",
+  "@yourStory": {},
+  "replyHasBeenSent": "Yanıt gönderildi",
+  "@replyHasBeenSent": {}
 }
