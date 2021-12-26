@@ -3,6 +3,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:flutter/material.dart';
 
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
@@ -75,12 +76,13 @@ class StoryPageController extends State<StoryPage> {
       replyController.clear();
       replyFocus.unfocus();
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(L10n.of(context)!.replyHasBeenSent),
-        ),
+        SnackBar(content: Text(L10n.of(context)!.replyHasBeenSent)),
       );
     } catch (e, s) {
       Logs().w('Unable to reply to story', e, s);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(e.toLocalizedString(context))),
+      );
     } finally {
       setState(() {
         replyLoading = false;
