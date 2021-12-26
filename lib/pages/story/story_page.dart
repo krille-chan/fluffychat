@@ -5,6 +5,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
+import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
@@ -32,11 +33,59 @@ class StoryPageController extends State<StoryPage> {
   Timer? _progressTimer;
   bool loadingMode = false;
 
+  final TextEditingController replyController = TextEditingController();
+  final FocusNode replyFocus = FocusNode();
+
   final List<Event> events = [];
 
   Timeline? timeline;
 
   Event? get currentEvent => index < events.length ? events[index] : null;
+
+  bool replyLoading = false;
+
+  void replyEmojiAction() async {
+    if (replyLoading) return;
+    hold();
+    await showModalBottomSheet(
+      context: context,
+      builder: (context) => EmojiPicker(
+        onEmojiSelected: (c, e) {
+          Navigator.of(context).pop();
+          replyAction(e.emoji);
+        },
+      ),
+    );
+    unhold();
+  }
+
+  void replyAction([String? message]) async {
+    message ??= replyController.text;
+    setState(() {
+      replyLoading = true;
+    });
+    try {
+      final client = Matrix.of(context).client;
+      final roomId = await client.startDirectChat(currentEvent!.senderId);
+      await client.getRoomById(roomId)!.sendTextEvent(
+            message,
+            inReplyTo: currentEvent!,
+          );
+      replyController.clear();
+      replyFocus.unfocus();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(L10n.of(context)!.replyHasBeenSent),
+        ),
+      );
+    } catch (e, s) {
+      Logs().w('Unable to reply to story', e, s);
+    } finally {
+      setState(() {
+        replyLoading = false;
+      });
+    }
+  }
 
   List<User> get currentSeenByUsers {
     final timeline = this.timeline;
@@ -87,8 +136,6 @@ class StoryPageController extends State<StoryPage> {
       seenByUsers.length - 1,
     );
   }
-
-  final TextEditingController replyController = TextEditingController();
 
   static const Duration _step = Duration(milliseconds: 50);
   static const Duration maxProgress = Duration(seconds: 5);
@@ -145,13 +192,19 @@ class StoryPageController extends State<StoryPage> {
 
   DateTime _holdedAt = DateTime.fromMicrosecondsSinceEpoch(0);
 
-  void hold(_) {
+  bool isHold = false;
+
+  void hold([_]) {
     _holdedAt = DateTime.now();
     if (loadingMode) return;
     _progressTimer?.cancel();
+    setState(() {
+      isHold = true;
+    });
   }
 
   void unhold([_]) {
+    isHold = false;
     if (DateTime.now().millisecondsSinceEpoch -
             _holdedAt.millisecondsSinceEpoch <
         200) {
