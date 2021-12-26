@@ -2691,5 +2691,7 @@
   "thisUserHasNotPostedAnythingYet": "Cet(te) utilisateur(trice) n'a encore rien posté dans sa story",
   "@thisUserHasNotPostedAnythingYet": {},
   "yourStory": "Votre story",
-  "@yourStory": {}
+  "@yourStory": {},
+  "replyHasBeenSent": "La réponse a été envoyée",
+  "@replyHasBeenSent": {}
 }
