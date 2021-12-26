@@ -125,9 +125,7 @@ class StoriesHeader extends StatelessWidget {
                       ),
                       unread: room.notificationCount > 0 ||
                           room.membership == Membership.invite,
-                      onPressed: () => room.hasPosts
-                          ? _goToStoryAction(context, room.id)
-                          : _contextualActions(context, room),
+                      onPressed: () => _goToStoryAction(context, room.id),
                       onLongPressed: () => _contextualActions(context, room),
                     ),
                   ),
@@ -144,6 +142,7 @@ extension on Room {
       getState(EventTypes.RoomCreate)!.sender.calcDisplayname();
 
   bool get hasPosts {
+    if (membership == Membership.invite) return true;
     final lastEvent = this.lastEvent;
     if (lastEvent == null) return false;
     if (lastEvent.type != EventTypes.Message) return false;
