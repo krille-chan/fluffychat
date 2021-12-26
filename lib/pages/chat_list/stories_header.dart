@@ -25,8 +25,18 @@ class StoriesHeader extends StatelessWidget {
   void _addToStoryAction(BuildContext context) =>
       VRouter.of(context).to('/stories/create');
 
-  void _goToStoryAction(BuildContext context, String roomId) =>
-      VRouter.of(context).toSegments(['stories', roomId]);
+  void _goToStoryAction(BuildContext context, String roomId) async {
+    final room = Matrix.of(context).client.getRoomById(roomId);
+    if (room == null) return;
+    if (room.membership != Membership.join) {
+      final result = await showFutureLoadingDialog(
+        context: context,
+        future: room.join,
+      );
+      if (result.error != null) return;
+    }
+    VRouter.of(context).toSegments(['stories', roomId]);
+  }
 
   void _contextualActions(BuildContext context, Room room) async {
     final action = await showModalActionSheet<ContextualRoomAction>(
