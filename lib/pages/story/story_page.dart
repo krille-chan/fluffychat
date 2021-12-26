@@ -139,7 +139,7 @@ class StoryPageController extends State<StoryPage> {
       );
     }
     return L10n.of(context)!.seenByUserAndCountOthers(
-      seenByUsers.single.calcDisplayname(),
+      seenByUsers.first.calcDisplayname(),
       seenByUsers.length - 1,
     );
   }
