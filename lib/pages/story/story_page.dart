@@ -140,6 +140,7 @@ class StoryPageController extends State<StoryPage> {
       index++;
     });
     _restartTimer();
+    maybeSetReadMarker();
   }
 
   DateTime _holdedAt = DateTime.fromMicrosecondsSinceEpoch(0);
@@ -198,69 +199,87 @@ class StoryPageController extends State<StoryPage> {
   Future<void>? loadStory;
 
   Future<void> _loadStory() async {
-    final client = Matrix.of(context).client;
-    await client.roomsLoading;
-    await client.accountDataLoading;
-    final room = client.getRoomById(roomId);
-    if (room == null) return;
-    if (room.membership != Membership.join) {
-      final joinedFuture = room.client.onSync.stream
-          .where((u) => u.rooms?.join?.containsKey(room.id) ?? false)
-          .first;
-      await room.join();
-      await joinedFuture;
-    }
-    final timeline = this.timeline = await room.getTimeline();
-    timeline.requestKeys();
-    var events =
-        timeline.events.where((e) => e.type == EventTypes.Message).toList();
-
-    final hasOutdatedEvents = events.removeOutdatedEvents();
-
-    // Request history if possible
-    if (!hasOutdatedEvents &&
-        timeline.events.first.type != EventTypes.RoomCreate &&
-        events.length < 30) {
-      try {
-        await timeline.requestHistory(historyCount: 100);
-        events =
-            timeline.events.where((e) => e.type == EventTypes.Message).toList();
-        events.removeOutdatedEvents();
-      } catch (e, s) {
-        Logs().d('Unable to request history in stories', e, s);
+    try {
+      final client = Matrix.of(context).client;
+      await client.roomsLoading;
+      await client.accountDataLoading;
+      final room = client.getRoomById(roomId);
+      if (room == null) return;
+      if (room.membership != Membership.join) {
+        final joinedFuture = room.client.onSync.stream
+            .where((u) => u.rooms?.join?.containsKey(room.id) ?? false)
+            .first;
+        await room.join();
+        await joinedFuture;
       }
-    }
+      final timeline = this.timeline = await room.getTimeline();
+      timeline.requestKeys();
+      var events =
+          timeline.events.where((e) => e.type == EventTypes.Message).toList();
 
-    max = events.length;
-    if (events.isNotEmpty) {
-      _restartTimer();
-    }
+      final hasOutdatedEvents = events.removeOutdatedEvents();
 
-    // Preload images and videos
-    events
-        .where((event) => {MessageTypes.Image, MessageTypes.Video}
-            .contains(event.messageType))
-        .forEach((event) => downloadAndDecryptAttachment(event,
-            event.messageType == MessageTypes.Video && PlatformInfos.isMobile));
-
-    if (!events.last.receipts
-        .any((receipt) => receipt.user.id == room.client.userID)) {
-      for (var j = 0; j < events.length; j++) {
-        if (events[j]
-            .receipts
-            .any((receipt) => receipt.user.id == room.client.userID)) {
-          index = j;
-          room.setReadMarker(
-            events[index].eventId,
-            mRead: events[index].eventId,
-          );
-          break;
+      // Request history if possible
+      if (!hasOutdatedEvents &&
+          timeline.events.first.type != EventTypes.RoomCreate &&
+          events.length < 30) {
+        try {
+          await timeline
+              .requestHistory(historyCount: 100)
+              .timeout(const Duration(seconds: 5));
+          events = timeline.events
+              .where((e) => e.type == EventTypes.Message)
+              .toList();
+          events.removeOutdatedEvents();
+        } catch (e, s) {
+          Logs().d('Unable to request history in stories', e, s);
         }
       }
+
+      max = events.length;
+      if (events.isNotEmpty) {
+        _restartTimer();
+      }
+
+      // Preload images and videos
+      events
+          .where((event) => {MessageTypes.Image, MessageTypes.Video}
+              .contains(event.messageType))
+          .forEach((event) => downloadAndDecryptAttachment(
+              event,
+              event.messageType == MessageTypes.Video &&
+                  PlatformInfos.isMobile));
+
+      // Reverse list
+      this.events.clear();
+      this.events.addAll(events.reversed.toList());
+
+      // Set start position
+      if (this.events.isNotEmpty) {
+        final receiptId = room.roomAccountData['m.receipt']?.content
+            .tryGetMap<String, dynamic>(room.client.userID!)
+            ?.tryGet<String>('event_id');
+        index = this.events.indexWhere((event) => event.eventId == receiptId);
+        index++;
+        if (index >= this.events.length) index = 0;
+      }
+      maybeSetReadMarker();
+    } catch (e, s) {
+      Logs().e('Unable to load story', e, s);
     }
-    this.events.clear();
-    this.events.addAll(events.reversed.toList());
     return;
+  }
+
+  void maybeSetReadMarker() {
+    final currentEvent = this.currentEvent;
+    if (currentEvent == null) return;
+    final room = currentEvent.room;
+    if (!currentSeenByUsers.any((u) => u.id == u.room.client.userID)) {
+      room.setReadMarker(
+        currentEvent.eventId,
+        mRead: currentEvent.eventId,
+      );
+    }
   }
 
   @override

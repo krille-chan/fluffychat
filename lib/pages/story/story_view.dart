@@ -97,7 +97,10 @@ class StoryView extends StatelessWidget {
                   Text(
                     L10n.of(context)!.thisUserHasNotPostedAnythingYet,
                     textAlign: TextAlign.center,
-                    style: const TextStyle(fontSize: 20),
+                    style: const TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                    ),
                   ),
                 ],
               ),
