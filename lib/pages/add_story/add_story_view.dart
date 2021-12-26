@@ -88,7 +88,8 @@ class AddStoryView extends StatelessWidget {
               child: TextField(
                 controller: controller.controller,
                 minLines: 1,
-                maxLines: 20,
+                maxLines: 15,
+                maxLength: 500,
                 autofocus: true,
                 textAlign: TextAlign.center,
                 style: TextStyle(

@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_blurhash/flutter_blurhash.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
+import 'package:matrix_link_text/link_text.dart';
 import 'package:video_player/video_player.dart';
 
 import 'package:fluffychat/pages/story/story_page.dart';
@@ -13,6 +14,7 @@ import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/string_color.dart';
+import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 
 class StoryView extends StatelessWidget {
@@ -69,6 +71,20 @@ class StoryView extends StatelessWidget {
             ),
           ),
         ),
+        actions: [
+          AnimatedOpacity(
+              duration: const Duration(seconds: 1),
+              opacity: controller.isHold ? 0 : 1,
+              child: PopupMenuButton<bool>(
+                onSelected: controller.report,
+                itemBuilder: (context) => [
+                  PopupMenuItem(
+                    value: true,
+                    child: Text(L10n.of(context)!.reportMessage),
+                  ),
+                ],
+              )),
+        ],
         systemOverlayStyle: SystemUiOverlayStyle.light,
         iconTheme: const IconThemeData(color: Colors.white),
         elevation: 0,
@@ -189,18 +205,35 @@ class StoryView extends StatelessWidget {
                         : null,
                   ),
                   alignment: Alignment.center,
-                  child: Text(
-                    controller.loadingMode
-                        ? L10n.of(context)!.loadingPleaseWait
-                        : event.content.tryGet<String>('body') ?? '',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: Colors.white,
-                      backgroundColor: event.messageType == MessageTypes.Text
-                          ? null
-                          : Colors.black,
-                    ),
+                  child: ListView(
+                    shrinkWrap: true,
+                    children: [
+                      LinkText(
+                        text: controller.loadingMode
+                            ? L10n.of(context)!.loadingPleaseWait
+                            : event.content.tryGet<String>('body') ?? '',
+                        textAlign: TextAlign.center,
+                        onLinkTap: (url) =>
+                            UrlLauncher(context, url).launchUrl(),
+                        linkStyle: TextStyle(
+                          fontSize: 24,
+                          color: Colors.blue.shade50,
+                          decoration: TextDecoration.underline,
+                          backgroundColor:
+                              event.messageType == MessageTypes.Text
+                                  ? null
+                                  : Colors.black,
+                        ),
+                        textStyle: TextStyle(
+                          fontSize: 24,
+                          color: Colors.white,
+                          backgroundColor:
+                              event.messageType == MessageTypes.Text
+                                  ? null
+                                  : Colors.black,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 Positioned(

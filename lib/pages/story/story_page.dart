@@ -3,10 +3,12 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter/material.dart';
 
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:video_player/video_player.dart';
@@ -227,6 +229,55 @@ class StoryPageController extends State<StoryPage> {
 
   final Map<String, Future<MatrixFile>> _fileCache = {};
 
+  void report(_) async {
+    _modalOpened = true;
+    final event = currentEvent;
+    if (event == null) return;
+    final score = await showConfirmationDialog<int>(
+        context: context,
+        title: L10n.of(context)!.reportMessage,
+        message: L10n.of(context)!.howOffensiveIsThisContent,
+        cancelLabel: L10n.of(context)!.cancel,
+        okLabel: L10n.of(context)!.ok,
+        actions: [
+          AlertDialogAction(
+            key: -100,
+            label: L10n.of(context)!.extremeOffensive,
+          ),
+          AlertDialogAction(
+            key: -50,
+            label: L10n.of(context)!.offensive,
+          ),
+          AlertDialogAction(
+            key: 0,
+            label: L10n.of(context)!.inoffensive,
+          ),
+        ]);
+    if (score == null) return;
+    final reason = await showTextInputDialog(
+        useRootNavigator: false,
+        context: context,
+        title: L10n.of(context)!.whyDoYouWantToReportThis,
+        okLabel: L10n.of(context)!.ok,
+        cancelLabel: L10n.of(context)!.cancel,
+        textFields: [DialogTextField(hintText: L10n.of(context)!.reason)]);
+    if (reason == null || reason.single.isEmpty) return;
+    final result = await showFutureLoadingDialog(
+      context: context,
+      future: () => Matrix.of(context).client.reportContent(
+            roomId,
+            event.eventId,
+            reason: reason.single,
+            score: score,
+          ),
+    );
+    _modalOpened = false;
+    if (result.error != null) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(L10n.of(context)!.contentHasBeenReported)),
+    );
+  }
+
   Future<MatrixFile> downloadAndDecryptAttachment(
       Event event, bool getThumbnail) async {
     return _fileCache[event.eventId] ??=
@@ -361,4 +412,9 @@ extension on List<Event> {
     }
     return false;
   }
+}
+
+enum PopupStoryAction {
+  report,
+  message,
 }
