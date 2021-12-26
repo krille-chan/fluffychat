@@ -5,6 +5,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:video_player/video_player.dart';
@@ -13,6 +14,8 @@ import 'package:vrouter/vrouter.dart';
 import 'package:fluffychat/pages/story/story_view.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/client_stories_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/room_status_extension.dart';
+import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class StoryPage extends StatefulWidget {
@@ -31,7 +34,59 @@ class StoryPageController extends State<StoryPage> {
 
   final List<Event> events = [];
 
+  Timeline? timeline;
+
   Event? get currentEvent => index < events.length ? events[index] : null;
+
+  List<User> get currentSeenByUsers {
+    final timeline = this.timeline;
+    final currentEvent = this.currentEvent;
+    if (timeline == null || currentEvent == null) return [];
+    return Matrix.of(context).client.getRoomById(roomId)?.getSeenByUsers(
+              timeline,
+              events,
+              {},
+              eventId: currentEvent.eventId,
+            ) ??
+        [];
+  }
+
+  void displaySeenByUsers() => showModalBottomSheet(
+        context: context,
+        builder: (context) => Scaffold(
+          appBar: AppBar(
+            title: Text(seenByUsersTitle),
+          ),
+          body: ListView.builder(
+            itemCount: currentSeenByUsers.length,
+            itemBuilder: (context, i) => ListTile(
+              leading: Avatar(
+                mxContent: currentSeenByUsers[i].avatarUrl,
+                name: currentSeenByUsers[i].calcDisplayname(),
+              ),
+              title: Text(currentSeenByUsers[i].calcDisplayname()),
+            ),
+          ),
+        ),
+      );
+
+  String get seenByUsersTitle {
+    final seenByUsers = currentSeenByUsers;
+    if (seenByUsers.isEmpty) return '';
+    if (seenByUsers.length == 1) {
+      return L10n.of(context)!.seenByUser(seenByUsers.single.calcDisplayname());
+    }
+    if (seenByUsers.length == 2) {
+      return L10n.of(context)!.seenByUserAndUser(
+        seenByUsers.first.calcDisplayname(),
+        seenByUsers.last.calcDisplayname(),
+      );
+    }
+    return L10n.of(context)!.seenByUserAndCountOthers(
+      seenByUsers.single.calcDisplayname(),
+      seenByUsers.length - 1,
+    );
+  }
 
   final TextEditingController replyController = TextEditingController();
 
@@ -54,6 +109,13 @@ class StoryPageController extends State<StoryPage> {
         skip();
       }
     });
+  }
+
+  bool get isOwnStory {
+    final client = Matrix.of(context).client;
+    final room = client.getRoomById(roomId);
+    if (room == null) return false;
+    return room.ownPowerLevel >= 100;
   }
 
   String get roomId => VRouter.of(context).pathParameters['roomid'] ?? '';
@@ -148,7 +210,7 @@ class StoryPageController extends State<StoryPage> {
       await room.join();
       await joinedFuture;
     }
-    final timeline = await room.getTimeline();
+    final timeline = this.timeline = await room.getTimeline();
     timeline.requestKeys();
     var events =
         timeline.events.where((e) => e.type == EventTypes.Message).toList();

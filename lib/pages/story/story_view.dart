@@ -225,6 +225,27 @@ class StoryView extends StatelessWidget {
                     ),
                   ),
                 ),
+                if (controller.isOwnStory &&
+                    controller.currentSeenByUsers.isNotEmpty)
+                  Positioned(
+                      bottom: 16,
+                      left: 16,
+                      right: 16,
+                      child: SafeArea(
+                        child: Center(
+                          child: OutlinedButton.icon(
+                            onPressed: controller.displaySeenByUsers,
+                            icon: const Icon(
+                              Icons.visibility_outlined,
+                              color: Colors.white70,
+                            ),
+                            label: Text(
+                              controller.seenByUsersTitle,
+                              style: const TextStyle(color: Colors.white70),
+                            ),
+                          ),
+                        ),
+                      )),
               ],
             ),
           );

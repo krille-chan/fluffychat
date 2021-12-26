@@ -69,20 +69,19 @@ extension RoomStatusExtension on Room {
   }
 
   List<User> getSeenByUsers(
-    Timeline timeline,
-    List<Event> filteredEvents,
-    Set<String> unfolded,
-  ) {
+      Timeline timeline, List<Event> filteredEvents, Set<String> unfolded,
+      {String? eventId}) {
     if (timeline.events.isEmpty) return [];
 
     final filteredEvents = timeline.getFilteredEvents(unfolded: unfolded);
     if (filteredEvents.isEmpty) return [];
+    eventId ??= filteredEvents.first.eventId;
 
     final lastReceipts = <User>{};
     // now we iterate the timeline events until we hit the first rendered event
     for (final event in timeline.events) {
       lastReceipts.addAll(event.receipts.map((r) => r.user));
-      if (event.eventId == filteredEvents.first.eventId) {
+      if (event.eventId == eventId) {
         break;
       }
     }
