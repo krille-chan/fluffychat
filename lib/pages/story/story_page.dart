@@ -3,7 +3,6 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:flutter/material.dart';
 
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
@@ -14,6 +13,7 @@ import 'package:video_player/video_player.dart';
 import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/pages/story/story_view.dart';
+import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/client_stories_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/room_status_extension.dart';
