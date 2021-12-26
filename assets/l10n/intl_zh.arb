@@ -2691,5 +2691,7 @@
   "thisUserHasNotPostedAnythingYet": "该用户尚未在 story 发布任何内容",
   "@thisUserHasNotPostedAnythingYet": {},
   "yourStory": "你的 story",
-  "@yourStory": {}
+  "@yourStory": {},
+  "replyHasBeenSent": "已发送回复",
+  "@replyHasBeenSent": {}
 }
