@@ -2689,5 +2689,7 @@
   "unsubscribeStories": "Se désinscrire des stories",
   "@unsubscribeStories": {},
   "thisUserHasNotPostedAnythingYet": "Cet(te) utilisateur(trice) n'a encore rien posté dans sa story",
-  "@thisUserHasNotPostedAnythingYet": {}
+  "@thisUserHasNotPostedAnythingYet": {},
+  "yourStory": "Votre story",
+  "@yourStory": {}
 }
