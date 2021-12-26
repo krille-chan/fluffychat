@@ -167,6 +167,7 @@ build_linux_x86:
 
 build_linux_arm64:
   stage: coverage
+  before_script: [flutter upgrade]
   script: [./scripts/build-linux.sh]
   tags: [docker_arm64]
   only:
