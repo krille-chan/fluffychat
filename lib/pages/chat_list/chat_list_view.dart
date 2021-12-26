@@ -309,10 +309,12 @@ class _ChatListViewBodyState extends State<_ChatListViewBody> {
         controller: widget.controller.scrollController,
         itemCount: rooms.length + (displayStoriesHeader ? 1 : 0),
         itemBuilder: (BuildContext context, int i) {
-          if (i == 0 && displayStoriesHeader) {
-            return const StoriesHeader();
+          if (displayStoriesHeader) {
+            if (i == 0) {
+              return const StoriesHeader();
+            }
+            i--;
           }
-          i--;
           return ChatListItem(
             rooms[i],
             selected: widget.controller.selectedRoomIds.contains(rooms[i].id),
