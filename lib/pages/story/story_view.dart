@@ -250,8 +250,6 @@ class StoryView extends StatelessWidget {
                       opacity: controller.isHold ? 0 : 1,
                       child: SafeArea(
                         child: TextField(
-                          onTap: controller.hold,
-                          onEditingComplete: controller.unhold,
                           focusNode: controller.replyFocus,
                           controller: controller.replyController,
                           minLines: 1,

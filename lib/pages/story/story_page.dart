@@ -43,10 +43,11 @@ class StoryPageController extends State<StoryPage> {
   Event? get currentEvent => index < events.length ? events[index] : null;
 
   bool replyLoading = false;
+  bool _emojiSelector = false;
 
   void replyEmojiAction() async {
     if (replyLoading) return;
-    hold();
+    _emojiSelector = true;
     await showModalBottomSheet(
       context: context,
       builder: (context) => EmojiPicker(
@@ -56,7 +57,7 @@ class StoryPageController extends State<StoryPage> {
         },
       ),
     );
-    unhold();
+    _emojiSelector = false;
   }
 
   void replyAction([String? message]) async {
@@ -144,6 +145,7 @@ class StoryPageController extends State<StoryPage> {
     _progressTimer?.cancel();
     if (reset) progress = Duration.zero;
     _progressTimer = Timer.periodic(_step, (_) {
+      if (replyFocus.hasFocus || _emojiSelector) return;
       if (!mounted) {
         _progressTimer?.cancel();
         return;
