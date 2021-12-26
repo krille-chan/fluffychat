@@ -2689,5 +2689,7 @@
   "unsubscribeStories": "取消 stories 订阅",
   "@unsubscribeStories": {},
   "thisUserHasNotPostedAnythingYet": "该用户尚未在 story 发布任何内容",
-  "@thisUserHasNotPostedAnythingYet": {}
+  "@thisUserHasNotPostedAnythingYet": {},
+  "yourStory": "你的 story",
+  "@yourStory": {}
 }
