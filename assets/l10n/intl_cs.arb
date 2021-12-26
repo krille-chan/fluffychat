@@ -2689,5 +2689,7 @@
   "unsubscribeStories": "Odhlásit příběhy",
   "@unsubscribeStories": {},
   "thisUserHasNotPostedAnythingYet": "Tento uživatel zatím nic ve svém příběhu nezveřejnil",
-  "@thisUserHasNotPostedAnythingYet": {}
+  "@thisUserHasNotPostedAnythingYet": {},
+  "yourStory": "Váš příběh",
+  "@yourStory": {}
 }
