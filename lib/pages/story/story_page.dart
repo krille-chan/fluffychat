@@ -44,11 +44,11 @@ class StoryPageController extends State<StoryPage> {
   Event? get currentEvent => index < events.length ? events[index] : null;
 
   bool replyLoading = false;
-  bool _emojiSelector = false;
+  bool _modalOpened = false;
 
   void replyEmojiAction() async {
     if (replyLoading) return;
-    _emojiSelector = true;
+    _modalOpened = true;
     await showModalBottomSheet(
       context: context,
       builder: (context) => EmojiPicker(
@@ -58,7 +58,7 @@ class StoryPageController extends State<StoryPage> {
         },
       ),
     );
-    _emojiSelector = false;
+    _modalOpened = false;
   }
 
   void replyAction([String? message]) async {
@@ -103,24 +103,28 @@ class StoryPageController extends State<StoryPage> {
         [];
   }
 
-  void displaySeenByUsers() => showModalBottomSheet(
-        context: context,
-        builder: (context) => Scaffold(
-          appBar: AppBar(
-            title: Text(seenByUsersTitle),
-          ),
-          body: ListView.builder(
-            itemCount: currentSeenByUsers.length,
-            itemBuilder: (context, i) => ListTile(
-              leading: Avatar(
-                mxContent: currentSeenByUsers[i].avatarUrl,
-                name: currentSeenByUsers[i].calcDisplayname(),
-              ),
-              title: Text(currentSeenByUsers[i].calcDisplayname()),
+  void displaySeenByUsers() async {
+    _modalOpened = true;
+    await showModalBottomSheet(
+      context: context,
+      builder: (context) => Scaffold(
+        appBar: AppBar(
+          title: Text(seenByUsersTitle),
+        ),
+        body: ListView.builder(
+          itemCount: currentSeenByUsers.length,
+          itemBuilder: (context, i) => ListTile(
+            leading: Avatar(
+              mxContent: currentSeenByUsers[i].avatarUrl,
+              name: currentSeenByUsers[i].calcDisplayname(),
             ),
+            title: Text(currentSeenByUsers[i].calcDisplayname()),
           ),
         ),
-      );
+      ),
+    );
+    _modalOpened = false;
+  }
 
   String get seenByUsersTitle {
     final seenByUsers = currentSeenByUsers;
@@ -147,7 +151,7 @@ class StoryPageController extends State<StoryPage> {
     _progressTimer?.cancel();
     if (reset) progress = Duration.zero;
     _progressTimer = Timer.periodic(_step, (_) {
-      if (replyFocus.hasFocus || _emojiSelector) return;
+      if (replyFocus.hasFocus || _modalOpened) return;
       if (!mounted) {
         _progressTimer?.cancel();
         return;
