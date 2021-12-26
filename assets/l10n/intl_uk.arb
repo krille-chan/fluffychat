@@ -2686,5 +2686,7 @@
   "thisUserHasNotPostedAnythingYet": "Цей користувач ще нічого не опублікував у своїй історії",
   "@thisUserHasNotPostedAnythingYet": {},
   "yourStory": "Ваша історія",
-  "@yourStory": {}
+  "@yourStory": {},
+  "replyHasBeenSent": "Відповідь надіслано",
+  "@replyHasBeenSent": {}
 }
