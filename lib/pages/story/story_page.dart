@@ -15,6 +15,7 @@ import 'package:video_player/video_player.dart';
 import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/pages/story/story_view.dart';
+import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/client_stories_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -67,16 +68,20 @@ class StoryPageController extends State<StoryPage> {
 
   void replyAction([String? message]) async {
     message ??= replyController.text;
+    final currentEvent = this.currentEvent;
+    if (currentEvent == null) return;
     setState(() {
       replyLoading = true;
     });
     try {
       final client = Matrix.of(context).client;
-      final roomId = await client.startDirectChat(currentEvent!.senderId);
-      await client.getRoomById(roomId)!.sendTextEvent(
-            message,
-            inReplyTo: currentEvent!,
-          );
+      final roomId = await client.startDirectChat(currentEvent.senderId);
+      var replyText = L10n.of(context)!.storyFrom(
+          currentEvent.originServerTs.localizedTime(context),
+          currentEvent.content.tryGet<String>('body') ?? '');
+      replyText = replyText.split('\n').map((line) => '> $line').join('\n');
+      message = '$replyText\n\n$message';
+      await client.getRoomById(roomId)!.sendTextEvent(message);
       replyController.clear();
       replyFocus.unfocus();
       ScaffoldMessenger.of(context).showSnackBar(

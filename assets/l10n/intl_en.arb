@@ -2676,5 +2676,13 @@
     "placeholders": {
       "size": {}
     }
+  },
+  "storyFrom": "Story from {date}: \n{body}",
+  "@storyFrom": {
+    "type": "text",
+    "placeholders": {
+      "date": {},
+      "body": {}
+    }
   }
 }
