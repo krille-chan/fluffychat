@@ -2693,5 +2693,12 @@
   "yourStory": "Senin hikayen",
   "@yourStory": {},
   "replyHasBeenSent": "Yanıt gönderildi",
-  "@replyHasBeenSent": {}
+  "@replyHasBeenSent": {},
+  "videoWithSize": "Video ({size})",
+  "@videoWithSize": {
+    "type": "text",
+    "placeholders": {
+      "size": {}
+    }
+  }
 }
