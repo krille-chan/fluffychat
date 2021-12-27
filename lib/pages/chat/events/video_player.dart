@@ -115,7 +115,7 @@ class _EventVideoPlayerState extends State<EventVideoPlayer> {
               ),
             ),
           ] else
-            Center(child: Chewie(controller: chewieManager)),
+            Material(child: Center(child: Chewie(controller: chewieManager))),
         ],
       ),
     );
