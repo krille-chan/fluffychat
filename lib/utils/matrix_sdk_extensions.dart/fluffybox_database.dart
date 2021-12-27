@@ -7,6 +7,7 @@ import 'dart:typed_data';
 import 'package:flutter/foundation.dart' hide Key;
 import 'package:flutter/services.dart';
 
+import 'package:fluffybox/hive.dart' as fluffybox;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:matrix/matrix.dart';
@@ -19,7 +20,7 @@ class FlutterFluffyBoxDatabase extends FluffyBoxDatabase {
   FlutterFluffyBoxDatabase(
     String name,
     String path, {
-    HiveCipher? key,
+    fluffybox.HiveCipher? key,
   }) : super(
           name,
           path,
@@ -30,7 +31,7 @@ class FlutterFluffyBoxDatabase extends FluffyBoxDatabase {
 
   static Future<FluffyBoxDatabase> databaseBuilder(Client client) async {
     Logs().d('Open FluffyBox...');
-    HiveAesCipher? hiverCipher;
+    fluffybox.HiveAesCipher? hiverCipher;
     try {
       // Workaround for secure storage is calling Platform.operatingSystem on web
       if (kIsWeb) throw MissingPluginException();
@@ -50,7 +51,7 @@ class FlutterFluffyBoxDatabase extends FluffyBoxDatabase {
       final rawEncryptionKey = await secureStorage.read(key: _cipherStorageKey);
       if (rawEncryptionKey == null) throw MissingPluginException();
 
-      hiverCipher = HiveAesCipher(base64Url.decode(rawEncryptionKey));
+      hiverCipher = fluffybox.HiveAesCipher(base64Url.decode(rawEncryptionKey));
     } on MissingPluginException catch (_) {
       Logs().i('FluffyBox encryption is not supported on this platform');
     } catch (_) {
