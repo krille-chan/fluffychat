@@ -97,8 +97,8 @@ apps:
       - home
     slots:
       - dbus-svc
-    command-chain:
-      - snap/command-chain/desktop-launch
+    #command-chain:
+    #  - snap/command-chain/desktop-launch
 assumes:
   - snapd2.43
 plugs:
