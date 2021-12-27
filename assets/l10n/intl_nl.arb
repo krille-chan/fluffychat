@@ -2678,5 +2678,26 @@
   "@openVideoCamera": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "yourStory": "Jouw verhaal",
+  "@yourStory": {},
+  "replyHasBeenSent": "Antwoord is verzonden",
+  "@replyHasBeenSent": {},
+  "whoCanSeeMyStories": "Wie kan mijn verhalen zien?",
+  "@whoCanSeeMyStories": {},
+  "videoWithSize": "Video ({size})",
+  "@videoWithSize": {
+    "type": "text",
+    "placeholders": {
+      "size": {}
+    }
+  },
+  "addToStory": "Toevoegen aan verhaal",
+  "@addToStory": {},
+  "publish": "Publiceren",
+  "@publish": {},
+  "unsubscribeStories": "Verhalen afmelden",
+  "@unsubscribeStories": {},
+  "thisUserHasNotPostedAnythingYet": "Deze persoon heeft nog niets in zijn verhaal geplaatst",
+  "@thisUserHasNotPostedAnythingYet": {}
 }
