@@ -2683,5 +2683,24 @@
   "whoCanSeeMyStories": "Siapa saja yang dapat melihat cerita saya?",
   "@whoCanSeeMyStories": {},
   "unsubscribeStories": "Batalkan langganan cerita",
-  "@unsubscribeStories": {}
+  "@unsubscribeStories": {},
+  "yourStory": "Cerita Anda",
+  "@yourStory": {},
+  "replyHasBeenSent": "Balasan telah dikirim",
+  "@replyHasBeenSent": {},
+  "storyFrom": "Cerita dari {date}:\n{body}",
+  "@storyFrom": {
+    "type": "text",
+    "placeholders": {
+      "date": {},
+      "body": {}
+    }
+  },
+  "videoWithSize": "Video ({size})",
+  "@videoWithSize": {
+    "type": "text",
+    "placeholders": {
+      "size": {}
+    }
+  }
 }
