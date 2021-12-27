@@ -67,16 +67,15 @@ class ChatController extends State<Chat> {
   void onDragExited(_) => setState(() => dragging = false);
   void onDragDone(DropDoneDetails details) async {
     setState(() => dragging = false);
-    for (final url in details.urls) {
-      final file = File.fromUri(url);
-      final bytes = await file.readAsBytes();
+    for (final xfile in details.files) {
+      final bytes = await xfile.readAsBytes();
       await showDialog(
         context: context,
         useRootNavigator: false,
         builder: (c) => SendFileDialog(
           file: MatrixFile(
             bytes: bytes,
-            name: file.path.split('/').last,
+            name: xfile.name,
           ).detectFileType,
           room: room,
         ),

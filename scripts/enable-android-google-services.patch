@@ -99,5 +99,5 @@ index e1670a32..7e3238b0 100644
 +  fcm_shared_isolate:
 +    git: https://gitlab.com/famedly/libraries/fcm_shared_isolate.git
    file_picker_cross: ^4.5.0
+   flick_video_player: ^0.3.1
    flutter:
-     sdk: flutter

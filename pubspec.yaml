@@ -14,7 +14,7 @@ dependencies:
   blurhash_dart: ^1.1.0
   cached_network_image: ^3.1.0
   cupertino_icons: any
-  desktop_drop: ^0.2.0
+  desktop_drop: ^0.3.0
   desktop_notifications: ^0.6.1
   email_validator: ^2.0.1
   emoji_picker_flutter: ^1.0.7
@@ -51,7 +51,7 @@ dependencies:
   lottie: ^1.2.1
   matrix: ^0.7.0
   matrix_link_text: ^1.0.2
-  open_noti_settings: ^0.3.0
+  open_noti_settings: ^0.4.0
   package_info_plus: ^1.2.1
   path_provider: ^2.0.5
   permission_handler: ^8.3.0
