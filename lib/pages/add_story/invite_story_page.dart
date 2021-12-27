@@ -31,11 +31,16 @@ class _InviteStoryPageState extends State<InviteStoryPage> {
       context: context,
       future: () async {
         final client = Matrix.of(context).client;
-        final room = await client.getStoriesRoom(context);
+        var room = await client.getStoriesRoom(context);
+        final inviteList = _invite.toList();
         if (room == null) {
-          await client.createStoriesRoom(_invite.toList());
-        } else {
-          for (final userId in _invite) {
+          room = await client.createStoriesRoom(inviteList.take(10).toList());
+          if (inviteList.length > 10) {
+            inviteList.removeRange(0, 10);
+          } else {
+            inviteList.clear();
+          }
+          for (final userId in inviteList) {
             room.invite(userId);
           }
         }

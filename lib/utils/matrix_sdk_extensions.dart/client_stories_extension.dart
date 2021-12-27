@@ -46,7 +46,7 @@ extension ClientStoriesExtension on Client {
         {'users': users},
       );
 
-  Future<void> createStoriesRoom([List<String>? invite]) async {
+  Future<Room> createStoriesRoom([List<String>? invite]) async {
     final roomId = await createRoom(
       creationContent: {"type": "msc3588.stories.stories-room"},
       preset: CreateRoomPreset.privateChat,
@@ -68,6 +68,7 @@ extension ClientStoriesExtension on Client {
       await onSync.stream
           .firstWhere((sync) => sync.rooms?.join?.containsKey(roomId) ?? false);
     }
+    return getRoomById(roomId)!;
   }
 
   Future<Room?> getStoriesRoom(BuildContext context) async {
