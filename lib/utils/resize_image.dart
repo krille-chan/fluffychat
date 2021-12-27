@@ -22,15 +22,16 @@ extension ResizeImage on MatrixFile {
   Future<MatrixVideoFile> resizeVideo() async {
     final tmpDir = await getTemporaryDirectory();
     final tmpFile = File(tmpDir.path + name);
+    final compressedFile = File(tmpDir.path + 'compressed_' + name);
     MediaInfo? mediaInfo;
     await tmpFile.writeAsBytes(bytes);
     try {
-      mediaInfo = await VideoCompress.compressVideo(tmpFile.path);
+      mediaInfo = await VideoCompress.compressVideo(compressedFile.path);
     } catch (e, s) {
       SentryController.captureException(e, s);
     }
     return MatrixVideoFile(
-      bytes: await tmpFile.readAsBytes(),
+      bytes: await compressedFile.readAsBytes(),
       name: name,
       mimeType: mimeType,
       width: mediaInfo?.width,
