@@ -2693,5 +2693,20 @@
   "yourStory": "Votre story",
   "@yourStory": {},
   "replyHasBeenSent": "La réponse a été envoyée",
-  "@replyHasBeenSent": {}
+  "@replyHasBeenSent": {},
+  "storyFrom": "Story du {date} : \n{body}",
+  "@storyFrom": {
+    "type": "text",
+    "placeholders": {
+      "date": {},
+      "body": {}
+    }
+  },
+  "videoWithSize": "Vidéo ({size})",
+  "@videoWithSize": {
+    "type": "text",
+    "placeholders": {
+      "size": {}
+    }
+  }
 }
