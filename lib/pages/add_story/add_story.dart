@@ -15,7 +15,8 @@ import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/pages/add_story/add_story_view.dart';
 import 'package:fluffychat/pages/add_story/invite_story_page.dart';
-import 'package:fluffychat/utils/resize_image.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_file_extension.dart';
+import 'package:fluffychat/utils/room_send_file_extension.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/matrix_sdk_extensions.dart/client_stories_extension.dart';
@@ -123,17 +124,16 @@ class AddStoryController extends State<AddStoryPage> {
         if (storiesRoom == null) throw ('Stories room is null');
         final video = this.video;
         if (video != null) {
-          await storiesRoom.sendFileEvent(
-            video,
+          await storiesRoom.sendFileEventWithThumbnail(
+            video.detectFileType,
             extraContent: {'body': controller.text},
           );
           return;
         }
-        var image = this.image;
+        final image = this.image;
         if (image != null) {
-          image = await image.resizeImage();
-          await storiesRoom.sendFileEvent(
-            image,
+          await storiesRoom.sendFileEventWithThumbnail(
+            image.detectFileType,
             extraContent: {'body': controller.text},
           );
           return;

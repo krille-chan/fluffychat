@@ -1,5 +1,6 @@
 //@dart=2.12
 
+import 'dart:io';
 import 'dart:math' as math;
 import 'dart:typed_data';
 
@@ -8,10 +9,59 @@ import 'package:flutter/foundation.dart';
 import 'package:blurhash_dart/blurhash_dart.dart';
 import 'package:image/image.dart';
 import 'package:matrix/matrix.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:video_compress/video_compress.dart';
+
+import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/sentry_controller.dart';
 
 extension ResizeImage on MatrixFile {
   static const int max = 1200;
   static const int quality = 40;
+
+  Future<MatrixFile> resizeVideo() async {
+    if (!PlatformInfos.isMobile) return this;
+    final tmpDir = await getTemporaryDirectory();
+    final tmpFile = File(tmpDir.path + name);
+    if (await tmpFile.exists() == false) {
+      await tmpFile.writeAsBytes(bytes);
+      try {
+        final mediaInfo = await VideoCompress.compressVideo(tmpFile.path);
+        if (mediaInfo == null) return this;
+        return MatrixVideoFile(
+          bytes: await tmpFile.readAsBytes(),
+          name: name,
+          mimeType: mimeType,
+          width: mediaInfo.width,
+          height: mediaInfo.height,
+          duration: mediaInfo.duration?.round(),
+        );
+      } catch (e, s) {
+        SentryController.captureException(e, s);
+      }
+    }
+    return this;
+  }
+
+  Future<MatrixImageFile?> getVideoThumbnail() async {
+    if (!PlatformInfos.isMobile) return null;
+    final tmpDir = await getTemporaryDirectory();
+    final tmpFile = File(tmpDir.path + name);
+    if (await tmpFile.exists() == false) {
+      await tmpFile.writeAsBytes(bytes);
+    }
+    try {
+      final bytes = await VideoCompress.getByteThumbnail(tmpFile.path);
+      if (bytes == null) return null;
+      return MatrixImageFile(
+        bytes: bytes,
+        name: name,
+      ).resizeImage();
+    } catch (e, s) {
+      SentryController.captureException(e, s);
+    }
+    return null;
+  }
 
   Future<MatrixImageFile> resizeImage({
     bool calcBlurhash = true,

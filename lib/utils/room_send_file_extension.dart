@@ -11,6 +11,7 @@ extension RoomSendFileExtension on Room {
     Event? inReplyTo,
     String? editEventId,
     bool? waitUntilSent,
+    Map<String, dynamic>? extraContent,
   }) async {
     MatrixImageFile? thumbnail;
     if (file is MatrixImageFile) {
@@ -19,6 +20,8 @@ extension RoomSendFileExtension on Room {
       if (thumbnail.size > file.size ~/ 2) {
         thumbnail = null;
       }
+    } else if (file is MatrixVideoFile) {
+      thumbnail = await file.getVideoThumbnail();
     }
 
     return sendFileEvent(
@@ -28,6 +31,7 @@ extension RoomSendFileExtension on Room {
       editEventId: editEventId,
       waitUntilSent: waitUntilSent ?? false,
       thumbnail: thumbnail,
+      extraContent: extraContent,
     );
   }
 }
