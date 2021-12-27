@@ -19,28 +19,24 @@ extension ResizeImage on MatrixFile {
   static const int max = 1200;
   static const int quality = 40;
 
-  Future<MatrixFile> resizeVideo() async {
-    if (!PlatformInfos.isMobile) return this;
+  Future<MatrixVideoFile> resizeVideo() async {
     final tmpDir = await getTemporaryDirectory();
     final tmpFile = File(tmpDir.path + name);
-    if (await tmpFile.exists() == false) {
-      await tmpFile.writeAsBytes(bytes);
-      try {
-        final mediaInfo = await VideoCompress.compressVideo(tmpFile.path);
-        if (mediaInfo == null) return this;
-        return MatrixVideoFile(
-          bytes: await tmpFile.readAsBytes(),
-          name: name,
-          mimeType: mimeType,
-          width: mediaInfo.width,
-          height: mediaInfo.height,
-          duration: mediaInfo.duration?.round(),
-        );
-      } catch (e, s) {
-        SentryController.captureException(e, s);
-      }
+    MediaInfo? mediaInfo;
+    await tmpFile.writeAsBytes(bytes);
+    try {
+      mediaInfo = await VideoCompress.compressVideo(tmpFile.path);
+    } catch (e, s) {
+      SentryController.captureException(e, s);
     }
-    return this;
+    return MatrixVideoFile(
+      bytes: await tmpFile.readAsBytes(),
+      name: name,
+      mimeType: mimeType,
+      width: mediaInfo?.width,
+      height: mediaInfo?.height,
+      duration: mediaInfo?.duration?.round(),
+    );
   }
 
   Future<MatrixImageFile?> getVideoThumbnail() async {

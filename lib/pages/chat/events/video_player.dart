@@ -47,6 +47,23 @@ class _EventVideoPlayerState extends State<EventVideoPlayer> {
         }
         _tmpFile = file;
       }
+      final tmpFile = _tmpFile;
+      final networkUri = _networkUri;
+      if (kIsWeb && networkUri != null && _chewieManager == null) {
+        _chewieManager ??= ChewieController(
+          videoPlayerController: VideoPlayerController.network(networkUri),
+          autoPlay: true,
+          additionalOptions: _additionalOptions,
+          autoInitialize: true,
+        );
+      } else if (!kIsWeb && tmpFile != null && _chewieManager == null) {
+        _chewieManager ??= ChewieController(
+          videoPlayerController: VideoPlayerController.file(tmpFile),
+          autoPlay: true,
+          additionalOptions: _additionalOptions,
+          autoInitialize: true,
+        );
+      }
     } on MatrixConnectionException catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(e.toLocalizedString(context)),
@@ -57,6 +74,8 @@ class _EventVideoPlayerState extends State<EventVideoPlayer> {
       ));
       SentryController.captureException(e, s);
     } finally {
+      // Workaround for Chewie needs time to get the aspectRatio
+      await Future.delayed(const Duration(milliseconds: 100));
       setState(() => _isDownloading = false);
     }
   }
@@ -69,54 +88,58 @@ class _EventVideoPlayerState extends State<EventVideoPlayer> {
 
   static const String fallbackBlurHash = 'L5H2EC=PM+yV0g-mq.wG9c010J}I';
 
+  List<OptionItem> _additionalOptions(BuildContext context) => [
+        OptionItem(
+          onTap: () {},
+          iconData: Icons.download_outlined,
+          title: L10n.of(context)!.downloadFile,
+        ),
+      ];
+
   @override
   Widget build(BuildContext context) {
     final hasThumbnail = widget.event.hasThumbnail;
     final blurHash = (widget.event.infoMap as Map<String, dynamic>)
             .tryGet<String>('xyz.amorgan.blurhash') ??
         fallbackBlurHash;
-    final videoFile = _tmpFile;
-    final networkUri = _networkUri;
-    if (kIsWeb && networkUri != null && _chewieManager == null) {
-      _chewieManager = ChewieController(
-        videoPlayerController: VideoPlayerController.network(networkUri),
-      );
-    } else if (!kIsWeb && videoFile != null && _chewieManager == null) {
-      _chewieManager = ChewieController(
-        videoPlayerController: VideoPlayerController.file(videoFile),
-        autoPlay: true,
-      );
-    }
 
     final chewieManager = _chewieManager;
-    return SizedBox(
-      width: 400,
-      height: 300,
-      child: Stack(
-        children: [
-          if (chewieManager == null) ...[
-            if (hasThumbnail)
-              ImageBubble(widget.event)
-            else
-              BlurHash(hash: blurHash),
-            Center(
-              child: OutlinedButton.icon(
-                style: OutlinedButton.styleFrom(
-                  backgroundColor: Theme.of(context).colorScheme.surface,
-                ),
-                icon: _isDownloading
-                    ? const CircularProgressIndicator.adaptive(strokeWidth: 2)
-                    : const Icon(Icons.download_outlined),
-                label: Text(
-                  L10n.of(context)!
-                      .videoWithSize(widget.event.sizeString ?? '?MB'),
-                ),
-                onPressed: _isDownloading ? null : _downloadAction,
+    return Material(
+      child: SizedBox(
+        width: 400,
+        height: 300,
+        child: chewieManager != null
+            ? Center(child: Chewie(controller: chewieManager))
+            : Stack(
+                children: [
+                  if (hasThumbnail)
+                    ImageBubble(widget.event)
+                  else
+                    BlurHash(hash: blurHash),
+                  Center(
+                    child: OutlinedButton.icon(
+                      style: OutlinedButton.styleFrom(
+                        backgroundColor: Theme.of(context).colorScheme.surface,
+                      ),
+                      icon: _isDownloading
+                          ? const SizedBox(
+                              width: 24,
+                              height: 24,
+                              child: CircularProgressIndicator.adaptive(
+                                  strokeWidth: 2),
+                            )
+                          : const Icon(Icons.download_outlined),
+                      label: Text(
+                        _isDownloading
+                            ? L10n.of(context)!.loadingPleaseWait
+                            : L10n.of(context)!.videoWithSize(
+                                widget.event.sizeString ?? '?MB'),
+                      ),
+                      onPressed: _isDownloading ? null : _downloadAction,
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ] else
-            Material(child: Center(child: Chewie(controller: chewieManager))),
-        ],
       ),
     );
   }
