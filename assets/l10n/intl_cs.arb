@@ -2691,5 +2691,7 @@
   "thisUserHasNotPostedAnythingYet": "Tento uživatel zatím nic ve svém příběhu nezveřejnil",
   "@thisUserHasNotPostedAnythingYet": {},
   "yourStory": "Váš příběh",
-  "@yourStory": {}
+  "@yourStory": {},
+  "replyHasBeenSent": "Odpověď byla odeslána",
+  "@replyHasBeenSent": {}
 }
