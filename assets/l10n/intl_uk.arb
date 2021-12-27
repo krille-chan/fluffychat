@@ -2688,5 +2688,20 @@
   "yourStory": "Ваша історія",
   "@yourStory": {},
   "replyHasBeenSent": "Відповідь надіслано",
-  "@replyHasBeenSent": {}
+  "@replyHasBeenSent": {},
+  "videoWithSize": "Відео ({size})",
+  "@videoWithSize": {
+    "type": "text",
+    "placeholders": {
+      "size": {}
+    }
+  },
+  "storyFrom": "Історія за {date}: \n{body}",
+  "@storyFrom": {
+    "type": "text",
+    "placeholders": {
+      "date": {},
+      "body": {}
+    }
+  }
 }
