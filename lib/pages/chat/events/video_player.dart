@@ -5,7 +5,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flick_video_player/flick_video_player.dart';
+import 'package:chewie/chewie.dart';
 import 'package:flutter_blurhash/flutter_blurhash.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
@@ -27,7 +27,7 @@ class EventVideoPlayer extends StatefulWidget {
 }
 
 class _EventVideoPlayerState extends State<EventVideoPlayer> {
-  FlickManager? _flickManager;
+  ChewieController? _chewieManager;
   bool _isDownloading = false;
   String? _networkUri;
   File? _tmpFile;
@@ -63,7 +63,7 @@ class _EventVideoPlayerState extends State<EventVideoPlayer> {
 
   @override
   void dispose() {
-    _flickManager?.dispose();
+    _chewieManager?.dispose();
     super.dispose();
   }
 
@@ -77,24 +77,24 @@ class _EventVideoPlayerState extends State<EventVideoPlayer> {
         fallbackBlurHash;
     final videoFile = _tmpFile;
     final networkUri = _networkUri;
-    if (kIsWeb && networkUri != null && _flickManager == null) {
-      _flickManager = FlickManager(
+    if (kIsWeb && networkUri != null && _chewieManager == null) {
+      _chewieManager = ChewieController(
         videoPlayerController: VideoPlayerController.network(networkUri),
       );
-    } else if (!kIsWeb && videoFile != null && _flickManager == null) {
-      _flickManager = FlickManager(
+    } else if (!kIsWeb && videoFile != null && _chewieManager == null) {
+      _chewieManager = ChewieController(
         videoPlayerController: VideoPlayerController.file(videoFile),
         autoPlay: true,
       );
     }
 
-    final flickManager = _flickManager;
+    final chewieManager = _chewieManager;
     return SizedBox(
       width: 400,
       height: 300,
       child: Stack(
         children: [
-          if (flickManager == null) ...[
+          if (chewieManager == null) ...[
             if (hasThumbnail)
               ImageBubble(widget.event)
             else
@@ -115,7 +115,7 @@ class _EventVideoPlayerState extends State<EventVideoPlayer> {
               ),
             ),
           ] else
-            FlickVideoPlayer(flickManager: flickManager),
+            Center(child: Chewie(controller: chewieManager)),
         ],
       ),
     );

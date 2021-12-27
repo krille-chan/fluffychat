@@ -13,6 +13,7 @@ dependencies:
   audioplayers: ^0.20.1
   blurhash_dart: ^1.1.0
   cached_network_image: ^3.1.0
+  chewie: ^1.2.2
   cupertino_icons: any
   desktop_drop: ^0.3.0
   desktop_notifications: ^0.6.1
@@ -22,7 +23,6 @@ dependencies:
   #fcm_shared_isolate:
   #  git: https://gitlab.com/famedly/libraries/fcm_shared_isolate.git
   file_picker_cross: ^4.5.0
-  flick_video_player: ^0.3.1
   flutter:
     sdk: flutter
   flutter_app_badger: ^1.3.0
