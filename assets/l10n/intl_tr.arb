@@ -2700,5 +2700,13 @@
     "placeholders": {
       "size": {}
     }
+  },
+  "storyFrom": "{date} tarihinden hikaye: \n{body}",
+  "@storyFrom": {
+    "type": "text",
+    "placeholders": {
+      "date": {},
+      "body": {}
+    }
   }
 }
