@@ -2693,5 +2693,12 @@
   "yourStory": "你的 story",
   "@yourStory": {},
   "replyHasBeenSent": "已发送回复",
-  "@replyHasBeenSent": {}
+  "@replyHasBeenSent": {},
+  "videoWithSize": "视频 ({size})",
+  "@videoWithSize": {
+    "type": "text",
+    "placeholders": {
+      "size": {}
+    }
+  }
 }
