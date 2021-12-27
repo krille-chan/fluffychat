@@ -48,6 +48,8 @@ class StoryPageController extends State<StoryPage> {
   bool replyLoading = false;
   bool _modalOpened = false;
 
+  VideoPlayerController? _videoPlayerController;
+
   void replyEmojiAction() async {
     if (replyLoading) return;
     _modalOpened = true;
@@ -160,9 +162,15 @@ class StoryPageController extends State<StoryPage> {
       }
       if (loadingMode) return;
       setState(() {
-        progress = progress += _step;
+        final video = _videoPlayerController;
+        if (video == null) {
+          progress += _step;
+        } else {
+          progress = video.value.position;
+        }
       });
-      if (progress > maxProgress) {
+      final max = _videoPlayerController?.value.duration ?? maxProgress;
+      if (progress > max) {
         skip();
       }
     });
@@ -181,8 +189,7 @@ class StoryPageController extends State<StoryPage> {
     final matrixFile = await event.downloadAndDecryptAttachment();
     final tmpDirectory = await getTemporaryDirectory();
     final file = File(tmpDirectory.path + matrixFile.name);
-    final videoPlayerController = VideoPlayerController.file(file)
-      ..setLooping(true);
+    final videoPlayerController = VideoPlayerController.file(file);
     await videoPlayerController.initialize();
     videoPlayerController.play();
     return videoPlayerController;
