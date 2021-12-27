@@ -53,14 +53,12 @@ class _EventVideoPlayerState extends State<EventVideoPlayer> {
         _chewieManager ??= ChewieController(
           videoPlayerController: VideoPlayerController.network(networkUri),
           autoPlay: true,
-          additionalOptions: _additionalOptions,
           autoInitialize: true,
         );
       } else if (!kIsWeb && tmpFile != null && _chewieManager == null) {
         _chewieManager ??= ChewieController(
           videoPlayerController: VideoPlayerController.file(tmpFile),
           autoPlay: true,
-          additionalOptions: _additionalOptions,
           autoInitialize: true,
         );
       }
@@ -87,14 +85,6 @@ class _EventVideoPlayerState extends State<EventVideoPlayer> {
   }
 
   static const String fallbackBlurHash = 'L5H2EC=PM+yV0g-mq.wG9c010J}I';
-
-  List<OptionItem> _additionalOptions(BuildContext context) => [
-        OptionItem(
-          onTap: () {},
-          iconData: Icons.download_outlined,
-          title: L10n.of(context)!.downloadFile,
-        ),
-      ];
 
   @override
   Widget build(BuildContext context) {
