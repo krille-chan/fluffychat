@@ -17,6 +17,7 @@ class AddStoryView extends StatelessWidget {
   Widget build(BuildContext context) {
     final video = controller.videoPlayerController;
     return Scaffold(
+      backgroundColor: Colors.blueGrey,
       appBar: AppBar(
         systemOverlayStyle: SystemUiOverlayStyle.light,
         backgroundColor: Colors.transparent,
@@ -70,7 +71,7 @@ class AddStoryView extends StatelessWidget {
                   ? null
                   : DecorationImage(
                       image: MemoryImage(controller.image!.bytes),
-                      fit: BoxFit.cover,
+                      fit: BoxFit.contain,
                       opacity: 0.75,
                     ),
               gradient: controller.hasMedia

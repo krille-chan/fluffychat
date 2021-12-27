@@ -182,9 +182,11 @@ class StoryView extends StatelessWidget {
                               : Container();
                         }
                         controller.loadingModeOff();
-                        return Image.memory(
-                          matrixFile.bytes,
-                          fit: BoxFit.cover,
+                        return Center(
+                          child: Image.memory(
+                            matrixFile.bytes,
+                            fit: BoxFit.contain,
+                          ),
                         );
                       },
                     ),
