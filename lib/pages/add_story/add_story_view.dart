@@ -17,7 +17,7 @@ class AddStoryView extends StatelessWidget {
   Widget build(BuildContext context) {
     final video = controller.videoPlayerController;
     return Scaffold(
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: Colors.blueGrey.shade900,
       appBar: AppBar(
         systemOverlayStyle: SystemUiOverlayStyle.light,
         backgroundColor: Colors.transparent,
