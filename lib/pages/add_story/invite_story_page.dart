@@ -40,9 +40,9 @@ class _InviteStoryPageState extends State<InviteStoryPage> {
           } else {
             inviteList.clear();
           }
-          for (final userId in inviteList) {
-            room.invite(userId);
-          }
+        }
+        for (final userId in inviteList) {
+          room.invite(userId);
         }
 
         _undecided.removeAll(_invite);
