@@ -6,11 +6,10 @@ import 'package:matrix/matrix.dart';
 import 'package:matrix_link_text/link_text.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'package:fluffychat/utils/matrix_sdk_extensions.dart/event_extension.dart';
+import 'package:fluffychat/pages/chat/events/video_player.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../../config/app_config.dart';
-import '../../../pages/video_viewer/video_viewer.dart';
 import '../../../utils/platform_infos.dart';
 import '../../../utils/url_launcher.dart';
 import '../../bootstrap/bootstrap_dialog.dart';
@@ -90,38 +89,7 @@ class MessageContent extends StatelessWidget {
             return MessageDownloadContent(event, textColor);
           case MessageTypes.Video:
             if (PlatformInfos.isMobile || PlatformInfos.isWeb) {
-              if (event.showThumbnail) {
-                return Stack(
-                  alignment: Alignment.center,
-                  children: <Widget>[
-                    ImageBubble(
-                      event,
-                      width: 400,
-                      height: 300,
-                      fit: BoxFit.cover,
-                      tapToView: false,
-                    ),
-                    FloatingActionButton.extended(
-                      onPressed: () => showDialog(
-                        context: Matrix.of(context).navigatorContext,
-                        useRootNavigator: false,
-                        builder: (_) => VideoViewer(event),
-                      ),
-                      label: Text(L10n.of(context).play('Video')),
-                      icon: const Icon(Icons.video_camera_front_outlined),
-                    ),
-                  ],
-                );
-              }
-              return FloatingActionButton.extended(
-                onPressed: () => showDialog(
-                  context: Matrix.of(context).navigatorContext,
-                  useRootNavigator: false,
-                  builder: (_) => VideoViewer(event),
-                ),
-                label: Text(L10n.of(context).play('Video')),
-                icon: const Icon(Icons.video_camera_front_outlined),
-              );
+              return EventVideoPlayer(event);
             }
             return MessageDownloadContent(event, textColor);
           case MessageTypes.File:

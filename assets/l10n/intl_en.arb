@@ -2669,5 +2669,12 @@
   "unsubscribeStories": "Unsubscribe stories",
   "thisUserHasNotPostedAnythingYet": "This user has not posted anything in their story yet",
   "yourStory": "Your story",
-  "replyHasBeenSent": "Reply has been sent"
+  "replyHasBeenSent": "Reply has been sent",
+  "videoWithSize": "Video ({size})",
+  "@videoWithSize": {
+    "type": "text",
+    "placeholders": {
+      "size": {}
+    }
+  }
 }

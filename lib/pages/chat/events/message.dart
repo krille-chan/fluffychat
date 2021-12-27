@@ -4,8 +4,6 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions.dart/event_extension.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -92,13 +90,10 @@ class Message extends StatelessWidget {
       bottomRight: const Radius.circular(AppConfig.borderRadius),
     );
     final noBubble = {
-          MessageTypes.Video,
-          MessageTypes.Image,
-          MessageTypes.Sticker,
-        }.contains(event.messageType) &&
-        !(event.messageType == MessageTypes.Video &&
-            !((PlatformInfos.isMobile && event.showThumbnail) ||
-                PlatformInfos.isWeb));
+      MessageTypes.Video,
+      MessageTypes.Image,
+      MessageTypes.Sticker,
+    }.contains(event.messageType);
 
     if (ownMessage) {
       color = displayEvent.status.isError
