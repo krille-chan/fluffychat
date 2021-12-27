@@ -23,6 +23,7 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/chat_view.dart';
 import 'package:fluffychat/pages/chat/event_info_dialog.dart';
 import 'package:fluffychat/pages/chat/recording_dialog.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions.dart/event_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -82,6 +83,18 @@ class ChatController extends State<Chat> {
       );
     }
   }
+
+  bool get canSaveSelectedEvent =>
+      selectedEvents.length == 1 &&
+      {
+        MessageTypes.Video,
+        MessageTypes.Image,
+        MessageTypes.Sticker,
+        MessageTypes.Audio,
+        MessageTypes.File,
+      }.contains(selectedEvents.single.messageType);
+
+  void saveSelectedEvent() => selectedEvents.single.saveFile(context);
 
   List<Event> selectedEvents = [];
 

@@ -49,6 +49,12 @@ class ChatView extends StatelessWidget {
             tooltip: L10n.of(context).copy,
             onPressed: controller.copyEventsAction,
           ),
+          if (controller.canSaveSelectedEvent)
+            IconButton(
+              icon: Icon(Icons.adaptive.share),
+              tooltip: L10n.of(context).share,
+              onPressed: controller.saveSelectedEvent,
+            ),
           if (controller.canRedactSelectedEvents)
             IconButton(
               icon: const Icon(Icons.delete_outlined),
