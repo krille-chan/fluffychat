@@ -120,6 +120,6 @@ plugs:
     target: $SNAP/data-dir/sounds
 environment:
   SNAP_DESKTOP_RUNTIME: $SNAP/gnome-platform
-layout:
-  /usr/share/xml/iso-codes:
-    bind: $SNAP/gnome-platform/usr/share/xml/iso-codes
+#layout:
+#  /usr/share/xml/iso-codes:
+#    bind: $SNAP/gnome-platform/usr/share/xml/iso-codes
