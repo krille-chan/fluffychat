@@ -72,7 +72,7 @@ class StoryView extends StatelessWidget {
           ),
         ),
         actions: [
-          if (!controller.isOwnStory)
+          if (!controller.isOwnStory && currentEvent != null)
             AnimatedOpacity(
               duration: const Duration(seconds: 1),
               opacity: controller.isHold ? 0 : 1,
@@ -159,7 +159,7 @@ class StoryView extends StatelessWidget {
               children: [
                 if (event.messageType == MessageTypes.Video &&
                     PlatformInfos.isMobile)
-                  FutureBuilder<VideoPlayerController>(
+                  FutureBuilder<VideoPlayerController?>(
                     future: controller.loadVideoControllerFuture ??=
                         controller.loadVideoController(event),
                     builder: (context, snapshot) {
