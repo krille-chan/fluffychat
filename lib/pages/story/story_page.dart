@@ -196,16 +196,18 @@ class StoryPageController extends State<StoryPage> {
 
   String get roomId => VRouter.of(context).pathParameters['roomid'] ?? '';
 
-  Future<VideoPlayerController>? loadVideoControllerFuture;
+  Future<VideoPlayerController?>? loadVideoControllerFuture;
 
-  Future<VideoPlayerController> loadVideoController(Event event) async {
+  Future<VideoPlayerController?> loadVideoController(Event event) async {
     try {
       final matrixFile = await event.downloadAndDecryptAttachment();
+      if (!mounted) return null;
       final tmpDirectory = await getTemporaryDirectory();
       final fileName =
           event.content.tryGet<String>('filename') ?? 'unknown_story_video.mp4';
       final file = File(tmpDirectory.path + '/' + fileName);
       await file.writeAsBytes(matrixFile.bytes);
+      if (!mounted) return null;
       final videoPlayerController =
           _videoPlayerController = VideoPlayerController.file(file);
       await videoPlayerController.initialize();
