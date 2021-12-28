@@ -2708,5 +2708,7 @@
     "placeholders": {
       "size": {}
     }
-  }
+  },
+  "whoCanSeeMyStoriesDesc": "Veuillez noter que les personnes peuvent se voir et se contacter dans votre story.",
+  "@whoCanSeeMyStoriesDesc": {}
 }
