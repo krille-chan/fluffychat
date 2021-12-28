@@ -2699,5 +2699,13 @@
   "unsubscribeStories": "Verhalen afmelden",
   "@unsubscribeStories": {},
   "thisUserHasNotPostedAnythingYet": "Deze persoon heeft nog niets in zijn verhaal geplaatst",
-  "@thisUserHasNotPostedAnythingYet": {}
+  "@thisUserHasNotPostedAnythingYet": {},
+  "storyFrom": "Verhaal van {date}:\n{body}",
+  "@storyFrom": {
+    "type": "text",
+    "placeholders": {
+      "date": {},
+      "body": {}
+    }
+  }
 }
