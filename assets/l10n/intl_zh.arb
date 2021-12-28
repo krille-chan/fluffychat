@@ -894,7 +894,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "extremeOffensive": "极端令人反感",
+  "extremeOffensive": "令人极度反感",
   "@extremeOffensive": {
     "type": "text",
     "placeholders": {}
@@ -1019,7 +1019,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "howOffensiveIsThisContent": "这些内容有多让人反感？",
+  "howOffensiveIsThisContent": "这些内容有多令人反感？",
   "@howOffensiveIsThisContent": {
     "type": "text",
     "placeholders": {}
@@ -2701,7 +2701,7 @@
       "size": {}
     }
   },
-  "storyFrom": "自下列日期起的 Story: \n{body}",
+  "storyFrom": "自 {date} 起的 Story: \n{body}",
   "@storyFrom": {
     "type": "text",
     "placeholders": {
