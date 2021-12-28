@@ -2703,5 +2703,7 @@
       "date": {},
       "body": {}
     }
-  }
+  },
+  "whoCanSeeMyStoriesDesc": "Зауважте, що у вашій історії люди можуть бачити та зв’язуватися одне з одним.",
+  "@whoCanSeeMyStoriesDesc": {}
 }
