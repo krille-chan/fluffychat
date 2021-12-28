@@ -160,7 +160,8 @@ class StoryView extends StatelessWidget {
                 if (event.messageType == MessageTypes.Video &&
                     PlatformInfos.isMobile)
                   FutureBuilder<VideoPlayerController>(
-                    future: controller.loadVideoController(event),
+                    future: controller.loadVideoControllerFuture ??=
+                        controller.loadVideoController(event),
                     builder: (context, snapshot) {
                       final videoPlayerController = snapshot.data;
                       if (videoPlayerController == null) {

@@ -181,7 +181,7 @@ class StoryPageController extends State<StoryPage> {
         }
       });
       final max = _videoPlayerController?.value.duration ?? maxProgress;
-      if (progress > max) {
+      if (progress >= max) {
         skip();
       }
     });
@@ -196,14 +196,26 @@ class StoryPageController extends State<StoryPage> {
 
   String get roomId => VRouter.of(context).pathParameters['roomid'] ?? '';
 
+  Future<VideoPlayerController>? loadVideoControllerFuture;
+
   Future<VideoPlayerController> loadVideoController(Event event) async {
-    final matrixFile = await event.downloadAndDecryptAttachment();
-    final tmpDirectory = await getTemporaryDirectory();
-    final file = File(tmpDirectory.path + matrixFile.name);
-    final videoPlayerController = VideoPlayerController.file(file);
-    await videoPlayerController.initialize();
-    videoPlayerController.play();
-    return videoPlayerController;
+    try {
+      final matrixFile = await event.downloadAndDecryptAttachment();
+      final tmpDirectory = await getTemporaryDirectory();
+      final fileName =
+          event.content.tryGet<String>('filename') ?? 'unknown_story_video.mp4';
+      final file = File(tmpDirectory.path + '/' + fileName);
+      await file.writeAsBytes(matrixFile.bytes);
+      final videoPlayerController =
+          _videoPlayerController = VideoPlayerController.file(file);
+      await videoPlayerController.initialize();
+      await videoPlayerController.play();
+      return videoPlayerController;
+    } catch (e, s) {
+      Logs().w('Unable to load video story. Try again...', e, s);
+      await Future.delayed(const Duration(seconds: 3));
+      return loadVideoController(event);
+    }
   }
 
   void skip() {
@@ -212,6 +224,9 @@ class StoryPageController extends State<StoryPage> {
       return;
     }
     setState(() {
+      _videoPlayerController?.dispose();
+      _videoPlayerController = null;
+      loadVideoControllerFuture = null;
       index++;
     });
     _restartTimer();
@@ -221,6 +236,12 @@ class StoryPageController extends State<StoryPage> {
   DateTime _holdedAt = DateTime.fromMicrosecondsSinceEpoch(0);
 
   bool isHold = false;
+
+  @override
+  void dispose() {
+    _videoPlayerController?.dispose();
+    super.dispose();
+  }
 
   void hold([_]) {
     _holdedAt = DateTime.now();
