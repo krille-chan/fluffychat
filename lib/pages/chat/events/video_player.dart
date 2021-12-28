@@ -95,15 +95,20 @@ class _EventVideoPlayerState extends State<EventVideoPlayer> {
 
     final chewieManager = _chewieManager;
     return Material(
+      color: Colors.black,
       child: SizedBox(
-        width: 400,
         height: 300,
         child: chewieManager != null
             ? Center(child: Chewie(controller: chewieManager))
             : Stack(
                 children: [
                   if (hasThumbnail)
-                    ImageBubble(widget.event)
+                    Center(
+                      child: ImageBubble(
+                        widget.event,
+                        tapToView: false,
+                      ),
+                    )
                   else
                     BlurHash(hash: blurHash),
                   Center(
