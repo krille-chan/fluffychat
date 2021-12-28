@@ -2679,5 +2679,34 @@
   "@openVideoCamera": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "yourStory": "Ваша история",
+  "@yourStory": {},
+  "replyHasBeenSent": "Ответ отправлен",
+  "@replyHasBeenSent": {},
+  "videoWithSize": "Видео ({size})",
+  "@videoWithSize": {
+    "type": "text",
+    "placeholders": {
+      "size": {}
+    }
+  },
+  "storyFrom": "История за {date}:\n{body}",
+  "@storyFrom": {
+    "type": "text",
+    "placeholders": {
+      "date": {},
+      "body": {}
+    }
+  },
+  "addToStory": "Добавить в историю",
+  "@addToStory": {},
+  "publish": "Опубликовать",
+  "@publish": {},
+  "whoCanSeeMyStories": "Кто может видеть мои истории?",
+  "@whoCanSeeMyStories": {},
+  "unsubscribeStories": "Отписаться от историй",
+  "@unsubscribeStories": {},
+  "thisUserHasNotPostedAnythingYet": "Этот пользователь еще ничего не опубликовал в своей истории",
+  "@thisUserHasNotPostedAnythingYet": {}
 }
