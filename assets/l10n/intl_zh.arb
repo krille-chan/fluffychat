@@ -2700,5 +2700,13 @@
     "placeholders": {
       "size": {}
     }
+  },
+  "storyFrom": "自下列日期起的 Story: \n{body}",
+  "@storyFrom": {
+    "type": "text",
+    "placeholders": {
+      "date": {},
+      "body": {}
+    }
   }
 }
