@@ -2708,5 +2708,7 @@
       "date": {},
       "body": {}
     }
-  }
+  },
+  "whoCanSeeMyStoriesDesc": "İnsanların hikayenizde birbirlerini görebileceğini ve iletişim kurabileceğini lütfen unutmayın.",
+  "@whoCanSeeMyStoriesDesc": {}
 }
