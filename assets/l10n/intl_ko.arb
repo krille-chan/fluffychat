@@ -2673,5 +2673,9 @@
   "@openVideoCamera": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "addToStory": "스토리에 추가",
+  "@addToStory": {},
+  "publish": "공개",
+  "@publish": {}
 }
