@@ -73,6 +73,17 @@ class _InviteStoryPageState extends State<InviteStoryPage> {
           onPressed: () => Navigator.of(context).pop<bool>(false),
         ),
         title: Text(L10n.of(context)!.whoCanSeeMyStories),
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(56),
+          child: ListTile(
+            title: Text(L10n.of(context)!.whoCanSeeMyStoriesDesc),
+            leading: CircleAvatar(
+              backgroundColor: Theme.of(context).secondaryHeaderColor,
+              foregroundColor: Theme.of(context).colorScheme.secondary,
+              child: const Icon(Icons.lock),
+            ),
+          ),
+        ),
       ),
       body: FutureBuilder<List<User>>(
           future: loadContacts,

@@ -142,7 +142,7 @@ class AddStoryController extends State<AddStoryPage> {
       },
     );
     if (postResult.error == null) {
-      VRouter.of(context).to('/rooms');
+      VRouter.of(context).pop();
     }
   }
 

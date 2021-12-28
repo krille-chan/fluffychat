@@ -61,6 +61,12 @@ class AppRoutes {
             VWidget(
               path: '/stories/:roomid',
               widget: const StoryPage(),
+              stackedRoutes: [
+                VWidget(
+                  path: 'share',
+                  widget: const AddStoryPage(),
+                ),
+              ],
             ),
             VWidget(
               path: '/spaces/:roomid',
@@ -133,6 +139,12 @@ class AppRoutes {
                   path: '/stories/:roomid',
                   buildTransition: _fadeTransition,
                   widget: const StoryPage(),
+                  stackedRoutes: [
+                    VWidget(
+                      path: 'share',
+                      widget: const AddStoryPage(),
+                    ),
+                  ],
                 ),
                 VWidget(
                   path: '/spaces/:roomid',

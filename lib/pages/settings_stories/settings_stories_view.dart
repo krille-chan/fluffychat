@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+
 import 'package:fluffychat/pages/settings_stories/settings_stories.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -13,7 +15,20 @@ class SettingsStoriesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text(L10n.of(context)!.whoCanSeeMyStories),
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(56),
+          child: ListTile(
+            title: Text(L10n.of(context)!.whoCanSeeMyStoriesDesc),
+            leading: CircleAvatar(
+              backgroundColor: Theme.of(context).secondaryHeaderColor,
+              foregroundColor: Theme.of(context).colorScheme.secondary,
+              child: const Icon(Icons.lock),
+            ),
+          ),
+        ),
+      ),
       body: FutureBuilder(
         future: controller.loadUsers,
         builder: (context, snapshot) {

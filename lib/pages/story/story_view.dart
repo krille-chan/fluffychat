@@ -72,14 +72,27 @@ class StoryView extends StatelessWidget {
           ),
         ),
         actions: [
+          if (!controller.isOwnStory)
+            AnimatedOpacity(
+              duration: const Duration(seconds: 1),
+              opacity: controller.isHold ? 0 : 1,
+              child: IconButton(
+                icon: Icon(Icons.adaptive.share_outlined),
+                onPressed: controller.share,
+              ),
+            ),
           AnimatedOpacity(
               duration: const Duration(seconds: 1),
               opacity: controller.isHold ? 0 : 1,
-              child: PopupMenuButton<bool>(
-                onSelected: controller.report,
+              child: PopupMenuButton<PopupStoryAction>(
+                onSelected: controller.onPopupStoryAction,
                 itemBuilder: (context) => [
                   PopupMenuItem(
-                    value: true,
+                    value: PopupStoryAction.delete,
+                    child: Text(L10n.of(context)!.delete),
+                  ),
+                  PopupMenuItem(
+                    value: PopupStoryAction.report,
                     child: Text(L10n.of(context)!.reportMessage),
                   ),
                 ],

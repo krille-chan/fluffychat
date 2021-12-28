@@ -112,6 +112,12 @@ class StoryPageController extends State<StoryPage> {
         [];
   }
 
+  void share() async {
+    Matrix.of(context).shareContent = currentEvent?.content;
+    hold();
+    VRouter.of(context).to('share');
+  }
+
   void displaySeenByUsers() async {
     _modalOpened = true;
     await showModalBottomSheet(
@@ -241,7 +247,30 @@ class StoryPageController extends State<StoryPage> {
 
   final Map<String, Future<MatrixFile>> _fileCache = {};
 
-  void report(_) async {
+  void _delete() async {
+    final event = currentEvent;
+    if (event == null) return;
+    _modalOpened = true;
+    if (await showOkCancelAlertDialog(
+          context: context,
+          title: L10n.of(context)!.deleteMessage,
+          message: L10n.of(context)!.areYouSure,
+          okLabel: L10n.of(context)!.yes,
+          cancelLabel: L10n.of(context)!.cancel,
+        ) !=
+        OkCancelResult.ok) {
+      return;
+    }
+    await showFutureLoadingDialog(
+      context: context,
+      future: event.redactEvent,
+    );
+    setState(() {
+      _modalOpened = false;
+    });
+  }
+
+  void _report() async {
     _modalOpened = true;
     final event = currentEvent;
     if (event == null) return;
@@ -406,6 +435,17 @@ class StoryPageController extends State<StoryPage> {
     }
   }
 
+  void onPopupStoryAction(PopupStoryAction action) async {
+    switch (action) {
+      case PopupStoryAction.report:
+        _report();
+        break;
+      case PopupStoryAction.delete:
+        _delete();
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     loadStory ??= _loadStory();
@@ -428,5 +468,5 @@ extension on List<Event> {
 
 enum PopupStoryAction {
   report,
-  message,
+  delete,
 }
