@@ -181,8 +181,7 @@ build_linux_arm64:
 
 snap_edge:
   stage: deploy
-  image: ubuntu:18.04
-  before_script: [apt update && apt install snapcraft -y]
+  image: cibuilds/snapcraft:core18
   script: [./scripts/publish-snap-edge.sh]
   only:
     - main
