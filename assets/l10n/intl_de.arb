@@ -2674,5 +2674,41 @@
   "@commandHint_create": {
     "type": "text",
     "description": "Usage hint for the command /create"
-  }
+  },
+  "yourStory": "Deine Story",
+  "@yourStory": {},
+  "replyHasBeenSent": "Antwort wurde gesendet",
+  "@replyHasBeenSent": {},
+  "storyFrom": "Story von {date}: \n{body}",
+  "@storyFrom": {
+    "type": "text",
+    "placeholders": {
+      "date": {},
+      "body": {}
+    }
+  },
+  "openVideoCamera": "Video aufnehmen",
+  "@openVideoCamera": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "videoWithSize": "Video ({size})",
+  "@videoWithSize": {
+    "type": "text",
+    "placeholders": {
+      "size": {}
+    }
+  },
+  "whoCanSeeMyStoriesDesc": "Bitte beachte, dass sich Leute in deiner Story sehen und kontaktieren können.",
+  "@whoCanSeeMyStoriesDesc": {},
+  "addToStory": "Story hinzufügen",
+  "@addToStory": {},
+  "publish": "Veröffentlichen",
+  "@publish": {},
+  "whoCanSeeMyStories": "Wer kann meine Storys sehen?",
+  "@whoCanSeeMyStories": {},
+  "unsubscribeStories": "Story deabbonieren",
+  "@unsubscribeStories": {},
+  "thisUserHasNotPostedAnythingYet": "Diese:r Benutzer:in hat noch nichts in ihren Storys gepostet",
+  "@thisUserHasNotPostedAnythingYet": {}
 }
