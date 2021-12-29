@@ -414,7 +414,7 @@
   "@iWroteDownTheKey": {},
   "yourChatBackupHasBeenSetUp": "גיבוי הצ'אט שלך הוגדר.",
   "@yourChatBackupHasBeenSetUp": {},
-  "chatBackup": "גיבוי הצ'אט",
+  "chatBackup": "גיבוי צ'אט",
   "@chatBackup": {
     "type": "text",
     "placeholders": {}
