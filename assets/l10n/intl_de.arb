@@ -1510,7 +1510,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "oopsSomethingWentWrong": "Hoppla! Etwas ist schief gelaufen …",
+  "oopsSomethingWentWrong": "Hoppla! Etwas ist schief gelaufen…",
   "@oopsSomethingWentWrong": {
     "type": "text",
     "placeholders": {}
