@@ -420,5 +420,106 @@
     "placeholders": {}
   },
   "setupChatBackup": "הגדר גיבוי צ'אט",
-  "@setupChatBackup": {}
+  "@setupChatBackup": {},
+  "commandHint_ban": "חסום את המשתמש הנתון מהחדר הזה",
+  "@commandHint_ban": {
+    "type": "text",
+    "description": "Usage hint for the command /ban"
+  },
+  "commandHint_clearcache": "נקה מטמון",
+  "@commandHint_clearcache": {
+    "type": "text",
+    "description": "Usage hint for the command /clearcache"
+  },
+  "commandHint_create": "צור צ'אט קבוצתי ריק\nהשתמש ב--no-encryption כדי להשבית את ההצפנה",
+  "@commandHint_create": {
+    "type": "text",
+    "description": "Usage hint for the command /create"
+  },
+  "commandHint_discardsession": "התעלם מהסשן",
+  "@commandHint_discardsession": {
+    "type": "text",
+    "description": "Usage hint for the command /discardsession"
+  },
+  "commandHint_dm": "התחל צ'אט ישיר\nהשתמש ב--no-encryption כדי להשבית את ההצפנה",
+  "@commandHint_dm": {
+    "type": "text",
+    "description": "Usage hint for the command /dm"
+  },
+  "commandHint_html": "שלח טקסט בתבנית HTML",
+  "@commandHint_html": {
+    "type": "text",
+    "description": "Usage hint for the command /html"
+  },
+  "commandHint_invite": "הזמן את המשתמש הנתון לחדר זה",
+  "@commandHint_invite": {
+    "type": "text",
+    "description": "Usage hint for the command /invite"
+  },
+  "commandHint_join": "הצטרף לחדר הנתון",
+  "@commandHint_join": {
+    "type": "text",
+    "description": "Usage hint for the command /join"
+  },
+  "commandHint_kick": "הסר את המשתמש הנתון מהחדר הזה",
+  "@commandHint_kick": {
+    "type": "text",
+    "description": "Usage hint for the command /kick"
+  },
+  "commandHint_leave": "עזוב את החדר הזה",
+  "@commandHint_leave": {
+    "type": "text",
+    "description": "Usage hint for the command /leave"
+  },
+  "commandHint_me": "תאר את עצמך",
+  "@commandHint_me": {
+    "type": "text",
+    "description": "Usage hint for the command /me"
+  },
+  "setupChatBackupDescription": "כדי להגן על ההודעות שלך, יצרנו מפתח אבטחה עבורך.\nאנא שמור אותו במקום בטוח, כגון מנהל סיסמאות.",
+  "@setupChatBackupDescription": {},
+  "chatDetails": "פרטי צ'אט",
+  "@chatDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackupDescription": "גיבוי הצ'אט שלך מאובטח באמצעות מפתח אבטחה. אנא וודא שאתה לא מאבד אותו.",
+  "@chatBackupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatHasBeenAddedToThisSpace": "צ'אט נוסף למרחב הזה",
+  "@chatHasBeenAddedToThisSpace": {},
+  "chatHasBeenRemovedFromThisSpace": "הצ'אט הוסר מהמרחב הזה",
+  "@chatHasBeenRemovedFromThisSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chats": "צ'אטים",
+  "@chats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseAStrongPassword": "בחר סיסמה חזקה",
+  "@chooseAStrongPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseAUsername": "בחר שם משתמש",
+  "@chooseAUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clearArchive": "נקה ארכיון",
+  "@clearArchive": {},
+  "clearText": "נקה טקסט",
+  "@clearText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "close": "סגור",
+  "@close": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
