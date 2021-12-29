@@ -2605,5 +2605,10 @@
   "continueWith": "",
   "@continueWith": {},
   "indexedDbErrorTitle": "",
-  "@indexedDbErrorTitle": {}
+  "@indexedDbErrorTitle": {},
+  "discover": "",
+  "@discover": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
