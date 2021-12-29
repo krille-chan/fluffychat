@@ -2708,5 +2708,7 @@
       "date": {},
       "body": {}
     }
-  }
+  },
+  "whoCanSeeMyStoriesDesc": "请注意，人们可以在你的 story 中看到彼此并相互联系。",
+  "@whoCanSeeMyStoriesDesc": {}
 }
