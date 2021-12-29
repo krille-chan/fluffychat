@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -7,12 +9,13 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:vrouter/vrouter.dart';
 
+import 'package:fluffychat/utils/famedlysdk_store.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/public_room_bottom_sheet.dart';
 import 'search_view.dart';
 
 class Search extends StatefulWidget {
-  const Search({Key key}) : super(key: key);
+  const Search({Key? key}) : super(key: key);
 
   @override
   SearchController createState() => SearchController();
@@ -20,13 +23,13 @@ class Search extends StatefulWidget {
 
 class SearchController extends State<Search> {
   final TextEditingController controller = TextEditingController();
-  Future<QueryPublicRoomsResponse> publicRoomsResponse;
-  String lastServer;
-  Timer _coolDown;
-  String genericSearchTerm;
+  Future<QueryPublicRoomsResponse>? publicRoomsResponse;
+  String? lastServer;
+  Timer? _coolDown;
+  String? genericSearchTerm;
 
   void search(String query) async {
-    setState(() => null);
+    setState(() {});
     _coolDown?.cancel();
     _coolDown = Timer(
       const Duration(milliseconds: 500),
@@ -49,30 +52,33 @@ class SearchController extends State<Search> {
     );
   }
 
-  String server;
+  String? server;
+
+  static const String _serverStoreNamespace = 'im.fluffychat.search.server';
 
   void setServer() async {
     final newServer = await showTextInputDialog(
         useRootNavigator: false,
-        title: L10n.of(context).changeTheHomeserver,
+        title: L10n.of(context)!.changeTheHomeserver,
         context: context,
-        okLabel: L10n.of(context).ok,
-        cancelLabel: L10n.of(context).cancel,
+        okLabel: L10n.of(context)!.ok,
+        cancelLabel: L10n.of(context)!.cancel,
         textFields: [
           DialogTextField(
             prefixText: 'https://',
-            hintText: Matrix.of(context).client.homeserver.host,
+            hintText: Matrix.of(context).client.homeserver?.host,
             initialText: server,
             keyboardType: TextInputType.url,
           )
         ]);
     if (newServer == null) return;
+    Store().setItem(_serverStoreNamespace, newServer.single);
     setState(() {
       server = newServer.single;
     });
   }
 
-  String currentSearchTerm;
+  String? currentSearchTerm;
   List<Profile> foundProfiles = [];
 
   static const searchUserDirectoryLimit = 10;
@@ -84,9 +90,9 @@ class SearchController extends State<Search> {
       });
     }
     currentSearchTerm = text;
-    if (currentSearchTerm.isEmpty) return;
+    if (currentSearchTerm?.isEmpty ?? true) return;
     final matrix = Matrix.of(context);
-    SearchUserDirectoryResponse response;
+    SearchUserDirectoryResponse? response;
     try {
       response = await matrix.client.searchUserDirectory(
         text,
@@ -100,21 +106,22 @@ class SearchController extends State<Search> {
         'user_id': text,
       }));
     }
-    setState(() => null);
+    setState(() {});
   }
-
-  bool _init = false;
 
   @override
-  Widget build(BuildContext context) {
-    if (!_init) {
-      _init = true;
-      controller.text = VRouter.of(context).queryParameters['query'] ?? '';
-      WidgetsBinding.instance
-          .addPostFrameCallback((_) => search(controller.text));
-    }
-
-    return SearchView(this);
+  void initState() {
+    super.initState();
+    controller.text = VRouter.of(context).queryParameters['query'] ?? '';
+    WidgetsBinding.instance?.addPostFrameCallback((_) async {
+      final server = await Store().getItem(_serverStoreNamespace) as String?;
+      if (server?.isNotEmpty ?? false) {
+        this.server = server;
+      }
+      search(controller.text);
+    });
   }
+
+  @override
+  Widget build(BuildContext context) => SearchView(this);
 }
-// #fluffychat:matrix.org
