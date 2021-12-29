@@ -46,6 +46,7 @@ class _InviteStoryPageState extends State<InviteStoryPage> {
         }
 
         _undecided.removeAll(_invite);
+        _undecided.addAll(client.storiesBlockList);
         await client.setStoriesBlockList(_undecided.toList());
       },
     );
