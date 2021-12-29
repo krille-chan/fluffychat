@@ -2707,5 +2707,7 @@
       "date": {},
       "body": {}
     }
-  }
+  },
+  "whoCanSeeMyStoriesDesc": "Houd er rekening mee dat mensen elkaar in je verhaal kunnen zien en contact met elkaar kunnen opnemen.",
+  "@whoCanSeeMyStoriesDesc": {}
 }
