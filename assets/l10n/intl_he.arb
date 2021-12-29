@@ -91,7 +91,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSSign": "כדי שתוכל לחתום על האדם האחר, הזן את ביטוי הסיסמה או t, מפתח השחזור.",
+  "askSSSSSign": "כדי שתוכל לחתום על משתמש אחר , הזן את הסיסמה שלך או את מפתח השחזור.",
   "@askSSSSSign": {
     "type": "text",
     "placeholders": {}
@@ -112,5 +112,313 @@
   "@authentication": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "changePassword": "שנה סיסמא",
+  "@changePassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appLock": "נעילת אפליקציה",
+  "@appLock": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "ביטול",
+  "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChooseAtLeastChars": "אנא כתוב לפחות {min} תווים",
+  "@pleaseChooseAtLeastChars": {
+    "type": "text",
+    "placeholders": {
+      "min": {}
+    }
+  },
+  "addEmail": "הוסף מייל",
+  "@addEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "all": "הכל",
+  "@all": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "allChats": "כל הצ'אטים",
+  "@allChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "banned": "חסום",
+  "@banned": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "avatarHasBeenChanged": "האווטאר השתנה",
+  "@avatarHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendOnEnter": "שלח וכנס",
+  "@sendOnEnter": {},
+  "badServerLoginTypesException": "שרת הבית תומך בסוגי הכניסה:\n{serverVersions}\nאבל אפליקציה זו תומכת רק ב:\n{supportedVersions}",
+  "@badServerLoginTypesException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "changedTheGuestAccessRulesTo": "{username} שינה את כללי הגישה לאורחים ל: {rules}",
+  "@changedTheGuestAccessRulesTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "rules": {}
+    }
+  },
+  "changedTheJoinRules": "{username} שינה את כללי ההצטרפות",
+  "@changedTheJoinRules": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changeWallpaper": "שנה טפט",
+  "@changeWallpaper": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changedTheChatNameTo": "{username} שינה את שם הצ'אט ל: '{chatname}'",
+  "@changedTheChatNameTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "chatname": {}
+    }
+  },
+  "changedTheRoomInvitationLink": "{username} שינה את קישור ההזמנה",
+  "@changedTheRoomInvitationLink": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "passwordsDoNotMatch": "הסיסמאות לא תואמות!",
+  "@passwordsDoNotMatch": {},
+  "pleaseEnterValidEmail": "אנא כתוב כתובת אימייל תקינה.",
+  "@pleaseEnterValidEmail": {},
+  "repeatPassword": "כתוב שוב את הסיסמה",
+  "@repeatPassword": {},
+  "addNewFriend": "הוסף חבר חדש",
+  "@addNewFriend": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSureYouWantToLogout": "האם אתה בטוח שברצונך לצאת?",
+  "@areYouSureYouWantToLogout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changelog": "יומן שינויים",
+  "@changelog": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chat": "צ׳אט",
+  "@chat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPause": "השהה",
+  "@audioPlayerPause": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPlay": "הפעל",
+  "@audioPlayerPlay": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "autoplayImages": "הפעל אוטומטית מדבקות ואמוטים מונפשים",
+  "@autoplayImages": {
+    "type": "text",
+    "placeholder": {}
+  },
+  "badServerVersionsException": "שרת הבית תומך בגרסאות:\n{serverVersions}\nאבל האפליקציה הזו תומכת רק ב-{supportedVersions}",
+  "@badServerVersionsException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "banFromChat": "חסום מצ'אט",
+  "@banFromChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bannedUser": "{username} חסם את {targetName}",
+  "@bannedUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "blockDevice": "חסום מכשיר",
+  "@blockDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "blocked": "חסום",
+  "@blocked": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "botMessages": "הודעות בוט",
+  "@botMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cachedKeys": "מפתחות מאוחסנים במטמון",
+  "@cachedKeys": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cantOpenUri": "לא ניתן לפתוח את ה-URI {uri}",
+  "@cantOpenUri": {
+    "type": "text",
+    "placeholders": {
+      "uri": {}
+    }
+  },
+  "changeDeviceName": "שנה את שם המכשיר",
+  "@changeDeviceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changedTheChatAvatar": "{username} שינה את האווטאר של הצ'אט",
+  "@changedTheChatAvatar": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheChatDescriptionTo": "{username} שינה את תיאור הצ'אט ל: '{description}'",
+  "@changedTheChatDescriptionTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "description": {}
+    }
+  },
+  "changedTheChatPermissions": "{username} שינה את הרשאות הצ'אט",
+  "@changedTheChatPermissions": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheDisplaynameTo": "{username} שינה את שם התצוגה שלו ל: '{displayname}'",
+  "@changedTheDisplaynameTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "displayname": {}
+    }
+  },
+  "changedTheGuestAccessRules": "{username} שינה את כללי הגישה לאורחים",
+  "@changedTheGuestAccessRules": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheHistoryVisibility": "{username} שינה את נראות ההיסטוריה",
+  "@changedTheHistoryVisibility": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheHistoryVisibilityTo": "{username} שינה את נראות ההיסטוריה ל: {rules}",
+  "@changedTheHistoryVisibilityTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "rules": {}
+    }
+  },
+  "changedTheJoinRulesTo": "{username} שינה את כללי ההצטרפות ל: {joinRules}",
+  "@changedTheJoinRulesTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "joinRules": {}
+    }
+  },
+  "changedTheProfileAvatar": "{username} שינה את האווטאר שלו",
+  "@changedTheProfileAvatar": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheRoomAliases": "{username} שינה את כינוי החדר",
+  "@changedTheRoomAliases": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changesHaveBeenSaved": "השינויים נשמרו",
+  "@changesHaveBeenSaved": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeTheHomeserver": "שנה את שרת הבית",
+  "@changeTheHomeserver": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeTheme": "שנה את הסגנון שלך",
+  "@changeTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeTheNameOfTheGroup": "שנה את שם הקבוצה",
+  "@changeTheNameOfTheGroup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeTheServer": "שנה את השרת",
+  "@changeTheServer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeYourAvatar": "שינוי האווטאר שלך",
+  "@changeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "channelCorruptedDecryptError": "ההצפנה נפגמה",
+  "@channelCorruptedDecryptError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourUserId": "מזהה המשתמש שלך:",
+  "@yourUserId": {},
+  "iWroteDownTheKey": "רשמתי את המפתח",
+  "@iWroteDownTheKey": {},
+  "yourChatBackupHasBeenSetUp": "גיבוי הצ'אט שלך הוגדר.",
+  "@yourChatBackupHasBeenSetUp": {},
+  "chatBackup": "גיבוי הצ'אט",
+  "@chatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setupChatBackup": "הגדר גיבוי צ'אט",
+  "@setupChatBackup": {}
 }
