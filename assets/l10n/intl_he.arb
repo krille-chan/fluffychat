@@ -521,5 +521,17 @@
   "@close": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "commandHint_myroomavatar": "הגדר את התמונה שלך לחדר זה (על ידי mxc-uri)",
+  "@commandHint_myroomavatar": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomavatar"
+  },
+  "commandHint_myroomnick": "הגדר את שם התצוגה שלך עבור חדר זה",
+  "@commandHint_myroomnick": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomnick"
+  },
+  "addToSpace": "הוסף לספייס",
+  "@addToSpace": {}
 }
