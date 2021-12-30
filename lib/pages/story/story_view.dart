@@ -87,10 +87,11 @@ class StoryView extends StatelessWidget {
               child: PopupMenuButton<PopupStoryAction>(
                 onSelected: controller.onPopupStoryAction,
                 itemBuilder: (context) => [
-                  PopupMenuItem(
-                    value: PopupStoryAction.delete,
-                    child: Text(L10n.of(context)!.delete),
-                  ),
+                  if (controller.currentEvent?.canRedact ?? false)
+                    PopupMenuItem(
+                      value: PopupStoryAction.delete,
+                      child: Text(L10n.of(context)!.delete),
+                    ),
                   PopupMenuItem(
                     value: PopupStoryAction.report,
                     child: Text(L10n.of(context)!.reportMessage),
@@ -336,6 +337,10 @@ class StoryView extends StatelessWidget {
                       child: SafeArea(
                         child: Center(
                           child: OutlinedButton.icon(
+                            style: OutlinedButton.styleFrom(
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.surface,
+                            ),
                             onPressed: controller.displaySeenByUsers,
                             icon: const Icon(
                               Icons.visibility_outlined,
