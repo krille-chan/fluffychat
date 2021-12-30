@@ -2671,5 +2671,36 @@
   "@openVideoCamera": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "yourStory": "A túa Historia",
+  "@yourStory": {},
+  "replyHasBeenSent": "Enviouse a resposta",
+  "@replyHasBeenSent": {},
+  "videoWithSize": "Vídeo ({size})",
+  "@videoWithSize": {
+    "type": "text",
+    "placeholders": {
+      "size": {}
+    }
+  },
+  "storyFrom": "Historia do {date}:\n{body}",
+  "@storyFrom": {
+    "type": "text",
+    "placeholders": {
+      "date": {},
+      "body": {}
+    }
+  },
+  "whoCanSeeMyStoriesDesc": "Ten en conta que as usuarias poden verse e contactar unhas coas outras na túa historia.",
+  "@whoCanSeeMyStoriesDesc": {},
+  "addToStory": "Engadir a historia",
+  "@addToStory": {},
+  "publish": "Publicar",
+  "@publish": {},
+  "whoCanSeeMyStories": "Quen pode ver as miñas historias?",
+  "@whoCanSeeMyStories": {},
+  "unsubscribeStories": "Retirar subscrición das historias",
+  "@unsubscribeStories": {},
+  "thisUserHasNotPostedAnythingYet": "A usuaria non publicou aínda ningunha historia",
+  "@thisUserHasNotPostedAnythingYet": {}
 }
