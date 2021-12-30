@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -284,10 +283,10 @@ class _ChatListViewBodyState extends State<_ChatListViewBody> {
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            const Icon(
-              Icons.maps_ugc_outlined,
-              size: 80,
-              color: Colors.grey,
+            Image.asset(
+              'assets/private_chat_wallpaper.png',
+              width: 160,
+              height: 160,
             ),
             Center(
               child: Text(
@@ -301,37 +300,90 @@ class _ChatListViewBodyState extends State<_ChatListViewBody> {
             ),
           ],
         );
-      }
-      final displayStoriesHeader = widget.controller.activeSpaceId == null;
-      child = ListView.builder(
-        key: ValueKey(Matrix.of(context).client.userID.toString() +
-            widget.controller.activeSpaceId.toString()),
-        controller: widget.controller.scrollController,
-        itemCount: rooms.length + (displayStoriesHeader ? 1 : 0),
-        itemBuilder: (BuildContext context, int i) {
-          if (displayStoriesHeader) {
-            if (i == 0) {
-              return const StoriesHeader();
+      } else {
+        final displayStoriesHeader = widget.controller.activeSpaceId == null;
+        child = ListView.builder(
+          key: ValueKey(Matrix.of(context).client.userID.toString() +
+              widget.controller.activeSpaceId.toString()),
+          controller: widget.controller.scrollController,
+          itemCount: rooms.length + (displayStoriesHeader ? 1 : 0),
+          itemBuilder: (BuildContext context, int i) {
+            if (displayStoriesHeader) {
+              if (i == 0) {
+                return const StoriesHeader();
+              }
+              i--;
             }
-            i--;
-          }
-          return ChatListItem(
-            rooms[i],
-            selected: widget.controller.selectedRoomIds.contains(rooms[i].id),
-            onTap: widget.controller.selectMode == SelectMode.select
-                ? () => widget.controller.toggleSelection(rooms[i].id)
-                : null,
-            onLongPress: () => widget.controller.toggleSelection(rooms[i].id),
-            activeChat: widget.controller.activeChat == rooms[i].id,
-          );
-        },
-      );
+            return ChatListItem(
+              rooms[i],
+              selected: widget.controller.selectedRoomIds.contains(rooms[i].id),
+              onTap: widget.controller.selectMode == SelectMode.select
+                  ? () => widget.controller.toggleSelection(rooms[i].id)
+                  : null,
+              onLongPress: () => widget.controller.toggleSelection(rooms[i].id),
+              activeChat: widget.controller.activeChat == rooms[i].id,
+            );
+          },
+        );
+      }
     } else {
-      child = ListView(
-        key: const ValueKey(false),
-        children: List.filled(
-          8,
-          const _DummyChat(),
+      const dummyChatCount = 8;
+      final titleColor =
+          Theme.of(context).textTheme.bodyText1.color.withAlpha(100);
+      final subtitleColor =
+          Theme.of(context).textTheme.bodyText1.color.withAlpha(50);
+      child = ListView.builder(
+        itemCount: dummyChatCount,
+        itemBuilder: (context, i) => Opacity(
+          opacity: (dummyChatCount - i) / dummyChatCount,
+          child: ListTile(
+            leading: CircleAvatar(
+              backgroundColor: titleColor,
+              child: CircularProgressIndicator(
+                strokeWidth: 1,
+                color: Theme.of(context).textTheme.bodyText1.color,
+              ),
+            ),
+            title: Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    height: 14,
+                    decoration: BoxDecoration(
+                      color: titleColor,
+                      borderRadius: BorderRadius.circular(3),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 36),
+                Container(
+                  height: 14,
+                  width: 14,
+                  decoration: BoxDecoration(
+                    color: subtitleColor,
+                    borderRadius: BorderRadius.circular(14),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Container(
+                  height: 14,
+                  width: 14,
+                  decoration: BoxDecoration(
+                    color: subtitleColor,
+                    borderRadius: BorderRadius.circular(14),
+                  ),
+                ),
+              ],
+            ),
+            subtitle: Container(
+              decoration: BoxDecoration(
+                color: subtitleColor,
+                borderRadius: BorderRadius.circular(3),
+              ),
+              height: 12,
+              margin: const EdgeInsets.only(right: 22),
+            ),
+          ),
         ),
       );
     }
@@ -386,100 +438,6 @@ class _ChatListViewBodyState extends State<_ChatListViewBody> {
     _lastUserId = newClient.userID;
     _lastSpaceId = widget.controller.activeSpaceId;
     return reversed;
-  }
-}
-
-class _DummyChat extends StatefulWidget {
-  const _DummyChat({Key key}) : super(key: key);
-
-  @override
-  State<_DummyChat> createState() => _DummyChatState();
-}
-
-class _DummyChatState extends State<_DummyChat> {
-  double opacity = Random().nextDouble();
-
-  Timer _timer;
-
-  static const duration = Duration(seconds: 1);
-
-  void _setRandomOpacity(_) {
-    if (mounted) {
-      setState(() => opacity = Random().nextDouble());
-    }
-  }
-
-  @override
-  void initState() {
-    WidgetsBinding.instance.addPostFrameCallback(_setRandomOpacity);
-    _timer ??= Timer.periodic(duration, _setRandomOpacity);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _timer?.cancel();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final titleColor =
-        Theme.of(context).textTheme.bodyText1.color.withAlpha(100);
-    final subtitleColor =
-        Theme.of(context).textTheme.bodyText1.color.withAlpha(50);
-    return AnimatedOpacity(
-      opacity: opacity,
-      duration: duration,
-      child: ListTile(
-        leading: CircleAvatar(
-          backgroundColor: titleColor,
-          child: CircularProgressIndicator(
-            strokeWidth: 1,
-            color: Theme.of(context).textTheme.bodyText1.color,
-          ),
-        ),
-        title: Row(
-          children: [
-            Expanded(
-              child: Container(
-                height: 14,
-                decoration: BoxDecoration(
-                  color: titleColor,
-                  borderRadius: BorderRadius.circular(3),
-                ),
-              ),
-            ),
-            const SizedBox(width: 36),
-            Container(
-              height: 14,
-              width: 14,
-              decoration: BoxDecoration(
-                color: subtitleColor,
-                borderRadius: BorderRadius.circular(14),
-              ),
-            ),
-            const SizedBox(width: 12),
-            Container(
-              height: 14,
-              width: 14,
-              decoration: BoxDecoration(
-                color: subtitleColor,
-                borderRadius: BorderRadius.circular(14),
-              ),
-            ),
-          ],
-        ),
-        subtitle: Container(
-          decoration: BoxDecoration(
-            color: subtitleColor,
-            borderRadius: BorderRadius.circular(3),
-          ),
-          height: 12,
-          margin: const EdgeInsets.only(right: 22),
-        ),
-      ),
-    );
   }
 }
 
