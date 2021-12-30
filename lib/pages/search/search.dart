@@ -112,8 +112,8 @@ class SearchController extends State<Search> {
   @override
   void initState() {
     super.initState();
-    controller.text = VRouter.of(context).queryParameters['query'] ?? '';
     WidgetsBinding.instance?.addPostFrameCallback((_) async {
+      controller.text = VRouter.of(context).queryParameters['query'] ?? '';
       final server = await Store().getItem(_serverStoreNamespace) as String?;
       if (server?.isNotEmpty ?? false) {
         this.server = server;
