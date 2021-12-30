@@ -454,7 +454,7 @@
     "type": "text",
     "description": "Usage hint for the command /me"
   },
-  "commandHint_myroomavatar": "设置您的聊天室头像（通过mxc-uri）",
+  "commandHint_myroomavatar": "设置您的聊天室头像（通过 mxc-uri）",
   "@commandHint_myroomavatar": {
     "type": "text",
     "description": "Usage hint for the command /myroomavatar"
@@ -712,7 +712,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "directChats": "直接聊天",
+  "directChats": "一对一聊天",
   "@directChats": {
     "type": "text",
     "placeholders": {}
@@ -1360,7 +1360,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "看起来您手机上没有谷歌服务框架。这对您保护隐私而言是个好决定！为收取 FluffyChat 的推送通知，推荐您使用https://microg.org/ 或 https://unifiedpush.org/。",
+  "noGoogleServicesWarning": "看起来您手机上没有谷歌服务框架。这对保护您的隐私而言是个好决定！要接收 FluffyChat 的推送通知，推荐您使用 https://microg.org/ 或 https://unifiedpush.org/。",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -2198,14 +2198,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount, plural, other{{unreadCount} 个未读聊天}}",
+  "unreadChats": "{unreadCount, plural, =1{1 unread chat} other{{unreadCount} 个未读聊天}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents}条未读消息}}",
+  "unreadMessages": "{unreadEvents, plural, =1{1 unread message} other{{unreadEvents} 条未读消息}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
@@ -2563,7 +2563,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sendOnEnter": "按 enter 键发送",
+  "sendOnEnter": "按 Enter 键发送",
   "@sendOnEnter": {},
   "passwordsDoNotMatch": "密码不匹配！",
   "@passwordsDoNotMatch": {},
@@ -2660,7 +2660,7 @@
     "type": "text",
     "description": "Usage hint for the command /discardsession"
   },
-  "commandHint_dm": "启动一对一交谈\n使用 --no-encryption 禁用加密",
+  "commandHint_dm": "启动一对一聊天\n使用 --no-encryption 选项来禁用加密",
   "@commandHint_dm": {
     "type": "text",
     "description": "Usage hint for the command /dm"
@@ -2670,7 +2670,7 @@
     "type": "text",
     "description": "Usage hint for the command /clearcache"
   },
-  "commandHint_create": "创建空的群聊\n使用 --no-encryption 禁用加密",
+  "commandHint_create": "创建空的群聊\n使用 --no-encryption 选项来禁用加密",
   "@commandHint_create": {
     "type": "text",
     "description": "Usage hint for the command /create"
@@ -2686,11 +2686,11 @@
   "@publish": {},
   "whoCanSeeMyStories": "谁能看到我的 Story？",
   "@whoCanSeeMyStories": {},
-  "unsubscribeStories": "取消 story 订阅",
+  "unsubscribeStories": "取消 Story 订阅",
   "@unsubscribeStories": {},
-  "thisUserHasNotPostedAnythingYet": "该用户尚未在 story 发布任何内容",
+  "thisUserHasNotPostedAnythingYet": "该用户尚未在 Story 发布任何内容",
   "@thisUserHasNotPostedAnythingYet": {},
-  "yourStory": "你的 story",
+  "yourStory": "你的 Story",
   "@yourStory": {},
   "replyHasBeenSent": "已发送回复",
   "@replyHasBeenSent": {},
@@ -2709,6 +2709,6 @@
       "body": {}
     }
   },
-  "whoCanSeeMyStoriesDesc": "请注意，人们可以在你的 story 中看到彼此并相互联系。",
+  "whoCanSeeMyStoriesDesc": "请注意，人们可以在你的 Story 中看到彼此并相互联系。",
   "@whoCanSeeMyStoriesDesc": {}
 }
