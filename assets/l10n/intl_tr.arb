@@ -2115,7 +2115,7 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "Hemen ilk sohbetinize başlayın! 🙂\n- Mesaj düğmesine dokunun\n- Bir arkadaşın kullanıcı adını girin\n- Eğlenceli bir şekilde sohbet edin",
+  "startYourFirstChat": "Hemen ilk sohbetinize başlayın! 🙂\n- 'Yeni sohbet' düğmesine dokunun\n- Bir arkadaşınızın QR kodunu tarayın\n- Eğlenceli bir şekilde sohbet edin",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
