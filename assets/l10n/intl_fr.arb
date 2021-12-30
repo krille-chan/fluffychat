@@ -411,9 +411,9 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatHasBeenAddedToThisSpace": "La discussion a été ajoutée à l'espace",
+  "chatHasBeenAddedToThisSpace": "La discussion a été ajoutée à cet espace",
   "@chatHasBeenAddedToThisSpace": {},
-  "chatHasBeenRemovedFromThisSpace": "La discussion a été retirée de l'espace",
+  "chatHasBeenRemovedFromThisSpace": "La discussion a été retirée de cet espace",
   "@chatHasBeenRemovedFromThisSpace": {
     "type": "text",
     "placeholders": {}
@@ -537,7 +537,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "configureChat": "Configurer la conversation",
+  "configureChat": "Configurer la discussion",
   "@configureChat": {
     "type": "text",
     "placeholders": {}
@@ -793,7 +793,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "editChatPermissions": "Modifier les permissions de la conversation",
+  "editChatPermissions": "Modifier les permissions de la discussion",
   "@editChatPermissions": {
     "type": "text",
     "placeholders": {}
@@ -2115,7 +2115,7 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "Commencez votre première conversation dès maintenant ! 🙂\n- Appuyez sur le bouton des messages\n- Entrez l'identifiant d’un·e ami·e\n- Bonne discussion",
+  "startYourFirstChat": "Commencez votre première discussion maintenant ! 🙂\n- Appuyez sur « Nouvelle discussion »\n- Scannez le code QR d’un·e ami·e\n- Bonne discussion",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -2281,7 +2281,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unmuteChat": "Retirer la sourdine",
+  "unmuteChat": "Retirer la sourdine de la discussion",
   "@unmuteChat": {
     "type": "text",
     "placeholders": {}
