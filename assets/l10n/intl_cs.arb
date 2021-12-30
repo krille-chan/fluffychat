@@ -2106,7 +2106,7 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "Zahajte svůj první chat! 🙂\n- Klepněte na tlačítko zprávy\n- Zadejte uživatelské jméno přítele\n- Bavte se chatováním",
+  "startYourFirstChat": "Začněte svůj první chat hned teď! 🙂\n- Klepněte na 'Nový chat'\n- Naskenujte QR kód přítele\n- Bavte se chatováním",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -2693,5 +2693,22 @@
   "yourStory": "Váš příběh",
   "@yourStory": {},
   "replyHasBeenSent": "Odpověď byla odeslána",
-  "@replyHasBeenSent": {}
+  "@replyHasBeenSent": {},
+  "videoWithSize": "Video ({size})",
+  "@videoWithSize": {
+    "type": "text",
+    "placeholders": {
+      "size": {}
+    }
+  },
+  "storyFrom": "Příběh z {date}:\n {body}",
+  "@storyFrom": {
+    "type": "text",
+    "placeholders": {
+      "date": {},
+      "body": {}
+    }
+  },
+  "whoCanSeeMyStoriesDesc": "Upozorňujeme, že lidé se ve vašem příběhu mohou navzájem vidět a kontaktovat.",
+  "@whoCanSeeMyStoriesDesc": {}
 }
