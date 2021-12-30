@@ -121,7 +121,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSVerify": "請輸入您安全儲存的密碼短語或恢復金鑰以驗證您的對話。",
+  "askSSSSVerify": "請輸入您安全儲存的密碼短語或恢復金鑰以驗證您的工作階段。",
   "@askSSSSVerify": {
     "type": "text",
     "placeholders": {}
@@ -247,7 +247,7 @@
       "username": {}
     }
   },
-  "changedTheDisplaynameTo": "{username}變更了顯示名稱為：「{displayname}」",
+  "changedTheDisplaynameTo": "{username} 變更了顯示名稱為：「{displayname}」",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -307,7 +307,7 @@
       "username": {}
     }
   },
-  "changedTheRoomAliases": "{username}變更了房間名",
+  "changedTheRoomAliases": "{username}變更了聊天室名",
   "@changedTheRoomAliases": {
     "type": "text",
     "placeholders": {
@@ -1188,12 +1188,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "newChat": "新的聊天室",
+  "newChat": "新聊天室",
   "@newChat": {
     "type": "text",
     "placeholders": {}
   },
-  "newMessageInFluffyChat": "來自FluffyChat的新訊息",
+  "newMessageInFluffyChat": "來自 FluffyChat 的新訊息",
   "@newMessageInFluffyChat": {
     "type": "text",
     "placeholders": {}
@@ -1233,12 +1233,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "noEncryptionForPublicRooms": "您只能在聊天室不再被允許公開訪問後，才能啟用加密。",
+  "noEncryptionForPublicRooms": "您只能在這個聊天室不再被允許公開訪問後，才能啟用加密。",
   "@noEncryptionForPublicRooms": {
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "看起來您手機上沒有Google服務框架。這對於保護您的隱私而言是個好決定！但為了收到FluffyChat的推播通知，我們推薦您使用microG：https://microg.org/",
+  "noGoogleServicesWarning": "看起來您手機上沒有Google服務框架。這對於保護您的隱私而言是個好決定！但為了收到FluffyChat的推播通知，我們推薦您使用 https://microg.org/ 或 https://unifiedpush.org/。",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -1263,7 +1263,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noPublicRoomsFound": "找不到公開的房間…",
+  "noPublicRoomsFound": "找不到公開的聊天室…",
   "@noPublicRoomsFound": {
     "type": "text",
     "placeholders": {}
@@ -1535,7 +1535,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unbanFromChat": "移除流放",
+  "unbanFromChat": "解禁聊天",
   "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
@@ -1775,7 +1775,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sharedTheLocation": "{username}分享了位置",
+  "sharedTheLocation": "{username} 分享了位置",
   "@sharedTheLocation": {
     "type": "text",
     "placeholders": {
@@ -1814,7 +1814,7 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "請開始您的聊天之旅☆（ゝω●）\n- 點擊「+」\n- 輸入朋友的使用者名稱\n- 一起開心的聊天吧",
+  "startYourFirstChat": "請開始您的聊天之旅☆（ゝω●）\n- 點擊「新聊天室」\n- 掃描朋友的二維碼\n- 一起開心的聊天吧",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -1980,14 +1980,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount, plural, other{{unreadCount}個未讀聊天室}}",
+  "unreadChats": "{unreadCount, plural, =1{1 unread chat} other{{unreadCount} 個未讀聊天室}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents}個未讀訊息}}",
+  "unreadMessages": "{unreadEvents, plural, =1{1 unread message} other{{unreadEvents} 個未讀訊息}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
@@ -2273,5 +2273,133 @@
   "@allChats": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "commandHint_ban": "在此聊天室封禁該使用者",
+  "@commandHint_ban": {
+    "type": "text",
+    "description": "Usage hint for the command /ban"
+  },
+  "commandHint_clearcache": "清除快取",
+  "@commandHint_clearcache": {
+    "type": "text",
+    "description": "Usage hint for the command /clearcache"
+  },
+  "commandHint_create": "建立一個空的群聊\n使用 --no-encryption 選項來禁用加密",
+  "@commandHint_create": {
+    "type": "text",
+    "description": "Usage hint for the command /create"
+  },
+  "commandHint_discardsession": "丟棄工作階段",
+  "@commandHint_discardsession": {
+    "type": "text",
+    "description": "Usage hint for the command /discardsession"
+  },
+  "commandHint_dm": "啟動一對一聊天\n使用 --no-encryption 選項來禁用加密",
+  "@commandHint_dm": {
+    "type": "text",
+    "description": "Usage hint for the command /dm"
+  },
+  "commandHint_invite": "邀請該使用者加入此聊天室",
+  "@commandHint_invite": {
+    "type": "text",
+    "description": "Usage hint for the command /invite"
+  },
+  "commandHint_join": "加入此聊天室",
+  "@commandHint_join": {
+    "type": "text",
+    "description": "Usage hint for the command /join"
+  },
+  "commandHint_kick": "將這個使用者移出此聊天室",
+  "@commandHint_kick": {
+    "type": "text",
+    "description": "Usage hint for the command /kick"
+  },
+  "commandHint_leave": "退出此聊天室",
+  "@commandHint_leave": {
+    "type": "text",
+    "description": "Usage hint for the command /leave"
+  },
+  "commandHint_myroomnick": "設定您的聊天室暱稱",
+  "@commandHint_myroomnick": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomnick"
+  },
+  "editRoomAliases": "編輯聊天室名",
+  "@editRoomAliases": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "roomVersion": "聊天室的版本",
+  "@roomVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addToSpace": "加入空間",
+  "@addToSpace": {},
+  "cantOpenUri": "無法打開URI {uri}",
+  "@cantOpenUri": {
+    "type": "text",
+    "placeholders": {
+      "uri": {}
+    }
+  },
+  "repeatPassword": "再次輸入密碼",
+  "@repeatPassword": {},
+  "yourChatBackupHasBeenSetUp": "您的聊天記錄備份已設定。",
+  "@yourChatBackupHasBeenSetUp": {},
+  "pleaseChooseAtLeastChars": "請至少輸入 {min} 个字元。",
+  "@pleaseChooseAtLeastChars": {
+    "type": "text",
+    "placeholders": {
+      "min": {}
+    }
+  },
+  "setupChatBackupDescription": "為了保護您的消息，我們為您生成了一個安全金鑰。\n請將其儲存在安全的地方，例如密碼管理器中。",
+  "@setupChatBackupDescription": {},
+  "goToTheNewRoom": "前往新聊天室",
+  "@goToTheNewRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHint_myroomavatar": "設置您的聊天室頭貼（通過 mxc-uri）",
+  "@commandHint_myroomavatar": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomavatar"
+  },
+  "commandHint_unban": "在此聊天室解封該使用者",
+  "@commandHint_unban": {
+    "type": "text",
+    "description": "Usage hint for the command /unban"
+  },
+  "passwordsDoNotMatch": "密碼不匹配！",
+  "@passwordsDoNotMatch": {},
+  "pleaseEnterValidEmail": "請輸入一個有效的電子郵件地址。",
+  "@pleaseEnterValidEmail": {},
+  "autoplayImages": "自動播放動態貼圖和表情",
+  "@autoplayImages": {
+    "type": "text",
+    "placeholder": {}
+  },
+  "sendOnEnter": "按 Enter 鍵發送",
+  "@sendOnEnter": {},
+  "changeYourAvatar": "更改您的大頭貼",
+  "@changeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourUserId": "您的ID：",
+  "@yourUserId": {},
+  "setupChatBackup": "設定聊天記錄備份",
+  "@setupChatBackup": {},
+  "iWroteDownTheKey": "我已經記下了金鑰",
+  "@iWroteDownTheKey": {},
+  "chatHasBeenAddedToThisSpace": "聊天室已添加到此空間",
+  "@chatHasBeenAddedToThisSpace": {},
+  "chatHasBeenRemovedFromThisSpace": "聊天室已從此空間移除",
+  "@chatHasBeenRemovedFromThisSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clearArchive": "清除存檔",
+  "@clearArchive": {}
 }
