@@ -1289,5 +1289,413 @@
   "@howOffensiveIsThisContent": {
     "type": "text",
     "placeholders": {}
+  },
+  "locationPermissionDeniedNotice": "הרשאת המיקום נדחתה. אנא אפשר את היכולת לשתף את מיקומך.",
+  "@locationPermissionDeniedNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "login": "כניסה",
+  "@login": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "moderator": "מנחה",
+  "@moderator": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "needPantalaimonWarning": "שים לב שאתה צריך Pantalaimon כדי להשתמש בהצפנה מקצה לקצה לעת עתה.",
+  "@needPantalaimonWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newChat": "צ'אט חדש",
+  "@newChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newVerificationRequest": "בקשת אימות חדשה!",
+  "@newVerificationRequest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "next": "הבא",
+  "@next": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "no": "לא",
+  "@no": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noConnectionToTheServer": "אין חיבור לשרת",
+  "@noConnectionToTheServer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noCrossSignBootstrap": "Fluffychat אינו תומך כרגע בהפעלת חתימה צולבת. אנא הפעל אותו מתוך Element.",
+  "@noCrossSignBootstrap": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noEncryptionForPublicRooms": "אתה יכול להפעיל הצפנה רק כשהחדר כבר לא נגיש לציבור.",
+  "@noEncryptionForPublicRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createNewChatExplaination": "פשוט סרקו את קוד ה-QR או שתפו את קישור ההזמנה שלכם אם אינכם אחד ליד השני.",
+  "@createNewChatExplaination": {},
+  "shareYourInviteLink": "שתף את קישור ההזמנה שלך",
+  "@shareYourInviteLink": {},
+  "typeInInviteLinkManually": "הקלד את קישור ההזמנה באופן ידני...",
+  "@typeInInviteLinkManually": {},
+  "noMegolmBootstrap": "הפעל במקום זאת גיבוי מפתח מקוון מתוך Element.",
+  "@noMegolmBootstrap": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noRoomsFound": "לא נמצאו חדרים…",
+  "@noRoomsFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noStatusesFound": "לא נמצאו סטטוסים עד כה.",
+  "@noStatusesFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notifications": "התראות",
+  "@notifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notSupportedInWeb": "לא נתמך בweb",
+  "@notSupportedInWeb": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "numberSelected": "{number} נבחר",
+  "@numberSelected": {
+    "type": "text",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "numUsersTyping": "{count} משתמשים מקלידים…",
+  "@numUsersTyping": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "obtainingLocation": "משיג מיקום…",
+  "@obtainingLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "onlineKeyBackupDisabled": "גיבוי מפתח מקוון מושבת",
+  "@onlineKeyBackupDisabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "onlineKeyBackupEnabled": "גיבוי מפתח מקוון מופעל",
+  "@onlineKeyBackupEnabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oopsPushError": "אופס! למרבה הצער, אירעה שגיאה בעת הגדרת התראות.",
+  "@oopsPushError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oopsSomethingWentWrong": "אופס, משהו השתבש…",
+  "@oopsSomethingWentWrong": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openAppToReadMessages": "פתח את האפליקציה לקריאת הודעות",
+  "@openAppToReadMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oneClientLoggedOut": "אחד מהמכשירים שלך התנתק",
+  "@oneClientLoggedOut": {},
+  "addAccount": "הוסף חשבון",
+  "@addAccount": {},
+  "editBundlesForAccount": "ערוך חבילות עבור חשבון זה",
+  "@editBundlesForAccount": {},
+  "participant": "משתתף",
+  "@participant": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "password": "סיסמה",
+  "@password": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseClickOnLink": "אנא לחץ על הקישור במייל ולאחר מכן המשך.",
+  "@pleaseClickOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnter4Digits": "אנא הזן 4 ספרות או השאר ריק כדי להשבית את נעילת האפליקציה.",
+  "@pleaseEnter4Digits": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginWithOneClick": "היכנס בלחיצה אחת",
+  "@loginWithOneClick": {},
+  "online": "מחובר/ת",
+  "@online": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addToBundle": "הוסף לחבילה",
+  "@addToBundle": {},
+  "optionalGroupName": "(אופציונלי) שם קבוצה",
+  "@optionalGroupName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "participatingUserDevices": "מכשירי משתמש משתתפים",
+  "@participatingUserDevices": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passphraseOrKey": "ביטוי סיסמה או מפתח שחזור",
+  "@passphraseOrKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordForgotten": "שכחתי סיסמה",
+  "@passwordForgotten": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordHasBeenChanged": "הסיסמה שונתה",
+  "@passwordHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordRecovery": "שחזור סיסמה",
+  "@passwordRecovery": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "people": "אנשים",
+  "@people": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pickImage": "בחר תמונה",
+  "@pickImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "play": "הפעל {fileName}",
+  "@play": {
+    "type": "text",
+    "placeholders": {
+      "fileName": {}
+    }
+  },
+  "pleaseChoose": "אנא בחר",
+  "@pleaseChoose": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChooseAPasscode": "אנא בחר קוד גישה",
+  "@pleaseChooseAPasscode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChooseAUsername": "אנא בחר שם משתמש",
+  "@pleaseChooseAUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterAMatrixIdentifier": "אנא הזן Matrix ID.",
+  "@pleaseEnterAMatrixIdentifier": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterSecurityKey": "נא הזן את מפתח האבטחה שלך:",
+  "@pleaseEnterSecurityKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterYourPassword": "נא הזן את הסיסמה שלך",
+  "@pleaseEnterYourPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterYourPin": "אנא הזן את קוד הpin שלך",
+  "@pleaseEnterYourPin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pin": "קוד pin",
+  "@pin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterYourUsername": "אנא הזן שם משתמש",
+  "@pleaseEnterYourUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newMessageInFluffyChat": "הודעה חדשה ב-FluffyChat",
+  "@newMessageInFluffyChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "monday": "יום שני",
+  "@monday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noGoogleServicesWarning": "נראה שאין לך שירותי גוגל בטלפון שלך. זו החלטה טובה לפרטיות שלך! כדי לקבל התרעות ב- FluffyChat אנו ממליצים להשתמש https://microg.org/ או https://unifiedpush.org/.",
+  "@noGoogleServicesWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noMatrixServer": "{server1} אינו שרת מטריקס, השתמש ב-{server2} במקום זאת?",
+  "@noMatrixServer": {
+    "type": "text",
+    "placeholders": {
+      "server1": {},
+      "server2": {}
+    }
+  },
+  "none": "ללא",
+  "@none": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPublicRoomsFound": "לא נמצאו חדרים ציבוריים…",
+  "@noPublicRoomsFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newPasswordDescription": "על מנת שתוכל לשחזר את הסיסמה שלך, עליך להוסיף מאוחר יותר כתובת אימייל לחשבון שלך.",
+  "@newPasswordDescription": {},
+  "noPasswordRecoveryDescription": "עדיין לא הוספת דרך לשחזר את הסיסמה שלך.",
+  "@noPasswordRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offensive": "פוגעני",
+  "@offensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newUsernameDescription": "מזהה המשתמש שלך יקבל את הפורמט @username:servername",
+  "@newUsernameDescription": {},
+  "notificationsEnabledForThisAccount": "התראות הופעלו עבור חשבון זה",
+  "@notificationsEnabledForThisAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bundleName": "שם החבילה",
+  "@bundleName": {},
+  "offline": "לא מקוון",
+  "@offline": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openVideoCamera": "פתח את המצלמה לסרטון",
+  "@openVideoCamera": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeFromBundle": "הסר מחבילה זו",
+  "@removeFromBundle": {},
+  "enableMultiAccounts": "(בטא) אפשר ריבוי חשבונות במכשיר זה",
+  "@enableMultiAccounts": {},
+  "openInMaps": "פתיחה במפות",
+  "@openInMaps": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "link": "קישור",
+  "@link": {},
+  "serverRequiresEmail": "שרת זה צריך לאמת את כתובת הדואר האלקטרוני שלך לרישום.",
+  "@serverRequiresEmail": {},
+  "makeAModerator": "הפוך למנחה",
+  "@makeAModerator": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "logout": "יציאה",
+  "@logout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "muteChat": "השתקת הצ'אט",
+  "@muteChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noDescription": "אין תיאור",
+  "@noDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "scanQrCode": "סרוק קוד QR",
+  "@scanQrCode": {},
+  "noPermission": "אין הרשאה",
+  "@noPermission": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "or": "או",
+  "@or": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "logInTo": "היכנס אל {homeserver}",
+  "@logInTo": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "makeAnAdmin": "הפוך למנהל מערכת",
+  "@makeAnAdmin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "makeSureTheIdentifierIsValid": "ודא שהמזהה חוקי",
+  "@makeSureTheIdentifierIsValid": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "memberChanges": "שינויים בחבר",
+  "@memberChanges": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "mention": "הזכיר",
+  "@mention": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "messageWillBeRemovedWarning": "ההודעה תוסר עבור כל המשתתפים",
+  "@messageWillBeRemovedWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "messages": "הודעות",
+  "@messages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openCamera": "פתח מצלמה",
+  "@openCamera": {
+    "type": "text",
+    "placeholders": {}
   }
 }
