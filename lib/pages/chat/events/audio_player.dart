@@ -173,7 +173,7 @@ class _AudioPlayerState extends State<AudioPlayerWidget> {
                   ),
           ),
           Expanded(
-            child: Slider.adaptive(
+            child: Slider(
               activeColor: Theme.of(context).colorScheme.secondaryVariant,
               inactiveColor: widget.color.withAlpha(64),
               value: currentPosition,

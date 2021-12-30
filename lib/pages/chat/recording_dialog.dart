@@ -30,6 +30,9 @@ class _RecordingDialogState extends State<RecordingDialog> {
   final _audioRecorder = Record();
   Amplitude _amplitude;
 
+  static const int bitRate = 64000;
+  static const double samplingRate = 22050.0;
+
   Future<void> startRecording() async {
     try {
       final tempDir = await getTemporaryDirectory();
@@ -43,7 +46,11 @@ class _RecordingDialogState extends State<RecordingDialog> {
       }
       await Wakelock.enable();
       await _audioRecorder.start(
-          path: _recordedPath, encoder: AudioEncoder.AAC);
+        path: _recordedPath,
+        encoder: AudioEncoder.AAC,
+        bitRate: bitRate,
+        samplingRate: samplingRate,
+      );
       setState(() => _duration = Duration.zero);
       _recorderSubscription?.cancel();
       _recorderSubscription =
