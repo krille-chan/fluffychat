@@ -2709,6 +2709,6 @@
   "@whoCanSeeMyStories": {},
   "unsubscribeStories": "Story deabbonieren",
   "@unsubscribeStories": {},
-  "thisUserHasNotPostedAnythingYet": "Diese:r Benutzer:in hat noch nichts in ihren Storys gepostet",
+  "thisUserHasNotPostedAnythingYet": "Dieses Mitglied hat noch keine Story gepostet",
   "@thisUserHasNotPostedAnythingYet": {}
 }
