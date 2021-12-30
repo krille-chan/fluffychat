@@ -2680,7 +2680,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "addToStory": "添加到 story",
+  "addToStory": "添加到 Story",
   "@addToStory": {},
   "publish": "发布",
   "@publish": {},
