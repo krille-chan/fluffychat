@@ -2022,7 +2022,7 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "现在开始您的第一个聊天！🙂\n- 点击消息按钮\n- 输入好友的用户名\n- 聊得开心",
+  "startYourFirstChat": "现在开始您的第一个聊天！🙂\n- 点击“新聊天”按钮\n- 输入好友的二维码\n- 聊得开心",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -2684,9 +2684,9 @@
   "@addToStory": {},
   "publish": "发布",
   "@publish": {},
-  "whoCanSeeMyStories": "谁能看到我的 stories？",
+  "whoCanSeeMyStories": "谁能看到我的 Story？",
   "@whoCanSeeMyStories": {},
-  "unsubscribeStories": "取消 stories 订阅",
+  "unsubscribeStories": "取消 story 订阅",
   "@unsubscribeStories": {},
   "thisUserHasNotPostedAnythingYet": "该用户尚未在 story 发布任何内容",
   "@thisUserHasNotPostedAnythingYet": {},
