@@ -2710,5 +2710,9 @@
     }
   },
   "whoCanSeeMyStoriesDesc": "İnsanların hikayenizde birbirlerini görebileceğini ve iletişim kurabileceğini lütfen unutmayın.",
-  "@whoCanSeeMyStoriesDesc": {}
+  "@whoCanSeeMyStoriesDesc": {},
+  "whatIsGoingOn": "Ne oluyor?",
+  "@whatIsGoingOn": {},
+  "addDescription": "Açıklama ekle",
+  "@addDescription": {}
 }
