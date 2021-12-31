@@ -2710,5 +2710,9 @@
     }
   },
   "whoCanSeeMyStoriesDesc": "Upozorňujeme, že lidé se ve vašem příběhu mohou navzájem vidět a kontaktovat.",
-  "@whoCanSeeMyStoriesDesc": {}
+  "@whoCanSeeMyStoriesDesc": {},
+  "whatIsGoingOn": "Co se děje?",
+  "@whatIsGoingOn": {},
+  "addDescription": "Přidat popis",
+  "@addDescription": {}
 }
