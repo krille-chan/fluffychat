@@ -342,14 +342,8 @@ class StoryView extends StatelessWidget {
                                   Theme.of(context).colorScheme.surface,
                             ),
                             onPressed: controller.displaySeenByUsers,
-                            icon: const Icon(
-                              Icons.visibility_outlined,
-                              color: Colors.white70,
-                            ),
-                            label: Text(
-                              controller.seenByUsersTitle,
-                              style: const TextStyle(color: Colors.white70),
-                            ),
+                            icon: const Icon(Icons.visibility_outlined),
+                            label: Text(controller.seenByUsersTitle),
                           ),
                         ),
                       ),
