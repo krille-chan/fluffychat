@@ -71,7 +71,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "addToSpace": "Lisää avaruuteen",
+  "addToSpace": "Lisää Spaceen",
   "@addToSpace": {},
   "admin": "Ylläpitäjä",
   "@admin": {
@@ -392,7 +392,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatHasBeenAddedToThisSpace": "Keskustelu on lisätty tähän avaruuteen",
+  "chatHasBeenAddedToThisSpace": "Keskustelu on lisätty tähän Spaceen",
   "@chatHasBeenAddedToThisSpace": {},
   "chats": "Keskustelut",
   "@chats": {
@@ -481,7 +481,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "createNewSpace": "Uusi avaruus",
+  "createNewSpace": "Uusi Space",
   "@createNewSpace": {
     "type": "text",
     "placeholders": {}
@@ -1319,7 +1319,7 @@
   },
   "setupChatBackupDescription": "Suojellaksemme viestejäsi olemme luoneet sinulle turva-avaimen.\nPidäthän tätä turvallisessa paikassa, kuten salasanamanagerissasi.",
   "@setupChatBackupDescription": {},
-  "chatHasBeenRemovedFromThisSpace": "Keskustelu on poistettu tästä avaruudesta",
+  "chatHasBeenRemovedFromThisSpace": "Keskustelu on poistettu tästä Spacesta",
   "@chatHasBeenRemovedFromThisSpace": {
     "type": "text",
     "placeholders": {}
@@ -1408,7 +1408,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enterASpacepName": "Syötä avaruuden nimi",
+  "enterASpacepName": "Syötä Spacen nimi",
   "@enterASpacepName": {},
   "inoffensive": "Loukkaamatonta",
   "@inoffensive": {
@@ -1925,12 +1925,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "spaceIsPublic": "Avaruus on julkinen",
+  "spaceIsPublic": "Space on julkinen",
   "@spaceIsPublic": {
     "type": "text",
     "placeholders": {}
   },
-  "spaceName": "Avaruuden nimi",
+  "spaceName": "Spacen nimi",
   "@spaceName": {
     "type": "text",
     "placeholders": {}
@@ -2255,11 +2255,11 @@
     "type": "text",
     "placeholders": {}
   },
-  "removeFromSpace": "Poista avaruudesta",
+  "removeFromSpace": "Poista Spacesta",
   "@removeFromSpace": {},
-  "removeFromSpaceDescription": "Tämä poistaa keskustelun nykyisestä avaruudesta. Se tulee yhä näkymään kategoriassa \"Kaikki keskustelut\".",
+  "removeFromSpaceDescription": "Tämä poistaa keskustelun nykyisestä Spacesta. Se tulee yhä näkymään kategoriassa \"Kaikki keskustelut\".",
   "@removeFromSpaceDescription": {},
-  "addToSpaceDescription": "Valitse avaruus, jonne tämä keskustelu lisätään.",
+  "addToSpaceDescription": "Valitse Space, jonne tämä keskustelu lisätään.",
   "@addToSpaceDescription": {},
   "start": "Aloita",
   "@start": {},
@@ -2422,7 +2422,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "publicSpace": "Julkinen avaruus",
+  "publicSpace": "Julkinen Space",
   "@publicSpace": {
     "type": "text",
     "placeholders": {}
