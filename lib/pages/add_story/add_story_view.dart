@@ -101,8 +101,9 @@ class AddStoryView extends StatelessWidget {
                 onChanged: controller.updateColors,
                 decoration: InputDecoration(
                   border: InputBorder.none,
-                  hintText:
-                      controller.hasMedia ? 'Add description' : 'How are you?',
+                  hintText: controller.hasMedia
+                      ? L10n.of(context)!.addDescription
+                      : L10n.of(context)!.whatIsGoingOn,
                   filled: false,
                   hintStyle: TextStyle(
                     color: Colors.white.withOpacity(0.5),
@@ -116,7 +117,6 @@ class AddStoryView extends StatelessWidget {
           ),
         ],
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton:
           controller.controller.text.isEmpty && !controller.hasMedia
               ? null
@@ -125,7 +125,7 @@ class AddStoryView extends StatelessWidget {
                   label: Text(L10n.of(context)!.publish),
                   backgroundColor: Theme.of(context).colorScheme.surface,
                   foregroundColor: Theme.of(context).colorScheme.onSurface,
-                  icon: const Icon(Icons.check_circle),
+                  icon: const Icon(Icons.send_rounded),
                 ),
     );
   }

@@ -113,13 +113,12 @@ class _InviteStoryPageState extends State<InviteStoryPage> {
               ),
             );
           }),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _inviteAction,
         label: Text(L10n.of(context)!.publish),
         backgroundColor: Theme.of(context).colorScheme.surface,
         foregroundColor: Theme.of(context).colorScheme.onSurface,
-        icon: const Icon(Icons.upload_outlined),
+        icon: const Icon(Icons.send_rounded),
       ),
     );
   }

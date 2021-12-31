@@ -206,18 +206,13 @@ class ChatListView extends StatelessWidget {
                 Expanded(child: _ChatListViewBody(controller)),
               ]),
               floatingActionButton: selectMode == SelectMode.normal
-                  ? controller.scrolledToTop
-                      ? FloatingActionButton.extended(
-                          onPressed: () =>
-                              VRouter.of(context).to('/newprivatechat'),
-                          icon: const Icon(CupertinoIcons.chat_bubble),
-                          label: Text(L10n.of(context).newChat),
-                        )
-                      : FloatingActionButton(
-                          onPressed: () =>
-                              VRouter.of(context).to('/newprivatechat'),
-                          child: const Icon(CupertinoIcons.chat_bubble),
-                        )
+                  ? FloatingActionButton.extended(
+                      isExtended: controller.scrolledToTop,
+                      onPressed: () =>
+                          VRouter.of(context).to('/newprivatechat'),
+                      icon: const Icon(CupertinoIcons.chat_bubble),
+                      label: Text(L10n.of(context).newChat),
+                    )
                   : null,
               bottomNavigationBar: Column(
                 mainAxisSize: MainAxisSize.min,
