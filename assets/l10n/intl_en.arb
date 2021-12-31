@@ -2685,5 +2685,7 @@
       "body": {}
     }
   },
-  "whoCanSeeMyStoriesDesc": "Please note that people can see and contact each other in your story."
+  "whoCanSeeMyStoriesDesc": "Please note that people can see and contact each other in your story.",
+  "whatIsGoingOn": "What is going on?",
+  "addDescription": "Add description"
 }
