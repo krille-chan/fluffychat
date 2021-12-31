@@ -2710,5 +2710,9 @@
   "unsubscribeStories": "Story deabbonieren",
   "@unsubscribeStories": {},
   "thisUserHasNotPostedAnythingYet": "Dieses Mitglied hat noch keine Story gepostet",
-  "@thisUserHasNotPostedAnythingYet": {}
+  "@thisUserHasNotPostedAnythingYet": {},
+  "whatIsGoingOn": "Was gibt es neues?",
+  "@whatIsGoingOn": {},
+  "addDescription": "Beschreibung hinzufügen",
+  "@addDescription": {}
 }
