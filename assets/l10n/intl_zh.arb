@@ -2710,5 +2710,9 @@
     }
   },
   "whoCanSeeMyStoriesDesc": "请注意，人们可以在你的 Story 中看到彼此并相互联系。",
-  "@whoCanSeeMyStoriesDesc": {}
+  "@whoCanSeeMyStoriesDesc": {},
+  "whatIsGoingOn": "发生什么事了？",
+  "@whatIsGoingOn": {},
+  "addDescription": "添加描述",
+  "@addDescription": {}
 }
