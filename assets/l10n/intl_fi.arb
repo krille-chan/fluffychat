@@ -2500,7 +2500,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "startYourFirstChat": "Aloita ensimmäinen keskustelusi juuri nyt! 🙂\n- Paina viesti-näppiä\n- Anna ystävän käyttäjätunnus\n- Pidä hauskaa jutustellen",
+  "startYourFirstChat": "Aloita ensimmäinen juttelusi juuri nyt! 🙂\n- Paina 'Uusi keskustelu'\n- Skannaa ystävän QR-koodi\n- Pidä hauskaa jutustellen",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -2635,5 +2635,61 @@
   "openGallery": "Avaa galleria",
   "@openGallery": {},
   "saveTheSecurityKeyNow": "Tallenna turva-avain nyt",
-  "@saveTheSecurityKeyNow": {}
+  "@saveTheSecurityKeyNow": {},
+  "commandHint_clearcache": "Tyhjennä välimuisti",
+  "@commandHint_clearcache": {
+    "type": "text",
+    "description": "Usage hint for the command /clearcache"
+  },
+  "commandHint_create": "Luo tyhjä ryhmäkeskustelu\nKäytä parametria --no-encryption poistaaksesi salauksen käytöstä",
+  "@commandHint_create": {
+    "type": "text",
+    "description": "Usage hint for the command /create"
+  },
+  "commandHint_dm": "Aloita yksityiskeskustelu\nKäytä parametria --no-encryption poistaaksesi salauksen käytöstä",
+  "@commandHint_dm": {
+    "type": "text",
+    "description": "Usage hint for the command /dm"
+  },
+  "yourStory": "Sinun tarinasi",
+  "@yourStory": {},
+  "replyHasBeenSent": "Vastaus on lähetetty",
+  "@replyHasBeenSent": {},
+  "storyFrom": "Tarina ajalta {date}: \n{body}",
+  "@storyFrom": {
+    "type": "text",
+    "placeholders": {
+      "date": {},
+      "body": {}
+    }
+  },
+  "commandHint_discardsession": "Hylkää istunto",
+  "@commandHint_discardsession": {
+    "type": "text",
+    "description": "Usage hint for the command /discardsession"
+  },
+  "openVideoCamera": "Avaa kamera videokuvausta varten",
+  "@openVideoCamera": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "videoWithSize": "Video ({size})",
+  "@videoWithSize": {
+    "type": "text",
+    "placeholders": {
+      "size": {}
+    }
+  },
+  "whoCanSeeMyStoriesDesc": "Huomaathan, että ihmiset voivat nähdä ja olla yhteydessä toisiinsa tarinassasi.",
+  "@whoCanSeeMyStoriesDesc": {},
+  "addToStory": "Lisää tarinaan",
+  "@addToStory": {},
+  "publish": "Julkaise",
+  "@publish": {},
+  "whoCanSeeMyStories": "Kuka voi nähdä tarinani?",
+  "@whoCanSeeMyStories": {},
+  "unsubscribeStories": "Poista tarinoiden tilaus",
+  "@unsubscribeStories": {},
+  "thisUserHasNotPostedAnythingYet": "Tämä käyttäjä ei ole vielä julkaissut mitään tarinassaan",
+  "@thisUserHasNotPostedAnythingYet": {}
 }
