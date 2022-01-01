@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'dart:async';
 import 'dart:io';
 
@@ -8,6 +10,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/sentry_controller.dart';
 import '../../../utils/matrix_sdk_extensions.dart/event_extension.dart';
 
@@ -15,9 +18,9 @@ class AudioPlayerWidget extends StatefulWidget {
   final Color color;
   final Event event;
 
-  static String currentId;
+  static String? currentId;
 
-  const AudioPlayerWidget(this.event, {this.color = Colors.black, Key key})
+  const AudioPlayerWidget(this.event, {this.color = Colors.black, Key? key})
       : super(key: key);
 
   @override
@@ -30,16 +33,16 @@ class _AudioPlayerState extends State<AudioPlayerWidget> {
   AudioPlayerStatus status = AudioPlayerStatus.notDownloaded;
   final AudioPlayer audioPlayer = AudioPlayer();
 
-  StreamSubscription onAudioPositionChanged;
-  StreamSubscription onDurationChanged;
-  StreamSubscription onPlayerStateChanged;
-  StreamSubscription onPlayerError;
+  StreamSubscription? onAudioPositionChanged;
+  StreamSubscription? onDurationChanged;
+  StreamSubscription? onPlayerStateChanged;
+  StreamSubscription? onPlayerError;
 
-  String statusText;
-  double currentPosition = 0;
+  String? statusText;
+  int currentPosition = 0;
   double maxPosition = 0;
 
-  File audioFile;
+  File? audioFile;
 
   @override
   void dispose() {
@@ -60,6 +63,7 @@ class _AudioPlayerState extends State<AudioPlayerWidget> {
     try {
       final matrixFile =
           await widget.event.downloadAndDecryptAttachmentCached();
+      if (matrixFile == null) throw ('Download failed');
       final tempDir = await getTemporaryDirectory();
       final fileName =
           widget.event.content.tryGet<String>('filename') ?? matrixFile.name;
@@ -86,7 +90,7 @@ class _AudioPlayerState extends State<AudioPlayerWidget> {
       if (AudioPlayerWidget.currentId != null) {
         if (audioPlayer.state != PlayerState.STOPPED) {
           await audioPlayer.stop();
-          setState(() => null);
+          setState(() {});
         }
       }
       AudioPlayerWidget.currentId = widget.event.eventId;
@@ -105,30 +109,31 @@ class _AudioPlayerState extends State<AudioPlayerWidget> {
           setState(() {
             statusText =
                 '${state.inMinutes.toString().padLeft(2, '0')}:${(state.inSeconds % 60).toString().padLeft(2, '0')}';
-            currentPosition = state.inMilliseconds.toDouble();
+            currentPosition =
+                ((state.inMilliseconds.toDouble() / maxPosition) * 100).round();
           });
         });
         onDurationChanged ??= audioPlayer.onDurationChanged.listen((max) =>
             setState(() => maxPosition = max.inMilliseconds.toDouble()));
-        onPlayerStateChanged ??= audioPlayer.onPlayerStateChanged
-            .listen((_) => setState(() => null));
+        onPlayerStateChanged ??=
+            audioPlayer.onPlayerStateChanged.listen((_) => setState(() {}));
         onPlayerError ??= audioPlayer.onPlayerError.listen((e) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text(L10n.of(context).oopsSomethingWentWrong),
+              content: Text(L10n.of(context)!.oopsSomethingWentWrong),
             ),
           );
           SentryController.captureException(e, StackTrace.current);
         });
 
-        await audioPlayer.play(audioFile.path);
+        await audioPlayer.play(audioFile!.path);
         break;
     }
   }
 
   static const double buttonSize = 36;
 
-  String get _durationString {
+  String? get _durationString {
     final durationInt = widget.event.content
         .tryGetMap<String, dynamic>('info')
         ?.tryGet<int>('duration');
@@ -137,9 +142,30 @@ class _AudioPlayerState extends State<AudioPlayerWidget> {
     return '${duration.inMinutes.toString().padLeft(2, '0')}:${(duration.inSeconds % 60).toString().padLeft(2, '0')}';
   }
 
+  List<int> get waveform {
+    final eventWaveForm = widget.event.content
+        .tryGetMap<String, dynamic>('org.matrix.msc1767.audio')
+        ?.tryGetList<int>('waveform');
+    if (eventWaveForm == null) {
+      return List<int>.filled(100, 500);
+    }
+    while (eventWaveForm.length < 100) {
+      for (var i = 0; i < eventWaveForm.length; i = i + 2) {
+        eventWaveForm.insert(i, eventWaveForm[i]);
+      }
+    }
+    var i = 0;
+    final step = (eventWaveForm.length / 100).round();
+    while (eventWaveForm.length > 100) {
+      eventWaveForm.removeAt(i);
+      i = (i + step) % 100;
+    }
+    return eventWaveForm;
+  }
+
   @override
   Widget build(BuildContext context) {
-    statusText ??= _durationString ?? '00:00';
+    final statusText = this.statusText ??= _durationString ?? '00:00';
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 6.0),
       child: Row(
@@ -172,21 +198,40 @@ class _AudioPlayerState extends State<AudioPlayerWidget> {
                     },
                   ),
           ),
+          const SizedBox(width: 8),
           Expanded(
-            child: Slider(
-              activeColor: Theme.of(context).colorScheme.secondaryVariant,
-              inactiveColor: widget.color.withAlpha(64),
-              value: currentPosition,
-              onChanged: (double position) =>
-                  audioPlayer.seek(Duration(milliseconds: position.toInt())),
-              max: status == AudioPlayerStatus.downloaded ? maxPosition : 0,
-              min: 0,
+            child: Row(
+              children: [
+                for (var i = 0; i < 100; i++)
+                  Expanded(
+                    child: InkWell(
+                      onTap: () => audioPlayer.seek(Duration(
+                          milliseconds: (maxPosition / 100).round() * i)),
+                      child: Opacity(
+                        opacity: currentPosition > i ? 1 : 0.5,
+                        child: Container(
+                            margin: const EdgeInsets.only(left: 2),
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.primary,
+                              borderRadius:
+                                  BorderRadius.circular(AppConfig.borderRadius),
+                            ),
+                            height: 64 * (waveform[i] / 1024)),
+                      ),
+                    ),
+                  )
+              ],
             ),
           ),
-          Text(
-            statusText,
-            style: TextStyle(
-              color: widget.color,
+          const SizedBox(width: 8),
+          Container(
+            alignment: Alignment.centerRight,
+            width: 42,
+            child: Text(
+              statusText,
+              style: TextStyle(
+                color: widget.color,
+              ),
             ),
           ),
         ],
