@@ -1822,7 +1822,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "startYourFirstChat": "당신의 처음 채팅을 바로 시작하세요! 🙂\n- 메시지 버튼 탭\n- 친구의 유저 이름 입력\n- 채팅을 즐기세요",
+  "startYourFirstChat": "당신의 처음 채팅을 바로 시작하세요! 🙂\n- '새로운 채팅' 버튼을 누르고\n- 친구의 유저 이름 입력\n- 채팅을 즐기세요",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -2677,5 +2677,36 @@
   "addToStory": "스토리에 추가",
   "@addToStory": {},
   "publish": "공개",
-  "@publish": {}
+  "@publish": {},
+  "yourStory": "내 스토리",
+  "@yourStory": {},
+  "replyHasBeenSent": "답장을 보냈습니다",
+  "@replyHasBeenSent": {},
+  "videoWithSize": "영상 ({size})",
+  "@videoWithSize": {
+    "type": "text",
+    "placeholders": {
+      "size": {}
+    }
+  },
+  "storyFrom": "{date}의 스토리:\n{body}",
+  "@storyFrom": {
+    "type": "text",
+    "placeholders": {
+      "date": {},
+      "body": {}
+    }
+  },
+  "whoCanSeeMyStoriesDesc": "스토리에서 사람들이 서로를 보고 연락할 수 있다는 점에 유의하십시오.",
+  "@whoCanSeeMyStoriesDesc": {},
+  "whatIsGoingOn": "무슨 일이 일어나고 있나요?",
+  "@whatIsGoingOn": {},
+  "addDescription": "설명 추가",
+  "@addDescription": {},
+  "whoCanSeeMyStories": "누가 내 스토리를 볼 수 있나요?",
+  "@whoCanSeeMyStories": {},
+  "unsubscribeStories": "스토리 구독 해제",
+  "@unsubscribeStories": {},
+  "thisUserHasNotPostedAnythingYet": "이 유저는 스토리에 아무것도 올리지 않았습니다",
+  "@thisUserHasNotPostedAnythingYet": {}
 }
