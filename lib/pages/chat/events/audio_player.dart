@@ -142,7 +142,7 @@ class _AudioPlayerState extends State<AudioPlayerWidget> {
     return '${duration.inMinutes.toString().padLeft(2, '0')}:${(duration.inSeconds % 60).toString().padLeft(2, '0')}';
   }
 
-  List<int> get waveform {
+  List<int> _getWaveform() {
     final eventWaveForm = widget.event.content
         .tryGetMap<String, dynamic>('org.matrix.msc1767.audio')
         ?.tryGetList<int>('waveform');
@@ -161,6 +161,14 @@ class _AudioPlayerState extends State<AudioPlayerWidget> {
       i = (i + step) % 100;
     }
     return eventWaveForm;
+  }
+
+  late final List<int> waveform;
+
+  @override
+  void initState() {
+    super.initState();
+    waveform = _getWaveform();
   }
 
   @override
