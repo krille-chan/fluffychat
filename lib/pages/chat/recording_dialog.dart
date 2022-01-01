@@ -125,28 +125,30 @@ class _RecordingDialogState extends State<RecordingDialog> {
                 ),
               ),
               Expanded(
-                child: Center(
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: amplitudeTimeline.reversed
-                        .take(26)
-                        .toList()
-                        .reversed
-                        .map((amplitude) => Container(
-                            margin: const EdgeInsets.only(left: 2),
-                            width: 4,
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.primary,
-                              borderRadius:
-                                  BorderRadius.circular(AppConfig.borderRadius),
-                            ),
-                            height: maxDecibalWidth * (amplitude / 100)))
-                        .toList(),
-                  ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: amplitudeTimeline.reversed
+                      .take(26)
+                      .toList()
+                      .reversed
+                      .map((amplitude) => Container(
+                          margin: const EdgeInsets.only(left: 2),
+                          width: 4,
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.primary,
+                            borderRadius:
+                                BorderRadius.circular(AppConfig.borderRadius),
+                          ),
+                          height: maxDecibalWidth * (amplitude / 100)))
+                      .toList(),
                 ),
               ),
-              Text(time),
+              const SizedBox(width: 8),
+              SizedBox(
+                width: 48,
+                child: Text(time),
+              ),
             ],
           );
     if (PlatformInfos.isCupertinoStyle) {
