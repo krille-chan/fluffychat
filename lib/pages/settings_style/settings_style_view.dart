@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_theme/adaptive_theme.dart';
@@ -11,7 +13,7 @@ import 'settings_style.dart';
 class SettingsStyleView extends StatelessWidget {
   final SettingsStyleController controller;
 
-  const SettingsStyleView(this.controller, {Key key}) : super(key: key);
+  const SettingsStyleView(this.controller, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class SettingsStyleView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const BackButton(),
-        title: Text(L10n.of(context).changeTheme),
+        title: Text(L10n.of(context)!.changeTheme),
       ),
       body: MaxWidthBody(
         withScrolling: true,
@@ -59,25 +61,25 @@ class SettingsStyleView extends StatelessWidget {
             RadioListTile<AdaptiveThemeMode>(
               groupValue: controller.currentTheme,
               value: AdaptiveThemeMode.system,
-              title: Text(L10n.of(context).systemTheme),
+              title: Text(L10n.of(context)!.systemTheme),
               onChanged: controller.switchTheme,
             ),
             RadioListTile<AdaptiveThemeMode>(
               groupValue: controller.currentTheme,
               value: AdaptiveThemeMode.light,
-              title: Text(L10n.of(context).lightTheme),
+              title: Text(L10n.of(context)!.lightTheme),
               onChanged: controller.switchTheme,
             ),
             RadioListTile<AdaptiveThemeMode>(
               groupValue: controller.currentTheme,
               value: AdaptiveThemeMode.dark,
-              title: Text(L10n.of(context).darkTheme),
+              title: Text(L10n.of(context)!.darkTheme),
               onChanged: controller.switchTheme,
             ),
             const Divider(height: 1),
             ListTile(
               title: Text(
-                L10n.of(context).wallpaper,
+                L10n.of(context)!.wallpaper,
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.secondary,
                   fontWeight: FontWeight.bold,
@@ -99,10 +101,10 @@ class SettingsStyleView extends StatelessWidget {
               ),
             Builder(builder: (context) {
               return ListTile(
-                title: Text(L10n.of(context).changeWallpaper),
+                title: Text(L10n.of(context)!.changeWallpaper),
                 trailing: Icon(
                   Icons.photo_outlined,
-                  color: Theme.of(context).textTheme.bodyText1.color,
+                  color: Theme.of(context).textTheme.bodyText1?.color,
                 ),
                 onTap: controller.setWallpaperAction,
               );
@@ -110,7 +112,7 @@ class SettingsStyleView extends StatelessWidget {
             const Divider(height: 1),
             ListTile(
               title: Text(
-                L10n.of(context).fontSize,
+                L10n.of(context)!.fontSize,
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.secondary,
                   fontWeight: FontWeight.bold,
