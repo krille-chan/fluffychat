@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
@@ -8,13 +10,14 @@ import 'package:path_provider/path_provider.dart';
 import 'package:record/record.dart';
 import 'package:wakelock/wakelock.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/sentry_controller.dart';
 
 class RecordingDialog extends StatefulWidget {
   static const String recordingFileType = 'm4a';
   const RecordingDialog({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -22,13 +25,13 @@ class RecordingDialog extends StatefulWidget {
 }
 
 class _RecordingDialogState extends State<RecordingDialog> {
-  Timer _recorderSubscription;
+  Timer? _recorderSubscription;
   Duration _duration = Duration.zero;
 
   bool error = false;
-  String _recordedPath;
+  String? _recordedPath;
   final _audioRecorder = Record();
-  Amplitude _amplitude;
+  final List<double> amplitudeTimeline = [];
 
   static const int bitRate = 64000;
   static const double samplingRate = 22050.0;
@@ -55,7 +58,10 @@ class _RecordingDialogState extends State<RecordingDialog> {
       _recorderSubscription?.cancel();
       _recorderSubscription =
           Timer.periodic(const Duration(milliseconds: 100), (_) async {
-        _amplitude = await _audioRecorder.getAmplitude();
+        final amplitude = await _audioRecorder.getAmplitude();
+        var value = 100 + amplitude.current * 2;
+        value = value < 1 ? 1 : value;
+        amplitudeTimeline.add(value);
         setState(() {
           _duration += const Duration(milliseconds: 100);
         });
@@ -83,52 +89,64 @@ class _RecordingDialogState extends State<RecordingDialog> {
   void _stopAndSend() async {
     _recorderSubscription?.cancel();
     await _audioRecorder.stop();
-    Navigator.of(context, rootNavigator: false)
-        .pop<RecordingResult>(RecordingResult(
-      path: _recordedPath,
-      duration: _duration.inMilliseconds,
-    ));
+    final path = _recordedPath;
+    if (path == null) throw ('Recording failed!');
+    final step = amplitudeTimeline.length < 100
+        ? 1
+        : (amplitudeTimeline.length / 100).round();
+    final waveform = <int>[];
+    for (var i = 0; i < amplitudeTimeline.length; i += step) {
+      waveform.add((amplitudeTimeline[i] / 100 * 1024).round());
+    }
+    Navigator.of(context, rootNavigator: false).pop<RecordingResult>(
+      RecordingResult(
+        path: path,
+        duration: _duration.inMilliseconds,
+        waveform: waveform,
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     const maxDecibalWidth = 64.0;
-    final decibalWidth =
-        ((_amplitude == null || _amplitude.current == double.negativeInfinity
-                        ? 0
-                        : 1 / _amplitude.current / _amplitude.max)
-                    .abs() +
-                2) *
-            (maxDecibalWidth / 4).toDouble();
     final time =
         '${_duration.inMinutes.toString().padLeft(2, '0')}:${(_duration.inSeconds % 60).toString().padLeft(2, '0')}';
     final content = error
-        ? Text(L10n.of(context).oopsSomethingWentWrong)
+        ? Text(L10n.of(context)!.oopsSomethingWentWrong)
         : Row(
-            children: <Widget>[
+            children: [
               Container(
-                width: maxDecibalWidth,
-                height: maxDecibalWidth,
-                alignment: Alignment.center,
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 100),
-                  width: decibalWidth,
-                  height: decibalWidth,
-                  decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.circular(decibalWidth),
-                  ),
+                width: 16,
+                height: 16,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(32),
+                  color: Colors.red,
                 ),
               ),
-              const SizedBox(width: 8),
               Expanded(
-                child: Text(
-                  '${L10n.of(context).recording}: $time',
-                  style: const TextStyle(
-                    fontSize: 18,
+                child: Center(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: amplitudeTimeline.reversed
+                        .take(26)
+                        .toList()
+                        .reversed
+                        .map((amplitude) => Container(
+                            margin: const EdgeInsets.only(left: 2),
+                            width: 4,
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.primary,
+                              borderRadius:
+                                  BorderRadius.circular(AppConfig.borderRadius),
+                            ),
+                            height: maxDecibalWidth * (amplitude / 100)))
+                        .toList(),
                   ),
                 ),
               ),
+              Text(time),
             ],
           );
     if (PlatformInfos.isCupertinoStyle) {
@@ -138,17 +156,20 @@ class _RecordingDialogState extends State<RecordingDialog> {
           CupertinoDialogAction(
             onPressed: () => Navigator.of(context, rootNavigator: false).pop(),
             child: Text(
-              L10n.of(context).cancel.toUpperCase(),
+              L10n.of(context)!.cancel.toUpperCase(),
               style: TextStyle(
-                color:
-                    Theme.of(context).textTheme.bodyText2.color.withAlpha(150),
+                color: Theme.of(context)
+                    .textTheme
+                    .bodyText2
+                    ?.color
+                    ?.withAlpha(150),
               ),
             ),
           ),
           if (error != true)
             CupertinoDialogAction(
               onPressed: _stopAndSend,
-              child: Text(L10n.of(context).send.toUpperCase()),
+              child: Text(L10n.of(context)!.send.toUpperCase()),
             ),
         ],
       );
@@ -159,9 +180,10 @@ class _RecordingDialogState extends State<RecordingDialog> {
         TextButton(
           onPressed: () => Navigator.of(context, rootNavigator: false).pop(),
           child: Text(
-            L10n.of(context).cancel.toUpperCase(),
+            L10n.of(context)!.cancel.toUpperCase(),
             style: TextStyle(
-              color: Theme.of(context).textTheme.bodyText2.color.withAlpha(150),
+              color:
+                  Theme.of(context).textTheme.bodyText2?.color?.withAlpha(150),
             ),
           ),
         ),
@@ -171,7 +193,7 @@ class _RecordingDialogState extends State<RecordingDialog> {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                Text(L10n.of(context).send.toUpperCase()),
+                Text(L10n.of(context)!.send.toUpperCase()),
                 const SizedBox(width: 4),
                 const Icon(Icons.send_outlined, size: 15),
               ],
@@ -185,20 +207,24 @@ class _RecordingDialogState extends State<RecordingDialog> {
 class RecordingResult {
   final String path;
   final int duration;
+  final List<int> waveform;
 
   const RecordingResult({
-    @required this.path,
-    @required this.duration,
+    required this.path,
+    required this.duration,
+    required this.waveform,
   });
 
   factory RecordingResult.fromJson(Map<String, dynamic> json) =>
       RecordingResult(
         path: json['path'],
         duration: json['duration'],
+        waveform: List<int>.from(json['waveform']),
       );
 
   Map<String, dynamic> toJson() => {
         'path': path,
         'duration': duration,
+        'waveform': waveform,
       };
 }

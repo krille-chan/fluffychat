@@ -422,6 +422,10 @@ class ChatController extends State<Chat> {
           'duration': result.duration,
         },
         'org.matrix.msc3245.voice': {},
+        'org.matrix.msc1767.audio': {
+          'duration': result.duration,
+          'waveform': result.waveform,
+        },
       }),
     );
     setState(() {
