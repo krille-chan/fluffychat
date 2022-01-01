@@ -13,6 +13,7 @@ import 'package:wakelock/wakelock.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/sentry_controller.dart';
+import 'events/audio_player.dart';
 
 class RecordingDialog extends StatefulWidget {
   static const String recordingFileType = 'm4a';
@@ -91,12 +92,13 @@ class _RecordingDialogState extends State<RecordingDialog> {
     await _audioRecorder.stop();
     final path = _recordedPath;
     if (path == null) throw ('Recording failed!');
-    final step = amplitudeTimeline.length < 100
+    const waveCount = AudioPlayerWidget.wavesCount;
+    final step = amplitudeTimeline.length < waveCount
         ? 1
-        : (amplitudeTimeline.length / 100).round();
+        : (amplitudeTimeline.length / waveCount).round();
     final waveform = <int>[];
     for (var i = 0; i < amplitudeTimeline.length; i += step) {
-      waveform.add((amplitudeTimeline[i] / 100 * 1024).round());
+      waveform.add((amplitudeTimeline[i] / waveCount * 1024).round());
     }
     Navigator.of(context, rootNavigator: false).pop<RecordingResult>(
       RecordingResult(
