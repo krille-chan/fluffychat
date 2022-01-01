@@ -10,7 +10,6 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
 
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/sentry_controller.dart';
 import '../../../utils/matrix_sdk_extensions.dart/event_extension.dart';
 
@@ -19,6 +18,8 @@ class AudioPlayerWidget extends StatefulWidget {
   final Event event;
 
   static String? currentId;
+
+  static const int wavesCount = 40;
 
   const AudioPlayerWidget(this.event, {this.color = Colors.black, Key? key})
       : super(key: key);
@@ -109,8 +110,9 @@ class _AudioPlayerState extends State<AudioPlayerWidget> {
           setState(() {
             statusText =
                 '${state.inMinutes.toString().padLeft(2, '0')}:${(state.inSeconds % 60).toString().padLeft(2, '0')}';
-            currentPosition =
-                ((state.inMilliseconds.toDouble() / maxPosition) * 100).round();
+            currentPosition = ((state.inMilliseconds.toDouble() / maxPosition) *
+                    AudioPlayerWidget.wavesCount)
+                .round();
           });
         });
         onDurationChanged ??= audioPlayer.onDurationChanged.listen((max) =>
@@ -147,18 +149,18 @@ class _AudioPlayerState extends State<AudioPlayerWidget> {
         .tryGetMap<String, dynamic>('org.matrix.msc1767.audio')
         ?.tryGetList<int>('waveform');
     if (eventWaveForm == null) {
-      return List<int>.filled(100, 500);
+      return List<int>.filled(AudioPlayerWidget.wavesCount, 500);
     }
-    while (eventWaveForm.length < 100) {
+    while (eventWaveForm.length < AudioPlayerWidget.wavesCount) {
       for (var i = 0; i < eventWaveForm.length; i = i + 2) {
         eventWaveForm.insert(i, eventWaveForm[i]);
       }
     }
     var i = 0;
-    final step = (eventWaveForm.length / 100).round();
-    while (eventWaveForm.length > 100) {
+    final step = (eventWaveForm.length / AudioPlayerWidget.wavesCount).round();
+    while (eventWaveForm.length > AudioPlayerWidget.wavesCount) {
       eventWaveForm.removeAt(i);
-      i = (i + step) % 100;
+      i = (i + step) % AudioPlayerWidget.wavesCount;
     }
     return eventWaveForm;
   }
@@ -210,19 +212,21 @@ class _AudioPlayerState extends State<AudioPlayerWidget> {
           Expanded(
             child: Row(
               children: [
-                for (var i = 0; i < 100; i++)
+                for (var i = 0; i < AudioPlayerWidget.wavesCount; i++)
                   Expanded(
                     child: InkWell(
                       onTap: () => audioPlayer.seek(Duration(
-                          milliseconds: (maxPosition / 100).round() * i)),
+                          milliseconds:
+                              (maxPosition / AudioPlayerWidget.wavesCount)
+                                      .round() *
+                                  i)),
                       child: Opacity(
                         opacity: currentPosition > i ? 1 : 0.5,
                         child: Container(
-                            margin: const EdgeInsets.only(left: 2),
+                            margin: const EdgeInsets.symmetric(horizontal: 1),
                             decoration: BoxDecoration(
                               color: widget.color,
-                              borderRadius:
-                                  BorderRadius.circular(AppConfig.borderRadius),
+                              borderRadius: BorderRadius.circular(64),
                             ),
                             height: 64 * (waveform[i] / 1024)),
                       ),
