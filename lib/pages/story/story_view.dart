@@ -71,34 +71,36 @@ class StoryView extends StatelessWidget {
             ),
           ),
         ),
-        actions: [
-          if (!controller.isOwnStory && currentEvent != null)
-            AnimatedOpacity(
-              duration: const Duration(seconds: 1),
-              opacity: controller.isHold ? 0 : 1,
-              child: IconButton(
-                icon: Icon(Icons.adaptive.share_outlined),
-                onPressed: controller.share,
-              ),
-            ),
-          AnimatedOpacity(
-              duration: const Duration(seconds: 1),
-              opacity: controller.isHold ? 0 : 1,
-              child: PopupMenuButton<PopupStoryAction>(
-                onSelected: controller.onPopupStoryAction,
-                itemBuilder: (context) => [
-                  if (controller.currentEvent?.canRedact ?? false)
-                    PopupMenuItem(
-                      value: PopupStoryAction.delete,
-                      child: Text(L10n.of(context)!.delete),
+        actions: currentEvent == null
+            ? null
+            : [
+                if (!controller.isOwnStory)
+                  AnimatedOpacity(
+                    duration: const Duration(seconds: 1),
+                    opacity: controller.isHold ? 0 : 1,
+                    child: IconButton(
+                      icon: Icon(Icons.adaptive.share_outlined),
+                      onPressed: controller.share,
                     ),
-                  PopupMenuItem(
-                    value: PopupStoryAction.report,
-                    child: Text(L10n.of(context)!.reportMessage),
                   ),
-                ],
-              )),
-        ],
+                AnimatedOpacity(
+                    duration: const Duration(seconds: 1),
+                    opacity: controller.isHold ? 0 : 1,
+                    child: PopupMenuButton<PopupStoryAction>(
+                      onSelected: controller.onPopupStoryAction,
+                      itemBuilder: (context) => [
+                        if (controller.currentEvent?.canRedact ?? false)
+                          PopupMenuItem(
+                            value: PopupStoryAction.delete,
+                            child: Text(L10n.of(context)!.delete),
+                          ),
+                        PopupMenuItem(
+                          value: PopupStoryAction.report,
+                          child: Text(L10n.of(context)!.reportMessage),
+                        ),
+                      ],
+                    )),
+              ],
         systemOverlayStyle: SystemUiOverlayStyle.light,
         iconTheme: const IconThemeData(color: Colors.white),
         elevation: 0,
