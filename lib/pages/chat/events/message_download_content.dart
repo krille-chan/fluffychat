@@ -34,7 +34,7 @@ class MessageDownloadContent extends StatelessWidget {
             children: [
               Icon(
                 Icons.file_download_outlined,
-                color: Theme.of(context).colorScheme.secondary,
+                color: textColor,
               ),
               const SizedBox(width: 8),
               Expanded(
@@ -42,7 +42,7 @@ class MessageDownloadContent extends StatelessWidget {
                   filename,
                   maxLines: 1,
                   style: TextStyle(
-                    color: Theme.of(context).colorScheme.secondary,
+                    color: textColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -55,7 +55,7 @@ class MessageDownloadContent extends StatelessWidget {
               Text(
                 filetype,
                 style: TextStyle(
-                  color: textColor,
+                  color: textColor.withAlpha(150),
                 ),
               ),
               const Spacer(),
@@ -63,7 +63,7 @@ class MessageDownloadContent extends StatelessWidget {
                 Text(
                   sizeString,
                   style: TextStyle(
-                    color: textColor,
+                    color: textColor.withAlpha(150),
                   ),
                 ),
             ],
