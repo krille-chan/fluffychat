@@ -2106,7 +2106,7 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "Alusta oma esimest vestlust kohe nüüd 🙂\n- klõpsi vestlusnuppu\n- sisesta teise osapoole kasutajanimi\n- ja lase vestlusel kulgeda",
+  "startYourFirstChat": "Alusta oma esimest vestlust kohe nüüd 🙂\n- klõpsi nuppu „Uus vestlus“\n- skaneeri teise osapoole QR-koodi\n- ja lase vestlusel kulgeda",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -2679,5 +2679,7 @@
   "@openVideoCamera": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "addDescription": "Lisa kirjeldus",
+  "@addDescription": {}
 }
