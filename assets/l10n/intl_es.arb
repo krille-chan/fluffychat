@@ -1118,7 +1118,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "ok": "ok",
+  "ok": "Ok",
   "@ok": {
     "type": "text",
     "placeholders": {}
@@ -1550,7 +1550,7 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "¡Inicia su primer chat ahora mismo! 🙂\n- toque el botón de mensaje\n- escriba el nombre de usuario de su amigo\n- diviértase chateando",
+  "startYourFirstChat": "¡Inicie su primer chat ahora mismo! 🙂\n- Toque el botón de \"Nueva conversación\"\n- Escaneé el código QR de un amigo \n- Diviértanse chateando",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -2610,5 +2610,34 @@
   "yourUserId": "Su id. de usuario:",
   "@yourUserId": {},
   "setupChatBackup": "Configurar copia de respaldo de chat",
-  "@setupChatBackup": {}
+  "@setupChatBackup": {},
+  "commandHint_clearcache": "Limpiar cache",
+  "@commandHint_clearcache": {
+    "type": "text",
+    "description": "Usage hint for the command /clearcache"
+  },
+  "loginWithOneClick": "Iniciar sesión con un click",
+  "@loginWithOneClick": {},
+  "messageInfo": "Información del mensaje",
+  "@messageInfo": {},
+  "time": "Tiempo",
+  "@time": {},
+  "openVideoCamera": "Abrir la cámara para un video",
+  "@openVideoCamera": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordsDoNotMatch": "¡Las contraseñas no coinciden!",
+  "@passwordsDoNotMatch": {},
+  "pleaseEnterValidEmail": "Por favor ingrese un correo electrónico válido.",
+  "@pleaseEnterValidEmail": {},
+  "repeatPassword": "Repetir la contraseña",
+  "@repeatPassword": {},
+  "pleaseChooseAtLeastChars": "Por favor elegir al menos {min} carácteres",
+  "@pleaseChooseAtLeastChars": {
+    "type": "text",
+    "placeholders": {
+      "min": {}
+    }
+  }
 }
