@@ -162,7 +162,7 @@ class _AudioPlayerState extends State<AudioPlayerWidget> {
       eventWaveForm.removeAt(i);
       i = (i + step) % AudioPlayerWidget.wavesCount;
     }
-    return eventWaveForm;
+    return eventWaveForm.map((i) => i > 1024 ? 1024 : i).toList();
   }
 
   late final List<int> waveform;

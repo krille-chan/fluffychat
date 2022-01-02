@@ -98,7 +98,7 @@ class _RecordingDialogState extends State<RecordingDialog> {
         : (amplitudeTimeline.length / waveCount).round();
     final waveform = <int>[];
     for (var i = 0; i < amplitudeTimeline.length; i += step) {
-      waveform.add((amplitudeTimeline[i] / waveCount * 1024).round());
+      waveform.add((amplitudeTimeline[i] / 100 * 1024).round());
     }
     Navigator.of(context, rootNavigator: false).pop<RecordingResult>(
       RecordingResult(
