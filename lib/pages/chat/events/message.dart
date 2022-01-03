@@ -106,12 +106,12 @@ class Message extends StatelessWidget {
           ? SizedBox(
               width: Avatar.defaultSize,
               child: event.status == EventStatus.sending
-                  ? const Center(
+                  ? Center(
                       child: SizedBox(
-                        width: 16,
-                        height: 16,
-                        child:
-                            CircularProgressIndicator.adaptive(strokeWidth: 2),
+                        width: 16 * AppConfig.bubbleSizeFactor,
+                        height: 16 * AppConfig.bubbleSizeFactor,
+                        child: const CircularProgressIndicator.adaptive(
+                            strokeWidth: 2),
                       ),
                     )
                   : null,
@@ -162,8 +162,9 @@ class Message extends StatelessWidget {
                       borderRadius:
                           BorderRadius.circular(AppConfig.borderRadius),
                     ),
-                    padding:
-                        noBubble ? EdgeInsets.zero : const EdgeInsets.all(16),
+                    padding: noBubble
+                        ? EdgeInsets.zero
+                        : EdgeInsets.all(16 * AppConfig.bubbleSizeFactor),
                     constraints: const BoxConstraints(
                         maxWidth: FluffyThemes.columnWidth * 1.5),
                     child: Stack(
@@ -199,8 +200,9 @@ class Message extends StatelessWidget {
                                     },
                                     child: AbsorbPointer(
                                       child: Container(
-                                        margin: const EdgeInsets.symmetric(
-                                            vertical: 4.0),
+                                        margin: EdgeInsets.symmetric(
+                                            vertical: 4.0 *
+                                                AppConfig.bubbleSizeFactor),
                                         child: ReplyContent(replyEvent,
                                             lightText: ownMessage,
                                             timeline: timeline),
@@ -217,7 +219,8 @@ class Message extends StatelessWidget {
                             if (event.hasAggregatedEvents(
                                 timeline, RelationshipTypes.edit))
                               Padding(
-                                padding: const EdgeInsets.only(top: 4.0),
+                                padding: EdgeInsets.only(
+                                    top: 4.0 * AppConfig.bubbleSizeFactor),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
@@ -263,7 +266,8 @@ class Message extends StatelessWidget {
         children: <Widget>[
           if (displayTime)
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              padding: EdgeInsets.symmetric(
+                  vertical: 8.0 * AppConfig.bubbleSizeFactor),
               child: Center(
                   child: Material(
                 color: Theme.of(context).backgroundColor,
@@ -282,7 +286,7 @@ class Message extends StatelessWidget {
           if (event.hasAggregatedEvents(timeline, RelationshipTypes.reaction))
             Padding(
               padding: EdgeInsets.only(
-                top: 4.0,
+                top: 4.0 * AppConfig.bubbleSizeFactor,
                 left: (ownMessage ? 0 : Avatar.defaultSize) + 12.0,
                 right: 12.0,
               ),
@@ -302,9 +306,9 @@ class Message extends StatelessWidget {
         constraints:
             const BoxConstraints(maxWidth: FluffyThemes.columnWidth * 2.5),
         child: Padding(
-          padding: const EdgeInsets.symmetric(
+          padding: EdgeInsets.symmetric(
             horizontal: 8.0,
-            vertical: 4.0,
+            vertical: 4.0 * AppConfig.bubbleSizeFactor,
           ),
           child: container,
         ),
