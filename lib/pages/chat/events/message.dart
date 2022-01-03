@@ -105,7 +105,6 @@ class Message extends StatelessWidget {
       sameSender || ownMessage
           ? SizedBox(
               width: Avatar.defaultSize,
-              height: Avatar.defaultSize,
               child: event.status == EventStatus.sending
                   ? const Center(
                       child: SizedBox(
@@ -280,14 +279,15 @@ class Message extends StatelessWidget {
               )),
             ),
           row,
-          Padding(
-            padding: EdgeInsets.only(
-              top: 4.0,
-              left: (ownMessage ? 0 : Avatar.defaultSize) + 12.0,
-              right: 12.0,
+          if (event.hasAggregatedEvents(timeline, RelationshipTypes.reaction))
+            Padding(
+              padding: EdgeInsets.only(
+                top: 4.0,
+                left: (ownMessage ? 0 : Avatar.defaultSize) + 12.0,
+                right: 12.0,
+              ),
+              child: MessageReactions(event, timeline),
             ),
-            child: MessageReactions(event, timeline),
-          ),
         ],
       );
     } else {
