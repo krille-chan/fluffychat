@@ -698,6 +698,12 @@ class ChatController extends State<Chat> {
         showEmojiPicker = false;
       });
 
+  void clearSingleSelectedEvent() {
+    if (selectedEvents.length <= 1) {
+      clearSelectedEvents();
+    }
+  }
+
   void editSelectedEventAction() {
     final client = currentRoomBundle.firstWhere(
         (cl) => selectedEvents.first.senderId == cl.userID,
