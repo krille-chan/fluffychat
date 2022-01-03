@@ -112,13 +112,12 @@ class SettingsStyleView extends StatelessWidget {
             const Divider(height: 1),
             ListTile(
               title: Text(
-                L10n.of(context)!.fontSize,
+                L10n.of(context)!.messages,
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.secondary,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              subtitle: Text('(*${AppConfig.fontSizeFactor})'),
             ),
             Container(
               alignment: Alignment.centerLeft,
@@ -130,7 +129,7 @@ class SettingsStyleView extends StatelessWidget {
                     Theme.of(context).secondaryHeaderColor.withAlpha(100),
                 borderRadius: BorderRadius.circular(AppConfig.borderRadius),
                 child: Padding(
-                  padding: const EdgeInsets.all(16),
+                  padding: EdgeInsets.all(16 * AppConfig.bubbleSizeFactor),
                   child: Text(
                     'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor',
                     style: TextStyle(
@@ -142,6 +141,10 @@ class SettingsStyleView extends StatelessWidget {
                 ),
               ),
             ),
+            ListTile(
+              title: Text(L10n.of(context)!.fontSize),
+              trailing: Text('* ${AppConfig.fontSizeFactor}'),
+            ),
             Slider.adaptive(
               min: 0.5,
               max: 2.5,
@@ -149,6 +152,18 @@ class SettingsStyleView extends StatelessWidget {
               value: AppConfig.fontSizeFactor,
               semanticFormatterCallback: (d) => d.toString(),
               onChanged: controller.changeFontSizeFactor,
+            ),
+            ListTile(
+              title: Text(L10n.of(context)!.bubbleSize),
+              trailing: Text('* ${AppConfig.bubbleSizeFactor}'),
+            ),
+            Slider.adaptive(
+              min: 0.5,
+              max: 1.5,
+              divisions: 4,
+              value: AppConfig.bubbleSizeFactor,
+              semanticFormatterCallback: (d) => d.toString(),
+              onChanged: controller.changeBubbleSizeFactor,
             ),
           ],
         ),

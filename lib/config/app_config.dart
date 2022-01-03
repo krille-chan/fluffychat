@@ -12,6 +12,7 @@ abstract class AppConfig {
   static String _defaultHomeserver = 'matrix.org';
   static String get defaultHomeserver => _defaultHomeserver;
   static String jitsiInstance = 'https://meet.jit.si/';
+  static double bubbleSizeFactor = 1;
   static double fontSizeFactor = 1;
   static Color chatColor = primaryColor;
   static const double messageFontSize = 15.75;

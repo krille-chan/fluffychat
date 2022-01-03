@@ -225,6 +225,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "bubbleSize": "Bubble size",
+  "@bubbleSize": {
+    "type": "text",
+    "placeholders": {}
+  },
   "cachedKeys": "Keys cached",
   "@cachedKeys": {
     "type": "text",
