@@ -2709,5 +2709,10 @@
   "whatIsGoingOn": "Що відбувається?",
   "@whatIsGoingOn": {},
   "addDescription": "Додати опис",
-  "@addDescription": {}
+  "@addDescription": {},
+  "bubbleSize": "Розмір бульбашки",
+  "@bubbleSize": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
