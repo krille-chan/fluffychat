@@ -2714,5 +2714,10 @@
   "whatIsGoingOn": "Ne oluyor?",
   "@whatIsGoingOn": {},
   "addDescription": "Açıklama ekle",
-  "@addDescription": {}
+  "@addDescription": {},
+  "bubbleSize": "Baloncuk boyutu",
+  "@bubbleSize": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
