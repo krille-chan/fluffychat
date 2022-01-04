@@ -2714,5 +2714,10 @@
   "whatIsGoingOn": "发生什么事了？",
   "@whatIsGoingOn": {},
   "addDescription": "添加描述",
-  "@addDescription": {}
+  "@addDescription": {},
+  "bubbleSize": "气泡大小",
+  "@bubbleSize": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
