@@ -2710,5 +2710,14 @@
     }
   },
   "whoCanSeeMyStoriesDesc": "Veuillez noter que les personnes peuvent se voir et se contacter dans votre story.",
-  "@whoCanSeeMyStoriesDesc": {}
+  "@whoCanSeeMyStoriesDesc": {},
+  "whatIsGoingOn": "Que se passe-t-il ?",
+  "@whatIsGoingOn": {},
+  "addDescription": "Ajouter une description",
+  "@addDescription": {},
+  "bubbleSize": "Taille de la bulle",
+  "@bubbleSize": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
