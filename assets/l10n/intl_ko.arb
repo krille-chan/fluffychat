@@ -2708,5 +2708,10 @@
   "unsubscribeStories": "스토리 구독 해제",
   "@unsubscribeStories": {},
   "thisUserHasNotPostedAnythingYet": "이 유저는 스토리에 아무것도 올리지 않았습니다",
-  "@thisUserHasNotPostedAnythingYet": {}
+  "@thisUserHasNotPostedAnythingYet": {},
+  "bubbleSize": "버블 크기",
+  "@bubbleSize": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
