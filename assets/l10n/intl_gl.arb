@@ -2106,7 +2106,7 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "Inicia unha conversa! 🙂\n- Toca no botón de mensaxe\n- Escribe o nome de usuaria dunha amizade\n- Desfruta da conversa",
+  "startYourFirstChat": "Inicia unha conversa! 🙂\n- Toca en 'Novo chat'\n- Escanea o QR dunha amizade\n- Desfruta da conversa",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -2702,5 +2702,14 @@
   "unsubscribeStories": "Retirar subscrición das historias",
   "@unsubscribeStories": {},
   "thisUserHasNotPostedAnythingYet": "A usuaria non publicou aínda ningunha historia",
-  "@thisUserHasNotPostedAnythingYet": {}
+  "@thisUserHasNotPostedAnythingYet": {},
+  "bubbleSize": "Tamaño da burbulla",
+  "@bubbleSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whatIsGoingOn": "Que acontece?",
+  "@whatIsGoingOn": {},
+  "addDescription": "Engadir descrición",
+  "@addDescription": {}
 }
