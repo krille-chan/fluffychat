@@ -2708,5 +2708,16 @@
   "unsubscribeStories": "Отписаться от историй",
   "@unsubscribeStories": {},
   "thisUserHasNotPostedAnythingYet": "Этот пользователь еще ничего не опубликовал в своей истории",
-  "@thisUserHasNotPostedAnythingYet": {}
+  "@thisUserHasNotPostedAnythingYet": {},
+  "bubbleSize": "Размер пузыря",
+  "@bubbleSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whoCanSeeMyStoriesDesc": "Обратите внимание, что люди могут видеть и связываться друг с другом в вашей истории.",
+  "@whoCanSeeMyStoriesDesc": {},
+  "whatIsGoingOn": "Что происходит?",
+  "@whatIsGoingOn": {},
+  "addDescription": "Добавить описание",
+  "@addDescription": {}
 }
