@@ -2114,7 +2114,7 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "Start nu je eerste chat! 🙂\n- Tik op de chat-knop\n- Voer de persoon-id van een vriend in\n- Veel plezier met chatten",
+  "startYourFirstChat": "Start nu je eerste chat! 🙂\n- Tik op Nieuwe chat\n- Scan de QR-code van een vriend\n- Veel plezier met chatten",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -2709,5 +2709,14 @@
     }
   },
   "whoCanSeeMyStoriesDesc": "Houd er rekening mee dat mensen elkaar in je verhaal kunnen zien en contact met elkaar kunnen opnemen.",
-  "@whoCanSeeMyStoriesDesc": {}
+  "@whoCanSeeMyStoriesDesc": {},
+  "bubbleSize": "Bubbelgrootte",
+  "@bubbleSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whatIsGoingOn": "Hoe gaat het nu?",
+  "@whatIsGoingOn": {},
+  "addDescription": "Omschrijving toevoegen",
+  "@addDescription": {}
 }
