@@ -50,7 +50,7 @@ parts:
     plugin: cmake
     source: https://gitlab.matrix.org/matrix-org/olm.git
     source-type: git
-    source-tag: 3.2.3
+    source-tag: 3.2.9
     build-packages:
       - g++
   fluffychat:
