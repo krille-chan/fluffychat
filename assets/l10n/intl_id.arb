@@ -1741,7 +1741,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "startYourFirstChat": "Mulai chat pertamamu sekarang juga! 🙂\n- Ketuk di tombol pesan\n- Masukkan nama pengguna teman\n- Selamat bersenang-senang mengobrol",
+  "startYourFirstChat": "Mulai chat pertamamu sekarang juga! 🙂\n- Ketuk 'Chat baru'\n- Pindai kode QR temanmu\n- Selamat bersenang-senang chattingan",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -2702,5 +2702,16 @@
     "placeholders": {
       "size": {}
     }
-  }
+  },
+  "bubbleSize": "Ukuran gelembung",
+  "@bubbleSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whoCanSeeMyStoriesDesc": "Diingat bahwa orang-orang dapat melihat dan kontak sesama di cerita Anda.",
+  "@whoCanSeeMyStoriesDesc": {},
+  "whatIsGoingOn": "Apa yang sedang terjadi?",
+  "@whatIsGoingOn": {},
+  "addDescription": "Tambahkan deskripsi",
+  "@addDescription": {}
 }
