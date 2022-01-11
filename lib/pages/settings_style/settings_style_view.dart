@@ -143,7 +143,7 @@ class SettingsStyleView extends StatelessWidget {
             ),
             ListTile(
               title: Text(L10n.of(context)!.fontSize),
-              trailing: Text('* ${AppConfig.fontSizeFactor}'),
+              trailing: Text('× ${AppConfig.fontSizeFactor}'),
             ),
             Slider.adaptive(
               min: 0.5,
@@ -155,7 +155,7 @@ class SettingsStyleView extends StatelessWidget {
             ),
             ListTile(
               title: Text(L10n.of(context)!.bubbleSize),
-              trailing: Text('* ${AppConfig.bubbleSizeFactor}'),
+              trailing: Text('× ${AppConfig.bubbleSizeFactor}'),
             ),
             Slider.adaptive(
               min: 0.5,
