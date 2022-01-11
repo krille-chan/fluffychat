@@ -308,7 +308,7 @@ packages:
       name: file_picker
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.3.0"
+    version: "4.3.1"
   file_picker_cross:
     dependency: "direct main"
     description:
@@ -343,7 +343,7 @@ packages:
       name: file_selector_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.2"
+    version: "2.0.3"
   file_selector_web:
     dependency: transitive
     description:
@@ -364,7 +364,7 @@ packages:
       name: fluffybox
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.1"
+    version: "0.4.2"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -720,7 +720,7 @@ packages:
       name: image_picker_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.4.1"
+    version: "2.4.2"
   import_sorter:
     dependency: "direct dev"
     description:
@@ -1014,7 +1014,7 @@ packages:
       name: path_provider_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.1"
+    version: "2.0.2"
   path_provider_windows:
     dependency: transitive
     description:
@@ -1070,7 +1070,7 @@ packages:
       name: plugin_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.2"
+    version: "2.1.2"
   pointycastle:
     dependency: transitive
     description:
@@ -1362,7 +1362,7 @@ packages:
       name: sqflite_common
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.0"
+    version: "2.2.0"
   stack_trace:
     dependency: transitive
     description:
@@ -1558,7 +1558,7 @@ packages:
       name: url_launcher_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.4"
+    version: "2.0.5"
   url_launcher_web:
     dependency: transitive
     description:
@@ -1614,7 +1614,7 @@ packages:
       name: video_player_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.0.0"
+    version: "5.0.1"
   video_player_web:
     dependency: transitive
     description:
