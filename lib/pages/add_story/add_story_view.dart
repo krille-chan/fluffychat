@@ -98,7 +98,7 @@ class AddStoryView extends StatelessWidget {
                   color: Colors.white,
                   backgroundColor: !controller.hasMedia ? null : Colors.black,
                 ),
-                onChanged: controller.updateColors,
+                onEditingComplete: controller.updateColors,
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: controller.hasMedia
