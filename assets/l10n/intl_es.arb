@@ -2639,5 +2639,39 @@
     "placeholders": {
       "min": {}
     }
-  }
+  },
+  "removeFromSpace": "Eliminar del espacio",
+  "@removeFromSpace": {},
+  "addToSpaceDescription": "Elige un espacio para añadir este chat a el.",
+  "@addToSpaceDescription": {},
+  "openGallery": "Abrir galería",
+  "@openGallery": {},
+  "start": "Iniciar",
+  "@start": {},
+  "saveTheSecurityKeyNow": "Guardar la clave de seguridad ahora",
+  "@saveTheSecurityKeyNow": {},
+  "replyHasBeenSent": "La respuesta se ha enviado",
+  "@replyHasBeenSent": {},
+  "whatIsGoingOn": "¿Qué está pasando?",
+  "@whatIsGoingOn": {},
+  "addDescription": "Añadir descripción",
+  "@addDescription": {},
+  "commandHint_discardsession": "Descartar sesión",
+  "@commandHint_discardsession": {
+    "type": "text",
+    "description": "Usage hint for the command /discardsession"
+  },
+  "messageType": "Tipo de Mensaje",
+  "@messageType": {},
+  "videoWithSize": "Video ({size})",
+  "@videoWithSize": {
+    "type": "text",
+    "placeholders": {
+      "size": {}
+    }
+  },
+  "pleaseEnterSecurityKeyDescription": "Para desbloquear el respaldo de tu chat, por favor ingresa tu clave de seguridad que ha sido generada en una sesión previa. Tu clave de seguridad NO es tu contraseña.",
+  "@pleaseEnterSecurityKeyDescription": {},
+  "publish": "Publicar",
+  "@publish": {}
 }
