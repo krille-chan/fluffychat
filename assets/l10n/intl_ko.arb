@@ -420,7 +420,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "createNewGroup": "새로운 그룹 생성",
+  "createNewGroup": "새로운 그룹",
   "@createNewGroup": {
     "type": "text",
     "placeholders": {}
@@ -2074,7 +2074,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "shareLocation": "위치 공유",
+  "shareLocation": "위치 보내기",
   "@shareLocation": {
     "type": "text",
     "placeholders": {}
@@ -2669,7 +2669,7 @@
     "type": "text",
     "description": "Usage hint for the command /create"
   },
-  "openVideoCamera": "비디오용 카메라 열기",
+  "openVideoCamera": "영상용 카메라 열기",
   "@openVideoCamera": {
     "type": "text",
     "placeholders": {}
