@@ -1233,12 +1233,12 @@ packages:
     source: hosted
     version: "2.0.4"
   shared_preferences:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: shared_preferences
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.11"
+    version: "2.0.12"
   shared_preferences_android:
     dependency: transitive
     description:

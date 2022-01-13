@@ -39,11 +39,11 @@ class AddStoryController extends State<AddStoryPage> {
 
   bool get hasMedia => image != null || video != null;
 
-  void updateColors(String text) => hasMedia
+  void updateColors() => hasMedia
       ? null
       : setState(() {
-          backgroundColor = text.color;
-          backgroundColorDark = text.darkColor;
+          backgroundColor = controller.text.color;
+          backgroundColorDark = controller.text.darkColor;
         });
 
   void importMedia() async {
