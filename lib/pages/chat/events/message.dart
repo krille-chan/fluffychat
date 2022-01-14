@@ -126,10 +126,10 @@ class Message extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            if (!ownMessage && !sameSender)
+            if (!sameSender)
               Padding(
                 padding: const EdgeInsets.only(left: 8.0, bottom: 4),
-                child: event.room.isDirectChat
+                child: ownMessage || event.room.isDirectChat
                     ? const SizedBox(height: 12)
                     : Text(
                         event.sender.calcDisplayname(),
