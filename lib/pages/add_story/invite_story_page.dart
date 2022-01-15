@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
@@ -27,6 +28,13 @@ class _InviteStoryPageState extends State<InviteStoryPage> {
   final Set<String> _invite = {};
 
   void _inviteAction() async {
+    final confirmed = await showOkCancelAlertDialog(
+      context: context,
+      message: L10n.of(context)!.storyPrivacyWarning,
+      okLabel: L10n.of(context)!.iUnderstand,
+      cancelLabel: L10n.of(context)!.cancel,
+    );
+    if (confirmed != OkCancelResult.ok) return;
     final result = await showFutureLoadingDialog(
       context: context,
       future: () async {
@@ -62,9 +70,6 @@ class _InviteStoryPageState extends State<InviteStoryPage> {
         .client
         .getUndecidedContactsForStories(widget.storiesRoom)
         .then((contacts) {
-      if (contacts.length < 20) {
-        _invite.addAll(contacts.map((u) => u.id));
-      }
       return contacts;
     });
     return Scaffold(
