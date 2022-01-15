@@ -79,9 +79,11 @@ class _InviteStoryPageState extends State<InviteStoryPage> {
           onPressed: () => Navigator.of(context).pop<bool>(false),
         ),
         title: Text(L10n.of(context)!.whoCanSeeMyStories),
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(56),
-          child: ListTile(
+        elevation: 0,
+      ),
+      body: Column(
+        children: [
+          ListTile(
             title: Text(L10n.of(context)!.whoCanSeeMyStoriesDesc),
             leading: CircleAvatar(
               backgroundColor: Theme.of(context).secondaryHeaderColor,
@@ -89,35 +91,40 @@ class _InviteStoryPageState extends State<InviteStoryPage> {
               child: const Icon(Icons.lock),
             ),
           ),
-        ),
+          const Divider(height: 1),
+          Expanded(
+            child: FutureBuilder<List<User>>(
+                future: loadContacts,
+                builder: (context, snapshot) {
+                  final contacts = snapshot.data;
+                  if (contacts == null) {
+                    final error = snapshot.error;
+                    if (error != null) {
+                      return Center(
+                          child: Text(error.toLocalizedString(context)));
+                    }
+                    return const Center(
+                        child: CircularProgressIndicator.adaptive());
+                  }
+                  _undecided = contacts.map((u) => u.id).toSet();
+                  return ListView.builder(
+                    itemCount: contacts.length,
+                    itemBuilder: (context, i) => SwitchListTile.adaptive(
+                      value: _invite.contains(contacts[i].id),
+                      onChanged: (b) => setState(() => b
+                          ? _invite.add(contacts[i].id)
+                          : _invite.remove(contacts[i].id)),
+                      secondary: Avatar(
+                        mxContent: contacts[i].avatarUrl,
+                        name: contacts[i].calcDisplayname(),
+                      ),
+                      title: Text(contacts[i].calcDisplayname()),
+                    ),
+                  );
+                }),
+          ),
+        ],
       ),
-      body: FutureBuilder<List<User>>(
-          future: loadContacts,
-          builder: (context, snapshot) {
-            final contacts = snapshot.data;
-            if (contacts == null) {
-              final error = snapshot.error;
-              if (error != null) {
-                return Center(child: Text(error.toLocalizedString(context)));
-              }
-              return const Center(child: CircularProgressIndicator.adaptive());
-            }
-            _undecided = contacts.map((u) => u.id).toSet();
-            return ListView.builder(
-              itemCount: contacts.length,
-              itemBuilder: (context, i) => SwitchListTile.adaptive(
-                value: _invite.contains(contacts[i].id),
-                onChanged: (b) => setState(() => b
-                    ? _invite.add(contacts[i].id)
-                    : _invite.remove(contacts[i].id)),
-                secondary: Avatar(
-                  mxContent: contacts[i].avatarUrl,
-                  name: contacts[i].calcDisplayname(),
-                ),
-                title: Text(contacts[i].calcDisplayname()),
-              ),
-            );
-          }),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _inviteAction,
         label: Text(L10n.of(context)!.publish),
