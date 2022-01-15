@@ -4,9 +4,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:matrix/matrix.dart';
@@ -47,23 +45,9 @@ class AddStoryController extends State<AddStoryPage> {
         });
 
   void importMedia() async {
-    final type = await showModalActionSheet<FileTypeCross>(
-      context: context,
-      actions: [
-        SheetAction(
-          label: L10n.of(context)!.pickImage,
-          key: FileTypeCross.image,
-          icon: Icons.photo_album_outlined,
-        ),
-        SheetAction(
-          label: L10n.of(context)!.sendVideo,
-          key: FileTypeCross.video,
-          icon: Icons.video_camera_back_outlined,
-        ),
-      ],
+    final picked = await FilePickerCross.importFromStorage(
+      type: FileTypeCross.image,
     );
-    if (type == null) return;
-    final picked = await FilePickerCross.importFromStorage(type: type);
     final fileName = picked.fileName;
     if (fileName == null) return;
     setState(() {
@@ -187,6 +171,12 @@ class AddStoryController extends State<AddStoryPage> {
       }
       Matrix.of(context).shareContent = null;
     }
+  }
+
+  @override
+  void dispose() {
+    videoPlayerController?.dispose();
+    super.dispose();
   }
 
   @override
