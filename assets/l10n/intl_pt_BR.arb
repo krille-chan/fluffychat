@@ -633,7 +633,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "createNewSpace": "Criar novo espaço",
+  "createNewSpace": "Novo espaço",
   "@createNewSpace": {
     "type": "text",
     "placeholders": {}
@@ -1497,7 +1497,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "ok": "OK",
+  "ok": "Ok",
   "@ok": {
     "type": "text",
     "placeholders": {}
@@ -2046,7 +2046,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sharedTheLocation": "{username} compartilhou a localização",
+  "sharedTheLocation": "{username} compartilhou sua localização",
   "@sharedTheLocation": {
     "type": "text",
     "placeholders": {
@@ -2105,7 +2105,7 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "Inicie sua primeira conversa agora mesmo! 🙂\n- Pressione o botão de mensagem\n- Insira o nome de usuário de um amigo(a)\n- Divirta-se conversando",
+  "startYourFirstChat": "Inicie sua primeira conversa agora mesmo! 🙂\n- Pressione 'Nova conversa'\n- Escaneie o código QR de um(a) amigo(a)\n- Divirta-se conversando",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -2281,14 +2281,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount, plural, other{{unreadCount} conversas não lidas}}",
+  "unreadChats": "{unreadCount, plural, =1{1 conversa não lida} other{{unreadCount} conversas não lidas}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents} mensagens não lidas}}",
+  "unreadMessages": "{unreadEvents, plural, =1{1 mensagem não lida} other{{unreadEvents} mensagens não lidas}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
@@ -2559,5 +2559,168 @@
   "@zoomOut": {
     "type": "text",
     "placeholders": {}
+  },
+  "createNewChatExplaination": "Apenas escaneie o código QR ou compartilhe o link do convite se estiverem próximos entre si.",
+  "@createNewChatExplaination": {},
+  "shareYourInviteLink": "Compartilhar o link do convite",
+  "@shareYourInviteLink": {},
+  "typeInInviteLinkManually": "Digitar o link do convite manualmente...",
+  "@typeInInviteLinkManually": {},
+  "oneClientLoggedOut": "Um dos seus clientes foi desvinculado",
+  "@oneClientLoggedOut": {},
+  "addAccount": "Adicionar conta",
+  "@addAccount": {},
+  "unverified": "Não verificado",
+  "@unverified": {},
+  "bubbleSize": "Tamanho do balão",
+  "@bubbleSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourChatBackupHasBeenSetUp": "Seu backup de conversas foi configurado.",
+  "@yourChatBackupHasBeenSetUp": {},
+  "setupChatBackupDescription": "Para proteger suas mensagens, nós geramos uma chave de segurança para você.\nPor favor, guarde-a num lugar seguro, como um gerenciador de senhas.",
+  "@setupChatBackupDescription": {},
+  "removeFromSpaceDescription": "Isto remove esta conversa do atual espaço. Ela continuará visível sob \"Todas conversas\".",
+  "@removeFromSpaceDescription": {},
+  "newPasswordDescription": "Para poder recuperar a sua senha, você deve posteriormente cadastrar um email na sua conta.",
+  "@newPasswordDescription": {},
+  "editBundlesForAccount": "Editar coleções para esta conta",
+  "@editBundlesForAccount": {},
+  "serverRequiresEmail": "Este servidor precisa validar seu email para efetuar o registro.",
+  "@serverRequiresEmail": {},
+  "messageInfo": "Informações da mensagem",
+  "@messageInfo": {},
+  "sender": "Remetente",
+  "@sender": {},
+  "publish": "Publicar",
+  "@publish": {},
+  "storyPrivacyWarning": "Por favor, note que pessoas podem ver e contactar umas às outras no seu painel. Ele ficará visível por apenas 24 horas, mas não há garantias de que será apagado por todos dispositivos e servidores.",
+  "@storyPrivacyWarning": {},
+  "iUnderstand": "Eu compreendo",
+  "@iUnderstand": {},
+  "yourStory": "Seu painel",
+  "@yourStory": {},
+  "replyHasBeenSent": "Resposta enviada",
+  "@replyHasBeenSent": {},
+  "removeFromSpace": "Remover do espaço",
+  "@removeFromSpace": {},
+  "loginWithOneClick": "Entrar com um clique",
+  "@loginWithOneClick": {},
+  "storyFrom": "Painel de {date}:\n{body}",
+  "@storyFrom": {
+    "type": "text",
+    "placeholders": {
+      "date": {},
+      "body": {}
+    }
+  },
+  "whoCanSeeMyStoriesDesc": "Por favor, note que pessoas podem ver e contactar umas às outras no seu painel.",
+  "@whoCanSeeMyStoriesDesc": {},
+  "link": "Link",
+  "@link": {},
+  "start": "Começar",
+  "@start": {},
+  "setupChatBackupNow": "Configurar seu backup de conversas agora",
+  "@setupChatBackupNow": {},
+  "whatIsGoingOn": "O que está acontecendo?",
+  "@whatIsGoingOn": {},
+  "addDescription": "Adicionar descrição",
+  "@addDescription": {},
+  "passwordsDoNotMatch": "Senhas não batem!",
+  "@passwordsDoNotMatch": {},
+  "pleaseEnterValidEmail": "Por favor, insira um email válido.",
+  "@pleaseEnterValidEmail": {},
+  "repeatPassword": "Repita a senha",
+  "@repeatPassword": {},
+  "pleaseChooseAtLeastChars": "Por favor, use pelo menos {min} caracteres.",
+  "@pleaseChooseAtLeastChars": {
+    "type": "text",
+    "placeholders": {
+      "min": {}
+    }
+  },
+  "addToSpace": "Adicionar ao espaço",
+  "@addToSpace": {},
+  "sendOnEnter": "Enviar ao pressionar enter",
+  "@sendOnEnter": {},
+  "homeserver": "Servidor matriz",
+  "@homeserver": {},
+  "yourUserId": "Seu ID de usuário:",
+  "@yourUserId": {},
+  "setupChatBackup": "Configurar backup da conversa",
+  "@setupChatBackup": {},
+  "iWroteDownTheKey": "Eu anotei a chave",
+  "@iWroteDownTheKey": {},
+  "chatHasBeenAddedToThisSpace": "A conversa foi adicionada a este espaço",
+  "@chatHasBeenAddedToThisSpace": {},
+  "chatHasBeenRemovedFromThisSpace": "A conversa foi removida deste espaço",
+  "@chatHasBeenRemovedFromThisSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHint_clearcache": "Limpar dados temporários",
+  "@commandHint_clearcache": {
+    "type": "text",
+    "description": "Usage hint for the command /clearcache"
+  },
+  "commandHint_create": "Criar uma sala vazia.\nUse --no-encryption para desabilitar a criptografia",
+  "@commandHint_create": {
+    "type": "text",
+    "description": "Usage hint for the command /create"
+  },
+  "commandHint_discardsession": "Descartar sessão",
+  "@commandHint_discardsession": {
+    "type": "text",
+    "description": "Usage hint for the command /discardsession"
+  },
+  "commandHint_dm": "Iniciar uma conversa direta\nUse --no-encryption para desabilitar a criptografia",
+  "@commandHint_dm": {
+    "type": "text",
+    "description": "Usage hint for the command /dm"
+  },
+  "scanQrCode": "Escanear o código QR",
+  "@scanQrCode": {},
+  "newUsernameDescription": "Seu ID de usuário(a) deve ter o formato @usuario:nomedoservidor",
+  "@newUsernameDescription": {},
+  "openVideoCamera": "Abra a câmera para um vídeo",
+  "@openVideoCamera": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addToBundle": "Adicionar à coleção",
+  "@addToBundle": {},
+  "removeFromBundle": "Remover desta coleção",
+  "@removeFromBundle": {},
+  "bundleName": "Nome da coleção",
+  "@bundleName": {},
+  "enableMultiAccounts": "(BETA) Habilitar múltiplas contas neste dispositivo",
+  "@enableMultiAccounts": {},
+  "time": "Hora",
+  "@time": {},
+  "messageType": "Tipo da mensagem",
+  "@messageType": {},
+  "openGallery": "Abrir galeria",
+  "@openGallery": {},
+  "addToSpaceDescription": "Selecione um espaço para adicionar esta conversa.",
+  "@addToSpaceDescription": {},
+  "pleaseEnterSecurityKeyDescription": "Para destravar seu backup de conversas, por favor, insira sua chave de segurança gerada na sessão anterior. Sua chave de segurança NÃO é a sua senha.",
+  "@pleaseEnterSecurityKeyDescription": {},
+  "saveTheSecurityKeyNow": "Salvar a chave de segurança agora",
+  "@saveTheSecurityKeyNow": {},
+  "addToStory": "Adicionar ao painel",
+  "@addToStory": {},
+  "whoCanSeeMyStories": "Quem pode ver meu painel?",
+  "@whoCanSeeMyStories": {},
+  "unsubscribeStories": "Desinscrever de painéis",
+  "@unsubscribeStories": {},
+  "thisUserHasNotPostedAnythingYet": "Este(a) usuário(a) ainda não postou no seu painel",
+  "@thisUserHasNotPostedAnythingYet": {},
+  "videoWithSize": "Vídeo ({size})",
+  "@videoWithSize": {
+    "type": "text",
+    "placeholders": {
+      "size": {}
+    }
   }
 }
