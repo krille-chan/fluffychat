@@ -62,6 +62,14 @@ extension ClientStoriesExtension on Client {
             'algorithm': 'm.megolm.v1.aes-sha2',
           },
         ),
+        StateEvent(
+          type: 'm.room.retention',
+          stateKey: '',
+          content: {
+            'min_lifetime': 86400000,
+            'max_lifetime': 86400000,
+          },
+        ),
       ],
       invite: invite,
     );
