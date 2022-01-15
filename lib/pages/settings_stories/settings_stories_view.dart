@@ -17,9 +17,11 @@ class SettingsStoriesView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(L10n.of(context)!.whoCanSeeMyStories),
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(56),
-          child: ListTile(
+        elevation: 0,
+      ),
+      body: Column(
+        children: [
+          ListTile(
             title: Text(L10n.of(context)!.whoCanSeeMyStoriesDesc),
             leading: CircleAvatar(
               backgroundColor: Theme.of(context).secondaryHeaderColor,
@@ -27,37 +29,40 @@ class SettingsStoriesView extends StatelessWidget {
               child: const Icon(Icons.lock),
             ),
           ),
-        ),
-      ),
-      body: FutureBuilder(
-        future: controller.loadUsers,
-        builder: (context, snapshot) {
-          final error = snapshot.error;
-          if (error != null) {
-            return Center(child: Text(error.toLocalizedString(context)));
-          }
-          if (snapshot.connectionState != ConnectionState.done) {
-            return const Center(
-                child: CircularProgressIndicator.adaptive(
-              strokeWidth: 2,
-            ));
-          }
-          return ListView.builder(
-            itemCount: controller.users.length,
-            itemBuilder: (context, i) {
-              final user = controller.users.keys.toList()[i];
-              return SwitchListTile.adaptive(
-                value: controller.users[user] ?? false,
-                onChanged: (_) => controller.toggleUser(user),
-                secondary: Avatar(
-                  mxContent: user.avatarUrl,
-                  name: user.calcDisplayname(),
-                ),
-                title: Text(user.calcDisplayname()),
-              );
-            },
-          );
-        },
+          const Divider(height: 1),
+          Expanded(
+            child: FutureBuilder(
+              future: controller.loadUsers,
+              builder: (context, snapshot) {
+                final error = snapshot.error;
+                if (error != null) {
+                  return Center(child: Text(error.toLocalizedString(context)));
+                }
+                if (snapshot.connectionState != ConnectionState.done) {
+                  return const Center(
+                      child: CircularProgressIndicator.adaptive(
+                    strokeWidth: 2,
+                  ));
+                }
+                return ListView.builder(
+                  itemCount: controller.users.length,
+                  itemBuilder: (context, i) {
+                    final user = controller.users.keys.toList()[i];
+                    return SwitchListTile.adaptive(
+                      value: controller.users[user] ?? false,
+                      onChanged: (_) => controller.toggleUser(user),
+                      secondary: Avatar(
+                        mxContent: user.avatarUrl,
+                        name: user.calcDisplayname(),
+                      ),
+                      title: Text(user.calcDisplayname()),
+                    );
+                  },
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
