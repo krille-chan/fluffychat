@@ -1365,7 +1365,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "newChat": "Nouveau salon de discussion",
+  "newChat": "Nouvelle discussion",
   "@newChat": {
     "type": "text",
     "placeholders": {}
