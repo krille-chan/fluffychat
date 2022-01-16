@@ -244,7 +244,7 @@
       "username": {}
     }
   },
-  "changedTheChatDescriptionTo": "{username} a changé la description de la discussion en : « {description} »",
+  "changedTheChatDescriptionTo": "{username} a changé la description de la discussion en : '{description}'",
   "@changedTheChatDescriptionTo": {
     "type": "text",
     "placeholders": {
@@ -252,7 +252,7 @@
       "description": {}
     }
   },
-  "changedTheChatNameTo": "{username} a renommé la discussion en : « {chatname} »",
+  "changedTheChatNameTo": "{username} a renommé la discussion en : '{chatname}'",
   "@changedTheChatNameTo": {
     "type": "text",
     "placeholders": {
@@ -2185,7 +2185,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "timeOfDay": "{hours24}:{minutes}",
+  "timeOfDay": "{hours12}:{minutes} {suffix}",
   "@timeOfDay": {
     "type": "text",
     "placeholders": {
@@ -2264,7 +2264,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unknownEvent": "Évènement de type inconnu « {type} »",
+  "unknownEvent": "Événement de type inconnu : '{type}'",
   "@unknownEvent": {
     "type": "text",
     "placeholders": {
