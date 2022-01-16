@@ -792,7 +792,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "groupWith": "Ryhmä seuralaisena {displayname}",
+  "groupWith": "Ryhmä seuralaisina {displayname}",
   "@groupWith": {
     "type": "text",
     "placeholders": {
