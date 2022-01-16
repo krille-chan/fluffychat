@@ -1339,7 +1339,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "moreEvents": "{count,plural, =1{Veel 1 sündmus}, other{Veel {count} sündmust}}",
+  "moreEvents": "{count,plural, =1{Veel 1 sündmus} other{Veel {count} sündmust}}",
   "@moreEvents": {
     "type": "text",
     "placeholders": {
@@ -2681,5 +2681,7 @@
     "placeholders": {}
   },
   "addDescription": "Lisa kirjeldus",
-  "@addDescription": {}
+  "@addDescription": {},
+  "iUnderstand": "Ma mõistan",
+  "@iUnderstand": {}
 }
