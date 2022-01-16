@@ -2429,5 +2429,68 @@
   "@howOffensiveIsThisContent": {
     "type": "text",
     "placeholders": {}
+  },
+  "commandHint_clearcache": "Neteja la memòria cau",
+  "@commandHint_clearcache": {
+    "type": "text",
+    "description": "Usage hint for the command /clearcache"
+  },
+  "commandHint_join": "Uneix-te a la sala",
+  "@commandHint_join": {
+    "type": "text",
+    "description": "Usage hint for the command /join"
+  },
+  "commandHint_kick": "Elimina l'usuari indicat d'aquesta sala",
+  "@commandHint_kick": {
+    "type": "text",
+    "description": "Usage hint for the command /kick"
+  },
+  "commandHint_myroomavatar": "Establiu la imatge per a aquesta sala (per mxc-uri)",
+  "@commandHint_myroomavatar": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomavatar"
+  },
+  "commandHint_dm": "Inicia un xat directe\nUsa --no-encryption per desactivar l'encriptatge",
+  "@commandHint_dm": {
+    "type": "text",
+    "description": "Usage hint for the command /dm"
+  },
+  "commandHint_invite": "Convida l'usuari indicat a aquesta sala",
+  "@commandHint_invite": {
+    "type": "text",
+    "description": "Usage hint for the command /invite"
+  },
+  "commandHint_ban": "Prohibeix l'usuari indicat d'aquesta sala",
+  "@commandHint_ban": {
+    "type": "text",
+    "description": "Usage hint for the command /ban"
+  },
+  "commandHint_create": "Crea un xat de grup buit\nUsa --no-encryption per desactivar l'encriptatge",
+  "@commandHint_create": {
+    "type": "text",
+    "description": "Usage hint for the command /create"
+  },
+  "commandHint_discardsession": "Descarta la sessió",
+  "@commandHint_discardsession": {
+    "type": "text",
+    "description": "Usage hint for the command /discardsession"
+  },
+  "passwordsDoNotMatch": "Les contrasenyes no coincideixen!",
+  "@passwordsDoNotMatch": {},
+  "pleaseEnterValidEmail": "Introduïu una adreça electrònica vàlida.",
+  "@pleaseEnterValidEmail": {},
+  "repeatPassword": "Repetiu la contrasenya",
+  "@repeatPassword": {},
+  "pleaseChooseAtLeastChars": "Seleccioneu almenys {min} caràcters.",
+  "@pleaseChooseAtLeastChars": {
+    "type": "text",
+    "placeholders": {
+      "min": {}
+    }
+  },
+  "bubbleSize": "Mida de la bombolla",
+  "@bubbleSize": {
+    "type": "text",
+    "placeholders": {}
   }
 }
