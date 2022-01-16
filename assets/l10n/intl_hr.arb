@@ -232,7 +232,7 @@
       "username": {}
     }
   },
-  "changedTheChatDescriptionTo": "{username} je promijenio/la opis chata u: „{description}”",
+  "changedTheChatDescriptionTo": "{username} je promijenio/la opis razgovora u: „{description}”",
   "@changedTheChatDescriptionTo": {
     "type": "text",
     "placeholders": {
@@ -240,7 +240,7 @@
       "description": {}
     }
   },
-  "changedTheChatNameTo": "{username} je promijenio/la ime chata u: „{chatname}”",
+  "changedTheChatNameTo": "{username} je promijenio/la ime razgovora u: „{chatname}”",
   "@changedTheChatNameTo": {
     "type": "text",
     "placeholders": {
@@ -2056,7 +2056,7 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "Započni svoj prvi chat! 🙂\n- Dodirni gumb za poruku\n- Upiši korisničko ime prijatelja\n- Želimo ti dobru zabavu",
+  "startYourFirstChat": "Započni svoj prvi razgovor! 🙂\n- Dodirni gumb „Novi razgovor”\n- Skeniraj QR-kod prijatelja\n- Zabavi se u razgovoru",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -2205,7 +2205,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unknownEvent": "Nepoznata vrsta događaja „{type}”",
+  "unknownEvent": "Nepoznat događaj „{type}”",
   "@unknownEvent": {
     "type": "text",
     "placeholders": {
@@ -2679,5 +2679,49 @@
   "@openVideoCamera": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "iUnderstand": "Razumijem",
+  "@iUnderstand": {},
+  "storyPrivacyWarning": "Imaj na umu da ljudi mogu vidjeti i međusobno se kontaktirati u tvojoj priči. Tvoje priče će biti vidljive 24 sata, ali nema jamstva da će se izbrisati sa svih uređaja i poslužitelja.",
+  "@storyPrivacyWarning": {},
+  "bubbleSize": "Veličina mjehurića",
+  "@bubbleSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "videoWithSize": "Video ({size})",
+  "@videoWithSize": {
+    "type": "text",
+    "placeholders": {
+      "size": {}
+    }
+  },
+  "storyFrom": "Priča od {date}: \n{body}",
+  "@storyFrom": {
+    "type": "text",
+    "placeholders": {
+      "date": {},
+      "body": {}
+    }
+  },
+  "whoCanSeeMyStoriesDesc": "Imaj na umu da ljudi mogu vidjeti i međusobno se kontaktirati u tvojoj priči.",
+  "@whoCanSeeMyStoriesDesc": {},
+  "addToStory": "Dodaj priči",
+  "@addToStory": {},
+  "publish": "Objavi",
+  "@publish": {},
+  "whoCanSeeMyStories": "Tko može vidjeti moje priče?",
+  "@whoCanSeeMyStories": {},
+  "unsubscribeStories": "Otkaži pretplatu na priče",
+  "@unsubscribeStories": {},
+  "thisUserHasNotPostedAnythingYet": "Ovaj korisnik još nije objavio ništa u svojoj priči",
+  "@thisUserHasNotPostedAnythingYet": {},
+  "yourStory": "Tvoja priča",
+  "@yourStory": {},
+  "replyHasBeenSent": "Odgovor je poslan",
+  "@replyHasBeenSent": {},
+  "whatIsGoingOn": "Što se događa?",
+  "@whatIsGoingOn": {},
+  "addDescription": "Dodaj opis",
+  "@addDescription": {}
 }
