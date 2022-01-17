@@ -119,7 +119,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "banFromChat": "Заблокувати в чаті",
+  "banFromChat": "Заблокувати в бесіді",
   "@banFromChat": {
     "type": "text",
     "placeholders": {}
@@ -152,14 +152,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "changedTheChatAvatar": "{username} змінює аватар чату",
+  "changedTheChatAvatar": "{username} змінює аватар бесіди",
   "@changedTheChatAvatar": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheChatDescriptionTo": "{username} змінює опис чату на: «{description}»",
+  "changedTheChatDescriptionTo": "{username} змінює опис бесіди на: '{description}'",
   "@changedTheChatDescriptionTo": {
     "type": "text",
     "placeholders": {
@@ -167,7 +167,7 @@
       "description": {}
     }
   },
-  "changedTheChatNameTo": "{username} змінює назву чату на: «{chatname}»",
+  "changedTheChatNameTo": "{username} змінює назву бесіди на: '{chatname}'",
   "@changedTheChatNameTo": {
     "type": "text",
     "placeholders": {
@@ -175,14 +175,14 @@
       "chatname": {}
     }
   },
-  "changedTheChatPermissions": "{username} змінює права доступу чату",
+  "changedTheChatPermissions": "{username} змінює права доступу бесіди",
   "@changedTheChatPermissions": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheDisplaynameTo": "{username} змінює показуване ім'я на: «{displayname}»",
+  "changedTheDisplaynameTo": "{username} змінює показуване ім'я на: '{displayname}'",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -291,12 +291,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "chat": "Чат",
+  "chat": "Бесіда",
   "@chat": {
     "type": "text",
     "placeholders": {}
   },
-  "chatDetails": "Подробиці чату",
+  "chatDetails": "Подробиці бесіди",
   "@chatDetails": {
     "type": "text",
     "placeholders": {}
@@ -395,7 +395,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "createdTheChat": "{username} створює чат",
+  "createdTheChat": "{username} створює бесіду",
   "@createdTheChat": {
     "type": "text",
     "placeholders": {
@@ -532,7 +532,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "emptyChat": "Порожній чат",
+  "emptyChat": "Порожня бесіда",
   "@emptyChat": {
     "type": "text",
     "placeholders": {}
@@ -737,7 +737,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "joinedTheChat": "{username} приєднується до чату",
+  "joinedTheChat": "{username} приєднується до бесіди",
   "@joinedTheChat": {
     "type": "text",
     "placeholders": {
@@ -770,7 +770,7 @@
       "targetName": {}
     }
   },
-  "kickFromChat": "Вилучити з чату",
+  "kickFromChat": "Вилучити з бесіди",
   "@kickFromChat": {
     "type": "text",
     "placeholders": {}
@@ -797,7 +797,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "leftTheChat": "Виходить з чату",
+  "leftTheChat": "Виходить з бесіди",
   "@leftTheChat": {
     "type": "text",
     "placeholders": {}
@@ -876,7 +876,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "muteChat": "Вимкнути сповіщення чату",
+  "muteChat": "Вимкнути сповіщення",
   "@muteChat": {
     "type": "text",
     "placeholders": {}
@@ -1081,7 +1081,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unbanFromChat": "Розблокувати у чаті",
+  "unbanFromChat": "Розблокувати у бесіді",
   "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
@@ -1126,7 +1126,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "searchForAChat": "Пошук чату",
+  "searchForAChat": "Пошук бесіди",
   "@searchForAChat": {
     "type": "text",
     "placeholders": {}
@@ -1258,7 +1258,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "startYourFirstChat": "Почніть свій перший чат просто зараз! 🙂\n- Торкніться «Новий чат»\n- Скануйте QR-код друга\n- Отримуйте задоволення від спілкування",
+  "startYourFirstChat": "Почніть свою першу бесіду просто зараз! 🙂\n- Торкніться «Нова бесіда»\n- Скануйте QR-код друга\n- Отримуйте задоволення від спілкування",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -1308,7 +1308,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "timeOfDay": "{hours24}:{minutes}",
+  "timeOfDay": "{hours12}:{minutes} {suffix}",
   "@timeOfDay": {
     "type": "text",
     "placeholders": {
@@ -1357,7 +1357,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unknownEvent": "Невідома подія «{type}»",
+  "unknownEvent": "Невідома подія '{type}'",
   "@unknownEvent": {
     "type": "text",
     "placeholders": {
@@ -1369,7 +1369,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unmuteChat": "Увімкнути звук чату",
+  "unmuteChat": "Увімкнути сповіщення",
   "@unmuteChat": {
     "type": "text",
     "placeholders": {}
@@ -1402,7 +1402,7 @@
       "username": {}
     }
   },
-  "userLeftTheChat": "{username} виходить з чату",
+  "userLeftTheChat": "{username} виходить з бесіди",
   "@userLeftTheChat": {
     "type": "text",
     "placeholders": {
@@ -1462,7 +1462,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "visibilityOfTheChatHistory": "Видимість історії чату",
+  "visibilityOfTheChatHistory": "Видимість історії бесіди",
   "@visibilityOfTheChatHistory": {
     "type": "text",
     "placeholders": {}
@@ -1537,12 +1537,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "youAreInvitedToThisChat": "Вас запрошують до цього чату",
+  "youAreInvitedToThisChat": "Вас запрошують до цієї бесіди",
   "@youAreInvitedToThisChat": {
     "type": "text",
     "placeholders": {}
   },
-  "youAreNoLongerParticipatingInThisChat": "Ви більше не берете участь у цьому чаті",
+  "youAreNoLongerParticipatingInThisChat": "Ви більше не берете участь у цій бесіді",
   "@youAreNoLongerParticipatingInThisChat": {
     "type": "text",
     "placeholders": {}
@@ -1552,7 +1552,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "youHaveBeenBannedFromThisChat": "Ви були заблоковані в цьому чаті",
+  "youHaveBeenBannedFromThisChat": "Ви були заблоковані у цій бесіді",
   "@youHaveBeenBannedFromThisChat": {
     "type": "text",
     "placeholders": {}
@@ -1612,7 +1612,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "directChats": "Особисті чати",
+  "directChats": "Особисті бесіди",
   "@directChats": {
     "type": "text",
     "placeholders": {}
@@ -1854,7 +1854,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wipeChatBackup": "Стерти резервну копію чату, щоб створити новий ключ безпеки?",
+  "wipeChatBackup": "Стерти резервну копію бесіди, щоб створити новий ключ безпеки?",
   "@wipeChatBackup": {
     "type": "text",
     "placeholders": {}
@@ -1871,7 +1871,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "editChatPermissions": "Редагувати дозволи чату",
+  "editChatPermissions": "Редагувати дозволи бесіди",
   "@editChatPermissions": {
     "type": "text",
     "placeholders": {}
@@ -1957,7 +1957,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "badServerVersionsException": "Домашній сервер підтримує такі версії специфікацій:\n{serverVersions}\nАле цей застосунок підтримує лише {supportVersions}",
+  "badServerVersionsException": "Домашній сервер підтримує такі версії специфікацій:\n{serverVersions}\nАле цей застосунок підтримує лише {supportedVersions}",
   "@badServerVersionsException": {
     "type": "text",
     "placeholders": {
@@ -1970,7 +1970,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "badServerLoginTypesException": "Домашній сервер підтримує такі типи входу:\n{serverVersions}\nАле цей застосунок підтримує лише:\n{supportVersions}",
+  "badServerLoginTypesException": "Домашній сервер підтримує такі типи входу:\n{serverVersions}\nАле цей застосунок підтримує лише:\n{supportedVersions}",
   "@badServerLoginTypesException": {
     "type": "text",
     "placeholders": {
@@ -1983,7 +1983,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "allChats": "Усі чати",
+  "allChats": "Усі бесіди",
   "@allChats": {
     "type": "text",
     "placeholders": {}
@@ -1993,7 +1993,7 @@
     "type": "text",
     "description": "Usage hint for the command /join"
   },
-  "chats": "Чати",
+  "chats": "Бесіди",
   "@chats": {
     "type": "text",
     "placeholders": {}
@@ -2149,7 +2149,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "newChat": "Новий чат",
+  "newChat": "Нова бесіда",
   "@newChat": {
     "type": "text",
     "placeholders": {}
@@ -2186,26 +2186,26 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatHasBeenRemovedFromThisSpace": "Чат видалено з цього простору",
+  "chatHasBeenRemovedFromThisSpace": "Бесіду видалено з цього простору",
   "@chatHasBeenRemovedFromThisSpace": {
     "type": "text",
     "placeholders": {}
   },
-  "chatHasBeenAddedToThisSpace": "Чат додано до цього простору",
+  "chatHasBeenAddedToThisSpace": "Бесіду додано до цього простору",
   "@chatHasBeenAddedToThisSpace": {},
-  "chatBackupDescription": "Резервне копіювання чату захищено ключем безпеки. Не загубіть його.",
+  "chatBackupDescription": "Резервне копіювання бесіди захищено ключем безпеки. Не загубіть його.",
   "@chatBackupDescription": {
     "type": "text",
     "placeholders": {}
   },
-  "chatBackup": "Резервне копіювання чату",
+  "chatBackup": "Резервне копіювання бесіди",
   "@chatBackup": {
     "type": "text",
     "placeholders": {}
   },
-  "yourChatBackupHasBeenSetUp": "Резервне копіювання чату налаштовано.",
+  "yourChatBackupHasBeenSetUp": "Резервне копіювання бесіди налаштовано.",
   "@yourChatBackupHasBeenSetUp": {},
-  "setupChatBackup": "Налаштувати резервне копіювання чату",
+  "setupChatBackup": "Налаштувати резервне копіювання бесіди",
   "@setupChatBackup": {},
   "iWroteDownTheKey": "Ключ записано",
   "@iWroteDownTheKey": {},
@@ -2250,7 +2250,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enableChatBackup": "Увімкніть резервне копіювання чатів, щоб ніколи не втратити доступ до них.",
+  "enableChatBackup": "Увімкніть резервне копіювання бесід, щоб ніколи не втратити доступ до них.",
   "@enableChatBackup": {
     "type": "text",
     "placeholders": {}
@@ -2350,21 +2350,21 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadMessages": "{unreadCount, plural, =1{1 непрочитане повідомлення} few{{unreadEvents} непрочитані повідомлення} many{{unreadEvents} непрочитаних повідомлень} other{{unreadEvents} непрочитані повідомлення}}",
+  "unreadMessages": "{unreadEvents, plural, =1{1 непрочитане повідомлення} few{{unreadEvents} непрочитані повідомлення} many{{unreadEvents} непрочитаних повідомлень} other{{unreadEvents} непрочитані повідомлення}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
       "unreadEvents": {}
     }
   },
-  "unreadChats": "{unreadCount, plural, =1{1 непрочитаний чат} few{{unreadCount} непрочитані чати} many{{unreadCount} непрочитаних чати} other{{unreadCount} непрочитані чати}}",
+  "unreadChats": "{unreadCount, plural, =1{1 непрочитана бесіда} few{{unreadCount} непрочитані бесіди} many{{unreadCount} непрочитаних бесід} other{{unreadCount} непрочитані бесіди}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unlockChatBackup": "Розблокувати резервну копію чату",
+  "unlockChatBackup": "Розблокувати резервну копію бесіди",
   "@unlockChatBackup": {
     "type": "text",
     "placeholders": {}
@@ -2381,7 +2381,7 @@
       "homeserver": {}
     }
   },
-  "yourChatsAreBeingSynced": "Ваші чати синхронізуються…",
+  "yourChatsAreBeingSynced": "Ваші бесіди синхронізуються…",
   "@yourChatsAreBeingSynced": {
     "type": "text",
     "placeholders": {}
@@ -2445,7 +2445,7 @@
     "type": "text",
     "description": "Usage hint for the command /unban"
   },
-  "configureChat": "Налаштувати чат",
+  "configureChat": "Налаштувати бесіду",
   "@configureChat": {
     "type": "text",
     "placeholders": {}
@@ -2634,19 +2634,19 @@
   "@openGallery": {},
   "sender": "Відправник",
   "@sender": {},
-  "addToSpaceDescription": "Виберіть простір, щоб додати до нього цей чат.",
+  "addToSpaceDescription": "Виберіть простір, щоб додати до нього цю бесіду.",
   "@addToSpaceDescription": {},
   "loginWithOneClick": "Увійти одним натисканням",
   "@loginWithOneClick": {},
-  "removeFromSpaceDescription": "Це вилучає цей чат з поточного простору. Він усе одно буде видимий у розділі «Усі чати».",
+  "removeFromSpaceDescription": "Це вилучає цей бесіду з поточного простору. Її все одно буде видно у розділі «Усі бесіди».",
   "@removeFromSpaceDescription": {},
   "removeFromSpace": "Вилучити з простору",
   "@removeFromSpace": {},
   "start": "Почати",
   "@start": {},
-  "setupChatBackupNow": "Налаштуйте резервне копіювання чату зараз",
+  "setupChatBackupNow": "Налаштуйте резервне копіювання бесіди зараз",
   "@setupChatBackupNow": {},
-  "pleaseEnterSecurityKeyDescription": "Щоб розблокувати резервну копію чату, введіть ключ безпеки, який був створений під час попереднього сеансу. Ключ безпеки — це не ваш пароль.",
+  "pleaseEnterSecurityKeyDescription": "Щоб розблокувати резервну копію бесіди, введіть ключ безпеки, який був створений під час попереднього сеансу. Ключ безпеки — це не ваш пароль.",
   "@pleaseEnterSecurityKeyDescription": {},
   "saveTheSecurityKeyNow": "Зберегти ключ безпеки зараз",
   "@saveTheSecurityKeyNow": {},
@@ -2660,12 +2660,12 @@
     "type": "text",
     "description": "Usage hint for the command /clearcache"
   },
-  "commandHint_create": "Створіть порожній груповий чат\nВикористовуйте --no-encryption, щоб вимкнути шифрування",
+  "commandHint_create": "Створіть порожню групову бесіду\nВикористовуйте --no-encryption, щоб вимкнути шифрування",
   "@commandHint_create": {
     "type": "text",
     "description": "Usage hint for the command /create"
   },
-  "commandHint_dm": "Початок особистого чату\nВикористовуйте --no-encryption, що вимкнути шифрування",
+  "commandHint_dm": "Початок особистої бесіди\nВикористовуйте --no-encryption, що вимкнути шифрування",
   "@commandHint_dm": {
     "type": "text",
     "description": "Usage hint for the command /dm"
@@ -2714,5 +2714,9 @@
   "@bubbleSize": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "iUnderstand": "Я розумію",
+  "@iUnderstand": {},
+  "storyPrivacyWarning": "Зверніть увагу, що люди можуть бачити та зв'язуватися один з одним у вашій історії. Ваші історії будуть видимі впродовж 24 годин, але немає жодної гарантії, що вони будуть видалені з усіх пристроїв і серверів.",
+  "@storyPrivacyWarning": {}
 }
