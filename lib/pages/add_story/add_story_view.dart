@@ -59,13 +59,19 @@ class AddStoryView extends StatelessWidget {
       body: Stack(
         children: [
           if (video != null)
-            FutureBuilder(
-              future: video.initialize().then((_) => video.play()),
-              builder: (_, __) => Center(child: VideoPlayer(video)),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 80.0),
+              child: FutureBuilder(
+                future: video.initialize().then((_) => video.play()),
+                builder: (_, __) => Center(child: VideoPlayer(video)),
+              ),
             ),
           AnimatedContainer(
             duration: const Duration(seconds: 2),
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 8.0,
+              vertical: 80.0,
+            ),
             decoration: BoxDecoration(
               image: controller.image == null
                   ? null
@@ -96,7 +102,9 @@ class AddStoryView extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 24,
                   color: Colors.white,
-                  backgroundColor: !controller.hasMedia ? null : Colors.black,
+                  backgroundColor: !controller.hasMedia
+                      ? null
+                      : Colors.black.withOpacity(0.5),
                 ),
                 onEditingComplete: controller.updateColors,
                 decoration: InputDecoration(
@@ -117,16 +125,13 @@ class AddStoryView extends StatelessWidget {
           ),
         ],
       ),
-      floatingActionButton:
-          controller.controller.text.isEmpty && !controller.hasMedia
-              ? null
-              : FloatingActionButton.extended(
-                  onPressed: controller.postStory,
-                  label: Text(L10n.of(context)!.publish),
-                  backgroundColor: Theme.of(context).colorScheme.surface,
-                  foregroundColor: Theme.of(context).colorScheme.onSurface,
-                  icon: const Icon(Icons.send_rounded),
-                ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: controller.postStory,
+        label: Text(L10n.of(context)!.publish),
+        backgroundColor: Theme.of(context).colorScheme.surface,
+        foregroundColor: Theme.of(context).colorScheme.onSurface,
+        icon: const Icon(Icons.send_rounded),
+      ),
     );
   }
 }

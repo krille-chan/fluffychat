@@ -32,74 +32,63 @@ class StoryView extends StatelessWidget {
           icon: const Icon(Icons.close),
           onPressed: Navigator.of(context).pop,
         ),
-        title: AnimatedOpacity(
-          duration: const Duration(seconds: 1),
-          opacity: controller.isHold ? 0 : 1,
-          child: ListTile(
-            contentPadding: EdgeInsets.zero,
-            title: Text(
-              controller.title,
-              style: const TextStyle(
-                color: Colors.white,
-                shadows: [
-                  Shadow(
-                    color: Colors.black,
-                    offset: Offset(0, 0),
-                    blurRadius: 5,
+        title: ListTile(
+          contentPadding: EdgeInsets.zero,
+          title: Text(
+            controller.title,
+            style: const TextStyle(
+              color: Colors.white,
+              shadows: [
+                Shadow(
+                  color: Colors.black,
+                  offset: Offset(0, 0),
+                  blurRadius: 5,
+                ),
+              ],
+            ),
+          ),
+          subtitle: currentEvent != null
+              ? Text(
+                  currentEvent.originServerTs.localizedTime(context),
+                  style: const TextStyle(
+                    color: Colors.white70,
+                    shadows: [
+                      Shadow(
+                        color: Colors.black,
+                        offset: Offset(0, 0),
+                        blurRadius: 5,
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ),
-            subtitle: currentEvent != null
-                ? Text(
-                    currentEvent.originServerTs.localizedTime(context),
-                    style: const TextStyle(
-                      color: Colors.white70,
-                      shadows: [
-                        Shadow(
-                          color: Colors.black,
-                          offset: Offset(0, 0),
-                          blurRadius: 5,
-                        ),
-                      ],
-                    ),
-                  )
-                : null,
-            leading: Avatar(
-              mxContent: controller.avatar,
-              name: controller.title,
-            ),
+                )
+              : null,
+          leading: Avatar(
+            mxContent: controller.avatar,
+            name: controller.title,
           ),
         ),
         actions: currentEvent == null
             ? null
             : [
                 if (!controller.isOwnStory)
-                  AnimatedOpacity(
-                    duration: const Duration(seconds: 1),
-                    opacity: controller.isHold ? 0 : 1,
-                    child: IconButton(
-                      icon: Icon(Icons.adaptive.share_outlined),
-                      onPressed: controller.share,
-                    ),
+                  IconButton(
+                    icon: Icon(Icons.adaptive.share_outlined),
+                    onPressed: controller.share,
                   ),
-                AnimatedOpacity(
-                    duration: const Duration(seconds: 1),
-                    opacity: controller.isHold ? 0 : 1,
-                    child: PopupMenuButton<PopupStoryAction>(
-                      onSelected: controller.onPopupStoryAction,
-                      itemBuilder: (context) => [
-                        if (controller.currentEvent?.canRedact ?? false)
-                          PopupMenuItem(
-                            value: PopupStoryAction.delete,
-                            child: Text(L10n.of(context)!.delete),
-                          ),
-                        PopupMenuItem(
-                          value: PopupStoryAction.report,
-                          child: Text(L10n.of(context)!.reportMessage),
-                        ),
-                      ],
-                    )),
+                PopupMenuButton<PopupStoryAction>(
+                  onSelected: controller.onPopupStoryAction,
+                  itemBuilder: (context) => [
+                    if (controller.currentEvent?.canRedact ?? false)
+                      PopupMenuItem(
+                        value: PopupStoryAction.delete,
+                        child: Text(L10n.of(context)!.delete),
+                      ),
+                    PopupMenuItem(
+                      value: PopupStoryAction.report,
+                      child: Text(L10n.of(context)!.reportMessage),
+                    ),
+                  ],
+                ),
               ],
         systemOverlayStyle: SystemUiOverlayStyle.light,
         iconTheme: const IconThemeData(color: Colors.white),
@@ -155,32 +144,45 @@ class StoryView extends StatelessWidget {
           if (event.messageType == MessageTypes.Text) {
             controller.loadingModeOff();
           }
+          final hash = event.infoMap['xyz.amorgan.blurhash'];
           return GestureDetector(
             onTapDown: controller.hold,
             onTapUp: controller.unhold,
             child: Stack(
               children: [
+                if (hash is String)
+                  BlurHash(
+                    hash: hash,
+                    imageFit: BoxFit.cover,
+                  ),
                 if (event.messageType == MessageTypes.Video &&
                     PlatformInfos.isMobile)
-                  FutureBuilder<VideoPlayerController?>(
-                    future: controller.loadVideoControllerFuture ??=
-                        controller.loadVideoController(event),
-                    builder: (context, snapshot) {
-                      final videoPlayerController = snapshot.data;
-                      if (videoPlayerController == null) {
-                        controller.loadingModeOn();
-                        return Container();
-                      }
-                      controller.loadingModeOff();
-                      return Center(child: VideoPlayer(videoPlayerController));
-                    },
+                  Positioned(
+                    top: 80,
+                    bottom: 64,
+                    left: 0,
+                    right: 0,
+                    child: FutureBuilder<VideoPlayerController?>(
+                      future: controller.loadVideoControllerFuture ??=
+                          controller.loadVideoController(event),
+                      builder: (context, snapshot) {
+                        final videoPlayerController = snapshot.data;
+                        if (videoPlayerController == null) {
+                          controller.loadingModeOn();
+                          return Container();
+                        }
+                        controller.loadingModeOff();
+                        return Center(
+                            child: VideoPlayer(videoPlayerController));
+                      },
+                    ),
                   ),
                 if (event.messageType == MessageTypes.Image ||
                     (event.messageType == MessageTypes.Video &&
                         !PlatformInfos.isMobile))
                   Positioned(
-                    top: 0,
-                    bottom: 0,
+                    top: 80,
+                    bottom: 64,
                     left: 0,
                     right: 0,
                     child: FutureBuilder<MatrixFile>(
@@ -190,13 +192,7 @@ class StoryView extends StatelessWidget {
                         final matrixFile = snapshot.data;
                         if (matrixFile == null) {
                           controller.loadingModeOn();
-                          final hash = event.infoMap['xyz.amorgan.blurhash'];
-                          return hash is String
-                              ? BlurHash(
-                                  hash: hash,
-                                  imageFit: BoxFit.cover,
-                                )
-                              : Container();
+                          return Container();
                         }
                         controller.loadingModeOff();
                         return Center(
@@ -210,7 +206,10 @@ class StoryView extends StatelessWidget {
                   ),
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 200),
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8.0,
+                    vertical: 64,
+                  ),
                   decoration: BoxDecoration(
                     gradient: event.messageType == MessageTypes.Text
                         ? LinearGradient(
@@ -259,36 +258,32 @@ class StoryView extends StatelessWidget {
                   top: 4,
                   left: 4,
                   right: 4,
-                  child: AnimatedOpacity(
-                    duration: const Duration(seconds: 1),
-                    opacity: controller.isHold ? 0 : 1,
-                    child: SafeArea(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          for (var i = 0; i < events.length; i++)
-                            Expanded(
-                              child: i == controller.index
-                                  ? LinearProgressIndicator(
-                                      color: Colors.white,
-                                      minHeight: 2,
-                                      backgroundColor: Colors.grey.shade600,
-                                      value: controller.loadingMode
-                                          ? null
-                                          : controller.progress.inMilliseconds /
-                                              StoryPageController
-                                                  .maxProgress.inMilliseconds,
-                                    )
-                                  : Container(
-                                      margin: const EdgeInsets.all(4),
-                                      height: 2,
-                                      color: i < controller.index
-                                          ? Colors.white
-                                          : Colors.grey.shade600,
-                                    ),
-                            ),
-                        ],
-                      ),
+                  child: SafeArea(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        for (var i = 0; i < events.length; i++)
+                          Expanded(
+                            child: i == controller.index
+                                ? LinearProgressIndicator(
+                                    color: Colors.white,
+                                    minHeight: 2,
+                                    backgroundColor: Colors.grey.shade600,
+                                    value: controller.loadingMode
+                                        ? null
+                                        : controller.progress.inMilliseconds /
+                                            StoryPageController
+                                                .maxProgress.inMilliseconds,
+                                  )
+                                : Container(
+                                    margin: const EdgeInsets.all(4),
+                                    height: 2,
+                                    color: i < controller.index
+                                        ? Colors.white
+                                        : Colors.grey.shade600,
+                                  ),
+                          ),
+                      ],
                     ),
                   ),
                 ),
@@ -297,32 +292,28 @@ class StoryView extends StatelessWidget {
                     bottom: 16,
                     left: 16,
                     right: 16,
-                    child: AnimatedOpacity(
-                      duration: const Duration(seconds: 1),
-                      opacity: controller.isHold ? 0 : 1,
-                      child: SafeArea(
-                        child: TextField(
-                          focusNode: controller.replyFocus,
-                          controller: controller.replyController,
-                          minLines: 1,
-                          maxLines: 7,
-                          onSubmitted: controller.replyAction,
-                          textInputAction: TextInputAction.newline,
-                          readOnly: controller.replyLoading,
-                          decoration: InputDecoration(
-                            hintText: L10n.of(context)!.reply,
-                            prefixIcon: IconButton(
-                              onPressed: controller.replyEmojiAction,
-                              icon: const Icon(Icons.emoji_emotions_outlined),
-                            ),
-                            suffixIcon: controller.replyLoading
-                                ? const CircularProgressIndicator.adaptive(
-                                    strokeWidth: 2)
-                                : IconButton(
-                                    onPressed: controller.replyAction,
-                                    icon: const Icon(Icons.send_outlined),
-                                  ),
+                    child: SafeArea(
+                      child: TextField(
+                        focusNode: controller.replyFocus,
+                        controller: controller.replyController,
+                        minLines: 1,
+                        maxLines: 7,
+                        onSubmitted: controller.replyAction,
+                        textInputAction: TextInputAction.newline,
+                        readOnly: controller.replyLoading,
+                        decoration: InputDecoration(
+                          hintText: L10n.of(context)!.reply,
+                          prefixIcon: IconButton(
+                            onPressed: controller.replyEmojiAction,
+                            icon: const Icon(Icons.emoji_emotions_outlined),
                           ),
+                          suffixIcon: controller.replyLoading
+                              ? const CircularProgressIndicator.adaptive(
+                                  strokeWidth: 2)
+                              : IconButton(
+                                  onPressed: controller.replyAction,
+                                  icon: const Icon(Icons.send_outlined),
+                                ),
                         ),
                       ),
                     ),
@@ -333,20 +324,16 @@ class StoryView extends StatelessWidget {
                     bottom: 16,
                     left: 16,
                     right: 16,
-                    child: AnimatedOpacity(
-                      duration: const Duration(seconds: 1),
-                      opacity: controller.isHold ? 0 : 1,
-                      child: SafeArea(
-                        child: Center(
-                          child: OutlinedButton.icon(
-                            style: OutlinedButton.styleFrom(
-                              backgroundColor:
-                                  Theme.of(context).colorScheme.surface,
-                            ),
-                            onPressed: controller.displaySeenByUsers,
-                            icon: const Icon(Icons.visibility_outlined),
-                            label: Text(controller.seenByUsersTitle),
+                    child: SafeArea(
+                      child: Center(
+                        child: OutlinedButton.icon(
+                          style: OutlinedButton.styleFrom(
+                            backgroundColor:
+                                Theme.of(context).colorScheme.surface,
                           ),
+                          onPressed: controller.displaySeenByUsers,
+                          icon: const Icon(Icons.visibility_outlined),
+                          label: Text(controller.seenByUsersTitle),
                         ),
                       ),
                     ),
