@@ -14,6 +14,7 @@ import 'package:vrouter/vrouter.dart';
 import 'package:fluffychat/pages/add_story/add_story_view.dart';
 import 'package:fluffychat/pages/add_story/invite_story_page.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_file_extension.dart';
+import 'package:fluffychat/utils/resize_image.dart';
 import 'package:fluffychat/utils/room_send_file_extension.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -81,6 +82,7 @@ class AddStoryController extends State<AddStoryPage> {
   }
 
   void postStory() async {
+    if (video == null && image == null && controller.text.isEmpty) return;
     final client = Matrix.of(context).client;
     var storiesRoom = await client.getStoriesRoom(context);
 
@@ -106,18 +108,20 @@ class AddStoryController extends State<AddStoryPage> {
       context: context,
       future: () async {
         if (storiesRoom == null) throw ('Stories room is null');
-        final video = this.video;
+        var video = this.video?.detectFileType;
         if (video != null) {
+          video = await video.resizeVideo();
           await storiesRoom.sendFileEventWithThumbnail(
-            video.detectFileType,
+            video,
             extraContent: {'body': controller.text},
           );
           return;
         }
-        final image = this.image;
+        var image = this.image?.detectFileType;
         if (image != null) {
+          image = await image.resizeImage();
           await storiesRoom.sendFileEventWithThumbnail(
-            image.detectFileType,
+            image,
             extraContent: {'body': controller.text},
           );
           return;
