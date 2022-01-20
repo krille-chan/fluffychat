@@ -105,7 +105,7 @@ class StoriesHeader extends StatelessWidget {
                 foregroundColor: Theme.of(context).textTheme.bodyText1?.color,
                 child: const Icon(Icons.add),
               ),
-              title: const Text('Add to story'),
+              title: Text(L10n.of(context)!.addToStory),
               onTap: () => _addToStoryAction(context),
             );
           }
