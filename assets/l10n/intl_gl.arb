@@ -2711,5 +2711,7 @@
   "whatIsGoingOn": "Que acontece?",
   "@whatIsGoingOn": {},
   "addDescription": "Engadir descrición",
-  "@addDescription": {}
+  "@addDescription": {},
+  "storyPrivacyWarning": "Ten en conta que outras persoas poden verse en contactar entre elas na túa historia. As historias son visibles durante 24 horas pero non hai garantía de que sexan eliminadas en tódolos dispositivos e servidores.",
+  "@storyPrivacyWarning": {}
 }
