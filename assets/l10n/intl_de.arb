@@ -2714,5 +2714,14 @@
   "whatIsGoingOn": "Was gibt es neues?",
   "@whatIsGoingOn": {},
   "addDescription": "Beschreibung hinzufügen",
-  "@addDescription": {}
+  "@addDescription": {},
+  "storyPrivacyWarning": "Bitte beachte, dass sich die Leute in deiner Story sehen und kontaktieren können. Ihre Stories sind 24 Stunden lang sichtbar, aber es gibt keine Garantie dafür, dass sie von allen Geräten und Servern gelöscht werden.",
+  "@storyPrivacyWarning": {},
+  "iUnderstand": "Ich habe verstanden",
+  "@iUnderstand": {},
+  "bubbleSize": "Sprechblasengröße",
+  "@bubbleSize": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
