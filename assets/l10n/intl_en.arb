@@ -1602,10 +1602,10 @@
     "placeholders": {}
   },
   "openVideoCamera": "Open camera for a video",
-    "@openVideoCamera": {
-      "type": "text",
-      "placeholders": {}
-    },
+  "@openVideoCamera": {
+    "type": "text",
+    "placeholders": {}
+  },
   "oneClientLoggedOut": "One of your clients has been logged out",
   "@oneClientLoggedOut": {},
   "addAccount": "Add account",
@@ -2669,12 +2669,19 @@
   "saveTheSecurityKeyNow": "Save the security key now",
   "@saveTheSecurityKeyNow": {},
   "addToStory": "Add to story",
+  "@addToStory": {},
   "publish": "Publish",
+  "@publish": {},
   "whoCanSeeMyStories": "Who can see my stories?",
+  "@whoCanSeeMyStories": {},
   "unsubscribeStories": "Unsubscribe stories",
+  "@unsubscribeStories": {},
   "thisUserHasNotPostedAnythingYet": "This user has not posted anything in their story yet",
+  "@thisUserHasNotPostedAnythingYet": {},
   "yourStory": "Your story",
+  "@yourStory": {},
   "replyHasBeenSent": "Reply has been sent",
+  "@replyHasBeenSent": {},
   "videoWithSize": "Video ({size})",
   "@videoWithSize": {
     "type": "text",
@@ -2691,8 +2698,13 @@
     }
   },
   "whoCanSeeMyStoriesDesc": "Please note that people can see and contact each other in your story.",
+  "@whoCanSeeMyStoriesDesc": {},
   "whatIsGoingOn": "What is going on?",
+  "@whatIsGoingOn": {},
   "addDescription": "Add description",
+  "@addDescription": {},
   "storyPrivacyWarning": "Please note that people can see and contact each other in your story. Your stories will be visible for 24 hours but there is no guarantee that they will be deleted from all devices and servers.",
-  "iUnderstand": "Ich verstehe"
+  "@storyPrivacyWarning": {},
+  "iUnderstand": "I understand",
+  "@iUnderstand": {}
 }
