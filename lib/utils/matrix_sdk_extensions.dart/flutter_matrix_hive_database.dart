@@ -31,7 +31,7 @@ class FlutterMatrixHiveStore extends FamedlySdkHiveDatabase {
     HiveCipher hiverCipher;
     try {
       // Workaround for secure storage is calling Platform.operatingSystem on web
-      if (kIsWeb) throw MissingPluginException();
+      if (kIsWeb || Platform.isLinux) throw MissingPluginException();
 
       const secureStorage = FlutterSecureStorage();
       final containsEncryptionKey =

@@ -40,6 +40,8 @@ class FlutterFluffyBoxDatabase extends FluffyBoxDatabase {
       final containsEncryptionKey =
           await secureStorage.containsKey(key: _cipherStorageKey);
       if (!containsEncryptionKey) {
+        // do not try to create a buggy secure storage for new Linux users
+        if (Platform.isLinux) throw MissingPluginException();
         final key = Hive.generateSecureKey();
         await secureStorage.write(
           key: _cipherStorageKey,

@@ -14,6 +14,7 @@ import 'package:http/http.dart' as http;
 import 'package:matrix/encryption.dart';
 import 'package:matrix/matrix.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vrouter/vrouter.dart';
@@ -31,6 +32,8 @@ import '../utils/account_bundles.dart';
 import '../utils/background_push.dart';
 import '../utils/famedlysdk_store.dart';
 import '../utils/platform_infos.dart';
+
+// import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class Matrix extends StatefulWidget {
   static const String callNamespace = 'chat.fluffy.jitsi_call';
@@ -407,8 +410,11 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     // Display the app lock
     if (PlatformInfos.isMobile) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        const FlutterSecureStorage()
-            .read(key: SettingKeys.appLockKey)
+        ([TargetPlatform.linux].contains(Theme.of(context).platform)
+                ? SharedPreferences.getInstance()
+                    .then((prefs) => prefs.getString(SettingKeys.appLockKey))
+                : const FlutterSecureStorage()
+                    .read(key: SettingKeys.appLockKey))
             .then((lock) {
           if (lock?.isNotEmpty ?? false) {
             AppLock.of(widget.context).enable();

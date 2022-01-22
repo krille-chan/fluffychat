@@ -4,6 +4,7 @@ import 'package:flutter_app_lock/flutter_app_lock.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:pin_code_text_field/pin_code_text_field.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
@@ -71,8 +72,12 @@ class _LockScreenState extends State<LockScreen> {
                 hasError: _wrongInput,
                 onDone: (String input) async {
                   if (input ==
-                      await const FlutterSecureStorage()
-                          .read(key: SettingKeys.appLockKey)) {
+                      await ([TargetPlatform.linux]
+                              .contains(Theme.of(context).platform)
+                          ? SharedPreferences.getInstance().then((prefs) =>
+                              prefs.getString(SettingKeys.appLockKey))
+                          : const FlutterSecureStorage()
+                              .read(key: SettingKeys.appLockKey))) {
                     AppLock.of(context).didUnlock();
                   } else {
                     _textEditingController.clear();
