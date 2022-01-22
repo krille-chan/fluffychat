@@ -20,7 +20,6 @@ import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/client_manager.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:fluffychat/utils/uia_request_manager.dart';
@@ -31,6 +30,7 @@ import '../utils/account_bundles.dart';
 import '../utils/background_push.dart';
 import '../utils/famedlysdk_store.dart';
 import '../utils/platform_infos.dart';
+import 'local_notifications_extension.dart';
 
 class Matrix extends StatefulWidget {
   static const String callNamespace = 'chat.fluffy.jitsi_call';
@@ -226,51 +226,9 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   String get activeRoomId =>
       VRouter.of(navigatorContext).pathParameters['roomid'];
 
-  void _showLocalNotification(EventUpdate eventUpdate) async {
-    final roomId = eventUpdate.roomID;
-    if (webHasFocus && activeRoomId == roomId) return;
-    final room = client.getRoomById(roomId);
-    if (room.notificationCount == 0) return;
-    final event = Event.fromJson(eventUpdate.content, room);
-    final title =
-        room.getLocalizedDisplayname(MatrixLocals(L10n.of(widget.context)));
-    final body = event.getLocalizedBody(
-      MatrixLocals(L10n.of(widget.context)),
-      withSenderNamePrefix:
-          !room.isDirectChat || room.lastEvent.senderId == client.userID,
-      plaintextBody: true,
-      hideReply: true,
-      hideEdit: true,
-    );
-    final icon = event.sender.avatarUrl?.getThumbnail(client,
-            width: 64, height: 64, method: ThumbnailMethod.crop) ??
-        room.avatar?.getThumbnail(client,
-            width: 64, height: 64, method: ThumbnailMethod.crop);
-    if (kIsWeb) {
-      html.AudioElement()
-        ..src = 'assets/assets/sounds/notification.wav'
-        ..autoplay = true
-        ..load();
-      html.Notification(
-        title,
-        body: body,
-        icon: icon.toString(),
-      );
-    } else if (Platform.isLinux) {
-      final notification = await linuxNotifications.notify(
-        title,
-        body: body,
-        replacesId: _linuxNotificationIds[roomId] ?? 0,
-        appName: AppConfig.applicationName,
-        appIcon: "im.fluffychat.Fluffychat",
-      );
-      _linuxNotificationIds[roomId] = notification.id;
-    }
-  }
-
   final linuxNotifications =
       PlatformInfos.isLinux ? NotificationsClient() : null;
-  final Map<String, int> _linuxNotificationIds = {};
+  final Map<String, int> linuxNotificationIds = {};
 
   @override
   void initState() {
@@ -385,7 +343,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
                 [EventTypes.Message, EventTypes.Sticker, EventTypes.Encrypted]
                     .contains(e.content['type']) &&
                 e.content['sender'] != c.userID)
-            .listen(_showLocalNotification);
+            .listen(showLocalNotification);
       });
     }
   }
