@@ -2723,5 +2723,9 @@
   "iUnderstand": "Je comprends",
   "@iUnderstand": {},
   "storyPrivacyWarning": "Veuillez noter que les personnes peuvent se voir et se contacter dans votre story. Vos stories seront visibles pendant 24 heures, mais il n'y a aucune garantie qu'elles seront supprimées de tous les appareils et de tous les serveurs.",
-  "@storyPrivacyWarning": {}
+  "@storyPrivacyWarning": {},
+  "dismiss": "Rejeter",
+  "@dismiss": {},
+  "markAsRead": "Marquer comme lu",
+  "@markAsRead": {}
 }
