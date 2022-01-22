@@ -2722,5 +2722,9 @@
   "storyPrivacyWarning": "Houd er rekening mee dat personen elkaar kunnen zien en contacteren in je verhaal. Je verhalen zijn 24 uur zichtbaar, maar er is geen garantie dat ze van alle apparaten en servers worden verwijderd.",
   "@storyPrivacyWarning": {},
   "iUnderstand": "Ik begrijp het",
-  "@iUnderstand": {}
+  "@iUnderstand": {},
+  "dismiss": "Sluiten",
+  "@dismiss": {},
+  "markAsRead": "Markeer als gelezen",
+  "@markAsRead": {}
 }
