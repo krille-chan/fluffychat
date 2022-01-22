@@ -2706,5 +2706,7 @@
   "storyPrivacyWarning": "Please note that people can see and contact each other in your story. Your stories will be visible for 24 hours but there is no guarantee that they will be deleted from all devices and servers.",
   "@storyPrivacyWarning": {},
   "iUnderstand": "I understand",
-  "@iUnderstand": {}
+  "@iUnderstand": {},
+  "dismiss": "Dismiss",
+  "markAsRead": "Mark as read"
 }

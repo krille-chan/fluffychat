@@ -1,0 +1,92 @@
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
+
+import 'package:desktop_notifications/desktop_notifications.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/matrix.dart';
+import 'package:universal_html/html.dart' as html;
+
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
+import 'package:fluffychat/widgets/matrix.dart';
+
+extension LocalNotificationsExtension on MatrixState {
+  void showLocalNotification(EventUpdate eventUpdate) async {
+    final roomId = eventUpdate.roomID;
+    if (webHasFocus && activeRoomId == roomId) return;
+    final room = client.getRoomById(roomId);
+    if (room.notificationCount == 0) return;
+    final event = Event.fromJson(eventUpdate.content, room);
+    final title =
+        room.getLocalizedDisplayname(MatrixLocals(L10n.of(widget.context)));
+    final body = event.getLocalizedBody(
+      MatrixLocals(L10n.of(widget.context)),
+      withSenderNamePrefix:
+          !room.isDirectChat || room.lastEvent.senderId == client.userID,
+      plaintextBody: true,
+      hideReply: true,
+      hideEdit: true,
+    );
+    final icon = event.sender.avatarUrl?.getThumbnail(client,
+            width: 64, height: 64, method: ThumbnailMethod.crop) ??
+        room.avatar?.getThumbnail(client,
+            width: 64, height: 64, method: ThumbnailMethod.crop);
+    if (kIsWeb) {
+      html.AudioElement()
+        ..src =
+            'assets/assets/sounds/WoodenBeaver_stereo_message-new-instant.ogg'
+        ..autoplay = true
+        ..load();
+      html.Notification(
+        title,
+        body: body,
+        icon: icon.toString(),
+      );
+    } else if (Platform.isLinux) {
+      final appIconUrl = room.avatar
+          ?.getThumbnail(
+            room.client,
+            width: 56,
+            height: 56,
+          )
+          .toString();
+      final appIconFile = await DefaultCacheManager().getSingleFile(appIconUrl);
+      final notification = await linuxNotifications.notify(
+        title,
+        body: body,
+        replacesId: linuxNotificationIds[roomId] ?? 0,
+        appName: AppConfig.applicationName,
+        appIcon: appIconFile.path,
+        actions: [
+          NotificationAction(
+            DesktopNotificationActions.dismiss.name,
+            L10n.of(widget.context).dismiss,
+          ),
+          NotificationAction(
+            DesktopNotificationActions.seen.name,
+            L10n.of(widget.context).markAsRead,
+          ),
+        ],
+        hints: [
+          NotificationHint.soundName('message-new-instant'),
+        ],
+      );
+      notification.action.then((actionStr) {
+        final action = DesktopNotificationActions.values
+            .singleWhere((a) => a.name == actionStr);
+        switch (action) {
+          case DesktopNotificationActions.seen:
+            room.setReadMarker(event.eventId, mRead: event.eventId);
+            break;
+          case DesktopNotificationActions.dismiss:
+            break;
+        }
+      });
+      linuxNotificationIds[roomId] = notification.id;
+    }
+  }
+}
+
+enum DesktopNotificationActions { seen, dismiss }
