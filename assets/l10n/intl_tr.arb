@@ -2723,5 +2723,9 @@
   "iUnderstand": "Anladım",
   "@iUnderstand": {},
   "storyPrivacyWarning": "İnsanların hikayenizde birbirlerini görebileceğini ve iletişim kurabileceğini lütfen unutmayın. Hikayeleriniz 24 saat boyunca görünür olacaktır ancak tüm aygıtlardan ve sunuculardan silineceklerinin garantisi yoktur.",
-  "@storyPrivacyWarning": {}
+  "@storyPrivacyWarning": {},
+  "dismiss": "Kapat",
+  "@dismiss": {},
+  "markAsRead": "Okundu olarak işaretle",
+  "@markAsRead": {}
 }
