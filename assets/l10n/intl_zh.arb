@@ -2722,6 +2722,10 @@
   },
   "storyPrivacyWarning": "请注意，人们可以在你的 Story 中看到和联系彼此。您的故事在 24 小时内可见，但不能保证它们将从所有设备和服务器上删除。",
   "@storyPrivacyWarning": {},
-  "iUnderstand": "我理解",
-  "@iUnderstand": {}
+  "iUnderstand": "我了解",
+  "@iUnderstand": {},
+  "dismiss": "驳回",
+  "@dismiss": {},
+  "markAsRead": "标为已读",
+  "@markAsRead": {}
 }
