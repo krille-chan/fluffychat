@@ -388,7 +388,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chat": "Conversa",
+  "chat": "Conversas",
   "@chat": {
     "type": "text",
     "placeholders": {}
@@ -2722,5 +2722,9 @@
     "placeholders": {
       "size": {}
     }
-  }
+  },
+  "markAsRead": "Marcar como lido",
+  "@markAsRead": {},
+  "dismiss": "Descartar",
+  "@dismiss": {}
 }
