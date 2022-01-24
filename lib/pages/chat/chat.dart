@@ -8,9 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:desktop_drop/desktop_drop.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
-import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:matrix/matrix.dart';
@@ -24,8 +22,8 @@ import 'package:fluffychat/pages/chat/chat_view.dart';
 import 'package:fluffychat/pages/chat/event_info_dialog.dart';
 import 'package:fluffychat/pages/chat/recording_dialog.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/event_extension.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions.dart/ios_badge_client_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/account_bundles.dart';
 import '../../utils/localized_exception_extension.dart';
@@ -228,16 +226,7 @@ class ChatController extends State<Chat> {
         Matrix.of(context).webHasFocus) {
       // ignore: unawaited_futures
       timeline.setReadMarker();
-      if (PlatformInfos.isIOS) {
-        // Workaround for iOS not clearing notifications with fcm_shared_isolate
-        if (!room.client.rooms.any((r) =>
-            r.membership == Membership.invite ||
-            (r.notificationCount != null && r.notificationCount > 0))) {
-          // ignore: unawaited_futures
-          FlutterLocalNotificationsPlugin().cancelAll();
-          FlutterAppBadger.removeBadge();
-        }
-      }
+      room.client.updateIosBadge();
     }
     return true;
   }
