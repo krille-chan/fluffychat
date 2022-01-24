@@ -2691,5 +2691,22 @@
   "unsubscribeStories": "Poista tarinoiden tilaus",
   "@unsubscribeStories": {},
   "thisUserHasNotPostedAnythingYet": "Tämä käyttäjä ei ole vielä julkaissut mitään tarinassaan",
-  "@thisUserHasNotPostedAnythingYet": {}
+  "@thisUserHasNotPostedAnythingYet": {},
+  "iUnderstand": "Ymmärrän",
+  "@iUnderstand": {},
+  "storyPrivacyWarning": "Huomaathan ihmisten pystyvän näkemään ja olemaan yhteydessä toisiinsa tarinassasi. Tarinasi tulevat olemaan näkyvissä 24 tuntia, mutta niiden poistamisesta kaikilta laitteilta ja palvelimilta ei ole takeita.",
+  "@storyPrivacyWarning": {},
+  "whatIsGoingOn": "Mitä on meneillään?",
+  "@whatIsGoingOn": {},
+  "addDescription": "Lisää kuvaus",
+  "@addDescription": {},
+  "markAsRead": "Merkitse luetuksi",
+  "@markAsRead": {},
+  "dismiss": "Hylkää",
+  "@dismiss": {},
+  "bubbleSize": "Kuplan koko",
+  "@bubbleSize": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
