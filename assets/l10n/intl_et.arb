@@ -2683,5 +2683,14 @@
   "addDescription": "Lisa kirjeldus",
   "@addDescription": {},
   "iUnderstand": "Ma mõistan",
-  "@iUnderstand": {}
+  "@iUnderstand": {},
+  "replyHasBeenSent": "Vastus on saadetud",
+  "@replyHasBeenSent": {},
+  "markAsRead": "Märgi loetuks",
+  "@markAsRead": {},
+  "bubbleSize": "Jutumulli suurus",
+  "@bubbleSize": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
