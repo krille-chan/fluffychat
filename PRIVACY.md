@@ -8,6 +8,7 @@ FluffyChat is available on Android, iOS and as a web version. Desktop versions f
 *   [Encryption](#4)
 *   [App Permissions](#5)
 *   [Push Notifications](#6)
+*   [Stories](#7)
 
 ## Matrix<a id="1"/>
 FluffyChat uses the Matrix protocol. This means that FluffyChat is just a client that can be connected to any compatible matrix server. The respective data protection agreement of the server selected by the user then applies.
@@ -99,7 +100,7 @@ A typical push notification could look like this:
 
 FluffyChat sets the `event_id_only` flag at the Matrix Server. This server is then responsible to send the correct data.
 
-## Stories
+## Stories<a id="7"/>
 
 FluffyChat supports stories which is a feature similar to WhatsApp status or Instagram stories. However it is just a different GUI for the same room-related communication. More information about the feature can be found here:
 
