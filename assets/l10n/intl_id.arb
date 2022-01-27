@@ -2713,5 +2713,13 @@
   "whatIsGoingOn": "Apa yang sedang terjadi?",
   "@whatIsGoingOn": {},
   "addDescription": "Tambahkan deskripsi",
-  "@addDescription": {}
+  "@addDescription": {},
+  "iUnderstand": "Saya mengerti",
+  "@iUnderstand": {},
+  "storyPrivacyWarning": "Diingat bahwa orang-orang dapat melihat dan kontak satu bersama di cerita Anda. Cerita Anda akan terlihat selama 24 jam tetapi tidak ada jaminan bahwa itu akan dihapus oleh semua perangkat dan server.",
+  "@storyPrivacyWarning": {},
+  "dismiss": "Abaikan",
+  "@dismiss": {},
+  "markAsRead": "Tandai sebagai dibaca",
+  "@markAsRead": {}
 }
