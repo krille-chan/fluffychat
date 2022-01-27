@@ -98,3 +98,23 @@ A typical push notification could look like this:
 ```
 
 FluffyChat sets the `event_id_only` flag at the Matrix Server. This server is then responsible to send the correct data.
+
+## Stories
+
+FluffyChat supports stories which is a feature similar to WhatsApp status or Instagram stories. However it is just a different GUI for the same room-related communication. More information about the feature can be found here:
+
+https://github.com/krillefear/matrix-doc/blob/main/proposals/3588-stories-as-rooms.md
+
+Stories are basically:
+
+- End to end encrypted rooms
+- Read-only rooms with only one admin who can post stuff (while there is no technical limitation to have multiple admins)
+
+By default:
+
+- The user has to invite all contacts manually to a story room
+- The user can only invite contacts (matrix users the user shares a DM room with) to the story room
+- The story room is created when the first story is posted
+- User can mute and leave story rooms
+
+The user is informed in the app that in theory all contacts can see each other in the story room. The user must give consent here. However the user is at any time able to create a group chat and invite all of their contacts to this chat in any matrix client which has the same result.
