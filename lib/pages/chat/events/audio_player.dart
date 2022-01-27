@@ -66,8 +66,7 @@ class _AudioPlayerState extends State<AudioPlayerWidget> {
           await widget.event.downloadAndDecryptAttachmentCached();
       if (matrixFile == null) throw ('Download failed');
       final tempDir = await getTemporaryDirectory();
-      final fileName =
-          widget.event.content.tryGet<String>('filename') ?? matrixFile.name;
+      final fileName = widget.event.infoMap['url'] as String;
       final file = File('${tempDir.path}/$fileName');
       await file.writeAsBytes(matrixFile.bytes);
 

@@ -40,8 +40,9 @@ class _EventVideoPlayerState extends State<EventVideoPlayer> {
         final blob = html.Blob([videoFile.bytes]);
         _networkUri = html.Url.createObjectUrlFromBlob(blob);
       } else {
-        final tmpDir = await getTemporaryDirectory();
-        final file = File(tmpDir.path + videoFile.name);
+        final tempDir = await getTemporaryDirectory();
+        final fileName = widget.event.infoMap['url'] as String;
+        final file = File('${tempDir.path}/$fileName');
         if (await file.exists() == false) {
           await file.writeAsBytes(videoFile.bytes);
         }
