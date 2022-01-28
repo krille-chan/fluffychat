@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -5,22 +7,22 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import '../config/app_config.dart';
 
 class DefaultAppBarSearchField extends StatefulWidget {
-  final TextEditingController searchController;
-  final void Function(String) onChanged;
-  final void Function(String) onSubmit;
-  final Widget suffix;
+  final TextEditingController? searchController;
+  final void Function(String)? onChanged;
+  final void Function(String)? onSubmit;
+  final Widget? suffix;
   final bool autofocus;
-  final String prefixText;
-  final String hintText;
-  final String labelText;
-  final EdgeInsets padding;
+  final String? prefixText;
+  final String? hintText;
+  final String? labelText;
+  final EdgeInsets? padding;
   final bool readOnly;
-  final Widget prefixIcon;
+  final Widget? prefixIcon;
   final bool unfocusOnClear;
   final bool autocorrect;
 
   const DefaultAppBarSearchField({
-    Key key,
+    Key? key,
     this.searchController,
     this.onChanged,
     this.onSubmit,
@@ -42,14 +44,14 @@ class DefaultAppBarSearchField extends StatefulWidget {
 }
 
 class DefaultAppBarSearchFieldState extends State<DefaultAppBarSearchField> {
-  TextEditingController _searchController;
+  late final TextEditingController _searchController;
   bool _lastTextWasEmpty = false;
   final FocusNode _focusNode = FocusNode();
 
   void requestFocus() => _focusNode.requestFocus();
 
   void _updateSearchController() {
-    final thisTextIsEmpty = _searchController.text?.isEmpty ?? false;
+    final thisTextIsEmpty = _searchController.text.isEmpty;
     if (_lastTextWasEmpty != thisTextIsEmpty) {
       setState(() => _lastTextWasEmpty = thisTextIsEmpty);
     }
@@ -61,7 +63,7 @@ class DefaultAppBarSearchFieldState extends State<DefaultAppBarSearchField> {
     _searchController = widget.searchController ?? TextEditingController();
     // we need to remove the listener in the dispose method, so we need a reference to the callback
     _searchController.addListener(_updateSearchController);
-    _focusNode.addListener(() => setState(() => null));
+    _focusNode.addListener(() => setState(() {}));
   }
 
   @override
@@ -108,9 +110,9 @@ class DefaultAppBarSearchFieldState extends State<DefaultAppBarSearchField> {
           suffixIcon: !widget.readOnly &&
                   (_focusNode.hasFocus ||
                       (widget.suffix == null &&
-                          (_searchController.text?.isNotEmpty ?? false)))
+                          (_searchController.text.isNotEmpty)))
               ? IconButton(
-                  tooltip: L10n.of(context).clearText,
+                  tooltip: L10n.of(context)!.clearText,
                   icon: const Icon(Icons.backspace_outlined),
                   onPressed: () {
                     _searchController.clear();

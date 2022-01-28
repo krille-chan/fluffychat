@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
@@ -9,8 +11,8 @@ class UnreadBadgeBackButton extends StatelessWidget {
   final String roomId;
 
   const UnreadBadgeBackButton({
-    Key key,
-    @required this.roomId,
+    Key? key,
+    required this.roomId,
   }) : super(key: key);
 
   @override

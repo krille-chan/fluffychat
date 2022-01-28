@@ -1,9 +1,11 @@
+//@dart=2.12
+
 import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
 
 class LogViewer extends StatefulWidget {
-  const LogViewer({Key key}) : super(key: key);
+  const LogViewer({Key? key}) : super(key: key);
 
   @override
   _LogViewerState createState() => _LogViewerState();

@@ -45,7 +45,7 @@ class SearchController extends State<Search> {
     showModalBottomSheet(
       context: context,
       builder: (c) => PublicRoomBottomSheet(
-        roomAlias: room.canonicalAlias,
+        roomAlias: room.canonicalAlias ?? room.roomId,
         outerContext: context,
         chunk: room,
       ),
