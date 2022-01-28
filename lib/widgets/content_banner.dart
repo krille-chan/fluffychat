@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -10,8 +12,8 @@ class ContentBanner extends StatelessWidget {
   final double height;
   final IconData defaultIcon;
   final bool loading;
-  final Function onEdit;
-  final Client client;
+  final void Function()? onEdit;
+  final Client? client;
   final double opacity;
 
   const ContentBanner(this.mxContent,
@@ -21,7 +23,7 @@ class ContentBanner extends StatelessWidget {
       this.onEdit,
       this.client,
       this.opacity = 0.75,
-      Key key})
+      Key? key})
       : super(key: key);
 
   @override
@@ -29,7 +31,8 @@ class ContentBanner extends StatelessWidget {
     final mediaQuery = MediaQuery.of(context);
     final bannerSize =
         (mediaQuery.size.width * mediaQuery.devicePixelRatio).toInt();
-    final src = mxContent?.getThumbnail(
+    final onEdit = this.onEdit;
+    final src = mxContent.getThumbnail(
       client ?? Matrix.of(context).client,
       width: bannerSize,
       height: bannerSize,
@@ -51,14 +54,13 @@ class ContentBanner extends StatelessWidget {
             bottom: 0,
             child: Opacity(
               opacity: opacity,
-              child:
-                  (!loading && mxContent != null && mxContent.host.isNotEmpty)
-                      ? CachedNetworkImage(
-                          imageUrl: src.toString(),
-                          height: 300,
-                          fit: BoxFit.cover,
-                        )
-                      : Icon(defaultIcon, size: 200),
+              child: (!loading && mxContent.host.isNotEmpty)
+                  ? CachedNetworkImage(
+                      imageUrl: src.toString(),
+                      height: 300,
+                      fit: BoxFit.cover,
+                    )
+                  : Icon(defaultIcon, size: 200),
             ),
           ),
           if (onEdit != null)
@@ -69,7 +71,7 @@ class ContentBanner extends StatelessWidget {
                 mini: true,
                 onPressed: onEdit,
                 backgroundColor: Theme.of(context).backgroundColor,
-                foregroundColor: Theme.of(context).textTheme.bodyText1.color,
+                foregroundColor: Theme.of(context).textTheme.bodyText1?.color,
                 child: const Icon(Icons.camera_alt_outlined),
               ),
             ),

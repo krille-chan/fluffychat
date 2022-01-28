@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -16,12 +18,12 @@ import '../utils/localized_exception_extension.dart';
 class PublicRoomBottomSheet extends StatelessWidget {
   final String roomAlias;
   final BuildContext outerContext;
-  final PublicRoomsChunk chunk;
+  final PublicRoomsChunk? chunk;
   const PublicRoomBottomSheet({
-    @required this.roomAlias,
-    @required this.outerContext,
+    required this.roomAlias,
+    required this.outerContext,
     this.chunk,
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   void _joinRoom(BuildContext context) async {
@@ -31,11 +33,11 @@ class PublicRoomBottomSheet extends StatelessWidget {
       future: () => client.joinRoom(roomAlias),
     );
     if (result.error == null) {
-      if (client.getRoomById(result.result) == null) {
+      if (client.getRoomById(result.result!) == null) {
         await client.onSync.stream.firstWhere(
             (sync) => sync.rooms?.join?.containsKey(result.result) ?? false);
       }
-      VRouter.of(context).toSegments(['rooms', result.result]);
+      VRouter.of(context).toSegments(['rooms', result.result!]);
       Navigator.of(context, rootNavigator: false).pop();
       return;
     }
@@ -46,6 +48,7 @@ class PublicRoomBottomSheet extends StatelessWidget {
       (r.aliases?.contains(roomAlias) ?? false);
 
   Future<PublicRoomsChunk> _search(BuildContext context) async {
+    final chunk = this.chunk;
     if (chunk != null) return chunk;
     final query = await Matrix.of(context).client.queryPublicRooms(
           server: roomAlias.domain,
@@ -53,16 +56,15 @@ class PublicRoomBottomSheet extends StatelessWidget {
             genericSearchTerm: roomAlias,
           ),
         );
-    if (!query.chunk.any(_testRoom) ?? true) {
-      throw (L10n.of(context).noRoomsFound);
+    if (!query.chunk.any(_testRoom)) {
+      throw (L10n.of(context)!.noRoomsFound);
     }
     return query.chunk.firstWhere(_testRoom);
   }
 
   @override
   Widget build(BuildContext context) {
-    final roomAlias =
-        this.roomAlias ?? chunk.canonicalAlias ?? chunk.aliases?.first ?? '';
+    final roomAlias = this.roomAlias;
     return Center(
       child: SizedBox(
         width: min(
@@ -84,12 +86,12 @@ class PublicRoomBottomSheet extends StatelessWidget {
                 leading: IconButton(
                   icon: const Icon(Icons.arrow_downward_outlined),
                   onPressed: Navigator.of(context, rootNavigator: false).pop,
-                  tooltip: L10n.of(context).close,
+                  tooltip: L10n.of(context)!.close,
                 ),
                 actions: [
                   TextButton.icon(
                     onPressed: () => _joinRoom(context),
-                    label: Text(L10n.of(context).joinRoom),
+                    label: Text(L10n.of(context)!.joinRoom),
                     icon: const Icon(Icons.login_outlined),
                   ),
                 ],
@@ -108,26 +110,27 @@ class PublicRoomBottomSheet extends StatelessWidget {
                             color: Theme.of(context).secondaryHeaderColor,
                             child: snapshot.hasError
                                 ? Text(
-                                    snapshot.error.toLocalizedString(context))
+                                    snapshot.error!.toLocalizedString(context))
                                 : const CircularProgressIndicator.adaptive(
                                     strokeWidth: 2),
                           )
                         else
                           ContentBanner(
-                            profile.avatarUrl,
+                            profile.avatarUrl!,
                             height: 156,
                             defaultIcon: Icons.person_outline,
                             client: Matrix.of(context).client,
                           ),
                         ListTile(
-                          title: Text(profile?.name ?? roomAlias.localpart),
+                          title:
+                              Text(profile?.name ?? roomAlias.localpart ?? ''),
                           subtitle: Text(
-                              '${L10n.of(context).participant}: ${profile?.numJoinedMembers ?? 0}'),
+                              '${L10n.of(context)!.participant}: ${profile?.numJoinedMembers ?? 0}'),
                           trailing: const Icon(Icons.account_box_outlined),
                         ),
-                        if (profile?.topic != null && profile.topic.isNotEmpty)
+                        if (profile?.topic?.isNotEmpty ?? false)
                           ListTile(
-                            subtitle: Html(data: profile.topic),
+                            subtitle: Html(data: profile!.topic!),
                           ),
                       ],
                     );

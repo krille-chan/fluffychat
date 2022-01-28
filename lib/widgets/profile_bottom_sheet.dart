@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -16,9 +18,9 @@ class ProfileBottomSheet extends StatelessWidget {
   final String userId;
   final BuildContext outerContext;
   const ProfileBottomSheet({
-    @required this.userId,
-    @required this.outerContext,
-    Key key,
+    required this.userId,
+    required this.outerContext,
+    Key? key,
   }) : super(key: key);
 
   void _startDirectChat(BuildContext context) async {
@@ -28,7 +30,7 @@ class ProfileBottomSheet extends StatelessWidget {
       future: () => client.startDirectChat(userId),
     );
     if (result.error == null) {
-      VRouter.of(context).toSegments(['rooms', result.result]);
+      VRouter.of(context).toSegments(['rooms', result.result!]);
       Navigator.of(context, rootNavigator: false).pop();
       return;
     }
@@ -52,7 +54,7 @@ class ProfileBottomSheet extends StatelessWidget {
                 leading: IconButton(
                   icon: const Icon(Icons.arrow_downward_outlined),
                   onPressed: Navigator.of(context, rootNavigator: false).pop,
-                  tooltip: L10n.of(context).close,
+                  tooltip: L10n.of(context)!.close,
                 ),
               ),
               body: FutureBuilder<Profile>(
@@ -69,19 +71,20 @@ class ProfileBottomSheet extends StatelessWidget {
                                   alignment: Alignment.center,
                                   color: Theme.of(context).secondaryHeaderColor,
                                   child: snapshot.hasError
-                                      ? Text(snapshot.error
+                                      ? Text(snapshot.error!
                                           .toLocalizedString(context))
                                       : const CircularProgressIndicator
                                           .adaptive(strokeWidth: 2),
                                 )
                               : ContentBanner(
-                                  profile.avatarUrl,
+                                  profile.avatarUrl!,
                                   defaultIcon: Icons.person_outline,
                                   client: Matrix.of(context).client,
                                 ),
                         ),
                         ListTile(
-                          title: Text(profile?.displayName ?? userId.localpart),
+                          title: Text(
+                              profile?.displayName ?? userId.localpart ?? ''),
                           subtitle: Text(userId),
                           trailing: const Icon(Icons.account_box_outlined),
                         ),
@@ -90,7 +93,7 @@ class ProfileBottomSheet extends StatelessWidget {
                           padding: const EdgeInsets.all(12),
                           child: ElevatedButton.icon(
                             onPressed: () => _startDirectChat(context),
-                            label: Text(L10n.of(context).newChat),
+                            label: Text(L10n.of(context)!.newChat),
                             icon: const Icon(Icons.send_outlined),
                           ),
                         ),

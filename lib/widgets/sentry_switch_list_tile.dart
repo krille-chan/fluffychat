@@ -1,13 +1,14 @@
-import 'package:flutter/material.dart';
+//@dart=2.12
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:flutter/material.dart';
 
 import 'package:fluffychat/utils/sentry_controller.dart';
 
 class SentrySwitchListTile extends StatefulWidget {
   final String label;
 
-  const SentrySwitchListTile.adaptive({Key key, this.label}) : super(key: key);
+  const SentrySwitchListTile.adaptive({Key? key, required this.label})
+      : super(key: key);
 
   @override
   _SentrySwitchListTileState createState() => _SentrySwitchListTileState();
@@ -23,11 +24,11 @@ class _SentrySwitchListTileState extends State<SentrySwitchListTile> {
         builder: (context, snapshot) {
           _enabled = snapshot.data ?? false;
           return SwitchListTile.adaptive(
-            title: Text(widget.label ?? L10n.of(context).sendBugReports),
+            title: Text(widget.label),
             value: _enabled,
             onChanged: (b) =>
                 SentryController.toggleSentryAction(context, b).then(
-              (_) => setState(() => null),
+              (_) => setState(() {}),
             ),
           );
         });

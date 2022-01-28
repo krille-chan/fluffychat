@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
@@ -18,14 +20,18 @@ extension LocalNotificationsExtension on MatrixState {
     final roomId = eventUpdate.roomID;
     if (webHasFocus && activeRoomId == roomId) return;
     final room = client.getRoomById(roomId);
+    if (room == null) {
+      Logs().w('Can not display notification for unknown room $roomId');
+      return;
+    }
     if (room.notificationCount == 0) return;
     final event = Event.fromJson(eventUpdate.content, room);
     final title =
-        room.getLocalizedDisplayname(MatrixLocals(L10n.of(widget.context)));
+        room.getLocalizedDisplayname(MatrixLocals(L10n.of(widget.context)!));
     final body = event.getLocalizedBody(
-      MatrixLocals(L10n.of(widget.context)),
+      MatrixLocals(L10n.of(widget.context)!),
       withSenderNamePrefix:
-          !room.isDirectChat || room.lastEvent.senderId == client.userID,
+          !room.isDirectChat || room.lastEvent?.senderId == client.userID,
       plaintextBody: true,
       hideReply: true,
       hideEdit: true,
@@ -51,7 +57,7 @@ extension LocalNotificationsExtension on MatrixState {
         width: 56,
         height: 56,
       );
-      File appIconFile;
+      File? appIconFile;
       if (appIconUrl != null) {
         final tempDirectory = await getApplicationSupportDirectory();
         final avatarDirectory =
@@ -68,15 +74,15 @@ extension LocalNotificationsExtension on MatrixState {
         body: body,
         replacesId: linuxNotificationIds[roomId] ?? 0,
         appName: AppConfig.applicationName,
-        appIcon: appIconFile.path,
+        appIcon: appIconFile?.path ?? '',
         actions: [
           NotificationAction(
             DesktopNotificationActions.dismiss.name,
-            L10n.of(widget.context).dismiss,
+            L10n.of(widget.context)!.dismiss,
           ),
           NotificationAction(
             DesktopNotificationActions.seen.name,
-            L10n.of(widget.context).markAsRead,
+            L10n.of(widget.context)!.markAsRead,
           ),
         ],
         hints: [

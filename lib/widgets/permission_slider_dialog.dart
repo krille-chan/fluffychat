@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -8,11 +10,11 @@ import 'package:fluffychat/widgets/adaptive_flat_button.dart';
 
 class PermissionSliderDialog extends StatefulWidget {
   const PermissionSliderDialog({
-    Key key,
+    Key? key,
     this.initialPermission = 0,
   }) : super(key: key);
 
-  Future<int> show(BuildContext context) => PlatformInfos.isCupertinoStyle
+  Future<int?> show(BuildContext context) => PlatformInfos.isCupertinoStyle
       ? showCupertinoDialog<int>(
           context: context,
           builder: (context) => this,
@@ -30,7 +32,7 @@ class PermissionSliderDialog extends StatefulWidget {
 }
 
 class _PermissionSliderDialogState extends State<PermissionSliderDialog> {
-  int _permission;
+  late int _permission;
   @override
   void initState() {
     _permission = widget.initialPermission;
@@ -40,7 +42,7 @@ class _PermissionSliderDialogState extends State<PermissionSliderDialog> {
   @override
   Widget build(BuildContext context) {
     final title = Text(
-      L10n.of(context).setPermissionsLevel,
+      L10n.of(context)!.setPermissionsLevel,
       textAlign: TextAlign.center,
     );
     final content = Column(
@@ -48,9 +50,9 @@ class _PermissionSliderDialogState extends State<PermissionSliderDialog> {
       children: [
         Text('Level: ' +
             (_permission == 100
-                ? '$_permission (${L10n.of(context).admin})'
+                ? '$_permission (${L10n.of(context)!.admin})'
                 : _permission >= 50
-                    ? '$_permission (${L10n.of(context).moderator})'
+                    ? '$_permission (${L10n.of(context)!.moderator})'
                     : _permission.toString())),
         SizedBox(
           height: 56,
@@ -65,12 +67,12 @@ class _PermissionSliderDialogState extends State<PermissionSliderDialog> {
     );
     final buttons = [
       AdaptiveFlatButton(
-        label: L10n.of(context).cancel,
+        label: L10n.of(context)!.cancel,
         onPressed: () =>
             Navigator.of(context, rootNavigator: false).pop<int>(null),
       ),
       AdaptiveFlatButton(
-        label: L10n.of(context).confirm,
+        label: L10n.of(context)!.confirm,
         onPressed: () =>
             Navigator.of(context, rootNavigator: false).pop<int>(_permission),
       ),

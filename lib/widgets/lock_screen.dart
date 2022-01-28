@@ -1,3 +1,5 @@
+//@dart=2.12
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_app_lock/flutter_app_lock.dart';
@@ -12,7 +14,7 @@ import 'package:fluffychat/config/themes.dart';
 import 'layouts/one_page_card.dart';
 
 class LockScreen extends StatefulWidget {
-  const LockScreen({Key key}) : super(key: key);
+  const LockScreen({Key? key}) : super(key: key);
 
   @override
   _LockScreenState createState() => _LockScreenState();
@@ -37,7 +39,7 @@ class _LockScreenState extends State<LockScreen> {
               automaticallyImplyLeading: false,
               elevation: 0,
               centerTitle: true,
-              title: Text(L10n.of(context).pleaseEnterYourPin),
+              title: Text(L10n.of(context)!.pleaseEnterYourPin),
               backgroundColor: Colors.transparent,
             ),
             extendBodyBehindAppBar: true,
@@ -78,7 +80,7 @@ class _LockScreenState extends State<LockScreen> {
                               prefs.getString(SettingKeys.appLockKey))
                           : const FlutterSecureStorage()
                               .read(key: SettingKeys.appLockKey))) {
-                    AppLock.of(context).didUnlock();
+                    AppLock.of(context)!.didUnlock();
                   } else {
                     _textEditingController.clear();
                     setState(() => _wrongInput = true);
