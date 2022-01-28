@@ -10,6 +10,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
 
+import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/sentry_controller.dart';
 import '../../../utils/matrix_sdk_extensions.dart/event_extension.dart';
 
@@ -66,7 +67,7 @@ class _AudioPlayerState extends State<AudioPlayerWidget> {
           await widget.event.downloadAndDecryptAttachmentCached();
       if (matrixFile == null) throw ('Download failed');
       final tempDir = await getTemporaryDirectory();
-      final fileName = widget.event.content.tryGet<String>('url')!;
+      final fileName = widget.event.attachmentOrThumbnailMxcUrl()!.toString();
       final file = File('${tempDir.path}/$fileName');
       await file.writeAsBytes(matrixFile.bytes);
 
@@ -79,7 +80,7 @@ class _AudioPlayerState extends State<AudioPlayerWidget> {
       Logs().v('Could not download audio file', e, s);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(e.toString()),
+          content: Text(e.toLocalizedString(context)),
         ),
       );
     }
