@@ -3,9 +3,10 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 
 import 'package:desktop_notifications/desktop_notifications.dart';
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:http/http.dart' as http;
 import 'package:matrix/matrix.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:universal_html/html.dart' as html;
 
 import 'package:fluffychat/config/app_config.dart';
@@ -45,14 +46,23 @@ extension LocalNotificationsExtension on MatrixState {
         icon: icon.toString(),
       );
     } else if (Platform.isLinux) {
-      final appIconUrl = room.avatar
-          ?.getThumbnail(
-            room.client,
-            width: 56,
-            height: 56,
-          )
-          .toString();
-      final appIconFile = await DefaultCacheManager().getSingleFile(appIconUrl);
+      final appIconUrl = room.avatar?.getThumbnail(
+        room.client,
+        width: 56,
+        height: 56,
+      );
+      File appIconFile;
+      if (appIconUrl != null) {
+        final tempDirectory = await getApplicationSupportDirectory();
+        final avatarDirectory =
+            await Directory('${tempDirectory.path}/notiavatars/').create();
+        appIconFile = File(
+            '${avatarDirectory.path}/${Uri.encodeComponent(appIconUrl.toString())}');
+        if (await appIconFile.exists() == false) {
+          final response = await http.get(appIconUrl);
+          await appIconFile.writeAsBytes(response.bodyBytes);
+        }
+      }
       final notification = await linuxNotifications.notify(
         title,
         body: body,
