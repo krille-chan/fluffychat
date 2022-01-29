@@ -21,9 +21,9 @@ class ChatListItem extends StatelessWidget {
   final Room room;
   final bool activeChat;
   final bool selected;
-  final Function onForget;
-  final Function onTap;
-  final Function onLongPress;
+  final Function? onForget;
+  final Function? onTap;
+  final Function? onLongPress;
 
   const ChatListItem(
     this.room, {
@@ -32,11 +32,11 @@ class ChatListItem extends StatelessWidget {
     this.onTap,
     this.onLongPress,
     this.onForget,
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   dynamic clickAction(BuildContext context) async {
-    if (onTap != null) return onTap();
+    if (onTap != null) return onTap!();
     if (!activeChat) {
       if (room.membership == Membership.invite &&
           (await showFutureLoadingDialog(
@@ -57,7 +57,7 @@ class ChatListItem extends StatelessWidget {
       if (room.membership == Membership.ban) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(L10n.of(context).youHaveBeenBannedFromThisChat),
+            content: Text(L10n.of(context)!.youHaveBeenBannedFromThisChat),
           ),
         );
         return;
@@ -66,15 +66,15 @@ class ChatListItem extends StatelessWidget {
       if (room.membership == Membership.leave) {
         final action = await showModalActionSheet<ArchivedRoomAction>(
           context: context,
-          title: L10n.of(context).archivedRoom,
-          message: L10n.of(context).thisRoomHasBeenArchived,
+          title: L10n.of(context)!.archivedRoom,
+          message: L10n.of(context)!.thisRoomHasBeenArchived,
           actions: [
             SheetAction(
-              label: L10n.of(context).rejoin,
+              label: L10n.of(context)!.rejoin,
               key: ArchivedRoomAction.rejoin,
             ),
             SheetAction(
-              label: L10n.of(context).delete,
+              label: L10n.of(context)!.delete,
               key: ArchivedRoomAction.delete,
               isDestructiveAction: true,
             ),
@@ -97,18 +97,18 @@ class ChatListItem extends StatelessWidget {
 
       if (room.membership == Membership.join) {
         if (Matrix.of(context).shareContent != null) {
-          if (Matrix.of(context).shareContent['msgtype'] ==
+          if (Matrix.of(context).shareContent!['msgtype'] ==
               'chat.fluffy.shared_file') {
             await showDialog(
               context: context,
               useRootNavigator: false,
               builder: (c) => SendFileDialog(
-                file: Matrix.of(context).shareContent['file'],
+                file: Matrix.of(context).shareContent!['file'],
                 room: room,
               ),
             );
           } else {
-            unawaited(room.sendEvent(Matrix.of(context).shareContent));
+            unawaited(room.sendEvent(Matrix.of(context).shareContent!));
           }
           Matrix.of(context).shareContent = null;
         }
@@ -125,16 +125,16 @@ class ChatListItem extends StatelessWidget {
           future: () => room.forget(),
         );
         if (success.error == null) {
-          if (onForget != null) onForget();
+          if (onForget != null) onForget!();
         }
-        return success;
+        return;
       }
       final confirmed = await showOkCancelAlertDialog(
         useRootNavigator: false,
         context: context,
-        title: L10n.of(context).areYouSure,
-        okLabel: L10n.of(context).yes,
-        cancelLabel: L10n.of(context).no,
+        title: L10n.of(context)!.areYouSure,
+        okLabel: L10n.of(context)!.yes,
+        cancelLabel: L10n.of(context)!.no,
       );
       if (confirmed == OkCancelResult.cancel) return;
       await showFutureLoadingDialog(
@@ -160,7 +160,7 @@ class ChatListItem extends StatelessWidget {
       selectedTileColor: selected
           ? Theme.of(context).primaryColor.withAlpha(100)
           : Theme.of(context).secondaryHeaderColor,
-      onLongPress: onLongPress,
+      onLongPress: onLongPress as void Function()?,
       leading: selected
           ? SizedBox(
               width: Avatar.defaultSize,
@@ -174,13 +174,13 @@ class ChatListItem extends StatelessWidget {
           : Avatar(
               mxContent: room.avatar,
               name: room.displayname,
-              onTap: onLongPress,
+              onTap: onLongPress as void Function()?,
             ),
       title: Row(
         children: <Widget>[
           Expanded(
             child: Text(
-              room.getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
+              room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               softWrap: false,
@@ -188,7 +188,7 @@ class ChatListItem extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 color: unread
                     ? Theme.of(context).colorScheme.secondary
-                    : Theme.of(context).textTheme.bodyText1.color,
+                    : Theme.of(context).textTheme.bodyText1!.color,
               ),
             ),
           ),
@@ -218,7 +218,7 @@ class ChatListItem extends StatelessWidget {
                 fontSize: 13,
                 color: unread
                     ? Theme.of(context).colorScheme.secondary
-                    : Theme.of(context).textTheme.bodyText2.color,
+                    : Theme.of(context).textTheme.bodyText2!.color,
               ),
             ),
           ),
@@ -229,7 +229,7 @@ class ChatListItem extends StatelessWidget {
         children: <Widget>[
           if (typingText.isEmpty &&
               ownMessage &&
-              room.lastEvent.status.isSending) ...[
+              room.lastEvent!.status.isSending) ...[
             const SizedBox(
               width: 16,
               height: 16,
@@ -261,9 +261,9 @@ class ChatListItem extends StatelessWidget {
                   )
                 : Text(
                     room.membership == Membership.invite
-                        ? L10n.of(context).youAreInvitedToThisChat
+                        ? L10n.of(context)!.youAreInvitedToThisChat
                         : room.lastEvent?.getLocalizedBody(
-                              MatrixLocals(L10n.of(context)),
+                              MatrixLocals(L10n.of(context)!),
                               hideReply: true,
                               hideEdit: true,
                               plaintextBody: true,
@@ -271,14 +271,14 @@ class ChatListItem extends StatelessWidget {
                                   room.directChatMatrixID !=
                                       room.lastEvent?.senderId,
                             ) ??
-                            L10n.of(context).emptyChat,
+                            L10n.of(context)!.emptyChat,
                     softWrap: false,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       color: unread
                           ? Theme.of(context).colorScheme.secondary
-                          : Theme.of(context).textTheme.bodyText2.color,
+                          : Theme.of(context).textTheme.bodyText2!.color,
                       decoration: room.lastEvent?.redacted == true
                           ? TextDecoration.lineThrough
                           : null,

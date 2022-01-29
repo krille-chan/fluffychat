@@ -11,13 +11,13 @@ class MapBubble extends StatelessWidget {
   final double height;
   final double radius;
   const MapBubble({
-    this.latitude,
-    this.longitude,
+    required this.latitude,
+    required this.longitude,
     this.zoom = 14.0,
     this.width = 400,
     this.height = 400,
     this.radius = 10.0,
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

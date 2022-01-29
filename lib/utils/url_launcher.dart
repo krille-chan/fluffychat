@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
@@ -15,22 +16,22 @@ import 'package:fluffychat/widgets/public_room_bottom_sheet.dart';
 import 'platform_infos.dart';
 
 class UrlLauncher {
-  final String url;
+  final String? url;
   final BuildContext context;
   const UrlLauncher(this.context, this.url);
 
   void launchUrl() {
-    if (url.toLowerCase().startsWith(AppConfig.deepLinkPrefix) ||
-        url.toLowerCase().startsWith(AppConfig.inviteLinkPrefix) ||
-        {'#', '@', '!', '+', '\$'}.contains(url[0]) ||
-        url.toLowerCase().startsWith(AppConfig.schemePrefix)) {
+    if (url!.toLowerCase().startsWith(AppConfig.deepLinkPrefix) ||
+        url!.toLowerCase().startsWith(AppConfig.inviteLinkPrefix) ||
+        {'#', '@', '!', '+', '\$'}.contains(url![0]) ||
+        url!.toLowerCase().startsWith(AppConfig.schemePrefix)) {
       return openMatrixToUrl();
     }
-    final uri = Uri.tryParse(url);
+    final uri = Uri.tryParse(url!);
     if (uri == null) {
       // we can't open this thing
       ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(L10n.of(context).cantOpenUri(url))));
+          SnackBar(content: Text(L10n.of(context)!.cantOpenUri(url!))));
       return;
     }
     if (!{'https', 'http'}.contains(uri.scheme)) {
@@ -38,8 +39,7 @@ class UrlLauncher {
 
       // we need to transmute geo URIs on desktop and on iOS
       if ((!PlatformInfos.isMobile || PlatformInfos.isIOS) &&
-          uri.scheme == 'geo' &&
-          uri.path != null) {
+          uri.scheme == 'geo') {
         final latlong = uri.path
             .split(';')
             .first
@@ -64,12 +64,12 @@ class UrlLauncher {
           return;
         }
       }
-      launch(url);
+      launch(url!);
       return;
     }
-    if (uri.host == null) {
+    if (uri.host.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(L10n.of(context).cantOpenUri(url))));
+          SnackBar(content: Text(L10n.of(context)!.cantOpenUri(url!))));
       return;
     }
     // okay, we have either an http or an https URI.
@@ -87,7 +87,7 @@ class UrlLauncher {
 
   void openMatrixToUrl() async {
     final matrix = Matrix.of(context);
-    final url = this.url.replaceFirst(
+    final url = this.url!.replaceFirst(
           AppConfig.deepLinkPrefix,
           AppConfig.inviteLinkPrefix,
         );
@@ -96,10 +96,10 @@ class UrlLauncher {
     // identifiers (room id & event id), or it might also have a query part.
     // All this needs parsing.
     final identityParts = url.parseIdentifierIntoParts() ??
-        Uri.tryParse(url)?.host?.parseIdentifierIntoParts() ??
+        Uri.tryParse(url)?.host.parseIdentifierIntoParts() ??
         Uri.tryParse(url)
             ?.pathSegments
-            ?.lastWhere((_) => true, orElse: () => null)
+            .lastWhereOrNull((_) => true)
             ?.parseIdentifierIntoParts();
     if (identityParts == null) {
       return; // no match, nothing to do
@@ -124,13 +124,11 @@ class UrlLauncher {
         if (response.error != null) {
           return; // nothing to do, the alias doesn't exist
         }
-        roomId = response.result.roomId;
-        servers.addAll(response.result.servers);
-        room = matrix.client.getRoomById(roomId);
+        roomId = response.result!.roomId;
+        servers.addAll(response.result!.servers!);
+        room = matrix.client.getRoomById(roomId!);
       }
-      if (identityParts.via != null) {
-        servers.addAll(identityParts.via);
-      }
+      servers.addAll(identityParts.via);
       if (room != null) {
         // we have the room, so....just open it
         if (event != null) {
@@ -170,10 +168,10 @@ class UrlLauncher {
               context: context,
               future: () => Future.delayed(const Duration(seconds: 2)));
           if (event != null) {
-            VRouter.of(context).toSegments(['rooms', response.result],
+            VRouter.of(context).toSegments(['rooms', response.result!],
                 queryParameters: {'event': event});
           } else {
-            VRouter.of(context).toSegments(['rooms', response.result]);
+            VRouter.of(context).toSegments(['rooms', response.result!]);
           }
         }
       }

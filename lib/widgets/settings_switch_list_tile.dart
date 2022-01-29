@@ -6,13 +6,13 @@ class SettingsSwitchListTile extends StatefulWidget {
   final bool defaultValue;
   final String storeKey;
   final String title;
-  final Function(bool) onChanged;
+  final Function(bool)? onChanged;
 
   const SettingsSwitchListTile.adaptive({
-    Key key,
+    Key? key,
     this.defaultValue = false,
-    @required this.storeKey,
-    @required this.title,
+    required this.storeKey,
+    required this.title,
     this.onChanged,
   }) : super(key: key);
 
@@ -35,7 +35,7 @@ class _SettingsSwitchListTileState extends State<SettingsSwitchListTile> {
           await Matrix.of(context)
               .store
               .setItem(widget.storeKey, newValue.toString());
-          setState(() => null);
+          setState(() {});
         },
       ),
     );

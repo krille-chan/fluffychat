@@ -8,14 +8,14 @@ import 'package:fluffychat/pages/chat/chat.dart';
 
 class ReactionsPicker extends StatelessWidget {
   final ChatController controller;
-  const ReactionsPicker(this.controller, {Key key}) : super(key: key);
+  const ReactionsPicker(this.controller, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     if (controller.showEmojiPicker) return Container();
     final display = controller.editEvent == null &&
         controller.replyEvent == null &&
-        controller.room.canSendDefaultMessages &&
+        controller.room!.canSendDefaultMessages &&
         controller.selectedEvents.isNotEmpty;
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
@@ -28,8 +28,9 @@ class ReactionsPicker extends StatelessWidget {
           }
           final emojis = List<String>.from(AppEmojis.emojis);
           final allReactionEvents = controller.selectedEvents.first
-              .aggregatedEvents(controller.timeline, RelationshipTypes.reaction)
-              ?.where((event) =>
+              .aggregatedEvents(
+                  controller.timeline!, RelationshipTypes.reaction)
+              .where((event) =>
                   event.senderId == event.room.client.userID &&
                   event.type == 'm.reaction');
 

@@ -15,19 +15,19 @@ import 'command_hints.dart';
 
 class InputBar extends StatelessWidget {
   final Room room;
-  final int minLines;
-  final int maxLines;
-  final TextInputType keyboardType;
-  final TextInputAction textInputAction;
-  final ValueChanged<String> onSubmitted;
-  final FocusNode focusNode;
-  final TextEditingController controller;
-  final InputDecoration decoration;
-  final ValueChanged<String> onChanged;
-  final bool autofocus;
+  final int? minLines;
+  final int? maxLines;
+  final TextInputType? keyboardType;
+  final TextInputAction? textInputAction;
+  final ValueChanged<String>? onSubmitted;
+  final FocusNode? focusNode;
+  final TextEditingController? controller;
+  final InputDecoration? decoration;
+  final ValueChanged<String>? onChanged;
+  final bool? autofocus;
 
   const InputBar({
-    this.room,
+    required this.room,
     this.minLines,
     this.maxLines,
     this.keyboardType,
@@ -38,22 +38,23 @@ class InputBar extends StatelessWidget {
     this.onChanged,
     this.autofocus,
     this.textInputAction,
-    Key key,
+    Key? key,
   }) : super(key: key);
 
-  List<Map<String, String>> getSuggestions(String text) {
-    if (controller.selection.baseOffset != controller.selection.extentOffset ||
-        controller.selection.baseOffset < 0) {
+  List<Map<String, String?>> getSuggestions(String text) {
+    if (controller!.selection.baseOffset !=
+            controller!.selection.extentOffset ||
+        controller!.selection.baseOffset < 0) {
       return []; // no entries if there is selected text
     }
     final searchText =
-        controller.text.substring(0, controller.selection.baseOffset);
-    final ret = <Map<String, String>>[];
+        controller!.text.substring(0, controller!.selection.baseOffset);
+    final List<Map<String, String?>> ret = <Map<String, String>>[];
     const maxResults = 30;
 
     final commandMatch = RegExp(r'^\/([\w]*)$').firstMatch(searchText);
     if (commandMatch != null) {
-      final commandSearch = commandMatch[1].toLowerCase();
+      final commandSearch = commandMatch[1]!.toLowerCase();
       for (final command in room.client.commands.keys) {
         if (command.contains(commandSearch)) {
           ret.add({
@@ -69,7 +70,7 @@ class InputBar extends StatelessWidget {
         RegExp(r'(?:\s|^):(?:([-\w]+)~)?([-\w]+)$').firstMatch(searchText);
     if (emojiMatch != null) {
       final packSearch = emojiMatch[1];
-      final emoteSearch = emojiMatch[2].toLowerCase();
+      final emoteSearch = emojiMatch[2]!.toLowerCase();
       final emotePacks = room.getImagePacks(ImagePackUsage.emoticon);
       if (packSearch == null || packSearch.isEmpty) {
         for (final pack in emotePacks.entries) {
@@ -93,16 +94,16 @@ class InputBar extends StatelessWidget {
           }
         }
       } else if (emotePacks[packSearch] != null) {
-        for (final emote in emotePacks[packSearch].images.entries) {
+        for (final emote in emotePacks[packSearch]!.images.entries) {
           if (emote.key.toLowerCase().contains(emoteSearch)) {
             ret.add({
               'type': 'emote',
               'name': emote.key,
               'pack': packSearch,
               'pack_avatar_url':
-                  emotePacks[packSearch].pack.avatarUrl?.toString(),
+                  emotePacks[packSearch]!.pack.avatarUrl?.toString(),
               'pack_display_name':
-                  emotePacks[packSearch].pack.displayName ?? packSearch,
+                  emotePacks[packSearch]!.pack.displayName ?? packSearch,
               'mxc': emote.value.url.toString(),
             });
           }
@@ -114,11 +115,11 @@ class InputBar extends StatelessWidget {
     }
     final userMatch = RegExp(r'(?:\s|^)@([-\w]+)$').firstMatch(searchText);
     if (userMatch != null) {
-      final userSearch = userMatch[1].toLowerCase();
+      final userSearch = userMatch[1]!.toLowerCase();
       for (final user in room.getParticipants()) {
         if ((user.displayName != null &&
-                (user.displayName.toLowerCase().contains(userSearch) ||
-                    slugify(user.displayName.toLowerCase())
+                (user.displayName!.toLowerCase().contains(userSearch) ||
+                    slugify(user.displayName!.toLowerCase())
                         .contains(userSearch))) ||
             user.id.split(':')[0].toLowerCase().contains(userSearch)) {
           ret.add({
@@ -136,7 +137,7 @@ class InputBar extends StatelessWidget {
     }
     final roomMatch = RegExp(r'(?:\s|^)#([-\w]+)$').firstMatch(searchText);
     if (roomMatch != null) {
-      final roomSearch = roomMatch[1].toLowerCase();
+      final roomSearch = roomMatch[1]!.toLowerCase();
       for (final r in room.client.rooms) {
         if (r.getState(EventTypes.RoomTombstone) != null) {
           continue; // we don't care about tombstoned rooms
@@ -155,12 +156,10 @@ class InputBar extends StatelessWidget {
                                 .split(':')[0]
                                 .toLowerCase()
                                 .contains(roomSearch))))) ||
-            (r.name != null && r.name.toLowerCase().contains(roomSearch))) {
+            (r.name.toLowerCase().contains(roomSearch))) {
           ret.add({
             'type': 'room',
-            'mxid': (r.canonicalAlias != null && r.canonicalAlias.isNotEmpty)
-                ? r.canonicalAlias
-                : r.id,
+            'mxid': (r.canonicalAlias.isNotEmpty) ? r.canonicalAlias : r.id,
             'displayname': r.displayname,
             'avatar_url': r.avatar?.toString(),
           });
@@ -175,14 +174,14 @@ class InputBar extends StatelessWidget {
 
   Widget buildSuggestion(
     BuildContext context,
-    Map<String, String> suggestion,
-    Client client,
+    Map<String, String?> suggestion,
+    Client? client,
   ) {
     const size = 30.0;
     const padding = EdgeInsets.all(4.0);
     if (suggestion['type'] == 'command') {
-      final command = suggestion['name'];
-      final hint = commandHint(L10n.of(context), command);
+      final command = suggestion['name']!;
+      final hint = commandHint(L10n.of(context)!, command);
       return Tooltip(
         message: hint,
         waitDuration: const Duration(days: 1), // don't show on hover
@@ -206,7 +205,7 @@ class InputBar extends StatelessWidget {
     }
     if (suggestion['type'] == 'emote') {
       final ratio = MediaQuery.of(context).devicePixelRatio;
-      final url = Uri.parse(suggestion['mxc'] ?? '')?.getThumbnail(
+      final url = Uri.parse(suggestion['mxc'] ?? '').getThumbnail(
         room.client,
         width: size * ratio,
         height: size * ratio,
@@ -224,7 +223,7 @@ class InputBar extends StatelessWidget {
               height: size,
             ),
             const SizedBox(width: 6),
-            Text(suggestion['name']),
+            Text(suggestion['name']!),
             Expanded(
               child: Align(
                 alignment: Alignment.centerRight,
@@ -239,7 +238,7 @@ class InputBar extends StatelessWidget {
                           size: size * 0.9,
                           client: client,
                         )
-                      : Text(suggestion['pack_display_name']),
+                      : Text(suggestion['pack_display_name']!),
                 ),
               ),
             ),
@@ -262,7 +261,7 @@ class InputBar extends StatelessWidget {
               client: client,
             ),
             const SizedBox(width: 6),
-            Text(suggestion['displayname'] ?? suggestion['mxid']),
+            Text(suggestion['displayname'] ?? suggestion['mxid']!),
           ],
         ),
       );
@@ -270,16 +269,16 @@ class InputBar extends StatelessWidget {
     return Container();
   }
 
-  void insertSuggestion(_, Map<String, String> suggestion) {
+  void insertSuggestion(_, Map<String, String?> suggestion) {
     final replaceText =
-        controller.text.substring(0, controller.selection.baseOffset);
+        controller!.text.substring(0, controller!.selection.baseOffset);
     var startText = '';
-    final afterText = replaceText == controller.text
+    final afterText = replaceText == controller!.text
         ? ''
-        : controller.text.substring(controller.selection.baseOffset + 1);
+        : controller!.text.substring(controller!.selection.baseOffset + 1);
     var insertText = '';
     if (suggestion['type'] == 'command') {
-      insertText = suggestion['name'] + ' ';
+      insertText = suggestion['name']! + ' ';
       startText = replaceText.replaceAllMapped(
         RegExp(r'^(\/[\w]*)$'),
         (Match m) => '/' + insertText,
@@ -304,29 +303,29 @@ class InputBar extends StatelessWidget {
           break;
         }
       }
-      insertText = ':${isUnique ? '' : insertPack + '~'}$insertEmote: ';
+      insertText = ':${isUnique ? '' : insertPack! + '~'}$insertEmote: ';
       startText = replaceText.replaceAllMapped(
         RegExp(r'(\s|^)(:(?:[-\w]+~)?[-\w]+)$'),
         (Match m) => '${m[1]}$insertText',
       );
     }
     if (suggestion['type'] == 'user') {
-      insertText = suggestion['mention'] + ' ';
+      insertText = suggestion['mention']! + ' ';
       startText = replaceText.replaceAllMapped(
         RegExp(r'(\s|^)(@[-\w]+)$'),
         (Match m) => '${m[1]}$insertText',
       );
     }
     if (suggestion['type'] == 'room') {
-      insertText = suggestion['mxid'] + ' ';
+      insertText = suggestion['mxid']! + ' ';
       startText = replaceText.replaceAllMapped(
         RegExp(r'(\s|^)(#[-\w]+)$'),
         (Match m) => '${m[1]}$insertText',
       );
     }
     if (insertText.isNotEmpty && startText.isNotEmpty) {
-      controller.text = startText + afterText;
-      controller.selection = TextSelection(
+      controller!.text = startText + afterText;
+      controller!.selection = TextSelection(
         baseOffset: startText.length,
         extentOffset: startText.length,
       );
@@ -351,13 +350,13 @@ class InputBar extends StatelessWidget {
             ? {}
             : {
                 NewLineIntent: CallbackAction(onInvoke: (i) {
-                  final val = controller.value;
+                  final val = controller!.value;
                   final selection = val.selection.start;
                   final messageWithoutNewLine =
-                      controller.text.substring(0, val.selection.start) +
+                      controller!.text.substring(0, val.selection.start) +
                           '\n' +
-                          controller.text.substring(val.selection.end);
-                  controller.value = TextEditingValue(
+                          controller!.text.substring(val.selection.end);
+                  controller!.value = TextEditingValue(
                     text: messageWithoutNewLine,
                     selection: TextSelection.fromPosition(
                       TextPosition(offset: selection + 1),
@@ -366,11 +365,11 @@ class InputBar extends StatelessWidget {
                   return null;
                 }),
                 SubmitLineIntent: CallbackAction(onInvoke: (i) {
-                  onSubmitted(controller.text);
+                  onSubmitted!(controller!.text);
                   return null;
                 }),
               },
-        child: TypeAheadField<Map<String, String>>(
+        child: TypeAheadField<Map<String, String?>>(
           direction: AxisDirection.up,
           hideOnEmpty: true,
           hideOnLoading: true,
@@ -381,31 +380,31 @@ class InputBar extends StatelessWidget {
           textFieldConfiguration: TextFieldConfiguration(
             minLines: minLines,
             maxLines: maxLines,
-            keyboardType: keyboardType,
+            keyboardType: keyboardType!,
             textInputAction: textInputAction,
-            autofocus: autofocus,
+            autofocus: autofocus!,
             onSubmitted: (text) {
               // fix for library for now
               // it sets the types for the callback incorrectly
-              onSubmitted(text);
+              onSubmitted!(text);
             },
             //focusNode: focusNode,
             controller: controller,
-            decoration: decoration,
+            decoration: decoration!,
             focusNode: focusNode,
             onChanged: (text) {
               // fix for the library for now
               // it sets the types for the callback incorrectly
-              onChanged(text);
+              onChanged!(text);
             },
             textCapitalization: TextCapitalization.sentences,
           ),
           suggestionsCallback: getSuggestions,
           itemBuilder: (c, s) =>
               buildSuggestion(c, s, Matrix.of(context).client),
-          onSuggestionSelected: (Map<String, String> suggestion) =>
+          onSuggestionSelected: (Map<String, String?> suggestion) =>
               insertSuggestion(context, suggestion),
-          errorBuilder: (BuildContext context, Object error) => Container(),
+          errorBuilder: (BuildContext context, Object? error) => Container(),
           loadingBuilder: (BuildContext context) =>
               Container(), // fix loading briefly flickering a dark box
           noItemsFoundBuilder: (BuildContext context) =>

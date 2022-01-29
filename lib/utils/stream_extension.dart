@@ -1,5 +1,3 @@
-//@dart=2.12
-
 import 'dart:async';
 
 extension StreamExtension on Stream {

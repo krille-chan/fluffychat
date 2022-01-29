@@ -9,7 +9,8 @@ class VerificationRequestContent extends StatelessWidget {
   final Event event;
   final Timeline timeline;
 
-  const VerificationRequestContent({this.event, this.timeline, Key key})
+  const VerificationRequestContent(
+      {required this.event, required this.timeline, Key? key})
       : super(key: key);
 
   @override
@@ -50,10 +51,10 @@ class VerificationRequestContent extends StatelessWidget {
               Text(canceled
                   ? 'Error ${cancel.first.content.tryGet<String>('code')}: ${cancel.first.content.tryGet<String>('reason')}'
                   : (fullyDone
-                      ? L10n.of(context).verifySuccess
+                      ? L10n.of(context)!.verifySuccess
                       : (started
-                          ? L10n.of(context).loadingPleaseWait
-                          : L10n.of(context).newVerificationRequest)))
+                          ? L10n.of(context)!.loadingPleaseWait
+                          : L10n.of(context)!.newVerificationRequest)))
             ],
           ),
         ),

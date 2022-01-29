@@ -1,5 +1,3 @@
-//@dart=2.12
-
 import 'dart:async';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
@@ -50,7 +48,8 @@ extension UiaRequestManager on MatrixState {
             ),
           );
         case AuthenticationTypes.emailIdentity:
-          if (currentThreepidCreds == null || currentClientSecret == null) {
+          final currentThreepidCreds = this.currentThreepidCreds;
+          if (currentThreepidCreds == null) {
             return uiaRequest.cancel(
               UiaException(L10n.of(widget.context)!.serverRequiresEmail),
             );

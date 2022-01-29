@@ -21,7 +21,7 @@ import '../../main.dart';
 import '../../utils/localized_exception_extension.dart';
 
 class HomeserverPicker extends StatefulWidget {
-  const HomeserverPicker({Key key}) : super(key: key);
+  const HomeserverPicker({Key? key}) : super(key: key);
 
   @override
   HomeserverPickerController createState() => HomeserverPickerController();
@@ -32,9 +32,9 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   String domain = AppConfig.defaultHomeserver;
   final TextEditingController homeserverController =
       TextEditingController(text: AppConfig.defaultHomeserver);
-  StreamSubscription _intentDataStreamSubscription;
-  String error;
-  Timer _coolDown;
+  StreamSubscription? _intentDataStreamSubscription;
+  String? error;
+  Timer? _coolDown;
 
   void setDomain(String domain) {
     this.domain = domain;
@@ -46,7 +46,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   }
 
   void _loginWithToken(String token) {
-    if (token?.isEmpty ?? true) return;
+    if (token.isEmpty) return;
 
     showFutureLoadingDialog(
       context: context,
@@ -66,7 +66,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     );
   }
 
-  void _processIncomingUris(String text) async {
+  void _processIncomingUris(String? text) async {
     if (text == null || !text.startsWith(AppConfig.appOpenUrlScheme)) return;
     await browser?.close();
     VRouter.of(context).to('/home');
@@ -89,8 +89,8 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     super.initState();
     _initReceiveUri();
     if (kIsWeb) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        final token = Matrix.of(context).widget.queryParameters['loginToken'];
+      WidgetsBinding.instance!.addPostFrameCallback((_) {
+        final token = Matrix.of(context).widget.queryParameters!['loginToken'];
         if (token != null) _loginWithToken(token);
       });
     }
@@ -103,7 +103,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     _intentDataStreamSubscription?.cancel();
   }
 
-  String _lastCheckedHomeserver;
+  String? _lastCheckedHomeserver;
 
   /// Starts an analysis of the given homeserver. It uses the current domain and
   /// makes sure that it is prefixed with https. Then it searches for the
@@ -112,7 +112,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   Future<void> checkHomeserverAction() async {
     _coolDown?.cancel();
     if (_lastCheckedHomeserver == domain) return;
-    if (domain.isEmpty) throw L10n.of(context).changeTheHomeserver;
+    if (domain.isEmpty) throw L10n.of(context)!.changeTheHomeserver;
     var homeserver = domain;
 
     if (!homeserver.startsWith('https://')) {
@@ -129,7 +129,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
           await Matrix.of(context).getLoginClient().checkHomeserver(homeserver);
 
       var jitsi = wellKnown?.additionalProperties
-          ?.tryGet<Map<String, dynamic>>('im.vector.riot.jitsi')
+          .tryGet<Map<String, dynamic>>('im.vector.riot.jitsi')
           ?.tryGet<String>('preferredDomain');
       if (jitsi != null) {
         if (!jitsi.endsWith('/')) {
@@ -150,10 +150,10 @@ class HomeserverPickerController extends State<HomeserverPicker> {
         await Matrix.of(context).getLoginClient().register();
         registrationSupported = true;
       } on MatrixException catch (e) {
-        registrationSupported = e.requireAdditionalAuthentication ?? false;
+        registrationSupported = e.requireAdditionalAuthentication;
       }
     } catch (e) {
-      setState(() => error = (e as Object).toLocalizedString(context));
+      setState(() => error = (e).toLocalizedString(context));
     } finally {
       _lastCheckedHomeserver = domain;
       if (mounted) {
@@ -162,12 +162,12 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     }
   }
 
-  Map<String, dynamic> _rawLoginTypes;
-  bool registrationSupported;
+  Map<String, dynamic>? _rawLoginTypes;
+  bool? registrationSupported;
 
   List<IdentityProvider> get identityProviders {
     if (!ssoLoginSupported) return [];
-    final rawProviders = _rawLoginTypes.tryGetList('flows').singleWhere(
+    final rawProviders = _rawLoginTypes!.tryGetList('flows')!.singleWhere(
         (flow) =>
             flow['type'] == AuthenticationTypes.sso)['identity_providers'];
     final list = (rawProviders as List)
@@ -184,8 +184,8 @@ class HomeserverPickerController extends State<HomeserverPicker> {
           .client
           .supportedLoginTypes
           .contains(AuthenticationTypes.password) &&
-      _rawLoginTypes
-          .tryGetList('flows')
+      _rawLoginTypes!
+          .tryGetList('flows')!
           .any((flow) => flow['type'] == AuthenticationTypes.password);
 
   bool get ssoLoginSupported =>
@@ -193,11 +193,11 @@ class HomeserverPickerController extends State<HomeserverPicker> {
           .client
           .supportedLoginTypes
           .contains(AuthenticationTypes.sso) &&
-      _rawLoginTypes
-          .tryGetList('flows')
+      _rawLoginTypes!
+          .tryGetList('flows')!
           .any((flow) => flow['type'] == AuthenticationTypes.sso);
 
-  ChromeSafariBrowser browser;
+  ChromeSafariBrowser? browser;
 
   static const String ssoHomeserverKey = 'sso-homeserver';
 
@@ -215,7 +215,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
         '${Matrix.of(context).getLoginClient().homeserver?.toString()}/_matrix/client/r0/login/sso/redirect/${Uri.encodeComponent(id)}?redirectUrl=${Uri.encodeQueryComponent(redirectUrl)}';
     if (PlatformInfos.isMobile) {
       browser ??= ChromeSafariBrowser();
-      browser.open(url: Uri.parse(url));
+      browser!.open(url: Uri.parse(url));
     } else {
       launch(redirectUrl);
     }
@@ -234,10 +234,10 @@ class HomeserverPickerController extends State<HomeserverPicker> {
 }
 
 class IdentityProvider {
-  final String id;
-  final String name;
-  final String icon;
-  final String brand;
+  final String? id;
+  final String? name;
+  final String? icon;
+  final String? brand;
 
   IdentityProvider({this.id, this.name, this.icon, this.brand});
 

@@ -1,5 +1,3 @@
-//@dart=2.12
-
 extension BeautifyStringExtension on String {
   String get beautified {
     var beautifiedStr = '';

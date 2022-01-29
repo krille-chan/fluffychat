@@ -13,7 +13,7 @@ import 'settings.dart';
 class SettingsView extends StatelessWidget {
   final SettingsController controller;
 
-  const SettingsView(this.controller, {Key key}) : super(key: key);
+  const SettingsView(this.controller, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +25,11 @@ class SettingsView extends StatelessWidget {
             expandedHeight: 300.0,
             floating: true,
             pinned: true,
-            title: Text(L10n.of(context).settings),
+            title: Text(L10n.of(context)!.settings),
             backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
             flexibleSpace: FlexibleSpaceBar(
               background: ContentBanner(
-                controller.profile?.avatarUrl,
+                mxContent: controller.profile?.avatarUrl,
                 onEdit: controller.setAvatarAction,
                 defaultIcon: Icons.person_outline_outlined,
               ),
@@ -37,54 +37,54 @@ class SettingsView extends StatelessWidget {
           ),
         ],
         body: ListTileTheme(
-          iconColor: Theme.of(context).textTheme.bodyText1.color,
+          iconColor: Theme.of(context).textTheme.bodyText1!.color,
           child: ListView(
             children: <Widget>[
               ListTile(
                 leading: const Icon(Icons.format_paint_outlined),
-                title: Text(L10n.of(context).changeTheme),
+                title: Text(L10n.of(context)!.changeTheme),
                 onTap: () => VRouter.of(context).to('/settings/style'),
               ),
               const Divider(thickness: 1),
               ListTile(
                 leading: const Icon(Icons.notifications_outlined),
-                title: Text(L10n.of(context).notifications),
+                title: Text(L10n.of(context)!.notifications),
                 onTap: () => VRouter.of(context).to('/settings/notifications'),
               ),
               ListTile(
                 leading: const Icon(Icons.devices_outlined),
-                title: Text(L10n.of(context).devices),
+                title: Text(L10n.of(context)!.devices),
                 onTap: () => VRouter.of(context).to('/settings/devices'),
               ),
               ListTile(
                 leading: const Icon(Icons.chat_bubble_outline_outlined),
-                title: Text(L10n.of(context).chat),
+                title: Text(L10n.of(context)!.chat),
                 onTap: () => VRouter.of(context).to('/settings/chat'),
               ),
               ListTile(
                 leading: const Icon(Icons.account_circle_outlined),
-                title: Text(L10n.of(context).account),
+                title: Text(L10n.of(context)!.account),
                 onTap: () => VRouter.of(context).to('/settings/account'),
               ),
               ListTile(
                 leading: const Icon(Icons.shield_outlined),
-                title: Text(L10n.of(context).security),
+                title: Text(L10n.of(context)!.security),
                 onTap: () => VRouter.of(context).to('/settings/security'),
               ),
               const Divider(thickness: 1),
               ListTile(
                 leading: const Icon(Icons.help_outline_outlined),
-                title: Text(L10n.of(context).help),
+                title: Text(L10n.of(context)!.help),
                 onTap: () => launch(AppConfig.supportUrl),
               ),
               ListTile(
                 leading: const Icon(Icons.shield_sharp),
-                title: Text(L10n.of(context).privacy),
+                title: Text(L10n.of(context)!.privacy),
                 onTap: () => launch(AppConfig.privacyUrl),
               ),
               ListTile(
                 leading: const Icon(Icons.info_outline_rounded),
-                title: Text(L10n.of(context).about),
+                title: Text(L10n.of(context)!.about),
                 onTap: () => PlatformInfos.showDialog(context),
               ),
             ],

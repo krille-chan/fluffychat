@@ -8,7 +8,7 @@ import 'package:fluffychat/pages/new_group/new_group_view.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class NewGroup extends StatefulWidget {
-  const NewGroup({Key key}) : super(key: key);
+  const NewGroup({Key? key}) : super(key: key);
 
   @override
   NewGroupController createState() => NewGroupController();
@@ -35,7 +35,7 @@ class NewGroupController extends State<NewGroup> {
       },
     );
     if (roomID.error == null) {
-      VRouter.of(context).toSegments(['rooms', roomID.result, 'invite']);
+      VRouter.of(context).toSegments(['rooms', roomID.result!, 'invite']);
     }
   }
 

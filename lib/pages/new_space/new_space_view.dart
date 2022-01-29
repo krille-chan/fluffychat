@@ -8,13 +8,13 @@ import 'new_space.dart';
 class NewSpaceView extends StatelessWidget {
   final NewSpaceController controller;
 
-  const NewSpaceView(this.controller, {Key key}) : super(key: key);
+  const NewSpaceView(this.controller, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(L10n.of(context).createNewSpace),
+        title: Text(L10n.of(context)!.createNewSpace),
       ),
       body: MaxWidthBody(
         child: Column(
@@ -29,13 +29,13 @@ class NewSpaceView extends StatelessWidget {
                 textInputAction: TextInputAction.go,
                 onSubmitted: controller.submitAction,
                 decoration: InputDecoration(
-                    labelText: L10n.of(context).spaceName,
+                    labelText: L10n.of(context)!.spaceName,
                     prefixIcon: const Icon(Icons.people_outlined),
-                    hintText: L10n.of(context).enterASpacepName),
+                    hintText: L10n.of(context)!.enterASpacepName),
               ),
             ),
             SwitchListTile.adaptive(
-              title: Text(L10n.of(context).spaceIsPublic),
+              title: Text(L10n.of(context)!.spaceIsPublic),
               value: controller.publicGroup,
               onChanged: controller.setPublicGroup,
             ),

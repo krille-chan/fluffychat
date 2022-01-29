@@ -12,13 +12,13 @@ import 'user_bottom_sheet_view.dart';
 
 class UserBottomSheet extends StatefulWidget {
   final User user;
-  final Function onMention;
+  final Function? onMention;
   final BuildContext outerContext;
 
   const UserBottomSheet({
-    Key key,
-    @required this.user,
-    @required this.outerContext,
+    Key? key,
+    required this.user,
+    required this.outerContext,
     this.onMention,
   }) : super(key: key);
 
@@ -33,15 +33,15 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         () async => (await showOkCancelAlertDialog(
               useRootNavigator: false,
               context: context,
-              title: L10n.of(context).areYouSure,
-              okLabel: L10n.of(context).yes,
-              cancelLabel: L10n.of(context).no,
+              title: L10n.of(context)!.areYouSure,
+              okLabel: L10n.of(context)!.yes,
+              cancelLabel: L10n.of(context)!.no,
             ) ==
             OkCancelResult.ok);
     switch (action) {
       case 'mention':
         Navigator.of(context, rootNavigator: false).pop();
-        widget.onMention();
+        widget.onMention!();
         break;
       case 'ban':
         if (await _askConfirmation()) {
@@ -90,7 +90,7 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         );
         if (roomIdResult.error != null) return;
         VRouter.of(widget.outerContext)
-            .toSegments(['rooms', roomIdResult.result]);
+            .toSegments(['rooms', roomIdResult.result!]);
         Navigator.of(context, rootNavigator: false).pop();
         break;
       case 'ignore':

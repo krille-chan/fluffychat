@@ -17,12 +17,12 @@ import 'search.dart';
 class SearchView extends StatelessWidget {
   final SearchController controller;
 
-  const SearchView(this.controller, {Key key}) : super(key: key);
+  const SearchView(this.controller, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final server = controller.genericSearchTerm?.isValidMatrixId ?? false
-        ? controller.genericSearchTerm.domain
+        ? controller.genericSearchTerm!.domain
         : controller.server;
     if (controller.lastServer != server) {
       controller.lastServer = server;
@@ -44,15 +44,22 @@ class SearchView extends StatelessWidget {
         'chunk': [],
       });
     }).then((QueryPublicRoomsResponse res) {
-      if (controller.genericSearchTerm != null &&
+      final genericSearchTerm = controller.genericSearchTerm;
+      if (genericSearchTerm != null &&
           !res.chunk.any((room) =>
               (room.aliases?.contains(controller.genericSearchTerm) ?? false) ||
               room.canonicalAlias == controller.genericSearchTerm)) {
         // we have to tack on the original alias
-        res.chunk.add(PublicRoomsChunk.fromJson(<String, dynamic>{
-          'aliases': [controller.genericSearchTerm],
-          'name': controller.genericSearchTerm,
-        }));
+        res.chunk.add(
+          PublicRoomsChunk(
+            aliases: [genericSearchTerm],
+            name: genericSearchTerm,
+            numJoinedMembers: 0,
+            roomId: '!unknown',
+            worldReadable: true,
+            guestCanJoin: true,
+          ),
+        );
       }
       return res;
     });
@@ -68,15 +75,14 @@ class SearchView extends StatelessWidget {
     const tabCount = 3;
     return DefaultTabController(
       length: tabCount,
-      initialIndex:
-          controller.controller.text?.startsWith('#') ?? false ? 0 : 1,
+      initialIndex: controller.controller.text.startsWith('#') ? 0 : 1,
       child: Scaffold(
         appBar: AppBar(
           leading: const BackButton(),
           titleSpacing: 0,
           title: DefaultAppBarSearchField(
             autofocus: true,
-            hintText: L10n.of(context).search,
+            hintText: L10n.of(context)!.search,
             searchController: controller.controller,
             suffix: const Icon(Icons.search_outlined),
             onChanged: controller.search,
@@ -84,16 +90,16 @@ class SearchView extends StatelessWidget {
           bottom: TabBar(
             indicatorColor: Theme.of(context).colorScheme.secondary,
             labelColor: Theme.of(context).colorScheme.secondary,
-            unselectedLabelColor: Theme.of(context).textTheme.bodyText1.color,
+            unselectedLabelColor: Theme.of(context).textTheme.bodyText1!.color,
             labelStyle: const TextStyle(fontSize: 16),
             labelPadding: const EdgeInsets.symmetric(
               horizontal: 8,
               vertical: 0,
             ),
             tabs: [
-              Tab(child: Text(L10n.of(context).discover, maxLines: 1)),
-              Tab(child: Text(L10n.of(context).chats, maxLines: 1)),
-              Tab(child: Text(L10n.of(context).people, maxLines: 1)),
+              Tab(child: Text(L10n.of(context)!.discover, maxLines: 1)),
+              Tab(child: Text(L10n.of(context)!.chats, maxLines: 1)),
+              Tab(child: Text(L10n.of(context)!.people, maxLines: 1)),
             ],
           ),
         ),
@@ -111,7 +117,7 @@ class SearchView extends StatelessWidget {
                     backgroundColor: Theme.of(context).secondaryHeaderColor,
                     child: const Icon(Icons.edit_outlined),
                   ),
-                  title: Text(L10n.of(context).changeTheServer),
+                  title: Text(L10n.of(context)!.changeTheServer),
                   onTap: controller.setServer,
                 ),
                 FutureBuilder<QueryPublicRoomsResponse>(
@@ -130,7 +136,7 @@ class SearchView extends StatelessWidget {
                             ),
                             Center(
                               child: Text(
-                                snapshot.error.toLocalizedString(context),
+                                snapshot.error!.toLocalizedString(context),
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
                                   color: Colors.grey,
@@ -146,7 +152,7 @@ class SearchView extends StatelessWidget {
                             child: CircularProgressIndicator.adaptive(
                                 strokeWidth: 2));
                       }
-                      final publicRoomsResponse = snapshot.data;
+                      final publicRoomsResponse = snapshot.data!;
                       if (publicRoomsResponse.chunk.isEmpty) {
                         return Column(
                           mainAxisSize: MainAxisSize.min,
@@ -159,7 +165,7 @@ class SearchView extends StatelessWidget {
                             ),
                             Center(
                               child: Text(
-                                L10n.of(context).noPublicRoomsFound,
+                                L10n.of(context)!.noPublicRoomsFound,
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
                                   color: Colors.grey,
@@ -201,7 +207,7 @@ class SearchView extends StatelessWidget {
                                     name: publicRoomsResponse.chunk[i].name,
                                   ),
                                   Text(
-                                    publicRoomsResponse.chunk[i].name,
+                                    publicRoomsResponse.chunk[i].name!,
                                     style: const TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
@@ -210,17 +216,16 @@ class SearchView extends StatelessWidget {
                                     textAlign: TextAlign.center,
                                   ),
                                   Text(
-                                    L10n.of(context).countParticipants(
+                                    L10n.of(context)!.countParticipants(
                                         publicRoomsResponse
-                                                .chunk[i].numJoinedMembers ??
-                                            0),
+                                            .chunk[i].numJoinedMembers),
                                     style: const TextStyle(fontSize: 10.5),
                                     maxLines: 1,
                                     textAlign: TextAlign.center,
                                   ),
                                   Text(
                                     publicRoomsResponse.chunk[i].topic ??
-                                        L10n.of(context).noDescription,
+                                        L10n.of(context)!.noDescription,
                                     maxLines: 4,
                                     textAlign: TextAlign.center,
                                   ),
@@ -261,7 +266,7 @@ class SearchView extends StatelessWidget {
                           );
                           if (roomID.error == null) {
                             VRouter.of(context)
-                                .toSegments(['rooms', roomID.result]);
+                                .toSegments(['rooms', roomID.result!]);
                           }
                         },
                         leading: Avatar(
@@ -271,7 +276,7 @@ class SearchView extends StatelessWidget {
                         ),
                         title: Text(
                           foundProfile.displayName ??
-                              foundProfile.userId.localpart,
+                              foundProfile.userId.localpart!,
                           style: const TextStyle(),
                           maxLines: 1,
                         ),

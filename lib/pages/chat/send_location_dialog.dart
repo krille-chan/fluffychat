@@ -15,8 +15,8 @@ class SendLocationDialog extends StatefulWidget {
   final Room room;
 
   const SendLocationDialog({
-    this.room,
-    Key key,
+    required this.room,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -27,8 +27,8 @@ class _SendLocationDialogState extends State<SendLocationDialog> {
   bool disabled = false;
   bool denied = false;
   bool isSending = false;
-  Position position;
-  Error error;
+  Position? position;
+  Object? error;
 
   @override
   void initState() {
@@ -75,9 +75,9 @@ class _SendLocationDialogState extends State<SendLocationDialog> {
   void sendAction() async {
     setState(() => isSending = true);
     final body =
-        'https://www.openstreetmap.org/?mlat=${position.latitude}&mlon=${position.longitude}#map=16/${position.latitude}/${position.longitude}';
+        'https://www.openstreetmap.org/?mlat=${position!.latitude}&mlon=${position!.longitude}#map=16/${position!.latitude}/${position!.longitude}';
     final uri =
-        'geo:${position.latitude},${position.longitude};u=${position.accuracy}';
+        'geo:${position!.latitude},${position!.longitude};u=${position!.accuracy}';
     await showFutureLoadingDialog(
       context: context,
       future: () => widget.room.sendLocation(body, uri),
@@ -90,16 +90,16 @@ class _SendLocationDialogState extends State<SendLocationDialog> {
     Widget contentWidget;
     if (position != null) {
       contentWidget = MapBubble(
-        latitude: position.latitude,
-        longitude: position.longitude,
+        latitude: position!.latitude,
+        longitude: position!.longitude,
       );
     } else if (disabled) {
-      contentWidget = Text(L10n.of(context).locationDisabledNotice);
+      contentWidget = Text(L10n.of(context)!.locationDisabledNotice);
     } else if (denied) {
-      contentWidget = Text(L10n.of(context).locationPermissionDeniedNotice);
+      contentWidget = Text(L10n.of(context)!.locationPermissionDeniedNotice);
     } else if (error != null) {
       contentWidget =
-          Text(L10n.of(context).errorObtainingLocation(error.toString()));
+          Text(L10n.of(context)!.errorObtainingLocation(error.toString()));
     } else {
       contentWidget = Row(
         mainAxisSize: MainAxisSize.min,
@@ -107,38 +107,38 @@ class _SendLocationDialogState extends State<SendLocationDialog> {
         children: [
           const CupertinoActivityIndicator(),
           const SizedBox(width: 12),
-          Text(L10n.of(context).obtainingLocation),
+          Text(L10n.of(context)!.obtainingLocation),
         ],
       );
     }
     if (PlatformInfos.isCupertinoStyle) {
       return CupertinoAlertDialog(
-        title: Text(L10n.of(context).shareLocation),
+        title: Text(L10n.of(context)!.shareLocation),
         content: contentWidget,
         actions: [
           CupertinoDialogAction(
             onPressed: Navigator.of(context, rootNavigator: false).pop,
-            child: Text(L10n.of(context).cancel),
+            child: Text(L10n.of(context)!.cancel),
           ),
           CupertinoDialogAction(
             onPressed: isSending ? null : sendAction,
-            child: Text(L10n.of(context).send),
+            child: Text(L10n.of(context)!.send),
           ),
         ],
       );
     }
     return AlertDialog(
-      title: Text(L10n.of(context).shareLocation),
+      title: Text(L10n.of(context)!.shareLocation),
       content: contentWidget,
       actions: [
         TextButton(
           onPressed: Navigator.of(context, rootNavigator: false).pop,
-          child: Text(L10n.of(context).cancel),
+          child: Text(L10n.of(context)!.cancel),
         ),
         if (position != null)
           TextButton(
             onPressed: isSending ? null : sendAction,
-            child: Text(L10n.of(context).send),
+            child: Text(L10n.of(context)!.send),
           ),
       ],
     );

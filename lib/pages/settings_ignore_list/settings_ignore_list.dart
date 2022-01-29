@@ -6,9 +6,9 @@ import '../../widgets/matrix.dart';
 import 'settings_ignore_list_view.dart';
 
 class SettingsIgnoreList extends StatefulWidget {
-  final String initialUserId;
+  final String? initialUserId;
 
-  const SettingsIgnoreList({Key key, this.initialUserId}) : super(key: key);
+  const SettingsIgnoreList({Key? key, this.initialUserId}) : super(key: key);
 
   @override
   SettingsIgnoreListController createState() => SettingsIgnoreListController();
@@ -21,7 +21,7 @@ class SettingsIgnoreListController extends State<SettingsIgnoreList> {
   void initState() {
     super.initState();
     if (widget.initialUserId != null) {
-      controller.text = widget.initialUserId.replaceAll('@', '');
+      controller.text = widget.initialUserId!.replaceAll('@', '');
     }
   }
 

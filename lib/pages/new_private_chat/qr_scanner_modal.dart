@@ -9,7 +9,7 @@ import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 
 class QrScannerModal extends StatefulWidget {
-  const QrScannerModal({Key key}) : super(key: key);
+  const QrScannerModal({Key? key}) : super(key: key);
 
   @override
   _QrScannerModalState createState() => _QrScannerModalState();
@@ -17,15 +17,15 @@ class QrScannerModal extends StatefulWidget {
 
 class _QrScannerModalState extends State<QrScannerModal> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-  QRViewController controller;
+  QRViewController? controller;
 
   @override
   void reassemble() {
     super.reassemble();
     if (Platform.isAndroid) {
-      controller.pauseCamera();
+      controller!.pauseCamera();
     } else if (Platform.isIOS) {
-      controller.resumeCamera();
+      controller!.resumeCamera();
     }
   }
 
@@ -36,9 +36,9 @@ class _QrScannerModalState extends State<QrScannerModal> {
         leading: IconButton(
           icon: const Icon(Icons.close_outlined),
           onPressed: Navigator.of(context).pop,
-          tooltip: L10n.of(context).close,
+          tooltip: L10n.of(context)!.close,
         ),
-        title: Text(L10n.of(context).scanQrCode),
+        title: Text(L10n.of(context)!.scanQrCode),
       ),
       body: Stack(
         children: [
@@ -59,7 +59,7 @@ class _QrScannerModalState extends State<QrScannerModal> {
 
   void _onQRViewCreated(QRViewController controller) {
     this.controller = controller;
-    StreamSubscription sub;
+    late StreamSubscription sub;
     sub = controller.scannedDataStream.listen((scanData) {
       sub.cancel();
       Navigator.of(context).pop();

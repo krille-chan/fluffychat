@@ -10,21 +10,21 @@ import 'package:fluffychat/widgets/matrix.dart';
 class MultipleEmotesSettingsView extends StatelessWidget {
   final MultipleEmotesSettingsController controller;
 
-  const MultipleEmotesSettingsView(this.controller, {Key key})
+  const MultipleEmotesSettingsView(this.controller, {Key? key})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final room = Matrix.of(context).client.getRoomById(controller.roomId);
+    final room = Matrix.of(context).client.getRoomById(controller.roomId!)!;
     return Scaffold(
       appBar: AppBar(
         leading: const BackButton(),
-        title: Text(L10n.of(context).emotePacks),
+        title: Text(L10n.of(context)!.emotePacks),
       ),
       body: StreamBuilder(
         stream: room.onUpdate.stream,
         builder: (context, snapshot) {
-          final packs =
+          final Map<String, Event?> packs =
               room.states['im.ponies.room_emotes'] ?? <String, Event>{};
           if (!packs.containsKey('')) {
             packs[''] = null;
@@ -36,7 +36,8 @@ class MultipleEmotesSettingsView extends StatelessWidget {
               itemCount: keys.length,
               itemBuilder: (BuildContext context, int i) {
                 final event = packs[keys[i]];
-                var packName = keys[i].isNotEmpty ? keys[i] : 'Default Pack';
+                String? packName =
+                    keys[i].isNotEmpty ? keys[i] : 'Default Pack';
                 if (event != null && event.content['pack'] is Map) {
                   if (event.content['pack']['displayname'] is String) {
                     packName = event.content['pack']['displayname'];
@@ -45,7 +46,7 @@ class MultipleEmotesSettingsView extends StatelessWidget {
                   }
                 }
                 return ListTile(
-                  title: Text(packName),
+                  title: Text(packName!),
                   onTap: () async {
                     VRouter.of(context).toSegments(
                         ['rooms', room.id, 'details', 'emotes', keys[i]]);

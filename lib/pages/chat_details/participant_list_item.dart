@@ -9,20 +9,20 @@ import '../user_bottom_sheet/user_bottom_sheet.dart';
 class ParticipantListItem extends StatelessWidget {
   final User user;
 
-  const ParticipantListItem(this.user, {Key key}) : super(key: key);
+  const ParticipantListItem(this.user, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final membershipBatch = <Membership, String>{
       Membership.join: '',
-      Membership.ban: L10n.of(context).banned,
-      Membership.invite: L10n.of(context).invited,
-      Membership.leave: L10n.of(context).leftTheChat,
+      Membership.ban: L10n.of(context)!.banned,
+      Membership.invite: L10n.of(context)!.invited,
+      Membership.leave: L10n.of(context)!.leftTheChat,
     };
     final permissionBatch = user.powerLevel == 100
-        ? L10n.of(context).admin
+        ? L10n.of(context)!.admin
         : user.powerLevel >= 50
-            ? L10n.of(context).moderator
+            ? L10n.of(context)!.moderator
             : '';
 
     return Opacity(
@@ -49,7 +49,7 @@ class ParticipantListItem extends StatelessWidget {
                     ),
                     child: Center(child: Text(permissionBatch)),
                   ),
-            membershipBatch[user.membership].isEmpty
+            membershipBatch[user.membership]!.isEmpty
                 ? Container()
                 : Container(
                     padding: const EdgeInsets.all(4),
@@ -59,7 +59,7 @@ class ParticipantListItem extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child:
-                        Center(child: Text(membershipBatch[user.membership])),
+                        Center(child: Text(membershipBatch[user.membership]!)),
                   ),
           ],
         ),

@@ -1,5 +1,3 @@
-//@dart=2.12
-
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -77,7 +75,7 @@ class ProfileBottomSheet extends StatelessWidget {
                                           .adaptive(strokeWidth: 2),
                                 )
                               : ContentBanner(
-                                  profile.avatarUrl!,
+                                  mxContent: profile.avatarUrl,
                                   defaultIcon: Icons.person_outline,
                                   client: Matrix.of(context).client,
                                 ),

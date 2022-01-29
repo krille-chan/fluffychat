@@ -12,7 +12,7 @@ import '../bootstrap/bootstrap_dialog.dart';
 import 'settings_security_view.dart';
 
 class SettingsSecurity extends StatefulWidget {
-  const SettingsSecurity({Key key}) : super(key: key);
+  const SettingsSecurity({Key? key}) : super(key: key);
 
   @override
   SettingsSecurityController createState() => SettingsSecurityController();
@@ -23,18 +23,18 @@ class SettingsSecurityController extends State<SettingsSecurity> {
     final input = await showTextInputDialog(
       useRootNavigator: false,
       context: context,
-      title: L10n.of(context).changePassword,
-      okLabel: L10n.of(context).ok,
-      cancelLabel: L10n.of(context).cancel,
+      title: L10n.of(context)!.changePassword,
+      okLabel: L10n.of(context)!.ok,
+      cancelLabel: L10n.of(context)!.cancel,
       textFields: [
         DialogTextField(
-          hintText: L10n.of(context).pleaseEnterYourPassword,
+          hintText: L10n.of(context)!.pleaseEnterYourPassword,
           obscureText: true,
           minLines: 1,
           maxLines: 1,
         ),
         DialogTextField(
-          hintText: L10n.of(context).chooseAStrongPassword,
+          hintText: L10n.of(context)!.chooseAStrongPassword,
           obscureText: true,
           minLines: 1,
           maxLines: 1,
@@ -50,7 +50,7 @@ class SettingsSecurityController extends State<SettingsSecurity> {
     );
     if (success.error == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(L10n.of(context).passwordHasBeenChanged)));
+          SnackBar(content: Text(L10n.of(context)!.passwordHasBeenChanged)));
     }
   }
 
@@ -58,21 +58,22 @@ class SettingsSecurityController extends State<SettingsSecurity> {
     final currentLock =
         await const FlutterSecureStorage().read(key: SettingKeys.appLockKey);
     if (currentLock?.isNotEmpty ?? false) {
-      await AppLock.of(context).showLockScreen();
+      await AppLock.of(context)!.showLockScreen();
     }
     final newLock = await showTextInputDialog(
       useRootNavigator: false,
       context: context,
-      title: L10n.of(context).pleaseChooseAPasscode,
-      message: L10n.of(context).pleaseEnter4Digits,
-      cancelLabel: L10n.of(context).cancel,
+      title: L10n.of(context)!.pleaseChooseAPasscode,
+      message: L10n.of(context)!.pleaseEnter4Digits,
+      cancelLabel: L10n.of(context)!.cancel,
       textFields: [
         DialogTextField(
           validator: (text) {
-            if (text.isEmpty || (text.length == 4 && int.tryParse(text) >= 0)) {
+            if (text!.isEmpty ||
+                (text.length == 4 && int.tryParse(text)! >= 0)) {
               return null;
             }
-            return L10n.of(context).pleaseEnter4Digits;
+            return L10n.of(context)!.pleaseEnter4Digits;
           },
           keyboardType: TextInputType.number,
           obscureText: true,
@@ -85,9 +86,9 @@ class SettingsSecurityController extends State<SettingsSecurity> {
       await const FlutterSecureStorage()
           .write(key: SettingKeys.appLockKey, value: newLock.single);
       if (newLock.single.isEmpty) {
-        AppLock.of(context).disable();
+        AppLock.of(context)!.disable();
       } else {
-        AppLock.of(context).enable();
+        AppLock.of(context)!.enable();
       }
     }
   }

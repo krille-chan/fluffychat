@@ -13,17 +13,17 @@ import '../../../utils/url_launcher.dart';
 
 class HtmlMessage extends StatelessWidget {
   final String html;
-  final int maxLines;
+  final int? maxLines;
   final Room room;
-  final TextStyle defaultTextStyle;
-  final TextStyle linkStyle;
-  final double emoteSize;
+  final TextStyle? defaultTextStyle;
+  final TextStyle? linkStyle;
+  final double? emoteSize;
 
   const HtmlMessage({
-    Key key,
-    this.html,
+    Key? key,
+    required this.html,
     this.maxLines,
-    this.room,
+    required this.room,
     this.defaultTextStyle,
     this.linkStyle,
     this.emoteSize,
@@ -52,7 +52,7 @@ class HtmlMessage extends StatelessWidget {
       defaultTextStyle: defaultTextStyle,
       emoteSize: emoteSize,
       linkStyle: linkStyle ??
-          themeData.textTheme.bodyText2.copyWith(
+          themeData.textTheme.bodyText2!.copyWith(
             color: themeData.colorScheme.secondary,
             decoration: TextDecoration.underline,
           ),
@@ -60,11 +60,11 @@ class HtmlMessage extends StatelessWidget {
       maxLines: maxLines,
       onLinkTap: (url) => UrlLauncher(context, url).launchUrl(),
       onPillTap: (url) => UrlLauncher(context, url).launchUrl(),
-      getMxcUrl: (String mxc, double width, double height,
-          {bool animated = false}) {
+      getMxcUrl: (String mxc, double? width, double? height,
+          {bool? animated = false}) {
         final ratio = MediaQuery.of(context).devicePixelRatio;
         return Uri.parse(mxc)
-            ?.getThumbnail(
+            .getThumbnail(
               matrix.client,
               width: (width ?? 800) * ratio,
               height: (height ?? 800) * ratio,
@@ -92,9 +92,6 @@ class HtmlMessage extends StatelessWidget {
         return await matrix.store.getItem('${SettingKeys.codeLanguage}.$key');
       },
       getPillInfo: (String url) async {
-        if (room == null) {
-          return null;
-        }
         final identityParts = url.parseIdentifierIntoParts();
         final identifier = identityParts?.primaryIdentifier;
         if (identifier == null) {
@@ -108,13 +105,10 @@ class HtmlMessage extends StatelessWidget {
           }
           // there might still be a profile...
           final profile = await room.client.getProfileFromUserId(identifier);
-          if (profile != null) {
-            return {
-              'displayname': profile.displayName,
-              'avatar_url': profile.avatarUrl.toString(),
-            };
-          }
-          return null;
+          return {
+            'displayname': profile.displayName,
+            'avatar_url': profile.avatarUrl.toString(),
+          };
         }
         if (identifier.sigil == '#') {
           // we have an alias pill
@@ -128,7 +122,7 @@ class HtmlMessage extends StatelessWidget {
               // we have a room!
               return {
                 'displayname':
-                    r.getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
+                    r.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
                 'avatar_url': r.getState('m.room.avatar')?.content['url'],
               };
             }
@@ -143,12 +137,12 @@ class HtmlMessage extends StatelessWidget {
           }
           return {
             'displayname':
-                r.getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
+                r.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
             'avatar_url': r.getState('m.room.avatar')?.content['url'],
           };
         }
         return null;
-      },
+      } as Future<Map<String, dynamic>> Function(String)?,
     );
   }
 }

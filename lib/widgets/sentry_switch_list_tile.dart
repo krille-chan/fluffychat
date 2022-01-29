@@ -1,5 +1,3 @@
-//@dart=2.12
-
 import 'package:flutter/material.dart';
 
 import 'package:fluffychat/utils/sentry_controller.dart';

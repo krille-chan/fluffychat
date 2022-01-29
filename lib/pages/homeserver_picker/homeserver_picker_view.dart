@@ -17,7 +17,7 @@ import 'homeserver_picker.dart';
 class HomeserverPickerView extends StatelessWidget {
   final HomeserverPickerController controller;
 
-  const HomeserverPickerView(this.controller, {Key key}) : super(key: key);
+  const HomeserverPickerView(this.controller, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class HomeserverPickerView extends StatelessWidget {
           titleSpacing: 8,
           title: DefaultAppBarSearchField(
             prefixText: 'https://',
-            hintText: L10n.of(context).enterYourHomeserver,
+            hintText: L10n.of(context)!.enterYourHomeserver,
             searchController: controller.homeserverController,
             suffix: const Icon(Icons.edit_outlined),
             padding: EdgeInsets.zero,
@@ -36,7 +36,7 @@ class HomeserverPickerView extends StatelessWidget {
             onSubmit: (_) => controller.checkHomeserverAction(),
             unfocusOnClear: false,
             autocorrect: false,
-            labelText: L10n.of(context).homeserver,
+            labelText: L10n.of(context)!.homeserver,
           ),
           elevation: 0,
         ),
@@ -54,7 +54,7 @@ class HomeserverPickerView extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Text(
-                  controller.error,
+                  controller.error!,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 18,
@@ -77,7 +77,7 @@ class HomeserverPickerView extends StatelessWidget {
                       const Expanded(child: Divider()),
                       Padding(
                         padding: const EdgeInsets.all(12.0),
-                        child: Text(L10n.of(context).loginWithOneClick),
+                        child: Text(L10n.of(context)!.loginWithOneClick),
                       ),
                       const Expanded(child: Divider()),
                     ]),
@@ -88,20 +88,20 @@ class HomeserverPickerView extends StatelessWidget {
                             in controller.identityProviders)
                           _SsoButton(
                             onPressed: () =>
-                                controller.ssoLoginAction(identityProvider.id),
+                                controller.ssoLoginAction(identityProvider.id!),
                             identityProvider: identityProvider,
                           ),
                       },
                     ].toList(),
                   ),
                   if (controller.ssoLoginSupported &&
-                      (controller.registrationSupported ||
+                      (controller.registrationSupported! ||
                           controller.passwordLoginSupported))
                     Row(children: [
                       const Expanded(child: Divider()),
                       Padding(
                         padding: const EdgeInsets.all(12.0),
-                        child: Text(L10n.of(context).or),
+                        child: Text(L10n.of(context)!.or),
                       ),
                       const Expanded(child: Divider()),
                     ]),
@@ -111,22 +111,22 @@ class HomeserverPickerView extends StatelessWidget {
                         onPressed: () => VRouter.of(context).to('login'),
                         icon: Icon(
                           CupertinoIcons.lock_open_fill,
-                          color: Theme.of(context).textTheme.bodyText1.color,
+                          color: Theme.of(context).textTheme.bodyText1!.color,
                         ),
-                        labelText: L10n.of(context).login,
+                        labelText: L10n.of(context)!.login,
                       ),
                     ),
                     const SizedBox(height: 12),
                   ],
-                  if (controller.registrationSupported)
+                  if (controller.registrationSupported!)
                     Center(
                       child: _LoginButton(
                         onPressed: controller.signUpAction,
                         icon: Icon(
                           CupertinoIcons.person_add,
-                          color: Theme.of(context).textTheme.bodyText1.color,
+                          color: Theme.of(context).textTheme.bodyText1!.color,
                         ),
-                        labelText: L10n.of(context).register,
+                        labelText: L10n.of(context)!.register,
                       ),
                     ),
                 ],
@@ -142,7 +142,7 @@ class HomeserverPickerView extends StatelessWidget {
               TextButton(
                 onPressed: () => launch(AppConfig.privacyUrl),
                 child: Text(
-                  L10n.of(context).privacy,
+                  L10n.of(context)!.privacy,
                   style: const TextStyle(
                     decoration: TextDecoration.underline,
                     color: Colors.blueGrey,
@@ -152,7 +152,7 @@ class HomeserverPickerView extends StatelessWidget {
               TextButton(
                 onPressed: () => PlatformInfos.showDialog(context),
                 child: Text(
-                  L10n.of(context).about,
+                  L10n.of(context)!.about,
                   style: const TextStyle(
                     decoration: TextDecoration.underline,
                     color: Colors.blueGrey,
@@ -169,10 +169,10 @@ class HomeserverPickerView extends StatelessWidget {
 
 class _SsoButton extends StatelessWidget {
   final IdentityProvider identityProvider;
-  final void Function() onPressed;
+  final void Function()? onPressed;
   const _SsoButton({
-    Key key,
-    @required this.identityProvider,
+    Key? key,
+    required this.identityProvider,
     this.onPressed,
   }) : super(key: key);
 
@@ -196,7 +196,7 @@ class _SsoButton extends StatelessWidget {
                 child: identityProvider.icon == null
                     ? const Icon(Icons.web_outlined)
                     : CachedNetworkImage(
-                        imageUrl: Uri.parse(identityProvider.icon)
+                        imageUrl: Uri.parse(identityProvider.icon!)
                             .getDownloadLink(
                                 Matrix.of(context).getLoginClient())
                             .toString(),
@@ -209,11 +209,11 @@ class _SsoButton extends StatelessWidget {
             Text(
               identityProvider.name ??
                   identityProvider.brand ??
-                  L10n.of(context).singlesignon,
+                  L10n.of(context)!.singlesignon,
               style: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.bold,
-                color: Theme.of(context).textTheme.subtitle2.color,
+                color: Theme.of(context).textTheme.subtitle2!.color,
               ),
             ),
           ],
@@ -224,11 +224,11 @@ class _SsoButton extends StatelessWidget {
 }
 
 class _LoginButton extends StatelessWidget {
-  final String labelText;
-  final Widget icon;
-  final void Function() onPressed;
+  final String? labelText;
+  final Widget? icon;
+  final void Function()? onPressed;
   const _LoginButton({
-    Key key,
+    Key? key,
     this.labelText,
     this.icon,
     this.onPressed,
@@ -246,11 +246,11 @@ class _LoginButton extends StatelessWidget {
         ),
       ),
       onPressed: onPressed,
-      icon: icon,
+      icon: icon!,
       label: Text(
-        labelText,
+        labelText!,
         style: TextStyle(
-          color: Theme.of(context).textTheme.bodyText1.color,
+          color: Theme.of(context).textTheme.bodyText1!.color,
         ),
       ),
     );

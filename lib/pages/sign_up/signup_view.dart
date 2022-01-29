@@ -7,14 +7,14 @@ import 'signup.dart';
 
 class SignupPageView extends StatelessWidget {
   final SignupPageController controller;
-  const SignupPageView(this.controller, {Key key}) : super(key: key);
+  const SignupPageView(this.controller, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return OnePageCard(
       child: Scaffold(
         appBar: AppBar(
-          title: Text(L10n.of(context).signUp),
+          title: Text(L10n.of(context)!.signUp),
         ),
         body: Form(
           key: controller.formKey,
@@ -31,8 +31,8 @@ class SignupPageView extends StatelessWidget {
                   validator: controller.usernameTextFieldValidator,
                   decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.account_circle_outlined),
-                      hintText: L10n.of(context).username,
-                      labelText: L10n.of(context).username,
+                      hintText: L10n.of(context)!.username,
+                      labelText: L10n.of(context)!.username,
                       prefixText: '@',
                       prefixStyle: const TextStyle(fontWeight: FontWeight.bold),
                       suffixStyle: const TextStyle(fontWeight: FontWeight.w200),
@@ -53,13 +53,13 @@ class SignupPageView extends StatelessWidget {
                     prefixIcon: const Icon(Icons.vpn_key_outlined),
                     hintText: '****',
                     suffixIcon: IconButton(
-                      tooltip: L10n.of(context).showPassword,
+                      tooltip: L10n.of(context)!.showPassword,
                       icon: Icon(controller.showPassword
                           ? Icons.visibility_off_outlined
                           : Icons.visibility_outlined),
                       onPressed: controller.toggleShowPassword,
                     ),
-                    labelText: L10n.of(context).password,
+                    labelText: L10n.of(context)!.password,
                   ),
                 ),
               ),
@@ -76,7 +76,7 @@ class SignupPageView extends StatelessWidget {
                   decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.repeat_outlined),
                     hintText: '****',
-                    labelText: L10n.of(context).repeatPassword,
+                    labelText: L10n.of(context)!.repeatPassword,
                   ),
                 ),
               ),
@@ -92,7 +92,7 @@ class SignupPageView extends StatelessWidget {
                   validator: controller.emailTextFieldValidator,
                   decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.mail_outlined),
-                    labelText: L10n.of(context).addEmail,
+                    labelText: L10n.of(context)!.addEmail,
                     hintText: 'email@example.abc',
                   ),
                 ),
@@ -103,7 +103,7 @@ class SignupPageView extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   child: Text(
-                    controller.error,
+                    controller.error!,
                     style: const TextStyle(color: Colors.red),
                     textAlign: TextAlign.center,
                   ),
@@ -120,7 +120,7 @@ class SignupPageView extends StatelessWidget {
                     onPressed: controller.loading ? null : controller.signup,
                     child: controller.loading
                         ? const LinearProgressIndicator()
-                        : Text(L10n.of(context).signUp),
+                        : Text(L10n.of(context)!.signUp),
                   ),
                 ),
               ),

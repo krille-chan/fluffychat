@@ -1,5 +1,3 @@
-//@dart=2.12
-
 import 'dart:ui';
 
 import 'package:matrix/matrix.dart';

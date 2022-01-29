@@ -1,5 +1,3 @@
-//@dart=2.12
-
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
@@ -69,7 +67,7 @@ extension LocalNotificationsExtension on MatrixState {
           await appIconFile.writeAsBytes(response.bodyBytes);
         }
       }
-      final notification = await linuxNotifications.notify(
+      final notification = await linuxNotifications!.notify(
         title,
         body: body,
         replacesId: linuxNotificationIds[roomId] ?? 0,

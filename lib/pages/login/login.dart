@@ -15,7 +15,7 @@ import '../../utils/platform_infos.dart';
 import 'login_view.dart';
 
 class Login extends StatefulWidget {
-  const Login({Key key}) : super(key: key);
+  const Login({Key? key}) : super(key: key);
 
   @override
   LoginController createState() => LoginController();
@@ -24,8 +24,8 @@ class Login extends StatefulWidget {
 class LoginController extends State<Login> {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  String usernameError;
-  String passwordError;
+  String? usernameError;
+  String? passwordError;
   bool loading = false;
   bool showPassword = false;
 
@@ -34,12 +34,12 @@ class LoginController extends State<Login> {
   void login([_]) async {
     final matrix = Matrix.of(context);
     if (usernameController.text.isEmpty) {
-      setState(() => usernameError = L10n.of(context).pleaseEnterYourUsername);
+      setState(() => usernameError = L10n.of(context)!.pleaseEnterYourUsername);
     } else {
       setState(() => usernameError = null);
     }
     if (passwordController.text.isEmpty) {
-      setState(() => passwordError = L10n.of(context).pleaseEnterYourPassword);
+      setState(() => passwordError = L10n.of(context)!.pleaseEnterYourPassword);
     } else {
       setState(() => passwordError = null);
     }
@@ -85,7 +85,7 @@ class LoginController extends State<Login> {
     if (mounted) setState(() => loading = false);
   }
 
-  Timer _coolDown;
+  Timer? _coolDown;
 
   void checkWellKnownWithCoolDown(String userId) async {
     _coolDown?.cancel();
@@ -100,14 +100,13 @@ class LoginController extends State<Login> {
     if (!userId.isValidMatrixId) return;
     try {
       final oldHomeserver = Matrix.of(context).getLoginClient().homeserver;
-      var newDomain = Uri.https(userId.domain, '');
+      var newDomain = Uri.https(userId.domain!, '');
       Matrix.of(context).getLoginClient().homeserver = newDomain;
-      DiscoveryInformation wellKnownInformation;
+      DiscoveryInformation? wellKnownInformation;
       try {
         wellKnownInformation =
             await Matrix.of(context).getLoginClient().getWellknown();
-        if (wellKnownInformation.mHomeserver?.baseUrl?.toString()?.isNotEmpty ??
-            false) {
+        if (wellKnownInformation.mHomeserver.baseUrl.toString().isNotEmpty) {
           newDomain = wellKnownInformation.mHomeserver.baseUrl;
         }
       } catch (_) {
@@ -130,9 +129,10 @@ class LoginController extends State<Login> {
           final dialogResult = await showOkCancelAlertDialog(
             context: context,
             useRootNavigator: false,
-            message: L10n.of(context).noMatrixServer(newDomain, oldHomeserver),
-            okLabel: L10n.of(context).ok,
-            cancelLabel: L10n.of(context).cancel,
+            message:
+                L10n.of(context)!.noMatrixServer(newDomain, oldHomeserver!),
+            okLabel: L10n.of(context)!.ok,
+            cancelLabel: L10n.of(context)!.cancel,
           );
           if (dialogResult == OkCancelResult.ok) {
             setState(() => usernameError = null);
@@ -142,7 +142,7 @@ class LoginController extends State<Login> {
           }
         }
         var jitsi = wellKnownInformation?.additionalProperties
-            ?.tryGet<Map<String, dynamic>>('im.vector.riot.jitsi')
+            .tryGet<Map<String, dynamic>>('im.vector.riot.jitsi')
             ?.tryGet<String>('preferredDomain');
         if (jitsi != null) {
           if (!jitsi.endsWith('/')) {
@@ -168,12 +168,12 @@ class LoginController extends State<Login> {
     final input = await showTextInputDialog(
       useRootNavigator: false,
       context: context,
-      title: L10n.of(context).enterAnEmailAddress,
-      okLabel: L10n.of(context).ok,
-      cancelLabel: L10n.of(context).cancel,
+      title: L10n.of(context)!.enterAnEmailAddress,
+      okLabel: L10n.of(context)!.ok,
+      cancelLabel: L10n.of(context)!.cancel,
       textFields: [
         DialogTextField(
-          hintText: L10n.of(context).enterAnEmailAddress,
+          hintText: L10n.of(context)!.enterAnEmailAddress,
           keyboardType: TextInputType.emailAddress,
         ),
       ],
@@ -194,17 +194,17 @@ class LoginController extends State<Login> {
     final ok = await showOkAlertDialog(
       useRootNavigator: false,
       context: context,
-      title: L10n.of(context).weSentYouAnEmail,
-      message: L10n.of(context).pleaseClickOnLink,
-      okLabel: L10n.of(context).iHaveClickedOnLink,
+      title: L10n.of(context)!.weSentYouAnEmail,
+      message: L10n.of(context)!.pleaseClickOnLink,
+      okLabel: L10n.of(context)!.iHaveClickedOnLink,
     );
-    if (ok == null) return;
+    if (ok != OkCancelResult.ok) return;
     final password = await showTextInputDialog(
       useRootNavigator: false,
       context: context,
-      title: L10n.of(context).chooseAStrongPassword,
-      okLabel: L10n.of(context).ok,
-      cancelLabel: L10n.of(context).cancel,
+      title: L10n.of(context)!.chooseAStrongPassword,
+      okLabel: L10n.of(context)!.ok,
+      cancelLabel: L10n.of(context)!.cancel,
       textFields: [
         const DialogTextField(
           hintText: '******',
@@ -222,7 +222,7 @@ class LoginController extends State<Login> {
             auth: AuthenticationThreePidCreds(
               type: AuthenticationTypes.emailIdentity,
               threepidCreds: ThreepidCreds(
-                sid: response.result.sid,
+                sid: response.result!.sid,
                 clientSecret: clientSecret,
               ),
             ),
@@ -230,7 +230,7 @@ class LoginController extends State<Login> {
     );
     if (success.error == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(L10n.of(context).passwordHasBeenChanged)));
+          SnackBar(content: Text(L10n.of(context)!.passwordHasBeenChanged)));
     }
   }
 

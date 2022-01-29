@@ -10,14 +10,14 @@ import 'image_bubble.dart';
 class Sticker extends StatefulWidget {
   final Event event;
 
-  const Sticker(this.event, {Key key}) : super(key: key);
+  const Sticker(this.event, {Key? key}) : super(key: key);
 
   @override
   _StickerState createState() => _StickerState();
 }
 
 class _StickerState extends State<Sticker> {
-  bool animated;
+  bool? animated;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class _StickerState extends State<Sticker> {
         showOkAlertDialog(
           context: context,
           message: widget.event.body,
-          okLabel: L10n.of(context).ok,
+          okLabel: L10n.of(context)!.ok,
         );
       },
       animated: animated ?? AppConfig.autoplayImages,

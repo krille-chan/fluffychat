@@ -9,7 +9,7 @@ import 'package:fluffychat/pages/new_space/new_space_view.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class NewSpace extends StatefulWidget {
-  const NewSpace({Key key}) : super(key: key);
+  const NewSpace({Key? key}) : super(key: key);
 
   @override
   NewSpaceController createState() => NewSpaceController();
@@ -38,7 +38,7 @@ class NewSpaceController extends State<NewSpace> {
       ),
     );
     if (roomID.error == null) {
-      VRouter.of(context).toSegments(['rooms', roomID.result, 'details']);
+      VRouter.of(context).toSegments(['rooms', roomID.result!, 'details']);
     }
   }
 

@@ -34,25 +34,28 @@ enum PopupMenuAction {
 }
 
 class ChatList extends StatefulWidget {
-  const ChatList({Key key}) : super(key: key);
+  const ChatList({Key? key}) : super(key: key);
 
   @override
   ChatListController createState() => ChatListController();
 }
 
 class ChatListController extends State<ChatList> {
-  StreamSubscription _intentDataStreamSubscription;
+  StreamSubscription? _intentDataStreamSubscription;
 
-  StreamSubscription _intentFileStreamSubscription;
+  StreamSubscription? _intentFileStreamSubscription;
 
-  StreamSubscription _intentUriStreamSubscription;
+  StreamSubscription? _intentUriStreamSubscription;
 
-  String _activeSpaceId;
+  String? _activeSpaceId;
 
-  String get activeSpaceId =>
-      Matrix.of(context).client.getRoomById(_activeSpaceId) == null
-          ? null
-          : _activeSpaceId;
+  String? get activeSpaceId {
+    final id = _activeSpaceId;
+    return id != null && Matrix.of(context).client.getRoomById(id) == null
+        ? null
+        : _activeSpaceId;
+  }
+
   final ScrollController scrollController = ScrollController();
   bool scrolledToTop = true;
 
@@ -69,12 +72,12 @@ class ChatListController extends State<ChatList> {
     }
   }
 
-  void setActiveSpaceId(BuildContext context, String spaceId) {
+  void setActiveSpaceId(BuildContext context, String? spaceId) {
     setState(() => _activeSpaceId = spaceId);
   }
 
   void editSpace(BuildContext context, String spaceId) async {
-    await Matrix.of(context).client.getRoomById(spaceId).postLoad();
+    await Matrix.of(context).client.getRoomById(spaceId)!.postLoad();
     VRouter.of(context).toSegments(['spaces', spaceId]);
   }
 
@@ -82,7 +85,7 @@ class ChatListController extends State<ChatList> {
       Matrix.of(context).client.rooms.where((r) => r.isSpace).toList();
 
   final selectedRoomIds = <String>{};
-  bool crossSigningCached;
+  bool? crossSigningCached;
   bool showChatBackupBanner = false;
 
   void firstRunBootstrapAction() async {
@@ -96,7 +99,7 @@ class ChatListController extends State<ChatList> {
     VRouter.of(context).to('/rooms');
   }
 
-  String get activeChat => VRouter.of(context).pathParameters['roomid'];
+  String? get activeChat => VRouter.of(context).pathParameters['roomid'];
 
   SelectMode get selectMode => Matrix.of(context).shareContent != null
       ? SelectMode.share
@@ -105,7 +108,7 @@ class ChatListController extends State<ChatList> {
           : SelectMode.select;
 
   void _processIncomingSharedFiles(List<SharedMediaFile> files) {
-    if (files?.isEmpty ?? true) return;
+    if (files.isEmpty) return;
     VRouter.of(context).to('/rooms');
     final file = File(files.first.path);
 
@@ -118,7 +121,7 @@ class ChatListController extends State<ChatList> {
     };
   }
 
-  void _processIncomingSharedText(String text) {
+  void _processIncomingSharedText(String? text) {
     if (text == null) return;
     VRouter.of(context).to('/rooms');
     if (text.toLowerCase().startsWith(AppConfig.deepLinkPrefix) ||
@@ -133,10 +136,10 @@ class ChatListController extends State<ChatList> {
     };
   }
 
-  void _processIncomingUris(String text) async {
+  void _processIncomingUris(String? text) async {
     if (text == null) return;
     VRouter.of(context).to('/rooms');
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
       UrlLauncher(context, text).openMatrixToUrl();
     });
   }
@@ -180,10 +183,10 @@ class ChatListController extends State<ChatList> {
     await Matrix.of(context).client.accountDataLoading;
     await Matrix.of(context).client.userDeviceKeysLoading;
     final crossSigning =
-        await Matrix.of(context).client.encryption?.crossSigning?.isCached() ??
+        await Matrix.of(context).client.encryption?.crossSigning.isCached() ??
             false;
     final needsBootstrap =
-        Matrix.of(context).client.encryption?.crossSigning?.enabled == false ||
+        Matrix.of(context).client.encryption?.crossSigning.enabled == false ||
             crossSigning == false;
     final isUnknownSession = Matrix.of(context).client.isUnknownSession;
     if (needsBootstrap || isUnknownSession) {
@@ -206,23 +209,21 @@ class ChatListController extends State<ChatList> {
     if (room.isSpace && room.membership == Membership.join && !room.isUnread) {
       return false;
     }
-    if (room.getState(EventTypes.RoomCreate)?.content?.tryGet<String>('type') ==
+    if (room.getState(EventTypes.RoomCreate)?.content.tryGet<String>('type') ==
         ClientStoriesExtension.storiesRoomType) {
       return false;
     }
     if (activeSpaceId != null) {
-      final space = Matrix.of(context).client.getRoomById(activeSpaceId);
-      if (space.spaceChildren?.any((child) => child.roomId == room.id) ??
-          false) {
+      final space = Matrix.of(context).client.getRoomById(activeSpaceId!)!;
+      if (space.spaceChildren.any((child) => child.roomId == room.id)) {
         return true;
       }
-      if (room.spaceParents?.any((parent) => parent.roomId == activeSpaceId) ??
-          false) {
+      if (room.spaceParents.any((parent) => parent.roomId == activeSpaceId)) {
         return true;
       }
       if (room.isDirectChat &&
-          room.summary?.mHeroes != null &&
-          room.summary.mHeroes.any((userId) {
+          room.summary.mHeroes != null &&
+          room.summary.mHeroes!.any((userId) {
             final user = space.getState(EventTypes.RoomMember, userId)?.asUser;
             return user != null && user.membership == Membership.join;
           })) {
@@ -246,9 +247,9 @@ class ChatListController extends State<ChatList> {
         final markUnread = anySelectedRoomNotMarkedUnread;
         final client = Matrix.of(context).client;
         for (final roomId in selectedRoomIds) {
-          final room = client.getRoomById(roomId);
+          final room = client.getRoomById(roomId)!;
           if (room.markedUnread == markUnread) continue;
-          await client.getRoomById(roomId).markUnread(markUnread);
+          await client.getRoomById(roomId)!.markUnread(markUnread);
         }
       },
     );
@@ -262,9 +263,9 @@ class ChatListController extends State<ChatList> {
         final makeFavorite = anySelectedRoomNotFavorite;
         final client = Matrix.of(context).client;
         for (final roomId in selectedRoomIds) {
-          final room = client.getRoomById(roomId);
+          final room = client.getRoomById(roomId)!;
           if (room.isFavourite == makeFavorite) continue;
-          await client.getRoomById(roomId).setFavourite(makeFavorite);
+          await client.getRoomById(roomId)!.setFavourite(makeFavorite);
         }
       },
     );
@@ -280,9 +281,9 @@ class ChatListController extends State<ChatList> {
             : PushRuleState.notify;
         final client = Matrix.of(context).client;
         for (final roomId in selectedRoomIds) {
-          final room = client.getRoomById(roomId);
+          final room = client.getRoomById(roomId)!;
           if (room.pushRuleState == newState) continue;
-          await client.getRoomById(roomId).setPushRuleState(newState);
+          await client.getRoomById(roomId)!.setPushRuleState(newState);
         }
       },
     );
@@ -293,9 +294,9 @@ class ChatListController extends State<ChatList> {
     final confirmed = await showOkCancelAlertDialog(
           useRootNavigator: false,
           context: context,
-          title: L10n.of(context).areYouSure,
-          okLabel: L10n.of(context).yes,
-          cancelLabel: L10n.of(context).cancel,
+          title: L10n.of(context)!.areYouSure,
+          okLabel: L10n.of(context)!.yes,
+          cancelLabel: L10n.of(context)!.cancel,
         ) ==
         OkCancelResult.ok;
     if (!confirmed) return;
@@ -303,26 +304,26 @@ class ChatListController extends State<ChatList> {
       context: context,
       future: () => _archiveSelectedRooms(),
     );
-    setState(() => null);
+    setState(() {});
   }
 
   void setStatus() async {
     final input = await showTextInputDialog(
         useRootNavigator: false,
         context: context,
-        title: L10n.of(context).setStatus,
-        okLabel: L10n.of(context).ok,
-        cancelLabel: L10n.of(context).cancel,
+        title: L10n.of(context)!.setStatus,
+        okLabel: L10n.of(context)!.ok,
+        cancelLabel: L10n.of(context)!.cancel,
         textFields: [
           DialogTextField(
-            hintText: L10n.of(context).statusExampleMessage,
+            hintText: L10n.of(context)!.statusExampleMessage,
           ),
         ]);
     if (input == null) return;
     await showFutureLoadingDialog(
       context: context,
       future: () => Matrix.of(context).client.setPresence(
-            Matrix.of(context).client.userID,
+            Matrix.of(context).client.userID!,
             PresenceType.online,
             statusMsg: input.single,
           ),
@@ -339,7 +340,7 @@ class ChatListController extends State<ChatList> {
         break;
       case PopupMenuAction.invite:
         FluffyShare.share(
-            L10n.of(context).inviteText(Matrix.of(context).client.userID,
+            L10n.of(context)!.inviteText(Matrix.of(context).client.userID!,
                 'https://matrix.to/#/${Matrix.of(context).client.userID}?client=im.fluffychat'),
             context);
         break;
@@ -360,7 +361,7 @@ class ChatListController extends State<ChatList> {
     while (selectedRoomIds.isNotEmpty) {
       final roomId = selectedRoomIds.first;
       try {
-        await client.getRoomById(roomId).leave();
+        await client.getRoomById(roomId)!.leave();
       } finally {
         toggleSelection(roomId);
       }
@@ -371,36 +372,36 @@ class ChatListController extends State<ChatList> {
     if (activeSpaceId != null) {
       final consent = await showOkCancelAlertDialog(
         context: context,
-        title: L10n.of(context).removeFromSpace,
-        message: L10n.of(context).removeFromSpaceDescription,
-        okLabel: L10n.of(context).remove,
-        cancelLabel: L10n.of(context).cancel,
+        title: L10n.of(context)!.removeFromSpace,
+        message: L10n.of(context)!.removeFromSpaceDescription,
+        okLabel: L10n.of(context)!.remove,
+        cancelLabel: L10n.of(context)!.cancel,
         isDestructiveAction: true,
         fullyCapitalizedForMaterial: false,
       );
       if (consent != OkCancelResult.ok) return;
 
-      final space = Matrix.of(context).client.getRoomById(activeSpaceId);
+      final space = Matrix.of(context).client.getRoomById(activeSpaceId!);
       final result = await showFutureLoadingDialog(
         context: context,
         future: () async {
           for (final roomId in selectedRoomIds) {
-            await space.removeSpaceChild(roomId);
+            await space!.removeSpaceChild(roomId);
           }
         },
       );
       if (result.error == null) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(L10n.of(context).chatHasBeenRemovedFromThisSpace),
+            content: Text(L10n.of(context)!.chatHasBeenRemovedFromThisSpace),
           ),
         );
       }
     } else {
       final selectedSpace = await showConfirmationDialog<String>(
           context: context,
-          title: L10n.of(context).addToSpace,
-          message: L10n.of(context).addToSpaceDescription,
+          title: L10n.of(context)!.addToSpace,
+          message: L10n.of(context)!.addToSpaceDescription,
           fullyCapitalizedForMaterial: false,
           actions: Matrix.of(context)
               .client
@@ -417,7 +418,7 @@ class ChatListController extends State<ChatList> {
       final result = await showFutureLoadingDialog(
         context: context,
         future: () async {
-          final space = Matrix.of(context).client.getRoomById(selectedSpace);
+          final space = Matrix.of(context).client.getRoomById(selectedSpace)!;
           if (space.canSendDefaultStates) {
             for (final roomId in selectedRoomIds) {
               await space.setSpaceChild(roomId);
@@ -428,7 +429,7 @@ class ChatListController extends State<ChatList> {
       if (result.error == null) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(L10n.of(context).chatHasBeenAddedToThisSpace),
+            content: Text(L10n.of(context)!.chatHasBeenAddedToThisSpace),
           ),
         );
       }
@@ -437,13 +438,13 @@ class ChatListController extends State<ChatList> {
   }
 
   bool get anySelectedRoomNotMarkedUnread => selectedRoomIds.any(
-      (roomId) => !Matrix.of(context).client.getRoomById(roomId).markedUnread);
+      (roomId) => !Matrix.of(context).client.getRoomById(roomId)!.markedUnread);
 
   bool get anySelectedRoomNotFavorite => selectedRoomIds.any(
-      (roomId) => !Matrix.of(context).client.getRoomById(roomId).isFavourite);
+      (roomId) => !Matrix.of(context).client.getRoomById(roomId)!.isFavourite);
 
   bool get anySelectedRoomNotMuted => selectedRoomIds.any((roomId) =>
-      Matrix.of(context).client.getRoomById(roomId).pushRuleState ==
+      Matrix.of(context).client.getRoomById(roomId)!.pushRuleState ==
       PushRuleState.notify);
 
   bool waitForFirstSync = false;
@@ -457,10 +458,10 @@ class ChatListController extends State<ChatList> {
     }
     // Load space members to display DM rooms
     if (activeSpaceId != null) {
-      final space = client.getRoomById(activeSpaceId);
+      final space = client.getRoomById(activeSpaceId!)!;
       final localMembers = space.getParticipants().length;
-      final actualMembersCount = (space.summary?.mInvitedMemberCount ?? 0) +
-          (space.summary?.mJoinedMemberCount ?? 0);
+      final actualMembersCount = (space.summary.mInvitedMemberCount ?? 0) +
+          (space.summary.mJoinedMemberCount ?? 0);
       if (localMembers < actualMembersCount) {
         await space.requestParticipants();
       }
@@ -468,7 +469,7 @@ class ChatListController extends State<ChatList> {
     setState(() {
       waitForFirstSync = true;
     });
-    WidgetsBinding.instance.addPostFrameCallback((_) => checkBootstrap());
+    WidgetsBinding.instance!.addPostFrameCallback((_) => checkBootstrap());
     return;
   }
 
@@ -481,7 +482,6 @@ class ChatListController extends State<ChatList> {
   }
 
   void setActiveClient(Client client) {
-    if (client == null) return;
     VRouter.of(context).to('/rooms');
     setState(() {
       _activeSpaceId = null;
@@ -498,30 +498,30 @@ class ChatListController extends State<ChatList> {
       selectedRoomIds.clear();
       Matrix.of(context).activeBundle = bundle;
       if (!Matrix.of(context)
-          .currentBundle
+          .currentBundle!
           .any((client) => client == Matrix.of(context).client)) {
         Matrix.of(context)
-            .setActiveClient(Matrix.of(context).currentBundle.first);
+            .setActiveClient(Matrix.of(context).currentBundle!.first);
       }
     });
   }
 
-  void editBundlesForAccount(String userId, String activeBundle) async {
+  void editBundlesForAccount(String? userId, String? activeBundle) async {
     final client = Matrix.of(context)
         .widget
-        .clients[Matrix.of(context).getClientIndexByMatrixId(userId)];
+        .clients[Matrix.of(context).getClientIndexByMatrixId(userId!)];
     final action = await showConfirmationDialog<EditBundleAction>(
       context: context,
-      title: L10n.of(context).editBundlesForAccount,
+      title: L10n.of(context)!.editBundlesForAccount,
       actions: [
         AlertDialogAction(
           key: EditBundleAction.addToBundle,
-          label: L10n.of(context).addToBundle,
+          label: L10n.of(context)!.addToBundle,
         ),
         if (activeBundle != client.userID)
           AlertDialogAction(
             key: EditBundleAction.removeFromBundle,
-            label: L10n.of(context).removeFromBundle,
+            label: L10n.of(context)!.removeFromBundle,
           ),
       ],
     );
@@ -530,9 +530,9 @@ class ChatListController extends State<ChatList> {
       case EditBundleAction.addToBundle:
         final bundle = await showTextInputDialog(
             context: context,
-            title: L10n.of(context).bundleName,
+            title: L10n.of(context)!.bundleName,
             textFields: [
-              DialogTextField(hintText: L10n.of(context).bundleName)
+              DialogTextField(hintText: L10n.of(context)!.bundleName)
             ]);
         if (bundle == null || bundle.isEmpty || bundle.single.isEmpty) return;
         await showFutureLoadingDialog(
@@ -543,7 +543,7 @@ class ChatListController extends State<ChatList> {
       case EditBundleAction.removeFromBundle:
         await showFutureLoadingDialog(
           context: context,
-          future: () => client.removeFromAccountBundle(activeBundle),
+          future: () => client.removeFromAccountBundle(activeBundle!),
         );
     }
   }
@@ -552,7 +552,7 @@ class ChatListController extends State<ChatList> {
       Matrix.of(context).hasComplexBundles &&
       Matrix.of(context).accountBundles.keys.length > 1;
 
-  String get secureActiveBundle {
+  String? get secureActiveBundle {
     if (Matrix.of(context).activeBundle == null ||
         !Matrix.of(context)
             .accountBundles
@@ -564,7 +564,7 @@ class ChatListController extends State<ChatList> {
   }
 
   void resetActiveBundle() {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
       setState(() {
         Matrix.of(context).activeBundle = null;
       });

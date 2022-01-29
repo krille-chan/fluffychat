@@ -13,16 +13,16 @@ import 'settings_emotes.dart';
 class EmotesSettingsView extends StatelessWidget {
   final EmotesSettingsController controller;
 
-  const EmotesSettingsView(this.controller, {Key key}) : super(key: key);
+  const EmotesSettingsView(this.controller, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final client = Matrix.of(context).client;
-    final imageKeys = controller.pack.images.keys.toList();
+    final imageKeys = controller.pack!.images.keys.toList();
     return Scaffold(
       appBar: AppBar(
         leading: const BackButton(),
-        title: Text(L10n.of(context).emoteSettings),
+        title: Text(L10n.of(context)!.emoteSettings),
       ),
       floatingActionButton: controller.showSave
           ? FloatingActionButton(
@@ -53,7 +53,7 @@ class EmotesSettingsView extends StatelessWidget {
                       minLines: 1,
                       maxLines: 1,
                       decoration: InputDecoration(
-                        hintText: L10n.of(context).emoteShortcode,
+                        hintText: L10n.of(context)!.emoteShortcode,
                         prefixText: ': ',
                         suffixText: ':',
                         prefixStyle: TextStyle(
@@ -84,7 +84,7 @@ class EmotesSettingsView extends StatelessWidget {
               ),
             if (controller.room != null)
               SwitchListTile.adaptive(
-                title: Text(L10n.of(context).enableEmotesGlobally),
+                title: Text(L10n.of(context)!.enableEmotesGlobally),
                 value: controller.isGloballyActive(client),
                 onChanged: controller.setIsGloballyActive,
               ),
@@ -100,7 +100,7 @@ class EmotesSettingsView extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(16),
                         child: Text(
-                          L10n.of(context).noEmotesFound,
+                          L10n.of(context)!.noEmotesFound,
                           style: const TextStyle(fontSize: 20),
                         ),
                       ),
@@ -114,7 +114,7 @@ class EmotesSettingsView extends StatelessWidget {
                           return Container(height: 70);
                         }
                         final imageCode = imageKeys[i];
-                        final image = controller.pack.images[imageCode];
+                        final image = controller.pack!.images[imageCode]!;
                         final textEditingController = TextEditingController();
                         textEditingController.text = imageCode;
                         final useShortCuts =
@@ -158,7 +158,7 @@ class EmotesSettingsView extends StatelessWidget {
                                   minLines: 1,
                                   maxLines: 1,
                                   decoration: InputDecoration(
-                                    hintText: L10n.of(context).emoteShortcode,
+                                    hintText: L10n.of(context)!.emoteShortcode,
                                     prefixText: ': ',
                                     suffixText: ':',
                                     prefixStyle: TextStyle(
@@ -217,7 +217,7 @@ class _EmoteImage extends StatelessWidget {
   Widget build(BuildContext context) {
     const size = 38.0;
     final devicePixelRatio = MediaQuery.of(context).devicePixelRatio;
-    final url = mxc?.getThumbnail(
+    final url = mxc.getThumbnail(
       Matrix.of(context).client,
       width: size * devicePixelRatio,
       height: size * devicePixelRatio,
@@ -233,11 +233,11 @@ class _EmoteImage extends StatelessWidget {
 }
 
 class _ImagePicker extends StatefulWidget {
-  final ValueNotifier<ImagePackImageContent> controller;
+  final ValueNotifier<ImagePackImageContent?> controller;
 
-  final void Function(ValueNotifier<ImagePackImageContent>) onPressed;
+  final void Function(ValueNotifier<ImagePackImageContent?>) onPressed;
 
-  const _ImagePicker({@required this.controller, @required this.onPressed});
+  const _ImagePicker({required this.controller, required this.onPressed});
 
   @override
   _ImagePickerState createState() => _ImagePickerState();
@@ -249,10 +249,10 @@ class _ImagePickerState extends State<_ImagePicker> {
     if (widget.controller.value == null) {
       return ElevatedButton(
         onPressed: () => widget.onPressed(widget.controller),
-        child: Text(L10n.of(context).pickImage),
+        child: Text(L10n.of(context)!.pickImage),
       );
     } else {
-      return _EmoteImage(widget.controller.value.url);
+      return _EmoteImage(widget.controller.value!.url);
     }
   }
 }

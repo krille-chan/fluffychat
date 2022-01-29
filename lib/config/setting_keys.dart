@@ -1,5 +1,3 @@
-//@dart=2.12
-
 abstract class SettingKeys {
   static const String jitsiInstance = 'chat.fluffy.jitsi_instance';
   static const String wallpaper = 'chat.fluffy.wallpaper';

@@ -1,5 +1,3 @@
-//@dart=2.12
-
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_theme/adaptive_theme.dart';
@@ -19,6 +17,7 @@ class SettingsStyleView extends StatelessWidget {
   Widget build(BuildContext context) {
     controller.currentTheme ??= AdaptiveTheme.of(context).mode;
     const colorPickerSize = 32.0;
+    final wallpaper = Matrix.of(context).wallpaper;
     return Scaffold(
       appBar: AppBar(
         leading: const BackButton(),
@@ -86,10 +85,10 @@ class SettingsStyleView extends StatelessWidget {
                 ),
               ),
             ),
-            if (Matrix.of(context).wallpaper != null)
+            if (wallpaper != null)
               ListTile(
                 title: Image.file(
-                  Matrix.of(context).wallpaper,
+                  wallpaper,
                   height: 38,
                   fit: BoxFit.cover,
                 ),

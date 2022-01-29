@@ -8,11 +8,11 @@ import 'package:fluffychat/widgets/matrix.dart';
 
 class TypingIndicators extends StatelessWidget {
   final ChatController controller;
-  const TypingIndicators(this.controller, {Key key}) : super(key: key);
+  const TypingIndicators(this.controller, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final typingUsers = controller.room.typingUsers
+    final typingUsers = controller.room!.typingUsers
       ..removeWhere((u) => u.stateKey == Matrix.of(context).client.userID);
     const topPadding = 20.0;
     const bottomPadding = 4.0;

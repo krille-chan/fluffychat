@@ -13,7 +13,7 @@ extension EventInfoDialogExtension on Event {
   void showInfoDialog(BuildContext context) => showModalBottomSheet(
         context: context,
         builder: (context) =>
-            EventInfoDialog(l10n: L10n.of(context), event: this),
+            EventInfoDialog(l10n: L10n.of(context)!, event: this),
       );
 }
 
@@ -21,9 +21,9 @@ class EventInfoDialog extends StatelessWidget {
   final Event event;
   final L10n l10n;
   const EventInfoDialog({
-    @required this.event,
-    @required this.l10n,
-    Key key,
+    required this.event,
+    required this.l10n,
+    Key? key,
   }) : super(key: key);
 
   String get prettyJson {
@@ -37,11 +37,11 @@ class EventInfoDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(L10n.of(context).messageInfo),
+        title: Text(L10n.of(context)!.messageInfo),
         leading: IconButton(
           icon: const Icon(Icons.arrow_downward_outlined),
           onPressed: Navigator.of(context, rootNavigator: false).pop,
-          tooltip: L10n.of(context).close,
+          tooltip: L10n.of(context)!.close,
         ),
       ),
       body: ListView(
@@ -51,19 +51,19 @@ class EventInfoDialog extends StatelessWidget {
               mxContent: event.sender.avatarUrl,
               name: event.sender.calcDisplayname(),
             ),
-            title: Text(L10n.of(context).sender),
+            title: Text(L10n.of(context)!.sender),
             subtitle:
                 Text('${event.sender.calcDisplayname()} [${event.senderId}]'),
           ),
           ListTile(
-            title: Text(L10n.of(context).time),
+            title: Text(L10n.of(context)!.time),
             subtitle: Text(event.originServerTs.localizedTime(context)),
           ),
           ListTile(
-            title: Text(L10n.of(context).messageType),
+            title: Text(L10n.of(context)!.messageType),
             subtitle: Text(event.humanreadableType),
           ),
-          ListTile(title: Text('${L10n.of(context).sourceCode}:')),
+          ListTile(title: Text('${L10n.of(context)!.sourceCode}:')),
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: Material(

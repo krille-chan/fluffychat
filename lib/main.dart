@@ -1,5 +1,3 @@
-// @dart=2.11
-
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
@@ -67,14 +65,14 @@ void main() async {
 }
 
 class FluffyChatApp extends StatefulWidget {
-  final Widget testWidget;
+  final Widget? testWidget;
   final List<Client> clients;
-  final Map<String, String> queryParameters;
+  final Map<String, String>? queryParameters;
 
   const FluffyChatApp({
-    Key key,
+    Key? key,
     this.testWidget,
-    @required this.clients,
+    required this.clients,
     this.queryParameters,
   }) : super(key: key);
 
@@ -88,9 +86,9 @@ class FluffyChatApp extends StatefulWidget {
 }
 
 class _FluffyChatAppState extends State<FluffyChatApp> {
-  GlobalKey<VRouterState> _router;
-  bool columnMode;
-  String _initialUrl;
+  GlobalKey<VRouterState>? _router;
+  bool? columnMode;
+  String? _initialUrl;
 
   @override
   void initState() {
@@ -133,15 +131,12 @@ class _FluffyChatAppState extends State<FluffyChatApp> {
             localizationsDelegates: L10n.localizationsDelegates,
             supportedLocales: L10n.supportedLocales,
             initialUrl: _initialUrl ?? '/',
-            locale: kIsWeb
-                ? Locale(html.window.navigator.language.split('-').first)
-                : null,
             routes: AppRoutes(columnMode ?? false).routes,
             builder: (context, child) {
-              LoadingDialog.defaultTitle = L10n.of(context).loadingPleaseWait;
-              LoadingDialog.defaultBackLabel = L10n.of(context).close;
+              LoadingDialog.defaultTitle = L10n.of(context)!.loadingPleaseWait;
+              LoadingDialog.defaultBackLabel = L10n.of(context)!.close;
               LoadingDialog.defaultOnError =
-                  (e) => (e as Object).toLocalizedString(context);
+                  (e) => (e as Object?)!.toLocalizedString(context);
               WidgetsBinding.instance?.addPostFrameCallback((_) {
                 SystemChrome.setSystemUIOverlayStyle(
                   SystemUiOverlayStyle(

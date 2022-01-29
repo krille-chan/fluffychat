@@ -1,5 +1,3 @@
-//@dart=2.12
-
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';

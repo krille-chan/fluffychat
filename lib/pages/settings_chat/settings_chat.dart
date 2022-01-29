@@ -9,7 +9,7 @@ import 'package:fluffychat/widgets/matrix.dart';
 import 'settings_chat_view.dart';
 
 class SettingsChat extends StatefulWidget {
-  const SettingsChat({Key key}) : super(key: key);
+  const SettingsChat({Key? key}) : super(key: key);
 
   @override
   SettingsChatController createState() => SettingsChatController();
@@ -21,9 +21,9 @@ class SettingsChatController extends State<SettingsChat> {
     final input = await showTextInputDialog(
       useRootNavigator: false,
       context: context,
-      title: L10n.of(context).editJitsiInstance,
-      okLabel: L10n.of(context).ok,
-      cancelLabel: L10n.of(context).cancel,
+      title: L10n.of(context)!.editJitsiInstance,
+      okLabel: L10n.of(context)!.ok,
+      cancelLabel: L10n.of(context)!.cancel,
       textFields: [
         DialogTextField(
           initialText: AppConfig.jitsiInstance.replaceFirst(prefix, ''),

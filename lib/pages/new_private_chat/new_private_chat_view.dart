@@ -15,7 +15,7 @@ import 'package:fluffychat/widgets/matrix.dart';
 class NewPrivateChatView extends StatelessWidget {
   final NewPrivateChatController controller;
 
-  const NewPrivateChatView(this.controller, {Key key}) : super(key: key);
+  const NewPrivateChatView(this.controller, {Key? key}) : super(key: key);
 
   static const double _qrCodePadding = 8;
 
@@ -24,13 +24,13 @@ class NewPrivateChatView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const BackButton(),
-        title: Text(L10n.of(context).newChat),
+        title: Text(L10n.of(context)!.newChat),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         actions: [
           TextButton(
             onPressed: () => VRouter.of(context).to('/newgroup'),
             child: Text(
-              L10n.of(context).createNewGroup,
+              L10n.of(context)!.createNewGroup,
               style: TextStyle(color: Theme.of(context).colorScheme.secondary),
             ),
           )
@@ -67,7 +67,7 @@ class NewPrivateChatView extends StatelessWidget {
               ),
             ),
             ListTile(
-              subtitle: Text(L10n.of(context).createNewChatExplaination),
+              subtitle: Text(L10n.of(context)!.createNewChatExplaination),
             ),
             Padding(
               padding: const EdgeInsets.all(12),
@@ -81,7 +81,7 @@ class NewPrivateChatView extends StatelessWidget {
                   onFieldSubmitted: controller.submitAction,
                   validator: controller.validateForm,
                   decoration: InputDecoration(
-                    labelText: L10n.of(context).typeInInviteLinkManually,
+                    labelText: L10n.of(context)!.typeInInviteLinkManually,
                     hintText: '@username',
                     prefixText: 'matrix.to/#/',
                     suffixIcon: IconButton(
@@ -105,7 +105,7 @@ class NewPrivateChatView extends StatelessWidget {
       floatingActionButton: PlatformInfos.isMobile && !controller.hideFab
           ? FloatingActionButton.extended(
               onPressed: controller.openScannerAction,
-              label: Text(L10n.of(context).scanQrCode),
+              label: Text(L10n.of(context)!.scanQrCode),
               icon: const Icon(Icons.camera_alt_outlined),
             )
           : null,

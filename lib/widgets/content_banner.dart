@@ -1,5 +1,3 @@
-//@dart=2.12
-
 import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -8,7 +6,7 @@ import 'package:matrix/matrix.dart';
 import 'matrix.dart';
 
 class ContentBanner extends StatelessWidget {
-  final Uri mxContent;
+  final Uri? mxContent;
   final double height;
   final IconData defaultIcon;
   final bool loading;
@@ -16,8 +14,9 @@ class ContentBanner extends StatelessWidget {
   final Client? client;
   final double opacity;
 
-  const ContentBanner(this.mxContent,
-      {this.height = 400,
+  const ContentBanner(
+      {this.mxContent,
+      this.height = 400,
       this.defaultIcon = Icons.people_outlined,
       this.loading = false,
       this.onEdit,
@@ -32,7 +31,7 @@ class ContentBanner extends StatelessWidget {
     final bannerSize =
         (mediaQuery.size.width * mediaQuery.devicePixelRatio).toInt();
     final onEdit = this.onEdit;
-    final src = mxContent.getThumbnail(
+    final src = mxContent?.getThumbnail(
       client ?? Matrix.of(context).client,
       width: bannerSize,
       height: bannerSize,
@@ -54,7 +53,7 @@ class ContentBanner extends StatelessWidget {
             bottom: 0,
             child: Opacity(
               opacity: opacity,
-              child: (!loading && mxContent.host.isNotEmpty)
+              child: (!loading && src != null)
                   ? CachedNetworkImage(
                       imageUrl: src.toString(),
                       height: 300,

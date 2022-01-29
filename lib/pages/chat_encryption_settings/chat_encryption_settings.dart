@@ -9,7 +9,7 @@ import 'package:fluffychat/widgets/matrix.dart';
 import '../key_verification/key_verification_dialog.dart';
 
 class ChatEncryptionSettings extends StatefulWidget {
-  const ChatEncryptionSettings({Key key}) : super(key: key);
+  const ChatEncryptionSettings({Key? key}) : super(key: key);
 
   @override
   ChatEncryptionSettingsController createState() =>
@@ -17,7 +17,7 @@ class ChatEncryptionSettings extends StatefulWidget {
 }
 
 class ChatEncryptionSettingsController extends State<ChatEncryptionSettings> {
-  String get roomId => VRouter.of(context).pathParameters['roomid'];
+  String? get roomId => VRouter.of(context).pathParameters['roomid'];
 
   Future<void> unblock(DeviceKeys key) async {
     if (key.blocked) {
@@ -27,14 +27,14 @@ class ChatEncryptionSettingsController extends State<ChatEncryptionSettings> {
 
   Future<void> onSelected(
       BuildContext context, String action, DeviceKeys key) async {
-    final room = Matrix.of(context).client.getRoomById(roomId);
+    final room = Matrix.of(context).client.getRoomById(roomId!);
     switch (action) {
       case 'verify':
         await unblock(key);
         final req = key.startVerification();
         req.onUpdate = () {
           if (req.state == KeyVerificationState.done) {
-            setState(() => null);
+            setState(() {});
           }
         };
         await KeyVerificationDialog(request: req).show(context);
@@ -42,10 +42,10 @@ class ChatEncryptionSettingsController extends State<ChatEncryptionSettings> {
       case 'verify_user':
         await unblock(key);
         final req =
-            await room.client.userDeviceKeys[key.userId].startVerification();
+            await room!.client.userDeviceKeys[key.userId]!.startVerification();
         req.onUpdate = () {
           if (req.state == KeyVerificationState.done) {
-            setState(() => null);
+            setState(() {});
           }
         };
         await KeyVerificationDialog(request: req).show(context);
@@ -55,11 +55,11 @@ class ChatEncryptionSettingsController extends State<ChatEncryptionSettings> {
           await key.setVerified(false);
         }
         await key.setBlocked(true);
-        setState(() => null);
+        setState(() {});
         break;
       case 'unblock':
         await unblock(key);
-        setState(() => null);
+        setState(() {});
         break;
     }
   }

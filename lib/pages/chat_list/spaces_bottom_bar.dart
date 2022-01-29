@@ -10,7 +10,7 @@ import 'package:fluffychat/widgets/matrix.dart';
 
 class SpacesBottomBar extends StatelessWidget {
   final ChatListController controller;
-  const SpacesBottomBar(this.controller, {Key key}) : super(key: key);
+  const SpacesBottomBar(this.controller, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +25,9 @@ class SpacesBottomBar extends StatelessWidget {
       child: SafeArea(
         child: StreamBuilder<Object>(
             stream: Matrix.of(context).client.onSync.stream.where((sync) =>
-                (sync.rooms?.join?.values?.any((r) =>
-                        r.state?.any((s) => s.type.startsWith('m.space'))) ??
+                (sync.rooms?.join?.values.any((r) =>
+                        r.state?.any((s) => s.type.startsWith('m.space')) ??
+                        false) ??
                     false) ||
                 (sync.rooms?.leave?.isNotEmpty ?? false)),
             builder: (context, snapshot) {
@@ -48,7 +49,7 @@ class SpacesBottomBar extends StatelessWidget {
                         icon: const Icon(CupertinoIcons.chat_bubble_2),
                         activeIcon:
                             const Icon(CupertinoIcons.chat_bubble_2_fill),
-                        title: Text(L10n.of(context).allChats),
+                        title: Text(L10n.of(context)!.allChats),
                       ),
                       ...controller.spaces
                           .map((space) => SalomonBottomBarItem(

@@ -13,13 +13,12 @@ import 'package:fluffychat/widgets/matrix.dart';
 class InvitationSelectionView extends StatelessWidget {
   final InvitationSelectionController controller;
 
-  const InvitationSelectionView(this.controller, {Key key}) : super(key: key);
+  const InvitationSelectionView(this.controller, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final room = Matrix.of(context).client.getRoomById(controller.roomId);
-    final groupName =
-        room.name?.isEmpty ?? false ? L10n.of(context).group : room.name;
+    final room = Matrix.of(context).client.getRoomById(controller.roomId!)!;
+    final groupName = room.name.isEmpty ? L10n.of(context)!.group : room.name;
     return Scaffold(
       appBar: AppBar(
         leading: VRouter.of(context).path.startsWith('/spaces/')
@@ -27,12 +26,12 @@ class InvitationSelectionView extends StatelessWidget {
             : IconButton(
                 icon: const Icon(Icons.close_outlined),
                 onPressed: () => VRouter.of(context)
-                    .toSegments(['rooms', controller.roomId]),
+                    .toSegments(['rooms', controller.roomId!]),
               ),
         titleSpacing: 0,
         title: DefaultAppBarSearchField(
           autofocus: true,
-          hintText: L10n.of(context).inviteContactToGroup(groupName),
+          hintText: L10n.of(context)!.inviteContactToGroup(groupName),
           onChanged: controller.searchUserWithCoolDown,
         ),
       ),
@@ -51,7 +50,7 @@ class InvitationSelectionView extends StatelessWidget {
                   ),
                   title: Text(
                     controller.foundProfiles[i].displayName ??
-                        controller.foundProfiles[i].userId.localpart,
+                        controller.foundProfiles[i].userId.localpart!,
                   ),
                   subtitle: Text(controller.foundProfiles[i].userId),
                   onTap: () => controller.inviteAction(
@@ -66,7 +65,7 @@ class InvitationSelectionView extends StatelessWidget {
                       child: CircularProgressIndicator.adaptive(strokeWidth: 2),
                     );
                   }
-                  final contacts = snapshot.data;
+                  final contacts = snapshot.data!;
                   return ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,

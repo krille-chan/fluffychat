@@ -1,5 +1,3 @@
-//@dart=2.12
-
 import 'package:flutter/cupertino.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
