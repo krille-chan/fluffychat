@@ -42,8 +42,8 @@ class _EventVideoPlayerState extends State<EventVideoPlayer> {
       } else {
         final tempDir = await getTemporaryDirectory();
         final fileName = Uri.encodeComponent(
-            widget.event.attachmentOrThumbnailMxcUrl()!.toString());
-        final file = File('${tempDir.path}/$fileName');
+            widget.event.attachmentOrThumbnailMxcUrl()!.pathSegments.last);
+        final file = File('${tempDir.path}/${fileName}_${videoFile.name}');
         if (await file.exists() == false) {
           await file.writeAsBytes(videoFile.bytes);
         }
