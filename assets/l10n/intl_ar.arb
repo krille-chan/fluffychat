@@ -1360,7 +1360,7 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "ابدأ محادثتك الأولى! 🙂\n- أنقر زر الرسالة\n- أدخل اسم المستخدم المستهدف\n- اكتب ما يحلو لك",
+  "startYourFirstChat": "ابدأ محادثتك الأولى! 🙂\n- أنقر زر 'رسالة جديدة'\n- اسمح رمز الاستجابة السريعة لصديقك\n- اكتب ما يحلو لك",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -2524,5 +2524,24 @@
     "placeholders": {
       "min": {}
     }
-  }
+  },
+  "removeFromSpace": "أزل من الفضاء",
+  "@removeFromSpace": {},
+  "unverified": "لم تُستوثَق",
+  "@unverified": {},
+  "whoCanPerformWhichAction": "المخوَلون",
+  "@whoCanPerformWhichAction": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "messageInfo": "معلومات الرسالة",
+  "@messageInfo": {},
+  "messageType": "نوع الرسالة",
+  "@messageType": {},
+  "sender": "المرسل",
+  "@sender": {},
+  "openGallery": "افتخ المعرض",
+  "@openGallery": {},
+  "time": "الوقت",
+  "@time": {}
 }
