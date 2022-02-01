@@ -19,13 +19,13 @@ class ImageBubble extends StatefulWidget {
   final bool tapToView;
   final BoxFit fit;
   final bool maxSize;
-  final Color backgroundColor;
+  final Color? backgroundColor;
   final bool thumbnailOnly;
   final bool animated;
   final double width;
   final double height;
-  final void Function() onLoaded;
-  final void Function() onTap;
+  final void Function()? onLoaded;
+  final void Function()? onTap;
 
   const ImageBubble(
     this.event, {
@@ -39,7 +39,7 @@ class ImageBubble extends StatefulWidget {
     this.height = 300,
     this.animated = false,
     this.onTap,
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -48,17 +48,17 @@ class ImageBubble extends StatefulWidget {
 
 class _ImageBubbleState extends State<ImageBubble> {
   // for plaintext: holds the http URL for the thumbnail
-  String thumbnailUrl;
+  String? thumbnailUrl;
   // for plaintext. holds the http URL for the thumbnial, without the animated flag
-  String thumbnailUrlNoAnimated;
+  String? thumbnailUrlNoAnimated;
   // for plaintext: holds the http URL of the original
-  String attachmentUrl;
-  MatrixFile _file;
-  MatrixFile _thumbnail;
+  String? attachmentUrl;
+  MatrixFile? _file;
+  MatrixFile? _thumbnail;
   bool _requestedThumbnailOnFailure = false;
   // In case we have animated = false, this will hold the first frame so that we make
   // sure that things are never animated
-  Widget _firstFrame;
+  Widget? _firstFrame;
 
   // the mimetypes that we know how to render, from the flutter Image widget
   final _knownMimetypes = <String>{
@@ -82,8 +82,8 @@ class _ImageBubbleState extends State<ImageBubble> {
       ? widget.event.thumbnailMimetype.toLowerCase()
       : widget.event.attachmentMimetype.toLowerCase();
 
-  MatrixFile get _displayFile => _file ?? _thumbnail;
-  String get displayUrl => widget.thumbnailOnly ? thumbnailUrl : attachmentUrl;
+  MatrixFile? get _displayFile => _file ?? _thumbnail;
+  String? get displayUrl => widget.thumbnailOnly ? thumbnailUrl : attachmentUrl;
 
   dynamic _error;
 
@@ -91,14 +91,14 @@ class _ImageBubbleState extends State<ImageBubble> {
     try {
       final res = await widget.event
           .downloadAndDecryptAttachmentCached(getThumbnail: getThumbnail);
-      WidgetsBinding.instance.addPostFrameCallback((_) {
+      WidgetsBinding.instance!.addPostFrameCallback((_) {
         if (getThumbnail) {
           if (mounted) {
             setState(() => _thumbnail = res);
           }
         } else {
           if (widget.onLoaded != null) {
-            widget.onLoaded();
+            widget.onLoaded!();
           }
           if (mounted) {
             setState(() => _file = res);
@@ -106,7 +106,7 @@ class _ImageBubbleState extends State<ImageBubble> {
         }
       });
     } catch (err) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
+      WidgetsBinding.instance!.addPostFrameCallback((_) {
         if (mounted) {
           setState(() => _error = err);
         }
@@ -114,7 +114,7 @@ class _ImageBubbleState extends State<ImageBubble> {
     }
   }
 
-  Widget frameBuilder(_, Widget child, int frame, __) {
+  Widget frameBuilder(_, Widget child, int? frame, __) {
     // as servers might return animated gifs as thumbnails and we want them to *not* play
     // animated, we'll have to store the first frame in a variable and display that instead
     if (widget.animated) {
@@ -135,12 +135,14 @@ class _ImageBubbleState extends State<ImageBubble> {
         key: ValueKey(key),
         fit: widget.fit,
       ),
-      network: (String url) => SvgPicture.network(
-        url,
-        key: ValueKey(url),
-        placeholderBuilder: (context) => getPlaceholderWidget(),
-        fit: widget.fit,
-      ),
+      network: (String? url) => url == null
+          ? Container()
+          : SvgPicture.network(
+              url,
+              key: ValueKey(url),
+              placeholderBuilder: (context) => getPlaceholderWidget(),
+              fit: widget.fit,
+            ),
     );
     _contentRenderers['image/lottie+json'] = _ImageBubbleContentRenderer(
       memory: (Uint8List bytes, String key) => Lottie.memory(
@@ -151,14 +153,16 @@ class _ImageBubbleState extends State<ImageBubble> {
             getErrorWidget(context, error),
         animate: widget.animated,
       ),
-      network: (String url) => Lottie.network(
-        url,
-        key: ValueKey(url),
-        fit: widget.fit,
-        errorBuilder: (context, error, stacktrace) =>
-            getErrorWidget(context, error),
-        animate: widget.animated,
-      ),
+      network: (String? url) => url == null
+          ? Container()
+          : Lottie.network(
+              url,
+              key: ValueKey(url),
+              fit: widget.fit,
+              errorBuilder: (context, error, stacktrace) =>
+                  getErrorWidget(context, error),
+              animate: widget.animated,
+            ),
     );
 
     // add all the custom content renderer mimetypes to the known mimetypes set
@@ -203,7 +207,7 @@ class _ImageBubbleState extends State<ImageBubble> {
           OutlinedButton.icon(
             style: OutlinedButton.styleFrom(
               backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-              primary: Theme.of(context).textTheme.bodyText1.color,
+              primary: Theme.of(context).textTheme.bodyText1!.color,
             ),
             icon: const Icon(Icons.download_outlined),
             onPressed: () => widget.event.saveFile(context),
@@ -215,7 +219,7 @@ class _ImageBubbleState extends State<ImageBubble> {
             ),
           ),
           const SizedBox(height: 8),
-          if (widget.event.sizeString != null) Text(widget.event.sizeString),
+          if (widget.event.sizeString != null) Text(widget.event.sizeString!),
           const SizedBox(height: 8),
           Text((error ?? _error).toString()),
         ],
@@ -223,8 +227,8 @@ class _ImageBubbleState extends State<ImageBubble> {
     );
   }
 
-  Widget getPlaceholderWidget({Widget child}) {
-    Widget blurhash;
+  Widget getPlaceholderWidget({Widget? child}) {
+    Widget? blurhash;
     if (widget.event.infoMap['xyz.amorgan.blurhash'] is String) {
       final ratio =
           widget.event.infoMap['w'] is int && widget.event.infoMap['h'] is int
@@ -265,16 +269,16 @@ class _ImageBubbleState extends State<ImageBubble> {
         : widget.event.thumbnailMxcUrl.toString();
     final mimetype = getMimetype(!isOriginal);
     if (_contentRenderers.containsKey(mimetype)) {
-      return _contentRenderers[mimetype].memory(_displayFile.bytes, key);
+      return _contentRenderers[mimetype]!.memory!(_displayFile!.bytes, key);
     } else {
       return Image.memory(
-        _displayFile.bytes,
+        _displayFile!.bytes,
         key: ValueKey(key),
         fit: widget.fit,
         errorBuilder: (context, error, stacktrace) {
           if (widget.event.hasThumbnail && !_requestedThumbnailOnFailure) {
             _requestedThumbnailOnFailure = true;
-            WidgetsBinding.instance.addPostFrameCallback((_) {
+            WidgetsBinding.instance!.addPostFrameCallback((_) {
               setState(() {
                 _file = null;
                 _requestFile(getThumbnail: true);
@@ -299,12 +303,12 @@ class _ImageBubbleState extends State<ImageBubble> {
     final mimetype = getMimetype(_requestedThumbnailOnFailure);
     if (displayUrl == attachmentUrl &&
         _contentRenderers.containsKey(mimetype)) {
-      return _contentRenderers[mimetype].network(displayUrl);
+      return _contentRenderers[mimetype]!.network!(displayUrl);
     } else {
       return CachedNetworkImage(
         // as we change the url on-error we need a key so that the widget actually updates
         key: ValueKey(displayUrl),
-        imageUrl: displayUrl,
+        imageUrl: displayUrl!,
         placeholder: (context, url) {
           if (!widget.thumbnailOnly &&
               displayUrl != thumbnailUrl &&
@@ -313,7 +317,7 @@ class _ImageBubbleState extends State<ImageBubble> {
             return FutureBuilder<bool>(
               future: (() async {
                 return await DefaultCacheManager()
-                        .getFileFromCache(thumbnailUrl) !=
+                        .getFileFromCache(thumbnailUrl!) !=
                     null;
               })(),
               builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
@@ -321,8 +325,8 @@ class _ImageBubbleState extends State<ImageBubble> {
                   return getPlaceholderWidget();
                 }
                 final effectiveUrl = snapshot.data == true
-                    ? thumbnailUrl
-                    : thumbnailUrlNoAnimated;
+                    ? thumbnailUrl!
+                    : thumbnailUrlNoAnimated!;
                 return CachedNetworkImage(
                   key: ValueKey(effectiveUrl),
                   imageUrl: effectiveUrl,
@@ -348,7 +352,7 @@ class _ImageBubbleState extends State<ImageBubble> {
             // the image failed to load but the event has a thumbnail attached....so we can
             // try to load this one!
             _requestedThumbnailOnFailure = true;
-            WidgetsBinding.instance.addPostFrameCallback((_) {
+            WidgetsBinding.instance!.addPostFrameCallback((_) {
               setState(() {
                 thumbnailUrl = widget.event
                     .getAttachmentUrl(
@@ -382,11 +386,11 @@ class _ImageBubbleState extends State<ImageBubble> {
                 OutlinedButton(
                   style: OutlinedButton.styleFrom(
                     backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                    primary: Theme.of(context).textTheme.bodyText1.color,
+                    primary: Theme.of(context).textTheme.bodyText1!.color,
                   ),
                   onPressed: () => onTap(context),
                   child: Text(
-                    L10n.of(context).tapToShowImage,
+                    L10n.of(context)!.tapToShowImage,
                     overflow: TextOverflow.fade,
                     softWrap: false,
                     maxLines: 1,
@@ -394,7 +398,7 @@ class _ImageBubbleState extends State<ImageBubble> {
                 ),
                 if (widget.event.sizeString != null) ...[
                   const SizedBox(height: 8),
-                  Text(widget.event.sizeString),
+                  Text(widget.event.sizeString!),
                 ]
               ],
             ));
@@ -451,7 +455,7 @@ class _ImageBubbleState extends State<ImageBubble> {
 
   void onTap(BuildContext context) {
     if (widget.onTap != null) {
-      widget.onTap();
+      widget.onTap!();
       return;
     }
     if (!widget.tapToView) return;
@@ -476,8 +480,8 @@ class _ImageBubbleState extends State<ImageBubble> {
 }
 
 class _ImageBubbleContentRenderer {
-  final Widget Function(Uint8List, String) memory;
-  final Widget Function(String) network;
+  final Widget Function(Uint8List, String)? memory;
+  final Widget Function(String?)? network;
 
   _ImageBubbleContentRenderer({this.memory, this.network});
 }

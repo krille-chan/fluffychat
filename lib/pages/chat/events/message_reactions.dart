@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:collection/collection.dart' show IterableExtension;
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
@@ -14,14 +15,14 @@ class MessageReactions extends StatelessWidget {
   final Event event;
   final Timeline timeline;
 
-  const MessageReactions(this.event, this.timeline, {Key key})
+  const MessageReactions(this.event, this.timeline, {Key? key})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final allReactionEvents =
         event.aggregatedEvents(timeline, RelationshipTypes.reaction);
-    final reactionMap = <String, _ReactionEntry>{};
+    final reactionMap = <String?, _ReactionEntry>{};
     final client = Matrix.of(context).client;
 
     for (final e in allReactionEvents) {
@@ -35,9 +36,9 @@ class MessageReactions extends StatelessWidget {
             reactors: [],
           );
         }
-        reactionMap[key].count++;
-        reactionMap[key].reactors.add(e.sender);
-        reactionMap[key].reacted |= e.senderId == e.room.client.userID;
+        reactionMap[key]!.count++;
+        reactionMap[key]!.reactors!.add(e.sender);
+        reactionMap[key]!.reacted |= e.senderId == e.room.client.userID;
       }
     }
 
@@ -52,11 +53,9 @@ class MessageReactions extends StatelessWidget {
               reacted: r.reacted,
               onTap: () {
                 if (r.reacted) {
-                  final evt = allReactionEvents.firstWhere(
-                      (e) =>
-                          e.senderId == e.room.client.userID &&
-                          e.content['m.relates_to']['key'] == r.key,
-                      orElse: () => null);
+                  final evt = allReactionEvents.firstWhereOrNull((e) =>
+                      e.senderId == e.room.client.userID &&
+                      e.content['m.relates_to']['key'] == r.key);
                   if (evt != null) {
                     showFutureLoadingDialog(
                       context: context,
@@ -67,7 +66,7 @@ class MessageReactions extends StatelessWidget {
                   showFutureLoadingDialog(
                       context: context,
                       future: () =>
-                          event.room.sendReaction(event.eventId, r.key));
+                          event.room.sendReaction(event.eventId, r.key!));
                 }
               },
               onLongPress: () async => await _AdaptableReactorsDialog(
@@ -91,11 +90,11 @@ class MessageReactions extends StatelessWidget {
 }
 
 class _Reaction extends StatelessWidget {
-  final String reactionKey;
-  final int count;
-  final bool reacted;
-  final void Function() onTap;
-  final void Function() onLongPress;
+  final String? reactionKey;
+  final int? count;
+  final bool? reacted;
+  final void Function()? onTap;
+  final void Function()? onLongPress;
 
   const _Reaction({
     this.reactionKey,
@@ -113,11 +112,11 @@ class _Reaction extends StatelessWidget {
     final color = Theme.of(context).scaffoldBackgroundColor;
     final fontSize = DefaultTextStyle.of(context).style.fontSize;
     Widget content;
-    if (reactionKey.startsWith('mxc://')) {
-      final src = Uri.parse(reactionKey)?.getThumbnail(
+    if (reactionKey!.startsWith('mxc://')) {
+      final src = Uri.parse(reactionKey!).getThumbnail(
         Matrix.of(context).client,
         width: 9999,
-        height: fontSize * MediaQuery.of(context).devicePixelRatio,
+        height: fontSize! * MediaQuery.of(context).devicePixelRatio,
         method: ThumbnailMethod.scale,
       );
       content = Row(
@@ -136,7 +135,7 @@ class _Reaction extends StatelessWidget {
         ],
       );
     } else {
-      var renderKey = Characters(reactionKey);
+      var renderKey = Characters(reactionKey!);
       if (renderKey.length > 10) {
         renderKey = renderKey.getRange(0, 9) + Characters('…');
       }
@@ -147,13 +146,13 @@ class _Reaction extends StatelessWidget {
           ));
     }
     return InkWell(
-      onTap: () => onTap != null ? onTap() : null,
-      onLongPress: () => onLongPress != null ? onLongPress() : null,
+      onTap: () => onTap != null ? onTap!() : null,
+      onLongPress: () => onLongPress != null ? onLongPress!() : null,
       borderRadius: BorderRadius.circular(AppConfig.borderRadius),
       child: Container(
         decoration: BoxDecoration(
           color: color,
-          border: reacted
+          border: reacted!
               ? Border.all(
                   width: 1,
                   color: Theme.of(context).primaryColor,
@@ -169,25 +168,30 @@ class _Reaction extends StatelessWidget {
 }
 
 class _ReactionEntry {
-  String key;
+  String? key;
   int count;
   bool reacted;
-  List<User> reactors;
+  List<User>? reactors;
 
-  _ReactionEntry({this.key, this.count, this.reacted, this.reactors});
+  _ReactionEntry({
+    this.key,
+    required this.count,
+    required this.reacted,
+    this.reactors,
+  });
 }
 
 class _AdaptableReactorsDialog extends StatelessWidget {
-  final Client client;
-  final _ReactionEntry reactionEntry;
+  final Client? client;
+  final _ReactionEntry? reactionEntry;
 
   const _AdaptableReactorsDialog({
-    Key key,
+    Key? key,
     this.client,
     this.reactionEntry,
   }) : super(key: key);
 
-  Future<bool> show(BuildContext context) => PlatformInfos.isCupertinoStyle
+  Future<bool?> show(BuildContext context) => PlatformInfos.isCupertinoStyle
       ? showCupertinoDialog(
           context: context,
           builder: (context) => this,
@@ -209,20 +213,20 @@ class _AdaptableReactorsDialog extends StatelessWidget {
         runSpacing: 4.0,
         alignment: WrapAlignment.center,
         children: <Widget>[
-          for (var reactor in reactionEntry.reactors)
+          for (var reactor in reactionEntry!.reactors!)
             Chip(
               avatar: Avatar(
                 mxContent: reactor.avatarUrl,
                 name: reactor.displayName,
                 client: client,
               ),
-              label: Text(reactor.displayName),
+              label: Text(reactor.displayName!),
             ),
         ],
       ),
     );
 
-    final title = Center(child: Text(reactionEntry.key));
+    final title = Center(child: Text(reactionEntry!.key!));
 
     return PlatformInfos.isCupertinoStyle
         ? CupertinoAlertDialog(

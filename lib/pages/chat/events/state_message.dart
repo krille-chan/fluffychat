@@ -9,16 +9,16 @@ import '../../../config/app_config.dart';
 class StateMessage extends StatelessWidget {
   final Event event;
   final void Function(String) unfold;
-  const StateMessage(this.event, {@required this.unfold, Key key})
+  const StateMessage(this.event, {required this.unfold, Key? key})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    if (event.unsigned['im.fluffychat.collapsed_state_event'] == true) {
+    if (event.unsigned!['im.fluffychat.collapsed_state_event'] == true) {
       return Container();
     }
     final int counter =
-        event.unsigned['im.fluffychat.collapsed_state_event_count'] ?? 0;
+        event.unsigned!['im.fluffychat.collapsed_state_event_count'] ?? 0;
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 8.0,
@@ -40,18 +40,18 @@ class StateMessage extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  event.getLocalizedBody(MatrixLocals(L10n.of(context))),
+                  event.getLocalizedBody(MatrixLocals(L10n.of(context)!)),
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 14 * AppConfig.fontSizeFactor,
-                    color: Theme.of(context).textTheme.bodyText2.color,
+                    color: Theme.of(context).textTheme.bodyText2!.color,
                     decoration:
                         event.redacted ? TextDecoration.lineThrough : null,
                   ),
                 ),
                 if (counter != 0)
                   Text(
-                    L10n.of(context).moreEvents(counter),
+                    L10n.of(context)!.moreEvents(counter),
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 14 * AppConfig.fontSizeFactor,

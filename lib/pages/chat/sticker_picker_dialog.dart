@@ -10,14 +10,14 @@ import 'events/image_bubble.dart';
 class StickerPickerDialog extends StatefulWidget {
   final Room room;
 
-  const StickerPickerDialog({this.room, Key key}) : super(key: key);
+  const StickerPickerDialog({required this.room, Key? key}) : super(key: key);
 
   @override
   StickerPickerDialogState createState() => StickerPickerDialogState();
 }
 
 class StickerPickerDialogState extends State<StickerPickerDialog> {
-  String searchFilter;
+  String? searchFilter;
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +26,14 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
 
     // ignore: prefer_function_declarations_over_variables
     final _packBuilder = (BuildContext context, int packIndex) {
-      final pack = stickerPacks[packSlugs[packIndex]];
+      final pack = stickerPacks[packSlugs[packIndex]]!;
       final filteredImagePackImageEntried = pack.images.entries.toList();
       if (searchFilter?.isNotEmpty ?? false) {
         filteredImagePackImageEntried.removeWhere((e) =>
-            !(e.key.toLowerCase().contains(searchFilter.toLowerCase()) ||
+            !(e.key.toLowerCase().contains(searchFilter!.toLowerCase()) ||
                 (e.value.body
                         ?.toLowerCase()
-                        ?.contains(searchFilter.toLowerCase()) ??
+                        .contains(searchFilter!.toLowerCase()) ??
                     false)));
       }
       final imageKeys =
@@ -62,7 +62,7 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (BuildContext context, int imageIndex) {
-              final image = pack.images[imageKeys[imageIndex]];
+              final image = pack.images[imageKeys[imageIndex]]!;
               final fakeEvent = Event.fromJson(<String, dynamic>{
                 'type': EventTypes.Sticker,
                 'content': <String, dynamic>{
@@ -116,7 +116,7 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
               ),
               title: DefaultAppBarSearchField(
                 autofocus: false,
-                hintText: L10n.of(context).search,
+                hintText: L10n.of(context)!.search,
                 suffix: const Icon(Icons.search_outlined),
                 onChanged: (s) => setState(() => searchFilter = s),
               ),

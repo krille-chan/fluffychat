@@ -8,12 +8,12 @@ import 'package:fluffychat/widgets/matrix.dart';
 
 class SeenByRow extends StatelessWidget {
   final ChatController controller;
-  const SeenByRow(this.controller, {Key key}) : super(key: key);
+  const SeenByRow(this.controller, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final seenByUsers = controller.room.getSeenByUsers(
-      controller.timeline,
+    final seenByUsers = controller.room!.getSeenByUsers(
+      controller.timeline!,
       controller.filteredEvents,
       controller.unfolded,
     );

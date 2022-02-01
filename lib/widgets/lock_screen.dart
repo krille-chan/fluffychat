@@ -1,5 +1,3 @@
-//@dart=2.12
-
 import 'package:flutter/material.dart';
 
 import 'package:flutter_app_lock/flutter_app_lock.dart';

@@ -14,19 +14,19 @@ import '../../widgets/matrix.dart';
 import 'settings_view.dart';
 
 class Settings extends StatefulWidget {
-  const Settings({Key key}) : super(key: key);
+  const Settings({Key? key}) : super(key: key);
 
   @override
   SettingsController createState() => SettingsController();
 }
 
 class SettingsController extends State<Settings> {
-  Future<bool> crossSigningCachedFuture;
-  bool crossSigningCached;
-  Future<bool> megolmBackupCachedFuture;
-  bool megolmBackupCached;
-  Future<dynamic> profileFuture;
-  Profile profile;
+  Future<bool>? crossSigningCachedFuture;
+  bool? crossSigningCached;
+  Future<bool>? megolmBackupCachedFuture;
+  bool? megolmBackupCached;
+  Future<dynamic>? profileFuture;
+  Profile? profile;
   bool profileUpdated = false;
 
   void updateProfile() => setState(() {
@@ -39,19 +39,19 @@ class SettingsController extends State<Settings> {
       if (PlatformInfos.isMobile)
         SheetAction(
           key: AvatarAction.camera,
-          label: L10n.of(context).openCamera,
+          label: L10n.of(context)!.openCamera,
           isDefaultAction: true,
           icon: Icons.camera_alt_outlined,
         ),
       SheetAction(
         key: AvatarAction.file,
-        label: L10n.of(context).openGallery,
+        label: L10n.of(context)!.openGallery,
         icon: Icons.photo_outlined,
       ),
       if (profile?.avatarUrl != null)
         SheetAction(
           key: AvatarAction.remove,
-          label: L10n.of(context).removeYourAvatar,
+          label: L10n.of(context)!.removeYourAvatar,
           isDestructiveAction: true,
           icon: Icons.delete_outlined,
         ),
@@ -60,7 +60,7 @@ class SettingsController extends State<Settings> {
         ? actions.single
         : await showModalActionSheet<AvatarAction>(
             context: context,
-            title: L10n.of(context).changeYourAvatar,
+            title: L10n.of(context)!.changeYourAvatar,
             actions: actions,
           );
     if (action == null) return;
@@ -91,10 +91,10 @@ class SettingsController extends State<Settings> {
     } else {
       final result =
           await FilePickerCross.importFromStorage(type: FileTypeCross.image);
-      if (result == null) return;
+      if (result.fileName == null) return;
       file = MatrixFile(
         bytes: result.toUint8List(),
-        name: result.fileName,
+        name: result.fileName!,
       );
     }
     final success = await showFutureLoadingDialog(
@@ -111,7 +111,7 @@ class SettingsController extends State<Settings> {
     final client = Matrix.of(context).client;
     profileFuture ??= client
         .getProfileFromUserId(
-      client.userID,
+      client.userID!,
       cache: !profileUpdated,
       getFromRooms: !profileUpdated,
     )
@@ -121,12 +121,12 @@ class SettingsController extends State<Settings> {
     });
     if (client.encryption != null) {
       crossSigningCachedFuture ??=
-          client.encryption?.crossSigning?.isCached()?.then((c) {
+          client.encryption?.crossSigning.isCached().then((c) {
         if (mounted) setState(() => crossSigningCached = c);
         return c;
       });
       megolmBackupCachedFuture ??=
-          client.encryption?.keyManager?.isCached()?.then((c) {
+          client.encryption?.keyManager.isCached().then((c) {
         if (mounted) setState(() => megolmBackupCached = c);
         return c;
       });

@@ -14,7 +14,7 @@ import 'package:path_provider/path_provider.dart';
 import '../platform_infos.dart';
 
 class FlutterMatrixHiveStore extends FamedlySdkHiveDatabase {
-  FlutterMatrixHiveStore(String name, {HiveCipher encryptionCipher})
+  FlutterMatrixHiveStore(String name, {HiveCipher? encryptionCipher})
       : super(
           name,
           encryptionCipher: encryptionCipher,
@@ -28,7 +28,7 @@ class FlutterMatrixHiveStore extends FamedlySdkHiveDatabase {
     if (!kIsWeb && !_hiveInitialized) {
       _hiveInitialized = true;
     }
-    HiveCipher hiverCipher;
+    HiveCipher? hiverCipher;
     try {
       // Workaround for secure storage is calling Platform.operatingSystem on web
       if (kIsWeb || Platform.isLinux) throw MissingPluginException();
@@ -83,12 +83,12 @@ class FlutterMatrixHiveStore extends FamedlySdkHiveDatabase {
         return (await getApplicationDocumentsDirectory()).path;
       }
     } catch (_) {
-      return (await getDownloadsDirectory()).path;
+      return (await getDownloadsDirectory())!.path;
     }
   }
 
   @override
-  Future<Uint8List> getFile(Uri mxcUri) async {
+  Future<Uint8List?> getFile(Uri mxcUri) async {
     if (!supportsFileStoring) return null;
     final tempDirectory = await _getFileStoreDirectory();
     final file =

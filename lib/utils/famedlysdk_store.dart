@@ -9,11 +9,11 @@ import 'package:fluffychat/utils/platform_infos.dart';
 
 // see https://github.com/mogol/flutter_secure_storage/issues/161#issuecomment-704578453
 class AsyncMutex {
-  Completer<void> _completer;
+  Completer<void>? _completer;
 
   Future<void> lock() async {
     while (_completer != null) {
-      await _completer.future;
+      await _completer!.future;
     }
 
     _completer = Completer<void>();
@@ -21,15 +21,15 @@ class AsyncMutex {
 
   void unlock() {
     assert(_completer != null);
-    final completer = _completer;
+    final completer = _completer!;
     _completer = null;
     completer.complete();
   }
 }
 
 class Store {
-  LocalStorage storage;
-  final FlutterSecureStorage secureStorage;
+  LocalStorage? storage;
+  final FlutterSecureStorage? secureStorage;
   static final _mutex = AsyncMutex();
 
   Store()
@@ -44,22 +44,22 @@ class Store {
               ? null
               : await getApplicationDocumentsDirectory());
       storage = LocalStorage('LocalStorage', directory?.path);
-      await storage.ready;
+      await storage!.ready;
     }
   }
 
-  Future<String> getItem(String key) async {
+  Future<String?> getItem(String key) async {
     if (!PlatformInfos.isMobile) {
       await _setupLocalStorage();
       try {
-        return storage.getItem(key)?.toString();
+        return storage!.getItem(key)?.toString();
       } catch (_) {
         return null;
       }
     }
     try {
       await _mutex.lock();
-      return await secureStorage.read(key: key);
+      return await secureStorage!.read(key: key);
     } catch (_) {
       return null;
     } finally {
@@ -67,7 +67,7 @@ class Store {
     }
   }
 
-  Future<bool> getItemBool(String key, [bool defaultValue]) async {
+  Future<bool> getItemBool(String key, [bool? defaultValue]) async {
     final value = await getItem(key);
     if (value == null) {
       return defaultValue ?? false;
@@ -76,14 +76,14 @@ class Store {
     return value == '1' || value.toLowerCase() == 'true';
   }
 
-  Future<void> setItem(String key, String value) async {
+  Future<void> setItem(String key, String? value) async {
     if (!PlatformInfos.isMobile) {
       await _setupLocalStorage();
-      return await storage.setItem(key, value);
+      return await storage!.setItem(key, value);
     }
     try {
       await _mutex.lock();
-      return await secureStorage.write(key: key, value: value);
+      return await secureStorage!.write(key: key, value: value);
     } finally {
       _mutex.unlock();
     }
@@ -96,11 +96,11 @@ class Store {
   Future<void> deleteItem(String key) async {
     if (!PlatformInfos.isMobile) {
       await _setupLocalStorage();
-      return await storage.deleteItem(key);
+      return await storage!.deleteItem(key);
     }
     try {
       await _mutex.lock();
-      return await secureStorage.delete(key: key);
+      return await secureStorage!.delete(key: key);
     } finally {
       _mutex.unlock();
     }

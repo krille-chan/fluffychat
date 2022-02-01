@@ -9,7 +9,7 @@ import 'login.dart';
 class LoginView extends StatelessWidget {
   final LoginController controller;
 
-  const LoginView(this.controller, {Key key}) : super(key: key);
+  const LoginView(this.controller, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class LoginView extends StatelessWidget {
           leading: controller.loading ? Container() : const BackButton(),
           elevation: 0,
           title: Text(
-            L10n.of(context).logInTo(Matrix.of(context)
+            L10n.of(context)!.logInTo(Matrix.of(context)
                 .getLoginClient()
                 .homeserver
                 .toString()
@@ -42,9 +42,9 @@ class LoginView extends StatelessWidget {
                         controller.loading ? null : [AutofillHints.username],
                     decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.account_box_outlined),
-                        hintText: L10n.of(context).username,
+                        hintText: L10n.of(context)!.username,
                         errorText: controller.usernameError,
-                        labelText: L10n.of(context).username),
+                        labelText: L10n.of(context)!.username),
                   ),
                 ),
                 Padding(
@@ -62,13 +62,13 @@ class LoginView extends StatelessWidget {
                       hintText: '****',
                       errorText: controller.passwordError,
                       suffixIcon: IconButton(
-                        tooltip: L10n.of(context).showPassword,
+                        tooltip: L10n.of(context)!.showPassword,
                         icon: Icon(controller.showPassword
                             ? Icons.visibility_off_outlined
                             : Icons.visibility_outlined),
                         onPressed: controller.toggleShowPassword,
                       ),
-                      labelText: L10n.of(context).password,
+                      labelText: L10n.of(context)!.password,
                     ),
                   ),
                 ),
@@ -83,7 +83,7 @@ class LoginView extends StatelessWidget {
                           : () => controller.login(context),
                       child: controller.loading
                           ? const LinearProgressIndicator()
-                          : Text(L10n.of(context).login),
+                          : Text(L10n.of(context)!.login),
                     ),
                   ),
                 ),
@@ -91,7 +91,7 @@ class LoginView extends StatelessWidget {
                   child: TextButton(
                     onPressed: controller.passwordForgotten,
                     child: Text(
-                      L10n.of(context).passwordForgotten,
+                      L10n.of(context)!.passwordForgotten,
                       style: const TextStyle(
                         color: Colors.blue,
                         decoration: TextDecoration.underline,

@@ -10,9 +10,9 @@ import '../../utils/matrix_sdk_extensions.dart/event_extension.dart';
 
 class ImageViewer extends StatefulWidget {
   final Event event;
-  final void Function() onLoaded;
+  final void Function()? onLoaded;
 
-  const ImageViewer(this.event, {Key key, this.onLoaded}) : super(key: key);
+  const ImageViewer(this.event, {Key? key, this.onLoaded}) : super(key: key);
 
   @override
   ImageViewerController createState() => ImageViewerController();

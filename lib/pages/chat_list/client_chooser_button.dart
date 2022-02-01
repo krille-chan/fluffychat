@@ -8,20 +8,20 @@ import 'chat_list.dart';
 
 class ClientChooserButton extends StatelessWidget {
   final ChatListController controller;
-  const ClientChooserButton(this.controller, {Key key}) : super(key: key);
+  const ClientChooserButton(this.controller, {Key? key}) : super(key: key);
 
   List<PopupMenuEntry<Object>> _bundleMenuItems(BuildContext context) {
     final matrix = Matrix.of(context);
     final bundles = matrix.accountBundles.keys.toList()
-      ..sort((a, b) => a.isValidMatrixId == b.isValidMatrixId
+      ..sort((a, b) => a!.isValidMatrixId == b!.isValidMatrixId
           ? 0
           : a.isValidMatrixId && !b.isValidMatrixId
               ? -1
               : 1);
     return <PopupMenuEntry<Object>>[
       for (final bundle in bundles) ...[
-        if (matrix.accountBundles[bundle].length != 1 ||
-            matrix.accountBundles[bundle].single.userID != bundle)
+        if (matrix.accountBundles[bundle]!.length != 1 ||
+            matrix.accountBundles[bundle]!.single!.userID != bundle)
           PopupMenuItem(
             value: null,
             child: Column(
@@ -29,9 +29,9 @@ class ClientChooserButton extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  bundle,
+                  bundle!,
                   style: TextStyle(
-                    color: Theme.of(context).textTheme.subtitle1.color,
+                    color: Theme.of(context).textTheme.subtitle1!.color,
                     fontSize: 14,
                   ),
                 ),
@@ -39,25 +39,26 @@ class ClientChooserButton extends StatelessWidget {
               ],
             ),
           ),
-        ...matrix.accountBundles[bundle]
+        ...matrix.accountBundles[bundle]!
             .map(
               (client) => PopupMenuItem(
                 value: client,
                 child: FutureBuilder<Profile>(
-                  future: client.ownProfile,
+                  future: client!.ownProfile,
                   builder: (context, snapshot) => Row(
                     children: [
                       Avatar(
                         mxContent: snapshot.data?.avatarUrl,
                         name: snapshot.data?.displayName ??
-                            client.userID.localpart,
+                            client.userID!.localpart,
                         size: 28,
                         fontSize: 12,
                       ),
                       const SizedBox(width: 12),
                       Expanded(
                         child: Text(
-                          snapshot.data?.displayName ?? client.userID.localpart,
+                          snapshot.data?.displayName ??
+                              client.userID!.localpart!,
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
@@ -86,7 +87,7 @@ class ClientChooserButton extends StatelessWidget {
         builder: (context, snapshot) => PopupMenuButton<Object>(
           child: Avatar(
             mxContent: snapshot.data?.avatarUrl,
-            name: snapshot.data?.displayName ?? matrix.client.userID.localpart,
+            name: snapshot.data?.displayName ?? matrix.client.userID!.localpart,
             size: 28,
             fontSize: 12,
           ),

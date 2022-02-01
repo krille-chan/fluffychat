@@ -15,14 +15,15 @@ import 'settings_notifications.dart';
 class SettingsNotificationsView extends StatelessWidget {
   final SettingsNotificationsController controller;
 
-  const SettingsNotificationsView(this.controller, {Key key}) : super(key: key);
+  const SettingsNotificationsView(this.controller, {Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: const BackButton(),
-        title: Text(L10n.of(context).notifications),
+        title: Text(L10n.of(context)!.notifications),
       ),
       body: MaxWidthBody(
         withScrolling: true,
@@ -38,7 +39,7 @@ class SettingsNotificationsView extends StatelessWidget {
                   SwitchListTile.adaptive(
                     value: !Matrix.of(context).client.allPushNotificationsMuted,
                     title: Text(
-                        L10n.of(context).notificationsEnabledForThisAccount),
+                        L10n.of(context)!.notificationsEnabledForThisAccount),
                     onChanged: (_) => showFutureLoadingDialog(
                       context: context,
                       future: () =>
@@ -52,7 +53,7 @@ class SettingsNotificationsView extends StatelessWidget {
                   if (!Matrix.of(context).client.allPushNotificationsMuted) ...{
                     if (!kIsWeb && Platform.isAndroid)
                       ListTile(
-                        title: Text(L10n.of(context).soundVibrationLedColor),
+                        title: Text(L10n.of(context)!.soundVibrationLedColor),
                         trailing: CircleAvatar(
                           backgroundColor:
                               Theme.of(context).scaffoldBackgroundColor,
@@ -64,7 +65,7 @@ class SettingsNotificationsView extends StatelessWidget {
                     const Divider(thickness: 1),
                     ListTile(
                       title: Text(
-                        L10n.of(context).pushRules,
+                        L10n.of(context)!.pushRules,
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.secondary,
                           fontWeight: FontWeight.bold,
@@ -82,20 +83,20 @@ class SettingsNotificationsView extends StatelessWidget {
                   const Divider(thickness: 1),
                   ListTile(
                     title: Text(
-                      L10n.of(context).devices,
+                      L10n.of(context)!.devices,
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.secondary,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
-                  FutureBuilder<List<Pusher>>(
+                  FutureBuilder<List<Pusher>?>(
                     future: Matrix.of(context).client.getPushers(),
                     builder: (context, snapshot) {
                       if (snapshot.hasError) {
                         Center(
                           child: Text(
-                            snapshot.error.toLocalizedString(context),
+                            snapshot.error!.toLocalizedString(context),
                           ),
                         );
                       }

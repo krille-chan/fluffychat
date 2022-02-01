@@ -1,4 +1,3 @@
-//@dart=2.12
 // This file is auto-generated using scripts/generate_command_hints_glue.sh.
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';

@@ -15,7 +15,7 @@ import 'user_bottom_sheet.dart';
 class UserBottomSheetView extends StatelessWidget {
   final UserBottomSheetController controller;
 
-  const UserBottomSheetView(this.controller, {Key key}) : super(key: key);
+  const UserBottomSheetView(this.controller, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class UserBottomSheetView extends StatelessWidget {
                 leading: IconButton(
                   icon: const Icon(Icons.arrow_downward_outlined),
                   onPressed: Navigator.of(context, rootNavigator: false).pop,
-                  tooltip: L10n.of(context).close,
+                  tooltip: L10n.of(context)!.close,
                 ),
                 title: Text(user.calcDisplayname()),
                 actions: [
@@ -49,7 +49,7 @@ class UserBottomSheetView extends StatelessWidget {
                           PopupMenuItem(
                             value: 'mention',
                             child: _TextWithIcon(
-                              L10n.of(context).mention,
+                              L10n.of(context)!.mention,
                               Icons.alternate_email_outlined,
                             ),
                           ),
@@ -57,7 +57,7 @@ class UserBottomSheetView extends StatelessWidget {
                           PopupMenuItem(
                             value: 'message',
                             child: _TextWithIcon(
-                              L10n.of(context).sendAMessage,
+                              L10n.of(context)!.sendAMessage,
                               Icons.send_outlined,
                             ),
                           ),
@@ -65,7 +65,7 @@ class UserBottomSheetView extends StatelessWidget {
                           PopupMenuItem(
                             value: 'permission',
                             child: _TextWithIcon(
-                              L10n.of(context).setPermissionsLevel,
+                              L10n.of(context)!.setPermissionsLevel,
                               Icons.edit_attributes_outlined,
                             ),
                           ),
@@ -73,7 +73,7 @@ class UserBottomSheetView extends StatelessWidget {
                           PopupMenuItem(
                             value: 'kick',
                             child: _TextWithIcon(
-                              L10n.of(context).kickFromChat,
+                              L10n.of(context)!.kickFromChat,
                               Icons.exit_to_app_outlined,
                             ),
                           ),
@@ -81,7 +81,7 @@ class UserBottomSheetView extends StatelessWidget {
                           PopupMenuItem(
                             value: 'ban',
                             child: _TextWithIcon(
-                              L10n.of(context).banFromChat,
+                              L10n.of(context)!.banFromChat,
                               Icons.warning_sharp,
                             ),
                           )
@@ -90,7 +90,7 @@ class UserBottomSheetView extends StatelessWidget {
                           PopupMenuItem(
                             value: 'unban',
                             child: _TextWithIcon(
-                              L10n.of(context).unbanFromChat,
+                              L10n.of(context)!.unbanFromChat,
                               Icons.warning_outlined,
                             ),
                           ),
@@ -98,7 +98,7 @@ class UserBottomSheetView extends StatelessWidget {
                           PopupMenuItem(
                             value: 'ignore',
                             child: _TextWithIcon(
-                              L10n.of(context).ignore,
+                              L10n.of(context)!.ignore,
                               Icons.block,
                             ),
                           ),
@@ -111,13 +111,13 @@ class UserBottomSheetView extends StatelessWidget {
                 children: [
                   Expanded(
                     child: ContentBanner(
-                      user.avatarUrl,
+                      mxContent: user.avatarUrl,
                       defaultIcon: Icons.person_outline,
                       client: client,
                     ),
                   ),
                   ListTile(
-                    title: Text(L10n.of(context).username),
+                    title: Text(L10n.of(context)!.username),
                     subtitle: Text(user.id),
                     trailing: Icon(Icons.adaptive.share_outlined),
                     onTap: () => FluffyShare.share(
@@ -150,7 +150,7 @@ class _TextWithIcon extends StatelessWidget {
   const _TextWithIcon(
     this.text,
     this.iconData, {
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

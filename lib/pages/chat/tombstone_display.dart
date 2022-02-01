@@ -7,11 +7,11 @@ import 'chat.dart';
 
 class TombstoneDisplay extends StatelessWidget {
   final ChatController controller;
-  const TombstoneDisplay(this.controller, {Key key}) : super(key: key);
+  const TombstoneDisplay(this.controller, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    if (controller.room.getState(EventTypes.RoomTombstone) == null) {
+    if (controller.room!.getState(EventTypes.RoomTombstone) == null) {
       return Container();
     }
     return SizedBox(
@@ -26,14 +26,14 @@ class TombstoneDisplay extends StatelessWidget {
             child: const Icon(Icons.upgrade_outlined),
           ),
           title: Text(
-            controller.room
-                .getState(EventTypes.RoomTombstone)
+            controller.room!
+                .getState(EventTypes.RoomTombstone)!
                 .parsedTombstoneContent
                 .body,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
-          subtitle: Text(L10n.of(context).goToTheNewRoom),
+          subtitle: Text(L10n.of(context)!.goToTheNewRoom),
           onTap: controller.goToNewRoomAction,
         ),
       ),

@@ -1,5 +1,5 @@
 diff --git a/android/app/build.gradle b/android/app/build.gradle
-index 63136570..3f33ea05 100644
+index 39c920e8..e27a49f5 100644
 --- a/android/app/build.gradle
 +++ b/android/app/build.gradle
 @@ -80,11 +80,11 @@ flutter {
@@ -17,10 +17,10 @@ index 63136570..3f33ea05 100644
 -//apply plugin: 'com.google.gms.google-services'
 +apply plugin: 'com.google.gms.google-services'
 diff --git a/android/app/src/main/AndroidManifest.xml b/android/app/src/main/AndroidManifest.xml
-index 9cbecc16..1709ddc6 100644
+index eae7eadf..cf81a750 100644
 --- a/android/app/src/main/AndroidManifest.xml
 +++ b/android/app/src/main/AndroidManifest.xml
-@@ -82,12 +82,12 @@
+@@ -88,12 +88,12 @@
  
          </activity>
  
@@ -65,7 +65,7 @@ index 4ce5c41d..be58d662 100644
  }
  
 diff --git a/lib/utils/background_push.dart b/lib/utils/background_push.dart
-index ca660845..306da934 100644
+index f2eb9fb4..0234765f 100644
 --- a/lib/utils/background_push.dart
 +++ b/lib/utils/background_push.dart
 @@ -39,7 +39,7 @@ import 'famedlysdk_store.dart';
@@ -77,20 +77,20 @@ index ca660845..306da934 100644
  
  class NoTokenException implements Exception {
    String get cause => 'Cannot get firebase token';
-@@ -116,7 +116,7 @@ class BackgroundPush {
+@@ -117,7 +117,7 @@ class BackgroundPush {
      setupPush();
    }
  
--  final _fcmSharedIsolate = null; //FcmSharedIsolate();
-+  final _fcmSharedIsolate = FcmSharedIsolate();
+-  final dynamic _fcmSharedIsolate = null; //FcmSharedIsolate();
++  final dynamic _fcmSharedIsolate = FcmSharedIsolate();
  
-   StreamSubscription<LoginState> onLogin;
-   StreamSubscription<SyncUpdate> onRoomSync;
+   StreamSubscription<LoginState>? onLogin;
+   StreamSubscription<SyncUpdate>? onRoomSync;
 diff --git a/pubspec.yaml b/pubspec.yaml
-index e1670a32..7e3238b0 100644
+index a1442ed2..ee0ce757 100644
 --- a/pubspec.yaml
 +++ b/pubspec.yaml
-@@ -16,8 +16,8 @@ dependencies:
+@@ -21,8 +21,8 @@ dependencies:
    email_validator: ^2.0.1
    emoji_picker_flutter: ^1.0.7
    encrypt: ^5.0.1

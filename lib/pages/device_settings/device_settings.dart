@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/encryption/utils/key_verification.dart';
@@ -11,14 +12,14 @@ import 'package:fluffychat/pages/key_verification/key_verification_dialog.dart';
 import '../../widgets/matrix.dart';
 
 class DevicesSettings extends StatefulWidget {
-  const DevicesSettings({Key key}) : super(key: key);
+  const DevicesSettings({Key? key}) : super(key: key);
 
   @override
   DevicesSettingsController createState() => DevicesSettingsController();
 }
 
 class DevicesSettingsController extends State<DevicesSettings> {
-  List<Device> devices;
+  List<Device>? devices;
   Future<bool> loadUserDevices(BuildContext context) async {
     if (devices != null) return true;
     devices = await Matrix.of(context).client.getDevices();
@@ -28,15 +29,15 @@ class DevicesSettingsController extends State<DevicesSettings> {
   void reload() => setState(() => devices = null);
 
   bool loadingDeletingDevices = false;
-  String errorDeletingDevices;
+  String? errorDeletingDevices;
 
   void removeDevicesAction(List<Device> devices) async {
     if (await showOkCancelAlertDialog(
           useRootNavigator: false,
           context: context,
-          title: L10n.of(context).areYouSure,
-          okLabel: L10n.of(context).yes,
-          cancelLabel: L10n.of(context).cancel,
+          title: L10n.of(context)!.areYouSure,
+          okLabel: L10n.of(context)!.yes,
+          cancelLabel: L10n.of(context)!.cancel,
         ) ==
         OkCancelResult.cancel) return;
     final matrix = Matrix.of(context);
@@ -69,9 +70,9 @@ class DevicesSettingsController extends State<DevicesSettings> {
     final displayName = await showTextInputDialog(
       useRootNavigator: false,
       context: context,
-      title: L10n.of(context).changeDeviceName,
-      okLabel: L10n.of(context).ok,
-      cancelLabel: L10n.of(context).cancel,
+      title: L10n.of(context)!.changeDeviceName,
+      okLabel: L10n.of(context)!.ok,
+      cancelLabel: L10n.of(context)!.cancel,
       textFields: [
         DialogTextField(
           hintText: device.displayName,
@@ -93,13 +94,13 @@ class DevicesSettingsController extends State<DevicesSettings> {
   void verifyDeviceAction(Device device) async {
     final req = Matrix.of(context)
         .client
-        .userDeviceKeys[Matrix.of(context).client.userID]
-        .deviceKeys[device.deviceId]
+        .userDeviceKeys[Matrix.of(context).client.userID!]!
+        .deviceKeys[device.deviceId]!
         .startVerification();
     req.onUpdate = () {
       if ({KeyVerificationState.error, KeyVerificationState.done}
           .contains(req.state)) {
-        setState(() => null);
+        setState(() {});
       }
     };
     await KeyVerificationDialog(request: req).show(context);
@@ -108,33 +109,32 @@ class DevicesSettingsController extends State<DevicesSettings> {
   void blockDeviceAction(Device device) async {
     final key = Matrix.of(context)
         .client
-        .userDeviceKeys[Matrix.of(context).client.userID]
-        .deviceKeys[device.deviceId];
+        .userDeviceKeys[Matrix.of(context).client.userID!]!
+        .deviceKeys[device.deviceId]!;
     if (key.directVerified) {
       await key.setVerified(false);
     }
     await key.setBlocked(true);
-    setState(() => null);
+    setState(() {});
   }
 
   void unblockDeviceAction(Device device) async {
     final key = Matrix.of(context)
         .client
-        .userDeviceKeys[Matrix.of(context).client.userID]
-        .deviceKeys[device.deviceId];
+        .userDeviceKeys[Matrix.of(context).client.userID!]!
+        .deviceKeys[device.deviceId]!;
     await key.setBlocked(false);
-    setState(() => null);
+    setState(() {});
   }
 
   bool _isOwnDevice(Device userDevice) =>
       userDevice.deviceId == Matrix.of(context).client.deviceID;
 
-  Device get thisDevice => devices.firstWhere(
+  Device? get thisDevice => devices!.firstWhereOrNull(
         _isOwnDevice,
-        orElse: () => null,
       );
 
-  List<Device> get notThisDevice => List<Device>.from(devices)
+  List<Device> get notThisDevice => List<Device>.from(devices!)
     ..removeWhere(_isOwnDevice)
     ..sort((a, b) => (b.lastSeenTs ?? 0).compareTo(a.lastSeenTs ?? 0));
 

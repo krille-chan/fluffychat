@@ -12,13 +12,13 @@ import '../../widgets/matrix.dart';
 
 class EncryptionButton extends StatefulWidget {
   final Room room;
-  const EncryptionButton(this.room, {Key key}) : super(key: key);
+  const EncryptionButton(this.room, {Key? key}) : super(key: key);
   @override
   _EncryptionButtonState createState() => _EncryptionButtonState();
 }
 
 class _EncryptionButtonState extends State<EncryptionButton> {
-  StreamSubscription _onSyncSub;
+  StreamSubscription? _onSyncSub;
 
   void _enableEncryptionAction() async {
     if (widget.room.encrypted) {
@@ -29,20 +29,20 @@ class _EncryptionButtonState extends State<EncryptionButton> {
       await showOkAlertDialog(
         useRootNavigator: false,
         context: context,
-        okLabel: L10n.of(context).ok,
-        message: L10n.of(context).noEncryptionForPublicRooms,
+        okLabel: L10n.of(context)!.ok,
+        message: L10n.of(context)!.noEncryptionForPublicRooms,
       );
       return;
     }
     if (await showOkCancelAlertDialog(
           useRootNavigator: false,
           context: context,
-          title: L10n.of(context).enableEncryption,
+          title: L10n.of(context)!.enableEncryption,
           message: widget.room.client.encryptionEnabled
-              ? L10n.of(context).enableEncryptionWarning
-              : L10n.of(context).needPantalaimonWarning,
-          okLabel: L10n.of(context).yes,
-          cancelLabel: L10n.of(context).cancel,
+              ? L10n.of(context)!.enableEncryptionWarning
+              : L10n.of(context)!.needPantalaimonWarning,
+          okLabel: L10n.of(context)!.yes,
+          cancelLabel: L10n.of(context)!.cancel,
         ) ==
         OkCancelResult.ok) {
       await showFutureLoadingDialog(
@@ -50,7 +50,7 @@ class _EncryptionButtonState extends State<EncryptionButton> {
         future: () => widget.room.enableEncryption(),
       );
       // we want to enable the lock icon
-      setState(() => null);
+      setState(() {});
     }
   }
 
@@ -68,22 +68,22 @@ class _EncryptionButtonState extends State<EncryptionButton> {
           .onSync
           .stream
           .where((s) => s.deviceLists != null)
-          .listen((s) => setState(() => null));
+          .listen((s) => setState(() {}));
     }
     return FutureBuilder<List<User>>(
         future:
             widget.room.encrypted ? widget.room.requestParticipants() : null,
         builder: (BuildContext context, snapshot) {
-          Color color;
+          Color? color;
           if (widget.room.encrypted && snapshot.hasData) {
-            final users = snapshot.data;
+            final users = snapshot.data!;
             users.removeWhere((u) =>
                 !{Membership.invite, Membership.join}.contains(u.membership) ||
                 !widget.room.client.userDeviceKeys.containsKey(u.id));
             var allUsersValid = true;
             var oneUserInvalid = false;
             for (final u in users) {
-              final status = widget.room.client.userDeviceKeys[u.id].verified;
+              final status = widget.room.client.userDeviceKeys[u.id]!.verified;
               if (status != UserVerifiedStatus.verified) {
                 allUsersValid = false;
               }
@@ -99,8 +99,8 @@ class _EncryptionButtonState extends State<EncryptionButton> {
           }
           return IconButton(
             tooltip: widget.room.encrypted
-                ? L10n.of(context).encrypted
-                : L10n.of(context).encryptionNotEnabled,
+                ? L10n.of(context)!.encrypted
+                : L10n.of(context)!.encryptionNotEnabled,
             icon: Icon(
                 widget.room.encrypted
                     ? Icons.lock_outlined

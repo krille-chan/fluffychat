@@ -12,27 +12,27 @@ import '../../widgets/matrix.dart';
 import 'settings_emotes_view.dart';
 
 class EmotesSettings extends StatefulWidget {
-  const EmotesSettings({Key key}) : super(key: key);
+  const EmotesSettings({Key? key}) : super(key: key);
 
   @override
   EmotesSettingsController createState() => EmotesSettingsController();
 }
 
 class EmotesSettingsController extends State<EmotesSettings> {
-  String get roomId => VRouter.of(context).pathParameters['roomid'];
-  Room get room =>
-      roomId != null ? Matrix.of(context).client.getRoomById(roomId) : null;
-  String get stateKey => VRouter.of(context).pathParameters['state_key'];
+  String? get roomId => VRouter.of(context).pathParameters['roomid'];
+  Room? get room =>
+      roomId != null ? Matrix.of(context).client.getRoomById(roomId!) : null;
+  String? get stateKey => VRouter.of(context).pathParameters['state_key'];
 
   bool showSave = false;
   TextEditingController newImageCodeController = TextEditingController();
-  ValueNotifier<ImagePackImageContent> newImageController =
-      ValueNotifier<ImagePackImageContent>(null);
+  ValueNotifier<ImagePackImageContent?> newImageController =
+      ValueNotifier<ImagePackImageContent?>(null);
 
   ImagePackContent _getPack() {
     final client = Matrix.of(context).client;
     final event = (room != null
-            ? room.getState('im.ponies.room_emotes', stateKey ?? '')
+            ? room!.getState('im.ponies.room_emotes', stateKey ?? '')
             : client.accountData['im.ponies.user_emotes']) ??
         BasicEvent.fromJson(<String, dynamic>{
           'type': 'm.dummy',
@@ -42,8 +42,8 @@ class EmotesSettingsController extends State<EmotesSettings> {
     return BasicEvent.fromJson(event.toJson()).parsedImagePackContent;
   }
 
-  ImagePackContent _pack;
-  ImagePackContent get pack {
+  ImagePackContent? _pack;
+  ImagePackContent? get pack {
     if (_pack != null) {
       return _pack;
     }
@@ -60,13 +60,13 @@ class EmotesSettingsController extends State<EmotesSettings> {
       await showFutureLoadingDialog(
         context: context,
         future: () => client.setRoomStateWithKey(
-            room.id, 'im.ponies.room_emotes', stateKey ?? '', pack.toJson()),
+            room!.id, 'im.ponies.room_emotes', stateKey ?? '', pack!.toJson()),
       );
     } else {
       await showFutureLoadingDialog(
         context: context,
         future: () => client.setAccountData(
-            client.userID, 'im.ponies.user_emotes', pack.toJson()),
+            client.userID!, 'im.ponies.user_emotes', pack!.toJson()),
       );
     }
   }
@@ -82,26 +82,26 @@ class EmotesSettingsController extends State<EmotesSettings> {
       if (content['rooms'] is! Map) {
         content['rooms'] = <String, dynamic>{};
       }
-      if (content['rooms'][room.id] is! Map) {
-        content['rooms'][room.id] = <String, dynamic>{};
+      if (content['rooms'][room!.id] is! Map) {
+        content['rooms'][room!.id] = <String, dynamic>{};
       }
-      if (content['rooms'][room.id][stateKey ?? ''] is! Map) {
-        content['rooms'][room.id][stateKey ?? ''] = <String, dynamic>{};
+      if (content['rooms'][room!.id][stateKey ?? ''] is! Map) {
+        content['rooms'][room!.id][stateKey ?? ''] = <String, dynamic>{};
       }
-    } else if (content['rooms'] is Map && content['rooms'][room.id] is Map) {
-      content['rooms'][room.id].remove(stateKey ?? '');
+    } else if (content['rooms'] is Map && content['rooms'][room!.id] is Map) {
+      content['rooms'][room!.id].remove(stateKey ?? '');
     }
     // and save
     await showFutureLoadingDialog(
       context: context,
       future: () => client.setAccountData(
-          client.userID, 'im.ponies.emote_rooms', content),
+          client.userID!, 'im.ponies.emote_rooms', content),
     );
-    setState(() => null);
+    setState(() {});
   }
 
   void removeImageAction(String oldImageCode) => setState(() {
-        pack.images.remove(oldImageCode);
+        pack!.images.remove(oldImageCode);
         showSave = true;
       });
 
@@ -111,13 +111,13 @@ class EmotesSettingsController extends State<EmotesSettings> {
     ImagePackImageContent image,
     TextEditingController controller,
   ) {
-    if (pack.images.keys.any((k) => k == imageCode && k != oldImageCode)) {
+    if (pack!.images.keys.any((k) => k == imageCode && k != oldImageCode)) {
       controller.text = oldImageCode;
       showOkAlertDialog(
         useRootNavigator: false,
         context: context,
-        message: L10n.of(context).emoteExists,
-        okLabel: L10n.of(context).ok,
+        message: L10n.of(context)!.emoteExists,
+        okLabel: L10n.of(context)!.ok,
       );
       return;
     }
@@ -126,29 +126,29 @@ class EmotesSettingsController extends State<EmotesSettings> {
       showOkAlertDialog(
         useRootNavigator: false,
         context: context,
-        message: L10n.of(context).emoteInvalid,
-        okLabel: L10n.of(context).ok,
+        message: L10n.of(context)!.emoteInvalid,
+        okLabel: L10n.of(context)!.ok,
       );
       return;
     }
     setState(() {
-      pack.images[imageCode] = image;
-      pack.images.remove(oldImageCode);
+      pack!.images[imageCode] = image;
+      pack!.images.remove(oldImageCode);
       showSave = true;
     });
   }
 
-  bool isGloballyActive(Client client) =>
+  bool isGloballyActive(Client? client) =>
       room != null &&
-      client.accountData['im.ponies.emote_rooms']?.content is Map &&
-      client.accountData['im.ponies.emote_rooms'].content['rooms'] is Map &&
-      client.accountData['im.ponies.emote_rooms'].content['rooms'][room.id]
+      client!.accountData['im.ponies.emote_rooms']?.content is Map &&
+      client.accountData['im.ponies.emote_rooms']!.content['rooms'] is Map &&
+      client.accountData['im.ponies.emote_rooms']!.content['rooms'][room!.id]
           is Map &&
-      client.accountData['im.ponies.emote_rooms'].content['rooms'][room.id]
+      client.accountData['im.ponies.emote_rooms']!.content['rooms'][room!.id]
           [stateKey ?? ''] is Map;
 
   bool get readonly =>
-      room == null ? false : !(room.canSendEvent('im.ponies.room_emotes'));
+      room == null ? false : !(room!.canSendEvent('im.ponies.room_emotes'));
 
   void saveAction() async {
     await _save(context);
@@ -158,24 +158,23 @@ class EmotesSettingsController extends State<EmotesSettings> {
   }
 
   void addImageAction() async {
-    if (newImageCodeController.text == null ||
-        newImageCodeController.text.isEmpty ||
+    if (newImageCodeController.text.isEmpty ||
         newImageController.value == null) {
       await showOkAlertDialog(
         useRootNavigator: false,
         context: context,
-        message: L10n.of(context).emoteWarnNeedToPick,
-        okLabel: L10n.of(context).ok,
+        message: L10n.of(context)!.emoteWarnNeedToPick,
+        okLabel: L10n.of(context)!.ok,
       );
       return;
     }
     final imageCode = newImageCodeController.text;
-    if (pack.images.containsKey(imageCode)) {
+    if (pack!.images.containsKey(imageCode)) {
       await showOkAlertDialog(
         useRootNavigator: false,
         context: context,
-        message: L10n.of(context).emoteExists,
-        okLabel: L10n.of(context).ok,
+        message: L10n.of(context)!.emoteExists,
+        okLabel: L10n.of(context)!.ok,
       );
       return;
     }
@@ -183,12 +182,12 @@ class EmotesSettingsController extends State<EmotesSettings> {
       await showOkAlertDialog(
         useRootNavigator: false,
         context: context,
-        message: L10n.of(context).emoteInvalid,
-        okLabel: L10n.of(context).ok,
+        message: L10n.of(context)!.emoteInvalid,
+        okLabel: L10n.of(context)!.ok,
       );
       return;
     }
-    pack.images[imageCode] = newImageController.value;
+    pack!.images[imageCode] = newImageController.value!;
     await _save(context);
     setState(() {
       newImageCodeController.text = '';
@@ -198,13 +197,13 @@ class EmotesSettingsController extends State<EmotesSettings> {
   }
 
   void imagePickerAction(
-      ValueNotifier<ImagePackImageContent> controller) async {
+      ValueNotifier<ImagePackImageContent?> controller) async {
     final result =
         await FilePickerCross.importFromStorage(type: FileTypeCross.image);
-    if (result == null) return;
+    if (result.fileName == null) return;
     var file = MatrixImageFile(
       bytes: result.toUint8List(),
-      name: result.fileName,
+      name: result.fileName!,
     );
     try {
       file = await file.resizeImage(calcBlurhash: false);

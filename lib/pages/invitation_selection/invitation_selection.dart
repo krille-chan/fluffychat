@@ -12,7 +12,7 @@ import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/localized_exception_extension.dart';
 
 class InvitationSelection extends StatefulWidget {
-  const InvitationSelection({Key key}) : super(key: key);
+  const InvitationSelection({Key? key}) : super(key: key);
 
   @override
   InvitationSelectionController createState() =>
@@ -21,16 +21,16 @@ class InvitationSelection extends StatefulWidget {
 
 class InvitationSelectionController extends State<InvitationSelection> {
   TextEditingController controller = TextEditingController();
-  String currentSearchTerm;
+  late String currentSearchTerm;
   bool loading = false;
   List<Profile> foundProfiles = [];
-  Timer coolDown;
+  Timer? coolDown;
 
-  String get roomId => VRouter.of(context).pathParameters['roomid'];
+  String? get roomId => VRouter.of(context).pathParameters['roomid'];
 
   Future<List<User>> getContacts(BuildContext context) async {
     final client = Matrix.of(context).client;
-    final room = client.getRoomById(roomId);
+    final room = client.getRoomById(roomId!)!;
     final participants = await room.requestParticipants();
     participants.removeWhere(
       (u) => ![Membership.join, Membership.invite].contains(u.membership),
@@ -38,7 +38,7 @@ class InvitationSelectionController extends State<InvitationSelection> {
     final participantsIds = participants.map((p) => p.stateKey).toList();
     final contacts = client.rooms
         .where((r) => r.isDirectChat)
-        .map((r) => r.getUserByMXIDSync(r.directChatMatrixID))
+        .map((r) => r.getUserByMXIDSync(r.directChatMatrixID!))
         .toList()
       ..removeWhere((u) => participantsIds.contains(u.stateKey));
     contacts.sort(
@@ -50,14 +50,14 @@ class InvitationSelectionController extends State<InvitationSelection> {
   }
 
   void inviteAction(BuildContext context, String id) async {
-    final room = Matrix.of(context).client.getRoomById(roomId);
+    final room = Matrix.of(context).client.getRoomById(roomId!);
     final success = await showFutureLoadingDialog(
       context: context,
-      future: () => room.invite(id),
+      future: () => room!.invite(id),
     );
     if (success.error == null) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(L10n.of(context).contactHasBeenInvitedToTheGroup)));
+          content: Text(L10n.of(context)!.contactHasBeenInvitedToTheGroup)));
     }
   }
 
@@ -84,7 +84,7 @@ class InvitationSelectionController extends State<InvitationSelection> {
       response = await matrix.client.searchUserDirectory(text, limit: 10);
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text((e as Object).toLocalizedString(context))));
+          SnackBar(content: Text((e).toLocalizedString(context))));
       return;
     } finally {
       setState(() => loading = false);
@@ -99,7 +99,7 @@ class InvitationSelectionController extends State<InvitationSelection> {
       }
       final participants = Matrix.of(context)
           .client
-          .getRoomById(roomId)
+          .getRoomById(roomId!)!
           .getParticipants()
           .where((user) =>
               [Membership.join, Membership.invite].contains(user.membership))

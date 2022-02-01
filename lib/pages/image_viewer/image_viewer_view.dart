@@ -8,7 +8,7 @@ import 'image_viewer.dart';
 class ImageViewerView extends StatelessWidget {
   final ImageViewerController controller;
 
-  const ImageViewerView(this.controller, {Key key}) : super(key: key);
+  const ImageViewerView(this.controller, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class ImageViewerView extends StatelessWidget {
           icon: const Icon(Icons.close),
           onPressed: Navigator.of(context).pop,
           color: Colors.white,
-          tooltip: L10n.of(context).close,
+          tooltip: L10n.of(context)!.close,
         ),
         backgroundColor: const Color(0x44000000),
         actions: [
@@ -29,13 +29,13 @@ class ImageViewerView extends StatelessWidget {
             icon: const Icon(Icons.reply_outlined),
             onPressed: controller.forwardAction,
             color: Colors.white,
-            tooltip: L10n.of(context).share,
+            tooltip: L10n.of(context)!.share,
           ),
           IconButton(
             icon: const Icon(Icons.download_outlined),
             onPressed: controller.saveFileAction,
             color: Colors.white,
-            tooltip: L10n.of(context).downloadFile,
+            tooltip: L10n.of(context)!.downloadFile,
           ),
         ],
       ),

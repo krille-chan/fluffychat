@@ -6,13 +6,13 @@ import 'package:matrix/matrix.dart';
 class PermissionsListTile extends StatelessWidget {
   final String permissionKey;
   final int permission;
-  final String category;
-  final void Function() onTap;
+  final String? category;
+  final void Function()? onTap;
 
   const PermissionsListTile({
-    Key key,
-    @required this.permissionKey,
-    @required this.permission,
+    Key? key,
+    required this.permissionKey,
+    required this.permission,
     this.category,
     this.onTap,
   }) : super(key: key);
@@ -21,43 +21,43 @@ class PermissionsListTile extends StatelessWidget {
     if (category == null) {
       switch (permissionKey) {
         case 'users_default':
-          return L10n.of(context).defaultPermissionLevel;
+          return L10n.of(context)!.defaultPermissionLevel;
         case 'events_default':
-          return L10n.of(context).sendMessages;
+          return L10n.of(context)!.sendMessages;
         case 'state_default':
-          return L10n.of(context).configureChat;
+          return L10n.of(context)!.configureChat;
         case 'ban':
-          return L10n.of(context).banFromChat;
+          return L10n.of(context)!.banFromChat;
         case 'kick':
-          return L10n.of(context).kickFromChat;
+          return L10n.of(context)!.kickFromChat;
         case 'redact':
-          return L10n.of(context).deleteMessage;
+          return L10n.of(context)!.deleteMessage;
         case 'invite':
-          return L10n.of(context).inviteContact;
+          return L10n.of(context)!.inviteContact;
       }
     } else if (category == 'notifications') {
       switch (permissionKey) {
         case 'rooms':
-          return L10n.of(context).notifications;
+          return L10n.of(context)!.notifications;
       }
     } else if (category == 'events') {
       switch (permissionKey) {
         case EventTypes.RoomName:
-          return L10n.of(context).changeTheNameOfTheGroup;
+          return L10n.of(context)!.changeTheNameOfTheGroup;
         case EventTypes.RoomPowerLevels:
-          return L10n.of(context).editChatPermissions;
+          return L10n.of(context)!.editChatPermissions;
         case EventTypes.HistoryVisibility:
-          return L10n.of(context).visibilityOfTheChatHistory;
+          return L10n.of(context)!.visibilityOfTheChatHistory;
         case EventTypes.RoomCanonicalAlias:
-          return L10n.of(context).setInvitationLink;
+          return L10n.of(context)!.setInvitationLink;
         case EventTypes.RoomAvatar:
-          return L10n.of(context).editRoomAvatar;
+          return L10n.of(context)!.editRoomAvatar;
         case EventTypes.RoomTombstone:
-          return L10n.of(context).replaceRoomWithNewerVersion;
+          return L10n.of(context)!.replaceRoomWithNewerVersion;
         case EventTypes.Encryption:
-          return L10n.of(context).enableEncryption;
+          return L10n.of(context)!.enableEncryption;
         case 'm.room.server_acl':
-          return L10n.of(context).editBlockedServers;
+          return L10n.of(context)!.editBlockedServers;
       }
     }
     return permissionKey;
@@ -96,9 +96,9 @@ class PermissionsListTile extends StatelessWidget {
 extension on int {
   String toLocalizedPowerLevelString(BuildContext context) {
     return this == 100
-        ? L10n.of(context).admin
+        ? L10n.of(context)!.admin
         : this >= 50
-            ? L10n.of(context).moderator
-            : L10n.of(context).participant;
+            ? L10n.of(context)!.moderator
+            : L10n.of(context)!.participant;
   }
 }

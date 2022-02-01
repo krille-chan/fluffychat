@@ -16,14 +16,14 @@ import 'verification_request_content.dart';
 
 class Message extends StatelessWidget {
   final Event event;
-  final Event nextEvent;
-  final void Function(Event) onSelect;
-  final void Function(Event) onAvatarTab;
-  final void Function(Event) onInfoTab;
-  final void Function(String) scrollToEventId;
+  final Event? nextEvent;
+  final void Function(Event)? onSelect;
+  final void Function(Event)? onAvatarTab;
+  final void Function(Event)? onInfoTab;
+  final void Function(String)? scrollToEventId;
   final void Function(String) unfold;
-  final bool longPressSelect;
-  final bool selected;
+  final bool? longPressSelect;
+  final bool? selected;
   final Timeline timeline;
 
   const Message(this.event,
@@ -33,10 +33,10 @@ class Message extends StatelessWidget {
       this.onInfoTab,
       this.onAvatarTab,
       this.scrollToEventId,
-      @required this.unfold,
+      required this.unfold,
       this.selected,
-      this.timeline,
-      Key key})
+      required this.timeline,
+      Key? key})
       : super(key: key);
 
   /// Indicates wheither the user may use a mouse instead
@@ -61,14 +61,14 @@ class Message extends StatelessWidget {
     var color = Theme.of(context).appBarTheme.backgroundColor;
     final displayTime = event.type == EventTypes.RoomCreate ||
         nextEvent == null ||
-        !event.originServerTs.sameEnvironment(nextEvent.originServerTs);
+        !event.originServerTs.sameEnvironment(nextEvent!.originServerTs);
     final sameSender = nextEvent != null &&
             [
               EventTypes.Message,
               EventTypes.Sticker,
               EventTypes.Encrypted,
-            ].contains(nextEvent.type)
-        ? nextEvent.sender.id == event.sender.id && !displayTime
+            ].contains(nextEvent!.type)
+        ? nextEvent!.sender.id == event.sender.id && !displayTime
         : false;
     final textColor = ownMessage
         ? Colors.white
@@ -119,7 +119,7 @@ class Message extends StatelessWidget {
           : Avatar(
               mxContent: event.sender.avatarUrl,
               name: event.sender.calcDisplayname(),
-              onTap: () => onAvatarTab(event),
+              onTap: () => onAvatarTab!(event),
             ),
       Expanded(
         child: Column(
@@ -152,10 +152,11 @@ class Message extends StatelessWidget {
                 clipBehavior: Clip.antiAlias,
                 child: InkWell(
                   onHover: (b) => useMouse = true,
-                  onTap: !useMouse && longPressSelect
-                      ? () => null
-                      : () => onSelect(event),
-                  onLongPress: !longPressSelect ? null : () => onSelect(event),
+                  onTap: !useMouse && longPressSelect!
+                      ? () {}
+                      : () => onSelect!(event),
+                  onLongPress:
+                      !longPressSelect! ? null : () => onSelect!(event),
                   borderRadius: borderRadius,
                   child: Container(
                     decoration: BoxDecoration(
@@ -175,13 +176,13 @@ class Message extends StatelessWidget {
                           children: <Widget>[
                             if (event.relationshipType ==
                                 RelationshipTypes.reply)
-                              FutureBuilder<Event>(
+                              FutureBuilder<Event?>(
                                 future: event.getReplyEvent(timeline),
                                 builder: (BuildContext context, snapshot) {
                                   final replyEvent = snapshot.hasData
-                                      ? snapshot.data
+                                      ? snapshot.data!
                                       : Event(
-                                          eventId: event.relationshipEventId,
+                                          eventId: event.relationshipEventId!,
                                           content: {
                                             'msgtype': 'm.text',
                                             'body': '...'
@@ -195,7 +196,7 @@ class Message extends StatelessWidget {
                                   return InkWell(
                                     onTap: () {
                                       if (scrollToEventId != null) {
-                                        scrollToEventId(replyEvent.eventId);
+                                        scrollToEventId!(replyEvent.eventId);
                                       }
                                     },
                                     child: AbsorbPointer(
@@ -300,7 +301,7 @@ class Message extends StatelessWidget {
 
     return Center(
       child: Container(
-        color: selected
+        color: selected!
             ? Theme.of(context).primaryColor.withAlpha(100)
             : Theme.of(context).primaryColor.withAlpha(0),
         constraints:

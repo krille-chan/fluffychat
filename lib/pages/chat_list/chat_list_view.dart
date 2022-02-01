@@ -21,11 +21,11 @@ import '../../widgets/matrix.dart';
 class ChatListView extends StatelessWidget {
   final ChatListController controller;
 
-  const ChatListView(this.controller, {Key key}) : super(key: key);
+  const ChatListView(this.controller, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<Object>(
+    return StreamBuilder<Object?>(
         stream: Matrix.of(context).onShareContentChanged.stream,
         builder: (_, __) {
           final selectMode = controller.selectMode;
@@ -48,7 +48,7 @@ class ChatListView extends StatelessWidget {
                         ? ClientChooserButton(controller)
                         : null
                     : IconButton(
-                        tooltip: L10n.of(context).cancel,
+                        tooltip: L10n.of(context)!.cancel,
                         icon: const Icon(Icons.close_outlined),
                         onPressed: controller.cancelAction,
                         color: Theme.of(context).colorScheme.primary,
@@ -60,12 +60,12 @@ class ChatListView extends StatelessWidget {
                         ? [
                             if (controller.spaces.isNotEmpty)
                               IconButton(
-                                tooltip: L10n.of(context).addToSpace,
+                                tooltip: L10n.of(context)!.addToSpace,
                                 icon: const Icon(Icons.group_work_outlined),
                                 onPressed: controller.addOrRemoveToSpace,
                               ),
                             IconButton(
-                              tooltip: L10n.of(context).toggleUnread,
+                              tooltip: L10n.of(context)!.toggleUnread,
                               icon: Icon(
                                   controller.anySelectedRoomNotMarkedUnread
                                       ? Icons.mark_chat_read_outlined
@@ -73,7 +73,7 @@ class ChatListView extends StatelessWidget {
                               onPressed: controller.toggleUnread,
                             ),
                             IconButton(
-                              tooltip: L10n.of(context).toggleFavorite,
+                              tooltip: L10n.of(context)!.toggleFavorite,
                               icon: Icon(controller.anySelectedRoomNotFavorite
                                   ? Icons.push_pin_outlined
                                   : Icons.push_pin),
@@ -83,19 +83,19 @@ class ChatListView extends StatelessWidget {
                               icon: Icon(controller.anySelectedRoomNotMuted
                                   ? Icons.notifications_off_outlined
                                   : Icons.notifications_outlined),
-                              tooltip: L10n.of(context).toggleMuted,
+                              tooltip: L10n.of(context)!.toggleMuted,
                               onPressed: controller.toggleMuted,
                             ),
                             IconButton(
                               icon: const Icon(Icons.delete_outlined),
-                              tooltip: L10n.of(context).archive,
+                              tooltip: L10n.of(context)!.archive,
                               onPressed: controller.archiveAction,
                             ),
                           ]
                         : [
                             IconButton(
                               icon: const Icon(Icons.search_outlined),
-                              tooltip: L10n.of(context).search,
+                              tooltip: L10n.of(context)!.search,
                               onPressed: () =>
                                   VRouter.of(context).to('/search'),
                             ),
@@ -109,7 +109,7 @@ class ChatListView extends StatelessWidget {
                                     children: [
                                       const Icon(Icons.edit_outlined),
                                       const SizedBox(width: 12),
-                                      Text(L10n.of(context).setStatus),
+                                      Text(L10n.of(context)!.setStatus),
                                     ],
                                   ),
                                 ),
@@ -120,7 +120,7 @@ class ChatListView extends StatelessWidget {
                                     children: [
                                       const Icon(Icons.group_add_outlined),
                                       const SizedBox(width: 12),
-                                      Text(L10n.of(context).createNewGroup),
+                                      Text(L10n.of(context)!.createNewGroup),
                                     ],
                                   ),
                                 ),
@@ -131,7 +131,7 @@ class ChatListView extends StatelessWidget {
                                     children: [
                                       const Icon(Icons.group_work_outlined),
                                       const SizedBox(width: 12),
-                                      Text(L10n.of(context).createNewSpace),
+                                      Text(L10n.of(context)!.createNewSpace),
                                     ],
                                   ),
                                 ),
@@ -142,7 +142,7 @@ class ChatListView extends StatelessWidget {
                                     children: [
                                       const Icon(Icons.share_outlined),
                                       const SizedBox(width: 12),
-                                      Text(L10n.of(context).inviteContact),
+                                      Text(L10n.of(context)!.inviteContact),
                                     ],
                                   ),
                                 ),
@@ -153,7 +153,7 @@ class ChatListView extends StatelessWidget {
                                     children: [
                                       const Icon(Icons.archive_outlined),
                                       const SizedBox(width: 12),
-                                      Text(L10n.of(context).archive),
+                                      Text(L10n.of(context)!.archive),
                                     ],
                                   ),
                                 ),
@@ -164,7 +164,7 @@ class ChatListView extends StatelessWidget {
                                     children: [
                                       const Icon(Icons.settings_outlined),
                                       const SizedBox(width: 12),
-                                      Text(L10n.of(context).settings),
+                                      Text(L10n.of(context)!.settings),
                                     ],
                                   ),
                                 ),
@@ -172,14 +172,14 @@ class ChatListView extends StatelessWidget {
                             ),
                           ],
                 title: Text(selectMode == SelectMode.share
-                    ? L10n.of(context).share
+                    ? L10n.of(context)!.share
                     : selectMode == SelectMode.select
                         ? controller.selectedRoomIds.length.toString()
                         : controller.activeSpaceId == null
                             ? AppConfig.applicationName
                             : Matrix.of(context)
                                 .client
-                                .getRoomById(controller.activeSpaceId)
+                                .getRoomById(controller.activeSpaceId!)!
                                 .displayname),
               ),
               body: Column(children: [
@@ -197,7 +197,7 @@ class ChatListView extends StatelessWidget {
                         fit: BoxFit.contain,
                         width: 44,
                       ),
-                      title: Text(L10n.of(context).setupChatBackupNow),
+                      title: Text(L10n.of(context)!.setupChatBackupNow),
                       trailing: const Icon(Icons.chevron_right_outlined),
                       onTap: controller.firstRunBootstrapAction,
                     ),
@@ -211,7 +211,7 @@ class ChatListView extends StatelessWidget {
                       onPressed: () =>
                           VRouter.of(context).to('/newprivatechat'),
                       icon: const Icon(CupertinoIcons.chat_bubble),
-                      label: Text(L10n.of(context).newChat),
+                      label: Text(L10n.of(context)!.newChat),
                     )
                   : null,
               bottomNavigationBar: Column(
@@ -232,7 +232,7 @@ class ChatListView extends StatelessWidget {
 class _ChatListViewBody extends StatefulWidget {
   final ChatListController controller;
 
-  const _ChatListViewBody(this.controller, {Key key}) : super(key: key);
+  const _ChatListViewBody(this.controller, {Key? key}) : super(key: key);
 
   @override
   State<_ChatListViewBody> createState() => _ChatListViewBodyState();
@@ -240,12 +240,12 @@ class _ChatListViewBody extends StatefulWidget {
 
 class _ChatListViewBodyState extends State<_ChatListViewBody> {
   // the matrix sync stream
-  StreamSubscription _subscription;
-  StreamSubscription _clientSubscription;
+  late StreamSubscription _subscription;
+  late StreamSubscription _clientSubscription;
 
   // used to check the animation direction
-  String _lastUserId;
-  String _lastSpaceId;
+  String? _lastUserId;
+  String? _lastSpaceId;
 
   @override
   void initState() {
@@ -285,7 +285,7 @@ class _ChatListViewBodyState extends State<_ChatListViewBody> {
             ),
             Center(
               child: Text(
-                L10n.of(context).startYourFirstChat,
+                L10n.of(context)!.startYourFirstChat,
                 textAlign: TextAlign.start,
                 style: const TextStyle(
                   color: Colors.grey,
@@ -324,9 +324,9 @@ class _ChatListViewBodyState extends State<_ChatListViewBody> {
     } else {
       const dummyChatCount = 8;
       final titleColor =
-          Theme.of(context).textTheme.bodyText1.color.withAlpha(100);
+          Theme.of(context).textTheme.bodyText1!.color!.withAlpha(100);
       final subtitleColor =
-          Theme.of(context).textTheme.bodyText1.color.withAlpha(50);
+          Theme.of(context).textTheme.bodyText1!.color!.withAlpha(50);
       child = ListView.builder(
         itemCount: dummyChatCount,
         itemBuilder: (context, i) => Opacity(
@@ -336,7 +336,7 @@ class _ChatListViewBodyState extends State<_ChatListViewBody> {
               backgroundColor: titleColor,
               child: CircularProgressIndicator(
                 strokeWidth: 1,
-                color: Theme.of(context).textTheme.bodyText1.color,
+                color: Theme.of(context).textTheme.bodyText1!.color,
               ),
             ),
             title: Row(
@@ -417,11 +417,11 @@ class _ChatListViewBodyState extends State<_ChatListViewBody> {
     final newClient = Matrix.of(context).client;
     if (_lastUserId != newClient.userID) {
       reversed = Matrix.of(context)
-              .currentBundle
-              .indexWhere((element) => element.userID == _lastUserId) <
+              .currentBundle!
+              .indexWhere((element) => element!.userID == _lastUserId) <
           Matrix.of(context)
-              .currentBundle
-              .indexWhere((element) => element.userID == newClient.userID);
+              .currentBundle!
+              .indexWhere((element) => element!.userID == newClient.userID);
     }
     // otherwise, the space changed...
     else {

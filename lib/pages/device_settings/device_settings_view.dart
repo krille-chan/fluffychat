@@ -9,14 +9,14 @@ import 'user_device_list_item.dart';
 class DevicesSettingsView extends StatelessWidget {
   final DevicesSettingsController controller;
 
-  const DevicesSettingsView(this.controller, {Key key}) : super(key: key);
+  const DevicesSettingsView(this.controller, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: const BackButton(),
-        title: Text(L10n.of(context).devices),
+        title: Text(L10n.of(context)!.devices),
       ),
       body: MaxWidthBody(
         child: FutureBuilder<bool>(
@@ -41,7 +41,7 @@ class DevicesSettingsView extends StatelessWidget {
               children: <Widget>[
                 if (controller.thisDevice != null)
                   UserDeviceListItem(
-                    controller.thisDevice,
+                    controller.thisDevice!,
                     rename: controller.renameDeviceAction,
                     remove: (d) => controller.removeDevicesAction([d]),
                     verify: controller.verifyDeviceAction,
@@ -53,7 +53,7 @@ class DevicesSettingsView extends StatelessWidget {
                   ListTile(
                     title: Text(
                       controller.errorDeletingDevices ??
-                          L10n.of(context).removeAllOtherDevices,
+                          L10n.of(context)!.removeAllOtherDevices,
                       style: const TextStyle(color: Colors.red),
                     ),
                     trailing: controller.loadingDeletingDevices

@@ -1,5 +1,3 @@
-//@dart=2.12
-
 import 'package:matrix/matrix.dart';
 
 extension ClientPresenceExtension on Client {

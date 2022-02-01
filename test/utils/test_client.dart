@@ -25,9 +25,7 @@ Future<Client> prepareTestClient({
       AuthenticationTypes.sso
     },
   );
-  if (homeserver != null) {
-    await client.checkHomeserver(homeserver);
-  }
+  await client.checkHomeserver(homeserver);
   if (loggedIn) {
     await client.login(
       LoginType.mLoginToken,

@@ -26,7 +26,6 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:flutter_gen/gen_l10n/l10n_en.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:http/http.dart' as http;
 import 'package:matrix/matrix.dart';
@@ -47,27 +46,26 @@ class NoTokenException implements Exception {
 }
 
 class BackgroundPush {
-  static BackgroundPush _instance;
+  static BackgroundPush? _instance;
   final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
   Client client;
-  BuildContext context;
-  GlobalKey<VRouterState> router;
-  String _fcmToken;
-  void Function(String errorMsg, {Uri link}) onFcmError;
-  L10n l10n;
-  Store _store;
+  BuildContext? context;
+  GlobalKey<VRouterState>? router;
+  String? _fcmToken;
+  void Function(String errorMsg, {Uri? link})? onFcmError;
+  L10n? l10n;
+  Store? _store;
   Store get store => _store ??= Store();
   Future<void> loadLocale() async {
     // inspired by _lookupL10n in .dart_tool/flutter_gen/gen_l10n/l10n.dart
-    l10n ??= (context != null ? L10n.of(context) : null) ??
-        (await L10n.delegate.load(window.locale)) ??
-        L10nEn();
+    l10n ??= (context != null ? L10n.of(context!) : null) ??
+        (await L10n.delegate.load(window.locale));
   }
 
   final pendingTests = <String, Completer<void>>{};
 
-  DateTime lastReceivedPush;
+  DateTime? lastReceivedPush;
 
   bool upAction = false;
 
@@ -94,12 +92,12 @@ class BackgroundPush {
 
   factory BackgroundPush.clientOnly(Client client) {
     _instance ??= BackgroundPush._(client);
-    return _instance;
+    return _instance!;
   }
 
   factory BackgroundPush(
-      Client _client, BuildContext _context, GlobalKey<VRouterState> router,
-      {final void Function(String errorMsg, {Uri link}) onFcmError}) {
+      Client _client, BuildContext _context, GlobalKey<VRouterState>? router,
+      {final void Function(String errorMsg, {Uri? link})? onFcmError}) {
     final instance = BackgroundPush.clientOnly(_client);
     instance.context = _context;
     // ignore: prefer_initializing_formals
@@ -119,15 +117,15 @@ class BackgroundPush {
     setupPush();
   }
 
-  final _fcmSharedIsolate = null; //FcmSharedIsolate();
+  final dynamic _fcmSharedIsolate = null; //FcmSharedIsolate();
 
-  StreamSubscription<LoginState> onLogin;
-  StreamSubscription<SyncUpdate> onRoomSync;
+  StreamSubscription<LoginState>? onLogin;
+  StreamSubscription<SyncUpdate>? onRoomSync;
 
   Future<void> setupPusher({
-    String gatewayUrl,
-    String token,
-    Set<String> oldTokens,
+    String? gatewayUrl,
+    String? token,
+    Set<String?>? oldTokens,
     bool useDeviceSpecificAppId = false,
   }) async {
     if (PlatformInfos.isIOS) {
@@ -135,10 +133,11 @@ class BackgroundPush {
     }
     final clientName = PlatformInfos.clientName;
     oldTokens ??= <String>{};
-    final pushers = await client.getPushers().catchError((e) {
-      Logs().w('[Push] Unable to request pushers', e);
-      return <Pusher>[];
-    });
+    final pushers = await (client.getPushers().catchError((e) {
+          Logs().w('[Push] Unable to request pushers', e);
+          return <Pusher>[];
+        })) ??
+        [];
     var setNewPusher = false;
     // Just the plain app id, we add the .data_message suffix later
     var appId = AppConfig.pushNotificationsAppId;
@@ -152,7 +151,7 @@ class BackgroundPush {
       appId += '.data_message';
     }
     final thisAppId = useDeviceSpecificAppId ? deviceAppId : appId;
-    if (gatewayUrl != null && token != null && clientName != null) {
+    if (gatewayUrl != null && token != null) {
       final currentPushers = pushers.where((pusher) => pusher.pushkey == token);
       if (currentPushers.length == 1 &&
           currentPushers.first.kind == 'http' &&
@@ -179,12 +178,8 @@ class BackgroundPush {
               pusher.pushkey != token &&
               deviceAppId == pusher.appId) ||
           oldTokens.contains(pusher.pushkey)) {
-        pusher.kind = null;
         try {
-          await client.postPusher(
-            pusher,
-            append: true,
-          );
+          await client.deletePusher(pusher);
           Logs().i('[Push] Removed legacy pusher for this device');
         } catch (err) {
           Logs().w('[Push] Failed to remove old pusher', err);
@@ -195,13 +190,13 @@ class BackgroundPush {
       try {
         await client.postPusher(
           Pusher(
-            pushkey: token,
+            pushkey: token!,
             appId: thisAppId,
             appDisplayName: clientName,
-            deviceDisplayName: client.deviceName,
+            deviceDisplayName: client.deviceName!,
             lang: 'en',
             data: PusherData(
-              url: Uri.parse(gatewayUrl),
+              url: Uri.parse(gatewayUrl!),
               format: AppConfig.pushNotificationsPusherFormat,
             ),
             kind: 'http',
@@ -259,13 +254,13 @@ class BackgroundPush {
       await loadLocale();
       if (PlatformInfos.isAndroid) {
         onFcmError?.call(
-          l10n.noGoogleServicesWarning,
+          l10n!.noGoogleServicesWarning,
           link: Uri.parse(
             AppConfig.enablePushTutorial,
           ),
         );
       }
-      onFcmError?.call(l10n.oopsPushError);
+      onFcmError?.call(l10n!.oopsPushError);
 
       if (null == await store.getItem(SettingKeys.showNoGoogle)) {
         await store.setItemBool(SettingKeys.showNoGoogle, false);
@@ -291,19 +286,21 @@ class BackgroundPush {
     );
   }
 
-  Future<void> goToRoom(String roomId) async {
+  Future<void> goToRoom(String? roomId) async {
     try {
       Logs().v('[Push] Attempting to go to room $roomId...');
       if (router == null) {
         return;
       }
+      await client.roomsLoading;
+      await client.accountDataLoading;
       final isStory = client
-              ?.getRoomById(roomId)
+              .getRoomById(roomId!)
               ?.getState(EventTypes.RoomCreate)
               ?.content
-              ?.tryGet<String>('type') ==
+              .tryGet<String>('type') ==
           ClientStoriesExtension.storiesRoomType;
-      router.currentState.toSegments([isStory ? 'stories' : 'rooms', roomId]);
+      router!.currentState!.toSegments([isStory ? 'stories' : 'rooms', roomId]);
     } catch (e, s) {
       Logs().e('[Push] Failed to open room', e, s);
     }
@@ -318,10 +315,9 @@ class BackgroundPush {
     // initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
     const initializationSettingsAndroid =
         AndroidInitializationSettings('notifications_icon');
-    final initializationSettingsIOS =
-        IOSInitializationSettings(onDidReceiveLocalNotification: (i, a, b, c) {
-      return null;
-    });
+    final initializationSettingsIOS = IOSInitializationSettings(
+      onDidReceiveLocalNotification: (i, a, b, c) async => null,
+    );
     final initializationSettings = InitializationSettings(
       android: initializationSettingsAndroid,
       iOS: initializationSettingsIOS,
@@ -338,9 +334,8 @@ class BackgroundPush {
 
   Future<void> _onFcmMessage(Map<dynamic, dynamic> message) async {
     Logs().v('[Push] Foreground message received');
-    Map<String, dynamic> data;
+    final data = Map<String, dynamic>.from(message['data'] ?? message);
     try {
-      data = Map<String, dynamic>.from(message['data'] ?? message);
       await _onMessage(data);
     } catch (e, s) {
       Logs().e('[Push] Error while processing notification', e, s);
@@ -350,7 +345,7 @@ class BackgroundPush {
 
   Future<void> _newUpEndpoint(String newEndpoint) async {
     upAction = true;
-    if (newEndpoint?.isEmpty ?? true) {
+    if (newEndpoint.isEmpty) {
       await _upUnregistered();
       return;
     }
@@ -377,7 +372,7 @@ class BackgroundPush {
           '[Push] No self-hosted unified push gateway present: ' + newEndpoint);
     }
     Logs().i('[Push] UnifiedPush using endpoint ' + endpoint);
-    final oldTokens = <String>{};
+    final oldTokens = <String?>{};
     try {
       final fcmToken = await _fcmSharedIsolate?.getToken();
       oldTokens.add(fcmToken);
@@ -408,9 +403,9 @@ class BackgroundPush {
 
   Future<void> _onUpMessage(String message) async {
     upAction = true;
-    Map<String, dynamic> data;
+    final data =
+        Map<String, dynamic>.from(json.decode(message)['notification']);
     try {
-      data = Map<String, dynamic>.from(json.decode(message)['notification']);
       await _onMessage(data);
     } catch (e, s) {
       Logs().e('[Push] Error while processing notification', e, s);
@@ -428,12 +423,14 @@ class BackgroundPush {
       pendingTests.remove(eventId)?.complete();
       return;
     }
-    final unread = ((data['counts'] is String
-            ? json
-                .decode(data.tryGet<String>('counts', TryGet.optional) ?? '{}')
-            : data.tryGet<Map<String, dynamic>>('counts', TryGet.optional) ??
-                <String, dynamic>{}) as Map<String, dynamic>)
-        .tryGet<int>('unread');
+
+    // For legacy reasons the counts map could be a String encoded JSON:
+    final countsMap =
+        data.tryGetMap<String, dynamic>('counts', TryGet.silent) ??
+            (jsonDecode(data.tryGet<String>('counts') ?? '{}')
+                as Map<String, dynamic>);
+    final unread = countsMap.tryGet<int>('unread');
+
     if ((roomId?.isEmpty ?? true) ||
         (eventId?.isEmpty ?? true) ||
         unread == 0) {
@@ -478,24 +475,24 @@ class BackgroundPush {
     await _showNotification(roomId, eventId);
   }
 
-  Future<bool> eventExists(String roomId, String eventId) async {
+  Future<bool> eventExists(String roomId, String? eventId) async {
     final room = client.getRoomById(roomId);
     if (room == null) return false;
-    return (await client.database.getEventById(eventId, room)) != null;
+    return (await client.database!.getEventById(eventId!, room)) != null;
   }
 
   /// Workaround for the problem that local notification IDs must be int but we
   /// sort by [roomId] which is a String. To make sure that we don't have duplicated
   /// IDs we map the [roomId] to a number and store this number.
-  Map<String, int> idMap;
+  late Map<String, int> idMap;
   Future<void> _loadIdMap() async {
-    idMap ??= Map<String, int>.from(json.decode(
+    idMap = Map<String, int>.from(json.decode(
         (await store.getItem(SettingKeys.notificationCurrentIds)) ?? '{}'));
   }
 
   Future<int> mapRoomIdToInt(String roomId) async {
     await _loadIdMap();
-    int currentInt;
+    int? currentInt;
     try {
       currentInt = idMap[roomId];
     } catch (_) {
@@ -504,13 +501,13 @@ class BackgroundPush {
     if (currentInt != null) {
       return currentInt;
     }
-    currentInt = 0;
+    var nCurrentInt = 0;
     while (idMap.values.contains(currentInt)) {
-      currentInt++;
+      nCurrentInt++;
     }
-    idMap[roomId] = currentInt;
+    idMap[roomId] = nCurrentInt;
     await store.setItem(SettingKeys.notificationCurrentIds, json.encode(idMap));
-    return currentInt;
+    return nCurrentInt;
   }
 
   bool _clearingPushLock = false;
@@ -520,7 +517,7 @@ class BackgroundPush {
     }
     try {
       _clearingPushLock = true;
-      Iterable<String> emptyRooms;
+      late Iterable<String> emptyRooms;
       if (getFromServer) {
         Logs().v('[Push] Got new clearing push');
         var syncErrored = false;
@@ -541,8 +538,7 @@ class BackgroundPush {
           });
           if (!syncErrored) {
             emptyRooms = client.rooms
-                .where((r) =>
-                    r.notificationCount == 0 || r.notificationCount == null)
+                .where((r) => r.notificationCount == 0)
                 .map((r) => r.id);
           }
         }
@@ -561,25 +557,23 @@ class BackgroundPush {
                 '[Push] failed to fetch pending notifications for clearing push, falling back...',
                 e);
             emptyRooms = client.rooms
-                .where((r) =>
-                    r.notificationCount == 0 || r.notificationCount == null)
+                .where((r) => r.notificationCount == 0)
                 .map((r) => r.id);
           }
         }
       } else {
         emptyRooms = client.rooms
-            .where(
-                (r) => r.notificationCount == 0 || r.notificationCount == null)
+            .where((r) => r.notificationCount == 0)
             .map((r) => r.id);
       }
       await _loadIdMap();
       var changed = false;
       for (final roomId in emptyRooms) {
-        if (idMap[roomId] != null) {
-          final id = idMap[roomId];
+        final id = idMap[roomId];
+        if (id != null) {
           idMap.remove(roomId);
           changed = true;
-          await _flutterLocalNotificationsPlugin?.cancel(id);
+          await _flutterLocalNotificationsPlugin.cancel(id);
         }
       }
       if (changed) {
@@ -598,15 +592,14 @@ class BackgroundPush {
       throw 'Room not found';
     }
     await room.postLoad();
-    final event = await client.database.getEventById(eventId, room);
+    final event = await client.database!.getEventById(eventId, room);
 
-    final activeRoomId = router.currentState.pathParameters['roomid'];
+    final activeRoomId = router!.currentState!.pathParameters['roomid'];
 
     if (((activeRoomId?.isNotEmpty ?? false) &&
             activeRoomId == room.id &&
             client.syncPresence == null) ||
-        (event != null &&
-            (room.notificationCount == 0 || room.notificationCount == null))) {
+        (event != null && (room.notificationCount == 0))) {
       return;
     }
 
@@ -614,11 +607,11 @@ class BackgroundPush {
     await loadLocale();
 
     // Calculate title
-    final title = l10n.unreadMessages(room.notificationCount ?? 0);
+    final title = l10n!.unreadMessages(room.notificationCount);
 
     // Calculate the body
-    final body = event.getLocalizedBody(
-      MatrixLocals(L10n.of(context)),
+    final body = event!.getLocalizedBody(
+      MatrixLocals(L10n.of(context!)!),
       withSenderNamePrefix: !room.isDirectChat,
       plaintextBody: true,
       hideReply: true,
@@ -629,7 +622,7 @@ class BackgroundPush {
     final avatar = room.avatar == null
         ? null
         : await DefaultCacheManager().getSingleFile(
-            event.room.avatar
+            event.room.avatar!
                 .getThumbnail(
                   client,
                   width: 126,
@@ -638,7 +631,7 @@ class BackgroundPush {
                 .toString(),
           );
     final person = Person(
-      name: room.getLocalizedDisplayname(MatrixLocals(l10n)),
+      name: room.getLocalizedDisplayname(MatrixLocals(l10n!)),
       icon: avatar == null ? null : BitmapFilePathAndroidIcon(avatar.path),
     );
 
@@ -650,12 +643,12 @@ class BackgroundPush {
         messages: [
           Message(
             body,
-            event?.originServerTs ?? DateTime.now(),
+            event.originServerTs,
             person,
           )
         ],
       ),
-      ticker: l10n.newMessageInFluffyChat,
+      ticker: l10n!.newMessageInFluffyChat,
     );
     const iOSPlatformChannelSpecifics = IOSNotificationDetails();
     final platformChannelSpecifics = NotificationDetails(
@@ -664,7 +657,7 @@ class BackgroundPush {
     );
     await _flutterLocalNotificationsPlugin.show(
       await mapRoomIdToInt(room.id),
-      room.getLocalizedDisplayname(MatrixLocals(l10n)),
+      room.getLocalizedDisplayname(MatrixLocals(l10n!)),
       body,
       platformChannelSpecifics,
       payload: roomId,
@@ -676,16 +669,15 @@ class BackgroundPush {
       await setupLocalNotificationsPlugin();
 
       await loadLocale();
-      final String eventId = data['event_id'];
-      final String roomId = data['room_id'];
-      final unread = ((data['counts'] is String
-                  ? json.decode(
-                      data.tryGet<String>('counts', TryGet.optional) ?? '{}')
-                  : data.tryGet<Map<String, dynamic>>(
-                          'counts', TryGet.optional) ??
-                      <String, dynamic>{}) as Map<String, dynamic>)
-              .tryGet<int>('unread', TryGet.optional) ??
-          1;
+      final String? eventId = data['event_id'];
+      final String? roomId = data['room_id'];
+
+      // For legacy reasons the counts map could be a String encoded JSON:
+      final countsMap = data.tryGetMap<String, dynamic>('counts') ??
+          (jsonDecode(data.tryGet<String>('counts') ?? '{}')
+              as Map<String, dynamic>);
+      final unread = countsMap.tryGet<int>('unread') ?? 1;
+
       if (unread == 0 || roomId == null || eventId == null) {
         await _onClearingPush();
         return;
@@ -698,11 +690,11 @@ class BackgroundPush {
         android: androidPlatformChannelSpecifics,
         iOS: iOSPlatformChannelSpecifics,
       );
-      final title = l10n.unreadChats(unread);
+      final title = l10n!.unreadChats(unread);
       await _flutterLocalNotificationsPlugin.show(
         await mapRoomIdToInt(roomId),
         title,
-        l10n.openAppToReadMessages,
+        l10n!.openAppToReadMessages,
         platformChannelSpecifics,
         payload: roomId,
       );
@@ -712,8 +704,8 @@ class BackgroundPush {
   }
 
   AndroidNotificationDetails _getAndroidNotificationDetails(
-      {MessagingStyleInformation styleInformation, String ticker}) {
-    final color = (context != null ? Theme.of(context).primaryColor : null) ??
+      {MessagingStyleInformation? styleInformation, String? ticker}) {
+    final color = (context != null ? Theme.of(context!).primaryColor : null) ??
         const Color(0xFF5625BA);
 
     return AndroidNotificationDetails(

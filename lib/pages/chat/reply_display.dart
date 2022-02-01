@@ -9,7 +9,7 @@ import 'events/reply_content.dart';
 
 class ReplyDisplay extends StatelessWidget {
   final ChatController controller;
-  const ReplyDisplay(this.controller, {Key key}) : super(key: key);
+  const ReplyDisplay(this.controller, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,16 +23,16 @@ class ReplyDisplay extends StatelessWidget {
         child: Row(
           children: <Widget>[
             IconButton(
-              tooltip: L10n.of(context).close,
+              tooltip: L10n.of(context)!.close,
               icon: const Icon(Icons.close),
               onPressed: controller.cancelReplyEventAction,
             ),
             Expanded(
               child: controller.replyEvent != null
-                  ? ReplyContent(controller.replyEvent,
-                      timeline: controller.timeline)
+                  ? ReplyContent(controller.replyEvent!,
+                      timeline: controller.timeline!)
                   : _EditContent(controller.editEvent
-                      ?.getDisplayEvent(controller.timeline)),
+                      ?.getDisplayEvent(controller.timeline!)),
             ),
           ],
         ),
@@ -42,7 +42,7 @@ class ReplyDisplay extends StatelessWidget {
 }
 
 class _EditContent extends StatelessWidget {
-  final Event event;
+  final Event? event;
 
   const _EditContent(this.event);
 
@@ -60,7 +60,7 @@ class _EditContent extends StatelessWidget {
         Container(width: 15.0),
         Text(
           event?.getLocalizedBody(
-                MatrixLocals(L10n.of(context)),
+                MatrixLocals(L10n.of(context)!),
                 withSenderNamePrefix: false,
                 hideReply: true,
               ) ??
@@ -68,7 +68,7 @@ class _EditContent extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           maxLines: 1,
           style: TextStyle(
-            color: Theme.of(context).textTheme.bodyText2.color,
+            color: Theme.of(context).textTheme.bodyText2!.color,
           ),
         ),
       ],

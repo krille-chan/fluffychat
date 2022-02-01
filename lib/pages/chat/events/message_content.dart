@@ -22,10 +22,10 @@ import 'sticker.dart';
 
 class MessageContent extends StatelessWidget {
   final Event event;
-  final Color textColor;
-  final void Function(Event) onInfoTab;
+  final Color? textColor;
+  final void Function(Event)? onInfoTab;
 
-  const MessageContent(this.event, {this.onInfoTab, Key key, this.textColor})
+  const MessageContent(this.event, {this.onInfoTab, Key? key, this.textColor})
       : super(key: key);
 
   void _verifyOrRequestKey(BuildContext context) async {
@@ -33,15 +33,15 @@ class MessageContent extends StatelessWidget {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(
         event.type == EventTypes.Encrypted
-            ? L10n.of(context).needPantalaimonWarning
+            ? L10n.of(context)!.needPantalaimonWarning
             : event.getLocalizedBody(
-                MatrixLocals(L10n.of(context)),
+                MatrixLocals(L10n.of(context)!),
               ),
       )));
       return;
     }
     final client = Matrix.of(context).client;
-    if (client.isUnknownSession && client.encryption.crossSigning.enabled) {
+    if (client.isUnknownSession && client.encryption!.crossSigning.enabled) {
       await BootstrapDialog(
         client: Matrix.of(context).client,
       ).show(context);
@@ -55,7 +55,7 @@ class MessageContent extends StatelessWidget {
       );
       if (success.error == null) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(L10n.of(context).requestToReadOlderMessages)));
+            content: Text(L10n.of(context)!.requestToReadOlderMessages)));
       }
     }
   }
@@ -83,17 +83,17 @@ class MessageContent extends StatelessWidget {
             if (PlatformInfos.isMobile) {
               return AudioPlayerWidget(
                 event,
-                color: textColor,
+                color: textColor!,
               );
             }
-            return MessageDownloadContent(event, textColor);
+            return MessageDownloadContent(event, textColor!);
           case MessageTypes.Video:
             if (PlatformInfos.isMobile || PlatformInfos.isWeb) {
               return EventVideoPlayer(event);
             }
-            return MessageDownloadContent(event, textColor);
+            return MessageDownloadContent(event, textColor!);
           case MessageTypes.File:
-            return MessageDownloadContent(event, textColor);
+            return MessageDownloadContent(event, textColor!);
 
           case MessageTypes.Text:
           case MessageTypes.Notice:
@@ -115,7 +115,7 @@ class MessageContent extends StatelessWidget {
                   fontSize: bigEmotes ? fontSize * 3 : fontSize,
                 ),
                 linkStyle: TextStyle(
-                  color: textColor.withAlpha(150),
+                  color: textColor!.withAlpha(150),
                   fontSize: bigEmotes ? fontSize * 3 : fontSize,
                   decoration: TextDecoration.underline,
                 ),
@@ -131,14 +131,12 @@ class MessageContent extends StatelessWidget {
               textColor: buttonTextColor,
               onPressed: () => _verifyOrRequestKey(context),
               icon: const Icon(Icons.lock_outline),
-              label: L10n.of(context).encrypted,
+              label: L10n.of(context)!.encrypted,
             );
           case MessageTypes.Location:
             final geoUri =
-                Uri.tryParse(event.content.tryGet<String>('geo_uri'));
-            if (geoUri != null &&
-                geoUri.scheme == 'geo' &&
-                geoUri.path != null) {
+                Uri.tryParse(event.content.tryGet<String>('geo_uri')!);
+            if (geoUri != null && geoUri.scheme == 'geo') {
               final latlong = geoUri.path
                   .split(';')
                   .first
@@ -152,8 +150,8 @@ class MessageContent extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     MapBubble(
-                      latitude: latlong.first,
-                      longitude: latlong.last,
+                      latitude: latlong.first!,
+                      longitude: latlong.last!,
                     ),
                     const SizedBox(height: 6),
                     OutlinedButton.icon(
@@ -161,7 +159,7 @@ class MessageContent extends StatelessWidget {
                       onPressed:
                           UrlLauncher(context, geoUri.toString()).launchUrl,
                       label: Text(
-                        L10n.of(context).openInMaps,
+                        L10n.of(context)!.openInMaps,
                         style: TextStyle(color: textColor),
                       ),
                     ),
@@ -177,24 +175,24 @@ class MessageContent extends StatelessWidget {
               return _ButtonContent(
                 onPressed: () => launch(event.body),
                 icon: const Icon(Icons.phone_outlined, color: Colors.green),
-                label: L10n.of(context).videoCall,
+                label: L10n.of(context)!.videoCall,
                 textColor: buttonTextColor,
               );
             }
             if (event.redacted) {
               return _ButtonContent(
-                label: L10n.of(context)
+                label: L10n.of(context)!
                     .redactedAnEvent(event.sender.calcDisplayname()),
                 icon: const Icon(Icons.delete_outlined),
                 textColor: buttonTextColor,
-                onPressed: () => onInfoTab(event),
+                onPressed: () => onInfoTab!(event),
               );
             }
             final bigEmotes = event.onlyEmotes &&
                 event.numberEmotes > 0 &&
                 event.numberEmotes <= 10;
             return LinkText(
-              text: event.getLocalizedBody(MatrixLocals(L10n.of(context)),
+              text: event.getLocalizedBody(MatrixLocals(L10n.of(context)!),
                   hideReply: true),
               textStyle: TextStyle(
                 color: textColor,
@@ -202,24 +200,22 @@ class MessageContent extends StatelessWidget {
                 decoration: event.redacted ? TextDecoration.lineThrough : null,
               ),
               linkStyle: TextStyle(
-                color: textColor.withAlpha(150),
+                color: textColor!.withAlpha(150),
                 fontSize: bigEmotes ? fontSize * 3 : fontSize,
                 decoration: TextDecoration.underline,
               ),
               onLinkTap: (url) => UrlLauncher(context, url).launchUrl(),
             );
         }
-        break;
       default:
         return _ButtonContent(
-          label: L10n.of(context)
+          label: L10n.of(context)!
               .userSentUnknownEvent(event.sender.calcDisplayname(), event.type),
           icon: const Icon(Icons.info_outlined),
           textColor: buttonTextColor,
-          onPressed: () => onInfoTab(event),
+          onPressed: () => onInfoTab!(event),
         );
     }
-    return Container(); // else flutter analyze complains
   }
 }
 
@@ -227,14 +223,14 @@ class _ButtonContent extends StatelessWidget {
   final void Function() onPressed;
   final String label;
   final Icon icon;
-  final Color textColor;
+  final Color? textColor;
 
   const _ButtonContent({
-    @required this.label,
-    @required this.icon,
-    @required this.textColor,
-    @required this.onPressed,
-    Key key,
+    required this.label,
+    required this.icon,
+    required this.textColor,
+    required this.onPressed,
+    Key? key,
   }) : super(key: key);
 
   @override

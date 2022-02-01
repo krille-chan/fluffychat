@@ -10,15 +10,15 @@ import 'package:fluffychat/pages/settings_account/settings_account_view.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class SettingsAccount extends StatefulWidget {
-  const SettingsAccount({Key key}) : super(key: key);
+  const SettingsAccount({Key? key}) : super(key: key);
 
   @override
   SettingsAccountController createState() => SettingsAccountController();
 }
 
 class SettingsAccountController extends State<SettingsAccount> {
-  Future<dynamic> profileFuture;
-  Profile profile;
+  Future<dynamic>? profileFuture;
+  Profile? profile;
   bool profileUpdated = false;
 
   void updateProfile() => setState(() {
@@ -30,13 +30,13 @@ class SettingsAccountController extends State<SettingsAccount> {
     final input = await showTextInputDialog(
       useRootNavigator: false,
       context: context,
-      title: L10n.of(context).editDisplayname,
-      okLabel: L10n.of(context).ok,
-      cancelLabel: L10n.of(context).cancel,
+      title: L10n.of(context)!.editDisplayname,
+      okLabel: L10n.of(context)!.ok,
+      cancelLabel: L10n.of(context)!.cancel,
       textFields: [
         DialogTextField(
           initialText: profile?.displayName ??
-              Matrix.of(context).client.userID.localpart,
+              Matrix.of(context).client.userID!.localpart,
         )
       ],
     );
@@ -45,7 +45,7 @@ class SettingsAccountController extends State<SettingsAccount> {
     final success = await showFutureLoadingDialog(
       context: context,
       future: () =>
-          matrix.client.setDisplayName(matrix.client.userID, input.single),
+          matrix.client.setDisplayName(matrix.client.userID!, input.single),
     );
     if (success.error == null) {
       updateProfile();
@@ -56,9 +56,9 @@ class SettingsAccountController extends State<SettingsAccount> {
     if (await showOkCancelAlertDialog(
           useRootNavigator: false,
           context: context,
-          title: L10n.of(context).areYouSureYouWantToLogout,
-          okLabel: L10n.of(context).yes,
-          cancelLabel: L10n.of(context).cancel,
+          title: L10n.of(context)!.areYouSureYouWantToLogout,
+          okLabel: L10n.of(context)!.yes,
+          cancelLabel: L10n.of(context)!.cancel,
         ) ==
         OkCancelResult.cancel) {
       return;
@@ -74,10 +74,10 @@ class SettingsAccountController extends State<SettingsAccount> {
     if (await showOkCancelAlertDialog(
           useRootNavigator: false,
           context: context,
-          title: L10n.of(context).warning,
-          message: L10n.of(context).deactivateAccountWarning,
-          okLabel: L10n.of(context).ok,
-          cancelLabel: L10n.of(context).cancel,
+          title: L10n.of(context)!.warning,
+          message: L10n.of(context)!.deactivateAccountWarning,
+          okLabel: L10n.of(context)!.ok,
+          cancelLabel: L10n.of(context)!.cancel,
         ) ==
         OkCancelResult.cancel) {
       return;
@@ -85,9 +85,9 @@ class SettingsAccountController extends State<SettingsAccount> {
     if (await showOkCancelAlertDialog(
           useRootNavigator: false,
           context: context,
-          title: L10n.of(context).areYouSure,
-          okLabel: L10n.of(context).yes,
-          cancelLabel: L10n.of(context).cancel,
+          title: L10n.of(context)!.areYouSure,
+          okLabel: L10n.of(context)!.yes,
+          cancelLabel: L10n.of(context)!.cancel,
         ) ==
         OkCancelResult.cancel) {
       return;
@@ -95,9 +95,9 @@ class SettingsAccountController extends State<SettingsAccount> {
     final input = await showTextInputDialog(
       useRootNavigator: false,
       context: context,
-      title: L10n.of(context).pleaseEnterYourPassword,
-      okLabel: L10n.of(context).ok,
-      cancelLabel: L10n.of(context).cancel,
+      title: L10n.of(context)!.pleaseEnterYourPassword,
+      okLabel: L10n.of(context)!.ok,
+      cancelLabel: L10n.of(context)!.cancel,
       textFields: [
         const DialogTextField(
           obscureText: true,
@@ -114,7 +114,7 @@ class SettingsAccountController extends State<SettingsAccount> {
             auth: AuthenticationPassword(
               password: input.single,
               identifier: AuthenticationUserIdentifier(
-                  user: Matrix.of(context).client.userID),
+                  user: Matrix.of(context).client.userID!),
             ),
           ),
     );
@@ -127,7 +127,7 @@ class SettingsAccountController extends State<SettingsAccount> {
     final client = Matrix.of(context).client;
     profileFuture ??= client
         .getProfileFromUserId(
-      client.userID,
+      client.userID!,
       cache: !profileUpdated,
       getFromRooms: !profileUpdated,
     )

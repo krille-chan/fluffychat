@@ -11,7 +11,7 @@ import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class NewPrivateChat extends StatefulWidget {
-  const NewPrivateChat({Key key}) : super(key: key);
+  const NewPrivateChat({Key? key}) : super(key: key);
 
   @override
   NewPrivateChatController createState() => NewPrivateChatController();
@@ -48,20 +48,20 @@ class NewPrivateChatController extends State<NewPrivateChat> {
 
   void submitAction([_]) async {
     controller.text = controller.text.trim();
-    if (!formKey.currentState.validate()) return;
+    if (!formKey.currentState!.validate()) return;
     UrlLauncher(context, '$prefix${controller.text}').openMatrixToUrl();
   }
 
-  String validateForm(String value) {
-    if (value.isEmpty) {
-      return L10n.of(context).pleaseEnterAMatrixIdentifier;
+  String? validateForm(String? value) {
+    if (value!.isEmpty) {
+      return L10n.of(context)!.pleaseEnterAMatrixIdentifier;
     }
     if (!controller.text.isValidMatrixId ||
         !supportedSigils.contains(controller.text.sigil)) {
-      return L10n.of(context).makeSureTheIdentifierIsValid;
+      return L10n.of(context)!.makeSureTheIdentifierIsValid;
     }
     if (controller.text == Matrix.of(context).client.userID) {
-      return L10n.of(context).youCannotInviteYourself;
+      return L10n.of(context)!.youCannotInviteYourself;
     }
     return null;
   }

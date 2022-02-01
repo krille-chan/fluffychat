@@ -12,7 +12,7 @@ import 'package:fluffychat/widgets/matrix.dart';
 class ChatPermissionsSettingsView extends StatelessWidget {
   final ChatPermissionsSettingsController controller;
 
-  const ChatPermissionsSettingsView(this.controller, {Key key})
+  const ChatPermissionsSettingsView(this.controller, {Key? key})
       : super(key: key);
 
   @override
@@ -24,19 +24,24 @@ class ChatPermissionsSettingsView extends StatelessWidget {
             : IconButton(
                 icon: const Icon(Icons.close_outlined),
                 onPressed: () => VRouter.of(context)
-                    .toSegments(['rooms', controller.roomId]),
+                    .toSegments(['rooms', controller.roomId!]),
               ),
-        title: Text(L10n.of(context).editChatPermissions),
+        title: Text(L10n.of(context)!.editChatPermissions),
       ),
       body: MaxWidthBody(
         withScrolling: true,
         child: StreamBuilder(
           stream: controller.onChanged,
           builder: (context, _) {
-            final room =
-                Matrix.of(context).client.getRoomById(controller.roomId);
+            final roomId = controller.roomId;
+            final room = roomId == null
+                ? null
+                : Matrix.of(context).client.getRoomById(roomId);
+            if (room == null) {
+              return Center(child: Text(L10n.of(context)!.noRoomsFound));
+            }
             final powerLevelsContent = Map<String, dynamic>.from(
-                room.getState(EventTypes.RoomPowerLevels).content);
+                room.getState(EventTypes.RoomPowerLevels)!.content);
             final powerLevels = Map<String, dynamic>.from(powerLevelsContent)
               ..removeWhere((k, v) => v is! int);
             final eventsPowerLevels =
@@ -57,7 +62,7 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                     const Divider(thickness: 1),
                     ListTile(
                       title: Text(
-                        L10n.of(context).notifications,
+                        L10n.of(context)!.notifications,
                         style: TextStyle(
                           color: Theme.of(context).primaryColor,
                           fontWeight: FontWeight.bold,
@@ -82,23 +87,22 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                     const Divider(thickness: 1),
                     ListTile(
                       title: Text(
-                        L10n.of(context).configureChat,
+                        L10n.of(context)!.configureChat,
                         style: TextStyle(
                           color: Theme.of(context).primaryColor,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
-                    if (eventsPowerLevels != null)
-                      for (var entry in eventsPowerLevels.entries)
-                        PermissionsListTile(
-                          permissionKey: entry.key,
-                          category: 'events',
-                          permission: entry.value,
-                          onTap: () => controller.editPowerLevel(
-                              context, entry.key, entry.value,
-                              category: 'events'),
-                        ),
+                    for (var entry in eventsPowerLevels.entries)
+                      PermissionsListTile(
+                        permissionKey: entry.key,
+                        category: 'events',
+                        permission: entry.value,
+                        onTap: () => controller.editPowerLevel(
+                            context, entry.key, entry.value,
+                            category: 'events'),
+                      ),
                     if (room.canSendEvent(EventTypes.RoomTombstone)) ...{
                       const Divider(thickness: 1),
                       FutureBuilder<Capabilities>(
@@ -110,15 +114,15 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                                     strokeWidth: 2));
                           }
                           final String roomVersion = room
-                                  .getState(EventTypes.RoomCreate)
+                                  .getState(EventTypes.RoomCreate)!
                                   .content['room_version'] ??
                               '1';
 
                           return ListTile(
                             title: Text(
-                                '${L10n.of(context).roomVersion}: $roomVersion'),
+                                '${L10n.of(context)!.roomVersion}: $roomVersion'),
                             onTap: () =>
-                                controller.updateRoomAction(snapshot.data),
+                                controller.updateRoomAction(snapshot.data!),
                           );
                         },
                       ),

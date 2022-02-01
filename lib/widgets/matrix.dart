@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:collection/collection.dart';
 import 'package:desktop_notifications/desktop_notifications.dart';
 import 'package:flutter_app_lock/flutter_app_lock.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -38,23 +39,23 @@ import 'local_notifications_extension.dart';
 class Matrix extends StatefulWidget {
   static const String callNamespace = 'chat.fluffy.jitsi_call';
 
-  final Widget child;
+  final Widget? child;
 
-  final GlobalKey<VRouterState> router;
+  final GlobalKey<VRouterState>? router;
 
   final BuildContext context;
 
   final List<Client> clients;
 
-  final Map<String, String> queryParameters;
+  final Map<String, String>? queryParameters;
 
   const Matrix({
     this.child,
-    @required this.router,
-    @required this.context,
-    @required this.clients,
+    required this.router,
+    required this.context,
+    required this.clients,
     this.queryParameters,
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -67,18 +68,18 @@ class Matrix extends StatefulWidget {
 
 class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   int _activeClient = -1;
-  String activeBundle;
+  String? activeBundle;
   Store store = Store();
-  BuildContext navigatorContext;
+  late BuildContext navigatorContext;
 
-  BackgroundPush _backgroundPush;
+  BackgroundPush? _backgroundPush;
 
   Client get client {
     if (widget.clients.isEmpty) {
       widget.clients.add(getLoginClient());
     }
     if (_activeClient < 0 || _activeClient >= widget.clients.length) {
-      return currentBundle.first;
+      return currentBundle!.first!;
     }
     return widget.clients[_activeClient];
   }
@@ -88,19 +89,19 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   int getClientIndexByMatrixId(String matrixId) =>
       widget.clients.indexWhere((client) => client.userID == matrixId);
 
-  String currentClientSecret;
-  RequestTokenResponse currentThreepidCreds;
+  late String currentClientSecret;
+  RequestTokenResponse? currentThreepidCreds;
 
-  void setActiveClient(Client cl) {
+  void setActiveClient(Client? cl) {
     final i = widget.clients.indexWhere((c) => c == cl);
-    if (i != null) {
+    if (i != -1) {
       _activeClient = i;
     } else {
-      Logs().w('Tried to set an unknown client ${cl.userID} as active');
+      Logs().w('Tried to set an unknown client ${cl!.userID} as active');
     }
   }
 
-  List<Client> get currentBundle {
+  List<Client?>? get currentBundle {
     if (!hasComplexBundles) {
       return List.from(widget.clients);
     }
@@ -111,8 +112,8 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     return bundles.values.first;
   }
 
-  Map<String, List<Client>> get accountBundles {
-    final resBundles = <String, List<_AccountBundleWithClient>>{};
+  Map<String?, List<Client?>> get accountBundles {
+    final resBundles = <String?, List<_AccountBundleWithClient>>{};
     for (var i = 0; i < widget.clients.length; i++) {
       final bundles = widget.clients[i].accountBundles;
       for (final bundle in bundles) {
@@ -120,18 +121,18 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
           continue;
         }
         resBundles[bundle.name] ??= [];
-        resBundles[bundle.name].add(_AccountBundleWithClient(
+        resBundles[bundle.name]!.add(_AccountBundleWithClient(
           client: widget.clients[i],
           bundle: bundle,
         ));
       }
     }
     for (final b in resBundles.values) {
-      b.sort((a, b) => a.bundle.priority == null
+      b.sort((a, b) => a.bundle!.priority == null
           ? 1
-          : b.bundle.priority == null
+          : b.bundle!.priority == null
               ? -1
-              : a.bundle.priority.compareTo(b.bundle.priority));
+              : a.bundle!.priority!.compareTo(b.bundle!.priority!));
     }
     return resBundles
         .map((k, v) => MapEntry(k, v.map((vv) => vv.client).toList()));
@@ -139,13 +140,13 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
   bool get hasComplexBundles => accountBundles.values.any((v) => v.length > 1);
 
-  Client _loginClientCandidate;
+  Client? _loginClientCandidate;
 
   Client getLoginClient() {
     if (widget.clients.isNotEmpty && !client.isLogged()) {
       return client;
     }
-    _loginClientCandidate ??= ClientManager.createClient(
+    final candidate = _loginClientCandidate ??= ClientManager.createClient(
         '${AppConfig.applicationName}-${DateTime.now().millisecondsSinceEpoch}')
       ..onLoginStateChanged
           .stream
@@ -153,31 +154,31 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
           .first
           .then((_) {
         if (!widget.clients.contains(_loginClientCandidate)) {
-          widget.clients.add(_loginClientCandidate);
+          widget.clients.add(_loginClientCandidate!);
         }
-        ClientManager.addClientNameToStore(_loginClientCandidate.clientName);
-        _registerSubs(_loginClientCandidate.clientName);
+        ClientManager.addClientNameToStore(_loginClientCandidate!.clientName);
+        _registerSubs(_loginClientCandidate!.clientName);
         _loginClientCandidate = null;
-        widget.router.currentState.to('/rooms');
+        widget.router!.currentState!.to('/rooms');
       });
-    return _loginClientCandidate;
+    return candidate;
   }
 
-  Client getClientByName(String name) => widget.clients
-      .firstWhere((c) => c.clientName == name, orElse: () => null);
+  Client? getClientByName(String name) =>
+      widget.clients.firstWhereOrNull((c) => c.clientName == name);
 
-  Map<String, dynamic> get shareContent => _shareContent;
-  set shareContent(Map<String, dynamic> content) {
+  Map<String, dynamic>? get shareContent => _shareContent;
+  set shareContent(Map<String, dynamic>? content) {
     _shareContent = content;
     onShareContentChanged.add(_shareContent);
   }
 
-  Map<String, dynamic> _shareContent;
+  Map<String, dynamic>? _shareContent;
 
-  final StreamController<Map<String, dynamic>> onShareContentChanged =
+  final StreamController<Map<String, dynamic>?> onShareContentChanged =
       StreamController.broadcast();
 
-  File wallpaper;
+  File? wallpaper;
 
   void _initWithStore() async {
     try {
@@ -187,7 +188,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         if (statusMsg?.isNotEmpty ?? false) {
           Logs().v('Send cached status message: "$statusMsg"');
           await client.setPresence(
-            client.userID,
+            client.userID!,
             PresenceType.online,
             statusMsg: statusMsg,
           );
@@ -206,15 +207,15 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   final onNotification = <String, StreamSubscription>{};
   final onLoginStateChanged = <String, StreamSubscription<LoginState>>{};
   final onUiaRequest = <String, StreamSubscription<UiaRequest>>{};
-  StreamSubscription<html.Event> onFocusSub;
-  StreamSubscription<html.Event> onBlurSub;
+  StreamSubscription<html.Event>? onFocusSub;
+  StreamSubscription<html.Event>? onBlurSub;
   final onOwnPresence = <String, StreamSubscription<Presence>>{};
 
-  String _cachedPassword;
-  Timer _cachedPasswordClearTimer;
-  String get cachedPassword => _cachedPassword;
+  String? _cachedPassword;
+  Timer? _cachedPasswordClearTimer;
+  String? get cachedPassword => _cachedPassword;
 
-  set cachedPassword(String p) {
+  set cachedPassword(String? p) {
     Logs().d('Password cached');
     _cachedPasswordClearTimer?.cancel();
     _cachedPassword = p;
@@ -226,7 +227,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
   bool webHasFocus = true;
 
-  String get activeRoomId =>
+  String? get activeRoomId =>
       VRouter.of(navigatorContext).pathParameters['roomid'];
 
   final linuxNotifications =
@@ -236,7 +237,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance!.addObserver(this);
     initMatrix();
     if (PlatformInfos.isWeb) {
       initConfig().then((_) => initSettings());
@@ -260,8 +261,8 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
   void _reportSyncError(SyncStatusUpdate update) =>
       SentryController.captureException(
-        update.error.exception,
-        update.error.stackTrace,
+        update.error!.exception,
+        update.error!.stackTrace,
       );
 
   void _registerSubs(String name) {
@@ -276,9 +277,9 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         .listen(_reportSyncError);
     onRoomKeyRequestSub[name] ??=
         c.onRoomKeyRequest.stream.listen((RoomKeyRequest request) async {
-      if (widget.clients.any((cl) =>
+      if (widget.clients.any(((cl) =>
           cl.userID == request.requestingDevice.userId &&
-          cl.identityKey == request.requestingDevice.curve25519Key)) {
+          cl.identityKey == request.requestingDevice.curve25519Key))) {
         Logs().i(
             '[Key Request] Request is from one of our own clients, forwarding the key...');
         await request.forwardKey();
@@ -309,20 +310,20 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       if (loggedInWithMultipleClients && state != LoginState.loggedIn) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(L10n.of(context).oneClientLoggedOut),
+            content: Text(L10n.of(context)!.oneClientLoggedOut),
           ),
         );
 
         if (state != LoginState.loggedIn) {
-          widget.router.currentState.to(
+          widget.router!.currentState!.to(
             '/rooms',
-            queryParameters: widget.router.currentState.queryParameters,
+            queryParameters: widget.router!.currentState!.queryParameters,
           );
         }
       } else {
-        widget.router.currentState.to(
+        widget.router!.currentState!.to(
           state == LoginState.loggedIn ? '/rooms' : '/home',
-          queryParameters: widget.router.currentState.queryParameters,
+          queryParameters: widget.router!.currentState!.queryParameters,
         );
       }
     });
@@ -330,7 +331,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     onOwnPresence[name] ??= c.onPresence.stream.listen((presence) {
       if (c.isLogged() &&
           c.userID == presence.senderId &&
-          presence.presence?.statusMsg != null) {
+          presence.presence.statusMsg != null) {
         Logs().v('Update status message: "${presence.presence.statusMsg}"');
         store.setItem(
             SettingKeys.ownStatusMessage, presence.presence.statusMsg);
@@ -367,7 +368,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   void initMatrix() {
     // Display the app lock
     if (PlatformInfos.isMobile) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
+      WidgetsBinding.instance!.addPostFrameCallback((_) {
         ([TargetPlatform.linux].contains(Theme.of(context).platform)
                 ? SharedPreferences.getInstance()
                     .then((prefs) => prefs.getString(SettingKeys.appLockKey))
@@ -375,8 +376,8 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
                     .read(key: SettingKeys.appLockKey))
             .then((lock) {
           if (lock?.isNotEmpty ?? false) {
-            AppLock.of(widget.context).enable();
-            AppLock.of(widget.context).showLockScreen();
+            AppLock.of(widget.context)!.enable();
+            AppLock.of(widget.context)!.showLockScreen();
           }
         });
       });
@@ -398,7 +399,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         client,
         context,
         widget.router,
-        onFcmError: (errorMsg, {Uri link}) => Timer(
+        onFcmError: (errorMsg, {Uri? link}) => Timer(
           const Duration(seconds: 1),
           () {
             final banner = SnackBar(
@@ -407,7 +408,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
               action: link == null
                   ? null
                   : SnackBarAction(
-                      label: L10n.of(context).link,
+                      label: L10n.of(context)!.link,
                       onPressed: () => launch(link.toString()),
                     ),
             );
@@ -435,54 +436,51 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   }
 
   void initSettings() {
-    if (store != null) {
-      store.getItem(SettingKeys.jitsiInstance).then((final instance) =>
-          AppConfig.jitsiInstance = instance ?? AppConfig.jitsiInstance);
-      store.getItem(SettingKeys.wallpaper).then((final path) async {
-        if (path == null) return;
-        final file = File(path);
-        if (await file.exists()) {
-          wallpaper = file;
-        }
-      });
-      store.getItem(SettingKeys.fontSizeFactor).then((value) =>
-          AppConfig.fontSizeFactor =
-              double.tryParse(value ?? '') ?? AppConfig.fontSizeFactor);
-      store.getItem(SettingKeys.bubbleSizeFactor).then((value) =>
-          AppConfig.bubbleSizeFactor =
-              double.tryParse(value ?? '') ?? AppConfig.bubbleSizeFactor);
-      store
-          .getItemBool(SettingKeys.renderHtml, AppConfig.renderHtml)
-          .then((value) => AppConfig.renderHtml = value);
-      store
-          .getItemBool(
-              SettingKeys.hideRedactedEvents, AppConfig.hideRedactedEvents)
-          .then((value) => AppConfig.hideRedactedEvents = value);
-      store
-          .getItemBool(
-              SettingKeys.hideUnknownEvents, AppConfig.hideUnknownEvents)
-          .then((value) => AppConfig.hideUnknownEvents = value);
-      store
-          .getItemBool(SettingKeys.autoplayImages, AppConfig.autoplayImages)
-          .then((value) => AppConfig.autoplayImages = value);
-      store
-          .getItemBool(SettingKeys.sendOnEnter, AppConfig.sendOnEnter)
-          .then((value) => AppConfig.sendOnEnter = value);
-      store.getItem(SettingKeys.chatColor).then((value) {
-        if (value != null && int.tryParse(value) != null) {
-          AppConfig.chatColor = Color(int.parse(value));
-          AdaptiveTheme.of(context).setTheme(
-            light: FluffyThemes.light,
-            dark: FluffyThemes.dark,
-          );
-        }
-      });
-    }
+    store.getItem(SettingKeys.jitsiInstance).then((final instance) =>
+        AppConfig.jitsiInstance = instance ?? AppConfig.jitsiInstance);
+    store.getItem(SettingKeys.wallpaper).then((final path) async {
+      if (path == null) return;
+      final file = File(path);
+      if (await file.exists()) {
+        wallpaper = file;
+      }
+    });
+    store.getItem(SettingKeys.fontSizeFactor).then((value) =>
+        AppConfig.fontSizeFactor =
+            double.tryParse(value ?? '') ?? AppConfig.fontSizeFactor);
+    store.getItem(SettingKeys.bubbleSizeFactor).then((value) =>
+        AppConfig.bubbleSizeFactor =
+            double.tryParse(value ?? '') ?? AppConfig.bubbleSizeFactor);
+    store
+        .getItemBool(SettingKeys.renderHtml, AppConfig.renderHtml)
+        .then((value) => AppConfig.renderHtml = value);
+    store
+        .getItemBool(
+            SettingKeys.hideRedactedEvents, AppConfig.hideRedactedEvents)
+        .then((value) => AppConfig.hideRedactedEvents = value);
+    store
+        .getItemBool(SettingKeys.hideUnknownEvents, AppConfig.hideUnknownEvents)
+        .then((value) => AppConfig.hideUnknownEvents = value);
+    store
+        .getItemBool(SettingKeys.autoplayImages, AppConfig.autoplayImages)
+        .then((value) => AppConfig.autoplayImages = value);
+    store
+        .getItemBool(SettingKeys.sendOnEnter, AppConfig.sendOnEnter)
+        .then((value) => AppConfig.sendOnEnter = value);
+    store.getItem(SettingKeys.chatColor).then((value) {
+      if (value != null && int.tryParse(value) != null) {
+        AppConfig.chatColor = Color(int.parse(value));
+        AdaptiveTheme.of(context).setTheme(
+          light: FluffyThemes.light,
+          dark: FluffyThemes.dark,
+        );
+      }
+    });
   }
 
   @override
   void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
+    WidgetsBinding.instance!.removeObserver(this);
 
     onRoomKeyRequestSub.values.map((s) => s.cancel());
     onKeyVerificationRequestSub.values.map((s) => s.cancel());
@@ -510,10 +508,10 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
 class FixedThreepidCreds extends ThreepidCreds {
   FixedThreepidCreds({
-    String sid,
-    String clientSecret,
-    String idServer,
-    String idAccessToken,
+    required String sid,
+    required String clientSecret,
+    String? idServer,
+    String? idAccessToken,
   }) : super(
           sid: sid,
           clientSecret: clientSecret,
@@ -533,7 +531,7 @@ class FixedThreepidCreds extends ThreepidCreds {
 }
 
 class _AccountBundleWithClient {
-  final Client client;
-  final AccountBundle bundle;
+  final Client? client;
+  final AccountBundle? bundle;
   _AccountBundleWithClient({this.client, this.bundle});
 }

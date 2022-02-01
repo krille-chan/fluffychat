@@ -1,5 +1,3 @@
-//@dart=2.12
-
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -116,7 +114,7 @@ class PublicRoomBottomSheet extends StatelessWidget {
                           )
                         else
                           ContentBanner(
-                            profile.avatarUrl!,
+                            mxContent: profile.avatarUrl,
                             height: 156,
                             defaultIcon: Icons.person_outline,
                             client: Matrix.of(context).client,

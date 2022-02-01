@@ -1,5 +1,3 @@
-//@dart=2.12
-
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -19,41 +17,42 @@ class ChatAppBarTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final room = controller.room;
+    if (room == null) {
+      return Container();
+    }
     if (controller.selectedEvents.isNotEmpty) {
       return Text(controller.selectedEvents.length.toString());
     }
-    final directChatMatrixID = controller.room.directChatMatrixID;
+    final directChatMatrixID = room.directChatMatrixID;
     return ListTile(
       leading: Avatar(
-        mxContent: controller.room.avatar,
-        name: controller.room.displayname,
+        mxContent: room.avatar,
+        name: room.displayname,
       ),
       contentPadding: EdgeInsets.zero,
       onTap: directChatMatrixID != null
           ? () => showModalBottomSheet(
                 context: context,
                 builder: (c) => UserBottomSheet(
-                  user: controller.room.getUserByMXIDSync(directChatMatrixID),
+                  user: room.getUserByMXIDSync(directChatMatrixID),
                   outerContext: context,
                   onMention: () => controller.sendController.text +=
-                      '${controller.room.getUserByMXIDSync(directChatMatrixID).mention} ',
+                      '${room.getUserByMXIDSync(directChatMatrixID).mention} ',
                 ),
               )
-          : () => VRouter.of(context)
-              .toSegments(['rooms', controller.room.id, 'details']),
-      title: Text(
-          controller.room
-              .getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
+          : () => VRouter.of(context).toSegments(['rooms', room.id, 'details']),
+      title: Text(room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
           maxLines: 1),
       subtitle: StreamBuilder<Object>(
         stream: Matrix.of(context)
             .client
             .onPresence
             .stream
-            .where((p) => p.senderId == controller.room.directChatMatrixID)
+            .where((p) => p.senderId == room.directChatMatrixID)
             .rateLimit(const Duration(seconds: 1)),
         builder: (context, snapshot) => Text(
-          controller.room.getLocalizedStatus(context),
+          room.getLocalizedStatus(context),
           maxLines: 1,
           //overflow: TextOverflow.ellipsis,
         ),

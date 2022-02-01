@@ -34,8 +34,8 @@ class KeyVerificationDialog extends StatefulWidget {
   final KeyVerification request;
 
   const KeyVerificationDialog({
-    Key key,
-    this.request,
+    Key? key,
+    required this.request,
   }) : super(key: key);
 
   @override
@@ -43,25 +43,23 @@ class KeyVerificationDialog extends StatefulWidget {
 }
 
 class _KeyVerificationPageState extends State<KeyVerificationDialog> {
-  void Function() originalOnUpdate;
-  List<dynamic> sasEmoji;
+  void Function()? originalOnUpdate;
+  late final List<dynamic> sasEmoji;
 
   @override
   void initState() {
     originalOnUpdate = widget.request.onUpdate;
     widget.request.onUpdate = () {
-      if (originalOnUpdate != null) {
-        originalOnUpdate();
-      }
-      setState(() => null);
+      originalOnUpdate?.call();
+      setState(() {});
     };
     widget.request.client.getProfileFromUserId(widget.request.userId).then((p) {
       profile = p;
-      setState(() => null);
+      setState(() {});
     });
     rootBundle.loadString('assets/sas-emoji.json').then((e) {
       sasEmoji = json.decode(e);
-      setState(() => null);
+      setState(() {});
     });
     super.initState();
   }
@@ -77,12 +75,11 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
     super.dispose();
   }
 
-  Profile profile;
+  Profile? profile;
 
   Future<void> checkInput(String input) async {
-    if (input == null || input.isEmpty) {
-      return;
-    }
+    if (input.isEmpty) return;
+
     final valid = await showFutureLoadingDialog(
         context: context,
         future: () async {
@@ -101,24 +98,24 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
       await showOkAlertDialog(
         useRootNavigator: false,
         context: context,
-        message: L10n.of(context).incorrectPassphraseOrKey,
+        message: L10n.of(context)!.incorrectPassphraseOrKey,
       );
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    User user;
+    User? user;
     final directChatId =
         widget.request.client.getDirectChatFromUserId(widget.request.userId);
     if (directChatId != null) {
       user = widget.request.client
-          .getRoomById(directChatId)
-          ?.getUserByMXIDSync(widget.request.userId);
+          .getRoomById(directChatId)!
+          .getUserByMXIDSync(widget.request.userId);
     }
     final displayName =
-        user?.calcDisplayname() ?? widget.request.userId.localpart;
-    var title = Text(L10n.of(context).verifyTitle);
+        user?.calcDisplayname() ?? widget.request.userId.localpart!;
+    var title = Text(L10n.of(context)!.verifyTitle);
     Widget body;
     final buttons = <Widget>[];
     switch (widget.request.state) {
@@ -131,7 +128,7 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Text(L10n.of(context).askSSSSSign,
+              Text(L10n.of(context)!.askSSSSSign,
                   style: const TextStyle(fontSize: 20)),
               Container(height: 10),
               TextField(
@@ -146,7 +143,7 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
                 maxLines: 1,
                 obscureText: true,
                 decoration: InputDecoration(
-                  hintText: L10n.of(context).passphraseOrKey,
+                  hintText: L10n.of(context)!.passphraseOrKey,
                   prefixStyle: TextStyle(color: Theme.of(context).primaryColor),
                   suffixStyle: TextStyle(color: Theme.of(context).primaryColor),
                   border: const OutlineInputBorder(),
@@ -156,16 +153,16 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
           ),
         );
         buttons.add(AdaptiveFlatButton(
-          label: L10n.of(context).submit,
+          label: L10n.of(context)!.submit,
           onPressed: () => checkInput(textEditingController.text),
         ));
         buttons.add(AdaptiveFlatButton(
-          label: L10n.of(context).skip,
+          label: L10n.of(context)!.skip,
           onPressed: () => widget.request.openSSSS(skip: true),
         ));
         break;
       case KeyVerificationState.askAccept:
-        title = Text(L10n.of(context).newVerificationRequest);
+        title = Text(L10n.of(context)!.newVerificationRequest);
         body = Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -199,19 +196,19 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
             Image.asset('assets/verification.png', fit: BoxFit.contain),
             const SizedBox(height: 16),
             Text(
-              L10n.of(context).askVerificationRequest(displayName),
+              L10n.of(context)!.askVerificationRequest(displayName),
             )
           ],
         );
         buttons.add(AdaptiveFlatButton(
-          label: L10n.of(context).reject,
+          label: L10n.of(context)!.reject,
           textColor: Colors.red,
           onPressed: () => widget.request
               .rejectVerification()
               .then((_) => Navigator.of(context, rootNavigator: false).pop()),
         ));
         buttons.add(AdaptiveFlatButton(
-          label: L10n.of(context).accept,
+          label: L10n.of(context)!.accept,
           onPressed: () => widget.request.acceptVerification(),
         ));
         break;
@@ -224,22 +221,22 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
             const CircularProgressIndicator.adaptive(strokeWidth: 2),
             const SizedBox(height: 16),
             Text(
-              L10n.of(context).waitingPartnerAcceptRequest,
+              L10n.of(context)!.waitingPartnerAcceptRequest,
               textAlign: TextAlign.center,
             ),
           ],
         );
         final key = widget.request.client.userDeviceKeys[widget.request.userId]
-            .deviceKeys[widget.request.deviceId];
+            ?.deviceKeys[widget.request.deviceId];
         if (key != null) {
           buttons.add(AdaptiveFlatButton(
-            label: L10n.of(context).verifyManual,
+            label: L10n.of(context)!.verifyManual,
             onPressed: () async {
               final result = await showOkCancelAlertDialog(
                 useRootNavigator: false,
                 context: context,
-                title: L10n.of(context).verifyManual,
-                message: key.ed25519Key.beautified,
+                title: L10n.of(context)!.verifyManual,
+                message: key.ed25519Key?.beautified ?? 'Key not found',
               );
               if (result == OkCancelResult.ok) {
                 await key.setVerified(true);
@@ -257,14 +254,14 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
         // view for if "emoji" is a present sasType or not?
         String compareText;
         if (widget.request.sasTypes.contains('emoji')) {
-          compareText = L10n.of(context).compareEmojiMatch;
+          compareText = L10n.of(context)!.compareEmojiMatch;
           compareWidget = TextSpan(
             children: widget.request.sasEmojis
                 .map((e) => WidgetSpan(child: _Emoji(e, sasEmoji)))
                 .toList(),
           );
         } else {
-          compareText = L10n.of(context).compareNumbersMatch;
+          compareText = L10n.of(context)!.compareNumbersMatch;
           final numbers = widget.request.sasNumbers;
           final numbstr = '${numbers[0]}-${numbers[1]}-${numbers[2]}';
           compareWidget =
@@ -289,18 +286,18 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
         );
         buttons.add(AdaptiveFlatButton(
           textColor: Colors.red,
-          label: L10n.of(context).theyDontMatch,
+          label: L10n.of(context)!.theyDontMatch,
           onPressed: () => widget.request.rejectSas(),
         ));
         buttons.add(AdaptiveFlatButton(
-          label: L10n.of(context).theyMatch,
+          label: L10n.of(context)!.theyMatch,
           onPressed: () => widget.request.acceptSas(),
         ));
         break;
       case KeyVerificationState.waitingSas:
         final acceptText = widget.request.sasTypes.contains('emoji')
-            ? L10n.of(context).waitingPartnerEmoji
-            : L10n.of(context).waitingPartnerNumbers;
+            ? L10n.of(context)!.waitingPartnerEmoji
+            : L10n.of(context)!.waitingPartnerNumbers;
         body = Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
@@ -321,13 +318,13 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
                 color: Colors.green, size: 200.0),
             const SizedBox(height: 10),
             Text(
-              L10n.of(context).verifySuccess,
+              L10n.of(context)!.verifySuccess,
               textAlign: TextAlign.center,
             ),
           ],
         );
         buttons.add(AdaptiveFlatButton(
-          label: L10n.of(context).close,
+          label: L10n.of(context)!.close,
           onPressed: () => Navigator.of(context, rootNavigator: false).pop(),
         ));
         break;
@@ -344,12 +341,11 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
           ],
         );
         buttons.add(AdaptiveFlatButton(
-          label: L10n.of(context).close,
+          label: L10n.of(context)!.close,
           onPressed: () => Navigator.of(context, rootNavigator: false).pop(),
         ));
         break;
     }
-    body ??= Text('ERROR: Unknown state ' + widget.request.state.toString());
     final content = SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: Column(
@@ -377,16 +373,17 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
 
 class _Emoji extends StatelessWidget {
   final KeyVerificationEmoji emoji;
-  final List<dynamic> sasEmoji;
+  final List<dynamic>? sasEmoji;
 
   const _Emoji(this.emoji, this.sasEmoji);
 
   String getLocalizedName() {
+    final sasEmoji = this.sasEmoji;
     if (sasEmoji == null) {
       // asset is still being loaded
       return emoji.name;
     }
-    final translations = Map<String, String>.from(
+    final translations = Map<String, String?>.from(
         sasEmoji[emoji.number]['translated_descriptions']);
     translations['en'] = emoji.name;
     for (final locale in window.locales) {
@@ -398,7 +395,7 @@ class _Emoji extends StatelessWidget {
         if (haveLanguage == wantLanguage &&
             (Set.from(haveLocaleParts)..removeAll(wantLocaleParts)).isEmpty &&
             (translations[haveLocale]?.isNotEmpty ?? false)) {
-          return translations[haveLocale];
+          return translations[haveLocale]!;
         }
       }
     }

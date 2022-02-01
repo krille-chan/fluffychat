@@ -9,7 +9,7 @@ import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/localized_exception_extension.dart';
 
 class SignupPage extends StatefulWidget {
-  const SignupPage({Key key}) : super(key: key);
+  const SignupPage({Key? key}) : super(key: key);
 
   @override
   SignupPageController createState() => SignupPageController();
@@ -20,49 +20,49 @@ class SignupPageController extends State<SignupPage> {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController passwordController2 = TextEditingController();
   final TextEditingController emailController = TextEditingController();
-  String error;
+  String? error;
   bool loading = false;
   bool showPassword = false;
 
   void toggleShowPassword() => setState(() => showPassword = !showPassword);
 
-  String get domain => VRouter.of(context).queryParameters['domain'];
+  String? get domain => VRouter.of(context).queryParameters['domain'];
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  String usernameTextFieldValidator(String value) {
+  String? usernameTextFieldValidator(String? value) {
     usernameController.text =
         usernameController.text.trim().toLowerCase().replaceAll(' ', '_');
-    if (value.isEmpty) {
-      return L10n.of(context).pleaseChooseAUsername;
+    if (value!.isEmpty) {
+      return L10n.of(context)!.pleaseChooseAUsername;
     }
     return null;
   }
 
-  String password1TextFieldValidator(String value) {
+  String? password1TextFieldValidator(String? value) {
     const minLength = 8;
-    if (value.isEmpty) {
-      return L10n.of(context).chooseAStrongPassword;
+    if (value!.isEmpty) {
+      return L10n.of(context)!.chooseAStrongPassword;
     }
     if (value.length < minLength) {
-      return L10n.of(context).pleaseChooseAtLeastChars(minLength.toString());
+      return L10n.of(context)!.pleaseChooseAtLeastChars(minLength.toString());
     }
     return null;
   }
 
-  String password2TextFieldValidator(String value) {
-    if (value.isEmpty) {
-      return L10n.of(context).chooseAStrongPassword;
+  String? password2TextFieldValidator(String? value) {
+    if (value!.isEmpty) {
+      return L10n.of(context)!.chooseAStrongPassword;
     }
     if (value != passwordController.text) {
-      return L10n.of(context).passwordsDoNotMatch;
+      return L10n.of(context)!.passwordsDoNotMatch;
     }
     return null;
   }
 
-  String emailTextFieldValidator(String value) {
-    if (value.isNotEmpty && !value.contains('@')) {
-      return L10n.of(context).pleaseEnterValidEmail;
+  String? emailTextFieldValidator(String? value) {
+    if (value!.isNotEmpty && !value.contains('@')) {
+      return L10n.of(context)!.pleaseEnterValidEmail;
     }
     return null;
   }
@@ -71,7 +71,7 @@ class SignupPageController extends State<SignupPage> {
     setState(() {
       error = null;
     });
-    if (!formKey.currentState.validate()) return;
+    if (!formKey.currentState!.validate()) return;
 
     setState(() {
       loading = true;
@@ -99,7 +99,7 @@ class SignupPageController extends State<SignupPage> {
         ),
       );
     } catch (e) {
-      error = (e as Object).toLocalizedString(context);
+      error = (e).toLocalizedString(context);
     } finally {
       if (mounted) {
         setState(() => loading = false);

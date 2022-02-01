@@ -8,13 +8,13 @@ import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 class NewGroupView extends StatelessWidget {
   final NewGroupController controller;
 
-  const NewGroupView(this.controller, {Key key}) : super(key: key);
+  const NewGroupView(this.controller, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(L10n.of(context).createNewGroup),
+        title: Text(L10n.of(context)!.createNewGroup),
       ),
       body: MaxWidthBody(
         child: Column(
@@ -29,13 +29,13 @@ class NewGroupView extends StatelessWidget {
                 textInputAction: TextInputAction.go,
                 onSubmitted: controller.submitAction,
                 decoration: InputDecoration(
-                    labelText: L10n.of(context).optionalGroupName,
+                    labelText: L10n.of(context)!.optionalGroupName,
                     prefixIcon: const Icon(Icons.people_outlined),
-                    hintText: L10n.of(context).enterAGroupName),
+                    hintText: L10n.of(context)!.enterAGroupName),
               ),
             ),
             SwitchListTile.adaptive(
-              title: Text(L10n.of(context).groupIsPublic),
+              title: Text(L10n.of(context)!.groupIsPublic),
               value: controller.publicGroup,
               onChanged: controller.setPublicGroup,
             ),

@@ -10,21 +10,23 @@ import 'html_message.dart';
 class ReplyContent extends StatelessWidget {
   final Event replyEvent;
   final bool lightText;
-  final Timeline timeline;
+  final Timeline? timeline;
 
-  const ReplyContent(this.replyEvent,
-      {this.lightText = false, Key key, this.timeline})
-      : super(key: key);
+  const ReplyContent(
+    this.replyEvent, {
+    this.lightText = false,
+    Key? key,
+    this.timeline,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Widget replyBody;
-    final displayEvent = replyEvent != null && timeline != null
-        ? replyEvent.getDisplayEvent(timeline)
-        : replyEvent;
+    final timeline = this.timeline;
+    final displayEvent =
+        timeline != null ? replyEvent.getDisplayEvent(timeline) : replyEvent;
     final fontSize = AppConfig.messageFontSize * AppConfig.fontSizeFactor;
-    if (displayEvent != null &&
-        AppConfig.renderHtml &&
+    if (AppConfig.renderHtml &&
         [EventTypes.Message, EventTypes.Encrypted]
             .contains(displayEvent.type) &&
         [MessageTypes.Text, MessageTypes.Notice, MessageTypes.Emote]
@@ -32,16 +34,16 @@ class ReplyContent extends StatelessWidget {
         !displayEvent.redacted &&
         displayEvent.content['format'] == 'org.matrix.custom.html' &&
         displayEvent.content['formatted_body'] is String) {
-      String html = displayEvent.content['formatted_body'];
+      String? html = displayEvent.content['formatted_body'];
       if (displayEvent.messageType == MessageTypes.Emote) {
         html = '* $html';
       }
       replyBody = HtmlMessage(
-        html: html,
+        html: html!,
         defaultTextStyle: TextStyle(
           color: lightText
               ? Colors.white
-              : Theme.of(context).textTheme.bodyText2.color,
+              : Theme.of(context).textTheme.bodyText2!.color,
           fontSize: fontSize,
         ),
         maxLines: 1,
@@ -50,18 +52,17 @@ class ReplyContent extends StatelessWidget {
       );
     } else {
       replyBody = Text(
-        displayEvent?.getLocalizedBody(
-              MatrixLocals(L10n.of(context)),
-              withSenderNamePrefix: false,
-              hideReply: true,
-            ) ??
-            '',
+        displayEvent.getLocalizedBody(
+          MatrixLocals(L10n.of(context)!),
+          withSenderNamePrefix: false,
+          hideReply: true,
+        ),
         overflow: TextOverflow.ellipsis,
         maxLines: 1,
         style: TextStyle(
           color: lightText
               ? Colors.white
-              : Theme.of(context).textTheme.bodyText2.color,
+              : Theme.of(context).textTheme.bodyText2!.color,
           fontSize: fontSize,
         ),
       );
@@ -81,7 +82,7 @@ class ReplyContent extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                (displayEvent?.sender?.calcDisplayname() ?? '') + ':',
+                displayEvent.sender.calcDisplayname() + ':',
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
