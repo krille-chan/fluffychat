@@ -2709,5 +2709,10 @@
   "@iUnderstand": {},
   "openChat": "Open Chat",
   "markAsRead": "Mark as read",
-  "reportUser": "Report user"
+  "reportUser": "Report user",
+  "dismiss": "Dismiss",
+  "markAsRead": "Mark as read",
+  "matrixWidgets": "Matrix Widgets",
+  "integrationsNotImplemented": "Editing widgets and integrations is not possible yet.",
+  "editIntegrations": "Edit widgets and integrations"
 }
