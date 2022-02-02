@@ -45,7 +45,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "addNewFriend": "Neue:n Freund:in hinzufügen",
+  "addNewFriend": "Neuen Freund hinzufügen",
   "@addNewFriend": {
     "type": "text",
     "placeholders": {}
