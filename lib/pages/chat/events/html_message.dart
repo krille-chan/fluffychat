@@ -95,7 +95,7 @@ class HtmlMessage extends StatelessWidget {
         final identityParts = url.parseIdentifierIntoParts();
         final identifier = identityParts?.primaryIdentifier;
         if (identifier == null) {
-          return null;
+          return {'': null};
         }
         if (identifier.sigil == '@') {
           // we have a user pill
@@ -127,13 +127,13 @@ class HtmlMessage extends StatelessWidget {
               };
             }
           }
-          return null;
+          return {'': null};
         }
         if (identifier.sigil == '!') {
           // we have a room ID pill
           final r = room.client.getRoomById(identifier);
           if (r == null) {
-            return null;
+            return {'': null};
           }
           return {
             'displayname':
@@ -141,8 +141,8 @@ class HtmlMessage extends StatelessWidget {
             'avatar_url': r.getState('m.room.avatar')?.content['url'],
           };
         }
-        return null;
-      } as Future<Map<String, dynamic>> Function(String)?,
+        return {'': null};
+      },
     );
   }
 }
