@@ -49,7 +49,7 @@ class InputBar extends StatelessWidget {
     }
     final searchText =
         controller!.text.substring(0, controller!.selection.baseOffset);
-    final List<Map<String, String?>> ret = <Map<String, String>>[];
+    final List<Map<String, String?>> ret = <Map<String, String?>>[];
     const maxResults = 30;
 
     final commandMatch = RegExp(r'^\/([\w]*)$').firstMatch(searchText);
