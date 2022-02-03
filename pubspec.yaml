@@ -50,7 +50,7 @@ dependencies:
   intl: any
   localstorage: ^4.0.0+1
   lottie: ^1.2.1
-  matrix: ^0.7.3
+  matrix: ^0.8.0
   matrix_link_text: ^1.0.2
   open_noti_settings: ^0.4.0
   package_info_plus: ^1.2.1
@@ -82,7 +82,7 @@ dependencies:
 dev_dependencies:
   dart_code_metrics: ^4.2.0-dev.3
   flutter_lints: ^1.0.4
-  flutter_native_splash: ^1.2.4
+  flutter_native_splash: ^2.0.1+1
   flutter_test:
     sdk: flutter
   import_sorter: ^4.6.0

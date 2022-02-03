@@ -13,7 +13,6 @@ import 'package:fluffychat/pages/add_story/add_story_view.dart';
 import 'package:fluffychat/pages/add_story/invite_story_page.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_file_extension.dart';
 import 'package:fluffychat/utils/resize_image.dart';
-import 'package:fluffychat/utils/room_send_file_extension.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/matrix_sdk_extensions.dart/client_stories_extension.dart';
@@ -29,8 +28,8 @@ class AddStoryController extends State<AddStoryPage> {
   final TextEditingController controller = TextEditingController();
   late Color backgroundColor;
   late Color backgroundColorDark;
-  MatrixFile? image;
-  MatrixFile? video;
+  MatrixImageFile? image;
+  MatrixVideoFile? video;
 
   VideoPlayerController? videoPlayerController;
 
@@ -49,8 +48,13 @@ class AddStoryController extends State<AddStoryPage> {
     );
     final fileName = picked.fileName;
     if (fileName == null) return;
+    final shrinked = await MatrixImageFile.shrink(
+      bytes: picked.toUint8List(),
+      name: fileName,
+      compute: Matrix.of(context).client.runInBackground,
+    );
     setState(() {
-      image = MatrixFile(bytes: picked.toUint8List(), name: fileName);
+      image = shrinked;
     });
   }
 
@@ -60,8 +64,13 @@ class AddStoryController extends State<AddStoryPage> {
     );
     if (picked == null) return;
     final bytes = await picked.readAsBytes();
+    final shrinked = await MatrixImageFile.shrink(
+      bytes: bytes,
+      name: picked.name,
+      compute: Matrix.of(context).client.runInBackground,
+    );
     setState(() {
-      image = MatrixFile(bytes: bytes, name: picked.name);
+      image = shrinked;
     });
   }
 
@@ -73,7 +82,7 @@ class AddStoryController extends State<AddStoryPage> {
     final bytes = await picked.readAsBytes();
 
     setState(() {
-      video = MatrixFile(bytes: bytes, name: picked.name);
+      video = MatrixVideoFile(bytes: bytes, name: picked.name);
       videoPlayerController = VideoPlayerController.file(File(picked.path))
         ..setLooping(true);
     });
@@ -109,16 +118,17 @@ class AddStoryController extends State<AddStoryPage> {
         var video = this.video?.detectFileType;
         if (video != null) {
           video = await video.resizeVideo();
-          await storiesRoom.sendFileEventWithThumbnail(
+          final thumbnail = await video.getVideoThumbnail();
+          await storiesRoom.sendFileEvent(
             video,
             extraContent: {'body': controller.text},
+            thumbnail: thumbnail,
           );
           return;
         }
-        var image = this.image?.detectFileType;
+        final image = this.image;
         if (image != null) {
-          image = await image.resizeImage();
-          await storiesRoom.sendFileEventWithThumbnail(
+          await storiesRoom.sendFileEvent(
             image,
             extraContent: {'body': controller.text},
           );
@@ -142,9 +152,10 @@ class AddStoryController extends State<AddStoryPage> {
     final shareContent = Matrix.of(context).shareContent;
     // ignore: unnecessary_null_comparison
     if (shareContent != null) {
-      image = shareContent.tryGet<MatrixFile>('file');
+      final shareFile = shareContent.tryGet<MatrixFile>('file')?.detectFileType;
+
       controller.text = shareContent.tryGet<String>('body') ?? '';
-      if (shareContent.tryGet<String>('msgtype') == MessageTypes.Image) {
+      if (shareFile is MatrixImageFile) {
         Event(
           content: shareContent,
           type: EventTypes.Message,
@@ -154,10 +165,10 @@ class AddStoryController extends State<AddStoryPage> {
           originServerTs: DateTime.now(),
         ).downloadAndDecryptAttachment().then((file) {
           setState(() {
-            image = file;
+            image = shareFile;
           });
         });
-      } else if (shareContent.tryGet<String>('msgtype') == MessageTypes.Video) {
+      } else if (shareFile is MatrixVideoFile) {
         Event(
           content: shareContent,
           type: EventTypes.Message,
@@ -167,7 +178,7 @@ class AddStoryController extends State<AddStoryPage> {
           originServerTs: DateTime.now(),
         ).downloadAndDecryptAttachment().then((file) {
           setState(() {
-            video = file;
+            video = shareFile;
           });
         });
       }

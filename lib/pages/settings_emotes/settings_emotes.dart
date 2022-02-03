@@ -7,7 +7,6 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 import 'package:vrouter/vrouter.dart';
 
-import '../../utils/resize_image.dart';
 import '../../widgets/matrix.dart';
 import 'settings_emotes_view.dart';
 
@@ -206,14 +205,19 @@ class EmotesSettingsController extends State<EmotesSettings> {
       name: result.fileName!,
     );
     try {
-      file = await file.resizeImage(calcBlurhash: false);
+      file = (await file.generateThumbnail(
+        compute: Matrix.of(context).client.runInBackground,
+      ))!;
     } catch (_) {
       // do nothing
     }
     final uploadResp = await showFutureLoadingDialog(
       context: context,
-      future: () => Matrix.of(context).client.uploadContent(file.bytes,
-          filename: file.name, contentType: file.mimeType),
+      future: () => Matrix.of(context).client.uploadContent(
+            file.bytes,
+            filename: file.name,
+            contentType: file.mimeType,
+          ),
     );
     if (uploadResp.error == null) {
       setState(() {
