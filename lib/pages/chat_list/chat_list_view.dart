@@ -14,6 +14,7 @@ import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/client_chooser_button.dart';
 import 'package:fluffychat/pages/chat_list/spaces_bottom_bar.dart';
 import 'package:fluffychat/pages/chat_list/stories_header.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions.dart/client_stories_extension.dart';
 import 'package:fluffychat/widgets/connection_status_header.dart';
 import '../../utils/stream_extension.dart';
 import '../../widgets/matrix.dart';
@@ -99,6 +100,14 @@ class ChatListView extends StatelessWidget {
                               onPressed: () =>
                                   VRouter.of(context).to('/search'),
                             ),
+                            if (selectMode == SelectMode.normal &&
+                                Matrix.of(context).client.storiesRooms.isEmpty)
+                              IconButton(
+                                icon: const Icon(Icons.camera_alt_outlined),
+                                tooltip: L10n.of(context)!.addToStory,
+                                onPressed: () =>
+                                    VRouter.of(context).to('/stories/create'),
+                              ),
                             PopupMenuButton<PopupMenuAction>(
                               onSelected: controller.onPopupMenuSelect,
                               itemBuilder: (_) => [

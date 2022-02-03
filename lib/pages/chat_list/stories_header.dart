@@ -87,61 +87,63 @@ class StoriesHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final client = Matrix.of(context).client;
-    return StreamBuilder<Object>(
-        stream: client.onSync.stream
-            .where((syncUpdate) => syncUpdate.hasRoomUpdate),
-        builder: (context, snapshot) {
-          if (client.storiesRooms.isEmpty && client.contacts.isEmpty) {
-            return Container();
-          }
-          if (client.storiesRooms.isEmpty ||
-              Matrix.of(context).shareContent != null) {
-            return ListTile(
-              leading: CircleAvatar(
-                radius: Avatar.defaultSize / 2,
-                backgroundColor: Theme.of(context).colorScheme.surface,
-                foregroundColor: Theme.of(context).textTheme.bodyText1?.color,
-                child: const Icon(Icons.add),
-              ),
-              title: Text(L10n.of(context)!.addToStory),
-              onTap: () => _addToStoryAction(context),
-            );
-          }
-          return SizedBox(
-            height: 98,
-            child: ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 2),
-              scrollDirection: Axis.horizontal,
-              children: [
-                _StoryButton(
-                  label: L10n.of(context)!.yourStory,
-                  onPressed: () => _addToStoryAction(context),
+    return StreamBuilder(
+      stream: Matrix.of(context).onShareContentChanged.stream,
+      builder: (context, _) => StreamBuilder<Object>(
+          stream: client.onSync.stream
+              .where((syncUpdate) => syncUpdate.hasRoomUpdate),
+          builder: (context, snapshot) {
+            if (Matrix.of(context).shareContent != null) {
+              return ListTile(
+                leading: CircleAvatar(
+                  radius: Avatar.defaultSize / 2,
+                  backgroundColor: Theme.of(context).colorScheme.surface,
+                  foregroundColor: Theme.of(context).textTheme.bodyText1?.color,
                   child: const Icon(Icons.add),
                 ),
-                ...client.storiesRooms.map(
-                  (room) => Opacity(
-                    opacity: room.hasPosts ? 1 : 0.5,
-                    child: _StoryButton(
-                      label: room.creatorDisplayname,
-                      child: Avatar(
-                        mxContent: room
-                            .getState(EventTypes.RoomCreate)!
-                            .sender
-                            .avatarUrl,
-                        name: room.creatorDisplayname,
-                        size: 100,
+                title: Text(L10n.of(context)!.addToStory),
+                onTap: () => _addToStoryAction(context),
+              );
+            }
+            if (client.storiesRooms.isEmpty) {
+              return Container();
+            }
+            return SizedBox(
+              height: 98,
+              child: ListView(
+                padding: const EdgeInsets.symmetric(horizontal: 2),
+                scrollDirection: Axis.horizontal,
+                children: [
+                  _StoryButton(
+                    label: L10n.of(context)!.yourStory,
+                    onPressed: () => _addToStoryAction(context),
+                    child: const Icon(Icons.add),
+                  ),
+                  ...client.storiesRooms.map(
+                    (room) => Opacity(
+                      opacity: room.hasPosts ? 1 : 0.5,
+                      child: _StoryButton(
+                        label: room.creatorDisplayname,
+                        child: Avatar(
+                          mxContent: room
+                              .getState(EventTypes.RoomCreate)!
+                              .sender
+                              .avatarUrl,
+                          name: room.creatorDisplayname,
+                          size: 100,
+                        ),
+                        unread: room.notificationCount > 0 ||
+                            room.membership == Membership.invite,
+                        onPressed: () => _goToStoryAction(context, room.id),
+                        onLongPressed: () => _contextualActions(context, room),
                       ),
-                      unread: room.notificationCount > 0 ||
-                          room.membership == Membership.invite,
-                      onPressed: () => _goToStoryAction(context, room.id),
-                      onLongPressed: () => _contextualActions(context, room),
                     ),
                   ),
-                ),
-              ],
-            ),
-          );
-        });
+                ],
+              ),
+            );
+          }),
+    );
   }
 }
 
