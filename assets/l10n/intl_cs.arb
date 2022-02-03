@@ -2714,5 +2714,20 @@
   "whatIsGoingOn": "Co se děje?",
   "@whatIsGoingOn": {},
   "addDescription": "Přidat popis",
-  "@addDescription": {}
+  "@addDescription": {},
+  "iUnderstand": "Rozumím",
+  "@iUnderstand": {},
+  "markAsRead": "Označit jako přečtené",
+  "@markAsRead": {},
+  "bubbleSize": "Velikost bubliny",
+  "@bubbleSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reportUser": "Nahlásit uživatele",
+  "@reportUser": {},
+  "openChat": "Otevřete chat",
+  "@openChat": {},
+  "storyPrivacyWarning": "Upozorňujeme, že lidé se ve vašem příběhu mohou navzájem vidět a kontaktovat. Vaše příběhy budou viditelné po dobu 24 hodin, ale není zaručeno, že budou smazány ze všech zařízení a serverů.",
+  "@storyPrivacyWarning": {}
 }
