@@ -2722,5 +2722,9 @@
   "dismiss": "Відхилити",
   "@dismiss": {},
   "markAsRead": "Позначити прочитаним",
-  "@markAsRead": {}
+  "@markAsRead": {},
+  "reportUser": "Поскаржився на користувача",
+  "@reportUser": {},
+  "openChat": "Відкрити бесіду",
+  "@openChat": {}
 }
