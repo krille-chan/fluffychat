@@ -2727,5 +2727,7 @@
   "dismiss": "驳回",
   "@dismiss": {},
   "markAsRead": "标为已读",
-  "@markAsRead": {}
+  "@markAsRead": {},
+  "reportUser": "举报用户",
+  "@reportUser": {}
 }
