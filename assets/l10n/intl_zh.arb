@@ -2729,5 +2729,7 @@
   "markAsRead": "标为已读",
   "@markAsRead": {},
   "reportUser": "举报用户",
-  "@reportUser": {}
+  "@reportUser": {},
+  "openChat": "打开聊天",
+  "@openChat": {}
 }
