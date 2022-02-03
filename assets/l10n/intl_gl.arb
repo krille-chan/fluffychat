@@ -2719,5 +2719,9 @@
   "dismiss": "Desbotar",
   "@dismiss": {},
   "markAsRead": "Marcar como lido",
-  "@markAsRead": {}
+  "@markAsRead": {},
+  "reportUser": "Denunciar usuaria",
+  "@reportUser": {},
+  "openChat": "Abrir Chat",
+  "@openChat": {}
 }
