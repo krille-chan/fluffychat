@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:universal_html/html.dart' as html;
+import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
@@ -75,8 +76,8 @@ extension LocalNotificationsExtension on MatrixState {
         appIcon: appIconFile?.path ?? '',
         actions: [
           NotificationAction(
-            DesktopNotificationActions.dismiss.name,
-            L10n.of(widget.context)!.dismiss,
+            DesktopNotificationActions.openChat.name,
+            L10n.of(widget.context)!.openChat,
           ),
           NotificationAction(
             DesktopNotificationActions.seen.name,
@@ -94,7 +95,8 @@ extension LocalNotificationsExtension on MatrixState {
           case DesktopNotificationActions.seen:
             room.setReadMarker(event.eventId, mRead: event.eventId);
             break;
-          case DesktopNotificationActions.dismiss:
+          case DesktopNotificationActions.openChat:
+            VRouter.of(navigatorContext).toSegments(['rooms', room.id]);
             break;
         }
       });
@@ -103,4 +105,4 @@ extension LocalNotificationsExtension on MatrixState {
   }
 }
 
-enum DesktopNotificationActions { seen, dismiss }
+enum DesktopNotificationActions { seen, openChat }
