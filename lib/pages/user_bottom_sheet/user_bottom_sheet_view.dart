@@ -102,6 +102,13 @@ class UserBottomSheetView extends StatelessWidget {
                               Icons.block,
                             ),
                           ),
+                        PopupMenuItem(
+                          value: 'report',
+                          child: _TextWithIcon(
+                            L10n.of(context)!.reportUser,
+                            Icons.shield_outlined,
+                          ),
+                        ),
                       ],
                       onSelected: controller.participantAction,
                     ),
