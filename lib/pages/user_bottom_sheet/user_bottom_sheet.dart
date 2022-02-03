@@ -39,6 +39,50 @@ class UserBottomSheetController extends State<UserBottomSheet> {
             ) ==
             OkCancelResult.ok);
     switch (action) {
+      case 'report':
+        final event = widget.user;
+        final score = await showConfirmationDialog<int>(
+            context: context,
+            title: L10n.of(context)!.reportUser,
+            message: L10n.of(context)!.howOffensiveIsThisContent,
+            cancelLabel: L10n.of(context)!.cancel,
+            okLabel: L10n.of(context)!.ok,
+            actions: [
+              AlertDialogAction(
+                key: -100,
+                label: L10n.of(context)!.extremeOffensive,
+              ),
+              AlertDialogAction(
+                key: -50,
+                label: L10n.of(context)!.offensive,
+              ),
+              AlertDialogAction(
+                key: 0,
+                label: L10n.of(context)!.inoffensive,
+              ),
+            ]);
+        if (score == null) return;
+        final reason = await showTextInputDialog(
+            useRootNavigator: false,
+            context: context,
+            title: L10n.of(context)!.whyDoYouWantToReportThis,
+            okLabel: L10n.of(context)!.ok,
+            cancelLabel: L10n.of(context)!.cancel,
+            textFields: [DialogTextField(hintText: L10n.of(context)!.reason)]);
+        if (reason == null || reason.single.isEmpty) return;
+        final result = await showFutureLoadingDialog(
+          context: context,
+          future: () => Matrix.of(context).client.reportContent(
+                event.roomId!,
+                event.eventId,
+                reason: reason.single,
+                score: score,
+              ),
+        );
+        if (result.error != null) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(L10n.of(context)!.contentHasBeenReported)));
+        break;
       case 'mention':
         Navigator.of(context, rootNavigator: false).pop();
         widget.onMention!();

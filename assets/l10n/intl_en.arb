@@ -2708,5 +2708,6 @@
   "iUnderstand": "I understand",
   "@iUnderstand": {},
   "dismiss": "Dismiss",
-  "markAsRead": "Mark as read"
+  "markAsRead": "Mark as read",
+  "reportUser": "Report user"
 }
