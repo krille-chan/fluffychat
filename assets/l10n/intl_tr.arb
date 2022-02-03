@@ -2727,5 +2727,9 @@
   "dismiss": "Kapat",
   "@dismiss": {},
   "markAsRead": "Okundu olarak işaretle",
-  "@markAsRead": {}
+  "@markAsRead": {},
+  "reportUser": "Kullanıcıyı bildir",
+  "@reportUser": {},
+  "openChat": "Sohbeti Aç",
+  "@openChat": {}
 }
