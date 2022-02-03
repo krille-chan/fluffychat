@@ -6,7 +6,6 @@ import 'package:matrix/matrix.dart';
 
 import '../../utils/matrix_sdk_extensions.dart/matrix_file_extension.dart';
 import '../../utils/resize_image.dart';
-import '../../utils/room_send_file_extension.dart';
 
 class SendFileDialog extends StatefulWidget {
   final Room room;
@@ -31,15 +30,21 @@ class _SendFileDialogState extends State<SendFileDialog> {
 
   Future<void> _send() async {
     var file = widget.file;
+    MatrixImageFile? thumbnail;
     if (file is MatrixImageFile &&
         !origImage &&
         file.bytes.length > minSizeToCompress) {
-      file = await file.resizeImage();
+      file = await MatrixImageFile.shrink(
+        bytes: file.bytes,
+        name: file.name,
+        compute: widget.room.client.runInBackground,
+      );
     }
     if (file is MatrixVideoFile && file.bytes.length > minSizeToCompress) {
       file = await file.resizeVideo();
+      thumbnail = await file.getVideoThumbnail();
     }
-    await widget.room.sendFileEventWithThumbnail(file);
+    await widget.room.sendFileEvent(file, thumbnail: thumbnail);
   }
 
   @override
