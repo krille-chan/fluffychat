@@ -1,6 +1,6 @@
 {
   "@@last_modified": "2021-08-14 12:41:09.835634",
-  "about": "Om Fluffychat",
+  "about": "Om",
   "@about": {
     "type": "text",
     "placeholders": {}
@@ -259,7 +259,7 @@
       "username": {}
     }
   },
-  "changedTheJoinRulesTo": "{username} ändrade anslutningsreglerna till",
+  "changedTheJoinRulesTo": "{username} ändrade anslutningsreglerna till {joinRules}",
   "@changedTheJoinRulesTo": {
     "type": "text",
     "placeholders": {
@@ -489,7 +489,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "dateAndTimeOfDay": "{timeOfDay}, {date}",
+  "dateAndTimeOfDay": "{date}, {timeOfDay}",
   "@dateAndTimeOfDay": {
     "type": "text",
     "placeholders": {
@@ -505,7 +505,7 @@
       "day": {}
     }
   },
-  "dateWithYear": "{day}-{month}-{year}",
+  "dateWithYear": "{year}-{month}-{day}",
   "@dateWithYear": {
     "type": "text",
     "placeholders": {
@@ -524,7 +524,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "delete": "Ta bort",
+  "delete": "Radera",
   "@delete": {
     "type": "text",
     "placeholders": {}
@@ -891,7 +891,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteContactToGroup": "Bjud in kontakt till",
+  "inviteContactToGroup": "Bjud in kontakt till {groupName}",
   "@inviteContactToGroup": {
     "type": "text",
     "placeholders": {
@@ -1193,7 +1193,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "notifications": "Notifikationer",
+  "notifications": "Aviseringar",
   "@notifications": {
     "type": "text",
     "placeholders": {}
@@ -1232,7 +1232,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "ok": "ok",
+  "ok": "OK",
   "@ok": {
     "type": "text",
     "placeholders": {}
@@ -1445,7 +1445,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unbanFromChat": "Ta bort exil",
+  "unbanFromChat": "Ta bort chatt-blockering",
   "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
@@ -1675,7 +1675,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sharedTheLocation": "{username} delade positionen",
+  "sharedTheLocation": "{username} delade sin position",
   "@sharedTheLocation": {
     "type": "text",
     "placeholders": {
@@ -1709,7 +1709,7 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "Starta din första chatt nu! 🙂\n- tryck på \"meddelande knappen\"\n- Ange din kompis användarnamn\n- Ha så kul med chattandet",
+  "startYourFirstChat": "Starta din första chatt nu! 🙂\n- tryck på \"ny chatt\"\n- Skanna en väns QR-kod\n- Ha så kul med chattandet",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -1860,14 +1860,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount, plural, other{{unreadCount} olästa chattar}}",
+  "unreadChats": "{unreadCount, plural, =1{en oläst chatt} other{{unreadCount} olästa chattar}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents} olästa meddelanden}}",
+  "unreadMessages": "{unreadEvents, plural, =1{ett oläst meddelande} other{{unreadEvents} olästa meddelanden}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
@@ -2284,7 +2284,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "createNewSpace": "Skapa nytt utrymme",
+  "createNewSpace": "Nytt utrymme",
   "@createNewSpace": {
     "type": "text",
     "placeholders": {}
@@ -2567,5 +2567,166 @@
     "placeholders": {
       "count": {}
     }
-  }
+  },
+  "commandHint_create": "Skapa en tom grupp-chatt\nAnvänd --no-encryption för att inaktivera kryptering",
+  "@commandHint_create": {
+    "type": "text",
+    "description": "Usage hint for the command /create"
+  },
+  "commandHint_discardsession": "Kasta bort sessionen",
+  "@commandHint_discardsession": {
+    "type": "text",
+    "description": "Usage hint for the command /discardsession"
+  },
+  "commandHint_dm": "Starta en direkt-chatt\nAnvänd --no-encryption för att inaktivera kryptering",
+  "@commandHint_dm": {
+    "type": "text",
+    "description": "Usage hint for the command /dm"
+  },
+  "homeserver": "Hemserver",
+  "@homeserver": {},
+  "oneClientLoggedOut": "En av dina klienter har loggats ut",
+  "@oneClientLoggedOut": {},
+  "addAccount": "Lägg till konto",
+  "@addAccount": {},
+  "editBundlesForAccount": "Lägg till paket för detta konto",
+  "@editBundlesForAccount": {},
+  "addToBundle": "Utöka paket",
+  "@addToBundle": {},
+  "bundleName": "Paketnamn",
+  "@bundleName": {},
+  "serverRequiresEmail": "Servern behöver validera din e-postadress för registrering.",
+  "@serverRequiresEmail": {},
+  "singlesignon": "Single Sign On",
+  "@singlesignon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unverified": "Ej verifierad",
+  "@unverified": {},
+  "messageInfo": "Meddelandeinformation",
+  "@messageInfo": {},
+  "messageType": "Meddelandetyp",
+  "@messageType": {},
+  "time": "Tid",
+  "@time": {},
+  "sender": "Avsändare",
+  "@sender": {},
+  "removeFromSpace": "Ta bort från utrymme",
+  "@removeFromSpace": {},
+  "addToSpaceDescription": "Välj ett utrymme som chatten skall läggas till i.",
+  "@addToSpaceDescription": {},
+  "start": "Starta",
+  "@start": {},
+  "pleaseEnterSecurityKeyDescription": "För att låsa upp din chatt-backup, vänligen ange säkerhetsnyckeln som skapats i en tidigare session. Säkerhetsnyckeln är INTE densamma som ditt lösenord.",
+  "@pleaseEnterSecurityKeyDescription": {},
+  "saveTheSecurityKeyNow": "Spara säkerhetsnyckeln nu",
+  "@saveTheSecurityKeyNow": {},
+  "iUnderstand": "Jag förstår",
+  "@iUnderstand": {},
+  "yourStory": "Din berättelse",
+  "@yourStory": {},
+  "openGallery": "Öppna galleri",
+  "@openGallery": {},
+  "storyFrom": "Berättelse från {date}: \n{body}",
+  "@storyFrom": {
+    "type": "text",
+    "placeholders": {
+      "date": {},
+      "body": {}
+    }
+  },
+  "passwordsDoNotMatch": "Lösenorden stämmer inte överens!",
+  "@passwordsDoNotMatch": {},
+  "repeatPassword": "Upprepa lösenord",
+  "@repeatPassword": {},
+  "pleaseChooseAtLeastChars": "Vänligen ange minst {min} tecken.",
+  "@pleaseChooseAtLeastChars": {
+    "type": "text",
+    "placeholders": {
+      "min": {}
+    }
+  },
+  "markAsRead": "Markera som läst",
+  "@markAsRead": {},
+  "setupChatBackup": "Konfigurera chatt-backup",
+  "@setupChatBackup": {},
+  "setupChatBackupDescription": "För att skydda dina meddelanden så det skapats en säkerhetsnyckel.\nFörvara nyckeln på ett säkert ställe, t ex med en lösenordshanterare.",
+  "@setupChatBackupDescription": {},
+  "commandHint_clearcache": "Rensa cache",
+  "@commandHint_clearcache": {
+    "type": "text",
+    "description": "Usage hint for the command /clearcache"
+  },
+  "newUsernameDescription": "Ditt användar-ID kommer att ha formatet @användarnamn:servernamn",
+  "@newUsernameDescription": {},
+  "openVideoCamera": "Aktivera kamera för video",
+  "@openVideoCamera": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "link": "Länk",
+  "@link": {},
+  "publish": "Publicera",
+  "@publish": {},
+  "unsubscribeStories": "Avprenumerera berättelser",
+  "@unsubscribeStories": {},
+  "replyHasBeenSent": "Svar har skickats",
+  "@replyHasBeenSent": {},
+  "videoWithSize": "Video ({size})",
+  "@videoWithSize": {
+    "type": "text",
+    "placeholders": {
+      "size": {}
+    }
+  },
+  "whatIsGoingOn": "Vad händer?",
+  "@whatIsGoingOn": {},
+  "addDescription": "Lägg till beskrivning",
+  "@addDescription": {},
+  "reportUser": "Rapportera användare",
+  "@reportUser": {},
+  "openChat": "Öppna Chatt",
+  "@openChat": {},
+  "yourUserId": "Ditt användar-ID:",
+  "@yourUserId": {},
+  "sendOnEnter": "Skicka med Enter",
+  "@sendOnEnter": {},
+  "iWroteDownTheKey": "Jag har antecknat nyckeln",
+  "@iWroteDownTheKey": {},
+  "addToStory": "Addera till berättelse",
+  "@addToStory": {},
+  "pleaseEnterValidEmail": "Vänligen ange en giltig e-postadress.",
+  "@pleaseEnterValidEmail": {},
+  "scanQrCode": "Skanna QR-kod",
+  "@scanQrCode": {},
+  "bubbleSize": "Storlek på bubbla",
+  "@bubbleSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourChatBackupHasBeenSetUp": "Din chatt-backup har konfigurerats.",
+  "@yourChatBackupHasBeenSetUp": {},
+  "loginWithOneClick": "Logga in med ett klick",
+  "@loginWithOneClick": {},
+  "typeInInviteLinkManually": "Skriv in länk med inbjudan manuellt...",
+  "@typeInInviteLinkManually": {},
+  "newPasswordDescription": "För att kunna återställa ditt lösenord så bör du vid tillfälle lägga till en e-postadress till ditt konto.",
+  "@newPasswordDescription": {},
+  "removeFromBundle": "Ta bort från paket",
+  "@removeFromBundle": {},
+  "enableMultiAccounts": "(BETA) Aktivera multi-konton på denna enhet",
+  "@enableMultiAccounts": {},
+  "removeFromSpaceDescription": "Detta raderar chatten från det nuvarande utrymmet. Chatten är fortfarande synlig under \"Alla chattar\".",
+  "@removeFromSpaceDescription": {},
+  "whoCanSeeMyStories": "Vem kan se mina berättelser?",
+  "@whoCanSeeMyStories": {},
+  "setupChatBackupNow": "Konfigurera din chatt-backup nu",
+  "@setupChatBackupNow": {},
+  "whoCanSeeMyStoriesDesc": "Notera att användare kan se och kontakta varandra i din berättelse.",
+  "@whoCanSeeMyStoriesDesc": {},
+  "thisUserHasNotPostedAnythingYet": "Den här användaren har inte lagt till något till deras berättelse än",
+  "@thisUserHasNotPostedAnythingYet": {},
+  "storyPrivacyWarning": "Notera att användare kan se och kontakta varandra i din berättelse. Din berättelse är synlig i 24 timmar, men det finns ingen garanti för att berättelser raderas från alla enheter och servrar.",
+  "@storyPrivacyWarning": {}
 }
