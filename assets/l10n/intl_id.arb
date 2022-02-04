@@ -2721,5 +2721,9 @@
   "dismiss": "Abaikan",
   "@dismiss": {},
   "markAsRead": "Tandai sebagai dibaca",
-  "@markAsRead": {}
+  "@markAsRead": {},
+  "reportUser": "Laporkan pengguna",
+  "@reportUser": {},
+  "openChat": "Buka Chat",
+  "@openChat": {}
 }
