@@ -3,10 +3,12 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'package:animations/animations.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_web_auth/flutter_web_auth.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
+import 'package:matrix_homeserver_recommendations/matrix_homeserver_recommendations.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:vrouter/vrouter.dart';
 
@@ -16,6 +18,7 @@ import 'package:fluffychat/utils/famedlysdk_store.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/localized_exception_extension.dart';
+import 'homeserver_tile.dart';
 
 class HomeserverPicker extends StatefulWidget {
   const HomeserverPicker({Key? key}) : super(key: key);
@@ -25,13 +28,18 @@ class HomeserverPicker extends StatefulWidget {
 }
 
 class HomeserverPickerController extends State<HomeserverPicker> {
-  bool isLoading = false;
-  String domain = AppConfig.defaultHomeserver;
-  final TextEditingController homeserverController =
-      TextEditingController(text: AppConfig.defaultHomeserver);
+  bool isLoading = true;
+
+  String? domain;
+  List<HomeserverBenchmarkResult>? benchmarkResults;
+
+  TextEditingController? homeserverController;
+
   StreamSubscription? _intentDataStreamSubscription;
   String? error;
   Timer? _coolDown;
+
+  late HomeserverListProvider parser;
 
   void setDomain(String domain) {
     this.domain = domain;
@@ -67,6 +75,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   void initState() {
     super.initState();
     checkHomeserverAction();
+    benchmarkHomeServers();
   }
 
   @override
@@ -84,10 +93,12 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   Future<void> checkHomeserverAction() async {
     _coolDown?.cancel();
     if (_lastCheckedHomeserver == domain) return;
-    if (domain.isEmpty) throw L10n.of(context)!.changeTheHomeserver;
+    if (domain == null || domain!.isEmpty) {
+      throw L10n.of(context)!.changeTheHomeserver;
+    }
     var homeserver = domain;
 
-    if (!homeserver.startsWith('https://')) {
+    if (!homeserver!.startsWith('https://')) {
       homeserver = 'https://$homeserver';
     }
 
@@ -179,13 +190,82 @@ class HomeserverPickerController extends State<HomeserverPicker> {
 
   void signUpAction() => VRouter.of(context).to(
         'signup',
-        queryParameters: {'domain': domain},
+        queryParameters: {'domain': domain!},
       );
 
   @override
   Widget build(BuildContext context) {
     Matrix.of(context).navigatorContext = context;
     return HomeserverPickerView(this);
+  }
+
+  Future<void> benchmarkHomeServers() async {
+    try {
+      parser = JoinmatrixOrgParser();
+      final homeserverList = await parser.fetchHomeservers();
+      final benchmark = await HomeserverListProvider.benchmarkHomeserver(
+        homeserverList,
+        timeout: const Duration(seconds: 10),
+        // TODO: do not rely on the homeserver list information telling the server supports registration
+      );
+
+      if (benchmark.isEmpty) {
+        throw NullThrownError();
+      }
+
+      // trying to use server without anti-features
+      final goodServers = <HomeserverBenchmarkResult>[];
+      final badServers = <HomeserverBenchmarkResult>[];
+      for (final result in benchmark) {
+        if (result.homeserver.antiFeatures == null) {
+          goodServers.add(result);
+        } else {
+          badServers.add(result);
+        }
+      }
+
+      goodServers.sort();
+      badServers.sort();
+
+      benchmarkResults = List.from([...goodServers, ...badServers]);
+
+      domain = benchmarkResults!.first.homeserver.baseUrl.host;
+    } on Exception catch (e, s) {
+      Logs().e('Homeserver benchmark failed', e, s);
+      domain = AppConfig.defaultHomeserver;
+    } finally {
+      homeserverController = TextEditingController(text: domain);
+      checkHomeserverAction();
+    }
+  }
+
+  Future<void> showServerPicker() async {
+    final selection = await showModal(
+      context: context,
+      builder: (context) => SimpleDialog(
+          title: Text(L10n.of(context)!.changeTheHomeserver),
+          children: [
+            ...benchmarkResults!.map<Widget>(
+              (e) => HomeserverTile(
+                benchmark: e,
+                onSelect: () {
+                  Navigator.of(context).pop(e.homeserver);
+                },
+              ),
+            ),
+            const Divider(),
+            JoinMatrixAttributionTile(),
+          ]),
+    );
+    if (selection is Homeserver) {
+      if (domain != selection.baseUrl.host) {
+        setState(() {
+          domain = selection.baseUrl.host;
+          homeserverController!.text = domain!;
+        });
+        checkHomeserverAction();
+      }
+    }
   }
 }
 

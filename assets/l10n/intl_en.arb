@@ -2774,5 +2774,16 @@
   "widgetName": "Name",
   "widgetUrlError": "This is not a valid URL.",
   "widgetNameError": "Please provide a display name.",
-  "errorAddingWidget": "Error adding the widget."
+  "errorAddingWidget": "Error adding the widget.",
+  "reportUser": "Report user",
+  "showAvailableHomeservers": "Show available homeservers (Advanced users)",
+  "antiFeatures": "Anti-features",
+  "noAntiFeaturesRecorded": "No anti features recorded",
+  "serverRules": "Server rules",
+  "jurisdiction": "Jurisdiction",
+  "selectServer": "Select server",
+  "responseTime": "Response time",
+  "openServerList": "Visit",
+  "reportServerListProblem": "Report list issue",
+  "serverListJoinMatrix": "Server list by joinMatrix.org"
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'package:animations/animations.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
@@ -25,18 +26,44 @@ class HomeserverPickerView extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           titleSpacing: 8,
-          title: DefaultAppBarSearchField(
-            prefixText: 'https://',
-            hintText: L10n.of(context)!.enterYourHomeserver,
-            searchController: controller.homeserverController,
-            suffix: const Icon(Icons.edit_outlined),
-            padding: EdgeInsets.zero,
-            onChanged: controller.setDomain,
-            readOnly: !AppConfig.allowOtherHomeservers,
-            onSubmit: (_) => controller.checkHomeserverAction(),
-            unfocusOnClear: false,
-            autocorrect: false,
-            labelText: L10n.of(context)!.homeserver,
+          title: PageTransitionSwitcher(
+            transitionBuilder: (
+              Widget child,
+              Animation<double> primaryAnimation,
+              Animation<double> secondaryAnimation,
+            ) {
+              return SharedAxisTransition(
+                animation: primaryAnimation,
+                secondaryAnimation: secondaryAnimation,
+                transitionType: SharedAxisTransitionType.vertical,
+                fillColor: Colors.transparent,
+                child: child,
+              );
+            },
+            child: controller.homeserverController == null
+                ? Center(
+                    key: ValueKey(controller.homeserverController),
+                    child: const CircularProgressIndicator(),
+                  )
+                : DefaultAppBarSearchField(
+                    key: ValueKey(controller.homeserverController),
+                    prefixIcon: IconButton(
+                      icon: const Icon(Icons.format_list_numbered),
+                      onPressed: controller.showServerPicker,
+                      tooltip: L10n.of(context)!.showAvailableHomeservers,
+                    ),
+                    prefixText: 'https://',
+                    hintText: L10n.of(context)!.enterYourHomeserver,
+                    searchController: controller.homeserverController,
+                    suffix: const Icon(Icons.edit_outlined),
+                    padding: EdgeInsets.zero,
+                    onChanged: controller.setDomain,
+                    readOnly: !AppConfig.allowOtherHomeservers,
+                    onSubmit: (_) => controller.checkHomeserverAction(),
+                    unfocusOnClear: false,
+                    autocorrect: false,
+                    labelText: L10n.of(context)!.homeserver,
+                  ),
           ),
           elevation: 0,
         ),

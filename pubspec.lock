@@ -991,6 +991,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.5.3"
+  matrix_homeserver_recommendations:
+    dependency: "direct main"
+    description:
+      name: matrix_homeserver_recommendations
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.0"
   matrix_link_text:
     dependency: "direct main"
     description:
@@ -1697,7 +1704,21 @@ packages:
       name: unifiedpush
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.1"
+    version: "4.0.0"
+  unifiedpush_android:
+    dependency: transitive
+    description:
+      name: unifiedpush_android
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
+  unifiedpush_platform_interface:
+    dependency: transitive
+    description:
+      name: unifiedpush_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   universal_html:
     dependency: "direct main"
     description:
