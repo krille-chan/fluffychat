@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:video_player/video_player.dart';
 
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'add_story.dart';
 
 class AddStoryView extends StatelessWidget {
@@ -34,24 +33,13 @@ class AddStoryView extends StatelessWidget {
             ],
           ),
         ),
-        actions: controller.hasMedia
-            ? null
-            : [
-                IconButton(
-                  icon: const Icon(Icons.photo_outlined),
-                  onPressed: controller.importMedia,
-                ),
-                if (PlatformInfos.isMobile)
-                  IconButton(
-                    icon: const Icon(Icons.camera_alt_outlined),
-                    onPressed: controller.capturePhoto,
-                  ),
-                if (PlatformInfos.isMobile)
-                  IconButton(
-                    icon: const Icon(Icons.video_camera_back_outlined),
-                    onPressed: controller.captureVideo,
-                  ),
-              ],
+        actions: [
+          if (controller.hasMedia)
+            IconButton(
+              icon: const Icon(Icons.delete_outlined),
+              onPressed: controller.reset,
+            ),
+        ],
       ),
       extendBodyBehindAppBar: true,
       body: Stack(
@@ -104,7 +92,7 @@ class AddStoryView extends StatelessWidget {
                       ? null
                       : Colors.black.withOpacity(0.5),
                 ),
-                onEditingComplete: controller.updateColors,
+                onChanged: (_) => controller.updateColors(),
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: controller.hasMedia
@@ -123,12 +111,42 @@ class AddStoryView extends StatelessWidget {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: controller.postStory,
-        label: Text(L10n.of(context)!.publish),
-        backgroundColor: Theme.of(context).colorScheme.surface,
-        foregroundColor: Theme.of(context).colorScheme.onSurface,
-        icon: const Icon(Icons.send_rounded),
+      floatingActionButton: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          FloatingActionButton(
+            onPressed: controller.captureVideo,
+            backgroundColor: controller.backgroundColorDark,
+            foregroundColor: Colors.white,
+            heroTag: null,
+            child: const Icon(Icons.video_camera_front_outlined),
+          ),
+          const SizedBox(height: 16),
+          FloatingActionButton(
+            onPressed: controller.capturePhoto,
+            backgroundColor: controller.backgroundColorDark,
+            foregroundColor: Colors.white,
+            heroTag: null,
+            child: const Icon(Icons.camera_alt_outlined),
+          ),
+          const SizedBox(height: 16),
+          FloatingActionButton(
+            onPressed: controller.importMedia,
+            backgroundColor: controller.backgroundColorDark,
+            foregroundColor: Colors.white,
+            heroTag: null,
+            child: const Icon(Icons.photo_outlined),
+          ),
+          if (controller.hasMedia || controller.hasText) ...[
+            const SizedBox(height: 16),
+            FloatingActionButton(
+              onPressed: controller.postStory,
+              backgroundColor: Theme.of(context).colorScheme.surface,
+              foregroundColor: Theme.of(context).colorScheme.onSurface,
+              child: const Icon(Icons.send_rounded),
+            ),
+          ],
+        ],
       ),
     );
   }

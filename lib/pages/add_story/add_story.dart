@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -35,12 +36,25 @@ class AddStoryController extends State<AddStoryPage> {
 
   bool get hasMedia => image != null || video != null;
 
-  void updateColors() => hasMedia
-      ? null
-      : setState(() {
-          backgroundColor = controller.text.color;
-          backgroundColorDark = controller.text.darkColor;
-        });
+  bool hasText = false;
+
+  Timer? _updateColorsCooldown;
+
+  void updateColors() {
+    if (hasText != controller.text.isNotEmpty) {
+      setState(() {
+        hasText = controller.text.isNotEmpty;
+      });
+    }
+    _updateColorsCooldown?.cancel();
+    _updateColorsCooldown = Timer(
+      const Duration(seconds: 3),
+      () => setState(() {
+        backgroundColor = controller.text.color;
+        backgroundColorDark = controller.text.darkColor;
+      }),
+    );
+  }
 
   void importMedia() async {
     final picked = await FilePickerCross.importFromStorage(
@@ -87,6 +101,11 @@ class AddStoryController extends State<AddStoryPage> {
         ..setLooping(true);
     });
   }
+
+  void reset() => setState(() {
+        image = video = null;
+        controller.clear();
+      });
 
   void postStory() async {
     if (video == null && image == null && controller.text.isEmpty) return;
@@ -150,7 +169,6 @@ class AddStoryController extends State<AddStoryPage> {
     backgroundColorDark = text.darkColor;
 
     final shareContent = Matrix.of(context).shareContent;
-    // ignore: unnecessary_null_comparison
     if (shareContent != null) {
       final shareFile = shareContent.tryGet<MatrixFile>('file')?.detectFileType;
 
