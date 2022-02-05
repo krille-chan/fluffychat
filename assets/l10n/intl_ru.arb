@@ -2727,5 +2727,9 @@
   "dismiss": "Отклонить",
   "@dismiss": {},
   "markAsRead": "Отметить как прочитанное",
-  "@markAsRead": {}
+  "@markAsRead": {},
+  "reportUser": "Сообщить о пользователе",
+  "@reportUser": {},
+  "openChat": "Открыть чат",
+  "@openChat": {}
 }
