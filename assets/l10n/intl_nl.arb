@@ -2726,5 +2726,9 @@
   "dismiss": "Sluiten",
   "@dismiss": {},
   "markAsRead": "Markeer als gelezen",
-  "@markAsRead": {}
+  "@markAsRead": {},
+  "reportUser": "Persoon rapporteren",
+  "@reportUser": {},
+  "openChat": "Chat openen",
+  "@openChat": {}
 }
