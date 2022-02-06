@@ -170,23 +170,21 @@ class AddStoryController extends State<AddStoryPage> {
 
     final shareContent = Matrix.of(context).shareContent;
     if (shareContent != null) {
+      controller.text = shareContent.tryGet<String>('body') ?? '';
       final shareFile = shareContent.tryGet<MatrixFile>('file')?.detectFileType;
 
-      controller.text = shareContent.tryGet<String>('body') ?? '';
       if (shareFile is MatrixImageFile) {
-        Event(
-          content: shareContent,
-          type: EventTypes.Message,
-          room: Room(id: '!tmproom', client: Matrix.of(context).client),
-          eventId: 'tmpevent',
-          senderId: '@tmpsender:example',
-          originServerTs: DateTime.now(),
-        ).downloadAndDecryptAttachment().then((file) {
-          setState(() {
-            image = shareFile;
-          });
+        setState(() {
+          image = shareFile;
         });
       } else if (shareFile is MatrixVideoFile) {
+        setState(() {
+          video = shareFile;
+        });
+      }
+
+      final msgType = shareContent.tryGet<String>('msgtype');
+      if (msgType == MessageTypes.Image) {
         Event(
           content: shareContent,
           type: EventTypes.Message,
@@ -196,7 +194,20 @@ class AddStoryController extends State<AddStoryPage> {
           originServerTs: DateTime.now(),
         ).downloadAndDecryptAttachment().then((file) {
           setState(() {
-            video = shareFile;
+            image = file.detectFileType as MatrixImageFile;
+          });
+        });
+      } else if (msgType == MessageTypes.Video) {
+        Event(
+          content: shareContent,
+          type: EventTypes.Message,
+          room: Room(id: '!tmproom', client: Matrix.of(context).client),
+          eventId: 'tmpevent',
+          senderId: '@tmpsender:example',
+          originServerTs: DateTime.now(),
+        ).downloadAndDecryptAttachment().then((file) {
+          setState(() {
+            video = file.detectFileType as MatrixVideoFile;
           });
         });
       }
