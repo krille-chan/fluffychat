@@ -38,7 +38,6 @@ abstract class FluffyThemes {
         colorScheme: ThemeData.light().colorScheme.copyWith(
               primary: AppConfig.chatColor,
               secondary: AppConfig.chatColor,
-              secondaryVariant: AppConfig.secondaryColor,
               surface: FluffyThemes.lighten(AppConfig.chatColor, 0.535),
             ),
         backgroundColor: Colors.white,
@@ -133,7 +132,6 @@ abstract class FluffyThemes {
         colorScheme: ThemeData.dark().colorScheme.copyWith(
               primary: FluffyThemes.lighten(AppConfig.chatColor, 0.33),
               secondary: FluffyThemes.lighten(AppConfig.chatColor, 0.33),
-              secondaryVariant: AppConfig.secondaryColor,
               surface: FluffyThemes.darken(AppConfig.chatColor, 0.35),
             ),
         secondaryHeaderColor: Colors.blueGrey.shade900,
