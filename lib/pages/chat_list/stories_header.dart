@@ -6,7 +6,6 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 import 'package:vrouter/vrouter.dart';
 
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/client_stories_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -99,7 +98,7 @@ class StoriesHeader extends StatelessWidget {
                   radius: Avatar.defaultSize / 2,
                   backgroundColor: Theme.of(context).colorScheme.surface,
                   foregroundColor: Theme.of(context).textTheme.bodyText1?.color,
-                  child: const Icon(Icons.add),
+                  child: const Icon(Icons.camera_alt_outlined),
                 ),
                 title: Text(L10n.of(context)!.addToStory),
                 onTap: () => _addToStoryAction(context),
@@ -109,7 +108,7 @@ class StoriesHeader extends StatelessWidget {
               return Container();
             }
             return SizedBox(
-              height: 98,
+              height: 106,
               child: ListView(
                 padding: const EdgeInsets.symmetric(horizontal: 2),
                 scrollDirection: Axis.horizontal,
@@ -117,11 +116,11 @@ class StoriesHeader extends StatelessWidget {
                   _StoryButton(
                     label: L10n.of(context)!.yourStory,
                     onPressed: () => _addToStoryAction(context),
-                    child: const Icon(Icons.add),
+                    child: const Icon(Icons.camera_alt_outlined),
                   ),
                   ...client.storiesRooms.map(
                     (room) => Opacity(
-                      opacity: room.hasPosts ? 1 : 0.5,
+                      opacity: room.hasPosts ? 1 : 0.75,
                       child: _StoryButton(
                         label: room.creatorDisplayname,
                         child: Avatar(
@@ -131,6 +130,7 @@ class StoriesHeader extends StatelessWidget {
                               .avatarUrl,
                           name: room.creatorDisplayname,
                           size: 100,
+                          fontSize: 24,
                         ),
                         unread: room.notificationCount > 0 ||
                             room.membership == Membership.invite,
@@ -185,7 +185,7 @@ class _StoryButton extends StatelessWidget {
     return SizedBox(
       width: 78,
       child: InkWell(
-        borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+        borderRadius: BorderRadius.circular(7),
         onTap: onPressed,
         onLongPress: onLongPressed,
         child: Padding(
@@ -193,34 +193,39 @@ class _StoryButton extends StatelessWidget {
           child: Column(
             children: [
               const SizedBox(height: 8),
-              Container(
-                padding: const EdgeInsets.all(2),
-                decoration: BoxDecoration(
-                  gradient: unread
-                      ? const LinearGradient(
-                          colors: [
-                            Colors.red,
-                            Colors.purple,
-                            Colors.orange,
-                          ],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        )
-                      : null,
-                  color: unread ? null : Theme.of(context).dividerColor,
-                  borderRadius: BorderRadius.circular(Avatar.defaultSize),
-                ),
-                child: Material(
-                  color: Theme.of(context).colorScheme.surface,
-                  borderRadius: BorderRadius.circular(Avatar.defaultSize),
-                  child: Padding(
-                    padding: const EdgeInsets.all(2.0),
-                    child: CircleAvatar(
-                      radius: 30,
-                      backgroundColor: Theme.of(context).colorScheme.surface,
-                      foregroundColor:
-                          Theme.of(context).textTheme.bodyText1?.color,
-                      child: child,
+              Material(
+                elevation: Theme.of(context).appBarTheme.elevation ?? 7,
+                shadowColor: Theme.of(context).appBarTheme.shadowColor,
+                borderRadius: BorderRadius.circular(Avatar.defaultSize),
+                child: Container(
+                  padding: const EdgeInsets.all(2),
+                  decoration: BoxDecoration(
+                    gradient: unread
+                        ? const LinearGradient(
+                            colors: [
+                              Colors.red,
+                              Colors.purple,
+                              Colors.orange,
+                            ],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          )
+                        : null,
+                    color: unread ? null : Theme.of(context).dividerColor,
+                    borderRadius: BorderRadius.circular(Avatar.defaultSize),
+                  ),
+                  child: Material(
+                    color: Theme.of(context).colorScheme.surface,
+                    borderRadius: BorderRadius.circular(Avatar.defaultSize),
+                    child: Padding(
+                      padding: const EdgeInsets.all(2.0),
+                      child: CircleAvatar(
+                        radius: 30,
+                        backgroundColor: Theme.of(context).colorScheme.surface,
+                        foregroundColor:
+                            Theme.of(context).textTheme.bodyText1?.color,
+                        child: child,
+                      ),
                     ),
                   ),
                 ),
@@ -235,6 +240,7 @@ class _StoryButton extends StatelessWidget {
                   fontWeight: unread ? FontWeight.bold : null,
                 ),
               ),
+              const SizedBox(height: 8),
             ],
           ),
         ),
