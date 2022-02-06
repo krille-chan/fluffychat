@@ -63,14 +63,17 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (BuildContext context, int imageIndex) {
               final image = pack.images[imageKeys[imageIndex]]!;
-              final fakeEvent = Event.fromJson(<String, dynamic>{
-                'type': EventTypes.Sticker,
-                'content': <String, dynamic>{
+              final fakeEvent = Event(
+                type: EventTypes.Sticker,
+                content: {
                   'url': image.url.toString(),
                   'info': image.info,
                 },
-                'event_id': 'fake_event',
-              }, widget.room);
+                originServerTs: DateTime.now(),
+                room: widget.room,
+                eventId: 'fake_event',
+                senderId: widget.room.client.userID!,
+              );
               return InkWell(
                 key: ValueKey(image.url.toString()),
                 onTap: () {

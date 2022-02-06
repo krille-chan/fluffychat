@@ -76,15 +76,17 @@ class HtmlMessage extends StatelessWidget {
       onImageTap: (String mxc) => showDialog(
           context: Matrix.of(context).navigatorContext,
           useRootNavigator: false,
-          builder: (_) => ImageViewer(Event.fromJson({
-                'type': EventTypes.Message,
-                'content': <String, dynamic>{
-                  'body': mxc,
-                  'url': mxc,
-                  'msgtype': MessageTypes.Image,
-                },
-                'event_id': 'fake_event',
-              }, room))),
+          builder: (_) => ImageViewer(Event(
+              type: EventTypes.Message,
+              content: <String, dynamic>{
+                'body': mxc,
+                'url': mxc,
+                'msgtype': MessageTypes.Image,
+              },
+              senderId: room.client.userID!,
+              originServerTs: DateTime.now(),
+              eventId: 'fake_event',
+              room: room))),
       setCodeLanguage: (String key, String value) async {
         await matrix.store.setItem('${SettingKeys.codeLanguage}.$key', value);
       },

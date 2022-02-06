@@ -33,10 +33,10 @@ class EmotesSettingsController extends State<EmotesSettings> {
     final event = (room != null
             ? room!.getState('im.ponies.room_emotes', stateKey ?? '')
             : client.accountData['im.ponies.user_emotes']) ??
-        BasicEvent.fromJson(<String, dynamic>{
-          'type': 'm.dummy',
-          'content': <String, dynamic>{},
-        });
+        BasicEvent(
+          type: 'm.dummy',
+          content: {},
+        );
     // make sure we work on a *copy* of the event
     return BasicEvent.fromJson(event.toJson()).parsedImagePackContent;
   }
