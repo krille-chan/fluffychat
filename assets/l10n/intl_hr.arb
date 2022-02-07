@@ -2723,5 +2723,11 @@
   "whatIsGoingOn": "Što se događa?",
   "@whatIsGoingOn": {},
   "addDescription": "Dodaj opis",
-  "@addDescription": {}
+  "@addDescription": {},
+  "markAsRead": "Označi kao pročitano",
+  "@markAsRead": {},
+  "reportUser": "Prijavi korisnika",
+  "@reportUser": {},
+  "openChat": "Otvori chat",
+  "@openChat": {}
 }
