@@ -2727,5 +2727,9 @@
   "dismiss": "Rejeter",
   "@dismiss": {},
   "markAsRead": "Marquer comme lu",
-  "@markAsRead": {}
+  "@markAsRead": {},
+  "reportUser": "Signaler l'utilisateur/trice",
+  "@reportUser": {},
+  "openChat": "Ouvrir la discussion",
+  "@openChat": {}
 }
