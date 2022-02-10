@@ -2692,5 +2692,9 @@
   "@bubbleSize": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "reportUser": "Teata kasutajast",
+  "@reportUser": {},
+  "openChat": "Ava vestlus",
+  "@openChat": {}
 }
