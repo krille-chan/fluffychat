@@ -2726,5 +2726,11 @@
   "reportUser": "Поскаржився на користувача",
   "@reportUser": {},
   "openChat": "Відкрити бесіду",
-  "@openChat": {}
+  "@openChat": {},
+  "integrationsNotImplemented": "Редагування віджетів та інтеграцій поки що неможливе.",
+  "@integrationsNotImplemented": {},
+  "editIntegrations": "Редагувати віджети та інтеграції",
+  "@editIntegrations": {},
+  "matrixWidgets": "Віджети Matrix",
+  "@matrixWidgets": {}
 }
