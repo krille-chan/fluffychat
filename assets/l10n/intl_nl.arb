@@ -2730,5 +2730,11 @@
   "reportUser": "Persoon rapporteren",
   "@reportUser": {},
   "openChat": "Chat openen",
-  "@openChat": {}
+  "@openChat": {},
+  "matrixWidgets": "Matrix Widgets",
+  "@matrixWidgets": {},
+  "integrationsNotImplemented": "Widgets en integraties wijzigen is nog niet mogelijk.",
+  "@integrationsNotImplemented": {},
+  "editIntegrations": "Widgets en integraties wijzigen",
+  "@editIntegrations": {}
 }
