@@ -2731,5 +2731,11 @@
   "reportUser": "Signaler l'utilisateur/trice",
   "@reportUser": {},
   "openChat": "Ouvrir la discussion",
-  "@openChat": {}
+  "@openChat": {},
+  "matrixWidgets": "Widgets Matrix",
+  "@matrixWidgets": {},
+  "integrationsNotImplemented": "La modification des widgets et des intégrations n'est pas encore possible.",
+  "@integrationsNotImplemented": {},
+  "editIntegrations": "Modifier les widgets et les intégrations",
+  "@editIntegrations": {}
 }
