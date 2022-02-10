@@ -2725,5 +2725,11 @@
   "reportUser": "Laporkan pengguna",
   "@reportUser": {},
   "openChat": "Buka Chat",
-  "@openChat": {}
+  "@openChat": {},
+  "integrationsNotImplemented": "Mengedit widget dan integrasi belum dapat dilakukan.",
+  "@integrationsNotImplemented": {},
+  "editIntegrations": "Edit widget dan integrasi",
+  "@editIntegrations": {},
+  "matrixWidgets": "Widget Matrix",
+  "@matrixWidgets": {}
 }
