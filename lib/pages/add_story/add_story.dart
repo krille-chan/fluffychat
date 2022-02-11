@@ -27,6 +27,7 @@ class AddStoryPage extends StatefulWidget {
 
 class AddStoryController extends State<AddStoryPage> {
   final TextEditingController controller = TextEditingController();
+  final FocusNode focusNode = FocusNode();
   late Color backgroundColor;
   late Color backgroundColorDark;
   MatrixImageFile? image;
@@ -37,6 +38,8 @@ class AddStoryController extends State<AddStoryPage> {
   bool get hasMedia => image != null || video != null;
 
   bool hasText = false;
+
+  bool textFieldHasFocus = false;
 
   Timer? _updateColorsCooldown;
 
@@ -167,6 +170,13 @@ class AddStoryController extends State<AddStoryPage> {
     final text = Matrix.of(context).client.userID!;
     backgroundColor = text.color;
     backgroundColorDark = text.darkColor;
+    focusNode.addListener(() {
+      if (textFieldHasFocus != focusNode.hasFocus) {
+        setState(() {
+          textFieldHasFocus = focusNode.hasFocus;
+        });
+      }
+    });
 
     final shareContent = Matrix.of(context).shareContent;
     if (shareContent != null) {

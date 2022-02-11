@@ -80,10 +80,11 @@ class AddStoryView extends StatelessWidget {
             child: Center(
               child: TextField(
                 controller: controller.controller,
+                focusNode: controller.focusNode,
                 minLines: 1,
                 maxLines: 15,
                 maxLength: 500,
-                autofocus: true,
+                autofocus: false,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 24,
@@ -114,29 +115,31 @@ class AddStoryView extends StatelessWidget {
       floatingActionButton: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          FloatingActionButton(
-            onPressed: controller.captureVideo,
-            backgroundColor: controller.backgroundColorDark,
-            foregroundColor: Colors.white,
-            heroTag: null,
-            child: const Icon(Icons.video_camera_front_outlined),
-          ),
-          const SizedBox(height: 16),
-          FloatingActionButton(
-            onPressed: controller.capturePhoto,
-            backgroundColor: controller.backgroundColorDark,
-            foregroundColor: Colors.white,
-            heroTag: null,
-            child: const Icon(Icons.camera_alt_outlined),
-          ),
-          const SizedBox(height: 16),
-          FloatingActionButton(
-            onPressed: controller.importMedia,
-            backgroundColor: controller.backgroundColorDark,
-            foregroundColor: Colors.white,
-            heroTag: null,
-            child: const Icon(Icons.photo_outlined),
-          ),
+          if (!controller.hasMedia && !controller.textFieldHasFocus) ...[
+            FloatingActionButton(
+              onPressed: controller.captureVideo,
+              backgroundColor: controller.backgroundColorDark,
+              foregroundColor: Colors.white,
+              heroTag: null,
+              child: const Icon(Icons.video_camera_front_outlined),
+            ),
+            const SizedBox(height: 16),
+            FloatingActionButton(
+              onPressed: controller.capturePhoto,
+              backgroundColor: controller.backgroundColorDark,
+              foregroundColor: Colors.white,
+              heroTag: null,
+              child: const Icon(Icons.camera_alt_outlined),
+            ),
+            const SizedBox(height: 16),
+            FloatingActionButton(
+              onPressed: controller.importMedia,
+              backgroundColor: controller.backgroundColorDark,
+              foregroundColor: Colors.white,
+              heroTag: null,
+              child: const Icon(Icons.photo_outlined),
+            ),
+          ],
           if (controller.hasMedia || controller.hasText) ...[
             const SizedBox(height: 16),
             FloatingActionButton(

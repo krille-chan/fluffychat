@@ -7,6 +7,7 @@ import Foundation
 
 import audioplayers
 import desktop_drop
+import emoji_picker_flutter
 import file_selector_macos
 import flutter_local_notifications
 import flutter_secure_storage_macos
@@ -23,6 +24,7 @@ import wakelock_macos
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
   AudioplayersPlugin.register(with: registry.registrar(forPlugin: "AudioplayersPlugin"))
   DesktopDropPlugin.register(with: registry.registrar(forPlugin: "DesktopDropPlugin"))
+  EmojiPickerFlutterPlugin.register(with: registry.registrar(forPlugin: "EmojiPickerFlutterPlugin"))
   FileSelectorPlugin.register(with: registry.registrar(forPlugin: "FileSelectorPlugin"))
   FlutterLocalNotificationsPlugin.register(with: registry.registrar(forPlugin: "FlutterLocalNotificationsPlugin"))
   FlutterSecureStorageMacosPlugin.register(with: registry.registrar(forPlugin: "FlutterSecureStorageMacosPlugin"))
