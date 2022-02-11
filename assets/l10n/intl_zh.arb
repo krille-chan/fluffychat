@@ -2731,5 +2731,11 @@
   "reportUser": "举报用户",
   "@reportUser": {},
   "openChat": "打开聊天",
-  "@openChat": {}
+  "@openChat": {},
+  "matrixWidgets": "Matrix 小部件",
+  "@matrixWidgets": {},
+  "integrationsNotImplemented": "尚无法编辑小部件和集成。",
+  "@integrationsNotImplemented": {},
+  "editIntegrations": "编辑小部件和集成",
+  "@editIntegrations": {}
 }
