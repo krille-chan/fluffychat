@@ -2713,5 +2713,19 @@
   "@bubbleSize": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "dismiss": "닫기",
+  "@dismiss": {},
+  "matrixWidgets": "Matrix 위젯",
+  "@matrixWidgets": {},
+  "integrationsNotImplemented": "아직 위젯과 통합을 편집하는 것은 가능하지 않습니다.",
+  "@integrationsNotImplemented": {},
+  "editIntegrations": "위젯과 통합 편집",
+  "@editIntegrations": {},
+  "markAsRead": "읽음으로 표시하기",
+  "@markAsRead": {},
+  "reportUser": "사용자 신고",
+  "@reportUser": {},
+  "openChat": "채팅 열기",
+  "@openChat": {}
 }
