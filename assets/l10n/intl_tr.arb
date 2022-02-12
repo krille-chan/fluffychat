@@ -2731,5 +2731,11 @@
   "reportUser": "Kullanıcıyı bildir",
   "@reportUser": {},
   "openChat": "Sohbeti Aç",
-  "@openChat": {}
+  "@openChat": {},
+  "matrixWidgets": "Matrix Widget'ları",
+  "@matrixWidgets": {},
+  "integrationsNotImplemented": "Widget'lar ve bütünleşmeler henüz düzenlenemiyor.",
+  "@integrationsNotImplemented": {},
+  "editIntegrations": "Widget'ları ve bütünleşmeleri düzenle",
+  "@editIntegrations": {}
 }
