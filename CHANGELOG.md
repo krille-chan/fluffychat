@@ -1,4 +1,51 @@
-## v1.2.0 - Unreleased
+## v1.3.0 - 2022-02-12
+FluffyChat 1.3.0 makes it possible to report offensive users to server admins (not only messages). It fixes
+the video player, improves Linux desktop notifications, and the stories design.
+
+The button to create a new story is now in the app bar of the main page so that users who don't want to use
+this feature no longer have a whole list item pinned at the top of the chat list.
+
+FluffyChat 1.3.0 is the first release with full null safe dart code. While this is a huge change under the
+hood, it should improve the stability and performance of the app. It also builds now with Flutter 2.10.
+
+Thanks to all contributors and translators!! <3
+
+- Translated using Weblate (Arabic) (abidin toumi)
+- Translated using Weblate (Chinese (Simplified)) (Eric)
+- Translated using Weblate (Croatian) (Milo Ivir)
+- Translated using Weblate (Czech) (Milan Korecky)
+- Translated using Weblate (Dutch) (Jelv)
+- Translated using Weblate (Estonian) (Priit Jõerüüt)
+- Translated using Weblate (French) (Anne Onyme 017)
+- Translated using Weblate (Galician) (Xosé M)
+- Translated using Weblate (German) (Christian)
+- Translated using Weblate (Indonesian) (Linerly)
+- Translated using Weblate (Russian) (Nikita Epifanov)
+- Translated using Weblate (Swedish) (Joaquim Homrighausen)
+- Translated using Weblate (Turkish) (Oğuz Ersen)
+- Translated using Weblate (Ukrainian) (Ihor Hordiichuk)
+- chore: Add missing link (Krille Fear)
+- chore: Hide FAB story buttons on focus (Christian Pauly)
+- chore: Set compileSdkVersion to 31 (Krille Fear)
+- chore: Update SDK (Christian Pauly)
+- chore: Update dependencies (Dependency Update Bot)
+- chore: Update privacy (Krille Fear)
+- chore: Upgrade to Flutter 2.10 (Christian Pauly)
+- ci: Update olm download link (Krille Fear)
+- design: Improve create story page design (Christian Pauly)
+- design: Improve story header design (Krille Fear)
+- design: Use IconButton instead of listTile for first story (Christian Pauly)
+- feat: Add button to report offensive users to server admins (Christian Pauly)
+- feat: Open chat button from Linux notification (Christian Pauly)
+- feat: implement retreiving widgets (TheOneWithTheBraid)
+- fix: Set image width and height (Christian Pauly)
+- fix: Videoplayer filenames (Christian Pauly)
+- fix: cast error in html messages (Jayesh Nirve)
+- fix: linux snap notification avatar (Krille Fear)
+- fix: suggestions menu and use empty map in html messages null return (Jayesh Nirve)
+- refactor: Migrate to null safety (Krille Fear)
+
+## v1.2.0 - 2022-01-27
 FluffyChat 1.2.0 brings a new stories feature, a lot of bug fixes and improved
 voice messages.
 
