@@ -5,10 +5,11 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:flutter_web_auth/flutter_web_auth.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 import 'package:uni_links/uni_links.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:universal_html/html.dart' as html;
 import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/config/app_config.dart';
@@ -201,7 +202,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
 
   static const String ssoHomeserverKey = 'sso-homeserver';
 
-  void ssoLoginAction(String id) {
+  void ssoLoginAction(String id) async {
     if (kIsWeb) {
       // We store the homserver in the local storage instead of a redirect
       // parameter because of possible CSRF attacks.
@@ -209,16 +210,15 @@ class HomeserverPickerController extends State<HomeserverPicker> {
           Matrix.of(context).getLoginClient().homeserver.toString());
     }
     final redirectUrl = kIsWeb
-        ? AppConfig.webBaseUrl + '/#/'
+        ? html.window.origin! + '/web/auth.html'
         : AppConfig.appOpenUrlScheme.toLowerCase() + '://login';
     final url =
         '${Matrix.of(context).getLoginClient().homeserver?.toString()}/_matrix/client/r0/login/sso/redirect/${Uri.encodeComponent(id)}?redirectUrl=${Uri.encodeQueryComponent(redirectUrl)}';
-    if (PlatformInfos.isMobile) {
-      browser ??= ChromeSafariBrowser();
-      browser!.open(url: Uri.parse(url));
-    } else {
-      launch(redirectUrl);
-    }
+    final urlScheme = Uri.parse(redirectUrl).scheme;
+    final result = await FlutterWebAuth.authenticate(
+        url: url, callbackUrlScheme: urlScheme);
+    final token = Uri.parse(result).queryParameters['loginToken'];
+    if (token != null) _loginWithToken(token);
   }
 
   void signUpAction() => VRouter.of(context).to(
