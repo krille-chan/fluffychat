@@ -82,7 +82,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "areYouSure": "Biztos?",
+  "areYouSure": "Biztos vagy benne?",
   "@areYouSure": {
     "type": "text",
     "placeholders": {}
@@ -92,12 +92,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSSign": "A másik fél igazolásához meg kell adni a biztonságos tárolóhoz tartozó jelmondatot vagy a visszaállítási kulcsot.",
+  "askSSSSSign": "A másik fél igazolásához meg kell adni a biztonságos tároló jelmondatát vagy a visszaállítási kulcsot.",
   "@askSSSSSign": {
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSVerify": "A munkamenet hitelesítéséhez meg kell adni a biztonságos tárolóhoz tartozó jelmondatot vagy a visszaállítási kulcsot.",
+  "askSSSSVerify": "A munkamenet hitelesítéséhez meg kell adni a biztonságos tároló jelmondatát vagy a visszaállítási kulcsot.",
   "@askSSSSVerify": {
     "type": "text",
     "placeholders": {}
@@ -142,7 +142,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "cachedKeys": "Kulcsok gyorsítótárazása sikeres",
+  "cachedKeys": "Kulcsok gyorsítótárazva",
   "@cachedKeys": {
     "type": "text",
     "placeholders": {}
@@ -247,7 +247,7 @@
       "username": {}
     }
   },
-  "changedTheRoomAliases": "{username} módosította a szoba álneveit",
+  "changedTheRoomAliases": "{username} módosította a szoba címeit",
   "@changedTheRoomAliases": {
     "type": "text",
     "placeholders": {
@@ -331,12 +331,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "compareEmojiMatch": "Hasonlítsd össze az emodzsikat a másik eszközön lévőkkel:",
+  "compareEmojiMatch": "Hasonlítsd össze az emodzsikat a másik eszközön lévőkkel, és bizonyosodj meg róla, hogy egyeznek:",
   "@compareEmojiMatch": {
     "type": "text",
     "placeholders": {}
   },
-  "compareNumbersMatch": "Hasonlítsd össze a számokat a másik eszközön lévőkkel:",
+  "compareNumbersMatch": "Hasonlítsd össze a számokat a másik eszközön lévőkkel, és bizonyosodj meg arról, hogy egyeznek:",
   "@compareNumbersMatch": {
     "type": "text",
     "placeholders": {}
@@ -537,7 +537,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteInvalid": "Érvénytelen rövid kód!",
+  "emoteInvalid": "Érvénytelen hangulatjel rövid kód!",
   "@emoteInvalid": {
     "type": "text",
     "placeholders": {}
@@ -779,7 +779,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "{username} meghívott a FluffyChatre. \n1. FluffyChat telepítése: https://fluffychat.im \n2. Jelentkezz be vagy regisztrálj. \n3. Nyisd meg a meghívó hivatkozást: {link}",
+  "inviteText": "{username} meghívott a FluffyChat alkalmazásba. \n1. Telepítsd a FluffyChat appot: https://fluffychat.im \n2. Regisztrálj, vagy jelentkezz be. \n3. Nyisd meg a meghívó hivatkozást: {link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {
@@ -884,7 +884,7 @@
       "count": {}
     }
   },
-  "loadingPleaseWait": "Betöltés… Várj.",
+  "loadingPleaseWait": "Betöltés… Kérlek, várj.",
   "@loadingPleaseWait": {
     "type": "text",
     "placeholders": {}
@@ -956,7 +956,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "newMessageInFluffyChat": "Új üzenet a FluffyChaten",
+  "newMessageInFluffyChat": "Új üzenet a FluffyChat alkalmazásban",
   "@newMessageInFluffyChat": {
     "type": "text",
     "placeholders": {}
@@ -981,7 +981,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Úgy tűnik, hogy nincsenek Google szolgáltatások a telefonodon. Ez adatvédelmi szempontból jó döntés! A leküldéses értesítések fogadásához a FluffyChatnél a microG használatát javasoljuk: https://microg.org/.",
+  "noGoogleServicesWarning": "Úgy tűnik, hogy nincsenek Google szolgáltatások a telefonodon. Ez adatvédelmi szempontból jó döntés! Ahhoz, hogy push értesítéseket fogadhass a FluffyChat alkalmazásban, a microG használatát javasoljuk: https://microg.org/.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -1006,7 +1006,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "notSupportedInWeb": "Nem támogatott a weben",
+  "notSupportedInWeb": "Nem támogatott a webes verzióban",
   "@notSupportedInWeb": {
     "type": "text",
     "placeholders": {}
@@ -1100,7 +1100,7 @@
       "fileName": {}
     }
   },
-  "pleaseChooseAUsername": "Válassz felhasználónevet",
+  "pleaseChooseAUsername": "Válassz egy felhasználónevet",
   "@pleaseChooseAUsername": {
     "type": "text",
     "placeholders": {}
@@ -1269,7 +1269,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sendBugReports": "Hibajelentések engedélyezése a sentry.io-val",
+  "sendBugReports": "Hibajelentések engedélyezése a sentry.io használatával",
   "@sendBugReports": {
     "type": "text",
     "placeholders": {}
@@ -1383,7 +1383,7 @@
       "username": {}
     }
   },
-  "signUp": "Feliratkozás",
+  "signUp": "Regisztráció",
   "@signUp": {
     "type": "text",
     "placeholders": {}
@@ -1440,7 +1440,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "theyMatch": "Megegyeznek",
+  "theyMatch": "Egyeznek",
   "@theyMatch": {
     "type": "text",
     "placeholders": {}
@@ -1471,7 +1471,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "tryToSendAgain": "Újraküldés kísérlete",
+  "tryToSendAgain": "Újraküldés megpróbálása",
   "@tryToSendAgain": {
     "type": "text",
     "placeholders": {}
@@ -1593,7 +1593,7 @@
       "type": {}
     }
   },
-  "verifiedSession": "Sikeresen hitelesítetted a munkamenetedet!",
+  "verifiedSession": "Sikeresen hitelesítetted a munkamenetet!",
   "@verifiedSession": {
     "type": "text",
     "placeholders": {}
@@ -1658,12 +1658,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerEmoji": "Várakozás partnere, amíg elfogadja a hangulatjeleket…",
+  "waitingPartnerEmoji": "Várakozás partnerre, hogy elfogadja a hangulatjeleket…",
   "@waitingPartnerEmoji": {
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerNumbers": "Várakozás a partnerre, amíg elfogadja a számokat…",
+  "waitingPartnerNumbers": "Várakozás a partnerre, hogy elfogadja a számokat…",
   "@waitingPartnerNumbers": {
     "type": "text",
     "placeholders": {}
@@ -1688,7 +1688,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "welcomeText": "Üdv a legcukibb üzenetküldő alkalmazásban az egész Matrixon.",
+  "welcomeText": "Üdvözöl a legcukibb Matrix üzenetküldő alkalmazás.",
   "@welcomeText": {
     "type": "text",
     "placeholders": {}
@@ -1827,7 +1827,7 @@
   },
   "sendOnEnter": "Küldés Enterrel",
   "@sendOnEnter": {},
-  "cantOpenUri": "A(z) {uri} URI nem nyitható meg",
+  "cantOpenUri": "Nem sikerült az URI megnyitása: {uri}",
   "@cantOpenUri": {
     "type": "text",
     "placeholders": {
@@ -1839,11 +1839,11 @@
     "type": "text",
     "placeholders": {}
   },
-  "yourUserId": "Saját felhasználóazonosító:",
+  "yourUserId": "Saját Matrix címed:",
   "@yourUserId": {},
   "addToSpace": "Hozzáadás térhez",
   "@addToSpace": {},
-  "areYouSureYouWantToLogout": "Biztos, hogy kijelentkezik?",
+  "areYouSureYouWantToLogout": "Biztos, hogy kijelentkezel?",
   "@areYouSureYouWantToLogout": {
     "type": "text",
     "placeholders": {}
@@ -1853,7 +1853,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "badServerLoginTypesException": "A Matrix-kiszolgáló a következő bejelentkezéseket támogatja:\n{serverVersions}\nDe az alkalmazást csak ezeket támogatja:\n{supportedVersions}",
+  "badServerLoginTypesException": "A Matrix-kiszolgáló a következő bejelentkezéseket támogatja:\n{serverVersions}\nDe ez az alkalmazást csak ezeket támogatja:\n{supportedVersions}",
   "@badServerLoginTypesException": {
     "type": "text",
     "placeholders": {
@@ -1884,6 +1884,373 @@
   },
   "audioPlayerPause": "Szüneteltetés",
   "@audioPlayerPause": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHint_myroomnick": "Az ebben a szobában megjelenített beceneved megváltoztatása",
+  "@commandHint_myroomnick": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomnick"
+  },
+  "commandHint_plain": "Formázatlan szöveg küldése",
+  "@commandHint_plain": {
+    "type": "text",
+    "description": "Usage hint for the command /plain"
+  },
+  "commandHint_send": "Szöveg küldése",
+  "@commandHint_send": {
+    "type": "text",
+    "description": "Usage hint for the command /send"
+  },
+  "contentHasBeenReported": "A tartalom jelentve lett a szerver üzemeltetőinek",
+  "@contentHasBeenReported": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHint_myroomavatar": "Az ebben a szobában megjelenített profilképed megváltoztatása (mxc URI-t kell megadni)",
+  "@commandHint_myroomavatar": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomavatar"
+  },
+  "copyToClipboard": "Vágólapra másolás",
+  "@copyToClipboard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editChatPermissions": "Beszélgetés engedélyek szerkesztése",
+  "@editChatPermissions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAliases": "Szoba címeinek szerkesztése",
+  "@editRoomAliases": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAvatar": "Szoba profilképének szerkesztése",
+  "@editRoomAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableChatBackup": "Engedélyezd a beszélgetések mentését, hogy soha ne veszítsd el a beszélgetéseidhez való hozzáférést.",
+  "@enableChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEncryption": "Titkosítás bekapcsolása",
+  "@enableEncryption": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterASpacepName": "Add meg a tér nevét",
+  "@enterASpacepName": {},
+  "extremeOffensive": "Extrém sértő",
+  "@extremeOffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fontSize": "Betűméret",
+  "@fontSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "everythingReady": "Minden kész!",
+  "@everythingReady": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groups": "Csoportok",
+  "@groups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "friends": "Ismerősök",
+  "@friends": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "howOffensiveIsThisContent": "Mennyire sértő ez a tartalom?",
+  "@howOffensiveIsThisContent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inoffensive": "Nem sértő",
+  "@inoffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationPermissionDeniedNotice": "A helymeghatározás nincs engedélyezve az alkalmazásnak. Kérlek engedélyezd, hogy meg tudd osztani a helyzeted.",
+  "@locationPermissionDeniedNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newChat": "Új beszélgetés",
+  "@newChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "scanQrCode": "QR kód beolvasása",
+  "@scanQrCode": {},
+  "newUsernameDescription": "A Matrix címed valahogy így fog kinézni: @felhasználó:szerver",
+  "@newUsernameDescription": {},
+  "noPublicRoomsFound": "Nem találhatók nyilvános szobák…",
+  "@noPublicRoomsFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "typeInInviteLinkManually": "Meghívási link beírása...",
+  "@typeInInviteLinkManually": {},
+  "notificationsEnabledForThisAccount": "Értesítések bekapcsolása ebben a fiókban",
+  "@notificationsEnabledForThisAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offensive": "Sértő",
+  "@offensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oopsPushError": "Oops! Sajnos hiba történt a push értesítések beállításakor.",
+  "@oopsPushError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginWithOneClick": "Bejelentkezés egy kattintással",
+  "@loginWithOneClick": {},
+  "discoverGroups": "Csoportok felfedezése",
+  "@discoverGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatHasBeenRemovedFromThisSpace": "A beszélgetés el lett távolítva ebből a térből",
+  "@chatHasBeenRemovedFromThisSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clearText": "Szöveg törlése",
+  "@clearText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHint_create": "Egy üres csoport létrehozása\nA --no-encryption kapcsolóval titkosítatlan szoba hozható létre",
+  "@commandHint_create": {
+    "type": "text",
+    "description": "Usage hint for the command /create"
+  },
+  "commandHint_invite": "Felhasználó meghívása ebbe a szobába",
+  "@commandHint_invite": {
+    "type": "text",
+    "description": "Usage hint for the command /invite"
+  },
+  "locationDisabledNotice": "A helymeghatározás ki van kapcsolva. Kérlek, kapcsold be, hogy meg tudd osztani a helyzeted.",
+  "@locationDisabledNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "homeserver": "Matrix szerver",
+  "@homeserver": {},
+  "chatBackup": "Beszélgetések mentése",
+  "@chatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignore": "Figyelmen kívül hagyás",
+  "@ignore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "next": "Következő",
+  "@next": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setupChatBackup": "Beszélgetések mentésének beállítása",
+  "@setupChatBackup": {},
+  "iWroteDownTheKey": "Leírtam a kulcsot",
+  "@iWroteDownTheKey": {},
+  "yourChatBackupHasBeenSetUp": "A beszélgetések mentése be lett állítva.",
+  "@yourChatBackupHasBeenSetUp": {},
+  "setupChatBackupDescription": "Az üzeneteid védelme érdekében generáltunk neked egy biztonsági kulcsot.\nKérlek, tárold egy biztonságos helyen, mint például egy jelszókezelő.",
+  "@setupChatBackupDescription": {},
+  "chatBackupDescription": "A beszélgetések mentése egy biztonsági kulccsal van védve. Bizonyosodj meg róla, hogy nem fogod elveszíteni.",
+  "@chatBackupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsDisplayName": "Tartalmazza a megjelenített becenevet",
+  "@containsDisplayName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsUserName": "Tartalmazza a felhasználónevet",
+  "@containsUserName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "goToTheNewRoom": "Új szoba megnyitása",
+  "@goToTheNewRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidEmail": "Érvénytelen email",
+  "@invalidEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noConnectionToTheServer": "Nem elérhető a szerver",
+  "@noConnectionToTheServer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noDescription": "Nincs leírás",
+  "@noDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noEncryptionForPublicRooms": "Csak akkor kapcsolható be a titkosítás, ha a szoba nem nyilvánosan hozzáférhető.",
+  "@noEncryptionForPublicRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bubbleSize": "Buborék méret",
+  "@bubbleSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatHasBeenAddedToThisSpace": "A beszélgetés hozzá lett adva ehhez a térhez",
+  "@chatHasBeenAddedToThisSpace": {},
+  "chats": "Beszélgetések",
+  "@chats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clearArchive": "Archívum törlése",
+  "@clearArchive": {},
+  "commandHint_ban": "Felhasználó kitiltása ebből a szobából",
+  "@commandHint_ban": {
+    "type": "text",
+    "description": "Usage hint for the command /ban"
+  },
+  "commandHint_clearcache": "Gyorsítótár törlése",
+  "@commandHint_clearcache": {
+    "type": "text",
+    "description": "Usage hint for the command /clearcache"
+  },
+  "commandHint_discardsession": "Munkamenet elvetése",
+  "@commandHint_discardsession": {
+    "type": "text",
+    "description": "Usage hint for the command /discardsession"
+  },
+  "commandHint_dm": "Közvetlen beszélgetés indítása\nA --no-encryption kapcsolóval titkosítatlan beszélgetés lesz létrehozva",
+  "@commandHint_dm": {
+    "type": "text",
+    "description": "Usage hint for the command /dm"
+  },
+  "commandHint_html": "HTML formázott üzenet küldése",
+  "@commandHint_html": {
+    "type": "text",
+    "description": "Usage hint for the command /html"
+  },
+  "commandHint_join": "Csatlakozás a megadott szobához",
+  "@commandHint_join": {
+    "type": "text",
+    "description": "Usage hint for the command /join"
+  },
+  "commandHint_kick": "A megadott felhasználó kirúgása a szobából",
+  "@commandHint_kick": {
+    "type": "text",
+    "description": "Usage hint for the command /kick"
+  },
+  "commandHint_leave": "Ennek a szobának az elhagyása",
+  "@commandHint_leave": {
+    "type": "text",
+    "description": "Usage hint for the command /leave"
+  },
+  "commandInvalid": "Érvénytelen parancs",
+  "@commandInvalid": {
+    "type": "text"
+  },
+  "commandMissing": "{command} nem egy parancs.",
+  "@commandMissing": {
+    "type": "text",
+    "placeholders": {
+      "command": {}
+    },
+    "description": "State that {command} is not a valid /command."
+  },
+  "configureChat": "Beszélgetés beállítása",
+  "@configureChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createNewSpace": "Új tér",
+  "@createNewSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "defaultPermissionLevel": "Alapértelmezett hozzáférési szint",
+  "@defaultPermissionLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceVerifyDescription": "A titkosítás csak akkor biztonságos, ha az összes eszköz ellenőrizve lett.",
+  "@deviceVerifyDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discover": "Felfedezés",
+  "@discover": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorObtainingLocation": "Hiba a tartózkodási hely lekérése közben: {error}",
+  "@errorObtainingLocation": {
+    "type": "text",
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "memberChanges": "Tagság változások",
+  "@memberChanges": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "messages": "Üzenetek",
+  "@messages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noMatrixServer": "{server1} nem egy Matrix szerver, használjam a {server2} szervert inkább?",
+  "@noMatrixServer": {
+    "type": "text",
+    "placeholders": {
+      "server1": {},
+      "server2": {}
+    }
+  },
+  "createNewChatExplaination": "Egyszerűen szkenneld be a QR kódot, vagy oszdd meg a meghívási linket, ha a szkennelés nem lehetséges.",
+  "@createNewChatExplaination": {},
+  "shareYourInviteLink": "Meghívási link küldése",
+  "@shareYourInviteLink": {},
+  "notifications": "Értesítések",
+  "@notifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "numUsersTyping": "{count} felhasználó gépel…",
+  "@numUsersTyping": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "obtainingLocation": "Tartózkodási hely lekérése…",
+  "@obtainingLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openVideoCamera": "Kamera megnyitása videóhoz",
+  "@openVideoCamera": {
     "type": "text",
     "placeholders": {}
   }
