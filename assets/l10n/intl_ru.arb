@@ -2731,5 +2731,11 @@
   "reportUser": "Сообщить о пользователе",
   "@reportUser": {},
   "openChat": "Открыть чат",
-  "@openChat": {}
+  "@openChat": {},
+  "matrixWidgets": "Виджеты Matrix",
+  "@matrixWidgets": {},
+  "editIntegrations": "Редактирование виджетов и интеграций",
+  "@editIntegrations": {},
+  "integrationsNotImplemented": "Редактирование виджетов и интеграций пока невозможно.",
+  "@integrationsNotImplemented": {}
 }
