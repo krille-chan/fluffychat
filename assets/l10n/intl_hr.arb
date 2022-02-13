@@ -2729,5 +2729,7 @@
   "reportUser": "Prijavi korisnika",
   "@reportUser": {},
   "openChat": "Otvori chat",
-  "@openChat": {}
+  "@openChat": {},
+  "dismiss": "Odbaci",
+  "@dismiss": {}
 }
