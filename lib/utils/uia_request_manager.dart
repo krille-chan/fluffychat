@@ -2,11 +2,9 @@ import 'dart:async';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:matrix/matrix.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 extension UiaRequestManager on MatrixState {
@@ -84,39 +82,25 @@ extension UiaRequestManager on MatrixState {
         default:
           final url = Uri.parse(client.homeserver.toString() +
               '/_matrix/client/r0/auth/$stage/fallback/web?session=${uiaRequest.session}');
-          if (PlatformInfos.isMobile) {
-            final browser = UiaFallbackBrowser();
-            browser.addMenuItem(
-              ChromeSafariBrowserMenuItem(
-                action: (_, __) {
-                  uiaRequest.cancel();
-                },
-                label: L10n.of(context)!.cancel,
-                id: 0,
-              ),
-            );
-            await browser.open(url: url);
-            await browser.whenClosed.stream.first;
-          } else {
-            launch(url.toString());
-            if (OkCancelResult.ok ==
-                await showOkCancelAlertDialog(
-                  useRootNavigator: false,
-                  message: L10n.of(context)!.pleaseFollowInstructionsOnWeb,
-                  context: navigatorContext,
-                  okLabel: L10n.of(context)!.next,
-                  cancelLabel: L10n.of(context)!.cancel,
-                )) {
-              return uiaRequest.completeStage(
-                AuthenticationData(session: uiaRequest.session),
-              );
-            } else {
-              return uiaRequest.cancel();
-            }
-          }
-          await uiaRequest.completeStage(
-            AuthenticationData(session: uiaRequest.session),
+          launch(
+            url.toString(),
+            forceSafariVC: true,
+            forceWebView: true,
           );
+          if (OkCancelResult.ok ==
+              await showOkCancelAlertDialog(
+                useRootNavigator: false,
+                message: L10n.of(context)!.pleaseFollowInstructionsOnWeb,
+                context: navigatorContext,
+                okLabel: L10n.of(context)!.next,
+                cancelLabel: L10n.of(context)!.cancel,
+              )) {
+            return uiaRequest.completeStage(
+              AuthenticationData(session: uiaRequest.session),
+            );
+          } else {
+            return uiaRequest.cancel();
+          }
       }
     } catch (e, s) {
       Logs().e('Error while background UIA', e, s);
@@ -132,11 +116,4 @@ class UiaException implements Exception {
 
   @override
   String toString() => reason;
-}
-
-class UiaFallbackBrowser extends ChromeSafariBrowser {
-  final StreamController<bool> whenClosed = StreamController<bool>.broadcast();
-
-  @override
-  onClosed() => whenClosed.add(true);
 }

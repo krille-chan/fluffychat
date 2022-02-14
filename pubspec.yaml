@@ -30,7 +30,6 @@ dependencies:
   flutter_app_lock: ^2.0.0
   flutter_blurhash: ^0.6.0
   flutter_cache_manager: ^3.1.2
-  flutter_inappwebview: ^5.3.2
   flutter_local_notifications: ^8.2.0
   flutter_localizations:
     sdk: flutter

@@ -4,11 +4,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_web_auth/flutter_web_auth.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
-import 'package:uni_links/uni_links.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:vrouter/vrouter.dart';
 
@@ -18,7 +16,6 @@ import 'package:fluffychat/pages/homeserver_picker/homeserver_picker_view.dart';
 import 'package:fluffychat/utils/famedlysdk_store.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import '../../main.dart';
 import '../../utils/localized_exception_extension.dart';
 
 class HomeserverPicker extends StatefulWidget {
@@ -67,34 +64,9 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     );
   }
 
-  void _processIncomingUris(String? text) async {
-    if (text == null || !text.startsWith(AppConfig.appOpenUrlScheme)) return;
-    await browser?.close();
-    VRouter.of(context).to('/home');
-    final token = Uri.parse(text).queryParameters['loginToken'];
-    if (token != null) _loginWithToken(token);
-  }
-
-  void _initReceiveUri() {
-    if (!PlatformInfos.isMobile) return;
-    // For receiving shared Uris
-    _intentDataStreamSubscription = linkStream.listen(_processIncomingUris);
-    if (FluffyChatApp.gotInitialLink == false) {
-      FluffyChatApp.gotInitialLink = true;
-      getInitialLink().then(_processIncomingUris);
-    }
-  }
-
   @override
   void initState() {
     super.initState();
-    _initReceiveUri();
-    if (kIsWeb) {
-      WidgetsBinding.instance!.addPostFrameCallback((_) {
-        final token = Matrix.of(context).widget.queryParameters!['loginToken'];
-        if (token != null) _loginWithToken(token);
-      });
-    }
     checkHomeserverAction();
   }
 
@@ -197,8 +169,6 @@ class HomeserverPickerController extends State<HomeserverPicker> {
       _rawLoginTypes!
           .tryGetList('flows')!
           .any((flow) => flow['type'] == AuthenticationTypes.sso);
-
-  ChromeSafariBrowser? browser;
 
   static const String ssoHomeserverKey = 'sso-homeserver';
 
