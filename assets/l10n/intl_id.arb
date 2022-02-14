@@ -2731,5 +2731,13 @@
   "editIntegrations": "Edit widget dan integrasi",
   "@editIntegrations": {},
   "matrixWidgets": "Widget Matrix",
-  "@matrixWidgets": {}
+  "@matrixWidgets": {},
+  "reactedWith": "{sender} bereaksi dengan {reaction}",
+  "@reactedWith": {
+    "type": "text",
+    "placeholders": {
+      "sender": {},
+      "reaction": {}
+    }
+  }
 }
