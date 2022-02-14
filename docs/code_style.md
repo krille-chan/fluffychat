@@ -122,7 +122,7 @@ To run code after the widget was created first we use the WidgetBindings in the 
 ```dart
 @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
       // Do something when build is finished
     });
     super.initState();

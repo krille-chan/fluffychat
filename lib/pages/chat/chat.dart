@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:desktop_drop/desktop_drop.dart';
+import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
@@ -125,6 +126,8 @@ class ChatController extends State<Chat> {
 
   bool showEmojiPicker = false;
 
+  EmojiPickerType emojiPickerType = EmojiPickerType.keyboard;
+
   void startCallAction() async {
     final url =
         '${AppConfig.jitsiInstance}${Uri.encodeComponent(Matrix.of(context).client.generateUniqueTransactionId())}';
@@ -178,6 +181,8 @@ class ChatController extends State<Chat> {
   @override
   void initState() {
     scrollController.addListener(_updateScrollController);
+
+    inputFocus.addListener(_inputFocusListener);
     super.initState();
   }
 
@@ -239,6 +244,7 @@ class ChatController extends State<Chat> {
   void dispose() {
     timeline?.cancelSubscriptions();
     timeline = null;
+    inputFocus.removeListener(_inputFocusListener);
     super.dispose();
   }
 
@@ -424,6 +430,20 @@ class ChatController extends State<Chat> {
     setState(() {
       replyEvent = null;
     });
+  }
+
+  void emojiPickerAction() {
+    emojiPickerType = EmojiPickerType.keyboard;
+    setState(() => showEmojiPicker = !showEmojiPicker);
+    _inputFocusListener();
+  }
+
+  void _inputFocusListener() {
+    if (showEmojiPicker) {
+      inputFocus.unfocus();
+    } else {
+      inputFocus.requestFocus();
+    }
   }
 
   void sendLocationAction() async {
@@ -668,7 +688,18 @@ class ChatController extends State<Chat> {
 
   void scrollDown() => scrollController.jumpTo(0);
 
-  void onEmojiSelected(_, emoji) {
+  void onEmojiSelected(_, Emoji? emoji) {
+    switch (emojiPickerType) {
+      case EmojiPickerType.reaction:
+        senEmojiReaction(emoji);
+        break;
+      case EmojiPickerType.keyboard:
+        typeEmoji(emoji);
+        break;
+    }
+  }
+
+  void senEmojiReaction(Emoji? emoji) {
     setState(() => showEmojiPicker = false);
     if (emoji == null) return;
     // make sure we don't send the same emoji twice
@@ -677,12 +708,41 @@ class ChatController extends State<Chat> {
     return sendEmojiAction(emoji.emoji);
   }
 
+  void typeEmoji(Emoji? emoji) {
+    if (emoji == null) return;
+    final text = sendController.text;
+    final selection = sendController.selection;
+    final newText = sendController.text.isEmpty
+        ? emoji.emoji
+        : text.replaceRange(selection.start, selection.end, emoji.emoji);
+    sendController.value = TextEditingValue(
+      text: newText,
+      selection: TextSelection.collapsed(
+        // don't forget an UTF-8 combined emoji might have a length > 1
+        offset: selection.baseOffset + emoji.emoji.length,
+      ),
+    );
+  }
+
   late Iterable<Event> _allReactionEvents;
 
-  void cancelEmojiPicker() => setState(() => showEmojiPicker = false);
+  void emojiPickerBackspace() {
+    switch (emojiPickerType) {
+      case EmojiPickerType.reaction:
+        setState(() => showEmojiPicker = false);
+        break;
+      case EmojiPickerType.keyboard:
+        sendController
+          ..text = sendController.text.characters.skipLast(1).toString()
+          ..selection = TextSelection.fromPosition(
+              TextPosition(offset: sendController.text.length));
+        break;
+    }
+  }
 
-  void pickEmojiAction(Iterable<Event> allReactionEvents) async {
+  void pickEmojiReactionAction(Iterable<Event> allReactionEvents) async {
     _allReactionEvents = allReactionEvents;
+    emojiPickerType = EmojiPickerType.reaction;
     setState(() => showEmojiPicker = true);
   }
 
@@ -902,3 +962,5 @@ class ChatController extends State<Chat> {
   @override
   Widget build(BuildContext context) => ChatView(this);
 }
+
+enum EmojiPickerType { reaction, keyboard }

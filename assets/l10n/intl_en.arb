@@ -2711,7 +2711,6 @@
   "markAsRead": "Mark as read",
   "reportUser": "Report user",
   "dismiss": "Dismiss",
-  "markAsRead": "Mark as read",
   "matrixWidgets": "Matrix Widgets",
   "integrationsNotImplemented": "Editing widgets and integrations is not possible yet.",
   "editIntegrations": "Edit widgets and integrations",
@@ -2725,5 +2724,6 @@
   },
   "pinMessage": "Pin to room",
   "pinnedEventsError": "Error loading pinned messages",
-  "confirmEventUnpin": "Are you sure to permanently unpin the event?"
+  "confirmEventUnpin": "Are you sure to permanently unpin the event?",
+  "emojis": "Emojis"
 }

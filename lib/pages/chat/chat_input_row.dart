@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:animations/animations.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
@@ -8,16 +9,19 @@ import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'chat.dart';
-import 'encryption_button.dart';
 import 'input_bar.dart';
 
 class ChatInputRow extends StatelessWidget {
   final ChatController controller;
+
   const ChatInputRow(this.controller, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    if (controller.showEmojiPicker) return Container();
+    if (controller.showEmojiPicker &&
+        controller.emojiPickerType == EmojiPickerType.reaction) {
+      return Container();
+    }
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -176,7 +180,31 @@ class ChatInputRow extends StatelessWidget {
               Container(
                 height: 56,
                 alignment: Alignment.center,
-                child: EncryptionButton(controller.room!),
+                child: IconButton(
+                  tooltip: L10n.of(context)!.emojis,
+                  icon: PageTransitionSwitcher(
+                    transitionBuilder: (
+                      Widget child,
+                      Animation<double> primaryAnimation,
+                      Animation<double> secondaryAnimation,
+                    ) {
+                      return SharedAxisTransition(
+                        animation: primaryAnimation,
+                        secondaryAnimation: secondaryAnimation,
+                        transitionType: SharedAxisTransitionType.scaled,
+                        child: child,
+                        fillColor: Colors.transparent,
+                      );
+                    },
+                    child: Icon(
+                      controller.showEmojiPicker
+                          ? Icons.keyboard
+                          : Icons.emoji_emotions_outlined,
+                      key: ValueKey(controller.showEmojiPicker),
+                    ),
+                  ),
+                  onPressed: controller.emojiPickerAction,
+                ),
               ),
               if (controller.matrix!.isMultiAccount &&
                   controller.matrix!.hasComplexBundles &&

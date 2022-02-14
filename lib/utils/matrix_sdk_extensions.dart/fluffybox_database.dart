@@ -94,6 +94,11 @@ class FlutterFluffyBoxDatabase extends FluffyBoxDatabase {
           directory = Directory.current;
         }
       }
+      // do not destroy your stable FluffyChat in debug mode
+      if (kDebugMode) {
+        directory = Directory(directory.uri.resolve('debug').toFilePath());
+        directory.create(recursive: true);
+      }
       path = directory.path;
     }
     return path;

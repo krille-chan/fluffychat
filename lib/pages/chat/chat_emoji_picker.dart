@@ -18,7 +18,7 @@ class ChatEmojiPicker extends StatelessWidget {
       child: controller.showEmojiPicker
           ? EmojiPicker(
               onEmojiSelected: controller.onEmojiSelected,
-              onBackspacePressed: controller.cancelEmojiPicker,
+              onBackspacePressed: controller.emojiPickerBackspace,
             )
           : null,
     );

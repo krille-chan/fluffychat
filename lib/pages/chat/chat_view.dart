@@ -12,6 +12,7 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/chat_app_bar_title.dart';
+import 'package:fluffychat/pages/chat/encryption_button.dart';
 import 'package:fluffychat/pages/chat/pinned_events.dart';
 import 'package:fluffychat/pages/chat/reactions_picker.dart';
 import 'package:fluffychat/pages/chat/reply_display.dart';
@@ -119,6 +120,7 @@ class ChatView extends StatelessWidget {
             icon: const Icon(Icons.widgets),
             tooltip: L10n.of(context)!.matrixWidgets,
           ),
+        EncryptionButton(controller.room!),
         ChatSettingsPopupMenu(controller.room!, !controller.room!.isDirectChat),
       ];
     }
