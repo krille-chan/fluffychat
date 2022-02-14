@@ -18,7 +18,7 @@ class CupertinoWidgetsBottomSheet extends StatelessWidget {
           (widget) => Link(
             builder: (context, callback) {
               return CupertinoActionSheetAction(
-                child: Text(widget.name),
+                child: Text(widget.name ?? widget.url),
                 onPressed: callback ?? () {},
               );
             },

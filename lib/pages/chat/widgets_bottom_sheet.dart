@@ -23,7 +23,7 @@ class WidgetsBottomSheet extends StatelessWidget {
         return Link(
           builder: (context, callback) {
             return ListTile(
-              title: Text(widget.name),
+              title: Text(widget.name ?? widget.url),
               subtitle: Text(widget.type),
               onTap: callback,
             );
