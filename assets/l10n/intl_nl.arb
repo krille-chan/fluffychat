@@ -2736,5 +2736,13 @@
   "integrationsNotImplemented": "Widgets en integraties wijzigen is nog niet mogelijk.",
   "@integrationsNotImplemented": {},
   "editIntegrations": "Widgets en integraties wijzigen",
-  "@editIntegrations": {}
+  "@editIntegrations": {},
+  "reactedWith": "{sender} reageerde met {reaction}",
+  "@reactedWith": {
+    "type": "text",
+    "placeholders": {
+      "sender": {},
+      "reaction": {}
+    }
+  }
 }
