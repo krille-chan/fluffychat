@@ -2732,5 +2732,13 @@
   "editIntegrations": "Редагувати віджети та інтеграції",
   "@editIntegrations": {},
   "matrixWidgets": "Віджети Matrix",
-  "@matrixWidgets": {}
+  "@matrixWidgets": {},
+  "reactedWith": "{sender} реагує з {reaction}",
+  "@reactedWith": {
+    "type": "text",
+    "placeholders": {
+      "sender": {},
+      "reaction": {}
+    }
+  }
 }
