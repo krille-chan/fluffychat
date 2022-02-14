@@ -261,4 +261,8 @@ class MatrixLocals extends MatrixLocalizations {
 
   @override
   String get you => l10n.you;
+
+  @override
+  String sentReaction(String senderName, String reactionKey) =>
+      l10n.reactedWith(senderName, reactionKey);
 }

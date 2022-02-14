@@ -2714,5 +2714,13 @@
   "markAsRead": "Mark as read",
   "matrixWidgets": "Matrix Widgets",
   "integrationsNotImplemented": "Editing widgets and integrations is not possible yet.",
-  "editIntegrations": "Edit widgets and integrations"
+  "editIntegrations": "Edit widgets and integrations",
+  "reactedWith": "{sender} reacted with {reaction}",
+  "@reactedWith": {
+    "type": "text",
+    "placeholders": {
+      "sender": {},
+      "reaction": {}
+    }
+  }
 }
