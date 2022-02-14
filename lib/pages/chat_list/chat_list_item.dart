@@ -150,7 +150,7 @@ class ChatListItem extends StatelessWidget {
     final ownMessage =
         room.lastEvent?.senderId == Matrix.of(context).client.userID;
     final unread = room.isUnread || room.membership == Membership.invite;
-    final unreadBubbleSize = unread
+    final unreadBubbleSize = unread || room.hasNewMessages
         ? room.notificationCount > 0
             ? 20.0
             : 14.0
@@ -291,15 +291,18 @@ class ChatListItem extends StatelessWidget {
             curve: Curves.bounceInOut,
             padding: const EdgeInsets.symmetric(horizontal: 7),
             height: unreadBubbleSize,
-            width: room.notificationCount == 0 && !unread
-                ? 0
-                : (unreadBubbleSize - 9) *
-                        room.notificationCount.toString().length +
-                    9,
+            width:
+                room.notificationCount == 0 && !unread && !room.hasNewMessages
+                    ? 0
+                    : (unreadBubbleSize - 9) *
+                            room.notificationCount.toString().length +
+                        9,
             decoration: BoxDecoration(
               color: room.highlightCount > 0
                   ? Colors.red
-                  : Theme.of(context).primaryColor,
+                  : room.notificationCount > 0
+                      ? Theme.of(context).primaryColor
+                      : Theme.of(context).primaryColor.withAlpha(100),
               borderRadius: BorderRadius.circular(AppConfig.borderRadius),
             ),
             child: Center(

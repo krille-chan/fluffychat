@@ -132,8 +132,8 @@ class StoriesHeader extends StatelessWidget {
                           size: 100,
                           fontSize: 24,
                         ),
-                        unread: room.notificationCount > 0 ||
-                            room.membership == Membership.invite,
+                        unread: room.membership == Membership.invite ||
+                            room.hasNewMessages,
                         onPressed: () => _goToStoryAction(context, room.id),
                         onLongPressed: () => _contextualActions(context, room),
                       ),

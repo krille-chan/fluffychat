@@ -224,7 +224,7 @@ class ChatController extends State<Chat> {
     }
     filteredEvents = timeline!.getFilteredEvents(unfolded: unfolded);
     timeline!.requestKeys();
-    if (room!.notificationCount > 0 &&
+    if (room!.hasNewMessages &&
         timeline != null &&
         timeline!.events.isNotEmpty &&
         Matrix.of(context).webHasFocus) {
