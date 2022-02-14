@@ -2737,5 +2737,13 @@
   "integrationsNotImplemented": "Widget'lar ve bütünleşmeler henüz düzenlenemiyor.",
   "@integrationsNotImplemented": {},
   "editIntegrations": "Widget'ları ve bütünleşmeleri düzenle",
-  "@editIntegrations": {}
+  "@editIntegrations": {},
+  "reactedWith": "{sender}, {reaction} ile tepki verdi",
+  "@reactedWith": {
+    "type": "text",
+    "placeholders": {
+      "sender": {},
+      "reaction": {}
+    }
+  }
 }
