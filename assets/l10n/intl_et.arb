@@ -2696,5 +2696,21 @@
   "reportUser": "Teata kasutajast",
   "@reportUser": {},
   "openChat": "Ava vestlus",
-  "@openChat": {}
+  "@openChat": {},
+  "editIntegrations": "Muuda vidinaid ja lõiminguid",
+  "@editIntegrations": {},
+  "integrationsNotImplemented": "Vidinate ja lõimingute muutmine pole veel võimalik.",
+  "@integrationsNotImplemented": {},
+  "matrixWidgets": "Matrix'i vidinad",
+  "@matrixWidgets": {},
+  "dismiss": "Loobu",
+  "@dismiss": {},
+  "reactedWith": "{sender} reageeris nii {reaction}",
+  "@reactedWith": {
+    "type": "text",
+    "placeholders": {
+      "sender": {},
+      "reaction": {}
+    }
+  }
 }
