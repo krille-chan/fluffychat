@@ -22,10 +22,11 @@ import 'sticker.dart';
 
 class MessageContent extends StatelessWidget {
   final Event event;
-  final Color? textColor;
+  final Color textColor;
   final void Function(Event)? onInfoTab;
 
-  const MessageContent(this.event, {this.onInfoTab, Key? key, this.textColor})
+  const MessageContent(this.event,
+      {this.onInfoTab, Key? key, required this.textColor})
       : super(key: key);
 
   void _verifyOrRequestKey(BuildContext context) async {
@@ -83,17 +84,17 @@ class MessageContent extends StatelessWidget {
             if (PlatformInfos.isMobile) {
               return AudioPlayerWidget(
                 event,
-                color: textColor!,
+                color: textColor,
               );
             }
-            return MessageDownloadContent(event, textColor!);
+            return MessageDownloadContent(event, textColor);
           case MessageTypes.Video:
             if (PlatformInfos.isMobile || PlatformInfos.isWeb) {
               return EventVideoPlayer(event);
             }
-            return MessageDownloadContent(event, textColor!);
+            return MessageDownloadContent(event, textColor);
           case MessageTypes.File:
-            return MessageDownloadContent(event, textColor!);
+            return MessageDownloadContent(event, textColor);
 
           case MessageTypes.Text:
           case MessageTypes.Notice:
@@ -115,7 +116,7 @@ class MessageContent extends StatelessWidget {
                   fontSize: bigEmotes ? fontSize * 3 : fontSize,
                 ),
                 linkStyle: TextStyle(
-                  color: textColor!.withAlpha(150),
+                  color: textColor.withAlpha(150),
                   fontSize: bigEmotes ? fontSize * 3 : fontSize,
                   decoration: TextDecoration.underline,
                 ),
@@ -200,7 +201,7 @@ class MessageContent extends StatelessWidget {
                 decoration: event.redacted ? TextDecoration.lineThrough : null,
               ),
               linkStyle: TextStyle(
-                color: textColor!.withAlpha(150),
+                color: textColor.withAlpha(150),
                 fontSize: bigEmotes ? fontSize * 3 : fontSize,
                 decoration: TextDecoration.underline,
               ),

@@ -823,6 +823,30 @@ class ChatController extends State<Chat> {
     }
   }
 
+  unpinEvent(String eventId) async {
+    final response = await showOkCancelAlertDialog(
+      context: context,
+      title: L10n.of(context)!.unpin,
+      message: L10n.of(context)!.confirmEventUnpin,
+      okLabel: L10n.of(context)!.unpin,
+      cancelLabel: L10n.of(context)!.cancel,
+    );
+    if (response == OkCancelResult.ok) {
+      final events = room!.pinnedEventIds
+        ..removeWhere((oldEvent) => oldEvent == eventId);
+      room!.setPinnedEvents(events);
+    }
+  }
+
+  void pinEvent() {
+    room!.setPinnedEvents(
+      <String>{
+        ...room!.pinnedEventIds,
+        ...selectedEvents.map((e) => e.eventId),
+      }.toList(),
+    );
+  }
+
   void onInputBarChanged(String text) {
     if (text.endsWith(' ') && matrix!.hasComplexBundles) {
       final clients = currentRoomBundle;

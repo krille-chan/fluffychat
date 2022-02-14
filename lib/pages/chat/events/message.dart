@@ -22,19 +22,19 @@ class Message extends StatelessWidget {
   final void Function(Event)? onInfoTab;
   final void Function(String)? scrollToEventId;
   final void Function(String) unfold;
-  final bool? longPressSelect;
-  final bool? selected;
+  final bool longPressSelect;
+  final bool selected;
   final Timeline timeline;
 
   const Message(this.event,
       {this.nextEvent,
-      this.longPressSelect,
+      this.longPressSelect = false,
       this.onSelect,
       this.onInfoTab,
       this.onAvatarTab,
       this.scrollToEventId,
       required this.unfold,
-      this.selected,
+      this.selected = false,
       required this.timeline,
       Key? key})
       : super(key: key);
@@ -152,11 +152,10 @@ class Message extends StatelessWidget {
                 clipBehavior: Clip.antiAlias,
                 child: InkWell(
                   onHover: (b) => useMouse = true,
-                  onTap: !useMouse && longPressSelect!
+                  onTap: !useMouse && longPressSelect
                       ? () {}
                       : () => onSelect!(event),
-                  onLongPress:
-                      !longPressSelect! ? null : () => onSelect!(event),
+                  onLongPress: !longPressSelect ? null : () => onSelect!(event),
                   borderRadius: borderRadius,
                   child: Container(
                     decoration: BoxDecoration(
@@ -301,7 +300,7 @@ class Message extends StatelessWidget {
 
     return Center(
       child: Container(
-        color: selected!
+        color: selected
             ? Theme.of(context).primaryColor.withAlpha(100)
             : Theme.of(context).primaryColor.withAlpha(0),
         constraints:

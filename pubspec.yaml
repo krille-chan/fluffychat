@@ -118,4 +118,8 @@ dependency_overrides:
     hosted:
       name: geolocator_android
       url: https://hanntech-gmbh.gitlab.io/free2pass/flutter-geolocator-floss
+  matrix:
+    git:
+      url: https://gitlab.com/famedly/company/frontend/famedlysdk.git
+      ref: main
   provider: 5.0.0

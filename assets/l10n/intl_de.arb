@@ -2723,5 +2723,7 @@
   "@bubbleSize": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "pinMessage": "An Raum anheften",
+  "pinnedEventsError": "Angeheftete Nachrichten nicht gefunden"
 }

@@ -12,6 +12,7 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/chat_app_bar_title.dart';
+import 'package:fluffychat/pages/chat/pinned_events.dart';
 import 'package:fluffychat/pages/chat/reactions_picker.dart';
 import 'package:fluffychat/pages/chat/reply_display.dart';
 import 'package:fluffychat/pages/chat/seen_by_row.dart';
@@ -62,6 +63,11 @@ class ChatView extends StatelessWidget {
             tooltip: L10n.of(context)!.redactMessage,
             onPressed: controller.redactEventsAction,
           ),
+        IconButton(
+          icon: const Icon(Icons.push_pin),
+          onPressed: controller.pinEvent,
+          tooltip: L10n.of(context)!.pinMessage,
+        ),
         if (controller.selectedEvents.length == 1)
           PopupMenuButton<_EventContextAction>(
             onSelected: (action) {
@@ -208,6 +214,7 @@ class ChatView extends StatelessWidget {
                       child: Column(
                         children: <Widget>[
                           TombstoneDisplay(controller),
+                          PinnedEvents(controller),
                           Expanded(
                             child: GestureDetector(
                                 onTap: controller.clearSingleSelectedEvent,
