@@ -2737,5 +2737,13 @@
   "editIntegrations": "Редактирование виджетов и интеграций",
   "@editIntegrations": {},
   "integrationsNotImplemented": "Редактирование виджетов и интеграций пока невозможно.",
-  "@integrationsNotImplemented": {}
+  "@integrationsNotImplemented": {},
+  "reactedWith": "{sender} реагирует с {reaction}",
+  "@reactedWith": {
+    "type": "text",
+    "placeholders": {
+      "sender": {},
+      "reaction": {}
+    }
+  }
 }
