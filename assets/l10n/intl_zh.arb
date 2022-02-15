@@ -2737,5 +2737,13 @@
   "integrationsNotImplemented": "尚无法编辑小部件和集成。",
   "@integrationsNotImplemented": {},
   "editIntegrations": "编辑小部件和集成",
-  "@editIntegrations": {}
+  "@editIntegrations": {},
+  "reactedWith": "{sender} 通过 {reaction} 进行了回应",
+  "@reactedWith": {
+    "type": "text",
+    "placeholders": {
+      "sender": {},
+      "reaction": {}
+    }
+  }
 }
