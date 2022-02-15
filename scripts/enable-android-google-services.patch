@@ -2,7 +2,7 @@ diff --git a/android/app/build.gradle b/android/app/build.gradle
 index 39c920e8..e27a49f5 100644
 --- a/android/app/build.gradle
 +++ b/android/app/build.gradle
-@@ -80,11 +80,11 @@ flutter {
+@@ -81,11 +81,11 @@ flutter {
  
  dependencies {
      implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -12,6 +12,7 @@ index 39c920e8..e27a49f5 100644
      androidTestImplementation 'androidx.test:runner:1.1.1'
      androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
      implementation 'com.github.UnifiedPush:android-connector:1.2.3' // needed for unifiedpush
+     implementation 'androidx.multidex:multidex:2.0.1'
  }
  
 -//apply plugin: 'com.google.gms.google-services'
@@ -92,7 +93,7 @@ index a1442ed2..ee0ce757 100644
 +++ b/pubspec.yaml
 @@ -21,8 +21,8 @@ dependencies:
    email_validator: ^2.0.1
-   emoji_picker_flutter: ^1.0.7
+   emoji_picker_flutter: ^1.1.1
    encrypt: ^5.0.1
 -  #fcm_shared_isolate:
 -  #  git: https://gitlab.com/famedly/libraries/fcm_shared_isolate.git

@@ -44,11 +44,12 @@ android {
 
     defaultConfig {
         applicationId "chat.fluffy.fluffychat"
-        minSdkVersion 21
+        minSdkVersion 16
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
 
     signingConfigs {
@@ -85,6 +86,7 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     implementation 'com.github.UnifiedPush:android-connector:1.2.3' // needed for unifiedpush
+    implementation 'androidx.multidex:multidex:2.0.1'
 }
 
 //apply plugin: 'com.google.gms.google-services'

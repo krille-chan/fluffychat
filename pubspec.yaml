@@ -7,19 +7,23 @@ environment:
   sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
-  adaptive_dialog: ^1.1.0
-  adaptive_theme: ^2.2.0
+  adaptive_dialog: ^1.3.0
+  adaptive_theme: ^2.3.0
   animations: ^2.0.2
+  assets_audio_player: ^3.0.4+1
   audioplayers: ^0.20.1
   blurhash_dart: ^1.1.0
-  cached_network_image: ^3.1.0
+  cached_network_image: ^3.2.0
+  callkeep: ^0.3.2
   chewie: ^1.2.2
   collection: ^1.15.0-nullsafety.4
+  connectivity_plus: ^2.2.0
   cupertino_icons: any
-  desktop_drop: ^0.3.0
-  desktop_notifications: ^0.6.1
+  desktop_drop: ^0.3.2
+  desktop_notifications: ^0.6.3
+  device_info_plus: ^3.2.1
   email_validator: ^2.0.1
-  emoji_picker_flutter: ^1.0.7
+  emoji_picker_flutter: ^1.1.1
   encrypt: ^5.0.1
   #fcm_shared_isolate:
   #  git: https://gitlab.com/famedly/libraries/fcm_shared_isolate.git
@@ -28,8 +32,8 @@ dependencies:
     sdk: flutter
   flutter_app_badger: ^1.3.0
   flutter_app_lock: ^2.0.0
-  flutter_blurhash: ^0.6.0
-  flutter_cache_manager: ^3.1.2
+  flutter_blurhash: ^0.6.4
+  flutter_cache_manager: ^3.3.0
   flutter_local_notifications: ^8.2.0
   flutter_localizations:
     sdk: flutter
@@ -37,52 +41,54 @@ dependencies:
   flutter_matrix_html: ^1.1.0
   flutter_olm: ^1.2.0
   flutter_openssl_crypto: ^0.1.0
+  flutter_ringtone_player: ^3.1.1
   flutter_secure_storage: ^5.0.2
-  flutter_slidable: ^1.1.0
+  flutter_slidable: ^1.2.0
   flutter_svg: ^0.22.0
-  flutter_typeahead: ^3.2.1
+  flutter_typeahead: ^3.2.4
   flutter_web_auth: ^0.4.0
-  future_loading_dialog: ^0.2.2
+  flutter_webrtc: ^0.8.2
+  future_loading_dialog: ^0.2.3
   geolocator: ^7.6.2
   hive_flutter: ^1.1.0
-  image: ^3.0.8
-  image_picker: ^0.8.4+2
+  image: ^3.1.1
+  image_picker: ^0.8.4+8
   intl: any
   localstorage: ^4.0.0+1
-  lottie: ^1.2.1
+  lottie: ^1.2.2
   matrix: ^0.8.9
   matrix_link_text: ^1.0.2
   open_noti_settings: ^0.4.0
-  package_info_plus: ^1.2.1
-  path_provider: ^2.0.5
+  package_info_plus: ^1.3.0
+  path_provider: ^2.0.9
   permission_handler: ^8.3.0
   pin_code_text_field: ^1.8.0
-  provider: ^6.0.1
+  provider: ^6.0.2
   punycode: ^1.0.0
   qr_code_scanner: ^0.6.1
   qr_flutter: ^4.0.0
   receive_sharing_intent: ^1.4.5
   record: ^3.0.2
-  salomon_bottom_bar: ^3.1.0
-  scroll_to_index: ^2.1.0
-  sentry: ^6.0.1
+  salomon_bottom_bar: ^3.2.0
+  scroll_to_index: ^2.1.1
+  sentry: ^6.3.0
   share: ^2.0.4
-  shared_preferences: ^2.0.12
+  shared_preferences: ^2.0.13
   slugify: ^2.0.0
   swipe_to_action: ^0.2.0
   uni_links: ^0.5.1
   unifiedpush: ^3.0.1
   universal_html: ^2.0.8
-  url_launcher: ^6.0.12
+  url_launcher: ^6.0.20
   video_compress: ^3.1.0
-  video_player: ^2.2.10
-  vrouter: ^1.2.0+15
+  video_player: ^2.2.18
+  vrouter: ^1.2.0+21
   wakelock: ^0.5.6
 
 dev_dependencies:
-  dart_code_metrics: ^4.2.0-dev.3
+  dart_code_metrics: ^4.10.1
   flutter_lints: ^1.0.4
-  flutter_native_splash: ^2.0.1+1
+  flutter_native_splash: ^2.0.3+1
   flutter_test:
     sdk: flutter
   import_sorter: ^4.6.0
@@ -114,6 +120,7 @@ flutter:
         - asset: fonts/NotoEmoji/NotoColorEmoji.ttf
 
 dependency_overrides:
+  dbus: ^0.7.1
   geolocator_android:
     hosted:
       name: geolocator_android

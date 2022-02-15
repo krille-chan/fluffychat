@@ -14,6 +14,7 @@ import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/config/routes.dart';
 import 'package:fluffychat/utils/client_manager.dart';
+import 'package:fluffychat/utils/famedlysdk_store.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/sentry_controller.dart';
 import 'config/app_config.dart';
@@ -48,6 +49,8 @@ void main() async {
     queryParameters
         .addAll(Uri.parse(html.window.location.href).queryParameters);
   }
+
+  await Store.init();
 
   runZonedGuarded(
     () => runApp(PlatformInfos.isMobile

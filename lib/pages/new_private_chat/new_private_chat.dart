@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -7,6 +8,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:fluffychat/pages/new_private_chat/new_private_chat_view.dart';
 import 'package:fluffychat/pages/new_private_chat/qr_scanner_modal.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -22,21 +24,26 @@ class NewPrivateChatController extends State<NewPrivateChat> {
   final FocusNode textFieldFocus = FocusNode();
   final formKey = GlobalKey<FormState>();
   bool loading = false;
-  bool hideFab = false;
+
+  bool _hideFab = true;
+  bool _qrUnsupported = true;
+
+  bool get hideFab => !_qrUnsupported && _hideFab;
 
   static const Set<String> supportedSigils = {'@', '!', '#'};
 
   static const String prefix = 'https://matrix.to/#/';
 
   void setHideFab() {
-    if (textFieldFocus.hasFocus != hideFab) {
-      setState(() => hideFab = textFieldFocus.hasFocus);
+    if (textFieldFocus.hasFocus != _hideFab) {
+      setState(() => _hideFab = textFieldFocus.hasFocus);
     }
   }
 
   @override
   void initState() {
     super.initState();
+    _checkQrSupported();
     textFieldFocus.addListener(setHideFab);
   }
 
@@ -83,4 +90,13 @@ class NewPrivateChatController extends State<NewPrivateChat> {
 
   @override
   Widget build(BuildContext context) => NewPrivateChatView(this);
+
+  // checks whether Android < 21 in order to support Android KitKat
+  void _checkQrSupported() {
+    if (!PlatformInfos.isAndroid) _qrUnsupported = false;
+    DeviceInfoPlugin().androidInfo.then(
+          (info) =>
+              setState(() => _qrUnsupported = (info.version.sdkInt ?? 16) < 21),
+        );
+  }
 }

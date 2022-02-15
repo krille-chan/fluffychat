@@ -1,11 +1,14 @@
 import 'dart:async';
 import 'dart:core';
 
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'package:fluffychat/utils/platform_infos.dart';
+
+// import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 // see https://github.com/mogol/flutter_secure_storage/issues/161#issuecomment-704578453
 class AsyncMutex {
@@ -28,13 +31,24 @@ class AsyncMutex {
 }
 
 class Store {
-  LocalStorage? storage;
-  final FlutterSecureStorage? secureStorage;
-  static final _mutex = AsyncMutex();
+  static FlutterSecureStorage? secureStorage;
 
-  Store()
-      : secureStorage =
-            PlatformInfos.isMobile ? const FlutterSecureStorage() : null;
+  static FutureOr<void> init() {
+    if (PlatformInfos.isMobile) {
+      if (PlatformInfos.isAndroid) {
+        return DeviceInfoPlugin().androidInfo.then((info) {
+          if ((info.version.sdkInt ?? 16) >= 19) {
+            secureStorage = const FlutterSecureStorage();
+          }
+        });
+      } else {
+        secureStorage = const FlutterSecureStorage();
+      }
+    }
+  }
+
+  LocalStorage? storage;
+  static final _mutex = AsyncMutex();
 
   Future<void> _setupLocalStorage() async {
     if (storage == null) {

@@ -20,6 +20,7 @@ extension ResizeImage on MatrixFile {
     MediaInfo? mediaInfo;
     await tmpFile.writeAsBytes(bytes);
     try {
+      // will throw an error e.g. on Android SDK < 18
       mediaInfo = await VideoCompress.compressVideo(tmpFile.path);
     } catch (e, s) {
       SentryController.captureException(e, s);

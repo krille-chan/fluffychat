@@ -7,8 +7,14 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
+import androidx.multidex.MultiDex
 
 class MainActivity : FlutterActivity() {
+    override fun attachBaseContext(base: Context) {
+        super.attachBaseContext(base)
+        MultiDex.install(this)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     };

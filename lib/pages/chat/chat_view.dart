@@ -120,6 +120,11 @@ class ChatView extends StatelessWidget {
             icon: const Icon(Icons.widgets),
             tooltip: L10n.of(context)!.matrixWidgets,
           ),
+        IconButton(
+          onPressed: controller.onPhoneButtonTap,
+          icon: const Icon(Icons.phone),
+          tooltip: L10n.of(context)!.placeCall,
+        ),
         EncryptionButton(controller.room!),
         ChatSettingsPopupMenu(controller.room!, !controller.room!.isDirectChat),
       ];

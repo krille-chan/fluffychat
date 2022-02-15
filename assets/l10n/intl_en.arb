@@ -2725,5 +2725,9 @@
   "pinMessage": "Pin to room",
   "pinnedEventsError": "Error loading pinned messages",
   "confirmEventUnpin": "Are you sure to permanently unpin the event?",
-  "emojis": "Emojis"
+  "emojis": "Emojis",
+  "placeCall": "Place call",
+  "voiceCall": "Voice call",
+  "unsupportedAndroidVersion": "Unsupported Android version",
+  "unsupportedAndroidVersionLong": "This feature required a never Android version. Please check for updates or Lineage OS support."
 }

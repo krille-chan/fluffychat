@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-flutter build apk --debug -v
+flutter build apk --debug

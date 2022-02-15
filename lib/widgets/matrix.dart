@@ -25,6 +25,7 @@ import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:fluffychat/utils/uia_request_manager.dart';
+import 'package:fluffychat/utils/voip_plugin.dart';
 import '../config/app_config.dart';
 import '../config/setting_keys.dart';
 import '../pages/key_verification/key_verification_dialog.dart';
@@ -81,6 +82,8 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     }
     return widget.clients[_activeClient];
   }
+
+  VoipPlugin get voipPlugin => VoipPlugin(client: client, context: context);
 
   bool get isMultiAccount => widget.clients.length > 1;
 

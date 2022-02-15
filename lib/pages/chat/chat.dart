@@ -2,12 +2,15 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:animations/animations.dart';
 import 'package:desktop_drop/desktop_drop.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -26,6 +29,8 @@ import 'package:fluffychat/pages/chat/widgets_bottom_sheet.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/event_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/ios_badge_client_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/voip/callkeep_manager.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/account_bundles.dart';
 import '../../utils/localized_exception_extension.dart';
@@ -165,8 +170,14 @@ class ChatController extends State<Chat> {
   @override
   void initState() {
     scrollController.addListener(_updateScrollController);
-
     inputFocus.addListener(_inputFocusListener);
+
+    if (!kIsWeb) {
+      WidgetsBinding.instance?.addPostFrameCallback((_) {
+        CallKeepManager().setVoipPlugin(Matrix.of(context).voipPlugin);
+        CallKeepManager().initialize().catchError((_) => true);
+      });
+    }
     super.initState();
   }
 
@@ -938,6 +949,85 @@ class ChatController extends State<Chat> {
 
   void showEventInfo([Event? event]) =>
       (event ?? selectedEvents.single).showInfoDialog(context);
+
+  void onPhoneButtonTap() async {
+    // VoIP required Android SDK 21
+    if (PlatformInfos.isAndroid) {
+      DeviceInfoPlugin().androidInfo.then((value) {
+        if ((value.version.sdkInt ?? 16) < 21) {
+          Navigator.pop(context);
+          showModal(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: Text(L10n.of(context)!.unsupportedAndroidVersion),
+              content: Text(L10n.of(context)!.unsupportedAndroidVersionLong),
+              actions: [
+                TextButton(
+                    onPressed: Navigator.of(context).pop,
+                    child: Text(L10n.of(context)!.ok))
+              ],
+            ),
+          );
+        }
+      });
+    }
+    final callType = await showDialog<CallType>(
+        context: context,
+        builder: (BuildContext context) {
+          return SimpleDialog(
+            title: Text(L10n.of(context)!.placeCall),
+            children: [
+              ListTile(
+                leading: const Icon(Icons.phone),
+                title: Text(L10n.of(context)!.voiceCall),
+                onTap: () {
+                  Navigator.pop(context, CallType.kVoice);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.videocam),
+                title: Text(L10n.of(context)!.videoCall),
+                onTap: () {
+                  Navigator.pop(context, CallType.kVideo);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.cancel),
+                title: Text(L10n.of(context)!.cancel),
+                onTap: () {
+                  Navigator.pop(context, null);
+                },
+              ),
+            ],
+          );
+        },
+        useRootNavigator: false);
+
+    if (callType == null) {
+      return;
+    }
+    final success = await showFutureLoadingDialog(
+        context: context,
+        future: () =>
+            Matrix.of(context).voipPlugin.voip.requestTurnServerCredentials());
+    if (success.result != null) {
+      final voipPlugin = Matrix.of(context).voipPlugin;
+      await voipPlugin.voip.inviteToCall(room!.id, callType).catchError((e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(e.toString())
+              // Text(LocalizedExceptionExtension(context, e)),
+              ),
+        );
+      });
+    } else {
+      await showOkAlertDialog(
+        context: context,
+        title: L10n.of(context)!.unavailable,
+        okLabel: L10n.of(context)!.next,
+        useRootNavigator: false,
+      );
+    }
+  }
 
   void cancelReplyEventAction() => setState(() {
         if (editEvent != null) {
