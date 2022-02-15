@@ -834,16 +834,22 @@ class ChatController extends State<Chat> {
     if (response == OkCancelResult.ok) {
       final events = room!.pinnedEventIds
         ..removeWhere((oldEvent) => oldEvent == eventId);
-      room!.setPinnedEvents(events);
+      showFutureLoadingDialog(
+        context: context,
+        future: () => room!.setPinnedEvents(events),
+      );
     }
   }
 
   void pinEvent() {
-    room!.setPinnedEvents(
-      <String>{
-        ...room!.pinnedEventIds,
-        ...selectedEvents.map((e) => e.eventId),
-      }.toList(),
+    showFutureLoadingDialog(
+      context: context,
+      future: () => room!.setPinnedEvents(
+        <String>{
+          ...room!.pinnedEventIds,
+          ...selectedEvents.map((e) => e.eventId),
+        }.toList(),
+      ),
     );
   }
 

@@ -98,10 +98,10 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     });
 
     try {
-      final wellKnown =
+      final summary =
           await Matrix.of(context).getLoginClient().checkHomeserver(homeserver);
 
-      var jitsi = wellKnown?.additionalProperties
+      var jitsi = summary.discoveryInformation?.additionalProperties
           .tryGet<Map<String, dynamic>>('im.vector.riot.jitsi')
           ?.tryGet<String>('preferredDomain');
       if (jitsi != null) {

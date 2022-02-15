@@ -119,7 +119,7 @@ class LoginController extends State<Login> {
           future: () => Matrix.of(context)
               .getLoginClient()
               .checkHomeserver(newDomain)
-              .catchError((e) => null),
+              .catchError((e) {}),
         );
         if (Matrix.of(context).getLoginClient().homeserver == null) {
           Matrix.of(context).getLoginClient().homeserver = oldHomeserver;
