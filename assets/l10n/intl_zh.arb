@@ -2751,5 +2751,7 @@
   "confirmEventUnpin": "你确定要永久性取消置顶这一活动吗？",
   "@confirmEventUnpin": {},
   "pinMessage": "置顶到聊天室",
-  "@pinMessage": {}
+  "@pinMessage": {},
+  "emojis": "颜文字",
+  "@emojis": {}
 }
