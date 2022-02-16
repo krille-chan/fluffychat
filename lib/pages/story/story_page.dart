@@ -67,6 +67,7 @@ class StoryPageController extends State<StoryPage> {
 
   void replyAction([String? message]) async {
     message ??= replyController.text;
+    if (message.isEmpty) return;
     final currentEvent = this.currentEvent;
     if (currentEvent == null) return;
     setState(() {
