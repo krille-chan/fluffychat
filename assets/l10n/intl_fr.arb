@@ -2745,5 +2745,21 @@
       "sender": {},
       "reaction": {}
     }
-  }
+  },
+  "emojis": "Émojis",
+  "@emojis": {},
+  "placeCall": "Passer un appel",
+  "@placeCall": {},
+  "voiceCall": "Appel vocal",
+  "@voiceCall": {},
+  "unsupportedAndroidVersion": "Version d'Android non prise en charge",
+  "@unsupportedAndroidVersion": {},
+  "unsupportedAndroidVersionLong": "Cette fonctionnalité nécessitait une nouvelle version d'Android. Veuillez vérifier les mises à jour ou la prise en charge de Lineage OS.",
+  "@unsupportedAndroidVersionLong": {},
+  "pinMessage": "Épingler au salon",
+  "@pinMessage": {},
+  "pinnedEventsError": "Erreur lors du chargement des messages épinglés",
+  "@pinnedEventsError": {},
+  "confirmEventUnpin": "Voulez-vous vraiment désépingler définitivement l'événement ?",
+  "@confirmEventUnpin": {}
 }
