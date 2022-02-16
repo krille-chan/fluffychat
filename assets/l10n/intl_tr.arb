@@ -2745,5 +2745,21 @@
       "sender": {},
       "reaction": {}
     }
-  }
+  },
+  "emojis": "Emojiler",
+  "@emojis": {},
+  "placeCall": "Arama yap",
+  "@placeCall": {},
+  "voiceCall": "Sesli arama",
+  "@voiceCall": {},
+  "unsupportedAndroidVersion": "Desteklenmeyen Android sürümü",
+  "@unsupportedAndroidVersion": {},
+  "unsupportedAndroidVersionLong": "Bu özellik daha yeni bir Android sürümü gerektiriyor. Lütfen güncellemelere veya LineageOS desteğine bakın.",
+  "@unsupportedAndroidVersionLong": {},
+  "pinMessage": "Odaya sabitle",
+  "@pinMessage": {},
+  "pinnedEventsError": "Sabitlenmiş mesajlar yüklenirken hata oluştu",
+  "@pinnedEventsError": {},
+  "confirmEventUnpin": "Etkinliğin sabitlemesini kalıcı olarak kaldırmak istediğinizden emin misiniz?",
+  "@confirmEventUnpin": {}
 }
