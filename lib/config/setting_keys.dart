@@ -1,5 +1,4 @@
 abstract class SettingKeys {
-  static const String jitsiInstance = 'chat.fluffy.jitsi_instance';
   static const String wallpaper = 'chat.fluffy.wallpaper';
   static const String renderHtml = 'chat.fluffy.renderHtml';
   static const String hideRedactedEvents = 'chat.fluffy.hideRedactedEvents';

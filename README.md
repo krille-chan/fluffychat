@@ -21,7 +21,6 @@ FluffyChat is an open source, nonprofit and cute matrix messenger app. The app i
 - Custom themes
 - Hides complexity of Matrix IDs behind simple QR codes
 - Custom emotes and stickers
-- Video calls via sharing links to Jitsi
 - Spaces
 - Compatible with Element, Nheko, NeoChat and all other Matrix apps
 - End to end encryption

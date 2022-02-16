@@ -9,8 +9,6 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/widgets/matrix.dart';
-import '../../config/app_config.dart';
-import '../../config/setting_keys.dart';
 import '../../utils/platform_infos.dart';
 import 'login_view.dart';
 
@@ -140,19 +138,6 @@ class LoginController extends State<Login> {
             Navigator.of(context, rootNavigator: false).pop();
             return;
           }
-        }
-        var jitsi = wellKnownInformation?.additionalProperties
-            .tryGet<Map<String, dynamic>>('im.vector.riot.jitsi')
-            ?.tryGet<String>('preferredDomain');
-        if (jitsi != null) {
-          if (!jitsi.endsWith('/')) {
-            jitsi += '/';
-          }
-          Logs().v('Found custom jitsi instance $jitsi');
-          await Matrix.of(context)
-              .store
-              .setItem(SettingKeys.jitsiInstance, jitsi);
-          AppConfig.jitsiInstance = jitsi;
         }
         setState(() => usernameError = null);
       } else {

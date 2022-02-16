@@ -64,15 +64,6 @@ class SettingsChatView extends StatelessWidget {
                   child: Icon(Icons.insert_emoticon_outlined),
                 ),
               ),
-              ListTile(
-                trailing: const Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Icon(Icons.phone_outlined),
-                ),
-                title: Text(L10n.of(context)!.editJitsiInstance),
-                subtitle: Text(AppConfig.jitsiInstance),
-                onTap: controller.setJitsiInstanceAction,
-              ),
             ],
           ),
         ),

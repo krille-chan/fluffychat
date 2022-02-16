@@ -4,7 +4,6 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 import 'package:matrix_link_text/link_text.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import 'package:fluffychat/pages/chat/events/video_player.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
@@ -172,14 +171,6 @@ class MessageContent extends StatelessWidget {
           case MessageTypes.None:
           textmessage:
           default:
-            if (event.content['msgtype'] == Matrix.callNamespace) {
-              return _ButtonContent(
-                onPressed: () => launch(event.body),
-                icon: const Icon(Icons.phone_outlined, color: Colors.green),
-                label: L10n.of(context)!.videoCall,
-                textColor: buttonTextColor,
-              );
-            }
             if (event.redacted) {
               return _ButtonContent(
                 label: L10n.of(context)!

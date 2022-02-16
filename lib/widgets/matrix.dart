@@ -37,8 +37,6 @@ import 'local_notifications_extension.dart';
 // import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class Matrix extends StatefulWidget {
-  static const String callNamespace = 'chat.fluffy.jitsi_call';
-
   final Widget? child;
 
   final GlobalKey<VRouterState>? router;
@@ -203,7 +201,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
   final onRoomKeyRequestSub = <String, StreamSubscription>{};
   final onKeyVerificationRequestSub = <String, StreamSubscription>{};
-  final onJitsiCallSub = <String, StreamSubscription>{};
   final onNotification = <String, StreamSubscription>{};
   final onLoginStateChanged = <String, StreamSubscription<LoginState>>{};
   final onUiaRequest = <String, StreamSubscription<UiaRequest>>{};
@@ -436,8 +433,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   }
 
   void initSettings() {
-    store.getItem(SettingKeys.jitsiInstance).then((final instance) =>
-        AppConfig.jitsiInstance = instance ?? AppConfig.jitsiInstance);
     store.getItem(SettingKeys.wallpaper).then((final path) async {
       if (path == null) return;
       final file = File(path);

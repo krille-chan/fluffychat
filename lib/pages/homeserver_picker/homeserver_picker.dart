@@ -11,7 +11,6 @@ import 'package:universal_html/html.dart' as html;
 import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/pages/homeserver_picker/homeserver_picker_view.dart';
 import 'package:fluffychat/utils/famedlysdk_store.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -98,22 +97,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     });
 
     try {
-      final summary =
-          await Matrix.of(context).getLoginClient().checkHomeserver(homeserver);
-
-      var jitsi = summary.discoveryInformation?.additionalProperties
-          .tryGet<Map<String, dynamic>>('im.vector.riot.jitsi')
-          ?.tryGet<String>('preferredDomain');
-      if (jitsi != null) {
-        if (!jitsi.endsWith('/')) {
-          jitsi += '/';
-        }
-        Logs().v('Found custom jitsi instance $jitsi');
-        await Matrix.of(context)
-            .store
-            .setItem(SettingKeys.jitsiInstance, jitsi);
-        AppConfig.jitsiInstance = jitsi;
-      }
+      await Matrix.of(context).getLoginClient().checkHomeserver(homeserver);
 
       _rawLoginTypes = await Matrix.of(context).getLoginClient().request(
             RequestType.GET,

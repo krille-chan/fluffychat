@@ -9,7 +9,6 @@ abstract class AppConfig {
   static String? get applicationWelcomeMessage => _applicationWelcomeMessage;
   static String _defaultHomeserver = 'matrix.org';
   static String get defaultHomeserver => _defaultHomeserver;
-  static String jitsiInstance = 'https://meet.jit.si/';
   static double bubbleSizeFactor = 1;
   static double fontSizeFactor = 1;
   static Color chatColor = primaryColor;
@@ -76,9 +75,6 @@ abstract class AppConfig {
     }
     if (json['default_homeserver'] is String) {
       _defaultHomeserver = json['default_homeserver'];
-    }
-    if (json['jitsi_instance'] is String) {
-      jitsiInstance = json['jitsi_instance'];
     }
     if (json['privacy_url'] is String) {
       _webBaseUrl = json['privacy_url'];
