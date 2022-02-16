@@ -2747,5 +2747,13 @@
   "pinnedEventsError": "Terjadi kesalahan memuat pesan-pesan yang disematkan",
   "@pinnedEventsError": {},
   "confirmEventUnpin": "Apakah Anda yakin untuk melepaskan pin peristiwa ini secara permanen?",
-  "@confirmEventUnpin": {}
+  "@confirmEventUnpin": {},
+  "unsupportedAndroidVersionLong": "Fitur ini memerlukan versi Android yang baru. Mohon periksa untuk pembaruan atau dukungan LineageOS.",
+  "@unsupportedAndroidVersionLong": {},
+  "unsupportedAndroidVersion": "Versi Android tidak didukung",
+  "@unsupportedAndroidVersion": {},
+  "placeCall": "Lakukan panggilan",
+  "@placeCall": {},
+  "voiceCall": "Panggilan suara",
+  "@voiceCall": {}
 }
