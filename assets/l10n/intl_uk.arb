@@ -2748,5 +2748,13 @@
   "pinnedEventsError": "Помилка завантаження закріплених повідомлень",
   "@pinnedEventsError": {},
   "confirmEventUnpin": "Ви впевнені, що бажаєте назавжди відкріпите подію?",
-  "@confirmEventUnpin": {}
+  "@confirmEventUnpin": {},
+  "placeCall": "Здійснити виклик",
+  "@placeCall": {},
+  "unsupportedAndroidVersion": "Непідтримувана версія Android",
+  "@unsupportedAndroidVersion": {},
+  "voiceCall": "Голосовий виклик",
+  "@voiceCall": {},
+  "unsupportedAndroidVersionLong": "Для цієї функції потрібна новіша версія Android. Перевірте наявність оновлень або підтримку Lineage OS.",
+  "@unsupportedAndroidVersionLong": {}
 }
