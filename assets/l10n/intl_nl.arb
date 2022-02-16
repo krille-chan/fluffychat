@@ -2744,5 +2744,7 @@
       "sender": {},
       "reaction": {}
     }
-  }
+  },
+  "pinMessage": "Maak vast aan kamer",
+  "@pinMessage": {}
 }
