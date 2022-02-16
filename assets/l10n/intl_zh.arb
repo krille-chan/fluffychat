@@ -2745,5 +2745,11 @@
       "sender": {},
       "reaction": {}
     }
-  }
+  },
+  "pinnedEventsError": "加载置顶消息时出错",
+  "@pinnedEventsError": {},
+  "confirmEventUnpin": "你确定要永久性取消置顶这一活动吗？",
+  "@confirmEventUnpin": {},
+  "pinMessage": "置顶到聊天室",
+  "@pinMessage": {}
 }
