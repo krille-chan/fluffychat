@@ -2740,5 +2740,13 @@
       "sender": {},
       "reaction": {}
     }
-  }
+  },
+  "emojis": "Емоджі",
+  "@emojis": {},
+  "pinMessage": "Прикріпити в кімнаті",
+  "@pinMessage": {},
+  "pinnedEventsError": "Помилка завантаження закріплених повідомлень",
+  "@pinnedEventsError": {},
+  "confirmEventUnpin": "Ви впевнені, що бажаєте назавжди відкріпите подію?",
+  "@confirmEventUnpin": {}
 }
