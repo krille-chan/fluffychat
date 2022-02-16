@@ -883,13 +883,21 @@ class ChatController extends State<Chat> {
   }
 
   void pinEvent() {
+    final room = this.room;
+    if (room == null) return;
+    final pinnedEventIds = room.pinnedEventIds;
+    final selectedEventIds = selectedEvents.map((e) => e.eventId).toSet();
+    final pin = selectedEventIds.any((e) => !pinnedEventIds.contains(e));
     showFutureLoadingDialog(
       context: context,
-      future: () => room!.setPinnedEvents(
-        <String>{
-          ...room!.pinnedEventIds,
-          ...selectedEvents.map((e) => e.eventId),
-        }.toList(),
+      future: () => room.setPinnedEvents(
+        pin
+            ? <String>{
+                ...pinnedEventIds,
+                ...selectedEvents.map((e) => e.eventId),
+              }.toList()
+            : pinnedEventIds
+          ..removeWhere(selectedEventIds.contains),
       ),
     );
   }
