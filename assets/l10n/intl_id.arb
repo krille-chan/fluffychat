@@ -2739,5 +2739,13 @@
       "sender": {},
       "reaction": {}
     }
-  }
+  },
+  "emojis": "Emoji",
+  "@emojis": {},
+  "pinMessage": "Sematkan ke ruangan",
+  "@pinMessage": {},
+  "pinnedEventsError": "Terjadi kesalahan memuat pesan-pesan yang disematkan",
+  "@pinnedEventsError": {},
+  "confirmEventUnpin": "Apakah Anda yakin untuk melepaskan pin peristiwa ini secara permanen?",
+  "@confirmEventUnpin": {}
 }
