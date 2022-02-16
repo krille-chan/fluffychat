@@ -1042,7 +1042,7 @@
       "displayname": {}
     }
   },
-  "errorObtainingLocation": "위치 얻는 중 오류: {erorr}",
+  "errorObtainingLocation": "위치 얻는 중 오류: {error}",
   "@errorObtainingLocation": {
     "type": "text",
     "placeholders": {
@@ -1561,7 +1561,7 @@
       "unreadCount": {}
     }
   },
-  "timeOfDay": "{hours}시 {minutes}분",
+  "timeOfDay": "{hours24}시 {minutes}분",
   "@timeOfDay": {
     "type": "text",
     "placeholders": {
@@ -2727,5 +2727,23 @@
   "reportUser": "사용자 신고",
   "@reportUser": {},
   "openChat": "채팅 열기",
-  "@openChat": {}
+  "@openChat": {},
+  "storyPrivacyWarning": "사람들이 서로를 보고 연락할 수 있다는 점에 유의해주세요. 스토리는 24시간 동안 보이지만 모든 기기와 서버에서 삭제된다는 보장은 없습니다.",
+  "@storyPrivacyWarning": {},
+  "iUnderstand": "동의합니다",
+  "@iUnderstand": {},
+  "reactedWith": "{sender}가 {reaction}로 반응함",
+  "@reactedWith": {
+    "type": "text",
+    "placeholders": {
+      "sender": {},
+      "reaction": {}
+    }
+  },
+  "confirmEventUnpin": "이벤트를 영구적으로 고정 해제할 것이 확실한가요?",
+  "@confirmEventUnpin": {},
+  "pinMessage": "방에 고정",
+  "@pinMessage": {},
+  "pinnedEventsError": "고정된 메시지 불러오는 중 오류",
+  "@pinnedEventsError": {}
 }
