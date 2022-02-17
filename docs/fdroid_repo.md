@@ -1,6 +1,7 @@
 # F-Droid Repository
 
-Our own F-Droid repository contains the Google Services which is not possible in the main F-Droid repository.
+Our own F-Droid repository contains the Google Services which is not possible in the main F-Droid repository. Release candidates
+are also published on it.
 
 ## Add Repository to F-Droid
 
