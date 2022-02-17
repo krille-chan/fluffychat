@@ -2753,5 +2753,11 @@
   "pinMessage": "置顶到聊天室",
   "@pinMessage": {},
   "emojis": "颜文字",
-  "@emojis": {}
+  "@emojis": {},
+  "unsupportedAndroidVersionLong": "这个功能需要较新版本的 Android 系统。请检查更新或 Lineage OS 支持。",
+  "@unsupportedAndroidVersionLong": {},
+  "unsupportedAndroidVersion": "不受支持的 Android 版本",
+  "@unsupportedAndroidVersion": {},
+  "voiceCall": "语音通话",
+  "@voiceCall": {}
 }
