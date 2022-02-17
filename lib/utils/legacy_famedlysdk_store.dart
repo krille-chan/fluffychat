@@ -1,14 +1,11 @@
 import 'dart:async';
 import 'dart:core';
 
-import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'package:fluffychat/utils/platform_infos.dart';
-
-// import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 // see https://github.com/mogol/flutter_secure_storage/issues/161#issuecomment-704578453
 class AsyncMutex {
@@ -31,41 +28,31 @@ class AsyncMutex {
 }
 
 class Store {
-  FlutterSecureStorage? secureStorage;
-
   LocalStorage? storage;
+  final FlutterSecureStorage? secureStorage;
   static final _mutex = AsyncMutex();
 
+  Store()
+      : secureStorage =
+            PlatformInfos.isMobile ? const FlutterSecureStorage() : null;
+
   Future<void> _setupLocalStorage() async {
-    if (PlatformInfos.isMobile) {
-      if (PlatformInfos.isAndroid) {
-        return DeviceInfoPlugin().androidInfo.then((info) {
-          if ((info.version.sdkInt ?? 16) >= 19) {
-            secureStorage = const FlutterSecureStorage();
-          }
-        });
-      } else {
-        secureStorage = const FlutterSecureStorage();
-      }
-    } else {
-      if (storage == null) {
-        final directory = PlatformInfos.isBetaDesktop
-            ? await getApplicationSupportDirectory()
-            : (PlatformInfos.isWeb
-                ? null
-                : await getApplicationDocumentsDirectory());
-        storage = LocalStorage('LocalStorage', directory?.path);
-        await storage!.ready;
-      }
+    if (storage == null) {
+      final directory = PlatformInfos.isBetaDesktop
+          ? await getApplicationSupportDirectory()
+          : (PlatformInfos.isWeb
+              ? null
+              : await getApplicationDocumentsDirectory());
+      storage = LocalStorage('LocalStorage', directory?.path);
+      await storage!.ready;
     }
   }
 
   Future<String?> getItem(String key) async {
-    final storage = this.storage;
-    if (!PlatformInfos.isMobile && storage != null) {
+    if (!PlatformInfos.isMobile) {
       await _setupLocalStorage();
       try {
-        return storage.getItem(key)?.toString();
+        return storage!.getItem(key)?.toString();
       } catch (_) {
         return null;
       }
@@ -90,8 +77,8 @@ class Store {
   }
 
   Future<void> setItem(String key, String? value) async {
-    await _setupLocalStorage();
     if (!PlatformInfos.isMobile) {
+      await _setupLocalStorage();
       return await storage!.setItem(key, value);
     }
     try {
