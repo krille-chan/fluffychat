@@ -147,6 +147,7 @@ class ChatController extends State<Chat> {
     if (!mounted) {
       return;
     }
+    setReadMarker();
     if (scrollController.position.pixels ==
             scrollController.position.maxScrollExtent &&
         timeline!.events.isNotEmpty &&
@@ -201,8 +202,8 @@ class ChatController extends State<Chat> {
     if (timeline == null) {
       timeline = await room!.getTimeline(onUpdate: updateView);
       if (timeline!.events.isNotEmpty) {
-        // ignore: unawaited_futures
         if (room!.markedUnread) room!.markUnread(false);
+        setReadMarker();
       }
 
       // when the scroll controller is attached we want to scroll to an event id, if specified
@@ -220,15 +221,24 @@ class ChatController extends State<Chat> {
     }
     filteredEvents = timeline!.getFilteredEvents(unfolded: unfolded);
     timeline!.requestKeys();
-    if ((room!.hasNewMessages || room!.notificationCount > 0) &&
+    return true;
+  }
+
+  Future<void>? _setReadMarkerFuture;
+
+  void setReadMarker([_]) {
+    if (_setReadMarkerFuture == null &&
+        (room!.hasNewMessages || room!.notificationCount > 0) &&
         timeline != null &&
         timeline!.events.isNotEmpty &&
         Matrix.of(context).webHasFocus) {
+      Logs().v('Set read marker...');
       // ignore: unawaited_futures
-      timeline!.setReadMarker();
+      _setReadMarkerFuture = timeline!.setReadMarker().then((_) {
+        _setReadMarkerFuture = null;
+      });
       room!.client.updateIosBadge();
     }
-    return true;
   }
 
   @override
@@ -900,6 +910,7 @@ class ChatController extends State<Chat> {
   }
 
   void onInputBarChanged(String text) {
+    setReadMarker();
     if (text.endsWith(' ') && matrix!.hasComplexBundles) {
       final clients = currentRoomBundle;
       for (final client in clients) {
