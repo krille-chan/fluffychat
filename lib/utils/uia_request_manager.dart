@@ -85,7 +85,7 @@ extension UiaRequestManager on MatrixState {
           launch(
             url.toString(),
             forceSafariVC: true,
-            forceWebView: true,
+            forceWebView: false,
           );
           if (OkCancelResult.ok ==
               await showOkCancelAlertDialog(
