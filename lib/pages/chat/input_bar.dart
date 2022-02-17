@@ -25,6 +25,7 @@ class InputBar extends StatelessWidget {
   final InputDecoration? decoration;
   final ValueChanged<String>? onChanged;
   final bool? autofocus;
+  final bool readOnly;
 
   const InputBar({
     required this.room,
@@ -38,6 +39,7 @@ class InputBar extends StatelessWidget {
     this.onChanged,
     this.autofocus,
     this.textInputAction,
+    this.readOnly = false,
     Key? key,
   }) : super(key: key);
 
@@ -374,6 +376,7 @@ class InputBar extends StatelessWidget {
           hideOnEmpty: true,
           hideOnLoading: true,
           keepSuggestionsOnSuggestionSelected: true,
+
           debounceDuration: const Duration(
               milliseconds:
                   50), // show suggestions after 50ms idle time (default is 300)
@@ -388,7 +391,6 @@ class InputBar extends StatelessWidget {
               // it sets the types for the callback incorrectly
               onSubmitted!(text);
             },
-            //focusNode: focusNode,
             controller: controller,
             decoration: decoration!,
             focusNode: focusNode,

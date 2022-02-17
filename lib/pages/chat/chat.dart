@@ -428,16 +428,19 @@ class ChatController extends State<Chat> {
   }
 
   void emojiPickerAction() {
+    if (showEmojiPicker) {
+      inputFocus.requestFocus();
+    } else {
+      inputFocus.unfocus();
+    }
     emojiPickerType = EmojiPickerType.keyboard;
     setState(() => showEmojiPicker = !showEmojiPicker);
-    _inputFocusListener();
   }
 
   void _inputFocusListener() {
-    if (showEmojiPicker) {
-      inputFocus.unfocus();
-    } else {
-      inputFocus.requestFocus();
+    if (showEmojiPicker && inputFocus.hasFocus) {
+      emojiPickerType = EmojiPickerType.keyboard;
+      setState(() => showEmojiPicker = false);
     }
   }
 
