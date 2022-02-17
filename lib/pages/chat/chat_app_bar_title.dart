@@ -44,11 +44,14 @@ class ChatAppBarTitle extends StatelessWidget {
             size: 32,
           ),
           const SizedBox(width: 12),
-          Text(
-            room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
-            maxLines: 1,
-            style: const TextStyle(
-              fontSize: 16,
+          Expanded(
+            child: Text(
+              room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                fontSize: 16,
+              ),
             ),
           ),
         ],
