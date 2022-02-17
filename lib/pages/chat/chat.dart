@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -167,10 +166,11 @@ class ChatController extends State<Chat> {
   void initState() {
     scrollController.addListener(_updateScrollController);
     inputFocus.addListener(_inputFocusListener);
+    final voipPlugin = Matrix.of(context).voipPlugin;
 
-    if (!kIsWeb) {
+    if (voipPlugin != null) {
       WidgetsBinding.instance?.addPostFrameCallback((_) {
-        CallKeepManager().setVoipPlugin(Matrix.of(context).voipPlugin);
+        CallKeepManager().setVoipPlugin(voipPlugin);
         CallKeepManager().initialize().catchError((_) => true);
       });
     }
@@ -819,8 +819,6 @@ class ChatController extends State<Chat> {
     }
   }
 
-  bool get webrtcIsSupported => PlatformInfos.isMobile;
-
   int? findChildIndexCallback(Key key, Map<String, int> thisEventsKeyMap) {
     // this method is called very often. As such, it has to be optimized for speed.
     if (key is! ValueKey) {
@@ -976,10 +974,10 @@ class ChatController extends State<Chat> {
     final success = await showFutureLoadingDialog(
         context: context,
         future: () =>
-            Matrix.of(context).voipPlugin.voip.requestTurnServerCredentials());
+            Matrix.of(context).voipPlugin!.voip.requestTurnServerCredentials());
     if (success.result != null) {
       final voipPlugin = Matrix.of(context).voipPlugin;
-      await voipPlugin.voip.inviteToCall(room!.id, callType).catchError((e) {
+      await voipPlugin!.voip.inviteToCall(room!.id, callType).catchError((e) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(e.toString())
               // Text(LocalizedExceptionExtension(context, e)),
