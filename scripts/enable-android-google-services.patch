@@ -1,8 +1,17 @@
 diff --git a/android/app/build.gradle b/android/app/build.gradle
-index 39c920e8..e27a49f5 100644
+index 4e018b38..eebf7582 100644
 --- a/android/app/build.gradle
 +++ b/android/app/build.gradle
-@@ -81,11 +81,11 @@ flutter {
+@@ -44,7 +44,7 @@ android {
+ 
+     defaultConfig {
+         applicationId "chat.fluffy.fluffychat"
+-        minSdkVersion 16
++        minSdkVersion 19
+         targetSdkVersion 30
+         versionCode flutterVersionCode.toInteger()
+         versionName flutterVersionName
+@@ -81,7 +81,7 @@ flutter {
  
  dependencies {
      implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -11,17 +20,17 @@ index 39c920e8..e27a49f5 100644
      testImplementation 'junit:junit:4.12'
      androidTestImplementation 'androidx.test:runner:1.1.1'
      androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
-     implementation 'com.github.UnifiedPush:android-connector:1.2.3' // needed for unifiedpush
+@@ -89,4 +89,4 @@ dependencies {
      implementation 'androidx.multidex:multidex:2.0.1'
  }
  
 -//apply plugin: 'com.google.gms.google-services'
 +apply plugin: 'com.google.gms.google-services'
 diff --git a/android/app/src/main/AndroidManifest.xml b/android/app/src/main/AndroidManifest.xml
-index eae7eadf..cf81a750 100644
+index ee40b78d..ec7dd1a9 100644
 --- a/android/app/src/main/AndroidManifest.xml
 +++ b/android/app/src/main/AndroidManifest.xml
-@@ -88,12 +88,12 @@
+@@ -103,12 +103,12 @@
  
          </activity>
  
@@ -53,7 +62,7 @@ index d9930f55..510e9845 100644
 -*/
 \ No newline at end of file
 diff --git a/android/build.gradle b/android/build.gradle
-index 4ce5c41d..be58d662 100644
+index 85aa8647..3b7e09e7 100644
 --- a/android/build.gradle
 +++ b/android/build.gradle
 @@ -8,7 +8,7 @@ buildscript {
@@ -66,7 +75,7 @@ index 4ce5c41d..be58d662 100644
  }
  
 diff --git a/lib/utils/background_push.dart b/lib/utils/background_push.dart
-index f2eb9fb4..0234765f 100644
+index 3347f176..e304abb4 100644
 --- a/lib/utils/background_push.dart
 +++ b/lib/utils/background_push.dart
 @@ -39,7 +39,7 @@ import 'famedlysdk_store.dart';
@@ -88,10 +97,10 @@ index f2eb9fb4..0234765f 100644
    StreamSubscription<LoginState>? onLogin;
    StreamSubscription<SyncUpdate>? onRoomSync;
 diff --git a/pubspec.yaml b/pubspec.yaml
-index a1442ed2..ee0ce757 100644
+index 73b9eca2..5e6f9f16 100644
 --- a/pubspec.yaml
 +++ b/pubspec.yaml
-@@ -21,8 +21,8 @@ dependencies:
+@@ -25,8 +25,8 @@ dependencies:
    email_validator: ^2.0.1
    emoji_picker_flutter: ^1.1.1
    encrypt: ^5.0.1
@@ -102,3 +111,4 @@ index a1442ed2..ee0ce757 100644
    file_picker_cross: ^4.5.0
    flutter:
      sdk: flutter
+     
