@@ -122,7 +122,7 @@ class ChatView extends StatelessWidget {
           ),
         IconButton(
           onPressed: controller.onPhoneButtonTap,
-          icon: const Icon(Icons.phone),
+          icon: const Icon(Icons.call_outlined),
           tooltip: L10n.of(context)!.placeCall,
         ),
         EncryptionButton(controller.room!),

@@ -8,7 +8,6 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:animations/animations.dart';
 import 'package:desktop_drop/desktop_drop.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
@@ -959,56 +958,34 @@ class ChatController extends State<Chat> {
       DeviceInfoPlugin().androidInfo.then((value) {
         if ((value.version.sdkInt ?? 16) < 21) {
           Navigator.pop(context);
-          showModal(
+          showOkAlertDialog(
             context: context,
-            builder: (context) => AlertDialog(
-              title: Text(L10n.of(context)!.unsupportedAndroidVersion),
-              content: Text(L10n.of(context)!.unsupportedAndroidVersionLong),
-              actions: [
-                TextButton(
-                    onPressed: Navigator.of(context).pop,
-                    child: Text(L10n.of(context)!.ok))
-              ],
-            ),
+            title: L10n.of(context)!.unsupportedAndroidVersion,
+            message: L10n.of(context)!.unsupportedAndroidVersionLong,
+            okLabel: L10n.of(context)!.close,
           );
         }
       });
     }
-    final callType = await showDialog<CallType>(
-        context: context,
-        builder: (BuildContext context) {
-          return SimpleDialog(
-            title: Text(L10n.of(context)!.placeCall),
-            children: [
-              ListTile(
-                leading: const Icon(Icons.phone),
-                title: Text(L10n.of(context)!.voiceCall),
-                onTap: () {
-                  Navigator.pop(context, CallType.kVoice);
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.videocam),
-                title: Text(L10n.of(context)!.videoCall),
-                onTap: () {
-                  Navigator.pop(context, CallType.kVideo);
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.cancel),
-                title: Text(L10n.of(context)!.cancel),
-                onTap: () {
-                  Navigator.pop(context, null);
-                },
-              ),
-            ],
-          );
-        },
-        useRootNavigator: false);
+    final callType = await showModalActionSheet<CallType>(
+      context: context,
+      title: L10n.of(context)!.videoCallsBetaWarning,
+      cancelLabel: L10n.of(context)!.cancel,
+      actions: [
+        SheetAction(
+          label: L10n.of(context)!.voiceCall,
+          icon: Icons.phone_outlined,
+          key: CallType.kVoice,
+        ),
+        SheetAction(
+          label: L10n.of(context)!.videoCall,
+          icon: Icons.video_call_outlined,
+          key: CallType.kVideo,
+        ),
+      ],
+    );
+    if (callType == null) return;
 
-    if (callType == null) {
-      return;
-    }
     final success = await showFutureLoadingDialog(
         context: context,
         future: () =>

@@ -2729,5 +2729,6 @@
   "placeCall": "Place call",
   "voiceCall": "Voice call",
   "unsupportedAndroidVersion": "Unsupported Android version",
-  "unsupportedAndroidVersionLong": "This feature required a never Android version. Please check for updates or Lineage OS support."
+  "unsupportedAndroidVersionLong": "This feature required a never Android version. Please check for updates or Lineage OS support.",
+  "videoCallsBetaWarning": "Please note that video calls are currently in beta. They might not work as expected or work at all on all platforms."
 }
