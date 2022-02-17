@@ -2712,5 +2712,19 @@
       "sender": {},
       "reaction": {}
     }
-  }
+  },
+  "emojis": "Emotikonid",
+  "@emojis": {},
+  "placeCall": "Helista",
+  "@placeCall": {},
+  "unsupportedAndroidVersion": "See Androidi versioon ei ole toetatud",
+  "@unsupportedAndroidVersion": {},
+  "voiceCall": "Häälkõne",
+  "@voiceCall": {},
+  "confirmEventUnpin": "Kas sa oled kindel, et tahad klammerdatud sündmuse eemaldada?",
+  "@confirmEventUnpin": {},
+  "pinnedEventsError": "Viga klammerdatud sõnumite laadimisel",
+  "@pinnedEventsError": {},
+  "pinMessage": "Klammerda sõnum jututuppa",
+  "@pinMessage": {}
 }
