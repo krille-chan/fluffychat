@@ -173,7 +173,7 @@ class _MyCallingPage extends State<Calling> {
   CallState? _state;
 
   void _playCallSound() async {
-    const path = 'assets/sounds/call.wav';
+    const path = 'assets/sounds/call.ogg';
     if (kIsWeb) {
       darthtml.AudioElement()
         ..src = 'assets/$path'
