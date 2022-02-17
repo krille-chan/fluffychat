@@ -113,11 +113,12 @@ class ChatView extends StatelessWidget {
       ];
     } else {
       return [
-        IconButton(
-          onPressed: controller.onPhoneButtonTap,
-          icon: const Icon(Icons.call_outlined),
-          tooltip: L10n.of(context)!.placeCall,
-        ),
+        if (controller.webrtcIsSupported)
+          IconButton(
+            onPressed: controller.onPhoneButtonTap,
+            icon: const Icon(Icons.call_outlined),
+            tooltip: L10n.of(context)!.placeCall,
+          ),
         EncryptionButton(controller.room!),
         ChatSettingsPopupMenu(controller.room!, !controller.room!.isDirectChat),
       ];

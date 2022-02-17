@@ -220,7 +220,7 @@ class ChatController extends State<Chat> {
     }
     filteredEvents = timeline!.getFilteredEvents(unfolded: unfolded);
     timeline!.requestKeys();
-    if (room!.hasNewMessages &&
+    if ((room!.hasNewMessages || room!.notificationCount > 0) &&
         timeline != null &&
         timeline!.events.isNotEmpty &&
         Matrix.of(context).webHasFocus) {
@@ -819,6 +819,8 @@ class ChatController extends State<Chat> {
     }
   }
 
+  bool get webrtcIsSupported => PlatformInfos.isMobile;
+
   int? findChildIndexCallback(Key key, Map<String, int> thisEventsKeyMap) {
     // this method is called very often. As such, it has to be optimized for speed.
     if (key is! ValueKey) {
@@ -953,7 +955,8 @@ class ChatController extends State<Chat> {
     }
     final callType = await showModalActionSheet<CallType>(
       context: context,
-      title: L10n.of(context)!.videoCallsBetaWarning,
+      title: L10n.of(context)!.warning,
+      message: L10n.of(context)!.videoCallsBetaWarning,
       cancelLabel: L10n.of(context)!.cancel,
       actions: [
         SheetAction(
