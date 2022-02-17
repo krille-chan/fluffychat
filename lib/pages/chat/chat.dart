@@ -886,18 +886,16 @@ class ChatController extends State<Chat> {
     if (room == null) return;
     final pinnedEventIds = room.pinnedEventIds;
     final selectedEventIds = selectedEvents.map((e) => e.eventId).toSet();
-    final pin = selectedEventIds.any((e) => !pinnedEventIds.contains(e));
+    final unpin = selectedEventIds.length == 1 &&
+        pinnedEventIds.contains(selectedEventIds.single);
+    if (unpin) {
+      pinnedEventIds.removeWhere(selectedEventIds.contains);
+    } else {
+      pinnedEventIds.addAll(selectedEventIds);
+    }
     showFutureLoadingDialog(
       context: context,
-      future: () => room.setPinnedEvents(
-        pin
-            ? <String>{
-                ...pinnedEventIds,
-                ...selectedEvents.map((e) => e.eventId),
-              }.toList()
-            : pinnedEventIds
-          ..removeWhere(selectedEventIds.contains),
-      ),
+      future: () => room.setPinnedEvents(pinnedEventIds),
     );
   }
 
