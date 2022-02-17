@@ -112,14 +112,7 @@ class ChatView extends StatelessWidget {
           ),
       ];
     } else {
-      final widgets = controller.room?.widgets ?? [];
       return [
-        if (widgets.isNotEmpty)
-          IconButton(
-            onPressed: controller.showWidgetsSheet,
-            icon: const Icon(Icons.widgets),
-            tooltip: L10n.of(context)!.matrixWidgets,
-          ),
         IconButton(
           onPressed: controller.onPhoneButtonTap,
           icon: const Icon(Icons.call_outlined),

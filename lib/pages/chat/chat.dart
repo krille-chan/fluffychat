@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -21,10 +20,8 @@ import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/pages/chat/chat_view.dart';
-import 'package:fluffychat/pages/chat/cupertino_widgets_bottom_sheet.dart';
 import 'package:fluffychat/pages/chat/event_info_dialog.dart';
 import 'package:fluffychat/pages/chat/recording_dialog.dart';
-import 'package:fluffychat/pages/chat/widgets_bottom_sheet.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/event_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/ios_badge_client_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
@@ -584,17 +581,6 @@ class ChatController extends State<Chat> {
     return currentRoomBundle
         .any((cl) => selectedEvents.first.senderId == cl!.userID);
   }
-
-  void showWidgetsSheet() => [TargetPlatform.iOS, TargetPlatform.macOS]
-          .contains(Theme.of(context).platform)
-      ? showCupertinoModalPopup(
-          context: context,
-          builder: (context) => CupertinoWidgetsBottomSheet(room: room!),
-        )
-      : showModalBottomSheet(
-          context: context,
-          builder: (context) => WidgetsBottomSheet(room: room!),
-        );
 
   void forwardEventsAction() async {
     if (selectedEvents.length == 1) {

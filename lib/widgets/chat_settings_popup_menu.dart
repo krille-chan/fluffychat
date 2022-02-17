@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
@@ -8,6 +9,8 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 import 'package:vrouter/vrouter.dart';
 
+import 'package:fluffychat/pages/chat/cupertino_widgets_bottom_sheet.dart';
+import 'package:fluffychat/pages/chat/widgets_bottom_sheet.dart';
 import 'matrix.dart';
 
 class ChatSettingsPopupMenu extends StatefulWidget {
@@ -40,6 +43,17 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
           (u) => setState(() {}),
         );
     final items = <PopupMenuEntry<String>>[
+      if (widget.room.widgets.isNotEmpty)
+        PopupMenuItem<String>(
+          value: 'widgets',
+          child: Row(
+            children: [
+              const Icon(Icons.widgets_outlined),
+              const SizedBox(width: 12),
+              Text(L10n.of(context)!.matrixWidgets),
+            ],
+          ),
+        ),
       widget.room.pushRuleState == PushRuleState.notify
           ? PopupMenuItem<String>(
               value: 'mute',
@@ -90,6 +104,19 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
     return PopupMenuButton(
       onSelected: (String choice) async {
         switch (choice) {
+          case 'widgets':
+            [TargetPlatform.iOS, TargetPlatform.macOS]
+                    .contains(Theme.of(context).platform)
+                ? showCupertinoModalPopup(
+                    context: context,
+                    builder: (context) =>
+                        CupertinoWidgetsBottomSheet(room: widget.room),
+                  )
+                : showModalBottomSheet(
+                    context: context,
+                    builder: (context) => WidgetsBottomSheet(room: widget.room),
+                  );
+            break;
           case 'leave':
             final confirmed = await showOkCancelAlertDialog(
               useRootNavigator: false,

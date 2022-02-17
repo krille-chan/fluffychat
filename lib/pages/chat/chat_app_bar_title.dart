@@ -6,10 +6,7 @@ import 'package:vrouter/vrouter.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
-import 'package:fluffychat/utils/room_status_extension.dart';
-import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 
 class ChatAppBarTitle extends StatelessWidget {
   final ChatController controller;
@@ -25,12 +22,9 @@ class ChatAppBarTitle extends StatelessWidget {
       return Text(controller.selectedEvents.length.toString());
     }
     final directChatMatrixID = room.directChatMatrixID;
-    return ListTile(
-      leading: Avatar(
-        mxContent: room.avatar,
-        name: room.displayname,
-      ),
-      contentPadding: EdgeInsets.zero,
+    return InkWell(
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
       onTap: directChatMatrixID != null
           ? () => showModalBottomSheet(
                 context: context,
@@ -42,20 +36,22 @@ class ChatAppBarTitle extends StatelessWidget {
                 ),
               )
           : () => VRouter.of(context).toSegments(['rooms', room.id, 'details']),
-      title: Text(room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
-          maxLines: 1),
-      subtitle: StreamBuilder<Object>(
-        stream: Matrix.of(context)
-            .client
-            .onPresence
-            .stream
-            .where((p) => p.senderId == room.directChatMatrixID)
-            .rateLimit(const Duration(seconds: 1)),
-        builder: (context, snapshot) => Text(
-          room.getLocalizedStatus(context),
-          maxLines: 1,
-          //overflow: TextOverflow.ellipsis,
-        ),
+      child: Row(
+        children: [
+          Avatar(
+            mxContent: room.avatar,
+            name: room.displayname,
+            size: 32,
+          ),
+          const SizedBox(width: 12),
+          Text(
+            room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
+            maxLines: 1,
+            style: const TextStyle(
+              fontSize: 16,
+            ),
+          ),
+        ],
       ),
     );
   }
