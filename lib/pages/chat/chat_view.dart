@@ -113,7 +113,8 @@ class ChatView extends StatelessWidget {
       ];
     } else {
       return [
-        if (Matrix.of(context).webrtcIsSupported)
+        if (Matrix.of(context).webrtcIsSupported &&
+            controller.room!.isDirectChat)
           IconButton(
             onPressed: controller.onPhoneButtonTap,
             icon: const Icon(Icons.call_outlined),
