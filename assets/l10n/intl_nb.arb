@@ -2645,5 +2645,7 @@
   "@waitingPartnerEmoji": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "placeCall": "",
+  "@placeCall": {}
 }
