@@ -121,22 +121,31 @@ class StoriesHeader extends StatelessWidget {
                   ...client.storiesRooms.map(
                     (room) => Opacity(
                       opacity: room.hasPosts ? 1 : 0.75,
-                      child: _StoryButton(
-                        label: room.creatorDisplayname,
-                        child: Avatar(
-                          mxContent: room
-                              .getState(EventTypes.RoomCreate)!
-                              .sender
-                              .avatarUrl,
-                          name: room.creatorDisplayname,
-                          size: 100,
-                          fontSize: 24,
-                        ),
-                        unread: room.membership == Membership.invite ||
-                            room.hasNewMessages,
-                        onPressed: () => _goToStoryAction(context, room.id),
-                        onLongPressed: () => _contextualActions(context, room),
-                      ),
+                      child: FutureBuilder<Profile>(
+                          future: room.getCreatorProfile(),
+                          builder: (context, snapshot) {
+                            final displayname = snapshot.data?.displayName ??
+                                room
+                                    .getState(EventTypes.RoomCreate)!
+                                    .senderId
+                                    .localpart!;
+                            final avatarUrl = snapshot.data?.avatarUrl;
+                            return _StoryButton(
+                              label: displayname,
+                              child: Avatar(
+                                mxContent: avatarUrl,
+                                name: displayname,
+                                size: 100,
+                                fontSize: 24,
+                              ),
+                              unread: room.membership == Membership.invite ||
+                                  room.hasNewMessages,
+                              onPressed: () =>
+                                  _goToStoryAction(context, room.id),
+                              onLongPressed: () =>
+                                  _contextualActions(context, room),
+                            );
+                          }),
                     ),
                   ),
                 ],
@@ -148,8 +157,8 @@ class StoriesHeader extends StatelessWidget {
 }
 
 extension on Room {
-  String get creatorDisplayname =>
-      getState(EventTypes.RoomCreate)!.sender.calcDisplayname();
+  Future<Profile> getCreatorProfile() =>
+      client.getProfileFromUserId(getState(EventTypes.RoomCreate)!.senderId);
 
   bool get hasPosts {
     if (membership == Membership.invite) return true;
