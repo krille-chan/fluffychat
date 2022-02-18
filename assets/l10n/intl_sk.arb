@@ -2636,5 +2636,7 @@
   "@passwordForgotten": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "placeCall": "",
+  "@placeCall": {}
 }
