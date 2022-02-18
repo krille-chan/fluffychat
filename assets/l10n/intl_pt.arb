@@ -2605,5 +2605,7 @@
   "@withTheseAddressesRecoveryDescription": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "placeCall": "",
+  "@placeCall": {}
 }
