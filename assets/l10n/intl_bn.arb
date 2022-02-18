@@ -2610,5 +2610,7 @@
   "@pickImage": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "placeCall": "",
+  "@placeCall": {}
 }
