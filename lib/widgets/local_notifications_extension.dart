@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 
+import 'package:desktop_lifecycle/desktop_lifecycle.dart';
 import 'package:desktop_notifications/desktop_notifications.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:http/http.dart' as http;
@@ -17,7 +18,10 @@ import 'package:fluffychat/widgets/matrix.dart';
 extension LocalNotificationsExtension on MatrixState {
   void showLocalNotification(EventUpdate eventUpdate) async {
     final roomId = eventUpdate.roomID;
-    if (webHasFocus && activeRoomId == roomId) return;
+    if (activeRoomId == roomId) {
+      if (kIsWeb && webHasFocus) return;
+      if (Platform.isLinux && DesktopLifecycle.instance.isActive.value) return;
+    }
     final room = client.getRoomById(roomId);
     if (room == null) {
       Logs().w('Can not display notification for unknown room $roomId');

@@ -8,6 +8,7 @@
 
 #include <connectivity_plus_windows/connectivity_plus_windows_plugin.h>
 #include <desktop_drop/desktop_drop_plugin.h>
+#include <desktop_lifecycle/desktop_lifecycle_plugin.h>
 #include <file_selector_windows/file_selector_plugin.h>
 #include <flutter_secure_storage_windows/flutter_secure_storage_windows_plugin.h>
 #include <flutter_webrtc/flutter_web_r_t_c_plugin.h>
@@ -18,6 +19,8 @@ void RegisterPlugins(flutter::PluginRegistry* registry) {
       registry->GetRegistrarForPlugin("ConnectivityPlusWindowsPlugin"));
   DesktopDropPluginRegisterWithRegistrar(
       registry->GetRegistrarForPlugin("DesktopDropPlugin"));
+  DesktopLifecyclePluginRegisterWithRegistrar(
+      registry->GetRegistrarForPlugin("DesktopLifecyclePlugin"));
   FileSelectorPluginRegisterWithRegistrar(
       registry->GetRegistrarForPlugin("FileSelectorPlugin"));
   FlutterSecureStorageWindowsPluginRegisterWithRegistrar(

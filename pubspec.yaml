@@ -20,6 +20,7 @@ dependencies:
   connectivity_plus: ^2.2.0
   cupertino_icons: any
   desktop_drop: ^0.3.2
+  desktop_lifecycle: ^0.1.0
   desktop_notifications: ^0.6.3
   device_info_plus: ^3.2.1
   email_validator: ^2.0.1

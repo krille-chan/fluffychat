@@ -316,6 +316,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.2"
+  desktop_lifecycle:
+    dependency: "direct main"
+    description:
+      name: desktop_lifecycle
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.0"
   desktop_notifications:
     dependency: "direct main"
     description:
