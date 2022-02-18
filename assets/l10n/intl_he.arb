@@ -2642,5 +2642,7 @@
     "placeholders": {
       "unreadCount": {}
     }
-  }
+  },
+  "placeCall": "",
+  "@placeCall": {}
 }
