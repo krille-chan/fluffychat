@@ -153,19 +153,22 @@ class LoginController extends State<Login> {
     final input = await showTextInputDialog(
       useRootNavigator: false,
       context: context,
-      title: L10n.of(context)!.enterAnEmailAddress,
+      title: L10n.of(context)!.passwordForgotten,
+      message: L10n.of(context)!.enterAnEmailAddress,
       okLabel: L10n.of(context)!.ok,
       cancelLabel: L10n.of(context)!.cancel,
+      fullyCapitalizedForMaterial: false,
       textFields: [
         DialogTextField(
+          initialText:
+              usernameController.text.isEmail ? usernameController.text : '',
           hintText: L10n.of(context)!.enterAnEmailAddress,
           keyboardType: TextInputType.emailAddress,
         ),
       ],
     );
     if (input == null) return;
-    final clientSecret =
-        Matrix.of(context).client.generateUniqueTransactionId();
+    final clientSecret = DateTime.now().millisecondsSinceEpoch.toString();
     final response = await showFutureLoadingDialog(
       context: context,
       future: () =>
@@ -182,14 +185,17 @@ class LoginController extends State<Login> {
       title: L10n.of(context)!.weSentYouAnEmail,
       message: L10n.of(context)!.pleaseClickOnLink,
       okLabel: L10n.of(context)!.iHaveClickedOnLink,
+      fullyCapitalizedForMaterial: false,
     );
     if (ok != OkCancelResult.ok) return;
     final password = await showTextInputDialog(
       useRootNavigator: false,
       context: context,
-      title: L10n.of(context)!.chooseAStrongPassword,
+      title: L10n.of(context)!.passwordForgotten,
+      message: L10n.of(context)!.chooseAStrongPassword,
       okLabel: L10n.of(context)!.ok,
       cancelLabel: L10n.of(context)!.cancel,
+      fullyCapitalizedForMaterial: false,
       textFields: [
         const DialogTextField(
           hintText: '******',
@@ -200,17 +206,22 @@ class LoginController extends State<Login> {
       ],
     );
     if (password == null) return;
+    final data = <String, dynamic>{
+      'new_password': password.single,
+      "auth": AuthenticationThreePidCreds(
+        type: AuthenticationTypes.emailIdentity,
+        threepidCreds: ThreepidCreds(
+          sid: response.result!.sid,
+          clientSecret: clientSecret,
+        ),
+      ).toJson(),
+    };
     final success = await showFutureLoadingDialog(
       context: context,
-      future: () => Matrix.of(context).getLoginClient().changePassword(
-            password.single,
-            auth: AuthenticationThreePidCreds(
-              type: AuthenticationTypes.emailIdentity,
-              threepidCreds: ThreepidCreds(
-                sid: response.result!.sid,
-                clientSecret: clientSecret,
-              ),
-            ),
+      future: () => Matrix.of(context).getLoginClient().request(
+            RequestType.POST,
+            '/client/r0/account/password',
+            data: data,
           ),
     );
     if (success.error == null) {
