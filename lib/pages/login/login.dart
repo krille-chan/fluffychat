@@ -179,15 +179,6 @@ class LoginController extends State<Login> {
               ),
     );
     if (response.error != null) return;
-    final ok = await showOkAlertDialog(
-      useRootNavigator: false,
-      context: context,
-      title: L10n.of(context)!.weSentYouAnEmail,
-      message: L10n.of(context)!.pleaseClickOnLink,
-      okLabel: L10n.of(context)!.iHaveClickedOnLink,
-      fullyCapitalizedForMaterial: false,
-    );
-    if (ok != OkCancelResult.ok) return;
     final password = await showTextInputDialog(
       useRootNavigator: false,
       context: context,
@@ -206,8 +197,18 @@ class LoginController extends State<Login> {
       ],
     );
     if (password == null) return;
+    final ok = await showOkAlertDialog(
+      useRootNavigator: false,
+      context: context,
+      title: L10n.of(context)!.weSentYouAnEmail,
+      message: L10n.of(context)!.pleaseClickOnLink,
+      okLabel: L10n.of(context)!.iHaveClickedOnLink,
+      fullyCapitalizedForMaterial: false,
+    );
+    if (ok != OkCancelResult.ok) return;
     final data = <String, dynamic>{
       'new_password': password.single,
+      'logout_devices': false,
       "auth": AuthenticationThreePidCreds(
         type: AuthenticationTypes.emailIdentity,
         threepidCreds: ThreepidCreds(
@@ -227,6 +228,9 @@ class LoginController extends State<Login> {
     if (success.error == null) {
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(L10n.of(context)!.passwordHasBeenChanged)));
+      usernameController.text = input.single;
+      passwordController.text = password.single;
+      login();
     }
   }
 
