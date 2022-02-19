@@ -431,7 +431,11 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     createVoipPlugin();
   }
 
-  void createVoipPlugin() {
+  void createVoipPlugin() async {
+    if (await store.getItemBool(SettingKeys.experimentalVoip) == false) {
+      voipPlugin = null;
+      return;
+    }
     voipPlugin =
         webrtcIsSupported ? VoipPlugin(client: client, context: context) : null;
   }
@@ -482,6 +486,9 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     store
         .getItemBool(SettingKeys.sendOnEnter, AppConfig.sendOnEnter)
         .then((value) => AppConfig.sendOnEnter = value);
+    store
+        .getItemBool(SettingKeys.experimentalVoip, AppConfig.experimentalVoip)
+        .then((value) => AppConfig.experimentalVoip = value);
     store.getItem(SettingKeys.chatColor).then((value) {
       if (value != null && int.tryParse(value) != null) {
         AppConfig.chatColor = Color(int.parse(value));

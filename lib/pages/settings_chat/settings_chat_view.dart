@@ -7,6 +7,7 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/settings_switch_list_tile.dart';
 import 'settings_chat.dart';
 
@@ -42,18 +43,23 @@ class SettingsChatView extends StatelessWidget {
                 storeKey: SettingKeys.hideUnknownEvents,
                 defaultValue: AppConfig.hideUnknownEvents,
               ),
-              SettingsSwitchListTile.adaptive(
-                title: L10n.of(context)!.autoplayImages,
-                onChanged: (b) => AppConfig.autoplayImages = b,
-                storeKey: SettingKeys.autoplayImages,
-                defaultValue: AppConfig.autoplayImages,
-              ),
               if (PlatformInfos.isMobile)
                 SettingsSwitchListTile.adaptive(
-                  title: L10n.of(context)!.sendOnEnter,
-                  onChanged: (b) => AppConfig.sendOnEnter = b,
-                  storeKey: SettingKeys.sendOnEnter,
-                  defaultValue: AppConfig.sendOnEnter,
+                  title: L10n.of(context)!.autoplayImages,
+                  onChanged: (b) => AppConfig.autoplayImages = b,
+                  storeKey: SettingKeys.autoplayImages,
+                  defaultValue: AppConfig.autoplayImages,
+                ),
+              if (Matrix.of(context).webrtcIsSupported)
+                SettingsSwitchListTile.adaptive(
+                  title: L10n.of(context)!.experimentalVideoCalls,
+                  onChanged: (b) {
+                    AppConfig.experimentalVoip = b;
+                    Matrix.of(context).createVoipPlugin();
+                    return;
+                  },
+                  storeKey: SettingKeys.experimentalVoip,
+                  defaultValue: AppConfig.experimentalVoip,
                 ),
               const Divider(height: 1),
               ListTile(

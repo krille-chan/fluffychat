@@ -32,9 +32,7 @@ class _SettingsSwitchListTileState extends State<SettingsSwitchListTile> {
         title: Text(widget.title),
         onChanged: (bool newValue) async {
           widget.onChanged?.call(newValue);
-          await Matrix.of(context)
-              .store
-              .setItem(widget.storeKey, newValue.toString());
+          await Matrix.of(context).store.setItemBool(widget.storeKey, newValue);
           setState(() {});
         },
       ),
