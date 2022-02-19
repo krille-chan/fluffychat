@@ -112,7 +112,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "areYouSureYouWantToLogout": "Tes a certeza de querer desconectar?",
+  "areYouSureYouWantToLogout": "Tes a certeza de querer saír?",
   "@areYouSureYouWantToLogout": {
     "type": "text",
     "placeholders": {}
@@ -1270,12 +1270,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "login": "Conectar",
+  "login": "Acceder",
   "@login": {
     "type": "text",
     "placeholders": {}
   },
-  "logInTo": "Conectar con {homeserver}",
+  "logInTo": "Entrar en {homeserver}",
   "@logInTo": {
     "type": "text",
     "placeholders": {
@@ -1289,7 +1289,7 @@
       "brand": {}
     }
   },
-  "logout": "Desconectar",
+  "logout": "Saír",
   "@logout": {
     "type": "text",
     "placeholders": {}
@@ -2544,7 +2544,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "youWillBeConnectedTo": "Vaste conectar a {homeserver}",
+  "youWillBeConnectedTo": "Vas acceder a {homeserver}",
   "@youWillBeConnectedTo": {
     "type": "text",
     "placeholders": {
@@ -2723,5 +2723,37 @@
   "reportUser": "Denunciar usuaria",
   "@reportUser": {},
   "openChat": "Abrir Chat",
-  "@openChat": {}
+  "@openChat": {},
+  "voiceCall": "Chamada de voz",
+  "@voiceCall": {},
+  "emojis": "Emojis",
+  "@emojis": {},
+  "placeCall": "Chamar",
+  "@placeCall": {},
+  "unsupportedAndroidVersionLong": "Esta característica require unha vesión máis recente de Android. Mira se hai actualizacións ou soporte de LineageOS.",
+  "@unsupportedAndroidVersionLong": {},
+  "videoCallsBetaWarning": "Ten en conta que as chamadas de vídeo están en fase beta. Poderían non funcionar correctamente ou non funcionar nalgunhas plataformas.",
+  "@videoCallsBetaWarning": {},
+  "unsupportedAndroidVersion": "Version de Android non soportada",
+  "@unsupportedAndroidVersion": {},
+  "matrixWidgets": "Widgets de Matrix",
+  "@matrixWidgets": {},
+  "integrationsNotImplemented": "Por agora non se poden editar os widgets e integracións.",
+  "@integrationsNotImplemented": {},
+  "editIntegrations": "Editar widgets e integracións",
+  "@editIntegrations": {},
+  "reactedWith": "{sender} reaccionou con {reaction}",
+  "@reactedWith": {
+    "type": "text",
+    "placeholders": {
+      "sender": {},
+      "reaction": {}
+    }
+  },
+  "pinMessage": "Fixar na sala",
+  "@pinMessage": {},
+  "pinnedEventsError": "Erro ao cargar mensaxes fixadas",
+  "@pinnedEventsError": {},
+  "confirmEventUnpin": "Tes a certeza de querer desafixar o evento?",
+  "@confirmEventUnpin": {}
 }

@@ -2759,5 +2759,9 @@
   "unsupportedAndroidVersion": "不受支持的 Android 版本",
   "@unsupportedAndroidVersion": {},
   "voiceCall": "语音通话",
-  "@voiceCall": {}
+  "@voiceCall": {},
+  "placeCall": "打电话",
+  "@placeCall": {},
+  "videoCallsBetaWarning": "请注意，视频通话目前处于测试阶段。它们可能不能像预期的那样工作，或者在所有平台上都不能工作。",
+  "@videoCallsBetaWarning": {}
 }

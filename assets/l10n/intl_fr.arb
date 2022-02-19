@@ -2761,5 +2761,7 @@
   "pinnedEventsError": "Erreur lors du chargement des messages épinglés",
   "@pinnedEventsError": {},
   "confirmEventUnpin": "Voulez-vous vraiment désépingler définitivement l'événement ?",
-  "@confirmEventUnpin": {}
+  "@confirmEventUnpin": {},
+  "videoCallsBetaWarning": "Veuillez noter que les appels vidéo sont actuellement en version bêta. Ils peuvent ne pas fonctionner comme prévu ou ne oas fonctionner du tout sur toutes les plateformes.",
+  "@videoCallsBetaWarning": {}
 }
