@@ -121,6 +121,15 @@ flutter:
         - asset: fonts/NotoEmoji/NotoColorEmoji.ttf
 
 dependency_overrides:
+  # Necessary for webRTC on web.
+  # Fix for stream fallback for unsupported browsers:
+  # https://github.com/fluttercommunity/plus_plugins/pull/746
+  # Upstream pull request: https://github.com/fluttercommunity/plus_plugins/pull/746
+  connectivity_plus_web:
+    git:
+      url: https://github.com/TheOneWithTheBraid/plus_plugins.git
+      ref: a04401cb48abe92d138c0e9288b360739994a9e9
+      path: packages/connectivity_plus/connectivity_plus_web
   dbus: ^0.7.1
   geolocator_android:
     hosted:

@@ -175,6 +175,7 @@ class ChatListController extends State<ChatList> {
 
     scrollController.addListener(_onScroll);
     _waitForFirstSync();
+    _hackyWebRTCFixForWeb();
     super.initState();
   }
 
@@ -575,6 +576,10 @@ class ChatListController extends State<ChatList> {
   Widget build(BuildContext context) {
     Matrix.of(context).navigatorContext = context;
     return ChatListView(this);
+  }
+
+  void _hackyWebRTCFixForWeb() {
+    Matrix.of(context).voipPlugin?.context = context;
   }
 }
 
