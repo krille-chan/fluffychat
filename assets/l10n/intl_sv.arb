@@ -2728,5 +2728,39 @@
   "thisUserHasNotPostedAnythingYet": "Den här användaren har inte lagt till något till deras berättelse än",
   "@thisUserHasNotPostedAnythingYet": {},
   "storyPrivacyWarning": "Notera att användare kan se och kontakta varandra i din berättelse. Din berättelse är synlig i 24 timmar, men det finns ingen garanti för att berättelser raderas från alla enheter och servrar.",
-  "@storyPrivacyWarning": {}
+  "@storyPrivacyWarning": {},
+  "emojis": "Emojis",
+  "@emojis": {},
+  "placeCall": "Ring",
+  "@placeCall": {},
+  "voiceCall": "Röstsamtal",
+  "@voiceCall": {},
+  "unsupportedAndroidVersion": "Inget stöd för dena version av Android",
+  "@unsupportedAndroidVersion": {},
+  "videoCallsBetaWarning": "Videosamtal är för närvarande under testning. De kanske inte fungerar som det är tänkt eller på alla plattformar.",
+  "@videoCallsBetaWarning": {},
+  "unsupportedAndroidVersionLong": "Denna funktion kräver en senare version av Android.",
+  "@unsupportedAndroidVersionLong": {},
+  "dismiss": "Avfärda",
+  "@dismiss": {},
+  "matrixWidgets": "Matrix widgetar",
+  "@matrixWidgets": {},
+  "integrationsNotImplemented": "Det går inte att redigera widgetar och integrationer ännu.",
+  "@integrationsNotImplemented": {},
+  "editIntegrations": "Redigera widgetar och integrationer",
+  "@editIntegrations": {},
+  "reactedWith": "{sender} reagerade med {reaction}",
+  "@reactedWith": {
+    "type": "text",
+    "placeholders": {
+      "sender": {},
+      "reaction": {}
+    }
+  },
+  "pinMessage": "Fäst i rum",
+  "@pinMessage": {},
+  "pinnedEventsError": "Ett fel uppstod när fastnålade meddelanden skulle hämtas",
+  "@pinnedEventsError": {},
+  "confirmEventUnpin": "Är du säker på att händelsen inte längre skall vara fastnålad?",
+  "@confirmEventUnpin": {}
 }

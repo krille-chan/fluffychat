@@ -2408,7 +2408,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "videoCall": "Video arama",
+  "videoCall": "Görüntülü arama",
   "@videoCall": {
     "type": "text",
     "placeholders": {}
@@ -2761,5 +2761,7 @@
   "pinnedEventsError": "Sabitlenmiş mesajlar yüklenirken hata oluştu",
   "@pinnedEventsError": {},
   "confirmEventUnpin": "Etkinliğin sabitlemesini kalıcı olarak kaldırmak istediğinizden emin misiniz?",
-  "@confirmEventUnpin": {}
+  "@confirmEventUnpin": {},
+  "videoCallsBetaWarning": "Görüntülü aramaların şu anda beta aşamasında olduğunu lütfen unutmayın. Tüm platformlarda beklendiği gibi veya hiç çalışmayabilirler.",
+  "@videoCallsBetaWarning": {}
 }

@@ -2726,5 +2726,7 @@
   "pinnedEventsError": "Viga klammerdatud sõnumite laadimisel",
   "@pinnedEventsError": {},
   "pinMessage": "Klammerda sõnum jututuppa",
-  "@pinMessage": {}
+  "@pinMessage": {},
+  "videoCallsBetaWarning": "Palun arvesta, et videokõned on veel beetajärgus. Nad ei pruugi veel toimida kõikidel platvormidel korrektselt.",
+  "@videoCallsBetaWarning": {}
 }

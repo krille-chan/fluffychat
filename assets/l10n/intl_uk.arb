@@ -2756,5 +2756,7 @@
   "voiceCall": "Голосовий виклик",
   "@voiceCall": {},
   "unsupportedAndroidVersionLong": "Для цієї функції потрібна новіша версія Android. Перевірте наявність оновлень або підтримку Lineage OS.",
-  "@unsupportedAndroidVersionLong": {}
+  "@unsupportedAndroidVersionLong": {},
+  "videoCallsBetaWarning": "Зауважте, що відеовиклики на ранньому етапі розробки. Вони можуть працювати не так, як очікувалося, або взагалі не працювати на всіх платформах.",
+  "@videoCallsBetaWarning": {}
 }

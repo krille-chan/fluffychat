@@ -2746,5 +2746,21 @@
     }
   },
   "pinMessage": "Maak vast aan kamer",
-  "@pinMessage": {}
+  "@pinMessage": {},
+  "emojis": "Emoji's",
+  "@emojis": {},
+  "placeCall": "Bellen",
+  "@placeCall": {},
+  "unsupportedAndroidVersion": "Niet-ondersteunde Android-versie",
+  "@unsupportedAndroidVersion": {},
+  "unsupportedAndroidVersionLong": "Voor deze functie is een nieuwere Android-versie vereist. Controleer op updates of Lineage OS-ondersteuning.",
+  "@unsupportedAndroidVersionLong": {},
+  "videoCallsBetaWarning": "Houd er rekening mee dat videogesprekken momenteel in bèta zijn. Ze werken misschien niet zoals je verwacht of werken niet op alle platformen.",
+  "@videoCallsBetaWarning": {},
+  "voiceCall": "Spraakoproep",
+  "@voiceCall": {},
+  "pinnedEventsError": "Fout bij laden van vastgemaakte berichten",
+  "@pinnedEventsError": {},
+  "confirmEventUnpin": "Weet je zeker dat je de gebeurtenis definitief wilt losmaken?",
+  "@confirmEventUnpin": {}
 }

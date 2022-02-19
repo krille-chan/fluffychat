@@ -2708,5 +2708,41 @@
   "@bubbleSize": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "emojis": "Hymiöt",
+  "@emojis": {},
+  "unsupportedAndroidVersionLong": "Tämä ominaisuus vaatii uudemman Android-version. Tarkista päivitykset tai LineageOS-tuki.",
+  "@unsupportedAndroidVersionLong": {},
+  "unsupportedAndroidVersion": "Ei tuettu Android-versio",
+  "@unsupportedAndroidVersion": {},
+  "reportUser": "Ilmianna käyttäjä",
+  "@reportUser": {},
+  "voiceCall": "Äänipuhelu",
+  "@voiceCall": {},
+  "videoCallsBetaWarning": "Huomaathan videopuheluiden ovan beta-asteella. Ne eivät ehkä toimi odotetusti tai toimi ollenkaan kaikilla alustoilla.",
+  "@videoCallsBetaWarning": {},
+  "placeCall": "Soita",
+  "@placeCall": {},
+  "matrixWidgets": "Matrix-pienoisohjelmat",
+  "@matrixWidgets": {},
+  "integrationsNotImplemented": "Pienoisohjelmien ja integraatioiden muokkaus ei ole vielä mahdollista.",
+  "@integrationsNotImplemented": {},
+  "editIntegrations": "Muokkaa pienoisohjelmia ja integraatioita",
+  "@editIntegrations": {},
+  "reactedWith": "{sender} reagoi {reaction}",
+  "@reactedWith": {
+    "type": "text",
+    "placeholders": {
+      "sender": {},
+      "reaction": {}
+    }
+  },
+  "openChat": "Avaa Keskustelu",
+  "@openChat": {},
+  "pinMessage": "Kiinnitä huoneeseen",
+  "@pinMessage": {},
+  "pinnedEventsError": "Virhe ladattaessa kiinnitettyjä viestejä",
+  "@pinnedEventsError": {},
+  "confirmEventUnpin": "Haluatko varmasti irrottaa tapahtuman pysyvästi?",
+  "@confirmEventUnpin": {}
 }
