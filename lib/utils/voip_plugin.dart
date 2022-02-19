@@ -1,12 +1,12 @@
 import 'dart:core';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart' as webrtc_impl;
 import 'package:matrix/matrix.dart';
-import 'package:webrtc_interface/webrtc_interface.dart';
+import 'package:webrtc_interface/webrtc_interface.dart' hide Navigator;
 
 import 'package:fluffychat/pages/dialer/dialer.dart';
 import '../../utils/voip/user_media_manager.dart';
@@ -14,10 +14,14 @@ import '../../utils/voip/user_media_manager.dart';
 class VoipPlugin extends WidgetsBindingObserver implements WebRTCDelegate {
   VoipPlugin({required this.client, required this.context}) {
     voip = VoIP(client, this);
-    Connectivity()
-        .onConnectivityChanged
-        .listen(_handleNetworkChanged)
-        .onError((e) => _currentConnectivity = ConnectivityResult.none);
+    try {
+      Connectivity()
+          .onConnectivityChanged
+          .listen(_handleNetworkChanged)
+          .onError((e) => _currentConnectivity = ConnectivityResult.none);
+    } catch (e, s) {
+      Logs().w('Could not subscribe network updates', e, s);
+    }
     Connectivity()
         .checkConnectivity()
         .then((result) => _currentConnectivity = result)
@@ -39,7 +43,11 @@ class VoipPlugin extends WidgetsBindingObserver implements WebRTCDelegate {
   ValueChanged<CallSession>? onIncomingCall;
   OverlayEntry? overlayEntry;
 
-  final BuildContext context;
+  // hacky workaround: in order to have [Overlay.of] working on web, the context
+  // mus explicitly be re-assigned
+  //
+  // hours wasted: 5
+  BuildContext context;
 
   void _handleNetworkChanged(ConnectivityResult result) async {
     /// Got a new connectivity status!
@@ -64,18 +72,33 @@ class VoipPlugin extends WidgetsBindingObserver implements WebRTCDelegate {
       Logs().w('[VOIP] addCallingOverlay: The call session already exists?');
       overlayEntry?.remove();
     }
-    overlayEntry = OverlayEntry(
-      builder: (_) => Calling(
+    // Overlay.of(context) is broken on web
+    // falling back on a dialog
+    if (kIsWeb) {
+      showDialog(
+        context: context,
+        builder: (context) => Calling(
           context: context,
           client: client,
           callId: callId,
           call: call,
-          onClear: () {
-            overlayEntry?.remove();
-            overlayEntry = null;
-          }),
-    );
-    Overlay.of(context)!.insert(overlayEntry!);
+          onClear: () => Navigator.of(context).pop(),
+        ),
+      );
+    } else {
+      overlayEntry = OverlayEntry(
+        builder: (_) => Calling(
+            context: context,
+            client: client,
+            callId: callId,
+            call: call,
+            onClear: () {
+              overlayEntry?.remove();
+              overlayEntry = null;
+            }),
+      );
+      Overlay.of(context)!.insert(overlayEntry!);
+    }
   }
 
   @override

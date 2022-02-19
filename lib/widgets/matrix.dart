@@ -83,10 +83,13 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     return widget.clients[_activeClient];
   }
 
-  bool get webrtcIsSupported => PlatformInfos.isMobile;
+  bool get webrtcIsSupported =>
+      kIsWeb ||
+      PlatformInfos.isMobile ||
+      PlatformInfos.isWindows ||
+      PlatformInfos.isMacOS;
 
-  VoipPlugin? get voipPlugin =>
-      webrtcIsSupported ? VoipPlugin(client: client, context: context) : null;
+  VoipPlugin? voipPlugin;
 
   bool get isMultiAccount => widget.clients.length > 1;
 
@@ -100,6 +103,8 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     final i = widget.clients.indexWhere((c) => c == cl);
     if (i != -1) {
       _activeClient = i;
+      // TODO: Multi-client VoiP support
+      createVoipPlugin();
     } else {
       Logs().w('Tried to set an unknown client ${cl!.userID} as active');
     }
@@ -172,6 +177,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       widget.clients.firstWhereOrNull((c) => c.clientName == name);
 
   Map<String, dynamic>? get shareContent => _shareContent;
+
   set shareContent(Map<String, dynamic>? content) {
     _shareContent = content;
     onShareContentChanged.add(_shareContent);
@@ -216,6 +222,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
   String? _cachedPassword;
   Timer? _cachedPasswordClearTimer;
+
   String? get cachedPassword => _cachedPassword;
 
   set cachedPassword(String? p) {
@@ -420,6 +427,13 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         ),
       );
     }
+
+    createVoipPlugin();
+  }
+
+  void createVoipPlugin() {
+    voipPlugin =
+        webrtcIsSupported ? VoipPlugin(client: client, context: context) : null;
   }
 
   bool _firstStartup = true;
@@ -534,5 +548,6 @@ class FixedThreepidCreds extends ThreepidCreds {
 class _AccountBundleWithClient {
   final Client? client;
   final AccountBundle? bundle;
+
   _AccountBundleWithClient({this.client, this.bundle});
 }
