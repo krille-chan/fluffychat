@@ -26,7 +26,6 @@ import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:matrix/matrix.dart';
 import 'package:pedantic/pedantic.dart';
-import 'package:universal_html/html.dart' as darthtml;
 import 'package:wakelock/wakelock.dart';
 
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -174,12 +173,7 @@ class _MyCallingPage extends State<Calling> {
 
   void _playCallSound() async {
     const path = 'assets/sounds/call.ogg';
-    if (kIsWeb) {
-      darthtml.AudioElement()
-        ..src = 'assets/$path'
-        ..autoplay = true
-        ..load();
-    } else if (PlatformInfos.isMobile) {
+    if (kIsWeb || PlatformInfos.isMobile || PlatformInfos.isMacOS) {
       await AssetsAudioPlayer.newPlayer().open(Audio(path));
     } else {
       Logs().w('Playing sound not implemented for this platform!');
@@ -269,7 +263,6 @@ class _MyCallingPage extends State<Calling> {
   }
 
   void _hangUp() {
-    _playCallSound();
     setState(() {
       if (call != null && (call?.isRinging ?? false)) {
         call?.reject();

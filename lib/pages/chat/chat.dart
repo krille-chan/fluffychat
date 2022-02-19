@@ -990,9 +990,7 @@ class ChatController extends State<Chat> {
       final voipPlugin = Matrix.of(context).voipPlugin;
       await voipPlugin!.voip.inviteToCall(room!.id, callType).catchError((e) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(e.toString())
-              // Text(LocalizedExceptionExtension(context, e)),
-              ),
+          SnackBar(content: Text((e as Object).toLocalizedString(context))),
         );
       });
     } else {
