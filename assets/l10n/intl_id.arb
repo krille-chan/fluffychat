@@ -2757,5 +2757,9 @@
   "voiceCall": "Panggilan suara",
   "@voiceCall": {},
   "videoCallsBetaWarning": "Dicatat bahwa panggilan video sedang dalam beta. Fitur ini mungkin tidak berkerja dengan benar atau tidak berkerja sama sekali pada semua platform.",
-  "@videoCallsBetaWarning": {}
+  "@videoCallsBetaWarning": {},
+  "emailOrUsername": "Email atau nama penggina",
+  "@emailOrUsername": {},
+  "experimentalVideoCalls": "Panggilan video eksperimental",
+  "@experimentalVideoCalls": {}
 }
