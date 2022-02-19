@@ -45,8 +45,15 @@ class Message extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (![EventTypes.Message, EventTypes.Sticker, EventTypes.Encrypted]
-        .contains(event.type)) {
+    if (!{
+      EventTypes.Message,
+      EventTypes.Sticker,
+      EventTypes.Encrypted,
+      EventTypes.CallInvite
+    }.contains(event.type)) {
+      if (event.type.startsWith('m.call.')) {
+        return Container();
+      }
       return StateMessage(event, unfold: unfold);
     }
 

@@ -199,6 +199,13 @@ class MessageContent extends StatelessWidget {
               onLinkTap: (url) => UrlLauncher(context, url).launchUrl(),
             );
         }
+      case EventTypes.CallInvite:
+        return _ButtonContent(
+          label: L10n.of(context)!.startedACall(event.sender.calcDisplayname()),
+          icon: const Icon(Icons.phone_outlined),
+          textColor: buttonTextColor,
+          onPressed: () => onInfoTab!(event),
+        );
       default:
         return _ButtonContent(
           label: L10n.of(context)!
@@ -227,11 +234,14 @@ class _ButtonContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton.icon(
+    return OutlinedButton.icon(
       onPressed: onPressed,
       icon: icon,
       label: Text(label, overflow: TextOverflow.ellipsis),
-      style: TextButton.styleFrom(primary: textColor),
+      style: OutlinedButton.styleFrom(
+        primary: textColor,
+        backgroundColor: Colors.white.withAlpha(64),
+      ),
     );
   }
 }

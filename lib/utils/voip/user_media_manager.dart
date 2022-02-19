@@ -1,6 +1,9 @@
 import 'package:flutter/foundation.dart';
 
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
+
+import 'package:fluffychat/utils/platform_infos.dart';
 
 class UserMediaManager {
   factory UserMediaManager() {
@@ -11,17 +14,27 @@ class UserMediaManager {
 
   static final UserMediaManager _instance = UserMediaManager._internal();
 
-  Future<void> startRingingTone() {
-    if (kIsWeb) {
-      throw 'Platform [web] not supported';
+  AssetsAudioPlayer? _assetsAudioPlayer;
+
+  Future<void> startRingingTone() async {
+    if (PlatformInfos.isMobile) {
+      await FlutterRingtonePlayer.playRingtone(volume: 80);
+    } else if ((kIsWeb || PlatformInfos.isMacOS) &&
+        _assetsAudioPlayer != null) {
+      const path = 'assets/sounds/phone.ogg';
+      final player = _assetsAudioPlayer = AssetsAudioPlayer.newPlayer();
+      await player.open(Audio(path),
+          autoStart: true, loopMode: LoopMode.playlist);
     }
-    return FlutterRingtonePlayer.playRingtone(volume: 80);
+    return;
   }
 
-  Future<void> stopRingingTone() {
-    if (kIsWeb) {
-      throw 'Platform [web] not supported';
+  Future<void> stopRingingTone() async {
+    if (PlatformInfos.isMobile) {
+      await FlutterRingtonePlayer.stop();
     }
-    return FlutterRingtonePlayer.stop();
+    await _assetsAudioPlayer?.stop();
+    _assetsAudioPlayer = null;
+    return;
   }
 }
