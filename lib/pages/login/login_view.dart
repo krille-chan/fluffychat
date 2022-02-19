@@ -38,13 +38,14 @@ class LoginView extends StatelessWidget {
                     autofocus: true,
                     onChanged: controller.checkWellKnownWithCoolDown,
                     controller: controller.usernameController,
+                    keyboardType: TextInputType.emailAddress,
                     autofillHints:
                         controller.loading ? null : [AutofillHints.username],
                     decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.account_box_outlined),
-                        hintText: L10n.of(context)!.username,
+                        hintText: L10n.of(context)!.emailOrUsername,
                         errorText: controller.usernameError,
-                        labelText: L10n.of(context)!.username),
+                        labelText: L10n.of(context)!.emailOrUsername),
                   ),
                 ),
                 Padding(
@@ -87,16 +88,18 @@ class LoginView extends StatelessWidget {
                     ),
                   ),
                 ),
-                Center(
-                  child: TextButton(
-                    onPressed: controller.passwordForgotten,
-                    child: Text(
-                      L10n.of(context)!.passwordForgotten,
-                      style: const TextStyle(
-                        color: Colors.blue,
-                        decoration: TextDecoration.underline,
-                      ),
+                const Divider(height: 32),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: ElevatedButton(
+                    onPressed: controller.loading
+                        ? null
+                        : controller.passwordForgotten,
+                    style: ElevatedButton.styleFrom(
+                      primary: Theme.of(context).secondaryHeaderColor,
+                      onPrimary: Colors.red,
                     ),
+                    child: Text(L10n.of(context)!.passwordForgotten),
                   ),
                 ),
               ],
