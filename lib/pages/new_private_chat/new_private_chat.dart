@@ -8,7 +8,6 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:fluffychat/pages/new_private_chat/new_private_chat_view.dart';
 import 'package:fluffychat/pages/new_private_chat/qr_scanner_modal.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -25,10 +24,9 @@ class NewPrivateChatController extends State<NewPrivateChat> {
   final formKey = GlobalKey<FormState>();
   bool loading = false;
 
-  bool _hideFab = true;
-  bool _qrUnsupported = true;
+  bool _hideFab = false;
 
-  bool get hideFab => !_qrUnsupported && _hideFab;
+  bool get hideFab => _hideFab;
 
   static const Set<String> supportedSigils = {'@', '!', '#'};
 
@@ -43,7 +41,6 @@ class NewPrivateChatController extends State<NewPrivateChat> {
   @override
   void initState() {
     super.initState();
-    _checkQrSupported();
     textFieldFocus.addListener(setHideFab);
   }
 
@@ -79,6 +76,17 @@ class NewPrivateChatController extends State<NewPrivateChat> {
       );
 
   void openScannerAction() async {
+    final info = await DeviceInfoPlugin().androidInfo;
+    if ((info.version.sdkInt ?? 16) < 21) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            L10n.of(context)!.unsupportedAndroidVersionLong,
+          ),
+        ),
+      );
+      return;
+    }
     await Permission.camera.request();
     await showModalBottomSheet(
       context: context,
@@ -90,13 +98,4 @@ class NewPrivateChatController extends State<NewPrivateChat> {
 
   @override
   Widget build(BuildContext context) => NewPrivateChatView(this);
-
-  // checks whether Android < 21 in order to support Android KitKat
-  void _checkQrSupported() {
-    if (!PlatformInfos.isAndroid) _qrUnsupported = false;
-    DeviceInfoPlugin().androidInfo.then(
-          (info) =>
-              setState(() => _qrUnsupported = (info.version.sdkInt ?? 16) < 21),
-        );
-  }
 }
