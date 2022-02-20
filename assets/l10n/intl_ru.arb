@@ -2745,5 +2745,27 @@
       "sender": {},
       "reaction": {}
     }
-  }
+  },
+  "emojis": "Эмоджи",
+  "@emojis": {},
+  "voiceCall": "Голосовой звонок",
+  "@voiceCall": {},
+  "unsupportedAndroidVersion": "Неподдерживаемая версия Android",
+  "@unsupportedAndroidVersion": {},
+  "unsupportedAndroidVersionLong": "Для этой функции требуется более новая версия Android. Проверьте наличие обновлений или поддержку Lineage OS.",
+  "@unsupportedAndroidVersionLong": {},
+  "placeCall": "Совершить звонок",
+  "@placeCall": {},
+  "videoCallsBetaWarning": "Обратите внимание, что видеозвонки в настоящее время находятся в бета-версии. Они могут работать не так, как ожидалось, или вообще не работать на всех платформах.",
+  "@videoCallsBetaWarning": {},
+  "experimentalVideoCalls": "Экспериментальные видеозвонки",
+  "@experimentalVideoCalls": {},
+  "emailOrUsername": "Адрес электронной почты или имя пользователя",
+  "@emailOrUsername": {},
+  "pinMessage": "Прикрепить к комнате",
+  "@pinMessage": {},
+  "pinnedEventsError": "Ошибка загрузки закрепленных сообщений",
+  "@pinnedEventsError": {},
+  "confirmEventUnpin": "Вы уверены, что хотите навсегда открепить событие?",
+  "@confirmEventUnpin": {}
 }
