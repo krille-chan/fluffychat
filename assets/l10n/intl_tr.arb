@@ -2763,5 +2763,9 @@
   "confirmEventUnpin": "Etkinliğin sabitlemesini kalıcı olarak kaldırmak istediğinizden emin misiniz?",
   "@confirmEventUnpin": {},
   "videoCallsBetaWarning": "Görüntülü aramaların şu anda beta aşamasında olduğunu lütfen unutmayın. Tüm platformlarda beklendiği gibi veya hiç çalışmayabilirler.",
-  "@videoCallsBetaWarning": {}
+  "@videoCallsBetaWarning": {},
+  "experimentalVideoCalls": "Deneysel görüntülü aramalar",
+  "@experimentalVideoCalls": {},
+  "emailOrUsername": "E-posta veya kullanıcı adı",
+  "@emailOrUsername": {}
 }
