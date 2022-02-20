@@ -1,8 +1,6 @@
 image:
-  name: cirrusci/flutter
+  name: cirrusci/flutter:2.10.1
 
-variables:
-  GIT_SUBMODULE_STRATEGY: recursive
 
 .shared_windows_runners:
   tags:

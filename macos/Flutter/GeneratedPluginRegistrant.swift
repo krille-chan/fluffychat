@@ -10,6 +10,7 @@ import assets_audio_player_web
 import audioplayers
 import connectivity_plus_macos
 import desktop_drop
+import desktop_lifecycle
 import device_info_plus_macos
 import emoji_picker_flutter
 import file_selector_macos
@@ -33,6 +34,7 @@ func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
   AudioplayersPlugin.register(with: registry.registrar(forPlugin: "AudioplayersPlugin"))
   ConnectivityPlugin.register(with: registry.registrar(forPlugin: "ConnectivityPlugin"))
   DesktopDropPlugin.register(with: registry.registrar(forPlugin: "DesktopDropPlugin"))
+  DesktopLifecyclePlugin.register(with: registry.registrar(forPlugin: "DesktopLifecyclePlugin"))
   DeviceInfoPlusMacosPlugin.register(with: registry.registrar(forPlugin: "DeviceInfoPlusMacosPlugin"))
   EmojiPickerFlutterPlugin.register(with: registry.registrar(forPlugin: "EmojiPickerFlutterPlugin"))
   FileSelectorPlugin.register(with: registry.registrar(forPlugin: "FileSelectorPlugin"))
