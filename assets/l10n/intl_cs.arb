@@ -2745,5 +2745,27 @@
       "sender": {},
       "reaction": {}
     }
-  }
+  },
+  "emojis": "Emojis",
+  "@emojis": {},
+  "voiceCall": "Hlasový hovor",
+  "@voiceCall": {},
+  "unsupportedAndroidVersion": "Nepodporovaná verze Androidu",
+  "@unsupportedAndroidVersion": {},
+  "videoCallsBetaWarning": "Upozorňujeme, že videohovory jsou aktuálně ve verzi beta. Nemusí fungovat podle očekávání nebo fungovat vůbec na všech platformách.",
+  "@videoCallsBetaWarning": {},
+  "placeCall": "Zavolejte",
+  "@placeCall": {},
+  "emailOrUsername": "E-mail nebo uživatelské jméno",
+  "@emailOrUsername": {},
+  "experimentalVideoCalls": "Experimentální videohovory",
+  "@experimentalVideoCalls": {},
+  "unsupportedAndroidVersionLong": "Tato funkce vyžadovala novější verzi pro Android. Zkontrolujte prosím aktualizace nebo podporu Lineage OS.",
+  "@unsupportedAndroidVersionLong": {},
+  "pinnedEventsError": "Při načítání připnutých zpráv došlo k chybě",
+  "@pinnedEventsError": {},
+  "pinMessage": "Připnout zprávu do místnosti",
+  "@pinMessage": {},
+  "confirmEventUnpin": "Opravdu chcete událost trvale odepnout?",
+  "@confirmEventUnpin": {}
 }
