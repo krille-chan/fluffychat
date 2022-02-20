@@ -1,6 +1,7 @@
-import 'dart:async';
 import 'dart:io';
+import 'dart:math';
 
+import 'package:fluffychat/utils/story_theme_data.dart';
 import 'package:flutter/material.dart';
 
 import 'package:file_picker_cross/file_picker_cross.dart';
@@ -41,22 +42,29 @@ class AddStoryController extends State<AddStoryPage> {
 
   bool textFieldHasFocus = false;
 
-  Timer? _updateColorsCooldown;
+  BoxFit fit = BoxFit.contain;
 
-  void updateColors() {
-    if (hasText != controller.text.isNotEmpty) {
+  int alignmentX = 0;
+  int alignmentY = 0;
+
+  void toggleBoxFit() {
+    if (fit == BoxFit.contain) {
       setState(() {
-        hasText = controller.text.isNotEmpty;
+        fit = BoxFit.cover;
+      });
+    } else {
+      setState(() {
+        fit = BoxFit.contain;
       });
     }
-    _updateColorsCooldown?.cancel();
-    _updateColorsCooldown = Timer(
-      const Duration(seconds: 3),
-      () => setState(() {
-        backgroundColor = controller.text.color;
-        backgroundColorDark = controller.text.darkColor;
-      }),
-    );
+  }
+
+  void updateHasText(String text) {
+    if (hasText != text.isNotEmpty) {
+      setState(() {
+        hasText = text.isNotEmpty;
+      });
+    }
   }
 
   void importMedia() async {
@@ -65,13 +73,16 @@ class AddStoryController extends State<AddStoryPage> {
     );
     final fileName = picked.fileName;
     if (fileName == null) return;
-    final shrinked = await MatrixImageFile.shrink(
-      bytes: picked.toUint8List(),
-      name: fileName,
-      compute: Matrix.of(context).client.runInBackground,
+    final shrinked = await showFutureLoadingDialog(
+      context: context,
+      future: () => MatrixImageFile.shrink(
+        bytes: picked.toUint8List(),
+        name: fileName,
+        compute: Matrix.of(context).client.runInBackground,
+      ),
     );
     setState(() {
-      image = shrinked;
+      image = shrinked.result;
     });
   }
 
@@ -80,14 +91,27 @@ class AddStoryController extends State<AddStoryPage> {
       source: ImageSource.camera,
     );
     if (picked == null) return;
-    final bytes = await picked.readAsBytes();
-    final shrinked = await MatrixImageFile.shrink(
-      bytes: bytes,
-      name: picked.name,
-      compute: Matrix.of(context).client.runInBackground,
-    );
+    final shrinked = await showFutureLoadingDialog(
+        context: context,
+        future: () async {
+          final bytes = await picked.readAsBytes();
+          return await MatrixImageFile.shrink(
+            bytes: bytes,
+            name: picked.name,
+            compute: Matrix.of(context).client.runInBackground,
+          );
+        });
+
     setState(() {
-      image = shrinked;
+      image = shrinked.result;
+    });
+  }
+
+  void updateColor() {
+    final rand = Random().nextInt(1000).toString();
+    setState(() {
+      backgroundColor = rand.color;
+      backgroundColorDark = rand.darkColor;
     });
   }
 
@@ -143,7 +167,14 @@ class AddStoryController extends State<AddStoryPage> {
           final thumbnail = await video.getVideoThumbnail();
           await storiesRoom.sendFileEvent(
             video,
-            extraContent: {'body': controller.text},
+            extraContent: {
+              'body': controller.text,
+              StoryThemeData.contentKey: StoryThemeData(
+                fit: fit,
+                alignmentX: alignmentX,
+                alignmentY: alignmentY,
+              ).toJson(),
+            },
             thumbnail: thumbnail,
           );
           return;
@@ -152,11 +183,28 @@ class AddStoryController extends State<AddStoryPage> {
         if (image != null) {
           await storiesRoom.sendFileEvent(
             image,
-            extraContent: {'body': controller.text},
+            extraContent: {
+              'body': controller.text,
+              StoryThemeData.contentKey: StoryThemeData(
+                fit: fit,
+                alignmentX: alignmentX,
+                alignmentY: alignmentY,
+              ).toJson(),
+            },
           );
           return;
         }
-        await storiesRoom.sendTextEvent(controller.text);
+        await storiesRoom.sendEvent(<String, dynamic>{
+          'msgtype': MessageTypes.Text,
+          'body': controller.text,
+          StoryThemeData.contentKey: StoryThemeData(
+            color1: backgroundColor,
+            color2: backgroundColorDark,
+            fit: fit,
+            alignmentX: alignmentX,
+            alignmentY: alignmentY,
+          ).toJson(),
+        });
       },
     );
     if (postResult.error == null) {
@@ -164,12 +212,40 @@ class AddStoryController extends State<AddStoryPage> {
     }
   }
 
+  void onVerticalDragUpdate(DragUpdateDetails details) {
+    final delta = details.primaryDelta;
+    if (delta == null) return;
+    if (delta > 0 && alignmentY < 100) {
+      setState(() {
+        alignmentY += 1;
+      });
+    } else if (delta < 0 && alignmentY > -100) {
+      setState(() {
+        alignmentY -= 1;
+      });
+    }
+  }
+
+  void onHorizontalDragUpdate(DragUpdateDetails details) {
+    final delta = details.primaryDelta;
+    if (delta == null) return;
+    if (delta > 0 && alignmentX < 100) {
+      setState(() {
+        alignmentX += 1;
+      });
+    } else if (delta < 0 && alignmentX > -100) {
+      setState(() {
+        alignmentX -= 1;
+      });
+    }
+  }
+
   @override
   void initState() {
     super.initState();
-    final text = Matrix.of(context).client.userID!;
-    backgroundColor = text.color;
-    backgroundColorDark = text.darkColor;
+    final rand = Random().nextInt(1000).toString();
+    backgroundColor = rand.color;
+    backgroundColorDark = rand.darkColor;
     focusNode.addListener(() {
       if (textFieldHasFocus != focusNode.hasFocus) {
         setState(() {

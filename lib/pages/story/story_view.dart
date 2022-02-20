@@ -19,6 +19,29 @@ class StoryView extends StatelessWidget {
   final StoryPageController controller;
   const StoryView(this.controller, {Key? key}) : super(key: key);
 
+  static const List<Shadow> textShadows = [
+    Shadow(
+      color: Colors.black,
+      offset: Offset(5, 5),
+      blurRadius: 20,
+    ),
+    Shadow(
+      color: Colors.black,
+      offset: Offset(5, 5),
+      blurRadius: 20,
+    ),
+    Shadow(
+      color: Colors.black,
+      offset: Offset(-5, -5),
+      blurRadius: 20,
+    ),
+    Shadow(
+      color: Colors.black,
+      offset: Offset(-5, -5),
+      blurRadius: 20,
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     final currentEvent = controller.currentEvent;
@@ -85,6 +108,11 @@ class StoryView extends StatelessWidget {
                       value: PopupStoryAction.report,
                       child: Text(L10n.of(context)!.reportMessage),
                     ),
+                    if (!controller.isOwnStory)
+                      PopupMenuItem(
+                        value: PopupStoryAction.message,
+                        child: Text(L10n.of(context)!.sendAMessage),
+                      ),
                   ],
                 ),
               ],
@@ -134,11 +162,12 @@ class StoryView extends StatelessWidget {
             );
           }
           final event = events[controller.index];
-          final backgroundColor = event.content.tryGet<String>('body')?.color ??
+          final backgroundColor = controller.storyThemeData.color1 ??
+              event.content.tryGet<String>('body')?.color ??
               Theme.of(context).primaryColor;
-          final backgroundColorDark =
+          final backgroundColorDark = controller.storyThemeData.color2 ??
               event.content.tryGet<String>('body')?.darkColor ??
-                  Theme.of(context).primaryColorDark;
+              Theme.of(context).primaryColorDark;
           if (event.messageType == MessageTypes.Text) {
             controller.loadingModeOff();
           }
@@ -146,6 +175,11 @@ class StoryView extends StatelessWidget {
           return GestureDetector(
             onTapDown: controller.hold,
             onTapUp: controller.unhold,
+            onTapCancel: controller.unhold,
+            onVerticalDragStart: controller.hold,
+            onVerticalDragEnd: controller.unhold,
+            onHorizontalDragStart: controller.hold,
+            onHorizontalDragEnd: controller.unhold,
             child: Stack(
               children: [
                 if (hash is String)
@@ -178,29 +212,23 @@ class StoryView extends StatelessWidget {
                 if (event.messageType == MessageTypes.Image ||
                     (event.messageType == MessageTypes.Video &&
                         !PlatformInfos.isMobile))
-                  Positioned(
-                    top: 80,
-                    bottom: 64,
-                    left: 0,
-                    right: 0,
-                    child: FutureBuilder<MatrixFile>(
-                      future: controller.downloadAndDecryptAttachment(
-                          event, event.messageType == MessageTypes.Video),
-                      builder: (context, snapshot) {
-                        final matrixFile = snapshot.data;
-                        if (matrixFile == null) {
-                          controller.loadingModeOn();
-                          return Container();
-                        }
-                        controller.loadingModeOff();
-                        return Center(
-                          child: Image.memory(
-                            matrixFile.bytes,
-                            fit: BoxFit.contain,
-                          ),
-                        );
-                      },
-                    ),
+                  FutureBuilder<MatrixFile>(
+                    future: controller.downloadAndDecryptAttachment(
+                        event, event.messageType == MessageTypes.Video),
+                    builder: (context, snapshot) {
+                      final matrixFile = snapshot.data;
+                      if (matrixFile == null) {
+                        controller.loadingModeOn();
+                        return Container();
+                      }
+                      controller.loadingModeOff();
+                      return Center(
+                        child: Image.memory(
+                          matrixFile.bytes,
+                          fit: controller.storyThemeData.fit,
+                        ),
+                      );
+                    },
                   ),
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 200),
@@ -220,36 +248,31 @@ class StoryView extends StatelessWidget {
                           )
                         : null,
                   ),
-                  alignment: Alignment.center,
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: [
-                      LinkText(
-                        text: controller.loadingMode
-                            ? L10n.of(context)!.loadingPleaseWait
-                            : event.content.tryGet<String>('body') ?? '',
-                        textAlign: TextAlign.center,
-                        onLinkTap: (url) =>
-                            UrlLauncher(context, url).launchUrl(),
-                        linkStyle: TextStyle(
-                          fontSize: 24,
-                          color: Colors.blue.shade50,
-                          decoration: TextDecoration.underline,
-                          backgroundColor:
-                              event.messageType == MessageTypes.Text
-                                  ? null
-                                  : Colors.black,
-                        ),
-                        textStyle: TextStyle(
-                          fontSize: 24,
-                          color: Colors.white,
-                          backgroundColor:
-                              event.messageType == MessageTypes.Text
-                                  ? null
-                                  : Colors.black,
-                        ),
-                      ),
-                    ],
+                  alignment: Alignment(
+                    controller.storyThemeData.alignmentX.toDouble() / 100,
+                    controller.storyThemeData.alignmentY.toDouble() / 100,
+                  ),
+                  child: LinkText(
+                    text: controller.loadingMode
+                        ? L10n.of(context)!.loadingPleaseWait
+                        : event.content.tryGet<String>('body') ?? '',
+                    textAlign: TextAlign.center,
+                    onLinkTap: (url) => UrlLauncher(context, url).launchUrl(),
+                    linkStyle: TextStyle(
+                      fontSize: 24,
+                      color: Colors.blue.shade50,
+                      decoration: TextDecoration.underline,
+                      shadows: event.messageType == MessageTypes.Text
+                          ? null
+                          : textShadows,
+                    ),
+                    textStyle: TextStyle(
+                      fontSize: 24,
+                      color: Colors.white,
+                      shadows: event.messageType == MessageTypes.Text
+                          ? null
+                          : textShadows,
+                    ),
                   ),
                 ),
                 Positioned(
