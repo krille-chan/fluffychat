@@ -2725,5 +2725,45 @@
     "placeholders": {}
   },
   "pinMessage": "An Raum anheften",
-  "pinnedEventsError": "Angeheftete Nachrichten nicht gefunden"
+  "@pinMessage": {},
+  "pinnedEventsError": "Angeheftete Nachrichten nicht gefunden",
+  "@pinnedEventsError": {},
+  "emojis": "Emojis",
+  "@emojis": {},
+  "placeCall": "Anruf tätigen",
+  "@placeCall": {},
+  "voiceCall": "Sprachanruf",
+  "@voiceCall": {},
+  "unsupportedAndroidVersion": "Nicht unterstützte Android-Version",
+  "@unsupportedAndroidVersion": {},
+  "videoCallsBetaWarning": "Bitte beachte, dass sich Videoanrufe derzeit in der Beta-Phase befinden. Sie funktionieren möglicherweise nicht wie erwartet oder überhaupt nicht auf allen Plattformen.",
+  "@videoCallsBetaWarning": {},
+  "emailOrUsername": "E-Mail Adresse oder Benutzername",
+  "@emailOrUsername": {},
+  "unsupportedAndroidVersionLong": "Diese Funktion erforderte niemals eine Android-Version. Bitte suche nach Updates oder Lineage OS-Unterstützung.",
+  "@unsupportedAndroidVersionLong": {},
+  "experimentalVideoCalls": "Experimentelle Videoanrufe",
+  "@experimentalVideoCalls": {},
+  "matrixWidgets": "Matrix-Widgets",
+  "@matrixWidgets": {},
+  "integrationsNotImplemented": "Das Bearbeiten von Widgets und Integrationen ist noch nicht möglich.",
+  "@integrationsNotImplemented": {},
+  "editIntegrations": "Bearbeiten Sie Widgets und Integrationen",
+  "@editIntegrations": {},
+  "reactedWith": "{sender} reagierte mit {reaction}",
+  "@reactedWith": {
+    "type": "text",
+    "placeholders": {
+      "sender": {},
+      "reaction": {}
+    }
+  },
+  "markAsRead": "Als gelesen markiert",
+  "@markAsRead": {},
+  "reportUser": "Benutzer melden",
+  "@reportUser": {},
+  "openChat": "Chat öffnen",
+  "@openChat": {},
+  "confirmEventUnpin": "Möchtest du das Ereignis wirklich dauerhaft lösen?",
+  "@confirmEventUnpin": {}
 }
