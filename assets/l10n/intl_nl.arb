@@ -427,7 +427,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chooseAUsername": "Kies een gebruikersnaam",
+  "chooseAUsername": "Kies een inlognaam",
   "@chooseAUsername": {
     "type": "text",
     "placeholders": {}
@@ -916,7 +916,7 @@
   },
   "enterASpacepName": "Vul een spacenaam in",
   "@enterASpacepName": {},
-  "enterAUsername": "Vul een gebruikersnaam in",
+  "enterAUsername": "Vul een inlognaam in",
   "@enterAUsername": {
     "type": "text",
     "placeholders": {}
@@ -1113,7 +1113,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "invalidEmail": "Ongeldige e-mail",
+  "invalidEmail": "Ongeldige email",
   "@invalidEmail": {
     "type": "text",
     "placeholders": {}
@@ -1633,7 +1633,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseChooseAUsername": "Kies een gebruikersnaam",
+  "pleaseChooseAUsername": "Kies een inlognaam",
   "@pleaseChooseAUsername": {
     "type": "text",
     "placeholders": {}
@@ -1668,7 +1668,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterYourUsername": "Voer je gebruikersnaam in",
+  "pleaseEnterYourUsername": "Voer je inlognaam in",
   "@pleaseEnterYourUsername": {
     "type": "text",
     "placeholders": {}
@@ -2617,7 +2617,7 @@
   "@unverified": {},
   "passwordsDoNotMatch": "Wachtwoorden komen niet overeen!",
   "@passwordsDoNotMatch": {},
-  "pleaseEnterValidEmail": "Voor een geldig e-mailadres in.",
+  "pleaseEnterValidEmail": "Voor een geldige email in.",
   "@pleaseEnterValidEmail": {},
   "repeatPassword": "Wachtwoord herhalen",
   "@repeatPassword": {},
@@ -2762,5 +2762,9 @@
   "pinnedEventsError": "Fout bij laden van vastgemaakte berichten",
   "@pinnedEventsError": {},
   "confirmEventUnpin": "Weet je zeker dat je de gebeurtenis definitief wilt losmaken?",
-  "@confirmEventUnpin": {}
+  "@confirmEventUnpin": {},
+  "experimentalVideoCalls": "Videogesprekken (experimenteel)",
+  "@experimentalVideoCalls": {},
+  "emailOrUsername": "Email of inlognaam",
+  "@emailOrUsername": {}
 }
