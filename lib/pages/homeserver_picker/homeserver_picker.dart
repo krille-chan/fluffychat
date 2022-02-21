@@ -170,7 +170,9 @@ class HomeserverPickerController extends State<HomeserverPicker> {
         '${Matrix.of(context).getLoginClient().homeserver?.toString()}/_matrix/client/r0/login/sso/redirect/${Uri.encodeComponent(id)}?redirectUrl=${Uri.encodeQueryComponent(redirectUrl)}';
     final urlScheme = Uri.parse(redirectUrl).scheme;
     final result = await FlutterWebAuth.authenticate(
-        url: url, callbackUrlScheme: urlScheme);
+      url: url,
+      callbackUrlScheme: urlScheme,
+    );
     final token = Uri.parse(result).queryParameters['loginToken'];
     if (token != null) _loginWithToken(token);
   }

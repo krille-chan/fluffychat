@@ -26,25 +26,6 @@ index 4e018b38..eebf7582 100644
  
 -//apply plugin: 'com.google.gms.google-services'
 +apply plugin: 'com.google.gms.google-services'
-diff --git a/android/app/src/main/AndroidManifest.xml b/android/app/src/main/AndroidManifest.xml
-index ee40b78d..ec7dd1a9 100644
---- a/android/app/src/main/AndroidManifest.xml
-+++ b/android/app/src/main/AndroidManifest.xml
-@@ -103,12 +103,12 @@
- 
-         </activity>
- 
--        <!-- <service android:name=".FcmPushService"
-+        <service android:name=".FcmPushService"
-           android:exported="false">
-           <intent-filter>
-             <action android:name="com.google.firebase.MESSAGING_EVENT"/>
-           </intent-filter>
--        </service> -->
-+        </service>
- 
-         <receiver android:exported="true"  android:enabled="true"  android:name=".UnifiedPushReceiver">
-             <intent-filter>
 diff --git a/android/app/src/main/kotlin/chat/fluffy/fluffychat/FcmPushService.kt b/android/app/src/main/kotlin/chat/fluffy/fluffychat/FcmPushService.kt
 index d9930f55..510e9845 100644
 --- a/android/app/src/main/kotlin/chat/fluffy/fluffychat/FcmPushService.kt
