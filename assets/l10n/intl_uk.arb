@@ -2613,7 +2613,7 @@
   "@addToBundle": {},
   "pleaseEnterValidEmail": "Введіть дійсну адресу е-пошти.",
   "@pleaseEnterValidEmail": {},
-  "passwordsDoNotMatch": "Паролі не збігаються!",
+  "passwordsDoNotMatch": "passwordsDoNotMatch",
   "@passwordsDoNotMatch": {},
   "repeatPassword": "Повторити пароль",
   "@repeatPassword": {},
@@ -2758,5 +2758,9 @@
   "unsupportedAndroidVersionLong": "Для цієї функції потрібна новіша версія Android. Перевірте наявність оновлень або підтримку Lineage OS.",
   "@unsupportedAndroidVersionLong": {},
   "videoCallsBetaWarning": "Зауважте, що відеовиклики на ранньому етапі розробки. Вони можуть працювати не так, як очікувалося, або взагалі не працювати на всіх платформах.",
-  "@videoCallsBetaWarning": {}
+  "@videoCallsBetaWarning": {},
+  "emailOrUsername": "Електронна адреса або ім’я користувача",
+  "@emailOrUsername": {},
+  "experimentalVideoCalls": "Експериментальні відеовиклики",
+  "@experimentalVideoCalls": {}
 }
