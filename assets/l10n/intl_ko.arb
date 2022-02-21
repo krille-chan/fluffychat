@@ -2745,5 +2745,21 @@
   "pinMessage": "방에 고정",
   "@pinMessage": {},
   "pinnedEventsError": "고정된 메시지 불러오는 중 오류",
-  "@pinnedEventsError": {}
+  "@pinnedEventsError": {},
+  "emojis": "이모지",
+  "@emojis": {},
+  "voiceCall": "음성 통화",
+  "@voiceCall": {},
+  "placeCall": "전화 걸기",
+  "@placeCall": {},
+  "experimentalVideoCalls": "실험적인 영상 통화",
+  "@experimentalVideoCalls": {},
+  "unsupportedAndroidVersion": "지원되지 않는 안드로이드 버전",
+  "@unsupportedAndroidVersion": {},
+  "unsupportedAndroidVersionLong": "이 기능은 새로운 안드로이드 버전을 요구합니다. Lineage OS 지원이나 업데이트를 확인해주세요.",
+  "@unsupportedAndroidVersionLong": {},
+  "videoCallsBetaWarning": "영상 통화는 베타임을 확인해주세요. 의도한 대로 작동하지 않거나 모든 플랫폼에서 작동하지 않을 수 있습니다.",
+  "@videoCallsBetaWarning": {},
+  "emailOrUsername": "이메일이나 유저 이름",
+  "@emailOrUsername": {}
 }
