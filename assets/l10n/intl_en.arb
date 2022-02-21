@@ -1,7 +1,7 @@
 {
   "@@locale": "en",
   "@@last_modified": "2021-08-14 12:38:37.885451",
-  "passwordsDoNotMatch": "Passwords do not match!",
+  "passwordsDoNotMatch": "passwordsDoNotMatch",
   "@passwordsDoNotMatch": {},
   "pleaseEnterValidEmail": "Please enter a valid email address.",
   "@pleaseEnterValidEmail": {},
@@ -2748,5 +2748,7 @@
   "videoCallsBetaWarning": "Please note that video calls are currently in beta. They might not work as expected or work at all on all platforms.",
   "@videoCallsBetaWarning": {},
   "experimentalVideoCalls": "Experimental video calls",
-  "emailOrUsername": "Email or username"
+  "@experimentalVideoCalls": {},
+  "emailOrUsername": "Email or username",
+  "@emailOrUsername": {}
 }
