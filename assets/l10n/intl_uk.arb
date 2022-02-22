@@ -2613,7 +2613,7 @@
   "@addToBundle": {},
   "pleaseEnterValidEmail": "Введіть дійсну адресу е-пошти.",
   "@pleaseEnterValidEmail": {},
-  "passwordsDoNotMatch": "passwordsDoNotMatch",
+  "passwordsDoNotMatch": "Паролі не збігаються!",
   "@passwordsDoNotMatch": {},
   "repeatPassword": "Повторити пароль",
   "@repeatPassword": {},
