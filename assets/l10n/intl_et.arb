@@ -2728,5 +2728,11 @@
   "pinMessage": "Klammerda sõnum jututuppa",
   "@pinMessage": {},
   "videoCallsBetaWarning": "Palun arvesta, et videokõned on veel beetajärgus. Nad ei pruugi veel toimida kõikidel platvormidel korrektselt.",
-  "@videoCallsBetaWarning": {}
+  "@videoCallsBetaWarning": {},
+  "emailOrUsername": "E-posti aadress või kasutajanimi",
+  "@emailOrUsername": {},
+  "experimentalVideoCalls": "Katselised videokõned",
+  "@experimentalVideoCalls": {},
+  "unsupportedAndroidVersionLong": "See funktsionaalsus eeldab uuemat Androidi versiooni. Palun kontrolli, kas sinu nutiseadmele leidub süsteemiuuendusi või saaks seal Lineage OS'i kasutada.",
+  "@unsupportedAndroidVersionLong": {}
 }
