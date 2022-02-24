@@ -2765,5 +2765,7 @@
   "openChat": "Chat öffnen",
   "@openChat": {},
   "confirmEventUnpin": "Möchtest du das Ereignis wirklich dauerhaft lösen?",
-  "@confirmEventUnpin": {}
+  "@confirmEventUnpin": {},
+  "dismiss": "Verwerfen",
+  "@dismiss": {}
 }
