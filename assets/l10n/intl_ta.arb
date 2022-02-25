@@ -2568,5 +2568,32 @@
     "placeholders": {
       "senderName": {}
     }
-  }
+  },
+  "unsupportedAndroidVersionLong": "",
+  "@unsupportedAndroidVersionLong": {},
+  "storeSecurlyOnThisDevice": "",
+  "@storeSecurlyOnThisDevice": {},
+  "ok": "",
+  "@ok": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordsDoNotMatch": "",
+  "@passwordsDoNotMatch": {},
+  "sharedTheLocation": "",
+  "@sharedTheLocation": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "unbanFromChat": "",
+  "@unbanFromChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iUnderstand": "",
+  "@iUnderstand": {},
+  "screenSharingDetail": "",
+  "@screenSharingDetail": {}
 }
