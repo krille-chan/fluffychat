@@ -92,7 +92,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSSign": "",
+  "askSSSSSign": "لتتمكن من التأكد من الشخص الآخر، يرجى إدخال عبارة المرور أو مفتاح الاسترداد.",
   "@askSSSSSign": {
     "type": "text",
     "placeholders": {}
@@ -142,7 +142,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "cachedKeys": "",
+  "cachedKeys": "المفاتيح المخزنة على الذاكرة المؤقتة",
   "@cachedKeys": {
     "type": "text",
     "placeholders": {}
@@ -182,7 +182,7 @@
       "username": {}
     }
   },
-  "changedTheDisplaynameTo": "{username} غيّر اسمه العلني الى {displayname}",
+  "changedTheDisplaynameTo": "{username} غير إسمه العلني إلى: '{displayname}'",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -714,7 +714,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "incorrectPassphraseOrKey": "",
+  "incorrectPassphraseOrKey": "عبارة مرور أو مفتاح استرداد خطأ",
   "@incorrectPassphraseOrKey": {
     "type": "text",
     "placeholders": {}
@@ -779,7 +779,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "keysCached": "",
+  "keysCached": "المفاتيح محفوظة على ذاكرة التخزين المؤقتة",
   "@keysCached": {
     "type": "text",
     "placeholders": {}
@@ -822,7 +822,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "lastSeenLongTimeAgo": "",
+  "lastSeenLongTimeAgo": "آخر ظهور كان منذ زمن طويل",
   "@lastSeenLongTimeAgo": {
     "type": "text",
     "placeholders": {}
@@ -946,7 +946,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "من الرائع أن نرى انك لا تستخدم خدمات غوغل للحفاظ على خصوصيتك!من أجل استلام الإشعارات نقترح استخدام\nhttps://microg.org أو\n https://unifiedpush.org.",
+  "noGoogleServicesWarning": "يبدو أنك لا تستخدم خدمات غوغل على هاتفك. هذا قرار جيد للحفاظ على خصوصيتك! من أجل استلام الإشعارات في FluffyChat نقترح استخدام\nhttps://microg.org أو https://unifiedpush.org.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -998,7 +998,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "oopsSomethingWentWrong": "هناك خطأ ما…",
+  "oopsSomethingWentWrong": "عذراً، هناك خطأ ما…",
   "@oopsSomethingWentWrong": {
     "type": "text",
     "placeholders": {}
@@ -1060,7 +1060,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterAMatrixIdentifier": "أدخل معرف مايتركس",
+  "pleaseEnterAMatrixIdentifier": "أدخل معرف Matrix.",
   "@pleaseEnterAMatrixIdentifier": {
     "type": "text",
     "placeholders": {}
@@ -1481,14 +1481,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount, plural, other{{unreadCount} رسالة غير مقروءة}}",
+  "unreadChats": "{unreadCount, plural, =1{1 محادثة غير مقروءة} other{{unreadCount} محادثات غير مقروءة}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents, plural, other{{unreadEvents} رسالة غير مقروءة}}",
+  "unreadMessages": "{unreadEvents, plural, =1{1 رسالة غير مقروءة} other{{unreadEvents} رسائل غير مقروءة}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
@@ -2128,7 +2128,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "editRoomAliases": "عدّل اسم الغرفة",
+  "editRoomAliases": "عدّل الاسم المميز للغرفة",
   "@editRoomAliases": {
     "type": "text",
     "placeholders": {}
@@ -2444,12 +2444,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "defaultPermissionLevel": "مستوى الصلاحيات الافتراضي",
+  "defaultPermissionLevel": "مستوى الأذونات الإفتراضي",
   "@defaultPermissionLevel": {
     "type": "text",
     "placeholders": {}
   },
-  "setPermissionsLevel": "عين مستوى الصلاحية",
+  "setPermissionsLevel": "تعيين مستوى الأذونات",
   "@setPermissionsLevel": {
     "type": "text",
     "placeholders": {}
@@ -2527,9 +2527,9 @@
   },
   "removeFromSpace": "أزل من الفضاء",
   "@removeFromSpace": {},
-  "unverified": "لم تُستوثَق",
+  "unverified": "غير مؤكد",
   "@unverified": {},
-  "whoCanPerformWhichAction": "المخوَلون",
+  "whoCanPerformWhichAction": "من يستطيع القيام بأي عمل",
   "@whoCanPerformWhichAction": {
     "type": "text",
     "placeholders": {}
@@ -2543,5 +2543,74 @@
   "openGallery": "افتخ المعرض",
   "@openGallery": {},
   "time": "الوقت",
-  "@time": {}
+  "@time": {},
+  "badServerLoginTypesException": "يدعم الخادم المستخدم أنواع تسجيل الدخول التالية:\n{serverVersions}\nلكن هذا التطبيق يدعم فقط:\n{supportedVersions}",
+  "@badServerLoginTypesException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "setupChatBackup": "إعداد النسخ الاحتياطي للمحادثة",
+  "@setupChatBackup": {},
+  "commandHint_clearcache": "مسح الذاكرة المؤقتة",
+  "@commandHint_clearcache": {
+    "type": "text",
+    "description": "Usage hint for the command /clearcache"
+  },
+  "enableEmotesGlobally": "تفعيل حزمة التعبيرات بشكل عام",
+  "@enableEmotesGlobally": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideRedactedEvents": "إخفاء الأحداث المنقحة",
+  "@hideRedactedEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "moreEvents": "{count,plural, =1{1 حدث إضافي} other{{count} أحداث إضافية}}",
+  "@moreEvents": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "commandHint_discardsession": "إنهاء الجلسة",
+  "@commandHint_discardsession": {
+    "type": "text",
+    "description": "Usage hint for the command /discardsession"
+  },
+  "locationPermissionDeniedNotice": "تم رفض إذن الموقع. الرجاء منح الإذن للقدرة على مشاركة موقعك.",
+  "@locationPermissionDeniedNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginWithOneClick": "تسجيل الدخول بكبسة واحدة",
+  "@loginWithOneClick": {},
+  "badServerVersionsException": "يدعم الخادم الرئيسي المستخدم إصدارات المواصفات:\n{serverVersions}\nلكن هذا التطبيق يدعم فقط:\n{supportedVersions}",
+  "@badServerVersionsException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "offensive": "عدواني",
+  "@offensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bubbleSize": "حجم الفقاعة",
+  "@bubbleSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourChatBackupHasBeenSetUp": "تم إعداد النسخ الاحتياطي لمحادثاتك.",
+  "@yourChatBackupHasBeenSetUp": {},
+  "noEncryptionForPublicRooms": "يمكنك فقط تفعيل التشفير عندما تصبح الغرفة غير متاحة للعامة.",
+  "@noEncryptionForPublicRooms": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
