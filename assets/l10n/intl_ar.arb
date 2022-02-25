@@ -97,7 +97,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSVerify": "",
+  "askSSSSVerify": "يرجى إدخال عبارة المرور أو مفتاح الاسترداد للتحقق من جلستك.",
   "@askSSSSVerify": {
     "type": "text",
     "placeholders": {}
