@@ -2633,5 +2633,13 @@
   "@discover": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "unsupportedAndroidVersionLong": "",
+  "@unsupportedAndroidVersionLong": {},
+  "storeSecurlyOnThisDevice": "",
+  "@storeSecurlyOnThisDevice": {},
+  "iUnderstand": "",
+  "@iUnderstand": {},
+  "screenSharingDetail": "",
+  "@screenSharingDetail": {}
 }
