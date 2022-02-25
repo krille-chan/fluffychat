@@ -2610,5 +2610,30 @@
   "@discover": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "unsupportedAndroidVersionLong": "",
+  "@unsupportedAndroidVersionLong": {},
+  "storeSecurlyOnThisDevice": "",
+  "@storeSecurlyOnThisDevice": {},
+  "ok": "",
+  "@ok": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sharedTheLocation": "",
+  "@sharedTheLocation": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "unbanFromChat": "",
+  "@unbanFromChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iUnderstand": "",
+  "@iUnderstand": {},
+  "screenSharingDetail": "",
+  "@screenSharingDetail": {}
 }
