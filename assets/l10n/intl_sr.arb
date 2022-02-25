@@ -2642,5 +2642,15 @@
   "continueWith": "",
   "@continueWith": {},
   "indexedDbErrorTitle": "",
-  "@indexedDbErrorTitle": {}
+  "@indexedDbErrorTitle": {},
+  "unsupportedAndroidVersionLong": "",
+  "@unsupportedAndroidVersionLong": {},
+  "storeSecurlyOnThisDevice": "",
+  "@storeSecurlyOnThisDevice": {},
+  "passwordsDoNotMatch": "",
+  "@passwordsDoNotMatch": {},
+  "iUnderstand": "",
+  "@iUnderstand": {},
+  "screenSharingDetail": "",
+  "@screenSharingDetail": {}
 }
