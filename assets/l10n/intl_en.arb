@@ -2743,7 +2743,7 @@
   "@voiceCall": {},
   "unsupportedAndroidVersion": "Unsupported Android version",
   "@unsupportedAndroidVersion": {},
-  "unsupportedAndroidVersionLong": "This feature required a never Android version. Please check for updates or Lineage OS support.",
+  "unsupportedAndroidVersionLong": "This feature requires a newer Android version. Please check for updates or Lineage OS support.",
   "@unsupportedAndroidVersionLong": {},
   "videoCallsBetaWarning": "Please note that video calls are currently in beta. They might not work as expected or work at all on all platforms.",
   "@videoCallsBetaWarning": {},
