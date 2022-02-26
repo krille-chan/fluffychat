@@ -1160,7 +1160,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "theyMatch": "Tá siad ag teacht le chéile",
+  "theyMatch": "Tá siad céanna",
   "@theyMatch": {
     "type": "text",
     "placeholders": {}
@@ -2080,7 +2080,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "theyDontMatch": "Ní raibh siad ag teacht le chéile",
+  "theyDontMatch": "Níl siad céanna",
   "@theyDontMatch": {
     "type": "text",
     "placeholders": {}
@@ -2242,7 +2242,7 @@
       "username": {}
     }
   },
-  "redactedAnEvent": "Rinne {username} imeacht a athdhéanamh",
+  "redactedAnEvent": "Rinne {username} cinsire imeacht",
   "@redactedAnEvent": {
     "type": "text",
     "placeholders": {
@@ -2584,5 +2584,52 @@
   "addAccount": "Breisigh cuntas",
   "@addAccount": {},
   "enableMultiAccounts": "(BÉITE) Cumasaigh cuntais iomadúla ar an gléas seo",
-  "@enableMultiAccounts": {}
+  "@enableMultiAccounts": {},
+  "commandHint_create": "Cruthaigh comhrá grúpa folamh\nÚsáid --no-encryption chun criptiúchán a dhíchumasú",
+  "@commandHint_create": {
+    "type": "text",
+    "description": "Usage hint for the command /create"
+  },
+  "link": "Nasc",
+  "@link": {},
+  "iWroteDownTheKey": "Scríobh mé an eochair",
+  "@iWroteDownTheKey": {},
+  "commandHint_clearcache": "Glan an taisce",
+  "@commandHint_clearcache": {
+    "type": "text",
+    "description": "Usage hint for the command /clearcache"
+  },
+  "videoCallsBetaWarning": "Tabhair faoi deara go bhfuil físglaonna i béite. B'fhéidir nach bhfeidhmíonn siad ar gach ardán chomh atá súil aige ná ar bith.",
+  "@videoCallsBetaWarning": {},
+  "emailOrUsername": "Ríomhphost nó ainm úsáideora",
+  "@emailOrUsername": {},
+  "passwordsDoNotMatch": "Níl na pasfhocail chéanna!",
+  "@passwordsDoNotMatch": {},
+  "pleaseEnterValidEmail": "Iontráil ríomhphost bailí le do thoil.",
+  "@pleaseEnterValidEmail": {},
+  "repeatPassword": "Scríobh an pasfhocal arís",
+  "@repeatPassword": {},
+  "pleaseChooseAtLeastChars": "Roghnaigh {min} carachtar ar a laghad.",
+  "@pleaseChooseAtLeastChars": {
+    "type": "text",
+    "placeholders": {
+      "min": {}
+    }
+  },
+  "setupChatBackup": "Bunaigh cúltaca comhrá",
+  "@setupChatBackup": {},
+  "bubbleSize": "Méid na mbolgán cainte",
+  "@bubbleSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourUserId": "D'aitheantas úsáideora:",
+  "@yourUserId": {},
+  "yourChatBackupHasBeenSetUp": "Bunaíodh do chúltaca comhrá.",
+  "@yourChatBackupHasBeenSetUp": {},
+  "openVideoCamera": "Oscail físcheamara",
+  "@openVideoCamera": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
