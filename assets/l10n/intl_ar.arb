@@ -412,12 +412,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "crossSigningDisabled": "",
+  "crossSigningDisabled": "التأكد المتبادل متوقف",
   "@crossSigningDisabled": {
     "type": "text",
     "placeholders": {}
   },
-  "crossSigningEnabled": "",
+  "crossSigningEnabled": "التأكد المتبادل مفعل",
   "@crossSigningEnabled": {
     "type": "text",
     "placeholders": {}
@@ -654,7 +654,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "groupWith": "",
+  "groupWith": "في مجموعة مع {displayname}",
   "@groupWith": {
     "type": "text",
     "placeholders": {
@@ -936,7 +936,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "",
+  "noCrossSignBootstrap": "Fluffychat حالياً لا يدعم تفعيل التأكد المتبادل. الرجاء تفعيله من خلال تطبيق Element.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -946,12 +946,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "يبدو أنك لا تستخدم خدمات غوغل على هاتفك. هذا قرار جيد للحفاظ على خصوصيتك! من أجل استلام الإشعارات في FluffyChat نقترح استخدام\nhttps://microg.org أو https://unifiedpush.org.",
+  "noGoogleServicesWarning": "يبدو أنك لا تستخدم خدمات غوغل على هاتفك. هذا قرار جيد للحفاظ على خصوصيتك! من أجل استلام الإشعارات في FluffyChat نقترح استخدام https://microg.org أو https://unifiedpush.org.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "noMegolmBootstrap": "",
+  "noMegolmBootstrap": "يرجى تشغيل النسخ الاحتياطي عبر الإنترنت من داخل تطبيق Element بدلاً من ذلك.",
   "@noMegolmBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -988,12 +988,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "onlineKeyBackupDisabled": "",
+  "onlineKeyBackupDisabled": "تم تعطيل النسخ الاحتياطي للمفاتيح عبر الإنترنت",
   "@onlineKeyBackupDisabled": {
     "type": "text",
     "placeholders": {}
   },
-  "onlineKeyBackupEnabled": "",
+  "onlineKeyBackupEnabled": "تم تفعيل النسخ الاحتياطي للمفاتيح عبر الإنترنت",
   "@onlineKeyBackupEnabled": {
     "type": "text",
     "placeholders": {}
@@ -2271,7 +2271,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "singlesignon": "ولوج فريد",
+  "singlesignon": "تسجيل دخول أحادي",
   "@singlesignon": {
     "type": "text",
     "placeholders": {}
@@ -2612,5 +2612,155 @@
   "@noEncryptionForPublicRooms": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "emojis": "إيموجي",
+  "@emojis": {},
+  "voiceCall": "مكالمة صوتية",
+  "@voiceCall": {},
+  "unsupportedAndroidVersion": "نسخة أندرويد غير مدعومة",
+  "@unsupportedAndroidVersion": {},
+  "unsupportedAndroidVersionLong": "تتطلب هذه الميزة إصدار Android أحدث. يرجى التحقق من وجود تحديثات أو دعم Lineage OS.",
+  "@unsupportedAndroidVersionLong": {},
+  "thisUserHasNotPostedAnythingYet": "هذا المستخدم لم ينشر أي شيء في قصته حتى الآن",
+  "@thisUserHasNotPostedAnythingYet": {},
+  "storyPrivacyWarning": "يرجى ملاحظة أنه يمكن للأشخاص رؤية بعضهم البعض والتواصل مع بعضهم البعض في قصتك. ستكون قصصك مرئية لمدة 24 ساعة ولكن ليس هناك ما يضمن حذفها من جميع الأجهزة والخوادم.",
+  "@storyPrivacyWarning": {},
+  "experimentalVideoCalls": "مكالمات الفيديو التجريبية",
+  "@experimentalVideoCalls": {},
+  "commandHint_create": "أنشأ محادثة جماعية فارغة\nاستخدم --لا-تشفير لتعطيل التشفير",
+  "@commandHint_create": {
+    "type": "text",
+    "description": "Usage hint for the command /create"
+  },
+  "commandHint_dm": "إبدأ محادثة مباشرة\nاستخدم --لا-تشفير لتعطيل التشفير",
+  "@commandHint_dm": {
+    "type": "text",
+    "description": "Usage hint for the command /dm"
+  },
+  "oopsPushError": "عذراً! للأسف، حدث خطأ أثناء إعداد الإشعارات.",
+  "@oopsPushError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseFollowInstructionsOnWeb": "يرجى اتباع التعليمات الموجودة على الموقع والنقر على التالي.",
+  "@pleaseFollowInstructionsOnWeb": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterSecurityKeyDescription": "لإلغاء قفل النسخة الاحتياطية للمحادثة، يرجى إدخال مفتاح الأمان الذي تم إنشاؤه في جلسة سابقة. مفتاح الأمان الخاص بك ليس كلمة مرورك.",
+  "@pleaseEnterSecurityKeyDescription": {},
+  "noStatusesFound": "لم يتم العثور على حالات حتى الآن.",
+  "@noStatusesFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeFromSpaceDescription": "هذا يزيل هذه المحادثة من الفضاء الحالي. ستبقى بعد ذلك موجودة ضمن \"جميع الدردشات\".",
+  "@removeFromSpaceDescription": {},
+  "commandHint_myroomavatar": "حدد صورتك لهذه الغرفة (عن طريق mxc-uri)",
+  "@commandHint_myroomavatar": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomavatar"
+  },
+  "videoCallsBetaWarning": "يرجى ملاحظة أن مكالمات الفيديو حالياً في مرحلة تجريبية. قد لا تعمل كما هو متوقع أو تعمل على الإطلاق على جميع المنصات.",
+  "@videoCallsBetaWarning": {},
+  "placeCall": "إجراء مكالمة",
+  "@placeCall": {},
+  "replyHasBeenSent": "تم إرسال الرد",
+  "@replyHasBeenSent": {},
+  "videoWithSize": "فيديو ({size})",
+  "@videoWithSize": {
+    "type": "text",
+    "placeholders": {
+      "size": {}
+    }
+  },
+  "storyFrom": "رسالة من {date}: \n{body}",
+  "@storyFrom": {
+    "type": "text",
+    "placeholders": {
+      "date": {},
+      "body": {}
+    }
+  },
+  "whoCanSeeMyStoriesDesc": "يرجى ملاحظة أنه يمكن للأشخاص رؤية بعضهم البعض والتواصل مع بعضهم البعض في قصتك.",
+  "@whoCanSeeMyStoriesDesc": {},
+  "emailOrUsername": "البريد الإلكتروني أو اسم المستخدم",
+  "@emailOrUsername": {},
+  "dismiss": "رفض",
+  "@dismiss": {},
+  "matrixWidgets": "إضافات ماتريكس",
+  "@matrixWidgets": {},
+  "integrationsNotImplemented": "تعديل الإضافات والتكاملات ليس ممكنا حتى الآن.",
+  "@integrationsNotImplemented": {},
+  "editIntegrations": "تعديل الإضافات والتكاملات",
+  "@editIntegrations": {},
+  "iUnderstand": "أنا أتفهم",
+  "@iUnderstand": {},
+  "whatIsGoingOn": "ما الذي يحصل؟",
+  "@whatIsGoingOn": {},
+  "addDescription": "إضافة وصف",
+  "@addDescription": {},
+  "setAsCanonicalAlias": "تعيين كاسم مستعار رئيسي",
+  "@setAsCanonicalAlias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseClickOnLink": "يرجى النقر على الرابط الموجود في البريد الإلكتروني ثم المتابعة.",
+  "@pleaseClickOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterYourPin": "الرجاء إدخال رقم التعريف الشخصي الخاص بك",
+  "@pleaseEnterYourPin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pushRules": "قواعد الإشعارات",
+  "@pushRules": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reactedWith": "{sender} تفاعل ب {reaction}",
+  "@reactedWith": {
+    "type": "text",
+    "placeholders": {
+      "sender": {},
+      "reaction": {}
+    }
+  },
+  "saveTheSecurityKeyNow": "احفظ مفتاح الأمان الآن",
+  "@saveTheSecurityKeyNow": {},
+  "markAsRead": "حدد كمقروء",
+  "@markAsRead": {},
+  "openVideoCamera": "افتح الكاميرا لمقطع فيديو",
+  "@openVideoCamera": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "start": "إبدأ",
+  "@start": {},
+  "setupChatBackupNow": "قم بإعداد النسخة الاحتياطية للمحادثة الآن",
+  "@setupChatBackupNow": {},
+  "publish": "انشر",
+  "@publish": {},
+  "whoCanSeeMyStories": "من يمكنه رؤية قصصي؟",
+  "@whoCanSeeMyStories": {},
+  "unsubscribeStories": "إلغاء الإشتراك بالقصص",
+  "@unsubscribeStories": {},
+  "yourStory": "قصتك",
+  "@yourStory": {},
+  "addToSpaceDescription": "إختر فضاء لإضافة هذه المحادثة إليه.",
+  "@addToSpaceDescription": {},
+  "addToStory": "إضافة للقصة",
+  "@addToStory": {},
+  "reportUser": "التبيلغ عن المستخدم",
+  "@reportUser": {},
+  "openChat": "فتح المحادثة",
+  "@openChat": {},
+  "pinMessage": "تثبيت في الغرفة",
+  "@pinMessage": {},
+  "pinnedEventsError": "خطأ في تحميل الرسائل المثبتة",
+  "@pinnedEventsError": {},
+  "confirmEventUnpin": "هل أنت متأكد من إلغاء تثبيت الحدث بشكل دائم؟",
+  "@confirmEventUnpin": {}
 }
