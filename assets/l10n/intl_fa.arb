@@ -1,3 +1,43 @@
 {
-  "@@last_modified": "2021-08-14 12:41:10.061080"
+  "@@last_modified": "2021-08-14 12:41:10.061080",
+  "pleaseChooseAtLeastChars": "لطفاً حداقل {min} تا نماد‌ انتخاب بده.",
+  "@pleaseChooseAtLeastChars": {
+    "type": "text",
+    "placeholders": {
+      "min": {}
+    }
+  },
+  "repeatPassword": "رمز عبور را تکرار بده",
+  "@repeatPassword": {},
+  "about": "درباره",
+  "@about": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordsDoNotMatch": "این رمز‌های عبور مطابقه ندارند!",
+  "@passwordsDoNotMatch": {},
+  "pleaseEnterValidEmail": "لطفاً یک آدرس ایمیل معتبر وارد کن.",
+  "@pleaseEnterValidEmail": {},
+  "accept": "پذیرفتن",
+  "@accept": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "acceptedTheInvitation": "{username} دعوت را پذیرفت",
+  "@acceptedTheInvitation": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "account": "حساب",
+  "@account": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "accountInformation": "اطلاعات حساب",
+  "@accountInformation": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
