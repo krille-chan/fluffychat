@@ -55,6 +55,7 @@ dependencies:
   image: ^3.1.1
   image_picker: ^0.8.4+8
   intl: any
+  keyboard_shortcuts: ^0.1.4
   localstorage: ^4.0.0+1
   lottie: ^1.2.2
   matrix: ^0.8.11
@@ -135,4 +136,10 @@ dependency_overrides:
     hosted:
       name: geolocator_android
       url: https://hanntech-gmbh.gitlab.io/free2pass/flutter-geolocator-floss
+  # waiting for null safety
+  # Upstream pull request: https://github.com/AntoineMarcel/keyboard_shortcuts/pull/13
+  keyboard_shortcuts:
+    git:
+      url: https://github.com/TheOneWithTheBraid/keyboard_shortcuts.git
+      ref: null-safety
   provider: 5.0.0

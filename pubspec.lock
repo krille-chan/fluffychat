@@ -429,7 +429,7 @@ packages:
       name: file_picker
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.4.0"
+    version: "4.5.0"
   file_picker_cross:
     dependency: "direct main"
     description:
@@ -715,7 +715,7 @@ packages:
       name: flutter_webrtc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.8.2"
+    version: "0.8.3"
   frontend_server_client:
     dependency: transitive
     description:
@@ -891,6 +891,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.3"
+  keyboard_shortcuts:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: null-safety
+      resolved-ref: "5aa8786475bca1b90ff35409eff3e0f5a4768601"
+      url: "https://github.com/TheOneWithTheBraid/keyboard_shortcuts.git"
+    source: git
+    version: "0.1.4"
   latlong2:
     dependency: transitive
     description:
@@ -960,7 +969,7 @@ packages:
       name: matrix
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.8.11"
+    version: "0.8.12"
   matrix_api_lite:
     dependency: transitive
     description:
@@ -1198,7 +1207,7 @@ packages:
       name: permission_handler_apple
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "9.0.2"
+    version: "9.0.3"
   permission_handler_platform_interface:
     dependency: transitive
     description:
@@ -1813,6 +1822,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.7"
+  visibility_detector:
+    dependency: transitive
+    description:
+      name: visibility_detector
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.2"
   vm_service:
     dependency: transitive
     description:

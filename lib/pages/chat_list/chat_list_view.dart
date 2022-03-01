@@ -2,9 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:animations/animations.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
 import 'package:matrix/matrix.dart';
 import 'package:vrouter/vrouter.dart';
 
@@ -43,16 +45,16 @@ class ChatListView extends StatelessWidget {
                       ? null
                       : Theme.of(context).colorScheme.primary,
                 ),
-                leading: selectMode == SelectMode.normal
-                    ? Matrix.of(context).isMultiAccount
-                        ? ClientChooserButton(controller)
-                        : null
-                    : IconButton(
-                        tooltip: L10n.of(context)!.cancel,
-                        icon: const Icon(Icons.close_outlined),
-                        onPressed: controller.cancelAction,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
+                leading: Matrix.of(context).isMultiAccount
+                    ? ClientChooserButton(controller)
+                    : selectMode == SelectMode.normal
+                        ? null
+                        : IconButton(
+                            tooltip: L10n.of(context)!.cancel,
+                            icon: const Icon(Icons.close_outlined),
+                            onPressed: controller.cancelAction,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
                 centerTitle: false,
                 actions: selectMode == SelectMode.share
                     ? null
@@ -93,11 +95,20 @@ class ChatListView extends StatelessWidget {
                             ),
                           ]
                         : [
-                            IconButton(
-                              icon: const Icon(Icons.search_outlined),
-                              tooltip: L10n.of(context)!.search,
-                              onPressed: () =>
+                            KeyBoardShortcuts(
+                              keysToPress: {
+                                LogicalKeyboardKey.controlLeft,
+                                LogicalKeyboardKey.keyF
+                              },
+                              onKeysPressed: () =>
                                   VRouter.of(context).to('/search'),
+                              helpLabel: L10n.of(context)!.search,
+                              child: IconButton(
+                                icon: const Icon(Icons.search_outlined),
+                                tooltip: L10n.of(context)!.search,
+                                onPressed: () =>
+                                    VRouter.of(context).to('/search'),
+                              ),
                             ),
                             if (selectMode == SelectMode.normal)
                               IconButton(
@@ -213,12 +224,21 @@ class ChatListView extends StatelessWidget {
                 Expanded(child: _ChatListViewBody(controller)),
               ]),
               floatingActionButton: selectMode == SelectMode.normal
-                  ? FloatingActionButton.extended(
-                      isExtended: controller.scrolledToTop,
-                      onPressed: () =>
+                  ? KeyBoardShortcuts(
+                      child: FloatingActionButton.extended(
+                        isExtended: controller.scrolledToTop,
+                        onPressed: () =>
+                            VRouter.of(context).to('/newprivatechat'),
+                        icon: const Icon(CupertinoIcons.chat_bubble),
+                        label: Text(L10n.of(context)!.newChat),
+                      ),
+                      keysToPress: {
+                        LogicalKeyboardKey.controlLeft,
+                        LogicalKeyboardKey.keyN
+                      },
+                      onKeysPressed: () =>
                           VRouter.of(context).to('/newprivatechat'),
-                      icon: const Icon(CupertinoIcons.chat_bubble),
-                      label: Text(L10n.of(context)!.newChat),
+                      helpLabel: L10n.of(context)!.newChat,
                     )
                   : null,
               bottomNavigationBar: Column(

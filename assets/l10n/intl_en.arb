@@ -2750,5 +2750,14 @@
   "experimentalVideoCalls": "Experimental video calls",
   "@experimentalVideoCalls": {},
   "emailOrUsername": "Email or username",
-  "@emailOrUsername": {}
+  "@emailOrUsername": {},
+  "switchToAccount": "Switch to account {number}",
+    "@switchToAccount": {
+      "type": "number",
+      "placeholders": {
+        "number": {}
+      }
+    },
+    "nextAccount": "Next account",
+    "previousAccount": "Previous account"
 }
