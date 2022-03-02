@@ -18,7 +18,7 @@
   "@passwordsDoNotMatch": {},
   "pleaseEnterValidEmail": "لطفاً یک آدرس ایمیل معتبر وارد کن.",
   "@pleaseEnterValidEmail": {},
-  "accept": "پذیرفتن",
+  "accept": "بپذیر",
   "@accept": {
     "type": "text",
     "placeholders": {}
@@ -37,6 +37,85 @@
   },
   "accountInformation": "اطلاعات حساب",
   "@accountInformation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addToSpace": "به اسپاش اضافه کن",
+  "@addToSpace": {},
+  "appLock": "قفل برنامه",
+  "@appLock": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "all": "همه",
+  "@all": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "allChats": "همه اتاق‌ها",
+  "@allChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addEmail": "ایمیل اضافه کن",
+  "@addEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addGroupDescription": "توضیحات گروه اضافه کن",
+  "@addGroupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewFriend": "دوست جدید اضافه کن",
+  "@addNewFriend": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "alreadyHaveAnAccount": "قبلاً حساب دارید؟",
+  "@alreadyHaveAnAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "answeredTheCall": "{senderName} زنگ زدن را جواب کرد",
+  "@answeredTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "anyoneCanJoin": "هرکسی می‌تواند بپیوندد",
+  "@anyoneCanJoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "archive": "بایگانی",
+  "@archive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "archivedRoom": "اتاق بایگانی شده",
+  "@archivedRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSure": "مطمئن هستید؟",
+  "@areYouSure": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSureYouWantToLogout": "مطمئن هستید می‌خواهید خروج شوید؟",
+  "@areYouSureYouWantToLogout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPause": "مکث",
+  "@audioPlayerPause": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPlay": "نمایش",
+  "@audioPlayerPlay": {
     "type": "text",
     "placeholders": {}
   }
