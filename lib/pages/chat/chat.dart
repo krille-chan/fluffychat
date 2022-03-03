@@ -688,6 +688,7 @@ class ChatController extends State<Chat> {
         break;
       case EmojiPickerType.keyboard:
         typeEmoji(emoji);
+        onInputBarChanged(sendController.text);
         break;
     }
   }
