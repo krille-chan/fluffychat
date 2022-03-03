@@ -2767,5 +2767,16 @@
   "experimentalVideoCalls": "Deneysel görüntülü aramalar",
   "@experimentalVideoCalls": {},
   "emailOrUsername": "E-posta veya kullanıcı adı",
-  "@emailOrUsername": {}
+  "@emailOrUsername": {},
+  "switchToAccount": "{number}. hesaba geç",
+  "@switchToAccount": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "nextAccount": "Sonraki hesap",
+  "@nextAccount": {},
+  "previousAccount": "Önceki hesap",
+  "@previousAccount": {}
 }
