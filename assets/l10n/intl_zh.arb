@@ -2767,5 +2767,16 @@
   "experimentalVideoCalls": "实验性的视频通话",
   "@experimentalVideoCalls": {},
   "emailOrUsername": "电子邮箱或用户名",
-  "@emailOrUsername": {}
+  "@emailOrUsername": {},
+  "switchToAccount": "切换到账户 {number}",
+  "@switchToAccount": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "nextAccount": "下个账户",
+  "@nextAccount": {},
+  "previousAccount": "上个账户",
+  "@previousAccount": {}
 }
