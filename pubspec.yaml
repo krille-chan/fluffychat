@@ -62,11 +62,11 @@ dependencies:
   open_noti_settings: ^0.4.0
   package_info_plus: ^1.3.0
   path_provider: ^2.0.9
-  permission_handler: ^8.3.0
+  permission_handler: ^9.2.0
   pin_code_text_field: ^1.8.0
   provider: ^6.0.2
   punycode: ^1.0.0
-  qr_code_scanner: ^0.6.1
+  qr_code_scanner: ^0.7.0
   qr_flutter: ^4.0.0
   receive_sharing_intent: ^1.4.5
   record: ^3.0.2
@@ -84,7 +84,7 @@ dependencies:
   video_compress: ^3.1.0
   video_player: ^2.2.18
   vrouter: ^1.2.0+21
-  wakelock: ^0.5.6
+  wakelock: ^0.6.1+1
 
 dev_dependencies:
   dart_code_metrics: ^4.10.1
