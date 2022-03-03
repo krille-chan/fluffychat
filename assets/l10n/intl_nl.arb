@@ -2766,5 +2766,14 @@
   "experimentalVideoCalls": "Videogesprekken (experimenteel)",
   "@experimentalVideoCalls": {},
   "emailOrUsername": "Email of inlognaam",
-  "@emailOrUsername": {}
+  "@emailOrUsername": {},
+  "nextAccount": "Volgende account",
+  "@nextAccount": {},
+  "switchToAccount": "Naar account {number} overschakelen",
+  "@switchToAccount": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  }
 }
