@@ -2762,5 +2762,16 @@
   "emailOrUsername": "Електронна адреса або ім’я користувача",
   "@emailOrUsername": {},
   "experimentalVideoCalls": "Експериментальні відеовиклики",
-  "@experimentalVideoCalls": {}
+  "@experimentalVideoCalls": {},
+  "switchToAccount": "Перемкнутися на обліковий запис {number}",
+  "@switchToAccount": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "nextAccount": "Наступний обліковий запис",
+  "@nextAccount": {},
+  "previousAccount": "Попередній обліковий запис",
+  "@previousAccount": {}
 }
