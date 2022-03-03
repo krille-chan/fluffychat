@@ -155,6 +155,9 @@ class ChatView extends StatelessWidget {
         if (controller.selectedEvents.isNotEmpty) {
           controller.clearSelectedEvents();
           redirector.stopRedirection();
+        } else if (controller.showEmojiPicker) {
+          controller.emojiPickerAction();
+          redirector.stopRedirection();
         }
       },
       child: GestureDetector(
