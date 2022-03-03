@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:animations/animations.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
@@ -72,126 +74,143 @@ class ChatInputRow extends StatelessWidget {
                   : Container(),
             ]
           : <Widget>[
-              AnimatedContainer(
-                duration: const Duration(milliseconds: 200),
-                height: 56,
-                width: controller.inputText.isEmpty ? 56 : 0,
-                alignment: Alignment.center,
-                clipBehavior: Clip.hardEdge,
-                decoration: const BoxDecoration(),
-                child: PopupMenuButton<String>(
-                  icon: const Icon(Icons.add_outlined),
-                  onSelected: controller.onAddPopupMenuButtonSelected,
-                  itemBuilder: (BuildContext context) =>
-                      <PopupMenuEntry<String>>[
-                    PopupMenuItem<String>(
-                      value: 'file',
-                      child: ListTile(
-                        leading: const CircleAvatar(
-                          backgroundColor: Colors.green,
-                          foregroundColor: Colors.white,
-                          child: Icon(Icons.attachment_outlined),
-                        ),
-                        title: Text(L10n.of(context)!.sendFile),
-                        contentPadding: const EdgeInsets.all(0),
-                      ),
-                    ),
-                    PopupMenuItem<String>(
-                      value: 'image',
-                      child: ListTile(
-                        leading: const CircleAvatar(
-                          backgroundColor: Colors.blue,
-                          foregroundColor: Colors.white,
-                          child: Icon(Icons.image_outlined),
-                        ),
-                        title: Text(L10n.of(context)!.sendImage),
-                        contentPadding: const EdgeInsets.all(0),
-                      ),
-                    ),
-                    if (PlatformInfos.isMobile)
+              KeyBoardShortcuts(
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 200),
+                  height: 56,
+                  width: controller.inputText.isEmpty ? 56 : 0,
+                  alignment: Alignment.center,
+                  clipBehavior: Clip.hardEdge,
+                  decoration: const BoxDecoration(),
+                  child: PopupMenuButton<String>(
+                    icon: const Icon(Icons.add_outlined),
+                    onSelected: controller.onAddPopupMenuButtonSelected,
+                    itemBuilder: (BuildContext context) =>
+                        <PopupMenuEntry<String>>[
                       PopupMenuItem<String>(
-                        value: 'camera',
+                        value: 'file',
                         child: ListTile(
                           leading: const CircleAvatar(
-                            backgroundColor: Colors.purple,
+                            backgroundColor: Colors.green,
                             foregroundColor: Colors.white,
-                            child: Icon(Icons.camera_alt_outlined),
+                            child: Icon(Icons.attachment_outlined),
                           ),
-                          title: Text(L10n.of(context)!.openCamera),
+                          title: Text(L10n.of(context)!.sendFile),
                           contentPadding: const EdgeInsets.all(0),
                         ),
                       ),
-                    if (PlatformInfos.isMobile)
                       PopupMenuItem<String>(
-                        value: 'camera-video',
+                        value: 'image',
                         child: ListTile(
                           leading: const CircleAvatar(
-                            backgroundColor: Colors.red,
+                            backgroundColor: Colors.blue,
                             foregroundColor: Colors.white,
-                            child: Icon(Icons.videocam_outlined),
+                            child: Icon(Icons.image_outlined),
                           ),
-                          title: Text(L10n.of(context)!.openVideoCamera),
+                          title: Text(L10n.of(context)!.sendImage),
                           contentPadding: const EdgeInsets.all(0),
                         ),
                       ),
-                    if (controller.room!
-                        .getImagePacks(ImagePackUsage.sticker)
-                        .isNotEmpty)
-                      PopupMenuItem<String>(
-                        value: 'sticker',
-                        child: ListTile(
-                          leading: const CircleAvatar(
-                            backgroundColor: Colors.orange,
-                            foregroundColor: Colors.white,
-                            child: Icon(Icons.emoji_emotions_outlined),
+                      if (PlatformInfos.isMobile)
+                        PopupMenuItem<String>(
+                          value: 'camera',
+                          child: ListTile(
+                            leading: const CircleAvatar(
+                              backgroundColor: Colors.purple,
+                              foregroundColor: Colors.white,
+                              child: Icon(Icons.camera_alt_outlined),
+                            ),
+                            title: Text(L10n.of(context)!.openCamera),
+                            contentPadding: const EdgeInsets.all(0),
                           ),
-                          title: Text(L10n.of(context)!.sendSticker),
-                          contentPadding: const EdgeInsets.all(0),
                         ),
-                      ),
-                    if (PlatformInfos.isMobile)
-                      PopupMenuItem<String>(
-                        value: 'location',
-                        child: ListTile(
-                          leading: const CircleAvatar(
-                            backgroundColor: Colors.brown,
-                            foregroundColor: Colors.white,
-                            child: Icon(Icons.gps_fixed_outlined),
+                      if (PlatformInfos.isMobile)
+                        PopupMenuItem<String>(
+                          value: 'camera-video',
+                          child: ListTile(
+                            leading: const CircleAvatar(
+                              backgroundColor: Colors.red,
+                              foregroundColor: Colors.white,
+                              child: Icon(Icons.videocam_outlined),
+                            ),
+                            title: Text(L10n.of(context)!.openVideoCamera),
+                            contentPadding: const EdgeInsets.all(0),
                           ),
-                          title: Text(L10n.of(context)!.shareLocation),
-                          contentPadding: const EdgeInsets.all(0),
                         ),
-                      ),
-                  ],
+                      if (controller.room!
+                          .getImagePacks(ImagePackUsage.sticker)
+                          .isNotEmpty)
+                        PopupMenuItem<String>(
+                          value: 'sticker',
+                          child: ListTile(
+                            leading: const CircleAvatar(
+                              backgroundColor: Colors.orange,
+                              foregroundColor: Colors.white,
+                              child: Icon(Icons.emoji_emotions_outlined),
+                            ),
+                            title: Text(L10n.of(context)!.sendSticker),
+                            contentPadding: const EdgeInsets.all(0),
+                          ),
+                        ),
+                      if (PlatformInfos.isMobile)
+                        PopupMenuItem<String>(
+                          value: 'location',
+                          child: ListTile(
+                            leading: const CircleAvatar(
+                              backgroundColor: Colors.brown,
+                              foregroundColor: Colors.white,
+                              child: Icon(Icons.gps_fixed_outlined),
+                            ),
+                            title: Text(L10n.of(context)!.shareLocation),
+                            contentPadding: const EdgeInsets.all(0),
+                          ),
+                        ),
+                    ],
+                  ),
                 ),
+                keysToPress: {
+                  LogicalKeyboardKey.altLeft,
+                  LogicalKeyboardKey.keyA
+                },
+                onKeysPressed: () =>
+                    controller.onAddPopupMenuButtonSelected('file'),
+                helpLabel: L10n.of(context)!.sendFile,
               ),
               Container(
                 height: 56,
                 alignment: Alignment.center,
-                child: IconButton(
-                  tooltip: L10n.of(context)!.emojis,
-                  icon: PageTransitionSwitcher(
-                    transitionBuilder: (
-                      Widget child,
-                      Animation<double> primaryAnimation,
-                      Animation<double> secondaryAnimation,
-                    ) {
-                      return SharedAxisTransition(
-                        animation: primaryAnimation,
-                        secondaryAnimation: secondaryAnimation,
-                        transitionType: SharedAxisTransitionType.scaled,
-                        child: child,
-                        fillColor: Colors.transparent,
-                      );
-                    },
-                    child: Icon(
-                      controller.showEmojiPicker
-                          ? Icons.keyboard
-                          : Icons.emoji_emotions_outlined,
-                      key: ValueKey(controller.showEmojiPicker),
+                child: KeyBoardShortcuts(
+                  child: IconButton(
+                    tooltip: L10n.of(context)!.emojis,
+                    icon: PageTransitionSwitcher(
+                      transitionBuilder: (
+                        Widget child,
+                        Animation<double> primaryAnimation,
+                        Animation<double> secondaryAnimation,
+                      ) {
+                        return SharedAxisTransition(
+                          animation: primaryAnimation,
+                          secondaryAnimation: secondaryAnimation,
+                          transitionType: SharedAxisTransitionType.scaled,
+                          child: child,
+                          fillColor: Colors.transparent,
+                        );
+                      },
+                      child: Icon(
+                        controller.showEmojiPicker
+                            ? Icons.keyboard
+                            : Icons.emoji_emotions_outlined,
+                        key: ValueKey(controller.showEmojiPicker),
+                      ),
                     ),
+                    onPressed: controller.emojiPickerAction,
                   ),
-                  onPressed: controller.emojiPickerAction,
+                  keysToPress: {
+                    LogicalKeyboardKey.altLeft,
+                    LogicalKeyboardKey.keyE
+                  },
+                  onKeysPressed: controller.emojiPickerAction,
+                  helpLabel: L10n.of(context)!.emojis,
                 ),
               ),
               if (controller.matrix!.isMultiAccount &&
