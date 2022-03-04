@@ -2761,5 +2761,16 @@
   "emailOrUsername": "Email atau nama penggina",
   "@emailOrUsername": {},
   "experimentalVideoCalls": "Panggilan video eksperimental",
-  "@experimentalVideoCalls": {}
+  "@experimentalVideoCalls": {},
+  "previousAccount": "Akun sebelumnya",
+  "@previousAccount": {},
+  "switchToAccount": "Ganti ke akun {number}",
+  "@switchToAccount": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "nextAccount": "Akun berikutnya",
+  "@nextAccount": {}
 }
