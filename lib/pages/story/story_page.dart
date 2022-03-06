@@ -19,6 +19,7 @@ import 'package:fluffychat/utils/matrix_sdk_extensions.dart/client_stories_exten
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/ios_badge_client_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/room_status_extension.dart';
+import 'package:fluffychat/utils/story_theme_data.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -44,6 +45,10 @@ class StoryPageController extends State<StoryPage> {
   Timeline? timeline;
 
   Event? get currentEvent => index < events.length ? events[index] : null;
+  StoryThemeData get storyThemeData =>
+      StoryThemeData.fromJson(currentEvent?.content
+              .tryGetMap<String, dynamic>(StoryThemeData.contentKey) ??
+          {});
 
   bool replyLoading = false;
   bool _modalOpened = false;
@@ -467,6 +472,14 @@ class StoryPageController extends State<StoryPage> {
       case PopupStoryAction.delete:
         _delete();
         break;
+      case PopupStoryAction.message:
+        final roomIdResult = await showFutureLoadingDialog(
+          context: context,
+          future: () => currentEvent!.sender.startDirectChat(),
+        );
+        if (roomIdResult.error != null) return;
+        VRouter.of(context).toSegments(['rooms', roomIdResult.result!]);
+        break;
     }
   }
 
@@ -493,4 +506,5 @@ extension on List<Event> {
 enum PopupStoryAction {
   report,
   delete,
+  message,
 }

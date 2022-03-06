@@ -24,7 +24,7 @@ dependencies:
   desktop_notifications: ^0.6.3
   device_info_plus: ^3.2.1
   email_validator: ^2.0.1
-  emoji_picker_flutter: ^1.1.1
+  emoji_picker_flutter: ^1.1.2
   encrypt: ^5.0.1
   #fcm_shared_isolate:
   #  git: https://gitlab.com/famedly/libraries/fcm_shared_isolate.git

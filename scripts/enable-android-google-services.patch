@@ -83,7 +83,7 @@ index 73b9eca2..5e6f9f16 100644
 +++ b/pubspec.yaml
 @@ -25,8 +25,8 @@ dependencies:
    email_validator: ^2.0.1
-   emoji_picker_flutter: ^1.1.1
+   emoji_picker_flutter: ^1.1.2
    encrypt: ^5.0.1
 -  #fcm_shared_isolate:
 -  #  git: https://gitlab.com/famedly/libraries/fcm_shared_isolate.git
