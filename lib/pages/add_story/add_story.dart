@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'dart:math';
 
-import 'package:fluffychat/utils/story_theme_data.dart';
 import 'package:flutter/material.dart';
 
 import 'package:file_picker_cross/file_picker_cross.dart';
@@ -15,6 +14,7 @@ import 'package:fluffychat/pages/add_story/add_story_view.dart';
 import 'package:fluffychat/pages/add_story/invite_story_page.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_file_extension.dart';
 import 'package:fluffychat/utils/resize_image.dart';
+import 'package:fluffychat/utils/story_theme_data.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/matrix_sdk_extensions.dart/client_stories_extension.dart';
@@ -131,6 +131,7 @@ class AddStoryController extends State<AddStoryPage> {
 
   void reset() => setState(() {
         image = video = null;
+        alignmentX = alignmentY = 0;
         controller.clear();
       });
 
