@@ -2755,5 +2755,20 @@
   "pinnedEventsError": "Erro ao cargar mensaxes fixadas",
   "@pinnedEventsError": {},
   "confirmEventUnpin": "Tes a certeza de querer desafixar o evento?",
-  "@confirmEventUnpin": {}
+  "@confirmEventUnpin": {},
+  "experimentalVideoCalls": "Chamadas de vídeo en probas",
+  "@experimentalVideoCalls": {},
+  "emailOrUsername": "Email ou nome de usuaria",
+  "@emailOrUsername": {},
+  "switchToAccount": "Cambiar á conta {number}",
+  "@switchToAccount": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "previousAccount": "Conta anterior",
+  "@previousAccount": {},
+  "nextAccount": "Conta seguinte",
+  "@nextAccount": {}
 }
