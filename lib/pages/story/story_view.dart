@@ -320,7 +320,7 @@ class StoryView extends StatelessWidget {
                         minLines: 1,
                         maxLines: 7,
                         onSubmitted: controller.replyAction,
-                        textInputAction: TextInputAction.newline,
+                        textInputAction: TextInputAction.send,
                         readOnly: controller.replyLoading,
                         decoration: InputDecoration(
                           hintText: L10n.of(context)!.reply,
