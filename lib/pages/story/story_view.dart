@@ -172,65 +172,64 @@ class StoryView extends StatelessWidget {
             controller.loadingModeOff();
           }
           final hash = event.infoMap['xyz.amorgan.blurhash'];
-          return GestureDetector(
-            onTapDown: controller.hold,
-            onTapUp: controller.unhold,
-            onTapCancel: controller.unhold,
-            onVerticalDragStart: controller.hold,
-            onVerticalDragEnd: controller.unhold,
-            onHorizontalDragStart: controller.hold,
-            onHorizontalDragEnd: controller.unhold,
-            child: Stack(
-              children: [
-                if (hash is String)
-                  BlurHash(
-                    hash: hash,
-                    imageFit: BoxFit.cover,
-                  ),
-                if (event.messageType == MessageTypes.Video &&
-                    PlatformInfos.isMobile)
-                  Positioned(
-                    top: 80,
-                    bottom: 64,
-                    left: 0,
-                    right: 0,
-                    child: FutureBuilder<VideoPlayerController?>(
-                      future: controller.loadVideoControllerFuture ??=
-                          controller.loadVideoController(event),
-                      builder: (context, snapshot) {
-                        final videoPlayerController = snapshot.data;
-                        if (videoPlayerController == null) {
-                          controller.loadingModeOn();
-                          return Container();
-                        }
-                        controller.loadingModeOff();
-                        return Center(
-                            child: VideoPlayer(videoPlayerController));
-                      },
-                    ),
-                  ),
-                if (event.messageType == MessageTypes.Image ||
-                    (event.messageType == MessageTypes.Video &&
-                        !PlatformInfos.isMobile))
-                  FutureBuilder<MatrixFile>(
-                    future: controller.downloadAndDecryptAttachment(
-                        event, event.messageType == MessageTypes.Video),
+          return Stack(
+            children: [
+              if (hash is String)
+                BlurHash(
+                  hash: hash,
+                  imageFit: BoxFit.cover,
+                ),
+              if (event.messageType == MessageTypes.Video &&
+                  PlatformInfos.isMobile)
+                Positioned(
+                  top: 80,
+                  bottom: 64,
+                  left: 0,
+                  right: 0,
+                  child: FutureBuilder<VideoPlayerController?>(
+                    future: controller.loadVideoControllerFuture ??=
+                        controller.loadVideoController(event),
                     builder: (context, snapshot) {
-                      final matrixFile = snapshot.data;
-                      if (matrixFile == null) {
+                      final videoPlayerController = snapshot.data;
+                      if (videoPlayerController == null) {
                         controller.loadingModeOn();
                         return Container();
                       }
                       controller.loadingModeOff();
-                      return Center(
-                        child: Image.memory(
-                          matrixFile.bytes,
-                          fit: controller.storyThemeData.fit,
-                        ),
-                      );
+                      return Center(child: VideoPlayer(videoPlayerController));
                     },
                   ),
-                AnimatedContainer(
+                ),
+              if (event.messageType == MessageTypes.Image ||
+                  (event.messageType == MessageTypes.Video &&
+                      !PlatformInfos.isMobile))
+                FutureBuilder<MatrixFile>(
+                  future: controller.downloadAndDecryptAttachment(
+                      event, event.messageType == MessageTypes.Video),
+                  builder: (context, snapshot) {
+                    final matrixFile = snapshot.data;
+                    if (matrixFile == null) {
+                      controller.loadingModeOn();
+                      return Container();
+                    }
+                    controller.loadingModeOff();
+                    return Center(
+                      child: Image.memory(
+                        matrixFile.bytes,
+                        fit: controller.storyThemeData.fit,
+                      ),
+                    );
+                  },
+                ),
+              GestureDetector(
+                onTapDown: controller.hold,
+                onTapUp: controller.unhold,
+                onTapCancel: controller.unhold,
+                onVerticalDragStart: controller.hold,
+                onVerticalDragEnd: controller.unhold,
+                onHorizontalDragStart: controller.hold,
+                onHorizontalDragEnd: controller.unhold,
+                child: AnimatedContainer(
                   duration: const Duration(milliseconds: 200),
                   padding: const EdgeInsets.symmetric(
                     horizontal: 8.0,
@@ -275,92 +274,96 @@ class StoryView extends StatelessWidget {
                     ),
                   ),
                 ),
+              ),
+              Positioned(
+                top: 4,
+                left: 4,
+                right: 4,
+                child: SafeArea(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      for (var i = 0; i < events.length; i++)
+                        Expanded(
+                          child: i == controller.index
+                              ? LinearProgressIndicator(
+                                  color: Colors.white,
+                                  minHeight: 2,
+                                  backgroundColor: Colors.grey.shade600,
+                                  value: controller.loadingMode
+                                      ? null
+                                      : controller.progress.inMilliseconds /
+                                          StoryPageController
+                                              .maxProgress.inMilliseconds,
+                                )
+                              : Container(
+                                  margin: const EdgeInsets.all(4),
+                                  height: 2,
+                                  color: i < controller.index
+                                      ? Colors.white
+                                      : Colors.grey.shade600,
+                                ),
+                        ),
+                    ],
+                  ),
+                ),
+              ),
+              if (!controller.isOwnStory && currentEvent != null)
                 Positioned(
-                  top: 4,
-                  left: 4,
-                  right: 4,
+                  bottom: 16,
+                  left: 16,
+                  right: 16,
                   child: SafeArea(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        for (var i = 0; i < events.length; i++)
-                          Expanded(
-                            child: i == controller.index
-                                ? LinearProgressIndicator(
-                                    color: Colors.white,
-                                    minHeight: 2,
-                                    backgroundColor: Colors.grey.shade600,
-                                    value: controller.loadingMode
-                                        ? null
-                                        : controller.progress.inMilliseconds /
-                                            StoryPageController
-                                                .maxProgress.inMilliseconds,
-                                  )
-                                : Container(
-                                    margin: const EdgeInsets.all(4),
-                                    height: 2,
-                                    color: i < controller.index
-                                        ? Colors.white
-                                        : Colors.grey.shade600,
-                                  ),
-                          ),
-                      ],
+                    child: TextField(
+                      focusNode: controller.replyFocus,
+                      controller: controller.replyController,
+                      onSubmitted: controller.replyAction,
+                      textInputAction: TextInputAction.send,
+                      readOnly: controller.replyLoading,
+                      decoration: InputDecoration(
+                        hintText: L10n.of(context)!.reply,
+                        prefixIcon: IconButton(
+                          onPressed: controller.replyEmojiAction,
+                          icon: const Icon(Icons.emoji_emotions_outlined),
+                        ),
+                        suffixIcon: controller.replyLoading
+                            ? const SizedBox(
+                                width: 16,
+                                height: 16,
+                                child: Center(
+                                  child: CircularProgressIndicator.adaptive(
+                                      strokeWidth: 2),
+                                ),
+                              )
+                            : IconButton(
+                                onPressed: controller.replyAction,
+                                icon: const Icon(Icons.send_outlined),
+                              ),
+                      ),
                     ),
                   ),
                 ),
-                if (!controller.isOwnStory && currentEvent != null)
-                  Positioned(
-                    bottom: 16,
-                    left: 16,
-                    right: 16,
-                    child: SafeArea(
-                      child: TextField(
-                        focusNode: controller.replyFocus,
-                        controller: controller.replyController,
-                        minLines: 1,
-                        maxLines: 7,
-                        onSubmitted: controller.replyAction,
-                        textInputAction: TextInputAction.send,
-                        readOnly: controller.replyLoading,
-                        decoration: InputDecoration(
-                          hintText: L10n.of(context)!.reply,
-                          prefixIcon: IconButton(
-                            onPressed: controller.replyEmojiAction,
-                            icon: const Icon(Icons.emoji_emotions_outlined),
-                          ),
-                          suffixIcon: controller.replyLoading
-                              ? const CircularProgressIndicator.adaptive(
-                                  strokeWidth: 2)
-                              : IconButton(
-                                  onPressed: controller.replyAction,
-                                  icon: const Icon(Icons.send_outlined),
-                                ),
+              if (controller.isOwnStory &&
+                  controller.currentSeenByUsers.isNotEmpty)
+                Positioned(
+                  bottom: 16,
+                  left: 16,
+                  right: 16,
+                  child: SafeArea(
+                    child: Center(
+                      child: OutlinedButton.icon(
+                        style: OutlinedButton.styleFrom(
+                          backgroundColor:
+                              Theme.of(context).colorScheme.surface,
                         ),
+                        onPressed: controller.displaySeenByUsers,
+                        icon: const Icon(Icons.visibility_outlined),
+                        label: Text(controller.seenByUsersTitle),
                       ),
                     ),
                   ),
-                if (controller.isOwnStory &&
-                    controller.currentSeenByUsers.isNotEmpty)
-                  Positioned(
-                    bottom: 16,
-                    left: 16,
-                    right: 16,
-                    child: SafeArea(
-                      child: Center(
-                        child: OutlinedButton.icon(
-                          style: OutlinedButton.styleFrom(
-                            backgroundColor:
-                                Theme.of(context).colorScheme.surface,
-                          ),
-                          onPressed: controller.displaySeenByUsers,
-                          icon: const Icon(Icons.visibility_outlined),
-                          label: Text(controller.seenByUsersTitle),
-                        ),
-                      ),
-                    ),
-                  ),
-              ],
-            ),
+                ),
+            ],
           );
         },
       ),
