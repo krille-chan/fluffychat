@@ -13,14 +13,14 @@ import '../../utils/platform_infos.dart';
 import 'login_view.dart';
 
 class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+  final String username;
+  const Login({Key? key, required this.username}) : super(key: key);
 
   @override
   LoginController createState() => LoginController();
 }
 
 class LoginController extends State<Login> {
-  final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   String? usernameError;
   String? passwordError;
@@ -31,24 +31,19 @@ class LoginController extends State<Login> {
 
   void login([_]) async {
     final matrix = Matrix.of(context);
-    if (usernameController.text.isEmpty) {
-      setState(() => usernameError = L10n.of(context)!.pleaseEnterYourUsername);
-    } else {
-      setState(() => usernameError = null);
-    }
     if (passwordController.text.isEmpty) {
       setState(() => passwordError = L10n.of(context)!.pleaseEnterYourPassword);
     } else {
       setState(() => passwordError = null);
     }
 
-    if (usernameController.text.isEmpty || passwordController.text.isEmpty) {
+    if (passwordController.text.isEmpty) {
       return;
     }
 
     setState(() => loading = true);
     try {
-      final username = usernameController.text;
+      final username = widget.username;
       AuthenticationIdentifier identifier;
       if (username.isEmail) {
         identifier = AuthenticationThirdPartyIdentifier(
@@ -160,8 +155,7 @@ class LoginController extends State<Login> {
       fullyCapitalizedForMaterial: false,
       textFields: [
         DialogTextField(
-          initialText:
-              usernameController.text.isEmail ? usernameController.text : '',
+          initialText: widget.username.isEmail ? widget.username : '',
           hintText: L10n.of(context)!.enterAnEmailAddress,
           keyboardType: TextInputType.emailAddress,
         ),
@@ -228,7 +222,6 @@ class LoginController extends State<Login> {
     if (success.error == null) {
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(L10n.of(context)!.passwordHasBeenChanged)));
-      usernameController.text = input.single;
       passwordController.text = password.single;
       login();
     }

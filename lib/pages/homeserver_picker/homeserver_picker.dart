@@ -1,24 +1,15 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:animations/animations.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:flutter_web_auth/flutter_web_auth.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 import 'package:matrix_homeserver_recommendations/matrix_homeserver_recommendations.dart';
-import 'package:universal_html/html.dart' as html;
 import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/homeserver_picker/homeserver_picker_view.dart';
-import 'package:fluffychat/utils/famedlysdk_store.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/localized_exception_extension.dart';
-import 'homeserver_tile.dart';
 
 class HomeserverPicker extends StatefulWidget {
   const HomeserverPicker({Key? key}) : super(key: key);
@@ -41,40 +32,31 @@ class HomeserverPickerController extends State<HomeserverPicker> {
 
   late HomeserverListProvider parser;
 
-  void setDomain(String domain) {
-    this.domain = domain;
-    _coolDown?.cancel();
-    if (domain.isNotEmpty) {
-      _coolDown =
-          Timer(const Duration(milliseconds: 500), checkHomeserverAction);
-    }
-  }
+  bool customHomeserverLoading = false;
 
-  void _loginWithToken(String token) {
-    if (token.isEmpty) return;
+  bool get foundCustomHomeserver => benchmarkResults!
+      .where((element) => element.homeserver.baseUrl.host == searchTerm)
+      .isEmpty;
 
-    showFutureLoadingDialog(
-      context: context,
-      future: () async {
-        if (Matrix.of(context).getLoginClient().homeserver == null) {
-          await Matrix.of(context).getLoginClient().checkHomeserver(
-                await Store()
-                    .getItem(HomeserverPickerController.ssoHomeserverKey),
-              );
-        }
-        await Matrix.of(context).getLoginClient().login(
-              LoginType.mLoginToken,
-              token: token,
-              initialDeviceDisplayName: PlatformInfos.clientName,
-            );
-      },
-    );
-  }
+  String? searchTerm;
+
+  List<HomeserverBenchmarkResult> get filteredHomeservers =>
+      searchTerm == null || searchTerm!.isEmpty
+          ? benchmarkResults!
+          : benchmarkResults!
+              .where((element) =>
+                  element.homeserver.baseUrl.host.contains(searchTerm!) ||
+                  (element.homeserver.description?.contains(searchTerm!) ??
+                      false))
+              .toList();
+
+  get homeserverCount =>
+      filteredHomeservers.length +
+      ((customHomeserverLoading || foundCustomHomeserver) ? 1 : 0);
 
   @override
   void initState() {
     super.initState();
-    checkHomeserverAction();
     benchmarkHomeServers();
   }
 
@@ -84,112 +66,8 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     _intentDataStreamSubscription?.cancel();
   }
 
-  String? _lastCheckedHomeserver;
-
-  /// Starts an analysis of the given homeserver. It uses the current domain and
-  /// makes sure that it is prefixed with https. Then it searches for the
-  /// well-known information and forwards to the login page depending on the
-  /// login type.
-  Future<void> checkHomeserverAction() async {
-    _coolDown?.cancel();
-    if (_lastCheckedHomeserver == domain) return;
-    if (domain == null || domain!.isEmpty) {
-      throw L10n.of(context)!.changeTheHomeserver;
-    }
-    var homeserver = domain;
-
-    if (!homeserver!.startsWith('https://')) {
-      homeserver = 'https://$homeserver';
-    }
-
-    setState(() {
-      error = _rawLoginTypes = registrationSupported = null;
-      isLoading = true;
-    });
-
-    try {
-      await Matrix.of(context).getLoginClient().checkHomeserver(homeserver);
-
-      _rawLoginTypes = await Matrix.of(context).getLoginClient().request(
-            RequestType.GET,
-            '/client/r0/login',
-          );
-      try {
-        await Matrix.of(context).getLoginClient().register();
-        registrationSupported = true;
-      } on MatrixException catch (e) {
-        registrationSupported = e.requireAdditionalAuthentication;
-      }
-    } catch (e) {
-      setState(() => error = (e).toLocalizedString(context));
-    } finally {
-      _lastCheckedHomeserver = domain;
-      if (mounted) {
-        setState(() => isLoading = false);
-      }
-    }
-  }
-
-  Map<String, dynamic>? _rawLoginTypes;
-  bool? registrationSupported;
-
-  List<IdentityProvider> get identityProviders {
-    if (!ssoLoginSupported) return [];
-    final rawProviders = _rawLoginTypes!.tryGetList('flows')!.singleWhere(
-        (flow) =>
-            flow['type'] == AuthenticationTypes.sso)['identity_providers'];
-    final list = (rawProviders as List)
-        .map((json) => IdentityProvider.fromJson(json))
-        .toList();
-    if (PlatformInfos.isCupertinoStyle) {
-      list.sort((a, b) => a.brand == 'apple' ? -1 : 1);
-    }
-    return list;
-  }
-
-  bool get passwordLoginSupported =>
-      Matrix.of(context)
-          .client
-          .supportedLoginTypes
-          .contains(AuthenticationTypes.password) &&
-      _rawLoginTypes!
-          .tryGetList('flows')!
-          .any((flow) => flow['type'] == AuthenticationTypes.password);
-
-  bool get ssoLoginSupported =>
-      Matrix.of(context)
-          .client
-          .supportedLoginTypes
-          .contains(AuthenticationTypes.sso) &&
-      _rawLoginTypes!
-          .tryGetList('flows')!
-          .any((flow) => flow['type'] == AuthenticationTypes.sso);
-
-  static const String ssoHomeserverKey = 'sso-homeserver';
-
-  void ssoLoginAction(String id) async {
-    if (kIsWeb) {
-      // We store the homserver in the local storage instead of a redirect
-      // parameter because of possible CSRF attacks.
-      Store().setItem(ssoHomeserverKey,
-          Matrix.of(context).getLoginClient().homeserver.toString());
-    }
-    final redirectUrl = kIsWeb
-        ? html.window.origin! + '/web/auth.html'
-        : AppConfig.appOpenUrlScheme.toLowerCase() + '://login';
-    final url =
-        '${Matrix.of(context).getLoginClient().homeserver?.toString()}/_matrix/client/r0/login/sso/redirect/${Uri.encodeComponent(id)}?redirectUrl=${Uri.encodeQueryComponent(redirectUrl)}';
-    final urlScheme = Uri.parse(redirectUrl).scheme;
-    final result = await FlutterWebAuth.authenticate(
-      url: url,
-      callbackUrlScheme: urlScheme,
-    );
-    final token = Uri.parse(result).queryParameters['loginToken'];
-    if (token != null) _loginWithToken(token);
-  }
-
   void signUpAction() => VRouter.of(context).to(
-        'signup',
+        'connect',
         queryParameters: {'domain': domain!},
       );
 
@@ -228,45 +106,102 @@ class HomeserverPickerController extends State<HomeserverPicker> {
       badServers.sort();
 
       benchmarkResults = List.from([...goodServers, ...badServers]);
-
+      bool foundRegistrationSupported = false;
       domain = benchmarkResults!.first.homeserver.baseUrl.host;
+      int counter = 0;
+      // iterating up to first homeserver supporting registration
+      while (foundRegistrationSupported == false) {
+        try {
+          var homeserver = domain;
+
+          if (!homeserver!.startsWith('https://')) {
+            homeserver = 'https://$homeserver';
+          }
+          final loginClient = Matrix.of(context).getLoginClient();
+          await loginClient.checkHomeserver(homeserver);
+          await loginClient.register();
+          foundRegistrationSupported = true;
+        } on MatrixException catch (e) {
+          if (e.requireAdditionalAuthentication) {
+            foundRegistrationSupported = true;
+          } else {
+            Logs().d(e.toString());
+            foundRegistrationSupported = false;
+            counter++;
+            domain = benchmarkResults![counter].homeserver.baseUrl.host;
+          }
+        }
+        setState(() {
+          isLoading = false;
+        });
+      }
     } on Exception catch (e, s) {
       Logs().e('Homeserver benchmark failed', e, s);
       domain = AppConfig.defaultHomeserver;
     } finally {
-      homeserverController = TextEditingController(text: domain);
-      checkHomeserverAction();
+      homeserverController = TextEditingController();
     }
   }
 
-  Future<void> showServerPicker() async {
-    final selection = await showModal(
-      context: context,
-      builder: (context) => SimpleDialog(
-          title: Text(L10n.of(context)!.changeTheHomeserver),
-          children: [
-            ...benchmarkResults!.map<Widget>(
-              (e) => HomeserverTile(
-                benchmark: e,
-                onSelect: () {
-                  Navigator.of(context).pop(e.homeserver);
-                },
-              ),
-            ),
-            const Divider(),
-            JoinMatrixAttributionTile(),
-          ]),
-    );
-    if (selection is Homeserver) {
-      if (domain != selection.baseUrl.host) {
-        setState(() {
-          domain = selection.baseUrl.host;
-          homeserverController!.text = domain!;
-        });
-        checkHomeserverAction();
+  Future<void> setHomeserver(String homeserver) async {
+    domain = homeserver;
+    signUpAction();
+  }
+
+  Future<void> checkHomeserverAction(String homeserver) async {
+    setState(() {
+      error = null;
+      customHomeserverLoading = true;
+    });
+
+    try {
+      await Matrix.of(context).getLoginClient().checkHomeserver(homeserver);
+      setState(() {
+        domain = homeserver;
+      });
+    } catch (e) {
+      setState(() => error = (e).toLocalizedString(context));
+    } finally {
+      if (mounted) {
+        customHomeserverLoading = false;
+        setState(() => isLoading = false);
       }
     }
   }
+
+  void searchHomeserver(String searchTerm) {
+    setState(() {
+      searchTerm = searchTerm;
+
+      error = null;
+    });
+
+    if (searchTerm.length >= 3) {
+      var homeserver = searchTerm;
+      if (!homeserver.startsWith('https://')) {
+        homeserver = 'https://$homeserver';
+      }
+      if (Uri.tryParse(homeserver) != null) {
+        _coolDown?.cancel();
+        _coolDown = Timer(
+          const Duration(milliseconds: 500),
+          () => checkHomeserverAction(homeserver),
+        );
+      } else {
+        setState(() {
+          customHomeserverLoading = false;
+        });
+      }
+    } else {
+      setState(() {
+        customHomeserverLoading = false;
+      });
+    }
+  }
+
+  void setDomain(String? domain) => setState(() => this.domain = domain);
+
+  void unsetDomain() => setState(() => domain = null);
 }
 
 class IdentityProvider {

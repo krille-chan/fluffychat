@@ -35,7 +35,7 @@
       "username": {}
     }
   },
-  "addEmail": "Ajouter un courriel",
+  "addEmail": "Ajouter un courriel (optional)",
   "@addEmail": {
     "type": "text",
     "placeholders": {}

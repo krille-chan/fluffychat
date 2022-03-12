@@ -9,14 +9,16 @@ import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/localized_exception_extension.dart';
 
 class SignupPage extends StatefulWidget {
-  const SignupPage({Key? key}) : super(key: key);
+  final String? username;
+  final VoidCallback? onRegistrationComplete;
+  const SignupPage({Key? key, this.username, this.onRegistrationComplete})
+      : super(key: key);
 
   @override
   SignupPageController createState() => SignupPageController();
 }
 
 class SignupPageController extends State<SignupPage> {
-  final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController passwordController2 = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -26,18 +28,11 @@ class SignupPageController extends State<SignupPage> {
 
   void toggleShowPassword() => setState(() => showPassword = !showPassword);
 
-  String? get domain => VRouter.of(context).queryParameters['domain'];
+  String? get domain => Matrix.of(context).getLoginClient().homeserver!.host;
+  String? get username =>
+      widget.username ?? VRouter.of(context).queryParameters['username'];
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
-  String? usernameTextFieldValidator(String? value) {
-    usernameController.text =
-        usernameController.text.trim().toLowerCase().replaceAll(' ', '_');
-    if (value!.isEmpty) {
-      return L10n.of(context)!.pleaseChooseAUsername;
-    }
-    return null;
-  }
 
   String? password1TextFieldValidator(String? value) {
     const minLength = 8;
@@ -92,12 +87,13 @@ class SignupPageController extends State<SignupPage> {
       }
       await client.uiaRequestBackground(
         (auth) => client.register(
-          username: usernameController.text,
+          username: username!,
           password: passwordController.text,
           initialDeviceDisplayName: PlatformInfos.clientName,
           auth: auth,
         ),
       );
+      widget.onRegistrationComplete?.call();
     } catch (e) {
       error = (e).toLocalizedString(context);
     } finally {

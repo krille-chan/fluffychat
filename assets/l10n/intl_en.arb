@@ -48,7 +48,7 @@
       "username": {}
     }
   },
-  "addEmail": "Add email",
+  "addEmail": "Add email (optional)",
   "@addEmail": {
     "type": "text",
     "placeholders": {}
@@ -2785,5 +2785,18 @@
   "responseTime": "Response time",
   "openServerList": "Visit",
   "reportServerListProblem": "Report list issue",
-  "serverListJoinMatrix": "Server list by joinMatrix.org"
+  "serverListJoinMatrix": "Server list by joinMatrix.org",
+  "sampleEmail": "email@example.abc",
+  "emailHelper": "Helps your friends finding your username. Possible privacy issue.",
+  "usernameTaken": "Username already taken. Chose another one or login instead.",
+  "inventPassword": "Now create a strong password. Don't forget to remember or note it.",
+  "signUpAs": "Sign up as {username}",
+  "@signUpAs": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "selectCommunity": "Select community",
+  "customHomeserver": "Find a server or join your own..."
 }

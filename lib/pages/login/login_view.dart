@@ -36,24 +36,6 @@ class LoginView extends StatelessWidget {
                     readOnly: controller.loading,
                     autocorrect: false,
                     autofocus: true,
-                    onChanged: controller.checkWellKnownWithCoolDown,
-                    controller: controller.usernameController,
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.emailAddress,
-                    autofillHints:
-                        controller.loading ? null : [AutofillHints.username],
-                    decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.account_box_outlined),
-                        hintText: L10n.of(context)!.emailOrUsername,
-                        errorText: controller.usernameError,
-                        labelText: L10n.of(context)!.emailOrUsername),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: TextField(
-                    readOnly: controller.loading,
-                    autocorrect: false,
                     autofillHints:
                         controller.loading ? null : [AutofillHints.password],
                     controller: controller.passwordController,

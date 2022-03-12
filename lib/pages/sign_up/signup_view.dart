@@ -7,6 +7,7 @@ import 'signup.dart';
 
 class SignupPageView extends StatelessWidget {
   final SignupPageController controller;
+
   const SignupPageView(this.controller, {Key? key}) : super(key: key);
 
   @override
@@ -14,36 +15,19 @@ class SignupPageView extends StatelessWidget {
     return OnePageCard(
       child: Scaffold(
         appBar: AppBar(
-          title: Text(L10n.of(context)!.signUp),
+          title: Text(L10n.of(context)!.signUpAs(controller.username!)),
         ),
         body: Form(
           key: controller.formKey,
           child: ListView(
             children: [
+              ListTile(title: Text(L10n.of(context)!.inventPassword)),
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: TextFormField(
                   readOnly: controller.loading,
                   autocorrect: false,
-                  controller: controller.usernameController,
-                  autofillHints:
-                      controller.loading ? null : [AutofillHints.username],
-                  validator: controller.usernameTextFieldValidator,
-                  decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.account_circle_outlined),
-                      hintText: L10n.of(context)!.username,
-                      labelText: L10n.of(context)!.username,
-                      prefixText: '@',
-                      prefixStyle: const TextStyle(fontWeight: FontWeight.bold),
-                      suffixStyle: const TextStyle(fontWeight: FontWeight.w200),
-                      suffixText: ':${controller.domain}'),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: TextFormField(
-                  readOnly: controller.loading,
-                  autocorrect: false,
+                  autofocus: true,
                   autofillHints:
                       controller.loading ? null : [AutofillHints.password],
                   controller: controller.passwordController,
@@ -80,6 +64,7 @@ class SignupPageView extends StatelessWidget {
                   ),
                 ),
               ),
+              const Divider(),
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: TextFormField(
@@ -93,7 +78,8 @@ class SignupPageView extends StatelessWidget {
                   decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.mail_outlined),
                     labelText: L10n.of(context)!.addEmail,
-                    hintText: 'email@example.abc',
+                    hintText: L10n.of(context)!.sampleEmail,
+                    helperText: L10n.of(context)!.emailHelper,
                   ),
                 ),
               ),
