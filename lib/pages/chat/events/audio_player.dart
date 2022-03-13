@@ -3,8 +3,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -46,7 +46,7 @@ class _AudioPlayerState extends State<AudioPlayerWidget> {
 
   @override
   void dispose() {
-    if (audioPlayer.state == PlayerState.PLAYING) {
+    if (audioPlayer.playerState.playing) {
       audioPlayer.stop();
     }
     onAudioPositionChanged?.cancel();
@@ -88,48 +88,44 @@ class _AudioPlayerState extends State<AudioPlayerWidget> {
   void _playAction() async {
     if (AudioPlayerWidget.currentId != widget.event.eventId) {
       if (AudioPlayerWidget.currentId != null) {
-        if (audioPlayer.state != PlayerState.STOPPED) {
+        if (audioPlayer.playerState.playing) {
           await audioPlayer.stop();
           setState(() {});
         }
       }
       AudioPlayerWidget.currentId = widget.event.eventId;
     }
-    switch (audioPlayer.state) {
-      case PlayerState.PLAYING:
-        await audioPlayer.pause();
-        break;
-      case PlayerState.PAUSED:
-        await audioPlayer.resume();
-        break;
-      case PlayerState.STOPPED:
-      default:
-        onAudioPositionChanged ??=
-            audioPlayer.onAudioPositionChanged.listen((state) {
-          setState(() {
-            statusText =
-                '${state.inMinutes.toString().padLeft(2, '0')}:${(state.inSeconds % 60).toString().padLeft(2, '0')}';
-            currentPosition = ((state.inMilliseconds.toDouble() / maxPosition) *
-                    AudioPlayerWidget.wavesCount)
-                .round();
-          });
-        });
-        onDurationChanged ??= audioPlayer.onDurationChanged.listen((max) =>
-            setState(() => maxPosition = max.inMilliseconds.toDouble()));
-        onPlayerStateChanged ??=
-            audioPlayer.onPlayerStateChanged.listen((_) => setState(() {}));
-        onPlayerError ??= audioPlayer.onPlayerError.listen((e) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(L10n.of(context)!.oopsSomethingWentWrong),
-            ),
-          );
-          SentryController.captureException(e, StackTrace.current);
-        });
-
-        await audioPlayer.play(audioFile!.path);
-        break;
+    if (audioPlayer.playerState.playing) {
+      await audioPlayer.pause();
+      return;
+    } else if (audioPlayer.position != Duration.zero) {
+      await audioPlayer.play();
+      return;
     }
+
+    onAudioPositionChanged ??= audioPlayer.positionStream.listen((state) {
+      setState(() {
+        statusText =
+            '${state.inMinutes.toString().padLeft(2, '0')}:${(state.inSeconds % 60).toString().padLeft(2, '0')}';
+        currentPosition = ((state.inMilliseconds.toDouble() / maxPosition) *
+                AudioPlayerWidget.wavesCount)
+            .round();
+      });
+    });
+    onDurationChanged ??= audioPlayer.durationStream.listen((max) => max == null
+        ? null
+        : setState(() => maxPosition = max.inMilliseconds.toDouble()));
+    onPlayerStateChanged ??=
+        audioPlayer.playingStream.listen((_) => setState(() {}));
+    audioPlayer.setFilePath(audioFile!.path);
+    audioPlayer.play().catchError((e, s) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(L10n.of(context)!.oopsSomethingWentWrong),
+        ),
+      );
+      SentryController.captureException(e, s);
+    });
   }
 
   static const double buttonSize = 36;
@@ -191,7 +187,7 @@ class _AudioPlayerState extends State<AudioPlayerWidget> {
                       color: widget.color.withAlpha(64),
                       borderRadius: BorderRadius.circular(64),
                       child: Icon(
-                        audioPlayer.state == PlayerState.PLAYING
+                        audioPlayer.playerState.playing
                             ? Icons.pause_outlined
                             : Icons.play_arrow_outlined,
                         color: widget.color,
