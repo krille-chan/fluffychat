@@ -162,6 +162,7 @@ class ChatView extends StatelessWidget {
       },
       child: GestureDetector(
         onTapDown: controller.setReadMarker,
+        behavior: HitTestBehavior.opaque,
         child: StreamBuilder(
           stream: controller.room!.onUpdate.stream
               .rateLimit(const Duration(milliseconds: 250)),
