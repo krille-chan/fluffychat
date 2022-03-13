@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:fluffychat/config/themes.dart';
-
 class TwoColumnLayout extends StatelessWidget {
   final Widget mainView;
   final Widget sideView;
@@ -13,9 +11,6 @@ class TwoColumnLayout extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    if (MediaQuery.of(context).size.width <= FluffyThemes.columnWidth * 2) {
-      return mainView;
-    }
     return ScaffoldMessenger(
       child: Scaffold(
         body: Row(
