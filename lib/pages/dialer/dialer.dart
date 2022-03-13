@@ -22,8 +22,8 @@ import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:matrix/matrix.dart';
 import 'package:pedantic/pedantic.dart';
 import 'package:wakelock/wakelock.dart';
@@ -174,7 +174,9 @@ class _MyCallingPage extends State<Calling> {
   void _playCallSound() async {
     const path = 'assets/sounds/call.ogg';
     if (kIsWeb || PlatformInfos.isMobile || PlatformInfos.isMacOS) {
-      await AssetsAudioPlayer.newPlayer().open(Audio(path));
+      final player = AudioPlayer();
+      await player.setAsset(path);
+      player.play();
     } else {
       Logs().w('Playing sound not implemented for this platform!');
     }

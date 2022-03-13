@@ -80,7 +80,7 @@ class MessageContent extends StatelessWidget {
           case MessageTypes.Sticker:
             return Sticker(event);
           case MessageTypes.Audio:
-            if (PlatformInfos.isMobile) {
+            if (PlatformInfos.isMobile || PlatformInfos.isDesktop) {
               return AudioPlayerWidget(
                 event,
                 color: textColor,
