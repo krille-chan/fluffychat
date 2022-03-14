@@ -2754,7 +2754,7 @@
   "@voiceCall": {},
   "unsupportedAndroidVersion": "Version d'Android non prise en charge",
   "@unsupportedAndroidVersion": {},
-  "unsupportedAndroidVersionLong": "Cette fonctionnalité nécessitait une nouvelle version d'Android. Veuillez vérifier les mises à jour ou la prise en charge de Lineage OS.",
+  "unsupportedAndroidVersionLong": "Cette fonctionnalité nécessite une nouvelle version d'Android. Veuillez vérifier les mises à jour ou la prise en charge de Lineage OS.",
   "@unsupportedAndroidVersionLong": {},
   "pinMessage": "Épingler au salon",
   "@pinMessage": {},
@@ -2763,5 +2763,20 @@
   "confirmEventUnpin": "Voulez-vous vraiment désépingler définitivement l'événement ?",
   "@confirmEventUnpin": {},
   "videoCallsBetaWarning": "Veuillez noter que les appels vidéo sont actuellement en version bêta. Ils peuvent ne pas fonctionner comme prévu ou ne oas fonctionner du tout sur toutes les plateformes.",
-  "@videoCallsBetaWarning": {}
+  "@videoCallsBetaWarning": {},
+  "experimentalVideoCalls": "Appels vidéo expérimentaux",
+  "@experimentalVideoCalls": {},
+  "emailOrUsername": "Courriel ou identifiant",
+  "@emailOrUsername": {},
+  "switchToAccount": "Passer au compte {number}",
+  "@switchToAccount": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "nextAccount": "Compte suivant",
+  "@nextAccount": {},
+  "previousAccount": "Compte précédent",
+  "@previousAccount": {}
 }
