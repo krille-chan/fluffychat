@@ -1764,7 +1764,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "timeOfDay": "{hours24}:{minutes} {suffix}",
+  "timeOfDay": "{hours24}:{minutes}",
   "@timeOfDay": {
     "type": "text",
     "placeholders": {
@@ -1790,7 +1790,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "toggleUnread": "Markera Läs/OLäst",
+  "toggleUnread": "Markera läst/oläst",
   "@toggleUnread": {
     "type": "text",
     "placeholders": {}
@@ -1823,7 +1823,7 @@
       "targetName": {}
     }
   },
-  "unblockDevice": "Avblockerade enhet",
+  "unblockDevice": "Avblockera enhet",
   "@unblockDevice": {
     "type": "text",
     "placeholders": {}
@@ -1833,7 +1833,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unknownEncryptionAlgorithm": "Okänd krypteringsalgorithm",
+  "unknownEncryptionAlgorithm": "Okänd krypteringsalgoritm",
   "@unknownEncryptionAlgorithm": {
     "type": "text",
     "placeholders": {}
@@ -1845,7 +1845,7 @@
       "type": {}
     }
   },
-  "unknownSessionVerify": "Okänd session, verifiera",
+  "unknownSessionVerify": "Okänd session, vänligen verifiera",
   "@unknownSessionVerify": {
     "type": "text",
     "placeholders": {}
@@ -1957,7 +1957,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "videoCall": "Video samtal",
+  "videoCall": "Videosamtal",
   "@videoCall": {
     "type": "text",
     "placeholders": {}
@@ -2022,7 +2022,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "weSentYouAnEmail": "Vi skickade dig ett email",
+  "weSentYouAnEmail": "Vi skickade dig ett e-postmeddelande",
   "@weSentYouAnEmail": {
     "type": "text",
     "placeholders": {}
@@ -2492,12 +2492,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "yourChatsAreBeingSynced": "Dina chatter synkroniseras…",
+  "yourChatsAreBeingSynced": "Dina chattar synkroniseras…",
   "@yourChatsAreBeingSynced": {
     "type": "text",
     "placeholders": {}
   },
-  "wipeChatBackup": "Radera din chatt backup för att skapa en ny säkerhets nyckel?",
+  "wipeChatBackup": "Radera din chatt-backup för att skapa en ny säkerhetsnyckel?",
   "@wipeChatBackup": {
     "type": "text",
     "placeholders": {}
@@ -2507,17 +2507,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "userVerified": "Användar är verifierad",
+  "userVerified": "Användaren är verifierad",
   "@userVerified": {
     "type": "text",
     "placeholders": {}
   },
-  "userUnknownVerification": "Användare har en okänd verifikations status",
+  "userUnknownVerification": "Användare har en okänd verifikationsstatus",
   "@userUnknownVerification": {
     "type": "text",
     "placeholders": {}
   },
-  "userNotVerified": "Användare är inte verifierad",
+  "userNotVerified": "Användaren är inte verifierad",
   "@userNotVerified": {
     "type": "text",
     "placeholders": {}
@@ -2735,7 +2735,7 @@
   "@placeCall": {},
   "voiceCall": "Röstsamtal",
   "@voiceCall": {},
-  "unsupportedAndroidVersion": "Inget stöd för dena version av Android",
+  "unsupportedAndroidVersion": "Inget stöd för denna version av Android",
   "@unsupportedAndroidVersion": {},
   "videoCallsBetaWarning": "Videosamtal är för närvarande under testning. De kanske inte fungerar som det är tänkt eller på alla plattformar.",
   "@videoCallsBetaWarning": {},
@@ -2762,5 +2762,20 @@
   "pinnedEventsError": "Ett fel uppstod när fastnålade meddelanden skulle hämtas",
   "@pinnedEventsError": {},
   "confirmEventUnpin": "Är du säker på att händelsen inte längre skall vara fastnålad?",
-  "@confirmEventUnpin": {}
+  "@confirmEventUnpin": {},
+  "experimentalVideoCalls": "Experimentella videosamtal",
+  "@experimentalVideoCalls": {},
+  "switchToAccount": "Byt till konto {number}",
+  "@switchToAccount": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "nextAccount": "Nästa konto",
+  "@nextAccount": {},
+  "previousAccount": "Föregående konto",
+  "@previousAccount": {},
+  "emailOrUsername": "Användarnamn eller e-postadress",
+  "@emailOrUsername": {}
 }
