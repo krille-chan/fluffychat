@@ -2738,7 +2738,7 @@
   "@integrationsNotImplemented": {},
   "editIntegrations": "Upravte widgety a integrace",
   "@editIntegrations": {},
-  "reactedWith": "{odesílatel} reagoval s {reaction}",
+  "reactedWith": "{sender} reagoval s {reaction}",
   "@reactedWith": {
     "type": "text",
     "placeholders": {
