@@ -1832,14 +1832,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount, plural, =1{irakurri gabeko txat 1} beste {{unreadCount} txat irakurri gabe}}",
+  "unreadChats": "{unreadCount, plural, =1{irakurri gabeko txat 1} other {{unreadCount} txat irakurri gabe}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
       "unreadCount": {}
     }
   },
-  "unreadMessages": "{unreadEvents, plural, =1{irakurri gabeko txat bat} beste {{unreadEvents} mezu irakurri gabe}}",
+  "unreadMessages": "{unreadEvents, plural, =1{irakurri gabeko txat bat} other {{unreadEvents} mezu irakurri gabe}}",
   "@unreadMessages": {
     "type": "text",
     "placeholders": {
@@ -2313,7 +2313,7 @@
   },
   "confirmEventUnpin": "Ziur zaude gertaerari iltzea kendu nahi diozula?",
   "@confirmEventUnpin": {},
-  "moreEvents": "{count,plural, =1{gertaera 1 gehiago} beste {{count} gertaera gehiago}}",
+  "moreEvents": "{count,plural, =1{gertaera 1 gehiago} other {{count} gertaera gehiago}}",
   "@moreEvents": {
     "type": "text",
     "placeholders": {
