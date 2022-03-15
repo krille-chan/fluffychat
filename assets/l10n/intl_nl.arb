@@ -2775,5 +2775,7 @@
     "placeholders": {
       "number": {}
     }
-  }
+  },
+  "previousAccount": "Vorige account",
+  "@previousAccount": {}
 }
