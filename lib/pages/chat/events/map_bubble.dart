@@ -37,6 +37,8 @@ class MapBubble extends StatelessWidget {
                 ),
                 layers: [
                   TileLayerOptions(
+                    maxZoom: 20,
+                    minZoom: 0,
                     urlTemplate:
                         'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
                     subdomains: ['a', 'b', 'c'],
