@@ -2767,5 +2767,16 @@
   "pinnedEventsError": "Ошибка загрузки закрепленных сообщений",
   "@pinnedEventsError": {},
   "confirmEventUnpin": "Вы уверены, что хотите навсегда открепить событие?",
-  "@confirmEventUnpin": {}
+  "@confirmEventUnpin": {},
+  "switchToAccount": "Переключиться на учётную запись {number}",
+  "@switchToAccount": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "nextAccount": "Следующая учётная запись",
+  "@nextAccount": {},
+  "previousAccount": "Предыдущая учётная запись",
+  "@previousAccount": {}
 }
