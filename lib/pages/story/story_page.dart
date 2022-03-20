@@ -457,12 +457,13 @@ class StoryPageController extends State<StoryPage> {
     final currentEvent = this.currentEvent;
     if (currentEvent == null) return;
     final room = currentEvent.room;
+    room.client.updateIosBadge();
+    if (index == events.length - 1) {
+      timeline!.setReadMarker();
+      return;
+    }
     if (!currentSeenByUsers.any((u) => u.id == u.room.client.userID)) {
-      room.setReadMarker(
-        currentEvent.eventId,
-        mRead: currentEvent.eventId,
-      );
-      room.client.updateIosBadge();
+      timeline!.setReadMarker(currentEvent.eventId);
     }
   }
 
