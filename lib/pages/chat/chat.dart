@@ -148,6 +148,7 @@ class ChatController extends State<Chat> {
       return;
     }
     setReadMarker();
+    if (!scrollController.hasClients) return;
     if (scrollController.position.pixels ==
             scrollController.position.maxScrollExtent &&
         timeline!.events.isNotEmpty &&

@@ -289,13 +289,13 @@ class BackgroundPush {
   Future<void> goToRoom(String? roomId) async {
     try {
       Logs().v('[Push] Attempting to go to room $roomId...');
-      if (router == null) {
+      if (router == null || roomId == null) {
         return;
       }
       await client.roomsLoading;
       await client.accountDataLoading;
       final isStory = client
-              .getRoomById(roomId!)
+              .getRoomById(roomId)
               ?.getState(EventTypes.RoomCreate)
               ?.content
               .tryGet<String>('type') ==
