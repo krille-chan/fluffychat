@@ -54,6 +54,7 @@ dependencies:
   image_picker: ^0.8.4+8
   intl: any
   just_audio: ^0.9.20
+  just_audio_libwinmedia: any
   keyboard_shortcuts: ^0.1.4
   localstorage: ^4.0.0+1
   lottie: ^1.2.2
