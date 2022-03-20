@@ -33,6 +33,7 @@
 - fix: SSO on Android 12 (Krille Fear)
 - fix: Send read receipts on all taps (Krille Fear)
 - fix: make fluffy usable at 720 px wide (Raatty)
+- fix: Add forgotten sendOnEnter (Krille Fear)
 - refactor: Switch to just audio for playing sounds (Krille Fear)
 
 ## v1.3.0 - 2022-02-12
