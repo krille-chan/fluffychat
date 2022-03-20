@@ -67,39 +67,56 @@ class PinnedEvents extends StatelessWidget {
               color: Theme.of(context).appBarTheme.backgroundColor,
               elevation: Theme.of(context).appBarTheme.elevation ?? 10,
               shadowColor: Theme.of(context).appBarTheme.shadowColor,
-              child: ListTile(
-                tileColor: Colors.transparent,
+              child: InkWell(
                 onTap: () => _displayPinnedEventsDialog(
                   context,
                   pinnedEvents,
                 ),
-                leading: IconButton(
-                  icon: const Icon(Icons.close),
-                  tooltip: L10n.of(context)!.unpin,
-                  onPressed: () => controller.unpinEvent(event.eventId),
-                ),
-                title: LinkText(
-                  text: event.getLocalizedBody(
-                    MatrixLocals(L10n.of(context)!),
-                    withSenderNamePrefix: true,
-                    hideReply: true,
-                  ),
-                  maxLines: 3,
-                  textStyle: TextStyle(
-                    fontSize: fontSize,
-                    decoration:
-                        event.redacted ? TextDecoration.lineThrough : null,
-                  ),
-                  linkStyle: TextStyle(
-                    color: Theme.of(context)
-                        .textTheme
-                        .bodyText1
-                        ?.color
-                        ?.withAlpha(150),
-                    fontSize: fontSize,
-                    decoration: TextDecoration.underline,
-                  ),
-                  onLinkTap: (url) => UrlLauncher(context, url).launchUrl(),
+                child: Row(
+                  children: [
+                    IconButton(
+                      splashRadius: 20,
+                      iconSize: 20,
+                      icon: const Icon(Icons.push_pin),
+                      tooltip: L10n.of(context)!.unpin,
+                      onPressed: controller.room
+                                  ?.canSendEvent(EventTypes.RoomPinnedEvents) ??
+                              false
+                          ? () => controller.unpinEvent(event.eventId)
+                          : null,
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                        child: LinkText(
+                          text: event.getLocalizedBody(
+                            MatrixLocals(L10n.of(context)!),
+                            withSenderNamePrefix: true,
+                            hideReply: true,
+                          ),
+                          maxLines: 2,
+                          textStyle: TextStyle(
+                            overflow: TextOverflow.ellipsis,
+                            fontSize: fontSize,
+                            decoration: event.redacted
+                                ? TextDecoration.lineThrough
+                                : null,
+                          ),
+                          linkStyle: TextStyle(
+                            color: Theme.of(context)
+                                .textTheme
+                                .bodyText1
+                                ?.color
+                                ?.withAlpha(150),
+                            fontSize: fontSize,
+                            decoration: TextDecoration.underline,
+                          ),
+                          onLinkTap: (url) =>
+                              UrlLauncher(context, url).launchUrl(),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             );
