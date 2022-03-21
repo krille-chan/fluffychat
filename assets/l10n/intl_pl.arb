@@ -919,7 +919,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "ignoreListDescription": "Możesz ignorować użytkowników którzy cię irytują. Nie będziesz odbierać od jich wiadomośći ani zaproszeń od użytkowników na tej liście.",
+  "ignoreListDescription": "Możesz ignorować użytkowników którzy cię irytują. Nie będziesz odbierać od nich wiadomości ani żadnych zaproszeń od użytkowników na tej liście.",
   "@ignoreListDescription": {
     "type": "text",
     "placeholders": {}
@@ -1052,7 +1052,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "leave": "Wyjdź",
+  "leave": "Opuść",
   "@leave": {
     "type": "text",
     "placeholders": {}
@@ -1887,8 +1887,545 @@
   },
   "passwordsDoNotMatch": "Hasła nie pasują!",
   "@passwordsDoNotMatch": {},
-  "allChats": "Wszystkich przestrzeń",
+  "allChats": "Wszystkie",
   "@allChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editChatPermissions": "Edytuj uprawnienia",
+  "@editChatPermissions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignore": "Ignoruj",
+  "@ignore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noConnectionToTheServer": "Brak połączenia z serwerem",
+  "@noConnectionToTheServer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createNewChatExplaination": "Po prostu zeskanuj kod QR lub jeśli nie jesteście obok siebie podziel się linkiem z zaproszeniem.",
+  "@createNewChatExplaination": {},
+  "obtainingLocation": "Uzyskiwanie lokalizacji…",
+  "@obtainingLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addAccount": "Dodaj konto",
+  "@addAccount": {},
+  "serverRequiresEmail": "Ten serwer wymaga potwierdzenia twojego adresu email w celu rejestracji.",
+  "@serverRequiresEmail": {},
+  "or": "Lub",
+  "@or": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "participant": "Uczestnik",
+  "@participant": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordForgotten": "Zapomniano hasła",
+  "@passwordForgotten": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChoose": "Proszę wybierz",
+  "@pleaseChoose": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseClickOnLink": "Proszę kliknij w odnośnik wysłany na email aby kontynuować.",
+  "@pleaseClickOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnter4Digits": "Proszę podaj 4 cyfry. By wyłączyć blokadę pozostaw puste.",
+  "@pleaseEnter4Digits": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeYourAvatar": "Usuń swój avatar",
+  "@removeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "renderRichContent": "Pokazuj w wiadomościach pogrubienia i podkreślenia",
+  "@renderRichContent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "replaceRoomWithNewerVersion": "Zamień pokój na nową wersję",
+  "@replaceRoomWithNewerVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reportMessage": "Zgłoś wiadomość",
+  "@reportMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveFile": "Zapisz plik",
+  "@saveFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "security": "Bezpieczeństwo",
+  "@security": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveFileToFolder": "Zapisz plik do tego folderu",
+  "@saveFileToFolder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "search": "Szukaj",
+  "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendAsText": "Wyślij jako tekst",
+  "@sendAsText": {
+    "type": "text"
+  },
+  "sendBugReports": "Pozwól wysyłać raporty o błędach do sentry.io",
+  "@sendBugReports": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendAudio": "Wyślij dźwięk",
+  "@sendAudio": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendMessages": "Wyślij wiadomości",
+  "@sendMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendOriginal": "Wyślij oryginał",
+  "@sendOriginal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendSticker": "Wyślij naklejkę",
+  "@sendSticker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendVideo": "Wyślij film",
+  "@sendVideo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sessionVerified": "Sesja została zweryfikowana",
+  "@sessionVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "startedACall": "{senderName} rozpoczął rozmowę",
+  "@startedACall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "yourPublicKey": "Twój klucz publiczny",
+  "@yourPublicKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourStory": "Twoja relacja",
+  "@yourStory": {},
+  "enableMultiAccounts": "(BETA) Włącza obsługę wiele kont na tym urządzeniu",
+  "@enableMultiAccounts": {},
+  "pickImage": "Wybierz obraz",
+  "@pickImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordRecovery": "Odzyskiwanie hasła",
+  "@passwordRecovery": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openInMaps": "Otwórz w mapach",
+  "@openInMaps": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "link": "Link",
+  "@link": {},
+  "roomHasBeenUpgraded": "Pokój zostać zaktualizowany",
+  "@roomHasBeenUpgraded": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPause": "Pauza",
+  "@audioPlayerPause": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whatIsGoingOn": "Co u Ciebie słychać?",
+  "@whatIsGoingOn": {},
+  "pleaseEnterValidEmail": "Proszę podaj poprawny adres email.",
+  "@pleaseEnterValidEmail": {},
+  "repeatPassword": "Powtórz hasło",
+  "@repeatPassword": {},
+  "pleaseChooseAtLeastChars": "Proszę podaj przynajmniej {min} znaków.",
+  "@pleaseChooseAtLeastChars": {
+    "type": "text",
+    "placeholders": {
+      "min": {}
+    }
+  },
+  "all": "Wszystkie",
+  "@all": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appLock": "Blokada aplikacji",
+  "@appLock": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "theyMatch": "Pasują",
+  "@theyMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendOnEnter": "Wyślij enterem",
+  "@sendOnEnter": {},
+  "autoplayImages": "Automatycznie odtwarzaj animowane naklejki i emotki",
+  "@autoplayImages": {
+    "type": "text",
+    "placeholder": {}
+  },
+  "cantOpenUri": "Nie można otworzyć linku {uri}",
+  "@cantOpenUri": {
+    "type": "text",
+    "placeholders": {
+      "uri": {}
+    }
+  },
+  "configureChat": "Konfiguruj chat",
+  "@configureChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterASpacepName": "Podaj nazwę przestrzeni",
+  "@enterASpacepName": {},
+  "homeserver": "Adres serwera",
+  "@homeserver": {},
+  "locationDisabledNotice": "Usługi lokalizacji są wyłączone. Proszę włącz je aby móc udostępnić swoją lokalizację.",
+  "@locationDisabledNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oneClientLoggedOut": "Jedno z twoich urządzeń zostało wylogowane",
+  "@oneClientLoggedOut": {},
+  "privacy": "Prywatność",
+  "@privacy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicKey": "Klucz publiczny",
+  "@publicKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicSpace": "Publiczna przestrzeń",
+  "@publicSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tapToShowImage": "Dotknij by pokazać obraz",
+  "@tapToShowImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "theyDontMatch": "Nie pasują",
+  "@theyDontMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleFavorite": "Przełącz ulubione",
+  "@toggleFavorite": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setupChatBackup": "Ustaw kopię zapasową",
+  "@setupChatBackup": {},
+  "changesHaveBeenSaved": "Zapisano zmiany",
+  "@changesHaveBeenSaved": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourUserId": "Twoja nazwa użytkownika:",
+  "@yourUserId": {},
+  "iWroteDownTheKey": "Zapisałem klucz w bezpiecznym miejscu",
+  "@iWroteDownTheKey": {},
+  "yourChatBackupHasBeenSetUp": "Twoja kopia zapasowa chatu została ustawiona.",
+  "@yourChatBackupHasBeenSetUp": {},
+  "setupChatBackupDescription": "By chronić Twoje wiadomości, wygenerowaliśmy dla Ciebie klucz bezpieczeństwa.\nProszę zapisz go w bezpiecznym miejscu, takim jak menedżer haseł.",
+  "@setupChatBackupDescription": {},
+  "chatHasBeenAddedToThisSpace": "Chat został dodany do tej przestrzeni",
+  "@chatHasBeenAddedToThisSpace": {},
+  "chatHasBeenRemovedFromThisSpace": "Chat został usunięty z tej przestrzeni",
+  "@chatHasBeenRemovedFromThisSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contentHasBeenReported": "Zawartość została zgłoszona administratorom serwera",
+  "@contentHasBeenReported": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discover": "Odkrywaj",
+  "@discover": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discoverGroups": "Odkrywaj grupy",
+  "@discoverGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dontAskAgain": "Anuluj i nie pytaj ponownie",
+  "@dontAskAgain": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAvatar": "Edytuj zdjęcie pokoju",
+  "@editRoomAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fontSize": "Rozmiar czcionki",
+  "@fontSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "friends": "Znajomi",
+  "@friends": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groups": "Grupy",
+  "@groups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidEmail": "Nieprawidłowy adres email",
+  "@invalidEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationPermissionDeniedNotice": "Brak uprawnień. Proszę zezwól aplikacji na dostęp do lokalizacji aby móc ją udostępnić.",
+  "@locationPermissionDeniedNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openVideoCamera": "Nagraj film",
+  "@openVideoCamera": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginWithOneClick": "Zaloguj się jednym kliknięciem",
+  "@loginWithOneClick": {},
+  "messages": "Wiadomości",
+  "@messages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offensive": "Agresywne",
+  "@offensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterYourPin": "Proszę podaj pin",
+  "@pleaseEnterYourPin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reason": "Powód",
+  "@reason": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "redactMessage": "Przekaż wiadomość",
+  "@redactMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sentryInfo": "Polityka prywatności: https://sentry.io/security/",
+  "@sentryInfo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setCustomEmotes": "Ustaw niestandardowe emotki",
+  "@setCustomEmotes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "withTheseAddressesRecoveryDescription": "Dzięki tym adresom możesz odzyskać swoje hasło.",
+  "@withTheseAddressesRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceIsPublic": "Ustaw jako publiczną",
+  "@spaceIsPublic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareLocation": "Udostępnij lokalizację",
+  "@shareLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setPermissionsLevel": "Ustaw poziom uprawnień",
+  "@setPermissionsLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "skip": "Pomiń",
+  "@skip": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceName": "Nazwa przestrzeni",
+  "@spaceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleMuted": "Przełącz wyciszone",
+  "@toggleMuted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "toggleUnread": "Oznacz przeczytane/nieprzeczytane",
+  "@toggleUnread": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unavailable": "Niedostępne",
+  "@unavailable": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userNotVerified": "Użytkownik nie został zweryfikowany",
+  "@userNotVerified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publish": "Opublikuj",
+  "@publish": {},
+  "whoCanSeeMyStories": "Kto może widzieć moje relacje?",
+  "@whoCanSeeMyStories": {},
+  "scanQrCode": "Skanuj kod QR",
+  "@scanQrCode": {},
+  "addToStory": "Dodaj do relacji",
+  "@addToStory": {},
+  "typeInInviteLinkManually": "Wpisz link ręcznie...",
+  "@typeInInviteLinkManually": {},
+  "createNewSpace": "Nowa przestrzeń",
+  "@createNewSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "soundVibrationLedColor": "Dźwięk, wibracje i kolor LED",
+  "@soundVibrationLedColor": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clearText": "Wyczyść tekst",
+  "@clearText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offline": "Offline",
+  "@offline": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bubbleSize": "Rozmiar bąbelków",
+  "@bubbleSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addToSpace": "Dodaj do przestrzeni",
+  "@addToSpace": {},
+  "changeYourAvatar": "Zmień avatar",
+  "@changeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHint_clearcache": "Wyczyść pamięć podręczną",
+  "@commandHint_clearcache": {
+    "type": "text",
+    "description": "Usage hint for the command /clearcache"
+  },
+  "enableChatBackup": "Włącz kopię zapasową aby nigdy nie stracić historii twoich wiadomości.",
+  "@enableChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHint_create": "Stwórz pusty chat\nUżyj --no-encryption by wyłączyć szyfrowanie",
+  "@commandHint_create": {
+    "type": "text",
+    "description": "Usage hint for the command /create"
+  },
+  "commandHint_dm": "Rozpocznij bezpośredni chat\nUżyj --no-encryption by wyłączyć szyfrowanie",
+  "@commandHint_dm": {
+    "type": "text",
+    "description": "Usage hint for the command /dm"
+  },
+  "editBlockedServers": "Edytuj blokowane serwery",
+  "@editBlockedServers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEncryption": "Aktywuj szyfowanie",
+  "@enableEncryption": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "defaultPermissionLevel": "Domyślny poziom uprawnień",
+  "@defaultPermissionLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ok": "Ok",
+  "@ok": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oopsPushError": "Ups! Wystąpił błąd podczas ustawiania powiadomień push.",
+  "@oopsPushError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reject": "Odrzuć",
+  "@reject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "online": "Online",
+  "@online": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "status": "Status",
+  "@status": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tooManyRequestsWarning": "Zbyt wiele zapytań. Proszę spróbuj ponownie później.",
+  "@tooManyRequestsWarning": {
     "type": "text",
     "placeholders": {}
   }
