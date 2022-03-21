@@ -2317,5 +2317,17 @@
   "passwordsDoNotMatch": "パスワードが一致しません!",
   "@passwordsDoNotMatch": {},
   "addToSpace": "スペースに追加",
-  "@addToSpace": {}
+  "@addToSpace": {},
+  "bubbleSize": "ふきだしの大きさ",
+  "@bubbleSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cantOpenUri": "URIが開けません {uri}",
+  "@cantOpenUri": {
+    "type": "text",
+    "placeholders": {
+      "uri": {}
+    }
+  }
 }
