@@ -2311,5 +2311,11 @@
   "@allChats": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "pleaseEnterValidEmail": "正しいメールアドレスを入力してください。",
+  "@pleaseEnterValidEmail": {},
+  "passwordsDoNotMatch": "パスワードが一致しません!",
+  "@passwordsDoNotMatch": {},
+  "addToSpace": "スペースに追加",
+  "@addToSpace": {}
 }
