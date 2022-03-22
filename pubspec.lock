@@ -56,7 +56,7 @@ packages:
       name: archive
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.2.1"
+    version: "3.2.2"
   args:
     dependency: transitive
     description:
@@ -161,7 +161,7 @@ packages:
       name: chewie
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.3.0"
+    version: "1.3.1"
   cli_util:
     dependency: transitive
     description:
@@ -303,7 +303,7 @@ packages:
       name: desktop_drop
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.2"
+    version: "0.3.3"
   desktop_lifecycle:
     dependency: "direct main"
     description:
@@ -415,7 +415,7 @@ packages:
       name: file_picker
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.5.0"
+    version: "4.5.1"
   file_picker_cross:
     dependency: "direct main"
     description:
@@ -586,7 +586,7 @@ packages:
       name: flutter_native_splash
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.0"
+    version: "2.1.1"
   flutter_olm:
     dependency: "direct main"
     description:
@@ -771,7 +771,7 @@ packages:
       name: hive
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.6"
+    version: "2.1.0"
   hive_flutter:
     dependency: "direct main"
     description:
@@ -827,7 +827,7 @@ packages:
       name: image_picker
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.8.4+10"
+    version: "0.8.4+11"
   image_picker_for_web:
     dependency: transitive
     description:
@@ -1319,7 +1319,7 @@ packages:
       name: pub_semver
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.0"
+    version: "2.1.1"
   punycode:
     dependency: "direct main"
     description:
@@ -1424,7 +1424,7 @@ packages:
       name: sentry
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.3.0"
+    version: "6.4.0"
   share:
     dependency: "direct main"
     description:
@@ -1562,7 +1562,7 @@ packages:
       name: sqflite_common
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.0"
+    version: "2.2.1"
   stack_trace:
     dependency: transitive
     description:
@@ -1814,21 +1814,21 @@ packages:
       name: video_player
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.19"
+    version: "2.3.0"
   video_player_android:
     dependency: transitive
     description:
       name: video_player_android
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.3.0"
+    version: "2.3.1"
   video_player_avfoundation:
     dependency: transitive
     description:
       name: video_player_avfoundation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.3.0"
+    version: "2.3.1"
   video_player_platform_interface:
     dependency: transitive
     description:
@@ -1933,7 +1933,7 @@ packages:
       name: win32
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.4.1"
+    version: "2.4.2"
   wkt_parser:
     dependency: transitive
     description:
@@ -1963,5 +1963,5 @@ packages:
     source: hosted
     version: "3.1.0"
 sdks:
-  dart: ">=2.15.1 <3.0.0"
+  dart: ">=2.16.0 <3.0.0"
   flutter: ">=2.10.0"
