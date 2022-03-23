@@ -12,6 +12,7 @@ import 'package:matrix/matrix.dart';
 import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/pages/chat/cupertino_widgets_bottom_sheet.dart';
+import 'package:fluffychat/pages/chat/edit_widgets_dialog.dart';
 import 'package:fluffychat/pages/chat/widgets_bottom_sheet.dart';
 import 'matrix.dart';
 
@@ -46,17 +47,16 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
           (u) => setState(() {}),
         );
     final items = <PopupMenuEntry<String>>[
-      if (widget.room.widgets.isNotEmpty)
-        PopupMenuItem<String>(
-          value: 'widgets',
-          child: Row(
-            children: [
-              const Icon(Icons.widgets_outlined),
-              const SizedBox(width: 12),
-              Text(L10n.of(context)!.matrixWidgets),
-            ],
-          ),
+      PopupMenuItem<String>(
+        value: 'widgets',
+        child: Row(
+          children: [
+            const Icon(Icons.widgets_outlined),
+            const SizedBox(width: 12),
+            Text(L10n.of(context)!.matrixWidgets),
+          ],
         ),
+      ),
       widget.room.pushRuleState == PushRuleState.notify
           ? PopupMenuItem<String>(
               value: 'mute',
@@ -129,7 +129,14 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
           onSelected: (String choice) async {
             switch (choice) {
               case 'widgets':
-                _showWidgets();
+                if (widget.room.widgets.isNotEmpty) {
+                  _showWidgets();
+                } else {
+                  showDialog(
+                    context: context,
+                    builder: (context) => EditWidgetsDialog(room: widget.room),
+                  );
+                }
                 break;
               case 'leave':
                 final confirmed = await showOkCancelAlertDialog(

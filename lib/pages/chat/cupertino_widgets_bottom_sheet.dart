@@ -4,11 +4,14 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:url_launcher/link.dart';
 
+import 'edit_widgets_dialog.dart';
+
 class CupertinoWidgetsBottomSheet extends StatelessWidget {
   final Room room;
 
   const CupertinoWidgetsBottomSheet({Key? key, required this.room})
       : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return CupertinoActionSheet(
@@ -27,8 +30,14 @@ class CupertinoWidgetsBottomSheet extends StatelessWidget {
           ),
         ),
         CupertinoActionSheetAction(
-          child: Text(L10n.of(context)!.integrationsNotImplemented),
-          onPressed: () {},
+          child: Text(L10n.of(context)!.editWidgets),
+          onPressed: () {
+            Navigator.of(context).pop();
+            showCupertinoDialog(
+              context: context,
+              builder: (context) => EditWidgetsDialog(room: room),
+            );
+          },
         ),
         CupertinoActionSheetAction(
           child: Text(L10n.of(context)!.cancel),
