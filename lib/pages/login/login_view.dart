@@ -38,6 +38,7 @@ class LoginView extends StatelessWidget {
                     autofocus: true,
                     onChanged: controller.checkWellKnownWithCoolDown,
                     controller: controller.usernameController,
+                    textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.emailAddress,
                     autofillHints:
                         controller.loading ? null : [AutofillHints.username],
@@ -56,6 +57,7 @@ class LoginView extends StatelessWidget {
                     autofillHints:
                         controller.loading ? null : [AutofillHints.password],
                     controller: controller.passwordController,
+                    textInputAction: TextInputAction.next,
                     obscureText: !controller.showPassword,
                     onSubmitted: controller.login,
                     decoration: InputDecoration(
