@@ -22,12 +22,14 @@ class MessageReactions extends StatelessWidget {
   Widget build(BuildContext context) {
     final allReactionEvents =
         event.aggregatedEvents(timeline, RelationshipTypes.reaction);
-    final reactionMap = <String?, _ReactionEntry>{};
+    final reactionMap = <String, _ReactionEntry>{};
     final client = Matrix.of(context).client;
 
     for (final e in allReactionEvents) {
-      if (e.content['m.relates_to'].containsKey('key')) {
-        final key = e.content['m.relates_to']['key'];
+      final key = e.content
+          .tryGetMap<String, dynamic>('m.relates_to')
+          ?.tryGet<String>('key');
+      if (key != null) {
         if (!reactionMap.containsKey(key)) {
           reactionMap[key] = _ReactionEntry(
             key: key,
