@@ -525,7 +525,7 @@
       "username": {}
     }
   },
-  "createNewGroup": "新しいグループを作成する",
+  "createNewGroup": "グループを作成する",
   "@createNewGroup": {
     "type": "text",
     "placeholders": {}
@@ -1221,7 +1221,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "newVerificationRequest": "新しい認証リクエスト！",
+  "newVerificationRequest": "認証リクエスト！",
   "@newVerificationRequest": {
     "type": "text",
     "placeholders": {}
@@ -2329,5 +2329,41 @@
     "placeholders": {
       "uri": {}
     }
-  }
+  },
+  "repeatPassword": "パスワードを繰り返そ",
+  "@repeatPassword": {},
+  "pleaseChooseAtLeastChars": "少なくとも{min}文字を選択してください。",
+  "@pleaseChooseAtLeastChars": {
+    "type": "text",
+    "placeholders": {
+      "min": {}
+    }
+  },
+  "autoplayImages": "GIFを自動的に再生する",
+  "@autoplayImages": {
+    "type": "text",
+    "placeholder": {}
+  },
+  "yourUserId": "あなたのユーザーID:",
+  "@yourUserId": {},
+  "setupChatBackup": "チャットバックアップを設定する",
+  "@setupChatBackup": {},
+  "yourChatBackupHasBeenSetUp": "チャットバックアップを設定ました。",
+  "@yourChatBackupHasBeenSetUp": {},
+  "chatHasBeenRemovedFromThisSpace": "チャットはこのスペースに削除されました",
+  "@chatHasBeenRemovedFromThisSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendOnEnter": "Enterで送信",
+  "@sendOnEnter": {},
+  "changeYourAvatar": "アバタるを変化しする",
+  "@changeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iWroteDownTheKey": "私は鍵を書きました",
+  "@iWroteDownTheKey": {},
+  "chatHasBeenAddedToThisSpace": "このスペースにチャットが追加されました",
+  "@chatHasBeenAddedToThisSpace": {}
 }
