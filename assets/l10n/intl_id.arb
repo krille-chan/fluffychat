@@ -1716,7 +1716,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "synchronizingPleaseWait": "Menyinkronkan... Mohon menunggu.",
+  "synchronizingPleaseWait": "Menyinkronkan... Mohon tunggu.",
   "@synchronizingPleaseWait": {
     "type": "text",
     "placeholders": {}
@@ -1763,7 +1763,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sourceCode": "Sumber kode",
+  "sourceCode": "Kode sumber",
   "@sourceCode": {
     "type": "text",
     "placeholders": {}
