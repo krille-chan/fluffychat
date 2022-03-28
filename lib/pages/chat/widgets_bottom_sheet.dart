@@ -4,10 +4,13 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:url_launcher/link.dart';
 
+import 'edit_widgets_dialog.dart';
+
 class WidgetsBottomSheet extends StatelessWidget {
   final Room room;
 
   const WidgetsBottomSheet({Key? key, required this.room}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -15,8 +18,15 @@ class WidgetsBottomSheet extends StatelessWidget {
       itemBuilder: (context, index) {
         if (index == room.widgets.length) {
           return ListTile(
-            title: Text(L10n.of(context)!.integrationsNotImplemented),
-            leading: const Icon(Icons.info),
+            leading: const Icon(Icons.edit),
+            title: Text(L10n.of(context)!.editWidgets),
+            onTap: () {
+              Navigator.of(context).pop();
+              showDialog(
+                context: context,
+                builder: (context) => EditWidgetsDialog(room: room),
+              );
+            },
           );
         }
         final widget = room.widgets[index];

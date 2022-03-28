@@ -2759,5 +2759,15 @@
       }
     },
     "nextAccount": "Next account",
-    "previousAccount": "Previous account"
+    "previousAccount": "Previous account",
+  "editWidgets": "Edit widgets",
+  "addWidget": "Add widget",
+  "widgetVideo": "Video",
+  "widgetEtherpad": "Text note",
+  "widgetJitsi": "Jitsi Meet",
+  "widgetCustom": "Custom",
+  "widgetName": "Name",
+  "widgetUrlError": "This is not a valid URL.",
+  "widgetNameError": "Please provide a display name.",
+  "errorAddingWidget": "Error adding the widget."
 }
