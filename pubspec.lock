@@ -56,7 +56,7 @@ packages:
       name: archive
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.2.2"
+    version: "3.3.0"
   args:
     dependency: transitive
     description:
@@ -296,7 +296,7 @@ packages:
       name: dbus
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.7.1"
+    version: "0.7.2"
   desktop_drop:
     dependency: "direct main"
     description:
@@ -586,7 +586,7 @@ packages:
       name: flutter_native_splash
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.1"
+    version: "2.1.2+1"
   flutter_olm:
     dependency: "direct main"
     description:
@@ -701,7 +701,7 @@ packages:
       name: flutter_webrtc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.8.3"
+    version: "0.8.4"
   frontend_server_client:
     dependency: transitive
     description:
@@ -976,7 +976,7 @@ packages:
       name: matrix
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.8.13"
+    version: "0.8.14"
   matrix_api_lite:
     dependency: transitive
     description:
@@ -1389,7 +1389,7 @@ packages:
       name: salomon_bottom_bar
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.2.0"
+    version: "3.3.0"
   scroll_to_index:
     dependency: "direct main"
     description:
@@ -1583,7 +1583,7 @@ packages:
       name: synchronized
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.0"
+    version: "3.0.0+2"
   term_glyph:
     dependency: transitive
     description:
@@ -1807,7 +1807,7 @@ packages:
       name: video_player_android
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.3.1"
+    version: "2.3.2"
   video_player_avfoundation:
     dependency: transitive
     description:
@@ -1821,7 +1821,7 @@ packages:
       name: video_player_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.1.0"
+    version: "5.1.1"
   video_player_web:
     dependency: transitive
     description:
@@ -1919,7 +1919,7 @@ packages:
       name: win32
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.4.2"
+    version: "2.5.0"
   wkt_parser:
     dependency: transitive
     description:
