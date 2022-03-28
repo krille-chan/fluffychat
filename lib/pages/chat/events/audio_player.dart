@@ -215,15 +215,19 @@ class _AudioPlayerState extends State<AudioPlayerWidget> {
                               (maxPosition / AudioPlayerWidget.wavesCount)
                                       .round() *
                                   i)),
-                      child: Opacity(
-                        opacity: currentPosition > i ? 1 : 0.5,
-                        child: Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 1),
-                            decoration: BoxDecoration(
-                              color: widget.color,
-                              borderRadius: BorderRadius.circular(64),
-                            ),
-                            height: 64 * (waveform[i] / 1024)),
+                      child: Container(
+                        height: 32,
+                        alignment: Alignment.center,
+                        child: Opacity(
+                          opacity: currentPosition > i ? 1 : 0.5,
+                          child: Container(
+                              margin: const EdgeInsets.symmetric(horizontal: 1),
+                              decoration: BoxDecoration(
+                                color: widget.color,
+                                borderRadius: BorderRadius.circular(64),
+                              ),
+                              height: 32 * (waveform[i] / 1024)),
+                        ),
                       ),
                     ),
                   )
