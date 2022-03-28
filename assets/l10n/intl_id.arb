@@ -2772,5 +2772,25 @@
     }
   },
   "nextAccount": "Akun berikutnya",
-  "@nextAccount": {}
+  "@nextAccount": {},
+  "widgetEtherpad": "Catatan teks",
+  "@widgetEtherpad": {},
+  "widgetJitsi": "Jitsi Meet",
+  "@widgetJitsi": {},
+  "widgetCustom": "Kustom",
+  "@widgetCustom": {},
+  "errorAddingWidget": "Terjadi kesalahan menambahkan widget.",
+  "@errorAddingWidget": {},
+  "widgetName": "Nama",
+  "@widgetName": {},
+  "addWidget": "Tambahkan widget",
+  "@addWidget": {},
+  "editWidgets": "Edit widget",
+  "@editWidgets": {},
+  "widgetVideo": "Video",
+  "@widgetVideo": {},
+  "widgetUrlError": "Ini bukan URL yang valid.",
+  "@widgetUrlError": {},
+  "widgetNameError": "Mohon sediakan sebuah nama tampilan.",
+  "@widgetNameError": {}
 }
