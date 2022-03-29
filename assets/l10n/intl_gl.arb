@@ -548,7 +548,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "contactHasBeenInvitedToTheGroup": "O contacto foi convidado ó grupo",
+  "contactHasBeenInvitedToTheGroup": "O contacto foi convidado ao grupo",
   "@contactHasBeenInvitedToTheGroup": {
     "type": "text",
     "placeholders": {}
@@ -573,7 +573,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "copiedToClipboard": "Copiado ó portapapeis",
+  "copiedToClipboard": "Copiado ao portapapeis",
   "@copiedToClipboard": {
     "type": "text",
     "placeholders": {}
@@ -1163,7 +1163,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "joinedTheChat": "{username} uníuse ó chat",
+  "joinedTheChat": "{username} uníuse ao chat",
   "@joinedTheChat": {
     "type": "text",
     "placeholders": {
@@ -2341,7 +2341,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "userSentUnknownEvent": "{username} enviou un evento {type]",
+  "userSentUnknownEvent": "{username} enviou un evento {type}",
   "@userSentUnknownEvent": {
     "type": "text",
     "placeholders": {
@@ -2770,5 +2770,33 @@
   "previousAccount": "Conta anterior",
   "@previousAccount": {},
   "nextAccount": "Conta seguinte",
-  "@nextAccount": {}
+  "@nextAccount": {},
+  "bundleName": "Nome do feixe",
+  "@bundleName": {},
+  "widgetVideo": "Vídeo",
+  "@widgetVideo": {},
+  "widgetJitsi": "Jitsi Meet",
+  "@widgetJitsi": {},
+  "widgetCustom": "Personalizado",
+  "@widgetCustom": {},
+  "widgetName": "Nome",
+  "@widgetName": {},
+  "widgetUrlError": "Non é un URL válido.",
+  "@widgetUrlError": {},
+  "widgetNameError": "Escribe un nome público.",
+  "@widgetNameError": {},
+  "addWidget": "Engadir widget",
+  "@addWidget": {},
+  "widgetEtherpad": "Nota de texto",
+  "@widgetEtherpad": {},
+  "errorAddingWidget": "Erro ao engadir o widget.",
+  "@errorAddingWidget": {},
+  "editWidgets": "Editar widgets",
+  "@editWidgets": {},
+  "editBundlesForAccount": "Editar os feixes desta conta",
+  "@editBundlesForAccount": {},
+  "addToBundle": "Engadir ao feixe",
+  "@addToBundle": {},
+  "removeFromBundle": "Eliminar deste feixe",
+  "@removeFromBundle": {}
 }
