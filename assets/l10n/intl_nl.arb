@@ -2777,5 +2777,25 @@
     }
   },
   "previousAccount": "Vorige account",
-  "@previousAccount": {}
+  "@previousAccount": {},
+  "widgetCustom": "Aangepast",
+  "@widgetCustom": {},
+  "widgetName": "Naam",
+  "@widgetName": {},
+  "widgetUrlError": "Dit is geen geldige URL.",
+  "@widgetUrlError": {},
+  "widgetNameError": "Geef een naam op.",
+  "@widgetNameError": {},
+  "errorAddingWidget": "Fout bij het toevoegen van de widget.",
+  "@errorAddingWidget": {},
+  "widgetJitsi": "Jitsi Meet",
+  "@widgetJitsi": {},
+  "addWidget": "Widget toevoegen",
+  "@addWidget": {},
+  "widgetVideo": "Video",
+  "@widgetVideo": {},
+  "widgetEtherpad": "Tekstnotitie",
+  "@widgetEtherpad": {},
+  "editWidgets": "Widgets wijzigen",
+  "@editWidgets": {}
 }
