@@ -414,10 +414,10 @@ class ChatController extends State<Chat> {
       bytes: audioFile.readAsBytesSync(),
       name: audioFile.path,
     );
-    await showFutureLoadingDialog(
-      context: context,
-      future: () =>
-          room!.sendFileEvent(file, inReplyTo: replyEvent, extraContent: {
+    await room!.sendFileEvent(
+      file,
+      inReplyTo: replyEvent,
+      extraContent: {
         'info': {
           ...file.info,
           'duration': result.duration,
@@ -427,7 +427,7 @@ class ChatController extends State<Chat> {
           'duration': result.duration,
           'waveform': result.waveform,
         },
-      }),
+      },
     );
     setState(() {
       replyEvent = null;
