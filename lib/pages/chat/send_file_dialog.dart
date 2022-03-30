@@ -31,20 +31,16 @@ class _SendFileDialogState extends State<SendFileDialog> {
   Future<void> _send() async {
     var file = widget.file;
     MatrixImageFile? thumbnail;
-    if (file is MatrixImageFile &&
-        !origImage &&
-        file.bytes.length > minSizeToCompress) {
-      file = await MatrixImageFile.shrink(
-        bytes: file.bytes,
-        name: file.name,
-        compute: widget.room.client.runInBackground,
-      );
-    }
     if (file is MatrixVideoFile && file.bytes.length > minSizeToCompress) {
       file = await file.resizeVideo();
       thumbnail = await file.getVideoThumbnail();
     }
-    await widget.room.sendFileEvent(file, thumbnail: thumbnail);
+    widget.room.sendFileEvent(
+      file,
+      thumbnail: thumbnail,
+      shrinkImageMaxDimension: origImage ? null : 1600,
+    );
+    return;
   }
 
   @override
