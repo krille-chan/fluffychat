@@ -23,7 +23,6 @@ class SendFileDialog extends StatefulWidget {
 
 class _SendFileDialogState extends State<SendFileDialog> {
   bool origImage = false;
-  bool _isSending = false;
 
   /// Images smaller than 20kb don't need compression.
   static const int minSizeToCompress = 20 * 1024;
@@ -32,14 +31,27 @@ class _SendFileDialogState extends State<SendFileDialog> {
     var file = widget.file;
     MatrixImageFile? thumbnail;
     if (file is MatrixVideoFile && file.bytes.length > minSizeToCompress) {
-      file = await file.resizeVideo();
-      thumbnail = await file.getVideoThumbnail();
+      await showFutureLoadingDialog(
+          context: context,
+          future: () async {
+            file = await file.resizeVideo();
+            thumbnail = await file.getVideoThumbnail();
+          });
     }
-    widget.room.sendFileEvent(
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+    widget.room
+        .sendFileEvent(
       file,
       thumbnail: thumbnail,
       shrinkImageMaxDimension: origImage ? null : 1600,
-    );
+    )
+        .catchError((e) {
+      scaffoldMessenger.showSnackBar(
+        SnackBar(content: Text(e.toLocalizedString())),
+      );
+    });
+
+    Navigator.of(context, rootNavigator: false).pop();
     return;
   }
 
@@ -91,16 +103,7 @@ class _SendFileDialogState extends State<SendFileDialog> {
           child: Text(L10n.of(context)!.cancel),
         ),
         TextButton(
-          onPressed: _isSending
-              ? null
-              : () async {
-                  setState(() {
-                    _isSending = true;
-                  });
-                  await showFutureLoadingDialog(
-                      context: context, future: () => _send());
-                  Navigator.of(context, rootNavigator: false).pop();
-                },
+          onPressed: _send,
           child: Text(L10n.of(context)!.send),
         ),
       ],
