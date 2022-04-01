@@ -290,8 +290,6 @@ class Message extends StatelessWidget {
               )),
             ),
           row,
-          if (event.fileSendingStatus != null)
-            Text(event.fileSendingStatus!.name),
           if (event.hasAggregatedEvents(timeline, RelationshipTypes.reaction))
             Padding(
               padding: EdgeInsets.only(
