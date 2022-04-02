@@ -2744,5 +2744,40 @@
   "pinnedEventsError": "Virhe ladattaessa kiinnitettyjä viestejä",
   "@pinnedEventsError": {},
   "confirmEventUnpin": "Haluatko varmasti irrottaa tapahtuman pysyvästi?",
-  "@confirmEventUnpin": {}
+  "@confirmEventUnpin": {},
+  "editWidgets": "Muokkaa pienoissovelluksia",
+  "@editWidgets": {},
+  "widgetVideo": "Video",
+  "@widgetVideo": {},
+  "widgetJitsi": "Jitsi Meet",
+  "@widgetJitsi": {},
+  "widgetCustom": "Mukautettu",
+  "@widgetCustom": {},
+  "widgetName": "Nimi",
+  "@widgetName": {},
+  "widgetUrlError": "Epäkelvollinen URL.",
+  "@widgetUrlError": {},
+  "errorAddingWidget": "Virhe lisättäessä pienoissovellusta.",
+  "@errorAddingWidget": {},
+  "nextAccount": "Seuraava tili",
+  "@nextAccount": {},
+  "switchToAccount": "Siirry tilille {number}",
+  "@switchToAccount": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "experimentalVideoCalls": "Kokeelliset videopuhelut",
+  "@experimentalVideoCalls": {},
+  "emailOrUsername": "Sähköposti-osoite tai käyttäjätunnus",
+  "@emailOrUsername": {},
+  "previousAccount": "Edellinen tili",
+  "@previousAccount": {},
+  "widgetEtherpad": "Tekstimuotoinen muistiinpano",
+  "@widgetEtherpad": {},
+  "widgetNameError": "Syötä näyttönimi.",
+  "@widgetNameError": {},
+  "addWidget": "Lisää pienoissovellus",
+  "@addWidget": {}
 }
