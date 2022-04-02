@@ -242,7 +242,7 @@
       "username": {}
     }
   },
-  "changedTheChatDescriptionTo": "{username} изменил(а) описание чата на: \"{description}\"",
+  "changedTheChatDescriptionTo": "{username} изменил(а) описание чата на: '{description}'",
   "@changedTheChatDescriptionTo": {
     "type": "text",
     "placeholders": {
@@ -250,7 +250,7 @@
       "description": {}
     }
   },
-  "changedTheChatNameTo": "{username} изменил(а) имя чата на: \"{chatname}\"",
+  "changedTheChatNameTo": "{username} изменил(а) имя чата на: '{chatname}'",
   "@changedTheChatNameTo": {
     "type": "text",
     "placeholders": {
@@ -265,7 +265,7 @@
       "username": {}
     }
   },
-  "changedTheDisplaynameTo": "{username} изменил(а) отображаемое имя на: {displayname}",
+  "changedTheDisplaynameTo": "{username} изменил(а) отображаемое имя на: '{displayname}'",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -2176,7 +2176,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "timeOfDay": "{hours24}:{minutes}",
+  "timeOfDay": "{hours12}:{minutes}:{suffix}",
   "@timeOfDay": {
     "type": "text",
     "placeholders": {
@@ -2255,7 +2255,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unknownEvent": "Неизвестное событие \"{type}\"",
+  "unknownEvent": "Неизвестное событие '{type}'",
   "@unknownEvent": {
     "type": "text",
     "placeholders": {
@@ -2778,5 +2778,25 @@
   "nextAccount": "Следующая учётная запись",
   "@nextAccount": {},
   "previousAccount": "Предыдущая учётная запись",
-  "@previousAccount": {}
+  "@previousAccount": {},
+  "editWidgets": "Редактировать виджеты",
+  "@editWidgets": {},
+  "addWidget": "Добавить виджет",
+  "@addWidget": {},
+  "widgetVideo": "Видео",
+  "@widgetVideo": {},
+  "widgetEtherpad": "Текстовая записка",
+  "@widgetEtherpad": {},
+  "widgetCustom": "Пользовательский",
+  "@widgetCustom": {},
+  "widgetJitsi": "Совещание Jitsi",
+  "@widgetJitsi": {},
+  "widgetName": "Имя",
+  "@widgetName": {},
+  "widgetUrlError": "Этот URL не действителен.",
+  "@widgetUrlError": {},
+  "widgetNameError": "Пожалуйста, укажите отображаемое имя.",
+  "@widgetNameError": {},
+  "errorAddingWidget": "Ошибка при добавлении виджета.",
+  "@errorAddingWidget": {}
 }
