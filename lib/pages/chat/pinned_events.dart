@@ -60,82 +60,68 @@ class PinnedEvents extends StatelessWidget {
               ? snapshot.data?.last
               : null;
 
-          if (event != null && pinnedEvents != null) {
-            final fontSize =
-                AppConfig.messageFontSize * AppConfig.fontSizeFactor;
-            return Material(
-              color: Theme.of(context).appBarTheme.backgroundColor,
-              elevation: Theme.of(context).appBarTheme.elevation ?? 10,
-              shadowColor: Theme.of(context).appBarTheme.shadowColor,
-              child: InkWell(
-                onTap: () => _displayPinnedEventsDialog(
-                  context,
-                  pinnedEvents,
-                ),
-                child: Row(
-                  children: [
-                    IconButton(
-                      splashRadius: 20,
-                      iconSize: 20,
-                      icon: const Icon(Icons.push_pin),
-                      tooltip: L10n.of(context)!.unpin,
-                      onPressed: controller.room
-                                  ?.canSendEvent(EventTypes.RoomPinnedEvents) ??
-                              false
-                          ? () => controller.unpinEvent(event.eventId)
-                          : null,
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                        child: LinkText(
-                          text: event.getLocalizedBody(
-                            MatrixLocals(L10n.of(context)!),
-                            withSenderNamePrefix: true,
-                            hideReply: true,
-                          ),
-                          maxLines: 2,
-                          textStyle: TextStyle(
-                            overflow: TextOverflow.ellipsis,
-                            fontSize: fontSize,
-                            decoration: event.redacted
-                                ? TextDecoration.lineThrough
-                                : null,
-                          ),
-                          linkStyle: TextStyle(
-                            color: Theme.of(context)
-                                .textTheme
-                                .bodyText1
-                                ?.color
-                                ?.withAlpha(150),
-                            fontSize: fontSize,
-                            decoration: TextDecoration.underline,
-                          ),
-                          onLinkTap: (url) =>
-                              UrlLauncher(context, url).launchUrl(),
+          if (event == null || pinnedEvents == null) {
+            return Container();
+          }
+
+          final fontSize = AppConfig.messageFontSize * AppConfig.fontSizeFactor;
+          return Material(
+            color: Theme.of(context).appBarTheme.backgroundColor,
+            elevation: Theme.of(context).appBarTheme.elevation ?? 10,
+            shadowColor: Theme.of(context).appBarTheme.shadowColor,
+            child: InkWell(
+              onTap: () => _displayPinnedEventsDialog(
+                context,
+                pinnedEvents,
+              ),
+              child: Row(
+                children: [
+                  IconButton(
+                    splashRadius: 20,
+                    iconSize: 20,
+                    icon: const Icon(Icons.push_pin),
+                    tooltip: L10n.of(context)!.unpin,
+                    onPressed: controller.room
+                                ?.canSendEvent(EventTypes.RoomPinnedEvents) ??
+                            false
+                        ? () => controller.unpinEvent(event.eventId)
+                        : null,
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                      child: LinkText(
+                        text: event.getLocalizedBody(
+                          MatrixLocals(L10n.of(context)!),
+                          withSenderNamePrefix: true,
+                          hideReply: true,
                         ),
+                        maxLines: 2,
+                        textStyle: TextStyle(
+                          overflow: TextOverflow.ellipsis,
+                          fontSize: fontSize,
+                          decoration: event.redacted
+                              ? TextDecoration.lineThrough
+                              : null,
+                        ),
+                        linkStyle: TextStyle(
+                          color: Theme.of(context)
+                              .textTheme
+                              .bodyText1
+                              ?.color
+                              ?.withAlpha(150),
+                          fontSize: fontSize,
+                          decoration: TextDecoration.underline,
+                        ),
+                        onLinkTap: (url) =>
+                            UrlLauncher(context, url).launchUrl(),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            );
-          } else if (snapshot.hasError) {
-            Logs().e('Error loading pinned events.', snapshot.error);
-            return ListTile(
-                tileColor: Theme.of(context).secondaryHeaderColor,
-                title: Text(L10n.of(context)!.pinnedEventsError));
-          } else {
-            return ListTile(
-              tileColor: Theme.of(context).secondaryHeaderColor,
-              title: const Center(
-                child: SizedBox.square(
-                  dimension: 24,
-                  child: CircularProgressIndicator(),
-                ),
-              ),
-            );
-          }
+            ),
+          );
         });
   }
 }
