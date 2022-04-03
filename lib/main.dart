@@ -8,6 +8,7 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter_app_lock/flutter_app_lock.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:gaeilge_flutter_l10n/gaeilge_flutter_l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:vrouter/vrouter.dart';
@@ -128,7 +129,10 @@ class _FluffyChatAppState extends State<FluffyChatApp> {
             scrollBehavior: CustomScrollBehavior(),
             logs: kReleaseMode ? VLogs.none : VLogs.info,
             darkTheme: darkTheme,
-            localizationsDelegates: L10n.localizationsDelegates,
+            localizationsDelegates: const [
+              ...L10n.localizationsDelegates,
+              GaMaterialLocalizations.delegate
+            ],
             supportedLocales: L10n.supportedLocales,
             initialUrl: _initialUrl ?? '/',
             routes: AppRoutes(columnMode ?? false).routes,
