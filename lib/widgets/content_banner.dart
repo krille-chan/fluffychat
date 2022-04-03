@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -27,17 +29,7 @@ class ContentBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mediaQuery = MediaQuery.of(context);
-    final bannerSize =
-        (mediaQuery.size.width * mediaQuery.devicePixelRatio).toInt();
     final onEdit = this.onEdit;
-    final src = mxContent?.getThumbnail(
-      client ?? Matrix.of(context).client,
-      width: bannerSize,
-      height: bannerSize,
-      method: ThumbnailMethod.scale,
-      animated: true,
-    );
     return Container(
       height: height,
       alignment: Alignment.center,
@@ -53,12 +45,29 @@ class ContentBanner extends StatelessWidget {
             bottom: 0,
             child: Opacity(
               opacity: opacity,
-              child: (!loading && src != null)
-                  ? CachedNetworkImage(
-                      imageUrl: src.toString(),
-                      height: 300,
-                      fit: BoxFit.cover,
-                    )
+              child: (!loading)
+                  ? LayoutBuilder(builder:
+                      (BuildContext context, BoxConstraints constraints) {
+                      // #775 don't request new image resolution on every resize
+                      // by rounding up to the next multiple of stepSize
+                      const stepSize = 300;
+                      final bannerSize =
+                          constraints.maxWidth * window.devicePixelRatio;
+                      final steppedBannerSize =
+                          (bannerSize / stepSize).ceil() * stepSize;
+                      final src = mxContent?.getThumbnail(
+                        client ?? Matrix.of(context).client,
+                        width: steppedBannerSize,
+                        height: steppedBannerSize,
+                        method: ThumbnailMethod.scale,
+                        animated: true,
+                      );
+                      return CachedNetworkImage(
+                        imageUrl: src.toString(),
+                        height: 300,
+                        fit: BoxFit.cover,
+                      );
+                    })
                   : Icon(defaultIcon, size: 200),
             ),
           ),
