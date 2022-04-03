@@ -213,7 +213,11 @@ class StoryView extends StatelessWidget {
                       return Container();
                     }
                     controller.loadingModeOff();
-                    return Center(
+                    return Container(
+                      constraints: const BoxConstraints.expand(),
+                      alignment: controller.storyThemeData.fit == BoxFit.cover
+                          ? null
+                          : Alignment.center,
                       child: Image.memory(
                         matrixFile.bytes,
                         fit: controller.storyThemeData.fit,
@@ -221,56 +225,55 @@ class StoryView extends StatelessWidget {
                     );
                   },
                 ),
-              GestureDetector(
-                onTapDown: controller.hold,
-                onTapUp: controller.unhold,
-                onTapCancel: controller.unhold,
-                onVerticalDragStart: controller.hold,
-                onVerticalDragEnd: controller.unhold,
-                onHorizontalDragStart: controller.hold,
-                onHorizontalDragEnd: controller.unhold,
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 200),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8.0,
-                    vertical: 64,
-                  ),
-                  decoration: BoxDecoration(
-                    gradient: event.messageType == MessageTypes.Text
-                        ? LinearGradient(
-                            colors: [
-                              backgroundColorDark,
-                              backgroundColor,
-                            ],
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                          )
-                        : null,
-                  ),
-                  alignment: Alignment(
-                    controller.storyThemeData.alignmentX.toDouble() / 100,
-                    controller.storyThemeData.alignmentY.toDouble() / 100,
-                  ),
-                  child: LinkText(
-                    text: controller.loadingMode
-                        ? L10n.of(context)!.loadingPleaseWait
-                        : event.content.tryGet<String>('body') ?? '',
-                    textAlign: TextAlign.center,
-                    onLinkTap: (url) => UrlLauncher(context, url).launchUrl(),
-                    linkStyle: TextStyle(
-                      fontSize: 24,
-                      color: Colors.blue.shade50,
-                      decoration: TextDecoration.underline,
-                      shadows: event.messageType == MessageTypes.Text
-                          ? null
-                          : textShadows,
+              SafeArea(
+                child: GestureDetector(
+                  onTapDown: controller.hold,
+                  onTapUp: controller.unhold,
+                  onTapCancel: controller.unhold,
+                  onVerticalDragStart: controller.hold,
+                  onVerticalDragEnd: controller.unhold,
+                  onHorizontalDragStart: controller.hold,
+                  onHorizontalDragEnd: controller.unhold,
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 200),
+                    padding: const EdgeInsets.all(16.0),
+                    decoration: BoxDecoration(
+                      gradient: event.messageType == MessageTypes.Text
+                          ? LinearGradient(
+                              colors: [
+                                backgroundColorDark,
+                                backgroundColor,
+                              ],
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                            )
+                          : null,
                     ),
-                    textStyle: TextStyle(
-                      fontSize: 24,
-                      color: Colors.white,
-                      shadows: event.messageType == MessageTypes.Text
-                          ? null
-                          : textShadows,
+                    alignment: Alignment(
+                      controller.storyThemeData.alignmentX.toDouble() / 100,
+                      controller.storyThemeData.alignmentY.toDouble() / 100,
+                    ),
+                    child: LinkText(
+                      text: controller.loadingMode
+                          ? L10n.of(context)!.loadingPleaseWait
+                          : event.content.tryGet<String>('body') ?? '',
+                      textAlign: TextAlign.center,
+                      onLinkTap: (url) => UrlLauncher(context, url).launchUrl(),
+                      linkStyle: TextStyle(
+                        fontSize: 24,
+                        color: Colors.blue.shade50,
+                        decoration: TextDecoration.underline,
+                        shadows: event.messageType == MessageTypes.Text
+                            ? null
+                            : textShadows,
+                      ),
+                      textStyle: TextStyle(
+                        fontSize: 24,
+                        color: Colors.white,
+                        shadows: event.messageType == MessageTypes.Text
+                            ? null
+                            : textShadows,
+                      ),
                     ),
                   ),
                 ),
