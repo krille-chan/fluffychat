@@ -294,11 +294,7 @@ class _ChatListViewBodyState extends State<_ChatListViewBody> {
     Widget child;
     if (widget.controller.waitForFirstSync &&
         Matrix.of(context).client.prevBatch != null) {
-      final rooms = Matrix.of(context)
-          .client
-          .rooms
-          .where(widget.controller.roomCheck)
-          .toList();
+      final rooms = widget.controller.activeSpacesEntry.getRooms(context);
       if (rooms.isEmpty) {
         child = Column(
           key: const ValueKey(null),
@@ -323,7 +319,8 @@ class _ChatListViewBodyState extends State<_ChatListViewBody> {
           ],
         );
       } else {
-        final displayStoriesHeader = widget.controller.activeSpaceId == null;
+        final displayStoriesHeader = widget.controller.activeSpacesEntry
+            .shouldShowStoriesHeader(context);
         child = ListView.builder(
           key: ValueKey(Matrix.of(context).client.userID.toString() +
               widget.controller.activeSpaceId.toString()),

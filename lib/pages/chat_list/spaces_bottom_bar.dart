@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
+import 'package:fluffychat/pages/chat_list/spaces_entry.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -14,11 +13,9 @@ class SpacesBottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentIndex = controller.activeSpaceId == null
-        ? 0
-        : controller.spaces
-                .indexWhere((space) => controller.activeSpaceId == space.id) +
-            1;
+    final foundIndex = controller.spacesEntries.indexWhere(
+        (se) => spacesEntryRoughEquivalence(se, controller.activeSpacesEntry));
+    final currentIndex = foundIndex == -1 ? 0 : foundIndex;
     return Material(
       color: Theme.of(context).appBarTheme.backgroundColor,
       elevation: 6,
@@ -39,44 +36,48 @@ class SpacesBottomBar extends StatelessWidget {
                   child: SalomonBottomBar(
                     itemPadding: const EdgeInsets.all(8),
                     currentIndex: currentIndex,
-                    onTap: (i) => controller.setActiveSpaceId(
+                    onTap: (i) => controller.setActiveSpacesEntry(
                       context,
-                      i == 0 ? null : controller.spaces[i - 1].id,
+                      controller.spacesEntries[i],
                     ),
                     selectedItemColor: Theme.of(context).colorScheme.primary,
-                    items: [
-                      SalomonBottomBarItem(
-                        icon: const Icon(CupertinoIcons.chat_bubble_2),
-                        activeIcon:
-                            const Icon(CupertinoIcons.chat_bubble_2_fill),
-                        title: Text(L10n.of(context)!.allChats),
-                      ),
-                      ...controller.spaces
-                          .map((space) => SalomonBottomBarItem(
-                                icon: InkWell(
-                                  borderRadius: BorderRadius.circular(28),
-                                  onTap: () => controller.setActiveSpaceId(
-                                    context,
-                                    space.id,
-                                  ),
-                                  onLongPress: () =>
-                                      controller.editSpace(context, space.id),
-                                  child: Avatar(
-                                    mxContent: space.avatar,
-                                    name: space.displayname,
-                                    size: 24,
-                                    fontSize: 12,
-                                  ),
-                                ),
-                                title: Text(space.displayname),
-                              ))
-                          .toList(),
-                    ],
+                    items: controller.spacesEntries
+                        .map((entry) => _buildSpacesEntryUI(context, entry))
+                        .toList(),
                   ),
                 ),
               );
             }),
       ),
+    );
+  }
+
+  SalomonBottomBarItem _buildSpacesEntryUI(
+      BuildContext context, SpacesEntry entry) {
+    final space = entry.getSpace(context);
+    if (space != null) {
+      return SalomonBottomBarItem(
+        icon: InkWell(
+          borderRadius: BorderRadius.circular(28),
+          onTap: () => controller.setActiveSpacesEntry(
+            context,
+            entry,
+          ),
+          onLongPress: () => controller.editSpace(context, space.id),
+          child: Avatar(
+            mxContent: space.avatar,
+            name: space.displayname,
+            size: 24,
+            fontSize: 12,
+          ),
+        ),
+        title: Text(entry.getName(context)),
+      );
+    }
+    return SalomonBottomBarItem(
+      icon: entry.getIcon(false),
+      activeIcon: entry.getIcon(true),
+      title: Text(entry.getName(context)),
     );
   }
 }

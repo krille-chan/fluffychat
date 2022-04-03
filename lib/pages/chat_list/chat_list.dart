@@ -13,8 +13,8 @@ import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
+import 'package:fluffychat/pages/chat_list/spaces_entry.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions.dart/client_stories_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import '../../../utils/account_bundles.dart';
 import '../../main.dart';
@@ -47,14 +47,14 @@ class ChatListController extends State<ChatList> {
 
   StreamSubscription? _intentUriStreamSubscription;
 
-  String? _activeSpaceId;
+  SpacesEntry? _activeSpacesEntry;
 
-  String? get activeSpaceId {
-    final id = _activeSpaceId;
-    return id != null && Matrix.of(context).client.getRoomById(id) == null
-        ? null
-        : _activeSpaceId;
+  SpacesEntry get activeSpacesEntry {
+    final id = _activeSpacesEntry;
+    return (id == null || !id.stillValid(context)) ? defaultSpacesEntry : id;
   }
+
+  String? get activeSpaceId => activeSpacesEntry.getSpace(context)?.id;
 
   final ScrollController scrollController = ScrollController();
   bool scrolledToTop = true;
@@ -72,8 +72,8 @@ class ChatListController extends State<ChatList> {
     }
   }
 
-  void setActiveSpaceId(BuildContext context, String? spaceId) {
-    setState(() => _activeSpaceId = spaceId);
+  void setActiveSpacesEntry(BuildContext context, SpacesEntry spaceId) {
+    setState(() => _activeSpacesEntry = spaceId);
   }
 
   void editSpace(BuildContext context, String spaceId) async {
@@ -81,8 +81,29 @@ class ChatListController extends State<ChatList> {
     VRouter.of(context).toSegments(['spaces', spaceId]);
   }
 
+  // Needs to match GroupsSpacesEntry for 'separate group' checking.
   List<Room> get spaces =>
       Matrix.of(context).client.rooms.where((r) => r.isSpace).toList();
+
+  // Note that this could change due to configuration, etc.
+  // Also be aware that _activeSpacesEntry = null is the expected reset method.
+  SpacesEntry get defaultSpacesEntry => AppConfig.separateChatTypes
+      ? DirectChatsSpacesEntry()
+      : AllRoomsSpacesEntry();
+
+  List<SpacesEntry> get spacesEntries {
+    if (AppConfig.separateChatTypes) {
+      return [
+        defaultSpacesEntry,
+        GroupsSpacesEntry(),
+        ...spaces.map((space) => SpaceSpacesEntry(space)).toList()
+      ];
+    }
+    return [
+      defaultSpacesEntry,
+      ...spaces.map((space) => SpaceSpacesEntry(space)).toList()
+    ];
+  }
 
   final selectedRoomIds = <String>{};
   bool? crossSigningCached;
@@ -204,35 +225,6 @@ class ChatListController extends State<ChatList> {
     _intentUriStreamSubscription?.cancel();
     scrollController.removeListener(_onScroll);
     super.dispose();
-  }
-
-  bool roomCheck(Room room) {
-    if (room.isSpace && room.membership == Membership.join && !room.isUnread) {
-      return false;
-    }
-    if (room.getState(EventTypes.RoomCreate)?.content.tryGet<String>('type') ==
-        ClientStoriesExtension.storiesRoomType) {
-      return false;
-    }
-    if (activeSpaceId != null) {
-      final space = Matrix.of(context).client.getRoomById(activeSpaceId!)!;
-      if (space.spaceChildren.any((child) => child.roomId == room.id)) {
-        return true;
-      }
-      if (room.spaceParents.any((parent) => parent.roomId == activeSpaceId)) {
-        return true;
-      }
-      if (room.isDirectChat &&
-          room.summary.mHeroes != null &&
-          room.summary.mHeroes!.any((userId) {
-            final user = space.getState(EventTypes.RoomMember, userId)?.asUser;
-            return user != null && user.membership == Membership.join;
-          })) {
-        return true;
-      }
-      return false;
-    }
-    return true;
   }
 
   void toggleSelection(String roomId) {
@@ -370,7 +362,8 @@ class ChatListController extends State<ChatList> {
   }
 
   Future<void> addOrRemoveToSpace() async {
-    if (activeSpaceId != null) {
+    final id = activeSpaceId;
+    if (id != null) {
       final consent = await showOkCancelAlertDialog(
         context: context,
         title: L10n.of(context)!.removeFromSpace,
@@ -382,7 +375,7 @@ class ChatListController extends State<ChatList> {
       );
       if (consent != OkCancelResult.ok) return;
 
-      final space = Matrix.of(context).client.getRoomById(activeSpaceId!);
+      final space = Matrix.of(context).client.getRoomById(id);
       final result = await showFutureLoadingDialog(
         context: context,
         future: () async {
@@ -458,8 +451,9 @@ class ChatListController extends State<ChatList> {
       await client.onFirstSync.stream.first;
     }
     // Load space members to display DM rooms
-    if (activeSpaceId != null) {
-      final space = client.getRoomById(activeSpaceId!)!;
+    final spaceId = activeSpaceId;
+    if (spaceId != null) {
+      final space = client.getRoomById(spaceId)!;
       final localMembers = space.getParticipants().length;
       final actualMembersCount = (space.summary.mInvitedMemberCount ?? 0) +
           (space.summary.mJoinedMemberCount ?? 0);
@@ -485,7 +479,7 @@ class ChatListController extends State<ChatList> {
   void setActiveClient(Client client) {
     VRouter.of(context).to('/rooms');
     setState(() {
-      _activeSpaceId = null;
+      _activeSpacesEntry = null;
       selectedRoomIds.clear();
       Matrix.of(context).setActiveClient(client);
     });
@@ -495,7 +489,7 @@ class ChatListController extends State<ChatList> {
   void setActiveBundle(String bundle) {
     VRouter.of(context).to('/rooms');
     setState(() {
-      _activeSpaceId = null;
+      _activeSpacesEntry = null;
       selectedRoomIds.clear();
       Matrix.of(context).activeBundle = bundle;
       if (!Matrix.of(context)

@@ -2083,6 +2083,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "separateChatTypes": "Separate Direct Chats, Groups, and Spaces",
+  "@separateChatTypes": {
+    "type": "text",
+    "placeholders": {}
+  },
   "setAProfilePicture": "Set a profile picture",
   "@setAProfilePicture": {
     "type": "text",
