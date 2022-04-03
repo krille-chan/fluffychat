@@ -3,6 +3,7 @@ abstract class SettingKeys {
   static const String renderHtml = 'chat.fluffy.renderHtml';
   static const String hideRedactedEvents = 'chat.fluffy.hideRedactedEvents';
   static const String hideUnknownEvents = 'chat.fluffy.hideUnknownEvents';
+  static const String separateChatTypes = 'chat.fluffy.separateChatTypes';
   static const String chatColor = 'chat.fluffy.chat_color';
   static const String sentry = 'sentry';
   static const String theme = 'theme';
