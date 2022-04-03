@@ -48,6 +48,7 @@ dependencies:
   flutter_web_auth: ^0.4.0
   flutter_webrtc: ^0.8.2
   future_loading_dialog: ^0.2.3
+  gaeilge_flutter_l10n: ^1.0.0
   geolocator: ^7.6.2
   hive_flutter: ^1.1.0
   image: ^3.1.1

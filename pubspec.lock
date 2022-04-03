@@ -716,6 +716,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.3"
+  gaeilge_flutter_l10n:
+    dependency: "direct main"
+    description:
+      name: gaeilge_flutter_l10n
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   geolocator:
     dependency: "direct main"
     description:
@@ -1949,5 +1956,5 @@ packages:
     source: hosted
     version: "3.1.0"
 sdks:
-  dart: ">=2.16.0 <3.0.0"
+  dart: ">=2.16.1 <3.0.0"
   flutter: ">=2.10.0"
