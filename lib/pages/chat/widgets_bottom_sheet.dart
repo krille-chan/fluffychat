@@ -25,6 +25,7 @@ class WidgetsBottomSheet extends StatelessWidget {
               showDialog(
                 context: context,
                 builder: (context) => EditWidgetsDialog(room: room),
+                useRootNavigator: false,
               );
             },
           );

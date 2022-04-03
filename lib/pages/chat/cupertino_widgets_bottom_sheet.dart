@@ -36,6 +36,7 @@ class CupertinoWidgetsBottomSheet extends StatelessWidget {
             showCupertinoDialog(
               context: context,
               builder: (context) => EditWidgetsDialog(room: room),
+              useRootNavigator: false,
             );
           },
         ),

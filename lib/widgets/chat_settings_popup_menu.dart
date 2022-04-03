@@ -135,6 +135,7 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                   showDialog(
                     context: context,
                     builder: (context) => EditWidgetsDialog(room: widget.room),
+                    useRootNavigator: false,
                   );
                 }
                 break;
