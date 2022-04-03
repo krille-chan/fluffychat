@@ -2793,5 +2793,10 @@
   "widgetUrlError": "Це недійсна URL-адреса.",
   "@widgetUrlError": {},
   "errorAddingWidget": "Помилка додавання віджета.",
-  "@errorAddingWidget": {}
+  "@errorAddingWidget": {},
+  "separateChatTypes": "Окремі особисті бесіди, групи та простори",
+  "@separateChatTypes": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
