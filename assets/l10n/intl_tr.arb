@@ -2798,5 +2798,10 @@
   "widgetEtherpad": "Metin notu",
   "@widgetEtherpad": {},
   "widgetName": "Ad",
-  "@widgetName": {}
+  "@widgetName": {},
+  "separateChatTypes": "Doğrudan Sohbetleri, Grupları ve Alanları Ayır",
+  "@separateChatTypes": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
