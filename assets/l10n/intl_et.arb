@@ -2734,5 +2734,41 @@
   "experimentalVideoCalls": "Katselised videokõned",
   "@experimentalVideoCalls": {},
   "unsupportedAndroidVersionLong": "See funktsionaalsus eeldab uuemat Androidi versiooni. Palun kontrolli, kas sinu nutiseadmele leidub süsteemiuuendusi või saaks seal Lineage OS'i kasutada.",
-  "@unsupportedAndroidVersionLong": {}
+  "@unsupportedAndroidVersionLong": {},
+  "nextAccount": "Järgmine kasutajakonto",
+  "@nextAccount": {},
+  "separateChatTypes": "Eraldi vestlused, jututoad ja kogukonnad",
+  "@separateChatTypes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editWidgets": "Muuda vidinaid",
+  "@editWidgets": {},
+  "errorAddingWidget": "Vidina lisamisel tekkis viga.",
+  "@errorAddingWidget": {},
+  "widgetNameError": "Palun sisesta kuvatav nimi.",
+  "@widgetNameError": {},
+  "addWidget": "Lisa vidin",
+  "@addWidget": {},
+  "previousAccount": "Eelmine kasutajakonto",
+  "@previousAccount": {},
+  "widgetUrlError": "See pole korrektne URL.",
+  "@widgetUrlError": {},
+  "widgetName": "Nimi",
+  "@widgetName": {},
+  "widgetCustom": "Kohandatud",
+  "@widgetCustom": {},
+  "widgetJitsi": "Jitsi Meet",
+  "@widgetJitsi": {},
+  "widgetEtherpad": "Märkmed ja tekstid",
+  "@widgetEtherpad": {},
+  "widgetVideo": "Video",
+  "@widgetVideo": {},
+  "switchToAccount": "Pruugi kasutajakontot # {number}",
+  "@switchToAccount": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  }
 }
