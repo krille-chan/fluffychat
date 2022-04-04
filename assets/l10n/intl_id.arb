@@ -2792,5 +2792,10 @@
   "widgetUrlError": "Ini bukan URL yang valid.",
   "@widgetUrlError": {},
   "widgetNameError": "Mohon sediakan sebuah nama tampilan.",
-  "@widgetNameError": {}
+  "@widgetNameError": {},
+  "separateChatTypes": "Pisahkan Pesan Langsung, Grup, dan Space",
+  "@separateChatTypes": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
