@@ -2798,5 +2798,10 @@
   "widgetName": "名称",
   "@widgetName": {},
   "widgetUrlError": "这不是有效的 URL。",
-  "@widgetUrlError": {}
+  "@widgetUrlError": {},
+  "separateChatTypes": "分开私聊、群组和空间",
+  "@separateChatTypes": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
