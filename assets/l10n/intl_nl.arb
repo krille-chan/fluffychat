@@ -2797,5 +2797,10 @@
   "widgetEtherpad": "Tekstnotitie",
   "@widgetEtherpad": {},
   "editWidgets": "Widgets wijzigen",
-  "@editWidgets": {}
+  "@editWidgets": {},
+  "separateChatTypes": "Gescheiden directe chats, groepen en spaces",
+  "@separateChatTypes": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
