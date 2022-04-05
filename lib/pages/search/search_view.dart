@@ -6,6 +6,7 @@ import 'package:matrix/matrix.dart';
 import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
+import 'package:fluffychat/utils/string_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/contacts_list.dart';
 import 'package:fluffychat/widgets/default_app_bar_search_field.dart';
@@ -68,9 +69,8 @@ class SearchView extends StatelessWidget {
     rooms.removeWhere(
       (room) =>
           room.lastEvent == null ||
-          !room.displayname
-              .toLowerCase()
-              .contains(controller.controller.text.toLowerCase()),
+          !room.displayname.toLowerCase().removeDiacritics().contains(
+              controller.controller.text.toLowerCase().removeDiacritics()),
     );
     const tabCount = 3;
     return DefaultTabController(
