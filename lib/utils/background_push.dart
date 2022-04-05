@@ -20,6 +20,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -29,7 +30,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:http/http.dart' as http;
 import 'package:matrix/matrix.dart';
-import 'package:unifiedpush/unifiedpush.dart' hide Message;
+import 'package:unifiedpush/unifiedpush.dart';
 import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/client_stories_extension.dart';
@@ -80,10 +81,9 @@ class BackgroundPush {
       onNewToken: _newFcmToken,
     );
     if (Platform.isAndroid) {
-      UnifiedPush.initializeWithReceiver(
+      UnifiedPush.initialize(
         onNewEndpoint: _newUpEndpoint,
         onRegistrationFailed: _upUnregistered,
-        onRegistrationRefused: _upUnregistered,
         onUnregistered: _upUnregistered,
         onMessage: _onUpMessage,
       );
@@ -329,7 +329,7 @@ class BackgroundPush {
   }
 
   Future<void> setupUp() async {
-    await UnifiedPush.registerAppWithDialog();
+    await UnifiedPush.registerAppWithDialog(context!);
   }
 
   Future<void> _onFcmMessage(Map<dynamic, dynamic> message) async {
@@ -343,10 +343,10 @@ class BackgroundPush {
     }
   }
 
-  Future<void> _newUpEndpoint(String newEndpoint) async {
+  Future<void> _newUpEndpoint(String newEndpoint, String i) async {
     upAction = true;
     if (newEndpoint.isEmpty) {
-      await _upUnregistered();
+      await _upUnregistered(i);
       return;
     }
     var endpoint =
@@ -387,7 +387,7 @@ class BackgroundPush {
     await store.setItemBool(SettingKeys.unifiedPushRegistered, true);
   }
 
-  Future<void> _upUnregistered() async {
+  Future<void> _upUnregistered(String i) async {
     upAction = true;
     Logs().i('[Push] Removing UnifiedPush endpoint...');
     final oldEndpoint = await store.getItem(SettingKeys.unifiedPushEndpoint);
@@ -401,10 +401,10 @@ class BackgroundPush {
     }
   }
 
-  Future<void> _onUpMessage(String message) async {
+  Future<void> _onUpMessage(Uint8List message, String i) async {
     upAction = true;
-    final data =
-        Map<String, dynamic>.from(json.decode(message)['notification']);
+    final data = Map<String, dynamic>.from(
+        json.decode(utf8.decode(message))['notification']);
     try {
       await _onMessage(data);
     } catch (e, s) {
