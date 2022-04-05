@@ -4,9 +4,6 @@ import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 
 import android.content.Context
-import android.os.Bundle
-import android.util.Log
-import android.view.WindowManager
 import androidx.multidex.MultiDex
 
 class MainActivity : FlutterActivity() {
@@ -14,10 +11,6 @@ class MainActivity : FlutterActivity() {
         super.attachBaseContext(base)
         MultiDex.install(this)
     }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    };
 
     override fun provideFlutterEngine(context: Context): FlutterEngine? {
         return provideEngine(this)
@@ -30,7 +23,7 @@ class MainActivity : FlutterActivity() {
     companion object {
         var engine: FlutterEngine? = null
         fun provideEngine(context: Context): FlutterEngine {
-            var eng = engine ?: FlutterEngine(context, emptyArray(), true, false)
+            val eng = engine ?: FlutterEngine(context, emptyArray(), true, false)
             engine = eng
             return eng
         }

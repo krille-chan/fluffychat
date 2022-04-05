@@ -110,13 +110,17 @@
           </intent-filter>
         </service>
 
-        <receiver android:exported="true"  android:enabled="true"  android:name=".UnifiedPushReceiver">
+        <receiver android:name="org.unifiedpush.flutter.connector.UnifiedPushReceiver"
+            tools:replace="android:enabled"
+            android:enabled="false">
+        </receiver>
+
+        <receiver android:exported="false"  android:enabled="true"  android:name=".UnifiedPushReceiver">
             <intent-filter>
-                <action android:name="org.unifiedpush.android.connector.MESSAGE"/>
-                <action android:name="org.unifiedpush.android.connector.UNREGISTERED"/>
-                <action android:name="org.unifiedpush.android.connector.NEW_ENDPOINT"/>
-                <action android:name="org.unifiedpush.android.connector.REGISTRATION_FAILED" />
-                <action android:name="org.unifiedpush.android.connector.REGISTRATION_REFUSED" />
+                <action android:name="org.unifiedpush.flutter.connector.MESSAGE"/>
+                <action android:name="org.unifiedpush.flutter.connector.UNREGISTERED"/>
+                <action android:name="org.unifiedpush.flutter.connector.NEW_ENDPOINT"/>
+                <action android:name="org.unifiedpush.flutter.connector.REGISTRATION_FAILED" />
             </intent-filter>
         </receiver>
 
