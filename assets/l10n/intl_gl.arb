@@ -2798,5 +2798,10 @@
   "addToBundle": "Engadir ao feixe",
   "@addToBundle": {},
   "removeFromBundle": "Eliminar deste feixe",
-  "@removeFromBundle": {}
+  "@removeFromBundle": {},
+  "separateChatTypes": "Separar Conversas directas, Grupos e Espazos",
+  "@separateChatTypes": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
