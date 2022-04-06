@@ -7,7 +7,6 @@ import 'package:matrix/encryption/utils/key_verification.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
 
-import 'package:fluffychat/utils/custom_image_resizer.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'famedlysdk_store.dart';
 import 'matrix_sdk_extensions.dart/fluffybox_database.dart';
@@ -100,6 +99,5 @@ abstract class ClientManager {
             AuthenticationTypes.sso
         },
         compute: compute,
-        customImageResizer: PlatformInfos.isMobile ? customImageResizer : null,
       );
 }

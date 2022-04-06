@@ -1026,15 +1026,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.2"
-  native_imaging:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "8c6a5afe2c965b79b5959bb4b49c4aad020cb980"
-      url: "https://gitlab.com/famedly/libraries/native_imaging.git"
-    source: git
-    version: "0.1.0"
   nested:
     dependency: transitive
     description:
@@ -1697,7 +1688,21 @@ packages:
       name: unifiedpush
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.1"
+    version: "4.0.0"
+  unifiedpush_android:
+    dependency: transitive
+    description:
+      name: unifiedpush_android
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
+  unifiedpush_platform_interface:
+    dependency: transitive
+    description:
+      name: unifiedpush_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   universal_html:
     dependency: "direct main"
     description:
