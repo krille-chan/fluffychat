@@ -32,7 +32,7 @@ abstract class AppConfig {
       'https://gitlab.com/famedly/fluffychat/issues';
   static const bool enableSentry = true;
   static const String sentryDns =
-      'https://glet_5218c8eebefed3cb13511dc675fdbbdb@gitlab.com/api/v4/error_tracking/collector/16112282';
+      'https://8591d0d863b646feb4f3dda7e5dcab38@o256755.ingest.sentry.io/5243143';
   static bool renderHtml = true;
   static bool hideRedactedEvents = false;
   static bool hideUnknownEvents = true;
