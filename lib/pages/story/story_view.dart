@@ -225,34 +225,34 @@ class StoryView extends StatelessWidget {
                     );
                   },
                 ),
-              SafeArea(
-                child: GestureDetector(
-                  onTapDown: controller.hold,
-                  onTapUp: controller.unhold,
-                  onTapCancel: controller.unhold,
-                  onVerticalDragStart: controller.hold,
-                  onVerticalDragEnd: controller.unhold,
-                  onHorizontalDragStart: controller.hold,
-                  onHorizontalDragEnd: controller.unhold,
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 200),
-                    padding: const EdgeInsets.all(16.0),
-                    decoration: BoxDecoration(
-                      gradient: event.messageType == MessageTypes.Text
-                          ? LinearGradient(
-                              colors: [
-                                backgroundColorDark,
-                                backgroundColor,
-                              ],
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                            )
-                          : null,
-                    ),
-                    alignment: Alignment(
-                      controller.storyThemeData.alignmentX.toDouble() / 100,
-                      controller.storyThemeData.alignmentY.toDouble() / 100,
-                    ),
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 200),
+                padding: const EdgeInsets.all(16.0),
+                decoration: BoxDecoration(
+                  gradient: event.messageType == MessageTypes.Text
+                      ? LinearGradient(
+                          colors: [
+                            backgroundColorDark,
+                            backgroundColor,
+                          ],
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                        )
+                      : null,
+                ),
+                alignment: Alignment(
+                  controller.storyThemeData.alignmentX.toDouble() / 100,
+                  controller.storyThemeData.alignmentY.toDouble() / 100,
+                ),
+                child: SafeArea(
+                  child: GestureDetector(
+                    onTapDown: controller.hold,
+                    onTapUp: controller.unhold,
+                    onTapCancel: controller.unhold,
+                    onVerticalDragStart: controller.hold,
+                    onVerticalDragEnd: controller.unhold,
+                    onHorizontalDragStart: controller.hold,
+                    onHorizontalDragEnd: controller.unhold,
                     child: LinkText(
                       text: controller.loadingMode
                           ? L10n.of(context)!.loadingPleaseWait

@@ -227,7 +227,11 @@ class StoryPageController extends State<StoryPage> {
 
   void skip() {
     if (index + 1 >= max) {
-      VRouter.of(context).to('/rooms');
+      if (isOwnStory) {
+        VRouter.of(context).to('/stories/create');
+      } else {
+        VRouter.of(context).to('/rooms');
+      }
       return;
     }
     setState(() {

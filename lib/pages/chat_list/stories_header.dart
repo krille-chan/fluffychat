@@ -107,48 +107,45 @@ class StoriesHeader extends StatelessWidget {
             if (client.storiesRooms.isEmpty) {
               return Container();
             }
+            final stories = client.storiesRooms
+              ..sort((a, b) =>
+                  a.getState(EventTypes.RoomCreate)?.senderId == client.userID
+                      ? -1
+                      : 1);
             return SizedBox(
               height: 106,
-              child: ListView(
+              child: ListView.builder(
                 padding: const EdgeInsets.symmetric(horizontal: 2),
                 scrollDirection: Axis.horizontal,
-                children: [
-                  _StoryButton(
-                    label: L10n.of(context)!.yourStory,
-                    onPressed: () => _addToStoryAction(context),
-                    child: const Icon(Icons.camera_alt_outlined),
-                  ),
-                  ...client.storiesRooms.map(
-                    (room) => Opacity(
-                      opacity: room.hasPosts ? 1 : 0.75,
-                      child: FutureBuilder<Profile>(
-                          future: room.getCreatorProfile(),
-                          builder: (context, snapshot) {
-                            final displayname = snapshot.data?.displayName ??
-                                room
-                                    .getState(EventTypes.RoomCreate)!
-                                    .senderId
-                                    .localpart!;
-                            final avatarUrl = snapshot.data?.avatarUrl;
-                            return _StoryButton(
-                              label: displayname,
-                              child: Avatar(
-                                mxContent: avatarUrl,
-                                name: displayname,
-                                size: 100,
-                                fontSize: 24,
-                              ),
-                              unread: room.membership == Membership.invite ||
-                                  room.hasNewMessages,
-                              onPressed: () =>
-                                  _goToStoryAction(context, room.id),
-                              onLongPressed: () =>
-                                  _contextualActions(context, room),
-                            );
-                          }),
-                    ),
-                  ),
-                ],
+                itemCount: stories.length,
+                itemBuilder: (context, i) {
+                  final room = stories[i];
+                  return Opacity(
+                    opacity: room.hasPosts ? 1 : 0.75,
+                    child: FutureBuilder<Profile>(
+                        future: room.getCreatorProfile(),
+                        builder: (context, snapshot) {
+                          final userId =
+                              room.getState(EventTypes.RoomCreate)!.senderId;
+                          final displayname =
+                              snapshot.data?.displayName ?? userId.localpart!;
+                          final avatarUrl = snapshot.data?.avatarUrl;
+                          return _StoryButton(
+                            profile: Profile(
+                              displayName: displayname,
+                              avatarUrl: avatarUrl,
+                              userId: userId,
+                            ),
+                            showEditFab: userId == client.userID,
+                            unread: room.membership == Membership.invite ||
+                                room.hasNewMessages,
+                            onPressed: () => _goToStoryAction(context, room.id),
+                            onLongPressed: () =>
+                                _contextualActions(context, room),
+                          );
+                        }),
+                  );
+                },
               ),
             );
           }),
@@ -174,16 +171,16 @@ extension on Room {
 }
 
 class _StoryButton extends StatelessWidget {
-  final Widget child;
-  final String label;
+  final Profile profile;
+  final bool showEditFab;
+  final bool unread;
   final void Function() onPressed;
   final void Function()? onLongPressed;
-  final bool unread;
 
   const _StoryButton({
-    required this.child,
-    required this.label,
+    required this.profile,
     required this.onPressed,
+    this.showEditFab = false,
     this.unread = false,
     this.onLongPressed,
     Key? key,
@@ -223,25 +220,55 @@ class _StoryButton extends StatelessWidget {
                     color: unread ? null : Theme.of(context).dividerColor,
                     borderRadius: BorderRadius.circular(Avatar.defaultSize),
                   ),
-                  child: Material(
-                    color: Theme.of(context).colorScheme.surface,
-                    borderRadius: BorderRadius.circular(Avatar.defaultSize),
-                    child: Padding(
-                      padding: const EdgeInsets.all(2.0),
-                      child: CircleAvatar(
-                        radius: 30,
-                        backgroundColor: Theme.of(context).colorScheme.surface,
-                        foregroundColor:
-                            Theme.of(context).textTheme.bodyText1?.color,
-                        child: child,
+                  child: Stack(
+                    children: [
+                      Material(
+                        color: Theme.of(context).colorScheme.surface,
+                        borderRadius: BorderRadius.circular(Avatar.defaultSize),
+                        child: Padding(
+                          padding: const EdgeInsets.all(2.0),
+                          child: CircleAvatar(
+                            radius: 30,
+                            backgroundColor:
+                                Theme.of(context).colorScheme.surface,
+                            foregroundColor:
+                                Theme.of(context).textTheme.bodyText1?.color,
+                            child: Avatar(
+                              mxContent: profile.avatarUrl,
+                              name: profile.displayName,
+                              size: 100,
+                              fontSize: 24,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
+                      if (showEditFab)
+                        Positioned(
+                          right: 0,
+                          bottom: 0,
+                          child: SizedBox(
+                            width: 24,
+                            height: 24,
+                            child: FloatingActionButton.small(
+                              backgroundColor:
+                                  Theme.of(context).backgroundColor,
+                              foregroundColor: Theme.of(context).primaryColor,
+                              onPressed: () =>
+                                  VRouter.of(context).to('/stories/create'),
+                              child: const Icon(
+                                Icons.add_outlined,
+                                size: 16,
+                              ),
+                            ),
+                          ),
+                        ),
+                    ],
                   ),
                 ),
               ),
               const SizedBox(height: 8),
               Text(
-                label,
+                profile.displayName ?? '',
                 maxLines: 1,
                 textAlign: TextAlign.center,
                 style: TextStyle(
