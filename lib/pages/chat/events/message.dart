@@ -269,19 +269,24 @@ class Message extends StatelessWidget {
     );
     Widget container;
     if (event.hasAggregatedEvents(timeline, RelationshipTypes.reaction) ||
-        displayTime) {
+        displayTime ||
+        selected) {
       container = Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment:
             ownMessage ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: <Widget>[
-          if (displayTime)
+          if (displayTime || selected)
             Padding(
-              padding: EdgeInsets.symmetric(
-                  vertical: 8.0 * AppConfig.bubbleSizeFactor),
+              padding: displayTime
+                  ? EdgeInsets.symmetric(
+                      vertical: 8.0 * AppConfig.bubbleSizeFactor)
+                  : EdgeInsets.zero,
               child: Center(
                   child: Material(
-                color: Theme.of(context).backgroundColor,
+                color: displayTime
+                    ? Theme.of(context).backgroundColor
+                    : Theme.of(context).backgroundColor.withOpacity(0.33),
                 borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
                 clipBehavior: Clip.antiAlias,
                 child: Padding(
