@@ -112,17 +112,21 @@ class Message extends StatelessWidget {
       sameSender || ownMessage
           ? SizedBox(
               width: Avatar.defaultSize,
-              child: event.status == EventStatus.sending
-                  ? Center(
-                      child: SizedBox(
-                        width: 16 * AppConfig.bubbleSizeFactor,
-                        height: 16 * AppConfig.bubbleSizeFactor,
-                        child: const CircularProgressIndicator.adaptive(
-                            strokeWidth: 2),
-                      ),
-                    )
-                  : null,
-            )
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Center(
+                  child: SizedBox(
+                    width: 16 * AppConfig.bubbleSizeFactor,
+                    height: 16 * AppConfig.bubbleSizeFactor,
+                    child: event.status == EventStatus.sending
+                        ? const CircularProgressIndicator.adaptive(
+                            strokeWidth: 2)
+                        : event.status == EventStatus.error
+                            ? const Icon(Icons.error, color: Colors.red)
+                            : null,
+                  ),
+                ),
+              ))
           : Avatar(
               mxContent: event.sender.avatarUrl,
               name: event.sender.calcDisplayname(),
