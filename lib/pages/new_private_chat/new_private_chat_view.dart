@@ -6,7 +6,6 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:vrouter/vrouter.dart';
 
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/new_private_chat/new_private_chat.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
@@ -67,7 +66,10 @@ class NewPrivateChatView extends StatelessWidget {
               ),
             ),
             ListTile(
-              subtitle: Text(L10n.of(context)!.createNewChatExplaination),
+              subtitle: Text(
+                L10n.of(context)!.createNewChatExplaination,
+                textAlign: TextAlign.center,
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(12),
@@ -76,6 +78,7 @@ class NewPrivateChatView extends StatelessWidget {
                 child: TextFormField(
                   controller: controller.controller,
                   autocorrect: false,
+                  autofocus: !PlatformInfos.isMobile,
                   textInputAction: TextInputAction.go,
                   focusNode: controller.textFieldFocus,
                   onFieldSubmitted: controller.submitAction,
@@ -92,16 +95,10 @@ class NewPrivateChatView extends StatelessWidget {
                 ),
               ),
             ),
-            Center(
-              child: Image.asset(
-                'assets/private_chat_wallpaper.png',
-                width: min(AppConfig.columnWidth - _qrCodePadding * 6,
-                    MediaQuery.of(context).size.width - _qrCodePadding * 6),
-              ),
-            ),
           ],
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: PlatformInfos.isMobile && !controller.hideFab
           ? FloatingActionButton.extended(
               onPressed: controller.openScannerAction,
