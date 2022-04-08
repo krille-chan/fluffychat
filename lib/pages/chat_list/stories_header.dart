@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
@@ -107,11 +108,12 @@ class StoriesHeader extends StatelessWidget {
             if (client.storiesRooms.isEmpty) {
               return Container();
             }
-            final stories = client.storiesRooms
-              ..sort((a, b) =>
-                  a.getState(EventTypes.RoomCreate)?.senderId == client.userID
-                      ? -1
-                      : 1);
+            final ownStoryRoom = client.storiesRooms
+                .firstWhereOrNull((r) => r.creatorId == client.userID);
+            final stories = [
+              if (ownStoryRoom != null) ownStoryRoom,
+              ...client.storiesRooms..remove(ownStoryRoom),
+            ];
             return SizedBox(
               height: 106,
               child: ListView.builder(
@@ -125,16 +127,16 @@ class StoriesHeader extends StatelessWidget {
                     child: FutureBuilder<Profile>(
                         future: room.getCreatorProfile(),
                         builder: (context, snapshot) {
-                          final userId =
-                              room.getState(EventTypes.RoomCreate)!.senderId;
-                          final displayname =
-                              snapshot.data?.displayName ?? userId.localpart!;
+                          final userId = room.creatorId;
+                          final displayname = snapshot.data?.displayName ??
+                              userId?.localpart ??
+                              'Unknown';
                           final avatarUrl = snapshot.data?.avatarUrl;
                           return _StoryButton(
                             profile: Profile(
                               displayName: displayname,
                               avatarUrl: avatarUrl,
-                              userId: userId,
+                              userId: userId ?? 'Unknown',
                             ),
                             showEditFab: userId == client.userID,
                             unread: room.membership == Membership.invite ||
@@ -283,4 +285,8 @@ class _StoryButton extends StatelessWidget {
       ),
     );
   }
+}
+
+extension on Room {
+  String? get creatorId => getState(EventTypes.RoomCreate)?.senderId;
 }
