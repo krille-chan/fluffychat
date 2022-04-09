@@ -2802,5 +2802,10 @@
   "@separateChatTypes": {
     "type": "text",
     "placeholders": {}
+  },
+  "showDirectChatsInSpaces": "Toon gerelateerde directe chats in spaces",
+  "@showDirectChatsInSpaces": {
+    "type": "text",
+    "placeholders": {}
   }
 }
