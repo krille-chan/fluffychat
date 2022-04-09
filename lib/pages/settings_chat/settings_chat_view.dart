@@ -78,6 +78,12 @@ class SettingsChatView extends StatelessWidget {
               ),
               const Divider(height: 1),
               SettingsSwitchListTile.adaptive(
+                title: L10n.of(context)!.showDirectChatsInSpaces,
+                onChanged: (b) => AppConfig.showDirectChatsInSpaces = b,
+                storeKey: SettingKeys.showDirectChatsInSpaces,
+                defaultValue: AppConfig.showDirectChatsInSpaces,
+              ),
+              SettingsSwitchListTile.adaptive(
                 title: L10n.of(context)!.separateChatTypes,
                 onChanged: (b) => AppConfig.separateChatTypes = b,
                 storeKey: SettingKeys.separateChatTypes,

@@ -481,6 +481,10 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         .getItemBool(SettingKeys.hideUnknownEvents, AppConfig.hideUnknownEvents)
         .then((value) => AppConfig.hideUnknownEvents = value);
     store
+        .getItemBool(SettingKeys.showDirectChatsInSpaces,
+            AppConfig.showDirectChatsInSpaces)
+        .then((value) => AppConfig.showDirectChatsInSpaces = value);
+    store
         .getItemBool(SettingKeys.separateChatTypes, AppConfig.separateChatTypes)
         .then((value) => AppConfig.separateChatTypes = value);
     store
