@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/client_stories_extension.dart';
 import '../../widgets/matrix.dart';
 
@@ -162,7 +163,7 @@ class SpaceSpacesEntry extends SpacesEntry {
     if (_roomInsideSpace(room, space)) {
       return true;
     }
-    if (true) {
+    if (AppConfig.showDirectChatsInSpaces) {
       if (room.isDirectChat &&
           room.summary.mHeroes != null &&
           room.summary.mHeroes!.any((userId) {

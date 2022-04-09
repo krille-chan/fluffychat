@@ -2145,6 +2145,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "showDirectChatsInSpaces": "Show related Direct Chats in Spaces",
+  "@showDirectChatsInSpaces": {
+    "type": "text",
+    "placeholders": {}
+  },
   "showPassword": "Show password",
   "@showPassword": {
     "type": "text",
