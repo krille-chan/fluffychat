@@ -2797,5 +2797,10 @@
   "@separateChatTypes": {
     "type": "text",
     "placeholders": {}
+  },
+  "showDirectChatsInSpaces": "Tampilkan Pesan Langsung yang berkait di Space",
+  "@showDirectChatsInSpaces": {
+    "type": "text",
+    "placeholders": {}
   }
 }
