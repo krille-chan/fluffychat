@@ -2803,5 +2803,10 @@
   "@separateChatTypes": {
     "type": "text",
     "placeholders": {}
+  },
+  "showDirectChatsInSpaces": "在空间中显示相关私聊",
+  "@showDirectChatsInSpaces": {
+    "type": "text",
+    "placeholders": {}
   }
 }
