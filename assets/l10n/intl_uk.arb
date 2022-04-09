@@ -2798,5 +2798,10 @@
   "@separateChatTypes": {
     "type": "text",
     "placeholders": {}
+  },
+  "showDirectChatsInSpaces": "Показувати пов'язані особисті бесіди у просторах",
+  "@showDirectChatsInSpaces": {
+    "type": "text",
+    "placeholders": {}
   }
 }
