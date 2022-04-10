@@ -2798,5 +2798,15 @@
   "widgetNameError": "Пожалуйста, укажите отображаемое имя.",
   "@widgetNameError": {},
   "errorAddingWidget": "Ошибка при добавлении виджета.",
-  "@errorAddingWidget": {}
+  "@errorAddingWidget": {},
+  "showDirectChatsInSpaces": "Показывать связанные Личные чаты в Пространствах",
+  "@showDirectChatsInSpaces": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "separateChatTypes": "Разделять Личные чаты, Группы и Пространства",
+  "@separateChatTypes": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
