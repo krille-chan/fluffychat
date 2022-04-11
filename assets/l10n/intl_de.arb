@@ -2740,7 +2740,7 @@
   "@videoCallsBetaWarning": {},
   "emailOrUsername": "E-Mail Adresse oder Benutzername",
   "@emailOrUsername": {},
-  "unsupportedAndroidVersionLong": "Diese Funktion erforderte niemals eine Android-Version. Bitte suche nach Updates oder Lineage OS-Unterstützung.",
+  "unsupportedAndroidVersionLong": "Diese Funktion erfordert eine neuere Android-Version. Bitte suche nach Updates oder Lineage OS-Unterstützung.",
   "@unsupportedAndroidVersionLong": {},
   "experimentalVideoCalls": "Experimentelle Videoanrufe",
   "@experimentalVideoCalls": {},
@@ -2767,5 +2767,39 @@
   "confirmEventUnpin": "Möchtest du das Ereignis wirklich dauerhaft lösen?",
   "@confirmEventUnpin": {},
   "dismiss": "Verwerfen",
-  "@dismiss": {}
+  "@dismiss": {},
+  "switchToAccount": "Zum Account {number} wechseln",
+  "@switchToAccount": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "nextAccount": "Nächster Account",
+  "@nextAccount": {},
+  "editWidgets": "Widgets bearbeiten",
+  "@editWidgets": {},
+  "widgetJitsi": "Jitsi Meet",
+  "@widgetJitsi": {},
+  "widgetCustom": "Angepasst",
+  "@widgetCustom": {},
+  "widgetEtherpad": "Textnotiz",
+  "@widgetEtherpad": {},
+  "addWidget": "Widget hinzufügen",
+  "@addWidget": {},
+  "widgetVideo": "Video",
+  "@widgetVideo": {},
+  "widgetName": "Name",
+  "@widgetName": {},
+  "widgetUrlError": "Das ist keine gültige URL.",
+  "@widgetUrlError": {},
+  "errorAddingWidget": "Fehler beim Hinzufügen des Widgets.",
+  "@errorAddingWidget": {},
+  "previousAccount": "Vorheriger Account",
+  "@previousAccount": {},
+  "separateChatTypes": "Separate Direktchats, Gruppen und Spaces",
+  "@separateChatTypes": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
