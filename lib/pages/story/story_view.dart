@@ -179,7 +179,8 @@ class StoryView extends StatelessWidget {
                   hash: hash,
                   imageFit: BoxFit.cover,
                 ),
-              if (event.messageType == MessageTypes.Video &&
+              if ({MessageTypes.Video, MessageTypes.Audio}
+                      .contains(event.messageType) &&
                   PlatformInfos.isMobile)
                 Positioned(
                   top: 80,
