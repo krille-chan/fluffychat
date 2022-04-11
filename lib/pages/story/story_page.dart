@@ -401,7 +401,10 @@ class StoryPageController extends State<StoryPage> {
       final timeline = this.timeline = await room.getTimeline();
       timeline.requestKeys();
       var events = timeline.events
-          .where((e) => e.type == EventTypes.Message && !e.redacted)
+          .where((e) =>
+              e.type == EventTypes.Message &&
+              !e.redacted &&
+              e.status == EventStatus.synced)
           .toList();
 
       final hasOutdatedEvents = events.removeOutdatedEvents();
