@@ -38,6 +38,7 @@ extension LocalNotificationsExtension on MatrixState {
       plaintextBody: true,
       hideReply: true,
       hideEdit: true,
+      removeMarkdown: true,
     );
     final icon = event.sender.avatarUrl?.getThumbnail(client,
             width: 64, height: 64, method: ThumbnailMethod.crop) ??
