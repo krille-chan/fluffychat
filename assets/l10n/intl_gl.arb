@@ -2803,5 +2803,10 @@
   "@separateChatTypes": {
     "type": "text",
     "placeholders": {}
+  },
+  "showDirectChatsInSpaces": "Mostrar os Chats Directos nos Espazos",
+  "@showDirectChatsInSpaces": {
+    "type": "text",
+    "placeholders": {}
   }
 }
