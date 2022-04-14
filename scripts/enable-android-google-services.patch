@@ -1,5 +1,5 @@
 diff --git a/android/app/build.gradle b/android/app/build.gradle
-index 4e018b38..eebf7582 100644
+index ad9ffb87..37baafb1 100644
 --- a/android/app/build.gradle
 +++ b/android/app/build.gradle
 @@ -44,7 +44,7 @@ android {
@@ -11,7 +11,7 @@ index 4e018b38..eebf7582 100644
          targetSdkVersion 30
          versionCode flutterVersionCode.toInteger()
          versionName flutterVersionName
-@@ -81,7 +81,7 @@ flutter {
+@@ -82,11 +82,11 @@ flutter {
  
  dependencies {
      implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -20,7 +20,6 @@ index 4e018b38..eebf7582 100644
      testImplementation 'junit:junit:4.12'
      androidTestImplementation 'androidx.test:runner:1.1.1'
      androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
-@@ -89,4 +89,4 @@ dependencies {
      implementation 'androidx.multidex:multidex:2.0.1'
  }
  
@@ -56,11 +55,11 @@ index 85aa8647..3b7e09e7 100644
  }
  
 diff --git a/lib/utils/background_push.dart b/lib/utils/background_push.dart
-index 3347f176..e304abb4 100644
+index 00ca2aaa..8bb8a156 100644
 --- a/lib/utils/background_push.dart
 +++ b/lib/utils/background_push.dart
-@@ -39,7 +39,7 @@ import 'famedlysdk_store.dart';
- import 'matrix_sdk_extensions.dart/matrix_locals.dart';
+@@ -39,7 +39,7 @@ import '../config/setting_keys.dart';
+ import 'famedlysdk_store.dart';
  import 'platform_infos.dart';
  
 -//import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
@@ -68,28 +67,25 @@ index 3347f176..e304abb4 100644
  
  class NoTokenException implements Exception {
    String get cause => 'Cannot get firebase token';
-@@ -117,7 +117,7 @@ class BackgroundPush {
-     setupPush();
-   }
+@@ -65,7 +65,7 @@ class BackgroundPush {
  
--  final dynamic _fcmSharedIsolate = null; //FcmSharedIsolate();
-+  final dynamic _fcmSharedIsolate = FcmSharedIsolate();
+   final pendingTests = <String, Completer<void>>{};
  
-   StreamSubscription<LoginState>? onLogin;
-   StreamSubscription<SyncUpdate>? onRoomSync;
+-  final dynamic firebase = null; //FcmSharedIsolate();
++  final dynamic firebase = FcmSharedIsolate();
+ 
+   DateTime? lastReceivedPush;
+ 
 diff --git a/pubspec.yaml b/pubspec.yaml
-index 73b9eca2..5e6f9f16 100644
+index c6295788..8dd17ce4 100644
 --- a/pubspec.yaml
 +++ b/pubspec.yaml
-@@ -25,8 +25,8 @@ dependencies:
+@@ -24,7 +24,7 @@ dependencies:
    email_validator: ^2.0.1
    emoji_picker_flutter: ^1.1.2
    encrypt: ^5.0.1
--  #fcm_shared_isolate:
--  #  git: https://gitlab.com/famedly/libraries/fcm_shared_isolate.git
-+  fcm_shared_isolate:
-+    git: https://gitlab.com/famedly/libraries/fcm_shared_isolate.git
+-  #fcm_shared_isolate: ^0.1.0
++  fcm_shared_isolate: ^0.1.0
    file_picker_cross: ^4.5.0
    flutter:
      sdk: flutter
-     

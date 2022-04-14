@@ -24,8 +24,7 @@ dependencies:
   email_validator: ^2.0.1
   emoji_picker_flutter: ^1.1.2
   encrypt: ^5.0.1
-  #fcm_shared_isolate:
-  #  git: https://gitlab.com/famedly/libraries/fcm_shared_isolate.git
+  #fcm_shared_isolate: ^0.1.0
   file_picker_cross: ^4.5.0
   flutter:
     sdk: flutter
@@ -58,7 +57,7 @@ dependencies:
   keyboard_shortcuts: ^0.1.4
   localstorage: ^4.0.0+1
   lottie: ^1.2.2
-  matrix: ^0.8.18
+  matrix: ^0.8.19
   matrix_link_text: ^1.0.2
   native_imaging:
     git: https://gitlab.com/famedly/company/frontend/libraries/native_imaging.git

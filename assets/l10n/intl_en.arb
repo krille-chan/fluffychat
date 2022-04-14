@@ -2779,5 +2779,50 @@
   "widgetName": "Name",
   "widgetUrlError": "This is not a valid URL.",
   "widgetNameError": "Please provide a display name.",
-  "errorAddingWidget": "Error adding the widget."
+  "errorAddingWidget": "Error adding the widget.",
+  "youRejectedTheInvitation": "You rejected the invitation",
+  "youJoinedTheChat": "You joined the chat",
+  "youAcceptedTheInvitation": "You accepted the invitation",
+  "youBannedUser": "You banned {user}",
+  "@youBannedUser": {
+      "placeholders": {
+        "user": {}
+      }
+  },
+  "youHaveWithdrawnTheInvitationFor": "You have withdrawn the invitation for {user}",
+  "@youHaveWithdrawnTheInvitationFor": {
+      "placeholders": {
+        "user": {}
+      }
+  },
+  "youInvitedBy": "You have been invited by {user}",
+  "@youInvitedBy": {
+      "placeholders": {
+        "user": {}
+      }
+  },
+  "youInvitedUser": "You invited {user}",
+  "@youInvitedUser": {
+      "placeholders": {
+        "user": {}
+      }
+  },
+  "youKicked": "You kicked {user}",
+  "@youKicked": {
+      "placeholders": {
+        "user": {}
+      }
+  },
+  "youKickedAndBanned": "You kicked and banned {user}",
+  "@youKickedAndBanned": {
+      "placeholders": {
+        "user": {}
+      }
+  },
+  "youUnbannedUser": "You unbanned {user}",
+  "@youUnbannedUser": {
+      "placeholders": {
+        "user": {}
+      }
+  }
 }
