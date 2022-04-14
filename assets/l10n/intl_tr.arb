@@ -2808,5 +2808,53 @@
   "@showDirectChatsInSpaces": {
     "type": "text",
     "placeholders": {}
+  },
+  "youJoinedTheChat": "Sohbete katıldınız",
+  "@youJoinedTheChat": {},
+  "youAcceptedTheInvitation": "Daveti kabul ettiniz",
+  "@youAcceptedTheInvitation": {},
+  "youKickedAndBanned": "{user} kullanıcısını attınız ve yasakladınız",
+  "@youKickedAndBanned": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youUnbannedUser": "{user} kullanıcısının yasağını kaldırdınız",
+  "@youUnbannedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youKicked": "{user} kullanıcısını attınız",
+  "@youKicked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youRejectedTheInvitation": "Daveti reddettiniz",
+  "@youRejectedTheInvitation": {},
+  "youHaveWithdrawnTheInvitationFor": "{user} için daveti geri çektiniz",
+  "@youHaveWithdrawnTheInvitationFor": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youInvitedBy": "{user} tarafından davet edildiniz",
+  "@youInvitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youInvitedUser": "{user} kullanıcısını davet ettiniz",
+  "@youInvitedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youBannedUser": "{user} kullanıcısını yasakladınız",
+  "@youBannedUser": {
+    "placeholders": {
+      "user": {}
+    }
   }
 }
