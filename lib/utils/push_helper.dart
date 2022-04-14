@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:matrix/matrix.dart';
@@ -37,11 +38,9 @@ Future<void> pushHelper(
   // Initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
   final _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
   await _flutterLocalNotificationsPlugin.initialize(
-    InitializationSettings(
-      android: const AndroidInitializationSettings('notifications_icon'),
-      iOS: IOSInitializationSettings(
-        onDidReceiveLocalNotification: (i, a, b, c) async => null,
-      ),
+    const InitializationSettings(
+      android: AndroidInitializationSettings('notifications_icon'),
+      iOS: IOSInitializationSettings(),
     ),
     onSelectNotification: onSelectNotification,
   );
@@ -79,16 +78,20 @@ Future<void> pushHelper(
   // The person object for the android message style notification
   if (isBackgroundMessage) WidgetsFlutterBinding.ensureInitialized();
   final avatar = event.room.avatar?.toString();
+  final avatarFile =
+      avatar == null ? null : await DefaultCacheManager().getSingleFile(avatar);
+
   final person = Person(
     name: event.room.getLocalizedDisplayname(matrixLocals),
-    icon: avatar == null ? null : ContentUriAndroidIcon(avatar),
+    icon:
+        avatarFile == null ? null : BitmapFilePathAndroidIcon(avatarFile.path),
   );
 
   // Show notification
   final androidPlatformChannelSpecifics = AndroidNotificationDetails(
     AppConfig.pushNotificationsChannelId,
     AppConfig.pushNotificationsChannelName,
-    AppConfig.pushNotificationsChannelDescription,
+    channelDescription: AppConfig.pushNotificationsChannelDescription,
     styleInformation: MessagingStyleInformation(
       person,
       conversationTitle: title,

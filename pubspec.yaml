@@ -32,7 +32,7 @@ dependencies:
   flutter_app_lock: ^2.0.0
   flutter_blurhash: ^0.6.4
   flutter_cache_manager: ^3.3.0
-  flutter_local_notifications: ^8.2.0
+  flutter_local_notifications: ^9.4.0
   flutter_localizations:
     sdk: flutter
   flutter_map: ^0.14.0
@@ -61,7 +61,6 @@ dependencies:
   matrix_link_text: ^1.0.2
   native_imaging:
     git: https://gitlab.com/famedly/company/frontend/libraries/native_imaging.git
-  open_noti_settings: ^0.4.0
   package_info_plus: ^1.3.0
   path_provider: ^2.0.9
   permission_handler: ^9.2.0
