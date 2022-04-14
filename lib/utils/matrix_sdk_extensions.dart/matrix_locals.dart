@@ -265,4 +265,39 @@ class MatrixLocals extends MatrixLocalizations {
   @override
   String sentReaction(String senderName, String reactionKey) =>
       l10n.reactedWith(senderName, reactionKey);
+
+  @override
+  // TODO: implement youAcceptedTheInvitation
+  String get youAcceptedTheInvitation => l10n.youAcceptedTheInvitation;
+
+  @override
+  String youBannedUser(String targetName) => l10n.youBannedUser(targetName);
+
+  @override
+  String youHaveWithdrawnTheInvitationFor(String targetName) =>
+      l10n.youHaveWithdrawnTheInvitationFor(targetName);
+
+  @override
+  String youInvitedBy(String senderName) => l10n.youInvitedBy(senderName);
+
+  @override
+  String youInvitedUser(String targetName) => l10n.youInvitedUser(targetName);
+
+  @override
+  // TODO: implement youJoinedTheChat
+  String get youJoinedTheChat => l10n.youJoinedTheChat;
+
+  @override
+  String youKicked(String targetName) => l10n.youKicked(targetName);
+
+  @override
+  String youKickedAndBanned(String targetName) =>
+      l10n.youKickedAndBanned(targetName);
+
+  @override
+  // TODO: implement youRejectedTheInvitation
+  String get youRejectedTheInvitation => l10n.youRejectedTheInvitation;
+
+  @override
+  String youUnbannedUser(String targetName) => l10n.youUnbannedUser(targetName);
 }
