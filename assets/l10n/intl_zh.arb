@@ -2808,5 +2808,53 @@
   "@showDirectChatsInSpaces": {
     "type": "text",
     "placeholders": {}
+  },
+  "youRejectedTheInvitation": "你拒绝了邀请",
+  "@youRejectedTheInvitation": {},
+  "youJoinedTheChat": "你加入了聊天",
+  "@youJoinedTheChat": {},
+  "youBannedUser": "你封禁了 {user}",
+  "@youBannedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youInvitedBy": "你受到 {user} 的邀请",
+  "@youInvitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youInvitedUser": "你邀请了 {user}",
+  "@youInvitedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youKicked": "你踢掉了 {user}",
+  "@youKicked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youUnbannedUser": "你解除了对 {user} 的封禁",
+  "@youUnbannedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youAcceptedTheInvitation": "你接受了邀请",
+  "@youAcceptedTheInvitation": {},
+  "youHaveWithdrawnTheInvitationFor": "你撤回了对 {user} 的邀请",
+  "@youHaveWithdrawnTheInvitationFor": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youKickedAndBanned": "你踢掉并封禁了 {user}",
+  "@youKickedAndBanned": {
+    "placeholders": {
+      "user": {}
+    }
   }
 }
