@@ -25,7 +25,6 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:http/http.dart' as http;
@@ -34,10 +33,10 @@ import 'package:unifiedpush/unifiedpush.dart';
 import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/client_stories_extension.dart';
+import 'package:fluffychat/utils/push_helper.dart';
 import '../config/app_config.dart';
 import '../config/setting_keys.dart';
 import 'famedlysdk_store.dart';
-import 'matrix_sdk_extensions.dart/matrix_locals.dart';
 import 'platform_infos.dart';
 
 //import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
@@ -66,6 +65,8 @@ class BackgroundPush {
 
   final pendingTests = <String, Completer<void>>{};
 
+  final dynamic firebase = null; //FcmSharedIsolate();
+
   DateTime? lastReceivedPush;
 
   bool upAction = false;
@@ -76,8 +77,15 @@ class BackgroundPush {
     onRoomSync ??= client.onSync.stream
         .where((s) => s.hasRoomUpdate)
         .listen((s) => _onClearingPush(getFromServer: false));
-    _fcmSharedIsolate?.setListeners(
-      onMessage: _onFcmMessage,
+    firebase?.setListeners(
+      onMessage: (message) => pushHelper(
+        PushNotification.fromJson(
+            Map<String, dynamic>.from(message['data'] ?? message)),
+        client: client,
+        l10n: l10n,
+        activeRoomId: router?.currentState?.pathParameters['roomid'],
+        onSelectNotification: goToRoom,
+      ),
       onNewToken: _newFcmToken,
     );
     if (Platform.isAndroid) {
@@ -112,15 +120,13 @@ class BackgroundPush {
 
   void handleLoginStateChanged(_) => setupPush();
 
+  StreamSubscription<LoginState>? onLogin;
+  StreamSubscription<SyncUpdate>? onRoomSync;
+
   void _newFcmToken(String token) {
     _fcmToken = token;
     setupPush();
   }
-
-  final dynamic _fcmSharedIsolate = null; //FcmSharedIsolate();
-
-  StreamSubscription<LoginState>? onLogin;
-  StreamSubscription<SyncUpdate>? onRoomSync;
 
   Future<void> setupPusher({
     String? gatewayUrl,
@@ -129,7 +135,7 @@ class BackgroundPush {
     bool useDeviceSpecificAppId = false,
   }) async {
     if (PlatformInfos.isIOS) {
-      await _fcmSharedIsolate?.requestPermission();
+      await firebase?.requestPermission();
     }
     final clientName = PlatformInfos.clientName;
     oldTokens ??= <String>{};
@@ -213,7 +219,6 @@ class BackgroundPush {
 
   Future<void> setupPush() async {
     Logs().d("SetupPush");
-    await setupLocalNotificationsPlugin();
     if (client.loginState != LoginState.loggedIn ||
         !PlatformInfos.isMobile ||
         context == null) {
@@ -272,7 +277,7 @@ class BackgroundPush {
     Logs().v('Setup firebase');
     if (_fcmToken?.isEmpty ?? true) {
       try {
-        _fcmToken = await _fcmSharedIsolate?.getToken();
+        _fcmToken = await firebase?.getToken();
         if (_fcmToken == null) throw ('PushToken is null');
       } catch (e, s) {
         Logs().w('[Push] cannot get token', e, e is String ? null : s);
@@ -306,41 +311,8 @@ class BackgroundPush {
     }
   }
 
-  bool _notificationsPluginSetUp = false;
-  Future<void> setupLocalNotificationsPlugin() async {
-    if (_notificationsPluginSetUp) {
-      return;
-    }
-
-    // initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
-    const initializationSettingsAndroid =
-        AndroidInitializationSettings('notifications_icon');
-    final initializationSettingsIOS = IOSInitializationSettings(
-      onDidReceiveLocalNotification: (i, a, b, c) async => null,
-    );
-    final initializationSettings = InitializationSettings(
-      android: initializationSettingsAndroid,
-      iOS: initializationSettingsIOS,
-    );
-    await _flutterLocalNotificationsPlugin.initialize(initializationSettings,
-        onSelectNotification: goToRoom);
-
-    _notificationsPluginSetUp = true;
-  }
-
   Future<void> setupUp() async {
     await UnifiedPush.registerAppWithDialog(context!);
-  }
-
-  Future<void> _onFcmMessage(Map<dynamic, dynamic> message) async {
-    Logs().v('[Push] Foreground message received');
-    final data = Map<String, dynamic>.from(message['data'] ?? message);
-    try {
-      await _onMessage(data);
-    } catch (e, s) {
-      Logs().e('[Push] Error while processing notification', e, s);
-      await _showDefaultNotification(data);
-    }
   }
 
   Future<void> _newUpEndpoint(String newEndpoint, String i) async {
@@ -374,7 +346,7 @@ class BackgroundPush {
     Logs().i('[Push] UnifiedPush using endpoint ' + endpoint);
     final oldTokens = <String?>{};
     try {
-      final fcmToken = await _fcmSharedIsolate?.getToken();
+      final fcmToken = await firebase?.getToken();
       oldTokens.add(fcmToken);
     } catch (_) {}
     await setupPusher(
@@ -405,80 +377,12 @@ class BackgroundPush {
     upAction = true;
     final data = Map<String, dynamic>.from(
         json.decode(utf8.decode(message))['notification']);
-    try {
-      await _onMessage(data);
-    } catch (e, s) {
-      Logs().e('[Push] Error while processing notification', e, s);
-      await _showDefaultNotification(data);
-    }
-  }
-
-  Future<void> _onMessage(Map<String, dynamic> data) async {
-    Logs().v('[Push] _onMessage');
-    lastReceivedPush = DateTime.now();
-    final roomId = data['room_id'];
-    final eventId = data['event_id'];
-    if (roomId == 'test') {
-      Logs().v('[Push] Test $eventId was successful!');
-      pendingTests.remove(eventId)?.complete();
-      return;
-    }
-
-    // For legacy reasons the counts map could be a String encoded JSON:
-    final countsMap =
-        data.tryGetMap<String, dynamic>('counts', TryGet.silent) ??
-            (jsonDecode(data.tryGet<String>('counts') ?? '{}')
-                as Map<String, dynamic>);
-    final unread = countsMap.tryGet<int>('unread');
-
-    if ((roomId?.isEmpty ?? true) ||
-        (eventId?.isEmpty ?? true) ||
-        unread == 0) {
-      await _onClearingPush();
-      return;
-    }
-    var giveUp = false;
-    var loaded = false;
-    final stopwatch = Stopwatch();
-    stopwatch.start();
-    final syncSubscription = client.onSync.stream.listen((r) {
-      if (stopwatch.elapsed.inSeconds >= 30) {
-        giveUp = true;
-      }
-    });
-    final eventSubscription = client.onEvent.stream.listen((e) {
-      if (e.content['event_id'] == eventId) {
-        loaded = true;
-      }
-    });
-    try {
-      if (!(await eventExists(roomId, eventId)) && !loaded) {
-        do {
-          Logs().v('[Push] getting ' + roomId + ', event ' + eventId);
-          await client
-              .oneShotSync()
-              .catchError((e) => Logs().v('[Push] Error one-shot syncing', e));
-          if (stopwatch.elapsed.inSeconds >= 60) {
-            giveUp = true;
-          }
-        } while (!loaded && !giveUp);
-      }
-      Logs().v('[Push] ' +
-          (giveUp ? 'gave up on ' : 'got ') +
-          roomId +
-          ', event ' +
-          eventId);
-    } finally {
-      await syncSubscription.cancel();
-      await eventSubscription.cancel();
-    }
-    await _showNotification(roomId, eventId);
-  }
-
-  Future<bool> eventExists(String roomId, String? eventId) async {
-    final room = client.getRoomById(roomId);
-    if (room == null) return false;
-    return (await client.database!.getEventById(eventId!, room)) != null;
+    await pushHelper(
+      PushNotification.fromJson(data),
+      client: client,
+      l10n: l10n,
+      activeRoomId: router?.currentState?.pathParameters['roomid'],
+    );
   }
 
   /// Workaround for the problem that local notification IDs must be int but we
@@ -583,140 +487,5 @@ class BackgroundPush {
     } finally {
       _clearingPushLock = false;
     }
-  }
-
-  Future<void> _showNotification(String roomId, String eventId) async {
-    await setupLocalNotificationsPlugin();
-    final room = client.getRoomById(roomId);
-    if (room == null) {
-      throw 'Room not found';
-    }
-    await room.postLoad();
-    final event = await client.database!.getEventById(eventId, room);
-
-    final activeRoomId = router!.currentState!.pathParameters['roomid'];
-
-    if (((activeRoomId?.isNotEmpty ?? false) &&
-            activeRoomId == room.id &&
-            client.syncPresence == null) ||
-        (event != null && (room.notificationCount == 0))) {
-      return;
-    }
-
-    // load the locale
-    await loadLocale();
-
-    // Calculate title
-    final title = l10n!.unreadMessages(room.notificationCount);
-
-    // Calculate the body
-    final body = event!.getLocalizedBody(
-      MatrixLocals(L10n.of(context!)!),
-      withSenderNamePrefix: !room.isDirectChat,
-      plaintextBody: true,
-      hideReply: true,
-      hideEdit: true,
-    );
-
-    // The person object for the android message style notification
-    final avatar = room.avatar == null
-        ? null
-        : await DefaultCacheManager().getSingleFile(
-            event.room.avatar!
-                .getThumbnail(
-                  client,
-                  width: 126,
-                  height: 126,
-                )
-                .toString(),
-          );
-    final person = Person(
-      name: room.getLocalizedDisplayname(MatrixLocals(l10n!)),
-      icon: avatar == null ? null : BitmapFilePathAndroidIcon(avatar.path),
-    );
-
-    // Show notification
-    final androidPlatformChannelSpecifics = _getAndroidNotificationDetails(
-      styleInformation: MessagingStyleInformation(
-        person,
-        conversationTitle: title,
-        messages: [
-          Message(
-            body,
-            event.originServerTs,
-            person,
-          )
-        ],
-      ),
-      ticker: l10n!.newMessageInFluffyChat,
-    );
-    const iOSPlatformChannelSpecifics = IOSNotificationDetails();
-    final platformChannelSpecifics = NotificationDetails(
-      android: androidPlatformChannelSpecifics,
-      iOS: iOSPlatformChannelSpecifics,
-    );
-    await _flutterLocalNotificationsPlugin.show(
-      await mapRoomIdToInt(room.id),
-      room.getLocalizedDisplayname(MatrixLocals(l10n!)),
-      body,
-      platformChannelSpecifics,
-      payload: roomId,
-    );
-  }
-
-  Future<dynamic> _showDefaultNotification(Map<String, dynamic> data) async {
-    try {
-      await setupLocalNotificationsPlugin();
-
-      await loadLocale();
-      final String? eventId = data['event_id'];
-      final String? roomId = data['room_id'];
-
-      // For legacy reasons the counts map could be a String encoded JSON:
-      final countsMap = data.tryGetMap<String, dynamic>('counts') ??
-          (jsonDecode(data.tryGet<String>('counts') ?? '{}')
-              as Map<String, dynamic>);
-      final unread = countsMap.tryGet<int>('unread') ?? 1;
-
-      if (unread == 0 || roomId == null || eventId == null) {
-        await _onClearingPush();
-        return;
-      }
-
-      // Display notification
-      final androidPlatformChannelSpecifics = _getAndroidNotificationDetails();
-      const iOSPlatformChannelSpecifics = IOSNotificationDetails();
-      final platformChannelSpecifics = NotificationDetails(
-        android: androidPlatformChannelSpecifics,
-        iOS: iOSPlatformChannelSpecifics,
-      );
-      final title = l10n!.unreadChats(unread);
-      await _flutterLocalNotificationsPlugin.show(
-        await mapRoomIdToInt(roomId),
-        title,
-        l10n!.openAppToReadMessages,
-        platformChannelSpecifics,
-        payload: roomId,
-      );
-    } catch (e, s) {
-      Logs().e('[Push] Error while processing background notification', e, s);
-    }
-  }
-
-  AndroidNotificationDetails _getAndroidNotificationDetails(
-      {MessagingStyleInformation? styleInformation, String? ticker}) {
-    final color = (context != null ? Theme.of(context!).primaryColor : null) ??
-        const Color(0xFF5625BA);
-
-    return AndroidNotificationDetails(
-      AppConfig.pushNotificationsChannelId,
-      AppConfig.pushNotificationsChannelName,
-      AppConfig.pushNotificationsChannelDescription,
-      styleInformation: styleInformation,
-      importance: Importance.max,
-      priority: Priority.high,
-      ticker: ticker,
-      color: color,
-    );
   }
 }

@@ -980,9 +980,11 @@ packages:
   matrix:
     dependency: "direct main"
     description:
-      name: matrix
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "."
+      ref: "krille/get-event-from-push"
+      resolved-ref: "70fa50e0e810ed951cd70fbf63924c5082d4f4a9"
+      url: "https://gitlab.com/famedly/company/frontend/famedlysdk.git"
+    source: git
     version: "0.8.18"
   matrix_api_lite:
     dependency: transitive

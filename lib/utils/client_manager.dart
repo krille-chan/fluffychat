@@ -14,7 +14,7 @@ import 'matrix_sdk_extensions.dart/flutter_matrix_hive_database.dart';
 
 abstract class ClientManager {
   static const String clientNamespace = 'im.fluffychat.store.clients';
-  static Future<List<Client>> getClients() async {
+  static Future<List<Client>> getClients({bool initialize = true}) async {
     if (PlatformInfos.isLinux) {
       Hive.init((await getApplicationSupportDirectory()).path);
     } else {
@@ -37,12 +37,15 @@ abstract class ClientManager {
       await Store().setItem(clientNamespace, jsonEncode(clientNames.toList()));
     }
     final clients = clientNames.map(createClient).toList();
-    await Future.wait(clients.map((client) => client
-        .init(
-          waitForFirstSync: false,
-          waitUntilLoadCompletedLoaded: false,
-        )
-        .catchError((e, s) => Logs().e('Unable to initialize client', e, s))));
+    if (initialize) {
+      await Future.wait(clients.map((client) => client
+          .init(
+            waitForFirstSync: false,
+            waitUntilLoadCompletedLoaded: false,
+          )
+          .catchError(
+              (e, s) => Logs().e('Unable to initialize client', e, s))));
+    }
     if (clients.length > 1 && clients.any((c) => !c.isLogged())) {
       final loggedOutClients = clients.where((c) => !c.isLogged()).toList();
       for (final client in loggedOutClients) {

@@ -24,8 +24,7 @@ dependencies:
   email_validator: ^2.0.1
   emoji_picker_flutter: ^1.1.2
   encrypt: ^5.0.1
-  #fcm_shared_isolate:
-  #  git: https://gitlab.com/famedly/libraries/fcm_shared_isolate.git
+  #fcm_shared_isolate: ^0.1.0
   file_picker_cross: ^4.5.0
   flutter:
     sdk: flutter
@@ -142,4 +141,8 @@ dependency_overrides:
     git:
       url: https://github.com/TheOneWithTheBraid/keyboard_shortcuts.git
       ref: null-safety
+  matrix:
+    git:
+      url: https://gitlab.com/famedly/company/frontend/famedlysdk.git
+      ref: krille/get-event-from-push
   provider: 5.0.0
