@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -51,17 +48,6 @@ class SettingsNotificationsView extends StatelessWidget {
                     ),
                   ),
                   if (!Matrix.of(context).client.allPushNotificationsMuted) ...{
-                    if (!kIsWeb && Platform.isAndroid)
-                      ListTile(
-                        title: Text(L10n.of(context)!.soundVibrationLedColor),
-                        trailing: CircleAvatar(
-                          backgroundColor:
-                              Theme.of(context).scaffoldBackgroundColor,
-                          foregroundColor: Colors.grey,
-                          child: const Icon(Icons.edit_outlined),
-                        ),
-                        onTap: controller.openAndroidNotificationSettingsAction,
-                      ),
                     const Divider(thickness: 1),
                     ListTile(
                       title: Text(

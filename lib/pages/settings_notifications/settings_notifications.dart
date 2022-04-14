@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
-import 'package:open_noti_settings/open_noti_settings.dart';
 
-import 'package:fluffychat/config/app_config.dart';
 import '../../widgets/matrix.dart';
 import 'settings_notifications_view.dart';
 
@@ -59,19 +56,6 @@ class SettingsNotifications extends StatefulWidget {
 }
 
 class SettingsNotificationsController extends State<SettingsNotifications> {
-  void openAndroidNotificationSettingsAction() async {
-    await NotificationSetting.configureChannel(
-      const NotificationDetails(
-        android: AndroidNotificationDetails(
-          AppConfig.pushNotificationsChannelId,
-          AppConfig.pushNotificationsChannelName,
-          AppConfig.pushNotificationsChannelDescription,
-        ),
-      ),
-    );
-    return NotificationSetting.open();
-  }
-
   bool? getNotificationSetting(NotificationSettingsItem item) {
     final pushRules = Matrix.of(context).client.globalPushRules;
     switch (item.type) {
