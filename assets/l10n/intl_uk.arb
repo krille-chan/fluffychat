@@ -2803,5 +2803,53 @@
   "@showDirectChatsInSpaces": {
     "type": "text",
     "placeholders": {}
+  },
+  "youInvitedBy": "Ви були запрошені {user}",
+  "@youInvitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youAcceptedTheInvitation": "Ви прийняли запрошення",
+  "@youAcceptedTheInvitation": {},
+  "youRejectedTheInvitation": "Ви відхилили запрошення",
+  "@youRejectedTheInvitation": {},
+  "youHaveWithdrawnTheInvitationFor": "Ви відкликали запрошення для {user}",
+  "@youHaveWithdrawnTheInvitationFor": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youBannedUser": "Ви заблокували {user}",
+  "@youBannedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youKickedAndBanned": "Ви вилучили й заблокували {user}",
+  "@youKickedAndBanned": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youJoinedTheChat": "Ви приєдналися до бесіди",
+  "@youJoinedTheChat": {},
+  "youKicked": "Ви вилучили {user}",
+  "@youKicked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youUnbannedUser": "Ви розблокували {user}",
+  "@youUnbannedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youInvitedUser": "Ви запросили {user}",
+  "@youInvitedUser": {
+    "placeholders": {
+      "user": {}
+    }
   }
 }
