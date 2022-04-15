@@ -1,8 +1,6 @@
 import 'dart:convert';
 import 'dart:ui';
 
-import 'package:flutter/material.dart';
-
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -63,29 +61,26 @@ Future<void> pushHelper(
   l10n ??= await L10n.delegate.load(window.locale);
   final matrixLocals = MatrixLocals(l10n);
 
-  // Display notification// Calculate title
-  final title = l10n.unreadMessages(notification.counts?.unread ?? 1);
-
   // Calculate the body
   final body = event.getLocalizedBody(
     matrixLocals,
     plaintextBody: true,
+    withSenderNamePrefix: !event.room.isDirectChat,
     hideReply: true,
     hideEdit: true,
     removeMarkdown: true,
   );
 
   // The person object for the android message style notification
-  if (isBackgroundMessage) WidgetsFlutterBinding.ensureInitialized();
-  final avatar = event.room.avatar?.toString();
+  final avatar = event.room.avatar
+      ?.getThumbnail(
+        client,
+        width: 126,
+        height: 126,
+      )
+      .toString();
   final avatarFile =
       avatar == null ? null : await DefaultCacheManager().getSingleFile(avatar);
-
-  final person = Person(
-    name: event.room.getLocalizedDisplayname(matrixLocals),
-    icon:
-        avatarFile == null ? null : BitmapFilePathAndroidIcon(avatarFile.path),
-  );
 
   // Show notification
   final androidPlatformChannelSpecifics = AndroidNotificationDetails(
@@ -93,20 +88,26 @@ Future<void> pushHelper(
     AppConfig.pushNotificationsChannelName,
     channelDescription: AppConfig.pushNotificationsChannelDescription,
     styleInformation: MessagingStyleInformation(
-      person,
-      conversationTitle: title,
+      Person(name: event.room.client.userID),
+      conversationTitle: event.room.displayname,
       groupConversation: !event.room.isDirectChat,
       messages: [
         Message(
           body,
           event.originServerTs,
-          person,
+          Person(
+            name: event.room.displayname,
+            icon: avatarFile == null
+                ? null
+                : BitmapFilePathAndroidIcon(avatarFile.path),
+          ),
         )
       ],
     ),
-    ticker: l10n.newMessageInFluffyChat,
+    ticker: l10n.unreadChats(notification.counts?.unread ?? 1),
     importance: Importance.max,
     priority: Priority.high,
+    groupKey: event.room.id,
   );
   const iOSPlatformChannelSpecifics = IOSNotificationDetails();
   final platformChannelSpecifics = NotificationDetails(
@@ -128,8 +129,8 @@ Future<void> pushHelper(
 /// IDs we map the [roomId] to a number and store this number.
 Future<int> mapRoomIdToInt(String roomId) async {
   final store = await SharedPreferences.getInstance();
-  final idMap = Map<String, int>.from(jsonDecode(
-      (store.getString(SettingKeys.notificationCurrentIds)) ?? '{}'));
+  final idMap = Map<String, int>.from(
+      jsonDecode(store.getString(SettingKeys.notificationCurrentIds) ?? '{}'));
   int? currentInt;
   try {
     currentInt = idMap[roomId];
@@ -140,7 +141,7 @@ Future<int> mapRoomIdToInt(String roomId) async {
     return currentInt;
   }
   var nCurrentInt = 0;
-  while (idMap.values.contains(currentInt)) {
+  while (idMap.values.contains(nCurrentInt)) {
     nCurrentInt++;
   }
   idMap[roomId] = nCurrentInt;
