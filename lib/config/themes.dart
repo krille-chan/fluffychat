@@ -13,6 +13,43 @@ abstract class FluffyThemes {
   static const fallbackTextStyle =
       TextStyle(fontFamily: 'Roboto', fontFamilyFallback: ['NotoEmoji']);
 
+  static InputDecoration loginTextFieldDecoration({
+    String? errorText,
+    String? labelText,
+    String? hintText,
+    Widget? suffixIcon,
+    Widget? prefixIcon,
+  }) =>
+      InputDecoration(
+        fillColor: Colors.white.withAlpha(200),
+        labelText: labelText,
+        hintText: hintText,
+        suffixIcon: suffixIcon,
+        prefixIcon: prefixIcon,
+        errorText: errorText,
+        errorStyle: TextStyle(
+          color: Colors.red.shade200,
+          shadows: const [
+            Shadow(
+              color: Colors.black,
+              offset: Offset(0, 0),
+              blurRadius: 5,
+            ),
+          ],
+        ),
+        labelStyle: const TextStyle(
+          color: Colors.white,
+          shadows: [
+            Shadow(
+              color: Colors.black,
+              offset: Offset(0, 0),
+              blurRadius: 5,
+            ),
+          ],
+        ),
+        contentPadding: const EdgeInsets.all(16),
+      );
+
   static var fallbackTextTheme = const TextTheme(
     bodyText1: fallbackTextStyle,
     bodyText2: fallbackTextStyle,
@@ -77,6 +114,7 @@ abstract class FluffyThemes {
           style: ElevatedButton.styleFrom(
             primary: AppConfig.chatColor,
             onPrimary: Colors.white,
+            textStyle: const TextStyle(fontSize: 16),
             elevation: 6,
             shadowColor: const Color(0x44000000),
             minimumSize: const Size.fromHeight(48),
@@ -186,6 +224,7 @@ abstract class FluffyThemes {
             primary: AppConfig.chatColor,
             onPrimary: Colors.white,
             minimumSize: const Size.fromHeight(48),
+            textStyle: const TextStyle(fontSize: 16),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(AppConfig.borderRadius),
             ),
