@@ -16,28 +16,17 @@ class SignupPage extends StatefulWidget {
 }
 
 class SignupPageController extends State<SignupPage> {
-  final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController passwordController2 = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   String? error;
   bool loading = false;
-  bool showPassword = false;
+  bool showPassword = true;
 
   void toggleShowPassword() => setState(() => showPassword = !showPassword);
 
   String? get domain => VRouter.of(context).queryParameters['domain'];
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
-  String? usernameTextFieldValidator(String? value) {
-    usernameController.text =
-        usernameController.text.trim().toLowerCase().replaceAll(' ', '_');
-    if (value!.isEmpty) {
-      return L10n.of(context)!.pleaseChooseAUsername;
-    }
-    return null;
-  }
 
   String? password1TextFieldValidator(String? value) {
     const minLength = 8;
@@ -50,18 +39,11 @@ class SignupPageController extends State<SignupPage> {
     return null;
   }
 
-  String? password2TextFieldValidator(String? value) {
-    if (value!.isEmpty) {
-      return L10n.of(context)!.chooseAStrongPassword;
-    }
-    if (value != passwordController.text) {
-      return L10n.of(context)!.passwordsDoNotMatch;
-    }
-    return null;
-  }
-
   String? emailTextFieldValidator(String? value) {
-    if (value!.isNotEmpty && !value.contains('@')) {
+    if (value!.isEmpty) {
+      return L10n.of(context)!.addEmail;
+    }
+    if (value.isNotEmpty && !value.contains('@')) {
       return L10n.of(context)!.pleaseEnterValidEmail;
     }
     return null;
@@ -92,7 +74,7 @@ class SignupPageController extends State<SignupPage> {
       }
       await client.uiaRequestBackground(
         (auth) => client.register(
-          username: usernameController.text,
+          username: Matrix.of(context).loginUsername!,
           password: passwordController.text,
           initialDeviceDisplayName: PlatformInfos.clientName,
           auth: auth,

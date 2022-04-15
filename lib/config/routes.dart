@@ -9,6 +9,7 @@ import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/pages/chat_encryption_settings/chat_encryption_settings.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_permissions_settings/chat_permissions_settings.dart';
+import 'package:fluffychat/pages/connect/connect_page.dart';
 import 'package:fluffychat/pages/device_settings/device_settings.dart';
 import 'package:fluffychat/pages/homeserver_picker/homeserver_picker.dart';
 import 'package:fluffychat/pages/invitation_selection/invitation_selection.dart';
@@ -257,10 +258,21 @@ class AppRoutes {
               buildTransition: _fadeTransition,
             ),
             VWidget(
-              path: 'signup',
-              widget: const SignupPage(),
-              buildTransition: _fadeTransition,
-            ),
+                path: 'connect',
+                widget: const ConnectPage(),
+                buildTransition: _fadeTransition,
+                stackedRoutes: [
+                  VWidget(
+                    path: 'login',
+                    widget: const Login(),
+                    buildTransition: _fadeTransition,
+                  ),
+                  VWidget(
+                    path: 'signup',
+                    widget: const SignupPage(),
+                    buildTransition: _fadeTransition,
+                  ),
+                ]),
             VWidget(
               path: 'logs',
               widget: const LogViewer(),
