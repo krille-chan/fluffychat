@@ -2802,5 +2802,53 @@
   "@showDirectChatsInSpaces": {
     "type": "text",
     "placeholders": {}
+  },
+  "youInvitedBy": "Anda telah diundang oleh {user}",
+  "@youInvitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youInvitedUser": "Anda mengundang {user}",
+  "@youInvitedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youKicked": "Anda mengeluarkan {user}",
+  "@youKicked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youKickedAndBanned": "Anda mengeluarkan dan mencekal {user}",
+  "@youKickedAndBanned": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youRejectedTheInvitation": "Anda menolak undangannya",
+  "@youRejectedTheInvitation": {},
+  "youJoinedTheChat": "Anda bergabung ke obrolan",
+  "@youJoinedTheChat": {},
+  "youAcceptedTheInvitation": "Anda menerima undangannya",
+  "@youAcceptedTheInvitation": {},
+  "youBannedUser": "Anda mencekal {user}",
+  "@youBannedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youHaveWithdrawnTheInvitationFor": "Anda telah membatalkan undangan untuk {user}",
+  "@youHaveWithdrawnTheInvitationFor": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youUnbannedUser": "Anda membatalkan cekalan {user}",
+  "@youUnbannedUser": {
+    "placeholders": {
+      "user": {}
+    }
   }
 }
