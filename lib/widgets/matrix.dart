@@ -12,6 +12,7 @@ import 'package:flutter_app_lock/flutter_app_lock.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
 import 'package:matrix/encryption.dart';
 import 'package:matrix/matrix.dart';
 import 'package:provider/provider.dart';
@@ -70,6 +71,11 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   String? activeBundle;
   Store store = Store();
   late BuildContext navigatorContext;
+
+  HomeserverSummary? loginHomeserverSummary;
+  XFile? loginAvatar;
+  String? loginUsername;
+  bool? loginRegistrationSupported;
 
   BackgroundPush? _backgroundPush;
 
