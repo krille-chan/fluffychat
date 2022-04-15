@@ -734,7 +734,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "directChats": "Прямые чаты",
+  "directChats": "Личные чаты",
   "@directChats": {
     "type": "text",
     "placeholders": {}
@@ -2628,7 +2628,7 @@
     "type": "text",
     "description": "Usage hint for the command /discardsession"
   },
-  "commandHint_dm": "Начните прямой чат\nИспользуйте --no-encryption, чтобы отключить шифрование",
+  "commandHint_dm": "Начните личный чат\nИспользуйте --no-encryption, чтобы отключить шифрование",
   "@commandHint_dm": {
     "type": "text",
     "description": "Usage hint for the command /dm"
