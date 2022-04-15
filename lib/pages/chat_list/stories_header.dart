@@ -252,6 +252,7 @@ class _StoryButton extends StatelessWidget {
                             width: 24,
                             height: 24,
                             child: FloatingActionButton.small(
+                              heroTag: null,
                               backgroundColor:
                                   Theme.of(context).backgroundColor,
                               foregroundColor: Theme.of(context).primaryColor,
