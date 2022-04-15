@@ -2798,5 +2798,63 @@
   "widgetName": "Nom",
   "@widgetName": {},
   "widgetVideo": "Vidéo",
-  "@widgetVideo": {}
+  "@widgetVideo": {},
+  "youRejectedTheInvitation": "Vous avez rejeté l'invitation",
+  "@youRejectedTheInvitation": {},
+  "youJoinedTheChat": "Vous avez rejoint la discussion",
+  "@youJoinedTheChat": {},
+  "youHaveWithdrawnTheInvitationFor": "Vous avez retiré l'invitation pour {user}",
+  "@youHaveWithdrawnTheInvitationFor": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "showDirectChatsInSpaces": "Afficher les discussions directes associées dans les espaces",
+  "@showDirectChatsInSpaces": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youAcceptedTheInvitation": "Vous avez accepté l'invitation",
+  "@youAcceptedTheInvitation": {},
+  "youBannedUser": "Vous avez banni {user}",
+  "@youBannedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youInvitedBy": "Vous avez été invité par {user}",
+  "@youInvitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youInvitedUser": "Vous avez invité {user}",
+  "@youInvitedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youKicked": "Vous avez dégagé {user}",
+  "@youKicked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youKickedAndBanned": "Vous avez dégagé et banni {user}",
+  "@youKickedAndBanned": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youUnbannedUser": "Vous avez débanni {user}",
+  "@youUnbannedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "separateChatTypes": "Séparer les discussions directes, les groupes et les espaces",
+  "@separateChatTypes": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
