@@ -354,10 +354,21 @@ class AppRoutes {
                   buildTransition: _fadeTransition,
                 ),
                 VWidget(
-                  path: 'signup',
-                  widget: const SignupPage(),
-                  buildTransition: _fadeTransition,
-                ),
+                    path: 'connect',
+                    widget: const ConnectPage(),
+                    buildTransition: _fadeTransition,
+                    stackedRoutes: [
+                      VWidget(
+                        path: 'login',
+                        widget: const Login(),
+                        buildTransition: _fadeTransition,
+                      ),
+                      VWidget(
+                        path: 'signup',
+                        widget: const SignupPage(),
+                        buildTransition: _fadeTransition,
+                      ),
+                    ]),
               ],
             ),
           ],
