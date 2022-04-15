@@ -1019,6 +1019,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.5.3"
+  matrix_homeserver_recommendations:
+    dependency: "direct main"
+    description:
+      name: matrix_homeserver_recommendations
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.0"
   matrix_link_text:
     dependency: "direct main"
     description:
