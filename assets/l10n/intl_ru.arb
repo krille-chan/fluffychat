@@ -2808,5 +2808,53 @@
   "@separateChatTypes": {
     "type": "text",
     "placeholders": {}
+  },
+  "youRejectedTheInvitation": "Вы отклонили приглашение",
+  "@youRejectedTheInvitation": {},
+  "youAcceptedTheInvitation": "Вы приняли приглашение",
+  "@youAcceptedTheInvitation": {},
+  "youUnbannedUser": "Вы разблокировали {user}",
+  "@youUnbannedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youJoinedTheChat": "Вы присоединились к чату",
+  "@youJoinedTheChat": {},
+  "youKickedAndBanned": "Вы исключили и заблокировали {user}",
+  "@youKickedAndBanned": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youInvitedUser": "Вы пригласили {user}",
+  "@youInvitedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youKicked": "Вы исключили {user}",
+  "@youKicked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youHaveWithdrawnTheInvitationFor": "Вы отозвали приглашение для {user}",
+  "@youHaveWithdrawnTheInvitationFor": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youBannedUser": "Вы заблокировали {user}",
+  "@youBannedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youInvitedBy": "Вы были приглашены {user}",
+  "@youInvitedBy": {
+    "placeholders": {
+      "user": {}
+    }
   }
 }
