@@ -2365,5 +2365,17 @@
   "iWroteDownTheKey": "私は鍵を書きました",
   "@iWroteDownTheKey": {},
   "chatHasBeenAddedToThisSpace": "このスペースにチャットが追加されました",
-  "@chatHasBeenAddedToThisSpace": {}
+  "@chatHasBeenAddedToThisSpace": {},
+  "commandHint_ban": "このユーザーを禁止する",
+  "@commandHint_ban": {
+    "type": "text",
+    "description": "Usage hint for the command /ban"
+  },
+  "commandHint_clearcache": "キャッシュをクリアする",
+  "@commandHint_clearcache": {
+    "type": "text",
+    "description": "Usage hint for the command /clearcache"
+  },
+  "addToStory": "ストーリーに追加",
+  "@addToStory": {}
 }
