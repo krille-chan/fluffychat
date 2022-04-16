@@ -17,6 +17,7 @@ class HomeserverPickerView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final benchmarkResults = controller.benchmarkResults;
     return LoginScaffold(
       appBar: VRouter.of(context).path == '/home'
           ? null
@@ -26,18 +27,19 @@ class HomeserverPickerView extends StatelessWidget {
           Expanded(
             child: ListView(
               children: [
-                Center(
-                  child: ConstrainedBox(
-                    constraints: const BoxConstraints(maxHeight: 256),
-                    child: Image.asset(
-                      'assets/info-logo.png',
-                    ),
-                  ),
+                AnimatedContainer(
+                  duration: const Duration(milliseconds: 300),
+                  constraints: BoxConstraints(
+                      maxHeight: controller.displayServerList ? 0 : 256),
+                  alignment: Alignment.center,
+                  child: Image.asset('assets/info-logo.png'),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: TextField(
+                    focusNode: controller.homeserverFocusNode,
                     controller: controller.homeserverController,
+                    onChanged: controller.onChanged,
                     decoration: FluffyThemes.loginTextFieldDecoration(
                       labelText: L10n.of(context)!.homeserver,
                       hintText: L10n.of(context)!.enterYourHomeserver,
@@ -49,6 +51,42 @@ class HomeserverPickerView extends StatelessWidget {
                     autocorrect: false,
                   ),
                 ),
+                if (controller.displayServerList)
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Material(
+                      borderRadius:
+                          BorderRadius.circular(AppConfig.borderRadius),
+                      color: Colors.white.withAlpha(200),
+                      clipBehavior: Clip.hardEdge,
+                      child: benchmarkResults == null
+                          ? const Center(
+                              child: Padding(
+                              padding: EdgeInsets.all(16.0),
+                              child: CircularProgressIndicator.adaptive(),
+                            ))
+                          : Column(
+                              children: controller.filteredHomeservers
+                                  .map(
+                                    (server) => ListTile(
+                                      trailing: IconButton(
+                                        icon: const Icon(Icons.info_outlined),
+                                        onPressed: () =>
+                                            controller.showServerInfo(server),
+                                      ),
+                                      onTap: () => controller.setServer(
+                                          server.homeserver.baseUrl.host),
+                                      title: Text(
+                                        server.homeserver.baseUrl.host,
+                                      ),
+                                      subtitle: Text(
+                                          server.homeserver.description ?? ''),
+                                    ),
+                                  )
+                                  .toList(),
+                            ),
+                    ),
+                  ),
                 Wrap(
                   alignment: WrapAlignment.center,
                   children: [
