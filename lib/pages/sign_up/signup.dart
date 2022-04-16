@@ -62,16 +62,15 @@ class SignupPageController extends State<SignupPage> {
     try {
       final client = Matrix.of(context).getLoginClient();
       final email = emailController.text;
-      if (email.isNotEmpty) {
-        Matrix.of(context).currentClientSecret =
-            DateTime.now().millisecondsSinceEpoch.toString();
-        Matrix.of(context).currentThreepidCreds =
-            await client.requestTokenToRegisterEmail(
-          Matrix.of(context).currentClientSecret,
-          email,
-          0,
-        );
-      }
+      Matrix.of(context).currentClientSecret =
+          DateTime.now().millisecondsSinceEpoch.toString();
+      Matrix.of(context).currentThreepidCreds =
+          await client.requestTokenToRegisterEmail(
+        Matrix.of(context).currentClientSecret,
+        email,
+        0,
+      );
+
       await client.uiaRequestBackground(
         (auth) => client.register(
           username: Matrix.of(context).loginUsername!,

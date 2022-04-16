@@ -318,12 +318,10 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     });
     onLoginStateChanged[name] ??= c.onLoginStateChanged.stream.listen((state) {
       final loggedInWithMultipleClients = widget.clients.length > 1;
-      if (state != LoginState.loggedIn) {
+      if (loggedInWithMultipleClients && state != LoginState.loggedIn) {
         _cancelSubs(c.clientName);
         widget.clients.remove(c);
         ClientManager.removeClientNameFromStore(c.clientName);
-      }
-      if (loggedInWithMultipleClients && state != LoginState.loggedIn) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(L10n.of(context)!.oneClientLoggedOut),
