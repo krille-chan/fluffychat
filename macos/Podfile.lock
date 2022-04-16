@@ -1,9 +1,5 @@
 PODS:
-  - assets_audio_player (0.0.1):
-    - FlutterMacOS
-  - assets_audio_player_web (0.0.1):
-    - FlutterMacOS
-  - audioplayers (0.0.1):
+  - audio_session (0.0.1):
     - FlutterMacOS
   - connectivity_plus_macos (0.0.1):
     - FlutterMacOS
@@ -18,20 +14,24 @@ PODS:
     - FlutterMacOS
   - file_selector_macos (0.0.1):
     - FlutterMacOS
+  - flutter_app_badger (1.3.0):
+    - FlutterMacOS
   - flutter_local_notifications (0.0.1):
     - FlutterMacOS
   - flutter_secure_storage_macos (3.3.1):
     - FlutterMacOS
-  - flutter_web_auth (0.4.0):
+  - flutter_web_auth (0.4.1):
     - FlutterMacOS
   - flutter_webrtc (0.7.1):
     - FlutterMacOS
-    - WebRTC-SDK (= 93.4577.01)
+    - WebRTC-SDK (= 97.4692.02)
   - FlutterMacOS (1.0.0)
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
   - geolocator_apple (1.2.0):
+    - FlutterMacOS
+  - just_audio (0.0.1):
     - FlutterMacOS
   - package_info (0.0.1):
     - FlutterMacOS
@@ -51,24 +51,24 @@ PODS:
     - FlutterMacOS
   - wakelock_macos (0.0.1):
     - FlutterMacOS
-  - WebRTC-SDK (93.4577.01)
+  - WebRTC-SDK (97.4692.02)
 
 DEPENDENCIES:
-  - assets_audio_player (from `Flutter/ephemeral/.symlinks/plugins/assets_audio_player/macos`)
-  - assets_audio_player_web (from `Flutter/ephemeral/.symlinks/plugins/assets_audio_player_web/macos`)
-  - audioplayers (from `Flutter/ephemeral/.symlinks/plugins/audioplayers/macos`)
+  - audio_session (from `Flutter/ephemeral/.symlinks/plugins/audio_session/macos`)
   - connectivity_plus_macos (from `Flutter/ephemeral/.symlinks/plugins/connectivity_plus_macos/macos`)
   - desktop_drop (from `Flutter/ephemeral/.symlinks/plugins/desktop_drop/macos`)
   - desktop_lifecycle (from `Flutter/ephemeral/.symlinks/plugins/desktop_lifecycle/macos`)
   - device_info_plus_macos (from `Flutter/ephemeral/.symlinks/plugins/device_info_plus_macos/macos`)
   - emoji_picker_flutter (from `Flutter/ephemeral/.symlinks/plugins/emoji_picker_flutter/macos`)
   - file_selector_macos (from `Flutter/ephemeral/.symlinks/plugins/file_selector_macos/macos`)
+  - flutter_app_badger (from `Flutter/ephemeral/.symlinks/plugins/flutter_app_badger/macos`)
   - flutter_local_notifications (from `Flutter/ephemeral/.symlinks/plugins/flutter_local_notifications/macos`)
   - flutter_secure_storage_macos (from `Flutter/ephemeral/.symlinks/plugins/flutter_secure_storage_macos/macos`)
   - flutter_web_auth (from `Flutter/ephemeral/.symlinks/plugins/flutter_web_auth/macos`)
   - flutter_webrtc (from `Flutter/ephemeral/.symlinks/plugins/flutter_webrtc/macos`)
   - FlutterMacOS (from `Flutter/ephemeral`)
   - geolocator_apple (from `Flutter/ephemeral/.symlinks/plugins/geolocator_apple/macos`)
+  - just_audio (from `Flutter/ephemeral/.symlinks/plugins/just_audio/macos`)
   - package_info (from `Flutter/ephemeral/.symlinks/plugins/package_info/macos`)
   - package_info_plus_macos (from `Flutter/ephemeral/.symlinks/plugins/package_info_plus_macos/macos`)
   - path_provider_macos (from `Flutter/ephemeral/.symlinks/plugins/path_provider_macos/macos`)
@@ -85,12 +85,8 @@ SPEC REPOS:
     - WebRTC-SDK
 
 EXTERNAL SOURCES:
-  assets_audio_player:
-    :path: Flutter/ephemeral/.symlinks/plugins/assets_audio_player/macos
-  assets_audio_player_web:
-    :path: Flutter/ephemeral/.symlinks/plugins/assets_audio_player_web/macos
-  audioplayers:
-    :path: Flutter/ephemeral/.symlinks/plugins/audioplayers/macos
+  audio_session:
+    :path: Flutter/ephemeral/.symlinks/plugins/audio_session/macos
   connectivity_plus_macos:
     :path: Flutter/ephemeral/.symlinks/plugins/connectivity_plus_macos/macos
   desktop_drop:
@@ -103,6 +99,8 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral/.symlinks/plugins/emoji_picker_flutter/macos
   file_selector_macos:
     :path: Flutter/ephemeral/.symlinks/plugins/file_selector_macos/macos
+  flutter_app_badger:
+    :path: Flutter/ephemeral/.symlinks/plugins/flutter_app_badger/macos
   flutter_local_notifications:
     :path: Flutter/ephemeral/.symlinks/plugins/flutter_local_notifications/macos
   flutter_secure_storage_macos:
@@ -115,6 +113,8 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral
   geolocator_apple:
     :path: Flutter/ephemeral/.symlinks/plugins/geolocator_apple/macos
+  just_audio:
+    :path: Flutter/ephemeral/.symlinks/plugins/just_audio/macos
   package_info:
     :path: Flutter/ephemeral/.symlinks/plugins/package_info/macos
   package_info_plus_macos:
@@ -133,33 +133,33 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral/.symlinks/plugins/wakelock_macos/macos
 
 SPEC CHECKSUMS:
-  assets_audio_player: be2578e6f11dd4d183412e97143673c3c4cb2e8a
-  assets_audio_player_web: 917101123b6db8f73156835c0fa266c11340ff15
-  audioplayers: 8b48e22684b6e0d9df143b2d1bbd61dca9dab6b4
+  audio_session: dea1f41890dbf1718f04a56f1d6150fd50039b72
   connectivity_plus_macos: f6e86fd000e971d361e54b5afcadc8c8fa773308
   desktop_drop: 69eeff437544aa619c8db7f4481b3a65f7696898
   desktop_lifecycle: a600c10e12fe033c7be9078f2e929b8241f2c1e3
   device_info_plus_macos: 1ad388a1ef433505c4038e7dd9605aadd1e2e9c7
   emoji_picker_flutter: 533634326b1c5de9a181ba14b9758e6dfe967a20
   file_selector_macos: ff6dc948d4ddd34e8602a1f60b7d0b4cc6051a47
+  flutter_app_badger: 55a64b179f8438e89d574320c77b306e327a1730
   flutter_local_notifications: 3805ca215b2fb7f397d78b66db91f6a747af52e4
   flutter_secure_storage_macos: 6ceee8fbc7f484553ad17f79361b556259df89aa
-  flutter_web_auth: 0432fb32dd550d65cc874aa596d952b2add0ad9d
-  flutter_webrtc: c49ea45decce467d75b78b2004b1b58ac5a6874a
+  flutter_web_auth: ae2c29ca9b98c00b4e0e8c0919bb4a05d44b76df
+  flutter_webrtc: 238124d0a7ba1c43543791f31a92a672370497c2
   FlutterMacOS: 57701585bf7de1b3fc2bb61f6378d73bbdea8424
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   geolocator_apple: 821be05bbdb1b49500e029ebcbf2d6acf2dfb966
+  just_audio: 9b67ca7b97c61cfc9784ea23cd8cc55eb226d489
   package_info: 6eba2fd8d3371dda2d85c8db6fe97488f24b74b2
   package_info_plus_macos: f010621b07802a241d96d01876d6705f15e77c1c
   path_provider_macos: 160cab0d5461f0c0e02995469a98f24bdb9a3f1f
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
-  shared_preferences_macos: 480ce071d0666e37cef23fe6c702293a3d21799e
+  shared_preferences_macos: a64dc611287ed6cbe28fd1297898db1336975727
   sqflite: a5789cceda41d54d23f31d6de539d65bb14100ea
-  url_launcher_macos: 45af3d61de06997666568a7149c1be98b41c95d4
+  url_launcher_macos: 597e05b8e514239626bcf4a850fcf9ef5c856ec3
   video_compress: c896234f100791b5fef7f049afa38f6d2ef7b42f
   wakelock_macos: bc3f2a9bd8d2e6c89fee1e1822e7ddac3bd004a9
-  WebRTC-SDK: 166b0e161d93d4b961f410bf7966a634f42aa17d
+  WebRTC-SDK: dda4e50186f9eed672dc6bcf4faafb30c6ce48e3
 
 PODFILE CHECKSUM: 9b8d08a513b178c33212d1b54cc9e3cba756d95b
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3
