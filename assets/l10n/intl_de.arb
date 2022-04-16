@@ -2738,7 +2738,7 @@
   "@unsupportedAndroidVersion": {},
   "videoCallsBetaWarning": "Bitte beachte, dass sich Videoanrufe derzeit in der Beta-Phase befinden. Sie funktionieren möglicherweise nicht wie erwartet oder überhaupt nicht auf allen Plattformen.",
   "@videoCallsBetaWarning": {},
-  "emailOrUsername": "E-Mail Adresse oder Benutzername",
+  "emailOrUsername": "E-Mail oder Benutzername",
   "@emailOrUsername": {},
   "unsupportedAndroidVersionLong": "Diese Funktion erfordert eine neuere Android-Version. Bitte suche nach Updates oder Lineage OS-Unterstützung.",
   "@unsupportedAndroidVersionLong": {},
