@@ -2807,5 +2807,53 @@
   "@showDirectChatsInSpaces": {
     "type": "text",
     "placeholders": {}
+  },
+  "youAcceptedTheInvitation": "Je hebt de uitnodiging geaccepteerd",
+  "@youAcceptedTheInvitation": {},
+  "youRejectedTheInvitation": "Je hebt de uitnodiging afgewezen",
+  "@youRejectedTheInvitation": {},
+  "youJoinedTheChat": "Je bent toegetreden tot de chat",
+  "@youJoinedTheChat": {},
+  "youBannedUser": "Je hebt {user} verbannen",
+  "@youBannedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youHaveWithdrawnTheInvitationFor": "Je hebt de uitnodiging voor {user} ingetrokken",
+  "@youHaveWithdrawnTheInvitationFor": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youInvitedBy": "Je bent uitgenodigd door {user}",
+  "@youInvitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youInvitedUser": "Je hebt {user} uitgenodigd",
+  "@youInvitedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youKicked": "Je hebt {user} weggestuurd",
+  "@youKicked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youKickedAndBanned": "Je hebt weggestuurd en verbannen {user}",
+  "@youKickedAndBanned": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youUnbannedUser": "Je hebt de ban op {user} opgeheven",
+  "@youUnbannedUser": {
+    "placeholders": {
+      "user": {}
+    }
   }
 }
